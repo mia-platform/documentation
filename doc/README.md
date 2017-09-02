@@ -25,18 +25,20 @@ TODO
 - Users
 - Files
 - Push notifications
+- Data Modeller
+- Configurare il CMS
+- Configurare gli Analytics
+- Utenti e autorizzazioni
 
 ## Administrator Guide
 TODO
 - Pipe di Rilascio
 - Build di un docker proprio
-- Utenti e autorizzazioni
 - Scalabilita
 - Backup e Disaster recovery
 
 ## User Guide and Tools
 TODO
-- Data Modeller
 - [CMS](user_guide_and_tools/cms/README.md)
 - Analytics
 
