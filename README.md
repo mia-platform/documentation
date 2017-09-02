@@ -1,3 +1,3 @@
 ## Mia-Platform
 
-Read the doc
+[Read the doc](doc/README.md)

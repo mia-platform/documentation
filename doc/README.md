@@ -2,12 +2,12 @@
 
 ## About
 TODO
-- A cosa serve Mia Platform
-- La filosofia
+- [A cosa serve Mia Platform](about/README.md)
+- [La filosofia](about/README.md)
 
 ## Getting Started
 TODO
-- Veloce guida di inizio con dockerbox
+- [Veloce guida di inizio con dockerbox](getting_started/README.md)
 
 
 ## Architecture
@@ -37,7 +37,7 @@ TODO
 ## User Guide and Tools
 TODO
 - Data Modeller
-- CMS
+- [CMS](user_guide_and_tools/cms/README.md)
 - Analytics
 
 ## Release Notes
