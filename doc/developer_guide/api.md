@@ -25,10 +25,10 @@ sviluppi e di conseguenza anche di rilasciare in modo incrementale le funzionali
 interfacciate ad implementazioni delle API ancora in Draft. Dopo una prima valutazione dell'ergonomia delle API da parte
 della UI le API evolveranno e sarà implementata la logica finale lato server.
 
-![Approccio senza progettare le API con una piattaforma](img/no-platform.png)
+![Approccio senza progettare le API con una piattaforma](img/no-platform.png =250x)
 Approccio senza progettare le API con una piattaforma
 
-![Approccio progettando le API con una piattaforma](img/with-platform.png)
+![Approccio progettando le API con una piattaforma](img/with-platform.png =250x)
 Approccio progettando le API con una piattaforma
 
 Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra frontend e backend sia 
@@ -49,6 +49,7 @@ il profilo di un super eroe. Ad esempio per leggere tutti gli erori ci potrebbe 
 ```/getAllHeroes```
 
 e poi ...
+
 
 ```
 /addNewHero
@@ -83,6 +84,7 @@ Ad esempio:
 Con questo semplice accorgimento le API sono più concise e consistenti!
 
 Può essere utile questo accorgimento
+
 ```
 L'API descrive le risorse, quindi l'unico luogo dove le azioni dovrebbero apparire è nei metodi HTTP. 
 Negli URL, utilizzare solo i nomi. Invece di pensare alle azioni (verbi), è spesso utile pensare a mettere un messaggio
