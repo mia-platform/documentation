@@ -25,10 +25,10 @@ sviluppi e di conseguenza anche di rilasciare in modo incrementale le funzionali
 interfacciate ad implementazioni delle API ancora in Draft. Dopo una prima valutazione dell'ergonomia delle API da parte
 della UI le API evolveranno e sarà implementata la logica finale lato server.
 
-![Approccio senza progettare le API con una piattaforma](img/no-platform.png =250x)
+![Approccio senza progettare le API con una piattaforma](img/no-platform.png){ width=50% }
 Approccio senza progettare le API con una piattaforma
 
-![Approccio progettando le API con una piattaforma](img/with-platform.png =250x)
+![Approccio progettando le API con una piattaforma](img/with-platform.png){ width=50% }
 Approccio progettando le API con una piattaforma
 
 Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra frontend e backend sia 
