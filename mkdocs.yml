@@ -1,1 +1,5 @@
 site_name: Mia-Platform Docs
+#pages:
+#    - Home: 'index.md'
+#    - About: 'about/README.md'
+#theme: readthedocs
