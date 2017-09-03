@@ -13,7 +13,36 @@ Nel dettaglio:
 - PUT: aggiorna una risorsa
 
 ## Linee guida
+Esitono delle buone pratiche per progettare delle API RESTFul. Le API evolvono nel tempo ed è importante che la loro
+documentazione sia sempre aggiornata in modo da essere l'interfaccia stabile e chiara verso il mondo esterno (App, 
+Siti Web, Wearable Devices, Machines ecc).
 
+Seguono alcuni buoni consigli sulla progettazione delle API. Potete trovare ulteriori dettagli sulla [Guideline di 
+Zalando](http://zalando.github.io/restful-api-guidelines).
+
+### L'importanza di progettare le API
+Progettare prima le API e poi implementarle non è contro i pricipi Agili.
+Anzi consente di velocizzare lo sviluppo perchè disaccoppia il backend dal frontend e consente di parallelizzare gli
+sviluppi e di conseguenza anche di rilasciare in modo incrementale le funzionalità, che inizialmente di solito saranno
+interfacciate ad implementazioni delle API ancora in Draft. Questo approccio consentirà di raccogliere maggiori
+riscontri durante le demo e adeguare le funzionalità in funzione di essi senza dover stravolgere la parte server.
+
+![Approccio senza progettare le API con una piattaforma](img/no-platform.png)
+Approccio senza progettare le API con una piattaforma
+
+![Approccio progettando le API con una piattaforma](img/with-platform.png)
+Approccio progettando le API con una piattaforma
+
+Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra fronted e backend sia 
+possibile procedere in parallelo fornendo dapprima dati mock all'interfaccia utente e poi, senza cambiare il contratto.
+
+E' comunque auspicabile far evolvere le API man mano che l'interfaccia utente evolve. Il pattern di Backend-for-Frontend
+è basilare per rendere facile la vita al frontend e consentire di avere API performanti e utili.
+
+### Servizi o risorse?
+La prima volta che si definisce un'API si tende a pensare all'azione che viene fatta come se fosse un servizio da 
+chiamare. Facciamo un esempio, vogliamo fare un gioco su super eroi e la prima cose che vogliamo fare è gestire
+il profilo di un super eroe, ci potrebbe venir voglia di scrivere le seguenti API:
 
 2) API endpoint
 Let’s write few APIs for Companies which has some Employees, to understand more.
@@ -70,6 +99,10 @@ If you liked this post, please share, comment and press the 💚 below 😊
 
 ## Creare una API
 
+
+## Sicurezza di un'API
+
+
 ## Consumare una API
 
 ### Creare un
@@ -109,6 +142,6 @@ These status codes represent that the client has raised a faulty request.
 
 ## API con codice custom
 
-## Sicurezza di un'API
+
 
 ## Eventi legati ad una API
