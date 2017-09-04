@@ -1,2 +1,2 @@
-git commit -a -m "$1" && push origin master
+git commit -a -m $1 && git push origin master
 
