@@ -1,9 +1,8 @@
 # Documentazione di Mia-Platform v3.0
 
 ## About
-TODO
-- [A cosa serve Mia Platform](about/index.md)
-- [La filosofia](about/index.md)
+- [Le caratteristiche principali](about/index.md)
+- [La storia ](about/index.md)
 
 ## Getting Started
 TODO
