@@ -46,7 +46,9 @@ La prima volta che si definisce un'API si tende a pensare all'azione che viene f
 chiamare. Facciamo un esempio, vogliamo fare un gioco su super eroi e la prima cose che vogliamo fare è gestire
 il profilo di un super eroe. Ad esempio per leggere tutti gli erori ci potrebbe venir voglia di scrivere
 
-```/getAllHeroes```
+```
+/getAllHeroes
+```
 
 e poi ...
 
@@ -76,10 +78,12 @@ di eseguire azioni sugli eroi? Qui entrano in gioco i verbi HTTP.
 Le risorse usano sempre il *plurale* e se vogliamo accedere ad una sola risorsa possiamo passare l'id nell'URL.
 Ad esempio:
 
+```
 - il metodo GET sul path /heroes ritorna la lista di tutti gli eroi
 - il metodo GET sul path /heroes/100 ritorna l'eroe che ha come id 100
 - il metodo DELETE sul path /heroes/100 cancella l'eroe che ha come id 100
 - il meotod POST sul path /heroes crea un nuovo eroe e ritorna il dettaglio del nuovo eroe creato.
+```
 
 Con questo semplice accorgimento le API sono più concise e consistenti!
 
@@ -100,12 +104,69 @@ Ci sono diversi dibattiti sul versionare o non versionare le API. Entrambi gli a
 TODO
 
 ## Creare una API
-
+Per creare un'API si può utilizzare l'API Modeller all'indirizzo
+[https://yoururl.com/data_modeller/](https://yoururl.com/data_modeller/)
 
 ## Sicurezza di un'API
+Le API possono essere protette in due modi:
+ - con chiave Secret
+ - con ACL
+ 
+L'API Modeller consente di gestire entrambe.
+
+Nel dettaglio
+
+```
+{
+       "acl": {
+           "access": {
+               "users": [],
+               "groups": [
+                   "public"
+               ]
+           },
+           "read": {
+               "users": [],
+               "groups": [
+                   "public"
+               ]
+           },
+           "create": {
+               "users": [],
+               "groups": [
+                   "users"
+               ]
+           },
+           "update": {
+               "users": [
+                   "creator"
+               ],
+               "groups": []
+           },
+           "delete": {
+               "users": [
+                   "creator"
+               ],
+               "groups": []
+           },
+           "secreted": true,
+           "enabled": false
+       }
+   }
+```
 
 
 ## Consumare una API
+Le API configurate con Mia-Platform possono essere consumate con qualsiasi tecnologia che supporta il procollo HTTP.
+Per lo sviluppo consigliamo uno dei seguenti strumenti:
+
+- curl: [https://curl.haxx.se](https://curl.haxx.se/)
+- insomnia: [https://insomnia.rest](https://insomnia.rest/)
+- postman: [https://www.getpostman.com](https://www.getpostman.com/)
+
+Negli esempi per brevità useremo curl.
+
+Seguono le operazioni tipiche che si possono fare con un'APIRestful CRUD creata con Mia-Platform.
 
 ### Creare una Risorsa
 

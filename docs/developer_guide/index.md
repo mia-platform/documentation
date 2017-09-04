@@ -13,3 +13,5 @@ In questa guida puoi trovare tutte le informazioni per implementare e configurar
 - [Configurare il CMS](conf_cms.md): configurare il CMS.
 - [Configurare il servizio di News](conf_news.md): configurare il servizio di News.
 - [Configurare gli Analytics](conf_analytics.md): configurare gli Analytics e la dashboard.
+- [iOS SDK](sdk_ios.md): Utilizzare l'SDK iOS.
+- [iOS SDK](sdk_android.md): Utilizzare l'SDK Android.
