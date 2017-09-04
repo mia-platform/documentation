@@ -21,7 +21,7 @@ node {
     }
 
     stage("Clean build"){
-        sh "rm -fr ${site}*"
+        //sh "rm -fr ${site}*"
     }
 
 }
