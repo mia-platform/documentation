@@ -20,9 +20,9 @@ node {
         def pwd = "sjAAsd273782378!!sajhjsa"
         def server = "preprod@23.97.171.78"
 
-        sh "sshpass -p '$pwd' rm -rf $server:$docDir/*'"
+        sh "sshpass -p '$pwd' rm -rf $docDir/*'"
         sh "sshpass -p '$pwd' scp -r \"${site}.tar.gz\" $server:$docDir"
-        sh "sshpass -p '$pwd' ssh -T $server \"bash -ic 'cd $docDir && tar xvzf ${site}.tar.gz'\""
+        sh "sshpass -p '$pwd' ssh -T $server \"bash -ic 'cd $docDir && tar xvzf ${site}.tar.gz --strip 1'\""
     }
 
     stage("Clean build"){
