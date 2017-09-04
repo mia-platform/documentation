@@ -5,12 +5,10 @@
 - [La storia ](about/index.md)
 
 ## Getting Started
-TODO
 - [Veloce guida di inizio con dockerbox](getting_started/index.md)
 
 
 ## Architecture
-TODO
 - Visione globale
 - Logica
 - Infrastuttura
@@ -29,19 +27,21 @@ TODO
 - [Configurare gli Analytics](developer_guide/conf_analytics.md): configurare gli Analytics e la dashboard.
 
 ## Administrator Guide
-TODO
 - Pipe di Rilascio
 - Build di un docker proprio
 - Scalabilita
 - Backup e Disaster recovery
 
 ## User Guide and Tools
-TODO
 - [CMS](user_guide_and_tools/cms/index.md)
 - Analytics
 
 ## Release Notes
-TODO
+- 3.0.2
+- 3.0.1
+- 3.0.0
 
 ## Roadmap
-TODO
+- 3.1
+- 3.2
+- 4.0
