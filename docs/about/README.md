@@ -1,1 +1,1 @@
-TODO
+Benvenuti nella documentazione di Mia-Platform
