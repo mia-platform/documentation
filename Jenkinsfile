@@ -3,6 +3,11 @@ node {
     def site = "site"
     def docDir = "docs"
 
+    stage("Checkout doc sources") {
+        checkout([$class: "GitSCM", branches: [[name: "*/master"]], userRemoteConfigs: [[credentialsId: "edada490-85cc-4502-825e-d77068fdc488", url: "git@git.makeitapp.eu:makeitapp-baas/mia-platform-doc.git"]]])
+    }
+
+
     stage("Generate static documentation") {
         sh "mkdocs build"
     }
