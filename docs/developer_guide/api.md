@@ -1,13 +1,12 @@
 # API
 
-[[TOC]]
-
 ## Introduzione
 API è l'acronimo per *Application Programming Interface*. Negli ultimi anni le RESTful API sono diventate il metodo
 principale per disaccoppiare la parte server dalla parte client di un software applicativo. Una RESTful utilizza i verbi
 del protocollo HTTP (GET, PUT, POST, DELETE) per gestire un modello dati chiamato anche risorsa.
 
 Nel dettaglio:
+
 - GET: consente di leggere una risorsa o una lista di risorse
 - POST: crea una risorsa
 - PUT: aggiorna una risorsa
@@ -26,9 +25,11 @@ interfacciate ad implementazioni delle API ancora in Draft. Dopo una prima valut
 della UI le API evolveranno e sarà implementata la logica finale lato server.
 
 ![Approccio senza progettare le API con una piattaforma](img/no-platform.png)
+
 Approccio senza progettare le API con una piattaforma
 
 ![Approccio progettando le API con una piattaforma](img/with-platform.png)
+
 Approccio progettando le API con una piattaforma
 
 Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra frontend e backend sia 
@@ -41,7 +42,7 @@ completata.
 E' comunque auspicabile far evolvere le API man mano che l'interfaccia utente evolve. Il pattern di Backend-for-Frontend
 è basilare per rendere facile la vita al frontend e consentire di avere API performanti e utili.
 
-### Azioni o nomi?
+### Usare i nomi per identificare una risorsa
 La prima volta che si definisce un'API si tende a pensare all'azione che viene fatta come se fosse un servizio da 
 chiamare. Facciamo un esempio, vogliamo fare un gioco su super eroi e la prima cose che vogliamo fare è gestire
 il profilo di un super eroe. Ad esempio per leggere tutti gli erori ci potrebbe venir voglia di scrivere
@@ -99,13 +100,79 @@ eliminare un eroe alla casella di deletion lato server.
 Nei prossimi paragrafi vedremo nel dettaglio come progettare un'API con Mia-Platform.
 
 
-### Verisonare le API
+### Versionare le API
 Ci sono diversi dibattiti sul versionare o non versionare le API. Entrambi gli approcci hanno pro e contro.
-TODO
+
+- Non versionare le API consente di garantire una continuità di servizio a tutti i client che le consumano e poter
+accedere agli end-point senza dover cambiare gli endpoint
+- Versionare le API consente di introdurre cambiamenti di rottura senza impattare sui client in essere.
+
+Quello che si consiglia è
+
+```
+Versionare solo le major version che portano a cambiamenti di rottura del servizio e ridurre il numero di versioni 
+supportate in produzione a 2: quella di utilizzo corrente e quella in dismissione.
+```
 
 ## Creare una API
 Per creare un'API si può utilizzare l'API Modeller all'indirizzo
-[https://yoururl.com/data_modeller/](https://yoururl.com/data_modeller/)
+[https://yoururl.com/data_modeller/](https://yoururl.com/data_modeller/).
+
+Maggiori informazioni alla pagina [Data Modeller](data_modeller.md).
+
+### I campi base di una Risorsa
+
+Una risorsa Mia Platform ha dei campi predefiniti e prevalorizzati che servono per la gestione del ciclo di vita del
+dato. Se creiamo una risorsa senza proprietà avremo un JSON come il seguente:
+
+```
+{
+    "creatorId": "public",
+    "createdAt": 1504601216920,
+    "updaterId": "public",
+    "updatedAt": 1504601216920,
+    "sync": 0,
+    "trash": 0,
+    "id": "86c32c9f-194e-46a1-b483-a07c118ff2fc"
+  }
+```
+
+Nel dettaglio:
+
+- creatorId: id dell'utente che ha creato la risorsa
+- createdAt: long che esprime in millisecondi dal 1970 la data e ora di creazione della risorsa
+- updaterId: id dell'utente che ha modificato per ultimo la risorsa
+- updatedAt: long che esprime in millisecondi dal 1970 la data e ora di ultimo aggiornamento della risorsa
+- sync e trash: secondo la logica seguente
+ 
+    Le proprietà sync e trash appartengono ad ogni risorsa e sono rappresentate da numeri con una semantica ben precisa.
+    
+    La proprietà sync può assumere 3 valori: 0, 1 o 2.
+    
+    - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di trash;
+    - 1: la risorsa è stata modificata localmente e deve essere caricata sul BaaS. Questo valore ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
+    - 2: la risorsa è in stato "draft" (bozza). L'applicazione client può scegliere (tramite configurazione) se salvare o no tale risorsa.
+    
+    La proprietà trash può assumere 4 valori: 0, 1, 2, -1.
+    
+    - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di sync;
+    - 1, 2: la risorsa è nello stato "trash" ovvero non è stata cancellata fisicamente, ma non dovrebbe essere più visibile (2 = non visibile neanche al CMS);
+    - -1: la risorsa deve essere eliminata definitivamente dal BaaS. Questo stato ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
+    
+    Una piccola considerazione su sync == 1 e trash == -1: questi due valori hanno significato solo lato client e servono per la corretta sincronizzazione delle collezioni, in particolare per l'operazione di push. Questi valori non dovrebbero mai comparire sul BaaS, per questo motivo, prima di caricare una risorsa con sync == 1 è doveroso impostare sync = 0, mentre quando si ha trash == -1 l'operazione da effettuare sul BaaS è la cancellazione definitiva della risorsa.
+    
+    
+    | sync        | trash           | description  | action  |
+    | ------------- |:-------------:| -----:|
+    | 1 (client reserved)|	0	|Changed by the client	|Upload data (with sync set to 0). If no errors then update local data else re-set sync to 1 and skip.
+    | 2	|0	|Draft	|Depending on client configuration: keep/delete local data.|
+    | 2	|1	|Trash (CMS visible)	|Delete local data.|
+    | 2	|2	|Trash (CMS not visible)|	Delete local data.|
+    | 1	|-1 (client reserved)	|Deleted by the client	Delete remote data then, if no errors, delete local data.|
+    | 1 (client reserved)|	1	|Trashed by the client	Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
+    | - |-|	Undefined	|Delete local data or just skip.| 
+    
+- id: identificativo UUID generato da mongo per identificare la risorsa
 
 ## Sicurezza di un'API
 Le API possono essere protette in due modi:
@@ -129,7 +196,8 @@ Nel dettaglio
                "users": [],
                "groups": [
                    "public"
-               ]
+               ],
+               "secreted": false
            },
            "create": {
                "users": [],
@@ -173,6 +241,14 @@ Seguono le operazioni tipiche che si possono fare con un'APIRestful CRUD creata 
 Per creare una risorsa è sufficiente inviare una *POST* all'endpoint passando nel body le informazioni della 
 risorsa che si vuole creare.
 
+```
+curl -X POST https://your-url/heroes/ 
+-H  "accept: application/json" 
+-H  "content-type: application/json" 
+-H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
+```
+
+il cui body è
 
 ```
 {
@@ -182,24 +258,136 @@ risorsa che si vuole creare.
   ]
 }
 ```
-Informazioni di Capitan America
+
+in risposta si ottiene la risorsa appena creata
 
 ```
-curl -X POST https://your-url/heroes/ 
+{
+    "creatorId": "public",
+    "createdAt": 1504601266703,
+    "updaterId": "public",
+    "updatedAt": 1504601266703,
+    "sync": 0,
+    "trash": 0,
+    "name": "Capitan America",
+    "powers": [
+      "agility",
+      "strength",
+      "speed",
+      "endurance"
+    ],
+    "id": "ef02dcaa-7a2e-4c31-a505-c2cb014d769e"
+  }
+```
+
+### Lettura di una lista
+
+Per leggere una risorsa è sufficiente chiamare con una GET l'endpoint
+
+```
+curl -X GET https://your-url/heroes/ 
 -H  "accept: application/json" 
 -H  "content-type: application/json" 
--H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
+-H  "secret: secret"
 ```
-Chiamata CURL per creare Capitan America
 
+si otterrà un array JSON che contiene tutte le risorse della risorsa. L'ordinamanento è quello di inserimento
 
-### Lista
+```
+[
+  {
+    "creatorId": "public",
+    "createdAt": 1504601033071,
+    "updaterId": "public",
+    "updatedAt": 1504601033071,
+    "sync": 0,
+    "trash": 0,
+    "name": "Ms. Marvel",
+    "powers": [
+      "superhuman strength",
+      "speed",
+      "stamina",
+      "durability",
+      "energy projection and absorption",
+      "flight"
+    ],
+    "id": "ff447759-6a35-405d-89ed-dec38484b6c4"
+  },
+  {
+    "creatorId": "public",
+    "createdAt": 1504601216920,
+    "updaterId": "public",
+    "updatedAt": 1504601216920,
+    "sync": 0,
+    "trash": 0,
+    "name": "Groot",
+    "powers": [
+      "regenerate",
+      "control plants",
+      "fire resistant",
+      "increase mass"
+    ],
+    "id": "86c32c9f-194e-46a1-b483-a07c118ff2fc"
+  },
+  {
+    "creatorId": "public",
+    "createdAt": 1504601266703,
+    "updaterId": "public",
+    "updatedAt": 1504601266703,
+    "sync": 0,
+    "trash": 0,
+    "name": "Capitan America",
+    "powers": [
+      "agility",
+      "strength",
+      "speed",
+      "endurance"
+    ],
+    "id": "ef02dcaa-7a2e-4c31-a505-c2cb014d769e"
+  }
+]
+```
 
-### Filtro
+### Lettura di una singola Risorsa
 
-### Aggiornare
+Per leggere un solo elemento è sufficiente passare alla GET l'id della risorsa che si vuole leggere.
 
-### Cancellare
+```
+curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e 
+-H  "accept: application/json" 
+-H  "content-type: application/json" 
+-H  "secret: secret123"
+```
+
+si ottiene la risorsa corrispondente all'id *ef02dcaa-7a2e-4c31-a505-c2cb014d769e*
+
+```
+{
+	"creatorId": "public",
+	"createdAt": 1504601266703,
+	"updaterId": "public",
+	"updatedAt": 1504601266703,
+	"sync": 0,
+	"trash": 0,
+	"name": "Capitan America",
+	"powers": ["agility", "strength", "speed", "endurance"],
+	"id": "ef02dcaa-7a2e-4c31-a505-c2cb014d769e"
+}
+```
+
+### Ordinamento e paginazione
+
+Per ordinare una lista di risorse alla GET bisogna passare
+
+### Filtri
+
+### Aggiornare una Risorsa
+
+### Cancellare una Risorsa
+
+### Count del numero di Risorse
+
+### Eliminare tutte le Risorse
 
 ## Documentare una API
 
