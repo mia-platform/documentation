@@ -1,4 +1,4 @@
-# API
+[TOC]
 
 ## Introduzione
 API è l'acronimo per *Application Programming Interface*. Negli ultimi anni le RESTful API sono diventate il metodo
