@@ -162,15 +162,15 @@ Nel dettaglio:
     Una piccola considerazione su sync == 1 e trash == -1: questi due valori hanno significato solo lato client e servono per la corretta sincronizzazione delle collezioni, in particolare per l'operazione di push. Questi valori non dovrebbero mai comparire sul BaaS, per questo motivo, prima di caricare una risorsa con sync == 1 è doveroso impostare sync = 0, mentre quando si ha trash == -1 l'operazione da effettuare sul BaaS è la cancellazione definitiva della risorsa.
     
     
-    | sync        | trash           | description  | action  |
-    | ------------- |:-------------:| -----:|
-    | 1 (client reserved)|	0	|Changed by the client	|Upload data (with sync set to 0). If no errors then update local data else re-set sync to 1 and skip.
-    | 2	|0	|Draft	|Depending on client configuration: keep/delete local data.|
-    | 2	|1	|Trash (CMS visible)	|Delete local data.|
-    | 2	|2	|Trash (CMS not visible)|	Delete local data.|
-    | 1	|-1 (client reserved)	|Deleted by the client	Delete remote data then, if no errors, delete local data.|
-    | 1 (client reserved)|	1	|Trashed by the client	Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
-    | - |-|	Undefined	|Delete local data or just skip.| 
+    | sync                  | trash                 | description               | action  |
+    | --------------------- |---------------------- | ------------------------- | --------|
+    | 1 (client reserved)   | 0	                    | Changed by the client	    | Upload data (with sync set to 0). If no errors then update local data else re-set sync to 1 and skip.|
+    | 2	                    | 0	                    | Draft	                    | Depending on client configuration: keep/delete local data.|
+    | 2	                    | 1	                    | Trash (CMS visible)	    | Delete local data.|
+    | 2	                    | 2	                    | Trash (CMS not visible)   | Delete local data.|
+    | 1	                    | -1 (client reserved)	| Deleted by the client	Delete remote data then, if no errors, delete local data.|
+    | 1 (client reserved)   | 1	                    | Trashed by the client	Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
+    | -                     | -                     | Undefined	                | Delete local data or just skip.| 
     
 - id: identificativo UUID generato da mongo per identificare la risorsa
 
@@ -223,10 +223,18 @@ Nel dettaglio
    }
 ```
 
+La secret key viene configurata nel file 
+
+```
+credentials.json
+```
+
+e deve essere passata nell'header
+
 
 ## Consumare una API
 Le API configurate con Mia-Platform possono essere consumate con qualsiasi tecnologia che supporta il procollo HTTP.
-Per lo sviluppo consigliamo uno dei seguenti strumenti:
+Per i test durante lo sviluppo consigliamo uno dei seguenti strumenti:
 
 - curl: [https://curl.haxx.se](https://curl.haxx.se/)
 - insomnia: [https://insomnia.rest](https://insomnia.rest/)
@@ -238,7 +246,7 @@ Seguono le operazioni tipiche che si possono fare con un'APIRestful CRUD creata 
 
 ### Creare una Risorsa
 
-Per creare una risorsa è sufficiente inviare una *POST* all'endpoint passando nel body le informazioni della 
+Per creare una risorsa è sufficiente inviare una *POST* request all'endpoint passando nel body le informazioni della 
 risorsa che si vuole creare.
 
 ```
@@ -280,7 +288,7 @@ in risposta si ottiene la risorsa appena creata
   }
 ```
 
-### Lettura di una lista
+### Lettura di una lista di Risorse
 
 Per leggere una risorsa è sufficiente chiamare con una GET l'endpoint
 
