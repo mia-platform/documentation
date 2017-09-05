@@ -143,11 +143,8 @@ Nel dettaglio:
 - createdAt: long che esprime in millisecondi dal 1970 la data e ora di creazione della risorsa
 - updaterId: id dell'utente che ha modificato per ultimo la risorsa
 - updatedAt: long che esprime in millisecondi dal 1970 la data e ora di ultimo aggiornamento della risorsa
-- sync e trash: secondo la logica seguente
- 
-    Le proprietà sync e trash appartengono ad ogni risorsa e sono rappresentate da numeri con una semantica ben precisa.
-    
-    La proprietà sync può assumere 3 valori: 0, 1 o 2.
+- sync e trash: le proprietà sync e trash appartengono ad ogni risorsa e sono rappresentate da numeri con una semantica ben precisa. 
+  La proprietà sync può assumere 3 valori: 0, 1 o 2.
     
     - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di trash;
     - 1: la risorsa è stata modificata localmente e deve essere caricata sul BaaS. Questo valore ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
@@ -168,8 +165,8 @@ Nel dettaglio:
     | 2	                    | 0	                    | Draft	                    | Depending on client configuration: keep/delete local data.|
     | 2	                    | 1	                    | Trash (CMS visible)	    | Delete local data.|
     | 2	                    | 2	                    | Trash (CMS not visible)   | Delete local data.|
-    | 1	                    | -1 (client reserved)	| Deleted by the client	Delete remote data then, if no errors, delete local data.|
-    | 1 (client reserved)   | 1	                    | Trashed by the client	Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
+    | 1	                    | -1 (client reserved)	| Deleted by the client	    | Delete remote data then, if no errors, delete local data.|
+    | 1 (client reserved)   | 1	                    | Trashed by the client	    | Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
     | -                     | -                     | Undefined	                | Delete local data or just skip.| 
     
 - id: identificativo UUID generato da mongo per identificare la risorsa

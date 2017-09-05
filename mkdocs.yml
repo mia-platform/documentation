@@ -1,5 +1,10 @@
 site_name: Mia-Platform Docs
-#pages:
-#    - Home: 'index.md'
-#    - About: 'about/README.md'
+repo_url: http://git.makeitapp.eu/makeitapp-baas/mia-platform-doc
+site_description: Documentazione della piattaforma Mia Platform
+site_author: Mia Platform Team
+copyright: Mia srl. Tutti i diritti riservati.
+pages:
+- Home: 'index.md'
+- About: 'about/README.md'
+- Architecture: 'architecture/index.md'
 #theme: readthedocs
