@@ -247,9 +247,9 @@ Per creare una risorsa è sufficiente inviare una *POST* request all'endpoint pa
 risorsa che si vuole creare.
 
 ```
-curl -X POST https://your-url/heroes/ 
--H  "accept: application/json" 
--H  "content-type: application/json" 
+curl -X POST https://your-url/heroes/ \
+-H  "accept: application/json" \
+-H  "content-type: application/json" \ 
 -H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
 ```
 
@@ -290,9 +290,9 @@ in risposta si ottiene la risorsa appena creata
 Per leggere una risorsa è sufficiente chiamare con una GET l'endpoint
 
 ```
-curl -X GET https://your-url/heroes/ 
--H  "accept: application/json" 
--H  "content-type: application/json" 
+curl -X GET https://your-url/heroes/ \
+-H  "accept: application/json"  \
+-H  "content-type: application/json" \ 
 -H  "secret: secret"
 ```
 
@@ -358,9 +358,9 @@ si otterrà un array JSON che contiene tutte le risorse della risorsa. L'ordinam
 Per leggere un solo elemento è sufficiente passare alla GET l'id della risorsa che si vuole leggere.
 
 ```
-curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e 
--H  "accept: application/json" 
--H  "content-type: application/json" 
+curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e  \
+-H  "accept: application/json"  \
+-H  "content-type: application/json" \ 
 -H  "secret: secret123"
 ```
 
@@ -380,11 +380,79 @@ si ottiene la risorsa corrispondente all'id *ef02dcaa-7a2e-4c31-a505-c2cb014d769
 }
 ```
 
-### Ordinamento e paginazione
+### Ordinamento
 
-Per ordinare una lista di risorse alla GET bisogna passare
+E' possibile ordinare la lista delle risorse ritornate con una GET.
+
+Per ordinare una lista di risorse alla GET bisogna passare il parametro *sort* alla querystring seguita da un elenco
+di campi di sort. La sort ha la sintassi di una [mongo query](https://docs.mongodb.com/manual/reference/method/cursor.sort/).
+
+```
+curl -X GET https://your-url/heroes/?{"$sort":{"name":-1}} \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
+```
+
+In questo esempio sono ordinate le risorse per nome in ordine descrescente. Passando 1 in ordine crescente.
+
+Nota: è possibile usare il parametro *mongoQuery* nella query string al posto di passare la stringa mongo direttamente
+nell'url
+
+```
+curl -X GET https://your-url/heroes?mongoQuery={"$sort":{"name":-1}} \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
+```
+
+
+### Paginazione
+
+E' possibile paginare una richiesta passando due parametri:
+- skip: il record dal quale partire. Il primo ha indice 0
+- limit: il numero di record da estrarre nella query
+
+Ad esempio:
+
+```
+curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25} \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
+```
+
+ritorna i primi 25 record della lista.
+
+E' possibile comporre sort e paginazione.
+
+```
+curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25,"$sort":{"name":-1}} \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
+```
+
+Nota: è possibile usare il parametro *mongoQuery* nella query string al posto di passare la stringa mongo direttamente
+nell'url
+
+```
+curl -X GET https://your-url/heroes?mongoQuery={"$skip":0,"$limit":25,"$sort":{"name":-1}} \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
+```
 
 ### Filtri
+
+Le risorse possono essere filtrate usando le mongo query. E' possibile filtrare in and e in or in cascata citando tutte
+le proprietà delle risorse. [Maggiori dettagli sul sito di mongo per le query su una risorsa].(https://docs.mongodb.com/manual/tutorial/query-documents/)
+
+Ad esempio possiamo cercare i super eroi di sesso *femminile* apparsi prima del *1990* e che hanno come super potere *speed*.
+
+```
+
+```
 
 ### Aggiornare una Risorsa
 

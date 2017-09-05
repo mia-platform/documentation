@@ -1,9 +1,5 @@
 # Documentazione di Mia-Platform v3.0
 
-## About
-- [Le caratteristiche principali](about/index.md)
-- [La storia ](about/index.md)
-
 ## Getting Started
 - [Veloce guida di inizio con dockerbox](getting_started/index.md)
 
@@ -14,7 +10,6 @@
 - Infrastuttura
 
 ## Developer Guide
-- [Guida al Data Modeller](developer_guide/data_modeller.md): l'interfaccia utente per gli sviluppatori di Mia-Platform.
 - [API](developer_guide/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
 - [Specifica OpenAPI](developer_guide/openapi.md): tutte le API sono documentate secondo specifica OpenAPI, vediamo come.
 - [Creare un plugin](developer_guide/plugin.md): come creare una API con codice custom in nodejs.
@@ -22,9 +17,12 @@
 - [Users](developer_guide/users.md): gestire ed estendere gli utenti, login, registrazione, recupero password, social login e altro.
 - [Files](developer_guide/files.md): gestire, estendere e configurare i files. 
 - [Push notifications](developer_guide/push_notifications.md): configurare e inviare le push notifications per iOS e Android.
+- [Guida al Data Modeller](developer_guide/data_modeller.md): l'interfaccia utente per gli sviluppatori di Mia-Platform.
 - [Configurare il CMS](developer_guide/conf_cms.md): configurare il CMS.
 - [Configurare il servizio di News](developer_guide/conf_news.md): configurare il servizio di News.
 - [Configurare gli Analytics](developer_guide/conf_analytics.md): configurare gli Analytics e la dashboard.
+- [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
+- [Android SDK](developer_guide/sdk_android.md): Utilizzare l'SDK Android.
 
 ## Administrator Guide
 - Pipe di Rilascio
@@ -46,3 +44,7 @@
 - 3.1
 - 3.2
 - 4.0
+
+## About
+- [Le caratteristiche principali](about/index.md)
+- [La storia ](about/index.md)
