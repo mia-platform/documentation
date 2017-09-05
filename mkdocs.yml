@@ -5,6 +5,6 @@ site_author: Mia Platform Team
 copyright: Mia srl. Tutti i diritti riservati.
 pages:
 - Home: 'index.md'
-- About: 'about/README.md'
+- About: 'about/index.md'
 - Architecture: 'architecture/index.md'
 #theme: readthedocs
