@@ -21,10 +21,10 @@ Segue una guida dettagliata per scrivere una plugin.
 Per realizzare un plugin:
  - creare una directory con il nome della plugin
  
- ```
- mkdir plugin_hello
- cd plugin_hello
- ```
+```
+mkdir plugin_hello
+cd plugin_hello
+```
  
  - creare un file index.js con il seguente contenuto
 
@@ -52,7 +52,8 @@ module.exports = MIAPluginHello;
 
 ```
  - creare un file config.json con il seguente contenuto
- ```
+ 
+```
  {
    "id": "helloworld",
    "type": "MIAPluginHello",
@@ -75,12 +76,15 @@ module.exports = MIAPluginHello;
      "icon": "book"
    }
  }
- ```
+```
+
  - copiare plugin_hello in custom_plugins e riavviare la piattaforma
- ```
+
+```
  cp -rf plugin_hello custom_plugins
  docker exec -it <dockerid> pm2 restart 0
- ```
+```
+
  - chiamare l'endpoint
 
 ```
