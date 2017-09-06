@@ -35,7 +35,7 @@ Come configurare file *dashboard*
 
 Dove:
 
- - *id*: nome del grafico che vedo nella dashboard. Nell'esempio il grafico si chiama installations
+ - *id*: nome del grafico che vedo nella dashboard. Nell'esempio il grafico si chiama Qinstallations
  - "order": 3, //ordine di visualizzazione del grafico
  - "width": 12 //larghezza del grafico, può andare da 1 a 12. Se ad esempio si hanno due grafici con larghezza 6, questi si vedranno affiancati.
     

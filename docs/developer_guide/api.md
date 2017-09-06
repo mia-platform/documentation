@@ -120,7 +120,7 @@ Per creare un'API si può utilizzare l'API Modeller all'indirizzo
 
 Maggiori informazioni alla pagina [Data Modeller](data_modeller.md).
 
-### I campi base di una Risorsa
+### I campi base di una Risorsa {#base}
 
 Una risorsa Mia Platform ha dei campi predefiniti e prevalorizzati che servono per la gestione del ciclo di vita del
 dato. Se creiamo una risorsa senza proprietà avremo un JSON come il seguente:
@@ -170,6 +170,16 @@ Nel dettaglio:
     | -                     | -                     | Undefined	                | Delete local data or just skip.| 
     
 - id: identificativo UUID generato da mongo per identificare la risorsa
+
+### I tipi di dato di una risorsa
+
+E' possibile specificare campi di diverse tipologie:
+
+- String
+- Numbers
+- Date
+- DateTime
+- ....
 
 ## Sicurezza di un'API
 Le API possono essere protette in due modi:
@@ -237,9 +247,15 @@ Per i test durante lo sviluppo consigliamo uno dei seguenti strumenti:
 - insomnia: [https://insomnia.rest](https://insomnia.rest/)
 - postman: [https://www.getpostman.com](https://www.getpostman.com/)
 
-Negli esempi per brevità useremo curl.
+Negli esempi per brevità useremo curl. Seguono le operazioni tipiche che si possono fare con un'APIRestful CRUD creata con Mia-Platform.
 
-Seguono le operazioni tipiche che si possono fare con un'APIRestful CRUD creata con Mia-Platform.
+*Nota*: tutti questi esempi possono essere testati usando l'end-point swagger dell'istanza di Mia-Platform. L'url è
+
+```
+https://your-url/swagger/
+```
+
+Un esempio lo potete trovare sul sito di [demo di Mia Platform](https://preprod.baas.makeitapp.eu/swagger/).
 
 ### Creare una Risorsa
 
@@ -448,47 +464,407 @@ curl -X GET https://your-url/heroes?mongoQuery={"$skip":0,"$limit":25,"$sort":{"
 Le risorse possono essere filtrate usando le mongo query. E' possibile filtrare in and e in or in cascata citando tutte
 le proprietà delle risorse. [Maggiori dettagli sul sito di mongo per le query su una risorsa].(https://docs.mongodb.com/manual/tutorial/query-documents/)
 
-Ad esempio possiamo cercare i super eroi di sesso *femminile* apparsi prima del *1990* e che hanno come super potere *speed*.
+Ad esempio possiamo cercare i super eroi di sesso *femminile* apparsi prima del *1990* e che hanno come super potere *speed* oppure
+il nome ha dentro Marvel.
 
 ```
-
+{"$and":[
+    {"gender":"female"},
+    {"year":{"$lt":631148400000}},
+    {"powers":{"$regex":"speed","$options":"i"}},
+    {"$or":[{"name":{"$regex":"Marvel","$options":"i"}}]}
+  ]
+}
 ```
 
 ### Aggiornare una Risorsa
 
+Per aggiornare una risorsa è sufficiente invocare una PUT passando nel body la risorsa da aggiornare con il suo *id*.
+Ad esempio se a Ms. Marvel aggiungo il super potere *flight* devo passare nel body l'id e l'array con i super poteri
+
+```
+{"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
+"powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
+```
+
+In ritorno ottengo la risorsa aggiornata
+
 ### Cancellare una Risorsa
+
+Per eliminare una risorsa ho due opzioni:
+ 
+ - Cancellarla definitivamente con una DELETE request
+ - Metterla nel cestino
+ 
+Per metterla nel cestino è sufficiente impostare *trash* a 1 (per dettagli si veda la sezione [I campi base di una Risorsa](#base))
+ 
+Per cancellarla definitivamente 
+
+```
+curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
+```
 
 ### Count del numero di Risorse
 
+Può essere utile conoscere quanti elementi contiene un elenco di risorse. A tal scopo è sufficiente invocare una GET
+sul /count della risorsa
+
+```
+curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
+```
+
+ritorna
+
+```
+{
+  "count": 3
+}
+
+```
+
+Nota: è possibile applicare i filtri al count
+
 ### Eliminare tutte le Risorse
+
+E' possibile eliminare in un colpo solo tutte le risorse di una collezione. Per questo è sufficiente invocare la DELETE con 
+l'endpoit /empty della risorsa.
+
+```
+curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
+```
 
 ## Documentare una API
 
+La documentazione di un'API avviene in due modalità:
+
+- In automatico quando si crea una risorsa da API Modeller
+- A mano creando un file *yaml* in formato OpenAPI chiamato api.yaml e copiando il file nella directory del custom_plugin
+
+Per scrivere un file yaml si consiglia di utilizzare l'editor online [https://editor.swagger.io/](https://editor.swagger.io/) oppure
+un'estensione del vosto IDE preferito.
+
+Ecco l'esempio di file api.yaml per la risorsa *heroes*
+
+``` yaml
+swagger: '2.0'
+info:
+  description: description
+  version: 1.0.0
+  title: heroes
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  sid:
+    type: apiKey
+    name: sid
+    in: header
+paths:
+  /heroes/:
+    get:
+      responses:
+        '200':
+          description: Success!
+        '401':
+          description: 'Unauthorized, use secret'
+        '404':
+          description: Resource not found
+      security:
+        - sid: []
+      summary: Read
+      description: Read and filter a resource
+      parameters:
+        - name: secret
+          type: string
+          in: header
+          description: API secret
+          default: secret
+        - name: id
+          description: Unique id
+          in: query
+          type: string
+          required: false
+          format: string
+        - name: creatorId
+          description: User id that has created the item
+          in: query
+          type: string
+          required: false
+          format: string
+        - name: createdAt
+          description: The date when the item has been created
+          in: query
+          type: number
+          required: false
+          format: number
+        - name: updaterId
+          description: Last user id that has modified the item
+          in: query
+          type: string
+          required: false
+          format: string
+        - name: updatedAt
+          description: The date when the item has been updated the last time
+          in: query
+          type: number
+          required: false
+          format: number
+        - name: sync
+          description: Status of the item
+          in: query
+          type: number
+          required: false
+          format: number
+        - name: trash
+          description: Indicate if the item is in the trash
+          in: query
+          type: number
+          required: false
+          format: number
+        - name: name
+          description: ''
+          in: query
+          type: string
+          required: false
+          format: string
+        - name: powers
+          description: ' the real type is array'
+          in: query
+          type: string
+          required: false
+        - name: skip
+          in: query
+          description: number of items to skip
+          required: false
+          type: integer
+          format: int32
+        - name: limit
+          in: query
+          description: max records to return
+          required: false
+          type: integer
+          format: int32
+        - name: mongoQuery
+          description: >-
+            Instead of using query string you can use a mongo query on the
+            object. For example ?{id:myid}
+          in: query
+          type: string
+          required: false
+    post:
+      responses:
+        '200':
+          description: Success!
+        '401':
+          description: 'Unauthorized, use secret'
+        '404':
+          description: Resource not found
+      security:
+        - sid: []
+      summary: Create
+      description: Create a new resource
+      parameters:
+        - name: secret
+          type: string
+          in: header
+          description: API secret
+          default: secret
+        - name: args
+          description: An object containing required fields. See datamodeller
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/collection-schema-create'
+    put:
+      responses:
+        '200':
+          description: Success!
+        '401':
+          description: 'Unauthorized, use secret'
+        '404':
+          description: Resource not found
+      security:
+        - sid: []
+      summary: Update
+      description: Update a resource
+      parameters:
+        - name: secret
+          type: string
+          in: header
+          description: API secret
+          default: secret
+        - name: args
+          description: An object containing required fields. See datamodeller
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/collection-schema-update'
+    delete:
+      responses:
+        '200':
+          description: Success!
+        '401':
+          description: 'Unauthorized, use secret'
+        '404':
+          description: Resource not found
+      security:
+        - sid: []
+      summary: Delete
+      description: Delete a resource
+      parameters:
+        - name: secret
+          type: string
+          in: header
+          description: API secret
+          default: secret
+        - name: args
+          description: An object containing required fields. See datamodeller
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/collection-schema-delete'
+  /heroes/count:
+    get:
+      summary: Count
+      description: Count number of elements in collection
+      responses:
+        '200':
+          description: Success!
+        '401':
+          description: 'Unauthorized, use secret'
+        '404':
+          description: Resource not found
+      security:
+        - sid: []
+      parameters:
+        - name: secret
+          type: string
+          in: header
+          description: API secret
+          default: secret
+  /heroes/empty:
+    delete:
+      summary: Empty
+      description: Remove all elements in the collection
+      responses:
+        '200':
+          description: Success!
+        '401':
+          description: 'Unauthorized, use secret'
+        '404':
+          description: Resource not found
+      security:
+        - sid: []
+      parameters:
+        - name: secret
+          type: string
+          in: header
+          description: API secret
+          default: secret
+definitions:
+  collection-schema-read:
+    type: object
+    properties:
+      id:
+        description: Unique id
+        type: string
+      creatorId:
+        description: User id that has created the item
+        type: string
+      createdAt:
+        description: The date when the item has been created
+        type: number
+      updaterId:
+        description: Last user id that has modified the item
+        type: string
+      updatedAt:
+        description: The date when the item has been updated the last time
+        type: number
+      sync:
+        description: Status of the item
+        type: number
+      trash:
+        description: Indicate if the item is in the trash
+        type: number
+      name:
+        description: ''
+        type: string
+      powers:
+        description: ''
+        type: array
+  collection-schema-create:
+    type: object
+    properties:
+      sync:
+        description: Status of the item
+        type: number
+      trash:
+        description: Indicate if the item is in the trash
+        type: number
+      name:
+        description: ''
+        type: string
+      powers:
+        description: ''
+        type: array
+  collection-schema-update:
+    type: object
+    properties:
+      id:
+        description: Unique id
+        type: string
+      sync:
+        description: Status of the item
+        type: number
+      trash:
+        description: Indicate if the item is in the trash
+        type: number
+      name:
+        description: ''
+        type: string
+      powers:
+        description: ''
+        type: array
+  collection-schema-delete:
+    type: object
+    properties:
+      id:
+        description: Unique id
+        type: string
+
+```
+
 ## Codici di risposta di un'API
-When the client raises a request to the server through an API, the client should know the feedback, whether it failed, passed or the request was wrong. HTTP status codes are bunch of standardized codes which has various explanations in various scenarios. The server should always return the right status code.
-The following are the important categorization of HTTP codes:
-2xx (Success category)
-These status codes represent that the requested action was received and successfully processed by the server.
-200 Ok The standard HTTP response representing success for GET, PUT or POST.
-201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
-204 No Content represents the request is successfully processed, but has not returned any content.
-DELETE can be a good example of this.
-The API DELETE /companies/43/employees/2 will delete the employee 2 and in return we do not need any data in the response body of the API, as we explicitly asked the system to delete. If there is any error, like if employee 2 does not exist in the database, then the response code would be not be of 2xx Success Category but around 4xx Client Error category.
-3xx (Redirection Category)
-304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
-4xx (Client Error Category)
-These status codes represent that the client has raised a faulty request.
-400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
-403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
-404 Not Found indicates that the requested resource is not available now.
-410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
-5xx (Server Error Category)
-500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
-503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
+Segue un elenco dei codici di ritorno tipici di una request API:
+
+- 2xx (Success category)
+  Questi sono gli stati di successo
+  - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
+  - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
+  - 204 No Content represents the request is successfully processed, but has not returned any content.
+- 3xx (Redirection Category)
+ - 304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
+- 4xx (Client Error Category)
+ These status codes represent that the client has raised a faulty request.
+  - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
+  - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
+  - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
+  - 404 Not Found indicates that the requested resource is not available now.
+  - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
+- 5xx (Server Error Category)
+  - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
+  - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
 
 ## API con codice custom
 
+Si veda la sezione dedicata [plugins](plugin.md)
 
 
 ## Eventi legati ad una API
+
+Dopo l'invocazione dei verbi HTTP è possibile invocare uno script nodejs che può aggiornare altri campi della risorsa.
+
