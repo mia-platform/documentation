@@ -78,19 +78,18 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
    - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. appSource
    -  *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
 
->   Il parametro Operation funziona solo con **groupDate** e **group**.
->   Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
->   Questo parametro è un array e deve essere un JSON valido. 
->   Ogni operazione è composta da [operationName, operands] dove operationName è un parametro o un'operazione aritmetica di mongo accettata da [group accumulator operators] e operands è il nome della property o una mongo query che restituisca i valori su cui applicare l'operationName  (https://docs.mongodb.com/manual/reference/operator/aggregation-group/). 
->   Le **operazioni ammesse** sono:
->  + *count*: numera gli elementi di un gruppo, non necessita di un operands.
->  + *sum*: somma gli operands di ogni gruppo
->  + *avg*: calcola la media degli operands di un gruppo
->  + *last|first|min|max*: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo
->  + *constant*: ritorna in un gruppo la specifica stringa o costante numerica (default 1)
+> Il parametro Operation funziona solo con **groupDate** e **group**.
+> Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
+> Questo parametro è un array e deve essere un JSON valido. 
+> Ogni operazione è composta da [operationName, operands] dove operationName è un parametro o un'operazione aritmetica di mongo accettata da [group accumulator operators] e operands è il nome della property o una mongo query che restituisca i valori su cui applicare l'operationName  (https://docs.mongodb.com/manual/reference/operator/aggregation-group/). 
+> Le **operazioni ammesse** sono:
+> + *count*: numera gli elementi di un gruppo, non necessita di un operands.
+> + *sum*: somma gli operands di ogni gruppo
+> + *avg*: calcola la media degli operands di un gruppo
+> + *last|first|min|max*: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo
+> + *constant*: ritorna in un gruppo la specifica stringa o costante numerica (default 1)
 > **N.B. Si può impostare una sola operazione per tracciato/serie.** Si possono impostare anche operazioni complesse, ad esempio: ["avg", {"$multiply":
         ["$totalPrice", "$quantity"]}]
-  
 
  - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: 'y' : anni, 'ym' : mesi, 'ymd' : giorni, 'ymdh' : ore, 'ymdhM' : minuti
  - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate. 
@@ -100,9 +99,8 @@ La documentazione da consultare per le mongo query è disponibile a questo [link
  - ***customRangeDates:*** (boolean) abilita o disabilita i campi date startDate e endDate che sono utili soprattutto nei grafici di tipo chart
  - ***start date - end date:*** (number) utilizzabili solo se customRangeDate è settato a true. Inserire il timestamp in millisecondi delle date del periodo di interesse.  
  > Se sono attivi sia rangeDate che customDate su un grafico di tipo custom stock può crearsi confusione. Può essere più funzionale disabilitare rangeDate in quanto lo zoom può essere impostato sia con il cursore che con i bottoni di visualizzazione
- 
- - ***default zoom:*** (number) permette di decidere con quale livello di zoom di periodo partire nella visualizzazione in un custom stock. 0 : day, 1 : week, 2 : month, 3 : 3 months, 4 : 6 months, 5 : year, 6 : all
 
+ - ***default zoom:*** (number) permette di decidere con quale livello di zoom di periodo partire nella visualizzazione in un custom stock. 0 : day, 1 : week, 2 : month, 3 : 3 months, 4 : 6 months, 5 : year, 6 : all
 
 ##Come configurare il file *dashboard* e *analytics*##
 
