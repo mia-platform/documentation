@@ -55,7 +55,7 @@ cd app_hello
  - copiare app_hello in custom_themes e riavviare la piattaforma
 
 ```
- cp -rf app_hello custom_themes
+ cp -rf app_hello custom-themes
  docker exec -it <dockerid> pm2 restart 0
 ```
 
