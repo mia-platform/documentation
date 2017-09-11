@@ -24,7 +24,11 @@ pages:
 - Users:
   - Home: 'user_guide_and_tools/index.md'
   - CMS: 'user_guide_and_tools/cms/index.md'
-- Administrators: 'administrator_guide/index.md'
+- Administrators:
+  - Home: 'administrator_guide/index.md'
+  - Backup: 'administrator_guide/backup.md'
+  - Business Continuity: 'administrator_guide/business_continuity.md'
+  - Disaster Recoveery: 'administrator_guide/disaster_recovery.md'
 - About:
   - Home: 'about/index.md'
   - Architecture: 'architecture/index.md'
