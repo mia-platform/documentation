@@ -1,7 +1,7 @@
-CMS 
+CMS
 Guida all’utilizzo
 
-[[TOC]]
+[TOC]
 
 # Cos’è il CMS
 
@@ -18,9 +18,9 @@ Questa è la schermata iniziale dove inserire le credenziali: mail, password, ke
 
 Possono accedere al CMS solo gli utenti *admin.*
 
-Sul CMS esistono di default due tipologie di utenti: users (tutti gli utenti dell’app o sito) e admin (utenti dell’app abilitati ad accedere al CMS). 
+Sul CMS esistono di default due tipologie di utenti: users (tutti gli utenti dell’app o sito) e admin (utenti dell’app abilitati ad accedere al CMS).
 
-In fase di definizione del progetto è possibile decidere di creare più gruppi di utenti. Avere una segmentazione degli utenti in più gruppi può essere utile per determinate attività di marketing e per l’invio di notifiche push a specifici gruppi. 
+In fase di definizione del progetto è possibile decidere di creare più gruppi di utenti. Avere una segmentazione degli utenti in più gruppi può essere utile per determinate attività di marketing e per l’invio di notifiche push a specifici gruppi.
 
 L’argomento Notifiche Push verrà approfondito nel paragrafo dedicato.
 
@@ -43,7 +43,7 @@ SECRET:
 
 [text here]
 
-# Gli elementi che compongono il CMS 
+# Gli elementi che compongono il CMS
 
 ## I campi di input
 
@@ -151,21 +151,21 @@ Si ricorda che:
 
 ![image alt text](image_13.png)
 
-Una volta creata e salvata la scheda libro, questa sarà in draft oppure direttamente pubblicata. 
+Una volta creata e salvata la scheda libro, questa sarà in draft oppure direttamente pubblicata.
 
 Lo si riconosce dal simbolo![image alt text](image_14.png)(draft) oppure ![image alt text](image_15.png) (publish) .
 
-In base al tipo di elemento che si deve pubblicare, sarà utile averlo prima in draft oppure direttamente pubblicato. 
+In base al tipo di elemento che si deve pubblicare, sarà utile averlo prima in draft oppure direttamente pubblicato.
 
 *Esempio*: una nuova scheda libro che una volta pubblicata va direttamente nell’app sarà meglio averla prima in draft, in modo da poterne creare diverse e pubblicarle in un secondo momento. Un nuovo editore nella lista editori (vedi par. Lookup ecc) potrà essere direttamente pubblicato perché solo così comparirà nell’elenco di un’altra collezione.
 
-Quando viene selezionato il simbolo *publish* oppure *draft* della riga interessata, compariranno 4 bottoni: **edit**, **trash**, **draft**, **publish**. 
+Quando viene selezionato il simbolo *publish* oppure *draft* della riga interessata, compariranno 4 bottoni: **edit**, **trash**, **draft**, **publish**.
 
 ![image alt text](image_16.png)
 
 ### Modifica del singolo contenuto (edit)
 
-Cliccando su **edit **si aprirà la finestra con tutti i campi modificabili. 
+Cliccando su **edit **si aprirà la finestra con tutti i campi modificabili.
 
 La x in alto a destra chiude la finestra senza apportare modifiche.
 
@@ -173,7 +173,7 @@ Il tasto Back funziona come la x.
 
 Il tasto Trash elimina la riga.
 
-Il tasto Save salva le modifiche fatte. 
+Il tasto Save salva le modifiche fatte.
 
 ### Cancellare il singolo contenuto (trash)
 
@@ -185,7 +185,7 @@ Qualsiasi contenuto cancellato dalla cartella trash, allora non sarà più recup
 
 ![image alt text](image_17.png)
 
-**Edit all** apporta la modifica a tutti gli elementi selezionati. 
+**Edit all** apporta la modifica a tutti gli elementi selezionati.
 
 Per cambiare il genere a più schede basterà selezionare tutte le schede che servono e cliccare su Edit All.
 
@@ -219,7 +219,7 @@ Questo evita che ci siano errori di compilazione e quindi duplicati di editori.
 
 Nel campo proprietà di una collezione si potrà voler vedere solo determinate informazioni. Non più un menù a tendina quindi, ma un campo che viene popolato automaticamente prendendo le informazioni dalla proprietà di un’altra collezione.
 
-Riprendendo l’esempio della Biblioteca: gli utenti si iscriveranno alla piattaforma con e-mail e username, ma abitualmente nell’app saranno riconoscibili attraverso solo username e con questo potranno scrivere le recensioni dei libri. 
+Riprendendo l’esempio della Biblioteca: gli utenti si iscriveranno alla piattaforma con e-mail e username, ma abitualmente nell’app saranno riconoscibili attraverso solo username e con questo potranno scrivere le recensioni dei libri.
 
 Il personale che gestirà i contenuti sul CMS potrà vedere automaticamente anche l’indirizzo e-mail, non solo lo username. In questo caso quindi, il campo e-mail della collezione Recensioni sarà popolato grazie a una lookup che incrocia gli indirizzi e-mail associati allo username dalla collezione Utenti.
 
@@ -243,7 +243,7 @@ Si può così visualizzare tutto (All), solo gli elementi pubblicati (Publish), 
 
 ### Usare i filtri per la ricerca
 
-Cliccando sul simbolo del filtro in alto a destra si può fare una ricerca avanzata, molto utile quando si hanno tanti dati da consultare. 
+Cliccando sul simbolo del filtro in alto a destra si può fare una ricerca avanzata, molto utile quando si hanno tanti dati da consultare.
 
 Da qui si può fare una ricerca per delle specifiche proprietà.
 
@@ -271,20 +271,19 @@ Nella collezione Media vengono gestiti tutti gli *upload *sul CMS: immagini, vid
 
 Si troveranno, ad esempio, tutte le copertine dei libri della collezione schede libri.
 
-Come per gli altri contenuti, anche nei media si può selezionare un elemento e decidere se pubblicarlo, tenerlo in draft o eliminarlo. Si può inoltre ingrandire l’anteprima con il simbolo ![image alt text](image_25.png) oppure riscaricare il file con il simbolo ![image alt text](image_26.png) 
+Come per gli altri contenuti, anche nei media si può selezionare un elemento e decidere se pubblicarlo, tenerlo in draft o eliminarlo. Si può inoltre ingrandire l’anteprima con il simbolo ![image alt text](image_25.png) oppure riscaricare il file con il simbolo ![image alt text](image_26.png)
 
 # Invio notifiche Push
 
 Il CMS è abilitato a inviare notifiche push ai dispositivi degli utenti in due modalità.
 
-1. Dalla collezione Push Notification. Cliccando su Push Notification si aprirà una finestra da compilare con il titolo, il messaggio della push e il gruppo di utenti cui inviarla 
+1. Dalla collezione Push Notification. Cliccando su Push Notification si aprirà una finestra da compilare con il titolo, il messaggio della push e il gruppo di utenti cui inviarla
 
 ![image alt text](image_27.png)
 
-2. Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica. 
+2. Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica.
 Esempio: invio la notifica quando viene pubblicato un nuovo libro.
 
-Se in fase di definizione del progetto è stato deciso di creare più gruppi di utenti, allora le push saranno abilitate anche per altre funzioni. 
+Se in fase di definizione del progetto è stato deciso di creare più gruppi di utenti, allora le push saranno abilitate anche per altre funzioni.
 
 Si potrà decidere ad esempio di creare dei gruppi dinamici ai quali inviare una notifica a due giorni dalla consegna del libro.
-
