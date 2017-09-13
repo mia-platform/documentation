@@ -49,7 +49,7 @@ SECRET:
 
 ### Inserimento testo
 
-### ![image alt text](image_1.png)
+### ![users.png](\img\users.png)
 
 ### Campi di selezione
 
