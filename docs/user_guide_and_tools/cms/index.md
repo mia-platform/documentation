@@ -12,7 +12,7 @@ Un Content Management System (CMS) viene utilizzato per inserire, elaborare, pub
 Per poter accedere al CMS è sufficiente collegarsi da un normale Browser all’indirizzo: <nome-istanza>cms.baas.makeitapp.eu/app_dataentry/
 Questa è la schermata iniziale dove inserire le credenziali: mail, password, key e secret.
 
-![login.png](/uploads/3667a13b44cc54fb4ecbf2df9e861fd2/login.png)
+![login.png](\img\login.png)
 
 ## Tipologie di utenti
 
