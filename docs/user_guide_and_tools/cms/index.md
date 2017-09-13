@@ -79,9 +79,7 @@ La "i" accanto al nome di un campo indica la presenza di un suggerimento (toolti
 
 Nella parte bassa delle schermate sono presenti i controlli di paginazione utili per consultare il catalogo dei contenuti presenti nella collezione corrente.
 
-![image alt text](image_7.png)
-
-![image alt text](image_8.png)
+![paginazione.png](\img\paginazione.png)
 
 ### Il bottone di logout
 
