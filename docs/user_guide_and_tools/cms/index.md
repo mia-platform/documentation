@@ -53,7 +53,7 @@ SECRET:
 
 ### Campi di selezione
 
-![users.png](\img\users.png)
+![user2.png](\img\user2.png)
 
 ### Campi required
 
