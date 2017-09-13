@@ -28,7 +28,7 @@ pages:
   - Home: 'administrator_guide/index.md'
   - Backup: 'administrator_guide/backup.md'
   - Business Continuity: 'administrator_guide/business_continuity.md'
-  - Disaster Recoveery: 'administrator_guide/disaster_recovery.md'
+  - Disaster Recovery: 'administrator_guide/disaster_recovery.md'
 - About:
   - Home: 'about/index.md'
   - Architecture: 'architecture/index.md'
