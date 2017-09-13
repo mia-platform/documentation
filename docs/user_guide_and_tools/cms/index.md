@@ -49,11 +49,11 @@ SECRET:
 
 ### Inserimento testo
 
-### ![user.png](\img\user.png)
+### ![inserimentotesto.png](\img\inserimentotesto.png)
 
 ### Campi di selezione
 
-![user2.png](\img\user2.png)
+![camposelezione.png](\img\camposelezione.png)
 
 ### Campi required
 
