@@ -59,7 +59,7 @@ SECRET:
 
 Sono i campi obbligatori che se non popolati impediscono di salvare l’elemento. Sono contrassegnati dall’asterisco.
 
-![image alt text](image_3.png)
+![required.png](\img\required.png)
 
 ### I tooltip
 
