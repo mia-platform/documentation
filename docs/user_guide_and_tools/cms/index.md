@@ -65,15 +65,15 @@ Sono i campi obbligatori che se non popolati impediscono di salvare l’elemento
 
 La "i" accanto al nome di un campo indica la presenza di un suggerimento (tooltip): passandoci sopra col mouse compare la descrizione di quel campo oppure le istruzioni su come popolarlo.
 
-![image alt text](image_4.jpg)
+![tooltip.png](\img\tooltip.png)
 
 ### I campi data
 
-![image alt text](image_5.png)
+![data.png](\img\data.png)
 
 ### Bottone di caricamento allegati
 
-![image alt text](image_6.png)
+![upload.png](\img\upload.png)
 
 ### La paginazione
 
