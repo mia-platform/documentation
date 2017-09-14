@@ -71,24 +71,25 @@ ad esempio nella collezione Schede Libri sono raccolti i libri accomunati dalle 
 ### News, Categorie e Tags: le collezioni di default del CMS
 
 Di default sul CMS esistono alcune collezioni: News, Categories, Tags.
-
 Queste collezioni sono già configurate e quindi pronte per essere utilizzate.
 
 Queste tre collezioni funzionano come un comune blog, e quindi in News si avrà il testo della news (o del post), il titolo, la data di pubblicazione sul sito o nell’app e poi la categoria e i tag.
 
-Sempre seguendo l’esempio della biblioteca, in news si potrebbe annunciare l’evento di presentazione del nuovo libro di Baricco.
+Sempre seguendo l’esempio della biblioteca, in **News** si potrebbe annunciare l’evento di presentazione del nuovo libro di Baricco.
 
-In Categories si avranno tutte le categorie alle quali associare una News (vedi paragrafo lookup per la configurazione/creazione dei campi categoria), e quindi in questo caso si può associare alla categoria Presentazioni.
+In **Categories** si avranno tutte le categorie alle quali associare una News (vedi paragrafo lookup per la configurazione/creazione dei campi categoria), e quindi in questo caso si può associare alla categoria Presentazioni.
 
-In Tags si avranno tutti i tag, gli argomenti, associati alla news/post e che saranno utili per indicizzarlo e per ritrovarlo.
+In **Tags** si avranno tutti i tag, gli argomenti, associati alla news/post e che saranno utili per indicizzarlo e per ritrovarlo.
 
 Nell’esempio della presentazione del libro di Baricco si avrà quindi:
+
 
 *News: Baricco presenta il suo nuovo libro a Milano il 6 dicembre*
 
 *Categories: Presentazioni*
 
 *Tags: Baricco, Romanzi, Milano, ecc.*
+
 
 Le proprietà di una collezione possono essere visualizzate nella prima tabella e nella scheda di dettaglio del singolo oggetto che compare a destra quando si seleziona su un elemento (come da immagine che segue).
 
@@ -256,11 +257,11 @@ Come per gli altri contenuti, anche nei media si può selezionare un elemento e 
 
 Il CMS è abilitato a inviare notifiche push ai dispositivi degli utenti in due modalità.
 
-1. Dalla collezione Push Notification. Cliccando su Push Notification si aprirà una finestra da compilare con il titolo, il messaggio della push e il gruppo di utenti cui inviarla
++ Dalla collezione Push Notification. Cliccando su Push Notification si aprirà una finestra da compilare con il titolo, il messaggio della push e il gruppo di utenti cui inviarla
 
 ![image alt text](\img\image_20.png)
 
-2. Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica. Esempio: invio la notifica quando viene pubblicato un nuovo libro.
++ Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica. Esempio: invio della news legata alla presentazione del nuovo libro di Baricco (vedi paragrafo News, Categories e Tags)
 
 Se in fase di definizione del progetto è stato deciso di creare più gruppi di utenti, allora le push saranno abilitate anche per altre funzioni.
 
