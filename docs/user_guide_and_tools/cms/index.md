@@ -1,6 +1,6 @@
 CMS Guida all’utilizzo
 
-[[TOC]]
+[TOC]
 
 # Cos’è il CMS
 
@@ -10,7 +10,7 @@ Un Content Management System (CMS) viene utilizzato per inserire, elaborare, pub
 
 Per poter accedere al CMS è sufficiente collegarsi da un normale Browser all’indirizzo: <nome-istanza>cms.baas.makeitapp.eu/app_dataentry/Questa è la schermata iniziale dove inserire le credenziali: mail, password, key e secret.
 
-![image alt text](image_0.png)
+![image alt text](\img\image_0.png)
 
 ## Key e Secret
 
