@@ -250,7 +250,7 @@ Nella collezione Media vengono gestiti tutti gli *upload *sul CMS: immagini, vid
 
 Si troveranno, ad esempio, tutte le copertine dei libri della collezione schede libri.
 
-Come per gli altri contenuti, anche nei media si può selezionare un elemento e decidere se pubblicarlo, tenerlo in draft o eliminarlo. Si può inoltre ingrandire l’anteprima con il simbolo ![image alt text](image_18.png) oppure riscaricare il file con il simbolo ![image alt text](image_19.png)
+Come per gli altri contenuti, anche nei media si può selezionare un elemento e decidere se pubblicarlo, tenerlo in draft o eliminarlo. Si può inoltre ingrandire l’anteprima con il simbolo ![image alt text](\img\image_18.png) oppure riscaricare il file con il simbolo ![image alt text](\img\image_19.png)
 
 # Notifiche Push
 
@@ -258,7 +258,7 @@ Il CMS è abilitato a inviare notifiche push ai dispositivi degli utenti in due 
 
 1. Dalla collezione Push Notification. Cliccando su Push Notification si aprirà una finestra da compilare con il titolo, il messaggio della push e il gruppo di utenti cui inviarla
 
-![image alt text](image_20.png)
+![image alt text](\img\image_20.png)
 
 2. Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica. Esempio: invio la notifica quando viene pubblicato un nuovo libro.
 
@@ -276,42 +276,42 @@ Si potrà decidere ad esempio di creare dei gruppi dinamici ai quali inviare una
 
 ### Inserimento testo
 
-### ![image alt text](image_21.png)
+### ![image alt text](\img\image_21.png)
 
 ### Campi di selezione
 
-![image alt text](image_22.png)
+![image alt text](\img\image_22.png)
 
 ### Campi required
 
 Sono i campi obbligatori che se non popolati impediscono di salvare l’elemento. Sono contrassegnati dall’asterisco.
 
-![image alt text](image_23.png)
+![image alt text](\img\image_23.png)
 
 ### I tooltip
 
 La "i" accanto al nome di un campo indica la presenza di un suggerimento (tooltip): passandoci sopra col mouse compare la descrizione di quel campo oppure le istruzioni su come popolarlo.
 
-![image alt text](image_24.jpg)
+![image alt text](\img\image_24.png)
 
 ### I campi data
 
-![image alt text](image_25.png)
+![image alt text](\img\image_25.png)
 
 ### Bottone di caricamento allegati
 
-![image alt text](image_26.png)
+![image alt text](\img\image_26.png)
 
 ### La paginazione
 
 Nella parte bassa delle schermate sono presenti i controlli di paginazione utili per consultare il catalogo dei contenuti presenti nella collezione corrente.
 
-![image alt text](image_27.png)
+![image alt text](\img\image_27.png)
 
-![image alt text](image_28.png)
+![image alt text](\img\image_28.png)
 
 ### Il bottone di logout
 
 Cliccando sulla freccia accanto allo username, comparirà il pop up di logout per eseguire il logout dal CMS.
 
-![image alt text](image_29.png)
+![image alt text](\img\image_29.png)
