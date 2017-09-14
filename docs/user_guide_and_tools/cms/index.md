@@ -38,7 +38,7 @@ Per aggiungere un utente bisognerà entrare nella collezione Utenti e quindi cli
 
 Comparirà la finestra che segue, nella quale vanno compilati  i campi che descrivono il nostro utente. In particolare in questa finestra si decide che tipologia di accessi dare: se solo user (utente del servizio) oppure anche admin (utente con accesso al cms).
 
-![image alt text](image_1.png)
+![image alt text](\img\image_1.png)
 
 Nel momento in cui si crea un utente gli si assegna anche una password, che l’utente potrà  modificare al primo accesso e che non si potrà più modificare da CMS.
 
@@ -46,7 +46,7 @@ Da CMS si potrà inviare una push notification per resettarla cliccando su Reset
 
 In qualsiasi momento si potranno modificare gli utenti abilitando o disabilitando la funzione di admin dalla finestra di modifica.
 
-![image alt text](image_2.png)
+![image alt text](\img\image_2.png)
 
 # Gestione dei contenuti
 
@@ -58,7 +58,7 @@ Per rendere più immediato l’uso del CMS si consideri l’esempio seguente: un
 
 Lo schema seguente esemplifica lo scheletro del CMS, composto da categorie, collezioni e proprietà applicandolo ad una ipotetica biblioteca.
 
-![image alt text](image_3.png)
+![image alt text](\img\image_3.png)
 
 Eseguito il login nel CMS, il menù laterale mostra l’elenco delle collezioni gestibili.
 
@@ -94,7 +94,7 @@ Le proprietà di una collezione possono essere visualizzate nella prima tabella 
 
 Nell’esempio dell’app biblioteca, nel menu laterale compaiono alcuni campi aggiuntivi che si è scelto di nascondere dalla vista principale dei contenuti della collezione perché proprietà secondarie o non era utile o funzionale vedere nella prima tabella, come la trama o l’immagine di copertina.
 
-![image alt text](image_4.png)
+![image alt text](\img\image_4.png)
 
 <table>
   <tr>
@@ -118,7 +118,7 @@ Se ad esempio si volesse aggiungere la scheda di un nuovo libro si procederà in
 
 * Clic su "add new" in alto a sinistra
 
-![image alt text](image_5.png)
+![image alt text](\img\image_5.png)
 
 Si aprirà una finestra nella quale bisognerà compilare tutti i campi utili per la pubblicazione della scheda libro nell’app (le proprietà).
 
@@ -128,11 +128,11 @@ Si ricorda che:
 
 * Passando il mouse sulla "i" si legge il tooltip, e cioè la descrizione di quel campo.
 
-![image alt text](image_6.png)
+![image alt text](\img\image_6.png)
 
 Una volta creata e salvata la scheda libro, questa sarà in draft oppure direttamente pubblicata.
 
-Lo si riconosce dal simbolo![image alt text](image_7.png)(draft) oppure ![image alt text](image_8.png) (publish) .
+Lo si riconosce dal simbolo![image alt text](\img\image_7.png)(draft) oppure ![image alt text](\img\image_8.png) (publish) .
 
 In base al tipo di elemento che si deve pubblicare, sarà utile averlo prima in draft oppure direttamente pubblicato.
 
@@ -140,7 +140,7 @@ In base al tipo di elemento che si deve pubblicare, sarà utile averlo prima in 
 
 Quando viene selezionato il simbolo *publish* oppure *draft* della riga interessata, compariranno 4 bottoni: **edit**, **trash**, **draft**, **publish**.
 
-![image alt text](image_9.png)
+![image alt text](\img\image_9.png)
 
 ### Modifica del singolo contenuto (edit)
 
@@ -162,7 +162,7 @@ Qualsiasi contenuto cancellato dalla cartella trash, allora non sarà più recup
 
 ### Selezione massiva dei contenuti
 
-![image alt text](image_10.png)
+![image alt text](\img\image_10.png)
 
 **Edit all** apporta la modifica a tutti gli elementi selezionati.
 
@@ -170,7 +170,7 @@ Per cambiare il genere a più schede basterà selezionare tutte le schede che se
 
 Si aprirà la finestra che segue, dove si possono selezionare i campi da modificare e che verranno applicati a tutti gli elementi.
 
-![image alt text](image_11.png)
+![image alt text](\img\image_11.png)
 
 ## Le Lookup
 
@@ -190,7 +190,7 @@ Si potrebbe avere bisogno di aggiungere nel tempo elementi a un menu a tendina.
 
 Questo evita che ci siano errori di compilazione e quindi duplicati di editori.
 
-![image alt text](image_12.png)
+![image alt text](\img\image_12.png)
 
 *Esempio*: se come editore si scrive Baldini & Castoldi per un libro e poi Baldini&Castoldi per un altro, i libri associati verranno considerati di due editori differenti.
 
@@ -202,13 +202,13 @@ Riprendendo l’esempio della Biblioteca: gli utenti si iscriveranno alla piatta
 
 Il personale che gestirà i contenuti sul CMS potrà vedere automaticamente anche l’indirizzo e-mail, non solo lo username. In questo caso quindi, il campo e-mail della collezione Recensioni sarà popolato grazie a una lookup che incrocia gli indirizzi e-mail associati allo username dalla collezione Utenti.
 
-![image alt text](image_13.png)
+![image alt text](\img\image_13.png)
 
 ## Importare / Esportare contenuti
 
 Nel CMS si possono **importare/esportare** dati da file CSV oppure JSON cliccando sul triangolo accanto al nome della collezione in alto nel Cms. Comparirà un pop up dal quale scegliere se importare o esportare dati.
 
-![image alt text](image_14.png)
+![image alt text](\img\image_14.png)
 
 ## Visualizzare i contenuti
 
@@ -216,7 +216,7 @@ Dove sono presenti molti contenuti, ad esempio le tante schede libro di una bibl
 
 Si può così visualizzare tutto (All), solo gli elementi pubblicati (Publish), solo gli elementi in bozze (Draft) e infine gli elementi nel cestino (Trash).
 
-![image alt text](image_15.png)
+![image alt text](\img\image_15.png)
 
 **	**
 
@@ -236,13 +236,13 @@ Se ad esempio si vogliono cercare tutti i libri editi da Baldini & Castoldi si p
 
 I risultati della ricerca compariranno in tabella, sopra saranno presenti dinamicamente i diversi filtri attivi sulla ricerca corrente.
 
-![image alt text](image_16.png)
+![image alt text](\img\image_16.png)
 
 Si possono inoltre aggiungere dei filtri di ricerca ulteriori che andranno ad aggiungersi a quella appena fatta.
 
 *Esempio*: la ricerca di tutti i libri di Baldini & Castoldi pubblicati dal 1995.
 
-![image alt text](image_17.png)
+![image alt text](\img\image_17.png)
 
 # Gestione dei media
 
