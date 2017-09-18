@@ -489,6 +489,10 @@ Ad esempio se a Ms. Marvel aggiungo il super potere *flight* devo passare nel bo
 
 In ritorno ottengo la risorsa aggiornata
 
+> Attenzione: se si vuole aggiornare una Risorsa inviare nel body solo le proprietà modificate per non sovrascrivere
+> le proprietà modificate da altri.
+
+
 ### Cancellare una Risorsa
 
 Per eliminare una risorsa ho due opzioni:
