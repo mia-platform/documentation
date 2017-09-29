@@ -5,7 +5,7 @@
 > Per richiedere le credenziali di accesso scrivere a [demo@mia-platform.eu](mailto:demo@mia-platform.eu).
 > Una volta avuto l'accesso è sufficiente sostituire negli esempi https://your-url con https://preprod.baas.makeitapp.eu
 
-## Getting Started
+## Getting Started vvvvv
 - [Veloce guida di inizio con dockerbox](getting_started/index.md)
 
 
