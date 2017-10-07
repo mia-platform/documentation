@@ -5,7 +5,12 @@ site_author: Mia Platform Team
 copyright: Mia srl. Tutti i diritti riservati.
 pages:
 - Home: 'index.md'
-- Getting started: 'getting_started/index.md'
+- Intro:
+  - Getting started: 'getting_started/index.md'
+  - Architecture:
+    - Global vision: 'architecture/index.md'
+    - Logic: 'architecture/arc_logic.md'
+    - Infrastructure: 'architecture/arc_infra.md'
 - Developers:
   - Home: 'developer_guide/index.md'
   - API: 'developer_guide/api.md'
@@ -21,11 +26,14 @@ pages:
   - Configurare gli Analytics: 'developer_guide/conf_analytics.md'
   - iOS SDK: 'developer_guide/sdk_ios.md'
   - Android SDK: 'developer_guide/sdk_android.md'
+  - Pipelines: 'developer_guide/pipelines.md'
 - Users:
   - Home: 'user_guide_and_tools/index.md'
   - CMS: 'user_guide_and_tools/cms/index.md'
 - Administrators:
   - Home: 'administrator_guide/index.md'
+  - Overview: 'administrator_guide/overview.md'
+  - Pipe di Rilascio: 'administrator_guide/../developer_guide/pipelines.md'
   - Backup: 'administrator_guide/backup.md'
   - Business Continuity: 'administrator_guide/business_continuity.md'
   - Disaster Recovery: 'administrator_guide/disaster_recovery.md'

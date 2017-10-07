@@ -1,6 +1,7 @@
 Administrator Guide
 
-- Pipe di Rilascio
+- [Overview](overview.md)
+- [Pipe di Rilascio](../developer_guide/pipelines.md)
 - Build di un docker proprio
 - Scalabilità
 - [Backup](backup.md)
