@@ -38,7 +38,7 @@ pages:
   - Business Continuity: 'administrator_guide/business_continuity.md'
   - Disaster Recovery: 'administrator_guide/disaster_recovery.md'
 - About:
-  - Home: 'about/index.md'
+  - Chi siamo: 'about/index.md'
   - Architecture: 'architecture/index.md'
   - Release Notes: 'release_notes/index.md'
   - Roadmap: 'roadmap/index.md'

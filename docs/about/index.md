@@ -1,1 +1,2 @@
-Benvenuti nella documentazione di Mia-Platform
+Siamo un team cross funzionale, giovane e professionale: Node.js, Swift, Rx, Docker, TDD e molto altro. Siamo appassionati del mondo digital e sempre aggiornati sulle ultime tendenze in ambito marketing e design.
+Lavoriamo in un ambiente creativo e Agile e abbiamo capito che per raggiungere gli ambiziosi risultati che ci prefiggiamo serve determinazione e divertimento!
