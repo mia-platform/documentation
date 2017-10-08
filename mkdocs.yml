@@ -42,4 +42,5 @@ pages:
   - Architecture: 'architecture/index.md'
   - Release Notes: 'release_notes/index.md'
   - Roadmap: 'roadmap/index.md'
+  - Contribute: 'about/contribute.md'
 #theme: readthedocs
