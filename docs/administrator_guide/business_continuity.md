@@ -1,4 +1,4 @@
-# Business Continuity
+# Business Continuiti
 
 Con Business Continuity si intendono tutti gli accorgimenti atti a rendere il sistema e i suoi servizi
 disponibili senza interruzioni.
