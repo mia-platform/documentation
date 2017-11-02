@@ -74,7 +74,7 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
 
  - ***params:*** (oggetto) questo oggetto contiene gli elementi per configurare i valori del tracciato/serie:
    - *collection:* (string) da quale collezione  prendere i dati che verranno mostrati nel tracciato/serie
-   - *"groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. createdAt
+   - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. createdAt
    - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. appSource
    -  *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
 
@@ -83,20 +83,20 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
 > Questo parametro è un array e deve essere un JSON valido. 
 > Ogni operazione è composta da [operationName, operands] dove operationName è un parametro o un'operazione aritmetica di mongo accettata da [group accumulator operators] e operands è il nome della property o una mongo query che restituisca i valori su cui applicare l'operationName  (https://docs.mongodb.com/manual/reference/operator/aggregation-group/). 
 > Le **operazioni ammesse** sono:
-> + *count*: numera gli elementi di un gruppo, non necessita di un operands.
-> + *sum*: somma gli operands di ogni gruppo
-> + *avg*: calcola la media degli operands di un gruppo
-> + *last|first|min|max*: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo
-> + *constant*: ritorna in un gruppo la specifica stringa o costante numerica (default 1)
+
+> + ***count***: numera gli elementi di un gruppo, non necessita di un operands.
+> + ***sum***: somma gli operands di ogni gruppo
+> + ***avg***: calcola la media degli operands di un gruppo
+> + ***last|first|min|max***: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo
+> + ***constant***: ritorna in un gruppo la specifica stringa o costante numerica (default 1)
 > **N.B. Si può impostare una sola operazione per tracciato/serie.** Si possono impostare anche operazioni complesse, ad esempio: ["avg", {"$multiply":
         ["$totalPrice", "$quantity"]}]
 
  - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: 'y' : anni, 'ym' : mesi, 'ymd' : giorni, 'ymdh' : ore, 'ymdhM' : minuti
  - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate. 
-La documentazione da consultare per le mongo query è disponibile a questo [link](https://docs.angularjs.org/api/ng/filter/date).
+La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.angularjs.org/api/ng/filter/date).
 
- - ***range date:*** (boolean) permette di mostrare o nascondere il campo date di un grafico custom stock per la regolazione dello zoom
- - ***customRangeDates:*** (boolean) abilita o disabilita i campi date startDate e endDate che sono utili soprattutto nei grafici di tipo chart
+ - ***customRangeDates:*** (boolean) abilita o disabilita i campi date ```startDate``` e ```endDate```, ***solo*** per i grafici di tipo ```chart```.
  - ***start date - end date:*** (number) utilizzabili solo se customRangeDate è settato a true. Inserire il timestamp in millisecondi delle date del periodo di interesse.  
  > Se sono attivi sia rangeDate che customDate su un grafico di tipo custom stock può crearsi confusione. Può essere più funzionale disabilitare rangeDate in quanto lo zoom può essere impostato sia con il cursore che con i bottoni di visualizzazione
 
