@@ -9,16 +9,16 @@ Gli analitici sul CMS di Mia-Platform vengono configurati attraverso due tipi di
 
 Il percorso per accedere ai file di configurazione degli analitici su git è:
 
-> nomeprogetto-config /  configurations / backoffice / _analytics-config 
+> nomeprogetto-config /  configurations / backoffice / _analytics-config
 
 All'interno del file _analytics-config si trovano i due file widget e dashboard.
 
 Per configurare il file analytics.json all'interno di una collezione specifica, il percorso su git è:
-> custom plugin / nome della collezione / analytics.json 
+> custom plugin / nome della collezione / analytics.json
 
 Creando il file *analytics* viene quindi abilitato il tasto Analitici sul CMS e viene visualizzato il grafico così come è stato configurato all'interno del medesimo file.
 
- 
+
 
 ##Come configurare il file *widget*##
 
@@ -26,7 +26,7 @@ Il file widget è il file di configurazione dei grafici. In mia platform si ha l
 
 + custom-stock: è un grafico con in ascissa una serie temporale
 ![enter image description here](img/stock.png)
-+ charts: è un grafico non legato al tempo 
++ charts: è un grafico non legato al tempo
 ![enter image description here](img/chart.png)
 
 
@@ -65,10 +65,10 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
   ![legenda di un grafico su CMS](img/legend.png)
  - ***series:*** (array di oggetti) ogni oggetto del array rappresenta un tracciato/serie all'interno del grafico.
  Qualora si volessero visualizzare più tracciati/serie in un solo grafico, basterà mettere più di un oggetto nel array.
-   Ogni oggetto del array *series* è costituito dai seguenti elementi: 
+   Ogni oggetto del array *series* è costituito dai seguenti elementi:
    - *name:* (string) nome del tracciato/serie mostrato nel grafico
    - *id:* (string)  id del tracciato/serie, di solito corrisponde al name
-   - *type:* (string) line, spline, area, column sono le tipologie di visualizzazione dei dati 
+   - *type:* (string) line, spline, area, column sono le tipologie di visualizzazione dei dati
    - *color:* (string) colore del tracciato/serie, i valori ammessi sono i principali colori di css ([elenco colori](https://toolset.mrwebmaster.it/colori/colori-del-web.html))
  - ***labelType:*** (string) opzionale, usare solo con valore 'euro'. Indica il tipo di valore da mostrare nella legenda  
 
@@ -80,8 +80,8 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
 
 > Il parametro Operation funziona solo con **groupDate** e **group**.
 > Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
-> Questo parametro è un array e deve essere un JSON valido. 
-> Ogni operazione è composta da [operationName, operands] dove operationName è un parametro o un'operazione aritmetica di mongo accettata da [group accumulator operators] e operands è il nome della property o una mongo query che restituisca i valori su cui applicare l'operationName  (https://docs.mongodb.com/manual/reference/operator/aggregation-group/). 
+> Questo parametro è un array e deve essere un JSON valido.
+> Ogni operazione è composta da [operationName, operands] dove operationName è un parametro o un'operazione aritmetica di mongo accettata da [group accumulator operators] e operands è il nome della property o una mongo query che restituisca i valori su cui applicare l'operationName  (https://docs.mongodb.com/manual/reference/operator/aggregation-group/).
 > Le **operazioni ammesse** sono:
 
 > + ***count***: numera gli elementi di un gruppo, non necessita di un operands.
@@ -93,7 +93,7 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
         ["$totalPrice", "$quantity"]}]
 
  - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: 'y' : anni, 'ym' : mesi, 'ymd' : giorni, 'ymdh' : ore, 'ymdhM' : minuti
- - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate. 
+ - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate.
 La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.angularjs.org/api/ng/filter/date).
 
  - ***customRangeDates:*** (boolean) abilita o disabilita i campi date ```startDate``` e ```endDate```, ***solo*** per i grafici di tipo ```chart```.
@@ -110,9 +110,9 @@ I file JSON dashboard e analytics permettono di configurare la visualizzazione d
 ```
 [
  {
-    "id": "installations", 
-    "order": 2, 
-    "width": 12 
+    "id": "installations",
+    "order": 2,
+    "width": 12
   },
   {
     "id": "dailyuse",
@@ -127,8 +127,11 @@ I file JSON dashboard e analytics permettono di configurare la visualizzazione d
  * ***id:*** (string) nome del grafico nella dashboard (nell'esempio sopra "installations")
  * ***order:*** (number) ordine di visualizzazione del grafico (nell'esempio sopra "2")
  * ***width:*** (number 1-12) larghezza del grafico che può andare **da 1 a 12**. Se ad esempio si hanno due grafici con larghezza 6, questi si vedranno affiancati. Si possono creare diverse combinazioni di visualizzazione in base alla larghezza data.
-    
+
 In questo caso, avendo due grafici con larghezza 12, questi verranno visualizzati uno sotto l'altro.
 
 
 **INSERIRE SCREEN DI ESEMPIO**
+
+
+PROVA PROVA 
