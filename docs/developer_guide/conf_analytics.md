@@ -61,7 +61,11 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
 
  - ***type:*** (string) il tipo di grafico, che può essere custom-stock o chart
  - ***title:*** (string) titolo del grafico da mostrare
- - ***legend:*** (boolean) *true* per abilitare la legenda, *false* per disabilitarla
+ - ***legend:*** (boolean/array). Se vuoi vedere o non vedere tutta la legend usa un (boolean): false per disabilitarla, in questo modo non vedrai nulla. Se invece scriverai true la legenda conterrà tutte le statistiche: max (valore massimo) , min (valore minimo) , sum (somma), avg (media).
+**Se vuoi visualizzare solo dei dati selezionati, dovrai trasformare il boolean in un array.
+Es: nel tuo grafico vuoi mostrare solo la somma e la media.
+A livello di codice scriverai: “legend”: [“sum”,”avg”] .
+Ricorda però che l’array non decide l’ordine, ma è preimpostato.
   ![legenda di un grafico su CMS](img/legend.png)
  - ***series:*** (array di oggetti) ogni oggetto del array rappresenta un tracciato/serie all'interno del grafico.
  Qualora si volessero visualizzare più tracciati/serie in un solo grafico, basterà mettere più di un oggetto nel array.
@@ -132,6 +136,3 @@ In questo caso, avendo due grafici con larghezza 12, questi verranno visualizzat
 
 
 **INSERIRE SCREEN DI ESEMPIO**
-
-
-PROVA PROVA 
