@@ -66,7 +66,9 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
 Es: nel tuo grafico vuoi mostrare solo la somma e la media.
 A livello di codice scriverai: “legend”: [“sum”,”avg”] .
 Ricorda però che l’array non decide l’ordine, ma è preimpostato.
+
   ![legenda di un grafico su CMS](img/legend.png)
+  
  - ***series:*** (array di oggetti) ogni oggetto del array rappresenta un tracciato/serie all'interno del grafico.
  Qualora si volessero visualizzare più tracciati/serie in un solo grafico, basterà mettere più di un oggetto nel array.
    Ogni oggetto del array *series* è costituito dai seguenti elementi:
