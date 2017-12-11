@@ -220,16 +220,18 @@ Le altre celle vanno riempite in base a come è stato impostato il *Data Modelle
 
 Ad ogni proprietà è stato infatti assegnata una specifica tipologia di dato.
 Le tipologie principali possono essere:
-*Stringa
-*Numero
-*Oggetto
-*Array
+
+* Stringa
+* Numero
+* Oggetto
+* Array
 
 Per ogni proprietà bisogna compilare il file con una specifica formattazione. Le "  " sono fondamentali e devono essere senza grazie (ovvero non “ ”)
-*stringa= testo normale
-*numero= 113213
-*array = [""valore"",2],
-*oggetto= {""chiave"":""valore""}
+
+* stringa= testo normale
+* numero= 113213
+* array = [""valore"",2],
+* oggetto= {""chiave"":""valore""}
 
 A questo punto si può importare il file.
 
