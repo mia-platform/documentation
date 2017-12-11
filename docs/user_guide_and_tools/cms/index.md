@@ -228,10 +228,10 @@ Le tipologie principali possono essere:
 
 Per ogni proprietà bisogna compilare il file con una specifica formattazione. Le "  " sono fondamentali e devono essere senza grazie (ovvero non “ ”)
 
-* stringa= testo normale
-* numero= 113213
+* stringa = testo normale
+* numero = 113213
 * array = [""valore"",2],
-* oggetto= {""chiave"":""valore""}
+* oggetto = {""chiave"":""valore""}
 
 A questo punto si può importare il file.
 
