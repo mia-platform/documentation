@@ -211,6 +211,28 @@ Nel CMS si possono **importare/esportare** dati da file CSV oppure JSON cliccand
 
 ![image alt text](\img\image_14.png)
 
+Per importare un file.csv è necessario seguire alcune indicazioni.
+
+Scaricare il “Template” da compilare. Aprire il Template in Excel. Se il file non è automaticamente in colonne separate andare in “Dati”, Cliccare “ Testo in colonne”, Selezionare “Delimitato”, Selezionare come delimitazione “virgola”, e cliccare su Avanti.
+A questo punto il file sarà pronto per essere compilato
+I campi da ID a TRASH NON vanno compilati poiché sono campi che vengono generati automaticamente dal sistema.
+Le altre celle vanno riempite in base a come è stato impostato il Data Modeller. (Andare sul proprio Data modeller - Selezionare la collezione- andare su strumenti- proprietà - show default properties)
+
+Ad ogni proprietà è stato infatti assegnata una specifica tipologia di dato.
+Le tipologie principali possono essere:
+-Stringa
+-Numero
+-Oggetto
+-Array
+
+Per ogni proprietà bisogna compilare il file con una specifica formattazione. Le "  " sono fondamentali e devono essere senza grazie (ovvero non “ ”)
+stringa= testo normale
+numero= 113213
+array = [""valore"",2],
+oggetto= {""chiave"":""valore""}
+
+A questo punto si può importare il file.
+
 ## Visualizzare i contenuti
 
 Dove sono presenti molti contenuti, ad esempio le tante schede libro di una biblioteca, si possono utilizzare i **filtri tab** in alto sotto alla barra di ricerca.
