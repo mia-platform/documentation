@@ -1,4 +1,4 @@
-# Documentazione di Mia-Platform v3.0
+# Documentazione di Mia-Platform v3.1
 
 > I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo
 > [https://preprod.baas.makeitapp.eu](https://preprod.baas.makeitapp.eu)
