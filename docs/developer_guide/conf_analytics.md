@@ -136,4 +136,3 @@ In questo caso, avendo due grafici con larghezza 12, questi verranno visualizzat
 
 
 **INSERIRE SCREEN DI ESEMPIO**
-prova
