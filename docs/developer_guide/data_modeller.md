@@ -2,11 +2,11 @@
 
 # Le Look up #
 
-Le lookup servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni.
+Le lookup servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni.\
 
-Esistono varie tipologie di Lookup configurabili da Data Modeller:
-- Look a Collection
-- Inline Source
+Esistono varie tipologie di Lookup configurabili da Data Modeller:\
+- Look a Collection\
+- Inline Source\
 
 ## Look a Collection ##
 Questo tipo di lookup permette di “chiamare” la proprietà di una collezione e mostrarla all’interno di un'altra proprietà.
