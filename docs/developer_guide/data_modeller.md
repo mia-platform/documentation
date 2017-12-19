@@ -52,4 +52,4 @@ Con **value** che ordine devono avere nella nostra lookup.
 
 A questo punto in **Text** sotto **Properties** andremo a scrivere *label* e come sempre se abbiamo un *Delimiters* lo andremo ad indicare nell'apposito spazio
 
-Il comportamento degli altri valori è uguale a quello delle Look a Collection
+Il comportamento degli altri valori è uguale a quello delle Look a Collection.
