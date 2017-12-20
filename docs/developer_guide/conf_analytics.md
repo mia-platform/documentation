@@ -29,7 +29,7 @@ Il file widget è il file di configurazione dei grafici. In mia platform si ha l
 + ```chart```: è un grafico non legato al tempo
 ![](img/chart.png)
 + ```chart-summary```: è un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo
-![](img/summary.png)
+![](img/chart-summary.png)
 
 ###Esempio di struttura di configurazione###
 ```
@@ -60,7 +60,7 @@ Questo JSON contiene un oggetto i cui elementi sono i diversi grafici.
 La chiave di ogni elemento è il nome del grafico (*installations* nell'esempio sopra) e il valore è un altro oggetto con tutti i parametri di configurazione del grafico.
 Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard per richiamare il grafico che si vuole visualizzare nella pagina.
 
- - ***type:*** (string) il tipo di grafico, che può essere ```custom-stock```, ```chart``` oppure ```summary```
+ - ***type:*** (string) il tipo di grafico, che può essere ```custom-stock```, ```chart``` oppure ```chart-summary```
  - ***title:*** (string) titolo del grafico da mostrare
  - ***legend:*** (boolean/array). Se vuoi vedere o non vedere tutta la legend usa un (boolean): false per disabilitarla, in questo modo non vedrai nulla. Se invece scriverai true la legenda conterrà tutte le statistiche: max (valore massimo) , min (valore minimo) , sum (somma), avg (media).
 **Se vuoi visualizzare solo dei dati selezionati, dovrai trasformare il boolean in un array.
