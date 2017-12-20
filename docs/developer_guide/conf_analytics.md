@@ -24,11 +24,12 @@ Creando il file *analytics* viene quindi abilitato il tasto Analitici sul CMS e 
 
 Il file widget è il file di configurazione dei grafici. In mia platform si ha la possibilità di configurare due tipologie di grafico:
 
-+ custom-stock: è un grafico con in ascissa una serie temporale
-![enter image description here](img/stock.png)
-+ charts: è un grafico non legato al tempo
-![enter image description here](img/chart.png)
-
++ ```custom-stock```: è un grafico con in ascissa una serie temporale
+![](img/stock.png)
++ ```chart```: è un grafico non legato al tempo
+![](img/chart.png)
++ ```chart-summary```: è un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo
+![](img/chart-summary.png)
 
 ###Esempio di struttura di configurazione###
 ```
@@ -59,12 +60,12 @@ Questo JSON contiene un oggetto i cui elementi sono i diversi grafici.
 La chiave di ogni elemento è il nome del grafico (*installations* nell'esempio sopra) e il valore è un altro oggetto con tutti i parametri di configurazione del grafico.
 Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard per richiamare il grafico che si vuole visualizzare nella pagina.
 
- - ***type:*** (string) il tipo di grafico, che può essere custom-stock o chart
+ - ***type:*** (string) il tipo di grafico, che può essere ```custom-stock```, ```chart``` oppure ```chart-summary```
  - ***title:*** (string) titolo del grafico da mostrare
  - ***legend:*** (boolean/array). Se vuoi vedere o non vedere tutta la legend usa un (boolean): false per disabilitarla, in questo modo non vedrai nulla. Se invece scriverai true la legenda conterrà tutte le statistiche: max (valore massimo) , min (valore minimo) , sum (somma), avg (media).
 **Se vuoi visualizzare solo dei dati selezionati, dovrai trasformare il boolean in un array.
 Es: nel tuo grafico vuoi mostrare solo la somma e la media.
-A livello di codice scriverai: “legend”: [“sum”,”avg”] .
+A livello di codice scriverai: ```"legend": ["sum","avg"]```.
 Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 
   ![legenda di un grafico su CMS](img/legend.png)
@@ -80,9 +81,9 @@ Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 
  - ***params:*** (oggetto) questo oggetto contiene gli elementi per configurare i valori del tracciato/serie:
    - *collection:* (string) da quale collezione  prendere i dati che verranno mostrati nel tracciato/serie
-   - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. createdAt
-   - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. appSource
-   -  *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
+   - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. ```createdAt```
+   - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. ```appSource```
+   - *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
 
 > Il parametro Operation funziona solo con **groupDate** e **group**.
 > Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
@@ -98,7 +99,7 @@ Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 > **N.B. Si può impostare una sola operazione per tracciato/serie.** Si possono impostare anche operazioni complesse, ad esempio: ["avg", {"$multiply":
         ["$totalPrice", "$quantity"]}]
 
- - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: 'y' : anni, 'ym' : mesi, 'ymd' : giorni, 'ymdh' : ore, 'ymdhM' : minuti
+ - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: ```y``` : anni, ```ym``` : mesi, ```yw``` : settimane, ```ymd``` : giorni, ```ymdh``` : ore, ```ymdhM``` : minuti
  - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate.
 La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.angularjs.org/api/ng/filter/date).
 
