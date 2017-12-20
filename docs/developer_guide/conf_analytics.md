@@ -28,7 +28,7 @@ Il file widget è il file di configurazione dei grafici. In mia platform si ha l
 ![](img/stock.png)
 + ```chart```: è un grafico non legato al tempo
 ![](img/chart.png)
-+ ```summary```: è un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati
++ ```chart-summary```: è un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo
 ![](img/summary.png)
 
 ###Esempio di struttura di configurazione###
@@ -81,9 +81,9 @@ Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 
  - ***params:*** (oggetto) questo oggetto contiene gli elementi per configurare i valori del tracciato/serie:
    - *collection:* (string) da quale collezione  prendere i dati che verranno mostrati nel tracciato/serie
-   - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. createdAt
-   - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. appSource
-   -  *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
+   - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. ```createdAt```
+   - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. ```appSource```
+   - *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
 
 > Il parametro Operation funziona solo con **groupDate** e **group**.
 > Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
