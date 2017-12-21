@@ -180,6 +180,10 @@ E' possibile specificare campi di diverse tipologie:
 - Date
 - DateTime
 - ....
+- GeoPoint, see RFC 7946: {
+    "type": "Point",
+    "coordinates": [longitude: Double, latitude: Double]
+}
 
 ## Sicurezza di un'API
 Le API possono essere protette in due modi:
