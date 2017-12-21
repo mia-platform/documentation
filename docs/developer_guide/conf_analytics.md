@@ -62,6 +62,7 @@ Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard
 
  - ***type:*** (string) il tipo di grafico, che può essere ```custom-stock```, ```chart``` oppure ```chart-summary```
  - ***title:*** (string) titolo del grafico da mostrare
+ - ***sortBy:*** (enum string) determina l'oridnamento delle serie; le chiavi da utilizzare sono : ```label-asc```, ```label-desc```, ```value-asc```, ```value-desc```.
  - ***legend:*** (boolean/array). Se vuoi vedere o non vedere tutta la legend usa un (boolean): false per disabilitarla, in questo modo non vedrai nulla. Se invece scriverai true la legenda conterrà tutte le statistiche: max (valore massimo) , min (valore minimo) , sum (somma), avg (media).
 **Se vuoi visualizzare solo dei dati selezionati, dovrai trasformare il boolean in un array.
 Es: nel tuo grafico vuoi mostrare solo la somma e la media.
