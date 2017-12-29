@@ -14,8 +14,7 @@ Install on your computer
 
 ### Login to docker registry
 The Docker images for the Mia Platform Suite are hosted on a private registry, if you want pull and/or push access,
-plese ask nicely to the Mia Platform Suite maintainers, [Giulio](mailto://giulio.rogger@mia-platform.eu) or
-[Jacopo](mailto://jacopo.giola@mia-platform.eu).  
+plese ask nicely to the Mia Platform Suite maintainers.  
 Once your request has been accepted and you have received your credentials you should login with the following commands:
 
 ```bash
