@@ -20,6 +20,7 @@ pages:
   - Users: 'developer_guide/users.md'
   - Files: 'developer_guide/files.md'
   - Push notifications: 'developer_guide/push_notifications.md'
+  - Cron: 'developer_guide/cron.md'
   - Guida al Data Modeller: 'developer_guide/data_modeller.md'
   - Configurare il CMS: 'developer_guide/conf_cms.md'
   - Configurare il servizio di News: 'developer_guide/conf_news.md'
