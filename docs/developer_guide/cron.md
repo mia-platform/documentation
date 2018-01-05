@@ -9,33 +9,9 @@ La configurazione va scritta nel file `options.json` del `plugin`. Di seguito un
 
 ````
 {
-  "acl": {
-    "access": {
-      "users": [],
-      "groups": ["users"]
-    },
-    "read": {
-      "users": [],
-      "groups": ["users"]
-    },
-    "create": {
-      "users": [],
-      "groups": ["users"]
-    },
-    "update": {
-      "users": [],
-      "groups": ["users"]
-    },
-    "delete": {
-      "users": [],
-      "groups": ["users"]
-    },
-    "enabled": false,
-    "secreted": true
-  },
   "cronConfiguration": {
     "active": true,
-    "period": "30 01 * * * *"
+    "period": "* 30 01 * * *"
   }
 }
 ````
@@ -43,7 +19,7 @@ La configurazione va scritta nel file `options.json` del `plugin`. Di seguito un
 La parte di file di interesse è nell'oggetto json `cronConfiguration` che contiene due campi:
 
 * active: booleano che attiva o disattiva il cron
-* period: stringa per la schedulazione temporale del cron. La sintassi segue lo standard Unix descritto alla seguente pagina di Wikipedia [https://en.wikipedia.org/wiki/Cron](https://en.wikipedia.org/wiki/Cron).
+* period: stringa per la schedulazione temporale del cron. Le cifre indicano, da sinistra verso destra, i secondi 0-59, i minuti 0-59, l'ora 0-23, il giorno del mese 1-31, il mese 0-11 ed il giorno della settimana 0-6.
 
 Nell'esempio soprariportato il cron è attivo ed esegue la routine ogni giorno alle ore 01:30.
 
