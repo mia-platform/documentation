@@ -100,12 +100,59 @@ Hello Groot !
 
 ## Anamnesi di una Plugin
 
+Ogni plugin estende MIACollection. Un plugin ha senso di esistere se è necessario decorare i metodi CRUD o se è necessario implementare della logica custom.
+
+MIACollection implementa la seguente interfaccia:
+
+* `find(context, args, callback)` che risponde alla richiesta HTTP `GET` al path `/.*`
+* `count(context, args, callback)` che risponde alla richiesta HTTP `GET` al path `/count`
+* `save(context, args, callback)` che risponde alla richiesta HTTP `POST` al path `/` ed accetta come body un singolo oggetto
+* `bulkSave(context, args, callback)` che risponde alla richiesta HTTP `POST` al path `/bulk` ed accetta come body un array di oggetti
+* `update(context, args, callback)` che risponde alla richiesta HTTP `PUT` al path `/.*`
+* `remove(context, args, callback)` che risponde alla richiesta HTTP `DELETE` al path `/.*`
+
+
 ## Accedere al Database
+
+Di default ogni plugin si appoggia ad una collezione Mongo. Per configurare tale collezione è necessario configurare il file config.json, in particolare la collezione è indicata dal campo `name`, se definito, altrimenti nel campo `id`.
+
+Per accedere alla collezione definita basterà invocare `this.store` con le seguenti funzioni Mongo.
+
  - find
  - count
  - insert
  - update
  - remove
  
+## Comunicazione tra plugin
 
+Il plugin è disegnato per interagire con una singola collezione Mongo. È normale avere bisogno di interagire anche con altre collezioni o con altri plugin. Per comunicare con un'altra collezione le strade possibili sono due: collegarsi direttamente al database o passare per il plugin sovrastante.
 
+Per il collegamento diretto al database bisogna creare lo store indicando la collezione Mongo di destinazione:
+
+```
+constructor(name, options) {
+    super(name, options);
+    this.usersStore = options.db.createStore('other_collection');
+    // ...
+}
+```
+
+Per comunicare invece con un altro plugin deve essere usato il componente `dpd`. Tale componente permette di accedere ad un altro plugin ed alle sue funzionalità tramite interfaccia HTTP. Con questo approccio il plugin protrebbe risiedere sulla stessa macchina e sullo stesso processo come su un'altra macchina. Le funzionalità del plugin a cui si può accedere devono essere esposte dal plugin stesso tramite interfaccia HTTP.
+
+Di seguito un esempio di chiamata ad un altro plugin:
+
+````
+find(context, args, callback) {
+  // ...
+
+  context.dpd.otherplugin.get('plugin_feature_path', query, (result, error) => {
+    // do something with plugin feature call result
+    // ...
+  });
+
+  // ...
+}
+````
+
+L'oggetto `dpd` espone come funzioni i verbi HTTP quindi get, post, put etc.. Il primo argomento da passare è opzionale ed indica il path relativo, è possibile ometterlo completamente ed passare direttamente il secondo argomento. Il secondo argomento è la query da passare al plugin. Il terzo ed ultimo argomento è la callback che verrà invocata a chiamata terminata.
