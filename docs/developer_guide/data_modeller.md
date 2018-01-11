@@ -19,18 +19,36 @@ A questo punto ti si aprirà una modale da compilare.
 
 Facciamo un esempio vuoi creare la collezione **Editori**
 
-Nel campo `nome` dovrai inserire il nome della collezione che vorresti savare sul database, quindi dovrà essere scritto tutto in minuscolo. Nel nostro caso sarà **editori**
+Nel campo `nome` dovrai inserire il nome della collezione che vorresti savare sul database. Nel nostro caso sarà **editori**
 
 Nel campo `Label` dovrai invece inserire il nome che vorresti che apparisse nel CMS. Nel nostro caso sarà **Editori**
 
-Con `Layout` puoi decidere il Layout che vorrai dare alla tua collezione. *Table* è la modalità di visualizzazione più classica. *TableUser* è .... e *TablePush* e--- . Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
+Con `Layout` puoi decidere il Layout che vorrai dare alla tua collezione. *Table* è la modalità di visualizzazione più classicaa tabella. *TableUser* è la modalità di visulizzazione per gli utenti. Ha infatti un campo speciale *Reset Password* all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto *Push* per inivare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
 
-Nel nostro caso sceglieremo *Table*
+Nel nostro caso sceglieremo *Table*.
 
-`DefaultStatus`può invece essere o *Draft* o *Publish*. Se selezioni *Draft* -------. Se selezioni invece *Publish*-----
+`DefaultStatus`può invece essere o *Draft* o *Publish*. Se selezioni *Draft* una volta che caricherai un elemento non verrà pubblicato automaticamente sui tuoi applicativi, ma dovrai dargli successivamente il comando pubblica. Se selezioni invece *Publish* ogni volta che modifichi o che carichi un elemento verrà pubblicato automaticamente. Nel nostro caso metteremo *Draft*.
 
+Troverai poi la possibilità di spuntare `DefDelete`. Se lo abiliti gli elementi non andranno in trash dove potrai comunque recuperarli, ma verranno elimininati definitivamente.
 
+Nel campo `Icon` potrai scegliere con quale icona caratterizzare la tua collezione. Abbiamo una libreria di icone dalle quale potrai scegliere. Nel nostro caso per la casa Editrice scegliamo l'iconcina **home**.
 
+Uno degli ultimi campi è `Categoria`. Per *Categoria* si intende il nome della categoria in cui inserire le diverse collezioni. Noi potremmo quindi o creare una categoria nuova con un nuovo nome (importante il nome deve essere univoco!).
+
+Es. di una nuova categoria. Voglio creare la categoria *Libri*
+sarà: `{"name": "Libri","order":30}`. **"order":30** è l'ordine delal categoria dentro il CMS.
+
+*Ti consigliamo di mettere sempre cifre dell'ordine delle decine.* Ti capiterà infatti ti volere inserire in futuro altre collezioni o categorie. Se prima per esempio avremmo avuto già una categoria in ordine 3 per posizionare questa avremmo dovuto cambiare anche tutte le altre a cascate. Con le decine invece basta mettere un numero intermedio.
+
+Nel caso invece in cui tu sappia già in che Categoria inserirlo ti basterà ricopiare il nome della categoria prescelta sempre con lo stesso formato. Se volessimo quindi inserirla dentro una categoria chiamata General già esistente sarà:
+
+ `{ "name"  : "General", "order" : 0 }`
+
+ Poi dovrai selezionare `Hidden`se vuoi che sia nascosta. e `Blocked`se vuoi che sia bloccata. Ovvero che nessuno possa modificarla.
+
+ Gli ultimi due campi sono: `Order` che indica l'ordine all'interno della categoria e `Highlight`. Per `Order`ti consigliamo di usare sempre la regola delle decine. Nel nostro caso mettermo 10 per averla come prima.
+
+ Non ti resta ora quindi che premere `Crea`.
 
 # Le Look up #
 
