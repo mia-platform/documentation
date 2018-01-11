@@ -1,4 +1,36 @@
-[TOC]
+# Guida al Datamodeller #
+Il Datamodeller è l'interfaccia utente per gli sviluppatori.
+
+#Come configurare il CMS tramite il Datamodeller #
+Il Datamodeller è lo strumento principale per riuscire a configurare il proprio CMS con semplicità.
+
+Se vuoi approfondire la sua struttura [leggi la nostra guida del CMS](https://docs.mia-platform.eu/user_guide_and_tools/cms/)
+
+# Le Collezioni #
+
+La Collezione è la struttura principale del CMS
+
+## Come creare una collezione ##
+Nel menù in basso a sinistra troverai un bottone con su scritto **Aggiungi nuova (alt+shift+C)**
+
+Immagine
+
+A questo punto ti si aprirà una modale da compilare.
+
+Facciamo un esempio vuoi creare la collezione **Editori**
+
+Nel campo `nome` dovrai inserire il nome della collezione che vorresti savare sul database, quindi dovrà essere scritto tutto in minuscolo. Nel nostro caso sarà **editori**
+
+Nel campo `Label` dovrai invece inserire il nome che vorresti che apparisse nel CMS. Nel nostro caso sarà **Editori**
+
+Con `Layout` puoi decidere il Layout che vorrai dare alla tua collezione. *Table* è la modalità di visualizzazione più classica. *TableUser* è .... e *TablePush* e--- . Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
+
+Nel nostro caso sceglieremo *Table*
+
+`DefaultStatus`può invece essere o *Draft* o *Publish*. Se selezioni *Draft* -------. Se selezioni invece *Publish*-----
+
+
+
 
 # Le Look up #
 
