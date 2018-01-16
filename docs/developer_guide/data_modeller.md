@@ -23,7 +23,7 @@ Nel campo `nome` dovrai inserire il nome della collezione che vorresti savare su
 
 Nel campo `Label` dovrai invece inserire il nome che vorresti che apparisse nel CMS. Nel nostro caso sarà **Editori**
 
-Con `Layout` puoi decidere il Layout che vorrai dare alla tua collezione. *Table* è la modalità di visualizzazione più classicaa tabella. *TableUser* è la modalità di visulizzazione per gli utenti. Ha infatti un campo speciale *Reset Password* all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto *Push* per inivare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
+Con `Layout` puoi decidere il Layout che vorrai dare alla tua collezione. *Table* è la modalità di visualizzazione più classica a tabella. *TableUser* è la modalità di visulizzazione per gli utenti. Ha infatti un campo speciale *Reset Password* all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto *Push* per inivare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
 
 Nel nostro caso sceglieremo *Table*.
 
