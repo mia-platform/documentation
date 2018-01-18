@@ -50,18 +50,37 @@ Nel caso invece in cui tu sappia già in che Categoria inserirlo ti basterà ric
 
  Non ti resta ora quindi che premere `Crea`.
 
-# Aggiungere proprietà a una nuova collezione #
+## Aggiungere proprietà a una nuova collezione ##
 
 Una volta creata una collezione devi aggiungere le proprietà che andranno a caratterizzare quella collezione.
 
 Nel nostro caso le proprietà della collezione Editori saranno: il nome della casa editice, il luogo di pubblicazione.
 
 Quando apriamo la schermata della proprietà dovremmo compilare i seguenti campi:
-* Nome: va inserito il nome della proprietà, tutto in minuscolo
-* Tipo: le prorietà possono essere di diversi tipi 
 
+`Nome`: va inserito il nome della proprietà, in camelCase. Nel nostro caso sarà **nome**
 
+`Tipo`: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo; *number* se è un numero; *date* se è una data con gg/mm/aaaa; *datetime* è invece una data completa con anche ore, minuti e secondi; *boolean* se può essere solo true o false; *text* se vogliamo che il contenuto venga letto come html; *textArea* se è un campo di testo, quindi ad esempio una descrizione; *Lookup* servono per poter selezionare alcuni valori o tra una gamma di valori scelti da me o tra una gamma di valori presi da un'altra collezione. Se ti interessa il tema delle Lookup più sotto troverai una sezione dedicata; *Multilookup* se vuoi selezionare più valori; *Array* se lo vuoi salvare come un insieme ordinato di proprietà; *oggetto* è un insieme di proprietà non ordinato; *Geopoint* se vuoi che salvi un luogo preciso; *Files* se è un file come ad esempio un immagine o un pdf.
+Nel nostro caso sceglieremo **string** volendo semplicemente scrivere il nome della casa Editrice.
 
+`Label`: è l'etichetta che vuoi dare alla tua proprietà, nel nostro caso può essere: **Nome Casa Editrice**
+
+`Property description`: è una breve descrizione della proprietà. Es: sono i nomi delle case editrici
+
+`CmsOrder`: è l'ordine che gli vuoi dare all'interno della collezione. nel nostro caso sarà il primo, quindi scrivermo **10**
+
+`CmsVisibility`: indica a che livello del CMS vuoi mostrare una proprietà. I livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicci nella tabella, nella zona destra del tuo CMS, al livello 2 tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso mettermo **1** in quando l'informazione è prioritaria.
+
+`New`
+
+`Edit`
+
+`CmsEditable`: se selezioni true se vuoi poter modificare il tuo dato da CMS. Nel nostro caso si. Quindi lo selezioneremo.
+
+`Required`: se vuoi che il dato sia obbligatorio. Nel nostro caso il nome è obbligatorio, quindi selezionerò required.
+
+`CmsCardPosition`: questo campo lo devi riempire solo se la tua collezione ha come layout la Card e devi scegliere l'ordine della posizione, altrimenti puoi non compilarlo.
+  
 # Le Look up #
 
 Le lookup servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni.
