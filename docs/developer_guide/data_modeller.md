@@ -50,6 +50,18 @@ Nel caso invece in cui tu sappia già in che Categoria inserirlo ti basterà ric
 
  Non ti resta ora quindi che premere `Crea`.
 
+# Aggiungere proprietà a una nuova collezione #
+
+Una volta creata una collezione devi aggiungere le proprietà che andranno a caratterizzare quella collezione.
+
+Nel nostro caso le proprietà della collezione Editori saranno: il nome della casa editice, il luogo di pubblicazione.
+
+Quando apriamo la schermata della proprietà dovremmo compilare i seguenti campi:
+* Nome: va inserito il nome della proprietà, tutto in minuscolo
+* Tipo: le prorietà possono essere di diversi tipi 
+
+
+
 # Le Look up #
 
 Le lookup servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni.
