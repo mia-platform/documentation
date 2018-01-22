@@ -83,7 +83,7 @@ Nel nostro caso sceglieremo **string** volendo semplicemente scrivere il nome de
 
 Alla fine non ti resta che premere **Aggiungi Proprietà** e la proprietà verrà aggiunta alla tua collezione.
 
-# Aggiungere un elemento da Datamodeller #
+## Aggiungere un elemento da Datamodeller ##
 
 Una volta create tutte le proprietà della nostra collezione è ora possibile aggiungere degli elementi. Puoi anche aggiungerli da CMS.
 
