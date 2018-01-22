@@ -9,12 +9,12 @@ Gli analitici sul CMS di Mia-Platform vengono configurati attraverso due tipi di
 
 Il percorso per accedere ai file di configurazione degli analitici su git è:
 
-> nomeprogetto-config /  configurations / backoffice / _analytics-config
+`> nomeprogetto-config /  configurations / backoffice / _analytics-config`
 
-All'interno del file _analytics-config si trovano i due file widget e dashboard.
+All'interno del file `_analytics-config` si trovano i due file widget e dashboard.
 
 Per configurare il file analytics.json all'interno di una collezione specifica, il percorso su git è:
-> custom plugin / nome della collezione / analytics.json
+`> custom plugin / nome della collezione / analytics.json`
 
 Creando il file *analytics* viene quindi abilitato il tasto Analitici sul CMS e viene visualizzato il grafico così come è stato configurato all'interno del medesimo file.
 
