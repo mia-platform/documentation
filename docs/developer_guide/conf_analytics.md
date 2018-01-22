@@ -70,7 +70,7 @@ A livello di codice scriverai: ```"legend": ["sum","avg"]```.
 Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 
   ![legenda di un grafico su CMS](img/legend.png)
-  
+
  - ***series:*** (array di oggetti) ogni oggetto del array rappresenta un tracciato/serie all'interno del grafico.
  Qualora si volessero visualizzare più tracciati/serie in un solo grafico, basterà mettere più di un oggetto nel array.
    Ogni oggetto del array *series* è costituito dai seguenti elementi:
@@ -102,7 +102,7 @@ Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 
  - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: ```y``` : anni, ```ym``` : mesi, ```yw``` : settimane, ```ymd``` : giorni, ```ymdh``` : ore, ```ymdhM``` : minuti
  - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate.
-La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.angularjs.org/api/ng/filter/date).
+La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
 
  - ***customRangeDates:*** (boolean) abilita o disabilita i campi date ```startDate``` e ```endDate```, ***solo*** per i grafici di tipo ```chart```.
  - ***start date - end date:*** (number) utilizzabili solo se customRangeDate è settato a true. Inserire il timestamp in millisecondi delle date del periodo di interesse.  
