@@ -13,13 +13,11 @@ La Collezione è la struttura principale del CMS
 ## Come creare una collezione ##
 Nel menù in basso a sinistra troverai un bottone con su scritto **Aggiungi nuova (alt+shift+C)**
 
-Immagine
-
 A questo punto ti si aprirà una modale da compilare.
 
 Facciamo un esempio: vuoi creare la collezione **Libri**
 
-Nel campo `nome` dovrai inserire il nome della collezione che vorresti savare sul database. Nel nostro caso sarà **libri**
+Nel campo `nome` dovrai inserire il nome della collezione che vorresti salvare sul database. Nel nostro caso sarà **libri**
 
 Nel campo `Label` dovrai invece inserire il nome che vorresti che apparisse nel CMS. Nel nostro caso sarà **Libri**
 
@@ -38,7 +36,7 @@ Uno degli ultimi campi è `Categoria`. Per *Categoria* si intende il nome della 
 Es. di una nuova categoria. Voglio creare la categoria *Libri*
 sarà: `{"name": "Libri","order":30}`. **"order":30** è l'ordine della categoria dentro il CMS.
 
-*Ti consigliamo di mettere sempre cifre dell'ordine delle decine.* Ti capiterà infatti ti volere inserire in futuro altre collezioni o categorie. Se prima per esempio avremmo avuto già una categoria in ordine 3 per posizionare questa avremmo dovuto cambiare anche tutte le altre a cascate. Con le decine invece basta mettere un numero intermedio.
+*Ti consigliamo di mettere sempre cifre dell'ordine delle decine.* Ti capiterà infatti ti volere inserire in futuro altre collezioni o categorie. Se prima per esempio avremmo avuto già una categoria in ordine 3 per posizionare questa avremmo dovuto cambiare anche tutte le altre a cascata. Con le decine invece basta mettere un numero intermedio.
 
 Nel caso invece in cui tu sappia già in che Categoria inserirlo ti basterà ricopiare il nome della categoria prescelta sempre con lo stesso formato. Se volessimo quindi inserirla dentro una categoria chiamata General già esistente sarà:
 
