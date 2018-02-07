@@ -111,6 +111,12 @@ MIACollection implementa la seguente interfaccia:
 * `update(context, args, callback)` che risponde alla richiesta HTTP `PUT` al path `/.*`
 * `remove(context, args, callback)` che risponde alla richiesta HTTP `DELETE` al path `/.*`
 
+Per implementare un endpoint custom è necessario aggiungere una rotta ed associarla ad una funzione come descritto nell'esempio "Hello World Plugin" sopra.
+La funzione che viene invocata avrà a disposizione tre argomenti:
+
+1. `context` il contesto della chiamata dove si può trovare ad esempio la sessione utente
+2. `args` contiene i parametri di query in caso di `GET` o il body in caso di `POST` e `PUT`
+3. `callback` è la funzione da chiamare per restiture la risposta. La funzione accetta due argomenti: il primo è l'errore che deve essere un oggetto con due campi `{ statusCode: number, message: string }`, ed il secondo è il body della risposta in caso di successo
 
 ## Accedere al Database
 
