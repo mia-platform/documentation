@@ -103,6 +103,11 @@ Ricorda però che l’array non decide l’ordine, ma è preimpostato.
  - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: ```y``` : anni, ```ym``` : mesi, ```yw``` : settimane, ```ymd``` : giorni, ```ymdh``` : ore, ```ymdhM``` : minuti
  - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate.
 La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
+Un esempio di mongoquery su una proprietà è la seguente:
+
+`"fiter": {"nome proprietà": {"$gte": valore}}`
+
+Per conoscere tutti i comparatori puoi seguire questo [link](https://docs.mongodb.com/manual/reference/operator/query-comparison/). Nel menù di destra seleziona la tipologia di comparatore e scopri le potenzialità delle mongoquery
 
  - ***customRangeDates:*** (boolean) abilita o disabilita i campi date ```startDate``` e ```endDate```, ***solo*** per i grafici di tipo ```chart```.
  - ***start date - end date:*** (number) utilizzabili solo se customRangeDate è settato a true. Inserire il timestamp in millisecondi delle date del periodo di interesse.  
