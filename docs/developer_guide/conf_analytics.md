@@ -38,6 +38,11 @@ Il file widget è il file di configurazione dei grafici. In mia platform si ha l
     "type": "custom_stock",
     "title": "Installations",
     "legend": true,
+    "yAxis": {
+        "shared": true,
+        "title": "the title",
+        "labelType": "euro"
+    }
     "series": [{
       "name": "Installations",
       "id": "installations",
@@ -70,21 +75,25 @@ A livello di codice scriverai: ```"legend": ["sum","avg"]```.
 Ricorda però che l’array non decide l’ordine, ma è preimpostato.
 
   ![legenda di un grafico su CMS](img/legend.png)
-
+ 
+ - ***yAxis***: permette di creare grafici del tipo `custom_stock` con più serie, le quali condividono la stessa scala sull'asse delle `y`. Se omessa, nel grafico vengono visualizzati due assi delle `y`, con scale diverse, per ogni serie. Le chiavi di questo oggetto permettono di configurare aspetti diversi dell'asse delle `y`  
+    - *shared*: (boolean) se `true`, le serie condivideranno la stessa scala sull'asse delle `y`. Se `false` il grafico si comporterà come se l'intero oggetto `yAxis` non sia stato specificato.
+    - *title*: (string) setta il titolo dell'asse delle `y`.
+    - *labelType*: (string) opzionale, con la stessa sintassi e semantica di `labelType` riferito alla serie (vedi sotto).
  - ***series:*** (array di oggetti) ogni oggetto del array rappresenta un tracciato/serie all'interno del grafico.
  Qualora si volessero visualizzare più tracciati/serie in un solo grafico, basterà mettere più di un oggetto nel array.
    Ogni oggetto del array *series* è costituito dai seguenti elementi:
-   - *name:* (string) nome del tracciato/serie mostrato nel grafico
-   - *id:* (string)  id del tracciato/serie, di solito corrisponde al name
-   - *type:* (string) line, spline, area, column sono le tipologie di visualizzazione dei dati
-   - *color:* (string) colore del tracciato/serie, i valori ammessi sono i principali colori di css ([elenco colori](https://toolset.mrwebmaster.it/colori/colori-del-web.html))
+    - *name:* (string) nome del tracciato/serie mostrato nel grafico
+    - *id:* (string)  id del tracciato/serie, di solito corrisponde al name
+    - *type:* (string) line, spline, area, column sono le tipologie di visualizzazione dei dati
+    - *color:* (string) colore del tracciato/serie, i valori ammessi sono i principali colori di css ([elenco colori](https://toolset.mrwebmaster.it/colori/colori-del-web.html))
  - ***labelType:*** (string) opzionale, usare solo con valore 'euro'. Indica il tipo di valore da mostrare nella legenda  
 
  - ***params:*** (oggetto) questo oggetto contiene gli elementi per configurare i valori del tracciato/serie:
-   - *collection:* (string) da quale collezione  prendere i dati che verranno mostrati nel tracciato/serie
-   - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. ```createdAt```
-   - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. ```appSource```
-   - *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
+    - *collection:* (string) da quale collezione  prendere i dati che verranno mostrati nel tracciato/serie
+    - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. ```createdAt```
+    - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. ```appSource```
+    - *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
 
 > Il parametro Operation funziona solo con **groupDate** e **group**.
 > Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
