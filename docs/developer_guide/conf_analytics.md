@@ -42,7 +42,7 @@ Il file widget è il file di configurazione dei grafici. In mia platform si ha l
         "shared": true,
         "title": "the title",
         "labelType": "euro"
-    }
+    },
     "series": [{
       "name": "Installations",
       "id": "installations",
