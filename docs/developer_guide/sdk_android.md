@@ -62,7 +62,7 @@ To initialize the SDK you need to add in your **Application** class or in your *
 MKAppInstance.sharedInstance().init(this, "YOUR_SECRET", "BAAS_URL");
 ```
 
-In the initialization constructure can be set also the SDK extensions needed by the application (they can be *null* as in the example above).
+In the initialization constructor can be set also the SDK extensions needed by the application (they can be *null* as in the example above).
 ```
 MKAppInstance.sharedInstance().init(this, "YOUR_SECRET", "BAAS_URL", new MKAnalyticsExtension(), ...);
 ```
