@@ -5,7 +5,7 @@ Mia-Platform provides an SDK that works as intermediator to permit the interacti
 ## General information and requisites
 
 * Android Studio or other Gradle build system IDEs
-* Android project **minSDKVersion 19**
+* Android project **minSDKVersion 14**
 
 ##Setting up the project
 
@@ -43,7 +43,7 @@ The SDK project is divided in modules:
 * android-baas-sdk-database
 * android-baas-sdk-push
 * android-baas-sdk-user
-* analytics
+* analytics //coming soon
 
 Not all the modules are dependent by the others, some of them can be used alone. **Android-baas-sdk-core** allows basic operations, **android-baas-sdk-database** is the module responsible of the data storage, **android-baas-sdk-push** is the module that manages the push notification, **android-baas-sdk-user** is the module to manage the user sessions and **Analytics** is the module to capture information about the usage of the application.
 
@@ -59,10 +59,20 @@ The core module is the basic module of the SDK, it allows basic operations such 
 
 To initialize the SDK you need to add in your **Application** class or in your **Main** activity class add the code:
 ```
-MKAppInstance.sharedInstance().initModule(this, "YOUR_SECRET", "BAAS_URL");
+MKAppInstance.sharedInstance().init(this, "YOUR_SECRET", "BAAS_URL");
 ```
 
-In the initialization constructure can be set also the SDK extensions needed by the application, they can be *null*.
+In the initialization constructure can be set also the SDK extensions needed by the application (they can be *null* as in the example above).
+```
+MKAppInstance.sharedInstance().init(this, "YOUR_SECRET", "BAAS_URL", new MKAnalyticsExtension(), ...);
+```
+
+You can also initialize the SDK and the modules in two different moments. To do so, you must before initialize the SDK and then initialize the single module:
+```
+MKAppInstance.sharedInstance().init(this, "YOUR_SECRET", "BAAS_URL");
+...
+MKAppInstance.sharedInstance().initModule(new MKAnalyticsExtension());
+```
 
 #### Manage logs
 
@@ -161,43 +171,7 @@ mkCollection.save().doAsynchronously(new MKCallback() {
 ```
 The id, the creation date, the update date, the id of the person who updated the data are automatically added.
 
-#### Read remote data
 
-Reading the data can be done using MKQuery class in both synchronous or asynchronous way as showed in the following examples:
-```
-try {
-   MKQuery query = new MKQuery("COLLECTION_NAME");
-   query.whereKeyEqualTo("gender", "male");
-   query.orderDescendingByUpdateDate();
-   MKCollectionArrayList mkCollections = query.findAll().doSynchronously();
-   for (MKCollection c : mkCollections) {
-      //do something
-   }
-}
-catch (Exception e) {
-   //error
-}
-```
-or
-```
-MKQuery query = new MKQuery("COLLECTION_NAME");
-query.whereKeyEqualTo("gender", "male");
-query.orderDescendingByUpdateDate();
-query.findAll().doAsynchronously(new MKCallback() {
-   @Override
-   public void onCompleted(Object result, MKError error, Object caller) {
-      if (error ==  null) {
-         MKCollectionArrayList mkCollections = (MKCollectionArrayList) result;
-         for (MKCollection c : mkCollections) {
-            //do something
-         }
-      }
-      else {
-         //error
-      }
-   }
-});
-```
 
 #### Get data from MKCollection
 
@@ -286,10 +260,127 @@ MKCollection personCollection = ...
 Person person = personCollection.extractMKObject(Person.class);
 ```
 
-The method *findAll* of MKQuery returns a *MKCollectionArrayList* object. This object is a simple extension of ArrayList that implements a method to extract a set of objects without the need of doing one by one. Following is represented the usage:
+The method *findAll* of MKQuery (described in the next section) returns a *MKCollectionArrayList* object. This object is a simple extension of ArrayList that implements a method to extract a set of objects without the need of doing one by one. Following is represented the usage:
 ```
 MKCollectionArrayList collectionArrayList = ...
 ArrayList personArrayList = collectionArrayList.extractAll(Person.class);
+```
+
+#### Read remote data
+
+Reading the data can be done using **MKQuery** class in both synchronous or asynchronous way as showed in the following examples:
+```
+try {
+   MKQuery query = new MKQuery("COLLECTION_NAME");
+   query.whereKeyEqualTo("gender", "male");
+   query.orderDescendingByUpdateDate();
+   MKCollectionArrayList mkCollections = query.findAll().doSynchronously();
+   for (MKCollection c : mkCollections) {
+      //do something
+   }
+}
+catch (Exception e) {
+   //error
+}
+```
+or
+```
+MKQuery query = new MKQuery("COLLECTION_NAME");
+query.whereKeyEqualTo("gender", "male");
+query.orderDescendingByUpdateDate();
+query.findAll().doAsynchronously(new MKCallback() {
+   @Override
+   public void onCompleted(Object result, MKError error, Object caller) {
+      if (error ==  null) {
+         MKCollectionArrayList mkCollections = (MKCollectionArrayList) result;
+         for (MKCollection c : mkCollections) {
+            //do something
+         }
+      }
+      else {
+         //error
+      }
+   }
+});
+```
+
+MKQuery class contains method in order to provide the main operations that can be done on collections.
+The three basic methods supported by MKQuery are:
+
+* **findAll**: return all the collection elements
+* **countAll**: count the number of elements in the collection
+* **setFilter**: accept a *MKFilter* object (described in next section) to filter the elements of a collection
+
+MKQuery class provides also generic methods such as:
+
+* **getCollectionName**: to obtain the collection name
+* **setCollectionName**: takes as input a string and set the collection name
+* **addOrderBy**: takes as input a string indicating the field to order and a direction of type sort (ASC, DSC)
+* **setLimit**: takes an integer to set the limit
+* **setSkip**: takes an integer to set the skip
+
+In addition, MKQuery class provides some methods with the filters already incorporated:
+
+* **orderAscendingByKey**: orders the elements in ascending way according to a given key (string)
+* **orderDescendingByKey**: orders the elements in descending way according to a given key (string)
+* **orderAscendingByCreationDate**: orders the elements in ascending way according to creation date
+* **orderDescendingByCreationDate**: orders the elements in descending way according to creation date
+* **orderAscendingByUpdateDate**: orders the elements in ascending way according to the update date
+* **orderDescendingByUpdateDate**: orders the elements in descending way according to the update date
+* **whereKeyEqualTo**: takes as input a key (string) and an object and returns the elements equal to the given one
+* **whereKeyLessThan**: takes as input a key (string) and an object and returns the elements less than the given one
+* **whereKeyLessThanOrEqualTo**: takes as input a key (string) and an object and returns the elements less than or equal to the given one
+* **whereKeyGreatherThan**: takes as input a key (string) and an object and returns the elements strictly greater than the given one
+* **whereKeyGreatherThanOrEqualTo**: takes as input a key (string) and an object and returns the elements greater than or equal the given one
+* **whereKeyNotEqualTo**: takes as input a key (string) and an object and returns the elements not equal the given one
+* **whereKeyContainedIn**: takes as input a key (string) and objects and returns the elements contained in
+* **whereKeyNotContainedIn**: takes as input a key (string) and objects and returns the elements not contained in
+
+#### Filter remote data
+
+For filtering the remote data you can build a filter using the **MKQueryFilter** class. Once created the filter can be added to the MKQuery for making collection requests:
+```
+MKQuery myQuery = new MKQuery("COLLECTION_NAME");
+
+MKQueryFilter filter = MKQueryFilter.AND(MKQueryFilter.EQUALS("lat", latitude), MKQueryFilter.EQUALS("lng", longitude));
+MYQuery.setFilter(filter);
+```
+
+The methods exposed by MKQueryFilter are:
+
+* **EQUALS**
+* **NOT_EQUALS**
+* **GREATER_THAN**
+* **GREATER_THAN_OR_EQUALS**
+* **LESS_THAN**
+* **LESS_THAN_OR_EQUALS**
+* **IN**
+* **NOT_IN**
+* **AND**
+* **OR**
+
+### Basic analytics
+
+The core module provides also some basics analytics as the installation and the daily use, more sophisticated analytics will be provided in the analytics module.
+To track the installation and the daily use of your application you simply need to add the proper extension, **MKAnalyticsExtension**, in the initialization method:
+```
+MKAppInstance.sharedInstance().initModule(new MKAnalyticsExtension());
+```
+
+The SDK will take care of doing all the rest.
+
+### Advanced Network settings
+
+In the case you cannot use the classes provided by the SDK to make your requests, the SDK provides a rest adapter shared instance. It exposes a retrofit instance that point to the same URL with which the SDK has been initialized and it injects automatically the secret and the sid, if the user id logged.
+
+To use it you need to create your rest interface and then obtain the rest interface created by the SDK, as in this example:
+```
+MyRestInterface restInterface = MKAppInstance.sharedInstance().getRestAdapter().create(MyRestInterface.class);
+```  
+
+Another thing offered by the SDK is the possibility of adding an interceptor (that extends Interceptor class):
+```
+MKAppInstance.sharedInstance().addInterceptor(new RequestInterceptor());
 ```
 
 ## Users Module
@@ -312,7 +403,7 @@ dependencies {
 
 Remember also to add the **MKUserExtension** in the initialization method:
 ```
-MKAppInstance.sharedInstance().initModule(this, secret, baas_url, new MKUserExtension());
+MKAppInstance.sharedInstance().initModule(new MKUserExtension());
 ```
 
 
@@ -477,10 +568,10 @@ MKDatabaseSyncOptions mkDatabaseSyncOptions = new MKDatabaseSyncOptions.Builder(
 Once you created the database synchronization options, you can proceed in creating the **MKDatabaseExtension** and initialize the module including the database extension just created.
 ```
 MKDatabaseExtension databaseExtension = new MKDatabaseExtension(mkDatabaseSyncOptions, MKDatabaseConfig.newInstance(), this);
-MKAppInstance.sharedInstance().initModule(this, secret, baas_url, databaseExtension);
+MKAppInstance.sharedInstance().initModule(databaseExtension);
 ```
 
-For knowing when the database is ready to use you can override the methods *onDatabaseReady* and start synchronize all:
+For knowing when the database is ready to use you can override the methods *onDatabaseReady* and start synchronize all with **syncAll** method:
 ```
 @Override
     public void onDatabaseReady() {
@@ -488,9 +579,15 @@ For knowing when the database is ready to use you can override the methods *onDa
     }
 ```
 
-If you want to synchronize one table at a time you can use:
-
---------------NON LO SO-------------
+If you want to synchronize one table at a time you can use **sync** method:
+```
+@Override
+    public void onDatabaseReady() {
+        ArrayList<Class<? extends MKObject>> arrayList = new ArrayList<>();
+        arrayList.add(MyClass.class);
+        MKDatabaseSync.sync(this, arrayList);
+    }
+```
 
 For knowing when the collections synchronization starts and ends you can override the two methods *onCollectionSyncStarted* and *onCollectionSyncEnded*:
 ```
@@ -538,9 +635,11 @@ dependencies {
 
 Remember also to add the **MKPushExtension** in the SDK initialization method with the sender identifier:
 ```
-MKAppInstance.sharedInstance().initModule(this, secret, baas_url, new MKPushExtension("sender_id"));
+MKAppInstance.sharedInstance().initModule(new MKPushExtension("sender_id"));
 ```
 Proceed then with creating the push receiver.
+
+TODO: explain how create the push receiver
 
 ## Analytics module
 
