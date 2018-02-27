@@ -5,7 +5,7 @@ Mia-Platform provides an SDK that works as intermediator to permit the interacti
 ## General information and requisites
 
 * The latest version of **Xcode** - [download](https://itunes.apple.com/it/app/xcode/id497799835?mt=12)
-* The latest version of the Mia-Platform SDK - [download]()
+* The latest version of the Mia-Platform SDK - [download](download/Mia-Platform-iOS-SDK.zip)
 * The SDK is compatible with **iOS 9** or above
 
 ## SDK Modules
@@ -527,6 +527,12 @@ MKUser.login { (user: MKUser?, error: Error?, localCredential: Bool) in
             // perform some actions
         }
 ```
+
+In the completion block are returned three parameters:
+
+* an istance on MKUser, that can be null if there aren't logged users or if there was an error
+* an instance of NSError, that can be null if there aren't errors
+* a boolean that is true if for some reasons it was not possible to check online if the session of the user is still valid, it is false if the server has checked the session of the returned user
 
 ## MIASync Framwerork
 
