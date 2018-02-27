@@ -352,4 +352,69 @@ query.excludeKeys(fromResults: ["picturename","username"]) // all keys are retur
 
 #### mkCollectionFile
 
+**MKCollectionFile** lets you store application files in the cloud that would otherwise be too large or cumbersome to fit into a regular **MKCollection**. The most common use is storing images but you can also use it for documents, videos, music, and any other binary data.
+Getting started with MKCollectionFile is easy. First, you’ll need to have the data in **NSData** form and then create a MKCollectionFile with it.
+
+```
+Objective-C
+
+//get picture in NSData format starting from a UImage
+NSData *myData = UIImagePNGRepresentation(image);
+MKCollectionFile *file = [MKCollectionFile fileWithName:@"picture.png" data:myData];
+```
+
+```
+Swift
+
+//get picture in NSData format starting from a UImage
+let myData = UIImagePNGRepresentation(image)
+let file = MKCollectionFile(name: "picture.png", data: myData)
+```
+
+Notice in this example that we give the file a name of **picture.png**. There are two things to note here:
+
+* You don’t need to worry about filename collisions. Each upload gets a unique identifier so there is no problem with uploading multiple files named picture.png.
+* It’s important that you give a name to the file that has a file extension. This lets **BaaS** figure out the file type and handle it accordingly. So, if you’re storing PNG images, make sure your filename ends with .png.
+
+Next you’ll want to save the file to the cloud. As with MKCollection, there are different versions of the save method you can use.
+
+```
+Objective-C
+
+NSError *err = nil;
+[file save:&err];
+```
+
+```
+Swift
+
+do {
+    try file.save()
+} catch {
+    print(error)
+}
+```
+
+**Note:** You might want to use **saveInBackgroundWithBlock** to provide additional logic which will run after the save completes and to prevent lock of UI in the Main Thread.
+
+Finally, after the save is completed, you can associate a **MKCollectionFile** id onto a **MKCollection** just like any other piece of data:
+
+```
+Objective-C
+
+MKCollection *post = ... //a collection
+[post setObject:file.collectionId forKey:@"postImage"];
+```
+
+```
+Swift
+
+var post = MKCollection(name: "a collection")
+post?.setObject(file.collectionId, forKey: "postImage")
+```
+
+#### Basic analytics
+
+The core framework provides also some basics analytics as the installation and the daily use. More sophisticated analytics are provided in the analytics module. The track of the installation and the daily use of your application is done automatically by the core module. No action is requested by the developer.
+
 ## MIASyncro Framework
