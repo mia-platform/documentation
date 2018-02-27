@@ -13,11 +13,12 @@ Mia-Platform provides an SDK that works as intermediator to permit the interacti
 The SDK project is divided in modules:
 
 * mkApp - *Core Framework*
-* MIASyncro
+* MIASync
+* MIAAnalytics - *Coming soon*
 
 The main one, which we will refer as **Core framework**, will give you access to the CRUD functionality of the BaaS backend, the SSO login and the analytics for your projects.
 
-The second one is the **MIASyncro** framework; this module is optional for your project and rely on the **Core framework** to work and will add the sync data between BaaS and local database functionality to your project.
+The second one is the **MIASync** framework; this module is optional for your project and rely on the **Core framework** to work and will add the sync data between BaaS and local database functionality to your project.
 
 The following paragraph will describe in detail the usage of each module.
 
@@ -527,4 +528,92 @@ MKUser.login { (user: MKUser?, error: Error?, localCredential: Bool) in
         }
 ```
 
-## MIASyncro Framework
+## MIASync Framwerork
+
+MIASyncro is a class for syncing  data from BaaS into the local database and viceversa. The local database is represented and referenced by a NSManagedObjectContext.
+
+The sync behaviour is inspired by git: there are a pull action first and then a push action. Changes from BaaS have greater priority than local changes so, if a conflict is present, changes from BaaS will replace local changes.
+
+In particular values from BaaS that have updatedAt greater than updatedAt of local objects, these local objects will be updated (replaced) or deleted, depends on the status.
+
+### Add the Core module to your Xcode project
+
+Extract the content of the SDK from the zip file and drag and drop the **MIASync.framework** file inside your Xcode project. Pay attention that the copy flag is checked!
+
+![iOS sdk xcode](img/ios-sdk-add-xcode.png)
+
+**Pay attention:** the two options **Copy items if needed** and **Create Groups** must be selected!
+
+**NOTE:** This framework doesn't work if the core framework hasn't been added to your project.
+
+Go to the **Build Phases** section of your project and add the following line of code to the click on the **Embedded SDK** script:
+
+```
+./mkApp.framework/embed-sdk 'MIASync.framework'
+```
+
+You should see something like this:
+
+![embedded sdk](img/embedded-sdk-miasync.png)
+
+Lastly, check in **Build Settings** if **Enable Bitcode** is setted to **No**.
+
+Now you can safely import the MIASync framework in all the files where you want to use its functionality with the familiar statement:
+
+```
+Objective-C
+
+#import "MIASync.h"
+```
+
+```
+Swift
+
+import MIASync
+```
+
+### Initialization
+
+In order to use the MIASync framework, you have to initialize it. This operation must be done as soon as the application start (for example in the **AppDelegate**). In order to initialize it, write the following line of code after the MKApp initialization:
+
+```
+Objective-C
+
+MKAppInstance *appInstance = [MKAppInstance sharedInstance];
+
+// Ask your App Angel to have your Project Name and Secret
+appInstance.projectAPIname = @"<YourProjectName>";
+appInstance.APISecret = @"<YourAPISecret>";
+
+NSURL *pathString = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestModel" withExtension:@"momd"];
+NSManagedObjectModel *managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+MIASyncro *miaSyncro = [[MIASyncro alloc] initWithManagedObjectModel:managedObjectModel];
+
+[miaSyncro sync:@[News.class,Author.class]];
+```
+
+```
+Swift
+
+let appInstance = MKAppInstance.sharedInstance
+
+// Ask your App Angel to have your Project Name and Secret
+appInstance.projectAPIname = "<YourProjectName>"
+appInstance.APISecret = "<YourAPISecret>"
+
+guard
+    let pathString = Bundle.main.path(forResource: "TestModel", ofType: "momd"),
+    let managedObjectModel = NSManagedObjectModel.init(contentsOf: URL(fileURLWithPath: pathString)),
+    let miaSyncro = MIASyncro(managedObjectModel: managedObjectModel) else {
+      fatalError("Unable to init NSManagedObjectModel")
+}
+
+miaSyncro.sync([News.self, Author.self])
+```
+
+In order to be instantiated, MIASync need to have a managed object model where to save the collection to sync. MIASync will create a default managedObjectContext using this mode. It is also possible to create by yourself a managed object context and initialize the MIASync with it. After that an instance of MIASync has been created, it is necessary to declare which collections must be synced.
+
+It is possible to do it by assigning an array of classes to the **sync** variable. Each class must have the same name and the same variables of the collection that must be synced from the BaaS. For example, if on the BaaS there is a collection called **News** with **title** and **text** fields, to sync it we must create a class called **News** in the project with two properties **title** and **text**.
+
+## MIAAnalytics Framwerork
+*Coming soon*
