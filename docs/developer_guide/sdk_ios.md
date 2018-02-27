@@ -413,8 +413,118 @@ var post = MKCollection(name: "a collection")
 post?.setObject(file.collectionId, forKey: "postImage")
 ```
 
-#### Basic analytics
+#### Advanced Network settings
+
+In the case you cannot use the classes provided by the SDK to make your network requests, the SDK provides more tools. It exposes a **NSURLSessionTask** instance that point to the same URL with which the SDK has been initialized and it injects automatically the secret and the sid, if the user is logged.
+
+For example, you can create a **NSURLSessionDataTask** to perform **GET** requests as follow:
+
+```
+Objective-C
+
+NSURLSessionDataTask *dataTask = [MKAppInstance.sharedInstance.network getDataTaskWithRelativePath:@"geocoding/geo" queryParameters:queryParameters error:&networkError completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        // perform actions
+    }];
+```
+
+```
+Swift
+
+let dataTask = MKAppInstance.shared().network.getDataTask(relativePath:"geocoding/geo", queryParameters:queryParameters, completionHandler:^(data: Data?, response: NSURLResponse?, error: Error?) {
+        // perform actions
+    })
+```
+
+where **queryParameters** is a dictionary which contains the query parameters for the request. The key of the dictionary corresponds to the name of the parameter, the value of the dictionary corresponds to the value of the parameter.
+
+It is possible also to create a **NSURLSessionDataTask** to perform **GET** requests which automatically returns in the completion block the data as a **Dictionary** (if a JSON file is expected) or as a **MKCollection** array. The core module also exposes methods to create NSURLSessionTask for **POST** and **DELETE** actions.
+
+### Basic analytics
 
 The core framework provides also some basics analytics as the installation and the daily use. More sophisticated analytics are provided in the analytics module. The track of the installation and the daily use of your application is done automatically by the core module. No action is requested by the developer.
+
+### Login, registration and restore user sessions
+
+The SDK provides the **MKUser** class responsible of managing the user login data, the user registration data and the password recovery
+
+#### Login
+
+The login activity is managed by the SDK through the **MKUser** class. To perform this action it is possible to call the following static method with email and password of the user to login:
+
+```
+Objective-C
+
+[MKUser logInWithEmailInBackground:"email" password:"password" storeUserLocaly:YES block:^(MKUser *user, NSError *error) {
+        // perform some actions
+    }];
+```
+
+```
+Swift
+
+MKUser.logInWithEmail(inBackground: "email", password: "password", storeUserLocaly: true) { (user: MKUser?, error: Error?) in
+            // perform some actions
+        }
+```
+
+The MKUser instance of the callback is the user that has been logged.
+
+**NOTE**: if **storeUserLocally** is true, user will be saved locally on keychain for future login.
+
+#### Registration
+
+In order to perform the registration of a new user, it is necessary to create a new **MKUser** instance and fill the required parameters, which are the email an the password, then perform a save on the user. A complete example is proposed below.
+
+```
+Objective-C
+
+MKUser *user = [MKUser user];
+
+[user setObject:@"my username" forKey:@"username"];
+[user setObject:@"my name" forKey:@"user_name"];
+[user setObject:@"my surname" forKey:@"user_surname"];
+[user setObject:@"my email" forKey:@"email"];
+[user setObject:@"my password" forKey:@"password"];
+
+[user saveInBackgroundWithBlock:^(MKCollection *collection, NSError *error) {
+      // perform some actions
+    }];
+```
+
+```
+Swift
+
+var user = MKUser()
+
+user?.setObject("my username", forKey: "username")
+user?.setObject("my name", forKey: "user_name")
+user?.setObject("my surname", forKey: "user_surname")
+user?.setObject("my email", forKey: "email")
+user?.setObject("my password", forKey: "password")
+
+user?.saveInBackground({ (user: MKCollection?, error: Error?) in
+    // perform some actions
+})
+```
+
+#### Restore user session
+
+If the user already exist in the device, the session can be restored without the need of performing the login again.
+
+```
+Objective-C
+
+[MKUser loginWithLocalStoredUser:^(MKUser *user, NSError *error, BOOL localCredential) {
+  // perform some actions
+  }];
+```
+
+```
+Swift
+
+MKUser.login { (user: MKUser?, error: Error?, localCredential: Bool) in
+            // perform some actions
+        }
+```
 
 ## MIASyncro Framework
