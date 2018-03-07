@@ -120,7 +120,7 @@ La funzione che viene invocata avrà a disposizione tre argomenti:
 
 ## Accedere al Database
 
-Di default ogni plugin si appoggia ad una collezione Mongo. Per configurare tale collezione è necessario configurare il file config.json, in particolare la collezione è indicata dal campo `name`, se definito, altrimenti nel campo `id`.
+Di default ogni plugin si appoggia ad una collezione Mongo. Per configurare tale collezione è necessario configurare il file config.json, in particolare la collezione è indicata dal campo `name`, se definito, altrimenti dal campo `id`.
 
 Per accedere alla collezione definita basterà invocare `this.store` con le seguenti funzioni.
 
