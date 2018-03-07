@@ -122,14 +122,39 @@ La funzione che viene invocata avrà a disposizione tre argomenti:
 
 Di default ogni plugin si appoggia ad una collezione Mongo. Per configurare tale collezione è necessario configurare il file config.json, in particolare la collezione è indicata dal campo `name`, se definito, altrimenti nel campo `id`.
 
-Per accedere alla collezione definita basterà invocare `this.store` con le seguenti funzioni Mongo.
+Per accedere alla collezione definita basterà invocare `this.store` con le seguenti funzioni.
 
- - find
- - count
- - insert
- - update
- - remove
- 
+ * `find(query, callback)`  restituisce tramite la callback un array di oggetti che rispettano la query
+ * `first(query, callback)` restituisce tramite la callback il primo oggetto che rispetta la query
+ * `count(query, callback)` restituisce tramite la callback il numero di oggetti che rispettano la query
+ * `insert(objects, callback)` inserisce un oggetto o un array di oggetti nel DB e restituisce, tramite la callback, gli stessi oggetti con l'aggiunta dell'id assegnato
+ * `update(query, object, callback)` aggiorna gli oggetti che rispettano la query modificando o aggiungendo i campi presenti in `object`, restituisce quindi, tramite la callback, l'oggetto `WriteResults` [DOC MongoDB](https://docs.mongodb.com/manual/reference/method/db.collection.update/#writeresults-update)
+ * `remove(query, callback)` rimuove tutti gli oggetti che rispettano la query. Resituisce tramite la callback un oggetto siffatto: `{ "acknowledged" : true, "deletedCount" : 0 }`
+
+La firma della callback è la seguente: `callback(error, result)`. È inoltre possibile non passare la callback ed usare la Promise che viene ritornata, ad esempio:
+
+```
+this.store.first({ name: "Francesco" })
+  .then( user => {
+    console.log("store.first success", user)
+  })
+  .catch( error => {
+    console.log("store.first error", error)
+  })
+```
+
+Nel metodo classico invece, usando la callback:
+
+```
+this.store.first({ name: "Francesco" }, (error, user) => {
+  if (error) {
+    console.log("store.first error", error)
+    return
+  }
+  console.log("store.first success", user)
+})
+```
+
 ## Comunicazione tra plugin
 
 Il plugin è disegnato per interagire con una singola collezione Mongo. È normale avere bisogno di interagire anche con altre collezioni o con altri plugin. Per comunicare con un'altra collezione le strade possibili sono due: collegarsi direttamente al database o passare per il plugin sovrastante.
