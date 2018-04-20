@@ -11,6 +11,7 @@
 
 ## Architecture
 - Visione globale
+- [Componenti](architecture/arc_components.md)
 - Logica
 - Infrastuttura
 
