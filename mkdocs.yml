@@ -9,6 +9,7 @@ pages:
   - Getting started: 'getting_started/index.md'
   - Architecture:
     - Global vision: 'architecture/index.md'
+    - Componenti: 'architecture/arc_components.md'
     - Logic: 'architecture/arc_logic.md'
     - Infrastructure: 'architecture/arc_infra.md'
 - Developers:
