@@ -1,7 +1,7 @@
 node {
 
     def site = "site"
-    def docDir = "/baas/docs"
+    def docDir = "/var/www/html/docs"
 
     stage("Checkout doc sources") {
         checkout([$class: "GitSCM", branches: [[name: "*/master"]], userRemoteConfigs: [[credentialsId: "edada490-85cc-4502-825e-d77068fdc488", url: "git@git.makeitapp.eu:makeitapp-baas/mia-platform-doc.git"]]])
@@ -17,8 +17,8 @@ node {
     }
 
     stage("Deploy docs") {
-        def pwd = "sjAAsd273782378!!sajhjsa"
-        def server = "preprod@23.97.171.78"
+        def pwd = "sdjkdsjk7327!!sajsaAA"
+        def server = "prod@52.169.0.92"
 
         sh "sshpass -p '$pwd' rm -rf \"${docDir}/*\""
         sh "sshpass -p '$pwd' scp -r \"${site}.tar.gz\" $server:$docDir"
