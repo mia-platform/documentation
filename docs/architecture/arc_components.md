@@ -4,14 +4,14 @@ Qui potrai trovare l'elenco  dettagliato dei componenti che costituiscono Mia-Pl
 ### API Gateway ###
 
 L'API Gateway è il microservizio responsabile del routing delle richieste verso il servizio corretto.
-Inoltre è anche responsabile della autenticazione, esegue il controllo di accesso e il rate limiting.
+Inoltre gestisce l'autenticazione, esegue il controllo di accesso e il rate limiting.
 
 Il servizio è composto a default da server nginx multipli, 2 in ascolto sulle porte 80 ed 8080, 4 in ascolto su socket unix per ritornare i messaggi di errore.
 
 La porta 80 è utilizzata per il routing applicativo, mentre per quello di backoffice è esposto alla 8080.
 
 
-A questo [link](https://git.tools.mia-platform.eu/platform/core/api-gateway) si può trovare il link al progetto e il relativo README.
+A questo [link](https://git.tools.mia-platform.eu/platform/core/api-gateway) il progetto e il relativo README.
 
 ### Microservice Gateway ###
 
@@ -34,12 +34,12 @@ Attualmente due tipologie di ACL sono previste dal servizio:
 - *ACL per righe*: prepara una query che filtrerà i documenti sulla base dell'utente corrente (ad esempio per mostrare soltanto i documenti creati dall'utente).
 - *ACL per colonne in lettura*: permette di limitare i campi che l'utente può vedere nella risposta sulla base della sua appartenenza a gruppi e del tipo di cliente.
  
-Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate dagli header settati dal 
-Anche in questo caso le regole da applicare sono specificate in configurazione. Per approfondire come configurare il servizio, fare riferimento alla [pagina](https://git.tools.mia-platform.eu/platform/core/acl-service) del progetto. 
+Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate da header, ed il risultato della applicazione delle regole è la scrittura di header di ACL che il CRUD Service è in grado di interpretare per eseguire effettivamente i filtri.
+Anche in questo caso le regole da applicare sono specificate in configurazione. Per approfondire come configurare il servizio, fare riferimento alla [pagina](https://git.tools.mia-platform.eu/platform/core/acl-service) del progetto.
 
 ### CRUD Service ###
 
-Il progetto CRUD Service ospita sia il CRUD stesso che due microservizi (logici) per permettere la compatibilità del CRUD con il CMS. La configurazione di questi servizi è possibile tramite API Console.
+Il progetto CRUD Service ospita sia il CRUD stesso che due microservizi (logici) per permettere la compatibilità con il CMS. La configurazione di questi servizi può essere generata tramite API Console.
 
 Il CRUD Service è un microservizio che serve ad esporre una API HTTP per eseguire operazioni di CRUD (Create, Read, Update, Delete) su collezioni mongodb.
 Esso è configurato allo startup tramite la definizione di collezioni (una o più), per fornire una interfaccia HTTP coerente ed effettuare la validazione delle operazioni prima di eseguirle sul database.
