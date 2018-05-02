@@ -1,5 +1,5 @@
 ## Componenti ##
-Qui potrai trovare l'elenco  dettagliato dei componenti che costituiscono Mia-Platform.
+Qui potrai trovare l'elenco dettagliato dei componenti che costituiscono Mia-Platform.
 
 ### API Gateway ###
 
@@ -8,8 +8,7 @@ Inoltre gestisce l'autenticazione, esegue il controllo di accesso e il rate limi
 
 Il servizio è composto a default da server nginx multipli, 2 in ascolto sulle porte 80 ed 8080, 4 in ascolto su socket unix per ritornare i messaggi di errore.
 
-La porta 80 è utilizzata per il routing applicativo, mentre per quello di backoffice è esposto alla 8080.
-
+La porta 80 è utilizzata per il routing applicativo, mentre quello di backoffice è esposto alla 8080.
 
 A questo [link](https://git.tools.mia-platform.eu/platform/core/api-gateway) il progetto e il relativo README.
 
@@ -33,7 +32,7 @@ Attualmente due tipologie di ACL sono previste dal servizio:
 
 - *ACL per righe*: prepara una query che filtrerà i documenti sulla base dell'utente corrente (ad esempio per mostrare soltanto i documenti creati dall'utente).
 - *ACL per colonne in lettura*: permette di limitare i campi che l'utente può vedere nella risposta sulla base della sua appartenenza a gruppi e del tipo di cliente.
- 
+
 Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate da header, ed il risultato della applicazione delle regole è la scrittura di header di ACL che il CRUD Service è in grado di interpretare per eseguire effettivamente i filtri.
 Anche in questo caso le regole da applicare sono specificate in configurazione. Per approfondire come configurare il servizio, fare riferimento alla [pagina](https://git.tools.mia-platform.eu/platform/core/acl-service) del progetto.
 
@@ -56,8 +55,26 @@ La repository del servizio è la stessa del CRUD Service, la documentazione spec
 
 Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service. [README](https://git.tools.mia-platform.eu/platform/core/crud-service/tree/master/resources)
 
-### Files ###
+### Files Service ###
+
+Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
+Attualmente sono supportati S3 e MongoDB come servizi di storage.
+
+Per configurarlo ed utilizzarlo fare riferimento al [link](https://git.tools.mia-platform.eu/platform/plugins/files-service) alla pagina principale del progetto.
 
 ### Pingator ###
 
-### PDF ###
+Pingator è un servizio che monitora lo stato dei servizi per controllare che siano attivi.
+
+Vedi la pagina del progetto [qui](https://git.tools.mia-platform.eu/platform/core/pingator).
+
+### Client Proxy ###
+
+### Static Files ###
+
+### Certificate Service ###
+
+### Auth Service ###
+
+### Session Manager ###
+
