@@ -38,22 +38,20 @@ Anche in questo caso le regole da applicare sono specificate in configurazione. 
 
 ### CRUD Service ###
 
-Il progetto CRUD Service ospita sia il CRUD stesso che due microservizi (logici) per permettere la compatibilità con il CMS. La configurazione di questi servizi può essere generata tramite API Console.
-
 Il CRUD Service è un microservizio che serve ad esporre una API HTTP per eseguire operazioni di CRUD (Create, Read, Update, Delete) su collezioni mongodb.
 Esso è configurato allo startup tramite la definizione di collezioni (una o più), per fornire una interfaccia HTTP coerente ed effettuare la validazione delle operazioni prima di eseguirle sul database.
 
-La definizione di una collezione prevede di indicare l'elenco e la tipologia dei campi e di opzionalmente specificare indici. Si consiglia di fare riferimento alla [repository](https://git.tools.mia-platform.eu/platform/core/crud-service) ed al readme del servizio [README](https://git.tools.mia-platform.eu/platform/core/crud-service/blob/master/crud/README.md).
+La definizione di una collezione prevede di indicare l'elenco e la tipologia dei campi e di opzionalmente specificare indici. Si consiglia di fare riferimento alla [repository](https://git.tools.mia-platform.eu/platform/core/crud-service).
 
-#### v1Adapter ####
+### v1Adapter ###
 
 Questo microservizio permette di utilizzare il CMS con il nuovo servizio di CRUD Service, traducendo le richieste dal CMS in chiamate HTTP adattate alla nuova interfaccia.
 Oltre al mapping delle rotte http, si occupa anche della conversione dei tipi (ad esempio date e coordinate geografiche), e della trasformazione da sync e trash al nuovo stato e vice versa.
-La repository del servizio è la stessa del CRUD Service, la documentazione specifica del servizio è nel [README](https://git.tools.mia-platform.eu/platform/core/crud-service/blob/master/v1Adapter/README.md).
+Per ulteriori dettagli di si rimanda alla repository del servizio [qui](https://git.tools.mia-platform.eu/platform/core/v1-adapter).
 
-#### Resources ####
+### CMS Backend ###
 
-Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service. [README](https://git.tools.mia-platform.eu/platform/core/crud-service/tree/master/resources)
+Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service. [Qui](https://git.tools.mia-platform.eu/platform/core/cms-backend) la repository del servizio.
 
 ### Files Service ###
 
