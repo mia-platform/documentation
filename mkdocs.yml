@@ -29,6 +29,8 @@ pages:
   - iOS SDK: 'developer_guide/sdk_ios.md'
   - Android SDK: 'developer_guide/sdk_android.md'
   - Pipelines: 'developer_guide/pipelines.md'
+- DevOps:
+  - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
 - Users:
   - Home: 'user_guide_and_tools/index.md'
   - CMS: 'user_guide_and_tools/cms/index.md'
