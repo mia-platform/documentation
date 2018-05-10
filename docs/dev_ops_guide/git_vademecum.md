@@ -105,7 +105,7 @@ Unisci lo storico del branch specificato con quello corrente.
 
 Elimina il branch specificato solo se è stato unito a master.
 
-## FAI REFACTORING DEI TUOI FILE ##
+## Fai refactoring dei tuoi file ##
 Ricerca e rimuovi file dallo storico.
 
 
