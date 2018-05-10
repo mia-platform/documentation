@@ -94,7 +94,7 @@ $ git rm --cached [file]
 Elimina il file da GIT, ma mantieni il file locale.
 
 
-## RIMUOVI I FILE DALLO STORICO ##
+## RIMUOVI I FILE DALLO STORICO ## aa
 Escludi file e percorsi temporanei.
 
 *.log
