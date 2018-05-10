@@ -1,4 +1,4 @@
-# Documentazione di Mia-Platform v3.1
+# Documentazione di Mia-Platform #
 
 > I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo
 > [https://preprod.baas.makeitapp.eu](https://preprod.baas.makeitapp.eu)
@@ -30,6 +30,10 @@
 - [Configurare gli Analytics](developer_guide/conf_analytics.md): configurare gli Analytics e la dashboard.
 - [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
 - [Android SDK](developer_guide/sdk_android.md): Utilizzare l'SDK Android.
+
+## DevOps Guide ##
+ - GIT Vademecum
+ 
 
 ## Administrator Guide
 - Pipe di Rilascio
