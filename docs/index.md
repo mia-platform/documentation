@@ -32,8 +32,8 @@
 - [Android SDK](developer_guide/sdk_android.md): Utilizzare l'SDK Android.
 
 ## DevOps Guide ##
- - GIT Vademecum
- 
+ - [GIT Vademecum] (dev_ops_guide/git_vademecum.md)
+
 
 ## Administrator Guide
 - Pipe di Rilascio
