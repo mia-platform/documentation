@@ -87,7 +87,8 @@ Elimina il branch specificato solo se è stato unito a master.
 ## FAI REFACTORING DEI TUOI FILE ##
 Ricerca e rimuovi file dallo storico.
 
-$ git rm [file]
+
+<span style="color:blue"> $ git rm [file]
 Rimuovi un file dalla directory e prepara l’eliminazione definitiva.
 
 $ git rm --cached [file]
@@ -102,7 +103,7 @@ build/
 temp-*
 Un file di testo chiamato .gitignore previene il versioning accidentale di file o directory secondo un pattern specificato.
 
-$ git ls-files --others --ignored --exclude-standard
+blue text</span> $ git ls-files --others --ignored --exclude-standard
 Elenca tutti i file ignorati in questo progetto.
 
 ##SALVA TUTTE LE MODIFICHE ##
