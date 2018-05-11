@@ -19,7 +19,7 @@ Imposta l’username (nome.cognome) che vuoi mostrare sulle tue commit.
 Imposta l’email aziendale che vuoi mostrare sulle tue commit.
 
 ## Configurazioni consigliate ##
-Ti consigliamo una serie di configurazioni che potrebbero aiutarti nel tuo lavoro.
+*Ti consigliamo una serie di configurazioni che potrebbero aiutarti nel tuo lavoro.*
 
 <span style="color:blue"> $ git config --global fetch.prune true
 
@@ -39,7 +39,7 @@ Colora il tuo GIT per una migliore visualizzazione della history.
 
 
 ## Crea repositories ##
-Inizia con un nuovo repository o scarica le informazioni da un URL esistente.
+*Inizia con un nuovo repository o scarica le informazioni da un URL esistente.*
 
 <span style="color:blue"> $ git init [project-name]
 
@@ -50,7 +50,7 @@ Crea un nuovo repository locale con il suo nome specifico.
 Scarica un progetto e la sua intera cronologia.
 
 ## Effettua modifiche ##
-Rivedi i cambiamenti al codice e prepara una commit.
+*Rivedi i cambiamenti al codice e prepara una commit.*
 
 <span style="color:blue"> $ git status
 
@@ -81,7 +81,7 @@ Aggiungi il file nell’head del repository locale.
 Carica tutti i branch locali sul repository remoto.
 
 ##Gestisci i branch ##
-Nomina i tuoi commit e uniscili quando hai terminato.
+*Nomina i tuoi commit e uniscili quando hai terminato.*
 
 <span style="color:blue"> $ git branch
 
@@ -105,7 +105,7 @@ Unisci lo storico del branch specificato con quello corrente.
 Elimina il branch specificato solo se è stato unito a master.
 
 ## Fai refactoring dei tuoi file ##
-Ricerca e rimuovi file dallo storico.
+*Ricerca e rimuovi file dallo storico.*
 
 
 <span style="color:blue"> $ git rm [file]
@@ -118,7 +118,7 @@ Elimina il file da GIT, ma mantieni il file locale.
 
 
 ## Rimuovi i tuoi file dallo storico ## aa
-Escludi file e percorsi temporanei.
+*Escludi file e percorsi temporanei.*
 
 <span style="color:blue"> *.log
 build/
@@ -131,7 +131,7 @@ Un file di testo chiamato .gitignore previene il versioning accidentale di file 
 Elenca tutti i file ignorati in questo progetto.
 
 ##Salva tutte le modifiche ##
-Archivia e ripristina cambiamenti incompleti. Utile per scaricare da remoto le modifiche mentre stai lavorando e non vuoi fare ancora commit e push oppure per cambiare da un branch all’altro senza fare commit prima.
+*Archivia e ripristina cambiamenti incompleti. Utile per scaricare da remoto le modifiche mentre stai lavorando e non vuoi fare ancora commit e push oppure per cambiare da un branch all’altro senza fare commit prima.*
 
 <span style="color:blue"> $ git stash
 
@@ -150,7 +150,7 @@ Elenca i file modificati archiviati in stash.
 Elimina i file archiviati in stash.
 
 ## Rivedi la cronologia ##
-Sfoglia e controlla l’evoluzione dei file di ogni progetto.
+*Sfoglia e controlla l’evoluzione dei file di ogni progetto.*
 
 <span style="color:blue"> $ git log
 
@@ -169,7 +169,7 @@ Mostra la differenza tra due branch.
 Mostra i metadati e i cambiamenti effettuati per uno specifico commit.
 
 ## Annulla i commit ##
-Elimina gli errori e altera lo storico dei cambiamenti.
+*Elimina gli errori e altera lo storico dei cambiamenti.*
 
 <span style="color:blue"> $ git reset [commit]
 
@@ -180,7 +180,7 @@ Annulla tutte le commit effettuate dopo [commit], preservando i cambiamenti loca
 Elimina tutto lo storico e i cambiamenti fino alla commit specificata.
 
 ## Sincronizza le modifiche ##
-Collegati a un URL remoto e ottieni lo storico dei cambiamenti.
+*Collegati a un URL remoto e ottieni lo storico dei cambiamenti.*
 
 <span style="color:blue"> $ git fetch [remote]
 
