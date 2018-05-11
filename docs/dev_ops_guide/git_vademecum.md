@@ -1,4 +1,3 @@
-# Mia-Platform #
 # GIT Vademecum #
 
 GIT è un sistema di controllo di versione distribuito che facilita le attività di Mia-Platform. Questo vademecum riassume i principali comandi e linee guida di GIT per semplificarti il lavoro.
