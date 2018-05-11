@@ -117,7 +117,7 @@ Rimuovi un file dalla directory e prepara l’eliminazione definitiva.
 Elimina il file da GIT, ma mantieni il file locale.
 
 
-## Rimuovi i tuoi file dallo storico ## aa
+## Rimuovi i tuoi file dallo storico ## 
 *Escludi file e percorsi temporanei.*
 
 <span style="color:blue"> *.log
