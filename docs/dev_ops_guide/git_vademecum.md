@@ -3,12 +3,12 @@
 GIT è un sistema di controllo di versione distribuito che facilita le attività di Mia-Platform. Questo vademecum riassume i principali comandi e linee guida di GIT per semplificarti il lavoro.
 
 ## Installa Git ##
-Comincia ad usare Git installandolo sul tuo PC.
+*Comincia ad usare Git installandolo sul tuo PC.*
 
 [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 ## Configurazioni iniziali ##
-Configura le informazioni degli utenti valide per tutti i repository.
+*Configura le informazioni degli utenti valide per tutti i repository.*
 
 <span style="color:blue"> $ git config --global user.name "[name]"
 
