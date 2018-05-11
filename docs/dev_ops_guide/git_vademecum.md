@@ -50,7 +50,7 @@ Crea un nuovo repository locale con il suo nome specifico.
 Scarica un progetto e la sua intera cronologia.
 
 ## Apporta modifiche ##
-*Rivedi i cambiamenti al codice e prepara una commit.*
+*Rivedi i cambiamenti al codice e prepara un commit.*
 
 <span style="color:blue"> $ git status
 
