@@ -38,7 +38,7 @@ Imposta l’autostash come true nelle configurazioni iniziali. Unito alla config
 Colora il tuo GIT per una migliore visualizzazione della history.
 
 
-## Crea repositories ##
+## Crea un repository ##
 *Inizia con un nuovo repository o scarica le informazioni da un URL esistente.*
 
 <span style="color:blue"> $ git init [project-name]
