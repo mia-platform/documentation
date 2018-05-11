@@ -5,7 +5,7 @@ GIT è un sistema di controllo di versione distribuito che facilita le attività
 ## INSTALLA GIT ##
 Comincia ad usare Git installandolo sul tuo PC.
 
-[https://git-scm.com/downloads]
+[https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 ## CONFIGURAZIONI INIZIALI ##
 Configura le informazioni degli utenti valide per tutti i repository.
