@@ -117,7 +117,7 @@ Rimuovi un file dalla directory e prepara l’eliminazione definitiva.
 Elimina il file da GIT, ma mantieni il file locale.
 
 
-## Rimuovi i tuoi file dallo storico ## 
+## Rimuovi i tuoi file dallo storico ##
 *Escludi file e percorsi temporanei.*
 
 <span style="color:blue"> *.log
@@ -168,7 +168,7 @@ Mostra la differenza tra due branch.
 
 Mostra i metadati e i cambiamenti effettuati per uno specifico commit.
 
-## Annulla i commit ##
+## Ri-committa ##
 *Elimina gli errori e altera lo storico dei cambiamenti.*
 
 <span style="color:blue"> $ git reset [commit]
