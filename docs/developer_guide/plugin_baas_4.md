@@ -89,9 +89,30 @@ Similmente, dalle opzioni è possibile impostare il formato del body con l'opzio
 
 ### Definizione di decoratori di PRE e POST
 
-La definizione di decoratori di PRE e POST si 
+Si possono definire facilmente dei decoratori di PRE e POST del Microservice Gateway aggiungendoli al `service`.
 
-## Integrazione di un servizio già esistente (INCLUDERE? SPOSTARE?)
+Ad esempio per definire un decoratore di pre che aggiunge un header è sufficiente scrivere:
+```js
+service.addPreDecorator('/addHeader', async function handler(req) {
+  const headers = req.getOriginalRequestHeaders()
+  const newHeader = { new: 'header' }
+  return req.changeOriginalRequest()
+    .setHeaders({ ...headers, ...newHeader })
+})
+```
+
+Similmente si può aggiungere un decoratore di POST, con il metodo `addPostDecorator`.
+Di seguito si definisce ad esempio un decoratore di POST che manda il body di risposta ad un servizio ma non modifica la risposta alla richiesta originale:
+
+```js
+service.addPostDecorator('/saveResponse', async function handler(req) {
+  const proxy = req.getServiceProxy()
+  await proxy.post('/responses', req.getOriginalResponseBody())
+  return req.leaveOriginalRequestUnmodified()
+})
+```
+
+## Integrazione di un servizio già esistente
 
 Requisiti:
 * Versionamento all'interno di gitlab (a cui punta l'API Console)
