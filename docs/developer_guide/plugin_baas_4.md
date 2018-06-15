@@ -89,12 +89,13 @@ Similmente, dalle opzioni è possibile impostare il formato del body con l'opzio
 
 ### Definizione di decoratori di PRE e POST
 
+La definizione di decoratori di PRE e POST si 
 
 ## Integrazione di un servizio già esistente (INCLUDERE? SPOSTARE?)
 
 Requisiti:
 * Versionamento all'interno di gitlab (a cui punta l'API Console)
-* Immagine del servizio sul repository di immagini Nexus
+* Immagine docker del servizio sul repository di immagini Nexus
 
 A questo punto per rendere il servizio compatibile con la piattaforma ed associabile ad un endpoint con API Console, basta creare una cartella `config` nella root del progetto con all'interno un file `Dockerimage` che contiene il link all'immagine nexus.
 

@@ -30,6 +30,7 @@
 - [Configurare gli Analytics](developer_guide/conf_analytics.md): configurare gli Analytics e la dashboard.
 - [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
 - [Android SDK](developer_guide/sdk_android.md): Utilizzare l'SDK Android.
+- [Plugin BAAS 4](developer_guide/plugin_baas_4.md): Come utilizzare la libreria di custom plugin sul BaaS 4.
 
 ## DevOps Guide ##
  - [GIT Vademecum](dev_ops_guide/git_vademecum.md)
