@@ -117,6 +117,17 @@ service.addPostDecorator('/saveResponse', async function handler(req) {
 })
 ```
 
+In aggiunta ai metodi per ottenere la richiesta e modificare la risposta come nel decoratore di PRE, sono disponibili i seguenti metodi per recuperare informazioni sulla risposta:
+* `req.getOriginalResponseBody()`
+* `req.getOriginalResponseHeaders()`
+* `req.getOriginalResponseStatusCode()`
+
+Sia per i decoratori di PRE che per quelli di POST è possibile interrompere la catena di decoratori e ritornare una risposta arbitraria tramite il metodo `abortChain`:
+
+```js
+return req.abortChain({<finalStatusCode>, <finalBody>, <finalHeaders>})
+```
+
 ## Integrazione di un servizio già esistente
 
 Requisiti:
