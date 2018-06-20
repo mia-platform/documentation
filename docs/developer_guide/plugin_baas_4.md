@@ -36,20 +36,10 @@ module.exports = customService(async function index(service) {
 })
 ```
 
-La libreria è in grado di estrarre dalla richiesta alcune informazioni legate alla piattaforma, quali l'id utente (falsy se non loggato), i gruppi, etc.
+La libreria è in grado di estrarre dalla richiesta alcune informazioni legate alla piattaforma, quali l'id utente (`null` se non loggato), i gruppi, etc.
 I metodi della richiesta aggiunti dalla libreria sono anche forniti durante l'autocompletamento per accelerare lo sviluppo.
 
-
-Per lanciare il plugin in locale è necessario cambiare lo script di start nel `package.json` in `"start": "fastify start index.js",`, e avere un file di variabili d'ambiente `default.env` con il seguente contenuto:
-```
-USERID_HEADER_KEY=miauserid
-GROUPS_HEADER_KEY=miausergroups
-CLIENTTYPE_HEADER_KEY=miaclienttype
-BACKOFFICE_HEADER_KEY=isbackoffice
-MICROSERVICE_GATEWAY_SERVICE_NAME=microservice-gateway
-```
-
-Una volta settate le variabili d'ambiente è possibile lanciare il servizio:
+Una volta settate le variabili d'ambiente è possibile lanciare in locale il servizio:
 ```
 set -a && source default.env
 npm start
@@ -83,14 +73,15 @@ Il body può essere:
 * uno stream
 
 Similmente, dalle opzioni è possibile impostare il formato del body con l'opzione `returnAs`, che può assumere i valori:
-* `JSON` (default)
-* `BUFFER`
-* `STREAM`
+* `JSON` (default): per ottenere un oggetto come body della risposta
+* `BUFFER`: per avere un buffer come body della risposta
+* `STREAM`: per avere nel body della risposta lo stream http
 
 ### Definizione di decoratori di PRE e POST
 
-Si possono definire facilmente dei decoratori di PRE e POST del Microservice Gateway aggiungendoli al `service`.
+Si possono definire facilmente dei decoratori di PRE e POST del `Microservice Gateway` aggiungendoli al `service`.
 
+#### Decoratore di PRE
 Ad esempio per definire un decoratore di pre che aggiunge un header è sufficiente scrivere:
 ```js
 service.addPreDecorator('/addHeader', async function handler(req) {
@@ -101,6 +92,20 @@ service.addPreDecorator('/addHeader', async function handler(req) {
 })
 ```
 
+I metodi per recuperare le informazioni sulla chiamata sono i seguenti:
+* `req.getOriginalRequestBody()`
+* `req.getOriginalRequestHeaders()`
+* `req.getOriginalRequestMethod()`
+* `req.getOriginalRequestPath()`
+* `req.getOriginalRequestQuery()`
+
+
+Mentre per modificare la richiesta, come da esempio dopo `changeOriginalRequest` si possono concatenare i seguenti metodi:
+* `setBody(<new body>)`
+* `setHeaders(<new headers>)`
+* `setQuery(<new query>)`
+
+#### Decoratore di POST
 Similmente si può aggiungere un decoratore di POST, con il metodo `addPostDecorator`.
 Di seguito si definisce ad esempio un decoratore di POST che manda il body di risposta ad un servizio ma non modifica la risposta alla richiesta originale:
 
