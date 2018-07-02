@@ -29,6 +29,7 @@ pages:
   - iOS SDK: 'developer_guide/sdk_ios.md'
   - Android SDK: 'developer_guide/sdk_android.md'
   - Pipelines: 'developer_guide/pipelines.md'
+  - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
 - DevOps:
   - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
 - Users:

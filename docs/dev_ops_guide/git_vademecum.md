@@ -1,15 +1,14 @@
-# Mia-Platform #
 # GIT Vademecum #
 
 GIT è un sistema di controllo di versione distribuito che facilita le attività di Mia-Platform. Questo vademecum riassume i principali comandi e linee guida di GIT per semplificarti il lavoro.
 
-## INSTALLA GIT ##
-Comincia ad usare Git installandolo sul tuo PC.
+## Installa Git ##
+*Comincia ad usare Git installandolo sul tuo PC.*
 
-https://git-scm.com/downloads
+[https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-## CONFIGURAZIONI INIZIALI ##
-Configura le informazioni degli utenti valide per tutti i repository.
+## Configurazioni iniziali ##
+*Configura le informazioni degli utenti valide per tutti i repository.*
 
 <span style="color:blue"> $ git config --global user.name "[name]"
 
@@ -19,8 +18,8 @@ Imposta l’username (nome.cognome) che vuoi mostrare sulle tue commit.
 
 Imposta l’email aziendale che vuoi mostrare sulle tue commit.
 
-## CONFIGURAZIONI CONSIGLIATE ##
-Ti consigliamo una serie di configurazioni che potrebbero aiutarti nel tuo lavoro.
+## Configurazioni consigliate ##
+*Ti consigliamo una serie di configurazioni che potrebbero aiutarti nel tuo lavoro.*
 
 <span style="color:blue"> $ git config --global fetch.prune true
 
@@ -39,8 +38,8 @@ Imposta l’autostash come true nelle configurazioni iniziali. Unito alla config
 Colora il tuo GIT per una migliore visualizzazione della history.
 
 
-## CREA REPOSITORIES ##
-Inizia con un nuovo repository o scarica le informazioni da un URL esistente.
+## Crea un repository ##
+*Inizia con un nuovo repository o scarica le informazioni da un URL esistente.*
 
 <span style="color:blue"> $ git init [project-name]
 
@@ -50,8 +49,8 @@ Crea un nuovo repository locale con il suo nome specifico.
 
 Scarica un progetto e la sua intera cronologia.
 
-## EFFETTUA MODIFICHE ##
-Rivedi i cambiamenti al codice e prepara una commit.
+## Apporta modifiche ##
+*Rivedi i cambiamenti al codice e prepara un commit.*
 
 <span style="color:blue"> $ git status
 
@@ -81,8 +80,8 @@ Aggiungi il file nell’head del repository locale.
 
 Carica tutti i branch locali sul repository remoto.
 
-##GESTISCI I BRANCH ##
-Nomina i tuoi commit e uniscili quando hai terminato.
+##Gestisci i branch ##
+*Nomina i tuoi commit e uniscili quando hai terminato.*
 
 <span style="color:blue"> $ git branch
 
@@ -105,8 +104,8 @@ Unisci lo storico del branch specificato con quello corrente.
 
 Elimina il branch specificato solo se è stato unito a master.
 
-## FAI REFACTORING DEI TUOI FILE ##
-Ricerca e rimuovi file dallo storico.
+## Fai refactoring dei tuoi file ##
+*Ricerca e rimuovi file dallo storico.*
 
 
 <span style="color:blue"> $ git rm [file]
@@ -118,8 +117,8 @@ Rimuovi un file dalla directory e prepara l’eliminazione definitiva.
 Elimina il file da GIT, ma mantieni il file locale.
 
 
-## RIMUOVI I FILE DALLO STORICO ## aa
-Escludi file e percorsi temporanei.
+## Rimuovi i tuoi file dallo storico ##
+*Escludi file e percorsi temporanei.*
 
 <span style="color:blue"> *.log
 build/
@@ -131,8 +130,8 @@ Un file di testo chiamato .gitignore previene il versioning accidentale di file 
 
 Elenca tutti i file ignorati in questo progetto.
 
-##SALVA TUTTE LE MODIFICHE ##
-Archivia e ripristina cambiamenti incompleti. Utile per scaricare da remoto le modifiche mentre stai lavorando e non vuoi fare ancora commit e push oppure per cambiare da un branch all’altro senza fare commit prima.
+##Salva tutte le modifiche ##
+*Archivia e ripristina cambiamenti incompleti. Utile per scaricare da remoto le modifiche mentre stai lavorando e non vuoi fare ancora commit e push oppure per cambiare da un branch all’altro senza fare commit prima.*
 
 <span style="color:blue"> $ git stash
 
@@ -150,8 +149,8 @@ Elenca i file modificati archiviati in stash.
 
 Elimina i file archiviati in stash.
 
-## RIVEDI LA CRONOLOGIA ##
-Sfoglia e controlla l’evoluzione dei file di ogni progetto.
+## Rivedi la cronologia ##
+*Sfoglia e controlla l’evoluzione dei file di ogni progetto.*
 
 <span style="color:blue"> $ git log
 
@@ -169,8 +168,8 @@ Mostra la differenza tra due branch.
 
 Mostra i metadati e i cambiamenti effettuati per uno specifico commit.
 
-## ANNULLA I COMMIT ##
-Elimina gli errori e altera lo storico dei cambiamenti.
+## Ri-committa ##
+*Elimina gli errori e altera lo storico dei cambiamenti.*
 
 <span style="color:blue"> $ git reset [commit]
 
@@ -181,7 +180,7 @@ Annulla tutte le commit effettuate dopo [commit], preservando i cambiamenti loca
 Elimina tutto lo storico e i cambiamenti fino alla commit specificata.
 
 ## Sincronizza le modifiche ##
-Collegati a un URL remoto e ottieni lo storico dei cambiamenti.
+*Collegati a un URL remoto e ottieni lo storico dei cambiamenti.*
 
 <span style="color:blue"> $ git fetch [remote]
 
