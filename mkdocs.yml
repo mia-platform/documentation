@@ -34,7 +34,7 @@ pages:
   - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
 - Users:
   - Home: 'user_guide_and_tools/index.md'
-  - Api Console: - 'api_console/guida_api_console.md'
+  - Api Console: 'api_console/guida_api_console.md'
   - CMS: 'user_guide_and_tools/cms/index.md'
 - Administrators:
   - Home: 'administrator_guide/index.md'
