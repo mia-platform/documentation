@@ -1,6 +1,6 @@
 # Documentazione di Mia-Platform #
 
-> I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo
+> I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo (prova)
 > [https://preprod.baas.makeitapp.eu](https://preprod.baas.makeitapp.eu)
 > Per richiedere le credenziali di accesso scrivere a [demo@mia-platform.eu](mailto:demo@mia-platform.eu).
 > Una volta avuto l'accesso è sufficiente sostituire negli esempi https://your-url con https://preprod.baas.makeitapp.eu
@@ -43,9 +43,10 @@
 - Backup e Disaster recovery
 
 ## User Guide and Tools
-- [Api Console](api_console/guida_api_console.md)
 - [CMS](user_guide_and_tools/cms/index.md)
 - Analytics
+- [API Console](user_guide_and_tools/API_Console)
+
 
 ## Release Notes
 - 3.0.3
