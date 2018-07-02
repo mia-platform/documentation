@@ -1,6 +1,6 @@
 # Documentazione di Mia-Platform #
 
-> I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo (prova)
+> I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo
 > [https://preprod.baas.makeitapp.eu](https://preprod.baas.makeitapp.eu)
 > Per richiedere le credenziali di accesso scrivere a [demo@mia-platform.eu](mailto:demo@mia-platform.eu).
 > Una volta avuto l'accesso è sufficiente sostituire negli esempi https://your-url con https://preprod.baas.makeitapp.eu
