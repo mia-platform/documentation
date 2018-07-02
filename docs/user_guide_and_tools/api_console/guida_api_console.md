@@ -59,18 +59,18 @@ Selezionare la collezione di riferimento.
 
 Dopodichè selezionare “create”.
 
-###ENDOPOINT
+###Endpoint
 **Default state**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
 
 **Description**: breve descrizione facoltativa
 Selezionando un endpoint si apre una scheda contenente le seguenti:
 
-###MANAGEMENT
+###Management
 **Route access security**: Se la rotta è pubblica, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401. Se è secreted per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
 
 **User Group Permission**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
 
-###ELENCO VERBI
+###Eleneco verbi
 Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
 
 Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta
@@ -92,7 +92,7 @@ Per creare una nuova **pagina** bisogna inserire:
 
 **Order**: ordine di visualizzazione
 
-###IMPOSTAZIONE CMS
+###Impostazione CMS
 **Layout**: selezionare il layout che si desidera. Table è la modalità di visualizzazione più classica a tabella. TableUser è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. TablePush invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inviare il contenuto ai tuoi clienti. Se selezioni Card ogni oggetto sarà rappresentato simile a una Card. Gallery è invece la rappresentazione perfetta per le immagini.
 
 **Highlight**: alcune proprietà possono essere grassettate se sono di tipo booleano.
@@ -108,12 +108,12 @@ Dopo aver compilato i campi richiesti per creare la pagina selezionare “Create
 
 Selezionando una pagina possiamo cambiarne le proprietà cliccando “Go to properties”
 
-###GO TO PROPERTIES:
+###Go to properties:
 **Label**:Nel campo label dovrai invece inserire il nome che vorresti che apparisse nel CMS.  
 
 **Visibility**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
 
-###ADD FILTER FOR THE PROPERTY VISIBILITY
+###Add filter for the property visibility
 Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
@@ -121,13 +121,13 @@ Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 Imposta il valore per controllare la visibilità
 
 
-##DEPLOY
+##Deploy
 L’API console permette di deployare direttamente senza più passare tramite Jenkins.
 
-##DOCUMENTAZIONE
+##Documentazione
 Questa sezione contiene il link a Swagger
 
-##MONITORAGGIO
+##Monitoraggio
 Questa sezione contiene il link a Kibana
 
 
