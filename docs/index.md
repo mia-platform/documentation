@@ -43,7 +43,7 @@
 - Backup e Disaster recovery
 
 ## User Guide and Tools
-- [Api Console](Api Console/guida_api_console.md)
+- [Api Console](api_console/guida_api_console.md)
 - [CMS](user_guide_and_tools/cms/index.md)
 - Analytics
 
