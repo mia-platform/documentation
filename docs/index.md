@@ -44,7 +44,7 @@
 
 ## User Guide and Tools
 - [CMS](user_guide_and_tools/cms/index.md)
-
+- Analytics
 - [API Console](user_guide_and_tools/API_Console)
 
 
