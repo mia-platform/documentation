@@ -1,4 +1,4 @@
-# Documentazione di Mia-Platform # 
+# Documentazione di Mia-Platform #
 
 > I passi descritti in questo documento possono essere sperimentati utilizzando l'istanza di demo
 > [https://preprod.baas.makeitapp.eu](https://preprod.baas.makeitapp.eu)
@@ -43,6 +43,7 @@
 - Backup e Disaster recovery
 
 ## User Guide and Tools
+- [Api Console](Api Console/guida_api_console.md)
 - [CMS](user_guide_and_tools/cms/index.md)
 - Analytics
 
