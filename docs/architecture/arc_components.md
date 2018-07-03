@@ -10,7 +10,6 @@ Il servizio è composto a default da server nginx multipli, 2 in ascolto sulle p
 
 La porta 80 è utilizzata per il routing applicativo, mentre quello di backoffice è esposto alla 8080.
 
-A questo [link](https://git.tools.mia-platform.eu/platform/core/api-gateway) il progetto e il relativo README.
 
 ### Microservice Gateway ###
 
@@ -20,7 +19,7 @@ Tali servizi possono modificare la richiesta (hook di `PRE`), ad esempio per agg
 Il Microservice Gateway si occupa di eseguire le chiamate a questi servizi di hook specificati da configurazione allo startup, e modificare (o interrompere) la richiesta secondo quanto indicato dai servizi.
 
 
-I microservizi di hook devono soddisfare una precisa interfaccia http per essere interrogati con successo dal Microservice Gateway. Tale interfaccia e maggiori dettagli riguardo al microservizio sono forniti nella [pagina](https://git.tools.mia-platform.eu/platform/core/microservice-gateway) del microservizio su gitlab.
+I microservizi di hook devono soddisfare una precisa interfaccia http per essere interrogati con successo dal Microservice Gateway.
 
 ### ACL ###
 
@@ -34,37 +33,36 @@ Attualmente due tipologie di ACL sono previste dal servizio:
 - *ACL per colonne in lettura*: permette di limitare i campi che l'utente può vedere nella risposta sulla base della sua appartenenza a gruppi e del tipo di cliente.
 
 Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate da header, ed il risultato della applicazione delle regole è la scrittura di header di ACL che il CRUD Service è in grado di interpretare per eseguire effettivamente i filtri.
-Anche in questo caso le regole da applicare sono specificate in configurazione. Per approfondire come configurare il servizio, fare riferimento alla [pagina](https://git.tools.mia-platform.eu/platform/core/acl-service) del progetto.
+
 
 ### CRUD Service ###
 
 Il CRUD Service è un microservizio che serve ad esporre una API HTTP per eseguire operazioni di CRUD (Create, Read, Update, Delete) su collezioni mongodb.
 Esso è configurato allo startup tramite la definizione di collezioni (una o più), per fornire una interfaccia HTTP coerente ed effettuare la validazione delle operazioni prima di eseguirle sul database.
 
-La definizione di una collezione prevede di indicare l'elenco e la tipologia dei campi e di opzionalmente specificare indici. Si consiglia di fare riferimento alla [repository](https://git.tools.mia-platform.eu/platform/core/crud-service).
+La definizione di una collezione prevede di indicare l'elenco e la tipologia dei campi e di opzionalmente specificare indici.
 
 ### v1Adapter ###
 
 Questo microservizio permette di utilizzare il CMS con il nuovo servizio di CRUD Service, traducendo le richieste dal CMS in chiamate HTTP adattate alla nuova interfaccia.
 Oltre al mapping delle rotte http, si occupa anche della conversione dei tipi (ad esempio date e coordinate geografiche), e della trasformazione da sync e trash al nuovo stato e vice versa.
-Per ulteriori dettagli di si rimanda alla repository del servizio [qui](https://git.tools.mia-platform.eu/platform/core/v1-adapter).
+
 
 ### CMS Backend ###
 
-Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service. [Qui](https://git.tools.mia-platform.eu/platform/core/cms-backend) la repository del servizio.
+Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service.
 
 ### Files Service ###
 
 Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
 Attualmente sono supportati S3 e MongoDB come servizi di storage.
 
-Per configurarlo ed utilizzarlo fare riferimento al [link](https://git.tools.mia-platform.eu/platform/plugins/files-service) alla pagina principale del progetto.
+
 
 ### Pingator ###
 
 Pingator è un servizio che monitora lo stato dei servizi per controllare che siano attivi.
 
-Vedi la pagina del progetto [qui](https://git.tools.mia-platform.eu/platform/core/pingator).
 
 ### Client Proxy ###
 
@@ -75,4 +73,3 @@ Vedi la pagina del progetto [qui](https://git.tools.mia-platform.eu/platform/cor
 ### Auth Service ###
 
 ### Session Manager ###
-
