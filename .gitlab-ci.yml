@@ -53,7 +53,7 @@ cloud:
 
   script:
     - ./scripts/setup-context.sh "${KUBE_CONTEXT}" "${KUBE_CERT}" "${KUBE_URL}" "${KUBE_TOKEN}"
-    - ./scripts/intrepolate.sh
+    - ./scripts/interpolate.sh
     - ./scripts/deploy.sh
 
   variables:
