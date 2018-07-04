@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: client-name
   name: documentation-site
   annotations:
     date: {{RELEASE_DATE}}

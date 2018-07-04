@@ -24,7 +24,7 @@ apply_from_file_template() {
   done
 }
 
-TEMPLATES="secret configmap service deployment"
+TEMPLATES="service deployment"
 
 echo "Start deploy of files in context:"
 kubectl config current-context
