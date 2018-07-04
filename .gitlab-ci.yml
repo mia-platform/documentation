@@ -3,10 +3,20 @@ image:
   entrypoint: ["/bin/sh", "-c"]
 
 variables:
+  IMAGE_NAME: core/documentation-site
+  DOCKER_HOST: tcp://docker:2375/
   GIT_DEPTH: 1
+
+services:
+  - name: docker:stable-dind
+    alias: docker
 
 stages:
   - build
+  - package
+  - tag-image
+  - release-preprod
+  - release-cloud
 
 compile:
   stage: build
@@ -20,3 +30,24 @@ compile:
     untracked: true
     paths:
       - 'site'
+
+.docker-job: &docker_job
+  image: docker:latest
+
+  variables:
+    REMOTE_IMAGE_NAME: ${NEXUS_URL}/${IMAGE_NAME}
+
+  before_script:
+    - docker login -u ${NEXUS_USER} -p ${NEXUS_TOKEN} ${NEXUS_URL}
+
+build-latest:
+  stage: package
+
+  <<: *docker_job
+
+  script:
+    - docker build --build-arg COMMIT_SHA=${CI_COMMIT_SHA} --pull -t ${REMOTE_IMAGE_NAME}:latest .
+    - docker push ${REMOTE_IMAGE_NAME}:latest
+
+  dependencies:
+    - compile

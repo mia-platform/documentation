@@ -1,0 +1,9 @@
+docs
+.dockerignore
+.gitignore
+.gitlab-ci.yml
+Dockerfile
+Jenkins
+mkdocs.yml
+publish.sh
+README.md
