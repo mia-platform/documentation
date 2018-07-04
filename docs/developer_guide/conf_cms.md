@@ -93,7 +93,6 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
    il json finale nella nostra proprietà **nome** che è il nome degli eroi sarà quindi:
 
 ```
-
       "nome": {
 
        "id": "nome",
@@ -123,7 +122,5 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
        "cmsCardPosition":0,
 
        "interfaceType": "string"
-
-   }
-
+       }
  ```
