@@ -93,35 +93,35 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
    il json finale nella nostra proprietà **nome** che è il nome degli eroi sarà quindi:
 
 ```
-  "nome": {
+    "nome": {
 
-   "id": "nome",
+       "id": "nome",
 
-   "type": "string",
+       "type": "string",
 
-   "required": false,
+       "required": false,
 
-   "label": "Nome",
+       "label": "Nome",
 
-   "cmsVisibility": {
+      "cmsVisibility": {
 
-     "level": 1
+          "level": 1
 
-   },
+       },
 
-   "cmsOrder": 10,
+      "cmsOrder": 10,
 
-   "readonly": false,
+      "readonly": false,
 
-   "cmsEditable": true,
+      "cmsEditable": true,
 
-   "hidden": false,
+      "hidden": false,
 
-   "description": "",
+      "description": "",
 
-   "cmsCardPosition":0,
+       "cmsCardPosition":0,
 
-   "interfaceType": "string"
+       "interfaceType": "string"
 
    }
  ```
