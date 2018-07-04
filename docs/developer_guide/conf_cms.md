@@ -34,7 +34,8 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
   Il .json finale sarà quindi:
 
-  `{
+  ```
+  {
 
   "label": "heroes",
 
@@ -62,7 +63,9 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
   "order": 0
 
-}`
+}
+
+```
 
 
 ### properties.json
@@ -90,7 +93,8 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
    il json finale nella nostra proprietà **nome** che è il nome degli eroi sarà quindi:
 
-   `"nome": {
+```
+"nome": {
 
    "id": "nome",
 
@@ -120,5 +124,6 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
    "interfaceType": "string"
 
- },`
- 
+ },
+
+ ```
