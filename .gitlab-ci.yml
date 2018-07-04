@@ -1,0 +1,20 @@
+image: squidfunk/mkdocs-material
+
+variables:
+  GIT_DEPTH: 1
+
+stages:
+  - build
+
+compile:
+  stage: build
+
+  script:
+    - mkdocs build
+
+  artifacts:
+    when: on_success
+    expire_in: 1 day
+    untracked: true
+    paths:
+      - 'site'
