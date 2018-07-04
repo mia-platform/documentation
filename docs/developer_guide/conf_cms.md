@@ -124,5 +124,4 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
    "interfaceType": "string"
 
  },
-
  ```
