@@ -34,7 +34,7 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
   Il .json finale sarà quindi:
 
-  ```
+```
   {
 
   "label": "heroes",
@@ -64,7 +64,6 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
   "order": 0
 
 }
-
 ```
 
 
