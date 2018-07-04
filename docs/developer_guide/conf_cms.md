@@ -26,7 +26,7 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
     `name` | General | questo è il nome della categoria che comparirà nel CMS
     `order`| 10 | questo è l'oridne della categoria nel menù. Ti consigliamo di mettere sempre cifre dell'ordine delle decine. Ti capiterà infatti ti volere inserire in futuro altre collezioni o categorie. Se prima per esempio avremmo avuto già una categoria in ordine 3 per posizionare questa avremmo dovuto cambiare anche tutte le altre a cascata. Con le decine invece basta mettere un numero intermedio.
   `hidden` | false, | portando questo campo a **true** potrai scegliere di non far comparire la collezione nel CMS
-  "blocked": false, | portando questo campo a **true** potrai scegliere di bloccare la collezione. Nessuno potrà più creare nuovi campi.
+  `blocked`| false | portando questo campo a **true** potrai scegliere di bloccare la collezione. Nessuno potrà più creare nuovi campi.
   `icon` | book | in questo [link](https://fontawesome.com/icons) potrai visualizzare tutte le icone disponibili da far visualizzare nel tuo menù
   `order` | 10 | indica l'ordine di una collezione all'interno di una categoria. Con 10 sarà la prima a comparire. Si consiglia di seguire anche qui la regola delle decine.
   `baseQuery` | " " | base query ti permette di applicare un filtro generale di visibilità - Deve seguire delle regole di espressioni logiche. Un esempio può essere: nascondere la proprietà Circolo Acli dalle associaizoni e servizi. sarà scritta così: { "idAssocServ": { "$ne": "CIRCOLO ACLI"} }
@@ -34,30 +34,62 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
   Il .json finale sarà quindi:
 
+  `{
+  "label": "heroes",
+  "layoutType": "table",
+  "cardType": "",
+  "defaultStatus": "draft",
+  "defDelete": false,
+  "category": {
+    "name": "General",
+    "order": 0
+  },
+  "hidden": false,
+  "blocked": false,
+  "icon": "book",
+  "order": 0
+}`
 
-
-  ### properties.json
+### properties.json
 
   Il file properties.json è il file che contiene tutti i campi della collezione. Ogni campo ha una struttura simile.
 
-  di default ci saranno i campi: id, creatorId, createdAt, uptaterId, updatedAt, STATE,
+  Di default ci saranno i campi: id, creatorId, createdAt, uptaterId, updatedAt, STATE,
 
   vediamo nel dettaglio le specifiche di una singola proprietà: es proprietà **nome**
 
-  File .json |  Commento
-  -----------| ----------
-  "nome": { | indica il nome della properità
-   "id": "nome", | id della proprietà
-   "type": "string", | i tipi possono essere: string, number, boolean, geopoint, date, object, array of number, array of string, array of object, objectId
-   "required": false, | **true** se vuoi che il dato sia obbligatorio
-   "label": "Nome", | è l'etichetta che vuoi dare alla tua proprietà
-   "cmsVisibility": { | indica a che livello del CMS vuoi mostrare una proprietà. I livelli possono essere: 0 e non è visibile; 1 ed è visibile nella tabella principale; 2 ed è visibile quando clicci nella tabella, nella zona destra del tuo CMS, al livello 2 tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso mettermo 1 in quando l'informazione è prioritaria.
+  chiave | valore di esempio |  Commento
+  -------| -------|-------
+   `id`| nome | id della proprietà
+   `type` | "string", | i tipi possono essere: string, number, boolean, geopoint, date, object, array of number, array of string, array of object, objectId
+   `required`| false, | **true** se vuoi che il dato sia obbligatorio
+   `label`| Nome | è l'etichetta che vuoi dare alla tua proprietà
+   `cmsVisibility` |  | indica a che livello del CMS vuoi mostrare una proprietà. I livelli possono essere: 0 e non è visibile; 1 ed è visibile nella tabella principale; 2 ed è visibile quando clicci nella tabella, nella zona destra del tuo CMS, al livello 2 tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso mettermo 1 in quando l'informazione è prioritaria.
+     `level`| 1 | I livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicci nella tabella, nella zona destra del tuo CMS, al livello 2 tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso metteremo 1 in quando l'informazione è prioritaria.
+   `cmsOrder`| 10 | è l'ordine che gli vuoi dare all'interno della collezione. nel nostro caso sarà il primo, quindi scriveremo 10
+   `cmsEditable`| true | **true** se vuoi che sia modificabile da CMS
+   `hidden`| false | se vuoi che la proprietà sia invisibile
+   `description`| " " | se vuoi aggiungere una description
+   `cmsCardPosition`| 0 | indica la posizione della proprietà nel layout Card
+   `interfaceType` | string | le proprietà possono essere di diversi tipi: **string** se è una classica stringa di testo; **number** se è un numero; **date** se è una data con gg/mm/aaaa; **datetime** è invece una data completa con anche ore, minuti e secondi; **boolean** se può essere solo true o false; **text** se vogliamo che il contenuto venga letto come html; **textArea** se è un campo di testo, quindi ad esempio una descrizione; **Lookup** servono per poter selezionare alcuni valori o tra una gamma di valori scelti da me o tra una gamma di valori presi da un'altra collezione. **Multilookup** se vuoi selezionare più valori; **Array** se lo vuoi salvare come un insieme ordinato di proprietà; **Oggetto** è un insieme di proprietà non ordinato; **Geopoint** se vuoi che salvi un luogo preciso; **Files** se è un file come ad esempio un immagine o un pdf. Nel nostro caso sceglieremo string volendo semplicemente scrivere il nome del titolo.
+
+   il json finale nella nostra proprietà **nome** che è il nome degli eroi sarà quindi:
+
+   `"nome": {
+   "id": "nome",
+   "type": "string",
+   "required": false,
+   "label": "Nome",
+   "cmsVisibility": {
      "level": 1
    },
-   "cmsOrder": 10, | è l'ordine che gli vuoi dare all'interno della collezione. nel nostro caso sarà il primo, quindi scrivermo 10
-   "cmsEditable": true, | **true** se vuoi che sia modificabile da CMS
-   "hidden": false, | se vuoi che la proprietà sia invisibile
-   "description": "", | se vuoi aggiungere una description
-   "cmsCardPosition":0, | indica la posizione della proproetà nel layout Card
-   interfaceType: "string" | le proprietà possono essere di diversi tipi: string se è una classica stringa di testo; number se è un numero; date se è una data con gg/mm/aaaa; datetime è invece una data completa con anche ore, minuti e secondi; boolean se può essere solo true o false; text se vogliamo che il contenuto venga letto come html; textArea se è un campo di testo, quindi ad esempio una descrizione; Lookup servono per poter selezionare alcuni valori o tra una gamma di valori scelti da me o tra una gamma di valori presi da un'altra collezione. Se ti interessa il tema delle Lookup più sotto troverai una sezione dedicata; Multilookup se vuoi selezionare più valori; Array se lo vuoi salvare come un insieme ordinato di proprietà; oggetto è un insieme di proprietà non ordinato; Geopoint se vuoi che salvi un luogo preciso; Files se è un file come ad esempio un immagine o un pdf. Nel nostro caso sceglieremo string volendo semplicemente scrivere il nome del titolo.
- },
+   "cmsOrder": 10,
+   "readonly": false,
+   "cmsEditable": true,
+   "hidden": false,
+   "description": "",
+   "cmsCardPosition":0,
+   "interfaceType": "string"
+ },`
+
+ 
