@@ -4,6 +4,11 @@ Indice
 
 [TOC]
 
+##Registrarsi all'Api Console
+Per registrarsi all'api console l'utente deve selezionare "Register", inserire un username, un indirozzo email, una password e il "gitlab user id".
+
+Per ottenere il Gitlab user id l'utente deve accedere a Gitlab, cliccare l'icona in alto a destra e aprire settings. Accanto al nome è presente l'user ID che dovrà essere copiato e incollato nel modulo di registrazione dell'Api console.
+
 ##Accedere all'Api Console
 Per accedere all’API Console è sufficiente collegarsi da un normale Browser all’indirizzo: https://console.cloud.mia-platform.eu/login
 
@@ -37,6 +42,8 @@ Se selezioni **nullable** è possibile dare al dato il valore null.
 Nel campo **“Description”** è possibile inserire una breve descrizione.
 
 La collezione viene creata in automatico non è necessario premere alcun tasto aggiuntivo. **NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito**
+
+**Indexes**: questa sezione serve per velocizzare la ricerca  
 
 Per modificare una collezione è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
 
