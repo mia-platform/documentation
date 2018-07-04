@@ -47,7 +47,6 @@ pages:
   - Chi siamo: 'about/index.md'
   - Architecture: 'architecture/index.md'
   - Release Notes: 'release_notes/index.md'
-  - Roadmap: 'roadmap/index.md'
   - Contribute: 'about/contribute.md'
 theme:
   name: 'material'
