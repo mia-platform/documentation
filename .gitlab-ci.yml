@@ -15,7 +15,6 @@ stages:
   - build
   - package
   - tag-image
-  - release-preprod
   - release-cloud
 
 compile:
@@ -31,7 +30,8 @@ compile:
     paths:
       - 'site'
 
-.docker-job: &docker_job
+build-latest:
+  stage: package
   image: docker:latest
 
   variables:
@@ -40,14 +40,25 @@ compile:
   before_script:
     - docker login -u ${NEXUS_USER} -p ${NEXUS_TOKEN} ${NEXUS_URL}
 
-build-latest:
-  stage: package
-
-  <<: *docker_job
-
   script:
     - docker build --build-arg COMMIT_SHA=${CI_COMMIT_SHA} --pull -t ${REMOTE_IMAGE_NAME}:latest .
     - docker push ${REMOTE_IMAGE_NAME}:latest
 
   dependencies:
     - compile
+
+cloud:
+  stage: release-cloud
+  image: nexus.mia-platform.eu/tools/kubectl:1.10.0
+
+  script:
+    - ./scripts/setup-context.sh "${KUBE_CONTEXT}" "${KUBE_CERT}" "${KUBE_URL}" "${KUBE_TOKEN}"
+    - ./scripts/deploy.sh
+
+  variables:
+    KUBE_CONTEXT: "cloud"
+    KUBE_CERT: "${KUBE_CLOUD_CERT}"
+    KUBE_URL: "${KUBE_CLOUD_URL}"
+    KUBE_TOKEN: "${KUBE_CLOUD_TOKEN}"
+    LOG_LEVEL: "${CLOUD_LOG_LEVEL}"
+    REMOTE_IMAGE_NAME: "${NEXUS_URL}/${IMAGE_NAME}:latest"

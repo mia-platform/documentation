@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: client-name
+  name: documentation-site
+  annotations:
+    date: {{RELEASE_DATE}}
+    author: {{AUTHOR_EMAIL}}
+    commit-sha: {{COMMIT_SHA}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: documentation-site
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        date: {{RELEASE_DATE}}
+        author: {{AUTHOR_EMAIL}}
+        commit-sha: {{COMMIT_SHA}}
+      labels:
+        app: documentation-site
+    spec:
+      imagePullSecrets:
+        - name: nexus-gcloud
+      containers:
+        - name: documentation-site
+          image: {{IMAGE_NAME}}
+          imagePullPolicy: Always
