@@ -285,7 +285,7 @@ Il CMS è abilitato a inviare notifiche push ai dispositivi degli utenti in due 
 
 ![image alt text](\img\image_20.png)
 
-+ Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica. Esempio: invio della news legata alla presentazione del nuovo libro di Baricco (vedi paragrafo News, Categories e Tags)
++ Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica.Esempio: invio della news legata alla presentazione del nuovo libro di Baricco (vedi paragrafo News, Categories e Tags)
 
 Se in fase di definizione del progetto è stato deciso di creare più gruppi di utenti, allora le push saranno abilitate anche per altre funzioni.
 
