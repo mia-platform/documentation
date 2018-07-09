@@ -50,4 +50,4 @@ pages:
   - Contribute: 'about/contribute.md'
 theme:
   name: 'material'
-  logo: 'img/mia-platform-logo--white-©.png'
+  logo: 'img/mia-platform-logo--white.png'
