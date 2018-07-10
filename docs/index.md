@@ -43,10 +43,10 @@
 ## User Guide and Tools
 - [CMS](user_guide_and_tools/cms/index.md)
 - Analytics
-- [Api Console](user_guide_and_tools/api_console/guida_api_console)
+- [Api Console](user_guide_and_tools/api_console/guida_api_console.md)
 
 
-## Release Notes: le ultime novità sui nostri componenti 
+## Release Notes: le ultime novità sui nostri componenti
 - CMS
 - Api Console
 - Piattaforma
