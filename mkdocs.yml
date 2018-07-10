@@ -52,3 +52,21 @@ theme:
   name: 'material'
   logo: 'img/mia-platform-white.png'
   favicon: 'img/favicon.ico'
+  language: 'it'
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+extra:
+  social:
+    - type: globe
+      link: https://www.mia-platform.eu/
+    - type: linkedin
+      link: https://www.linkedin.com/company/mia-platform/
+google_analytics:
+  - 'UA-122091925-1'
+  - 'auto'
+markdown_extensions:
+  - admonition
