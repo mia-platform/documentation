@@ -27,33 +27,48 @@ Per prima cosa è necessario inserire il nome della collezione in camelCase, nel
 
 Di default ci sono dei campi che non possono essere modificati: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
 
-L’utente dovrà compilare i seguenti campi:
+L’utente potrà aggiungere una nuova riga selezionando "aggiungi riga". Dopodichè dovrà completare i seguenti campi:
 
-**Name**: va inserito il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
+**Nome**: va inserito il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
 
-**Type**: le proprietà possono essere di diversi tipi: string se è una classica stringa di testo; number se è un numero; date se è una data con gg/mm/aaaa; boolean se può essere solo true o false;Geopoint se si desidera salvare un luogo preciso; Array se si desidera salvare come un insieme ordinato di proprietà; Object se si desidera inserire un oggetto.
+**Tipo**: le proprietà possono essere di diversi tipi: string se è una classica stringa di testo; number se è un numero; date se è una data con gg/mm/aaaa; boolean se può essere solo true o false;Geopoint se si desidera salvare un luogo preciso; Array se si desidera salvare come un insieme ordinato di proprietà; Object se si desidera inserire un oggetto.
 
 Se selezioni **required** la proprietà è obbligatoria.
 
-Se selezioni **Crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
+Se selezioni **crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
 
 Se selezioni **nullable** è possibile dare al dato il valore null.
 
-Nel campo **“Description”** è possibile inserire una breve descrizione.
+Nel campo **descrizione** è possibile inserire una breve descrizione.
 
-La collezione viene creata in automatico non è necessario premere alcun tasto aggiuntivo. **NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito**
+Per creare la collezione selezionare **crea**. **(NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito)**
 
-**Indexes**: questa sezione serve per velocizzare la ricerca  
+Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad aggiungi riga).
+
+Una volta creata la riga di default viene data la possibilità all'utente di crearne un'altra. Una volta finito di creare tutte le righe necessarie, è sufficente premere un qualsiasi altro punto dello schermo per uscire dalla sezione "aggiungi riga".
 
 Per modificare una collezione è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
 
+####Indici
+Un indice (nel campo dei database) è una struttura dati realizzata per migliorare i tempi di ricerca (query) dei dati. Se una tabella non ha indici, ogni ricerca obbliga il sistema a leggere tutti i dati presenti in essa. L'indice consente invece di ridurre l'insieme dei dati da leggere per completare la ricerca.
 
-##Services
+Per creare un nuovo indice selezionare **crea un nuovo indice**.
+
+Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando "unique".
+
+##Servizi
 In questa sezione l'utente può configurare i propri servizi.
 
 I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi ccustom plugin configurato dall'utente su git.
 
 Se viene scelto un custom service indica l’url di Git nel quale hai configurato il tuo custom plugin che vuoi rilasciare sulla piattaforma, indica il branch di Git da cui recuperare le configurazioni e se hai già scritto le configurazioni di K8S su Git non dovrai flaggare il componente, altrimenti ti verrà data la possibilità di impostare le variabili successivamente.
+
+Per creare il servizio infine selezionare **crea**
+
+##Decorators
+In questa sezione l'utente potrà configurare i pre e post hook.
+
+Per aggiungere ad esempio un pre Hook, selezionare "PRE", ed inserire: nome, protocollo, servizio, porta, path ed evenutale descrizione. Dopodichè selezionare crea.
 
 ##Creare un endpoint
 In questa sezione potrai configurare i tuoi servizi e le tue collezioni in endpoint pubblicati all’esterno.
@@ -72,28 +87,36 @@ Custom  Microservices: aggancia il tuo endpoint ad un servizio con logiche inter
 
 BaaS Legacy: aggancia il tuo endpoint a un servizio presente nel BaaS legacy così da sfruttarlo sulla nuova piattaforma.
 
+**Collezzione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "editori"
+
 **Description**: descrizione facoltativa dell’endpoint
 
 Selezionare la collezione di riferimento, nel nostro caso potra essere "ciblioteca"-
 
-Dopodichè selezionare “Create +”.
+Dopodichè selezionare “Crea”. Verrà visualizzata una schermata con le seguenti:
 
-Se selezionamo un endpoint già creato comparirà una scheda con i seguenti campi:
+####Nome dell'Endpoint /nome/
+**Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
 
-####Endpoint /nome/
-**Default state**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
+**Collezione**: viene visualizzata la collezione di cui l'endpoint fa parte.
 
-**Description**: breve descrizione facoltativa
+**Descrizione**: breve descrizione facoltativa
 
-####Management
-**Route access security**: Se la rotta è pubblica, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401. Se è secreted per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
+####Gestisci la sicurzza dei tuoi endpoint
+Se la rotta è **pubblica**, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401.
+Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
 
-**User Group Permission**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
+**Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
 
 ####Eleneco verbi
 Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
 
-Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta
+Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta.
+
+Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
+
+##Secret
+Da questa pagina è possibile definire la "secret" per accedere al CMS dei diversi progetti.
 
 ##CMS
 Per visualizzare la nuova collezione sul CMS bisogna selezionare a sinistra “CMS” e selezionare “Add category” o “Add Page” a seconda delle esigenze.
@@ -112,46 +135,47 @@ Per creare una nuova **pagina** bisogna inserire:
 
 **Order**: ordine di visualizzazione all'interno della category.
 
-####Impostazione CMS
+####Impostazione Generali della Pagina
 **Layout**: selezionare il layout che si desidera. Table è la modalità di visualizzazione più classica a tabella. TableUser è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. TablePush invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inviare il contenuto ai tuoi clienti. Se selezioni Card ogni oggetto sarà rappresentato simile a una Card. Gallery è invece la rappresentazione perfetta per le immagini.
 
-**Highlight**: alcune proprietà possono essere grassettate se sono di tipo booleano.
+**Evidenzia un campo**: alcune proprietà possono essere grassettate se sono di tipo booleano.
 
 **Default delete**: ti permette di eliminare definitivamente un elemento una volta che verrà cancellato anche dal Trash del CMS.
 
-**Blocked**: se blocchi la collezione impedirai agli utenti del CMS di aggiungere degli elementi
+**Blocca**: se blocchi la collezione impedirai agli utenti del CMS di aggiungere degli elementi
 
-**Hidden**: se selezionato nasconde la collezione nel CMS.
+**Nascondi**: se selezionato nasconde la collezione nel CMS.
 
-**Base Query**: filtro di visibilità
+**Applica un filtro**: filtro di visibilità
 
-Dopo aver compilato i campi richiesti per creare la pagina selezionare “Create +”.
+Dopo aver compilato i campi richiesti per creare la pagina selezionare “Crea”.
 
 Selezionando una pagina possiamo cambiarne le singole proprietà cliccando “Go to properties”
 
 ####Go to properties:
 Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza. Di questa proprietà potremmo andare a modificare:
 
-**Interface Type**: come spiegato in precedenza con questa funzione si può cambiare il tipo: stringa, date, geopoint etc.  
+**Tipo di interfaccia**: come spiegato in precedenza con questa funzione si può cambiare il tipo: stringa, date, geopoint etc.  
 
-**Label**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
+**Etichetta**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
 
-**Description**: possibilità di inserire una breve descrizione
+**Descrizione**: possibilità di inserire una breve descrizione
 
-**Oder**: ordine di visualizzazione della proprietà nella collezione
+**Ordine**: ordine di visualizzazione della proprietà nella collezione
 
-**Visibility**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
+**Visibilità**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
 
-###Add filter for the property visibility
+###Controlla con dei filtri la visibilità delle tue proprietà
 **Property Name** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 **Comparator** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 **Value** Imposta il valore per controllare la visibilità
 
-
 ##Deploy
 L’API console permette di deployare direttamente senza più passare tramite Jenkins.
+
+L'utente dovrà selezionare l'ambiente (produzione o preproduzione) e il branch.
 
 ##Documentazione
 Questa sezione contiene il link a Swagger
