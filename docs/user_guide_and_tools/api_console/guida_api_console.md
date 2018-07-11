@@ -67,7 +67,7 @@ I servizi possono essere: servizi esterni che si vogliono integrare nella piatta
 Se viene scelto un custom service indica l’url di Git nel quale hai configurato il tuo custom plugin che vuoi rilasciare sulla piattaforma, indica il branch di Git da cui recuperare le configurazioni e se hai già scritto le configurazioni di K8S su Git non dovrai flaggare il componente, altrimenti ti verrà data la possibilità di impostare le variabili successivamente.
 
 Per creare il servizio infine selezionare **crea**
-![Services](\immagini\services.PNG)
+![Services](\immagini\Services.PNG)
 
 ##Decorators
 In questa sezione l'utente potrà configurare i pre e post hook.
