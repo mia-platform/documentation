@@ -9,7 +9,7 @@ Per registrarsi all'api console l'utente deve selezionare "Register", inserire u
 
 Per ottenere il Gitlab user id l'utente deve accedere a Gitlab, cliccare l'icona in alto a destra e aprire settings. Accanto al nome è presente l'user ID che dovrà essere copiato e incollato nel modulo di registrazione dell'Api console.
 
-![GitHub Logo](/C:\Users\edoar\Documents\Git-tools-mia-platform-doc\documentations\docs\user_guide_and_tools\api_console\immagini\Registrazione.png)
+![GitHub Logo](/C:\Users\edoar\Documents\Git-tools-mia-platform-doc\documentations\docs\user_guide_and_tools\api_console\immagini\Registrazione.PNG)
 
 ##Accedere all'Api Console
 Per accedere all’API Console è sufficiente collegarsi da un normale Browser all’indirizzo: https://console.cloud.mia-platform.eu/login
