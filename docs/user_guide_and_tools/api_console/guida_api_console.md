@@ -24,13 +24,13 @@ Il primo passaggio da fare subito dopo il login è il **“load”** per caricar
 Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passagi da svolgere.
 
 Per creare una nuova collezione bisogna selezionare “Collections” sulla sinistra e selezionare "Add new".
-![Crea-collezione](\immagini\Crea-collezione.PNG)
+
 Per prima cosa è necessario inserire il nome della collezione in camelCase, nel nostro caso inseriremo "libri".
 
 Di default ci sono dei campi che non possono essere modificati: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
 
 L’utente potrà aggiungere una nuova riga selezionando "aggiungi riga". Dopodichè dovrà completare i seguenti campi:
-
+![Crea-collezione-riga-titolo](\immagini\Crea-collezione-riga-titolo.PNG)
 **Nome**: va inserito il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
 
 **Tipo**: le proprietà possono essere di diversi tipi: string se è una classica stringa di testo; number se è un numero; date se è una data con gg/mm/aaaa; boolean se può essere solo true o false;Geopoint se si desidera salvare un luogo preciso; Array se si desidera salvare come un insieme ordinato di proprietà; Object se si desidera inserire un oggetto.
