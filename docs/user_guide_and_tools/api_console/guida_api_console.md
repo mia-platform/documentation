@@ -57,6 +57,7 @@ Un indice (nel campo dei database) è una struttura dati realizzata per migliora
 Per creare un nuovo indice selezionare **crea un nuovo indice**.
 
 Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando "unique".
+![Indice](\immagini\indice.PNG)
 
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
@@ -66,11 +67,13 @@ I servizi possono essere: servizi esterni che si vogliono integrare nella piatta
 Se viene scelto un custom service indica l’url di Git nel quale hai configurato il tuo custom plugin che vuoi rilasciare sulla piattaforma, indica il branch di Git da cui recuperare le configurazioni e se hai già scritto le configurazioni di K8S su Git non dovrai flaggare il componente, altrimenti ti verrà data la possibilità di impostare le variabili successivamente.
 
 Per creare il servizio infine selezionare **crea**
+![Services](\immagini\services.PNG)
 
 ##Decorators
 In questa sezione l'utente potrà configurare i pre e post hook.
 
 Per aggiungere ad esempio un pre Hook, selezionare "PRE", ed inserire: nome, protocollo, servizio, porta, path ed evenutale descrizione. Dopodichè selezionare crea.
+![prehook](\immagini\prehook.PNG)
 
 ##Creare un endpoint
 In questa sezione potrai configurare i tuoi servizi e le tue collezioni in endpoint pubblicati all’esterno.
@@ -96,6 +99,7 @@ BaaS Legacy: aggancia il tuo endpoint a un servizio presente nel BaaS legacy cos
 Selezionare la collezione di riferimento, nel nostro caso potra essere "ciblioteca"-
 
 Dopodichè selezionare “Crea”. Verrà visualizzata una schermata con le seguenti:
+![crea-nuovo-endpoint](\immagini\crea-collezione-nuovo-endpoint.PNG)
 
 ####Nome dell'Endpoint /nome/
 **Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
@@ -136,6 +140,7 @@ Per creare una nuova **pagina** bisogna inserire:
 **Icon**: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.
 
 **Order**: ordine di visualizzazione all'interno della category.
+![Add-page-cms](\immagini\Add-page-cms.PNG)
 
 ####Impostazione Generali della Pagina
 **Layout**: selezionare il layout che si desidera. Table è la modalità di visualizzazione più classica a tabella. TableUser è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. TablePush invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inviare il contenuto ai tuoi clienti. Se selezioni Card ogni oggetto sarà rappresentato simile a una Card. Gallery è invece la rappresentazione perfetta per le immagini.
@@ -173,6 +178,7 @@ Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza.
 **Comparator** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 **Value** Imposta il valore per controllare la visibilità
+![proprietà-titolo-cms](\immagini\[proprietà-titolo-cms.PNG)
 
 ##Deploy
 L’API console permette di deployare direttamente senza più passare tramite Jenkins.
