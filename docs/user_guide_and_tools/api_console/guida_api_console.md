@@ -57,7 +57,7 @@ Un indice (nel campo dei database) è una struttura dati realizzata per migliora
 Per creare un nuovo indice selezionare **crea un nuovo indice**.
 
 Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando "unique".
-![Indice](\immagini\indice.PNG)
+![Indice](\immagini\Indice.PNG)
 
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
