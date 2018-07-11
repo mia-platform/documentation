@@ -99,7 +99,7 @@ BaaS Legacy: aggancia il tuo endpoint a un servizio presente nel BaaS legacy cos
 Selezionare la collezione di riferimento, nel nostro caso potra essere "ciblioteca"-
 
 Dopodichè selezionare “Crea”. Verrà visualizzata una schermata con le seguenti:
-![crea-nuovo-endpoint](\immagini\crea-collezione-nuovo-endpoint.PNG)
+![crea-nuovo-endpoint](\immagini\crea-nuovo-endpoint.PNG)
 
 ####Nome dell'Endpoint /nome/
 **Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
