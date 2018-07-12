@@ -62,17 +62,38 @@ Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezi
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
 
-I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi ccustom plugin configurato dall'utente su git.
+I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi custom plugin configurato dall'utente su git.
 
-Se viene scelto un custom service indica l’url di Git nel quale hai configurato il tuo custom plugin che vuoi rilasciare sulla piattaforma, indica il branch di Git da cui recuperare le configurazioni e se hai già scritto le configurazioni di K8S su Git non dovrai flaggare il componente, altrimenti ti verrà data la possibilità di impostare le variabili successivamente.
+**Servizi esterni**
 
-Per creare il servizio infine selezionare **crea**
+L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
+In questo casol 'utente dovrà inserire il nome del servizio, selezionare tipo "external services" e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descerizione facoltativa.
 ![Services](\immagini\Services.PNG)
 
-##Decorators
-In questa sezione l'utente potrà configurare i pre e post hook.
 
-Per aggiungere ad esempio un pre Hook, selezionare "PRE", ed inserire: nome, protocollo, servizio, porta, path ed evenutale descrizione. Dopodichè selezionare crea.
+**Servizi Custom**
+I servizi custom sono di due tipi: "Alreeady exist" oppure "Gnerate". "Already exist" significa che il servizio è già esistente e quindi l'utente dovrà chiamare il servizio indicando l'url da git. "Generate" invece significa che l'utente crea il suo servizio custom. In entrambi i casi l'utente può configurare servizi di tipo avanzato e di tipo non avanzato.
+
+In caso di tipo "non avanzato" l'utente dobrà specificare l'url di GIT e la revision. Dopodichè l'utente deve assicurarsi che dentro la cartella configurazione ci sia il file Docker imagfe che contiente il nome dell'immagine docker del servizio.
+Inoltre è possibile aggiungere delle variabili ambientali.
+La configurazione dell'orchestratore viene generata dall'Api-Console.
+
+In caso di servizio "avanzato", l'utente deve sempre inserire l'url di git e la revision. dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
+
+*Importante* il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
+
+In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, Il nome, il nome immagine docker. Selezionado "crea" viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
+
+Per creare il servizio infine selezionare **crea**
+
+
+##Decorators
+In questa sezione l'utente potrà configurare i pre e post decorators.
+
+Per aggiungere un pre decorator, selezioanare "PRE" ed inserire il nome, il protocollo (http), il servizio (il nome del servizio definito nella sezione "servizi"), la porta a cui deve chiamare quel servizio, il path al quale risponde.
+Se si seleziona "require request body" il decorator per funzionare richiede il body.
+In caso di post hook si può selezionare anche "require response body".
+Infine è possibile anche inserire una descrizione facoltativa. 
 ![prehook](\immagini\prehook.PNG)
 
 ##Creare un endpoint
