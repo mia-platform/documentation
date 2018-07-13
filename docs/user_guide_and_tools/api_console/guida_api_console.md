@@ -21,7 +21,7 @@ Una volta effettuato il login si deve scegliere il progetto e il branch sul qual
 Il primo passaggio da fare subito dopo il login è il **“load”** per caricare eventuali modifiche apportate da altri utenti.
 
 ##Creare una nuova collezione
-Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passagi da svolgere.
+Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
 
 Per creare una nuova collezione bisogna selezionare “Collections” sulla sinistra e selezionare "Add new".
 
@@ -39,11 +39,11 @@ Se selezioni **required** la proprietà è obbligatoria.
 
 Se selezioni **crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
 
-Se selezioni **nullable** è possibile dare al dato il valore null.
+Se selezioni **nullable** è possibile dare al dato il valore *null*.
 
-Nel campo **descrizione** è possibile inserire una breve descrizione.
+Nel campo **descrizione** è possibile inserire una breve descrizione facoltativa.
 
-Per creare la collezione selezionare **crea**. **(NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito)**
+Per creare la collezione selezionare **crea**. **(NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito).**
 
 Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad aggiungi riga).
 
@@ -62,29 +62,29 @@ Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezi
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
 
-I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi custom plugin configurato dall'utente su git.
+I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi custom plugin configurati dall'utente su git.
 
 **Servizi esterni**
 
 L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
-In questo casol 'utente dovrà inserire il nome del servizio, selezionare tipo "external services" e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descerizione facoltativa.
+In questo casol 'utente dovrà inserire il nome del servizio, selezionare tipo "external services" e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
 ![Services](\immagini\Services.PNG)
 
 
 **Servizi Custom**
-I servizi custom sono di due tipi: "Alreeady exist" oppure "Gnerate". "Already exist" significa che il servizio è già esistente e quindi l'utente dovrà chiamare il servizio indicando l'url da git. "Generate" invece significa che l'utente crea il suo servizio custom. In entrambi i casi l'utente può configurare servizi di tipo avanzato e di tipo non avanzato.
+I servizi custom sono di due tipi: "Alreeady exist" oppure "Generate". "Already exist" significa che il servizio è già esistente e quindi l'utente dovrà chiamare il servizio indicando l'url da git. "Generate" invece significa che l'utente crea il suo servizio custom. In entrambi i casi l'utente può configurare servizi di tipo avanzato e di tipo non avanzato.
 
-In caso di tipo "non avanzato" l'utente dobrà specificare l'url di GIT e la revision. Dopodichè l'utente deve assicurarsi che dentro la cartella configurazione ci sia il file Docker imagfe che contiente il nome dell'immagine docker del servizio.
+In caso di tipo "non avanzato" l'utente dovrà specificare l'url di GIT e la revision. Dopodichè l'utente deve assicurarsi che dentro la cartella configurazione ci sia il file Docker image che contiente il nome dell'immagine docker del servizio.
 Inoltre è possibile aggiungere delle variabili ambientali.
 La configurazione dell'orchestratore viene generata dall'Api-Console.
 
-In caso di servizio "avanzato", l'utente deve sempre inserire l'url di git e la revision. dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
+In caso di servizio "avanzato", l'utente deve sempre inserire l'url di git e la revision, dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
 
 *Importante* il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
 
-In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, Il nome, il nome immagine docker. Selezionado "crea" viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
+In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado "crea" viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
 
-Per creare il servizio infine selezionare **crea**
+Per creare il servizio infine selezionare **crea**.
 
 
 ##Decorators
@@ -92,8 +92,8 @@ In questa sezione l'utente potrà configurare i pre e post decorators.
 
 Per aggiungere un pre decorator, selezioanare "PRE" ed inserire il nome, il protocollo (http), il servizio (il nome del servizio definito nella sezione "servizi"), la porta a cui deve chiamare quel servizio, il path al quale risponde.
 Se si seleziona "require request body" il decorator per funzionare richiede il body.
-In caso di post hook si può selezionare anche "require response body".
-Infine è possibile anche inserire una descrizione facoltativa. 
+In caso di post decorator si può selezionare anche "require response body".
+Infine è possibile anche inserire una descrizione facoltativa.
 ![prehook](\immagini\prehook.PNG)
 
 ##Creare un endpoint
@@ -113,7 +113,7 @@ Custom  Microservices: aggancia il tuo endpoint ad un servizio con logiche inter
 
 BaaS Legacy: aggancia il tuo endpoint a un servizio presente nel BaaS legacy così da sfruttarlo sulla nuova piattaforma.
 
-**Collezzione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "editori"
+**Collezione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "editori"
 
 **Description**: descrizione facoltativa dell’endpoint
 
