@@ -28,7 +28,7 @@
 - [Users](developer_guide_suitebusiness/users.md): gestire ed estendere gli utenti, login, registrazione, recupero password, social login e altro.
 - [Push notifications](developer_guide_suitebusiness/push_notifications.md): configurare e inviare le push notifications per iOS e Android.
 - [Files](developer_guide_suitebusiness/files.md): gestire, estendere e configurare i files.
-- [Configurare il servizio di News](developer_guide_suitebusiness/conf_news.md): configurare il servizio di News.
+- [Configurare il servizio di News](developer_guide_suitebusiness/conf_news.md): configurare il servizio di News..
 
 
 ## DevOps Guide ##
