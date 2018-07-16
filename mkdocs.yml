@@ -49,10 +49,10 @@ pages:
 - Administrators:
   - Home: 'administrator_guide/index.md'
   - Overview: 'administrator_guide/overview.md'
-  - Pipe di Rilascio: 'administrator_guide/../developer_guide_suitetech/pipelines.md'
+  - Pipe di Rilascio: 'administrator_guide/../developer_guide/pipelines.md'
   - Backup: 'administrator_guide/backup.md'
   - Disaster Recovery: 'administrator_guide/disaster_recovery.md'
-
+  
 - About:
   - Chi siamo: 'about/index.md'
   - Architecture: 'architecture/index.md'
