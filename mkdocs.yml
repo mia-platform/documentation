@@ -17,25 +17,25 @@ pages:
 
 
 - Developers Suite Tech:
-  - Home: 'developer_guide_suitetech/index.md'
-  - API: 'developer_guide_suitetech/api.md'
-  - OpenAPI: 'developer_guide_suitetech/openapi.md'
-  - Creare un Plugin: 'developer_guide_suitetech/plugin.md'
-  - Creare un Tema: 'developer_guide_suitetech/theme.md'
-  - Users: 'developer_guide_suitetech/users.md'
-  - Cron: 'developer_guide_suitetech/cron.md'
-  - iOS SDK: 'developer_guide_suitetech/sdk_ios.md'
-  - Android SDK: 'developer_guide_suitetech/sdk_android.md'
-  - Pipelines: 'developer_guide_suitetech/pipelines.md'
-  - Plugin Piattaforma 4: 'developer_guide_suitetech/plugin_baas_4.md'
+  - Home: 'developer_guide/index.md'
+  - API: 'developer_guide/api.md'
+  - OpenAPI: 'developer_guide/openapi.md'
+  - Creare un Plugin: 'developer_guide/plugin.md'
+  - Creare un Tema: 'developer_guide/theme.md'
+  - Users: 'developer_guide/users.md'
+  - Cron: 'developer_guide/cron.md'
+  - iOS SDK: 'developer_guide/sdk_ios.md'
+  - Android SDK: 'developer_guide/sdk_android.md'
+  - Pipelines: 'developer_guide/pipelines.md'
+  - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
 
 - Developers Suite Business:
-  - Files: 'developer_guide_suitebusiness/files.md'
-  - Push notifications: 'developer_guide_suitebusiness/push_notifications.md'
-  - Configurare il CMS: 'developer_guide_suitebusiness/conf_cms.md'
-  - Configurare il servizio di News: 'developer_guide_suitebusiness/conf_news.md'
-  - Configurare gli Analytics: 'developer_guide_suitebusiness/conf_analytics.md'
-  - Guida al Data Modeller: 'developer_guide_suitebusiness/data_modeller.md'
+  - Files: 'developer_guide/files.md'
+  - Push notifications: 'developer_guide/push_notifications.md'
+  - Configurare il CMS: 'developer_guide/conf_cms.md'
+  - Configurare il servizio di News: 'developer_guide/conf_news.md'
+  - Configurare gli Analytics: 'developer_guide/conf_analytics.md'
+  - Guida al Data Modeller: 'developer_guide/data_modeller.md'
 
 - DevOps:
   - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
@@ -52,7 +52,7 @@ pages:
   - Pipe di Rilascio: 'administrator_guide/../developer_guide/pipelines.md'
   - Backup: 'administrator_guide/backup.md'
   - Disaster Recovery: 'administrator_guide/disaster_recovery.md'
-  
+
 - About:
   - Chi siamo: 'about/index.md'
   - Architecture: 'architecture/index.md'
