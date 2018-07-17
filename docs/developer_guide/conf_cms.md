@@ -1,4 +1,4 @@
-## Come configurare il CMS ciao
+## Come configurare il CMS 
 
 Le collezioni che vengono mostrate nel CMS vengono configurate in due file .json differenti:
 
