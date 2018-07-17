@@ -1,7 +1,7 @@
 # Disaster Recovery
 
 Con Disaster Recovery si intendono le procedure per ripristinare una situazione che ha compromesso il corretto
-funzionamento della piattaforma e dove tutti i sistemi di [Business Continuity](business_continuity.md) hanno fallito con la conseguente
+funzionamento della piattaforma e dove tutti i sistemi di Business Continuity hanno fallito con la conseguente
 non disponibilità dei servizi.
 
 Le procedure di Disaster Recovery possono essere divise in tre parti:

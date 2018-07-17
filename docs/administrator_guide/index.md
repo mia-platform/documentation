@@ -6,4 +6,3 @@ Administrator Guide
 - Scalabilità
 - [Backup](backup.md)
 - [Disaster Recovery](disaster_recovery.md)
-- [Business Continuity](business_continuity.md)
