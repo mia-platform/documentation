@@ -119,7 +119,7 @@ Per creare un endpoint selezionare *Endpoints* e quindi *Add new*.
 
 **Description**: descrizione facoltativa dell’endpoint
 
-Selezionare la collezione di riferimento, nel nostro caso potra essere "blioteca".
+Selezionare la collezione di riferimento, nel nostro caso potra essere "biblioteca".
 
 Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti:
 
@@ -141,7 +141,7 @@ Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il
 ####Eleneco verbi
 Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
 
-Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta.
+Se *inherited* è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta.
 
 Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
 
@@ -155,15 +155,16 @@ Una **categoria** ti permette di raggruppare più pagine all’interno del tuo C
 
 Per creare una nuova **pagina** bisogna inserire:
 
-**Name**: inserire il nome della categoria che verrà visualizzato nel CMS, nel nostro caso "Libri".
+*Name*: inserire il nome della categoria che verrà visualizzato nel CMS, nel nostro caso "Libri".
 
-**Endpoint**: selezionare l’endpoint di riferimento (libri)
+*Endpoint*: selezionare l’endpoint di riferimento (libri)
 
-**Category**: selezionare la categoria di cui farà parte (biblioteca)
+*Category*: selezionare la categoria di cui farà parte (biblioteca)
 
-**Icon**: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.
+*Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.
 
-**Order**: ordine di visualizzazione all'interno della category.
+*Order*: ordine di visualizzazione all'interno della category.
+
 ![Add-page-cms](\immagini\Add-page-cms.PNG)
 
 ####Impostazione Generali della Pagina
