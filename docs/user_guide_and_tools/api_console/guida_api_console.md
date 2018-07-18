@@ -1,4 +1,4 @@
-#API Console  guida all'utilizzo#
+#API Console  guida all'utilizzo
 
 Indice
 
@@ -23,13 +23,13 @@ Il primo passaggio da fare subito dopo il login è il **“load”** per caricar
 ##Creare una nuova collezione
 Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
 
-Per creare una nuova collezione bisogna selezionare “Collections” sulla sinistra e selezionare "Add new".
+Per creare una nuova collezione bisogna selezionare *Collections* sulla sinistra e selezionare *Add new*.
 
 Per prima cosa è necessario inserire il nome della collezione in camelCase, nel nostro caso inseriremo "libri".
 
 Di default ci sono dei campi che non possono essere modificati: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
 
-L’utente potrà aggiungere una nuova riga selezionando "aggiungi riga". Dopodichè dovrà completare i seguenti campi:
+L’utente potrà aggiungere una nuova riga selezionando *aggiungi riga*. Dopodichè dovrà completare i seguenti campi:
 
 ![Crea-collezione-riga-titolo](\immagini\Crea-collezione-riga-titolo.PNG)
 
@@ -47,16 +47,16 @@ Nel campo **descrizione** è possibile inserire una breve descrizione facoltativ
 
 Per creare la collezione selezionare **crea**. **(NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito).**
 
-Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad aggiungi riga).
+Se si desidera eliminare una riga selezionare la riga e selezionare *cancella* (vicino ad "aggiungi riga").
 
-Una volta creata la riga di default viene data la possibilità all'utente di crearne un'altra. Una volta finito di creare tutte le righe necessarie, è sufficente premere un qualsiasi altro punto dello schermo per uscire dalla sezione "aggiungi riga".
+Una volta creata la riga di default viene data la possibilità all'utente di crearne un'altra. Una volta finito di creare tutte le righe necessarie, è sufficente premere un qualsiasi altro punto dello schermo per uscire dalla sezione *aggiungi riga*.
 
 Per modificare una collezione è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
 
 ####Indici
 Un indice (nel campo dei database) è una struttura dati realizzata per migliorare i tempi di ricerca (query) dei dati. Se una tabella non ha indici, ogni ricerca obbliga il sistema a leggere tutti i dati presenti in essa. L'indice consente invece di ridurre l'insieme dei dati da leggere per completare la ricerca.
 
-Per creare un nuovo indice selezionare **crea un nuovo indice**.
+Per creare un nuovo indice selezionare *crea un nuovo indice*.
 
 Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando "unique".
 ![Indice](\immagini\Indice.PNG)
@@ -69,7 +69,7 @@ I servizi possono essere: servizi esterni che si vogliono integrare nella piatta
 **Servizi esterni**
 
 L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
-In questo casol 'utente dovrà inserire il nome del servizio, selezionare tipo "external services" e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
+In questo caso l'utente dovrà inserire il nome del servizio, selezionare tipo *external services* e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
 ![Services](\immagini\Services.PNG)
 
 
