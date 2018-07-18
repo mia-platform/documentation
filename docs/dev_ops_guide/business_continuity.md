@@ -10,7 +10,7 @@ La continuità di business si misura in tempo di down rispetto al tempo di rifer
 riferimento l'anno. La continuità di servizio può essere interrotta da fattori che non sono sotto il controllo
 del piano di Business Continuity, come ad esempio: down dei datacenter, calamità naturali, attacchi hacker.
 
-In questi casi entra in funzione il piano di Disaster Recovery. [Si veda la sezione dedicata per maggiori dettagli](disaster_recovery.md)
+In questi casi entra in funzione il piano di Disaster Recovery.
 
 ## Piano di Business Continuity
 
@@ -31,7 +31,7 @@ I fattori che possono influire sulla business continuity di Mia Platform sono po
 
 Per gli eventi pianificati è possibile garantire al 100% la business continuity, invece per quelli non pianificati,
 non sempre sarà possibile garantire la continuità di servizio ma mitigare gli effetti dell'interruzioni o far
-subentrare il piano di [disaster recovery](disaster_recovery.md).
+subentrare il piano di disater recovery
 
 ## Fattori che consentono la Business Continuity
 
@@ -53,7 +53,7 @@ interni.
 Nel caso di applicazioni ad elvata affidabilità il reverse proxy si appoggia ad un service registry dove tutti i
 servizi sono catalogati.
 
-La piattaforma può essere installata sia onpremise che su cloud, anche di diversi vendor, anche contemporaneamente. 
+La piattaforma può essere installata sia onpremise che su cloud, anche di diversi vendor, anche contemporaneamente.
 Questo garantisce che la probabilità di down del servizio sia ridotta ulteriormente.
 
 
@@ -92,7 +92,7 @@ Seguono le azioni di mitigazione per ogni evento non pianificato
 
 ### Down dell'infrastruttura o calamità naturale
 
-Per evitare l'interruzione di servizio di Mia Platform nel caso di problemi dell'infrastruttura è necessario ridondare 
+Per evitare l'interruzione di servizio di Mia Platform nel caso di problemi dell'infrastruttura è necessario ridondare
 tutti i servizi della piattaforma su infrastrutture differenti.
 
 Questo è possibile farlo disaccoppiando l'infrastruttura fisica e virtual dall'orchestratore.
@@ -116,5 +116,4 @@ Nel caso di hotfix urgente si raccomandano gli stessi accorgimenti utilizzati pe
 ### Errore umano
 
 Nel caso di errore è possibile ripristinare la versione precedente se si sono fatti gli aggiornamenti graduali.
-Nel caso di errore distruttivo e nessuna delle opzioni sopra riesce a mitigare gli impatti si rimanda al [Disaster Recovery](disaster_recovery.md).
-
+Nel caso di errore distruttivo e nessuna delle opzioni sopra riesce a mitigare gli impatti si rimanda al Disaster Recovery.
