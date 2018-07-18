@@ -67,7 +67,6 @@ In questa sezione l'utente può configurare i propri servizi.
 I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi custom plugin configurati dall'utente su git.
 
 **Servizi esterni**
-
 L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
 In questo caso l'utente dovrà inserire il nome del servizio, selezionare tipo *external services* e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
 
@@ -133,7 +132,7 @@ Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti
 
 **Descrizione**: breve descrizione facoltativa
 
-###Gestisci la sicurzza dei tuoi endpoint
+###Gestisci la sicurezza dei tuoi endpoint
 Se la rotta è **pubblica**, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401.
 Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
 
@@ -168,7 +167,7 @@ Per creare una nuova **pagina** bisogna inserire:
 
 ![Add-page-cms](\immagini\Add-page-cms.PNG)
 
-###Impostazione Generali della Pagina
+###Impostazioni Generali della Pagina
 **Layout**: selezionare il layout che si desidera. *Table* è la modalità di visualizzazione più classica a tabella. *TableUser* è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inviare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
 
 **Evidenzia un campo**: alcune proprietà possono essere grassettate se sono di tipo booleano.
@@ -204,7 +203,8 @@ Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza.
 **Comparator** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 **Value** Imposta il valore per controllare la visibilità
-![proprietà-titolo-cms](\immagini\[proprietà-titolo-cms.PNG)
+
+![proprietà-titolo-cms](\immagini\proprietà-titolo-cms.PNG)
 
 ##Deploy
 L’API console permette di deployare direttamente senza più passare tramite Jenkins.
