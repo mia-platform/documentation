@@ -84,24 +84,24 @@ In caso di servizio "avanzato", l'utente deve sempre inserire l'url di git e la 
 
 *Importante* il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
 
-In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado "crea" viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
+In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado *crea* viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
 
-Per creare il servizio infine selezionare **crea**.
+Per creare il servizio infine selezionare *crea*.
 
 
 ##Decorators
 In questa sezione l'utente potrà configurare i pre e post decorators.
 
 Per aggiungere un pre decorator, selezioanare "PRE" ed inserire il nome, il protocollo (http), il servizio (il nome del servizio definito nella sezione "servizi"), la porta a cui deve chiamare quel servizio, il path al quale risponde.
-Se si seleziona "require request body" il decorator per funzionare richiede il body.
-In caso di post decorator si può selezionare anche "require response body".
-Infine è possibile anche inserire una descrizione facoltativa.
+Se si seleziona *require request body* il decorator per funzionare richiede il body.
+In caso di post decorator si può selezionare anche *require response body*.
+Infine è possibile anche inserire una *descrizione* facoltativa.
 ![prehook](\immagini\prehook.PNG)
 
 ##Creare un endpoint
 In questa sezione potrai configurare i tuoi servizi e le tue collezioni in endpoint pubblicati all’esterno.
 
-Per creare un endpoint selezionare “Endpoints” e quindi “Add new”.
+Per creare un endpoint selezionare *Endpoints* e quindi *Add new*.
 
 **Basepath**: è il prefisso della rotta. Si può impostare come l'indirizzo base alla quale è servita l'Api, relativo all'host (nome o ip) che fornisce l'endpoint. Nel nostro caso ad esempio potremmo inserire “/libri”.
 
@@ -121,7 +121,8 @@ BaaS Legacy: aggancia il tuo endpoint a un servizio presente nel BaaS legacy cos
 
 Selezionare la collezione di riferimento, nel nostro caso potra essere "ciblioteca"-
 
-Dopodichè selezionare “Crea”. Verrà visualizzata una schermata con le seguenti:
+Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti:
+
 ![crea-nuovo-endpoint](\immagini\crea-nuovo-endpoint.PNG)
 
 ####Nome dell'Endpoint /nome/
@@ -148,7 +149,7 @@ Per esempio possiamo impostare che la post può essere riservata solo ad un grup
 Da questa pagina è possibile definire la "secret" per accedere al CMS dei diversi progetti.
 
 ##CMS
-Per visualizzare la nuova collezione sul CMS bisogna selezionare a sinistra “CMS” e selezionare “Add category” o “Add Page” a seconda delle esigenze.
+Per visualizzare la nuova collezione sul CMS bisogna selezionare a sinistra *CMS* e selezionare *Add category* o *Add Page* a seconda delle esigenze.
 
 Una **categoria** ti permette di raggruppare più pagine all’interno del tuo CMS, come nel nostro caso "biblioteca" in cui potremmo avere diverse collezioni come "libri", "dvd", "audiolibri" etc. Organizza le categorie in modo semplice per trovare facilmente tutto quelli di cui hai bisogno. L’ordinamento impostato qui è quello che viene usato nel CMS.
 
