@@ -58,7 +58,7 @@ Un indice (nel campo dei database) è una struttura dati realizzata per migliora
 
 Per creare un nuovo indice selezionare *crea un nuovo indice*.
 
-Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando "unique".
+Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando *unique*.
 ![Indice](\immagini\Indice.PNG)
 
 ##Servizi
@@ -82,7 +82,7 @@ La configurazione dell'orchestratore viene generata dall'Api-Console.
 
 In caso di servizio "avanzato", l'utente deve sempre inserire l'url di git e la revision, dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
 
-*Importante* il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
+**Importante** il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
 
 In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado *crea* viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
 
@@ -92,7 +92,7 @@ Per creare il servizio infine selezionare *crea*.
 ##Decorators
 In questa sezione l'utente potrà configurare i pre e post decorators.
 
-Per aggiungere un pre decorator, selezioanare "PRE" ed inserire il nome, il protocollo (http), il servizio (il nome del servizio definito nella sezione "servizi"), la porta a cui deve chiamare quel servizio, il path al quale risponde.
+Per aggiungere un pre decorator, selezioanare *PRE* ed inserire il nome, il protocollo (http), il servizio (il nome del servizio definito nella sezione "servizi"), la porta a cui deve chiamare quel servizio, il path al quale risponde.
 Se si seleziona *require request body* il decorator per funzionare richiede il body.
 In caso di post decorator si può selezionare anche *require response body*.
 Infine è possibile anche inserire una *descrizione* facoltativa.
@@ -107,19 +107,19 @@ Per creare un endpoint selezionare *Endpoints* e quindi *Add new*.
 
 **Type**: L’endpoint può essere di diversi tipi:
 
-Crud: aggancia il tuo endpoint direttamente ad una delle tue collezioni.
+*Crud*: aggancia il tuo endpoint direttamente ad una delle tue collezioni.
 
-External: aggancia il tuo endpoint a uno dei servizi esterni censiti nella sezione servizi.
+*External*: aggancia il tuo endpoint a uno dei servizi esterni censiti nella sezione servizi.
 
-Custom  Microservices: aggancia il tuo endpoint ad un servizio con logiche interamente create da te.
+*Custom  Microservices*: aggancia il tuo endpoint ad un servizio con logiche interamente create da te.
 
-BaaS Legacy: aggancia il tuo endpoint a un servizio presente nel BaaS legacy così da sfruttarlo sulla nuova piattaforma.
+*BaaS Legacy*: aggancia il tuo endpoint a un servizio presente nel BaaS legacy così da sfruttarlo sulla nuova piattaforma.
 
 **Collezione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "editori"
 
 **Description**: descrizione facoltativa dell’endpoint
 
-Selezionare la collezione di riferimento, nel nostro caso potra essere "ciblioteca"-
+Selezionare la collezione di riferimento, nel nostro caso potra essere "blioteca".
 
 Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti:
 
