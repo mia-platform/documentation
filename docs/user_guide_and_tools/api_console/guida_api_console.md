@@ -19,6 +19,8 @@ Una volta effettuato il login si deve scegliere il progetto e il branch sul qual
 
 Il primo passaggio da fare subito dopo il login è il **load** per caricare eventuali modifiche apportate da altri utenti.
 
+Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"* di seguito. 
+
 ##Creare una nuova collezione
 Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
 
@@ -153,6 +155,8 @@ Per esempio possiamo impostare che la post può essere riservata solo ad un grup
 ##Secret
 Da questa pagina è possibile definire la "secret" per accedere al CMS dei diversi progetti.
 
+La prima cosa che si deve fare quando si inizia un nuovo progetto è **creare una secret** e verificare che ce ne sia una e una sola **attiva**.
+
 ##CMS
 Per visualizzare la nuova collezione sul CMS bisogna selezionare a sinistra **CMS** e selezionare **Add category** o **Add Page** a seconda delle esigenze.
 
@@ -163,7 +167,7 @@ Per creare una nuova **pagina** bisogna inserire:
 * *Name*: inserire il nome della categoria che verrà visualizzato nel CMS, nel nostro caso "Libri".
 * *Endpoint*: selezionare l’endpoint di riferimento (libri)
 * *Category*: selezionare la categoria di cui farà parte (biblioteca)
-* *Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.
+* *Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.Le icone sono al seguente link: https://fontawesome.com/v4.7.0/icons/
 * *Order*: ordine di visualizzazione all'interno della category.
 
 ![Add-page-cms](\immagini\Add-page-cms.PNG)
