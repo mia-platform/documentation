@@ -32,28 +32,30 @@ L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopo
 
 ![Crea-collezione-riga-titolo](\immagini\Crea-collezione-riga-titolo.PNG)
 
-**Nome**: va inserito il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
+* **Nome**: inserire il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
 
-**Tipo**: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo; *number* se è un numero; *date* se è una data con gg/mm/aaaa; *boolean* se può essere solo true o false;*Geopoint* se si desidera salvare un luogo preciso; *Array* se si desidera salvare come un insieme ordinato di proprietà; *Object* se si desidera inserire un oggetto.
+* **Tipo**: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo; *number* se è un numero; *date* se è una data con gg/mm/aaaa; *boolean* se può essere solo true o false;*Geopoint* se si desidera salvare un luogo preciso; *Array* se si desidera salvare come un insieme ordinato di proprietà; *Object* se si desidera inserire un oggetto.
 
-Se selezioni **required** la proprietà è obbligatoria.
+* Se selezioni **required** la proprietà è obbligatoria.
 
-Se selezioni **crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
+* Se selezioni **crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
 
-Se selezioni **nullable** è possibile dare al dato il valore *null*.
+* Se selezioni **nullable** è possibile dare al dato il valore *null*.
 
-Nel campo **descrizione** è possibile inserire una breve descrizione facoltativa.
+* Nel campo **descrizione** è possibile inserire una breve descrizione facoltativa.
 
 Per creare la collezione selezionare **crea**. **(NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito).**
 
+![tabella_prop](\immagini\tabella_prop.PNG)
+
 Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad "aggiungi riga").
 
-Una volta creata la riga di default viene data la possibilità all'utente di crearne un'altra. Una volta finito di creare tutte le righe necessarie, è sufficente premere un qualsiasi altro punto dello schermo per uscire dalla sezione **aggiungi riga**.
+Una volta creata la riga di default viene data la possibilità all'utente di crearne un'altra. Una volta finito di creare tutte le righe necessarie, è sufficente premere un qualsiasi altro punto dello schermo per uscire dalla sezione aggiungi riga.
 
-Per modificare una collezione è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
+Per **modificare una collezione** è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
 
 ###Indici
-Un indice (nel campo dei database) è una struttura dati realizzata per migliorare i tempi di ricerca (query) dei dati. Se una tabella non ha indici, ogni ricerca obbliga il sistema a leggere tutti i dati presenti in essa. L'indice consente invece di ridurre l'insieme dei dati da leggere per completare la ricerca.
+Un indice (nel campo dei database) è una struttura dati realizzata per **migliorare i tempi di ricerca (query) dei dati**. Se una tabella non ha indici, ogni ricerca obbliga il sistema a leggere tutti i dati presenti in essa. L'indice consente invece di ridurre l'insieme dei dati da leggere per completare la ricerca.Tuttavia la creazione di un indice comporta una **riduzione  nelle performance di scrittura**.
 
 Per creare un nuovo indice selezionare **crea un nuovo indice**.
 
@@ -64,33 +66,37 @@ Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezi
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
 
-I servizi possono essere: servizi esterni che si vogliono integrare nella piattaforma o servizi custom plugin configurati dall'utente su git.
+I servizi possono essere di due tipi:
 
-**Servizi esterni**
-L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
+* servizi esterni che si vogliono integrare nella piattaforma
+* servizi custom plugin configurati dall'utente su git.
+
+**Servizi esterni**: L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
 In questo caso l'utente dovrà inserire il nome del servizio, selezionare tipo *external services* e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
 
 ![Services](\immagini\Services.PNG)
 
 
-**Servizi Custom**
-I servizi custom sono di due tipi: "Alreeady exist" oppure "Generate". ***Already exist*** significa che il servizio è già esistente e quindi l'utente dovrà chiamare il servizio indicando l'url da git. ***Generate*** invece significa che l'utente crea il suo servizio custom. In entrambi i casi l'utente può configurare servizi di tipo avanzato e di tipo non avanzato.
+**Servizi custom**: I servizi custom sono di due tipi:
 
-In caso di tipo "non avanzato" l'utente dovrà specificare l'url di GIT e la revision. Dopodichè l'utente deve assicurarsi che dentro la cartella configurazione ci sia il file Docker image che contiente il nome dell'immagine docker del servizio.
+* *Already exist*: il servizio è già esistente e quindi l'utente dovrà chiamare il servizio indicando l'url da git.
+* *Generate*: l'utente crea il suo servizio custom.
+
+In entrambi i casi l'utente può configurare servizi di tipo:
+
+* *Avanzato*: l'utente deve sempre inserire l'url di git e la revision, dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
+* *Non avanzato*:  l'utente deve specificare l'url di GIT e la revision. Dopodichè è necessario assicurarsi che dentro la cartella configurazione ci sia il file Docker image che contiente il nome dell'immagine docker del servizio.
 Inoltre è possibile aggiungere delle variabili ambientali.
-La configurazione dell'orchestratore viene generata dall'Api-Console.
-
-In caso di servizio "avanzato", l'utente deve sempre inserire l'url di git e la revision, dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
 
 **Importante** il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
 
-In caso il servizio sia di tipo "Generate", l'utente deve inserire il gruppo di gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado *crea* viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
+In caso il servizio sia di tipo *Generate*, l'utente deve inserire il gruppo di Gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado *crea* viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
 
 Per creare il servizio infine selezionare **crea**.
 
 
 ##Decorators
-In questa sezione l'utente potrà configurare i pre e post decorators.
+In questa sezione l'utente potrà configurare i **pre e post decorators**.
 
 Per aggiungere un pre decorator, selezioanare **PRE** ed inserire il nome, il protocollo (http), il servizio (il nome del servizio definito nella sezione "servizi"), la porta a cui deve chiamare quel servizio, il path al quale risponde.
 Se si seleziona *require request body* il decorator per funzionare richiede il body.
@@ -105,19 +111,16 @@ Per creare un endpoint selezionare **Endpoints** e quindi **Add new**.
 
 **Basepath**: è il prefisso della rotta. Si può impostare come l'indirizzo base alla quale è servita l'Api, relativo all'host (nome o ip) che fornisce l'endpoint. Nel nostro caso ad esempio potremmo inserire “/libri”.
 
-**Type**: L’endpoint può essere di diversi tipi:
+**Tipo**: L’endpoint può essere di diversi tipi:
 
-*Crud*: aggancia il tuo endpoint direttamente ad una delle tue collezioni.
-
-*External*: aggancia il tuo endpoint a uno dei servizi esterni censiti nella sezione servizi.
-
-*Custom  Microservices*: aggancia il tuo endpoint ad un servizio con logiche interamente create da te.
-
-*BaaS Legacy*: aggancia il tuo endpoint a un servizio presente nel BaaS legacy così da sfruttarlo sulla nuova piattaforma.
+* *Crud*: aggancia il tuo endpoint direttamente ad una delle tue collezioni.
+* *External*: aggancia il tuo endpoint a uno dei servizi esterni censiti nella sezione servizi.
+* *Custom  Microservices*: aggancia il tuo endpoint ad un servizio con logiche interamente create da te.
+* *BaaS Legacy*: aggancia il tuo endpoint a un servizio presente nel BaaS legacy così da sfruttarlo sulla nuova piattaforma.
 
 **Collezione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "editori"
 
-**Description**: descrizione facoltativa dell’endpoint
+**Descrizione**: descrizione facoltativa dell’endpoint
 
 Selezionare la collezione di riferimento, nel nostro caso potra essere "biblioteca".
 
@@ -135,6 +138,8 @@ Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti
 ###Gestisci la sicurezza dei tuoi endpoint
 Se la rotta è **pubblica**, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401.
 Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
+
+![gestisci_rotte](\immagini\gestisci_rotte.PNG)
 
 **Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
 
@@ -155,15 +160,11 @@ Una **categoria** ti permette di raggruppare più pagine all’interno del tuo C
 
 Per creare una nuova **pagina** bisogna inserire:
 
-*Name*: inserire il nome della categoria che verrà visualizzato nel CMS, nel nostro caso "Libri".
-
-*Endpoint*: selezionare l’endpoint di riferimento (libri)
-
-*Category*: selezionare la categoria di cui farà parte (biblioteca)
-
-*Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.
-
-*Order*: ordine di visualizzazione all'interno della category.
+* *Name*: inserire il nome della categoria che verrà visualizzato nel CMS, nel nostro caso "Libri".
+* *Endpoint*: selezionare l’endpoint di riferimento (libri)
+* *Category*: selezionare la categoria di cui farà parte (biblioteca)
+* *Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.
+* *Order*: ordine di visualizzazione all'interno della category.
 
 ![Add-page-cms](\immagini\Add-page-cms.PNG)
 
