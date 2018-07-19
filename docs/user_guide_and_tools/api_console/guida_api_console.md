@@ -1,4 +1,4 @@
-#API Console  guida all'utilizzo
+#**API Console  guida all'utilizzo**
 
 Indice
 
@@ -19,7 +19,7 @@ Una volta effettuato il login si deve scegliere il progetto e il branch sul qual
 
 Il primo passaggio da fare subito dopo il login è il **load** per caricare eventuali modifiche apportate da altri utenti.
 
-Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"* di seguito. 
+Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"* di seguito.
 
 ##Creare una nuova collezione
 Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
@@ -141,9 +141,9 @@ Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti
 Se la rotta è **pubblica**, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401.
 Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
 
-![gestisci_rotte](\immagini\gestisci_rotte.PNG)
-
 **Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
+
+![sicurezza_endpoint](\immagini\sicurezza_endpoint.PNG)
 
 ###Eleneco verbi
 Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
@@ -151,6 +151,8 @@ Selezionando i diversi verbi nella sezione management è possibile dettagliare u
 Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta.
 
 Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
+
+![gestisci_rotte](\immagini\gestisci_rotte.PNG)
 
 ##Secret
 Da questa pagina è possibile definire la "secret" per accedere al CMS dei diversi progetti.
