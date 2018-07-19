@@ -203,7 +203,7 @@ Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza.
 
 ![proprietà-titolo-cms](\immagini\proprietà-titolo-cms.PNG)
 
-## Loockup
+### Loockup
 Questa sezione è utile per creare collegamenti tra diverse collezioni, per esempio se vogliamo sapere quali sono i libri che sono stati utilizzati per girare un film sarà necessario creare nella collezione di libri una proprietà chiamata film in cui metteremo gli id dei film che sono ispirati al libro in questione.
 Per fare questo su *collezioni* selezionamo la collezione libri, dopodichè aggiungiamo una proprietà chiamata film di tipo string.
 Nella sezione *CMS* selezioniamo libri e dopodichè *go to properties*. A sinistra selezioniamo film e cambiamo il *tipo di interfaccia* in lookup o multi lookup.
