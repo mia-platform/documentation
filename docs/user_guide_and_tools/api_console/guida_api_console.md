@@ -188,15 +188,11 @@ Selezionando una pagina possiamo cambiarne le singole proprietà cliccando “Go
 ###Go to properties:
 Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza. Di questa proprietà potremmo andare a modificare:
 
-**Tipo di interfaccia**: come spiegato in precedenza con questa funzione si può cambiare il tipo: stringa, date, geopoint etc.  
-
-**Etichetta**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
-
-**Descrizione**: possibilità di inserire una breve descrizione
-
-**Ordine**: ordine di visualizzazione della proprietà nella collezione
-
-**Visibilità**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
+* **Tipo di interfaccia**: come spiegato in precedenza con questa funzione si può cambiare il tipo: stringa, date, geopoint etc, number, text, text files, date time, array, boolean, object, lookup, multi lookup.  
+* **Etichetta**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
+* **Descrizione**: possibilità di inserire una breve descrizione
+* **Ordine**: ordine di visualizzazione della proprietà nella collezione
+* **Visibilità**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
 
 ###Controlla con dei filtri la visibilità delle tue proprietà
 **Property Name** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
@@ -206,6 +202,27 @@ Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza.
 **Value** Imposta il valore per controllare la visibilità
 
 ![proprietà-titolo-cms](\immagini\proprietà-titolo-cms.PNG)
+
+## Loockup
+Questa sezione è utile per creare collegamenti tra diverse collezioni, per esempio se vogliamo sapere quali sono i libri che sono stati utilizzati per girare un film sarà necessario creare nella collezione di libri una proprietà chiamata film in cui metteremo gli id dei film che sono ispirati al libro in questione.
+Per fare questo su *collezioni* selezionamo la collezione libri, dopodichè aggiungiamo una proprietà chiamata film di tipo string.
+Nella sezione *CMS* selezioniamo libri e dopodichè *go to properties*. A sinistra selezioniamo film e cambiamo il *tipo di interfaccia* in lookup o multi lookup.
+
+L'utente dovrà poi compilare i seguenti campi:
+
+* *tipologia di lookup*:
+* *ID Collezione*: inserire l'ID dell'Endpoint
+* *Valore da salvare*: è consigliabile utilizzare l'id.
+
+Dopodichè è necessario **impotare come vuoi visualizzare i dati della tua Lookup**:
+
+* *proprietà visibili*: inserire le proprità in un array di stringhe
+* *delimitatroee tra proprietà*: inserire i delimitatori in un array di stringhe
+* *filtro*: inserire la query per controllare la visibilità
+* *limite*: inserire un limite da mostrare
+* *ricerca live*: si/no
+
+![lookup](\immagini\lookup.PNG)
 
 ##Deploy
 L’API console permette di deployare direttamente senza più passare tramite Jenkins.
