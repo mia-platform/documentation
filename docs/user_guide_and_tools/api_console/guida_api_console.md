@@ -194,20 +194,29 @@ Selezionando una pagina possiamo cambiarne le singole proprietà cliccando “Go
 ###Go to properties:
 Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza. Di questa proprietà potremmo andare a modificare:
 
-* **Tipo di interfaccia**: come spiegato in precedenza con questa funzione si può cambiare il tipo: stringa, date, geopoint etc, number, text, text files, date time, array, boolean, object, lookup, multi lookup.  
+* **Tipo di interfaccia**: con questa funzione si può cambiare l'interfaccia con cui una determinata proprietà viene visualizzata da CMS, i tipo di interfraccia sono i seguenti: stringa, date, geopoint etc, number, text, text files, date time, array, boolean, object, lookup, multi lookup.  
 * **Etichetta**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
 * **Descrizione**: possibilità di inserire una breve descrizione
 * **Ordine**: ordine di visualizzazione della proprietà nella collezione
 * **Visibilità**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
 
 ###Controlla con dei filtri la visibilità delle tue proprietà
+Questa sezione è utile per definire dei criteri di visibilità di una proprietà: sul CMS verrà mostrata la prorpetà selezionata solo se viene rispettato il criterio che viene inserito in seguito.
+
 **Property Name** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 **Comparator** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
 
 **Value** Imposta il valore per controllare la visibilità
 
+Se il *tipo* della proprietà è *boolano* nel campo comparator insrire doppio uguale (*==*) e nel value inserire "ture" o "false"
+
 ![proprietà-titolo-cms](\immagini\proprietà-titolo-cms.PNG)
+
+###Card position
+Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "string", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
+
+![card](\immagini\card.PNG)
 
 ### Loockup
 Questa sezione è utile per creare collegamenti tra diverse collezioni, per esempio se vogliamo sapere quali sono i libri che sono stati utilizzati per girare un film sarà necessario creare nella collezione di libri una proprietà chiamata film in cui metteremo gli id dei film che sono ispirati al libro in questione.
