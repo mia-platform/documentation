@@ -269,7 +269,8 @@ Cosa bisogna fare?
 
 Sotto il campo Inline Source scrivo i diversi valori che voglio far comparire in questo modo:
 
-[{"label": "Gialli", "value":1}, {"label": "Romantici", "value":2}]
+*[{"label": "Gialli", "value":1}, {"label": "Romantici", "value":2}]*
+
 Con label indico l'etichetta che voglio far comparire.
 
 Con value indico l'odine di comparsa nella nostra lookup.
