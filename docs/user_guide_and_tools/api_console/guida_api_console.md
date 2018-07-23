@@ -194,7 +194,7 @@ Selezionando una pagina possiamo cambiarne le singole proprietà cliccando “Go
 ###Go to properties:
 Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza. Di questa proprietà potremmo andare a modificare:
 
-* **Tipo di interfaccia**: con questa funzione si può cambiare l'interfaccia con cui una determinata proprietà viene visualizzata da CMS, i tipo di interfraccia sono i seguenti: stringa, date, geopoint etc, number, text, text files, date time, array, boolean, object, lookup, multi lookup.  I tipi di interfaccia sono approfonditi di seguito. 
+* **Tipo di interfaccia**: con questa funzione si può cambiare l'interfaccia con cui una determinata proprietà viene visualizzata da CMS, i tipo di interfraccia sono i seguenti: *stringa, date, geopoint etc, number, text, text files, date time, array, boolean, object, lookup, multi lookup*. I tipi di interfaccia sono approfonditi di seguito.
 * **Etichetta**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
 * **Descrizione**: possibilità di inserire una breve descrizione
 * **Ordine**: ordine di visualizzazione della proprietà nella collezione
@@ -229,7 +229,7 @@ Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come 
 
 ![card](\immagini\card.PNG)
 
-#### Loockup
+#### Loockup / Multi lookup
 Questa sezione è utile per creare collegamenti tra diverse collezioni, per esempio se vogliamo sapere quali sono i libri che sono stati utilizzati per girare un film sarà necessario creare nella collezione di libri una proprietà chiamata film in cui metteremo gli id dei film che sono ispirati al libro in questione.
 Per fare questo su *collezioni* selezionamo la collezione libri, dopodichè aggiungiamo una proprietà chiamata film di tipo string.
 Nella sezione *CMS* selezioniamo libri e dopodichè *go to properties*. A sinistra selezioniamo film e cambiamo il *tipo di interfaccia* in lookup o multi lookup.
