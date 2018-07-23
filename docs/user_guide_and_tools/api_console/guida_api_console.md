@@ -19,7 +19,8 @@ Una volta effettuato il login si deve scegliere il progetto e il branch sul qual
 
 Il primo passaggio da fare subito dopo il login è il load per caricare evenutali altre modifiche apportate da altri utenti, per farlo premere **carica**.
 
-Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"*.
+!!! Warning
+    Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"*.
 
 ##Creare una nuova collezione
 Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
@@ -46,7 +47,10 @@ L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopo
 
 * Nel campo **descrizione** è possibile inserire una breve descrizione facoltativa.
 
-Per creare la collezione selezionare **crea**. **(NB: la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito).**
+Per creare la collezione selezionare **crea**.
+
+!!! Warning
+    la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito
 
 ![tabella_prop](\immagini\tabella_prop.PNG)
 
@@ -294,5 +298,5 @@ Questa sezione contiene il link a Swagger
 Questa sezione contiene il link a Kibana
 
 
-
-**Una volta effettuate le modifiche è NECESSARIO SALVARE**
+!!! Warning
+    Una volta effettuate le modifiche è NECESSARIO SALVARE
