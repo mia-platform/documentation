@@ -213,42 +213,73 @@ Se il *tipo* della proprietà è *boolano* nel campo comparator insrire doppio u
 
 ![proprietà-titolo-cms](\immagini\proprietà-titolo-cms.PNG)
 
-####Date
+###Date
 Questo tipo di interfaccia permette all'utente di inserire un campo all'interno del CMS nel formato gg/mm/aaaa
 
-####Geopoint
+###Geopoint
 Questo tipo di intefaccia permette all'utente di inserire un campo all'interno del CMS in formato mappa. E' necessario che il tipo della propreità inserito in collezioni sia "Geopoint"
 
 *Visualizzazione del geopoint da CMS*
 ![geopoint](\immagini\geopoint.PNG)
 
-####Card position
+###Card position
 Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "string", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
 
 *Visualizzazione della card da CMS*
 
 ![card](\immagini\card.PNG)
 
-#### Loockup / Multi lookup
-Questa sezione è utile per creare collegamenti tra diverse collezioni, per esempio se vogliamo sapere quali sono i libri che sono stati utilizzati per girare un film sarà necessario creare nella collezione di libri una proprietà chiamata film in cui metteremo gli id dei film che sono ispirati al libro in questione.
-Per fare questo su *collezioni* selezionamo la collezione libri, dopodichè aggiungiamo una proprietà chiamata film di tipo string.
+### Loockup / Multi lookup
+**Lookup** servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni. **Multilookup** se vuoi selezionare più valori.
+
+Esistono varie tipologie di **LOckup**:
+
+* Look a collection
+* Inline Source
+
+####Look a Collection
+Questo tipo di lookup permette di “chiamare” la proprietà di una collezione e mostrarla all’interno di un'altra proprietà.
+Ad esempio: nella collezione Schede Libri, alla proprietà Editore, si vuole mostrare l'elenco degli editori che sono originariamente stati creati nella collezione Editori alla proprietà Nome Editore.
+
+Cosa bisogna fare? Per aggiungere una lookup o una multi lookup andiamo su *collezioni* selezionamo la collezione libri, dopodichè aggiungiamo una proprietà chiamata film di tipo string.
 Nella sezione *CMS* selezioniamo libri e dopodichè *go to properties*. A sinistra selezioniamo film e cambiamo il *tipo di interfaccia* in lookup o multi lookup.
 
-L'utente dovrà poi compilare i seguenti campi:
+Dopo aver selezionato Look a Collection nel secondo campo *ID collezione* inserire l'ID dell'Endpoint. Infine nel campo "valore da salvare" inserire quale valore vogliamo salvare. Il value che va insierito deve essere un valore univoco, tendenzialmente è quindi buona pratica salvarsi l'Id della collezione.
 
-* *tipologia di lookup*:
-* *ID Collezione*: inserire l'ID dell'Endpoint
-* *Valore da salvare*: è consigliabile utilizzare l'id.
+A questo punto va inserito cosa vogliamo far apparire della collezione Editori al nostro utente. Noi volevamo far comparire il nome dell'Editore:  **Imposta come vuoi visualizzare i dati della tua Lookup**:
 
-Dopodichè è necessario **impotare come vuoi visualizzare i dati della tua Lookup**:
+In *proprietà visibili* andremo ad indicare le proprietà che vogliamo visualizzare in un array di stringhe. Nel caso in cui volessimo fare vedere prorpeità differenti, come ad esempio il titolo del libro e l'autore possiamo scegliere un *delimitatore tra proprietà* che può essere uno spazio bianco, un -, un ; e così via.
 
-* *proprietà visibili*: inserire le proprità in un array di stringhe
-* *delimitatroee tra proprietà*: inserire i delimitatori in un array di stringhe
-* *filtro*: inserire la query per controllare la visibilità
-* *limite*: inserire un limite da mostrare
-* *ricerca live*: si/no
+Dopodichè tramite un *filtro* potremmo inserire una query per controllare la visibilità.
+
+Con *limite* possiamo invece proporre un numero massimo di elementi da mostrare in tendina. Se vorremmo far vedere solo 5 editori scriveremmo 5.
+
+*Ricerca live*: se vogliamo che mentre scriviamo ci compaiano i risultati (es: scrivo A e mi compaiono sotto le case editrici che cominciano per A)
+
+*Reset automatico*: se vogliamo che si resetti, ovvero dopo aver compilato la cella se vogliamo svuotarla
+
+*Selezione automatica*: se vogliamo che selezioni automaticamente il primo valore
 
 ![lookup](\immagini\lookup.PNG)
+
+####Inline Source
+Con la lookup Inline Source scelgo io i valori da far comparire all'interno della lookup. Per fare un esempio sempre restando nell'ambito libri. Voglio selezionare delle categorie di Libri e non ho nessuna collezione di riferimento.
+
+Cosa bisogna fare?
+
+Sotto il campo Inline Source scrivo i diversi valori che voglio far comparire in questo modo:
+
+[{"label": "Gialli", "value":1}, {"label": "Romantici", "value":2}]
+Con label indico l'etichetta che voglio far comparire.
+
+Con value indico l'odine di comparsa nella nostra lookup.
+
+A questo punto in Text sotto Properties andremo a scrivere label e come sempre se abbiamo un Delimiters lo andremo ad indicare nell'apposito spazio
+
+Il comportamento degli altri valori è uguale a quello delle Look a Collection.
+
+![Inline-search](\immagini\Inline-search.PNG)
+
 
 ##Deploy
 L’API console permette di deployare direttamente senza più passare tramite Jenkins.
