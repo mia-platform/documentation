@@ -5,26 +5,26 @@ Indice
 [TOC]
 
 ##Registrarsi all'Api Console
-Per registrarsi all'api console l'utente deve selezionare **Register**, inserire un username, un indirizzo email, una password e il "gitlab user id".
+Per registrarsi all'api console l'utente deve selezionare **Registrazione**, inserire un username, un indirizzo email, una password e il *gitlab user id*.
 
-Per ottenere il Gitlab user id l'utente deve accedere a Gitlab, cliccare l'icona in alto a destra e aprire settings. Accanto al nome è presente l'user ID che dovrà essere copiato e incollato nel modulo di registrazione dell'Api console.
+Per ottenere il *Gitlab user id* l'utente deve accedere a Gitlab, cliccare l'icona in alto a destra e aprire settings. Accanto al nome è presente l'user ID che dovrà essere copiato e incollato nel modulo di registrazione dell'Api console.
 
 ![Registrazione](\immagini\Registrazione.PNG)
 ##Accedere all'Api Console
-Per accedere all’API Console è sufficiente collegarsi da un normale Browser all’indirizzo: [Link to Api Console](https://console.cloud.mia-platform.eu/login)
+Per accedere all’API Console è sufficiente collegarsi da un normale Browser al seguente indirizzo [Link to Api Console](https://console.cloud.mia-platform.eu/login)
 
 In questa schermata iniziale si deve inserire username e password.
 
 Una volta effettuato il login si deve scegliere il progetto e il branch sul quale si vuole lavorare.
 
-Il primo passaggio da fare subito dopo il login è il **load** per caricare eventuali modifiche apportate da altri utenti.
+Il primo passaggio da fare subito dopo il login è il load per caricare evenutali altre modifiche apportate da altri utenti, per farlo premere **carica**.
 
-Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"* di seguito.
+Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"*.
 
 ##Creare una nuova collezione
 Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
 
-Per creare una nuova collezione bisogna selezionare **Collections** sulla sinistra e selezionare **Add new**.
+Per creare una nuova collezione bisogna selezionare **Collezioni** sulla sinistra e selezionare **Add new**.
 
 Per prima cosa è necessario inserire il nome della collezione in camelCase, nel nostro caso inseriremo "libri".
 
@@ -36,7 +36,7 @@ L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopo
 
 * **Nome**: inserire il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
 
-* **Tipo**: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo; *number* se è un numero; *date* se è una data con gg/mm/aaaa; *boolean* se può essere solo true o false;*Geopoint* se si desidera salvare un luogo preciso; *Array* se si desidera salvare come un insieme ordinato di proprietà; *Object* se si desidera inserire un oggetto.
+* **Tipo**: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo (oppure un immagine); *number* se è un numero; *date* se è una data con gg/mm/aaaa; *boolean* se può essere solo true o false;*Geopoint* se si desidera salvare un luogo preciso; *Array* se si desidera salvare come un insieme ordinato di proprietà; *Object* se si desidera inserire un oggetto.
 
 * Se selezioni **required** la proprietà è obbligatoria.
 
