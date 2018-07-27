@@ -227,6 +227,9 @@ Questo tipo di intefaccia permette all'utente di inserire un campo all'interno d
 ![geopoint](\immagini\geopoint.PNG)
 
 ###Card position
+
+![libri_card](\immagini\libri_card.PNG)
+
 Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "array di oggetti", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
 
 *Visualizzazione della card da CMS*
