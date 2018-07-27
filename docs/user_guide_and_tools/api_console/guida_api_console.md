@@ -50,7 +50,7 @@ L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopo
 Per creare la collezione selezionare **crea**.
 
 !!! Warning
-    la collezione non è ancora salvata è necessario svolgere i passaggi descritti di seguito
+    la collezione **non è ancora salvata** è necessario svolgere i passaggi descritti di seguito
 
 ![tabella_prop](\immagini\tabella_prop.PNG)
 
@@ -65,7 +65,7 @@ Un indice (nel campo dei database) è una struttura dati realizzata per **miglio
 
 Per creare un nuovo indice selezionare **crea un nuovo indice**.
 
-Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: normal, geo e hash. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando **unique**.
+Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: *normal, geo e hash*. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando **unique**.
 
 ![Indice](\immagini\Indice.PNG)
 
@@ -227,7 +227,7 @@ Questo tipo di intefaccia permette all'utente di inserire un campo all'interno d
 ![geopoint](\immagini\geopoint.PNG)
 
 ###Card position
-Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "string", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
+Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "array di oggetti", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
 
 *Visualizzazione della card da CMS*
 
