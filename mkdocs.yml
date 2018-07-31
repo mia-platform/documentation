@@ -32,19 +32,19 @@ pages:
   - Android SDK: '/developer_guide/sdk_android/'
   - Pipelines: '/developer_guide/pipelines/'
   - Plugin Piattaforma 4: '/developer_guide/plugin_baas_4/'
-
-- Developers Suite Business:
   - Files: '/developer_guide/files/'
   - Push notifications: '/developer_guide/push_notifications/'
-  - Configurare il CMS: '/developer_guide/conf_cms/'
   - Configurare il servizio di News: '/developer_guide/conf_news/'
-  - Configurare gli Analytics: '/developer_guide/conf_analytics/'
   - Guida al Data Modeller: '/developer_guide/data_modeller/'
+
+- Configuration Manager:
+  - Configurare il CMS: '/developer_guide/conf_cms/'
+  - Configurare gli Analytics: '/developer_guide/conf_analytics/'
 
 - DevOps:
   - Business Continuity: '/dev_ops_guide/business_continuity/'
 
-- Users:
+- User Backoffice:
   - Home: '/user_guide_and_tools/'
   - Api Console: '/user_guide_and_tools/api_console/guida_api_console/'
   - CMS: '/user_guide_and_tools/cms/'
