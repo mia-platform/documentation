@@ -7,14 +7,14 @@ pages:
 
 
 - Home: 'index.md'
-- Intro:
-  - Getting started: 'getting_started/index.md'
-  - Architecture:
+
+- Getting Started:
+  - Dockerbox: 'getting_started/dockerbox.md'
+  - 5' minutes start - Hello World: 'getting_started/start-helloworld.md'
+
+- Architecture:
     - Global vision: 'architecture/index.md'
     - Componenti: 'architecture/arc_components.md'
-    - Logic: 'architecture/arc_logic.md'
-    - Infrastructure: 'architecture/arc_infra.md'
-
 
 - Developers Suite Tech:
   - Home: 'developer_guide/index.md'

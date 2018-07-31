@@ -1,14 +1,12 @@
 # Documentazione di Mia-Platform #
 
 ## Getting Started
-- [Veloce guida di inizio con dockerbox](getting_started/index.md)
+- [Veloce guida di inizio con dockerbox](getting_started/dockerbox.md)
 
 ## Architecture
 - Visione globale Mia-Platform
 - Suite Business
 - [Suite Tech](architecture/arc_components.md)
-- Logica
-- Infrastuttura
 
 ## Developer Guide Suite Tech
 - [API](developer_guide/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
