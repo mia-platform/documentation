@@ -14,11 +14,11 @@ Nel dettaglio:
 
 ## Linee guida
 Esitono delle buone pratiche per progettare delle API RESTFul che si sono consolidate negli anni grazie ad una ricca
-comunità Open Source.Seguono alcuni buoni consigli sulla progettazione delle API. Potete trovare ulteriori 
+comunità Open Source.Seguono alcuni buoni consigli sulla progettazione delle API. Potete trovare ulteriori
 dettagli sulla [Guideline di Zalando](http://zalando.github.io/restful-api-guidelines).
 
 ### L'importanza di progettare le API
-Progettare prima le API e poi implementarle non è contro i pricipi Agili.
+Progettare prima le API e poi implementarle non è contro i principi Agili.
 Anzi consente di velocizzare lo sviluppo perchè disaccoppia il backend dal frontend e aiuta a parallelizzare gli
 sviluppi e di conseguenza anche di rilasciare in modo incrementale le funzionalità. Inizialmente le UI saranno
 interfacciate ad implementazioni delle API ancora in Draft. Dopo una prima valutazione dell'ergonomia delle API da parte
@@ -32,7 +32,7 @@ Approccio senza progettare le API con una piattaforma
 
 Approccio progettando le API con una piattaforma
 
-Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra frontend e backend sia 
+Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra frontend e backend sia
 possibile procedere in parallelo fornendo dapprima dati mock all'interfaccia utente e poi, senza cambiare l'API,
 implementare la parte server. Questo approccio ha il vantaggio che le prime versioni dell'API saranno subuito utilizzate
 e quindi riceveranno il feedback di chi sta implementando la parte client dell'applicazione. Grazie a questi feedback
@@ -43,7 +43,7 @@ E' comunque auspicabile far evolvere le API man mano che l'interfaccia utente ev
 è basilare per rendere facile la vita al frontend e consentire di avere API performanti e utili.
 
 ### Usare i nomi per identificare una risorsa
-La prima volta che si definisce un'API si tende a pensare all'azione che viene fatta come se fosse un servizio da 
+La prima volta che si definisce un'API si tende a pensare all'azione che viene fatta come se fosse un servizio da
 chiamare. Facciamo un esempio, vogliamo fare un gioco su super eroi e la prima cose che vogliamo fare è gestire
 il profilo di un super eroe. Ad esempio per leggere tutti gli erori ci potrebbe venir voglia di scrivere
 
@@ -68,7 +68,7 @@ Man mano che il sistema evolve nascerebbero ulteriori endpoint e la manutenzione
 
 Cosa è sbagliato in questo approccio?
 
-*Gli URL dovrebbe contenere solo risorse (nomi) e non azioni o verbi!*. Ad esempio il path */addNewHero* contiene 
+*Gli URL dovrebbe contenere solo risorse (nomi) e non azioni o verbi!*. Ad esempio il path */addNewHero* contiene
 l'azione *addNew* e la risorsa chiamata *Hero*.
 
 Quindi quale sarebbe la strada corretta?
@@ -91,7 +91,7 @@ Con questo semplice accorgimento le API sono più concise e consistenti!
 Può essere utile questo accorgimento
 
 ```
-L'API descrive le risorse, quindi l'unico luogo dove le azioni dovrebbero apparire è nei metodi HTTP. 
+L'API descrive le risorse, quindi l'unico luogo dove le azioni dovrebbero apparire è nei metodi HTTP.
 Negli URL, utilizzare solo i nomi. Invece di pensare alle azioni (verbi), è spesso utile pensare a mettere un messaggio
 in una casella di posta: ad esempio, al posto di mettere il verbo delete nell'URL, si pensi di inviare un messaggio per
 eliminare un eroe alla casella di deletion lato server.
@@ -110,7 +110,7 @@ accedere agli end-point senza dover cambiare gli endpoint
 Quello che si consiglia è
 
 ```
-Versionare solo le major version che portano a cambiamenti di rottura del servizio e ridurre il numero di versioni 
+Versionare solo le major version che portano a cambiamenti di rottura del servizio e ridurre il numero di versioni
 supportate in produzione a 2: quella di utilizzo corrente e quella in dismissione.
 ```
 
@@ -143,22 +143,22 @@ Nel dettaglio:
 - createdAt: long che esprime in millisecondi dal 1970 la data e ora di creazione della risorsa
 - updaterId: id dell'utente che ha modificato per ultimo la risorsa
 - updatedAt: long che esprime in millisecondi dal 1970 la data e ora di ultimo aggiornamento della risorsa
-- sync e trash: le proprietà sync e trash appartengono ad ogni risorsa e sono rappresentate da numeri con una semantica ben precisa. 
+- sync e trash: le proprietà sync e trash appartengono ad ogni risorsa e sono rappresentate da numeri con una semantica ben precisa.
   La proprietà sync può assumere 3 valori: 0, 1 o 2.
-    
+
     - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di trash;
     - 1: la risorsa è stata modificata localmente e deve essere caricata sul BaaS. Questo valore ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
     - 2: la risorsa è in stato "draft" (bozza). L'applicazione client può scegliere (tramite configurazione) se salvare o no tale risorsa.
-    
+
     La proprietà trash può assumere 4 valori: 0, 1, 2, -1.
-    
+
     - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di sync;
     - 1, 2: la risorsa è nello stato "trash" ovvero non è stata cancellata fisicamente, ma non dovrebbe essere più visibile (2 = non visibile neanche al CMS);
     - -1: la risorsa deve essere eliminata definitivamente dal BaaS. Questo stato ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
-    
+
     Una piccola considerazione su sync == 1 e trash == -1: questi due valori hanno significato solo lato client e servono per la corretta sincronizzazione delle collezioni, in particolare per l'operazione di push. Questi valori non dovrebbero mai comparire sul BaaS, per questo motivo, prima di caricare una risorsa con sync == 1 è doveroso impostare sync = 0, mentre quando si ha trash == -1 l'operazione da effettuare sul BaaS è la cancellazione definitiva della risorsa.
-    
-    
+
+
     | sync                  | trash                 | description               | action  |
     | --------------------- |---------------------- | ------------------------- | --------|
     | 1 (client reserved)   | 0	                    | Changed by the client	    | Upload data (with sync set to 0). If no errors then update local data else re-set sync to 1 and skip.|
@@ -167,8 +167,8 @@ Nel dettaglio:
     | 2	                    | 2	                    | Trash (CMS not visible)   | Delete local data.|
     | 1	                    | -1 (client reserved)	| Deleted by the client	    | Delete remote data then, if no errors, delete local data.|
     | 1 (client reserved)   | 1	                    | Trashed by the client	    | Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
-    | -                     | -                     | Undefined	                | Delete local data or just skip.| 
-    
+    | -                     | -                     | Undefined	                | Delete local data or just skip.|
+
 - id: identificativo UUID generato da mongo per identificare la risorsa
 
 ### I tipi di dato di una risorsa
@@ -189,7 +189,7 @@ E' possibile specificare campi di diverse tipologie:
 Le API possono essere protette in due modi:
  - con chiave Secret
  - con ACL
- 
+
 L'API Modeller consente di gestire entrambe.
 
 Nel dettaglio
@@ -234,7 +234,7 @@ Nel dettaglio
    }
 ```
 
-La secret key viene configurata nel file 
+La secret key viene configurata nel file
 
 ```
 credentials.json
@@ -263,13 +263,13 @@ Un esempio lo potete trovare sul sito di [demo di Mia Platform](https://preprod.
 
 ### Creare una Risorsa
 
-Per creare una risorsa è sufficiente inviare una *POST* request all'endpoint passando nel body le informazioni della 
+Per creare una risorsa è sufficiente inviare una *POST* request all'endpoint passando nel body le informazioni della
 risorsa che si vuole creare.
 
 ```
 curl -X POST https://your-url/heroes/ \
 -H  "accept: application/json" \
--H  "content-type: application/json" \ 
+-H  "content-type: application/json" \
 -H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
 ```
 
@@ -312,7 +312,7 @@ Per leggere una risorsa è sufficiente chiamare con una GET l'endpoint
 ```
 curl -X GET https://your-url/heroes/ \
 -H  "accept: application/json"  \
--H  "content-type: application/json" \ 
+-H  "content-type: application/json" \
 -H  "secret: secret"
 ```
 
@@ -380,7 +380,7 @@ Per leggere un solo elemento è sufficiente passare alla GET l'id della risorsa 
 ```
 curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e  \
 -H  "accept: application/json"  \
--H  "content-type: application/json" \ 
+-H  "content-type: application/json" \
 -H  "secret: secret123"
 ```
 
@@ -500,13 +500,13 @@ In ritorno ottengo la risorsa aggiornata
 ### Cancellare una Risorsa
 
 Per eliminare una risorsa ho due opzioni:
- 
+
  - Cancellarla definitivamente con una DELETE request
  - Metterla nel cestino
- 
+
 Per metterla nel cestino è sufficiente impostare *trash* a 1 (per dettagli si veda la sezione [I campi base di una Risorsa](#base))
- 
-Per cancellarla definitivamente 
+
+Per cancellarla definitivamente
 
 ```
 curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
@@ -534,7 +534,7 @@ Nota: è possibile applicare i filtri al count
 
 ### Eliminare tutte le Risorse
 
-E' possibile eliminare in un colpo solo tutte le risorse di una collezione. Per questo è sufficiente invocare la DELETE con 
+E' possibile eliminare in un colpo solo tutte le risorse di una collezione. Per questo è sufficiente invocare la DELETE con
 l'endpoit /empty della risorsa.
 
 ```
@@ -875,4 +875,3 @@ Si veda la sezione dedicata [plugins](plugin.md)
 ## Eventi legati ad una API
 
 Dopo l'invocazione dei verbi HTTP è possibile invocare uno script nodejs che può aggiornare altri campi della risorsa.
-
