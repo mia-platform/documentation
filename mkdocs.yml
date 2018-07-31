@@ -38,8 +38,8 @@ pages:
   - Guida al Data Modeller: '/developer_guide/data_modeller/'
 
 - Configuration Manager:
-  - Configurare il CMS: '/developer_guide/conf_cms/'
-  - Configurare gli Analytics: '/developer_guide/conf_analytics/'
+  - Configurare il CMS: '/configurator/conf_cms/'
+  - Configurare gli Analytics: '/configurator/conf_analytics/'
 
 - DevOps:
   - Business Continuity: '/dev_ops_guide/business_continuity/'
