@@ -9,17 +9,17 @@ pages:
 - Home: 'index.md'
 
 - Getting Started:
-  - Dockerbox: 'getting_started/dockerbox.md'
-  - 5' minutes start - Hello World: 'getting_started/start-helloworld.md'
+  - Dockerbox: '/getting_started/dockerbox/'
+  - 5' minutes start - Hello World: '/getting_started/start-helloworld/'
 
 
 - Architecture:
-    - Global vision: 'architecture/arc_overview.md'
-    - Componenti: 'architecture/arc_components.md'
+    - Global vision: '/architecture/arc_overview/'
+    - Componenti: '/architecture/arc_components/'
 
 
 - Developers Suite Tech:
-  - Home: 'developer_guide/index.md'
+  - Home: '/developer_guide/'
   - API: '/developer_guide/api/'
   - OpenAPI: '/developer_guide/openapi/'
   - Creare un Plugin: '/developer_guide/plugin/'
@@ -32,34 +32,34 @@ pages:
   - Plugin Piattaforma 4: '/developer_guide/plugin_baas_4/'
 
 - Developers Suite Business:
-  - Files: 'developer_guide/files.md'
-  - Push notifications: 'developer_guide/push_notifications.md'
-  - Configurare il CMS: 'developer_guide/conf_cms.md'
-  - Configurare il servizio di News: 'developer_guide/conf_news.md'
-  - Configurare gli Analytics: 'developer_guide/conf_analytics.md'
-  - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+  - Files: '/developer_guide/files/'
+  - Push notifications: '/developer_guide/push_notifications/'
+  - Configurare il CMS: '/developer_guide/conf_cms/'
+  - Configurare il servizio di News: '/developer_guide/conf_news/'
+  - Configurare gli Analytics: '/developer_guide/conf_analytics/'
+  - Guida al Data Modeller: '/developer_guide/data_modeller/'
 
 - DevOps:
-  - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
-  - Business Continuity: 'dev_ops_guide/business_continuity.md'
+  - GIT Vademecum: '/dev_ops_guide/git_vademecum/'
+  - Business Continuity: '/dev_ops_guide/business_continuity/'
 
 - Users:
-  - Home: 'user_guide_and_tools/index.md'
-  - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
-  - CMS: 'user_guide_and_tools/cms/index.md'
+  - Home: '/user_guide_and_tools/'
+  - Api Console: '/user_guide_and_tools/api_console/guida_api_console/'
+  - CMS: '/user_guide_and_tools/cms/'
 
 - Administrators:
-  - Home: 'administrator_guide/index.md'
-  - Overview: 'administrator_guide/overview.md'
-  - Pipe di Rilascio: 'administrator_guide/../developer_guide/pipelines.md'
-  - Backup: 'administrator_guide/backup.md'
-  - Disaster Recovery: 'administrator_guide/disaster_recovery.md'
+  - Home: '/administrator_guide/'
+  - Overview: '/administrator_guide/overview/'
+  - Pipe di Rilascio: '/administrator_guide/../developer_guide/pipelines/'
+  - Backup: '/administrator_guide/backup/'
+  - Disaster Recovery: '/administrator_guide/disaster_recovery/'
 
 - About:
-  - Chi siamo: 'about/index.md'
-  - Architecture: 'architecture/index.md'
-  - Release Notes: 'release_notes/index.md'
-  - Contribute: 'about/contribute.md'
+  - Chi siamo: '/about/'
+  - Architecture: '/architecture/'
+  - Release Notes: '/release_notes/'
+  - Contribute: '/about/contribute/'
 theme:
   name: 'material'
   logo: 'img/mia-platform-white.png'
