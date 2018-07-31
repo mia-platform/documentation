@@ -4,7 +4,7 @@
 - [Veloce guida di inizio con dockerbox](getting_started/dockerbox.md)
 
 ## Architecture
-- Visione globale Mia-Platform
+- [Visione globale Mia-Platform](architecture/arc_overview.md)
 - Suite Business
 - [Suite Tech](architecture/arc_components.md)
 

@@ -13,7 +13,7 @@ pages:
   - 5' minutes start - Hello World: 'getting_started/start-helloworld.md'
 
 - Architecture:
-    - Global vision: 'architecture/index.md'
+    - Global vision: 'architecture/arc_overview.md'
     - Componenti: 'architecture/arc_components.md'
 
 - Developers Suite Tech:
