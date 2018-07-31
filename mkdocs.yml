@@ -12,10 +12,12 @@ pages:
   - Dockerbox: '/getting_started/dockerbox/'
   - 5' minutes start - Hello World: '/getting_started/start-helloworld/'
 
-
 - Architecture:
     - Global vision: '/architecture/arc_overview/'
     - Componenti: '/architecture/arc_components/'
+
+- Linee Guida Progettazione Mia:
+    - GIT Vademecum: '/guidelines/git_vademecum/'
 
 
 - Developers Suite Tech:
@@ -40,7 +42,6 @@ pages:
   - Guida al Data Modeller: '/developer_guide/data_modeller/'
 
 - DevOps:
-  - GIT Vademecum: '/dev_ops_guide/git_vademecum/'
   - Business Continuity: '/dev_ops_guide/business_continuity/'
 
 - Users:

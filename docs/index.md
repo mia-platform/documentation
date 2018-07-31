@@ -8,6 +8,9 @@
 - Suite Business
 - [Suite Tech](architecture/arc_components.md)
 
+## Linee Guida Progettazione Mia
+- [GIT Vademecum](guidelines/git_vademecum.md)
+
 ## Developer Guide Suite Tech
 - [API](developer_guide/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
 - [Specifica OpenAPI](developer_guide/openapi.md): tutte le API sono documentate secondo specifica OpenAPI, vediamo come.
@@ -30,7 +33,6 @@
 
 
 ## DevOps Guide ##
- - [GIT Vademecum](dev_ops_guide/git_vademecum.md)
  - [Business Continuity](dev_ops_guide/business_continuity.md)
 
 
