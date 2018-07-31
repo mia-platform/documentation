@@ -21,7 +21,7 @@ pages:
 - Developers Suite Tech:
   - Home: 'developer_guide/index.md'
   - API: 'developer_guide/api.md'
-  - OpenAPI: '/developer_guide/openapi.md'
+  - OpenAPI: '/developer_guide/openapi/'
   - Creare un Plugin: 'developer_guide/plugin.md'
   - Creare un Tema: 'developer_guide/theme.md'
   - Users: 'developer_guide/users.md'
