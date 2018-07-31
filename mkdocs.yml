@@ -23,18 +23,13 @@ pages:
 - Developers Suite Tech:
   - Home: '/developer_guide/'
   - API: '/developer_guide/api/'
-  - OpenAPI: '/developer_guide/openapi/'
   - Creare un Plugin: '/developer_guide/plugin/'
   - Creare un Tema: '/developer_guide/theme/'
   - Users: '/developer_guide/users/'
   - Cron: '/developer_guide/cron/'
   - iOS SDK: '/developer_guide/sdk_ios/'
   - Android SDK: '/developer_guide/sdk_android/'
-  - Pipelines: '/developer_guide/pipelines/'
   - Plugin Piattaforma 4: '/developer_guide/plugin_baas_4/'
-  - Files: '/developer_guide/files/'
-  - Push notifications: '/developer_guide/push_notifications/'
-  - Configurare il servizio di News: '/developer_guide/conf_news/'
   - Guida al Data Modeller: '/developer_guide/data_modeller/'
 
 - Configuration Manager:
