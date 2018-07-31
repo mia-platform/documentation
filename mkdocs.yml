@@ -75,6 +75,8 @@ extra:
       link: https://www.mia-platform.eu/
     - type: linkedin
       link: https://www.linkedin.com/company/mia-platform/
+  feature:
+    tabs: true
 google_analytics:
   - 'UA-122091925-1'
   - 'auto'
