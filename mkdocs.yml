@@ -19,17 +19,17 @@ pages:
 
 
 - Developers Suite Tech:
-  - Home: 'developer_guide/index.md'
-  - API: 'developer_guide/api.md'
+  - Home: '/developer_guide/index/'
+  - API: '/developer_guide/api/'
   - OpenAPI: '/developer_guide/openapi/'
-  - Creare un Plugin: './developer_guide/plugin.md'
-  - Creare un Tema: 'developer_guide/theme.md'
-  - Users: 'developer_guide/users.md'
-  - Cron: 'developer_guide/cron.md'
-  - iOS SDK: 'developer_guide/sdk_ios.md'
-  - Android SDK: 'developer_guide/sdk_android.md'
-  - Pipelines: 'developer_guide/pipelines.md'
-  - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
+  - Creare un Plugin: '/developer_guide/plugin/'
+  - Creare un Tema: '/developer_guide/theme/'
+  - Users: '/developer_guide/users/'
+  - Cron: '/developer_guide/cron/'
+  - iOS SDK: '/developer_guide/sdk_ios/'
+  - Android SDK: '/developer_guide/sdk_android/'
+  - Pipelines: '/developer_guide/pipelines/'
+  - Plugin Piattaforma 4: '/developer_guide/plugin_baas_4/'
 
 - Developers Suite Business:
   - Files: 'developer_guide/files.md'
