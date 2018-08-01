@@ -28,13 +28,12 @@
 - [Configurare il CMS](configurator/conf_cms.md): configurare il CMS.
 - [Configurare gli Analytics](configurator/conf_analytics.md): configurare gli Analytics e la dashboard.
 
-## DevOps Guide ##
- - [Home](dev_ops_guide/index.md)
+## DevOps Guide 
  - [Business Continuity](dev_ops_guide/business_continuity.md)
  - [Pipeline](dev_ops_guide/../developer_guide/pipelines)
  - [Backup](dev_ops_guide/backup.md)
  - [Disaster Recovery](dev_ops_guide/disaster_recovery.md)
- 
+
 ## User Backoffice
 - [CMS](user_guide_and_tools/cms/index.md)
 - [Api Console](user_guide_and_tools/api_console/guida_api_console.md)

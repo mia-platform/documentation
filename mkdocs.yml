@@ -21,7 +21,6 @@ pages:
     - GIT Vademecum: '/guidelines/git_vademecum/'
     - API: '/guidelines/api/'
 
-
 - Developers Guide:
   - Home: '/developer_guide/'
   - Creare un Plugin: '/developer_guide/plugin/'
@@ -38,7 +37,6 @@ pages:
   - Configurare gli Analytics: '/configurator/conf_analytics/'
 
 - DevOps:
-  - Home: '/dev_ops_guide/'
   - Business Continuity: '/dev_ops_guide/business_continuity/'
   - Pipe di Rilascio: '/dev_ops_guide/../developer_guide/pipelines/'
   - Backup: '/dev_ops_guide/backup/'
