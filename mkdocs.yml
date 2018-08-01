@@ -18,11 +18,11 @@ pages:
 
 - Linee Guida Progettazione Mia:
     - GIT Vademecum: '/guidelines/git_vademecum/'
+    - API: '/guidelines/api/'
 
 
-- Developers Suite Tech:
+- Developers Guide:
   - Home: '/developer_guide/'
-  - API: '/developer_guide/api/'
   - Creare un Plugin: '/developer_guide/plugin/'
   - Creare un Tema: '/developer_guide/theme/'
   - Users: '/developer_guide/users/'

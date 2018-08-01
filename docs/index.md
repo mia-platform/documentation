@@ -2,6 +2,7 @@
 
 ## Getting Started
 - [Veloce guida di inizio con dockerbox](getting_started/dockerbox.md)
+- [5' minutes start - Hello World](getting_started/start-helloworld.md)
 
 ## Architecture
 - [Visione globale Mia-Platform](architecture/arc_overview.md)
@@ -10,9 +11,10 @@
 
 ## Linee Guida Progettazione Mia
 - [GIT Vademecum](guidelines/git_vademecum.md)
+- [API](guidelines/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
 
 ## Developer Guide
-- [API](developer_guide/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
+
 - [Creare un plugin con il baaS 3](developer_guide/plugin.md): come creare una API con codice custom in nodejs.
 - [Creare un plugin con la Piattaforma 4](developer_guide/plugin_baas_4.md): Come utilizzare la libreria di custom plugin sul BaaS 4.
 - [Creare un tema](developer_guide/theme.md): come creare un tema html/css/javascript per Mia-Platform.
