@@ -9,7 +9,6 @@ pages:
 - Home: 'index.md'
 
 - Getting Started:
-  - 5' minutes start - Hello World: '/getting_started/start-helloworld/'
 
 - Architecture:
     - Global vision: '/architecture/arc_overview/'
