@@ -1,7 +1,7 @@
 # Documentazione di Mia-Platform #
 
 ## Getting Started
-- [5' minutes start - Hello World](/getting_started/start-helloworld.md/)
+- [5' minutes start - Hello World](getting_started/start-helloworld.md)
 
 ## Architecture
 - [Visione globale Mia-Platform](/architecture/arc_overview/)
