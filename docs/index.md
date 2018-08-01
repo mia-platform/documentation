@@ -1,7 +1,5 @@
 # Documentazione di Mia-Platform #
 
-## Getting Started
-
 ## Architecture
 - [Visione globale Mia-Platform](/architecture/arc_overview/)
 - Suite Business

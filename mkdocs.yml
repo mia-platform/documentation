@@ -8,8 +8,6 @@ pages:
 
 - Home: 'index.md'
 
-- Getting Started:
-
 - Architecture:
     - Global vision: '/architecture/arc_overview/'
     - Componenti: '/architecture/arc_components/'
