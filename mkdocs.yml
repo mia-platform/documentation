@@ -9,45 +9,45 @@ pages:
 - Home: 'index.md'
 
 - Architecture:
-    - Global vision: '/architecture/arc_overview/'
-    - Componenti: '/architecture/arc_components/'
-    - Overview: '/architecture/old_overview/'
+    - Global vision: 'architecture/arc_overview.md'
+    - Componenti: 'architecture/arc_components.md'
+    - Overview: 'architecture/old_overview.md'
 
 - Linee Guida Progettazione Mia:
-    - GIT Vademecum: '/guidelines/git_vademecum/'
-    - API: '/guidelines/api/'
+    - GIT Vademecum: 'guidelines/git_vademecum.md'
+    - API: 'guidelines/api.md'
 
 - Developers Guide:
-  - Home: '/developer_guide/'
-  - Creare un Plugin: '/developer_guide/plugin/'
-  - Creare un Tema: '/developer_guide/theme/'
-  - Users: '/developer_guide/users/'
-  - Cron: '/developer_guide/cron/'
-  - iOS SDK: '/developer_guide/sdk_ios/'
-  - Android SDK: '/developer_guide/sdk_android/'
-  - Plugin Piattaforma 4: '/developer_guide/plugin_baas_4/'
-  - Guida al Data Modeller: '/developer_guide/data_modeller/'
+  - Home: 'developer_guide.md'
+  - Creare un Plugin: 'developer_guide/plugin.md'
+  - Creare un Tema: 'developer_guide/theme.md'
+  - Users: 'developer_guide/users.md'
+  - Cron: 'developer_guide/cron.md'
+  - iOS SDK: 'developer_guide/sdk_ios.md'
+  - Android SDK: 'developer_guide/sdk_android.md'
+  - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
+  - Guida al Data Modeller: 'developer_guide/data_modeller.md'
 
 - Configuration Manager:
-  - Configurare il CMS: '/configurator/conf_cms/'
-  - Configurare gli Analytics: '/configurator/conf_analytics/'
+  - Configurare il CMS: 'configurator/conf_cms.md'
+  - Configurare gli Analytics: 'configurator/conf_analytics.md'
 
 - DevOps:
-  - Business Continuity: '/dev_ops_guide/business_continuity/'
-  - Pipe di Rilascio: '/dev_ops_guide/../developer_guide/pipelines/'
-  - Backup: '/dev_ops_guide/backup/'
-  - Disaster Recovery: '/dev_ops_guide/disaster_recovery/'
+  - Business Continuity: 'dev_ops_guide/business_continuity.md'
+  - Pipe di Rilascio: 'dev_ops_guide/../developer_guide/pipelines.md'
+  - Backup: 'dev_ops_guide/backup.md'
+  - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
 
 - User Backoffice:
-  - Home: '/user_guide_and_tools/'
-  - Api Console: '/user_guide_and_tools/api_console/guida_api_console/'
-  - CMS: '/user_guide_and_tools/cms/guide_cms/'
+  - Home: 'user_guide_and_tools.md'
+  - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
+  - CMS: 'user_guide_and_tools/cms/guide_cms.md'
 
 - About:
-  - Chi siamo: '/about/'
-  - Architecture: '/architecture/'
-  - Release Notes: '/release_notes/'
-  - Contribute: '/about/contribute/'
+  - Chi siamo: 'about/'
+  - Architecture: 'architecture/'
+  - Release Notes: 'release_notes/'
+  - Contribute: 'about/contribute/'
 theme:
   name: 'material'
   logo: 'img/mia-platform-white.png'
