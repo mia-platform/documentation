@@ -1,7 +1,6 @@
 # Documentazione di Mia-Platform #
 
 ## Getting Started
-- [Veloce guida di inizio con dockerbox](/getting_started/dockerbox/)
 - [5' minutes start - Hello World](/getting_started/start-helloworld/)
 
 ## Architecture

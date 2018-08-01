@@ -9,7 +9,6 @@ pages:
 - Home: 'index.md'
 
 - Getting Started:
-  - Dockerbox: '/getting_started/dockerbox/'
   - 5' minutes start - Hello World: '/getting_started/start-helloworld/'
 
 - Architecture:
