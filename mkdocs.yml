@@ -45,7 +45,7 @@ pages:
 - User Backoffice:
   - Home: '/user_guide_and_tools/'
   - Api Console: '/user_guide_and_tools/api_console/guida_api_console/'
-  - CMS: '/user_guide_and_tools/cms/'
+  - CMS: '/user_guide_and_tools/cms/guide_cms/'
 
 - About:
   - Chi siamo: '/about/'
