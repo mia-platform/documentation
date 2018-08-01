@@ -1,27 +1,27 @@
 [TOC]
 
 ## Introduzione
-Su Mia Platform è possibile rilasciare un sito statico (HTML, CSS, JavaScript) che interagisce con le API della 
+Su Mia Platform è possibile rilasciare un sito statico (HTML, CSS, JavaScript) che interagisce con le API della
 piattaforma. Un esempio è [https://www.mia-platform.eu/](https://www.mia-platform.eu/)
 
-A differenza delle API CRUD, descritte nella sezione [API](api.md), le *plugins* sono un contenitore di codice
+A differenza delle API CRUD, descritte nella sezione API, le *plugins* sono un contenitore di codice
 custom *node.js* che risponde ad un endpoint API e consentono di:
 
-Il concetto è semplice: le risorse statiche sono servite dall'endpoit sotto custom_themes e lato JavaScript 
+Il concetto è semplice: le risorse statiche sono servite dall'endpoit sotto custom_themes e lato JavaScript
 sono invocati gli endpoint a runtime.
 
 ## Esempio, Hello World theme
 
 Per realizzare un tema:
  - creare una directory con il nome del tema
- 
+
 ```
 mkdir -p app_hello/public
 cd app_hello
 ```
 
  - creare un file config.json con il seguente contenuto
- 
+
 ```
 {
   "id": "hello",
@@ -35,7 +35,7 @@ cd app_hello
 ```
 
  - copiare in public la build statica, con il file index.html
- 
+
 ```
  <!DOCTYPE html>
  <html>
@@ -44,11 +44,11 @@ cd app_hello
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  </head>
- 
+
  <body>
    <p>Hello!!!!</p>
  </body>
- 
+
  </html>
 ```
 
@@ -60,7 +60,3 @@ cd app_hello
 ```
 
  - chiamare l'endpoint [https://preprod.baas.makeitapp.eu/hello](https://preprod.baas.makeitapp.eu/hello)
-
- 
-
-

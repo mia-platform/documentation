@@ -26,7 +26,6 @@
 
 ## DevOps Guide
  - [Business Continuity](dev_ops_guide/business_continuity.md)
- - [Pipeline](dev_ops_guide/../developer_guide/pipelines)
  - [Backup](dev_ops_guide/backup.md)
  - [Disaster Recovery](dev_ops_guide/disaster_recovery.md)
 

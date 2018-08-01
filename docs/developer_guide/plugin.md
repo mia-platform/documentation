@@ -1,7 +1,7 @@
 [TOC]
 
 ## Introduzione
-A differenza delle API CRUD, descritte nella sezione [API](api.md), le *plugins* sono un contenitore di codice
+A differenza delle API CRUD, descritte nella sezione API, le *plugins* sono un contenitore di codice
 custom *node.js* che risponde ad un endpoint API e consentono di:
 
 - definire una o più route, ognuna con una o più funzioni di handler;
@@ -11,7 +11,7 @@ custom *node.js* che risponde ad un endpoint API e consentono di:
 - accedere ai servizi di files, push notifications, email marketing e altri servizi che saranno in futuro disponibili;
 - scrivere logiche complesse, testabili in modo autonomo.
 
-Una plugin, è installabile nella directory custom_plugins. Una volta installata è necessario fare restart di 
+Una plugin, è installabile nella directory custom_plugins. Una volta installata è necessario fare restart di
 Mia Platform.
 
 Segue una guida dettagliata per scrivere una plugin.
@@ -20,12 +20,12 @@ Segue una guida dettagliata per scrivere una plugin.
 
 Per realizzare un plugin:
  - creare una directory con il nome della plugin
- 
+
 ```
 mkdir plugin_hello
 cd plugin_hello
 ```
- 
+
  - creare un file index.js con il seguente contenuto
 
 ```
@@ -52,7 +52,7 @@ module.exports = MIAPluginHello;
 
 ```
  - creare un file config.json con il seguente contenuto
- 
+
 ```
  {
    "id": "helloworld",

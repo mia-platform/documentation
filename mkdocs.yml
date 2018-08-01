@@ -34,7 +34,6 @@ pages:
 
 - DevOps:
   - Business Continuity: 'dev_ops_guide/business_continuity.md'
-  - Pipe di Rilascio: 'dev_ops_guide/../developer_guide/pipelines.md'
   - Backup: 'dev_ops_guide/backup.md'
   - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
 
