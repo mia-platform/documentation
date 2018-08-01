@@ -118,7 +118,7 @@ supportate in produzione a 2: quella di utilizzo corrente e quella in dismission
 Per creare un'API si può utilizzare l'API Modeller all'indirizzo
 [https://yoururl.com/data_modeller/](https://yoururl.com/data_modeller/).
 
-Maggiori informazioni alla pagina [Data Modeller](data_modeller.md).
+Maggiori informazioni alla pagina Data Modeller.
 
 ### I campi base di una Risorsa {#base}
 
@@ -869,7 +869,7 @@ Segue un elenco dei codici di ritorno tipici di una request API:
 
 ## API con codice custom
 
-Si veda la sezione dedicata [plugins](plugin.md)
+Si veda la sezione dedicata plugins
 
 
 ## Eventi legati ad una API
