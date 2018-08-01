@@ -15,6 +15,7 @@ pages:
 - Architecture:
     - Global vision: '/architecture/arc_overview/'
     - Componenti: '/architecture/arc_components/'
+    - Overview: '/architecture/old_overview/'
 
 - Linee Guida Progettazione Mia:
     - GIT Vademecum: '/guidelines/git_vademecum/'
@@ -37,19 +38,16 @@ pages:
   - Configurare gli Analytics: '/configurator/conf_analytics/'
 
 - DevOps:
+  - Home: '/dev_ops_guide/'
   - Business Continuity: '/dev_ops_guide/business_continuity/'
+  - Pipe di Rilascio: '/dev_ops_guide/../developer_guide/pipelines/'
+  - Backup: '/dev_ops_guide/backup/'
+  - Disaster Recovery: '/dev_ops_guide/disaster_recovery/'
 
 - User Backoffice:
   - Home: '/user_guide_and_tools/'
   - Api Console: '/user_guide_and_tools/api_console/guida_api_console/'
   - CMS: '/user_guide_and_tools/cms/'
-
-- Administrators:
-  - Home: '/administrator_guide/'
-  - Overview: '/administrator_guide/overview/'
-  - Pipe di Rilascio: '/administrator_guide/../developer_guide/pipelines/'
-  - Backup: '/administrator_guide/backup/'
-  - Disaster Recovery: '/administrator_guide/disaster_recovery/'
 
 - About:
   - Chi siamo: '/about/'

@@ -8,6 +8,7 @@
 - [Visione globale Mia-Platform](architecture/arc_overview.md)
 - Suite Business
 - [Suite Tech](architecture/arc_components.md)
+- [Overview](architecture/old_overview.md)
 
 ## Linee Guida Progettazione Mia
 - [GIT Vademecum](guidelines/git_vademecum.md)
@@ -28,14 +29,12 @@
 - [Configurare gli Analytics](configurator/conf_analytics.md): configurare gli Analytics e la dashboard.
 
 ## DevOps Guide ##
+ - [Home](dev_ops_guide/index.md)
  - [Business Continuity](dev_ops_guide/business_continuity.md)
-
-<!--## Administrator Guide
-- Pipe di Rilascio
-- Build di un docker proprio
-- Scalabilità
-- Backup e Disaster recovery-->
-
+ - [Pipeline](dev_ops_guide/../developer_guide/pipelines)
+ - [Backup](dev_ops_guide/backup.md)
+ - [Disaster Recovery](dev_ops_guide/disaster_recovery.md)
+ 
 ## User Backoffice
 - [CMS](user_guide_and_tools/cms/index.md)
 - [Api Console](user_guide_and_tools/api_console/guida_api_console.md)
