@@ -18,7 +18,7 @@ pages:
     - API: 'guidelines/api.md'
 
 - Developers Guide:
-  - Home: 'developer_guide.md'
+  - Home: 'developer_guide/index.md'
   - Creare un Plugin: 'developer_guide/plugin.md'
   - Creare un Tema: 'developer_guide/theme.md'
   - Users: 'developer_guide/users.md'
@@ -39,15 +39,15 @@ pages:
   - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
 
 - User Backoffice:
-  - Home: 'user_guide_and_tools.md'
+  - Home: 'user_guide_and_tools/index.md'
   - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
   - CMS: 'user_guide_and_tools/cms/guide_cms.md'
 
 - About:
-  - Chi siamo: 'about/'
-  - Architecture: 'architecture/'
-  - Release Notes: 'release_notes/'
-  - Contribute: 'about/contribute/'
+  - Chi siamo: 'about/index.md'
+  - Architecture: 'architecture/old_overview.md'
+  - Release Notes: 'release_notes/index.md'
+  - Contribute: 'about/contribute.md'
 theme:
   name: 'material'
   logo: 'img/mia-platform-white.png'
