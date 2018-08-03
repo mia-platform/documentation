@@ -8,44 +8,49 @@ pages:
 
 - Home: 'index.md'
 
-- Architecture:
+  - Architecture: 'architecture/arc_overview.md'
     - Global vision: 'architecture/arc_overview.md'
     - Componenti: 'architecture/arc_components.md'
     - Overview: 'architecture/old_overview.md'
 
-- Linee Guida Progettazione Mia:
+  - Linee Guida Progettazione Mia: 'guidelines/git_vademecum.md'
     - GIT Vademecum: 'guidelines/git_vademecum.md'
     - API: 'guidelines/api.md'
 
-- Developers Guide:
-  - Creare un Plugin: 'developer_guide/plugin.md'
-  - Creare un Tema: 'developer_guide/theme.md'
-  - Users: 'developer_guide/users.md'
-  - Cron: 'developer_guide/cron.md'
-  - iOS SDK: 'developer_guide/sdk_ios.md'
-  - Android SDK: 'developer_guide/sdk_android.md'
-  - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
-  - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+  - About:
+    - Chi siamo: 'about/chisiamo.md'
 
-- Configuration Manager:
+  - Release Notes:
+      - Piattaforma: 'release_notes/platform_releasenotes.md'
+      - Api Console: 'release_notes/apiconsole_releasenotes.md'
+      - CMS: 'release_notes/cms_releasenotes.md'
+
+- Developers:
+  - Developer Guide: 'developer_guide/plugin.md'
+    - Creare un Plugin: 'developer_guide/plugin.md'
+    - Creare un Tema: 'developer_guide/theme.md'
+    - Users: 'developer_guide/users.md'
+    - Cron: 'developer_guide/cron.md'
+    - iOS SDK: 'developer_guide/sdk_ios.md'
+    - Android SDK: 'developer_guide/sdk_android.md'
+    - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
+    - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+
+  - Configuration Manager:
   - Configurare il CMS: 'configurator/conf_cms.md'
   - Configurare gli Analytics: 'configurator/conf_analytics.md'
 
-- DevOps:
+  - DevOps:
   - Business Continuity: 'dev_ops_guide/business_continuity.md'
   - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
 
-- User Backoffice:
+  - User Backoffice:
   - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
   - CMS: 'user_guide_and_tools/cms/guide_cms.md'
 
-- Release Notes:
-  - Piattaforma: 'release_notes/platform_releasenotes.md'
-  - Api Console: 'release_notes/apiconsole_releasenotes.md'
-  - CMS: 'release_notes/cms_releasenotes.md'
 
-- About:
-  - Chi siamo: 'about/chisiamo.md'
+
+
 
 theme:
   name: 'material'
@@ -66,7 +71,9 @@ extra:
     - type: linkedin
       link: https://www.linkedin.com/company/mia-platform/
   feature:
-    tabs: true
+    tabs: 'true'
+    
+
 google_analytics:
   - 'UA-122091925-1'
   - 'auto'
