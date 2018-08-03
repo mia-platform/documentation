@@ -33,7 +33,6 @@ pages:
 
 - DevOps:
   - Business Continuity: 'dev_ops_guide/business_continuity.md'
-  - Backup: 'dev_ops_guide/backup.md'
   - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
 
 - User Backoffice:

@@ -1,5 +1,0 @@
-# Disaster recovery
-
-## Cloud
-
-## Hosted
