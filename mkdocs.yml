@@ -18,7 +18,6 @@ pages:
     - API: 'guidelines/api.md'
 
 - Developers Guide:
-  - Home: 'developer_guide/index.md'
   - Creare un Plugin: 'developer_guide/plugin.md'
   - Creare un Tema: 'developer_guide/theme.md'
   - Users: 'developer_guide/users.md'
