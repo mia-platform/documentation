@@ -49,6 +49,7 @@ pages:
 
 theme:
   name: 'material'
+  custom_dir: 'theme'
   logo: 'img/mia-platform-white.png'
   favicon: 'img/favicon.ico'
   language: 'it'
@@ -65,7 +66,7 @@ extra:
     - type: linkedin
       link: https://www.linkedin.com/company/mia-platform/
   feature:
-    tabs: false
+    tabs: true
 google_analytics:
   - 'UA-122091925-1'
   - 'auto'
