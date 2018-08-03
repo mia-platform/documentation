@@ -34,10 +34,9 @@
 - [Guida al Data Modeller](developer_guide/data_modeller.md): l'interfaccia utente per gli sviluppatori di Mia-Platform.
 
 ## Release Notes: le ultime novità sui nostri componenti
-- CMS
-- Api Console
-- Piattaforma
+- [Piattaforma](release_notes/platform_releasenotes.md)
+- [Api Console](release_notes/apiconsole_releasenotes.md)
+- [CMS](release_notes/cms_releasenotes.md)
 
 ## About
-- [Le caratteristiche principali](about/index.md)
-- [La storia ](about/index.md)
+- [Chi siamo](about/chisiamo.md)

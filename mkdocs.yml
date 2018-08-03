@@ -39,11 +39,14 @@ pages:
   - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
   - CMS: 'user_guide_and_tools/cms/guide_cms.md'
 
+- Release Notes:
+  - Piattaforma: 'release_notes/platform_releasenotes.md'
+  - Api Console: 'release_notes/apiconsole_releasenotes.md'
+  - CMS: 'release_notes/cms_releasenotes.md'  
+
 - About:
-  - Chi siamo: 'about/index.md'
-  - Architecture: 'architecture/old_overview.md'
-  - Release Notes: 'release_notes/index.md'
-  - Contribute: 'about/contribute.md'
+  - Chi siamo: 'about/chisiamo.md'
+
 theme:
   name: 'material'
   logo: 'img/mia-platform-white.png'
