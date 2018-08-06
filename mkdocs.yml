@@ -11,7 +11,7 @@ pages:
   - Global vision: 'architecture/arc_overview.md'
   - Componenti: 'architecture/arc_components.md'
   - Overview: 'architecture/old_overview.md'
-- Linee Guida Progettazione Mia: 
+- Linee Guida Progettazione Mia:
   - GIT Vademecum: 'guidelines/git_vademecum.md'
   - API: 'guidelines/api.md'
 - About:
@@ -42,7 +42,6 @@ pages:
 
 theme:
   name: 'material'
-  custom_dir: 'theme'
   logo: 'img/mia-platform-white.png'
   favicon: 'img/favicon.ico'
   language: 'it'
