@@ -7,19 +7,20 @@ pages:
 
 
 - Home: 'index.md'
-- Architecture:
-  - Global vision: 'architecture/arc_overview.md'
-  - Componenti: 'architecture/arc_components.md'
-  - Overview: 'architecture/old_overview.md'
-- Linee Guida Progettazione Mia:
-  - GIT Vademecum: 'guidelines/git_vademecum.md'
-  - API: 'guidelines/api.md'
-- About:
-  - Chi siamo: 'about/chisiamo.md'
-- Release Notes:
-  - Piattaforma: 'release_notes/platform_releasenotes.md'
-  - Api Console: 'release_notes/apiconsole_releasenotes.md'
-  - CMS: 'release_notes/cms_releasenotes.md'
+- Fase 1:
+  - Architecture:
+    - Global vision: 'architecture/arc_overview.md'
+    - Componenti: 'architecture/arc_components.md'
+    - Overview: 'architecture/old_overview.md'
+  - Linee Guida Progettazione Mia:
+    - GIT Vademecum: 'guidelines/git_vademecum.md'
+    - API: 'guidelines/api.md'
+  - About:
+    - Chi siamo: 'about/chisiamo.md'
+  - Release Notes:
+    - Piattaforma: 'release_notes/platform_releasenotes.md'
+    - Api Console: 'release_notes/apiconsole_releasenotes.md'
+    - CMS: 'release_notes/cms_releasenotes.md'
 - Developer Guide:
   - Creare un Plugin: 'developer_guide/plugin.md'
   - Creare un Tema: 'developer_guide/theme.md'
