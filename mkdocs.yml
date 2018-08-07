@@ -53,14 +53,14 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-extra:
   feature:
     tabs: 'true'
-  social:
-    - type: globe
-      link: https://www.mia-platform.eu/
-    - type: linkedin
-      link: https://www.linkedin.com/company/mia-platform/
+  extra:
+    social:
+      - type: globe
+        link: https://www.mia-platform.eu/
+      - type: linkedin
+        link: https://www.linkedin.com/company/mia-platform/
 
 
 google_analytics:
