@@ -6,7 +6,8 @@ copyright: Mia srl. Tutti i diritti riservati.
 pages:
 
 
-- General: 'index.md'
+- Home: 'index.md'
+- General:
   - Architecture:
     - Global vision: 'architecture/arc_overview.md'
     - Componenti: 'architecture/arc_components.md'
