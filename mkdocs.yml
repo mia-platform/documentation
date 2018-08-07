@@ -32,6 +32,7 @@ pages:
     - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
     - Guida al Data Modeller: 'developer_guide/data_modeller.md'
   - Configuration Manager:
+    - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
     - Configurare il CMS: 'configurator/conf_cms.md'
     - Configurare gli Analytics: 'configurator/conf_analytics.md'
   - DevOps:
