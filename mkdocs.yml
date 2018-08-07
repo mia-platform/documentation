@@ -6,8 +6,7 @@ copyright: Mia srl. Tutti i diritti riservati.
 pages:
 
 
-- Home: 'index.md'
-- Fase 1:
+- General: 'index.md'
   - Architecture:
     - Global vision: 'architecture/arc_overview.md'
     - Componenti: 'architecture/arc_components.md'
@@ -22,23 +21,24 @@ pages:
     - Api Console: 'release_notes/apiconsole_releasenotes.md'
     - CMS: 'release_notes/cms_releasenotes.md'
 - Developer Guide:
-  - Creare un Plugin: 'developer_guide/plugin.md'
-  - Creare un Tema: 'developer_guide/theme.md'
-  - Users: 'developer_guide/users.md'
-  - Cron: 'developer_guide/cron.md'
-  - iOS SDK: 'developer_guide/sdk_ios.md'
-  - Android SDK: 'developer_guide/sdk_android.md'
-  - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
-  - Guida al Data Modeller: 'developer_guide/data_modeller.md'
-- Configuration Manager:
-  - Configurare il CMS: 'configurator/conf_cms.md'
-  - Configurare gli Analytics: 'configurator/conf_analytics.md'
-- DevOps:
-  - Business Continuity: 'dev_ops_guide/business_continuity.md'
-  - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
-- User Backoffice:
-  - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
-  - CMS: 'user_guide_and_tools/cms/guide_cms.md'
+  - Developer:
+    - Creare un Plugin: 'developer_guide/plugin.md'
+    - Creare un Tema: 'developer_guide/theme.md'
+    - Users: 'developer_guide/users.md'
+    - Cron: 'developer_guide/cron.md'
+    - iOS SDK: 'developer_guide/sdk_ios.md'
+    - Android SDK: 'developer_guide/sdk_android.md'
+    - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
+    - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+  - Configuration Manager:
+    - Configurare il CMS: 'configurator/conf_cms.md'
+    - Configurare gli Analytics: 'configurator/conf_analytics.md'
+  - DevOps:
+    - Business Continuity: 'dev_ops_guide/business_continuity.md'
+    - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
+  - User Backoffice:
+    - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
+    - CMS: 'user_guide_and_tools/cms/guide_cms.md'
 
 
 theme:
