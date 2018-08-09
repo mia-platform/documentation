@@ -149,8 +149,8 @@ Cosa devo fare?
     == | uguale
     != | diverso
     === | strettamente uguale
-    !== ! strettamente diverso
-  
+    !== | strettamente diverso
+
 
 
 #### Controllo in fase di modifica di un elemento
