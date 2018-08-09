@@ -137,7 +137,7 @@ Cosa devo fare?
 2. scegliere il **comparatore**.
 3. scegli il **valore**.
 
-!!! tips
+!!! tip
     I comparatori supportati sono i seguenti:
 
     valore | commento
