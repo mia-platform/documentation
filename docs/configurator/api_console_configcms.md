@@ -137,6 +137,21 @@ Cosa devo fare?
 2. scegliere il **comparatore**.
 3. scegli il **valore**.
 
+!!! tips
+    I comparatori supportati sono i seguenti:
+
+    valore | commento
+    -------|---------
+    < | minore
+    <= | minore o uguale
+    '>' | maggiore
+    '>=' | maggiore o uguale
+    == | uguale
+    != | diverso
+    === | strettamente uguale
+    !== ! strettamente diverso
+  
+
 
 #### Controllo in fase di modifica di un elemento
 
@@ -154,7 +169,7 @@ Dovrai sempre:
     voglio che questa proprietà compaia solamente quando la proprietà *deperibile* è uguale a true.
 
     1. scegliere la **proprietà**, scelgo deperibile.
-    2. scegliere il **comparatore**, nel nostro caso **=**
+    2. scegliere il **comparatore**, nel nostro caso **==**
     3. scegli il **valore**, nel nostro caso **true**
 
 ## 3. Le Lookup
