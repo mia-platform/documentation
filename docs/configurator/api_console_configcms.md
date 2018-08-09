@@ -137,19 +137,19 @@ Cosa devo fare?
 2. scegliere il **comparatore**.
 3. scegli il **valore**.
 
-!!! tip
+!!! tip "Comparatori"
     I comparatori supportati sono i seguenti:
 
     valore | commento
     -------|---------
-    < | minore
-    <= | minore o uguale
+    `<` | minore
+    `<=` | minore o uguale
     `>` | maggiore
     `>=` | maggiore o uguale
-    == | uguale
-    != | diverso
-    === | strettamente uguale
-    !== | strettamente diverso
+    `==` | uguale
+    `!=` | diverso
+    `===` | strettamente uguale
+    `!==` | strettamente diverso
 
 
 
