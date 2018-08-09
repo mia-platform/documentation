@@ -144,8 +144,8 @@ Cosa devo fare?
     -------|---------
     < | minore
     <= | minore o uguale
-    '>' | maggiore
-    '>=' | maggiore o uguale
+    `>` | maggiore
+    `>=` | maggiore o uguale
     == | uguale
     != | diverso
     === | strettamente uguale
