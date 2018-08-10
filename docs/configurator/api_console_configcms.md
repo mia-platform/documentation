@@ -225,3 +225,32 @@ La query sarà: {"state": "working"}
 
 !!! example "Un esempio di Lookup sulla collezione armi"
     ![Un esempio di Lookup sulla collezione armi](img/lookup-armi.JPG)
+
+## 4. Creare un bottone
+
+Da Api Console è anche possibile scegliere di configurare dei bottoni. I bottoni sono delle azioni che si vogliono fare su un dato o su un insieme di dati.
+
+![sezione creo bottone](img/creo-bottone.JPG)
+
+I bottoni vengono visualizzati nella zona alta centrale del CMS vicino ai bottoni di publish, draft e trash
+
+Per creare un bottone bisogna andare nella sezione Bottni e configurare i seguenti campi:
+
+* **ID**: rappresenta il campo che identifica l'azione in modo univoco. è un campo immodificabile
+* **Etichetta**: rappresenta il nome che vuoi che compaia nel CMS
+* **Rotta**: in questo campo dovrai inserire la rotta a cui la tua azione deve puntare
+* **Icona**: per ogni bottone puoi anche impostare una icona
+
+Nell'Api Console visualizzerai poi comodamente a card i bottoni creati
+
+!!! example "Esempio di un bottone"
+    Facciamo un esempio di un bottone nella nostra pagina Eroi Buoni. Il bottone servirà a contattare un eroe.
+    Sarà:
+
+    * id: contatta-eroe
+    * etichetta: Contatta Eroe
+    * rotta: /action
+    * icona: phone
+
+    ecco come comparirà il nostro bottone:
+    ![bottone in cms](img/bottone-in-cms.JPG)
