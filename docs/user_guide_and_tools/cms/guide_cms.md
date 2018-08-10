@@ -209,6 +209,12 @@ Nel CMS si possono **importare/esportare** dati da file CSV oppure JSON cliccand
 
 ![image alt text](img\image_14.png)
 
+Quando esporti dei dati puoi anche scegliere due impostazioni:
+
+1. se visualizzare nel file l'**id** o la **label**. Per fare un esempio se il mio id è **createdAt** e la mia label è **Data Creazione** forse ad un utente terzo la label è più chiara.
+
+2. puoi scegliere se scaricare un file con delimitatore la **,** o il **;** . Il **;** ti è utile se esporti un file in formato .csv e lo vuoi visualizzare con excel
+
 **Per importare un file.csv è necessario seguire alcune indicazioni.**
 
 Scaricare il *“Template”* da compilare. Aprire il Template in Excel. Se il file non è automaticamente in colonne separate andare in “Dati”, Cliccare “ Testo in colonne”, Selezionare “Delimitato”, Selezionare come delimitazione “virgola”, e cliccare su Avanti.
@@ -269,7 +275,7 @@ Si possono inoltre aggiungere dei filtri di ricerca ulteriori che andranno ad ag
 
 # Gestione dei media
 
-Nella collezione Media vengono gestiti tutti gli *upload *sul CMS: immagini, video, pdf e altri allegati che possono essere richiamati nelle altre collezioni, o che sono stati caricati in altre collezioni e sono raccolti qua.
+Nella collezione Media vengono gestiti tutti gli *upload* sul CMS: immagini, video, pdf e altri allegati che possono essere richiamati nelle altre collezioni, o che sono stati caricati in altre collezioni e sono raccolti qua.
 
 Si troveranno, ad esempio, tutte le copertine dei libri della collezione schede libri.
 
@@ -291,11 +297,11 @@ Si potrà decidere ad esempio di creare dei gruppi dinamici ai quali inviare una
 
 # Gli elementi che compongono il CMS
 
-## I campi di input
+### I campi di input
 
 ### Inserimento testo
 
-### ![image alt text](img\image_21.png)
+![image alt text](img\image_21.png)
 
 ### Campi di selezione
 
