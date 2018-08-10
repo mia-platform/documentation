@@ -633,7 +633,7 @@ It is possible to do it by assigning an array of classes to the **sync** variabl
 
 ## CRUD Framwerork
 
-**CRUD** id the module of the SDK that interacts with the BaaS starting from version 4. It offers all the tools to create, read, update, and delete objects from and to the BaaS. It offers also the Sync functionality, a *MIASyncro*** revisiting that is compatible with the BaaS 4 CRUD. 
+**CRUD** is the module of the SDK that interacts with the BaaS starting from version 4. It offers all the tools to create, read, update, and delete objects from and to the BaaS. It offers also the Sync functionality, a **MIASyncro** revisiting that is compatible with the BaaS 4 CRUD. 
 
 ### Add the CRUD module to your Xcode project
 
@@ -641,7 +641,8 @@ Extract the content of the SDK from the zip file and drag and drop the **CRUD.fr
 
 ![iOS sdk xcode](img/ios-sdk-add-xcode.png)
 
-**Pay attention:** the two options **Copy items if needed** and **Create Groups** must be selected!
+!!! note 
+    The two options **Copy items if needed** and **Create Groups** must be selected!
 
 Go to the **Build Phases** section of your project and add the following line of code to the click on the **Embedded SDK** script:
 
@@ -658,54 +659,44 @@ Lastly, check in **Build Settings** if **Enable Bitcode** is setted to **No**.
 Now you can safely import the CRUD framework in all the files where you want to use its functionality with the familiar statement:
 
 ```
-Swift
-
 import CRUD
 ```
 
 #### Create, Read, Update, Delete
 
-Writing and reading operations from and to the BaaS can be done with the CRUD class, which is the maim module of the Framework. All the operations are synchronous and asynchronous, in order to give to the developer more flexibility. 
+Writing and reading operations from and to the BaaS can be done with the CRUD class, which is the main module of the Framework. All the operations are *synchronous* and *asynchronous*, in order to give to the developer more flexibility. 
 
-In order to use the CRUD, it is necessary to instantiate it with the base path of the BaaS and the API secret key. 
+To use the CRUD, it is necessary to instantiate it with the base path of the BaaS and the API secret key. 
 
 !!! note
     The base path and the API secret will be handed over by your App Angel when the team’s BaaS will be created.
 
 ```
-Swift
-
 let crud = CRUD(basePath: "<YourProjectBasePath>", secret: "<YourProjectSecret>")
 ```
 
 !!! tip
-    Instantiate the CRUD in a singleton class that is always reachable by the other classes of the app. So there isn't the necessity to instantiate it each time you need to operate with the CRUD. 
+    Instantiate the CRUD in a class that is always reachable by the other classes of the app. So there isn't the necessity to instantiate it each time you need to operate with the CRUD. 
 
-Through the crud instance is possible to access all the CRUD methods (GET,POST,PATCH and DELETE). For example, to perform a GET request to a collection called "Author", it is possible to proceed as follow:
+Through the crud instance is possible to access all the CRUD methods (GET,POST,PATCH and DELETE). For example, to perform a GET request to a collection called "**Author**", it is possible to proceed as follow:
 
 ```
-Swift
-
 crud.get(collection: "author", queryBuilder: nil)
 ```
 
-The get method accept a query parameter. It is useful to perform mongo query on the objects of the collection. The query can be passed in two ways: 
+The *get* method accept a query parameter. It is useful to perform mongo queries on the objects of the collection. The query can be passed in two ways: 
 
 * through a string: in this case it is necessary to write manually the mongo query;
-* using the QueryBuilder: it is an object that permits to create complex mongo query using a comfortable interface.
+* using the **QueryBuilder**: it is an object that permits to create complex mongo query using a comfortable interface.
 
 ```
-Swift
-
 let query = QueryBuilder().or(queryBuilders: QueryBuilder().equals(key: "name", value: "Giovanni"), QueryBuilder().equals(key: "name", value: "Carlo"))
 let get = crud.get(collection: "author", queryBuilder: query)
 ```
 
-Others useful parameters are configurable using the **GET** object. For example it is possible to limit the number of returned objects, skip the first n elements, filter the properties and so on.
+Others useful parameters are configurable using the **GET** object. For example it is possible to limit the number of returned objects, skip the first **n** elements, filter the properties and so on.
 
 ```
-Swift
-
 get.limit(200)
 get.skip(500)
 get.limitProperties(["name","surname","age"])
@@ -715,14 +706,13 @@ get.sortBy(property: "age", descending: true)
 When you are ready, you can perform the query in a synchronous or asynchronous way. 
 
 ```
-Swift - synchronous
-
-let result: Data = try get.sync()
+let data: Data = try get.sync()
+let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 ```
 
-```
-Swift - asynchronous
+or
 
+```
 get.async { (data: Data?, error: Error?) in
             if let data = data, error == nil {
                 let result = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
@@ -731,27 +721,21 @@ get.async { (data: Data?, error: Error?) in
 ```
 
 !!! tip
-    Alle the CRUD methods support Apple **Codable** protocol. It means that you can create a model class of the collection object and implements the Codable protocol (you can refer to the [Apple Documentation](https://developer.apple.com/documentation/swift/codable) for more informations about this protocol). Then, passing the object type class, the returned object of the CRUD operation is not a generic **Data** object but an object of the passed type. The SDK perform automatically the mapping between the returned object and the Codable class. 
+    Alle the CRUD methods support Apple **Codable** protocol. It means that you can create a model class of the collection object and implements the Codable protocol (you can refer to the [Apple Documentation](https://developer.apple.com/documentation/swift/codable) for more informations about this protocol). Then, passing the object type class, the returned object of the CRUD operation is not a generic **Data** object but an object of the passed type. The SDK performs automatically the mapping between the returned object and the Codable class. 
 
     ```
-    Swift
-
     let authors: [Author] = try get.sync(object: Author.self)
     ```
 
 Usually, to access the BaaS collections it is necessary to be logged. You can set the **Session Identifier** (**SID**) using the dedicated method of the CRUD. 
 
 ```
-Swift 
-
 crud.setSessionID(sessionID: "<YourSID>")
 ```
 
-It is possible also remove the SID (for example when yhe user logout).
+It is possible also remove the SID (for example when the user logout).
 
 ```
-Swift
-
 crud.resetSessionID()
 ```
 
@@ -761,16 +745,12 @@ crud.resetSessionID()
 To create a new object on the BaaS it is possible to use the **POST** method of the CRUD. 
 
 ```
-Swift
-
 let post = crud.post(collection: "author")
 ```
 
-The framework offers different possibilities to create new objects. For example, the developer can create a dictionary where the keys are the property name and the values are the the value of the propertis object. If you have a **Data** representation of the new object, you can use it. Also, you can use an object that implements the Encodable protocol. In this case you can instantiate the object, assign the property values and the pass the instance of the object to the post object. It automatically serialize the object and create a new instance of it on the BaaS.
+The framework offers different possibilities to create new objects. For example, the developer can create a dictionary where the keys are the property name and the values are the the value of the properties object. If you have a **Data** representation of the new object, you can use it. Also, you can use an object that implements the **Encodable** protocol. In this case you can instantiate the object, assign the property values and then pass the instance of the Encodable object to the post object. It automatically serialize the object and create a new instance of it on the BaaS.
 
 ```
-Swift
-
 let author = Author()
 author.name = "Alessandro"
 author.surname = "Manzoni"
@@ -784,8 +764,6 @@ The result of the POST operation is the id that has been assigned to the object.
 The PATCH operation permits to update some properties of an object and remove the value of others properties. 
 
 ```
-Swift
-
 let patch = crud.patch(collection: "author")
 patch.update(object: 88, for: "age")
 let id = try patch.sync(id: "<ObjectId>")
@@ -794,39 +772,28 @@ let id = try patch.sync(id: "<ObjectId>")
 The PATCH operation cannot update the state of the object. To perform this action, it is necessary to use the dedicated method. 
 
 ```
-Swift 
-
 let post = crud.post(collection: "author")
 try post.syncChangeState(id: "<ObjectId>", newState: .draft)
 ```
 
 #### Sync
 
-The **CRUD Framework** offers an utility class that permits to automatically synchronize some collections between an app and the BaaS. This class is called **Sync**. It is a class for syncing  data from BaaS into the local database and viceversa. The local database is represented and referenced by a NSManagedObjectContext.
+The **CRUD Framework** offers an utility class that permits to automatically synchronize some collections between an app and the BaaS. This class is called **Sync**. It is a class for syncing data from BaaS into the local database and viceversa. The local database is represented and referenced by a NSManagedObjectContext.
 
 The sync behaviour is inspired by git: there are a pull action first and then a push action. Changes from BaaS have greater priority than local changes so, if a conflict is present, changes from BaaS will replace local changes.
 
 In particular values from BaaS that have updatedAt greater than updatedAt of local objects, these local objects will be updated (replaced) or deleted, depends on the status.
 
-In order to use the Sync class, you have to initialize it. This operation must be done as soon as the application start (for example in the **AppDelegate**). In order to initialize it, write the following line of code after the MKApp initialization:
+In order to use the Sync class, you have to initialize it. This operation must be done as soon as the application start (for example in the **AppDelegate**). In order to initialize it, write the following line of code:
 
 ```
-Swift
-
-let appInstance = MKAppInstance.sharedInstance
-
 let crud = CRUD(basePath: "<YourProjectBasePath>", secret: "<YourProjectSecret>")
-crud.setSessionID(sessionID: "<YourSID>")
-crud.resetSessionID()
-        
 let sync = Sync(crud: crud, context: managedObjectContext)
 ```
 
-In order to be instantiated, Sync needs to have a managed object model where to save the collection to sync. MIASync will create a default managedObjectContext using this mode. It is also possible to create by yourself a managed object context and initialize the Sync with it. It is also necessary to pass an instance of the CRUD class. After that an instance of Sync has been created, it is necessary to declare which collections must be synced.
+In order to be instantiated, Sync needs to have a managed object model where to save the collection to sync. Sync will create a default managedObjectContext using this mode. It is also possible to create by yourself a managed object context and initialize the Sync with it. It is also necessary to pass an instance of the CRUD class. After that an instance of Sync has been created, it is necessary to declare which collections must be synced.
 
 ```
-Swift
-
 sync.sync(types: [Author.self,Book.self])
 ```
 
@@ -835,8 +802,6 @@ It is possible to do it by assigning an array of classes to the **sync** variabl
 Each time that some changes have been done to the local objects, it is necessary to mark them as *to sync*. This operation can be done using the dedicated methods:
 
 ```
-Swift
-
 sync.toPush(entities: [entity1,entity2])
 sync.toPublic(entities: [entity3])
 sync.toDelete(entities: [entity4,entity5,entity6])
@@ -855,24 +820,18 @@ Each method accepts an array of **NSManagedObject**, which are the instance of t
 After that the entities have been marked, it is necessary to call the method **sync** to start the sync phase. 
 
 ```
-Swift
-
 sync.sync(types: [Author.self,Book.self])
 ```
 
 It will start pulling all the modifications from the BaaS, then will start the push phase, where all the local modifications will be pushed to the BaaS. The sync phase can be monitored observing a notification. In particular it is possible to register to the sync notification using this method:
 
 ```
-Swift
-
 NotificationCenter.default.addObserverForSyncStatus(observer: self, selector: #selector(syncState:), object: nil)
 ```
 
-The userInfo of the notification contains an instance of the object **SyncStatus**. It offers a view to the sync state. For example, it is possible to see which class is syncing, the progress and, eventually, the errors of the operation. 
+The **userInfo** of the notification contains an instance of the object **SyncStatus**. It offers a view to the sync state. For example, it is possible to see which class is syncing, the progress and, eventually, the errors of the operation. 
 
 ```
-Swift
-
 func syncState(_ sender: Notification) {
     guard let status = sender.userInfo?[kMIASyncroNotificationKeyStatus] as? SyncStatus else {
         return
