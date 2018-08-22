@@ -19,7 +19,7 @@ Esempio di payload di registrazione:
   "token": "<long_alphanumeric_id specific to the couple app-device>",
   "platform": "android",
   "tags": [
-    "weather", "finance", "early_user", "some", "other", "tag"
+    "app_updates", "news", "finance", "early_user", "some", "other", "tag"
   ]
 }
 ```
@@ -88,7 +88,7 @@ Le proprietà sono le seguenti:
 - userId: string o ObjectId, riferimento all'utente che si è registrato
 - token: string, il token ios o android che identifica il device e la app
 - tags: list of strings, contrassegni di utenti interessati a topic o raggruppati come insieme di utenti
-- platform: string, the platform of the device, currently it can be only `android`, `ios`, `mock` (case-sensitive!)
+- platform: string, la piattaforma del dispositivo `android`, `ios`, `mock` (case-sensitive!)
 
 ### Notifications
 Questa collezione mantiene lo storico delle notifiche inviate. Proprietà:
