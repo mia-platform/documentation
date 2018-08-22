@@ -83,16 +83,20 @@ Il servizio si appoggia a due collezioni del `CRUD`: `devices` e `notifications`
 ### Devices
 Questa collezione contiene il registro dei dispositivi registrati, un documento per token di registrazione (quindi possono esserci più documenti per ogni utente). __Questa collezione non va utilizzata direttamente dai client, che hanno le API di registrazione autenticate!__.
 Le proprietà sono le seguenti:
-- `userId`: string o ObjectId, riferimento all'utente che si è registrato
-- `token`: string, il token ios o android che identifica il device e la app
-- `tags`: list of strings, contrassegni di utenti interessati a topic o raggruppati come insieme di utenti
-- `platform`: string, the platform of the device, currently it can be only `android`, `ios`, `mock` (case-sensitive!)
+
+
+- userId: string o ObjectId, riferimento all'utente che si è registrato
+- token: string, il token ios o android che identifica il device e la app
+- tags: list of strings, contrassegni di utenti interessati a topic o raggruppati come insieme di utenti
+- platform: string, the platform of the device, currently it can be only `android`, `ios`, `mock` (case-sensitive!)
 
 ### Notifications
 Questa collezione mantiene lo storico delle notifiche inviate. Proprietà:
-- `title`: string, il titolo indipendente dalla piattaforma
-- `body`: string, il messaggio indipendente dalla piattaforma
-- `payload`: il payload custom indipendente dalla piattaforma
-- `platformSpecificContent`: object, personalizzazioni della notifica dipendendìti dalla piattaforma
-- `destination`: object, un descrittore che contiene il tipo `type` della destinazione e la lista dei destinatari
-- `outcome`: object, il risultato dell'invio della notifica
+
+
+- title: string, il titolo indipendente dalla piattaforma
+- body: string, il messaggio indipendente dalla piattaforma
+- payload: il payload custom indipendente dalla piattaforma
+- platformSpecificContent: object, personalizzazioni della notifica dipendendìti dalla piattaforma
+- destination: object, un descrittore che contiene il tipo `type` della destinazione e la lista dei destinatari
+- outcome: object, il risultato dell'invio della notifica
