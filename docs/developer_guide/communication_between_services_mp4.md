@@ -22,6 +22,8 @@ Si invita a consultare la documentazione `OpenAPI` (swagger) dei servizi per con
 
 ## Comunicazione tra servizi
 Ci sono due possibilità per raggiungere i servizi in generale:
+
+
 - tramite `microservice-gateway`
 - diretta
 
