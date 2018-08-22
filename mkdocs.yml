@@ -30,6 +30,7 @@ pages:
     - iOS SDK: 'developer_guide/sdk_ios.md'
     - Android SDK: 'developer_guide/sdk_android.md'
     - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
+    - Push Notifications Piattaforma 4: 'developer_guide/push_notifications_platform_4.md'
     - Guida al Data Modeller: 'developer_guide/data_modeller.md'
   - Configuration Manager:
     - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
