@@ -41,3 +41,6 @@ Per contattare un servizio tramite il microservice-gateway, bisogna contattare `
 
 ### Comunicazione diretta
 Se si vuole evitare il passaggio attraverso il microservice-gateway, si può contattare il servizio direttamente come illustrato sopra. Questo è generalmente sconsigliato perché si eludono evenuali decoratori della chiamata, ma è comunque possibile.
+
+## Integrazione servizi della piattaforma 3
+Per integrare plugin della piattaforma 3 è necessario ricordarsi di portare avanti anche l'header che contiene i Cookie.
