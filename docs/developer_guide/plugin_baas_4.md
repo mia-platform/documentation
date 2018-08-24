@@ -12,6 +12,7 @@ Un custom plugin per la piattaforma 4 è a tutti gli effetti un microservizio cu
 ## Libreria Custom Plugin
 
 La libreria custom plugin di MIA permette di:
+
 * definire nuove rotte con comportamento custom (non di tipo CRUD)
 * accedere all'id e ai gruppi dell'utente
 * definire decoratori di PRE o di POST
@@ -49,6 +50,7 @@ npm start
 Dalla richiesta dei custom plugin è anche possibile ottenere dei proxy per interrogare gli altri microservizi che compongono la piattaforma.
 Questi proxy si fanno carico di trasmettere gli header della piattaforma automaticamente.
 Ci sono due possibilità:
+
 * ottenere un proxy che passa per il microservice-gateway (per avere anche l'ACL, e tutti i decoratori di PRE e di POST), chiamando il seguente metodo:
 ```js
 const proxy = req.getServiceProxy()
@@ -61,6 +63,7 @@ const res = await proxy.post('/heroes', { name: 'Super' })
 ```
 
 I metodi del proxy http utilizzabili sono i seguenti:
+
 * `get(path, querystring, options)`
 * `post(path, body, querystring, options)`
 * `put(path, body, querystring, options)`
@@ -68,11 +71,13 @@ I metodi del proxy http utilizzabili sono i seguenti:
 * `delete(path, body, querystring, options)`
 
 Il body può essere:
+
 * un oggetto: serializzato in JSON
 * un buffer
 * uno stream
 
 Similmente, dalle opzioni è possibile impostare il formato del body con l'opzione `returnAs`, che può assumere i valori:
+
 * `JSON` (default): per ottenere un oggetto come body della risposta
 * `BUFFER`: per avere un buffer come body della risposta
 * `STREAM`: per avere nel body della risposta lo stream http
@@ -93,6 +98,7 @@ service.addPreDecorator('/addHeader', async function handler(req) {
 ```
 
 I metodi per recuperare le informazioni sulla chiamata sono i seguenti:
+
 * `req.getOriginalRequestBody()`
 * `req.getOriginalRequestHeaders()`
 * `req.getOriginalRequestMethod()`
@@ -101,6 +107,7 @@ I metodi per recuperare le informazioni sulla chiamata sono i seguenti:
 
 
 Mentre per modificare la richiesta, come da esempio dopo `changeOriginalRequest` si possono concatenare i seguenti metodi:
+
 * `setBody(<new body>)`
 * `setHeaders(<new headers>)`
 * `setQuery(<new query>)`
@@ -118,6 +125,7 @@ service.addPostDecorator('/saveResponse', async function handler(req) {
 ```
 
 In aggiunta ai metodi per ottenere la richiesta e modificare la risposta come nel decoratore di PRE, sono disponibili i seguenti metodi per recuperare informazioni sulla risposta:
+
 * `req.getOriginalResponseBody()`
 * `req.getOriginalResponseHeaders()`
 * `req.getOriginalResponseStatusCode()`
@@ -131,6 +139,7 @@ return req.abortChain({<finalStatusCode>, <finalBody>, <finalHeaders>})
 ## Integrazione di un servizio già esistente
 
 Requisiti:
+
 * Versionamento all'interno di gitlab (a cui punta l'API Console)
 * Immagine docker del servizio sul repository di immagini Nexus
 
