@@ -4,10 +4,33 @@
 
 ## Introduzione
 
-Oltre a endpoint di tipo CRUD, nasce spesso l'esigenza di implementare funzionalità custom, come ad esempio rotte di Backend for Frontend, o in generale logiche di business che coinvolgono una o più collezioni o servizi esterni. Nella piattaforma 4 è prevista quindi la possibilità di integrare comportamento custom tramite _custom plugin_.
+Oltre a endpoint di tipo CRUD, nasce spesso l'esigenza di implementare funzionalità custom, come ad esempio rotte di Backend for Frontend, 
+o in generale logiche di business che coinvolgono una o più collezioni o servizi esterni. 
+Nella piattaforma 4 è prevista quindi la possibilità di integrare comportamento custom tramite _custom plugin_.
 
+Un custom plugin per la piattaforma 4 è a tutti gli effetti un microservizio custom che fa parte di un deploy della piattaforma 
+allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. 
+Di conseguenza, in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma. 
+Per facilitare lo sviluppo è stata però creata una libreria _node.js_ ed un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA. 
+Di seguito è presentata una guida per lo sviluppo in locale di nuove funzionalità.
 
-Un custom plugin per la piattaforma 4 è a tutti gli effetti un microservizio custom che fa parte di un deploy della piattaforma allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. Di conseguenza, in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma. Per facilitare lo sviluppo è stata però creata una libreria _node.js_ ed un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA. Di seguito è presentata una guida per lo sviluppo in locale di nuove funzionalità.
+## Integrazione di un servizio già esistente
+
+Requisiti:
+
+* Versionamento all'interno di gitlab (a cui punta l'API Console)
+* Immagine docker del servizio sul repository di immagini Nexus
+
+A questo punto per rendere il servizio compatibile con la piattaforma ed associabile ad un endpoint con API Console, basta creare una cartella `config` nella root del progetto con all'interno un file `Dockerimage` che contiene il link all'immagine nexus.
+
+Es:
+```bash
+cd /path/to/repository/root/
+
+mkdir config
+cd config
+echo '<nexus-repository>/<image-path>:<revision>' > Dockerimage
+```
 
 ## Libreria Custom Plugin
 
@@ -82,7 +105,7 @@ Similmente, dalle opzioni è possibile impostare il formato del body con l'opzio
 * `BUFFER`: per avere un buffer come body della risposta
 * `STREAM`: per avere nel body della risposta lo stream http
 
-### Definizione di decoratori di PRE e POST
+### Decoratori di PRE e POST
 
 Si possono definire facilmente dei decoratori di PRE e POST del `Microservice Gateway` aggiungendoli al `service`.
 
@@ -120,7 +143,7 @@ Di seguito si definisce ad esempio un decoratore di POST che manda il body di ri
 service.addPostDecorator('/saveResponse', async function handler(req) {
   const proxy = req.getServiceProxy()
   await proxy.post('/responses', req.getOriginalResponseBody())
-  return req.leaveOriginalRequestUnmodified()
+  return req.leaveOriginalResponseUnmodified()
 })
 ```
 
@@ -134,22 +157,4 @@ Sia per i decoratori di PRE che per quelli di POST è possibile interrompere la 
 
 ```js
 return req.abortChain({<finalStatusCode>, <finalBody>, <finalHeaders>})
-```
-
-## Integrazione di un servizio già esistente
-
-Requisiti:
-
-* Versionamento all'interno di gitlab (a cui punta l'API Console)
-* Immagine docker del servizio sul repository di immagini Nexus
-
-A questo punto per rendere il servizio compatibile con la piattaforma ed associabile ad un endpoint con API Console, basta creare una cartella `config` nella root del progetto con all'interno un file `Dockerimage` che contiene il link all'immagine nexus.
-
-Es:
-```bash
-cd /path/to/repository/root/
-
-mkdir config
-cd config
-echo '<nexus-repository>/<image-path>:<revision>' > Dockerimage
 ```
