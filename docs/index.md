@@ -12,10 +12,10 @@
 
 ## Developer Guide
 
-- [Creare un plugin con il baaS 3](developer_guide/plugin.md): come creare una API con codice custom in nodejs.
-- [Creare un plugin con la Piattaforma 4](developer_guide/plugin_baas_4.md): Come utilizzare la libreria di custom plugin sulla piattaforma 4.
-- [Mandare Notifiche Push con la piattaforma 4](developer_guide/push_notifications_platform_4.md): Come inviare notifiche push ai dispositivi ios e android.
-- [Comunicazione fra servizi all'interno della piattaforma 4](developer_guide/communication_between_services_mp4.md): Come comunicare tra servizi custom o core all'interno della piattaforma 4.
+- [Creare un plugin con il baaS 3](developer_guide/plugin.md): come creare un custom plugin sulla piattaforma 3.
+- [Creare un plugin con la Piattaforma 4](developer_guide_mp4/plugin_baas_4.md): come custom plugin sulla piattaforma 4.
+- [Mandare Notifiche Push con la piattaforma 4](developer_guide_mp4/push_notifications_platform_4.md): Come inviare notifiche push ai dispositivi ios e android.
+- [Comunicazione fra servizi all'interno della piattaforma 4](developer_guide_mp4/communication_between_services_mp4.md): Come comunicare tra servizi custom o core all'interno della piattaforma 4.
 - [Creare un tema](developer_guide/theme.md): come creare un tema html/css/javascript per Mia-Platform.
 - [Cron](developer_guide/cron.md): configurare un cron per schedulare una routine.
 - [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
