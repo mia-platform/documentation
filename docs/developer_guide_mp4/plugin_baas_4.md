@@ -51,7 +51,7 @@ npm i @npm-mia-platform/libraries-custom-plugin fastify-cli --save
 
 A questo punto si può creare il plugin di helloworld creando il file `index.js` con il seguente contenuto:
 ```js
-const customService = require('@npm-mia-platform/libraries-custom-plugin')()
+const customService = require('@mia-platform/custom-plugin-lib')()
 
 module.exports = customService(async function index(service) {
   service.addRawCustomPlugin('GET', '/hello', async function handler(req) {
