@@ -8,31 +8,43 @@ Questo servizio va esplicitamente incluso all'interno di un progetto nel caso si
 
 ## API
 
-### Registrazione al servizio da parte delle App
-Le app al login possono registrarsi alle notifiche push chiamando il servizio in POST al path `/register` ed indicando il proprio token di notifica, oltre alla piattaforma (android o ios) e ad una lista di tag (o topic) che indicano tipi di notifiche di cui il cliente vuole essere notificato. Questa API è autenticata e lega quindi il token anche all'id dell'utente corrente.
+### Sottoscrizione al servizio da parte delle App
+Le app possono registrarsi alle notifiche push chiamando il servizio in POST al path `/subscription/` indicando il proprio token di notifica, oltre alla piattaforma (android o ios) e ad una lista di tag (o topic) che indicano tipi di notifiche di cui il cliente vuole essere notificato. Questa rotta restituirà un `deviceId` che è un identificatore del dispositivo che le app dovranno salvare in locale per poter aggiornare la sottscrizione cambiando i tags o per aggiornare il token (che può scadere), eseguendo la chiamata a questa stessa rotta con anche il deviceId.
 
 
+Se la chiamata viene eseguita con autenticazione, l'id dell'utente verrà salvato insieme alle informazioni del dispositivo. `ATTENZIONE:` se la chiamata viene eseguita senza autenticazione, l'utente verrà dissociato dal dispositivo: questa operazione è equivalente ad una `deregistrazione` dell'utente, che non riceverà quindi più notifiche esplicitamente rivolte a lui.
 
-Esempio di payload di registrazione:
+Esempio di payload di sottoscrizione:
 ```json
 {
   "token": "<long_alphanumeric_id specific to the couple app-device>",
   "platform": "android",
   "tags": [
-    "app_updates", "news", "finance", "early_user", "some", "other", "tag"
+    "app_updates", "news", "finance", "early_user", "some", "other", "tag", "app_version_1.1.0"
   ]
 }
 ```
 
-Ad ogni logout, bisogna necessariamente chiamare in POST `/unregister` per deregistrare il token dell'utente, altrimenti potrebbero arrivare notifiche anche ad utenti scollegati.
-
-
-Esempio di payload di deregistrazione (anche questa è una API autenticata, da chiamare al logout):
+Risposta servizio:
 ```json
 {
-  "token": "<long_alphanumeric_id specific to the couple app-device>"
+  "deviceId":"<alphanumeric_id>"
 }
 ```
+
+In ogni successiva chiamata andrà sempre inviato anche il `deviceId`, per mantenere aggiornato il token e le preferenze:
+```json
+{
+  "deviceId":"<alphanumeric_id>",
+  "token": "<long_alphanumeric_id specific to the couple app-device>",
+  "platform": "android",
+  "tags": [
+    "app_updates", "news", "finance", "early_user", "some", "other", "tag", "app_version_1.1.0"
+  ]
+}
+```
+
+Per associare l'utente loggato al device, basta eseguire la stessa chiamata con autenticazione, mentre per dissociarlo bisogna fare la chiamata senza autenticazione.
 
 ### Invio notifiche ai dispositivi
 Le notifiche possono essere inviate con diverse modalità a seconda della destinazione: direttamente i token di registrazione, id utenti, tags, piattaforma, o a tutti i dispositivi.
