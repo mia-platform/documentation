@@ -1,4 +1,4 @@
-FROM nexus.mia-platform.eu/core/static-files:3.0.0
+FROM nexus.mia-platform.eu/core/static-files:3.0.4
 
 LABEL maintainer="Mia Platform Core Team<core@mia-platform.eu>" \
       name="Documentation Site" \
