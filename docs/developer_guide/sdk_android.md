@@ -644,3 +644,275 @@ TODO: explain how create the push receiver
 ## Analytics module
 
 Coming soon.
+
+## CRUD module
+
+**CRUD** is the module of the SDK that interacts with the BaaS starting from version 4. It offers all the tools to create, read, update, and delete objects from and to the BaaS. It offers also the Sync functionality, that can automatically download and upload data and store them in the local database.
+
+### Initialization
+
+As for the other modules, you need to add the dependency in your **build.gradle** file:
+
+```
+dependencies {
+    implementation 'eu.mia-platform.sdk:crud:1.10.5'
+    ...
+}
+```
+!!! Note
+    Differently from the other modules, CRUD module behaves like the core, therefore it can be imported alone and you do not need to add the module in the initialization.
+
+
+#### Create, Read, Update, Delete
+
+Writing and reading operations from and to the BaaS can be done with the CRUD class, which is the entry point of the module. All the operations can be performed *synchronously* and *asynchronously*, in order to give to the developer more flexibility.
+
+To start working with this module you only need to initialize a CRUD object passing the context of the application, the base path and the secret:
+
+!!! Note
+    The base path and the secret will be provided by the App Angel.
+```
+private val crud = CRUD(this, "http://myBaasUrl", "my_secret")
+```
+!!! tip
+    Instantiate the CRUD in a class that is always reachable by the other classes of the app. So that you don't have the necessity of instantiating it each time you need to operate with the CRUD.
+
+Through the CRUD instance you can perform the calls: GET, POST, PATCH and DELETE. All the methods require the collection name and some of them accept as parameter also a Mongo query.
+For example if we want to perform a GET on a collection named *authors*:
+```
+crud.get(collection: "author", queryBuilder: null)
+```
+As said before, there are some methods that accept as parameter a query or a QueryBuilder object, in particular the GET and the DELETE.
+
+The QueryBuilder object permits you to build Mongo queries using the class methods:
+
+* **and**: corresponds to the Mongo *$and*
+* **or**: corresponds to the Mongo *$or*
+* **nor**: corresponds to the Mongo *$nor*
+* **equals**: corresponds to the Mongo *$eq*
+* **notEquals**: corresponds to the Mongo *$ne*
+* **greater**: corresponds to the Mongo *$gt*
+* **greaterThanOrEquals**: corresponds to the Mongo *$gte*
+* **less**: corresponds to the Mongo *$lt*
+* **lessOrEquals**: corresponds to the Mongo *$lte*
+* **inArray**: corresponds to the Mongo *$in*
+* **notInArray**: corresponds to the Mongo *$nin*
+
+All these methods accept as input the key and the value to compare. All grades of query complexity are managed.
+We also provide the method **build** needed if you want the query as String.
+
+With the same example as before we can perform a GET passing as parameter a Mongo query that corresponds to *{"$or":[{"name":"Giovanni"}, {"name":"Carlo"}]}* as follow:
+```
+val queryBuilder = QueryBuilder().or(QueryBuilder().equals("name", "Giovanni"), QueryBuilder().equals("name", "Carlo"))
+val get = crud.get("authors", queryBuilder)
+```
+or:
+```
+val query = QueryBuilder().or(QueryBuilder().equals("name", "Giovanni"), QueryBuilder().equals("name", "Carlo")).build()
+val get = crud.get("authors", query)
+```
+
+GET, PATCH and DELETE permits to set also the **STATE** parameter that indicates which state take into consideration when we ask for objects. The possible states are: PUBLIC, DRAFT, TRASH and DELETED. Through the **state** method you can set the list of states on which perform the call, it accept an arrayList of **State** object or a single object.
+
+!!! Note
+    If not set the STATE is by default on PUBLIC therefore the requests take into consideration only the objects marked as PUBLIC.
+
+```
+val acceptedStates = arrayListOf(State.Pub, State.Draft)
+get.state(acceptedStates)
+```
+
+The GET object permits also to set other useful parameters through the following methods:
+
+* **limitProperties**: sets the list of all the properties of the collection you want to receive in the answer
+* **limitProperty**: sets the single property you want to receive in the answer
+* **limit**: limits the number of the results
+* **skip**: skips the results you want according to the given number
+* **sortBy**: sorts the result according to the property and the order given
+
+```
+val properties = arrayListOf("name", "surname")
+get.limitProperties(properties)
+get.limit(100)
+get.skip(50)
+get.sortBy("age", true)
+```
+
+At this point we are ready to perform the call synchronously or asynchronously. Two ways are possible: not passing any parameter to receive the result as JsonElement or passing the Java class type to receive the result as objects of your class.
+```
+// Async
+get.async(object : SingleObjectCallback<JsonElement> {
+            override fun onCompleted(result: JsonElement?, error: CRUDError?) {
+                // do something
+            }
+        })
+
+// Sync
+try{
+    val result: JsonElement = get.sync()
+} catch (e: Exception){
+    // do something
+}
+```
+or:
+```
+// Async
+get.async(Author::class.java, object : MultipleObjectsCallback<Author> {
+            override fun onCompleted(result: ArrayList<Author>?, error: CRUDError?) {
+                // do something
+            }
+        })
+
+// Sync
+try{
+    val result: ArrayList<Author> = get.sync(Author::class.java)
+} catch (e: Exception){
+    // do something
+}
+```
+!!! Note
+    For using the automatic conversion from Json to object the class must be Serializable
+
+In the GET is also present a method to get a single object identified by an ID and a method that returns the count of the collection objects.
+
+The POST object permits you to create a new object in the BaaS. It works similar to the GET, takes as input the object to save and the state, if null automatically put to PUBLIC. You can make a single POST or a BULK POST. As before you can pass a JsonElement or an object that will be converted automatically. As result we will have a single id or an array of ids corresponding to the objects posted.  
+
+```
+val author = Author("Mario", "Rossi")
+val post = crud.post("authors")
+
+// Async
+post.async(author, State.Pub, object : SingleObjectCallback<String> {
+    override fun onCompleted(result: String?, error: CRUDError?) {
+        // do something
+    }
+})
+
+// Sync
+try{
+    val result: String? = post.sync(author, State.Pub)
+} catch (e: Exception){
+    // do something
+}
+```
+
+The DELETE permits to delete a single object or all the objects that satisfy a Mongo query. Also this can be performed syncronously or asynchronously.
+
+The PATCH permits to update the state of an object already existent. Before executing you need to define which are the fields that have been updated, you can do this through the methods:
+
+* **update**: takes the new object and the corresponding key
+* **updateOnInsert**: takes the new object and the property
+* **removeObject**: takes the object to be removed
+* **increment**: takes the increment value and the property to be incremented
+* **multiply**: takes the multiply value and the property to be multiplied
+* **setCurrentDate**: takes the property to be put in current date
+
+!!! Note
+    None of the default properties (\_id, createdAt, updatedAt, creatorId, updaterId, \__STATE__) of the CRUD can be modified, therefore if you try to do the update will be ignored
+
+```
+val patch = crud.patch(collectionName)
+patch.update("Luca", "name")
+
+// Async
+patch.async(id, object : SingleObjectCallback<String> {
+    override fun onCompleted(result: String?, error: CRUDError?) {
+        // do something
+    }
+})
+
+// Sync
+try{
+    val result: String = patch.sync(id)
+} catch (e: Exception){
+    // do something
+}
+```
+
+!!! Note
+    For changing the state you cannot do a patch, you need instead to use the appropriate POST method made appositively.
+
+To change the state you can use the **changeState** method in the object POST, passing the id of the object and the new State like follow:
+```
+val post = crud.post("authors")
+
+// Async
+post.asyncChangeState(id, State.Draft, object : NoObjectCallback {
+    override fun onCompleted(error: CRUDError?) {
+        // do something
+    }
+})
+
+// Sync
+val error: CRUDError? = post.syncChangeState(id, State.Draft)
+```
+
+#### Sync
+
+This module offers the utility of performing the data synchronization: pull data from BaaS, push updates to the BaaS or both.
+This operation is available through the **Sync**.
+
+The sync behavior is inspired by git: there are a pull action first and then a push action. Changes from BaaS have greater priority than local changes so, if a conflict is present, changes from BaaS will replace local changes.
+
+In particular values from BaaS that have updatedAt greater than updatedAt of local objects, these local objects will be updated (replaced) or deleted, depends on the status.
+
+To use this functionality you need a database that extends the **SyncDatabase** interface defined in the CRUD module. For the moment we provide ObjectBox database already compatible with the CRUD Sync.
+
+To use the available version of ObjectBox you need to add the dependency in the **build.gradle** file.
+
+To initialize the Sync you need to have an ObjectBoxAdapter instance. At the same time ObjectBoxAdapter needs a **Database** instance in which you define the name of the database in order to obtain the Box Store needed to perform the queries.
+
+The complete process to initialize the sync is reported below:
+```
+val crud = CRUD(this, "my_url", "my_secret")
+val db = Database(this, "db_name")
+val objectBoxAdapter = ObjectBoxAdapter(db)
+val sync = Sync(crud, objectBoxAdapter)
+```
+
+At this point we can call the Sync methods to pull and push new data. Both methods accept as parameters the Java class type of the classes to be synchronized as ArrayList or as arguments.
+
+!!! Warning
+    All the classes to be synced need to be extended by the **BaseObject** provided in the ObjectBoxDatabase module of the project.
+
+For pulling we calculate the max updatedAt date stored in the database for that table and we make a request according to that:
+```
+sync.pull(Author::class.java)
+```
+The resultant objects are automatically stored in the database and available to use.
+
+Pushing the data is similar to the pulling, but before you call the push method you need to modify the data you want to push. The sync requests to the database the data to be pushed, to be updated and to change state.
+
+For declaring the objects to push you only need to insert the new object in the database through the method exposed by the ObjectBoxAdapter:
+```
+val newAuthor = Author("Luigi", "Pirandello")
+objectBoxAdapter.insert(newAuthor)
+```
+
+If instead the object is already present in the database but needs to be updated you can change the object as you prefer and then you pass the modified object to the sync method **toPush** as follow:
+```
+author.name = "Marco"
+sync.toPush(arrayList(author))
+```
+
+As for the CRUD, the change state cannot be done like an object update. Therefore we provide different methods in the sync to define which is the future state of the object. If for example the object is PUBLIC and we want to change it to DRAFT:
+```
+sync.toDraft(arrayList(author))
+```
+
+The methods provided corresponds to all the possible change states of an object:
+
+* **toPublic**: changes the state of an object to PUBLIC
+* **toDraft**: changes the state of an object to DRAFT
+* **toTrash**: changes the state of an object to TRASH
+* **toDeleted**: changes the state of an object to DELETED
+
+!!! Note
+    Not all the change state are permitted. If you try to change the state in a wrong way the changes will be ignored.
+
+In the moment you want to push your updates, as for the pull, you can simply call the method that will push all the data changes to the BaaS:
+```
+sync.push(Author::class.java)
+```
+
+The combination of the two methods provides you the complete synchronization of all the data present in the BaaS.

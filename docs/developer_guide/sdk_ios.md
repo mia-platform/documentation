@@ -17,7 +17,7 @@ The SDK project is divided in modules:
 * CRUD
 * MIAAnalytics - *Coming soon*
 
-The main one, which we will refer as **Core framework**, will give you access to the CRUD functionality of the BaaS backend, the SSO login and the analytics for your projects. This module is compatible up to BaaS 3 version. 
+The main one, which we will refer as **Core framework**, will give you access to the CRUD functionality of the BaaS backend, the SSO login and the analytics for your projects. This module is compatible up to BaaS 3 version.
 
 The second one is the **MIASync** framework; this module is optional for your project and rely on the **Core framework** to work and will add the sync data between BaaS and local database functionality to your project.
 
@@ -194,7 +194,7 @@ collection.deleteInBackground({ (mkCollection: MKCollection?, error: Error*) in
   })
 ```
 
-!!! warning 
+!!! warning
     Check the ACL configuration of your Collection in your Baas console. It could be necessary to login with MKUser’s methods before any CRUD operation on the data of your Collection!
 
 #### MIAQuery
@@ -354,7 +354,7 @@ query.includeKeys(inResults: ["picturename","username"]) // only specified keys 
 query.excludeKeys(fromResults: ["picturename","username"]) // all keys are returned exept the specified ones
 ```
 
-!!! warning 
+!!! warning
     Check the ACL configuration of your Collection in your Baas console. It could be necessary to login with MKUser’s methods before quering data of your Collection!
 
 #### mkCollectionFile
@@ -402,7 +402,7 @@ do {
 }
 ```
 
-!!! note 
+!!! note
     You might want to use **saveInBackgroundWithBlock** to provide additional logic which will run after the save completes and to prevent lock of UI in the Main Thread.
 
 Finally, after the save is completed, you can associate a **MKCollectionFile** id onto a **MKCollection** just like any other piece of data:
@@ -477,7 +477,7 @@ MKUser.logInWithEmail(inBackground: "email", password: "password", storeUserLoca
 
 The MKUser instance of the callback is the user that has been logged.
 
-!!! note 
+!!! note
     If **storeUserLocally** is true, the user will be saved locally on keychain for future login.
 
 #### Registration
@@ -556,10 +556,10 @@ Extract the content of the SDK from the zip file and drag and drop the **MIASync
 
 ![iOS sdk xcode](img/ios-sdk-add-xcode.png)
 
-!!! warning 
+!!! warning
     The two options **Copy items if needed** and **Create Groups** must be selected!
 
-!!! note 
+!!! note
     This framework doesn't work if the core framework hasn't been added to your project.
 
 Go to the **Build Phases** section of your project and add the following line of code to the click on the **Embedded SDK** script:
@@ -631,9 +631,9 @@ In order to be instantiated, MIASync need to have a managed object model where t
 
 It is possible to do it by assigning an array of classes to the **sync** variable. Each class must have the same name and the same variables of the collection that must be synced from the BaaS. For example, if on the BaaS there is a collection called **News** with **title** and **text** fields, to sync it we must create a class called **News** in the project with two properties **title** and **text**.
 
-## CRUD Framwerork
+## CRUD Framework
 
-**CRUD** is the module of the SDK that interacts with the BaaS starting from version 4. It offers all the tools to create, read, update, and delete objects from and to the BaaS. It offers also the Sync functionality, a **MIASyncro** revisiting that is compatible with the BaaS 4 CRUD. 
+**CRUD** is the module of the SDK that interacts with the BaaS starting from version 4. It offers all the tools to create, read, update, and delete objects from and to the BaaS. It offers also the Sync functionality, a **MIASyncro** revisiting that is compatible with the BaaS 4 CRUD.
 
 ### Add the CRUD module to your Xcode project
 
@@ -641,7 +641,7 @@ Extract the content of the SDK from the zip file and drag and drop the **CRUD.fr
 
 ![iOS sdk xcode](img/ios-sdk-add-xcode.png)
 
-!!! note 
+!!! note
     The two options **Copy items if needed** and **Create Groups** must be selected!
 
 Go to the **Build Phases** section of your project and add the following line of code to the click on the **Embedded SDK** script:
@@ -664,9 +664,9 @@ import CRUD
 
 #### Create, Read, Update, Delete
 
-Writing and reading operations from and to the BaaS can be done with the CRUD class, which is the main module of the Framework. All the operations are *synchronous* and *asynchronous*, in order to give to the developer more flexibility. 
+Writing and reading operations from and to the BaaS can be done with the CRUD class, which is the main module of the Framework. All the operations are *synchronous* and *asynchronous*, in order to give to the developer more flexibility.
 
-To use the CRUD, it is necessary to instantiate it with the base path of the BaaS and the API secret key. 
+To use the CRUD, it is necessary to instantiate it with the base path of the BaaS and the API secret key.
 
 !!! note
     The base path and the API secret will be handed over by your App Angel when the team’s BaaS will be created.
@@ -676,7 +676,7 @@ let crud = CRUD(basePath: "<YourProjectBasePath>", secret: "<YourProjectSecret>"
 ```
 
 !!! tip
-    Instantiate the CRUD in a class that is always reachable by the other classes of the app. So there isn't the necessity to instantiate it each time you need to operate with the CRUD. 
+    Instantiate the CRUD in a class that is always reachable by the other classes of the app. So there isn't the necessity to instantiate it each time you need to operate with the CRUD.
 
 Through the crud instance is possible to access all the CRUD methods (GET,POST,PATCH and DELETE). For example, to perform a GET request to a collection called "**Author**", it is possible to proceed as follow:
 
@@ -684,7 +684,7 @@ Through the crud instance is possible to access all the CRUD methods (GET,POST,P
 crud.get(collection: "author", queryBuilder: nil)
 ```
 
-The *get* method accept a query parameter. It is useful to perform mongo queries on the objects of the collection. The query can be passed in two ways: 
+The *get* method accept a query parameter. It is useful to perform mongo queries on the objects of the collection. The query can be passed in two ways:
 
 * through a string: in this case it is necessary to write manually the mongo query;
 * using the **QueryBuilder**: it is an object that permits to create complex mongo query using a comfortable interface.
@@ -703,7 +703,7 @@ get.limitProperties(["name","surname","age"])
 get.sortBy(property: "age", descending: true)
 ```
 
-When you are ready, you can perform the query in a synchronous or asynchronous way. 
+When you are ready, you can perform the query in a synchronous or asynchronous way.
 
 ```
 let data: Data = try get.sync()
@@ -721,13 +721,13 @@ get.async { (data: Data?, error: Error?) in
 ```
 
 !!! tip
-    Alle the CRUD methods support Apple **Codable** protocol. It means that you can create a model class of the collection object and implements the Codable protocol (you can refer to the [Apple Documentation](https://developer.apple.com/documentation/swift/codable) for more informations about this protocol). Then, passing the object type class, the returned object of the CRUD operation is not a generic **Data** object but an object of the passed type. The SDK performs automatically the mapping between the returned object and the Codable class. 
+    Alle the CRUD methods support Apple **Codable** protocol. It means that you can create a model class of the collection object and implements the Codable protocol (you can refer to the [Apple Documentation](https://developer.apple.com/documentation/swift/codable) for more informations about this protocol). Then, passing the object type class, the returned object of the CRUD operation is not a generic **Data** object but an object of the passed type. The SDK performs automatically the mapping between the returned object and the Codable class.
 
     ```
     let authors: [Author] = try get.sync(object: Author.self)
     ```
 
-Usually, to access the BaaS collections it is necessary to be logged. You can set the **Session Identifier** (**SID**) using the dedicated method of the CRUD. 
+Usually, to access the BaaS collections it is necessary to be logged. You can set the **Session Identifier** (**SID**) using the dedicated method of the CRUD.
 
 ```
 crud.setSessionID(sessionID: "<YourSID>")
@@ -740,9 +740,9 @@ crud.resetSessionID()
 ```
 
 !!! note
-    In order to obtain the session ID, you need to perform the login using the **mkApp Framework**. 
+    In order to obtain the session ID, you need to perform the login using the **mkApp Framework**.
 
-To create a new object on the BaaS it is possible to use the **POST** method of the CRUD. 
+To create a new object on the BaaS it is possible to use the **POST** method of the CRUD.
 
 ```
 let post = crud.post(collection: "author")
@@ -759,9 +759,9 @@ author.surname = "Manzoni"
 let id: String = try post.sync(object: author, state: .pub)
 ```
 
-The result of the POST operation is the id that has been assigned to the object. 
+The result of the POST operation is the id that has been assigned to the object.
 
-The PATCH operation permits to update some properties of an object and remove the value of others properties. 
+The PATCH operation permits to update some properties of an object and remove the value of others properties.
 
 ```
 let patch = crud.patch(collection: "author")
@@ -769,7 +769,7 @@ patch.update(object: 88, for: "age")
 let id = try patch.sync(id: "<ObjectId>")
 ```
 
-The PATCH operation cannot update the state of the object. To perform this action, it is necessary to use the dedicated method. 
+The PATCH operation cannot update the state of the object. To perform this action, it is necessary to use the dedicated method.
 
 ```
 let post = crud.post(collection: "author")
@@ -817,7 +817,7 @@ Each method accepts an array of **NSManagedObject**, which are the instance of t
 * toTrash: entities that must be synced changing the state to **TRASH**
 * toDraft: entities that must be synced changing the state to **DRAFT**
 
-After that the entities have been marked, it is necessary to call the method **sync** to start the sync phase. 
+After that the entities have been marked, it is necessary to call the method **sync** to start the sync phase.
 
 ```
 sync.sync(types: [Author.self,Book.self])
@@ -829,14 +829,14 @@ It will start pulling all the modifications from the BaaS, then will start the p
 NotificationCenter.default.addObserverForSyncStatus(observer: self, selector: #selector(syncState:), object: nil)
 ```
 
-The **userInfo** of the notification contains an instance of the object **SyncStatus**. It offers a view to the sync state. For example, it is possible to see which class is syncing, the progress and, eventually, the errors of the operation. 
+The **userInfo** of the notification contains an instance of the object **SyncStatus**. It offers a view to the sync state. For example, it is possible to see which class is syncing, the progress and, eventually, the errors of the operation.
 
 ```
 func syncState(_ sender: Notification) {
     guard let status = sender.userInfo?[kMIASyncroNotificationKeyStatus] as? SyncStatus else {
         return
     }
-        
+
     let lastSyncedEntity = status.lastSyncedEntity
     let syncingEntity = status.syncingEntity
     let error = status.error
