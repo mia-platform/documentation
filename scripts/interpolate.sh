@@ -48,7 +48,7 @@ for filePath in "${DEST_DIR}"/*.yml; do
   interpolate_value "{{RELEASE_DATE}}" "${NOW_DATE}" "${filePath}"
   interpolate_value "{{AUTHOR_EMAIL}}" "${GITLAB_USER_EMAIL:-unset}" "${filePath}"
   interpolate_value "{{COMMIT_SHA}}" "${CI_COMMIT_SHA:-unset}" "${filePath}"
-  interpolate_value "{{IMAGE_NAME}}" "${REMOTE_IMAGE_NAME}" "${filePath}"
 done
+
 rm -fr "${DEST_DIR}"/*.bck
 echo "Finish files interpolations..."

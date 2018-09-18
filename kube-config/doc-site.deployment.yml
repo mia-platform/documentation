@@ -30,7 +30,7 @@ spec:
         - name: nexus-gcloud
       containers:
         - name: documentation-site
-          image: {{IMAGE_NAME}}
+          image: nexus.mia-platform.eu/core/documentation-site:latest
           imagePullPolicy: Always
           resources:
             limits:
@@ -38,16 +38,16 @@ spec:
             requests:
               memory: '5Mi'
               cpu: '10m'
-            volumeMounts: []
-            env: []
-            readinessProbe:
-              initialDelaySeconds: 5
-              periodSeconds: 10
-              tcpSocket:
-                port: 8080
-            livenessProbe:
-              initialDelaySeconds: 5
-              periodSeconds: 10
-              tcpSocket:
-                port: 8080
+          volumeMounts: []
+          env: []
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            tcpSocket:
+              port: 8080
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            tcpSocket:
+              port: 8080
       volumes: []
