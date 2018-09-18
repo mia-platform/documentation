@@ -32,11 +32,11 @@ spec:
         - name: documentation-site
           image: {{IMAGE_NAME}}
           imagePullPolicy: Always
-          resource:
+          resources:
             limits:
-              memory: '30Mi'
+              memory: '20Mi'
             requests:
-              memory: '10Mi'
+              memory: '5Mi'
               cpu: '10m'
             volumeMounts: []
             env: []
