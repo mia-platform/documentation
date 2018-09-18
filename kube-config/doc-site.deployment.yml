@@ -2,15 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: documentation-site
+  namespace: default
   annotations:
     date: {{RELEASE_DATE}}
     author: {{AUTHOR_EMAIL}}
     commit-sha: {{COMMIT_SHA}}
+  labels:
+    component: documentation-site
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: documentation-site
+      component: documentation-site
+  revisionHistoryLimit: 1
   strategy:
     type: RollingUpdate
   template:
@@ -20,7 +24,7 @@ spec:
         author: {{AUTHOR_EMAIL}}
         commit-sha: {{COMMIT_SHA}}
       labels:
-        app: documentation-site
+        component: documentation-site
     spec:
       imagePullSecrets:
         - name: nexus-gcloud
@@ -28,3 +32,22 @@ spec:
         - name: documentation-site
           image: {{IMAGE_NAME}}
           imagePullPolicy: Always
+          resource:
+            limits:
+              memory: '30Mi'
+            requests:
+              memory: '10Mi'
+              cpu: '10m'
+            volumeMounts: []
+            env: []
+            readinessProbe:
+              initialDelaySeconds: 5
+              periodSeconds: 10
+              tcpSocket:
+                port: 8080
+            livenessProbe:
+              initialDelaySeconds: 5
+              periodSeconds: 10
+              tcpSocket:
+                port: 8080
+      volumes: []
