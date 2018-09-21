@@ -8,6 +8,7 @@
 
 ## Linee Guida Progettazione Mia
 - [GIT Vademecum](guidelines/git_vademecum.md)
+- [REST API Vademecum](guideline/rest_api.md)
 - [API](guidelines/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
 
 ## Developer Guide
