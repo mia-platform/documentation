@@ -1,11 +1,11 @@
 ## REST API ##
-#Mia-Platform REST Vademecum
+#**Mia-Platform REST Vademecum**
 
 
 REST è un tipo di architettura software per i sistemi distribuiti. In un’architettura REST, un insieme di **servizi** rendono disponibili un insieme di **risorse**, servendole su una una o più **rotte**.
 Questo vademecum riassume i principi e le linee guida per il design di API REST.
 
-##CRUD RISORSA
+##**CRUD RISORSA**
 Un esempio di REST per la risorsa veicolo
 
 **GET**
@@ -51,13 +51,13 @@ https://api.mia-platform.it/vehicles/{id}
 Cancellazione del veicolo con id={id}
 
 
-##NOMENCLATURA E FORMATTAZIONE
+##**NOMENCLATURA E FORMATTAZIONE**
 Come chiamare e formattare rotte, parametri di query e proprietà del modello.
 
 https://api.mia-platform.it/crash-reports/?city=Milan
 
 
-##ROTTE
+##**ROTTE**
 * Nomi in inglese
 
 * Nomi in plurale
@@ -66,16 +66,16 @@ https://api.mia-platform.it/crash-reports/?city=Milan
 
 * Separazione delle parole tramite trattino ‘-’
 
-##PARAMETRI DI QUERY E MODELLO DATI
+##**PARAMETRI DI QUERY E MODELLO DATI**
 * Nomi in inglese
 
 * Nomi in formato ‘camelCase’
 
 
-##VERSIONAMENTO
+##**VERSIONAMENTO**
 Il versionamento delle API REST viene fatto inserendo la versione nel path. Esempio: http://api.mia-platform.it/progetto/v1/api-del-progetto
 
-##MODELLO DATI
+##**MODELLO DATI**
 Il modello dati viene scambiato nel body dei messaggi HTTP ed è espresso in JSON.
 
 **GET**
@@ -119,7 +119,7 @@ https://api.mia-platform.it/vehicles/{id}
 
 Body vuoto sia per la richiesta che per la risposta
 
-##ESITO RISPOSTA
+##**ESITO RISPOSTA**
 L’esito di una chiamata viene comunicato tramite HTTP status code (RFC 2616).
 
 **2xx**
@@ -140,7 +140,7 @@ Errore del server
 
 Il body contiene il modello dati nel caso di 2xx o, negli altri casi, un messaggio che descriva in modo particolare lo status code restituito.
 
-##BACK-END FOR FRONT-END
+##**BACK-END FOR FRONT-END**
 Come distinguere le API specifiche per le funzionalità di front-end (BFF) dalle API di back-end (BE)?
 
 I front-end sono rilasciati in un dominio differente dal dominio delle API di BE. Le API del BFF sono rilasciate sotto lo stesso dominio dell’applicazione front-end.
