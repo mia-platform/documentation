@@ -158,11 +158,12 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
       I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
    Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
 
-   ```"cardHeader": {
-      "titleProperty": "laboratory",
-      "subTitleProperty": "productId",
-      "imageProperty": ""
-      ```
+   ```
+   "cardHeader": {
+       "titleProperty": "laboratory",
+       "subTitleProperty": "productId",
+       "imageProperty": ""
+    ```
 
 2. il cardContentRows invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 
@@ -178,22 +179,23 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
    Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
 
 
-   ```"cardContentRows": [{
-       "type": "textarea",
-       "properties": ["note"]
-       },
-       {
-      "type": "text",
-      "properties": ["newExpirationDate", "newItemNumber"]
-       },
-       {
-      "labels": ["Accetta", "Rifiuta"],
-      "type": "button",
-      "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-      "ids": ["accetta", "rifiuta"],
-      "icons": ["check", "archive"]
-      }
-    ```
+```
+"cardContentRows": [{
+        "type": "textarea",
+        "properties": ["note"]
+        },
+        {
+       "type": "text",
+       "properties": ["newExpirationDate", "newItemNumber"]
+        },
+        {
+       "labels": ["Accetta", "Rifiuta"],
+       "type": "button",
+       "routes": ["/api/change-request/accept",  "/api/change-request/refuse"],
+       "ids": ["accetta", "rifiuta"],
+       "icons": ["check", "archive"]
+       }
+```
 
  Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
 
