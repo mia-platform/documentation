@@ -93,44 +93,25 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
    il json finale nella nostra proprietà **nome** che è il nome degli eroi sarà quindi:
 
 ```
-
-      "nome": {
-
-       "id": "nome",
-
-       "type": "string",
-
-       "required": false,
-
-       "label": "Nome",
-
-      "cmsVisibility": {
-
-          "level": 1
-
-       },
-
-      "cmsOrder": 10,
-
-      "readonly": false,
-
-      "cmsEditable": true,
-
-      "hidden": false,
-
-      "description": "",
-
-       "cmsCardPosition":0,
-
-       "interfaceType": "string"
-
-   }
+"nome": {
+   "id": "nome",
+   "type": "string",
+   "required": false,
+   "label": "Nome",
+   "cmsVisibility": {
+        "level": 1
+               },
+    "cmsOrder": 10,
+    "readonly": false,
+    "cmsEditable": true,
+    "hidden": false,
+    "description": "",
+     "cmsCardPosition":0,
+     "interfaceType": "string"
+}
 ```
 
-
-
-
-#CMS Config-extension in API Console
+# CMS Config-extension in API Console
 
 Tutte le confgurazioni precedenti vengono gestite automaticamente dall'Api Console.
 Esistono però alcune estensioni che non possono ancora essere configurate dal front-end ma sono gestite da un componente : le config-extension.
@@ -142,7 +123,7 @@ le 3 estensioni più importanti sono:
 3. la possibilità di evidenziare delle righe nelle tabelle
 
 
-##Impostare GIT per avere le config-extension del cms
+## Impostare GIT per avere le config-extension del cms
 
 1) quando apri il progetto GIT assicurati che esista una cartella config-extension. All'interno della cartella deve essere presente la cartella cms-backend.
 
@@ -162,30 +143,26 @@ A questo punto sei pronto per configurare le tue estensioni.
 Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottoforma di Card.
 
 !!! warning
-    Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
+   Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
 
-Le card sono composte da due sezioni:
-1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
+   Le card sono composte da due sezioni:
+   1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
-* l'immagine
+   * l'immagine
 
-* il titolo
-<<<<<<< HEAD
+   * il titolo
 
-=======
->>>>>>> 71c6cd6cde44b3a7d1ca878b3d0adcb5386d47a9
-* il sottotitolo
+   * il sottotitolo
 
-!!! note
-    I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
-    Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
+  !!! note
+      I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
+   Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
 
-
-
-```"cardHeader": {
-  "titleProperty": "laboratory",
-  "subTitleProperty": "productId",
-  "imageProperty": ""
+```
+"cardHeader": {
+       "titleProperty": "laboratory",
+       "subTitleProperty": "productId",
+       "imageProperty": ""
 ```
 
 2. il cardContentRows invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
@@ -202,84 +179,142 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
    Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
 
 
-
-```"cardContentRows": [{
-  "type": "textarea",
-  "properties": ["note"]
-},
-{
-  "type": "text",
-  "properties": ["newExpirationDate", "newItemNumber"]
-},
-{
-  "labels": ["Accetta", "Rifiuta"],
-  "type": "button",
-  "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-  "ids": ["accetta", "rifiuta"],
-  "icons": ["check", "archive"]
-}
 ```
-Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
-
-Ecco un esempio di card finale all'interno della collezione change-requests
-
-
-```"change-requests": {
-    "cmsProperties": {
-      "cardHeader": {
-        "titleProperty": "laboratory",
-        "subTitleProperty": "productId",
-        "imageProperty": ""
-      },
-      "cardContentRows": [{
+"cardContentRows": [{
         "type": "textarea",
         "properties": ["note"]
-      },
-      {
-        "type": "text",
-        "properties": ["newExpirationDate", "newItemNumber"]
-      },
-      {
-        "labels": ["Accetta", "Rifiuta"],
-        "type": "button",
-        "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-        "ids": ["accetta", "rifiuta"],
-        "icons": ["check", "archive"]
-      },
-      {
-        "labels": ["Invia Mail", "Skype"],
-        "type": "button",
-        "routes": ["/action", "/action"],
-        "ids": ["inviaMail", "skype"],
-        "icons": ["envelope", "phone"]
-      }
-      ],
-     "notification": {
-      "query":
-      {"responseReceived": "false", "trash": 0}
-    }
-   }
-  },
-  "fasonisti-properties": {
-    "cmsProperties": {
-      "cardHeader": {
-        "titleProperty": "name",
-        "subTitleProperty": "",
-        "imageProperty": "image"
-      },
-      "cardContentRows": [{
-          "type": "textarea",
-        "properties": ["description"]
+        },
+        {
+       "type": "text",
+       "properties": ["newExpirationDate", "newItemNumber"]
+        },
+        {
+       "labels": ["Accetta", "Rifiuta"],
+       "type": "button",
+       "routes": ["/api/change-request/accept",  "/api/change-request/refuse"],
+       "ids": ["accetta", "rifiuta"],
+       "icons": ["check", "archive"]
+       }
+```
+
+ Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
+
+ Ecco un esempio di card finale all'interno della collezione change-requests
+
+```
+"change-requests": {
+
+     "cmsProperties": {
+
+       "cardHeader": {
+
+         "titleProperty": "laboratory",
+
+         "subTitleProperty": "productId",
+
+         "imageProperty": ""
+
        },
+
+       "cardContentRows": [{
+
+         "type": "textarea",
+
+         "properties": ["note"]
+       },
+
        {
-        "labels": ["Invia Mail", "Skype"],
-        "type": "button",
-        "routes": ["/action", "/action"],
-        "ids": ["inviaMail", "skype"],
-        "icons": ["envelope", "phone"]
-      }]
-    }
-  },
+
+         "type": "text",
+
+         "properties": ["newExpirationDate", "newItemNumber"]
+
+       },
+
+       {
+
+         "labels": ["Accetta", "Rifiuta"],
+
+         "type": "button",
+
+         "routes": ["/api/change-request/accept",
+
+         "/api/change-request/refuse"],
+
+         "ids": ["accetta", "rifiuta"],
+
+         "icons": ["check", "archive"]
+
+       },
+
+       {
+
+         "labels": ["Invia Mail", "Skype"],
+
+         "type": "button",
+
+         "routes": ["/action", "/action"],
+
+         "ids": ["inviaMail", "skype"],
+
+         "icons": ["envelope", "phone"]
+
+       }
+
+       ],
+
+      "notification": {
+
+       "query":
+
+       {"responseReceived": "false", "trash": 0}
+
+     }
+
+     }
+
+   },
+
+   "fasonisti-properties": {
+
+     "cmsProperties": {
+
+       "cardHeader": {
+
+         "titleProperty": "name",
+
+         "subTitleProperty": "",
+
+         "imageProperty": "image"
+
+       },
+
+       "cardContentRows": [{
+
+           "type": "textarea",
+
+         "properties": ["description"]
+
+        },
+
+        {
+
+         "labels": ["Invia Mail", "Skype"],
+
+         "type": "button",
+
+         "routes": ["/action", "/action"],
+
+         "ids": ["inviaMail", "skype"],
+
+         "icons": ["envelope", "phone"]
+
+       }]
+
+     }
+
+   },
+
 ```
 
 ##2. Configurare le notifiche
