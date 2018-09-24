@@ -14,11 +14,11 @@ Inoltre da questa versione il font del CMS sarà in **Proxima-nuova**
 ## v7.0.0 - Breaking Change
 Con la versione 7 sono state rilasciate 3 funzionalità importanti:
 
-1) la **nuova struttura delle Card** con la possibilità di configurare diversi tipi di widget e avere una struttura interamente personalizzabile. Puoi leggere la Documentazione su come configurare le nuove card qui.
+1) la **nuova struttura delle Card** con la possibilità di configurare diversi tipi di widget e avere una struttura interamente personalizzabile. Puoi leggere la Documentazione su come configurare le nuove card [qui](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card).
 
-2) la funzione di **highlight** è evoluta. Con questa versione è possibile evidenziare delle righe del CMS scrivendo una query e l'utente può configurare anche i colori per evidenziare la riga (colore del testo e dello sfondo). A questo link un esempio di highlight.
+2) la funzione di **highlight** è evoluta. Con questa versione è possibile evidenziare delle righe del CMS scrivendo una query e l'utente può configurare anche i colori per evidenziare la riga (colore del testo e dello sfondo). A questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#3-configurare-gli-highlight) un esempio di highlight.
 
-3) è stata aggiunta la possbilità di avere delle **notifiche** nel menù. Leggere a questo link la documentazione per visualizzare un esempio.
+3) è stata aggiunta la possbilità di avere delle **notifiche** nel menù. Leggere a questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#2-configurare-le-notifiche) la documentazione per visualizzare un esempio.
 
 
 ## v6.1.0
