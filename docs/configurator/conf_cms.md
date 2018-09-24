@@ -192,8 +192,7 @@ Se all'immagine non viene associata nessuna proprietà la card verrà colorata c
 Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. se io scelgo un widget di tipo text al suo interno posso visualizzare più propeirtà di tipo text.
 
 !!!example
-Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
-
+   Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
 
 
 ```
@@ -304,9 +303,9 @@ Le notifiche sono degli oggetti composti da un solo elemento: una query. All'int
 ##3. Configurare gli highlight
 
 Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight è un oggetto composto da tre parametri:
-+ query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
-+ color, parametro di tipo testo che configura il colore del testo;
-+ backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
+* query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
+* color, parametro di tipo testo che configura il colore del testo;
+* backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
 
 !!!example
    Ecco un esempio di highlight
