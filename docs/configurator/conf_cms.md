@@ -201,8 +201,8 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
 
  Ecco un esempio di card finale all'interno della collezione change-requests
 
- ```
- "change-requests": {
+```
+"change-requests": {
 
      "cmsProperties": {
 
@@ -315,7 +315,7 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
 
    },
    
-   ```
+```
 
 ##2. Configurare le notifiche
 
