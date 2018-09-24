@@ -303,8 +303,11 @@ Le notifiche sono degli oggetti composti da un solo elemento: una query. All'int
 ##3. Configurare gli highlight
 
 Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight è un oggetto composto da tre parametri:
+
 * query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
+
 * color, parametro di tipo testo che configura il colore del testo;
+
 * backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
 
 !!!example
