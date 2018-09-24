@@ -289,8 +289,11 @@ Ecco un esempio di card finale all'interno della collezione change-requests
 Le notifiche nel menù laterale ti permettono di visualizzare sottoforma di notifica il numero di elementi che soddisfano una condizione.
 Le notifiche sono degli oggetti composti da un solo elemento: una query. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
 
+!!!example
+
 Ecco un esempio di notifica
-```"notification": {
+```
+"notification": {
        "query":
        {"isLate": true, "state": "working", "trash": 0}
     }
@@ -303,6 +306,8 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 * query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
 * color, parametro di tipo testo che configura il colore del testo;
 * backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
+
+!!!example
 
 Ecco un esempio di highlight
 
