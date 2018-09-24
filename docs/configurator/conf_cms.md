@@ -126,6 +126,8 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
    }
  ```
+
+
 #CMS Config-extension in API Console
 
 Tutte le confgurazioni precedenti vengono gestite automaticamente dall'Api Console.
@@ -170,6 +172,8 @@ Le card sono composte da due sezioni:
 I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
 Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
 
+
+
 ```
 "cardHeader": {
   "titleProperty": "laboratory",
@@ -177,6 +181,8 @@ Se all'immagine non viene associata nessuna proprietà la card verrà colorata c
   "imageProperty": ""
 
   ```
+
+
 
 2. il cardContentRows invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 * textArea - è un campo di testo alto in cui può essere inseirta una descrizione, una nota o una proprietà che richiede uno spazio elevato
@@ -187,6 +193,8 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
 
 !!!example
 Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
+
+
 
 ```
 
@@ -207,9 +215,13 @@ Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l
 }
 
 ```
+
+
 Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
 
 Ecco un esempio di card finale all'interno della collezione change-requests
+
+
 
 ```
 
