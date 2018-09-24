@@ -154,17 +154,16 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
 
    * il sottotitolo
 
-   !!! note
-
+  !!! note
       I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
    Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
 
 ```
-  "cardHeader": {
+"cardHeader": {
        "titleProperty": "laboratory",
        "subTitleProperty": "productId",
        "imageProperty": ""
-  ```
+```
 
 2. il cardContentRows invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 
