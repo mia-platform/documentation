@@ -1,4 +1,4 @@
-## Come configurare il CMS
+## Come configurare il CMS con Mia-Platform 3
 
 Le collezioni che vengono mostrate nel CMS vengono configurate in due file .json differenti:
 
@@ -125,7 +125,9 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
        "interfaceType": "string"
 
    }
- ```
+```
+
+
 
 
 #CMS Config-extension in API Console
@@ -155,50 +157,50 @@ Se non è presente puoi crearla.
 
 A questo punto sei pronto per configurare le tue estensioni.
 
-## Configurare le Card
+## 1. Configurare le Card
 
 Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottoforma di Card.
 
 !!! warning
-Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
+    Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
 
 Le card sono composte da due sezioni:
 1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
+
 * l'immagine
+
 * il titolo
-* il sottotilo
+
+* il sottotitolo
 
 !!! note
-I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
-Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
+    I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
+    Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
 
 
 
-```
-"cardHeader": {
+```"cardHeader": {
   "titleProperty": "laboratory",
   "subTitleProperty": "productId",
   "imageProperty": ""
-
-  ```
-
-
+```
 
 2. il cardContentRows invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
+
 * textArea - è un campo di testo alto in cui può essere inseirta una descrizione, una nota o una proprietà che richiede uno spazio elevato
+
 * text  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
+
 * button - ti permette di configurare dei bottoni all'interno della tua cardType
 
 Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. se io scelgo un widget di tipo text al suo interno posso visualizzare più propeirtà di tipo text.
 
 !!!example
-Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
+   Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
 
 
 
-```
-
-"cardContentRows": [{
+```"cardContentRows": [{
   "type": "textarea",
   "properties": ["note"]
 },
@@ -213,19 +215,13 @@ Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l
   "ids": ["accetta", "rifiuta"],
   "icons": ["check", "archive"]
 }
-
 ```
-
-
 Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
 
 Ecco un esempio di card finale all'interno della collezione change-requests
 
 
-
-```
-
-  "change-requests": {
+```"change-requests": {
     "cmsProperties": {
       "cardHeader": {
         "titleProperty": "laboratory",
@@ -281,5 +277,4 @@ Ecco un esempio di card finale all'interno della collezione change-requests
       }]
     }
   },
-
 ```
