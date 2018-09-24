@@ -203,61 +203,118 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
 
  ```
  "change-requests": {
+
      "cmsProperties": {
+
        "cardHeader": {
+
          "titleProperty": "laboratory",
+
          "subTitleProperty": "productId",
+
          "imageProperty": ""
+
        },
+
        "cardContentRows": [{
+
          "type": "textarea",
+
          "properties": ["note"]
        },
+
        {
+
          "type": "text",
+
          "properties": ["newExpirationDate", "newItemNumber"]
+
        },
+
        {
+
          "labels": ["Accetta", "Rifiuta"],
+
          "type": "button",
-         "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
+
+         "routes": ["/api/change-request/accept",
+
+         "/api/change-request/refuse"],
+
          "ids": ["accetta", "rifiuta"],
+
          "icons": ["check", "archive"]
+
        },
+
        {
+
          "labels": ["Invia Mail", "Skype"],
+
          "type": "button",
+
          "routes": ["/action", "/action"],
+
          "ids": ["inviaMail", "skype"],
+
          "icons": ["envelope", "phone"]
+
        }
+
        ],
+
       "notification": {
+
        "query":
+
        {"responseReceived": "false", "trash": 0}
+
      }
+
      }
+
    },
+
    "fasonisti-properties": {
+
      "cmsProperties": {
+
        "cardHeader": {
+
          "titleProperty": "name",
+
          "subTitleProperty": "",
+
          "imageProperty": "image"
+
        },
+
        "cardContentRows": [{
+
            "type": "textarea",
+
          "properties": ["description"]
+
         },
+
         {
+
          "labels": ["Invia Mail", "Skype"],
+
          "type": "button",
+
          "routes": ["/action", "/action"],
+
          "ids": ["inviaMail", "skype"],
+
          "icons": ["envelope", "phone"]
+
        }]
+
      }
+
    },
+   
    ```
 
 ##2. Configurare le notifiche
