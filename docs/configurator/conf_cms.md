@@ -155,7 +155,7 @@ Se non è presente puoi crearla.
 
 A questo punto sei pronto per configurare le tue estensioni.
 
-## Configurare le Card
+## 1. Configurare le Card
 
 Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottoforma di Card.
 
@@ -166,7 +166,7 @@ Le card sono composte da due sezioni:
 1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 * l'immagine
 * il titolo
-* il sottotilo
+* il sottotitolo
 
 !!! note
 I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
@@ -282,4 +282,34 @@ Ecco un esempio di card finale all'interno della collezione change-requests
     }
   },
 
+```
+
+##2. Configurare le notifiche
+
+Le notifiche nel menù laterale ti permettono di visualizzare sottoforma di notifica il numero di elementi che soddisfano una condizione.
+Le notifiche sono degli oggetti composti da un solo elemento: una query. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
+
+Ecco un esempio di notifica
+```"notification": {
+       "query":
+       {"isLate": true, "state": "working", "trash": 0}
+    }
+```
+
+
+##3. Configurare gli highlight
+
+Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight è un oggetto composto da tre parametri:
+* query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
+* color, parametro di tipo testo che configura il colore del testo;
+* backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
+
+Ecco un esempio di highlight
+
+```"highlight": {
+        "query":
+        {"isLate": true, "state": "working", "trash": 0},
+        "color": "white",
+        "backgroundColor": "#d55d5f"
+     }
 ```
