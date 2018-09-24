@@ -182,11 +182,7 @@ A questo punto sei pronto per configurare le tue estensioni.
 Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottoforma di Card.
 
 !!! warning
-<<<<<<< HEAD
    Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
-=======
-    Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
->>>>>>> 5a607a3fed2d0ec5f4a94449e18047ea33a56ec6
 
 Le card sono composte da due sezioni:
 1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
