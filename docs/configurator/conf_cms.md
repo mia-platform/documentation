@@ -170,7 +170,10 @@ Le card sono composte da due sezioni:
 * l'immagine
 
 * il titolo
+<<<<<<< HEAD
 
+=======
+>>>>>>> 71c6cd6cde44b3a7d1ca878b3d0adcb5386d47a9
 * il sottotitolo
 
 !!! note
@@ -278,3 +281,44 @@ Ecco un esempio di card finale all'interno della collezione change-requests
     }
   },
 ```
+
+##2. Configurare le notifiche
+
+Le notifiche nel menù laterale ti permettono di visualizzare sottoforma di notifica il numero di elementi che soddisfano una condizione.
+Le notifiche sono degli oggetti composti da un solo elemento: una query. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
+
+!!!example
+   Ecco un esempio di notifica
+   ```
+   "notification": {
+          "query":
+          {"isLate": true, "state": "working", "trash": 0}
+       }
+   ```
+   La visualizzazione sarà la seguente:
+
+   ![](img/notifiche.PNG)
+
+##3. Configurare gli highlight
+
+Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight è un oggetto composto da tre parametri:
+
+* query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
+
+* color, parametro di tipo testo che configura il colore del testo;
+
+* backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
+
+!!!example
+   Ecco un esempio di highlight
+   ```
+   "highlight": {
+           "query":
+           {"isLate": true, "state": "working", "trash": 0},
+           "color": "white",
+           "backgroundColor": "#d55d5f"
+        }
+   ```
+   La visualizzazione sarà la seguente:
+
+   ![](img/highlight.PNG)
