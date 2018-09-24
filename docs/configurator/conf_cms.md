@@ -110,47 +110,7 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 }
 ```
 
-<<<<<<< HEAD
 # CMS Config-extension in API Console
-=======
-      "nome": {
-
-       "id": "nome",
-
-       "type": "string",
-
-       "required": false,
-
-       "label": "Nome",
-
-      "cmsVisibility": {
-
-          "level": 1
-
-       },
-
-      "cmsOrder": 10,
-
-      "readonly": false,
-
-      "cmsEditable": true,
-
-      "hidden": false,
-
-      "description": "",
-
-       "cmsCardPosition":0,
-
-       "interfaceType": "string"
-
-   }
-```
-
-
-
-
-#CMS Config-extension in API Console
->>>>>>> 5a607a3fed2d0ec5f4a94449e18047ea33a56ec6
 
 Tutte le confgurazioni precedenti vengono gestite automaticamente dall'Api Console.
 Esistono però alcune estensioni che non possono ancora essere configurate dal front-end ma sono gestite da un componente : le config-extension.
@@ -184,43 +144,24 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
 !!! warning
    Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
 
-Le card sono composte da due sezioni:
-1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
+   Le card sono composte da due sezioni:
+   1. il cardHeader che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
-* l'immagine
+   * l'immagine
 
-* il titolo
-<<<<<<< HEAD
+   * il titolo
 
-=======
->>>>>>> 71c6cd6cde44b3a7d1ca878b3d0adcb5386d47a9
-* il sottotitolo
+   * il sottotitolo
 
-!!! note
-<<<<<<< HEAD
-   I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
-Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
-=======
-    I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
-    Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
->>>>>>> 5a607a3fed2d0ec5f4a94449e18047ea33a56ec6
+   !!! note
+      I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
+   Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
 
-
-
-```"cardHeader": {
-<<<<<<< HEAD
-   "titleProperty": "laboratory",
-   "subTitleProperty": "productId",
-   "imageProperty": ""
-   ```
-
-
-=======
-  "titleProperty": "laboratory",
-  "subTitleProperty": "productId",
-  "imageProperty": ""
-```
->>>>>>> 5a607a3fed2d0ec5f4a94449e18047ea33a56ec6
+   ```"cardHeader": {
+      "titleProperty": "laboratory",
+      "subTitleProperty": "productId",
+      "imageProperty": ""
+      ```
 
 2. il cardContentRows invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 
@@ -236,48 +177,26 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
    Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
 
 
-<<<<<<< HEAD
-```"cardContentRows": [{
-    "type": "textarea",
-    "properties": ["note"]
-    },
-    {
-   "type": "text",
-   "properties": ["newExpirationDate", "newItemNumber"]
-    },
-    {
-   "labels": ["Accetta", "Rifiuta"],
-   "type": "button",
-   "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-   "ids": ["accetta", "rifiuta"],
-   "icons": ["check", "archive"]
-   }
- ```
+   ```"cardContentRows": [{
+       "type": "textarea",
+       "properties": ["note"]
+       },
+       {
+      "type": "text",
+      "properties": ["newExpirationDate", "newItemNumber"]
+       },
+       {
+      "labels": ["Accetta", "Rifiuta"],
+      "type": "button",
+      "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
+      "ids": ["accetta", "rifiuta"],
+      "icons": ["check", "archive"]
+      }
+    ```
 
+ Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
 
-=======
-
-```"cardContentRows": [{
-  "type": "textarea",
-  "properties": ["note"]
-},
-{
-  "type": "text",
-  "properties": ["newExpirationDate", "newItemNumber"]
-},
-{
-  "labels": ["Accetta", "Rifiuta"],
-  "type": "button",
-  "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-  "ids": ["accetta", "rifiuta"],
-  "icons": ["check", "archive"]
-}
-```
->>>>>>> 5a607a3fed2d0ec5f4a94449e18047ea33a56ec6
-Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
-
-Ecco un esempio di card finale all'interno della collezione change-requests
-
+ Ecco un esempio di card finale all'interno della collezione change-requests
 
 ```"change-requests": {
     "cmsProperties": {
