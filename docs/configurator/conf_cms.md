@@ -131,6 +131,7 @@ le 3 estensioni più importanti sono:
 Se non è presente puoi crearla.
 
 2) una volta aperta la cartella dovrai creare o assicurarti che siano già stati creati i seguenti file:
+
 * **analyticsConfig.json** (se lo crei per la prima volta al suo interno dovrai inserire un oggetto vuoto)
 
 * **cmsProperties.json** (se lo crei per la prima volta al suo interno dovrai inserire un oggetto vuoto)
@@ -327,13 +328,18 @@ Le notifiche nel menù laterale ti permettono di visualizzare sottoforma di noti
 Le notifiche sono degli oggetti composti da un solo elemento: una query. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
 
 !!!example
-   Ecco un esempio di notifica
-   ```
-   "notification": {
-          "query":
-          {"isLate": true, "state": "working", "trash": 0}
-       }
-   ```
+    Ecco un esempio di notifica
+
+
+         "notification": {
+
+              "query":
+
+                 {"isLate": true, "state": "working", "trash": 0}
+
+             }
+
+
    La visualizzazione sarà la seguente:
 
    ![](img/notifiche.PNG)
@@ -342,22 +348,28 @@ Le notifiche sono degli oggetti composti da un solo elemento: una query. All'int
 
 Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight è un oggetto composto da tre parametri:
 
-* query, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
+* **query**, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
 
-* color, parametro di tipo testo che configura il colore del testo;
+* **color**, parametro di tipo testo che configura il colore del testo;
 
-* backgroundColor, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
+* **backgroundColor**, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
 
 !!!example
-   Ecco un esempio di highlight
-   ```
-   "highlight": {
-           "query":
-           {"isLate": true, "state": "working", "trash": 0},
-           "color": "white",
-           "backgroundColor": "#d55d5f"
-        }
-   ```
-   La visualizzazione sarà la seguente:
+    Ecco un esempio di highlight
+
+
+        "highlight": {
+
+             "query":
+
+                {"isLate": true, "state": "working", "trash": 0},
+
+              "color": "white",
+
+              "backgroundColor": "#d55d5f"
+
+           }
+
+  La visualizzazione sarà la seguente:
 
    ![](img/highlight.PNG)
