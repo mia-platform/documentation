@@ -149,6 +149,7 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
 
 Le card sono composte da due sezioni:
 
+
 1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
 * l'immagine
