@@ -1,7 +1,7 @@
 # CMS Release Notes
 ##v7.0.4
 
-In questa versione sno state rilasciate delle nuove customizzazione del CMS
+In questa versione sono state rilasciate delle nuove customizzazione del CMS
 Sarà infatti possibile customizzare le seguenti variabili di css:
 
 * color brand gradient 1= permette di personalizzare il colore del **testo nella sidebar del menù**
