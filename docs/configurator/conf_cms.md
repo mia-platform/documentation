@@ -147,14 +147,16 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
 !!! warning
      Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
 
-   Le card sono composte da due sezioni:
-   1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
+Le card sono composte da due sezioni:
 
-   * l'immagine
 
-   * il titolo
+1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
-   * il sottotitolo
+* l'immagine
+
+* il titolo
+
+* il sottotitolo
 
 !!! note
        I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
@@ -167,11 +169,15 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
        "imageProperty": ""
 ```
 
+
 2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 
-* **textArea** - è un campo di testo alto in cui può essere inseirta una descrizione, una nota o una proprietà che richiede uno spazio elevato
+
+* **textArea** - è un campo di testo alto in cui può essere inserita una descrizione, una nota o una proprietà che richiede uno spazio elevato
+
 
 * **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
+
 
 * **button** - ti permette di configurare dei bottoni all'interno della tua cardType
 
@@ -221,6 +227,7 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
        "cardContentRows": [{
 
          "type": "textarea",
+
 
          "properties": ["note"]
        },
@@ -370,6 +377,6 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 
            }
 
-  La visualizzazione sarà la seguente:
+           La visualizzazione sarà la seguente:
 
-   ![](img/highlight.PNG)
+           ![](img/highlight.png)
