@@ -167,11 +167,15 @@ Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottof
        "imageProperty": ""
 ```
 
+
 2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
+
 
 * **textArea** - è un campo di testo alto in cui può essere inseirta una descrizione, una nota o una proprietà che richiede uno spazio elevato
 
+
 * **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
+
 
 * **button** - ti permette di configurare dei bottoni all'interno della tua cardType
 
@@ -372,4 +376,4 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 
   La visualizzazione sarà la seguente:
 
-   ![](img/highlight.PNG)
+   ![](img/highlight.png)
