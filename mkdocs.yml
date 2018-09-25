@@ -1,3 +1,4 @@
+<<<<<<< current
 site_name: Mia-Platform Docs
 repo_url: https://git.tools.mia-platform.eu/platform/documentations
 site_description: Documentazione della piattaforma Mia Platform
@@ -91,3 +92,121 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.tilde
+=======
+#Project Information
+
+site_name: Mia-Platform Docs
+site_url: https://docs.mia-platform.eu/
+site_description: Documentazione della piattaforma Mia Platform
+site_author: Mia Platform Team
+
+#Repository
+repo_url: https://git.tools.mia-platform.eu/platform/documentations
+
+#Copyright
+copyright: Mia srl. Tutti i diritti riservati.
+
+#Configuration
+theme:
+  name: 'material'
+  custom_dir: 'theme'
+
+  # Default values
+  language: 'it'
+  feature:
+    tabs: 'true'
+
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  logo: 'img/mia-platform-white.png'
+  favicon: 'img/favicon.ico'
+
+#Customization
+extra:
+  social:
+    - type: globe
+      link: https://www.mia-platform.eu/
+    - type: linkedin
+      link: https://www.linkedin.com/company/mia-platform/
+# Extension
+
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+    permalink: 'true'
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+    smart_enable: 'all'
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+    custom_checkbox: 'true'
+  - pymdownx.tilde
+
+
+#Page tree
+pages:
+
+- Home: 'index.md'
+  - Architecture: 'architecture/suite_business.md'
+    - Global vision: 'architecture/arc_overview.md'
+    - Componenti: 'architecture/arc_components.md'
+    - Overview: 'architecture/old_overview.md'
+  - Linee Guida Progettazione Mia: 'guidelines/git_vademecum.md'
+    - GIT Vademecum: 'guidelines/git_vademecum.md'
+    - API: 'guidelines/api.md'
+  - About: 'about/chisiamo.md'
+    - Chi siamo: 'about/chisiamo.md'
+
+- Developer:
+  - Developers Guide:
+    - Creare un Plugin: 'developer_guide/plugin.md'
+    - Creare un Tema: 'developer_guide/theme.md'
+    - Users: 'developer_guide/users.md'
+    - Cron: 'developer_guide/cron.md'
+    - iOS SDK: 'developer_guide/sdk_ios.md'
+    - Android SDK: 'developer_guide/sdk_android.md'
+    - Plugin Piattaforma 4: 'developer_guide/plugin_baas_4.md'
+    - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+
+  - Configuration Manager:
+    - Configurare il CMS: 'configurator/conf_cms.md'
+    - Configurare gli Analytics: 'configurator/conf_analytics.md'
+
+  - DevOps:
+    - Business Continuity: 'dev_ops_guide/business_continuity.md'
+    - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
+
+  - User Backoffice:
+    - Api Console: 'user_guide_and_tools/api_console/guida_api_console.md'
+    - CMS: 'user_guide_and_tools/cms/guide_cms.md'
+
+- Release Notes:
+  - Piattaforma: 'release_notes/platform_releasenotes.md'
+  - Api Console: 'release_notes/apiconsole_releasenotes.md'
+  - CMS: 'release_notes/cms_releasenotes.md'
+
+
+
+
+#Google Analytics
+google_analytics:
+  - 'UA-122091925-1'
+  - 'auto'
+>>>>>>> before discard
