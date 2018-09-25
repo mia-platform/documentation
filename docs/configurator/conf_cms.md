@@ -173,7 +173,7 @@ Le card sono composte da due sezioni:
 2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 
 
-* **textArea** - è un campo di testo alto in cui può essere inseirta una descrizione, una nota o una proprietà che richiede uno spazio elevato
+* **textArea** - è un campo di testo alto in cui può essere inserita una descrizione, una nota o una proprietà che richiede uno spazio elevato
 
 
 * **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
@@ -376,6 +376,6 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 
            }
 
-  La visualizzazione sarà la seguente:
+           La visualizzazione sarà la seguente:
 
-   ![](img/highlight.png)
+           ![](img/highlight.png)
