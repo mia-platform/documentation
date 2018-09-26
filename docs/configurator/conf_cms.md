@@ -202,7 +202,7 @@ Le card sono composte da due sezioni:
   * **button** - ti permette di configurare dei bottoni all'interno della tua cardType. E' necessario specificare nella chiave "routes" l'endpoint a cui ci si vuole collegare.
 
 
-  * **link** - ti permette di configurare dei bottoni che rimandano a un URL, in modo tale da aprire automaticamente un'applicazione.E' quindi necessario specificare nella chiave "linksType" il collegamento che si vuole ottenere premendo il bottone. Inoltre in questa tipologia di widget è possibile inserire delle icone da far comparire nel bottone.
+  * **link** - ti permette di configurare dei bottoni che rimandano a un URL, in modo tale da aprire automaticamente un'applicazione. Nella configurazione dei bottoni link, è necessario specificare nella chiave "linksType" il collegamento che si vuole ottenere premendo il bottone. Inoltre in questa tipologia di widget è possibile inserire delle icone da far comparire nel bottone.
 
 Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. Se io scelgo un widget di tipo text al suo interno posso visualizzare più proprietà di tipo text. Le car in base al numero di elementi presenti dividono lo spazio della card.
 
