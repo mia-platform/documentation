@@ -152,11 +152,11 @@ Le card sono composte da due sezioni:
 
 1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
-* l'immagine
+  * l'immagine
 
-* il titolo
+  * il titolo
 
-* il sottotitolo
+  * il sottotitolo
 
 !!! note
        I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
@@ -173,13 +173,13 @@ Le card sono composte da due sezioni:
 2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
 
 
-* **textArea** - è un campo di testo alto in cui può essere inserita una descrizione, una nota o una proprietà che richiede uno spazio elevato
+  * **textArea** - è un campo di testo alto in cui può essere inserita una descrizione, una nota o una proprietà che richiede uno spazio elevato
 
 
-* **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
+  * **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
 
 
-* **button** - ti permette di configurare dei bottoni all'interno della tua cardType
+  * **button** - ti permette di configurare dei bottoni all'interno della tua cardType
 
 Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. Se io scelgo un widget di tipo text al suo interno posso visualizzare più proprietà di tipo text. Le car in base al numero di elementi presenti dividono lo spazio della card.
 
