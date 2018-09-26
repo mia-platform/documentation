@@ -152,11 +152,15 @@ Le card sono composte da due sezioni:
 
 1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
+
   * l'immagine
+
 
   * il titolo
 
+
   * il sottotitolo
+
 
 !!! note
        I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
