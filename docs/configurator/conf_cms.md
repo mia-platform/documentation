@@ -81,39 +81,8 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
    `type` | "string", | i tipi possono essere: string, number, boolean, geopoint, date, object, array of number, array of string, array of object, objectId
    `required`| false, | **true** se vuoi che il dato sia obbligatorio
    `label`| Nome | è l'etichetta che vuoi dare alla tua proprietà
-   `cmsVisibility` |  | cmsVisibility è composta da:
-   1. **“Level”**, che permette di decidere a che livello si vuole mostrare una proprietà. I tre livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicchi nella tabella, nella zona destra del tuo CMS, al livello** 2** tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso metteremo 1 in quando l'informazione è prioritaria.
-   2. **“New”** e **“Edit”** che permettono di filtrare la proprietà per renderla visibile solo in alcuni casi. Infatti sia “New” che “Edit” sono oggetti che contengono una query, permettendo quindi di impostare condizioni complesse. **“New”** permette di rendere visibile la proprietà in fase di creazione, **“Edit”** permette di rendere visibile la proprietà in fase di modifica.
-
-   !!! example
-
-       Ecco un esempio
-
-        ```
-
-       "cmsVisibility": {
-               "level": 1,
-                "edit": {
-               "query": {
-                 "name": {
-                   "$exists": true,
-                   "$ne": ""
-                 }
-               }
-             },
-             "new": {
-               "query": {
-                 "name": {
-                   "$exists": true,
-                   "$ne": ""
-                 }
-               }
-             }
-           }
-
-       ```
-
-     `cmsVisibilty.level`| 1 | I livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicchi nella tabella, nella zona destra del tuo CMS, al livello 2 tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso metteremo 1 in quando l'informazione è prioritaria.
+   `cmsVisibility` |  | cmsVisibility permette di decidere a che livello si vuole mostrare una proprietà. I tre livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicchi nella tabella, nella zona destra del tuo CMS, al livello** 2** tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso metteremo 1 in quando l'informazione è prioritaria. Questa proprietà può anche essere configurata per essere visibile solo in alcuni casi, tramite **“New”** ed **“Edit”**. Entrambi sono oggetti che contengono una query, quindi permettono di impostare condizioni complesse. **“New”** permette di rendere visibile la proprietà in fase di creazione, **“Edit”** permette di rendere visibile la proprietà in fase di modifica.
+   `cmsVisibilty.level`| 1 | I livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicchi nella tabella, nella zona destra del tuo CMS, al livello 2 tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti. Nel nostro caso metteremo 1 in quando l'informazione è prioritaria.
    `cmsOrder`| 10 | è l'ordine che gli vuoi dare all'interno della collezione. nel nostro caso sarà il primo, quindi scriveremo 10
    `cmsEditable`| true | **true** se vuoi che sia modificabile da CMS
    `hidden`| false | se vuoi che la proprietà sia invisibile
@@ -130,8 +99,24 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
    "required": false,
    "label": "Nome",
    "cmsVisibility": {
-        "level": 1
-               },
+            "level": 1,
+             "edit": {
+            "query": {
+              "name": {
+                "$exists": true,
+                "$ne": ""
+              }
+            }
+          },
+          "new": {
+            "query": {
+              "name": {
+                "$exists": true,
+                "$ne": ""
+              }
+            }
+          }
+        },
     "cmsOrder": 10,
     "readonly": false,
     "cmsEditable": true,
