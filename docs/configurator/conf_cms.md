@@ -377,6 +377,6 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 
            }
 
-           La visualizzazione sarà la seguente:
 
-           ![](img/highlight.png)
+La visualizzazione sarà la seguente:
+![](img/highlight.png)

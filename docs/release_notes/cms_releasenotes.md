@@ -1,7 +1,7 @@
 # CMS Release Notes
 ##v7.0.4
 
-In questa versione sno state rilasciate delle nuove customizzazioni del CMS.
+In questa versione sono state rilasciate delle nuove customizzazioni del CMS.
 
 Sarà infatti possibile customizzare le seguenti variabili di css:
 
