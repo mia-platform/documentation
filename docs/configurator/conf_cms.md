@@ -145,7 +145,7 @@ A questo punto sei pronto per configurare le tue estensioni.
 Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottoforma di Card.
 
 !!! warning
-     Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il tipo di visualizzazione impostato a card.
+     Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il **tipo di visualizzazione impostato a card**.
 
 Le card sono composte da due sezioni:
 
@@ -207,7 +207,8 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
 
  Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
 
- Ecco un esempio di card finale all'interno della collezione change-requests
+!!!example
+   Ecco un esempio di card finale all'interno della collezione change-requests
 
 ```
 "change-requests": {
@@ -332,7 +333,7 @@ Ecco alcuni esempi di card realizzati
 ##2. Configurare le notifiche
 
 Le notifiche nel menù laterale ti permettono di visualizzare sottoforma di notifica il numero di elementi che soddisfano una condizione.
-Le notifiche sono degli oggetti composti da un solo elemento: una query. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
+Le notifiche sono degli oggetti composti da un solo elemento: una **query**. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
 
 !!!example
     Ecco un esempio di notifica
