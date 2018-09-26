@@ -174,7 +174,7 @@ Le card sono composte da due sezioni:
 ```
 
 
-2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 3 tipologie di widget che possono essere inseriti:
+2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 4 tipologie di widget che possono essere inseriti:
 
 
   * **textArea** - è un campo di testo alto in cui può essere inserita una descrizione, una nota o una proprietà che richiede uno spazio elevato
@@ -183,30 +183,43 @@ Le card sono composte da due sezioni:
   * **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
 
 
-  * **button** - ti permette di configurare dei bottoni all'interno della tua cardType
+  * **button** - ti permette di configurare dei bottoni all'interno della tua cardType. E' necessario specificare nella chiave "routes" l'endpoint a cui ci si vuole collegare.
+
+
+  * **link** - ti permette di configurare dei bottoni che rimandano a un URL, in modo tale da aprire automaticamente un'applicazione.E' quindi necessario specificare nella chiave "linksType" il collegamento che si vuole ottenere premendo il bottone. Inoltre in questa tipologia di widget è possibile inserire delle icone da far comparire nel bottone.
 
 Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. Se io scelgo un widget di tipo text al suo interno posso visualizzare più proprietà di tipo text. Le car in base al numero di elementi presenti dividono lo spazio della card.
 
 !!!example
-    Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà e due bottoni
+    Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà, due bottoni e due link.
 
 
 ```
+
 "cardContentRows": [{
-        "type": "textarea",
-        "properties": ["note"]
-        },
-        {
-       "type": "text",
-       "properties": ["newExpirationDate", "newItemNumber"]
-        },
-        {
-       "labels": ["Accetta", "Rifiuta"],
-       "type": "button",
-       "routes": ["/api/change-request/accept",  "/api/change-request/refuse"],
-       "ids": ["accetta", "rifiuta"],
-       "icons": ["check", "archive"]
-       }
+     "type": "textarea",
+     "properties": ["note"]
+   },
+   {
+     "type": "text",
+     "properties": ["newExpirationDate", "newItemNumber"]
+   },
+   {
+     "labels": ["Accetta", "Rifiuta"],
+     "type": "button",
+     "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
+     "ids": ["accetta", "rifiuta"],
+     "icons": ["check", "archive"]
+   },
+   {
+     "type": "link",
+     "labels": ["Mail", "Skype"],
+     "icons": ["at", "skype"],
+     "linksType": ["email", "skypeCall"],
+     "properties": ["mail", "skypeId"]
+   }
+   ]
+
 ```
 
  Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
@@ -215,124 +228,75 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
    Ecco un esempio di card finale all'interno della collezione change-requests
 
 ```
+
 "change-requests": {
-
-     "cmsProperties": {
-
-       "cardHeader": {
-
-         "titleProperty": "laboratory",
-
-         "subTitleProperty": "productId",
-
-         "imageProperty": ""
-
-       },
-
-       "cardContentRows": [{
-
+   "cmsProperties": {
+     "cardHeader": {
+       "titleProperty": "laboratory",
+       "subTitleProperty": "productId",
+       "imageProperty": ""
+     },
+     "cardContentRows": [{
+       "type": "textarea",
+       "properties": ["note"]
+     },
+     {
+       "type": "text",
+       "properties": ["newExpirationDate", "newItemNumber"]
+     },
+     {
+       "labels": ["Accetta", "Rifiuta"],
+       "type": "button",
+       "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
+       "ids": ["accetta", "rifiuta"],
+       "icons": ["check", "archive"]
+     },
+     {
+       "type": "link",
+       "labels": ["Mail", "Skype"],
+       "icons": ["at", "skype"],
+       "linksType": ["email", "skypeCall"],
+       "properties": ["mail", "skypeId"]
+     }
+     ],
+    "notification": {
+     "query":
+     {"responseReceived": "false", "trash": 0}
+   }
+  }
+ },
+ "fasonisti-properties": {
+   "cmsProperties": {
+     "cardHeader": {
+       "titleProperty": "name",
+       "subTitleProperty": "",
+       "imageProperty": "image"
+     },
+     "cardContentRows": [{
          "type": "textarea",
-
-
-         "properties": ["note"]
-       },
-
-       {
-
-         "type": "text",
-
-         "properties": ["newExpirationDate", "newItemNumber"]
-
-       },
-
-       {
-
-         "labels": ["Accetta", "Rifiuta"],
-
-         "type": "button",
-
-         "routes": ["/api/change-request/accept",
-
-         "/api/change-request/refuse"],
-
-         "ids": ["accetta", "rifiuta"],
-
-         "icons": ["check", "archive"]
-
-       },
-
-       {
-
-         "labels": ["Invia Mail", "Skype"],
-
-         "type": "button",
-
-         "routes": ["/action", "/action"],
-
-         "ids": ["inviaMail", "skype"],
-
-         "icons": ["envelope", "phone"]
-
-       }
-
-       ],
-
-      "notification": {
-
-       "query":
-
-       {"responseReceived": "false", "trash": 0}
-
+       "properties": ["description"]
+      },
+      {
+       "type": "link",
+       "labels": ["Mail", "Skype"],
+       "icons": ["at", "skype"],
+       "linksType": ["email", "skypeCall"],
+       "properties": ["mail", "skypeId"]
      }
-
-     }
-
-   },
-
-   "fasonisti-properties": {
-
-     "cmsProperties": {
-
-       "cardHeader": {
-
-         "titleProperty": "name",
-
-         "subTitleProperty": "",
-
-         "imageProperty": "image"
-
-       },
-
-       "cardContentRows": [{
-
-           "type": "textarea",
-
-         "properties": ["description"]
-
-        },
-
-        {
-
-         "labels": ["Invia Mail", "Skype"],
-
-         "type": "button",
-
-         "routes": ["/action", "/action"],
-
-         "ids": ["inviaMail", "skype"],
-
-         "icons": ["envelope", "phone"]
-
-       }]
-
-     }
-
-   },
+    ]
+   }
+ }
 
 ```
 Ecco alcuni esempi di card realizzati
 
 ![](img/card1.JPG) ![](img/card2.JPG)
+
+Nell'esempio abbiamo quindi:
+
+* due bottoni - accetta e rifiuta;
+
+* due link - mail e skype, che permettono di aprire automaticamente le applicazioni di e-mail e skype.
 
 ##2. Configurare le notifiche
 
@@ -351,6 +315,7 @@ Le notifiche sono degli oggetti composti da un solo elemento: una **query**. All
 
              }
 
+    Nell'esempio la notifica mostra il numero di elementi in ritardo  stato in lavorazione.
 
    La visualizzazione sarà la seguente:
 
@@ -385,3 +350,5 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 
 La visualizzazione sarà la seguente:
 ![](img/highlight.png)
+
+Nell'esempio vengono evidenziate su uno sfondo rosso scritte in bianco, le righe della tabella che sono in ritardo allo stato "in lavorazione".
