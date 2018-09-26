@@ -315,11 +315,12 @@ Le notifiche sono degli oggetti composti da un solo elemento: una **query**. All
 
              }
 
-    Nell'esempio la notifica mostra il numero di elementi in ritardo  stato in lavorazione.
 
    La visualizzazione sarà la seguente:
 
    ![](img/notifiche.PNG)
+
+   Nell'esempio la notifica mostra il numero di elementi in ritardo allo stato in lavorazione.
 
 ##3. Configurare gli highlight
 
@@ -350,5 +351,6 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
 
 La visualizzazione sarà la seguente:
 ![](img/highlight.png)
+
 
 Nell'esempio vengono evidenziate su uno sfondo rosso scritte in bianco, le righe della tabella che sono in ritardo allo stato "in lavorazione".
