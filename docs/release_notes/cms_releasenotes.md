@@ -3,9 +3,10 @@
 
 In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
-* possibilità di fare delle **query complesse nella visualizzazione di una proprietà**. A questo link potrai visualizzare degli esempi. 
+* possibilità di fare delle **query complesse nella visualizzazione di una proprietà**. A questo link potrai visualizzare degli esempi.
 
-* creazione di un nuovo tipo di bottoni da inserire nella card. Sono stati creati i bottoni link. Che anzichè avere come azione una chiamata rest hanno un link. Sono già disponibili due bottoni da riutilizzare in tutti i progetti: i bottoni **Invia Mail** e **Chiama Skype**. A questo link potrai leggere la configurazione dei bottoni.
+* creazione di un nuovo tipo di bottoni da inserire nella card. Sono stati creati i bottoni link, che anzichè avere come azione una chiamata rest hanno un link. Sono già disponibili due bottoni da riutilizzare in tutti i progetti: i bottoni **Invia Mail** e **Chiama Skype**. A questo
+[link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card) potrai leggere la configurazione dei bottoni.
 
 
 ##v7.0.4
