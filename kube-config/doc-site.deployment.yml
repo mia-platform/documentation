@@ -7,6 +7,7 @@ metadata:
     date: {{RELEASE_DATE}}
     author: {{AUTHOR_EMAIL}}
     commit-sha: {{COMMIT_SHA}}
+    fluentbit.io/parser: 'nginx'
   labels:
     component: documentation-site
 spec:
@@ -23,6 +24,7 @@ spec:
         date: {{RELEASE_DATE}}
         author: {{AUTHOR_EMAIL}}
         commit-sha: {{COMMIT_SHA}}
+        fluentbit.io/parser: 'nginx'
       labels:
         component: documentation-site
     spec:
@@ -34,7 +36,7 @@ spec:
           imagePullPolicy: Always
           resources:
             limits:
-              memory: '20Mi'
+              memory: '25Mi'
             requests:
               memory: '5Mi'
               cpu: '10m'
