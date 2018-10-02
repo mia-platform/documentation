@@ -1,4 +1,21 @@
 # CMS Release Notes
+##v7.1.0
+
+In questa versione del CMS è possibile selezionare le icone da font-awesome fino alla versione v.5.3.1, che è l'ultima versione che è supportata (qui si trova il [link](https://fontawesome.com/icons?d=gallery)).
+
+!!! warning
+    Se si scelgono icone che erano già utilizzate nella versione precedente, si continueranno a visualizzare nel CMS le icone vecchie. Questo perchè si dà priorità alla retrocompatibilità. 
+
+
+##v7.0.9
+
+In questa versione del CMS sono state rilasciate le seguenti evolutive:
+
+* Fix all'opacità e al layout di bulk edit.
+
+* Possibilità di customizzare il colore dello spinner di caricamento e delle scritte della legend degli analitici.
+
+
 ##v7.0.7
 
 In questa versione del CMS sono state rilasciate le seguenti evolutive:
