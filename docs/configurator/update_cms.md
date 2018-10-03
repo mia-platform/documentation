@@ -12,7 +12,9 @@ A questo [link](https://docs.mia-platform.eu/release_notes/cms_releasenotes/) tr
 
 Per aggiornare la versione del CMS gli step sono due:
 
-1. Modificare la **configurazione del CMS**. Il percorso per accedere al file di configurazione su git è:
+### Primo step
+
+Modificare la **configurazione del CMS**. Il percorso per accedere al file di configurazione su git è:
 
 `>nomeprogetto / Webapp / custom CMS / .gitlab-ci.yml`
 
@@ -21,7 +23,9 @@ Nella sezione "variables" si trova **"CMS_VERSION"**, che deve essere aggiornata
 !!! note
       L'aggiornamento automatico della versione del CMS accade solo per l'ambiente di **test**. Infatti, nel file ".gitlab-ci.yml" alla sezione "script" si può vedere che l'ambiente di test è configurato in modo tale da aggiornare automaticamente la versione da git.
 
-2. Si procede con la **configurazione per gli ambienti di preprod e prod**. Per farlo il percorso su git è:
+### Secondo step
+
+Si procede con la **configurazione per gli ambienti di preprod e prod**. Per farlo il percorso su git è:
 
 `>nomeprogetto / config / .gitlab-ci.yml`
 
