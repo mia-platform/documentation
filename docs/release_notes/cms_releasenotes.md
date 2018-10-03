@@ -1,5 +1,5 @@
 # CMS Release Notes
-##v7.1.0
+##v7.0.11
 
 In questa versione del CMS è possibile selezionare le **icone da font-awesome fino alla versione v.5.3.1**, che è l'ultima versione supportata (qui si trova il [link](https://fontawesome.com/icons?d=gallery) per le icone).
 
