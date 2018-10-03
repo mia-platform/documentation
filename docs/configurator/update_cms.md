@@ -8,7 +8,7 @@ Per capire la versione corrente del tuo CMS, apri la pagina del CMS. Scorri il *
 A questo [link](https://docs.mia-platform.eu/release_notes/cms_releasenotes/) troverai l'elenco delle versioni rilasciate del CMS e le rispettive funzionalità supportate.
 
 
-## 2. Come aggiornare la versione del cms
+## 2. Come aggiornare la versione del CMS
 
 Per aggiornare la versione del CMS gli step sono due:
 
@@ -19,7 +19,7 @@ Per aggiornare la versione del CMS gli step sono due:
 Nella sezione "variables" si trova **"CMS_VERSION"**, che deve essere aggiornata con l'ultima versione disponibile o voluta del CMS. A questo punto si salva e si visualizza il CMS in test.
 
 !!! note
-   L'aggiornamento automatico del CMS accade solo per l'ambiente di test. Infatti, nel file ".gitlab-ci.yml" alla sezione "script" si può vedere che l'ambiente di test è configurato in modo tale da aggiornare automaticamente la versione da git.
+    L'aggiornamento automatico del CMS accade solo per l'ambiente di test. Infatti, nel file ".gitlab-ci.yml" alla sezione "script" si può vedere che l'ambiente di test è configurato in modo tale da aggiornare automaticamente la versione da git.
 
 2. Si procede con la **configurazione per gli ambienti di preprod e prod**. Per farlo il percorso su git è:
 
