@@ -54,11 +54,13 @@ A questo punto si può creare il plugin di helloworld creando il file `index.js`
 const customService = require('@mia-platform/custom-plugin-lib')()
 
 module.exports = customService(async function index(service) {
-  service.addRawCustomPlugin('GET', '/hello', async function handler(req) {
+  service.addRawCustomPlugin('GET', '/hello/', async function handler(req) {
     return `Hello ${req.getUserId() || 'World'}`
   })
 })
 ```
+
+*Nota: ricordarsi di mettere lo slash in fondo al nome dell'endpoint altrimenti torna 404 Not Found*
 
 La libreria è in grado di estrarre dalla richiesta alcune informazioni legate alla piattaforma, quali l'id utente (`null` se non loggato), i gruppi, etc.
 I metodi della richiesta aggiunti dalla libreria sono anche forniti durante l'autocompletamento per accelerare lo sviluppo.
@@ -77,12 +79,12 @@ Ci sono due possibilità:
 * ottenere un proxy che passa per il microservice-gateway (per avere anche l'ACL, e tutti i decoratori di PRE e di POST), chiamando il seguente metodo:
 ```js
 const proxy = req.getServiceProxy()
-const res = await proxy.get('/heroes')
+const res = await proxy.get('/heroes/')
 ```
 * ottenere un proxy diretto al servizio. In tal caso ACL e altri decoratori non vedranno questa richiesta.
 ```js
 const proxy = req.getDirectServiceProxy('service-name')
-const res = await proxy.post('/heroes', { name: 'Super' })
+const res = await proxy.post('/heroes/', { name: 'Super' })
 ```
 
 I metodi del proxy http utilizzabili sono i seguenti:
@@ -142,7 +144,7 @@ Di seguito si definisce ad esempio un decoratore di POST che manda il body di ri
 ```js
 service.addPostDecorator('/saveResponse', async function handler(req) {
   const proxy = req.getServiceProxy()
-  await proxy.post('/responses', req.getOriginalResponseBody())
+  await proxy.post('/responses/', req.getOriginalResponseBody())
   return req.leaveOriginalResponseUnmodified()
 })
 ```
