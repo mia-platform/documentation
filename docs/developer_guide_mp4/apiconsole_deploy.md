@@ -6,9 +6,9 @@ Questa nuova gestione degli ambienti fa si che per alcuni progetti già esistent
 
 Nel caso sia urgentissimo avere degli ambienti di deploy, bisogna seguire i seguenti passaggi:
 
-1. Aprire **Postman** (attivare interceptor se non già attivo).
+* **Step 1**: Aprire **Postman** (attivare interceptor se non già attivo).
 
-2. Importare la **curl di esempio** qui sotto:
+* **Step 2**: Importare la **curl di esempio** qui sotto:
 
 ```
 curl -X PATCH \
@@ -46,7 +46,7 @@ curl -X PATCH \
 }'
 ```
 
-3. Settare i campi in maiuscolo della curl.
+* **Step 3**: Settare i campi in maiuscolo della curl.
 
 
 In merito al terzo passaggio, andranno modificati prevalentemente i seguenti campi:
