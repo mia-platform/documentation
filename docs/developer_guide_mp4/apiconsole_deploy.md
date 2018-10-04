@@ -46,7 +46,7 @@ curl -X PATCH \
 }'
 ```
 
-* **Step 3**: Settare i campi in maiuscolo della curl.
+* **Step 3**: **Settare i campi in maiuscolo** della curl.
 
 
 In merito al terzo passaggio, andranno modificati prevalentemente i seguenti campi:
