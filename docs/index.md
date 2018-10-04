@@ -24,6 +24,7 @@
 - [Users](developer_guide/users.md): gestire ed estendere gli utenti, login, registrazione, recupero password, social login e altro.
 
 ## Configuration Manager Guide
+- [Aggiornare il CMS](configurator/update_cms.md)
 - [Configurare il CMS con l'API Console](configurator/api_console_configcms.md)
 - [Configurare il CMS](configurator/conf_cms.md): configurare il CMS.
 - [Configurare gli Analytics](configurator/conf_analytics.md): configurare gli Analytics e la dashboard.

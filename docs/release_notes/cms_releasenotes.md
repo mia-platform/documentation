@@ -1,11 +1,29 @@
 # CMS Release Notes
+##v7.0.11
+
+In questa versione del CMS è possibile selezionare le **icone da font-awesome fino alla versione v.5.3.1**, che è l'ultima versione supportata (qui si trova il [link](https://fontawesome.com/icons?d=gallery) per le icone).
+
+!!! warning
+    Se si scelgono icone che erano già utilizzate nella versione precedente, si continueranno a visualizzare nel CMS le icone vecchie. Questo perchè si dà priorità alla retrocompatibilità.
+
+
+##v7.0.9
+
+In questa versione del CMS sono state rilasciate le seguenti evolutive:
+
+* Fix all'**opacità** e al layout di **bulk** edit.
+
+* Possibilità di **customizzare il colore dello spinner** di caricamento e **delle scritte della legend degli analitici**.
+
+
 ##v7.0.7
 
 In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
-* possibilità di fare delle **query complesse nella visualizzazione di una proprietà**. A questo link potrai visualizzare degli esempi. 
+* possibilità di fare delle **query complesse nella visualizzazione di una proprietà**. A questo link potrai visualizzare degli esempi.
 
-* creazione di un nuovo tipo di bottoni da inserire nella card. Sono stati creati i bottoni link. Che anzichè avere come azione una chiamata rest hanno un link. Sono già disponibili due bottoni da riutilizzare in tutti i progetti: i bottoni **Invia Mail** e **Chiama Skype**. A questo link potrai leggere la configurazione dei bottoni.
+* creazione di un nuovo tipo di bottoni da inserire nella card. Sono stati creati i bottoni link, che anzichè avere come azione una chiamata rest hanno un link. Sono già disponibili due bottoni da riutilizzare in tutti i progetti: i bottoni **Invia Mail** e **Chiama Skype**. A questo
+[link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card) potrai leggere la configurazione dei bottoni.
 
 
 ##v7.0.4

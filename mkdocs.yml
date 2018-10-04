@@ -36,6 +36,7 @@ pages:
     - Push Notifications Piattaforma 4: 'developer_guide_mp4/push_notifications_platform_4.md'
     - Comunicazione fra servizi nella Piattaforma 4: 'developer_guide_mp4/communication_between_services_mp4.md'
   - Configuration Manager:
+    - Aggiornare il CMS: 'configurator/update_cms.md'
     - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
     - Configurare il CMS: 'configurator/conf_cms.md'
     - Configurare gli Analytics: 'configurator/conf_analytics.md'
@@ -82,8 +83,6 @@ markdown_extensions:
   - pymdownx.betterem(smart_enable=all)
   - pymdownx.caret
   - pymdownx.critic
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
