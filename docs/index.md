@@ -17,6 +17,7 @@
 - [Creare un plugin con la Piattaforma 4](developer_guide_mp4/plugin_baas_4.md): come custom plugin sulla piattaforma 4.
 - [Mandare Notifiche Push con la piattaforma 4](developer_guide_mp4/push_notifications_platform_4.md): Come inviare notifiche push ai dispositivi ios e android.
 - [Comunicazione fra servizi all'interno della piattaforma 4](developer_guide_mp4/communication_between_services_mp4.md): Come comunicare tra servizi custom o core all'interno della piattaforma 4.
+- [Creare degli ambienti di deploy su API Console in progetti esistenti](developer_guide_mp4/apiconsole_deploy.md)
 - [Creare un tema](developer_guide/theme.md): come creare un tema html/css/javascript per Mia-Platform.
 - [Cron](developer_guide/cron.md): configurare un cron per schedulare una routine.
 - [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
@@ -24,7 +25,7 @@
 - [Users](developer_guide/users.md): gestire ed estendere gli utenti, login, registrazione, recupero password, social login e altro.
 
 ## Configuration Manager Guide
-- [Aggiornare il CMS](configurator/update_cms.md)
+- [Aggiornare il CMS](configurator/update_cms.md): come aggiornare la versioen del CMS.
 - [Configurare il CMS con l'API Console](configurator/api_console_configcms.md)
 - [Configurare il CMS](configurator/conf_cms.md): configurare il CMS.
 - [Configurare gli Analytics](configurator/conf_analytics.md): configurare gli Analytics e la dashboard.
