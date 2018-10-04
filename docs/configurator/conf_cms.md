@@ -204,15 +204,15 @@ Le card sono composte da due sezioni:
 
   * **link** - ti permette di configurare dei bottoni che rimandano a un URL, in modo tale da aprire automaticamente un'applicazione. Nella configurazione dei bottoni link, è necessario specificare nella chiave "linksType" il collegamento che si vuole ottenere premendo il bottone. Inoltre in questa tipologia di widget è possibile inserire delle icone da far comparire nel bottone.
 
-  !!! note
+!!! note
 
-     Al momento esistono già tre bottoni link che possono essere utilizzati:
+    Al momento esistono già tre bottoni link che possono essere utilizzati:
 
-     * **Invia Mail**, che permette di inviare una mail. Per configurare questo bottone è necessario inserire **"email"** nella configurazione della card nel campo "linksType".
+    * **Invia Mail**, che permette di inviare una mail. Per configurare questo bottone è necessario inserire **"email"** nella configurazione della card nel campo "linksType".
 
-     * **Chiama Skype**, che permette di far partire una chiamata skype. Per configurare questo bottone è necessario inserire **"skypeCall"** nella configurazione della card nel campo "linksType".
+    * **Chiama Skype**, che permette di far partire una chiamata skype. Per configurare questo bottone è necessario inserire **"skypeCall"** nella configurazione della card nel campo "linksType".
 
-     * **Chat Skype**, che permette di accedere automaticamente alla chat di Skype. Per configurare questo bottone è necessario inserire **"skypeChat"** nella configurazione della card nel campo "linksType".
+    * **Chat Skype**, che permette di accedere automaticamente alla chat di Skype. Per configurare questo bottone è necessario inserire **"skypeChat"** nella configurazione della card nel campo "linksType".
 
 Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. Se io scelgo un widget di tipo text al suo interno posso visualizzare più proprietà di tipo text. Le car in base al numero di elementi presenti dividono lo spazio della card.
 
