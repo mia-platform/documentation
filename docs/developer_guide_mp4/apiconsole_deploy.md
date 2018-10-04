@@ -55,6 +55,6 @@ In merito al terzo passaggio, andranno modificati prevalentemente i seguenti cam
 
 * l'**ID_PROGETTO** del progetto di cui vi interessa settare gli ambienti di deploy; l'id del progetto va in coda all'indirizzo della console di cui sopra.
 
-* il **SID nel campo TUO_SID_DA_BROWSER_COOKIE**: questo lo ottenete loggandovi nell'api console e ispezionando i cookie della pagina
+* il **SID** nel campo **TUO_SID_DA_BROWSER_COOKIE**: questo lo ottenete loggandovi nell'api console e ispezionando i cookie della pagina
 
 * il **body**, ovviamente, con gli ambienti che vi interessa avere per il progetto, seguendo la struttura della curl di esempio che vi ho passato.
