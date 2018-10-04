@@ -57,7 +57,16 @@ A questo [link](https://fontawesome.com/v3.2.1/icons/) potrai visualizzare e sce
 
 In questa sezione potrai scegliere le configurazioni generali della tua pagina.
 
-**Layout**: puoi decidere il Layout che vorrai dare alla tua collezione. *Table* è la modalità di visualizzazione più classica a tabella. *TableUser* è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inivare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
+**Layout**: puoi decidere il Layout che vorrai dare alla tua collezione. I layout possibili sono:
+ * *Table* è la modalità di visualizzazione più classica a tabella.
+
+ * *TableUser* è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella.
+
+ * *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inivare il contenuto ai tuoi clienti. 
+
+ * *Card* ogni oggetto sarà rappresentato simile a una Card. Per poter poi visualizzare la card sarà necessario configurarle, a questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card) trovi come farlo.
+
+ * *Gallery* è invece la rappresentazione perfetta per le immagini.
 
 **Evidenzia un campo**: questa select ti mostra le proprietà che nella tua pagina sono dei boolean. Puoi infatti scegliere di evidenziare una proprietà boolean nel CMS. Se la proprietà è true la vedrai evidenziata in grassetto.
 
