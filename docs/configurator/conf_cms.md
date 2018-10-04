@@ -169,13 +169,13 @@ Le card sono composte da due sezioni:
 1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
 
 
-  * l'immagine
+   * l'immagine
 
 
-  * il titolo
+   * il titolo
 
 
-  * il sottotitolo
+   * il sottotitolo
 
 
 !!! note
