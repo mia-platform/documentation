@@ -9,7 +9,7 @@ Per registrarsi all'api console l'utente deve selezionare **Registrazione**, ins
 
 Per ottenere il *Gitlab user id* l'utente deve accedere a Gitlab, cliccare l'icona in alto a destra e aprire settings. Accanto al nome è presente l'user ID che dovrà essere copiato e incollato nel modulo di registrazione dell'Api console.
 
-![Registrazione](immagini_apiconsole\Registrazione.PNG)
+![Registrazione](img\Registrazione.PNG)
 
 ##Accedere all'Api Console
 Per accedere all’API Console è sufficiente collegarsi da un normale Browser al seguente indirizzo [Link to Api Console](https://console.cloud.mia-platform.eu/login)
@@ -34,7 +34,7 @@ Di default ci sono dei campi che non possono essere modificati: _id, creatorId, 
 
 L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopodichè dovrà completare i seguenti campi:
 
-![Crea-collezione-riga-titolo](immagini\Crea-collezione-riga-titolo.PNG)
+![Crea-collezione-riga-titolo](img\Crea-collezione-riga-titolo.PNG)
 
 * **Nome**: inserire il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
 
@@ -53,7 +53,7 @@ Per creare la collezione selezionare **crea**.
 !!! Warning
     la collezione **non è ancora salvata** è necessario svolgere i passaggi descritti di seguito
 
-![tabella_prop](\immagini\tabella_prop.PNG)
+![tabella_prop](\img\tabella_prop.PNG)
 
 Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad "aggiungi riga").
 
@@ -68,7 +68,7 @@ Per creare un nuovo indice selezionare **crea un nuovo indice**.
 
 Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: *normal, geo e hash*. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando **unique**.
 
-![Indice](\immagini\Indice.PNG)
+![Indice](img\Indice.PNG)
 
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
@@ -81,7 +81,7 @@ I servizi possono essere di due tipi:
 **Servizi esterni**: L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
 In questo caso l'utente dovrà inserire il nome del servizio, selezionare tipo *external services* e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
 
-![Services](\immagini\Services.PNG)
+![Services](img\Services.PNG)
 
 
 **Servizi custom**: I servizi custom sono di due tipi:
@@ -109,7 +109,7 @@ Per aggiungere un pre decorator, selezioanare **PRE** ed inserire il nome, il pr
 Se si seleziona *require request body* il decorator per funzionare richiede il body.
 In caso di post decorator si può selezionare anche *require response body*.
 Infine è possibile anche inserire una *descrizione* facoltativa.
-![prehook](\immagini\prehook.PNG)
+![prehook](img\prehook.PNG)
 
 ##Creare un endpoint
 In questa sezione potrai configurare i tuoi servizi e le tue collezioni in endpoint pubblicati all’esterno.
@@ -133,7 +133,7 @@ Selezionare la collezione di riferimento, nel nostro caso potra essere "bibliote
 
 Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti:
 
-![crea-nuovo-endpoint](\immagini\crea-nuovo-endpoint.PNG)
+![crea-nuovo-endpoint](img\crea-nuovo-endpoint.PNG)
 
 ###Nome dell'Endpoint
 **Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
@@ -148,7 +148,7 @@ Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il
 
 **Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
 
-![sicurezza_endpoint](\immagini\sicurezza_endpoint.PNG)
+![sicurezza_endpoint](img\sicurezza_endpoint.PNG)
 
 ###Eleneco verbi
 Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
@@ -157,7 +157,7 @@ Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint 
 
 Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
 
-![gestisci_rotte](\immagini\gestisci_rotte.PNG)
+![gestisci_rotte](img\gestisci_rotte.PNG)
 
 ##Secret
 Da questa pagina è possibile definire la "secret" per accedere al CMS dei diversi progetti.
@@ -177,7 +177,7 @@ Per creare una nuova **pagina** bisogna inserire:
 * *Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.Le icone sono al seguente link: https://fontawesome.com/v4.7.0/icons/
 * *Order*: ordine di visualizzazione all'interno della category.
 
-![Add-page-cms](\immagini\Add-page-cms.PNG)
+![Add-page-cms](img\Add-page-cms.PNG)
 
 ###Impostazioni Generali della Pagina
 **Layout**: selezionare il layout che si desidera. *Table* è la modalità di visualizzazione più classica a tabella. *TableUser* è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inviare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
@@ -216,7 +216,7 @@ Questa sezione è utile per definire dei criteri di visibilità di una propriet�
 
 Se il *tipo* della proprietà è *boolano* nel campo comparator insrire doppio uguale (*==*) e nel value inserire "ture" o "false"
 
-![proprietà-titolo-cms](\immagini\proprietà-titolo-cms.PNG)
+![proprietà-titolo-cms](img\proprietà-titolo-cms.PNG)
 
 ###Date
 Questo tipo di interfaccia permette all'utente di inserire un campo all'interno del CMS nel formato gg/mm/aaaa
@@ -225,17 +225,17 @@ Questo tipo di interfaccia permette all'utente di inserire un campo all'interno 
 Questo tipo di intefaccia permette all'utente di inserire un campo all'interno del CMS in formato mappa. E' necessario che il tipo della propreità inserito in collezioni sia "Geopoint"
 
 *Visualizzazione del geopoint da CMS*
-![geopoint](\immagini\geopoint.PNG)
+![geopoint](img\geopoint.PNG)
 
 ###Card position
 
-![libri_card](\immagini\libri_card.PNG)
+![libri_card](img\libri_card.PNG)
 
 Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "array di oggetti", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
 
 *Visualizzazione della card da CMS*
 
-![card](\immagini\card.PNG)
+![card](img\card.PNG)
 
 ### Loockup / Multi lookup
 **Lookup** servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni. **Multilookup** se vuoi selezionare più valori.
@@ -268,7 +268,7 @@ Con *limite* possiamo invece proporre un numero massimo di elementi da mostrare 
 
 *Selezione automatica*: se vogliamo che selezioni automaticamente il primo valore
 
-![lookup](\immagini\lookup.PNG)
+![lookup](img\lookup.PNG)
 
 ####Inline Source
 Con la lookup Inline Source scelgo io i valori da far comparire all'interno della lookup. Per fare un esempio sempre restando nell'ambito libri. Voglio selezionare delle categorie di Libri e non ho nessuna collezione di riferimento.
@@ -287,7 +287,7 @@ A questo punto in Text sotto Properties andremo a scrivere label e come sempre s
 
 Il comportamento degli altri valori è uguale a quello delle Look a Collection.
 
-![Inline-search](\immagini\Inline-search.PNG)
+![Inline-search](img\Inline-search.PNG)
 
 
 ##Deploy
