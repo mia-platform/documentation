@@ -34,8 +34,8 @@
  - [Disaster Recovery](dev_ops_guide/disaster_recovery.md)
 
 ## User Backoffice
-- [CMS](user_guide_and_tools/cms/guide_cms.md)
-- [Api Console](user_guide_and_tools/api_console/guida_api_console.md)
+- [CMS](user_guide_and_tools/guide_cms.md)
+- [Api Console](user_guide_and_tools/guida_api_console.md)
 - [Guida al Data Modeller](developer_guide/data_modeller.md): l'interfaccia utente per gli sviluppatori di Mia-Platform.
 
 ## Release Notes: le ultime novità sui nostri componenti

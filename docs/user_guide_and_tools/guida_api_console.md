@@ -9,7 +9,7 @@ Per registrarsi all'api console l'utente deve selezionare **Registrazione**, ins
 
 Per ottenere il *Gitlab user id* l'utente deve accedere a Gitlab, cliccare l'icona in alto a destra e aprire settings. Accanto al nome è presente l'user ID che dovrà essere copiato e incollato nel modulo di registrazione dell'Api console.
 
-![Registrazione](immagini\Registrazione.PNG)
+![Registrazione](img/Registrazione.PNG)
 
 ##Accedere all'Api Console
 Per accedere all’API Console è sufficiente collegarsi da un normale Browser al seguente indirizzo [Link to Api Console](https://console.cloud.mia-platform.eu/login)
@@ -34,7 +34,7 @@ Di default ci sono dei campi che non possono essere modificati: _id, creatorId, 
 
 L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopodichè dovrà completare i seguenti campi:
 
-![Crea-collezione-riga-titolo](\immagini\Crea-collezione-riga-titolo.PNG)
+![Crea-collezione-riga-titolo](img/Crea-collezione-riga-titolo.PNG)
 
 * **Nome**: inserire il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
 
@@ -53,7 +53,7 @@ Per creare la collezione selezionare **crea**.
 !!! Warning
     la collezione **non è ancora salvata** è necessario svolgere i passaggi descritti di seguito
 
-![tabella_prop](\immagini\tabella_prop.PNG)
+![tabella_prop](img/tabella_prop.PNG)
 
 Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad "aggiungi riga").
 
@@ -68,7 +68,7 @@ Per creare un nuovo indice selezionare **crea un nuovo indice**.
 
 Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: *normal, geo e hash*. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando **unique**.
 
-![Indice](\immagini\Indice.PNG)
+![Indice](img/Indice.PNG)
 
 ##Servizi
 In questa sezione l'utente può configurare i propri servizi.
@@ -81,7 +81,7 @@ I servizi possono essere di due tipi:
 **Servizi esterni**: L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
 In questo caso l'utente dovrà inserire il nome del servizio, selezionare tipo *external services* e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
 
-![Services](\immagini\Services.PNG)
+![Services](img/Services.PNG)
 
 
 **Servizi custom**: I servizi custom sono di due tipi:
@@ -109,7 +109,7 @@ Per aggiungere un pre decorator, selezioanare **PRE** ed inserire il nome, il pr
 Se si seleziona *require request body* il decorator per funzionare richiede il body.
 In caso di post decorator si può selezionare anche *require response body*.
 Infine è possibile anche inserire una *descrizione* facoltativa.
-![prehook](\immagini\prehook.PNG)
+![prehook](img/prehook.PNG)
 
 ##Creare un endpoint
 In questa sezione potrai configurare i tuoi servizi e le tue collezioni in endpoint pubblicati all’esterno.
@@ -133,7 +133,7 @@ Selezionare la collezione di riferimento, nel nostro caso potra essere "bibliote
 
 Dopodichè selezionare *Crea*. Verrà visualizzata una schermata con le seguenti:
 
-![crea-nuovo-endpoint](\immagini\crea-nuovo-endpoint.PNG)
+![crea-nuovo-endpoint](img/crea-nuovo-endpoint.PNG)
 
 ###Nome dell'Endpoint
 **Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
@@ -148,7 +148,7 @@ Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il
 
 **Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
 
-![sicurezza_endpoint](\immagini\sicurezza_endpoint.PNG)
+![sicurezza_endpoint](img/sicurezza_endpoint.PNG)
 
 ###Elenco verbi
 Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
@@ -157,7 +157,7 @@ Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint 
 
 Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
 
-![gestisci_rotte](\immagini\gestisci_rotte.PNG)
+![gestisci_rotte](img/gestisci_rotte.PNG)
 
 ##Secret
 Da questa pagina è possibile definire la "secret" per accedere al CMS dei diversi progetti.
@@ -165,7 +165,133 @@ Da questa pagina è possibile definire la "secret" per accedere al CMS dei diver
 La prima cosa che si deve fare quando si inizia un nuovo progetto è **creare una secret** e verificare che ce ne sia una e una sola **attiva**.
 
 ##CMS
+<<<<<<< HEAD:docs/user_guide_and_tools/api_console/guida_api_console.md
 Per configurare il CMS da API Console vai al seguente [link](https://docs.mia-platform.eu/configurator/api_console_configcms/).
+=======
+Per visualizzare la nuova collezione sul CMS bisogna selezionare a sinistra **CMS** e selezionare **Add category** o **Add Page** a seconda delle esigenze.
+
+Una **categoria** ti permette di raggruppare più pagine all’interno del tuo CMS, come nel nostro caso "biblioteca" in cui potremmo avere diverse collezioni come "libri", "dvd", "audiolibri" etc. Organizza le categorie in modo semplice per trovare facilmente tutto quelli di cui hai bisogno. L’ordinamento impostato qui è quello che viene usato nel CMS.
+
+Per creare una nuova **pagina** bisogna inserire:
+
+* *Name*: inserire il nome della categoria che verrà visualizzato nel CMS, nel nostro caso "Libri".
+* *Endpoint*: selezionare l’endpoint di riferimento (libri)
+* *Category*: selezionare la categoria di cui farà parte (biblioteca)
+* *Icon*: nel campo icon puoi scegliere con quale icona caratterizzare la tua collezione. Abbiamo una liberira di icone dalle quali potrai scegliere.Le icone sono al seguente link: https://fontawesome.com/v4.7.0/icons/
+* *Order*: ordine di visualizzazione all'interno della category.
+
+![Add-page-cms](img/Add-page-cms.PNG)
+
+###Impostazioni Generali della Pagina
+**Layout**: selezionare il layout che si desidera. *Table* è la modalità di visualizzazione più classica a tabella. *TableUser* è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inviare il contenuto ai tuoi clienti. Se selezioni *Card* ogni oggetto sarà rappresentato simile a una Card. *Gallery* è invece la rappresentazione perfetta per le immagini.
+
+**Evidenzia un campo**: alcune proprietà possono essere grassettate se sono di tipo booleano.
+
+**Default delete**: ti permette di eliminare definitivamente un elemento una volta che verrà cancellato anche dal Trash del CMS.
+
+**Blocca**: se blocchi la collezione impedirai agli utenti del CMS di aggiungere degli elementi
+
+**Nascondi**: se selezionato nasconde la collezione nel CMS.
+
+**Applica un filtro**: filtro di visibilità
+
+Dopo aver compilato i campi richiesti per creare la pagina selezionare **Crea**.
+
+Selezionando una pagina possiamo cambiarne le singole proprietà cliccando “Go to properties”
+
+###Go to properties:
+Selezioniamo ad esempio la proprietà "titolo" che abbiamo creato in precedenza. Di questa proprietà potremmo andare a modificare:
+
+* **Tipo di interfaccia**: con questa funzione si può cambiare l'interfaccia con cui una determinata proprietà viene visualizzata da CMS, i tipo di interfraccia sono i seguenti: *stringa, date, geopoint etc, number, text, text files, date time, array, boolean, object, lookup, multi lookup*. I tipi di interfaccia sono approfonditi di seguito.
+* **Etichetta**: nel campo label dovrai invece inserire la data nel campo il tipo sia date, lo zoom nel caso il tipo sia Geopoint, il nome che vorresti che apparisse nel CMS nel caso l'utente abbia selezionato un altro tipo.   
+* **Descrizione**: possibilità di inserire una breve descrizione
+* **Ordine**: ordine di visualizzazione della proprietà nella collezione
+* **Visibilità**: Con questa funzionalità puoi controllare quando rendere visibile la tua proprietà. Puoi controllare la visibilità sia in fase di creazione di un nuovo elemento: es vedo la proprietà “allergie” solo se ho selezionato prima che sono allergico a qualcosa. Oppure puoi controllare la visibilità in fase di modifica di un elemento.
+
+###Controlla con dei filtri la visibilità delle tue proprietà
+Questa sezione è utile per definire dei criteri di visibilità di una proprietà: sul CMS verrà mostrata la prorpetà selezionata solo se viene rispettato il criterio che viene inserito in seguito.
+
+**Property Name** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
+
+**Comparator** Seleziona la proprietà che controlla la tua visibilità in fase di creazione.
+
+**Value** Imposta il valore per controllare la visibilità
+
+Se il *tipo* della proprietà è *boolano* nel campo comparator insrire doppio uguale (*==*) e nel value inserire "ture" o "false"
+
+![proprietà-titolo-cms](img/proprietà-titolo-cms.PNG)
+
+###Date
+Questo tipo di interfaccia permette all'utente di inserire un campo all'interno del CMS nel formato gg/mm/aaaa
+
+###Geopoint
+Questo tipo di intefaccia permette all'utente di inserire un campo all'interno del CMS in formato mappa. E' necessario che il tipo della propreità inserito in collezioni sia "Geopoint"
+
+*Visualizzazione del geopoint da CMS*
+![geopoint](img/geopoint.PNG)
+
+###Card position
+
+![libri_card](img/libri_card.PNG)
+
+Se si seleziona questo tipo di layout, le prorpietà verranno visualizzate come carte sul CMS. Questa funzionalità permette di inserire 6 prorpeità: un immagine di sfondo della card, nel nostro esempo potremmo metter la copertina di un libro (l'immagine deve essere inserità nella collezione come tipo "array di oggetti", il tipo di interfaccia deve essere "files" e la posizione nella card deve essere"1"), e altre 5 prorpietà che verranno visualizzate come di seguito:
+
+*Visualizzazione della card da CMS*
+
+![card](img/card.PNG)
+
+### Loockup / Multi lookup
+**Lookup** servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni. **Multilookup** se vuoi selezionare più valori.
+
+Esistono varie tipologie di **LOckup**:
+
+* Look a collection
+* Inline Source
+
+####Look a Collection
+Questo tipo di lookup permette di “chiamare” la proprietà di una collezione e mostrarla all’interno di un'altra proprietà.
+Ad esempio: nella collezione Schede Libri, alla proprietà Editore, si vuole mostrare l'elenco degli editori che sono originariamente stati creati nella collezione Editori alla proprietà Nome Editore.
+
+Cosa bisogna fare? Per aggiungere una lookup o una multi lookup andiamo su *collezioni* selezionamo la collezione libri, dopodichè aggiungiamo una proprietà chiamata film di tipo string.
+Nella sezione *CMS* selezioniamo libri e dopodichè *go to properties*. A sinistra selezioniamo film e cambiamo il *tipo di interfaccia* in lookup o multi lookup.
+
+Dopo aver selezionato Look a Collection nel secondo campo *ID collezione* inserire l'ID dell'Endpoint. Infine nel campo "valore da salvare" inserire quale valore vogliamo salvare. Il value che va insierito deve essere un valore univoco, tendenzialmente è quindi buona pratica salvarsi l'Id della collezione.
+
+A questo punto va inserito cosa vogliamo far apparire della collezione Editori al nostro utente. Noi volevamo far comparire il nome dell'Editore:  **Imposta come vuoi visualizzare i dati della tua Lookup**:
+
+In *proprietà visibili* andremo ad indicare le proprietà che vogliamo visualizzare in un array di stringhe. Nel caso in cui volessimo fare vedere prorpeità differenti, come ad esempio il titolo del libro e l'autore possiamo scegliere un *delimitatore tra proprietà* che può essere uno spazio bianco, un -, un ; e così via.
+
+Dopodichè tramite un *filtro* potremmo inserire una query per controllare la visibilità.
+
+Con *limite* possiamo invece proporre un numero massimo di elementi da mostrare in tendina. Se vorremmo far vedere solo 5 editori scriveremmo 5.
+
+*Ricerca live*: se vogliamo che mentre scriviamo ci compaiano i risultati (es: scrivo A e mi compaiono sotto le case editrici che cominciano per A)
+
+*Reset automatico*: se vogliamo che si resetti, ovvero dopo aver compilato la cella se vogliamo svuotarla
+
+*Selezione automatica*: se vogliamo che selezioni automaticamente il primo valore
+
+![lookup](img/lookup.PNG)
+
+####Inline Source
+Con la lookup Inline Source scelgo io i valori da far comparire all'interno della lookup. Per fare un esempio sempre restando nell'ambito libri. Voglio selezionare delle categorie di Libri e non ho nessuna collezione di riferimento.
+
+Cosa bisogna fare?
+
+Sotto il campo Inline Source scrivo i diversi valori che voglio far comparire in questo modo:
+
+*[{"label": "Gialli", "value":1}, {"label": "Romantici", "value":2}]*
+
+Con label indico l'etichetta che voglio far comparire.
+
+Con value indico l'odine di comparsa nella nostra lookup.
+
+A questo punto in Text sotto Properties andremo a scrivere label e come sempre se abbiamo un Delimiters lo andremo ad indicare nell'apposito spazio
+
+Il comportamento degli altri valori è uguale a quello delle Look a Collection.
+
+![Inline-search](img/Inline-search.PNG)
+>>>>>>> fac8a0e9d6cb2733de2981bea25edabf66fa67be:docs/user_guide_and_tools/guida_api_console.md
 
 
 ##Deploy
