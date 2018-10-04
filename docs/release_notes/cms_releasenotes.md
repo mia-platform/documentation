@@ -20,7 +20,7 @@ In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
 In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
-* possibilità di fare delle **query complesse nella visualizzazione di una proprietà**. A questo link potrai visualizzare degli esempi.
+* possibilità di fare delle **query complesse nella visualizzazione di una proprietà**. A questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#propertiesjson) potrai visualizzare degli esempi.
 
 * creazione di un nuovo tipo di bottoni da inserire nella card. Sono stati creati i bottoni link, che anzichè avere come azione una chiamata rest hanno un link. Sono già disponibili due bottoni da riutilizzare in tutti i progetti: i bottoni **Invia Mail** e **Chiama Skype**. A questo
 [link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card) potrai leggere la configurazione dei bottoni.
@@ -39,7 +39,7 @@ Sarà infatti possibile customizzare le seguenti variabili di css:
 Inoltre da questa versione il font del CMS sarà in **Proxima-nuova**
 
 
-## v7.0.0 - Breaking Change
+## v7.0.0 - Breaking Change (per le Card)
 Con la versione 7 sono state rilasciate 3 funzionalità importanti:
 
 1) la **nuova struttura delle Card** con la possibilità di configurare diversi tipi di widget e avere una struttura interamente personalizzabile. Puoi leggere la Documentazione su come configurare le nuove card [qui](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card).
