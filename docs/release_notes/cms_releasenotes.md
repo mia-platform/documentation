@@ -10,6 +10,7 @@ In questa versione del CMS è possibile selezionare le **icone da font-awesome f
 
 ##v7.0.9
 (24/09/2018)
+
 In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
 * Fix all'**opacità** e al layout di **bulk** edit.
