@@ -15,7 +15,7 @@ In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
 * Fix all'**opacità** e al layout di **bulk** edit.
 
-* Possibilità di **customizzare il colore dello spinner** di caricamento e **delle scritte della legend degli analitici**.
+* Possibilità di **personalizzare il colore dello spinner** di caricamento e **delle scritte della legend degli analitici**.
 
 
 ##v7.0.7
@@ -30,9 +30,9 @@ In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
 ##v7.0.4
 
-In questa versione sono state rilasciate delle nuove customizzazioni del CMS.
+In questa versione sono state rilasciate delle nuove personalizzazioni del CMS.
 
-Sarà infatti possibile customizzare le seguenti variabili di css:
+Sarà infatti possibile definire le seguenti variabili di css:
 
 * color brand gradient 1= permette di personalizzare il colore del **testo nella sidebar del menù**
 * color badge - bg notification= permette di personalizzare il **background color dei badge delle notifiche**
