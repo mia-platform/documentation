@@ -44,6 +44,7 @@ pages:
   - DevOps:
     - Business Continuity: 'dev_ops_guide/business_continuity.md'
     - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
+    - Autoscaling Pods: 'dev_ops_guide/autoscaling.md'
   - User Backoffice:
     - Api Console: 'user_guide_and_tools/guida_api_console.md'
     - CMS: 'user_guide_and_tools/guide_cms.md'
