@@ -12,7 +12,7 @@ Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa s
 
 Una volta che si inizia a configurare un analitico, si è guidati in un percorso a quattro step.
 
-##Step 1: Seleziona tipologia
+##**Step 1: Seleziona tipologia**
 
 In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al momento è possibile creare un analitico di tre tipologie:
 
