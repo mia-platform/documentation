@@ -29,6 +29,7 @@
 - [Configurare il CMS con l'API Console](configurator/api_console_configcms.md)
 - [Configurare il CMS](configurator/conf_cms.md): configurare il CMS.
 - [Configurare gli Analytics](configurator/conf_analytics.md): configurare gli Analytics e la dashboard.
+- [Configurare gli Analytics con l'API Console](configurator/api_console_configanalytics.md): configurare gli analitici da API Console
 
 ## DevOps Guide
  - [Business Continuity](dev_ops_guide/business_continuity.md)
