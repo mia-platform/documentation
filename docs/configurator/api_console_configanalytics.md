@@ -35,10 +35,16 @@ Cliccando su "next" si passa al prossimo step.
 
 In questa sezione puoi scegliere:
 
-* il **titolo** del grafico, che è obbligatorio, ma non può contenere spazi;
+* il **titolo** del grafico, che è un campo obbligatorio e non può contenere spazi bianchi;
 
-* la **legenda** del grafico, che può essere visibile o non visibile.
+* la **legenda** del grafico, che è un campo obbligatorio e può essere visibile o non visibile.
 
 Cliccando su "next" si passa al prossimo step.
 
 ##**Step 3: Impostazione Serie**
+
+In questa sezione si configurano la maggior parte delle proprietà dell'analitico:
+
+* il **nome della serie**, che è un campo obbligatorio e non può contenere spazi bianchi;
+
+* il **tipo di grafico**. Le visualizzazioni dei dati possibili sono line, spline, area e column.
