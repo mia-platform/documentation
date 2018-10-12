@@ -53,8 +53,15 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 * il campo **euro**, che permette di impostare l'unità di misura del grafico automaticamente in euro;
 
-*  la **collezione**, dove si sceglie da quale collezione andare a prendere i dati che verranno mostrati nella serie;
+*  la **collezione**, dove si sceglie da quale collezione andare a prendere i dati che verranno mostrati nella serie, es. eroi_buoni;
 
-* il **filtro**, dove si inserisce il nome della proprietà della collezione sulla quale si vuole mostrare la serie;
+* il **filtro**, dove si inserisce il nome della proprietà della collezione sulla quale si vogliono filtare i dati. In questo campo si scelgono tutti  i formati a parte la data, es. nome;
 
-*
+* **groupDate**, dove si trovano solo le proprietà di tipo data ed è possibile selezionare la proprietà su cui raggruppare i dati (solo formato data), es.createdAt
+
+* il **formato dei dati**, dove si può scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Questo campo è da compilare solo se si utilizza **groupDate**. Il periodo di raggruppamento temporale può essere l'anno (y), il mese (ym), la settimana (yw), il giorno (ymd), l' ora (ymdh) oppure il minuto (ymdhM).
+
+* l'**operatore**, dove si può scegliere l'operazione da svolgere sui dati raggrupati. Le operazioni possibili sono:
+  * count: conta il numero di elementi di un gruppo;
+
+  * sum:    
