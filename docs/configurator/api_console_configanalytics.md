@@ -48,3 +48,13 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 * il **nome della serie**, che è un campo obbligatorio e non può contenere spazi bianchi;
 
 * il **tipo di grafico**. Le visualizzazioni dei dati possibili sono line, spline, area e column.
+
+* il **colore** del grafico;
+
+* il campo **euro**, che permette di impostare l'unità di misura del grafico automaticamente in euro;
+
+*  la **collezione**, dove si sceglie da quale collezione andare a prendere i dati che verranno mostrati nella serie;
+
+* il **filtro**, dove si inserisce il nome della proprietà della collezione sulla quale si vuole mostrare la serie;
+
+*
