@@ -7,7 +7,7 @@ Dall'Api Console puoi comodamente configurare e gestire i tuoi analitici.
 
 Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa sezione è possibile creare tutti gli analitici per monitorare i KPI. Clicca sul bottone **"Aggiungi nuovo"** per iniziare a configurarne uno.
 
-![add_new](img/add_new.PNG)
+![](img/add_new.PNG)
 
 
 Una volta che si inizia a configurare un analitico, si è guidati in un percorso a quattro step.
@@ -19,17 +19,17 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 * tipo **custom-stock**, cioè un grafico con in ascissa una serie temporale;
 
 
-![stock](img/stock.PNG)
+![](img/stock.PNG)
 
 * tipo **chart**, cioè un grafico non legato al tempo;
 
 
-![chart](img/chart.PNG)
+![](img/chart.PNG)
 
 * **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
 
 
-![chart-summary](img/chart-summary.PNG)
+![](img/chart-summary.PNG)
 
 Cliccando su "next" si passa al prossimo step.
 
@@ -58,7 +58,7 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 *  la **collezione**, dove si sceglie da quale collezione andare a prendere i dati che verranno mostrati nella serie, es. eroi_buoni;
 
-* il **filtro**, dove si inserisce il nome della proprietà della collezione sulla quale si vogliono filtare i dati. In questo campo si scelgono tutti  i formati a parte la data, es. nome;
+* il **filtro**,
 
 * **groupDate**, dove si trovano solo le proprietà di tipo data ed è possibile selezionare la proprietà su cui raggruppare i dati (solo formato data), es.createdAt
 
@@ -67,4 +67,7 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 * l'**operatore**, dove si può scegliere l'operazione da svolgere sui dati raggrupati. Le operazioni possibili sono:
   * count: conta il numero di elementi di un gruppo;
 
-  * sum:    
+  * sum:
+
+
+dove si inserisce il nome della proprietà della collezione sulla quale si vogliono filtare i dati. In questo campo si scelgono tutti  i formati a parte la data, es. nome;
