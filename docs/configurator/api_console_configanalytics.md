@@ -124,7 +124,7 @@ Nelle avanzate è possibile scegliere l'arco temporale dei dati che si voglionon
 
 Nel caso di un grafico *chart*, è possibile un **intervallo personalizzato** di visualizzazione dei dati: tramite una visualizzazione a calendario si possono scegliere la data di inizio e di fine.
 
-![](avanzate_calendar.png)
+![](img/avanzate_calendar.png)
 
 
 
