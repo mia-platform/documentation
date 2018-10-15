@@ -3,7 +3,7 @@
 Dall'Api Console puoi comodamente configurare e gestire i tuoi analitici.
 
 !!! note
-    Ricordati che prima di poter configurare gli analitici devi avere già creato le tue collezioni nell'are Collezioni ed esposto i relativi Endpoint.
+    Ricordati che prima di poter configurare gli analitici devi avere già creato le tue collezioni nell'area Collezioni ed esposto i relativi Endpoint.
 
 Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa sezione è possibile creare tutti gli analitici per monitorare i KPI. Clicca sul bottone **"Aggiungi nuovo"** per iniziare a configurarne uno.
 
