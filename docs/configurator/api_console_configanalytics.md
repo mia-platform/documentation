@@ -94,7 +94,7 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
     * *last | first | min | max*: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo;
 
 
-    * *constant*: ?
+    * *constant*: ritorna in un gruppo la specifica stringa o costante numerica (default 1). Si può impostare una sola operazione per tracciato/serie.
 
 
 * la **proprietà**. In questo campo trovi tutte le proprietà della collezione selezionata e puoi scegliere la proprietà che vuoi mostrare e su cui impostare l'operazione. Il campo è obbligatorio per tutti gli operatori, ad eccezione dell'operatore di *count* che conta automaticamente l'identificativo univoco degli elementi del gruppo.
