@@ -123,6 +123,7 @@ Cliccando su "next" si passa alla fase successiva.
 Nelle avanzate è possibile scegliere l'arco temporale dei dati che si voglionon mostrare nell'analitico configurato. Nel caso di un grafico *custom-stock* alla voce **Zoom** si possono scegliere i sgeuenti formati: giorno, settimana, mese, trimestre, semestre, anno, tutto l'arco temporale disponibile.
 
 Nel caso di un grafico *chart*, è possibile un **intervallo personalizzato** di visualizzazione dei dati: tramite una visualizzazione a calendario si possono scegliere la data di inizio e di fine.
+
 ![](avanzate_calendar.png)
 
 
