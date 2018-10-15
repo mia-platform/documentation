@@ -29,7 +29,7 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 * **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
 
 
-![](img/chart-summary.PNG)
+![](img/chart-summary.png)
 
 !!! note
     E' possibile fare grafici a più serie solo per i grafici di tipo *custom-stock*.
