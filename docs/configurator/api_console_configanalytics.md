@@ -7,7 +7,7 @@ Dall'Api Console puoi comodamente configurare e gestire i tuoi analitici.
 
 Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa sezione è possibile creare tutti gli analitici per monitorare i KPI. Clicca sul bottone **"Aggiungi nuovo"** per iniziare a configurarne uno.
 
-![](img/add_new.PNG)
+![](img/add_new.png)
 
 
 Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step. E' possibile configurare analitici a una o due serie e nel secondo caso il proocesso è leggermente più articolato.
@@ -19,12 +19,12 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 * tipo **custom-stock**, cioè un grafico con in ascissa una serie temporale;
 
 
-![](img/stock.PNG)
+![](img/stock.png)
 
 * tipo **chart**, cioè un grafico non legato al tempo;
 
 
-![](img/chart.PNG)
+![](img/chart.png)
 
 * **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
 
@@ -114,7 +114,7 @@ Cliccando su "next" si passa alla fase successiva.
 
 ## **Step 4: Configura Asse Y**
 
-La fase di configurazione dell'asse Y si ha solo nel caso di analitici con più serie. E' possibile scegliere di condividere l'asse Y tra i due grafici: questa scelta si fa quando le due serie hanno la stessa unità di misura (unità, euro, ...). Nel caso in cui l'unità di misura dia euro si può selezionare automaticamente dal rispettivo switch. Infine si inserisce il titolo dell'asse Y.  
+La fase di configurazione dell'asse Y si ha solo nel caso di analitici con più serie. E' possibile scegliere di condividere l'asse Y tra i due grafici: questa scelta si fa quando le due serie hanno la stessa unità di misura (unità, euro, ...). Nel caso in cui l'unità di misura dia euro si può selezionare automaticamente dal rispettivo switch. Infine si può inserire il titolo dell'asse Y.  
 
 Cliccando su "next" si passa alla fase successiva.
 
