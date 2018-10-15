@@ -18,15 +18,18 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 
 * tipo **custom-stock**, cioè un grafico con in ascissa una serie temporale;
 
+
 ![stock](img/stock.PNG)
 
 * tipo **chart**, cioè un grafico non legato al tempo;
+
 
 ![chart](img/chart.PNG)
 
 * **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
 
-![chart-summary](img/chart-summary)
+
+![chart-summary](img/chart-summary.PNG)
 
 Cliccando su "next" si passa al prossimo step.
 
