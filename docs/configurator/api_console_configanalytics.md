@@ -85,16 +85,16 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
     * count: conta il numero di elementi di un gruppo;
 
 
-   * sum: somma gli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà il totale degli ordini di ogni cliente)
+    * sum: somma gli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà il totale degli ordini di ogni cliente)
 
 
-   * avg: fa la media degli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà la media degli ordini di ogni cliente)
+    * avg: fa la media degli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà la media degli ordini di ogni cliente)
 
 
-   * last | first | min | max: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo;
+    * last | first | min | max: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo;
 
 
-   * constant: ?
+    * constant: ?
 
 
 * la **proprietà**. In questo campo trovi tutte le proprietà della collezione selezionata e puoi scegliere la proprietà che vuoi mostrare e su cui impostare l'operazione. Il campo è obbligatorio per tutti gli operatori, ad eccezione dell'operatore di *count* che conta automaticamente l'identificativo univoco degli elementi del gruppo.
