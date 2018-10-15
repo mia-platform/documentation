@@ -40,8 +40,9 @@ pages:
     - Aggiornare il CMS: 'configurator/update_cms.md'
     - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
     - Configurare il CMS: 'configurator/conf_cms.md'
+    - Colorare il CMS: 'configurator/colorare_il_cms.md'
     - Configurare gli Analytics: 'configurator/conf_analytics.md'
-    - Configurare gli Analytics con l'API Console: 'configurator/api_console_configanalytics'
+    - Configurare gli Analytics con l'API Console: 'configurator/api_console_configanalytics.md'
   - DevOps:
     - Business Continuity: 'dev_ops_guide/business_continuity.md'
     - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
