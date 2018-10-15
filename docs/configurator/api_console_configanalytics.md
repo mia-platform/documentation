@@ -108,3 +108,6 @@ Cliccando su "next" si passa alla fase successiva.
 ## **Step 5: Avanzate**
 
 Nelle avanzate è possibile scegliere l'arco temporale dei dati che si voglionon mostrare nell'analitico configurato. Nel caso di un grafico *custom-stock* alla voce **Zoom** si possono scegliere i sgeuenti formati: giorno, settimana, mese, trimestre, semestre, anno, tutto l'arco temporale disponibile.
+
+
+Durante tutto il processo di configurazione tramite il bottone **Previous** è possibile tornare alla fase precedente per modificare i campi. Quando si ha finito di configurare l'analitico è necessario cliccare su **Done**. A questo punto si salva la configurazione su API Console e si deploya il branch nell'ambiente desiderato. A questo punto, accedendo al CMS nell' ambiente in cui si è deployato, sarà possibile vedere il proprio analitico.
