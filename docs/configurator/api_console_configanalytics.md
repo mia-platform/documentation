@@ -70,26 +70,32 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 * l'**operatore**, dove si può scegliere l'operazione da svolgere sui dati raggrupati. Le operazioni possibili sono:
 
-  * count: conta il numero di elementi di un gruppo;
 
-  * sum: somma gli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà il totale degli ordini di ogni cliente)
+    * count: conta il numero di elementi di un gruppo;
 
-  * avg: fa la media degli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà la media degli ordini di ogni cliente)
 
-  * last | first | min | max: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo;
+   * sum: somma gli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà il totale degli ordini di ogni cliente)
 
-  * constant: ?
+
+   * avg: fa la media degli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà la media degli ordini di ogni cliente)
+
+
+   * last | first | min | max: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo;
+
+
+   * constant: ?
+
 
 * la **proprietà**. In questo campo trovi tutte le proprietà della collezione selezionata e puoi scegliere la proprietà che vuoi mostrare e su cui impostare l'operazione. Il campo è obbligatorio per tutti gli operatori, ad eccezione dell'operatore di *count* che conta automaticamente l'identificativo univoco degli elementi del gruppo.
 
 
-In questa fase è anche possibile abilitare una mongoquery cliccando sullo switch **mongoquery abilitata / disabilitata**. Questo campo permette di scrivere una query su mongo per poter fare delle operazioni più complesse riferite all'operatore scelto (es. si vuole fare una somma sugli ordini di due clienti, ma solo se l'ordine è compreso tra i 50€ e i 100€). Il campo si attiva per tutti gli operatori, ad esclusione dell'operatore di count. Quando si attiva questo switch compare il campo **Type** dove si scrive in formato json la query.
+In questa fase è anche possibile abilitare una mongoquery cliccando sullo **switch mongoquery abilitata / disabilitata**. Questo campo permette di scrivere una query su mongo per poter fare delle operazioni più complesse riferite all'operatore scelto (es. si vuole fare una somma sugli ordini di due clienti, ma solo se l'ordine è compreso tra i 50€ e i 100€). Il campo si attiva per tutti gli operatori, ad esclusione dell'operatore di count. Quando si attiva questo switch compare il campo **Type** dove si scrive in formato json la query.
 
 
 Una volta che si è configurata una serie, è possibile inserire nello stesso grafico una seconda serie attraverso il bottone **"Aggiungi una serie"**.
 
 !!! warning
-    La seconda serie he si imposta avrà nuovamente tutti i campi sopra elencati, ma con delle limitazioni:
+    La seconda serie he si imposta avrà nuovamente tutti i campi sopra elencati, ma con le seguenti **limitazioni**:
 
     * I dati dovranno essere raggruppati secondo la stessa proprietà della prima serie;
 
