@@ -46,6 +46,17 @@ In questa sezione puoi scegliere:
 
 * la **legenda** del grafico, che è un campo obbligatorio e può essere visibile o non visibile. La legenda mostra automaticamente alcune informazioni extra sull'analitico: il valore massimo del grafico (*max*), il valore minimo del grafico (*min*), la somma di tutti i valori del grafico (*sum*), la media dei valori del grafico (*avg*).
 
+In questa fase, se si è scelto un grafico di tipo *chart*, si può scegliere un **ordinamento**. Le possibilità sono:
+
+* label-asc, che ordina dalla A alla Z;
+
+* label-desc, che ordina dalla Z alla A;
+
+* value-asc, che ordina dal più piccolo al più grande;
+
+* value-desc, che ordina dal più grande al più piccolo.
+
+
 Cliccando su "next" si passa al prossimo step.
 
 ##**Step 3: Impostazione Serie**
