@@ -106,11 +106,7 @@ In questa fase è anche possibile abilitare una mongoquery cliccando sullo **swi
 Una volta che si è configurata una serie, è possibile inserire nello stesso grafico una seconda serie attraverso il bottone **"Aggiungi una serie"**.
 
 !!! warning
-    La seconda serie he si imposta avrà nuovamente tutti i campi sopra elencati, ma con le seguenti **limitazioni**:
-
-    * I dati dovranno essere raggruppati secondo la stessa proprietà della prima serie;
-
-    * Nel caso di un grafico custom-stock, il formato dei dati dovrà essere lo stesso della prima serie.
+    La seconda serie che si imposta avrà nuovamente tutti i campi sopra elencati, ma il **formato dei dati** dovrà essere lo stesso della prima serie.
 
 
 
