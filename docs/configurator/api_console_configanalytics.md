@@ -114,7 +114,7 @@ Cliccando su "next" si passa alla fase successiva.
 
 ## **Step 4: Configura Asse Y**
 
-La fase di configurazione dell'asse Y si ha solo nel caso di analitici con più serie. E' possibile scegliere di condividere l'asse Y tra i due grafici: questa scelta si fa quando le due serie hanno la stessa unità di misura (unità, euro, ...). Nel caso in cui l'unità di misura dia euro si può selezionare automaticamente dal rispettivo switch. Infine si può inserire il titolo dell'asse Y.  
+La fase di configurazione dell'asse Y si ha solo nel caso di analitici con più serie. E' possibile scegliere di condividere l'asse Y tra i due grafici: questa scelta si fa quando le due serie hanno la stessa scala (numerica, ...). Nel caso in cui l'unità di misura del grafico sia euro si può selezionare automaticamente dal rispettivo switch. Infine si può inserire il titolo dell'asse Y.  
 
 Cliccando su "next" si passa alla fase successiva.
 
