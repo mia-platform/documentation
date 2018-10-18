@@ -395,7 +395,7 @@ La visibilità condizionata può essere impostata su una proprietà in entrambi 
 
 Per impostare la visibilità condizionata su una proprietà aprire Git e seguire il seguente percorso:
 
-nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json
+`nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json`
 
 In questo file è scritta la configurazione delle estensioni del cms. Per impostare la visibilità condizionata, scrivere il nome della collezione su cui si vuole agire e in "properties" specificare il nome della proprietà che si vuole condizionare.
 
@@ -456,6 +456,6 @@ Il campo **"visibility"** serve a definire il livello a cui si vuole vedere la p
 
 * 3, per visualizzare la proprietà nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand".
 
-Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento. Nell'esempio la visibilità condizionata è impostata in entrambe le fasi. 
+Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento. Nell'esempio la visibilità condizionata è impostata in entrambe le fasi.
 
 Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione che determina la visibilità della proprietà. Nell'esempio la condizione è semplicemente che il nome sia Thor. La query è una mongoquery: si può avere supporto per scrivere le mongoquery al seguente [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
