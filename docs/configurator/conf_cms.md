@@ -133,11 +133,12 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 Tutte le confgurazioni precedenti vengono gestite automaticamente dall'Api Console.
 Esistono però alcune estensioni che non possono ancora essere configurate dal front-end ma sono gestite da un componente : le config-extension.
 
-le 3 estensioni più importanti sono:
+le 4 estensioni più importanti sono:
 
 1. le **card**
 2. le **notifiche** nel menù laterale
 3. gli **highlight**, ovvero la possibilità di evidenziare delle righe nelle tabelle
+4. la **visibilità condizionata** di una proprietà.
 
 
 ## Impostare GIT per avere le config-extension del cms
@@ -380,3 +381,81 @@ La visualizzazione sarà la seguente:
 
 
 Nell'esempio vengono evidenziate su uno sfondo rosso scritte in bianco, le righe della tabella che sono in ritardo allo stato "in lavorazione".
+
+
+##Impostare la visibilità condizionata a una proprietà
+
+La visibilità condizionata permette di visualizzare una proprietà solo sotto una certa condizione. Da CMS l'utente ha la possibilità di visualizzare una proprietà di una collezione in due momenti:
+
+* in fase di creazione, quando l'utente crea un nuovo elemento in una collezione tramite il bottone **"add new"**;
+
+* in fase di modifica, quando l'utente modifica un elemento esistente dal menu laterale di destra.
+
+La visibilità condizionata può essere impostata su una proprietà in entrambi i momenti, oppure solo in uno dei due, a seconda dell'esigenza.
+
+Per impostare la visibilità condizionata su una proprietà aprire Git e seguire il seguente percorso:
+
+nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json
+
+In questo file è scritta la configurazione delle estensioni del cms. Per impostare la visibilità condizionata, impostare il nome della collezione su cio si vuole agire e in seguito specificare il nome della proprietà che si vuole condizionare.
+
+Ecco un esempio di configurazione completa:
+
+```
+"eroibuoni": {
+    "aclExpression":"groups.admin",
+    "analytics": [{
+      "id": "votazioni",
+      "order": 10,
+      "width": 12
+      }],
+      "properties": {
+        "forza": {
+            "cmsVisibility": {
+                "visibility" :0,
+                "edit": {
+                    "query": {
+                    "nome":"Thor"
+                    }
+                },
+                "new": {
+                    "query": {
+                    "nome":"Thor"
+                    }
+                }
+            }
+        }
+    }
+```
+
+In "properties" si elencano le proprietà che si vogliono condizionare (nell'esempio solo "forza"). La configurazione solo della visibilità condizionata è la seguente:
+
+```
+"cmsVisibility": {
+    "visibility" :0,
+    "edit": {
+        "query": {
+        "nome":"Thor"
+        }
+    },
+    "new": {
+        "query": {
+        "nome":"Thor"
+        }
+    }
+}
+```
+
+Il campo **"visibility"** serve a definire il livello a cui si vuole vedere la proprietà. Le possibilità dei valori sono:
+
+* 0, che nasconde la proprietà;
+
+* 1, che visualizza la proprietà nella pagina principale della collezione;
+
+* 2, che visualizza la proprietà nel menu laterale di destra quando si clicca sull'elemento;
+
+* 3, che visualizza la proprietà nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand".
+
+Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento.
+
+Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione che determina la visibilità della proprietà. Nell'esempio la condizione è semplicemente che il nome sia Thor. La query è una mongoquery: si può avere supporto per scrivere le mongoquery al seguente [link](https://docs.mongodb.com/manual/tutorial/query-documents/). 
