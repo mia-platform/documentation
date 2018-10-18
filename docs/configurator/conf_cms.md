@@ -387,7 +387,7 @@ Nell'esempio vengono evidenziate su uno sfondo rosso scritte in bianco, le righe
 
 La visibilità condizionata permette di visualizzare una proprietà solo sotto una certa condizione. Da CMS l'utente ha la possibilità di visualizzare una proprietà di una collezione in due momenti:
 
-* in fase di creazione, quando l'utente crea un nuovo elemento in una collezione tramite il bottone **"add new"**;
+* in fase di creazione, quando l'utente crea un nuovo elemento in una collezione tramite il bottone "add new";
 
 * in fase di modifica, quando l'utente modifica un elemento esistente dal menu laterale di destra.
 
@@ -397,7 +397,7 @@ Per impostare la visibilità condizionata su una proprietà aprire Git e seguire
 
 nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json
 
-In questo file è scritta la configurazione delle estensioni del cms. Per impostare la visibilità condizionata, impostare il nome della collezione su cio si vuole agire e in seguito specificare il nome della proprietà che si vuole condizionare.
+In questo file è scritta la configurazione delle estensioni del cms. Per impostare la visibilità condizionata, scrivere il nome della collezione su cui si vuole agire e in "properties" specificare il nome della proprietà che si vuole condizionare.
 
 Ecco un esempio di configurazione completa:
 
@@ -428,7 +428,7 @@ Ecco un esempio di configurazione completa:
     }
 ```
 
-In "properties" si elencano le proprietà che si vogliono condizionare (nell'esempio solo "forza"). La configurazione solo della visibilità condizionata è la seguente:
+In **"properties"** si elencano le proprietà che si vogliono condizionare (nell'esempio solo "forza"). La configurazione solo della visibilità condizionata è la seguente:
 
 ```
 "cmsVisibility": {
@@ -448,14 +448,14 @@ In "properties" si elencano le proprietà che si vogliono condizionare (nell'ese
 
 Il campo **"visibility"** serve a definire il livello a cui si vuole vedere la proprietà. Le possibilità dei valori sono:
 
-* 0, che nasconde la proprietà;
+* 0, per nascondere la proprietà;
 
-* 1, che visualizza la proprietà nella pagina principale della collezione;
+* 1, per visualizzare la proprietà nella pagina principale della collezione;
 
-* 2, che visualizza la proprietà nel menu laterale di destra quando si clicca sull'elemento;
+* 2, per visualizzare la proprietà nel menu laterale di destra quando si clicca sull'elemento;
 
-* 3, che visualizza la proprietà nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand".
+* 3, per visualizzare la proprietà nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand".
 
-Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento.
+Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento. Nell'esempio la visibilità condizionata è impostata in entrambe le fasi. 
 
-Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione che determina la visibilità della proprietà. Nell'esempio la condizione è semplicemente che il nome sia Thor. La query è una mongoquery: si può avere supporto per scrivere le mongoquery al seguente [link](https://docs.mongodb.com/manual/tutorial/query-documents/). 
+Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione che determina la visibilità della proprietà. Nell'esempio la condizione è semplicemente che il nome sia Thor. La query è una mongoquery: si può avere supporto per scrivere le mongoquery al seguente [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
