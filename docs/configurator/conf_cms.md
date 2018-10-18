@@ -383,7 +383,7 @@ La visualizzazione sarà la seguente:
 Nell'esempio vengono evidenziate su uno sfondo rosso scritte in bianco, le righe della tabella che sono in ritardo allo stato "in lavorazione".
 
 
-##Impostare la visibilità condizionata a una proprietà
+##4. Impostare la visibilità condizionata a una proprietà
 
 La visibilità condizionata permette di visualizzare una proprietà solo sotto una certa condizione. Da CMS l'utente ha la possibilità di visualizzare una proprietà di una collezione in due momenti:
 
