@@ -35,6 +35,7 @@
 ## DevOps Guide
  - [Business Continuity](dev_ops_guide/business_continuity.md)
  - [Disaster Recovery](dev_ops_guide/disaster_recovery.md)
+ - [Linee Guida per i log](dev_ops_guide/log.md)
 
 ## User Backoffice
 - [CMS](user_guide_and_tools/guide_cms.md)
