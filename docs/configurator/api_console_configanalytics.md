@@ -75,6 +75,8 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 * il **Filtro**, dove si può scegliere di applicare un filtro ai dati che si vogliono visualizzare dalla collezione. Per esempio sulla collezione ordini non si vogliono visualizzare tutti gli ordini, ma solo quelli con un fatturato maggiore di 30€. Questo campo non è obbligatorio ed è una query, quindi bisogna scrivere in formato json.
 
+![](img/impostaz_serie1.png)
+
 * **Group**, dove è possibile selezionare la proprietà su cui raggruppare i dati. Questo campo è obbligatorio per i grafici di tipo **chart** e **chart-summary**, ed è possibile selezionare tutte le proprietà di una collezione (es. nome);
 
 * **GroupDate**,  dove è possibile selezionare la proprietà di tipo data su cui raggruppare i dati. Questo campo è obblogatorio per i grafici **custom-stock** ed è possibile selezionare solo le proprietà di tipo data (es.createdAt). Nel caso di grafici custom-stock, in questa fase saà possibile anche modificare il campo **formato dei dati**, per scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Il periodo di raggruppamento temporale può essere l'anno (*y*), il mese (*ym*), la settimana (*yw*), il giorno (*ymd*), l'ora (*ymdh*) oppure il minuto (*ymdhM*).
@@ -102,6 +104,7 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 In questa fase è anche possibile abilitare una mongoquery cliccando sullo **switch mongoquery abilitata / disabilitata**. Questo campo permette di scrivere una query su mongo per poter fare delle operazioni più complesse riferite all'operatore scelto (es. si vuole fare una somma sugli ordini di due clienti, ma solo se l'ordine è compreso tra i 50€ e i 100€). Il campo si attiva per tutti gli operatori, ad esclusione dell'operatore di count. Quando si attiva questo switch compare il campo **Type** dove si scrive in formato json la query.
 
+![](img/impostaz_serie3.png)
 
 Una volta che si è configurata una serie, è possibile inserire nello stesso grafico una seconda serie attraverso il bottone **"Aggiungi una serie"**.
 
