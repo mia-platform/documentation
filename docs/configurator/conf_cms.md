@@ -452,9 +452,15 @@ Il campo **"visibility"** serve a definire il livello a cui si vuole vedere la p
 
 * 1, per visualizzare la proprietà nella pagina principale della collezione;
 
+![](img/level_1.png)
+
 * 2, per visualizzare la proprietà nel menu laterale di destra quando si clicca sull'elemento;
 
+![](img/level_2.png)
+
 * 3, per visualizzare la proprietà nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand".
+
+![](img/level_3.png)
 
 Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento. Nell'esempio la visibilità condizionata è impostata in entrambe le fasi.
 
