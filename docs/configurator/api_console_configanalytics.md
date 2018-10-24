@@ -10,7 +10,7 @@ Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa s
 ![](img/add_new.png)
 
 
-Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step. E' possibile configurare analitici a una o due serie e nel secondo caso il proocesso è leggermente più articolato.
+Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step. E' possibile configurare analitici a una o due serie (solo nel caso di un grafico di tipo *custom stock*) e nel secondo caso il proocesso è leggermente più articolato.
 
 ## **Step 1: Seleziona tipologia**
 
@@ -26,7 +26,7 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 
 ![](img/chart.png)
 
-* **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
+* tipo **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
 
 
 ![](img/chart-summary.png)
@@ -79,7 +79,7 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 * **Group**, dove è possibile selezionare la proprietà su cui raggruppare i dati. Questo campo è obbligatorio per i grafici di tipo **chart** e **chart-summary**, ed è possibile selezionare tutte le proprietà di una collezione (es. nome);
 
-* **GroupDate**,  dove è possibile selezionare la proprietà di tipo data su cui raggruppare i dati. Questo campo è obblogatorio per i grafici **custom-stock** ed è possibile selezionare solo le proprietà di tipo data (es.createdAt). Nel caso di grafici custom-stock, in questa fase saà possibile anche modificare il campo **formato dei dati**, per scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Il periodo di raggruppamento temporale può essere l'anno (*y*), il mese (*ym*), la settimana (*yw*), il giorno (*ymd*), l'ora (*ymdh*) oppure il minuto (*ymdhM*).
+* **GroupDate**,  dove è possibile selezionare la proprietà di tipo data su cui raggruppare i dati. Questo campo è obblogatorio per i grafici **custom-stock** ed è possibile selezionare solo le proprietà di tipo data (es.createdAt). Nel caso di grafici custom-stock, in questa fase saà possibile anche modificare il campo **formato dei dati**, per scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Il periodo di raggruppamento temporale può essere l'anno, il mese, la settimana, il giorno, l'ora oppure il minuto.
 
 * l'**operatore**, dove si può scegliere l'operazione da svolgere sui dati raggrupati. Le operazioni possibili sono:
 
