@@ -26,7 +26,7 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 
 ![](img/chart.png)
 
-* tipo **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
+* tipo **chart-summary**, ovvero un grafico composto solo dalla legenda di un grafico chart. Può essere utile per evidenziare solo delle metriche e non visualizzare tutto il grafico.
 
 
 ![](img/chart-summary.png)
@@ -127,7 +127,7 @@ Cliccando su "next" si passa alla fase successiva.
 
 Nelle avanzate è possibile scegliere l'arco temporale dei dati che si vogliono mostrare nell'analitico configurato. Nel caso di un grafico *custom-stock* alla voce **Zoom** si possono scegliere i seguenti formati: giorno, settimana, mese, trimestre, semestre, anno, tutto l'arco temporale disponibile.
 
-Nel caso di un grafico *chart*, è possibile selezionare un **intervallo temporale personalizzato** di visualizzazione dei dati. Infatti può essere che tu voglia visualizzare i dati solo dell'ultimo mese o delle ultime due settimane. Ti basta quindi attivare l'inter
+Nel caso di un grafico *chart*, è possibile selezionare un **intervallo temporale personalizzato** di visualizzazione dei dati. Infatti può essere che tu voglia visualizzare i dati solo dell'ultimo mese o delle ultime due settimane. Ti basta quindi attivare l'intervallo temporale e scegliere le date.
 
 ![](img/avanzate_calendar.png)
 
