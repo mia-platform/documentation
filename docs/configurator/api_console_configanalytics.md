@@ -10,7 +10,7 @@ Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa s
 ![](img/add_new.png)
 
 Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step. E' possibile configurare analitici a una o due serie (solo nel caso di un grafico di tipo *custom stock*) e nel secondo caso il proocesso è leggermente più articolato.
->>>>>>> f9816fb318c506a46d3d1ce782cbe7cd86a30b7e
+
 
 ## **Step 1: Seleziona tipologia**
 
@@ -26,9 +26,6 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 
 ![](img/chart.png)
 
-<<<<<<< HEAD
-* **chart-summary**, cioè un grafico che mostra solo il sommario di un grafico chart.
-=======
 * tipo **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
 
 
@@ -133,6 +130,5 @@ Nelle avanzate è possibile scegliere l'arco temporale dei dati che si vogliono 
 Nel caso di un grafico *chart*, è possibile selezionare un **intervallo temporale personalizzato** di visualizzazione dei dati. Infatti può essere che tu voglia visualizzare i dati solo dell'ultimo mese o delle ultime due settimane. Ti basta quindi attivare l'inter
 
 ![](img/avanzate_calendar.png)
-
 
 Durante tutto il processo di configurazione tramite il bottone **Previous** è possibile tornare alla fase precedente per modificare i campi. Quando si ha finito di configurare l'analitico è necessario cliccare su **Done**. A questo punto basta salvare la configurazione su API Console e rilasciare il branch nell'ambiente desiderato. Infine, accedendo al CMS nell' ambiente in cui si è deployato, sarà possibile vedere il proprio analitico nella dashboard.
