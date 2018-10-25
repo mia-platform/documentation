@@ -10,7 +10,11 @@ Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa s
 ![](img/add_new.png)
 
 
+<<<<<<< HEAD
 Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step.
+=======
+Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step. E' possibile configurare analitici a una o due serie (solo nel caso di un grafico di tipo *custom stock*) e nel secondo caso il proocesso è leggermente più articolato.
+>>>>>>> f9816fb318c506a46d3d1ce782cbe7cd86a30b7e
 
 ## **Step 1: Seleziona tipologia**
 
@@ -26,7 +30,11 @@ In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al 
 
 ![](img/chart.png)
 
+<<<<<<< HEAD
 * **chart-summary**, cioè un grafico che mostra solo il sommario di un grafico chart.
+=======
+* tipo **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
+>>>>>>> f9816fb318c506a46d3d1ce782cbe7cd86a30b7e
 
 
 ![](img/chart-summary.png)
@@ -75,9 +83,15 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 * il **Filtro**, dove si può scegliere di applicare un filtro ai dati che si vogliono visualizzare dalla collezione. Per esempio sulla collezione ordini non si vogliono visualizzare tutti gli ordini, ma solo quelli con un fatturato maggiore di 30€. Questo campo non è obbligatorio ed è una query, quindi bisogna scriverla in formato json. [Link su come si scrivono le query](https://docs.mongodb.com/manual/tutorial/query-documents/).
 
+![](img/impostaz_serie1.png)
+
 * **Group**, dove è possibile selezionare la proprietà su cui raggruppare i dati. Questo campo è obbligatorio per i grafici di tipo **chart** e **chart-summary**, ed è possibile selezionare tutte le proprietà di una collezione (es. nome);
 
+<<<<<<< HEAD
 * **GroupDate**,  dove è possibile selezionare la proprietà di tipo data su cui raggruppare i dati. Questo campo è obblogatorio per i grafici **custom-stock** ed è possibile selezionare solo le proprietà di tipo data (es.createdAt). Nel caso di grafici custom-stock, in questa fase sarà possibile anche modificare il campo **formato dei dati**, per scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Il periodo di raggruppamento temporale può essere l'anno (*y*), il mese (*ym*), la settimana (*yw*), il giorno (*ymd*), l'ora (*ymdh*) oppure il minuto (*ymdhM*).
+=======
+* **GroupDate**,  dove è possibile selezionare la proprietà di tipo data su cui raggruppare i dati. Questo campo è obblogatorio per i grafici **custom-stock** ed è possibile selezionare solo le proprietà di tipo data (es.createdAt). Nel caso di grafici custom-stock, in questa fase saà possibile anche modificare il campo **formato dei dati**, per scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Il periodo di raggruppamento temporale può essere l'anno, il mese, la settimana, il giorno, l'ora oppure il minuto.
+>>>>>>> f9816fb318c506a46d3d1ce782cbe7cd86a30b7e
 
 * l'**operatore**, dove si può scegliere l'operazione da svolgere sui dati raggrupati. Le operazioni possibili sono:
 
@@ -102,6 +116,7 @@ In questa sezione si configurano la maggior parte delle proprietà dell'analitic
 
 In questa fase è anche possibile abilitare una mongoquery cliccando sullo **switch mongoquery abilitata / disabilitata**. Questo campo permette di scrivere una query su mongo per poter fare delle operazioni più complesse riferite all'operatore scelto (es. si vuole fare una somma sugli ordini di due clienti, ma solo se l'ordine è compreso tra i 50€ e i 100€). Il campo si attiva per tutti gli operatori, ad esclusione dell'operatore di count. Quando si attiva questo switch compare il campo **Type** dove si scrive in formato json la [query](https://docs.mongodb.com/manual/tutorial/query-documents/).
 
+![](img/impostaz_serie3.png)
 
 Una volta che si è configurata una serie, è possibile inserire nello stesso grafico una seconda serie attraverso il bottone **"Aggiungi una serie"**.
 

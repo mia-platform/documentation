@@ -1,5 +1,5 @@
 image:
-  name: squidfunk/mkdocs-material
+  name: squidfunk/mkdocs-material:3.0.4
   entrypoint: ["/bin/sh", "-c"]
 
 variables:
