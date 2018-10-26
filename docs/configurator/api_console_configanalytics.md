@@ -134,22 +134,46 @@ Nel caso di un grafico *chart*, è possibile un **intervallo personalizzato** di
 
 Durante tutto il processo di configurazione tramite il bottone **Previous** è possibile tornare alla fase precedente per modificare i campi. Quando si ha finito di configurare l'analitico è necessario cliccare su **Done**. A questo punto si salva la configurazione su API Console e si deploya il branch nell'ambiente desiderato. A questo punto, accedendo al CMS nell' ambiente in cui si è deployato, sarà possibile vedere il proprio analitico.
 
-## Visualizzazione degli analitici
+## Visualizzazione degli analitici nella dashboard
 
-Una volta terminata la configurazione degli analitici, dopo aver salvato e deployato, potrai visualizzarli nel CMS nella **Dashboard**.
+Quando avrai finito la configurazione, salvato e deployato, l'analitico sarà automaticamente visibile nel CMS nella **Dashboard**.
+
+Per gestire la visibilità del singolo analitico, segui il seguente percorso:
+
+` > CMS e Analitici > CMS > Dashboard `
+
+In questa pagina potrai vedere in tabella tutti gli analitici configurati. Tutti i campi della tabella, ad eccezione del nome dell'analitico, sono modificabili. In particolare puoi modificare:
+
+* il campo **Attivi**, che se selezionato ti permette di mostrare gli analitici in dashboard, invece se deselezionato l'analitico sarà nascosto;
+
+* il campo **Priorità**, che ti permette di scegliere l'ordine di visualizzazione degli analitici in dashboard ordinandoli in modo crescente;
+
+* la **Larghezza**, che ti permette di scegliere se visualizzare l'analitico a schermo intero selezionando *Pagina intera*, oppure a mezza pagina selezionando *Mezza pagina*.
 
 ![](img/dashboard.png)
 
-!!! warning
-   Ricordati di accedere al CMS nell'ambiente in cui hai salvato e deployato gli analitici.
 
+## Visualizzazione degli analitici nella pagina della Collezione
 
- Gli analitici sono anche visualizzabili nella pagina della singola collezione. Infatti in fase di configurazione si è scelto una collezione su cui calcolare l'analitico, quindi nella relativa pagina sul CMS li potrai ritrovare cliccando sul bottone **Analytics**.
+E' anche possibile visualizzare gli analitici nella pagina di una singola collezione nel CMS. Per farlo, il percorso da seguire è il seguente:
 
-![](img/collezione_analytics1.jpg)
+` > CMS e Analitici > CMS > Nome Collezione > pagina Analitici `
 
-Una volta che si clicca sul bottone Analytics, si possono visualizzare tutti gli analitici che sono stati comfigurati sulla collezione.
+In questa pagina puoi gestire la visibilità degli analitici configurati nella pagina della collezione selezionata.
 
-Ecco un esempio.
+Se per alcuni analitici è già stata impostata la visibilità nella pagina, allora  saranno visibili in tabella. Se invece vuoi aggiungere la visibilità in un analitico, clicca il bottone **"Aggiungi riga"**. A questo punto potrai compilare tre campi:
 
-![](img/collezione_analytics2.png)
+1. **"Analitico"**, che ti permette di scegliere da un menù a tendina l'analitico che vuoi visualizzare nella pagina di quella collezione;
+
+2. **"Priorità""**, che ti permette di scegliere l'ordine in cui vuoi visulizzare l'analitico nella pagina della collezione nel CMS (se inserisci 1 sarà il primo, e così via);
+
+3. **"Larghezza"**, che ti permette di scegliere se visualizzare l'analitico a metà schermo selezionando il valore *Mezza pagina*, oppure a schermo intero, selezionando il valore *Pagina intera*.
+
+![](img/analitico_collezione.png)
+
+Cliccando su **Crea** comparirà la riga aggiornata in tabella.
+
+!!! note
+    Ricorda che puoi sempre eliminare la riga, selezionandola nella casella a sinistra a cliccando su **Cancella**
+
+    ![](img/analitico_cancella.png)
