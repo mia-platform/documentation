@@ -1,6 +1,13 @@
 # CMS Release Notes
-##v7.0.11
-(04/10/2018)
+
+## v.7.0.14 (31 Oct 2018)
+Abbiamo rilasciato le seguenti funzionalità:
+
+* gestione delle **nuove interfacce rawObject e rawArray**
+* **cambio delle etichette** nelle azioni di Pubblica ed Elimina
+* fix alla gestione delle **icone** 
+
+##v7.0.11 (04 Oct 2018)
 
 In questa versione del CMS è possibile selezionare le **icone da font-awesome fino alla versione v.5.3.1**, che è l'ultima versione supportata (qui si trova il [link](https://fontawesome.com/icons?d=gallery) per le icone).
 
@@ -8,8 +15,7 @@ In questa versione del CMS è possibile selezionare le **icone da font-awesome f
     Se si scelgono icone che erano già utilizzate nella versione precedente, si continueranno a visualizzare nel CMS le icone vecchie. Questo perchè si dà priorità alla retrocompatibilità.
 
 
-##v7.0.9
-(24/09/2018)
+##v7.0.9 (24 Sept 2018)
 
 In questa versione del CMS sono state rilasciate le seguenti evolutive:
 
