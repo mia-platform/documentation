@@ -4,7 +4,7 @@
 
 Con la versione 0.14 abbiamo rilasciato due aggiornamenti:
 
-* **è stato risolto il conflitto tra due persone che lavorano sullo stesso branch**: se due persone lavorano sullo stesso branch, il secondo che prova a committare viene ora bloccato. Gli compare infatti un messaggio di errore al commit. Lo sviluppatore può però nella pagina di salva cambiare il branch da rilasciare e creare un branch dal suo commit. In questo modo può visualizzare le sue configurazioni su un nuovo branch.
+* **è stato risolto il conflitto tra due persone che lavorano sullo stesso branch**. Se due persone lavorano sullo stesso branch, il secondo che prova a committare viene ora bloccato. Gli compare infatti un messaggio di errore al commit. Lo sviluppatore può però nella pagina di salva cambiare il branch da rilasciare e creare un branch dal suo commit. In questo modo può visualizzare le sue configurazioni su un nuovo branch.
 
 * Sono state create **due nuove interfaceType** per supportare gli oggetti e gli array nella sezione del CMS:
    * rawobject
@@ -17,7 +17,7 @@ In questa versione abbiamo rilasciato l'**aggiornamento al session manager** e a
 
 ##v. 0.12.0 (Oct 10, 2018) - Configurazione Analitici
 
-Con la versione 0.12.0 sarà possibile **configurare gli analitici da API Console**. 
+Con la versione 0.12.0 sarà possibile **configurare gli analitici da API Console**.
 A questo [link](https://docs.mia-platform.eu/configurator/api_console_configanalytics/) la documentazione su come è possibile configurarli.
 
 E' stata inoltre rilasciata la possibilità di impostare un acl ai gruppi che accedono alle pagine del CMS. In questo modo alcune pagine possono essere viste solo da alcuni gruppi di utenti.
