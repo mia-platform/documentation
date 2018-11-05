@@ -8,9 +8,9 @@ Con la versione 0.14 abbiamo rilasciato due aggiornamenti:
 
 * Sono state create **due nuove interfaceType** per supportare gli oggetti e gli array nella sezione del CMS:
 
-  * rawObject
+  1. rawObject
 
-  * rawArray
+  2. rawArray
 
 Con queste interfacce è possibile modificare direttamente l'oggetto e l'array in formato json.
 
