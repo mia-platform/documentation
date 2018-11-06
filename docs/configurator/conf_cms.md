@@ -470,7 +470,7 @@ Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione c
 
 ##5. Controllo accessi sui gruppi (ACL sui gruppi)
 
-Questa estensione ti permette di controllare gli accessi alle collezioni del CMS, a seconda del gruppo. Infatti è possibile che vari gruppi di utenti accedano allo stesso CMS, ma che non tutte le informazioni siano visibili a tutti.
+Questa estensione ti permette di **controllare gli accessi alle collezioni del CMS**, a seconda del gruppo. Infatti è possibile che vari gruppi di utenti accedano allo stesso CMS, ma che non tutte le informazioni siano visibili a tutti.
 
 Per configurare queste proprietà il percorso è il seguente:
 
@@ -484,36 +484,37 @@ Quando si è nel json, l'ACL sui gruppi si inserisce su tutte le collezioni che 
 }
 ```
 
-Nel resto del json sono configurate tutte le altre proprietà della collezione. Il gruppo a cui è riservato l'accesso si esprime con "groups.nomedelgruppo". Se la proprietà non è configuarata, la collezione di default è visibile a tutti. 
+Nel resto del json sono configurate tutte le altre proprietà della collezione. Il gruppo a cui è riservato l'accesso si esprime con "groups.nomedelgruppo". Se la proprietà non è configuarata, la collezione di default è visibile a tutti.
 
 
-Ecco un esempio completo di configurazione.
-
-```
-"eroibuoni": {
-    "aclExpression":"groups.admin",
-    "analytics": [{
-      "id": "votazioni",
-      "order": 10,
-      "width": 12
-      }],
-      "properties": {
-        "forza": {
-            "cmsVisibility": {
-                "visibility" :0,
-                "edit": {
-                    "query": {
-                    "nome":"Thor"
-                    }
-                },
-                "new": {
-                    "query": {
-                    "nome":"Thor"
-                    }
-                }
-            }
-        }
-    }
-```
+!!!example
+   Ecco un esempio completo di configurazione.
+   
+   ```
+   "eroibuoni": {
+       "aclExpression":"groups.admin",
+       "analytics": [{
+         "id": "votazioni",
+         "order": 10,
+         "width": 12
+         }],
+         "properties": {
+           "forza": {
+               "cmsVisibility": {
+                   "visibility" :0,
+                   "edit": {
+                       "query": {
+                       "nome":"Thor"
+                       }
+                   },
+                   "new": {
+                       "query": {
+                       "nome":"Thor"
+                       }
+                   }
+               }
+           }
+       }
+   ```
 
 In questo caso la collezione Eroi Buoni è visibile solo agli amministratori.
