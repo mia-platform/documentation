@@ -480,16 +480,16 @@ Quando si è nel json, l'ACL sui gruppi si inserisce su tutte le collezioni che 
 
 ```
 "nomecollezione" : {
-    "aclExpression":"groups.admin"
+    "aclExpression":"groups.nomegruppo"
 }
 ```
 
-Nel resto del json sono configurate tutte le altre proprietà della collezione. Il gruppo a cui è riservato l'accesso si esprime con "groups.nomedelgruppo". Se la proprietà non è configuarata, la collezione di default è visibile a tutti.
+Nel resto del json sono configurate tutte le altre proprietà della collezione. Il gruppo a cui è riservato l'accesso si esprime con "groups.nomegruppo". Se la proprietà non è configuarata, la collezione di default è visibile a tutti.
 
 
 !!!example
    Ecco un esempio completo di configurazione.
-   
+
    ```
    "eroibuoni": {
        "aclExpression":"groups.admin",
