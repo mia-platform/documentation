@@ -76,7 +76,7 @@ Pingator è un servizio che monitora lo stato dei servizi per controllare che si
 
 Il microservizio di Session Manager **gestisce l'autenticazione dell'utente**, risolvendo la sessione e comunicandolo all'API Gateway.
 
-Il controllo che questo microservizio fa attualmente è più sofisticato di quello implementato inizialmente e l'espressione logica valuta più parametri.
+Il controllo che questo microservizio fa attualmente è piuttosto sofisticato e l'espressione logica valuta più parametri.
 
 Nello specifico, i parametri valutati sono:
 
@@ -86,4 +86,4 @@ Nello specifico, i parametri valutati sono:
 
 3. **clientType**, che identifica da dove arriva la chiamata (ex. CMS, sito, ...).
 
-Grazie a questo check più sofisticato, il session manager gestisce in modo più accurato l’autenticazione dell’utente. 
+Grazie a questo check più sofisticato, il session manager gestisce in modo più accurato l’autenticazione dell’utente.
