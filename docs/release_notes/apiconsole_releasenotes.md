@@ -16,7 +16,7 @@ Con queste interfacce è possibile modificare direttamente l'oggetto e l'array i
 
 ##v.0.13.0 (Oct 23, 2018)
 
-In questa versione abbiamo rilasciato l'**aggiornamento al session manager** (qui il [link](https://docs.mia-platform.eu/architecture/arc_components/#session-manager),  L'aggiornamento alla nuova ACL expression syntax (qui il [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-gruppi)) e abbiamo effettuato dei fix sulla configurazione degli analitici.
+In questa versione abbiamo rilasciato l'**aggiornamento al session manager** (qui il [link](https://docs.mia-platform.eu/architecture/arc_components/#session-manager)), l'aggiornamento alla nuova ACL expression syntax (qui il [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-gruppi)) e abbiamo effettuato dei fix sulla configurazione degli analitici.
 
 ##v. 0.12.0 (Oct 10, 2018) - Configurazione Analitici
 
