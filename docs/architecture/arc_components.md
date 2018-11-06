@@ -73,3 +73,17 @@ Pingator è un servizio che monitora lo stato dei servizi per controllare che si
 ### Auth Service ###
 
 ### Session Manager ###
+
+Il microservizio di Session Manager **gestisce l'autenticazione dell'utente**, risolvendo la sessione e comunicandolo all'API Gateway.
+
+Il controllo che questo microservizio fa attualmente è più sofisticato di quello implementato inizialmente e l'espressione logica valuta più parametri.
+
+Nello specifico, i parametri valutati sono:
+
+1. il **gruppo**, una variabile che identifica il gruppo a cui appartiene chi fa la chiamata. Il gruppo deve essere scritto come “groups.nomegruppo”. Per maggiori informazioni vedi il seguente [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-gruppi).
+
+2. **isBackOffice**, una variabile booleana che valuta se la chiamata viene dal Back-Office oppure no.
+
+3. **clientType**, che identifica da dove arriva la chiamata (ex. CMS, sito, ...).
+
+Grazie a questo check più sofisticato, il session manager gestisce in modo più accurato l’autenticazione dell’utente. 
