@@ -133,12 +133,13 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 Tutte le confgurazioni precedenti vengono gestite automaticamente dall'Api Console.
 Esistono però alcune estensioni che non possono ancora essere configurate dal front-end ma sono gestite da un componente : le config-extension.
 
-le 4 estensioni più importanti sono:
+le 5 estensioni più importanti sono:
 
 1. le **card**
 2. le **notifiche** nel menù laterale
 3. gli **highlight**, ovvero la possibilità di evidenziare delle righe nelle tabelle
 4. la **visibilità condizionata** di una proprietà.
+5. il **controllo degli accessi sui gruppi** (ACL sui gruppi).
 
 
 ## Impostare GIT per avere le config-extension del cms
@@ -465,3 +466,54 @@ Il campo **"visibility"** serve a definire il livello a cui si vuole vedere la p
 Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento. Nell'esempio la visibilità condizionata è impostata in entrambe le fasi.
 
 Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione che determina la visibilità della proprietà. Nell'esempio la condizione è semplicemente che il nome sia Thor. La query è una mongoquery: si può avere supporto per scrivere le mongoquery al seguente [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
+
+
+##5. Controllo accessi sui gruppi (ACL sui gruppi)
+
+Questa estensione ti permette di controllare gli accessi alle collezioni del CMS, a seconda del gruppo. Infatti è possibile che vari gruppi di utenti accedano allo stesso CMS, ma che non tutte le informazioni siano visibili a tutti.
+
+Per configurare queste proprietà il percorso è il seguente:
+
+`nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json`
+
+Quando si è nel json, l'ACL sui gruppi si inserisce su tutte le collezioni che vogliono essere controllate. **Nella proprietà dell'ACL si inserisce il nome dei gruppi che possono vedere quella collezione.** La sintassi è la seguente:
+
+```
+"nomecollezione" : {
+    "aclExpression":"groups.admin"
+}
+```
+
+Nel resto del json sono configurate tutte le altre proprietà della collezione. Il gruppo a cui è riservato l'accesso si esprime con "groups.nomedelgruppo". Se la proprietà non è configuarata, la collezione di default è visibile a tutti. 
+
+
+Ecco un esempio completo di configurazione.
+
+```
+"eroibuoni": {
+    "aclExpression":"groups.admin",
+    "analytics": [{
+      "id": "votazioni",
+      "order": 10,
+      "width": 12
+      }],
+      "properties": {
+        "forza": {
+            "cmsVisibility": {
+                "visibility" :0,
+                "edit": {
+                    "query": {
+                    "nome":"Thor"
+                    }
+                },
+                "new": {
+                    "query": {
+                    "nome":"Thor"
+                    }
+                }
+            }
+        }
+    }
+```
+
+In questo caso la collezione Eroi Buoni è visibile solo agli amministratori.
