@@ -4,15 +4,14 @@
 
 ## Introduzione
 
-Oltre a endpoint di tipo CRUD, nasce spesso l'esigenza di implementare funzionalità custom, come ad esempio rotte di Backend for Frontend, 
-o in generale logiche di business che coinvolgono una o più collezioni o servizi esterni. 
-Nella piattaforma 4 è prevista quindi la possibilità di integrare comportamento custom tramite _custom plugin_.
+Un **custom plugin** è un microservizio custom che fa parte di un deploy della piattaforma
+allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. Infatti, oltre a endpoint di tipo CRUD, nasce spesso l'esigenza di implementare funzionalità custom, come ad esempio logiche di business che coinvolgono una o più collezioni o servizi esterni oppure rotte di Backend for Frontend.
 
-Un custom plugin per la piattaforma 4 è a tutti gli effetti un microservizio custom che fa parte di un deploy della piattaforma 
-allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. 
-Di conseguenza, in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma. 
-Per facilitare lo sviluppo è stata però creata una libreria _node.js_ ed un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA. 
-Di seguito è presentata una guida per lo sviluppo in locale di nuove funzionalità.
+
+Nella piattaforma 4 è prevista quindi la possibilità di integrare un comportamento custom tramite _custom plugin_. Questo significa che in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma.
+
+Per facilitare lo sviluppo è stata però creata una libreria _node.js_ con un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA.
+Di seguito è presentata una **guida per lo sviluppo in locale di nuove funzionalità**.
 
 ## Integrazione di un servizio già esistente
 
