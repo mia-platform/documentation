@@ -10,7 +10,7 @@ allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli 
 
 Nella piattaforma 4 è prevista quindi la possibilità di integrare un comportamento custom tramite _custom plugin_. Questo significa che in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma.
 
-Per facilitare lo sviluppo è stata però creata una libreria _node.js_ con un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA.
+Per facilitare lo sviluppo è stata creata una libreria _node.js_ con un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA.
 Di seguito è presentata una **guida per lo sviluppo in locale di nuove funzionalità**.
 
 ## Integrazione di un servizio già esistente
