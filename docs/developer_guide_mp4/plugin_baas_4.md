@@ -5,7 +5,7 @@
 ## Introduzione
 
 Un **custom plugin** è un microservizio custom che fa parte di un deploy della piattaforma
-allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. Infatti, oltre a endpoint di tipo CRUD, nasce spesso l'esigenza di implementare funzionalità custom, come ad esempio logiche di business che coinvolgono una o più collezioni o servizi esterni oppure rotte di Backend for Frontend.
+allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. Questo microservizio nasce perchè spesso si ha l'esigenza di implementare, oltre a endpoint di tipo CRUD, anche **funzionalità custom**, come ad esempio logiche di business che coinvolgono una o più collezioni o servizi esterni oppure rotte di Backend for Frontend.
 
 
 Nella piattaforma 4 è prevista quindi la possibilità di integrare un comportamento custom tramite _custom plugin_. Questo significa che in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma.
