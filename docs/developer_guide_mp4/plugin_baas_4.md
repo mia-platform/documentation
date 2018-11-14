@@ -1,92 +1,160 @@
-# Custom Plugin sulla Piattaforma 4
+# Custom Plugin in Node.js
 
-[TOC]
+Oltre ai componenti e servizi standard (e.g., CRUD), la piattaforma accoglie componenti che incapsulano logiche ad-hoc, 
+sviluppati ed integrabili in autonomia: i **Custom Plugin**. Un Custom Plugin (**CP**) è a tutti gli effetti un servizio
+che riceve richieste HTTP, il cui ciclo di vita, utilizzo e rilascio è governato dalla piattaforma. 
 
-## Introduzione
+Un CP incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma
+e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione 
+e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [Node.js](https://github.com/mia-platform/custom-plugin-lib), 
+basata sulla libreria [Fastify.io](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CP implementando:
 
-Un **custom plugin** è un microservizio custom che fa parte di un deploy della piattaforma
-allo stesso modo del servizio di CRUD, del Microservice Gateway, e di tutti gli altri servizi che la compongono. Questo microservizio nasce perchè spesso si ha l'esigenza di implementare, oltre a endpoint di tipo CRUD, anche **funzionalità custom**, come ad esempio logiche di business che coinvolgono una o più collezioni o servizi esterni oppure rotte di Backend for Frontend.
+* [rotte con comportamento custom](#rotte)
+* [l'accesso alle informazioni di Piattaforma per utente, client e gruppo di appartenenza](#identificazione-utente-e-client)
+* [richieste ad altri servizi o CP della piattaforma](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma)
+* [decoratori di PRE o di POST](#decoratori-di-pre-e-post)
 
+Nel resto di questa guida viene descritto come sviluppare, testare, rilasciare un CP in Node.js all'interno della piattaforma, 
+utilizzando la libreria `custom-plugin-lib`.
 
-Nella piattaforma 4 è prevista quindi la possibilità di integrare un comportamento custom tramite _custom plugin_. Questo significa che in linea di principio qualunque microservizio (anche già esistente) può essere integrato all'interno della piattaforma.
+## Installazione e Bootstrap
 
-Per facilitare lo sviluppo è stata creata una libreria _node.js_ con un relativo template per lo sviluppo e l'integrazione del servizio all'interno della architettura MIA.
-Di seguito è presentata una **guida per lo sviluppo in locale di nuove funzionalità**.
+`custom-plugin-lib` può essere installata usando `npm`, assieme alla sua dipendenza `fastify-cli`, necessaria per l'avvio
+e l'esecuzione del CP
 
-## Integrazione di un servizio già esistente
-
-Requisiti:
-
-* Versionamento all'interno di gitlab (a cui punta l'API Console)
-* Immagine docker del servizio sul repository di immagini Nexus
-
-A questo punto per rendere il servizio compatibile con la piattaforma ed associabile ad un endpoint con API Console, basta creare una cartella `config` nella root del progetto con all'interno un file `Dockerimage` che contiene il link all'immagine nexus.
-
-Es:
-```bash
-cd /path/to/repository/root/
-
-mkdir config
-cd config
-echo '<nexus-repository>/<image-path>:<revision>' > Dockerimage
-```
-
-## Libreria Custom Plugin
-
-La libreria custom plugin di MIA permette di:
-
-* definire nuove rotte con comportamento custom (non di tipo CRUD)
-* accedere all'id e ai gruppi dell'utente
-* definire decoratori di PRE o di POST
-* contattare gli altri servizi della piattaforma
-* scrivere logiche testabili in modo autonomo rispetto alla piattaforma
-
-### Esempio, Hello World Plugin
-
-Una volta ottenuto l'accesso alle credenziali necessarie per scaricare la libreria, la si può installare (installeremo anche fastify-cli per lanciare il plugin):
 ```bash
 npm i @npm-mia-platform/libraries-custom-plugin fastify-cli --save
 ```
 
-A questo punto si può creare il plugin di helloworld creando il file `index.js` con il seguente contenuto:
-```js
-const customService = require('@mia-platform/custom-plugin-lib')()
+La libreria può essere utilizzata per istanziare un server HTTP 
+in questo modo, incollando il questo pezzo di codice in un file, nominandolo `index.js`
 
-module.exports = customService(async function index(service) {
-  service.addRawCustomPlugin('GET', '/hello/', async function handler(req) {
-    return `Hello ${req.getUserId() || 'World'}`
-  })
+```js
+process.env.USERID_HEADER_KEY=''
+process.env.GROUPS_HEADER_KEY=''
+process.env.CLIENTTYPE_HEADER_KEY=''
+process.env.BACKOFFICE_HEADER_KEY=''
+process.env.MICROSERVICE_GATEWAY_SERVICE_NAME=''
+
+const customPlugin = require('@mia-platform/custom-plugin-lib')()
+
+module.exports = customPlugin(async service => {
+  
+  // alle richieste in GET sulla rotta /status/alive
+  // rispondi con l'oggetto JSON { "status": "ok" }
+  service.addRawCustomPlugin('GET', 
+                             '/status/alive', 
+                             async (request, reply) => ({ 
+                               status: 'ok' 
+                             }))
 })
 ```
 
-*Nota: ricordarsi di mettere lo slash in fondo al nome dell'endpoint altrimenti torna 404 Not Found*
-
-La libreria è in grado di estrarre dalla richiesta alcune informazioni legate alla piattaforma, quali l'id utente (`null` se non loggato), i gruppi, etc.
-I metodi della richiesta aggiunti dalla libreria sono anche forniti durante l'autocompletamento per accelerare lo sviluppo.
-
-Una volta settate le variabili d'ambiente è possibile lanciare in locale il servizio:
-```
-set -a && source default.env
-npm start
-```
-
-### Interrogare altri servizi della piattaforma
-Dalla richiesta dei custom plugin è anche possibile ottenere dei proxy per interrogare gli altri microservizi che compongono la piattaforma.
-Questi proxy si fanno carico di trasmettere gli header della piattaforma automaticamente.
-Ci sono due possibilità:
-
-* ottenere un proxy che passa per il microservice-gateway (per avere anche l'ACL, e tutti i decoratori di PRE e di POST), chiamando il seguente metodo:
+Per avviare il CP è sufficiente modificare il file `package.json` in questo modo
 ```js
-const proxy = req.getServiceProxy()
-const res = await proxy.get('/heroes/')
+  //...
+  "scripts": {
+    // ...  
+    "start": "fastify start src/index.js",
 ```
-* ottenere un proxy diretto al servizio. In tal caso ACL e altri decoratori non vedranno questa richiesta.
+eseguire un ```npm start``` ed aprire un browser alla url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), 
+per ottenere una risposta.
+
+## Factory esposta da `custom-plugin-lib`  
+
+`custom-plugin-lib` esporta una funzione la quale crea l'infrastruttura pronta ad accogliere la definizione
+di rotte e decoratori. Questo estratto di codice ne esemplifica l'utilizzo.
 ```js
-const proxy = req.getDirectServiceProxy('service-name')
-const res = await proxy.post('/heroes/', { name: 'Super' })
+const customPlugin = require('@mia-platform/custom-plugin-lib')()
+
+module.exports = customPlugin(function(service) { })
+```
+L'argomento della funzione `customPlugin` è una **funzione di dichiarazione** il cui argomento è un oggetto che permette 
+di definire rotte e decoratori.
+
+
+## Rotte
+
+`custom-plugin-lib` permette di definire il comportamento del CP in risposta ad una richiesta HTTP, in stile dichiarativo. 
+A tal fine si utilizza la funzione `addRawCustomPlugin` esposta dal primo argomento della funzione di dichiarazione.
+```js
+service.addRawCustomPlugin(httpVerb, path, handler, schema)
+```
+i cui argomenti sono, nell'ordine
+
+* `httpVerb` - il verbo HTTP della richiesta (e.g., `GET`)
+* `path` - il path della rotta (e.g., `/status/alive`)
+* [`handler`](#handlers) - funzione che contiene il vero e proprio comportamento. Deve rispettare la stessa interfaccia definita nella
+documentazione degli handler di [Fastify.io](https://www.fastify.io/docs/latest/Routes/#async-await).
+* [`schema`](#schema-e-documentazione-di-una-rotta) - definizione dello schema dati di richiesta e risposta. 
+Il formato è quello accettato da [Fastify.io](https://www.fastify.io/docs/latest/Validation-and-Serialization)
+
+
+#### Esempio
+```js
+// comportamento in risposta all'interrogazione
+async function aliveHandler(request, reply) {
+  return { status: 'ok' }
+}
+
+// schema della risposta
+const aliveSchema = {
+  response: {
+      200: {
+        type: 'object',
+        properties: {
+          status: { type: 'string' },
+        }
+      }
+  }
+}
+
+// wiring e dichiarazione delle rotte
+module.exports = customPlugin(async function(service) {
+  service.addRawCustomPlugin('GET', '/status/alive', aliveHandler, aliveSchema)
+})
 ```
 
-I metodi del proxy http utilizzabili sono i seguenti:
+## Handlers
+
+Un `handler` è una funzione che rispetta l'interfaccia degli handler di [Fastify.io](https://www.fastify.io/docs/latest/Routes/) ed
+accetta una [Request](https://www.fastify.io/docs/latest/Request/) ed una [Reply](https://www.fastify.io/docs/latest/Reply/). 
+Oltre all'interfaccia di Fastify.io, `custom-plugin-lib` decora l'oggetto della request con informazioni legate alla piattaforma, come
+ad esempio l'`id` utente oppure i gruppi, ed anche con l'interfaccia che permette di eseguire richieste HTTP verso altri servizi
+rilasciati all'interno della piattaforma.
+
+### Identificazione Utente e Client
+
+L'argomento `request` di un handler (il primo) viene decorato con le funzioni
+
+* `getUserId` - espone l'`id` dell'utente, se loggato
+* `getGroups` - espone il gruppo di appartenenza dell'utente, se loggato
+* `getClientType` - espone il typo di client origine della richiesta HTTP
+* `isFromBackOffice` - flag per discriminare la richiesta HTTP come proveniente da CMS
+
+#### Esempio
+```js
+async function helloHandler(request, reply) {
+  // accesso all'id dell'utente (passato come 
+  // header all'interno della piattaforma)
+  return `Hello ${request.getUserId()}`
+}
+```
+
+### Interrogazioni ad Enpoint e Servizi della Piattaforma
+
+Dall'argomento `request` di un handler (il primo) è possibile ottenere dei proxy per interrogare 
+gli altri endpoint o servizi che compongono la piattaforma. Questi proxy si fanno carico di trasmettere gli header della 
+piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte
+
+* `getServiceProxy` - proxy che passa per `microservice-gateway`
+* `getDirectServiceProxy` - proxy diretto al servizio
+
+La differenza fondamentale tra i due proxy è che il primo attiva tutte le logiche che sono censite in `microservice-gateway`,
+mentre il secondo no. Ad esempio, se una risorsa esposta dal servizio CRUD è protetta da ACL, questa protezione verrà
+bypassata utilizzando il proxy diretto.
+
+Entrambi i proxy espongono le funzioni
 
 * `get(path, querystring, options)`
 * `post(path, body, querystring, options)`
@@ -94,68 +162,276 @@ I metodi del proxy http utilizzabili sono i seguenti:
 * `patch(path, body, querystring, options)`
 * `delete(path, body, querystring, options)`
 
-Il body può essere:
+L'argomento più rilevante nella firma di queste funzioni è `body`, il quale può essere
 
-* un oggetto: serializzato in JSON
-* un buffer
-* uno stream
+* un oggetto JSON
+* un [Buffer](https://nodejs.org/api/buffer.html#)
+* uno [Stream](https://nodejs.org/api/stream.html)
 
-Similmente, dalle opzioni è possibile impostare il formato del body con l'opzione `returnAs`, che può assumere i valori:
-
-* `JSON` (default): per ottenere un oggetto come body della risposta
-* `BUFFER`: per avere un buffer come body della risposta
-* `STREAM`: per avere nel body della risposta lo stream http
-
-### Decoratori di PRE e POST
-
-Si possono definire facilmente dei decoratori di PRE e POST del `Microservice Gateway` aggiungendoli al `service`.
-
-#### Decoratore di PRE
-Ad esempio per definire un decoratore di pre che aggiunge un header è sufficiente scrivere:
+#### Esempio
 ```js
-service.addPreDecorator('/addHeader', async function handler(req) {
-  const headers = req.getOriginalRequestHeaders()
-  const newHeader = { new: 'header' }
-  return req.changeOriginalRequest()
-    .setHeaders({ ...headers, ...newHeader })
+// esempio di post ad un endpoint
+async function tokenGeneration(request, response) {
+  // ...
+  const result = await request
+    .getServiceProxy()
+    .post('/tokens-collection/', { 
+      id: request.body.quotationId, 
+      valid: true 
+    })
+  // ...
+}
+```
+```js
+// esempio di post ad un endpoint bypassando il proxy
+async function tokenGeneration(request, response) {
+  // ...
+  const result = await request
+    .getDirectServiceProxy('crud-service')
+    .post('/tokens-collection/', { 
+      id: request.body.quotationId, 
+      valid: true 
+    })
+  // ...
+}
+```
+
+## Decoratori di PRE e POST
+
+Tramite `custom-plugin-lib` è possibile dichiarare decoratori di PRE e di POST. Dal punto di vista concettuale, un decoratore 
+di (1) PRE o di (2) POST è una trasformazione applicata da `microservice-gateway` rispettivamente a (1) una richiesta indirizzata
+verso un servizio (**richiesta originale**) oppure (2) alla risposta (**risposta originale**) che questo servizio invia al 
+chiamante. Dal punto di vista pratico, i decoratori sono implementati come richieste HTTP in `POST` verso un CP specificato.
+
+La dichiarazione di un decoratore utilizzando `custom-plugin-lib` avviene in maniera simile alla dichiarazione di una rotta
+
+* `service.addPreDecorator(path, handler)`
+* `service.addPostDecorator(path, handler)`
+
+#### Esempio
+```js
+module.exports = customService(async function(service) {
+  // handler in questo caso è specificato in maniera simile come per le rotte
+  service.addPreDecorator('/is-valid', handler)
 })
 ```
 
-I metodi per recuperare le informazioni sulla chiamata sono i seguenti:
+### Accesso e Manipolazione della Richiesta Originale
+Le funzioni utilità esposte da `request` servono per accedere alla richiesta originale
 
-* `req.getOriginalRequestBody()`
-* `req.getOriginalRequestHeaders()`
-* `req.getOriginalRequestMethod()`
-* `req.getOriginalRequestPath()`
-* `req.getOriginalRequestQuery()`
+* `getOriginalRequestBody()` - ritorna il body della richiesta originale
+* `getOriginalRequestHeaders()` - ritorna gli headers della richiesta originale
+* `getOriginalRequestMethod()` - ritorna il metodo della richiesta originale
+* `getOriginalRequestPath()` - ritorna il path della richiesta originale
+* `getOriginalRequestQuery()` - ritorna la querystring della richiesta originale
 
+Oltre alle funzioni descritte sopra, `request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
+inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando la funzione 
+`changeOriginalRequest`, concatenandola con invocazioni alle funzioni
 
-Mentre per modificare la richiesta, come da esempio dopo `changeOriginalRequest` si possono concatenare i seguenti metodi:
+* `setBody(newBody)` - modifica il body della richiesta originale
+* `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
+* `setQuery(newQuery)` - modifica la querystring della richiesta originale
 
-* `setBody(<new body>)`
-* `setHeaders(<new headers>)`
-* `setQuery(<new query>)`
+Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalRequestUnmodified`.
 
-#### Decoratore di POST
-Similmente si può aggiungere un decoratore di POST, con il metodo `addPostDecorator`.
-Di seguito si definisce ad esempio un decoratore di POST che manda il body di risposta ad un servizio ma non modifica la risposta alla richiesta originale:
-
+### Esempio di Decoratore di PRE
 ```js
-service.addPostDecorator('/saveResponse', async function handler(req) {
-  const proxy = req.getServiceProxy()
-  await proxy.post('/responses/', req.getOriginalResponseBody())
-  return req.leaveOriginalResponseUnmodified()
+// questo decoratore di PRE legge un header della richiesta originale
+// e lo converte in parametro della querystring
+async function attachTokenToQueryString(request, response) {
+  const originalHeaders = request.getOriginalRequestHeaders()
+  const token = originalHeaders['x-token']
+  
+  if(token) {
+    return request
+              .changeOriginalRequest()
+              .setQuery({ token })
+  }
+  // in caso il token non sia stato specificato negli headers
+  // si lascia invariata la richiesta originale
+  return request.leaveOriginalRequestUnmodified()
+}
+```
+
+### Accesso e Manipolazione della Risposta Originale
+
+Come per la richiesta originale l'argomento `request` di un handler (il primo) viene decorato con funzioni utili per 
+accedere anche alla risposta originale
+
+* `getOriginalResponseBody()`
+* `getOriginalResponseHeaders()`
+* `getOriginalResponseStatusCode()`
+
+Oltre alle funzioni descritte sopra, `request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
+inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando la funzione 
+`changeOriginalResponse`, concatenandola con invocazioni alle funzioni
+
+* `setBody(newBody)` - modifica il body della richiesta originale
+* `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
+* `setQuery(newQuery)` - modifica la querystring della richiesta originale
+
+Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
+
+### Esempio di Decoratore di POST
+```js
+// questo decoratore di POST legge un token dal body della risposta orginale
+// e lo converte in header.
+async function attachTokenToHeaders(request, response) {
+  const originalBody = request.getOriginalResponseBody()
+  const token = originalBody.token
+  
+  if(token) {
+    return request
+              .changeOriginalResponse()
+              .setHeaders({ 
+                ... request.getOriginalResponseHeaders(), 
+                "x-token": token
+              })
+  }
+  // in caso il token non sia presente nel body della risposta
+  // si lascia invariata la risposta originale
+  return request.leaveOriginalResponseUnmodified()
+}
+```
+
+### Stop della Catena dei Decoratori
+
+Tramite `microservice-gateway` è possibile definire una catena sequenziale di decoratori, in modo che l'output di un 
+singolo decoratore viene passato al decoratore successivo. In casi particolari, tuttavia, può  essere necessario 
+interrompere la catena e ritornare una risposta al chiamante originale. 
+
+A tal fine, l'argomento `request` di un handler (il primo) espone la funzione 
+```js
+abortChain(finalStatusCode, finalBody, finalHeaders)
+```
+
+#### Esempio
+```js
+// questo decoratore di PRE verifica che sia presente un token
+// nell'header della richiesta originale. Se non è presente 
+// interrompe la catena
+async function validateToken(request, response) {
+  const headers = request.getOriginalResponseHeaders()
+  const token = headers['x-token']
+  if(!token) {
+    return request.abortChain(401)
+  }
+  return request.leaveOriginalRequestUnmodified()
+}
+```
+
+## Schema e Documentazione di una Rotta
+
+Un CP sviluppato con `custom-plugin-lib` espone automaticamente anche la documentazione delle rotte e dei decoratori che
+sono implementati. La documentazione viene specificata usando lo standard [OpenAPI 2.0](https://swagger.io/specification/v2/)
+ed esposta tramite [Swagger](https://swagger.io). Una volta avviato il CP, la sua documentazione è accessibile all'indirizzo 
+rotta [`http://localhost:3000/documentation`](http://localhost:3000/documentation). La specifica dello schema delle richieste 
+e delle risposte di una rotta deve essere conforme al formato accettato da 
+[Fastify.io](https://www.fastify.io/docs/latest/Validation-and-Serialization).
+
+### Esempio
+```js
+const schema = {
+  body: {
+    type: 'object',
+    properties: {
+      someKey: { type: 'string' },
+      someOtherKey: { type: 'number' }
+    }
+  },
+
+  querystring: {
+    name: { type: 'string' },
+    excitement: { type: 'integer' }
+  },
+
+  params: {
+    type: 'object',
+    properties: {
+      par1: { type: 'string' },
+      par2: { type: 'number' }
+    }
+  },
+
+  headers: {
+    type: 'object',
+    properties: {
+      'x-foo': { type: 'string' }
+    },
+    required: ['x-foo']
+  }
+}
+```
+
+## Variabili d'Ambiente
+
+Come ogni servizio della Piattaforma, un CP deve essere predisposto per essere rilasciato in ambienti diversi, a partire
+dall'ambiente locale (la macchina di sviluppo) fino agli ambienti di sviluppo, test e produzione. Le differenze tra vari
+ambienti sono gestite tramite il meccanismo delle variabili d'ambiente.
+
+Per avviare un CP sviluppato con `custom-plugin-lib` è necessario che siano disponibili al processo `nodejs` le variabili
+d'ambiente
+
+```bash
+USERID_HEADER_KEY=miauserid
+GROUPS_HEADER_KEY=miausergroups
+CLIENTTYPE_HEADER_KEY=miaclienttype
+BACKOFFICE_HEADER_KEY=isbackoffice
+MICROSERVICE_GATEWAY_SERVICE_NAME=microservice-gateway
+```
+
+Tra queste variabili, quella più interessante è `MICROSERVICE_GATEWAY_SERVICE_NAME`, che contiene il nome di rete (o indirizzo IP)
+al quale è accessibile `microservice-gateway` e viene letta durante la [comunicazione con con gli altri servizi](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma) interni
+alla Piattaforma. L'implicazione è che `MICROSERVICE_GATEWAY_SERVICE_NAME` rende possibile la configurazione del proprio CP in locale
+per interrogare una specifica installazione della Piattaforma. Ad esempio
+
+```bash
+MICROSERVICE_GATEWAY_SERVICE_NAME=dev.instance.example/v1/
+```
+
+Oltre a quelle obbligatorie, tramite `custom-plugin-lib` è possibile definire altre variabili d'ambiente in base alle
+esigenze del singolo CP, per poi accedervi ed utilizzarne i valori nel codice degli handlers. Per la definizione si
+usa il formato [JSON schema](http://json-schema.org/).
+
+### Esempio
+```js
+// la variabile d'ambiente VARIABLE deve essere disponibile al processo
+const serverSchema = {    
+  type: 'object',
+  required: ['VARIABLE'],  
+  properties: {  
+    VARIABLE: {  
+      type: 'string',  
+    },  
+  },  
+}  
+const customPlugin = require('@mia-platform/custom-plugin-lib')(serverSchema)
+
+module.exports = customPlugin(async service => {
+  service.addRawCustomPlugin('GET', 
+                             '/variable', 
+                             async (request, reply) => ({
+                               // nel config di service si 
+                               // possono trovare le variabili
+                               // d'ambiente dichiarate
+                               secret: service.config.VARIABLE
+                             }))
 })
 ```
 
-In aggiunta ai metodi per ottenere la richiesta e modificare la risposta come nel decoratore di PRE, sono disponibili i seguenti metodi per recuperare informazioni sulla risposta:
+## Testing
 
-* `req.getOriginalResponseBody()`
-* `req.getOriginalResponseHeaders()`
-* `req.getOriginalResponseStatusCode()`
+COMING SOON -- [Qui un esempio](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/)
 
-Sia per i decoratori di PRE che per quelli di POST è possibile interrompere la catena di decoratori e ritornare una risposta arbitraria tramite il metodo `abortChain`:
+## Organizzazione del codice
 
-```js
-return req.abortChain({<finalStatusCode>, <finalBody>, <finalHeaders>})
-```
+COMING SOON
+
+## Rilascio
+
+COMING SOON
+
+## Log e Metriche
+
+COMING SOON
