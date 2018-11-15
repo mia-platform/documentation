@@ -422,7 +422,61 @@ module.exports = customPlugin(async service => {
 
 ## Testing
 
-COMING SOON -- [Qui un esempio](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/)
+`custom-plugin-lib` è costruita su Fastify.io e quindi si integra con gli [strumenti di testing](https://www.fastify.io/docs/latest/Testing/) 
+messi a disposizione dal framework. Un esempio completo di questo tipo di test è presente online nel repository di
+`custom-plugin-lib` su [Github](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/).
+
+### Integration and Unit test
+
+Il testing di un CP costruito con `custom-plugin-lib` può essere effettuato a più livelli di astrazione. Una delle
+possibilià è quella di utilizzare una tecnica che si chiama _fake http injection_ per la quale è possibile simulare
+la ricezione di una richiesta HTTP. In questo modo si esercita tutta la logica del CP dallo strato HTTP, agli handler e
+questo è un esempio di Integration Testing.
+
+#### Esempio Integration Test
+
+Nell'esempio sottostante il framework di test [Mocha](https://mochajs.org/).
+
+```js
+process.env.USERID_HEADER_KEY=''
+process.env.GROUPS_HEADER_KEY=''
+process.env.CLIENTTYPE_HEADER_KEY=''
+process.env.BACKOFFICE_HEADER_KEY=''
+process.env.MICROSERVICE_GATEWAY_SERVICE_NAME=''
+const fastify = require('fastify')
+
+const customPlugin = require('@mia-platform/custom-plugin-lib')()
+const index = customPlugin(async service => {
+  service.addRawCustomPlugin('GET', 
+                             '/status/alive', 
+                             async (request, reply) => ({ 
+                               status: 'ok' 
+                             }))
+})
+
+const testServer = () => {
+  const createdServer = fastify()
+  createdServer.register(index)
+  return createdServer
+}
+
+describe('/status/alive', () => {
+  it('should be available', async () => {
+    const response = await testServer().inject({
+      url: '/status/alive',
+    })
+    assert(response.statusCode === 200)
+  })
+})
+```
+
+#### Esempio di Integration Test con mock delle chiamate HTTP
+
+COMING SOON
+
+#### Esempio di Unit Test
+
+COMING SOON
 
 ## Organizzazione del codice
 
