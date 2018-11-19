@@ -325,7 +325,7 @@ Tramite `microservice-gateway` è possibile definire una catena sequenziale di d
 singolo decoratore viene passato al decoratore successivo. In casi particolari, tuttavia, può  essere necessario 
 interrompere la catena e ritornare una risposta al chiamante originale. 
 
-A tal fine, l'argomento `request` di un handler (il primo) espone la funzione 
+A tal fine, l'istanza `Request` (il primo argomento di un handler) espone la funzione 
 ```js
 abortChain(finalStatusCode, finalBody, finalHeaders)
 ```
@@ -334,7 +334,7 @@ abortChain(finalStatusCode, finalBody, finalHeaders)
 ```js
 // questo decoratore di PRE verifica che sia presente un token
 // nell'header della richiesta originale. Se non è presente 
-// interrompe la catena
+// interrompe la catena restituendo un error 401 al client
 async function validateToken(request, response) {
   const headers = request.getOriginalResponseHeaders()
   const token = headers['x-token']
@@ -352,7 +352,7 @@ sono implementati. La documentazione viene specificata usando lo standard [OpenA
 ed esposta tramite [Swagger](https://swagger.io). Una volta avviato il CP, la sua documentazione è accessibile all'indirizzo 
 rotta [`http://localhost:3000/documentation`](http://localhost:3000/documentation). La specifica dello schema delle richieste 
 e delle risposte di una rotta deve essere conforme al formato accettato da 
-[Fastify.io](https://www.fastify.io/docs/latest/Validation-and-Serialization).
+[fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
 
 ### Esempio
 ```js
@@ -418,6 +418,10 @@ Oltre a quelle obbligatorie, tramite `custom-plugin-lib` è possibile definire a
 esigenze del singolo CP, per poi accedervi ed utilizzarne i valori nel codice degli handlers. Per la definizione si
 usa il formato [JSON schema](http://json-schema.org/).
 
+Nel caso in cui al CP non venga fornito il corretto set di variabili d'ambiente,
+il CP non parte restituendo in output quale variabile d'ambiente manca.
+
+
 ### Esempio
 ```js
 // la variabile d'ambiente VARIABLE deve essere disponibile al processo
@@ -433,20 +437,27 @@ const serverSchema = {
 const customPlugin = require('@mia-platform/custom-plugin-lib')(serverSchema)
 
 module.exports = customPlugin(async service => {
-  service.addRawCustomPlugin('GET', 
-                             '/variable', 
-                             async (request, reply) => ({
-                               // nel config di service si 
-                               // possono trovare le variabili
-                               // d'ambiente dichiarate
-                               secret: service.config.VARIABLE
-                             }))
+  // nel config di service si
+  // possono trovare le variabili
+  // d'ambiente dichiarate
+  const VARIABILE = service.config.VARIABILE
+
+  service.addRawCustomPlugin(
+    'GET', 
+    '/variable', 
+    async function (request, reply) {
+      return {
+        // è possibile accedere alla configurazione tramite `this.config`
+        secret: this.config.VARIABLE,
+      }
+    }
+  )
 })
 ```
 
 ## Testing
 
-`custom-plugin-lib` è costruita su Fastify.io e quindi si integra con gli [strumenti di testing](https://www.fastify.io/docs/latest/Testing/) 
+`custom-plugin-lib` è costruita su fastify e quindi si integra con gli [strumenti di testing](https://www.fastify.io/docs/latest/Testing/) 
 messi a disposizione dal framework. Un esempio completo di questo tipo di test è presente online nel repository di
 `custom-plugin-lib` su [Github](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/).
 
@@ -462,6 +473,10 @@ questo è un esempio di Integration Testing.
 Nell'esempio sottostante il framework di test [Mocha](https://mochajs.org/).
 
 ```js
+'use strict'
+
+const assert = require('assert')
+
 process.env.USERID_HEADER_KEY=''
 process.env.GROUPS_HEADER_KEY=''
 process.env.CLIENTTYPE_HEADER_KEY=''
@@ -471,25 +486,31 @@ const fastify = require('fastify')
 
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 const index = customPlugin(async service => {
-  service.addRawCustomPlugin('GET', 
-                             '/status/alive', 
-                             async (request, reply) => ({ 
-                               status: 'ok' 
-                             }))
+  service.addRawCustomPlugin(
+    'GET', 
+    '/status/alive', 
+    async (request, reply) => ({ 
+      status: 'ok' 
+    })
+  )
 })
 
-const testServer = () => {
-  const createdServer = fastify()
+const createTestServer = () => {
+  // silent => trace for enabliing logs
+  const createdServer = fastify({ logger: { level: 'silent' } })
   createdServer.register(index)
   return createdServer
 }
 
 describe('/status/alive', () => {
   it('should be available', async () => {
-    const response = await testServer().inject({
+    const server = createTestServer()
+
+    const response = await server.inject({
       url: '/status/alive',
     })
-    assert(response.statusCode === 200)
+
+    assert.equal(response.statusCode, 200)
   })
 })
 ```
