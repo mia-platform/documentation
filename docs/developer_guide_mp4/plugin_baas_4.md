@@ -9,8 +9,8 @@ e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. 
 e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [Node.js](https://github.com/mia-platform/custom-plugin-lib), 
 basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CP implementando:
 
-* [rotte con comportamento custom](#rotte)
-* [l'accesso alle informazioni di Piattaforma per utente, client e gruppo di appartenenza](#identificazione-utente-e-client)
+* [handler di rotte HTTP](#rotte)
+* [cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoui gruppi di appartenenza](#identificazione-utente-e-client)
 * [richieste ad altri servizi o CP della piattaforma](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma)
 * [decoratori di PRE o di POST](#decoratori-di-pre-e-post)
 
