@@ -105,6 +105,8 @@ Il formato è quello accettato da [fastify](https://www.fastify.io/docs/latest/V
 
 #### Esempio
 ```js
+const customPlugin = require('@mia-platform/custom-plugin-lib')()
+
 // comportamento in risposta all'interrogazione
 async function aliveHandler(request, reply) {
   return { status: 'ok' }
