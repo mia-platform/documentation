@@ -7,7 +7,7 @@ che riceve richieste HTTP, il cui ciclo di vita, utilizzo e rilascio è governat
 Un CP incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma
 e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione 
 e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [Node.js](https://github.com/mia-platform/custom-plugin-lib), 
-basata sulla libreria [Fastify.io](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CP implementando:
+basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CP implementando:
 
 * [rotte con comportamento custom](#rotte)
 * [l'accesso alle informazioni di Piattaforma per utente, client e gruppo di appartenenza](#identificazione-utente-e-client)
