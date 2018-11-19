@@ -98,9 +98,9 @@ i cui argomenti sono, nell'ordine
 * `httpVerb` - il verbo HTTP della richiesta (e.g., `GET`)
 * `path` - il path della rotta (e.g., `/status/alive`)
 * [`handler`](#handlers) - funzione che contiene il vero e proprio comportamento. Deve rispettare la stessa interfaccia definita nella
-documentazione degli handler di [Fastify.io](https://www.fastify.io/docs/latest/Routes/#async-await).
+documentazione degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
 * [`schema`](#schema-e-documentazione-di-una-rotta) - definizione dello schema dati di richiesta e risposta. 
-Il formato è quello accettato da [Fastify.io](https://www.fastify.io/docs/latest/Validation-and-Serialization)
+Il formato è quello accettato da [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization)
 
 
 #### Esempio
