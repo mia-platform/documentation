@@ -132,20 +132,21 @@ module.exports = customPlugin(async function(service) {
 
 ## Handlers
 
-Un `handler` è una funzione che rispetta l'interfaccia degli handler di [Fastify.io](https://www.fastify.io/docs/latest/Routes/) ed
+Un `handler` è una funzione che rispetta l'interfaccia degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/) ed
 accetta una [Request](https://www.fastify.io/docs/latest/Request/) ed una [Reply](https://www.fastify.io/docs/latest/Reply/). 
-Oltre all'interfaccia di Fastify.io, `custom-plugin-lib` decora l'oggetto della request con informazioni legate alla piattaforma, come
-ad esempio l'`id` utente oppure i gruppi, ed anche con l'interfaccia che permette di eseguire richieste HTTP verso altri servizi
-rilasciati all'interno della piattaforma.
+Oltre all'interfaccia di Request di fastify, `custom-plugin-lib` decora l'istanza Request con informazioni legate alla Piattaforma come
+l'`id` utente correntemente loggato, i suoi gruppi il itpo di client che ha eseguito la richiesta HTTP e se la richeista proviene dal CMS.
+Inoltre l'istanza di Request è decorata anche con metodi che permettono di eseguire richieste HTTP verso altri servizi
+rilasciati all'interno della Piattaforma.
 
 ### Identificazione Utente e Client
 
-L'argomento `request` di un handler (il primo) viene decorato con le funzioni
+L'istanza di `Request` (il primo argomento di un handler) viene decorato con le funzioni
 
-* `getUserId` - espone l'`id` dell'utente, se loggato
-* `getGroups` - espone il gruppo di appartenenza dell'utente, se loggato
-* `getClientType` - espone il typo di client origine della richiesta HTTP
-* `isFromBackOffice` - flag per discriminare la richiesta HTTP come proveniente da CMS
+* `getUserId` - espone l'`id` dell'utente, se loggato o `null`
+* `getGroups` - espone un array contenente stringhe che identificano i gruppi di appartenenza dell'utente loggato
+* `getClientType` - espone il tipo di client che ha eseguito la richiesta HTTP
+* `isFromBackOffice` - espone un booleano per discriminare se la richiesta HTTP proveniente dal CMS
 
 #### Esempio
 ```js
@@ -158,9 +159,9 @@ async function helloHandler(request, reply) {
 
 ### Interrogazioni ad Enpoint e Servizi della Piattaforma
 
-Dall'argomento `request` di un handler (il primo) è possibile ottenere dei proxy per interrogare 
-gli altri endpoint o servizi che compongono la piattaforma. Questi proxy si fanno carico di trasmettere gli header della 
-piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte
+Dall'istanza di `Request` (il primo argomento di un handler) è possibile ottenere un oggetto proxy per interrogare 
+gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della 
+Piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte:
 
 * `getServiceProxy` - proxy che passa per `microservice-gateway`
 * `getDirectServiceProxy` - proxy diretto al servizio
@@ -188,8 +189,9 @@ L'argomento più rilevante nella firma di queste funzioni è `body`, il quale pu
 // esempio di post ad un endpoint
 async function tokenGeneration(request, response) {
   // ...
-  const result = await request
+  const crudProxy = request
     .getServiceProxy()
+  const result = await crudProxy
     .post('/tokens-collection/', { 
       id: request.body.quotationId, 
       valid: true 
@@ -201,8 +203,9 @@ async function tokenGeneration(request, response) {
 // esempio di post ad un endpoint bypassando il proxy
 async function tokenGeneration(request, response) {
   // ...
-  const result = await request
+  const crudProxy = request
     .getDirectServiceProxy('crud-service')
+  const result = await crudProxy
     .post('/tokens-collection/', { 
       id: request.body.quotationId, 
       valid: true 
