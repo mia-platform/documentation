@@ -55,11 +55,13 @@ module.exports = customPlugin(async service => {
   
   // alle richieste in GET sulla rotta /status/alive
   // rispondi con l'oggetto JSON { "status": "ok" }
-  service.addRawCustomPlugin('GET', 
-                             '/status/alive', 
-                             async (request, reply) => ({ 
-                               status: 'ok' 
-                             }))
+  service.addRawCustomPlugin(
+    'GET', 
+    '/status/alive', 
+    async (request, reply) => ({ 
+      status: 'ok' 
+    })
+  )
 })
 ```
 
@@ -115,12 +117,12 @@ async function aliveHandler(request, reply) {
 // schema della risposta
 const aliveSchema = {
   response: {
-      200: {
-        type: 'object',
-        properties: {
-          status: { type: 'string' },
-        }
+    200: {
+      type: 'object',
+      properties: {
+        status: { type: 'string' },
       }
+    }
   }
 }
 
@@ -235,7 +237,7 @@ module.exports = customService(async function(service) {
 ```
 
 ### Accesso e Manipolazione della Richiesta Originale
-Le funzioni utilità esposte da `request` servono per accedere alla richiesta originale
+Le funzioni utilità esposte dall'istanza `Request` (il primo parametro di un handler) servono per accedere alla richiesta originale
 
 * `getOriginalRequestBody()` - ritorna il body della richiesta originale
 * `getOriginalRequestHeaders()` - ritorna gli headers della richiesta originale
@@ -243,15 +245,17 @@ Le funzioni utilità esposte da `request` servono per accedere alla richiesta or
 * `getOriginalRequestPath()` - ritorna il path della richiesta originale
 * `getOriginalRequestQuery()` - ritorna la querystring della richiesta originale
 
-Oltre alle funzioni descritte sopra, `request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
-inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando la funzione 
-`changeOriginalRequest`, concatenandola con invocazioni alle funzioni
+Oltre ai metodi descritti sopra, l'istanza di `Request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
+inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando il metodo dell'istanza `Request` 
+`changeOriginalRequest` il quale ritorna un oggetto con i seguenti metodi:
 
 * `setBody(newBody)` - modifica il body della richiesta originale
 * `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
 * `setQuery(newQuery)` - modifica la querystring della richiesta originale
 
 Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalRequestUnmodified`.
+
+In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritornato da `changeOriginalRequest` oppure l'oggetto ritornato da `leaveOriginalRequestUnmodified`.
 
 ### Esempio di Decoratore di PRE
 ```js
@@ -263,8 +267,8 @@ async function attachTokenToQueryString(request, response) {
   
   if(token) {
     return request
-              .changeOriginalRequest()
-              .setQuery({ token })
+      .changeOriginalRequest()
+      .setQuery({ token })
   }
   // in caso il token non sia stato specificato negli headers
   // si lascia invariata la richiesta originale
@@ -274,22 +278,24 @@ async function attachTokenToQueryString(request, response) {
 
 ### Accesso e Manipolazione della Risposta Originale
 
-Come per la richiesta originale l'argomento `request` di un handler (il primo) viene decorato con funzioni utili per 
+Come per la richiesta original, l'istanza `Request` (il primo parametro di un handler) viene decorato con funzioni utili per 
 accedere anche alla risposta originale
 
 * `getOriginalResponseBody()`
 * `getOriginalResponseHeaders()`
 * `getOriginalResponseStatusCode()`
 
-Oltre alle funzioni descritte sopra, `request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
-inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando la funzione 
-`changeOriginalResponse`, concatenandola con invocazioni alle funzioni
+Oltre alle funzioni descritte sopra, l'istanza `Request` espone un'interfaccia per modificare la risposta originale, la quale che verrà 
+inoltrata da `microservice-gateway` al client chiamante. Questa interfaccia è accessibile utilizzando la funzione 
+`changeOriginalResponse` concatenandola con invocazioni alle funzioni
 
 * `setBody(newBody)` - modifica il body della richiesta originale
 * `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
 * `setQuery(newQuery)` - modifica la querystring della richiesta originale
 
 Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
+
+In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritornato da `changeOriginalResponse` oppure l'oggetto ritornato da `leaveOriginalResponseUnmodified`.
 
 ### Esempio di Decoratore di POST
 ```js
@@ -301,11 +307,11 @@ async function attachTokenToHeaders(request, response) {
   
   if(token) {
     return request
-              .changeOriginalResponse()
-              .setHeaders({ 
-                ... request.getOriginalResponseHeaders(), 
-                "x-token": token
-              })
+      .changeOriginalResponse()
+      .setHeaders({ 
+        ...request.getOriginalResponseHeaders(), 
+        "x-token": token,
+      })
   }
   // in caso il token non sia presente nel body della risposta
   // si lascia invariata la risposta originale
