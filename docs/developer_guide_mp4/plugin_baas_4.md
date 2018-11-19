@@ -6,7 +6,7 @@ che riceve richieste HTTP, il cui ciclo di vita, utilizzo e rilascio è governat
 
 Un CP incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma
 e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione 
-e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [Node.js](https://github.com/mia-platform/custom-plugin-lib), 
+e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [node.js](https://github.com/mia-platform/custom-plugin-lib), 
 basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CP implementando:
 
 * [handler di rotte HTTP](#rotte)
@@ -19,11 +19,24 @@ utilizzando la libreria `custom-plugin-lib`.
 
 ## Installazione e Bootstrap
 
+Per poter iniziare lo sviluppo è necessario aver installato `node.js` sul proprio computer.
+
+Una volta creata la cartella è necessario inizializzare un progetto node tramite i comandi
+
+```bash
+mkdir my-custom-plugin
+cd my-custom-plugin
+npm init -y
+```
+
+Aprire il file `package.json` e modificare opportunamente i campi `name`, `description`.
+Il campo `version` all'inzio è meglio valorizzarlo a `0.0.1`.
+
 `custom-plugin-lib` può essere installata usando `npm`, assieme alla sua dipendenza `fastify-cli`, necessaria per l'avvio
 e l'esecuzione del CP
 
 ```bash
-npm i @npm-mia-platform/libraries-custom-plugin fastify-cli --save
+npm i --save @npm-mia-platform/libraries-custom-plugin fastify-cli
 ```
 
 La libreria può essere utilizzata per istanziare un server HTTP 
