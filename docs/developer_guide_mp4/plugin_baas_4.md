@@ -19,9 +19,9 @@ utilizzando la libreria `custom-plugin-lib`.
 
 ## Installazione e Bootstrap
 
-Per poter iniziare lo sviluppo è necessario aver installato `node.js` sul proprio computer.
+Per poter iniziare lo sviluppo è necessario aver installato `node.js` sul proprio computer
+ed inizializzare un progetto node tramite i comandi
 
-Una volta creata la cartella è necessario inizializzare un progetto node tramite i comandi
 
 ```bash
 mkdir my-custom-plugin
