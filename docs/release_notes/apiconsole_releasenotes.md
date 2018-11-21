@@ -1,14 +1,14 @@
 #Api Console Release Note
 
-## v0.15.0 (Nov 14, 2018)  
+## v0.15.0 (Nov 21, 2018)  
 ### Breaking change api-console-configuration v0.3.0
 
 Abbiamo rilasciato i seguenti aggiornamenti:
 
 * **nuova versione di api-console-configuration** che è passato dalla v0.2.0 alla v0.3.0.  
-In questa nuovo configurazione sono state aggiunte le seguenti novità:
+In questa nuova configurazione sono state aggiunte le seguenti novità:
         * supportiamo l'**ultima versione del CRUD** con l'aggiunte di due nuove rotte: PATCH/ e POST/upsert-one;
-        * abbiamo reso possibile **editare il nome della categoria e della Pagina**.
+        * abbiamo reso possibile **editare il nome della categoria e della Pagina nel CMS**.
 
 * abbiamo inoltre abilitato la **cancellazione degli analitici** e fatto un fix sui filtri.
 
