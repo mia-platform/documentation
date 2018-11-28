@@ -263,15 +263,16 @@ accedere anche alla risposta originale
 * `getOriginalResponseHeaders()`
 * `getOriginalResponseStatusCode()`
 
-Oltre alle funzioni descritte sopra, `request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
+Oltre alle funzioni descritte sopra, `request` espone un'interfaccia per modificare la risposta originale, che verrà 
 inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando la funzione 
 `changeOriginalResponse`, concatenandola con invocazioni alle funzioni
 
-* `setBody(newBody)` - modifica il body della richiesta originale
-* `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
-* `setQuery(newQuery)` - modifica la querystring della richiesta originale
+* `setBody(newBody)` - modifica il body della risposta originale
+* `setHeaders(newHeaders)` - modifica gli headers della risposta originale
+* `setQuery(newQuery)` - modifica la querystring della risposta originale
+* `setStatusCode(newStatusCode)` - modifica lo status code della risposta originale
 
-Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
+Per lasciare invariata la risposta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
 
 ### Esempio di Decoratore di POST
 ```js
