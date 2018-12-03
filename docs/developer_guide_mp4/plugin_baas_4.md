@@ -289,11 +289,12 @@ Oltre alle funzioni descritte sopra, l'istanza `Request` espone un'interfaccia p
 inoltrata da `microservice-gateway` al client chiamante. Questa interfaccia è accessibile utilizzando la funzione 
 `changeOriginalResponse` concatenandola con invocazioni alle funzioni
 
-* `setBody(newBody)` - modifica il body della richiesta originale
-* `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
-* `setQuery(newQuery)` - modifica la querystring della richiesta originale
+* `setBody(newBody)` - modifica il body della risposta originale
+* `setHeaders(newHeaders)` - modifica gli headers della risposta originale
+* `setQuery(newQuery)` - modifica la querystring della risposta originale
+* `setStatusCode(newStatusCode)` - modifica lo status code della risposta originale
 
-Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
+Per lasciare invariata la risposta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
 
 In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritornato da `changeOriginalResponse` oppure l'oggetto ritornato da `leaveOriginalResponseUnmodified`.
 
