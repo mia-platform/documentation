@@ -23,14 +23,6 @@ pages:
     - Api Console: 'release_notes/apiconsole_releasenotes.md'
     - CMS: 'release_notes/cms_releasenotes.md'
 - Developer Guide:
-  - Piattaforma 3:
-    - Creare un Plugin: 'developer_guide/plugin.md'
-    - Creare un Tema: 'developer_guide/theme.md'
-    - Users: 'developer_guide/users.md'
-    - Cron: 'developer_guide/cron.md'
-    - iOS SDK: 'developer_guide/sdk_ios.md'
-    - Android SDK: 'developer_guide/sdk_android.md'
-    - Guida al Data Modeller: 'developer_guide/data_modeller.md'
   - Piattaforma 4:
     - Plugin Piattaforma 4: 'developer_guide_mp4/plugin_baas_4.md'
     - Push Notifications Piattaforma 4: 'developer_guide_mp4/push_notifications_platform_4.md'
@@ -50,6 +42,14 @@ pages:
   - User Backoffice:
     - Api Console: 'user_guide_and_tools/guida_api_console.md'
     - CMS: 'user_guide_and_tools/guide_cms.md'
+  - Piattaforma 3:
+      - Creare un Plugin: 'developer_guide/plugin.md'
+      - Creare un Tema: 'developer_guide/theme.md'
+      - Users: 'developer_guide/users.md'
+      - Cron: 'developer_guide/cron.md'
+      - iOS SDK: 'developer_guide/sdk_ios.md'
+      - Android SDK: 'developer_guide/sdk_android.md'
+      - Guida al Data Modeller: 'developer_guide/data_modeller.md'
 
 
 theme:

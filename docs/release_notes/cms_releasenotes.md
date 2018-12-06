@@ -1,6 +1,15 @@
 # CMS Release Notes
 
-## v.7.0.14 (31 Oct 2018)
+## v7.0.16 (05 Dicembre 2018)
+**Evoluzione nell'import del CMS.** 
+Da oggi se viene importato un file con id già esistenti, i dati non vengono duplicati, ma aggiornati.
+Se l'id non esiste invece viene creato un nuovo dato.
+
+!!! warning
+    Se viene passato un id sbagliato fallisce l'intero import.
+
+
+## v7.0.14 (31 Oct 2018)
 Abbiamo rilasciato le seguenti funzionalità:
 
 * gestione delle **nuove interfacce rawObject e rawArray**
