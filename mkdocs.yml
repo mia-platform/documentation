@@ -27,30 +27,30 @@ pages:
     - Plugin Piattaforma 4: 'developer_guide_mp4/plugin_baas_4.md'
     - Push Notifications Piattaforma 4: 'developer_guide_mp4/push_notifications_platform_4.md'
     - Comunicazione fra servizi nella Piattaforma 4: 'developer_guide_mp4/communication_between_services_mp4.md'
+  - Piattaforma 3:
+    - Creare un Plugin: 'developer_guide/plugin.md'
+    - Creare un Tema: 'developer_guide/theme.md'
+    - Users: 'developer_guide/users.md'
+    - Cron: 'developer_guide/cron.md'
+    - iOS SDK: 'developer_guide/sdk_ios.md'
+    - Android SDK: 'developer_guide/sdk_android.md'
+    - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+- CMS:
   - Configuration Manager:
+    - CMS: 'user_guide_and_tools/guide_cms.md'
     - Aggiornare il CMS: 'configurator/update_cms.md'
     - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
     - Configurare il CMS: 'configurator/conf_cms.md'
     - Colorare il CMS: 'configurator/colorare_il_cms.md'
     - Configurare gli Analytics: 'configurator/conf_analytics.md'
     - Configurare gli Analytics con l'API Console: 'configurator/api_console_configanalytics.md'
-  - DevOps:
+- DevOps:
     - Business Continuity: 'dev_ops_guide/business_continuity.md'
     - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
     - Autoscaling Pods: 'dev_ops_guide/autoscaling.md'
     - Linee guida per i log: 'dev_ops_guide/log.md'
   - User Backoffice:
     - Api Console: 'user_guide_and_tools/guida_api_console.md'
-    - CMS: 'user_guide_and_tools/guide_cms.md'
-  - Piattaforma 3:
-      - Creare un Plugin: 'developer_guide/plugin.md'
-      - Creare un Tema: 'developer_guide/theme.md'
-      - Users: 'developer_guide/users.md'
-      - Cron: 'developer_guide/cron.md'
-      - iOS SDK: 'developer_guide/sdk_ios.md'
-      - Android SDK: 'developer_guide/sdk_android.md'
-      - Guida al Data Modeller: 'developer_guide/data_modeller.md'
-
 
 theme:
   name: 'material'
