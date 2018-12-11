@@ -1,8 +1,14 @@
-[TOC]
+##Overview
 
-## Architettura
+La piattaforma si compone di tre suite:
 
-![Builder e runtime](img/arc1.png)
-![Builder e runtime](img/arc2.png)
-![Core ed estensioni](img/arc2.1.png)
-![Servizi](img/arc3.png)
+* La **Development Suite**: La suite per creare e rilasciare la piattaforma in pochi click
+* La **Runtime Suite**: la suite di componenti tecnologici
+* La **Business Suite**: I nostri componenti per gestire dati e servizi
+
+**Le suite**
+![](img/suite.PNG)
+
+### Visione Architetturale
+Come le tre suite dialogano e interagiscono con gli utenti e con le strutture del cliente. 
+![](img/visione.PNG)
