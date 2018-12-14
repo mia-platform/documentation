@@ -1,4 +1,3 @@
-## Componenti Development Suite ##
 Qui potrai trovare l'elenco dettagliato dei componenti che costituiscono Mia-Platform.
 
 ## Architettura
@@ -15,6 +14,27 @@ Il servizio è composto a default da server nginx multipli, 2 in ascolto sulle p
 La porta 80 è utilizzata per il routing applicativo, mentre quello di backoffice è esposto alla 8080.
 
 ![](img/gateway.PNG)
+
+### Client Proxy ###
+
+Il microservizio è responsabile della gestione del traffico in entrata, esegue la terminazione SSL e dispaccia le chiamate allo spazio client corretto.
+
+L'immagine è costituita da un file nginx.conf che applica il formato dei registri e le impostazioni di base.
+Inoltre fornisce un file secure.conf che implementa la migliore pratica di sicurezza SSL da includere nella dichiarazione del server necessaria. È il percorso è /etc/nginx/secure.conf.
+La configurazione SSL si basa sulla disponibilità di tre file all'interno della directory / etc / usr / ssl /:
+
+- dhparam: una chiave Diffie-Helman generata con almeno 2048 bit (4096 bit sono un po 'lenti in questo momento)
+
+- sslcrt: il certificato per la configurazione SSL
+
+- sslkey: la chiave privata per la configurazione SSL
+
+Di default il server Nginx cercherà la dichiarazione del server all'interno del file .conf all'interno della directory /etc/nginx/conf.d
+Per scrivere le varie dichiarazioni del server, bisogna seguire la [documentazione ufficiale di Nginx](https://nginx.org/en/docs/).
+
+### Certificate Service ###
+
+Questo microservizio gestisce la creazione dei certificati SSL necessari ad Nginx per consentire le connessioni https al cluster.
 
 ### Microservice Gateway ###
 
@@ -41,7 +61,6 @@ La definizione di una collezione prevede di indicare l'elenco e la tipologia dei
 Il microservizio di ACL è un hook di `PRE` il cui scopo è applicare regole di ACL per ogni richiesta per indicare al CRUD Service quali righe o colonne filtrare.
 Queste regole di ACL si basano sull'utente corrente e sui suoi gruppi di appartenenza.
 
-
 Attualmente due tipologie di ACL sono previste dal servizio:
 
 - *ACL per righe*: prepara una query che filtrerà i documenti sulla base dell'utente corrente (ad esempio per mostrare soltanto i documenti creati dall'utente).
@@ -49,13 +68,20 @@ Attualmente due tipologie di ACL sono previste dal servizio:
 
 Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate da header, ed il risultato della applicazione delle regole è la scrittura di header di ACL che il CRUD Service è in grado di interpretare per eseguire effettivamente i filtri.
 
+### Auth Service ###
+
+Il microservizio di Auth è responsabile della gestione dell'autenticazione e della registrazione di un nuovo utente sulla piattaforma.
+Il microservizio gestisce inoltre tutte le integrazioni con servizi di autenticazione esterni:
+* OAuth2
+* Social Auth (Facebook e Google)
+* OAM
+* LDAP
+
 ### Session Manager ###
 
-Il microservizio di Session Manager **gestisce l'autenticazione dell'utente**, risolvendo la sessione e comunicandola all'API Gateway.
+Il microservizio di Session Manager gestisce la sessione degli utenti all'interno della piattaforma, salvando le informazioni in sessione e gestendo Cookies e JSON Web Token.   
 
-Il controllo che questo microservizio fa attualmente è piuttosto sofisticato e l'espressione logica valuta più parametri.
-
-Nello specifico, i parametri valutati sono:
+Il Session Manager collabora inoltre con i servizi di gestione dell'utente per la parte di autenticazione. Il controllo che questo microservizio fa attualmente è piuttosto sofisticato e l'espressione logica valuta più parametri:
 
 1. il **gruppo**, una variabile che identifica il gruppo a cui appartiene chi fa la chiamata. Il gruppo deve essere scritto come “groups.nomegruppo”. Per maggiori informazioni vedi il seguente [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-gruppi).
 
@@ -63,7 +89,71 @@ Nello specifico, i parametri valutati sono:
 
 3. **clientType**, che identifica da dove arriva la chiamata (ex. CMS, sito, ...).
 
-Grazie a questo check  il session manager gestisce in modo accurato l’autenticazione dell’utente.
+### User Service ###
+
+Il microservizio di User è respoansabile della gestione degli Utenti nella Piattaforma.
+Permette la Login, la registrazione e la richiesta delle informazioni realtive a un utente.
+
+Dialoga con i componenti: Auth, Session Manager, Email Service, Credential per garantire sicurezza e per permettere numerose configurazioni in base alle esigenze dei clienti.
+
+Al microservizio possono anche essere aggiunte delle **user-properties** per arricchire l'utente di tutte le informaizoni necessarie ai servizi.
+
+### Credential Service ###
+
+Credential Service è il microservizio che collabora con user per la login e la registrazione degli utenti. é responsabile infatti di gestire le credenziali degli utenti.
+
+Il microservizio è inoltre responsabile della gestione dei gruppi.
+
+### Files Service ###
+
+Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
+Attualmente sono supportati S3 e MongoDB come servizi di storage.
+
+### Static Files ###
+
+Il microservizio è responsabile dell'hosting e della fornitura di file statici e di secure header configuation.
+
+### Swagger Aggregator ###
+
+Questo microservizio è responsabile di aggregare i singoli swagger di tutti i microservizi indicati nella configurazione.
+Raccoglie tutti i percorsi dagli swagger dei microservizi specificati e li mostra tutti in un'unica pagina di swagger.
+Poiché i microservizi non sono a conoscenza dei prefissi url anteposti dai gateway, questo servizio può essere configurato per correggere i percorsi di swagger con il prefisso corretto.
+Infine controlla i duplicati nelle coppie del percorso (ad esempio due microservizi rispondono a GET / prefisso / me), segnalando questo con un errore.
+
+### Cron Scheduler ###
+
+Il microservizio è responsabile della gestione degli script di cron all'interno della piattaforma.
+[A questo link tutte le regole per configurarlo](\developer_guide/cron.md)
+
+### Mail Notification Service ##
+
+Questo microservizio consente di inviare e-mail tramite AWS SES.
+
+### PDF Service ###
+
+Questo plugin fornise un modo semplice per generare file PDF da un modello HTML iniziale. Questo servizio si basa sulla libreria [Puppeteer](https://github.com/GoogleChrome/puppeteer).
+Se si utilizza questo servizio nel proprio computer, è molto importante impostare la variabile di ambiente DOCKER su false.
+
+### Notification Service ###
+
+Questo microservizio consente di inviare notifiche push ai client Android e iOS.
+Esso servizio dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
+[Qui puoi trovare tutte le informazioni per configurarlo](\developer_guide_mp4/push_notifications_platform_4.md)
+
+## Secure Data Exchange Service ##
+
+Con questo microservizio è possibile associare dei token ad un payload, verificare la correttezza del token e configuare le impostazioni sul token (scadenza, numero di chiamate possibili ecc).
+Grazie a questo microservizi si possono rendere sicuri gli scambi di dati tra fornitori o servizi.
+
+### Soap To Rest ###
+
+Questa libreria fornisce agli sviluppatori alcune utilità per facilitare la conversione da SOAP a REST.
+A partire dal describe.json generato dal node-soap client, la libreria crea schemi JSON di richiesta e risposta per ogni operazione wsdl.
+
+### Pingator ###
+
+Pingator è un servizio che monitora lo stato dei servizi per controllare che siano attivi.
+Permette quindi di monitorare lo stato di un servizio offrendo un set di allarmi per il monitoraggio.
 
 ### v1Adapter ###
 
@@ -73,22 +163,3 @@ Oltre al mapping delle rotte http, si occupa anche della conversione dei tipi (a
 ### CMS Backend ###
 
 Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service.
-
-### Files Service ###
-
-Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
-Attualmente sono supportati S3 e MongoDB come servizi di storage.
-
-
-### Pingator ###
-
-Pingator è un servizio che monitora lo stato dei servizi per controllare che siano attivi.
-
-
-### Client Proxy ###
-
-### Static Files ###
-
-### Certificate Service ###
-
-### Auth Service ###

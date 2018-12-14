@@ -3,10 +3,18 @@ repo_url: https://git.tools.mia-platform.eu/platform/documentations
 site_description: Documentazione della piattaforma Mia Platform
 site_author: Mia Platform Team
 copyright: Mia srl. Tutti i diritti riservati.
-pages:
 
+nav:
+- Mia-Platform Docs:
+  - Home: 'index.md'
+  - Architettura: 'architecture/arc_overview.md'
+  - Linee Guida Progettazione: 'guidelines/git_vademecum.md'
+  - Custom Plugin: 'developer_guide_mp4/plugin_baas_4.md'
+  - CMS e Analitici: 'configurator/api_console_configcms.md'
+  - DevOps: 'dev_ops_guide/business_continuity.md'
+  - Release Note: 'release_notes/apiconsole_releasenotes.md'
+  - About: 'about/chisiamo.md'
 
-- Home: 'index.md'
 - General:
   - Architecture:
     - Global vision: 'architecture/arc_overview.md'
@@ -15,12 +23,11 @@ pages:
     - GIT Vademecum: 'guidelines/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
-  - About:
-    - Chi siamo: 'about/chisiamo.md'
   - Release Notes:
     - Piattaforma: 'release_notes/platform_releasenotes.md'
     - Api Console: 'release_notes/apiconsole_releasenotes.md'
     - CMS: 'release_notes/cms_releasenotes.md'
+
 - Developer Guide:
   - Piattaforma 4:
     - Plugin Piattaforma 4: 'developer_guide_mp4/plugin_baas_4.md'
@@ -35,6 +42,7 @@ pages:
     - iOS SDK: 'developer_guide/sdk_ios.md'
     - Android SDK: 'developer_guide/sdk_android.md'
     - Guida al Data Modeller: 'developer_guide/data_modeller.md'
+
 - CMS e Analitici:
   - Configuration Manager:
     - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
@@ -78,13 +86,10 @@ google_analytics:
   - 'auto'
 markdown_extensions:
   - markdown.extensions.admonition
-  - markdown.extensions.codehilite(guess_lang=false)
   - markdown.extensions.def_list
   - markdown.extensions.footnotes
   - markdown.extensions.meta
-  - markdown.extensions.toc(permalink=true)
   - pymdownx.arithmatex
-  - pymdownx.betterem(smart_enable=all)
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.inlinehilite
@@ -92,5 +97,4 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences
-  - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.tilde

@@ -1,8 +1,12 @@
-# Documentazione di Mia-Platform #
+# Benvenuto sulla documentazione di Mia-Platform
 
-## Architecture
+![Mia-Platform](img/logo.PNG)
+
+**Quickstart con Mia-Platform**: scopri come creare e rilasciare una REST API in 5' minuti
+
+## Architettura
 - [Visione globale di Mia-Platform](architecture/arc_overview.md)
-- [Runtime Suite](architecture/arc_components.md)
+- [Componenti Runtime Suite](architecture/arc_components.md)
 
 ## Linee Guida Progettazione Mia
 - [GIT Vademecum](guidelines/git_vademecum.md)
@@ -18,7 +22,7 @@
 - [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
 - [Android SDK](developer_guide/sdk_android.md): Utilizzare l'SDK Android.
 
-## Configuration Manager Guide
+## CMS e Analytics
 
 - [Configurare il CMS con l'API Console](configurator/api_console_configcms.md)
 - [Configurare gli Analytics con l'API Console](configurator/api_console_configanalytics.md): configurare gli analitici da API Console
