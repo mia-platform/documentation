@@ -23,6 +23,7 @@ nav:
     - GIT Vademecum: 'guidelines/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
+    - Microservizi Vademecum: 'guidelines/microservice_vademecum.md'
   - Release Notes:
     - Piattaforma: 'release_notes/platform_releasenotes.md'
     - Api Console: 'release_notes/apiconsole_releasenotes.md'

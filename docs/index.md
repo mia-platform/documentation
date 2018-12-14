@@ -12,6 +12,7 @@
 - [GIT Vademecum](guidelines/git_vademecum.md)
 - [REST API Vademecum](guidelines/rest_api.md)
 - [API](guidelines/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
+- [Microservizi](guidelines/microservice_vademecum.md): quali sono i principi per creare un microservizio. 
 
 ## Developer Guide
 
