@@ -1,6 +1,6 @@
 # Benvenuto sulla documentazione di Mia-Platform
 
-![Mia-Platform](img/logo.PNG)
+![Mia-Platform](img/logo.png)
 
 **Quickstart con Mia-Platform**: scopri come creare e rilasciare una REST API in 5' minuti
 
