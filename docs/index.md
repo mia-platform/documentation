@@ -2,7 +2,7 @@
 
 ![Mia-Platform](img/logo.png)
 
-**Quickstart con Mia-Platform**: scopri come creare e rilasciare una REST API in 5' minuti
+[Quickstart con Mia-Platform](developer_guide_mp4/quick_rest_api.md): scopri come creare e rilasciare una REST API in 5' minuti
 
 ## Architettura
 - [Visione globale di Mia-Platform](architecture/arc_overview.md)
@@ -12,12 +12,14 @@
 - [GIT Vademecum](guidelines/git_vademecum.md)
 - [REST API Vademecum](guidelines/rest_api.md)
 - [API](guidelines/api.md): come configurare un modello dati, le sue proprietà e gestire la sua persistenza.
-- [Microservizi](guidelines/microservice_vademecum.md): quali sono i principi per creare un microservizio. 
+- [Microservizi](guidelines/microservice_vademecum.md): quali sono i principi per creare un microservizio.
+- [Docker Vademecum](guidelines/docker_vademecum.md)
 
 ## Developer Guide
 
-- [Guida all'Api Console](user_guide_and_tools/guida_api_console.md)
 - [Creare un plugin con la Piattaforma 4](developer_guide_mp4/plugin_baas_4.md): come custom plugin sulla piattaforma 4.
+- [Crea un CRUD ed esponi una REST API](developer_guide/quick_rest_api.md)
+- [Guida all'Api Console](user_guide_and_tools/guida_api_console.md)
 - [Mandare Notifiche Push con la piattaforma 4](developer_guide_mp4/push_notifications_platform_4.md): Come inviare notifiche push ai dispositivi ios e android.
 - [Comunicazione fra servizi all'interno della piattaforma 4](developer_guide_mp4/communication_between_services_mp4.md): Come comunicare tra servizi custom o core all'interno della piattaforma 4.
 - [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.

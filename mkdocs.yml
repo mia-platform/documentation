@@ -24,6 +24,7 @@ nav:
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
     - Microservizi Vademecum: 'guidelines/microservice_vademecum.md'
+    - Docker Vademecum: 'guidelines/docker_vademecum.md'
   - Release Notes:
     - Piattaforma: 'release_notes/platform_releasenotes.md'
     - Api Console: 'release_notes/apiconsole_releasenotes.md'
@@ -32,6 +33,7 @@ nav:
 - Developer Guide:
   - Piattaforma 4:
     - Plugin Piattaforma 4: 'developer_guide_mp4/plugin_baas_4.md'
+    - Crea un CRUD ed esponi una REST API: 'developer_guide_mp4/quick_rest_api.md'
     - Utilizzare l'Api Console: 'user_guide_and_tools/guida_api_console.md'
     - Push Notifications Piattaforma 4: 'developer_guide_mp4/push_notifications_platform_4.md'
     - Comunicazione fra servizi nella Piattaforma 4: 'developer_guide_mp4/communication_between_services_mp4.md'

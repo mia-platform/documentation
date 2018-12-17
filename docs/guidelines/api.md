@@ -1,5 +1,3 @@
-[TOC]
-
 ## Introduzione
 API è l'acronimo per *Application Programming Interface*. Negli ultimi anni le RESTful API sono diventate il metodo
 principale per disaccoppiare la parte server dalla parte client di un software applicativo. Una RESTful utilizza i verbi

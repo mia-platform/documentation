@@ -22,7 +22,7 @@ https://github.com/mia-platform/custom-plugin-java
 https://github.com/mia-platform/custom-plugin-java-springboot
 
 ## Rotte base necessarie ##
-Ogni microservizio espone alcune rotte utili all'ecosistema. Tramite ueste rotte è infatti possibile avre informazioni sullo stato di salute dei sistemi, ed effettuare dei check per il debugging.
+Ogni microservizio espone alcune rotte utili all'ecosistema. Tramite queste rotte è infatti possibile avre informazioni sullo stato di salute dei sistemi, ed effettuare dei check per il debugging.
 
 ### Rotte di salute ###
 `/-/healts/`
