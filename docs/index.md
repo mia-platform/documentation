@@ -17,13 +17,14 @@
 
 ## Developer Guide
 
-- [Creare un plugin con la Piattaforma 4](developer_guide_mp4/plugin_baas_4.md): come custom plugin sulla piattaforma 4.
-- [Crea un CRUD ed esponi una REST API](developer_guide/quick_rest_api.md)
-- [Guida all'Api Console](user_guide_and_tools/guida_api_console.md)
+- [Creare un microservizio custom con la Piattaforma 4](developer_guide_mp4/plugin_baas_4.md): tutti i consigli e le buone pratiche per creare un micorservizio in NodeJS.
+- [Crea un CRUD ed esponi una REST API](developer_guide_mp4/quick_rest_api.md): scopri la semplicità della piattaforma 4
 - [Mandare Notifiche Push con la piattaforma 4](developer_guide_mp4/push_notifications_platform_4.md): Come inviare notifiche push ai dispositivi ios e android.
 - [Comunicazione fra servizi all'interno della piattaforma 4](developer_guide_mp4/communication_between_services_mp4.md): Come comunicare tra servizi custom o core all'interno della piattaforma 4.
-- [iOS SDK](developer_guide/sdk_ios.md): Utilizzare l'SDK iOS.
-- [Android SDK](developer_guide/sdk_android.md): Utilizzare l'SDK Android.
+- [iOS SDK](developer_guide_mp4/sdk_ios.md): Utilizzare l'SDK iOS.
+- [Android SDK](developer_guide_mp4/sdk_android.md): Utilizzare l'SDK Android.
+- [Configurare un Cron](developer_guide_mp4/cron.md): Come configurare operazioni ad intervalli regolari
+- [Configurare lo Swagger Aggregator](developer_guide_mp4/swagger_conf.md): Come configurare il file per visualizzare tutte le API documentate
 
 ## CMS e Analytics
 

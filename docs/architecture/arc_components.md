@@ -119,11 +119,12 @@ Questo microservizio è responsabile di aggregare i singoli swagger di tutti i m
 Raccoglie tutti i percorsi dagli swagger dei microservizi specificati e li mostra tutti in un'unica pagina di swagger.
 Poiché i microservizi non sono a conoscenza dei prefissi url anteposti dai gateway, questo servizio può essere configurato per correggere i percorsi di swagger con il prefisso corretto.
 Infine controlla i duplicati nelle coppie del percorso (ad esempio due microservizi rispondono a GET / prefisso / me), segnalando questo con un errore.
+[A questo link tutte le regole per configurarlo](\developer_guide_mp4/swagger_conf.md)
 
 ### Cron Scheduler ###
 
 Il microservizio è responsabile della gestione degli script di cron all'interno della piattaforma.
-[A questo link tutte le regole per configurarlo](\developer_guide/cron.md)
+[A questo link tutte le regole per configurarlo](\developer_guide_mp4/cron.md)
 
 ### Mail Notification Service ##
 
@@ -140,7 +141,7 @@ Questo microservizio consente di inviare notifiche push ai client Android e iOS.
 Esso servizio dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
 [Qui puoi trovare tutte le informazioni per configurarlo](\developer_guide_mp4/push_notifications_platform_4.md)
 
-## Secure Data Exchange Service ##
+### Secure Data Exchange Service ###
 
 Con questo microservizio è possibile associare dei token ad un payload, verificare la correttezza del token e configuare le impostazioni sul token (scadenza, numero di chiamate possibili ecc).
 Grazie a questo microservizi si possono rendere sicuri gli scambi di dati tra fornitori o servizi.

@@ -96,11 +96,6 @@ Una volta compilati i campi hai due possibilità:
 
 Nel nostro caso faremo salva, ed ecco comparire l'elemento nella collezione.
 
-
-
-
-
-
 # Le Look up #
 
 Le lookup servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni.
@@ -138,7 +133,6 @@ Abbiamo poi ancora 3 opzioni di scelta:
 
 - **SearchLive**: se vogliamo che mentre scriviamo ci compaiano i risultati (es: scrivo A e mi compaiono sotto le case editrici che cominciano per A)
 
-![Look a collection](\img\look-a-collection.PNG)
 
 ##Inline Source##
 Con la lookup Inline Source scelgo io i valori da far comparire all'interno della lookup. Per fare un esempio sempre restando nell'ambito libri. Voglio selezionare delle categorie di Libri e non ho nessuna collezione di riferimento.
@@ -156,5 +150,3 @@ Con **value** indico l'odine di comparsa nella nostra lookup.
 A questo punto in **Text** sotto **Properties** andremo a scrivere *label* e come sempre se abbiamo un *Delimiters* lo andremo ad indicare nell'apposito spazio
 
 Il comportamento degli altri valori è uguale a quello delle Look a Collection.
-
-![Inline Source](\img\inline-source.PNG)

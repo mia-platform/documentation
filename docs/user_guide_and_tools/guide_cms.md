@@ -1,5 +1,3 @@
-[TOC]
-
 # Cos’è il CMS
 
 Un Content Management System (CMS) viene utilizzato per inserire, elaborare, pubblicare, cancellare i contenuti che vengono mostrati in un’app o in un sito.
