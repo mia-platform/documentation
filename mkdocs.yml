@@ -32,10 +32,15 @@ nav:
 
 - Development Suite:
   - API Console e Microservizi:
-    - Plugin Piattaforma 4: 'development_suite/plugin_baas_4.md'
-    - Crea un CRUD ed esponi una REST API: 'development_suite/quick_rest_api.md'
-    - Utilizzare l'Api Console: 'development_suite/guida_api_console.md'
+    - Accedi all'API Console: 'development_suite/accedi_apiconsole.md'
+    - Crea un CRUD 5'min: 'development_suite/quick_rest_api.md'
+    - Crea un Custom Microservices: 'development_suite/plugin_baas_4.md'
+    - Esponi un'API e configura la sua sicurezza: 'development_suite/esponi_api.md'
+    - Gestisci i tuoi Microservizi dall'Api Console: 'development_suite/services.md'
+    - Arricchisci la tua chiamata con dei Decoratori: 'development_suite/decorators.md'
+    - CRUD - Sezione Avanzata: 'development_suite/crud_advanced.md'
     - Comunicazione fra servizi nella Piattaforma 4: 'development_suite/communication_between_services_mp4.md'
+    - Rilascia le tue configurazioni: 'development_suite/deploy.md'
 
   - DevOps:
       - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
