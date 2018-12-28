@@ -32,8 +32,6 @@ class MIACronExample extends MIACollection {
   cronFunction() {
       this.log('info', 'Hello cron')
   }
-  
+
 }
 `````
-
-

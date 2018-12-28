@@ -1,6 +1,4 @@
 ## REST API ##
-#**Mia-Platform REST Vademecum**
-
 
 REST è uno **stile architetturale per i sistemi distribuiti**, che consente di esporre risorse attraverso una o più rotte HTTP/HTTPS.
 
@@ -19,7 +17,7 @@ Deve rispettare le seguenti caratteristiche:
 Questo vademecum riassume i principi e le linee guida per il design di API REST.
 
 
-##**CRUD RISORSA**
+##CRUD Risorsa
 Un esempio di REST per la risorsa veicolo
 
 **GET**
@@ -53,13 +51,12 @@ https://api.mia-platform.it/vehicles/{id}
 Cancellazione del veicolo con id={id}
 
 
-##**NOMENCLATURA E FORMATTAZIONE**
+##Nomenclatura e Formattazione
 Come chiamare e formattare rotte, parametri di query e proprietà del modello.
 
 https://api.mia-platform.eu/vehicles/?city=Milan
 
-
-##**ROTTE**
+##Rotte
 * Nomi in inglese
 
 * Nomi in plurale
@@ -68,7 +65,7 @@ https://api.mia-platform.eu/vehicles/?city=Milan
 
 * Separazione delle parole tramite trattino ‘-’
 
-##**PARAMETRI DI QUERY E MODELLO DATI**
+##Parametri di query e modelli dati
 * Nomi in inglese
 
 * Nomi in formato ‘camelCase’
@@ -77,10 +74,10 @@ https://api.mia-platform.eu/vehicles/?city=Milan
     Gli URL devono contenere solo risorse (nomi) e non azioni o verbi!
 
 
-##**VERSIONAMENTO**
+##Versionamento
 Il versionamento delle API REST viene fatto inserendo la versione nel path. Esempio: http://api.mia-platform.it/progetto/v1/api-del-progetto
 
-##**MODELLO DATI**
+##Modello Dati
 Il modello dati viene scambiato nel body dei messaggi HTTP ed è serializzato usando il formato JSON (http://www.json.org/).
 
 **GET**
@@ -137,7 +134,7 @@ Richiesta: Body vuoto
 Risposta: Body vuoto
 
 
-##**ESITO RISPOSTA**
+##Esito Risposta
 L’esito di una chiamata viene comunicato tramite HTTP status code (RFC 2616).
 
 **2xx**

@@ -5,64 +5,63 @@ site_author: Mia Platform Team
 copyright: Mia srl. Tutti i diritti riservati.
 
 nav:
-- Mia-Platform Docs:
-  - Home: 'index.md'
-  - Architettura: 'architecture/arc_overview.md'
+- Home:
+  - Mia Platform Docs: 'index.md'
   - Linee Guida Progettazione: 'guidelines/git_vademecum.md'
-  - Custom Plugin: 'developer_guide_mp4/plugin_baas_4.md'
-  - CMS e Analitici: 'configurator/api_console_configcms.md'
-  - DevOps: 'dev_ops_guide/business_continuity.md'
+  - Custom Plugin: 'development_suite/plugin_baas_4.md'
+  - CMS e Analitici: 'business_suite/api_console_configcms.md'
+  - DevOps: 'development_suite/dev_ops_guide/business_continuity.md'
   - Release Note: 'release_notes/apiconsole_releasenotes.md'
   - About: 'about/chisiamo.md'
 
-- General:
-  - Architecture:
-    - Global vision: 'architecture/arc_overview.md'
-    - Runtime Suite: 'architecture/arc_components.md'
-  - Linee Guida Progettazione Mia:
+- Linee Guida:
     - GIT Vademecum: 'guidelines/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
     - Microservizi Vademecum: 'guidelines/microservice_vademecum.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
-  - Release Notes:
+
+- Runtime Suite:
+    - Overview dei componenti: 'runtime_suite/arc_components.md'
+    - Configura i componenti:
+       - Configurare il Cron: 'runtime_suite/cron.md'
+       - Configurare lo Swagger Aggregator: 'runtime_suite/swagger_conf.md'
+       - Configura le Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
+       - iOS SDK: 'runtime_suite/sdk_ios.md'
+       - Android SDK: 'runtime_suite/sdk_android.md'
+
+- Development Suite:
+  - API Console e Microservizi:
+    - Plugin Piattaforma 4: 'development_suite/plugin_baas_4.md'
+    - Crea un CRUD ed esponi una REST API: 'development_suite/quick_rest_api.md'
+    - Utilizzare l'Api Console: 'development_suite/guida_api_console.md'
+    - Comunicazione fra servizi nella Piattaforma 4: 'development_suite/communication_between_services_mp4.md'
+
+  - DevOps:
+      - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
+      - Disaster Recovery: 'development_suite/dev_ops_guide/disaster_recovery.md'
+      - Autoscaling Pods: 'development_suite/dev_ops_guide/autoscaling.md'
+      - Linee guida per i log: 'development_suite/dev_ops_guide/log.md'
+
+- Business Suite:
+  - CMS:
+    - Utilizzare il CMS: 'business_suite/guide_cms.md'
+    - Configurare il CMS con l'API Console: 'business_suite/api_console_configcms.md'
+    - Configurare il file .json del CMS: 'business_suite/conf_cms.md'
+    - Colorare il CMS: 'business_suite/colorare_il_cms.md'
+    - Aggiornare la versione del CMS: 'business_suite/update_cms.md'
+
+  - Analitici:
+    - Configurare gli Analytics con l'API Console: 'business_suite/api_console_configanalytics.md'
+    - Configurare il file .json degli Analytics: 'business_suite/conf_analytics.md'
+
+- Release Notes:
     - Piattaforma: 'release_notes/platform_releasenotes.md'
     - Api Console: 'release_notes/apiconsole_releasenotes.md'
     - CMS: 'release_notes/cms_releasenotes.md'
 
-- Developer Guide:
-  - Piattaforma 4:
-    - Plugin Piattaforma 4: 'developer_guide_mp4/plugin_baas_4.md'
-    - Crea un CRUD ed esponi una REST API: 'developer_guide_mp4/quick_rest_api.md'
-    - Utilizzare l'Api Console: 'user_guide_and_tools/guida_api_console.md'
-    - Push Notifications Piattaforma 4: 'developer_guide_mp4/push_notifications_platform_4.md'
-    - Comunicazione fra servizi nella Piattaforma 4: 'developer_guide_mp4/communication_between_services_mp4.md'
-    - Configurare il Cron: 'developer_guide_mp4/cron.md'
-    - iOS SDK: 'developer_guide_mp4/sdk_ios.md'
-    - Android SDK: 'developer_guide_mp4/sdk_android.md'
-    - Configurare lo Swagger Aggregator: 'developer_guide_mp4/swagger_conf.md'
-  - Piattaforma 3:
-    - Creare un Plugin: 'developer_guide/plugin.md'
-    - Creare un Tema: 'developer_guide/theme.md'
-    - Users: 'developer_guide/users.md'
-    - Guida al Data Modeller: 'developer_guide/data_modeller.md'
-
-- CMS e Analitici:
-  - Configuration Manager:
-    - Configurare il CMS con l'API Console: 'configurator/api_console_configcms.md'
-    - Configurare gli Analytics con l'API Console: 'configurator/api_console_configanalytics.md'
-    - Utilizzare il CMS: 'user_guide_and_tools/guide_cms.md'
-    - Configurare il file .json del CMS: 'configurator/conf_cms.md'
-    - Configurare il file .json degli Analytics: 'configurator/conf_analytics.md'
-    - Colorare il CMS: 'configurator/colorare_il_cms.md'
-    - Aggiornare la versione del CMS: 'configurator/update_cms.md'
-
-- DevOps:
-  - DevOps:
-    - Business Continuity: 'dev_ops_guide/business_continuity.md'
-    - Disaster Recovery: 'dev_ops_guide/disaster_recovery.md'
-    - Autoscaling Pods: 'dev_ops_guide/autoscaling.md'
-    - Linee guida per i log: 'dev_ops_guide/log.md'
+- About:
+    - About: 'about/chisiamo.md'
 
 theme:
   name: 'material'
