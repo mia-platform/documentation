@@ -1,9 +1,9 @@
 Qui potrai trovare l'elenco dettagliato dei componenti che costituiscono Mia-Platform.
 
-## Architettura
-
 ![](img/schema.PNG)
 
+# API & Microservice Ecosystem #
+## Core ##
 ### API Gateway ###
 
 L'API Gateway è il microservizio responsabile del routing delle richieste verso il servizio corretto.
@@ -47,6 +47,7 @@ I microservizi di hook devono soddisfare una precisa interfaccia http per essere
 
 ![](img/mg.PNG)
 
+## BaaS ##
 ### CRUD Service ###
 
 Il CRUD Service è un microservizio che serve ad esporre una API HTTP per eseguire operazioni di CRUD (Create, Read, Update, Delete) su collezioni mongodb.
@@ -55,6 +56,79 @@ Esso è configurato allo startup tramite la definizione di collezioni (una o pi�
 La definizione di una collezione prevede di indicare l'elenco e la tipologia dei campi e di opzionalmente specificare indici.
 
 ![](img/crud.PNG)
+
+### Files Service ###
+
+Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
+Attualmente sono supportati S3 e MongoDB come servizi di storage.
+
+### Static Files ###
+
+Il microservizio è responsabile dell'hosting e della fornitura di file statici e di secure header configuation.
+
+### Notification Service ###
+
+Questo microservizio consente di inviare notifiche push ai client Android e iOS.
+Esso servizio dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
+[Qui puoi trovare tutte le informazioni per configurarlo](\runtime_suite/push_notifications_platform_4.md)
+
+### Mail Notification Service ##
+
+Questo microservizio consente di inviare e-mail tramite AWS SES.
+
+## Data Management ##
+
+### SQL Generic Reader ###
+
+### CQRS/Event Source Data Management ###
+
+### GraphQL Gateway ###
+
+### ETL Adapters ###
+
+### Secure Data Exchange Service ###
+
+Con questo microservizio è possibile associare dei token ad un payload, verificare la correttezza del token e configuare le impostazioni sul token (scadenza, numero di chiamate possibili ecc).
+Grazie a questo microservizi si possono rendere sicuri gli scambi di dati tra fornitori o servizi.
+
+### Soap To Rest ###
+
+Questa libreria fornisce agli sviluppatori alcune utilità per facilitare la conversione da SOAP a REST.
+A partire dal describe.json generato dal node-soap client, la libreria crea schemi JSON di richiesta e risposta per ogni operazione wsdl.
+
+## M2M
+
+### Stream-Processing###
+
+### ChatBot (DialogFlow)
+
+### IoT Gateway (MQTT)
+
+### Payment Gateway
+
+## API Automation
+
+### Cronjobs Microservices ###
+
+Il microservizio è responsabile della gestione degli script di cron all'interno della piattaforma.
+[A questo link tutte le regole per configurarlo](\runtime_suite/cron.md)
+
+### API workflow (API BPM, business process Management) ###
+
+### API Distributed Transaction
+
+# Security #
+
+## Access Management ##
+
+### Auth Service ###
+
+Il microservizio di Auth è responsabile della gestione dell'autenticazione e della registrazione di un nuovo utente sulla piattaforma.
+Il microservizio gestisce inoltre tutte le integrazioni con servizi di autenticazione esterni:
+* OAuth2
+* Social Auth (Facebook e Google)
+* OAM
+* LDAP
 
 ### ACL ###
 
@@ -67,15 +141,6 @@ Attualmente due tipologie di ACL sono previste dal servizio:
 - *ACL per colonne in lettura*: permette di limitare i campi che l'utente può vedere nella risposta sulla base della sua appartenenza a gruppi e del tipo di cliente.
 
 Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate da header, ed il risultato della applicazione delle regole è la scrittura di header di ACL che il CRUD Service è in grado di interpretare per eseguire effettivamente i filtri.
-
-### Auth Service ###
-
-Il microservizio di Auth è responsabile della gestione dell'autenticazione e della registrazione di un nuovo utente sulla piattaforma.
-Il microservizio gestisce inoltre tutte le integrazioni con servizi di autenticazione esterni:
-* OAuth2
-* Social Auth (Facebook e Google)
-* OAM
-* LDAP
 
 ### Session Manager ###
 
@@ -104,15 +169,6 @@ Credential Service è il microservizio che collabora con user per la login e la 
 
 Il microservizio è inoltre responsabile della gestione dei gruppi.
 
-### Files Service ###
-
-Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
-Attualmente sono supportati S3 e MongoDB come servizi di storage.
-
-### Static Files ###
-
-Il microservizio è responsabile dell'hosting e della fornitura di file statici e di secure header configuation.
-
 ### Swagger Aggregator ###
 
 Questo microservizio è responsabile di aggregare i singoli swagger di tutti i microservizi indicati nella configurazione.
@@ -121,35 +177,10 @@ Poiché i microservizi non sono a conoscenza dei prefissi url anteposti dai gate
 Infine controlla i duplicati nelle coppie del percorso (ad esempio due microservizi rispondono a GET / prefisso / me), segnalando questo con un errore.
 [A questo link tutte le regole per configurarlo](\runtime_suite/swagger_conf.md)
 
-### Cron Scheduler ###
-
-Il microservizio è responsabile della gestione degli script di cron all'interno della piattaforma.
-[A questo link tutte le regole per configurarlo](\runtime_suite/cron.md)
-
-### Mail Notification Service ##
-
-Questo microservizio consente di inviare e-mail tramite AWS SES.
-
 ### PDF Service ###
 
 Questo plugin fornise un modo semplice per generare file PDF da un modello HTML iniziale. Questo servizio si basa sulla libreria [Puppeteer](https://github.com/GoogleChrome/puppeteer).
 Se si utilizza questo servizio nel proprio computer, è molto importante impostare la variabile di ambiente DOCKER su false.
-
-### Notification Service ###
-
-Questo microservizio consente di inviare notifiche push ai client Android e iOS.
-Esso servizio dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
-[Qui puoi trovare tutte le informazioni per configurarlo](\runtime_suite/push_notifications_platform_4.md)
-
-### Secure Data Exchange Service ###
-
-Con questo microservizio è possibile associare dei token ad un payload, verificare la correttezza del token e configuare le impostazioni sul token (scadenza, numero di chiamate possibili ecc).
-Grazie a questo microservizi si possono rendere sicuri gli scambi di dati tra fornitori o servizi.
-
-### Soap To Rest ###
-
-Questa libreria fornisce agli sviluppatori alcune utilità per facilitare la conversione da SOAP a REST.
-A partire dal describe.json generato dal node-soap client, la libreria crea schemi JSON di richiesta e risposta per ogni operazione wsdl.
 
 ### Pingator ###
 
