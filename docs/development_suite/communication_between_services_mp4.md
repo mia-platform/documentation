@@ -1,7 +1,5 @@
 # Comunicazione fra microservizi all'interno della piattaforma 4
 
-[TOC]
-
 ## Introduzione
 La piattaforma 4 è composta da microservizi, in cui ciascuno espone un insieme specifico di funzionalità. Per far comunicare i microservizi tra loro, abbiamo individuato delle best practice e convenzioni per rendere il più possibile uniforme la modalità di comunicazione, sia tra componenti core che tra microservizi custom.
 

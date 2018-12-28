@@ -1,20 +1,20 @@
-# Custom Plugin in Node.js
+# Custom Micorservice in Node.js
 
-Oltre ai componenti e servizi standard (e.g., CRUD), la piattaforma accoglie componenti che incapsulano logiche ad-hoc, 
-sviluppati ed integrabili in autonomia: i **Custom Plugin**. Un Custom Plugin (**CP**) è a tutti gli effetti un servizio
-che riceve richieste HTTP, il cui ciclo di vita, utilizzo e rilascio è governato dalla piattaforma. 
+Oltre ai componenti e servizi standard (e.g., CRUD), la piattaforma accoglie componenti che incapsulano logiche ad-hoc,
+sviluppati ed integrabili in autonomia: i **Custom Microservices**. Un Custom Microservices (**CM**) è a tutti gli effetti un servizio
+che riceve richieste HTTP, il cui ciclo di vita, utilizzo e rilascio è governato dalla piattaforma.
 
-Un CP incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma
-e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione 
-e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [node.js](https://github.com/mia-platform/custom-plugin-lib), 
-basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CP implementando:
+Un CM incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma
+e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione
+e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [node.js](https://github.com/mia-platform/custom-plugin-lib),
+basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CM implementando:
 
 * [handler di rotte HTTP](#rotte)
 * [cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoui gruppi di appartenenza](#identificazione-utente-e-client)
-* [richieste ad altri servizi o CP della piattaforma](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma)
+* [richieste ad altri servizi o CM della piattaforma](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma)
 * [decoratori di PRE o di POST](#decoratori-di-pre-e-post)
 
-Nel resto di questa guida viene descritto come sviluppare, testare, rilasciare un CP in Node.js all'interno della piattaforma, 
+Nel resto di questa guida viene descritto come sviluppare, testare, rilasciare un CM in Node.js all'interno della piattaforma,
 utilizzando la libreria `custom-plugin-lib`.
 
 ## Installazione e Bootstrap
@@ -33,13 +33,13 @@ Aprire il file `package.json` e modificare opportunamente i campi `name`, `descr
 Il campo `version` all'inzio è meglio valorizzarlo a `0.0.1`.
 
 `custom-plugin-lib` può essere installata usando `npm`, assieme alla sua dipendenza `fastify-cli`, necessaria per l'avvio
-e l'esecuzione del CP
+e l'esecuzione del CM
 
 ```bash
 npm i --save @npm-mia-platform/libraries-custom-plugin fastify-cli
 ```
 
-La libreria può essere utilizzata per istanziare un server HTTP 
+La libreria può essere utilizzata per istanziare un server HTTP
 in questo modo, incollando il questo pezzo di codice in un file, nominandolo `index.js`
 
 ```js
@@ -52,27 +52,27 @@ process.env.MICROSERVICE_GATEWAY_SERVICE_NAME=''
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 
 module.exports = customPlugin(async service => {
-  
+
   // alle richieste in GET sulla rotta /status/alive
   // rispondi con l'oggetto JSON { "status": "ok" }
   service.addRawCustomPlugin(
-    'GET', 
-    '/status/alive', 
-    async (request, reply) => ({ 
-      status: 'ok' 
+    'GET',
+    '/status/alive',
+    async (request, reply) => ({
+      status: 'ok'
     })
   )
 })
 ```
 
-Per avviare il CP è sufficiente modificare il file `package.json` in questo modo
+Per avviare il CM è sufficiente modificare il file `package.json` in questo modo
 ```js
   //...
   "scripts": {
     // ...  
     "start": "fastify start src/index.js",
 ```
-eseguire un ```npm start``` ed aprire un browser alla url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), 
+eseguire un ```npm start``` ed aprire un browser alla url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive),
 per ottenere una risposta.
 
 ## Factory esposta da `custom-plugin-lib`  
@@ -84,13 +84,13 @@ const customPlugin = require('@mia-platform/custom-plugin-lib')()
 
 module.exports = customPlugin(function(service) { })
 ```
-L'argomento della funzione `customPlugin` è una **funzione di dichiarazione** il cui argomento è un oggetto che permette 
+L'argomento della funzione `customPlugin` è una **funzione di dichiarazione** il cui argomento è un oggetto che permette
 di definire rotte e decoratori.
 
 
 ## Rotte
 
-`custom-plugin-lib` permette di definire il comportamento del CP in risposta ad una richiesta HTTP, in stile dichiarativo. 
+`custom-plugin-lib` permette di definire il comportamento del CM in risposta ad una richiesta HTTP, in stile dichiarativo.
 A tal fine si utilizza la funzione `addRawCustomPlugin` esposta dal primo argomento della funzione di dichiarazione.
 ```js
 service.addRawCustomPlugin(httpVerb, path, handler, schema)
@@ -101,7 +101,7 @@ i cui argomenti sono, nell'ordine
 * `path` - il path della rotta (e.g., `/status/alive`)
 * [`handler`](#handlers) - funzione che contiene il vero e proprio comportamento. Deve rispettare la stessa interfaccia definita nella
 documentazione degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
-* [`schema`](#schema-e-documentazione-di-una-rotta) - definizione dello schema dati di richiesta e risposta. 
+* [`schema`](#schema-e-documentazione-di-una-rotta) - definizione dello schema dati di richiesta e risposta.
 Il formato è quello accettato da [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization)
 
 
@@ -135,7 +135,7 @@ module.exports = customPlugin(async function(service) {
 ## Handlers
 
 Un `handler` è una funzione che rispetta l'interfaccia degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/) ed
-accetta una [Request](https://www.fastify.io/docs/latest/Request/) ed una [Reply](https://www.fastify.io/docs/latest/Reply/). 
+accetta una [Request](https://www.fastify.io/docs/latest/Request/) ed una [Reply](https://www.fastify.io/docs/latest/Reply/).
 Oltre all'interfaccia di Request di fastify, `custom-plugin-lib` decora l'istanza Request con informazioni legate alla Piattaforma come
 l'`id` utente correntemente loggato, i suoi gruppi il itpo di client che ha eseguito la richiesta HTTP e se la richeista proviene dal CMS.
 Inoltre l'istanza di Request è decorata anche con metodi che permettono di eseguire richieste HTTP verso altri servizi
@@ -153,7 +153,7 @@ L'istanza di `Request` (il primo argomento di un handler) viene decorato con le 
 #### Esempio
 ```js
 async function helloHandler(request, reply) {
-  // accesso all'id dell'utente (passato come 
+  // accesso all'id dell'utente (passato come
   // header all'interno della piattaforma)
   return `Hello ${request.getUserId()}`
 }
@@ -161,8 +161,8 @@ async function helloHandler(request, reply) {
 
 ### Interrogazioni ad Enpoint e Servizi della Piattaforma
 
-Dall'istanza di `Request` (il primo argomento di un handler) è possibile ottenere un oggetto proxy per interrogare 
-gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della 
+Dall'istanza di `Request` (il primo argomento di un handler) è possibile ottenere un oggetto proxy per interrogare
+gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della
 Piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte:
 
 * `getServiceProxy` - proxy che passa per `microservice-gateway`
@@ -194,9 +194,9 @@ async function tokenGeneration(request, response) {
   const crudProxy = request
     .getServiceProxy()
   const result = await crudProxy
-    .post('/tokens-collection/', { 
-      id: request.body.quotationId, 
-      valid: true 
+    .post('/tokens-collection/', {
+      id: request.body.quotationId,
+      valid: true
     })
   // ...
 }
@@ -208,9 +208,9 @@ async function tokenGeneration(request, response) {
   const crudProxy = request
     .getDirectServiceProxy('crud-service')
   const result = await crudProxy
-    .post('/tokens-collection/', { 
-      id: request.body.quotationId, 
-      valid: true 
+    .post('/tokens-collection/', {
+      id: request.body.quotationId,
+      valid: true
     })
   // ...
 }
@@ -218,10 +218,10 @@ async function tokenGeneration(request, response) {
 
 ## Decoratori di PRE e POST
 
-Tramite `custom-plugin-lib` è possibile dichiarare decoratori di PRE e di POST. Dal punto di vista concettuale, un decoratore 
+Tramite `custom-plugin-lib` è possibile dichiarare decoratori di PRE e di POST. Dal punto di vista concettuale, un decoratore
 di (1) PRE o di (2) POST è una trasformazione applicata da `microservice-gateway` rispettivamente a (1) una richiesta indirizzata
-verso un servizio (**richiesta originale**) oppure (2) alla risposta (**risposta originale**) che questo servizio invia al 
-chiamante. Dal punto di vista pratico, i decoratori sono implementati come richieste HTTP in `POST` verso un CP specificato.
+verso un servizio (**richiesta originale**) oppure (2) alla risposta (**risposta originale**) che questo servizio invia al
+chiamante. Dal punto di vista pratico, i decoratori sono implementati come richieste HTTP in `POST` verso un CM specificato.
 
 La dichiarazione di un decoratore utilizzando `custom-plugin-lib` avviene in maniera simile alla dichiarazione di una rotta
 
@@ -245,8 +245,8 @@ Le funzioni utilità esposte dall'istanza `Request` (il primo parametro di un ha
 * `getOriginalRequestPath()` - ritorna il path della richiesta originale
 * `getOriginalRequestQuery()` - ritorna la querystring della richiesta originale
 
-Oltre ai metodi descritti sopra, l'istanza di `Request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà 
-inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando il metodo dell'istanza `Request` 
+Oltre ai metodi descritti sopra, l'istanza di `Request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà
+inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando il metodo dell'istanza `Request`
 `changeOriginalRequest` il quale ritorna un oggetto con i seguenti metodi:
 
 * `setBody(newBody)` - modifica il body della richiesta originale
@@ -264,7 +264,7 @@ In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritorn
 async function attachTokenToQueryString(request, response) {
   const originalHeaders = request.getOriginalRequestHeaders()
   const token = originalHeaders['x-token']
-  
+
   if(token) {
     return request
       .changeOriginalRequest()
@@ -278,15 +278,15 @@ async function attachTokenToQueryString(request, response) {
 
 ### Accesso e Manipolazione della Risposta Originale
 
-Come per la richiesta original, l'istanza `Request` (il primo parametro di un handler) viene decorato con funzioni utili per 
+Come per la richiesta original, l'istanza `Request` (il primo parametro di un handler) viene decorato con funzioni utili per
 accedere anche alla risposta originale
 
 * `getOriginalResponseBody()`
 * `getOriginalResponseHeaders()`
 * `getOriginalResponseStatusCode()`
 
-Oltre alle funzioni descritte sopra, l'istanza `Request` espone un'interfaccia per modificare la risposta originale, la quale che verrà 
-inoltrata da `microservice-gateway` al client chiamante. Questa interfaccia è accessibile utilizzando la funzione 
+Oltre alle funzioni descritte sopra, l'istanza `Request` espone un'interfaccia per modificare la risposta originale, la quale che verrà
+inoltrata da `microservice-gateway` al client chiamante. Questa interfaccia è accessibile utilizzando la funzione
 `changeOriginalResponse` concatenandola con invocazioni alle funzioni
 
 * `setBody(newBody)` - modifica il body della risposta originale
@@ -305,12 +305,12 @@ In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritorn
 async function attachTokenToHeaders(request, response) {
   const originalBody = request.getOriginalResponseBody()
   const token = originalBody.token
-  
+
   if(token) {
     return request
       .changeOriginalResponse()
-      .setHeaders({ 
-        ...request.getOriginalResponseHeaders(), 
+      .setHeaders({
+        ...request.getOriginalResponseHeaders(),
         "x-token": token,
       })
   }
@@ -322,11 +322,11 @@ async function attachTokenToHeaders(request, response) {
 
 ### Stop della Catena dei Decoratori
 
-Tramite `microservice-gateway` è possibile definire una catena sequenziale di decoratori, in modo che l'output di un 
-singolo decoratore viene passato al decoratore successivo. In casi particolari, tuttavia, può  essere necessario 
-interrompere la catena e ritornare una risposta al chiamante originale. 
+Tramite `microservice-gateway` è possibile definire una catena sequenziale di decoratori, in modo che l'output di un
+singolo decoratore viene passato al decoratore successivo. In casi particolari, tuttavia, può  essere necessario
+interrompere la catena e ritornare una risposta al chiamante originale.
 
-A tal fine, l'istanza `Request` (il primo argomento di un handler) espone la funzione 
+A tal fine, l'istanza `Request` (il primo argomento di un handler) espone la funzione
 ```js
 abortChain(finalStatusCode, finalBody, finalHeaders)
 ```
@@ -334,7 +334,7 @@ abortChain(finalStatusCode, finalBody, finalHeaders)
 #### Esempio
 ```js
 // questo decoratore di PRE verifica che sia presente un token
-// nell'header della richiesta originale. Se non è presente 
+// nell'header della richiesta originale. Se non è presente
 // interrompe la catena restituendo un error 401 al client
 async function validateToken(request, response) {
   const headers = request.getOriginalResponseHeaders()
@@ -348,11 +348,11 @@ async function validateToken(request, response) {
 
 ## Schema e Documentazione di una Rotta
 
-Un CP sviluppato con `custom-plugin-lib` espone automaticamente anche la documentazione delle rotte e dei decoratori che
+Un CM sviluppato con `custom-plugin-lib` espone automaticamente anche la documentazione delle rotte e dei decoratori che
 sono implementati. La documentazione viene specificata usando lo standard [OpenAPI 2.0](https://swagger.io/specification/v2/)
-ed esposta tramite [Swagger](https://swagger.io). Una volta avviato il CP, la sua documentazione è accessibile all'indirizzo 
-rotta [`http://localhost:3000/documentation`](http://localhost:3000/documentation). La specifica dello schema delle richieste 
-e delle risposte di una rotta deve essere conforme al formato accettato da 
+ed esposta tramite [Swagger](https://swagger.io). Una volta avviato il CM, la sua documentazione è accessibile all'indirizzo
+rotta [`http://localhost:3000/documentation`](http://localhost:3000/documentation). La specifica dello schema delle richieste
+e delle risposte di una rotta deve essere conforme al formato accettato da
 [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
 
 ### Esempio
@@ -391,11 +391,11 @@ const schema = {
 
 ## Variabili d'Ambiente
 
-Come ogni servizio della Piattaforma, un CP deve essere predisposto per essere rilasciato in ambienti diversi, a partire
+Come ogni servizio della Piattaforma, un CM deve essere predisposto per essere rilasciato in ambienti diversi, a partire
 dall'ambiente locale (la macchina di sviluppo) fino agli ambienti di sviluppo, test e produzione. Le differenze tra vari
 ambienti sono gestite tramite il meccanismo delle variabili d'ambiente.
 
-Per avviare un CP sviluppato con `custom-plugin-lib` è necessario che siano disponibili al processo `nodejs` le variabili
+Per avviare un CM sviluppato con `custom-plugin-lib` è necessario che siano disponibili al processo `nodejs` le variabili
 d'ambiente
 
 ```bash
@@ -408,7 +408,7 @@ MICROSERVICE_GATEWAY_SERVICE_NAME=microservice-gateway
 
 Tra queste variabili, quella più interessante è `MICROSERVICE_GATEWAY_SERVICE_NAME`, che contiene il nome di rete (o indirizzo IP)
 al quale è accessibile `microservice-gateway` e viene letta durante la [comunicazione con con gli altri servizi](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma) interni
-alla Piattaforma. L'implicazione è che `MICROSERVICE_GATEWAY_SERVICE_NAME` rende possibile la configurazione del proprio CP in locale
+alla Piattaforma. L'implicazione è che `MICROSERVICE_GATEWAY_SERVICE_NAME` rende possibile la configurazione del proprio CM in locale
 per interrogare una specifica installazione della Piattaforma. Ad esempio
 
 ```bash
@@ -416,11 +416,11 @@ MICROSERVICE_GATEWAY_SERVICE_NAME=dev.instance.example/v1/
 ```
 
 Oltre a quelle obbligatorie, tramite `custom-plugin-lib` è possibile definire altre variabili d'ambiente in base alle
-esigenze del singolo CP, per poi accedervi ed utilizzarne i valori nel codice degli handlers. Per la definizione si
+esigenze del singolo CM, per poi accedervi ed utilizzarne i valori nel codice degli handlers. Per la definizione si
 usa il formato [JSON schema](http://json-schema.org/).
 
-Nel caso in cui al CP non venga fornito il corretto set di variabili d'ambiente,
-il CP non parte restituendo in output quale variabile d'ambiente manca.
+Nel caso in cui al CM non venga fornito il corretto set di variabili d'ambiente,
+il CM non parte restituendo in output quale variabile d'ambiente manca.
 
 
 ### Esempio
@@ -444,8 +444,8 @@ module.exports = customPlugin(async service => {
   const VARIABILE = service.config.VARIABILE
 
   service.addRawCustomPlugin(
-    'GET', 
-    '/variable', 
+    'GET',
+    '/variable',
     async function (request, reply) {
       return {
         // è possibile accedere alla configurazione tramite `this.config`
@@ -458,15 +458,15 @@ module.exports = customPlugin(async service => {
 
 ## Testing
 
-`custom-plugin-lib` è costruita su fastify e quindi si integra con gli [strumenti di testing](https://www.fastify.io/docs/latest/Testing/) 
+`custom-plugin-lib` è costruita su fastify e quindi si integra con gli [strumenti di testing](https://www.fastify.io/docs/latest/Testing/)
 messi a disposizione dal framework. Un esempio completo di questo tipo di test è presente online nel repository di
 `custom-plugin-lib` su [Github](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/).
 
 ### Integration and Unit test
 
-Il testing di un CP costruito con `custom-plugin-lib` può essere effettuato a più livelli di astrazione. Una delle
+Il testing di un CM costruito con `custom-plugin-lib` può essere effettuato a più livelli di astrazione. Una delle
 possibilià è quella di utilizzare una tecnica che si chiama _fake http injection_ per la quale è possibile simulare
-la ricezione di una richiesta HTTP. In questo modo si esercita tutta la logica del CP dallo strato HTTP, agli handler e
+la ricezione di una richiesta HTTP. In questo modo si esercita tutta la logica del CM dallo strato HTTP, agli handler e
 questo è un esempio di Integration Testing.
 
 #### Esempio Integration Test
@@ -488,10 +488,10 @@ const fastify = require('fastify')
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 const index = customPlugin(async service => {
   service.addRawCustomPlugin(
-    'GET', 
-    '/status/alive', 
-    async (request, reply) => ({ 
-      status: 'ok' 
+    'GET',
+    '/status/alive',
+    async (request, reply) => ({
+      status: 'ok'
     })
   )
 })
