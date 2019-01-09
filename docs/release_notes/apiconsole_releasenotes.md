@@ -1,5 +1,16 @@
 #Api Console Release Note
 
+##v0.16.0 (Dec 18, 2018)
+* Evoluzioni nell'area di configurazione del CMS:
+    * è possibile **evidenziare dei campi nella tabella impostando una query**, il colore di background e il colore del testo. Questo permetterà di avere da parte dell'utente del CMS evidenziati i dati più siginificativi.
+    * abbiamo anche rilasciato la possibilità di **configurare delle notifiche nel menù del cms**. Basterà attivare le notifiche e scegliere la query sui dati che si vuole visualizzare. In questo modo comparirà un badge a fianco alla pagina in cui avete attivato le notifiche che conterà gli elementi presenti in quella collezione in base alla vostra query.
+
+* Abbiamo impostato la **cancellazione** delle dipedenze anche per quanto riguada la cancellazione dei decoratori all'interno delle are di **Pre e Post Hook**.
+
+* Abbiamo ristilizzato l'header del sito per consentire all'utente una migliore consapevolezza del progetto e del branch in cui sta lavorando.
+
+* è possibile iniziare la **creazione di un progetto dall'home page**. Grazie a questa nuova funzionalità verrà creato un progetto su GitLab vuoto e verrà aggiunto al DB dell'API Console.
+
 ## v0.15.0 (Nov 21, 2018)  
 ### Breaking change api-console-configuration v0.3.0
 
