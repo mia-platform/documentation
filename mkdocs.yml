@@ -24,6 +24,7 @@ nav:
 - Runtime Suite:
     - Overview dei componenti: 'runtime_suite/arc_components.md'
     - Configura i componenti:
+       - Configurare i templates per la creazione dei servizi: 'runtime_suite/templates_conf.md'
        - Configurare il Cron: 'runtime_suite/cron.md'
        - Configurare lo Swagger Aggregator: 'runtime_suite/swagger_conf.md'
        - Configura le Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
