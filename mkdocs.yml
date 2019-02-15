@@ -62,12 +62,13 @@ nav:
     - Configurare il file .json degli Analytics: 'business_suite/conf_analytics.md'
 
 - Release Notes:
-    - Piattaforma: 'release_notes/platform_releasenotes.md'
-    - Api Console: 'release_notes/apiconsole_releasenotes.md'
+    - Piattaforma: 'release_notes/apiconsole_releasenotes.md'
     - CMS: 'release_notes/cms_releasenotes.md'
+    - Support Policy: 'release_notes/support-policy.md'
 
 - About:
     - About: 'about/chisiamo.md'
+
 
 theme:
   name: 'material'

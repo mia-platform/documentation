@@ -3,11 +3,23 @@ Qui potrai trovare l'elenco dettagliato dei componenti che costituiscono Mia-Pla
 ![](img/schema.PNG)
 
 # API & Microservice Ecosystem #
-## Core ##
-### API Gateway ###
+
+## API Gateway ##
 
 L'API Gateway è il microservizio responsabile del routing delle richieste verso il servizio corretto.
 Inoltre gestisce l'autenticazione, esegue il controllo di accesso e il rate limiting.
+
+Le sue funzionalità principali sono:
+
+* URL Mapping
+* Rate Limit
+* Http Secure Headers
+* Request Dispaching
+* API Secret Management
+* Http Utilities
+* Proxy-Pass Plain
+* SSL Encryption
+* URL Rewriting
 
 Il servizio è composto a default da server nginx multipli, 2 in ascolto sulle porte 80 ed 8080, 4 in ascolto su socket unix per ritornare i messaggi di errore.
 
@@ -36,6 +48,8 @@ Per scrivere le varie dichiarazioni del server, bisogna seguire la [documentazio
 
 Questo microservizio gestisce la creazione dei certificati SSL necessari ad Nginx per consentire le connessioni https al cluster.
 
+## Microservice Ecosystem ##
+
 ### Microservice Gateway ###
 
 Questo microservizio fornisce la possibilità di specificare degli hook http da chiamare prima e dopo ogni richiesta, per decorarla con servizi aggiuntivi.
@@ -47,6 +61,19 @@ I microservizi di hook devono soddisfare una precisa interfaccia http per essere
 
 ![](img/mg.PNG)
 
+### Marketplace Custom Microservice Template
+
+#### NodJS Template
+
+Un **Custom Microservices** (CM) incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione e sviluppo, il team di Mia-Platform ha creato **custom-plugin-lib, una libreria in node.js, basata sulla libreria fastify**. Utilizzando custom-plugin-lib è possibile creare un CM implementando:
+
+* handler di rotte HTTP
+* cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoui gruppi di appartenenza
+* richieste ad altri servizi o CM della piattaforma
+* decoratori di PRE o di POST
+
+[Qui puoi trovare tutte le informazioni per configurarlo](\development_suite/plugin_baas_4.md)
+
 ## BaaS ##
 ### CRUD Service ###
 
@@ -57,24 +84,33 @@ La definizione di una collezione prevede di indicare l'elenco e la tipologia dei
 
 ![](img/crud.PNG)
 
-### Files Service ###
+### Files Manager Service ###
 
 Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
 Attualmente sono supportati S3 e MongoDB come servizi di storage.
 
-### Static Files ###
+### Static Files Service ###
 
 Il microservizio è responsabile dell'hosting e della fornitura di file statici e di secure header configuation.
 
 ### Notification Service ###
 
 Questo microservizio consente di inviare notifiche push ai client Android e iOS.
-Esso servizio dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
+Esso dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
 [Qui puoi trovare tutte le informazioni per configurarlo](\runtime_suite/push_notifications_platform_4.md)
 
-### Mail Notification Service ##
+#### Mail Notification Service ##
 
-Questo microservizio consente di inviare e-mail tramite AWS SES.
+Questo microservizio consente di inviare e-mail tramite AWS SES e SMTP
+
+### SDK Mobile ###
+
+Mia-Platform fornisce un SDK che funziona come intermediario per consentire le interazioni tra l'applicazione e la piattaforma.
+
+Mia fornisce due SDK:
+
+1. iOS SDK: [Leggi come configurarlo](\runtime_suite/sdk_ios.md)
+2. Android SDK: [Leggi come configurarlo](\runtime_suite/sdk_android.md)
 
 ## Data Management ##
 
