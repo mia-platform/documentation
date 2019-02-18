@@ -10,6 +10,6 @@ v.5| luglio 2019*| -
 v.4| luglio 2018 | -
 v.3| settembre 2017 | -
 v.2| novembre 2016 | luglio 2019*
-v.1| dicembre 2015 | settembre 2017
+v.1| dicembre 2015 | luglio 2018
 
 \* data ancora da confermare
