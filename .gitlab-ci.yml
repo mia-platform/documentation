@@ -49,7 +49,7 @@ build-latest:
 
 cloud:
   stage: release-cloud
-  image: nexus.mia-platform.eu/tools/kubectl:1.11.2
+  image: nexus.mia-platform.eu/tools/kubectl:1.13.3
 
   script:
     - ./scripts/setup-context.sh "${KUBE_CONTEXT}" "${KUBE_CERT}" "${KUBE_URL}" "${KUBE_TOKEN}"
