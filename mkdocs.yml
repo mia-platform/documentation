@@ -63,10 +63,11 @@ nav:
 
 - Release Notes:
     - Piattaforma: 'release_notes/apiconsole_releasenotes.md'
-    - Support Policy: 'release_notes/support-policy.md'
 
-- About:
-    - About: 'about/chisiamo.md'
+
+- Info:
+    - Version Policy: 'info/version-policy.md'
+    - About: 'info/chisiamo.md'
 
 
 theme:
