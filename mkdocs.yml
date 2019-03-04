@@ -67,7 +67,7 @@ nav:
 
 - Info:
     - Version Policy: 'info/version-policy.md'
-    - About: 'info/chisiamo.md'
+    - Open Source Software in Mia Platform: 'info/oss.md'
 
 
 theme:

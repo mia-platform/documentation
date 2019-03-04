@@ -1,4 +1,4 @@
-It follows the copyright notice of the modules and libraries used in Mia-Plartform
+It follows the copyright notice of the modules and libraries used in Mia-Platform
 
 ## Open Source Software in Mia Platform
 
