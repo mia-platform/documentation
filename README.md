@@ -4,6 +4,14 @@
 To the official documentation go to [https://docs.mia-platform.eu][doc-site]
 
 ## How-to
+
+### Install
+
+```
+pip install mkdocs
+pip install mkdocs-material
+```
+
 ### Publish
 When you want to publish a document launch
 ```
