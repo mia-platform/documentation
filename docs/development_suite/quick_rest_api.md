@@ -106,4 +106,4 @@ Non ci resta che salvare e rilasciare in un ambiente.
 
 Bisogna quindi premere salva e committare il lavoro fatto e poi accedere all'area deploy e scegliere un ambiente su cui rilasciare.
 
-Per popolare la collezione o per cominciare a testare l'API puoi o direttamente andare nell'area **Documentazione** e testare la tua API con lo Swagger oppure [creare una nuova pagina del CMS](\business_suite/api_console_configcms.md) e sfruttare la tua API dal CMS.
+Per popolare la collezione o per cominciare a testare l'API puoi o direttamente andare nell'area **Documentazione** e testare la tua API con lo Swagger oppure [creare una nuova pagina del CMS](../business_suite/api_console_configcms.md) e sfruttare la tua API dal CMS.

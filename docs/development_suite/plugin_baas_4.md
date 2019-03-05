@@ -10,8 +10,8 @@ e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria 
 basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CM implementando:
 
 * [handler di rotte HTTP](#rotte)
-* [cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoui gruppi di appartenenza](#identificazione-utente-e-client)
-* [richieste ad altri servizi o CM della piattaforma](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma)
+* [cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoi gruppi di appartenenza](#identificazione-utente-e-client)
+* [richieste ad altri servizi o CM della piattaforma](#interrogazioni-ad-endpoint-e-servizi-della-piattaforma)
 * [decoratori di PRE o di POST](#decoratori-di-pre-e-post)
 
 Nel resto di questa guida viene descritto come sviluppare, testare, rilasciare un CM in Node.js all'interno della piattaforma,
@@ -159,7 +159,7 @@ async function helloHandler(request, reply) {
 }
 ```
 
-### Interrogazioni ad Enpoint e Servizi della Piattaforma
+### Interrogazioni ad Endpoint e Servizi della Piattaforma
 
 Dall'istanza di `Request` (il primo argomento di un handler) è possibile ottenere un oggetto proxy per interrogare
 gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della
