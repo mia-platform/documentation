@@ -12,7 +12,7 @@ nav:
   - CMS e Analitici: 'business_suite/api_console_configcms.md'
   - DevOps: 'development_suite/dev_ops_guide/business_continuity.md'
   - Release Note: 'release_notes/apiconsole_releasenotes.md'
-  - About: 'about/chisiamo.md'
+  - Info: 'info/version-policy.md'
 
 - Linee Guida:
     - GIT Vademecum: 'guidelines/git_vademecum.md'
