@@ -72,7 +72,7 @@ Un **Custom Microservices** (CM) incapsula logiche di business ad-hoc, sviluppab
 * richieste ad altri servizi o CM della piattaforma
 * decoratori di PRE o di POST
 
-[Qui puoi trovare tutte le informazioni per configurarlo](\development_suite/plugin_baas_4.md)
+[Qui puoi trovare tutte le informazioni per configurarlo](../development_suite/plugin_baas_4.md)
 
 ## BaaS ##
 ### CRUD Service ###
@@ -97,7 +97,7 @@ Il microservizio è responsabile dell'hosting e della fornitura di file statici 
 
 Questo microservizio consente di inviare notifiche push ai client Android e iOS.
 Esso dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
-[Qui puoi trovare tutte le informazioni per configurarlo](\runtime_suite/push_notifications_platform_4.md)
+[Qui puoi trovare tutte le informazioni per configurarlo](push_notifications_platform_4.md)
 
 #### Mail Notification Service ##
 
@@ -109,8 +109,8 @@ Mia-Platform fornisce un SDK che funziona come intermediario per consentire le i
 
 Mia fornisce due SDK:
 
-1. iOS SDK: [Leggi come configurarlo](\runtime_suite/sdk_ios.md)
-2. Android SDK: [Leggi come configurarlo](\runtime_suite/sdk_android.md)
+1. iOS SDK: [Leggi come configurarlo](sdk_ios.md)
+2. Android SDK: [Leggi come configurarlo](sdk_android.md)
 
 ## Data Management ##
 
@@ -147,7 +147,7 @@ A partire dal describe.json generato dal node-soap client, la libreria crea sche
 ### Cronjobs Microservices ###
 
 Il microservizio è responsabile della gestione degli script di cron all'interno della piattaforma.
-[A questo link tutte le regole per configurarlo](\runtime_suite/cron.md)
+[A questo link tutte le regole per configurarlo](cron.md)
 
 ### API workflow (API BPM, business process Management) ###
 
@@ -211,7 +211,7 @@ Questo microservizio è responsabile di aggregare i singoli swagger di tutti i m
 Raccoglie tutti i percorsi dagli swagger dei microservizi specificati e li mostra tutti in un'unica pagina di swagger.
 Poiché i microservizi non sono a conoscenza dei prefissi url anteposti dai gateway, questo servizio può essere configurato per correggere i percorsi di swagger con il prefisso corretto.
 Infine controlla i duplicati nelle coppie del percorso (ad esempio due microservizi rispondono a GET / prefisso / me), segnalando questo con un errore.
-[A questo link tutte le regole per configurarlo](\runtime_suite/swagger_conf.md)
+[A questo link tutte le regole per configurarlo](swagger_conf.md)
 
 ### PDF Service ###
 
