@@ -2,7 +2,7 @@ It follows the copyright notice of the modules and libraries used in Mia-Platfor
 
 ## Open Source Software in Mia Platform
 
-Mia-Plartform includes components subject to the terms and conditions of “open source” software licenses. If you are using Mia-Platform in the form provided to you, in accordance with your permitted scope of use, with no distribution of software to third parties, then none of these open source licenses impose any obligations on you beyond what is stated in the Agreement.
+Mia-Platform includes components subject to the terms and conditions of “open source” software licenses. If you are using Mia-Platform in the form provided to you, in accordance with your permitted scope of use, with no distribution of software to third parties, then none of these open source licenses impose any obligations on you beyond what is stated in the Agreement.
 
 ## List of 3rd party Open Source Components and Libraries Used
 
