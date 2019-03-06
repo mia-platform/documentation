@@ -2,372 +2,372 @@ It follows the copyright notice of the modules and libraries used in Mia-Platfor
 
 ## Open Source Software in Mia Platform
 
-Mia-Platform includes components subject to the terms and conditions of “open source” software licenses. If you are using Mia-Platform in the form provided to you, in accordance with your permitted scope of use, with no distribution of software to third parties, then none of these open source licenses impose any obligations on you beyond what is stated in the Agreement.
+Mia-Platform includes components subject to the terms and conditions of “open source” software licenses. To the extent applicable, we will identify open source software included in Mia-Platform. Some of these licenses require us to provide the open source software to you on the terms of the open source license instead of the terms of the Agreement. In that case, the terms of the open source license will apply, and you will have the rights granted in such licenses to the open source software itself, such as access to source code, right to make modifications, and right to reverse engineer. If you are using Mia-Platform in the form provided to you, in accordance with your permitted scope of use, with no distribution of software to third parties, then none of these open source licenses impose any obligations on you beyond what is stated in the Agreement.
 
 ## List of 3rd party Open Source Components and Libraries Used
 
 
-| Library/Module                                   | Licenses                                    | More info                                                      | 
-|--------------------------------------------------|---------------------------------------------|----------------------------------------------------------------| 
+| Library/Module                                   | Licenses                                    | More info                                                      |
+|--------------------------------------------------|---------------------------------------------|----------------------------------------------------------------|
 | Docker         | Apache-2.0 | |
 | Node.js        | Apache-2.0 | |
 | Fastify        | MIT        | |
 | NGinx          | Apache-2.0 | |
 | Express.js     | Apache-2.0 | |
 | Swagger IO     | Apache-2.0 | |
- "@types/events@1.2.0"                            | "MIT"                                       | "https://github.com/DefinitelyTyped/DefinitelyTyped"           | 
-| "@types/node@10.12.2"                            | "MIT"                                       | "https://github.com/DefinitelyTyped/DefinitelyTyped"           | 
-| "@types/pino@4.16.1"                             | "MIT"                                       | "https://github.com/DefinitelyTyped/DefinitelyTyped"           | 
-| "JSONStream@1.3.5","(MIT OR Apache-2.0)"         | "https://github.com/dominictarr/JSONStream" |                                                                | 
-| "abbrev@1.1.1"                                   | "ISC"                                       | "https://github.com/isaacs/abbrev-js"                          | 
-| "abstract-logging@1.0.0"                         | "MIT"                                       | "https://github.com/jsumners/abstract-logging"                 | 
-| "ajv@6.5.4"                                      | "MIT"                                       | "https://github.com/epoberezkin/ajv"                           | 
-| "ansi-align@2.0.0"                               | "ISC"                                       | "https://github.com/nexdrew/ansi-align"                        | 
-| "ansi-regex@2.1.1"                               | "MIT"                                       | "https://github.com/chalk/ansi-regex"                          | 
-| "ansi-regex@3.0.0"                               | "MIT"                                       | "https://github.com/chalk/ansi-regex"                          | 
-| "ansi-styles@3.2.1"                              | "MIT"                                       | "https://github.com/chalk/ansi-styles"                         | 
-| "anymatch@2.0.0"                                 | "ISC"                                       | "https://github.com/micromatch/anymatch"                       | 
-| "aproba@1.2.0"                                   | "ISC"                                       | "https://github.com/iarna/aproba"                              | 
-| "are-we-there-yet@1.1.4"                         | "ISC"                                       | "https://github.com/iarna/are-we-there-yet"                    | 
-| "argparse@1.0.10"                                | "MIT"                                       | "https://github.com/nodeca/argparse"                           | 
-| "arr-diff@4.0.0"                                 | "MIT"                                       | "https://github.com/jonschlinkert/arr-diff"                    | 
-| "arr-flatten@1.1.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/arr-flatten"                 | 
-| "arr-union@3.1.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/arr-union"                   | 
-| "array-unique@0.3.2"                             | "MIT"                                       | "https://github.com/jonschlinkert/array-unique"                | 
-| "assign-symbols@1.0.0"                           | "MIT"                                       | "https://github.com/jonschlinkert/assign-symbols"              | 
-| "async-each@1.0.1"                               | "MIT"                                       | "https://github.com/paulmillr/async-each"                      | 
-| "atob@2.1.2","(MIT OR Apache-2.0)"               | "git://git.coolaj86.com/coolaj86/atob.js"   |                                                                | 
-| "avvio@5.9.0"                                    | "MIT"                                       | "https://github.com/mcollina/avvio"                            | 
-| "balanced-match@1.0.0"                           | "MIT"                                       | "https://github.com/juliangruber/balanced-match"               | 
-| "base@0.11.2"                                    | "MIT"                                       | "https://github.com/node-base/base"                            | 
-| "binary-extensions@1.12.0"                       | "MIT"                                       | "https://github.com/sindresorhus/binary-extensions"            | 
-| "boxen@1.3.0"                                    | "MIT"                                       | "https://github.com/sindresorhus/boxen"                        | 
-| "brace-expansion@1.1.11"                         | "MIT"                                       | "https://github.com/juliangruber/brace-expansion"              | 
-| "braces@2.3.2"                                   | "MIT"                                       | "https://github.com/micromatch/braces"                         | 
-| "bson@1.1.0"                                     | "Apache-2.0"                                | "https://github.com/mongodb/js-bson"                           | 
-| "cache-base@1.0.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/cache-base"                  | 
-| "callback-stream@1.1.0"                          | "MIT"                                       | "https://github.com/mcollina/callback-stream"                  | 
-| "camelcase@4.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/camelcase"                    | 
-| "capture-stack-trace@1.0.1"                      | "MIT"                                       | "https://github.com/floatdrop/capture-stack-trace"             | 
-| "chalk@2.4.1"                                    | "MIT"                                       | "https://github.com/chalk/chalk"                               | 
-| "chokidar@2.0.4"                                 | "MIT"                                       | "https://github.com/paulmillr/chokidar"                        | 
-| "chownr@1.0.1"                                   | "ISC"                                       | "https://github.com/isaacs/chownr"                             | 
-| "ci-info@1.6.0"                                  | "MIT"                                       | "https://github.com/watson/ci-info"                            | 
-| "class-utils@0.3.6"                              | "MIT"                                       | "https://github.com/jonschlinkert/class-utils"                 | 
-| "cli-boxes@1.0.0"                                | "MIT"                                       | "https://github.com/sindresorhus/cli-boxes"                    | 
-| "code-point-at@1.1.0"                            | "MIT"                                       | "https://github.com/sindresorhus/code-point-at"                | 
-| "collection-visit@1.0.0"                         | "MIT"                                       | "https://github.com/jonschlinkert/collection-visit"            | 
-| "color-convert@1.9.3"                            | "MIT"                                       | "https://github.com/Qix-/color-convert"                        | 
-| "color-name@1.1.3"                               | "MIT"                                       | "https://github.com/dfcreative/color-name"                     | 
-| "commist@1.0.0"                                  | "MIT"                                       | "https://github.com/mcollina/commist"                          | 
-| "component-emitter@1.2.1"                        | "MIT"                                       | "https://github.com/component/emitter"                         | 
-| "concat-map@0.0.1"                               | "MIT"                                       | "https://github.com/substack/node-concat-map"                  | 
-| "configstore@3.1.2"                              | "BSD-2-Clause"                              | "https://github.com/yeoman/configstore"                        | 
-| "console-control-strings@1.1.0"                  | "ISC"                                       | "https://github.com/iarna/console-control-strings"             | 
-| "copy-descriptor@0.1.1"                          | "MIT"                                       | "https://github.com/jonschlinkert/copy-descriptor"             | 
-| "core-util-is@1.0.2"                             | "MIT"                                       | "https://github.com/isaacs/core-util-is"                       | 
-| "create-error-class@3.0.2"                       | "MIT"                                       | "https://github.com/floatdrop/create-error-class"              | 
-| "cross-spawn@5.1.0"                              | "MIT"                                       | "https://github.com/IndigoUnited/node-cross-spawn"             | 
-| "crypto-random-string@1.0.0"                     | "MIT"                                       | "https://github.com/sindresorhus/crypto-random-string"         | 
-| "debug@2.6.9"                                    | "MIT"                                       | "https://github.com/visionmedia/debug"                         | 
-| "debug@3.2.6"                                    | "MIT"                                       | "https://github.com/visionmedia/debug"                         | 
-| "decode-uri-component@0.2.0"                     | "MIT"                                       | "https://github.com/SamVerschueren/decode-uri-component"       | 
-| "deep-extend@0.5.1"                              | "MIT"                                       | "https://github.com/unclechu/node-deep-extend"                 | 
-| "deep-extend@0.6.0"                              | "MIT"                                       | "https://github.com/unclechu/node-deep-extend"                 | 
-| "deepmerge@2.2.1"                                | "MIT"                                       | "https://github.com/KyleAMathews/deepmerge"                    | 
-| "define-property@0.2.5"                          | "MIT"                                       | "https://github.com/jonschlinkert/define-property"             | 
-| "define-property@1.0.0"                          | "MIT"                                       | "https://github.com/jonschlinkert/define-property"             | 
-| "define-property@2.0.2"                          | "MIT"                                       | "https://github.com/jonschlinkert/define-property"             | 
-| "delegates@1.0.0"                                | "MIT"                                       | "https://github.com/visionmedia/node-delegates"                | 
-| "depd@1.1.2"                                     | "MIT"                                       | "https://github.com/dougwilson/nodejs-depd"                    | 
-| "destroy@1.0.4"                                  | "MIT"                                       | "https://github.com/stream-utils/destroy"                      | 
-| "detect-libc@1.0.3"                              | "Apache-2.0"                                | "https://github.com/lovell/detect-libc"                        | 
-| "dot-prop@4.2.0"                                 | "MIT"                                       | "https://github.com/sindresorhus/dot-prop"                     | 
-| "dotenv@6.0.0"                                   | "BSD-2-Clause"                              | "https://github.com/motdotla/dotenv"                           | 
-| "dotenv@6.1.0"                                   | "BSD-2-Clause"                              | "https://github.com/motdotla/dotenv"                           | 
-| "duplexer3@0.1.4"                                | "BSD-3-Clause"                              | "https://github.com/floatdrop/duplexer3"                       | 
-| "duplexify@3.6.1"                                | "MIT"                                       | "https://github.com/mafintosh/duplexify"                       | 
-| "ee-first@1.1.1"                                 | "MIT"                                       | "https://github.com/jonathanong/ee-first"                      | 
-| "encodeurl@1.0.2"                                | "MIT"                                       | "https://github.com/pillarjs/encodeurl"                        | 
-| "end-of-stream@1.4.1"                            | "MIT"                                       | "https://github.com/mafintosh/end-of-stream"                   | 
-| "escape-html@1.0.3"                              | "MIT"                                       | "https://github.com/component/escape-html"                     | 
-| "escape-string-regexp@1.0.5"                     | "MIT"                                       | "https://github.com/sindresorhus/escape-string-regexp"         | 
-| "esprima@4.0.1"                                  | "BSD-2-Clause"                              | "https://github.com/jquery/esprima"                            | 
-| "etag@1.8.1"                                     | "MIT"                                       | "https://github.com/jshttp/etag"                               | 
-| "execa@0.7.0"                                    | "MIT"                                       | "https://github.com/sindresorhus/execa"                        | 
-| "expand-brackets@2.1.4"                          | "MIT"                                       | "https://github.com/jonschlinkert/expand-brackets"             | 
-| "extend-shallow@2.0.1"                           | "MIT"                                       | "https://github.com/jonschlinkert/extend-shallow"              | 
-| "extend-shallow@3.0.2"                           | "MIT"                                       | "https://github.com/jonschlinkert/extend-shallow"              | 
-| "extend@3.0.2"                                   | "MIT"                                       | "https://github.com/justmoon/node-extend"                      | 
-| "extglob@2.0.4"                                  | "MIT"                                       | "https://github.com/micromatch/extglob"                        | 
-| "fast-decode-uri-component@1.0.0"                | "MIT"                                       | "https://github.com/delvedor/fast-decode-uri-component"        | 
-| "fast-deep-equal@2.0.1"                          | "MIT"                                       | "https://github.com/epoberezkin/fast-deep-equal"               | 
-| "fast-json-parse@1.0.3"                          | "MIT"                                       | "https://github.com/mcollina/fast-json-parse"                  | 
-| "fast-json-stable-stringify@2.0.0"               | "MIT"                                       | "https://github.com/epoberezkin/fast-json-stable-stringify"    | 
-| "fast-json-stringify@1.9.1"                      | "MIT"                                       | "https://github.com/fastify/fast-json-stringify"               | 
-| "fast-safe-stringify@1.2.3"                      | "MIT"                                       | "https://github.com/davidmarkclements/fast-safe-stringify"     | 
-| "fastify-cli@0.22.1"                             | "MIT"                                       | "https://github.com/fastify/fastify-cli"                       | 
-| "fastify-env@0.6.1"                              | "MIT"                                       | "https://github.com/fastify/fastify-env"                       | 
-| "fastify-mongodb@0.9.1"                          | "MIT"                                       | "https://github.com/fastify/fastify-mongodb"                   | 
-| "fastify-plugin@1.2.1"                           | "MIT"                                       | "https://github.com/fastify/fastify-plugin"                    | 
-| "fastify-static@0.14.0"                          | "MIT"                                       | "https://github.com/fastify/fastify-static"                    | 
-| "fastify-swagger@0.15.1"                         | "MIT"                                       | "https://github.com/fastify/fastify-swagger"                   | 
-| "fastify@1.13.0"                                 | "MIT"                                       | "https://github.com/fastify/fastify"                           | 
-| "fastq@1.6.0"                                    | "ISC"                                       | "https://github.com/mcollina/fastq"                            | 
-| "fill-range@4.0.0"                               | "MIT"                                       | "https://github.com/jonschlinkert/fill-range"                  | 
-| "find-my-way@1.15.4"                             | "MIT"                                       | "https://github.com/delvedor/find-my-way"                      | 
-| "flatstr@1.0.8"                                  | "MIT"                                       | "https://github.com/davidmarkclements/flatstr"                 | 
-| "for-in@1.0.2"                                   | "MIT"                                       | "https://github.com/jonschlinkert/for-in"                      | 
-| "forwarded@0.1.2"                                | "MIT"                                       | "https://github.com/jshttp/forwarded"                          | 
-| "fragment-cache@0.2.1"                           | "MIT"                                       | "https://github.com/jonschlinkert/fragment-cache"              | 
-| "fresh@0.5.2"                                    | "MIT"                                       | "https://github.com/jshttp/fresh"                              | 
-| "fs-minipass@1.2.5"                              | "ISC"                                       | "https://github.com/npm/fs-minipass"                           | 
-| "fs.realpath@1.0.0"                              | "ISC"                                       | "https://github.com/isaacs/fs.realpath"                        | 
-| "fsevents@1.2.4"                                 | "MIT"                                       | "https://github.com/strongloop/fsevents"                       | 
-| "gauge@2.7.4"                                    | "ISC"                                       | "https://github.com/iarna/gauge"                               | 
-| "generify@3.0.2"                                 | "MIT"                                       | "https://github.com/mcollina/generify"                         | 
-| "get-stream@3.0.0"                               | "MIT"                                       | "https://github.com/sindresorhus/get-stream"                   | 
-| "get-value@2.0.6"                                | "MIT"                                       | "https://github.com/jonschlinkert/get-value"                   | 
-| "glob-parent@3.1.0"                              | "ISC"                                       | "https://github.com/es128/glob-parent"                         | 
-| "glob-stream@6.1.0"                              | "MIT"                                       | "https://github.com/gulpjs/glob-stream"                        | 
-| "glob@7.1.2"                                     | "ISC"                                       | "https://github.com/isaacs/node-glob"                          | 
-| "glob@7.1.3"                                     | "ISC"                                       | "https://github.com/isaacs/node-glob"                          | 
-| "global-dirs@0.1.1"                              | "MIT"                                       | "https://github.com/sindresorhus/global-dirs"                  | 
-| "got@6.7.1"                                      | "MIT"                                       | "https://github.com/sindresorhus/got"                          | 
-| "graceful-fs@4.1.14"                             | "ISC"                                       | "https://github.com/isaacs/node-graceful-fs"                   | 
-| "has-flag@3.0.0"                                 | "MIT"                                       | "https://github.com/sindresorhus/has-flag"                     | 
-| "has-unicode@2.0.1"                              | "ISC"                                       | "https://github.com/iarna/has-unicode"                         | 
-| "has-value@0.3.1"                                | "MIT"                                       | "https://github.com/jonschlinkert/has-value"                   | 
-| "has-value@1.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/has-value"                   | 
-| "has-values@0.1.4"                               | "MIT"                                       | "https://github.com/jonschlinkert/has-values"                  | 
-| "has-values@1.0.0"                               | "MIT"                                       | "https://github.com/jonschlinkert/has-values"                  | 
-| "help-me@1.1.0"                                  | "MIT"                                       | "https://github.com/mcollina/help-me"                          | 
-| "http-errors@1.6.3"                              | "MIT"                                       | "https://github.com/jshttp/http-errors"                        | 
-| "http-errors@1.7.1"                              | "MIT"                                       | "https://github.com/jshttp/http-errors"                        | 
-| "iconv-lite@0.4.21"                              | "MIT"                                       | "https://github.com/ashtuchkin/iconv-lite"                     | 
-| "ignore-walk@3.0.1"                              | "ISC"                                       | "https://github.com/isaacs/ignore-walk"                        | 
-| "import-lazy@2.1.0"                              | "MIT"                                       | "https://github.com/sindresorhus/import-lazy"                  | 
-| "imurmurhash@0.1.4"                              | "MIT"                                       | "https://github.com/jensyt/imurmurhash-js"                     | 
-| "inflight@1.0.6"                                 | "ISC"                                       | "https://github.com/npm/inflight"                              | 
-| "inherits@2.0.3"                                 | "ISC"                                       | "https://github.com/isaacs/inherits"                           | 
-| "ini@1.3.5"                                      | "ISC"                                       | "https://github.com/isaacs/ini"                                | 
-| "ipaddr.js@1.8.0"                                | "MIT"                                       | "https://github.com/whitequark/ipaddr.js"                      | 
-| "is-absolute@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/is-absolute"                 | 
-| "is-accessor-descriptor@0.1.6"                   | "MIT"                                       | "https://github.com/jonschlinkert/is-accessor-descriptor"      | 
-| "is-accessor-descriptor@1.0.0"                   | "MIT"                                       | "https://github.com/jonschlinkert/is-accessor-descriptor"      | 
-| "is-binary-path@1.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/is-binary-path"               | 
-| "is-buffer@1.1.6"                                | "MIT"                                       | "https://github.com/feross/is-buffer"                          | 
-| "is-ci@1.2.1"                                    | "MIT"                                       | "https://github.com/watson/is-ci"                              | 
-| "is-data-descriptor@0.1.4"                       | "MIT"                                       | "https://github.com/jonschlinkert/is-data-descriptor"          | 
-| "is-data-descriptor@1.0.0"                       | "MIT"                                       | "https://github.com/jonschlinkert/is-data-descriptor"          | 
-| "is-descriptor@0.1.6"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-descriptor"               | 
-| "is-descriptor@1.0.2"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-descriptor"               | 
-| "is-docker@1.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/is-docker"                    | 
-| "is-extendable@0.1.1"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-extendable"               | 
-| "is-extendable@1.0.1"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-extendable"               | 
-| "is-extglob@2.1.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/is-extglob"                  | 
-| "is-finite@1.0.2"                                | "MIT"                                       | "https://github.com/sindresorhus/is-finite"                    | 
-| "is-fullwidth-code-point@1.0.0"                  | "MIT"                                       | "https://github.com/sindresorhus/is-fullwidth-code-point"      | 
-| "is-fullwidth-code-point@2.0.0"                  | "MIT"                                       | "https://github.com/sindresorhus/is-fullwidth-code-point"      | 
-| "is-glob@3.1.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/is-glob"                     | 
-| "is-glob@4.0.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/is-glob"                     | 
-| "is-installed-globally@0.1.0"                    | "MIT"                                       | "https://github.com/sindresorhus/is-installed-globally"        | 
-| "is-negated-glob@1.0.0"                          | "MIT"                                       | "https://github.com/jonschlinkert/is-negated-glob"             | 
-| "is-npm@1.0.0"                                   | "MIT"                                       | "https://github.com/sindresorhus/is-npm"                       | 
-| "is-number@3.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/is-number"                   | 
-| "is-obj@1.0.1"                                   | "MIT"                                       | "https://github.com/sindresorhus/is-obj"                       | 
-| "is-path-inside@1.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/is-path-inside"               | 
-| "is-plain-object@2.0.4"                          | "MIT"                                       | "https://github.com/jonschlinkert/is-plain-object"             | 
-| "is-redirect@1.0.0"                              | "MIT"                                       | "https://github.com/sindresorhus/is-redirect"                  | 
-| "is-relative@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/is-relative"                 | 
-| "is-retry-allowed@1.1.0"                         | "MIT"                                       | "https://github.com/floatdrop/is-retry-allowed"                | 
-| "is-stream@1.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/is-stream"                    | 
-| "is-unc-path@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/is-unc-path"                 | 
-| "is-windows@1.0.2"                               | "MIT"                                       | "https://github.com/jonschlinkert/is-windows"                  | 
-| "isarray@1.0.0"                                  | "MIT"                                       | "https://github.com/juliangruber/isarray"                      | 
-| "isexe@2.0.0"                                    | "ISC"                                       | "https://github.com/isaacs/isexe"                              | 
-| "isobject@2.1.0"                                 | "MIT"                                       | "https://github.com/jonschlinkert/isobject"                    | 
-| "isobject@3.0.1"                                 | "MIT"                                       | "https://github.com/jonschlinkert/isobject"                    | 
-| "js-yaml@3.12.0"                                 | "MIT"                                       | "https://github.com/nodeca/js-yaml"                            | 
-| "json-schema-traverse@0.4.1"                     | "MIT"                                       | "https://github.com/epoberezkin/json-schema-traverse"          | 
-| "json-stable-stringify@1.0.1"                    | "MIT"                                       | "https://github.com/substack/json-stable-stringify"            | 
-| "jsonify@0.0.0"                                  | "Public Domain"                             | "https://github.com/substack/jsonify"                          | 
-| "jsonparse@1.3.1"                                | "MIT"                                       | "https://github.com/creationix/jsonparse"                      | 
-| "kind-of@3.2.2"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     | 
-| "kind-of@4.0.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     | 
-| "kind-of@5.1.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     | 
-| "kind-of@6.0.2"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     | 
-| "latest-version@3.1.0"                           | "MIT"                                       | "https://github.com/sindresorhus/latest-version"               | 
-| "leven@1.0.2"                                    | "MIT"                                       | "https://github.com/sindresorhus/leven"                        | 
-| "light-my-request@3.1.0"                         | "BSD-3-Clause"                              | "https://github.com/fastify/light-my-request"                  | 
-| "lodash.debounce@4.0.8"                          | "MIT"                                       | "https://github.com/lodash/lodash"                             | 
-| "lowercase-keys@1.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/lowercase-keys"               | 
-| "lru-cache@4.1.3"                                | "ISC"                                       | "https://github.com/isaacs/node-lru-cache"                     | 
-| "make-dir@1.3.0"                                 | "MIT"                                       | "https://github.com/sindresorhus/make-dir"                     | 
-| "make-promises-safe@1.1.0"                       | "MIT"                                       | "https://github.com/mcollina/make-promises-safe"               | 
-| "makeerror@1.0.11"                               | "BSD-3-Clause"                              | "https://github.com/daaku/nodejs-makeerror"                    | 
-| "map-cache@0.2.2"                                | "MIT"                                       | "https://github.com/jonschlinkert/map-cache"                   | 
-| "map-visit@1.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/map-visit"                   | 
-| "memory-pager@1.1.0"                             | "MIT"                                       | "https://github.com/mafintosh/memory-pager"                    | 
-| "micromatch@3.1.10"                              | "MIT"                                       | "https://github.com/micromatch/micromatch"                     | 
-| "middie@3.2.0"                                   | "MIT"                                       | "https://github.com/fastify/middleman"                         | 
-| "mime@1.4.1"                                     | "MIT"                                       | "https://github.com/broofa/node-mime"                          | 
-| "minimatch@3.0.4"                                | "ISC"                                       | "https://github.com/isaacs/minimatch"                          | 
-| "minimist@0.0.8"                                 | "MIT"                                       | "https://github.com/substack/minimist"                         | 
-| "minimist@1.2.0"                                 | "MIT"                                       | "https://github.com/substack/minimist"                         | 
-| "minipass@2.2.4"                                 | "ISC"                                       | "https://github.com/isaacs/minipass"                           | 
-| "minizlib@1.1.0"                                 | "MIT"                                       | "https://github.com/isaacs/minizlib"                           | 
-| "mixin-deep@1.3.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/mixin-deep"                  | 
-| "mkdirp@0.5.1"                                   | "MIT"                                       | "https://github.com/substack/node-mkdirp"                      | 
-| "mongodb-core@3.1.7"                             | "Apache-2.0"                                | "https://github.com/mongodb-js/mongodb-core"                   | 
-| "mongodb@3.1.8"                                  | "Apache-2.0"                                | "https://github.com/mongodb/node-mongodb-native"               | 
-| "ms@2.0.0"                                       | "MIT"                                       | "https://github.com/zeit/ms"                                   | 
-| "ms@2.1.1"                                       | "MIT"                                       | "https://github.com/zeit/ms"                                   | 
-| "nan@2.11.1"                                     | "MIT"                                       | "https://github.com/nodejs/nan"                                | 
-| "nanomatch@1.2.13"                               | "MIT"                                       | "https://github.com/micromatch/nanomatch"                      | 
-| "needle@2.2.0"                                   | "MIT"                                       | "https://github.com/tomas/needle"                              | 
-| "node-pre-gyp@0.10.0"                            | "BSD-3-Clause"                              | "https://github.com/mapbox/node-pre-gyp"                       | 
-| "nopt@4.0.1"                                     | "ISC"                                       | "https://github.com/npm/nopt"                                  | 
-| "normalize-path@2.1.1"                           | "MIT"                                       | "https://github.com/jonschlinkert/normalize-path"              | 
-| "npm-bundled@1.0.3"                              | "ISC"                                       | "https://github.com/npm/npm-bundled"                           | 
-| "npm-packlist@1.1.10"                            | "ISC"                                       | "https://github.com/npm/npm-packlist"                          | 
-| "npm-run-path@2.0.2"                             | "MIT"                                       | "https://github.com/sindresorhus/npm-run-path"                 | 
-| "npmlog@4.1.2"                                   | "ISC"                                       | "https://github.com/npm/npmlog"                                | 
-| "number-is-nan@1.0.1"                            | "MIT"                                       | "https://github.com/sindresorhus/number-is-nan"                | 
-| "object-assign@4.1.1"                            | "MIT"                                       | "https://github.com/sindresorhus/object-assign"                | 
-| "object-copy@0.1.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/object-copy"                 | 
-| "object-visit@1.0.1"                             | "MIT"                                       | "https://github.com/jonschlinkert/object-visit"                | 
-| "object.pick@1.3.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/object.pick"                 | 
-| "on-finished@2.3.0"                              | "MIT"                                       | "https://github.com/jshttp/on-finished"                        | 
-| "once@1.4.0"                                     | "ISC"                                       | "https://github.com/isaacs/once"                               | 
-| "ordered-read-streams@1.0.1"                     | "MIT"                                       | "https://github.com/armed/ordered-read-streams"                | 
-| "os-homedir@1.0.2"                               | "MIT"                                       | "https://github.com/sindresorhus/os-homedir"                   | 
-| "os-tmpdir@1.0.2"                                | "MIT"                                       | "https://github.com/sindresorhus/os-tmpdir"                    | 
-| "osenv@0.1.5"                                    | "ISC"                                       | "https://github.com/npm/osenv"                                 | 
-| "p-finally@1.0.0"                                | "MIT"                                       | "https://github.com/sindresorhus/p-finally"                    | 
-| "package-json@4.0.1"                             | "MIT"                                       | "https://github.com/sindresorhus/package-json"                 | 
-| "pad-left@2.1.0"                                 | "MIT"                                       | "https://github.com/jonschlinkert/pad-left"                    | 
-| "pad-right@0.2.2"                                | "MIT"                                       | "https://github.com/jonschlinkert/pad-right"                   | 
-| "parse-ms@1.0.1"                                 | "MIT"                                       | "https://github.com/sindresorhus/parse-ms"                     | 
-| "pascalcase@0.1.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/pascalcase"                  | 
-| "path-dirname@1.0.2"                             | "MIT"                                       | "https://github.com/es128/path-dirname"                        | 
-| "path-is-absolute@1.0.1"                         | "MIT"                                       | "https://github.com/sindresorhus/path-is-absolute"             | 
-| "path-is-inside@1.0.2","(WTFPL OR MIT)"          | "https://github.com/domenic/path-is-inside" |                                                                | 
-| "path-key@2.0.1"                                 | "MIT"                                       | "https://github.com/sindresorhus/path-key"                     | 
-| "path-to-regexp@2.4.0"                           | "MIT"                                       | "https://github.com/pillarjs/path-to-regexp"                   | 
-| "pify@3.0.0"                                     | "MIT"                                       | "https://github.com/sindresorhus/pify"                         | 
-| "pino-colada@1.4.4"                              | "MIT"                                       | "https://github.com/lrlna/pino-colada"                         | 
-| "pino-std-serializers@2.3.0"                     | "MIT"                                       | "https://github.com/pinojs/pino-std-serializers"               | 
-| "pino@4.17.6"                                    | "MIT"                                       | "https://github.com/pinojs/pino"                               | 
-| "plur@1.0.0"                                     | "MIT"                                       | "https://github.com/sindresorhus/plur"                         | 
-| "posix-character-classes@0.1.1"                  | "MIT"                                       | "https://github.com/jonschlinkert/posix-character-classes"     | 
-| "prepend-http@1.0.4"                             | "MIT"                                       | "https://github.com/sindresorhus/prepend-http"                 | 
-| "prettier-bytes@1.0.4"                           | "ISC"                                       | "https://github.com/Flet/prettier-bytes"                       | 
-| "pretty-ms@2.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/pretty-ms"                    | 
-| "process-nextick-args@2.0.0"                     | "MIT"                                       | "https://github.com/calvinmetcalf/process-nextick-args"        | 
-| "proxy-addr@2.0.4"                               | "MIT"                                       | "https://github.com/jshttp/proxy-addr"                         | 
-| "pseudomap@1.0.2"                                | "ISC"                                       | "https://github.com/isaacs/pseudomap"                          | 
-| "pump@2.0.1"                                     | "MIT"                                       | "https://github.com/mafintosh/pump"                            | 
-| "pump@3.0.0"                                     | "MIT"                                       | "https://github.com/mafintosh/pump"                            | 
-| "pumpify@1.5.1"                                  | "MIT"                                       | "https://github.com/mafintosh/pumpify"                         | 
-| "punycode@2.1.1"                                 | "MIT"                                       | "https://github.com/bestiejs/punycode.js"                      | 
-| "quick-format-unescaped@1.1.2"                   | "MIT"                                       | "https://github.com/davidmarkclements/quick-format"            | 
-| "range-parser@1.2.0"                             | "MIT"                                       | "https://github.com/jshttp/range-parser"                       | 
-| "rc@1.2.7","(BSD-2-Clause OR MIT OR Apache-2.0)" | "https://github.com/dominictarr/rc"         |                                                                | 
-| "rc@1.2.8","(BSD-2-Clause OR MIT OR Apache-2.0)" | "https://github.com/dominictarr/rc"         |                                                                | 
-| "readable-stream@2.3.6"                          | "MIT"                                       | "https://github.com/nodejs/readable-stream"                    | 
-| "readable-stream@3.0.6"                          | "MIT"                                       | "https://github.com/nodejs/readable-stream"                    | 
-| "readdirp@2.2.1"                                 | "MIT"                                       | "https://github.com/paulmillr/readdirp"                        | 
-| "regex-not@1.0.2"                                | "MIT"                                       | "https://github.com/jonschlinkert/regex-not"                   | 
-| "registry-auth-token@3.3.2"                      | "MIT"                                       | "https://github.com/rexxars/registry-auth-token"               | 
-| "registry-url@3.1.0"                             | "MIT"                                       | "https://github.com/sindresorhus/registry-url"                 | 
-| "remove-trailing-separator@1.1.0"                | "ISC"                                       | "https://github.com/darsain/remove-trailing-separator"         | 
-| "repeat-element@1.1.3"                           | "MIT"                                       | "https://github.com/jonschlinkert/repeat-element"              | 
-| "repeat-string@1.6.1"                            | "MIT"                                       | "https://github.com/jonschlinkert/repeat-string"               | 
-| "require_optional@1.0.1"                         | "Apache-2.0"                                | "https://github.com/christkv/require_optional"                 | 
-| "resolve-from@2.0.0"                             | "MIT"                                       | "https://github.com/sindresorhus/resolve-from"                 | 
-| "resolve-from@4.0.0"                             | "MIT"                                       | "https://github.com/sindresorhus/resolve-from"                 | 
-| "resolve-url@0.2.1"                              | "MIT"                                       | "https://github.com/lydell/resolve-url"                        | 
-| "ret@0.1.15"                                     | "MIT"                                       | "https://github.com/fent/ret.js"                               | 
-| "reusify@1.0.4"                                  | "MIT"                                       | "https://github.com/mcollina/reusify"                          | 
-| "rimraf@2.6.2"                                   | "ISC"                                       | "https://github.com/isaacs/rimraf"                             | 
-| "safe-buffer@5.1.1"                              | "MIT"                                       | "https://github.com/feross/safe-buffer"                        | 
-| "safe-buffer@5.1.2"                              | "MIT"                                       | "https://github.com/feross/safe-buffer"                        | 
-| "safe-regex@1.1.0"                               | "MIT"                                       | "https://github.com/substack/safe-regex"                       | 
-| "safer-buffer@2.1.2"                             | "MIT"                                       | "https://github.com/ChALkeR/safer-buffer"                      | 
-| "saslprep@1.0.2"                                 | "MIT"                                       | "https://github.com/reklatsmasters/saslprep"                   | 
-| "sax@1.2.4"                                      | "ISC"                                       | "https://github.com/isaacs/sax-js"                             | 
-| "semver-diff@2.1.0"                              | "MIT"                                       | "https://github.com/sindresorhus/semver-diff"                  | 
-| "semver-store@0.3.0"                             | "MIT"                                       | "https://github.com/delvedor/semver-store"                     | 
-| "semver@5.5.0"                                   | "ISC"                                       | "https://github.com/npm/node-semver"                           | 
-| "semver@5.6.0"                                   | "ISC"                                       | "https://github.com/npm/node-semver"                           | 
-| "send@0.16.2"                                    | "MIT"                                       | "https://github.com/pillarjs/send"                             | 
-| "set-blocking@2.0.0"                             | "ISC"                                       | "https://github.com/yargs/set-blocking"                        | 
-| "set-value@0.4.3"                                | "MIT"                                       | "https://github.com/jonschlinkert/set-value"                   | 
-| "set-value@2.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/set-value"                   | 
-| "setprototypeof@1.1.0"                           | "ISC"                                       | "https://github.com/wesleytodd/setprototypeof"                 | 
-| "shebang-command@1.2.0"                          | "MIT"                                       | "https://github.com/kevva/shebang-command"                     | 
-| "shebang-regex@1.0.0"                            | "MIT"                                       | "https://github.com/sindresorhus/shebang-regex"                | 
-| "signal-exit@3.0.2"                              | "ISC"                                       | "https://github.com/tapjs/signal-exit"                         | 
-| "snapdragon-node@2.1.1"                          | "MIT"                                       | "https://github.com/jonschlinkert/snapdragon-node"             | 
-| "snapdragon-util@3.0.1"                          | "MIT"                                       | "https://github.com/jonschlinkert/snapdragon-util"             | 
-| "snapdragon@0.8.2"                               | "MIT"                                       | "https://github.com/jonschlinkert/snapdragon"                  | 
-| "source-map-resolve@0.5.2"                       | "MIT"                                       | "https://github.com/lydell/source-map-resolve"                 | 
-| "source-map-url@0.4.0"                           | "MIT"                                       | "https://github.com/lydell/source-map-url"                     | 
-| "source-map@0.5.7"                               | "BSD-3-Clause"                              | "https://github.com/mozilla/source-map"                        | 
-| "sparse-bitfield@3.0.3"                          | "MIT"                                       | "https://github.com/mafintosh/sparse-bitfield"                 | 
-| "split-string@3.1.0"                             | "MIT"                                       | "https://github.com/jonschlinkert/split-string"                | 
-| "split2@2.2.0"                                   | "ISC"                                       | "https://github.com/mcollina/split2"                           | 
-| "sprintf-js@1.0.3"                               | "BSD-3-Clause"                              | "https://github.com/alexei/sprintf.js"                         | 
-| "static-extend@0.1.2"                            | "MIT"                                       | "https://github.com/jonschlinkert/static-extend"               | 
-| "statuses@1.4.0"                                 | "MIT"                                       | "https://github.com/jshttp/statuses"                           | 
-| "statuses@1.5.0"                                 | "MIT"                                       | "https://github.com/jshttp/statuses"                           | 
-| "stream-shift@1.0.0"                             | "MIT"                                       | "https://github.com/mafintosh/stream-shift"                    | 
-| "string-width@1.0.2"                             | "MIT"                                       | "https://github.com/sindresorhus/string-width"                 | 
-| "string-width@2.1.1"                             | "MIT"                                       | "https://github.com/sindresorhus/string-width"                 | 
-| "string_decoder@1.1.1"                           | "MIT"                                       | "https://github.com/nodejs/string_decoder"                     | 
-| "strip-ansi@3.0.1"                               | "MIT"                                       | "https://github.com/chalk/strip-ansi"                          | 
-| "strip-ansi@4.0.0"                               | "MIT"                                       | "https://github.com/chalk/strip-ansi"                          | 
-| "strip-eof@1.0.0"                                | "MIT"                                       | "https://github.com/sindresorhus/strip-eof"                    | 
-| "strip-json-comments@2.0.1"                      | "MIT"                                       | "https://github.com/sindresorhus/strip-json-comments"          | 
-| "supports-color@5.5.0"                           | "MIT"                                       | "https://github.com/chalk/supports-color"                      | 
-| "tar@4.4.1"                                      | "ISC"                                       | "https://github.com/npm/node-tar"                              | 
-| "term-size@1.2.0"                                | "MIT"                                       | "https://github.com/sindresorhus/term-size"                    | 
-| "through2-filter@2.0.0"                          | "MIT"                                       | "https://github.com/brycebaril/through2-filter"                | 
-| "through2@2.0.3"                                 | "MIT"                                       | "https://github.com/rvagg/through2"                            | 
-| "through@2.3.8"                                  | "MIT"                                       | "https://github.com/dominictarr/through"                       | 
-| "timed-out@4.0.1"                                | "MIT"                                       | "https://github.com/floatdrop/timed-out"                       | 
-| "tiny-lru@1.6.1"                                 | "BSD-3-Clause"                              | "https://github.com/avoidwork/tiny-lru"                        | 
-| "tmpl@1.0.4"                                     | "BSD-3-Clause"                              | "https://github.com/daaku/nodejs-tmpl"                         | 
-| "to-absolute-glob@2.0.2"                         | "MIT"                                       | "https://github.com/jonschlinkert/to-absolute-glob"            | 
-| "to-object-path@0.3.0"                           | "MIT"                                       | "https://github.com/jonschlinkert/to-object-path"              | 
-| "to-regex-range@2.1.1"                           | "MIT"                                       | "https://github.com/micromatch/to-regex-range"                 | 
-| "to-regex@3.0.2"                                 | "MIT"                                       | "https://github.com/jonschlinkert/to-regex"                    | 
-| "toidentifier@1.0.0"                             | "MIT"                                       | "https://github.com/component/toidentifier"                    | 
-| "unc-path-regex@0.1.2"                           | "MIT"                                       | "https://github.com/regexhq/unc-path-regex"                    | 
-| "union-value@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/union-value"                 | 
-| "unique-stream@2.2.1"                            | "MIT"                                       | "https://github.com/eugeneware/unique-stream"                  | 
-| "unique-string@1.0.0"                            | "MIT"                                       | "https://github.com/sindresorhus/unique-string"                | 
-| "unset-value@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/unset-value"                 | 
-| "unzip-response@2.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/unzip-response"               | 
-| "upath@1.1.0"                                    | "MIT"                                       | "https://github.com/anodynos/upath"                            | 
-| "update-notifier@2.5.0"                          | "BSD-2-Clause"                              | "https://github.com/yeoman/update-notifier"                    | 
-| "uri-js@4.2.2"                                   | "BSD-2-Clause"                              | "https://github.com/garycourt/uri-js"                          | 
-| "urix@0.1.0"                                     | "MIT"                                       | "https://github.com/lydell/urix"                               | 
-| "url-parse-lax@1.0.0"                            | "MIT"                                       | "https://github.com/sindresorhus/url-parse-lax"                | 
-| "use@3.1.1"                                      | "MIT"                                       | "https://github.com/jonschlinkert/use"                         | 
-| "util-deprecate@1.0.2"                           | "MIT"                                       | "https://github.com/TooTallNate/util-deprecate"                | 
-| "walker@1.0.7"                                   | "Apache-2.0"                                | "https://github.com/daaku/nodejs-walker"                       | 
-| "which@1.3.1"                                    | "ISC"                                       | "https://github.com/isaacs/node-which"                         | 
-| "wide-align@1.1.2"                               | "ISC"                                       | "https://github.com/iarna/wide-align"                          | 
-| "widest-line@2.0.1"                              | "MIT"                                       | "https://github.com/sindresorhus/widest-line"                  | 
-| "wrappy@1.0.2"                                   | "ISC"                                       | "https://github.com/npm/wrappy"                                | 
-| "write-file-atomic@2.3.0"                        | "ISC"                                       | "https://github.com/iarna/write-file-atomic"                   | 
-| "xdg-basedir@3.0.0"                              | "MIT"                                       | "https://github.com/sindresorhus/xdg-basedir"                  | 
-| "xtend@4.0.1"                                    | "MIT"                                       | "https://github.com/Raynos/xtend"                              | 
-| "yallist@2.1.2"                                  | "ISC"                                       | "https://github.com/isaacs/yallist"                            | 
-| "yallist@3.0.2"                                  | "ISC"                                       | "https://github.com/isaacs/yallist"                            | 
-| "yui-lint@0.2.0"                                 | "BSD"                                       | "https://github.com/yui/yui-lint"                              | 
+ "@types/events@1.2.0"                            | "MIT"                                       | "https://github.com/DefinitelyTyped/DefinitelyTyped"           |
+| "@types/node@10.12.2"                            | "MIT"                                       | "https://github.com/DefinitelyTyped/DefinitelyTyped"           |
+| "@types/pino@4.16.1"                             | "MIT"                                       | "https://github.com/DefinitelyTyped/DefinitelyTyped"           |
+| "JSONStream@1.3.5","(MIT OR Apache-2.0)"         | |"https://github.com/dominictarr/JSONStream" |                                                                |
+| "abbrev@1.1.1"                                   | "ISC"                                       | "https://github.com/isaacs/abbrev-js"                          |
+| "abstract-logging@1.0.0"                         | "MIT"                                       | "https://github.com/jsumners/abstract-logging"                 |
+| "ajv@6.5.4"                                      | "MIT"                                       | "https://github.com/epoberezkin/ajv"                           |
+| "ansi-align@2.0.0"                               | "ISC"                                       | "https://github.com/nexdrew/ansi-align"                        |
+| "ansi-regex@2.1.1"                               | "MIT"                                       | "https://github.com/chalk/ansi-regex"                          |
+| "ansi-regex@3.0.0"                               | "MIT"                                       | "https://github.com/chalk/ansi-regex"                          |
+| "ansi-styles@3.2.1"                              | "MIT"                                       | "https://github.com/chalk/ansi-styles"                         |
+| "anymatch@2.0.0"                                 | "ISC"                                       | "https://github.com/micromatch/anymatch"                       |
+| "aproba@1.2.0"                                   | "ISC"                                       | "https://github.com/iarna/aproba"                              |
+| "are-we-there-yet@1.1.4"                         | "ISC"                                       | "https://github.com/iarna/are-we-there-yet"                    |
+| "argparse@1.0.10"                                | "MIT"                                       | "https://github.com/nodeca/argparse"                           |
+| "arr-diff@4.0.0"                                 | "MIT"                                       | "https://github.com/jonschlinkert/arr-diff"                    |
+| "arr-flatten@1.1.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/arr-flatten"                 |
+| "arr-union@3.1.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/arr-union"                   |
+| "array-unique@0.3.2"                             | "MIT"                                       | "https://github.com/jonschlinkert/array-unique"                |
+| "assign-symbols@1.0.0"                           | "MIT"                                       | "https://github.com/jonschlinkert/assign-symbols"              |
+| "async-each@1.0.1"                               | "MIT"                                       | "https://github.com/paulmillr/async-each"                      |
+| "atob@2.1.2","(MIT OR Apache-2.0)"               | | "git://git.coolaj86.com/coolaj86/atob.js"   |                                                                |
+| "avvio@5.9.0"                                    | "MIT"                                       | "https://github.com/mcollina/avvio"                            |
+| "balanced-match@1.0.0"                           | "MIT"                                       | "https://github.com/juliangruber/balanced-match"               |
+| "base@0.11.2"                                    | "MIT"                                       | "https://github.com/node-base/base"                            |
+| "binary-extensions@1.12.0"                       | "MIT"                                       | "https://github.com/sindresorhus/binary-extensions"            |
+| "boxen@1.3.0"                                    | "MIT"                                       | "https://github.com/sindresorhus/boxen"                        |
+| "brace-expansion@1.1.11"                         | "MIT"                                       | "https://github.com/juliangruber/brace-expansion"              |
+| "braces@2.3.2"                                   | "MIT"                                       | "https://github.com/micromatch/braces"                         |
+| "bson@1.1.0"                                     | "Apache-2.0"                                | "https://github.com/mongodb/js-bson"                           |
+| "cache-base@1.0.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/cache-base"                  |
+| "callback-stream@1.1.0"                          | "MIT"                                       | "https://github.com/mcollina/callback-stream"                  |
+| "camelcase@4.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/camelcase"                    |
+| "capture-stack-trace@1.0.1"                      | "MIT"                                       | "https://github.com/floatdrop/capture-stack-trace"             |
+| "chalk@2.4.1"                                    | "MIT"                                       | "https://github.com/chalk/chalk"                               |
+| "chokidar@2.0.4"                                 | "MIT"                                       | "https://github.com/paulmillr/chokidar"                        |
+| "chownr@1.0.1"                                   | "ISC"                                       | "https://github.com/isaacs/chownr"                             |
+| "ci-info@1.6.0"                                  | "MIT"                                       | "https://github.com/watson/ci-info"                            |
+| "class-utils@0.3.6"                              | "MIT"                                       | "https://github.com/jonschlinkert/class-utils"                 |
+| "cli-boxes@1.0.0"                                | "MIT"                                       | "https://github.com/sindresorhus/cli-boxes"                    |
+| "code-point-at@1.1.0"                            | "MIT"                                       | "https://github.com/sindresorhus/code-point-at"                |
+| "collection-visit@1.0.0"                         | "MIT"                                       | "https://github.com/jonschlinkert/collection-visit"            |
+| "color-convert@1.9.3"                            | "MIT"                                       | "https://github.com/Qix-/color-convert"                        |
+| "color-name@1.1.3"                               | "MIT"                                       | "https://github.com/dfcreative/color-name"                     |
+| "commist@1.0.0"                                  | "MIT"                                       | "https://github.com/mcollina/commist"                          |
+| "component-emitter@1.2.1"                        | "MIT"                                       | "https://github.com/component/emitter"                         |
+| "concat-map@0.0.1"                               | "MIT"                                       | "https://github.com/substack/node-concat-map"                  |
+| "configstore@3.1.2"                              | "BSD-2-Clause"                              | "https://github.com/yeoman/configstore"                        |
+| "console-control-strings@1.1.0"                  | "ISC"                                       | "https://github.com/iarna/console-control-strings"             |
+| "copy-descriptor@0.1.1"                          | "MIT"                                       | "https://github.com/jonschlinkert/copy-descriptor"             |
+| "core-util-is@1.0.2"                             | "MIT"                                       | "https://github.com/isaacs/core-util-is"                       |
+| "create-error-class@3.0.2"                       | "MIT"                                       | "https://github.com/floatdrop/create-error-class"              |
+| "cross-spawn@5.1.0"                              | "MIT"                                       | "https://github.com/IndigoUnited/node-cross-spawn"             |
+| "crypto-random-string@1.0.0"                     | "MIT"                                       | "https://github.com/sindresorhus/crypto-random-string"         |
+| "debug@2.6.9"                                    | "MIT"                                       | "https://github.com/visionmedia/debug"                         |
+| "debug@3.2.6"                                    | "MIT"                                       | "https://github.com/visionmedia/debug"                         |
+| "decode-uri-component@0.2.0"                     | "MIT"                                       | "https://github.com/SamVerschueren/decode-uri-component"       |
+| "deep-extend@0.5.1"                              | "MIT"                                       | "https://github.com/unclechu/node-deep-extend"                 |
+| "deep-extend@0.6.0"                              | "MIT"                                       | "https://github.com/unclechu/node-deep-extend"                 |
+| "deepmerge@2.2.1"                                | "MIT"                                       | "https://github.com/KyleAMathews/deepmerge"                    |
+| "define-property@0.2.5"                          | "MIT"                                       | "https://github.com/jonschlinkert/define-property"             |
+| "define-property@1.0.0"                          | "MIT"                                       | "https://github.com/jonschlinkert/define-property"             |
+| "define-property@2.0.2"                          | "MIT"                                       | "https://github.com/jonschlinkert/define-property"             |
+| "delegates@1.0.0"                                | "MIT"                                       | "https://github.com/visionmedia/node-delegates"                |
+| "depd@1.1.2"                                     | "MIT"                                       | "https://github.com/dougwilson/nodejs-depd"                    |
+| "destroy@1.0.4"                                  | "MIT"                                       | "https://github.com/stream-utils/destroy"                      |
+| "detect-libc@1.0.3"                              | "Apache-2.0"                                | "https://github.com/lovell/detect-libc"                        |
+| "dot-prop@4.2.0"                                 | "MIT"                                       | "https://github.com/sindresorhus/dot-prop"                     |
+| "dotenv@6.0.0"                                   | "BSD-2-Clause"                              | "https://github.com/motdotla/dotenv"                           |
+| "dotenv@6.1.0"                                   | "BSD-2-Clause"                              | "https://github.com/motdotla/dotenv"                           |
+| "duplexer3@0.1.4"                                | "BSD-3-Clause"                              | "https://github.com/floatdrop/duplexer3"                       |
+| "duplexify@3.6.1"                                | "MIT"                                       | "https://github.com/mafintosh/duplexify"                       |
+| "ee-first@1.1.1"                                 | "MIT"                                       | "https://github.com/jonathanong/ee-first"                      |
+| "encodeurl@1.0.2"                                | "MIT"                                       | "https://github.com/pillarjs/encodeurl"                        |
+| "end-of-stream@1.4.1"                            | "MIT"                                       | "https://github.com/mafintosh/end-of-stream"                   |
+| "escape-html@1.0.3"                              | "MIT"                                       | "https://github.com/component/escape-html"                     |
+| "escape-string-regexp@1.0.5"                     | "MIT"                                       | "https://github.com/sindresorhus/escape-string-regexp"         |
+| "esprima@4.0.1"                                  | "BSD-2-Clause"                              | "https://github.com/jquery/esprima"                            |
+| "etag@1.8.1"                                     | "MIT"                                       | "https://github.com/jshttp/etag"                               |
+| "execa@0.7.0"                                    | "MIT"                                       | "https://github.com/sindresorhus/execa"                        |
+| "expand-brackets@2.1.4"                          | "MIT"                                       | "https://github.com/jonschlinkert/expand-brackets"             |
+| "extend-shallow@2.0.1"                           | "MIT"                                       | "https://github.com/jonschlinkert/extend-shallow"              |
+| "extend-shallow@3.0.2"                           | "MIT"                                       | "https://github.com/jonschlinkert/extend-shallow"              |
+| "extend@3.0.2"                                   | "MIT"                                       | "https://github.com/justmoon/node-extend"                      |
+| "extglob@2.0.4"                                  | "MIT"                                       | "https://github.com/micromatch/extglob"                        |
+| "fast-decode-uri-component@1.0.0"                | "MIT"                                       | "https://github.com/delvedor/fast-decode-uri-component"        |
+| "fast-deep-equal@2.0.1"                          | "MIT"                                       | "https://github.com/epoberezkin/fast-deep-equal"               |
+| "fast-json-parse@1.0.3"                          | "MIT"                                       | "https://github.com/mcollina/fast-json-parse"                  |
+| "fast-json-stable-stringify@2.0.0"               | "MIT"                                       | "https://github.com/epoberezkin/fast-json-stable-stringify"    |
+| "fast-json-stringify@1.9.1"                      | "MIT"                                       | "https://github.com/fastify/fast-json-stringify"               |
+| "fast-safe-stringify@1.2.3"                      | "MIT"                                       | "https://github.com/davidmarkclements/fast-safe-stringify"     |
+| "fastify-cli@0.22.1"                             | "MIT"                                       | "https://github.com/fastify/fastify-cli"                       |
+| "fastify-env@0.6.1"                              | "MIT"                                       | "https://github.com/fastify/fastify-env"                       |
+| "fastify-mongodb@0.9.1"                          | "MIT"                                       | "https://github.com/fastify/fastify-mongodb"                   |
+| "fastify-plugin@1.2.1"                           | "MIT"                                       | "https://github.com/fastify/fastify-plugin"                    |
+| "fastify-static@0.14.0"                          | "MIT"                                       | "https://github.com/fastify/fastify-static"                    |
+| "fastify-swagger@0.15.1"                         | "MIT"                                       | "https://github.com/fastify/fastify-swagger"                   |
+| "fastify@1.13.0"                                 | "MIT"                                       | "https://github.com/fastify/fastify"                           |
+| "fastq@1.6.0"                                    | "ISC"                                       | "https://github.com/mcollina/fastq"                            |
+| "fill-range@4.0.0"                               | "MIT"                                       | "https://github.com/jonschlinkert/fill-range"                  |
+| "find-my-way@1.15.4"                             | "MIT"                                       | "https://github.com/delvedor/find-my-way"                      |
+| "flatstr@1.0.8"                                  | "MIT"                                       | "https://github.com/davidmarkclements/flatstr"                 |
+| "for-in@1.0.2"                                   | "MIT"                                       | "https://github.com/jonschlinkert/for-in"                      |
+| "forwarded@0.1.2"                                | "MIT"                                       | "https://github.com/jshttp/forwarded"                          |
+| "fragment-cache@0.2.1"                           | "MIT"                                       | "https://github.com/jonschlinkert/fragment-cache"              |
+| "fresh@0.5.2"                                    | "MIT"                                       | "https://github.com/jshttp/fresh"                              |
+| "fs-minipass@1.2.5"                              | "ISC"                                       | "https://github.com/npm/fs-minipass"                           |
+| "fs.realpath@1.0.0"                              | "ISC"                                       | "https://github.com/isaacs/fs.realpath"                        |
+| "fsevents@1.2.4"                                 | "MIT"                                       | "https://github.com/strongloop/fsevents"                       |
+| "gauge@2.7.4"                                    | "ISC"                                       | "https://github.com/iarna/gauge"                               |
+| "generify@3.0.2"                                 | "MIT"                                       | "https://github.com/mcollina/generify"                         |
+| "get-stream@3.0.0"                               | "MIT"                                       | "https://github.com/sindresorhus/get-stream"                   |
+| "get-value@2.0.6"                                | "MIT"                                       | "https://github.com/jonschlinkert/get-value"                   |
+| "glob-parent@3.1.0"                              | "ISC"                                       | "https://github.com/es128/glob-parent"                         |
+| "glob-stream@6.1.0"                              | "MIT"                                       | "https://github.com/gulpjs/glob-stream"                        |
+| "glob@7.1.2"                                     | "ISC"                                       | "https://github.com/isaacs/node-glob"                          |
+| "glob@7.1.3"                                     | "ISC"                                       | "https://github.com/isaacs/node-glob"                          |
+| "global-dirs@0.1.1"                              | "MIT"                                       | "https://github.com/sindresorhus/global-dirs"                  |
+| "got@6.7.1"                                      | "MIT"                                       | "https://github.com/sindresorhus/got"                          |
+| "graceful-fs@4.1.14"                             | "ISC"                                       | "https://github.com/isaacs/node-graceful-fs"                   |
+| "has-flag@3.0.0"                                 | "MIT"                                       | "https://github.com/sindresorhus/has-flag"                     |
+| "has-unicode@2.0.1"                              | "ISC"                                       | "https://github.com/iarna/has-unicode"                         |
+| "has-value@0.3.1"                                | "MIT"                                       | "https://github.com/jonschlinkert/has-value"                   |
+| "has-value@1.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/has-value"                   |
+| "has-values@0.1.4"                               | "MIT"                                       | "https://github.com/jonschlinkert/has-values"                  |
+| "has-values@1.0.0"                               | "MIT"                                       | "https://github.com/jonschlinkert/has-values"                  |
+| "help-me@1.1.0"                                  | "MIT"                                       | "https://github.com/mcollina/help-me"                          |
+| "http-errors@1.6.3"                              | "MIT"                                       | "https://github.com/jshttp/http-errors"                        |
+| "http-errors@1.7.1"                              | "MIT"                                       | "https://github.com/jshttp/http-errors"                        |
+| "iconv-lite@0.4.21"                              | "MIT"                                       | "https://github.com/ashtuchkin/iconv-lite"                     |
+| "ignore-walk@3.0.1"                              | "ISC"                                       | "https://github.com/isaacs/ignore-walk"                        |
+| "import-lazy@2.1.0"                              | "MIT"                                       | "https://github.com/sindresorhus/import-lazy"                  |
+| "imurmurhash@0.1.4"                              | "MIT"                                       | "https://github.com/jensyt/imurmurhash-js"                     |
+| "inflight@1.0.6"                                 | "ISC"                                       | "https://github.com/npm/inflight"                              |
+| "inherits@2.0.3"                                 | "ISC"                                       | "https://github.com/isaacs/inherits"                           |
+| "ini@1.3.5"                                      | "ISC"                                       | "https://github.com/isaacs/ini"                                |
+| "ipaddr.js@1.8.0"                                | "MIT"                                       | "https://github.com/whitequark/ipaddr.js"                      |
+| "is-absolute@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/is-absolute"                 |
+| "is-accessor-descriptor@0.1.6"                   | "MIT"                                       | "https://github.com/jonschlinkert/is-accessor-descriptor"      |
+| "is-accessor-descriptor@1.0.0"                   | "MIT"                                       | "https://github.com/jonschlinkert/is-accessor-descriptor"      |
+| "is-binary-path@1.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/is-binary-path"               |
+| "is-buffer@1.1.6"                                | "MIT"                                       | "https://github.com/feross/is-buffer"                          |
+| "is-ci@1.2.1"                                    | "MIT"                                       | "https://github.com/watson/is-ci"                              |
+| "is-data-descriptor@0.1.4"                       | "MIT"                                       | "https://github.com/jonschlinkert/is-data-descriptor"          |
+| "is-data-descriptor@1.0.0"                       | "MIT"                                       | "https://github.com/jonschlinkert/is-data-descriptor"          |
+| "is-descriptor@0.1.6"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-descriptor"               |
+| "is-descriptor@1.0.2"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-descriptor"               |
+| "is-docker@1.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/is-docker"                    |
+| "is-extendable@0.1.1"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-extendable"               |
+| "is-extendable@1.0.1"                            | "MIT"                                       | "https://github.com/jonschlinkert/is-extendable"               |
+| "is-extglob@2.1.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/is-extglob"                  |
+| "is-finite@1.0.2"                                | "MIT"                                       | "https://github.com/sindresorhus/is-finite"                    |
+| "is-fullwidth-code-point@1.0.0"                  | "MIT"                                       | "https://github.com/sindresorhus/is-fullwidth-code-point"      |
+| "is-fullwidth-code-point@2.0.0"                  | "MIT"                                       | "https://github.com/sindresorhus/is-fullwidth-code-point"      |
+| "is-glob@3.1.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/is-glob"                     |
+| "is-glob@4.0.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/is-glob"                     |
+| "is-installed-globally@0.1.0"                    | "MIT"                                       | "https://github.com/sindresorhus/is-installed-globally"        |
+| "is-negated-glob@1.0.0"                          | "MIT"                                       | "https://github.com/jonschlinkert/is-negated-glob"             |
+| "is-npm@1.0.0"                                   | "MIT"                                       | "https://github.com/sindresorhus/is-npm"                       |
+| "is-number@3.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/is-number"                   |
+| "is-obj@1.0.1"                                   | "MIT"                                       | "https://github.com/sindresorhus/is-obj"                       |
+| "is-path-inside@1.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/is-path-inside"               |
+| "is-plain-object@2.0.4"                          | "MIT"                                       | "https://github.com/jonschlinkert/is-plain-object"             |
+| "is-redirect@1.0.0"                              | "MIT"                                       | "https://github.com/sindresorhus/is-redirect"                  |
+| "is-relative@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/is-relative"                 |
+| "is-retry-allowed@1.1.0"                         | "MIT"                                       | "https://github.com/floatdrop/is-retry-allowed"                |
+| "is-stream@1.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/is-stream"                    |
+| "is-unc-path@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/is-unc-path"                 |
+| "is-windows@1.0.2"                               | "MIT"                                       | "https://github.com/jonschlinkert/is-windows"                  |
+| "isarray@1.0.0"                                  | "MIT"                                       | "https://github.com/juliangruber/isarray"                      |
+| "isexe@2.0.0"                                    | "ISC"                                       | "https://github.com/isaacs/isexe"                              |
+| "isobject@2.1.0"                                 | "MIT"                                       | "https://github.com/jonschlinkert/isobject"                    |
+| "isobject@3.0.1"                                 | "MIT"                                       | "https://github.com/jonschlinkert/isobject"                    |
+| "js-yaml@3.12.0"                                 | "MIT"                                       | "https://github.com/nodeca/js-yaml"                            |
+| "json-schema-traverse@0.4.1"                     | "MIT"                                       | "https://github.com/epoberezkin/json-schema-traverse"          |
+| "json-stable-stringify@1.0.1"                    | "MIT"                                       | "https://github.com/substack/json-stable-stringify"            |
+| "jsonify@0.0.0"                                  | "Public Domain"                             | "https://github.com/substack/jsonify"                          |
+| "jsonparse@1.3.1"                                | "MIT"                                       | "https://github.com/creationix/jsonparse"                      |
+| "kind-of@3.2.2"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     |
+| "kind-of@4.0.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     |
+| "kind-of@5.1.0"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     |
+| "kind-of@6.0.2"                                  | "MIT"                                       | "https://github.com/jonschlinkert/kind-of"                     |
+| "latest-version@3.1.0"                           | "MIT"                                       | "https://github.com/sindresorhus/latest-version"               |
+| "leven@1.0.2"                                    | "MIT"                                       | "https://github.com/sindresorhus/leven"                        |
+| "light-my-request@3.1.0"                         | "BSD-3-Clause"                              | "https://github.com/fastify/light-my-request"                  |
+| "lodash.debounce@4.0.8"                          | "MIT"                                       | "https://github.com/lodash/lodash"                             |
+| "lowercase-keys@1.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/lowercase-keys"               |
+| "lru-cache@4.1.3"                                | "ISC"                                       | "https://github.com/isaacs/node-lru-cache"                     |
+| "make-dir@1.3.0"                                 | "MIT"                                       | "https://github.com/sindresorhus/make-dir"                     |
+| "make-promises-safe@1.1.0"                       | "MIT"                                       | "https://github.com/mcollina/make-promises-safe"               |
+| "makeerror@1.0.11"                               | "BSD-3-Clause"                              | "https://github.com/daaku/nodejs-makeerror"                    |
+| "map-cache@0.2.2"                                | "MIT"                                       | "https://github.com/jonschlinkert/map-cache"                   |
+| "map-visit@1.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/map-visit"                   |
+| "memory-pager@1.1.0"                             | "MIT"                                       | "https://github.com/mafintosh/memory-pager"                    |
+| "micromatch@3.1.10"                              | "MIT"                                       | "https://github.com/micromatch/micromatch"                     |
+| "middie@3.2.0"                                   | "MIT"                                       | "https://github.com/fastify/middleman"                         |
+| "mime@1.4.1"                                     | "MIT"                                       | "https://github.com/broofa/node-mime"                          |
+| "minimatch@3.0.4"                                | "ISC"                                       | "https://github.com/isaacs/minimatch"                          |
+| "minimist@0.0.8"                                 | "MIT"                                       | "https://github.com/substack/minimist"                         |
+| "minimist@1.2.0"                                 | "MIT"                                       | "https://github.com/substack/minimist"                         |
+| "minipass@2.2.4"                                 | "ISC"                                       | "https://github.com/isaacs/minipass"                           |
+| "minizlib@1.1.0"                                 | "MIT"                                       | "https://github.com/isaacs/minizlib"                           |
+| "mixin-deep@1.3.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/mixin-deep"                  |
+| "mkdirp@0.5.1"                                   | "MIT"                                       | "https://github.com/substack/node-mkdirp"                      |
+| "mongodb-core@3.1.7"                             | "Apache-2.0"                                | "https://github.com/mongodb-js/mongodb-core"                   |
+| "mongodb@3.1.8"                                  | "Apache-2.0"                                | "https://github.com/mongodb/node-mongodb-native"               |
+| "ms@2.0.0"                                       | "MIT"                                       | "https://github.com/zeit/ms"                                   |
+| "ms@2.1.1"                                       | "MIT"                                       | "https://github.com/zeit/ms"                                   |
+| "nan@2.11.1"                                     | "MIT"                                       | "https://github.com/nodejs/nan"                                |
+| "nanomatch@1.2.13"                               | "MIT"                                       | "https://github.com/micromatch/nanomatch"                      |
+| "needle@2.2.0"                                   | "MIT"                                       | "https://github.com/tomas/needle"                              |
+| "node-pre-gyp@0.10.0"                            | "BSD-3-Clause"                              | "https://github.com/mapbox/node-pre-gyp"                       |
+| "nopt@4.0.1"                                     | "ISC"                                       | "https://github.com/npm/nopt"                                  |
+| "normalize-path@2.1.1"                           | "MIT"                                       | "https://github.com/jonschlinkert/normalize-path"              |
+| "npm-bundled@1.0.3"                              | "ISC"                                       | "https://github.com/npm/npm-bundled"                           |
+| "npm-packlist@1.1.10"                            | "ISC"                                       | "https://github.com/npm/npm-packlist"                          |
+| "npm-run-path@2.0.2"                             | "MIT"                                       | "https://github.com/sindresorhus/npm-run-path"                 |
+| "npmlog@4.1.2"                                   | "ISC"                                       | "https://github.com/npm/npmlog"                                |
+| "number-is-nan@1.0.1"                            | "MIT"                                       | "https://github.com/sindresorhus/number-is-nan"                |
+| "object-assign@4.1.1"                            | "MIT"                                       | "https://github.com/sindresorhus/object-assign"                |
+| "object-copy@0.1.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/object-copy"                 |
+| "object-visit@1.0.1"                             | "MIT"                                       | "https://github.com/jonschlinkert/object-visit"                |
+| "object.pick@1.3.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/object.pick"                 |
+| "on-finished@2.3.0"                              | "MIT"                                       | "https://github.com/jshttp/on-finished"                        |
+| "once@1.4.0"                                     | "ISC"                                       | "https://github.com/isaacs/once"                               |
+| "ordered-read-streams@1.0.1"                     | "MIT"                                       | "https://github.com/armed/ordered-read-streams"                |
+| "os-homedir@1.0.2"                               | "MIT"                                       | "https://github.com/sindresorhus/os-homedir"                   |
+| "os-tmpdir@1.0.2"                                | "MIT"                                       | "https://github.com/sindresorhus/os-tmpdir"                    |
+| "osenv@0.1.5"                                    | "ISC"                                       | "https://github.com/npm/osenv"                                 |
+| "p-finally@1.0.0"                                | "MIT"                                       | "https://github.com/sindresorhus/p-finally"                    |
+| "package-json@4.0.1"                             | "MIT"                                       | "https://github.com/sindresorhus/package-json"                 |
+| "pad-left@2.1.0"                                 | "MIT"                                       | "https://github.com/jonschlinkert/pad-left"                    |
+| "pad-right@0.2.2"                                | "MIT"                                       | "https://github.com/jonschlinkert/pad-right"                   |
+| "parse-ms@1.0.1"                                 | "MIT"                                       | "https://github.com/sindresorhus/parse-ms"                     |
+| "pascalcase@0.1.1"                               | "MIT"                                       | "https://github.com/jonschlinkert/pascalcase"                  |
+| "path-dirname@1.0.2"                             | "MIT"                                       | "https://github.com/es128/path-dirname"                        |
+| "path-is-absolute@1.0.1"                         | "MIT"                                       | "https://github.com/sindresorhus/path-is-absolute"             |
+| "path-is-inside@1.0.2","(WTFPL OR MIT)"          | | "https://github.com/domenic/path-is-inside" |                                                                |
+| "path-key@2.0.1"                                 | "MIT"                                       | "https://github.com/sindresorhus/path-key"                     |
+| "path-to-regexp@2.4.0"                           | "MIT"                                       | "https://github.com/pillarjs/path-to-regexp"                   |
+| "pify@3.0.0"                                     | "MIT"                                       | "https://github.com/sindresorhus/pify"                         |
+| "pino-colada@1.4.4"                              | "MIT"                                       | "https://github.com/lrlna/pino-colada"                         |
+| "pino-std-serializers@2.3.0"                     | "MIT"                                       | "https://github.com/pinojs/pino-std-serializers"               |
+| "pino@4.17.6"                                    | "MIT"                                       | "https://github.com/pinojs/pino"                               |
+| "plur@1.0.0"                                     | "MIT"                                       | "https://github.com/sindresorhus/plur"                         |
+| "posix-character-classes@0.1.1"                  | "MIT"                                       | "https://github.com/jonschlinkert/posix-character-classes"     |
+| "prepend-http@1.0.4"                             | "MIT"                                       | "https://github.com/sindresorhus/prepend-http"                 |
+| "prettier-bytes@1.0.4"                           | "ISC"                                       | "https://github.com/Flet/prettier-bytes"                       |
+| "pretty-ms@2.1.0"                                | "MIT"                                       | "https://github.com/sindresorhus/pretty-ms"                    |
+| "process-nextick-args@2.0.0"                     | "MIT"                                       | "https://github.com/calvinmetcalf/process-nextick-args"        |
+| "proxy-addr@2.0.4"                               | "MIT"                                       | "https://github.com/jshttp/proxy-addr"                         |
+| "pseudomap@1.0.2"                                | "ISC"                                       | "https://github.com/isaacs/pseudomap"                          |
+| "pump@2.0.1"                                     | "MIT"                                       | "https://github.com/mafintosh/pump"                            |
+| "pump@3.0.0"                                     | "MIT"                                       | "https://github.com/mafintosh/pump"                            |
+| "pumpify@1.5.1"                                  | "MIT"                                       | "https://github.com/mafintosh/pumpify"                         |
+| "punycode@2.1.1"                                 | "MIT"                                       | "https://github.com/bestiejs/punycode.js"                      |
+| "quick-format-unescaped@1.1.2"                   | "MIT"                                       | "https://github.com/davidmarkclements/quick-format"            |
+| "range-parser@1.2.0"                             | "MIT"                                       | "https://github.com/jshttp/range-parser"                       |
+| "rc@1.2.7","(BSD-2-Clause OR MIT OR Apache-2.0)" | | "https://github.com/dominictarr/rc"         |                                                                |
+| "rc@1.2.8","(BSD-2-Clause OR MIT OR Apache-2.0)" | | "https://github.com/dominictarr/rc"         |                                                                |
+| "readable-stream@2.3.6"                          | "MIT"                                       | "https://github.com/nodejs/readable-stream"                    |
+| "readable-stream@3.0.6"                          | "MIT"                                       | "https://github.com/nodejs/readable-stream"                    |
+| "readdirp@2.2.1"                                 | "MIT"                                       | "https://github.com/paulmillr/readdirp"                        |
+| "regex-not@1.0.2"                                | "MIT"                                       | "https://github.com/jonschlinkert/regex-not"                   |
+| "registry-auth-token@3.3.2"                      | "MIT"                                       | "https://github.com/rexxars/registry-auth-token"               |
+| "registry-url@3.1.0"                             | "MIT"                                       | "https://github.com/sindresorhus/registry-url"                 |
+| "remove-trailing-separator@1.1.0"                | "ISC"                                       | "https://github.com/darsain/remove-trailing-separator"         |
+| "repeat-element@1.1.3"                           | "MIT"                                       | "https://github.com/jonschlinkert/repeat-element"              |
+| "repeat-string@1.6.1"                            | "MIT"                                       | "https://github.com/jonschlinkert/repeat-string"               |
+| "require_optional@1.0.1"                         | "Apache-2.0"                                | "https://github.com/christkv/require_optional"                 |
+| "resolve-from@2.0.0"                             | "MIT"                                       | "https://github.com/sindresorhus/resolve-from"                 |
+| "resolve-from@4.0.0"                             | "MIT"                                       | "https://github.com/sindresorhus/resolve-from"                 |
+| "resolve-url@0.2.1"                              | "MIT"                                       | "https://github.com/lydell/resolve-url"                        |
+| "ret@0.1.15"                                     | "MIT"                                       | "https://github.com/fent/ret.js"                               |
+| "reusify@1.0.4"                                  | "MIT"                                       | "https://github.com/mcollina/reusify"                          |
+| "rimraf@2.6.2"                                   | "ISC"                                       | "https://github.com/isaacs/rimraf"                             |
+| "safe-buffer@5.1.1"                              | "MIT"                                       | "https://github.com/feross/safe-buffer"                        |
+| "safe-buffer@5.1.2"                              | "MIT"                                       | "https://github.com/feross/safe-buffer"                        |
+| "safe-regex@1.1.0"                               | "MIT"                                       | "https://github.com/substack/safe-regex"                       |
+| "safer-buffer@2.1.2"                             | "MIT"                                       | "https://github.com/ChALkeR/safer-buffer"                      |
+| "saslprep@1.0.2"                                 | "MIT"                                       | "https://github.com/reklatsmasters/saslprep"                   |
+| "sax@1.2.4"                                      | "ISC"                                       | "https://github.com/isaacs/sax-js"                             |
+| "semver-diff@2.1.0"                              | "MIT"                                       | "https://github.com/sindresorhus/semver-diff"                  |
+| "semver-store@0.3.0"                             | "MIT"                                       | "https://github.com/delvedor/semver-store"                     |
+| "semver@5.5.0"                                   | "ISC"                                       | "https://github.com/npm/node-semver"                           |
+| "semver@5.6.0"                                   | "ISC"                                       | "https://github.com/npm/node-semver"                           |
+| "send@0.16.2"                                    | "MIT"                                       | "https://github.com/pillarjs/send"                             |
+| "set-blocking@2.0.0"                             | "ISC"                                       | "https://github.com/yargs/set-blocking"                        |
+| "set-value@0.4.3"                                | "MIT"                                       | "https://github.com/jonschlinkert/set-value"                   |
+| "set-value@2.0.0"                                | "MIT"                                       | "https://github.com/jonschlinkert/set-value"                   |
+| "setprototypeof@1.1.0"                           | "ISC"                                       | "https://github.com/wesleytodd/setprototypeof"                 |
+| "shebang-command@1.2.0"                          | "MIT"                                       | "https://github.com/kevva/shebang-command"                     |
+| "shebang-regex@1.0.0"                            | "MIT"                                       | "https://github.com/sindresorhus/shebang-regex"                |
+| "signal-exit@3.0.2"                              | "ISC"                                       | "https://github.com/tapjs/signal-exit"                         |
+| "snapdragon-node@2.1.1"                          | "MIT"                                       | "https://github.com/jonschlinkert/snapdragon-node"             |
+| "snapdragon-util@3.0.1"                          | "MIT"                                       | "https://github.com/jonschlinkert/snapdragon-util"             |
+| "snapdragon@0.8.2"                               | "MIT"                                       | "https://github.com/jonschlinkert/snapdragon"                  |
+| "source-map-resolve@0.5.2"                       | "MIT"                                       | "https://github.com/lydell/source-map-resolve"                 |
+| "source-map-url@0.4.0"                           | "MIT"                                       | "https://github.com/lydell/source-map-url"                     |
+| "source-map@0.5.7"                               | "BSD-3-Clause"                              | "https://github.com/mozilla/source-map"                        |
+| "sparse-bitfield@3.0.3"                          | "MIT"                                       | "https://github.com/mafintosh/sparse-bitfield"                 |
+| "split-string@3.1.0"                             | "MIT"                                       | "https://github.com/jonschlinkert/split-string"                |
+| "split2@2.2.0"                                   | "ISC"                                       | "https://github.com/mcollina/split2"                           |
+| "sprintf-js@1.0.3"                               | "BSD-3-Clause"                              | "https://github.com/alexei/sprintf.js"                         |
+| "static-extend@0.1.2"                            | "MIT"                                       | "https://github.com/jonschlinkert/static-extend"               |
+| "statuses@1.4.0"                                 | "MIT"                                       | "https://github.com/jshttp/statuses"                           |
+| "statuses@1.5.0"                                 | "MIT"                                       | "https://github.com/jshttp/statuses"                           |
+| "stream-shift@1.0.0"                             | "MIT"                                       | "https://github.com/mafintosh/stream-shift"                    |
+| "string-width@1.0.2"                             | "MIT"                                       | "https://github.com/sindresorhus/string-width"                 |
+| "string-width@2.1.1"                             | "MIT"                                       | "https://github.com/sindresorhus/string-width"                 |
+| "string_decoder@1.1.1"                           | "MIT"                                       | "https://github.com/nodejs/string_decoder"                     |
+| "strip-ansi@3.0.1"                               | "MIT"                                       | "https://github.com/chalk/strip-ansi"                          |
+| "strip-ansi@4.0.0"                               | "MIT"                                       | "https://github.com/chalk/strip-ansi"                          |
+| "strip-eof@1.0.0"                                | "MIT"                                       | "https://github.com/sindresorhus/strip-eof"                    |
+| "strip-json-comments@2.0.1"                      | "MIT"                                       | "https://github.com/sindresorhus/strip-json-comments"          |
+| "supports-color@5.5.0"                           | "MIT"                                       | "https://github.com/chalk/supports-color"                      |
+| "tar@4.4.1"                                      | "ISC"                                       | "https://github.com/npm/node-tar"                              |
+| "term-size@1.2.0"                                | "MIT"                                       | "https://github.com/sindresorhus/term-size"                    |
+| "through2-filter@2.0.0"                          | "MIT"                                       | "https://github.com/brycebaril/through2-filter"                |
+| "through2@2.0.3"                                 | "MIT"                                       | "https://github.com/rvagg/through2"                            |
+| "through@2.3.8"                                  | "MIT"                                       | "https://github.com/dominictarr/through"                       |
+| "timed-out@4.0.1"                                | "MIT"                                       | "https://github.com/floatdrop/timed-out"                       |
+| "tiny-lru@1.6.1"                                 | "BSD-3-Clause"                              | "https://github.com/avoidwork/tiny-lru"                        |
+| "tmpl@1.0.4"                                     | "BSD-3-Clause"                              | "https://github.com/daaku/nodejs-tmpl"                         |
+| "to-absolute-glob@2.0.2"                         | "MIT"                                       | "https://github.com/jonschlinkert/to-absolute-glob"            |
+| "to-object-path@0.3.0"                           | "MIT"                                       | "https://github.com/jonschlinkert/to-object-path"              |
+| "to-regex-range@2.1.1"                           | "MIT"                                       | "https://github.com/micromatch/to-regex-range"                 |
+| "to-regex@3.0.2"                                 | "MIT"                                       | "https://github.com/jonschlinkert/to-regex"                    |
+| "toidentifier@1.0.0"                             | "MIT"                                       | "https://github.com/component/toidentifier"                    |
+| "unc-path-regex@0.1.2"                           | "MIT"                                       | "https://github.com/regexhq/unc-path-regex"                    |
+| "union-value@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/union-value"                 |
+| "unique-stream@2.2.1"                            | "MIT"                                       | "https://github.com/eugeneware/unique-stream"                  |
+| "unique-string@1.0.0"                            | "MIT"                                       | "https://github.com/sindresorhus/unique-string"                |
+| "unset-value@1.0.0"                              | "MIT"                                       | "https://github.com/jonschlinkert/unset-value"                 |
+| "unzip-response@2.0.1"                           | "MIT"                                       | "https://github.com/sindresorhus/unzip-response"               |
+| "upath@1.1.0"                                    | "MIT"                                       | "https://github.com/anodynos/upath"                            |
+| "update-notifier@2.5.0"                          | "BSD-2-Clause"                              | "https://github.com/yeoman/update-notifier"                    |
+| "uri-js@4.2.2"                                   | "BSD-2-Clause"                              | "https://github.com/garycourt/uri-js"                          |
+| "urix@0.1.0"                                     | "MIT"                                       | "https://github.com/lydell/urix"                               |
+| "url-parse-lax@1.0.0"                            | "MIT"                                       | "https://github.com/sindresorhus/url-parse-lax"                |
+| "use@3.1.1"                                      | "MIT"                                       | "https://github.com/jonschlinkert/use"                         |
+| "util-deprecate@1.0.2"                           | "MIT"                                       | "https://github.com/TooTallNate/util-deprecate"                |
+| "walker@1.0.7"                                   | "Apache-2.0"                                | "https://github.com/daaku/nodejs-walker"                       |
+| "which@1.3.1"                                    | "ISC"                                       | "https://github.com/isaacs/node-which"                         |
+| "wide-align@1.1.2"                               | "ISC"                                       | "https://github.com/iarna/wide-align"                          |
+| "widest-line@2.0.1"                              | "MIT"                                       | "https://github.com/sindresorhus/widest-line"                  |
+| "wrappy@1.0.2"                                   | "ISC"                                       | "https://github.com/npm/wrappy"                                |
+| "write-file-atomic@2.3.0"                        | "ISC"                                       | "https://github.com/iarna/write-file-atomic"                   |
+| "xdg-basedir@3.0.0"                              | "MIT"                                       | "https://github.com/sindresorhus/xdg-basedir"                  |
+| "xtend@4.0.1"                                    | "MIT"                                       | "https://github.com/Raynos/xtend"                              |
+| "yallist@2.1.2"                                  | "ISC"                                       | "https://github.com/isaacs/yallist"                            |
+| "yallist@3.0.2"                                  | "ISC"                                       | "https://github.com/isaacs/yallist"                            |
+| "yui-lint@0.2.0"                                 | "BSD"                                       | "https://github.com/yui/yui-lint"                              |
 
 
 ## Licenses
@@ -415,3 +415,63 @@ Disclaimer of Warranty. Unless required by applicable law or agreed to in writin
 Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work (including but not limited to damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses), even if such Contributor has been advised of the possibility of such damages.
 
 Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability. END OF TERMS AND CONDITIONS APPENDIX: How to apply the Apache License to your work. To apply the Apache License to your work, attach the following boilerplate notice, with the fields enclosed by brackets "[]" replaced with your own identifying information. (https://success.docker.com/api/asset/.%2Fdocker-ee-2.1-Engine-Enterprise-linux-amd64-license-scanning%2FDon't include the brackets!) The text should be enclosed in the appropriate comment syntax for the file format. We also recommend that a file or class name and description of purpose be included on the same "printed page" as the copyright notice for easier identification within third-party archives. Copyright [yyyy] [name of copyright owner] Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+### ISC
+ISC License
+
+Copyright (c) [year], [fullname]
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+### BSD-2-Clause
+
+Copyright <YEAR> <COPYRIGHT HOLDER>
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+### BSD-3-Clause
+
+Copyright <YEAR> <COPYRIGHT HOLDER>
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+### WTFPL
+
+ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+
+                  Version 2, December 2004
+
+Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+Everyone is permitted to copy and distribute verbatim or modified
+copies of this license document, and changing it is allowed as long
+as the name is changed.
+
+          DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+0. You just DO WHAT THE FUCK YOU WANT TO.
