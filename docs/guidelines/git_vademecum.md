@@ -1,199 +1,198 @@
 # GIT Vademecum #
 
-GIT è un sistema di controllo di versione distribuito che facilita le attività di Mia-Platform. Questo vademecum riassume i principali comandi e linee guida di GIT per semplificarti il lavoro.
+GIT is a distributed version control system that facilitates Mia-Platform activities. This vademecum summarizes the main GIT commands and guidelines to simplify your work.
 
-## Installa Git ##
-*Comincia ad usare Git installandolo sul tuo PC.*
+## Install Git ##
+*Start using Git by installing it on your PC*
 
 [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-## Configurazioni iniziali ##
-*Configura le informazioni degli utenti valide per tutti i repository.*
+## Initial configurations ##
+*Configure valid user information for all repositories.*
 
 <span style="color:blue"> $ git config --global user.name "[name]"
 
-Imposta l’username (nome.cognome) che vuoi mostrare sulle tue commit.
+Set the username (name.surname) you want to show on your commits.
 
-<span style="color:blue"> $ git config --global user.email "[email address]"
+<span style = "color: blue"> $ git config - global user.email "[email address]"
 
-Imposta l’email aziendale che vuoi mostrare sulle tue commit.
+Set up the business email you want to show on your commits.
 
-## Configurazioni consigliate ##
-*Ti consigliamo una serie di configurazioni che potrebbero aiutarti nel tuo lavoro.*
+## Recommended configurations ##
+*We recommend a series of configurations that could help you in your work.*
 
 <span style="color:blue"> $ git config --global fetch.prune true
 
-Imposta il fetch.prune come attivo. Ti permette di mantenere allineati i branch in remoto con i tuoi branch locali.
+Set fetch.prune as active. It allows you to keep branches aligned remotely with your local branches.
 
 <span style="color:blue"> $ git config --global pull.rebase true
 
-Imposta il rebase automatico al pull. Ti permette di evitare merge inutili su un branch se si lavora in più di una persona sullo stesso branch.
+Set the automatic rebase to the pull. It allows you to avoid unnecessary merge on a branch if you work in more than one person on the same branch.
 
 <span style="color:blue"> $ git config --global rebase.autoStash true
 
-Imposta l’autostash come true nelle configurazioni iniziali. Unito alla configurazione precedente ti permette di eseguire un pull anche con delle modifiche non committate.
+Set the autostash to true in the initial configurations. Combined with the previous configuration, it allows you to perform a pull even with unscheduled modifications.
 
 <span style="color:blue"> $ git config --global alias.gr 'log --graph --full-history --all --color --tags --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s %x1b[33m%aN <%ae>%x1b[0m (%aI)"'
 
-Colora il tuo GIT per una migliore visualizzazione della history.
+Color your GIT for a better view of the history.
 
+## Create a repository ##
+*Start with a new repository or download information from an existing URL.*
 
-## Crea un repository ##
-*Inizia con un nuovo repository o scarica le informazioni da un URL esistente.*
+<span style = "color: blue"> $ git init [project-name]
 
-<span style="color:blue"> $ git init [project-name]
+Create a new local repository with its specific name.
 
-Crea un nuovo repository locale con il suo nome specifico.
+<span style = "color: blue"> $ git clone [url]
 
-<span style="color:blue"> $ git clone [url]
+Download a project and its entire chronology.
 
-Scarica un progetto e la sua intera cronologia.
+## Make changes ##
+*Review changes to the code and prepare a commit.*
 
-## Apporta modifiche ##
-*Rivedi i cambiamenti al codice e prepara un commit.*
+<span style = "color: blue"> $ git status
 
-<span style="color:blue"> $ git status
+List all files, new or modified, to be committed.
 
-Elenca tutti i file, nuovi o modificati, da committare.
+<span style = "color: blue"> $ git diff
 
-<span style="color:blue"> $ git diff
+Shows the differences between the files that were added and not ignored in the staging area.
 
-Mostra le differenze tra i file che sono stati aggiungi e non ignorati nell’area di staging.
+<span style = "color: blue"> $ git add [file]
 
-<span style="color:blue"> $ git add [file]
+Add new files and prepare them for the commit.
 
-Aggiungi i file nuovi e prepararli per il commit.
+<span style = "color: blue"> $ git diff --staged
 
-<span style="color:blue"> $ git diff --staged
+Show file differences between staging and last modification.
 
-Mostra le differenze dei file tra lo staging e ultima modifica.
+<span style = "color: blue"> $ git reset [file]
 
-<span style="color:blue"> $ git reset [file]
+Remove a file from the staging area, but keep the changes.
 
-Rimuovi un file dall’area di staging, ma mantieni le modifiche.
+<span style = "color: blue"> $ git commit -m "[descriptive message]"
 
-<span style="color:blue"> $ git commit -m"[descriptive message]"
+Add the file to the local repository header.
 
-Aggiungi il file nell’head del repository locale.
+<span style = "color: blue"> $ git push
 
-<span style="color:blue"> $ git push
+Upload all local branches to the remote repository.
 
-Carica tutti i branch locali sul repository remoto.
+## Manage the branch ##
+*Name your commits and join them when you finish.*
 
-##Gestisci i branch ##
-*Nomina i tuoi commit e uniscili quando hai terminato.*
+<span style = "color: blue"> $ git branch
 
-<span style="color:blue"> $ git branch
+Lists all branches in the current repository.
 
-Elenca tutti i branch nel repository corrente.
+<span style = "color: blue"> $ git branch [branch-name]
 
-<span style="color:blue"> $ git branch [branch-name]
+Create a new branch.
 
-Crea un nuovo branch.
 
+<span style = "color: blue"> $ git checkout [branch-name]
 
-<span style="color:blue"> $ git checkout [branch-name]
+Switch to the specified branch and update the current directory.
 
-Passa al branch specificato e aggiorna la directory corrente.
+<span style = "color: blue"> $ git merge [branch-name]
 
-<span style="color:blue"> $ git merge [branch-name]
+Merge the history of the specified branch with the current one.
 
-Unisci lo storico del branch specificato con quello corrente.
+<span style = "color: blue"> $ git branch -d [branch-name]
 
-<span style="color:blue"> $ git branch -d [branch-name]
+Delete the specified branch only if it has been merged to master.
 
-Elimina il branch specificato solo se è stato unito a master.
 
-## Fai refactoring dei tuoi file ##
-*Ricerca e rimuovi file dallo storico.*
+## Make refactoring your files ##
+*Search and remove files from the history.*
 
+<span style = "color: blue"> $ git rm [file]
 
-<span style="color:blue"> $ git rm [file]
+Remove a file from the directory and prepare for permanent deletion.
 
-Rimuovi un file dalla directory e prepara l’eliminazione definitiva.
+<span style = "color: blue"> $ git rm --cached [file]
 
-<span style="color:blue"> $ git rm --cached [file]
+Delete the file from GIT, but keep the local file.
 
-Elimina il file da GIT, ma mantieni il file locale.
+## Remove your files from the history ##
+*Exclude files and temporary locations.*
 
+<span style = "color: blue"> * .log
+build /
+TEMP- *
 
-## Rimuovi i tuoi file dallo storico ##
-*Escludi file e percorsi temporanei.*
+A text file called .gitignore prevents accidental versioning of files or directories according to a specified pattern.
 
-<span style="color:blue"> *.log
-build/
-temp-*
+<span style = "color: blue"> $ git ls-files --others --ignored --exclude-standard
 
-Un file di testo chiamato .gitignore previene il versioning accidentale di file o directory secondo un pattern specificato.
+List all files ignored in this project.
 
-<span style="color:blue"> $ git ls-files --others --ignored --exclude-standard
+## Save all changes ##
+*Archive and restore incomplete changes. Useful for remotely downloading changes while you are working and you do not want to commit and push again or to change from one branch to another without committing before.*
 
-Elenca tutti i file ignorati in questo progetto.
+<span style = "color: blue"> $ git stash
 
-##Salva tutte le modifiche ##
-*Archivia e ripristina cambiamenti incompleti. Utile per scaricare da remoto le modifiche mentre stai lavorando e non vuoi fare ancora commit e push oppure per cambiare da un branch all’altro senza fare commit prima.*
+Temporarily store all changed files so you can remotely git pull and download changes made by other team members.
 
-<span style="color:blue"> $ git stash
+<span style = "color: blue"> $ git stash pop
 
-Archivia temporaneamente tutti i file modificati così puoi fare un git pull remoto e scaricare le modifiche fatte dalle altre persone del team.
+Restore all files placed in stash from the stash archive. In this way you can merge with the changes downloaded remotely with the pull.
 
-<span style="color:blue"> $ git stash pop
+<span style = "color: blue"> $ git stash list
 
-Ripristina dall’archivio di stash tutti i file messi in stash. In questo modo puoi fare il merge con le modifiche scaricate da remoto con il pull.
+Lists the edited files stored in stash.
 
-<span style="color:blue"> $ git stash list
+<span style = "color: blue"> $ git stash drop
 
-Elenca i file modificati archiviati in stash.
+Delete files stored in stash.
 
-<span style="color:blue"> $ git stash drop
+## Review the chronology ##
+*Browse and check the evolution of the files of each project.*
 
-Elimina i file archiviati in stash.
+<span style = "color: blue"> $ git log
 
-## Rivedi la cronologia ##
-*Sfoglia e controlla l’evoluzione dei file di ogni progetto.*
+View the commit history of the current branch.
 
-<span style="color:blue"> $ git log
+<span style = "color: blue"> $ git log --follow [file]
 
-Visualizza lo storico dei commit del branch corrente.
+View the history of a file, including changes.
 
-<span style="color:blue"> $ git log --follow [file]
+<span style = "color: blue"> $ git diff [first-branch] ... [second-branch]
 
-Visualizza lo storico di un file, incluse le modifiche.
+Show the difference between two branches.
 
-<span style="color:blue"> $ git diff [first-branch]...[second-branch]
+<span style = "color: blue"> $ git show [commit]
 
-Mostra la differenza tra due branch.
+Show metadata and changes made for a specific commit.
 
-<span style="color:blue"> $ git show [commit]
+## Re-commit ##
+*Eliminates errors and alters changes history.*
 
-Mostra i metadati e i cambiamenti effettuati per uno specifico commit.
+<span style = "color: blue"> $ git reset [commit]
 
-## Ri-committa ##
-*Elimina gli errori e altera lo storico dei cambiamenti.*
+Cancel all commits made after [commit], preserving local changes.
 
-<span style="color:blue"> $ git reset [commit]
+<span style = "color: blue"> $ git reset --hard [commit]
 
-Annulla tutte le commit effettuate dopo [commit], preservando i cambiamenti locali.
+Delete all history and changes until the specified commit.
 
-<span style="color:blue"> $ git reset --hard [commit]
 
-Elimina tutto lo storico e i cambiamenti fino alla commit specificata.
+## Synchronize changes ##
+*Connect to a remote URL and get change history.*
 
-## Sincronizza le modifiche ##
-*Collegati a un URL remoto e ottieni lo storico dei cambiamenti.*
+<span style = "color: blue"> $ git fetch [remote]
 
-<span style="color:blue"> $ git fetch [remote]
+Download the change history from the remote repository.
 
-Scarica lo storico dei cambiamenti dal repository remoto.
+<span style = "color: blue"> $ git merge [remote] / [branch]
 
-<span style="color:blue"> $ git merge [remote]/[branch]
+Join the remote branch with the local branch.
 
-Unisci il branch remoto con quello locale.
+<span style = "color: blue"> $ git push -u [remote] [branch]
 
-<span style="color:blue"> $ git push -u [remote] [branch]
+Upload all changes to the local branch on the remote repository.
 
-Carica tutti i cambiamenti al branch locale sul repository remoto.
+<span style = "color: blue"> $ git pull
 
-<span style="color:blue"> $ git pull
-
-Aggiorna la tua repository locale con quella online.
+Update your local repository with the online repository.

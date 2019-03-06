@@ -1,55 +1,42 @@
-## Introduzione
-API è l'acronimo per *Application Programming Interface*. Negli ultimi anni le RESTful API sono diventate il metodo
-principale per disaccoppiare la parte server dalla parte client di un software applicativo. Una RESTful utilizza i verbi
-del protocollo HTTP (GET, PUT, POST, DELETE) per gestire un modello dati chiamato anche risorsa.
+## Introduction
+API is the acronym for *Application Programming Interface*. In recent years the RESTful API have become the main method to decouple the server part from the client side of an application software. A RESTful uses verbs HTTP protocol (GET, PUT, POST, DELETE) to manage a data model also called a resource.
 
-Nel dettaglio:
+In detail:
 
-- GET: consente di leggere una risorsa o una lista di risorse
-- POST: crea una risorsa
-- PUT: aggiorna una risorsa
-- DELETE: elimina una risorsa
+- GET: allows to read a resource or a list of resources
+- POST: create a resource
+- PUT: update a resource
+- DELETE: delete a resource
 
-## Linee guida
-Esitono delle buone pratiche per progettare delle API RESTFul che si sono consolidate negli anni grazie ad una ricca
-comunità Open Source.Seguono alcuni buoni consigli sulla progettazione delle API. Potete trovare ulteriori
-dettagli sulla [Guideline di Zalando](http://zalando.github.io/restful-api-guidelines).
+## Guidelines
+Exists good practices to design RESTFul APIs that have been consolidated over the years thanks to a rich one Open Source community. Below some good tips on API design. You can find more
+details on the [Guideline of Zalando](http://zalando.github.io/restful-api-guidelines).
 
-### L'importanza di progettare le API
-Progettare prima le API e poi implementarle non è contro i principi Agili.
-Anzi consente di velocizzare lo sviluppo perchè disaccoppia il backend dal frontend e aiuta a parallelizzare gli
-sviluppi e di conseguenza anche di rilasciare in modo incrementale le funzionalità. Inizialmente le UI saranno
-interfacciate ad implementazioni delle API ancora in Draft. Dopo una prima valutazione dell'ergonomia delle API da parte
-della UI le API evolveranno e sarà implementata la logica finale lato server.
+### The importance of designing APIs
+Designing the API first and then implementing it is not against Agile principles.
+On the contrary, it allows to speed up the development because it decouples the backend from the frontend and helps to parallelize developments and consequently also to incrementally release features. Initially, the UI will be interfaced with API implementations still in Draft. After a first evaluation of the API's ergonomics aside of the UI the API will evolve and the final server-side logic will be implemented.
 
-![Approccio senza progettare le API con una piattaforma](img/no-platform.png)
+![Approach without designing APIs with a platform](img / no-platform.png)
 
-Approccio senza progettare le API con una piattaforma
+Approach without designing the APIs with a platform
 
-![Approccio progettando le API con una piattaforma](img/with-platform.png)
+![Approach designing APIs with a platform](img / with-platform.png)
 
-Approccio progettando le API con una piattaforma
+Approach by designing APIs with a platform
 
-Nei due schemi si può vedere come progettando una API e concordando quindi un contratto tra frontend e backend sia
-possibile procedere in parallelo fornendo dapprima dati mock all'interfaccia utente e poi, senza cambiare l'API,
-implementare la parte server. Questo approccio ha il vantaggio che le prime versioni dell'API saranno subuito utilizzate
-e quindi riceveranno il feedback di chi sta implementando la parte client dell'applicazione. Grazie a questi feedback
-le API saranno migliorate ad un costo minore rispetto a farle cambiare una volta che tutta la logica server è stata
-completata.
+In the two schemes you can see how to design an API and then agree a contract between frontend and backend. You can proceed in parallel by first providing mock data to the user interface and then, without changing the API, implement the server part. This approach has the advantage that the first versions of the API will be used and then receive feedback from who is implementing the client side of the application. Thanks to these feedbacks the APIs will be improved at a lower cost than making them change once all the server logic has been completed.
 
-E' comunque auspicabile far evolvere le API man mano che l'interfaccia utente evolve. Il pattern di Backend-for-Frontend
-è basilare per rendere facile la vita al frontend e consentire di avere API performanti e utili.
+However, it is desirable to evolve the APIs as the user interface evolves. The Backend-for-Frontend pattern it is basic to make life easier at the frontend and to allow for performing and useful APIs.
 
-### Usare i nomi per identificare una risorsa
-La prima volta che si definisce un'API si tende a pensare all'azione che viene fatta come se fosse un servizio da
-chiamare. Facciamo un esempio, vogliamo fare un gioco su super eroi e la prima cose che vogliamo fare è gestire
-il profilo di un super eroe. Ad esempio per leggere tutti gli erori ci potrebbe venir voglia di scrivere
-
+### Use names to identify a resource
+The first time an API is defined, we tend to think of the action that is done as if it were a service from
+to call. Let's take an example, we want to make a game on super heroes and the first thing we want to do is to manage
+the profile of a super hero. For example, to read all the erors we might want to write
 ```
 /getAllHeroes
 ```
 
-e poi ...
+and then...
 
 
 ```
@@ -61,69 +48,61 @@ e poi ...
 /evolveAllHeroes
 ```
 
-... e non finirebe qui, ci sarebbero molti end-point simili a questi. Tutti questi end-point conterrebbero azioni ridondanti.
-Man mano che il sistema evolve nascerebbero ulteriori endpoint e la manutenzione del sistema raggiungerebbe livelli critici.
+... and do not finish here, there would be many end-points similar to these. All of these end-points would contain redundant actions.
+As the system evolves, further endpoints would emerge and system maintenance would reach critical levels.
 
-Cosa è sbagliato in questo approccio?
+What's wrong with this approach?
 
-*Gli URL dovrebbe contenere solo risorse (nomi) e non azioni o verbi!*. Ad esempio il path */addNewHero* contiene
-l'azione *addNew* e la risorsa chiamata *Hero*.
+*URLs should only contain resources (names) and not actions or verbs!*. For example the path */ addNewHero* contains
+the *addNew* action and the resource called *Hero*.
 
-Quindi quale sarebbe la strada corretta?
+So what would be the correct way?
 
-*/heroes* sarebbe un buon esempio, non contiene azioni ma solo il nome. La domanda successiva è: come dire al server
-di eseguire azioni sugli eroi? Qui entrano in gioco i verbi HTTP.
+*/ heroes* would be a good example, it does not contain actions but only the name. The next question is: how to tell the server
+to perform actions on heroes? HTTP verbs come into play here.
 
-Le risorse usano sempre il *plurale* e se vogliamo accedere ad una sola risorsa possiamo passare l'id nell'URL.
-Ad esempio:
+The resources always use the *plural* and if we want to access only one resource we can pass the id in the URL.
+For example:
 
-```
-- il metodo GET sul path /heroes ritorna la lista di tutti gli eroi
-- il metodo GET sul path /heroes/100 ritorna l'eroe che ha come id 100
-- il metodo DELETE sul path /heroes/100 cancella l'eroe che ha come id 100
-- il meotod POST sul path /heroes crea un nuovo eroe e ritorna il dettaglio del nuovo eroe creato.
-```
+`` `
+- the GET method on path / heroes returns the list of all heroes
+- the GET method on path / heroes / 100 returns the hero with id 100
+- the DELETE method on path / heroes / 100 deletes the hero whose id is 100
+- the POST meotod on path / heroes creates a new hero and returns the detail of the new hero created.
+`` `
 
-Con questo semplice accorgimento le API sono più concise e consistenti!
+With this simple device the APIs are more concise and consistent!
 
-Può essere utile questo accorgimento
+This trick can be useful
 
-```
-L'API descrive le risorse, quindi l'unico luogo dove le azioni dovrebbero apparire è nei metodi HTTP.
-Negli URL, utilizzare solo i nomi. Invece di pensare alle azioni (verbi), è spesso utile pensare a mettere un messaggio
-in una casella di posta: ad esempio, al posto di mettere il verbo delete nell'URL, si pensi di inviare un messaggio per
-eliminare un eroe alla casella di deletion lato server.
-```
+`` `
+The API describes resources, so the only place where actions should appear is in HTTP methods.
+In URLs, use only the names. Instead of thinking about actions (verbs), it is often useful to think about putting a message
+in a mailbox: for example, instead of putting the verb delete in the URL, consider sending a message to
+delete a hero from the server-side deletion box.
+`` `
 
-Nei prossimi paragrafi vedremo nel dettaglio come progettare un'API con Mia-Platform.
+In the next paragraphs we will see in detail how to design an API with Mia-Platform.
 
+### Versioning the APIs
+There are several debates on versioning or not versioning the APIs. Both approaches have pros and cons.
 
-### Versionare le API
-Ci sono diversi dibattiti sul versionare o non versionare le API. Entrambi gli approcci hanno pro e contro.
+- Not versioning the API allows to guarantee a continuity of service to all the clients that consume them and can access the end-points without having to change the endpoints
+- Versioning the API allows you to introduce break changes without impacting on existing clients.
 
-- Non versionare le API consente di garantire una continuità di servizio a tutti i client che le consumano e poter
-accedere agli end-point senza dover cambiare gli endpoint
-- Versionare le API consente di introdurre cambiamenti di rottura senza impattare sui client in essere.
+What we recommend is
 
-Quello che si consiglia è
-
-```
-Versionare solo le major version che portano a cambiamenti di rottura del servizio e ridurre il numero di versioni
-supportate in produzione a 2: quella di utilizzo corrente e quella in dismissione.
+`` `
+Versioning only the major versions that lead to changes in the breakdown of the service and reduce the number of versions
+supported in production at 2: that of current and discontinued use.
 ```
 
-## Creare una API
-Per creare un'API si può utilizzare l'API Modeller all'indirizzo
-[https://yoururl.com/data_modeller/](https://yoururl.com/data_modeller/).
+### Base fields of a Resource {#base}
 
-Maggiori informazioni alla pagina Data Modeller.
+A Mia Platform resource has predefined and prevailed fields that are used for the management of the life cycle of the
+given. If we create a resource without properties we will have a JSON like the following:
 
-### I campi base di una Risorsa {#base}
-
-Una risorsa Mia Platform ha dei campi predefiniti e prevalorizzati che servono per la gestione del ciclo di vita del
-dato. Se creiamo una risorsa senza proprietà avremo un JSON come il seguente:
-
-```
+`` `
 {
     "creatorId": "public",
     "createdAt": 1504601216920,
@@ -133,29 +112,28 @@ dato. Se creiamo una risorsa senza proprietà avremo un JSON come il seguente:
     "trash": 0,
     "id": "86c32c9f-194e-46a1-b483-a07c118ff2fc"
   }
-```
+`` `
 
-Nel dettaglio:
+In detail:
 
-- creatorId: id dell'utente che ha creato la risorsa
-- createdAt: long che esprime in millisecondi dal 1970 la data e ora di creazione della risorsa
-- updaterId: id dell'utente che ha modificato per ultimo la risorsa
-- updatedAt: long che esprime in millisecondi dal 1970 la data e ora di ultimo aggiornamento della risorsa
-- sync e trash: le proprietà sync e trash appartengono ad ogni risorsa e sono rappresentate da numeri con una semantica ben precisa.
-  La proprietà sync può assumere 3 valori: 0, 1 o 2.
+- creatorId: id of the user who created the resource
+- createdAt: long that expresses the date and time of creation of the resource in milliseconds since 1970
+- updaterId: id of the user who last modified the resource
+- updatedAt: long which expresses in milliseconds since 1970 the date and time of last update of the resource
+- sync and trash: the sync and trash properties belong to every resource and are represented by numbers with a precise semantics.
+  The sync property can take 3 values: 0, 1 or 2.
 
-    - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di trash;
-    - 1: la risorsa è stata modificata localmente e deve essere caricata sul BaaS. Questo valore ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
-    - 2: la risorsa è in stato "draft" (bozza). L'applicazione client può scegliere (tramite configurazione) se salvare o no tale risorsa.
+    - 0: the resource is in the "normal" state: visible and synchronizable unless the value of trash;
+    - 1: the resource has been modified locally and must be loaded on the BaaS. This value only makes sense on the client side, it should never appear on the BaaS.
+    - 2: the resource is in the "draft" state (draft). The client application can choose (by configuration) whether or not to save this resource.
 
-    La proprietà trash può assumere 4 valori: 0, 1, 2, -1.
+    The trash property can take 4 values: 0, 1, 2, -1.
 
-    - 0: la risorsa è nello stato "normale": visibile e sincronizzabile a meno del valore di sync;
-    - 1, 2: la risorsa è nello stato "trash" ovvero non è stata cancellata fisicamente, ma non dovrebbe essere più visibile (2 = non visibile neanche al CMS);
-    - -1: la risorsa deve essere eliminata definitivamente dal BaaS. Questo stato ha senso solo lato client, non dovrebbe mai comparire sul BaaS.
+    - 0: the resource is in the "normal" state: visible and synchronizable unless the value of sync;
+    - 1, 2: the resource is in the "trash" state, ie it has not been physically deleted, but it should no longer be visible (2 = not visible even to CMS);
+    - -1: the resource must be permanently deleted from the BaaS. This state only makes sense on the client side, it should never appear on the BaaS.
 
-    Una piccola considerazione su sync == 1 e trash == -1: questi due valori hanno significato solo lato client e servono per la corretta sincronizzazione delle collezioni, in particolare per l'operazione di push. Questi valori non dovrebbero mai comparire sul BaaS, per questo motivo, prima di caricare una risorsa con sync == 1 è doveroso impostare sync = 0, mentre quando si ha trash == -1 l'operazione da effettuare sul BaaS è la cancellazione definitiva della risorsa.
-
+    A small consideration on sync == 1 and trash == -1: these two values ​​have significance only on the client side and serve for the correct synchronization of the collections, in particular for the push operation. These values ​​should never appear on the BaaS, for this reason, before loading a resource with sync == 1 it is necessary to set sync = 0, while when you have trash == -1 the operation to be performed on the BaaS is the definitive cancellation of the resource.
 
     | sync                  | trash                 | description               | action  |
     | --------------------- |---------------------- | ------------------------- | --------|
@@ -167,15 +145,15 @@ Nel dettaglio:
     | 1 (client reserved)   | 1	                    | Trashed by the client	    | Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
     | -                     | -                     | Undefined	                | Delete local data or just skip.|
 
-- id: identificativo UUID generato da mongo per identificare la risorsa
+- id: UUID generated by mongo to identify the resource
 
-### I tipi di dato di una risorsa
+### The data types of a resource
 
-E' possibile specificare campi di diverse tipologie:
+It is possible to specify fields of different types:
 
 - String
 - Numbers
-- Date
+- At your place
 - DateTime
 - ....
 - GeoPoint, see RFC 7946: {
@@ -183,14 +161,12 @@ E' possibile specificare campi di diverse tipologie:
     "coordinates": [longitude: Double, latitude: Double]
 }
 
-## Sicurezza di un'API
-Le API possono essere protette in due modi:
- - con chiave Secret
- - con ACL
+## Security of an API
+The APIs can be protected in two ways:
+ - with Secret key
+ - with ACL
 
-L'API Modeller consente di gestire entrambe.
-
-Nel dettaglio
+In detail
 
 ```
 {
@@ -231,39 +207,35 @@ Nel dettaglio
        }
    }
 ```
-
-La secret key viene configurata nel file
+The secret key is configured in the file
 
 ```
 credentials.json
 ```
+and must be passed into the header
 
-e deve essere passata nell'header
+## Consume an API
+APIs configured with Mia-Platform can be consumed with any technology that supports HTTP procurement.
+For tests during development we recommend one of the following tools:
 
+- curl: [https://curl.haxx.se] (https://curl.haxx.se/)
+- insomnia: [https://insomnia.rest] (https://insomnia.rest/)
+- postman: [https://www.getpostman.com] (https://www.getpostman.com/)
 
-## Consumare una API
-Le API configurate con Mia-Platform possono essere consumate con qualsiasi tecnologia che supporta il procollo HTTP.
-Per i test durante lo sviluppo consigliamo uno dei seguenti strumenti:
+In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
 
-- curl: [https://curl.haxx.se](https://curl.haxx.se/)
-- insomnia: [https://insomnia.rest](https://insomnia.rest/)
-- postman: [https://www.getpostman.com](https://www.getpostman.com/)
+*Note*: all of these examples can be tested using the swagger end-point of the Mia-Platform instance. The url is
 
-Negli esempi per brevità useremo curl. Seguono le operazioni tipiche che si possono fare con un'APIRestful CRUD creata con Mia-Platform.
+`` `
+https: // your-url / swagger /
+`` `
 
-*Nota*: tutti questi esempi possono essere testati usando l'end-point swagger dell'istanza di Mia-Platform. L'url è
+An example can be found on the [Mia Platform demo] website (https://preprod.baas.makeitapp.eu/swagger/).
 
-```
-https://your-url/swagger/
-```
+### Creating a Resource
 
-Un esempio lo potete trovare sul sito di [demo di Mia Platform](https://preprod.baas.makeitapp.eu/swagger/).
-
-### Creare una Risorsa
-
-Per creare una risorsa è sufficiente inviare una *POST* request all'endpoint passando nel body le informazioni della
-risorsa che si vuole creare.
-
+To create a resource it is sufficient to send a *POST* request to the endpoint passing in the body the information of the
+resource that you want to create.
 ```
 curl -X POST https://your-url/heroes/ \
 -H  "accept: application/json" \
@@ -271,7 +243,7 @@ curl -X POST https://your-url/heroes/ \
 -H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
 ```
 
-il cui body è
+body is
 
 ```
 {
@@ -282,7 +254,7 @@ il cui body è
 }
 ```
 
-in risposta si ottiene la risorsa appena creata
+in response, tou will get this resource:
 
 ```
 {
@@ -303,9 +275,9 @@ in risposta si ottiene la risorsa appena creata
   }
 ```
 
-### Lettura di una lista di Risorse
+### Reading a list of resources
 
-Per leggere una risorsa è sufficiente chiamare con una GET l'endpoint
+To read a resource, simply call the endpoint with a GET
 
 ```
 curl -X GET https://your-url/heroes/ \
@@ -314,7 +286,7 @@ curl -X GET https://your-url/heroes/ \
 -H  "secret: secret"
 ```
 
-si otterrà un array JSON che contiene tutte le risorse della risorsa. L'ordinamanento è quello di inserimento
+you will get a JSON array that contains all the resources of the resource. The sorting is by insertion
 
 ```
 [
@@ -370,10 +342,9 @@ si otterrà un array JSON che contiene tutte le risorse della risorsa. L'ordinam
   }
 ]
 ```
+### Reading a single resource
 
-### Lettura di una singola Risorsa
-
-Per leggere un solo elemento è sufficiente passare alla GET l'id della risorsa che si vuole leggere.
+To read only one element, simply pass the id of the resource you want to read to GET.
 
 ```
 curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e  \
@@ -382,7 +353,7 @@ curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e  \
 -H  "secret: secret123"
 ```
 
-si ottiene la risorsa corrispondente all'id *ef02dcaa-7a2e-4c31-a505-c2cb014d769e*
+you get the resource corresponding to id *ef02dcaa-7a2e-4c31-a505-c2cb014d769e*
 
 ```
 {
@@ -844,11 +815,11 @@ definitions:
 
 ```
 
-## Codici di risposta di un'API
-Segue un elenco dei codici di ritorno tipici di una request API:
+## Response codes of an API
+Below is a list of return codes typical of an API request:
 
 - 2xx (Success category)
-  Questi sono gli stati di successo
+Success status:
   - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
   - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
   - 204 No Content represents the request is successfully processed, but has not returned any content.
@@ -865,11 +836,10 @@ Segue un elenco dei codici di ritorno tipici di una request API:
   - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
   - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
 
-## API con codice custom
+##API with custom code
 
-Si veda la sezione dedicata plugins
+See the dedicated plugins section
 
+##Events related to an API
 
-## Eventi legati ad una API
-
-Dopo l'invocazione dei verbi HTTP è possibile invocare uno script nodejs che può aggiornare altri campi della risorsa.
+After invoking HTTP verbs, you can invoke a nodejs script that can update other fields of the resource.

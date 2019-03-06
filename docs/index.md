@@ -1,4 +1,4 @@
-# Benvenuto sulla documentazione di Mia-Platform
+# Welcome to the Mia-Platform documentation
 
 ![Mia-Platform](img/logo.png)
 
