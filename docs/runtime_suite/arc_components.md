@@ -1,4 +1,5 @@
-Qui potrai trovare l'elenco dettagliato dei componenti che costituiscono Mia-Platform.
+
+Below you will find a detailed list of the components that compose Mia-Platform.
 
 ![](img/schema.PNG)
 
@@ -6,58 +7,57 @@ Qui potrai trovare l'elenco dettagliato dei componenti che costituiscono Mia-Pla
 
 ## API Gateway ##
 
-L'API Gateway è il microservizio responsabile del routing delle richieste verso il servizio corretto.
-Inoltre gestisce l'autenticazione, esegue il controllo di accesso e il rate limiting.
+The API Gateway is the microservice responsible for routing requests to the correct service.
+It also manages authentication, performs access control and rate limiting.
 
-Le sue funzionalità principali sono:
+Its main features are:
 
 * URL Mapping
 * Rate Limit
 * Http Secure Headers
 * Request Dispaching
-* API Secret Management
+* Secret Management API
 * Http Utilities
 * Proxy-Pass Plain
 * SSL Encryption
 * URL Rewriting
 
-Il servizio è composto a default da server nginx multipli, 2 in ascolto sulle porte 80 ed 8080, 4 in ascolto su socket unix per ritornare i messaggi di errore.
+The service is composed by default from multiple nginx servers, 2 listening on ports 80 and 8080, 4 listening on unix sockets to return the error messages.
 
-La porta 80 è utilizzata per il routing applicativo, mentre quello di backoffice è esposto alla 8080.
+Port 80 is used for application routing, while the backoffice is exposed to 8080.
 
 ![](img/gateway.PNG)
 
 ### Client Proxy ###
 
-Il microservizio è responsabile della gestione del traffico in entrata, esegue la terminazione SSL e dispaccia le chiamate allo spazio client corretto.
+The image consists of a nginx.conf file that applies the format of the registers and the basic settings.
+It also provides a secure.conf file that implements the best SSL security practice to include in the required server declaration. The path is /etc/nginx/secure.conf.
+The SSL configuration is based on the availability of three files within the / etc / usr / ssl / directory:
 
-L'immagine è costituita da un file nginx.conf che applica il formato dei registri e le impostazioni di base.
-Inoltre fornisce un file secure.conf che implementa la migliore pratica di sicurezza SSL da includere nella dichiarazione del server necessaria. È il percorso è /etc/nginx/secure.conf.
-La configurazione SSL si basa sulla disponibilità di tre file all'interno della directory / etc / usr / ssl /:
+- dhparam: a Diffie-Helman key generated with at least 2048 bits (4096 bits are a bit slow at this time)
 
-- dhparam: una chiave Diffie-Helman generata con almeno 2048 bit (4096 bit sono un po 'lenti in questo momento)
+- sslcrt: the certificate for SSL configuration
 
-- sslcrt: il certificato per la configurazione SSL
+- sslkey: the private key for SSL configuration
 
-- sslkey: la chiave privata per la configurazione SSL
-
-Di default il server Nginx cercherà la dichiarazione del server all'interno del file .conf all'interno della directory /etc/nginx/conf.d
-Per scrivere le varie dichiarazioni del server, bisogna seguire la [documentazione ufficiale di Nginx](https://nginx.org/en/docs/).
+By default the Nginx server will look for the server declaration within the .conf file within the /etc/nginx/conf.d directory.
+To write the various server declarations, you must follow the [official Nginx documentation](https://nginx.org/en/docs/).
 
 ### Certificate Service ###
 
-Questo microservizio gestisce la creazione dei certificati SSL necessari ad Nginx per consentire le connessioni https al cluster.
+This microservice manages the creation of the SSL certificates needed by Nginx to allow https connections to the cluster.
 
 ## Microservice Ecosystem ##
 
 ### Microservice Gateway ###
 
-Questo microservizio fornisce la possibilità di specificare degli hook http da chiamare prima e dopo ogni richiesta, per decorarla con servizi aggiuntivi.
-Tali servizi possono modificare la richiesta (hook di `PRE`), ad esempio per aggiungere funzionalità di ACL, oppure agire dopo che la richiesta al servizio è stata effettuata (hook di `POST`), ad esempio per aggiungere ulteriori dati alla risposta.
 
-Il Microservice Gateway si occupa di eseguire le chiamate a questi servizi di hook specificati da configurazione allo startup, e modificare (o interrompere) la richiesta secondo quanto indicato dai servizi.
+This microservice provides the ability to specify http hooks to call before and after each request, to decorate it with additional services.
+Such services can modify the request (`PRE` hook), for example to add ACL functionality, or to act after the request to the service has been done (` POST` hook), for example to add more data to the reply.
 
-I microservizi di hook devono soddisfare una precisa interfaccia http per essere interrogati con successo dal Microservice Gateway.
+The Microservice Gateway takes care of making calls to these hook services specified by configuration at startup, and modifying (or interrupting) the request as indicated by the services.
+
+Hook microservices must meet a precise http interface to be successfully interrogated by the Microservice Gateway.
 
 ![](img/mg.PNG)
 
@@ -65,52 +65,52 @@ I microservizi di hook devono soddisfare una precisa interfaccia http per essere
 
 #### NodJS Template
 
-Un **Custom Microservices** (CM) incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione e sviluppo, il team di Mia-Platform ha creato **custom-plugin-lib, una libreria in node.js, basata sulla libreria fastify**. Utilizzando custom-plugin-lib è possibile creare un CM implementando:
+A **Custom Microservices** (CM) encapsulates ad-hoc business logic, which can be developed by any user of the platform and can potentially be written in any programming language. For an easily adoption and development, the Mia-Platform team has created ** custom-plugin-lib, a library in node.js, based on the fastify library. Using custom-plugin-lib it is possible to create a CM implementing:
 
-* handler di rotte HTTP
-* cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoui gruppi di appartenenza
-* richieste ad altri servizi o CM della piattaforma
-* decoratori di PRE o di POST
+* HTTP route handler
+* change behavior based on the information of which client performed the request, the logged in user and the group they belong to
+* requests to other services or CM of the platform
+* PRE or POST decorators
 
-[Qui puoi trovare tutte le informazioni per configurarlo](../development_suite/plugin_baas_4.md)
+[Here you can find all the information on how to configure it](../development_suite/plugin_baas_4.md)
 
 ## BaaS ##
 ### CRUD Service ###
 
-Il CRUD Service è un microservizio che serve ad esporre una API HTTP per eseguire operazioni di CRUD (Create, Read, Update, Delete) su collezioni mongodb.
-Esso è configurato allo startup tramite la definizione di collezioni (una o più), per fornire una interfaccia HTTP coerente ed effettuare la validazione delle operazioni prima di eseguirle sul database.
+The CRUD Service is a microservice that serves to expose an HTTP API to perform CRUD operations (Create, Read, Update, Delete) on mongodb collections.
+It is configured at startup through the definition of collections (one or more), to provide a consistent HTTP interface and to perform the validation of operations before executing them on the database.
 
-La definizione di una collezione prevede di indicare l'elenco e la tipologia dei campi e di opzionalmente specificare indici.
+The definition of a collection involves indicating the list and the type of fields and optionally specifying indexes.
 
 ![](img/crud.PNG)
 
 ### Files Manager Service ###
 
-Questo microservizio offre la funzionalità di caricamento e scaricamento di files utilizzando servizi di terzi (es S3 o MongoDB). L'interfaccia http del microservizio è indipendente dallo specifico servizio di storage utilizzato, che è configurato allo startup. I files caricati vengono anche censiti in una collezione gestita dal CRUD.
-Attualmente sono supportati S3 e MongoDB come servizi di storage.
+This microservice offers the functionality of uploading and downloading files using third-party services (eg S3 or MongoDB). The http interface of the microservice is independent of the specific storage service used, which is configured at startup. The uploaded files are also recorded in a collection managed by the CRUD.
+S3 and MongoDB are currently supported as storage services.
 
 ### Static Files Service ###
 
-Il microservizio è responsabile dell'hosting e della fornitura di file statici e di secure header configuation.
+The microservice is responsible for the hosting and provision of static files and secure header configuation.
 
 ### Notification Service ###
 
-Questo microservizio consente di inviare notifiche push ai client Android e iOS.
-Esso dipende da due raccolte CRUD, i cui nomi di percorso e proprietà possono essere per lo più configurati, per convenzione interna sono chiamati **devices** e **notifications**.
-[Qui puoi trovare tutte le informazioni per configurarlo](push_notifications_platform_4.md)
+This microservice allows you to send push notifications to Android and iOS clients.
+It depends on two CRUD collections, whose path names and properties can be mostly configured, by internal convention they are called **devices** and **notifications**.
+[Here you can find all the information to configure it](push_notifications_platform_4.md)
 
 #### Mail Notification Service ##
 
-Questo microservizio consente di inviare e-mail tramite AWS SES e SMTP
+This microservice allows sending e-mails via AWS SES and SMTP
 
 ### SDK Mobile ###
 
-Mia-Platform fornisce un SDK che funziona come intermediario per consentire le interazioni tra l'applicazione e la piattaforma.
+Mia-Platform provides an SDK that works as an intermediary to allow interactions between the application and the platform.
 
-Mia fornisce due SDK:
+Mia provides two SDKs:
 
-1. iOS SDK: [Leggi come configurarlo](sdk_ios.md)
-2. Android SDK: [Leggi come configurarlo](sdk_android.md)
+1. iOS SDK: [How to configure it](sdk_ios.md)
+2. Android SDK: [How to configure it](sdk_android.md)
 
 ## Data Management ##
 
@@ -124,13 +124,13 @@ Mia fornisce due SDK:
 
 ### Secure Data Exchange Service ###
 
-Con questo microservizio è possibile associare dei token ad un payload, verificare la correttezza del token e configuare le impostazioni sul token (scadenza, numero di chiamate possibili ecc).
-Grazie a questo microservizi si possono rendere sicuri gli scambi di dati tra fornitori o servizi.
+With this microservice it is possible to associate tokens to a payload, verify the correctness of the token and configure the settings on the token (expiration, number of possible calls, etc.).
+Thanks to this microservices, exchanges of data between suppliers or services can be secured.
 
 ### Soap To Rest ###
 
-Questa libreria fornisce agli sviluppatori alcune utilità per facilitare la conversione da SOAP a REST.
-A partire dal describe.json generato dal node-soap client, la libreria crea schemi JSON di richiesta e risposta per ogni operazione wsdl.
+This library provides developers with some utilities to facilitate the conversion from SOAP to REST.
+Starting from the describe.json generated by the node-soap client, the library creates JSON request and response schemes for each wsdl operation.
 
 ## M2M
 
@@ -146,8 +146,8 @@ A partire dal describe.json generato dal node-soap client, la libreria crea sche
 
 ### Cronjobs Microservices ###
 
-Il microservizio è responsabile della gestione degli script di cron all'interno della piattaforma.
-[A questo link tutte le regole per configurarlo](cron.md)
+This microservice is responsible for managing the cron scripts within the platform.
+[At this link all the rules to configure it](cron.md)
 
 ### API workflow (API BPM, business process Management) ###
 
@@ -159,75 +159,76 @@ Il microservizio è responsabile della gestione degli script di cron all'interno
 
 ### Auth Service ###
 
-Il microservizio di Auth è responsabile della gestione dell'autenticazione e della registrazione di un nuovo utente sulla piattaforma.
-Il microservizio gestisce inoltre tutte le integrazioni con servizi di autenticazione esterni:
+The microservice of Auth is responsible for managing the authentication and registration of a new user on the platform.
+The microservice also manages all the integrations with external authentication services:
 * OAuth2
-* Social Auth (Facebook e Google)
+* Social Auth (Facebook and Google)
 * OAM
 * LDAP
 
 ### ACL ###
 
-Il microservizio di ACL è un hook di `PRE` il cui scopo è applicare regole di ACL per ogni richiesta per indicare al CRUD Service quali righe o colonne filtrare.
-Queste regole di ACL si basano sull'utente corrente e sui suoi gruppi di appartenenza.
+The ACL microservice is a `PRE` hook whose purpose is to apply ACL rules for each request to indicate to the CRUD Service which rows or columns to filter.
+These ACL rules are based on the current user and his membership groups.
 
-Attualmente due tipologie di ACL sono previste dal servizio:
+Currently two types of ACL are provided by the service:
 
-- *ACL per righe*: prepara una query che filtrerà i documenti sulla base dell'utente corrente (ad esempio per mostrare soltanto i documenti creati dall'utente).
-- *ACL per colonne in lettura*: permette di limitare i campi che l'utente può vedere nella risposta sulla base della sua appartenenza a gruppi e del tipo di cliente.
+- *ACL by rows*: prepares a query that will filter documents based on the current user (for example, to show only documents created by the user).
+- *ACL for read columns*: allows to limit the fields that the user can see in the answer on the basis of his group membership and the type of customer.
 
-Questo servizio agisce tramite la lettura e scrittura di header http. Infatti le informazioni su utente e gruppi sono recuperate da header, ed il risultato della applicazione delle regole è la scrittura di header di ACL che il CRUD Service è in grado di interpretare per eseguire effettivamente i filtri.
+This service acts by reading and writing http headers. In fact, the user and group information are retrieved from the header, and the result of the application of the rules is the writing of ACL headers that the CRUD Service is able to interpret to actually perform the filters.
 
 ### Session Manager ###
 
-Il microservizio di Session Manager gestisce la sessione degli utenti all'interno della piattaforma, salvando le informazioni in sessione e gestendo Cookies e JSON Web Token.   
+The Session Manager microservice manages the users session within the platform, saving the information in session and managing Cookies and JSON Web Tokens.
 
-Il Session Manager collabora inoltre con i servizi di gestione dell'utente per la parte di autenticazione. Il controllo che questo microservizio fa attualmente è piuttosto sofisticato e l'espressione logica valuta più parametri:
+The Session Manager also collaborates with the user management services for the authentication part. The control that this microservice does is currently quite sophisticated and the logical expression evaluates more parameters:
 
-1. il **gruppo**, una variabile che identifica il gruppo a cui appartiene chi fa la chiamata. Il gruppo deve essere scritto come “groups.nomegruppo”. Per maggiori informazioni vedi il seguente [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-gruppi).
+1. the **group**, a variable that identifies the group to which the caller belongs. The group must be written as "group-group". For more information see the following [link] (https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-groups).
 
-2. **isBackOffice**, una variabile booleana che valuta se la chiamata viene dal Back-Office oppure no.
+2. **isBackOffice**, a Boolean variable that evaluates whether the call comes from the Back-Office or not.
 
-3. **clientType**, che identifica da dove arriva la chiamata (ex. CMS, sito, ...).
+3. **clientType**, which identifies where the call comes from (ex CMS, site, ...).
 
 ### User Service ###
 
-Il microservizio di User è respoansabile della gestione degli Utenti nella Piattaforma.
-Permette la Login, la registrazione e la richiesta delle informazioni realtive a un utente.
+User Service is responsible for managing Users on the Platform.
+Allows login, registration and request of real information to a user.
 
-Dialoga con i componenti: Auth, Session Manager, Email Service, Credential per garantire sicurezza e per permettere numerose configurazioni in base alle esigenze dei clienti.
+Dialogue with the components: Auth, Session Manager, Email Service, Credential to ensure security and to allow numerous configurations according to customer needs.
 
-Al microservizio possono anche essere aggiunte delle **user-properties** per arricchire l'utente di tutte le informaizoni necessarie ai servizi.
+The microservice can also be added to **user-properties** to enrich the user with all the information required for the services.
 
 ### Credential Service ###
 
-Credential Service è il microservizio che collabora con user per la login e la registrazione degli utenti. é responsabile infatti di gestire le credenziali degli utenti.
+Credential Service is the microservice that works with user service for user login and registration. It is in fact responsible for managing user credentials.
 
-Il microservizio è inoltre responsabile della gestione dei gruppi.
+The microservice is also responsible for managing groups.
 
 ### Swagger Aggregator ###
 
-Questo microservizio è responsabile di aggregare i singoli swagger di tutti i microservizi indicati nella configurazione.
-Raccoglie tutti i percorsi dagli swagger dei microservizi specificati e li mostra tutti in un'unica pagina di swagger.
-Poiché i microservizi non sono a conoscenza dei prefissi url anteposti dai gateway, questo servizio può essere configurato per correggere i percorsi di swagger con il prefisso corretto.
-Infine controlla i duplicati nelle coppie del percorso (ad esempio due microservizi rispondono a GET / prefisso / me), segnalando questo con un errore.
-[A questo link tutte le regole per configurarlo](swagger_conf.md)
+This microservice is responsible for aggregating the individual swaggers of all the microservices indicated in the configuration.
+Collect all paths from the specified microservice swaggers and show them all on a single swagger page.
+Because the microservices are not aware of the prefixes prefixed by the gateways, this service can be configured to correct the swagger paths with the correct prefix.
+Finally it checks the duplicates in the pairs of the path (for example two microservices answer to GET / prefix / me), signaling this with an error.
+[At this link all the rules to configure it](swagger_conf.md)
 
 ### PDF Service ###
 
-Questo plugin fornise un modo semplice per generare file PDF da un modello HTML iniziale. Questo servizio si basa sulla libreria [Puppeteer](https://github.com/GoogleChrome/puppeteer).
-Se si utilizza questo servizio nel proprio computer, è molto importante impostare la variabile di ambiente DOCKER su false.
+
+This plugin provided an easy way to generate PDF files from an initial HTML template. This service is based on the [Puppeteer library](https://github.com/GoogleChrome/puppeteer).
+If you use this service on your computer, it is very important to set the DOCKER environment variable to false.
 
 ### Pingator ###
 
-Pingator è un servizio che monitora lo stato dei servizi per controllare che siano attivi.
-Permette quindi di monitorare lo stato di un servizio offrendo un set di allarmi per il monitoraggio.
+Pingator is a service that monitors the status of the services to check that they are active.
+It allows to monitor the status of a service by offering a set of alarms for monitoring.
 
 ### v1Adapter ###
 
-Questo microservizio permette di utilizzare il CMS con il nuovo servizio di CRUD Service, traducendo le richieste dal CMS in chiamate HTTP adattate alla nuova interfaccia.
-Oltre al mapping delle rotte http, si occupa anche della conversione dei tipi (ad esempio date e coordinate geografiche), e della trasformazione da sync e trash al nuovo stato e vice versa.
+This microservice allows to use the CMS with the new service of CRUD Service, translating the requests from the CMS into HTTP calls adapted to the new interface.
+In addition to the mapping of http routes, it also deals with the conversion of types (for example dates and geographic coordinates), and the transformation from sync and trash to the new state and vice versa.
 
 ### CMS Backend ###
 
-Microservizio che serve per configurare il CMS per mostrare sia collezioni sul BAAS 3 che collezioni gestite dal nuovo CRUD Service.
+Microservice used to configure the CMS to show both collections on BAAS 3 and collections managed by the new CRUD Service.

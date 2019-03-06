@@ -1,11 +1,12 @@
-## Introduzione
-Mia Platform integra un sistema di cron per schedulare delle operazioni ad intervalli decisi dallo sviluppatore.
-L'implementazione del cron prevede due fasi: la configurazione della schedulazione e l'implementazione della funzione da eseguire.
+## Introduction
 
-## Implementare un cron
-Il cron è disegnato per eseguire nel contesto di un `plugin`, per questo motivo la configurazione e l'implementazione della routine devono esistere a livello di `plugin`.
+Mia-Platform integrates a cron system to schedule operations at intervals decided by the developer.
+The implementation of the cron involves two phases: the scheduling configuration and the implementation of the function to be performed.
 
-La configurazione va scritta nel file `options.json` del `plugin`. Di seguito un esempio:
+## Implement a cron
+The cron is designed to run in the context of a `plugin`, so the configuration and implementation of the routine must exist at` plugin` level.
+
+The configuration must be written in the `options.json` file of the` plugin`. Below is an example:
 
 ````
 {
@@ -16,15 +17,15 @@ La configurazione va scritta nel file `options.json` del `plugin`. Di seguito un
 }
 ````
 
-La parte di file di interesse è nell'oggetto json `cronConfiguration` che contiene due campi:
+The part of the file of interest is in the `cronConfiguration` object json which contains two fields:
 
-* active: booleano che attiva o disattiva il cron
-* period: stringa per la schedulazione temporale del cron. Le cifre indicano, da sinistra verso destra, i secondi 0-59, i minuti 0-59, l'ora 0-23, il giorno del mese 1-31, il mese 0-11 ed il giorno della settimana 0-6.
+* active: Boolean that enables or disables the cron
+* period: string for the time schedule of the cron. The digits indicate, from left to right, the seconds 0-59, minutes 0-59, time 0-23, day of month 1-31, month 0-11 and day of week 0-6.
 
-Nell'esempio soprariportato il cron è attivo ed esegue la routine ogni giorno alle ore 01:30.
+In the above example, the cron is active and runs the routine every day at 01:30.
 
-La routine da eseguire è una funzione Javascript implementata nel file `index.js` del `plugin`. La firma della funzione deve essere obbligatoriamente `cronFunction`. Può essere usata solo questa funzione, con questo nome, senza argomenti e ne può esistere solo una.
-Di seguito un esempio:
+The routine to execute is a Javascript function implemented in the `index.js` file of the` plugin`. The function signature must necessarily be `cronFunction`. Only this function can be used, with this name, without arguments and only one can exist.
+Below is an example:
 
 `````
 class MIACronExample extends MIACollection {

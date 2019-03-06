@@ -1,10 +1,10 @@
 ## REST API ##
 
-REST è uno **stile architetturale per i sistemi distribuiti**, che consente di esporre risorse attraverso una o più rotte HTTP/HTTPS.
+REST is an **architectural style for distributed systems**, which allows to expose resources through one or more HTTP / HTTPS routes.
 
-Deve rispettare le seguenti caratteristiche:
+It must respect the following characteristics:
 
-* Client–server architecture
+* Client-server architecture
 
 * Stateless
 
@@ -14,144 +14,144 @@ Deve rispettare le seguenti caratteristiche:
 
 * Uniform interface
 
-Questo vademecum riassume i principi e le linee guida per il design di API REST.
+This vademecum summarizes the principles and guidelines for the design of the REST API.
 
-
-##CRUD Risorsa
-Un esempio di REST per la risorsa veicolo
+## CRUD Resource
+An example of REST for the vehicle resource
 
 **GET**
 
 https://api.mia-platform.it/vehicles/
 
-Lista di tutti i veicoli. Filtri tramite i parametri di query
+List of all vehicles. Filters through query parameters
 
 **POST**
 
 https://api.mia-platform.it/vehicles/
 
-Inserimento nuovo veicolo
+New vehicle entry
 
 **PUT**
 
 https://api.mia-platform.it/vehicles/{id}
 
-Modifica completa del veicolo con id={id}
+Complete editing of the vehicle with id = {id}
 
 **PATCH**
 
 https://api.mia-platform.it/vehicles/{id}
 
-Modifica parziale del veicolo con id={id}
+Partial modification of the vehicle with id = {id}
 
 **DELETE**
 
 https://api.mia-platform.it/vehicles/{id}
 
-Cancellazione del veicolo con id={id}
+Delete of the vehicle with id = {id}
 
-
-##Nomenclatura e Formattazione
-Come chiamare e formattare rotte, parametri di query e proprietà del modello.
+## Nomenclature and Formatting
+How to call and format routes, query parameters and model properties.
 
 https://api.mia-platform.eu/vehicles/?city=Milan
 
-##Rotte
-* Nomi in inglese
+##Routes
 
-* Nomi in plurale
+* Names in English
 
-* Nomi in minuscolo
+* Names in the plural
 
-* Separazione delle parole tramite trattino ‘-’
+* Names in lower case
 
-##Parametri di query e modelli dati
-* Nomi in inglese
+* Separation of words by dash '-'
 
-* Nomi in formato ‘camelCase’
+## Query parameters and data models
+* Names in English
+
+* Names in 'camelCase' format
 
 !!! warning
-    Gli URL devono contenere solo risorse (nomi) e non azioni o verbi!
+    URLs must contain only resources (names) and not actions or verbs!
 
 
-##Versionamento
-Il versionamento delle API REST viene fatto inserendo la versione nel path. Esempio: http://api.mia-platform.it/progetto/v1/api-del-progetto
 
-##Modello Dati
-Il modello dati viene scambiato nel body dei messaggi HTTP ed è serializzato usando il formato JSON (http://www.json.org/).
+## Versioning
+The versioning of the REST APIs is done by inserting the version in the path. Example: http://api.mia-platform.it/progetto/v1/api-del-progetto
+
+## Data Model
+The data model is exchanged in the body of HTTP messages and is serialized using the JSON format(http://www.json.org/).
 
 **GET**
 
 https://api.mia-platform.it/vehicles/
 
-Array di oggetti JSON
+Array of JSON Object
 
 **POST**
 
 https://api.mia-platform.it/vehicles/
 
-Richiesta: oggetto JSON
+Request: JSON Object
 
-Risposta: oggetto JSON
+Response: JSON Object
 
 **PUT**
 
 https://api.mia-platform.it/vehicles/{id}
 
-Richiesta: oggetto JSON
+Request: JSON Object
 
-Risposta: oggetto JSON
+Response: JSON Object
 
 **PUT**
 https://api.mia-platform.it/vehicles/bulk
 
-Richiesta: Array di oggetti JSON
+Request: Array of JSON Object
 
-Risposta: Array di oggetti JSON
+Response: Array of JSON Object
 
 **PATCH**
 
 https://api.mia-platform.it/vehicles/{id}
 
-Richiesta: oggetto JSON
+Request: JSON Object
 
-Risposta: oggetto JSON
+Response: JSON Object
 
 **PATCH**
 
 https://api.mia-platform.it/vehicles/bulk
 
-Richiesta: Array di oggetti JSON
+Request: Array of JSON Object
 
-Risposta: Array di oggetti JSON
+Response: Array of JSON Object
 
 **DELETE**
 
 https://api.mia-platform.it/vehicles/{id}
 
-Richiesta: Body vuoto
+Request: empty Body
 
-Risposta: Body vuoto
+Response: empty Body
 
 
-##Esito Risposta
-L’esito di una chiamata viene comunicato tramite HTTP status code (RFC 2616).
+## Answer Result
+The outcome of a call is communicated via HTTP status code (RFC 2616).
 
 **2xx**
 
-Successo, solitamente 200, 201 (nuovo documento creato), 204 per body vuoto
+Success, usually 200, 201 (new document created), 204 for empty body
 
 **3xx**
 
-Reindirizzamento
+Redirected
 
 **4xx**
 
-Errore applicativo, 400 sintassi errata, 401 necessaria autenticazione utente, 403 richiesta non permessa (possibile anche con utente autenticato), 404 risorsa non trovata, 422 semanticamente errata.
+Application error, 400 incorrect syntax, 401 required user authentication, 403 request not allowed (possible even with authenticated user), 404 resource not found, 422 semantically incorrect.
 
 **5xx**
 
-Errore del server: in questo caso è presente una situazione inaspettata, non gestibile a livello di backend o volutamente non gestita.
+Server error: in this case there is an unexpected situation, not manageable at the backend level or intentionally unmanaged.
 
 
-Il body contiene il modello dati nel caso di 2xx o, negli altri casi, un messaggio che descriva in modo particolare lo status code restituito.
+The body contains the data model in the case of 2xx or, in other cases, a message that describes in particular the status code returned.

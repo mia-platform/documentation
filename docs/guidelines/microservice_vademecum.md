@@ -1,16 +1,16 @@
-Le applicazioni di microservizi sono costituite da piccoli servizi, scalabili e sottoposti al controllo delle versioni indipendentemente, che comunicano tra di essi tramite protocolli standard e interfacce ben definite.
+Microservice applications consist of small, scalable and independently controlled services that communicate with each other through standard protocols and well-defined interfaces.
 
-## Linguaggi ammessi e template disponibili##
+## Allowed languages ​​and available templates ##
 
-È possibile scrivere il proprio microservizio in qualsiasi linguaggio.
-Ad oggi sono già presenti i template per microservizi nei linguaggi: NodeJS e Java.
+You can write your own microservice in any language.
+To date are available this template: NodeJS and Java.
 
-## Template di un nuovo progetto ##
+## Template of a new project ##
 
-La creazione di un nuovo progetto è facilitata grazie alla disponibilità di alcuni template che garantiscono la corretta configurazione delle diverse impostazioni, tra cui:
+The creation of a new project is facilitated thanks to the availability of some templates that guarantee the correct configuration of the various settings, including:
 
-- configurazione Docker (Dockerfile)
-- configurazione Jenkins (Jenkinsfile)
+- Docker configuration (Dockerfile)
+- Jenkins configuration (Jenkinsfile)
 
 ### Template NodeJS ###
 https://git.tools.mia-platform.eu/platform/templates/nodejs-custom-plugin
@@ -21,18 +21,18 @@ https://github.com/mia-platform/custom-plugin-java
 ### Template Java - SpringBoot ###
 https://github.com/mia-platform/custom-plugin-java-springboot
 
-## Rotte base necessarie ##
-Ogni microservizio espone alcune rotte utili all'ecosistema. Tramite queste rotte è infatti possibile avre informazioni sullo stato di salute dei sistemi, ed effettuare dei check per il debugging.
+## Required basic routes ##
+Each microservice exposes some useful routes to the ecosystem. Through these routes it is in fact possible to have information on the health of the systems, and to carry out debugging checks.
 
-### Rotte di salute ###
-`/-/healts/`
-Deve restituire 200 se il servizio e le sue eventuali dipendenze sono in grado di fornire quello per cui è stato creato.
-Ed esempio, il servizio comunica correttamente con il database, tutte le sue configurazioni sono corrette, ha le risorse necessarie per essere eseguito.
+### Health Routes ###
+`/ - / healts /`
+It must return 200 if the service and its possible dependencies are able to provide the one for which it was created.
+For example, the service correctly communicates with the database, all its configurations are correct, has the resources necessary to be executed.
 
-### Rotte di stato ###
-`/-/ready/`
-Risponde 200 solo quando, al rilascio, sono completate tutte le operazioni preliminari necessarie al funzionamente del servizio stesso. Questa rotta comunica ad OpenShift la disponibilità del servizio.
+### State Routes ###
+`/ - / ready /`
+Answers 200 only when, upon release, all the preliminary operations necessary for the functioning of the service are completed. This route informs OpenShift about the availability of the service.
 
-### Rotte di documentazione ##
-`/documentations/swagger/json/`
-Ogni microservizio deve esporre la rotta di documentazione swagger
+### Documentation Routes ##
+`/ Documentations / swagger / json /`
+Each microservice must expose the swagger documentation route

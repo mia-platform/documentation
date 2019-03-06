@@ -1,20 +1,21 @@
-# Mandare Notifiche Push con la piattaforma 4
+# Send Push Notifications
 
 [TOC]
 
-## Introduzione
-Un servizio plugin della piattaforma 4 espone le funzionalità per mandare notifiche push a client Andorid ed Ios in modo trasparente e gestisce la loro registrazione.
-Questo servizio va esplicitamente incluso all'interno di un progetto nel caso si vogliano inviare notifiche push. Il servizio, da configurare con le chiavi `Firebase` e `APN`, utilizza anche due collezioni del `CRUD service` da includere anch'esse nel progetto.
+## Introduction
+
+This microservice allows you to send push notifications to Android and iOS clients.
+This service must be explicitly included in a project in case you want to send push notifications. The service, to be configured with the `Firebase` and` APN` keys, also uses two `CRUD service` collections to also be included in the project.
 
 ## API
 
-### Sottoscrizione al servizio da parte delle App
-Le app possono registrarsi alle notifiche push chiamando il servizio in POST al path `/subscription/` indicando il proprio token di notifica, oltre alla piattaforma (android o ios) e ad una lista di tag (o topic) che indicano tipi di notifiche di cui il cliente vuole essere notificato. Questa rotta restituirà un `deviceId` che è un identificatore del dispositivo che le app dovranno salvare in locale per poter aggiornare la sottscrizione cambiando i tags o per aggiornare il token (che può scadere), eseguendo la chiamata a questa stessa rotta con anche il deviceId.
+### Subscription to the service by the App
 
+Apps can register with push notifications by calling the service in POST to the `/ subscription /` path indicating their notification token, in addition to the platform (android or ios) and a list of tags (or topics) indicating types of notifications of which the client wants to be notified. This route will return a `deviceId` which is an identifier of the device that the app will have to save locally in order to update the substitution by changing the tags or to update the token (which may expire) by executing the call to this same route with the deviceId .
 
-Se la chiamata viene eseguita con autenticazione, l'id dell'utente verrà salvato insieme alle informazioni del dispositivo. `ATTENZIONE:` se la chiamata viene eseguita senza autenticazione, l'utente verrà dissociato dal dispositivo: questa operazione è equivalente ad una `deregistrazione` dell'utente, che non riceverà quindi più notifiche esplicitamente rivolte a lui.
+If the call is made with authentication, the user's id will be saved along with the device information. `WARNING:` if the call is made without authentication, the user will be disassociated from the device: this operation is equivalent to a `deregistration` of the user, who will therefore not receive any more notifications explicitly addressed to him.
 
-Esempio di payload di sottoscrizione:
+Example of subscription payload:
 ```json
 {
   "token": "<long_alphanumeric_id specific to the couple app-device>",
@@ -25,14 +26,14 @@ Esempio di payload di sottoscrizione:
 }
 ```
 
-Risposta servizio:
+Service response:
 ```json
 {
   "deviceId":"<alphanumeric_id>"
 }
 ```
 
-In ogni successiva chiamata andrà sempre inviato anche il `deviceId`, per mantenere aggiornato il token e le preferenze:
+In each subsequent call, the `deviceId` will always be sent to keep the token and preferences up-to-date:
 ```json
 {
   "deviceId":"<alphanumeric_id>",
@@ -44,21 +45,22 @@ In ogni successiva chiamata andrà sempre inviato anche il `deviceId`, per mante
 }
 ```
 
-Per associare l'utente loggato al device, basta eseguire la stessa chiamata con autenticazione, mentre per dissociarlo bisogna fare la chiamata senza autenticazione.
+To associate the user logged in to the device, just run the same call with authentication, while to disassociate it you need to make the call without authentication.
 
-### Invio notifiche ai dispositivi
-Le notifiche possono essere inviate con diverse modalità a seconda della destinazione: direttamente i token di registrazione, id utenti, tags, piattaforma, o a tutti i dispositivi.
-Chiamando le seguenti rotte, il servizio consulterà la collezione in cui si sono registrate le app ed oltre ad inviare le notifiche, le salverà anche in una collezione (una per chiamata alla API) per poterle consultare ad esempio tramite CMS.
-Le rotte sono le seguenti:
+### Sending notifications to devices
 
-- POST `/tokens`: invia una notifica ad un insieme di token di registrazione
-- POST `/userids`: invia una notifica ad un insieme di utenti specificando i loro id
-- POST `/tags`: invia una notifica ad un insieme di utenti contrassegnati da un tag (topic o gruppo)
-- POST `/platforms`: invia una notifica a tutti i dispositivi specificando una lista di piattaforme, (`ios`, `android` per ora)
-- POST `/broadcast`: invia una notifica a tutti i dispositivi
+Notifications can be sent in different ways depending on the destination: directly the registration tokens, users id, tags, platform, or to all devices.
+Calling the following routes, the service will consult the collection in which the apps are registered and in addition to sending notifications, will also save them in a collection (one per call to the API) to be consulted for example via CMS.
+The routes are as follows:
+
+- POST `/ tokens`: sends a notification to a set of registration tokens
+- POST `/ userids`: sends a notification to a group of users specifying their id
+- POST `/ tags`: sends a notification to a group of users marked with a tag (topic or group)
+- POST `/ platforms`: notifies all devices by specifying a list of platforms, (` ios`, `android` for now)
+- POST `/ broadcast`: notifies all devices
 
 
-Un esempio di payload di una chiamata per inviare una notifica ad una lista di utenti è la seguente:
+An example of a payload of a call to send a notification to a list of users is as follows:
 ```json
 {
   "title": "Hey",
@@ -85,30 +87,30 @@ Un esempio di payload di una chiamata per inviare una notifica ad una lista di u
 }
 ```
 
-`title`, `body` e `payload` sono indipendenti dalla piattaforma, mentre nella sezione `platformSpecificContent` si possono aggiungere opzioni specifiche per piattaforma. Le altre rotte prevedono una interfaccia equivalente a meno dell'ultimo campo, che dipende dalla rotta.
+`title`,` body` and `payload` are platform independent, while in the` platformSpecificContent` section you can add platform-specific options. The other routes provide an interface equivalent to less than the last field, which depends on the route.
 
-Nota per `ios`: per mandare notifiche silenti, che non vengono visualizzate dalla app, ma che mandano semplicemente un payload in push, mettere nelle opzioni ios `silent: true` e `contentAvailable: true`.
+Note for `ios`: to send silent notifications, which are not displayed by the app, but which simply send a payload in push, put in the options ios` silent: true` and `contentAvailable: true`.
 
-## Collezioni
-Il servizio si appoggia a due collezioni del `CRUD`: `devices` e `notifications`
+## Collection
+The service is based on two collections of `CRUD`:` devices` and `notifications`
 
 ### Devices
-Questa collezione contiene il registro dei dispositivi registrati, un documento per token di registrazione (quindi possono esserci più documenti per ogni utente). __Questa collezione non va utilizzata direttamente dai client, che hanno le API di registrazione autenticate!__.
-Le proprietà sono le seguenti:
 
+This collection contains the register of registered devices, a document for registration token (so there may be multiple documents for each user). _This collection should not be used directly by clients, who have authenticated registration APIs!_
+The properties are as follows:
 
-- userId: string o ObjectId, riferimento all'utente che si è registrato
-- token: string, il token ios o android che identifica il device e la app
-- tags: list of strings, contrassegni di utenti interessati a topic o raggruppati come insieme di utenti
-- platform: string, la piattaforma del dispositivo `android`, `ios`, `mock` (case-sensitive!)
+- userId: string or ObjectId, reference to the user who has registered
+- token: string, the token ios or android that identifies the device and the app
+- tags: list of strings, marks of users interested in topics or grouped as a group of users
+- platform: string, the platform of the device `android`,` ios`, `mock` (case-sensitive!)
 
 ### Notifications
-Questa collezione mantiene lo storico delle notifiche inviate. Proprietà:
 
+This collection keeps the history of notifications sent. Property:
 
-- title: string, il titolo indipendente dalla piattaforma
-- body: string, il messaggio indipendente dalla piattaforma
-- payload: il payload custom indipendente dalla piattaforma
-- platformSpecificContent: object, personalizzazioni della notifica dipendendìti dalla piattaforma
-- destination: object, un descrittore che contiene il tipo `type` della destinazione e la lista dei destinatari
-- outcome: object, il risultato dell'invio della notifica
+- title: string, the title independent from the platform
+- body: string, the message independent of the platform
+- payload: the custom payload independent from the platform
+- platformSpecificContent: object, notification customizations depending on the platform
+- destination: object, a descriptor that contains the type `type` of the destination and the list of recipients
+- outcome: object, the result of sending the notification

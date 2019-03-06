@@ -22,12 +22,12 @@ nav:
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
 - Runtime Suite:
-    - Overview dei componenti: 'runtime_suite/arc_components.md'
-    - Configura i componenti:
-       - Configurare i templates per la creazione dei servizi: 'runtime_suite/templates_conf.md'
-       - Configurare il Cron: 'runtime_suite/cron.md'
-       - Configurare lo Swagger Aggregator: 'runtime_suite/swagger_conf.md'
-       - Configura le Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
+    - Overview of all the components: 'runtime_suite/arc_components.md'
+    - Configure the components:
+       - Configure templates for creating services: 'runtime_suite/templates_conf.md'
+       - Configure Cron Service: 'runtime_suite/cron.md'
+       - Configure Swagger Aggregator: 'runtime_suite/swagger_conf.md'
+       - Configure Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
        - iOS SDK: 'runtime_suite/sdk_ios.md'
        - Android SDK: 'runtime_suite/sdk_android.md'
 

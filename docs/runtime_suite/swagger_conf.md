@@ -1,10 +1,10 @@
-Questo microservizio è responsabile di aggregare i singoli swagger di tutti i microservizi indicati nella configurazione.
-Raccoglie tutti i percorsi dagli swagger dei microservizi specificati e li mostra tutti in un'unica pagina di swagger.
-Poiché i microservizi non sono a conoscenza dei prefissi url anteposti dai gateway, questo servizio può essere configurato per correggere i percorsi di swagger con il prefisso corretto.
+This microservice is responsible for aggregating the individual swaggers of all the microservices indicated in the configuration.
+He collect all paths from the specified microservice swaggers and show them all on a single swagger page.
+Because the microservices are not aware of the prefixes prefixed by the gateways, this service can be configured to correct the swagger paths with the correct prefix.
 
-Il file per configurare lo swagger aggregator deve essere presente all'interno del progetto Configuration.
+The file to configure the swagger aggregator must exist in the Configuration project.
 
-Questo Microservice è configurato tramite un file di configurazione simile a questo:
+This Microservice is configured via a configuration file similar to this:
 
 `````
 /*

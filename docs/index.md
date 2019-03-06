@@ -2,17 +2,17 @@
 
 ![Mia-Platform](img/logo.png)
 
-[Quickstart con Mia-Platform](development_suite/quick_rest_api.md): scopri come creare e rilasciare una REST API in 5' minuti
+[Quickstart with Mia-Platform](development_suite/quick_rest_api.md):discover how to create and release a REST API in 5 minutes
 
-La piattaforma si compone di tre suite:
+The platform consists of three suites:
 
-* La **Development Suite**: La suite per creare e rilasciare la piattaforma in pochi click
-* La **Runtime Suite**: la suite di componenti tecnologici
-* La **Business Suite**: I nostri componenti per gestire dati e servizi
+* The **Development Suite**: The suite to create and release the platform in a few clicks
+* The **Runtime Suite**: the suite of technological components
+* **Business Suite**: Our components to manage data and services
 
-**Le suite**
-![](img/suite.PNG)
+**The suites**
+! [](img/suite.PNG)
 
-### Visione Architetturale
-Come le tre suite dialogano e interagiscono con gli utenti e con le strutture del cliente.
+### Architectural Vision
+How the three suites interact and interact with users and with customer facilities.
 ![](img/visione.PNG)
