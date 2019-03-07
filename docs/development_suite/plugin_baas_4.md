@@ -137,7 +137,7 @@ module.exports = customPlugin(async function(service) {
 Un `handler` è una funzione che rispetta l'interfaccia degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/) ed
 accetta una [Request](https://www.fastify.io/docs/latest/Request/) ed una [Reply](https://www.fastify.io/docs/latest/Reply/).
 Oltre all'interfaccia di Request di fastify, `custom-plugin-lib` decora l'istanza Request con informazioni legate alla Piattaforma come
-l'`id` utente correntemente loggato, i suoi gruppi il itpo di client che ha eseguito la richiesta HTTP e se la richeista proviene dal CMS.
+l'`id` utente correntemente loggato, i suoi gruppi, il tipo di client che ha eseguito la richiesta HTTP e se la richeista proviene dal CMS.
 Inoltre l'istanza di Request è decorata anche con metodi che permettono di eseguire richieste HTTP verso altri servizi
 rilasciati all'interno della Piattaforma.
 
@@ -161,7 +161,7 @@ async function helloHandler(request, reply) {
 
 ### Interrogazioni ad Endpoint e Servizi della Piattaforma
 
-Dall'istanza di `Request` (il primo argomento di un handler) è possibile ottenere un oggetto proxy per interrogare
+Sia dall'istanza di `Request` (il primo argomento di un handler) sia dell'istanza di `Service` (il primo argomento della funzione di dichiarazione) è possibile ottenere un oggetto proxy per interrogare
 gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della
 Piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte:
 
@@ -180,11 +180,17 @@ Entrambi i proxy espongono le funzioni
 * `patch(path, body, querystring, options)`
 * `delete(path, body, querystring, options)`
 
-L'argomento più rilevante nella firma di queste funzioni è `body`, il quale può essere
+Gli argomenti da passare a queste funzioni sono:
 
-* un oggetto JSON
-* un [Buffer](https://nodejs.org/api/buffer.html#)
-* uno [Stream](https://nodejs.org/api/stream.html)
+* `path` - una stringa che identifica la rotta a cui si desidera inviare la richiesta
+* `body` - facoltativo, il body della richiesta che può essere:
+    * un oggetto JSON
+    * un [Buffer](https://nodejs.org/api/buffer.html#)
+    * uno [Stream](https://nodejs.org/api/stream.html)
+* `querystring` - facoltativo, un oggetto che rappresenta la querystring
+* `options` - facoltativo, un oggetto che ammette i seguenti campi:
+    * `returnAs` - una stringa che identifica il formato con cui si desidera ricevere la risposta. Può essere `JSON`, `BUFFER` o `STREAM`. Default `JSON`.
+    * `allowedStatusCodes` - un array di interi che definisce quali status code della risposta sono accettati. Se lo status code di risposta non è contenuto in questo array, la promise verrà rifiutata con un errore da cui sarà possibile accedere alla risposta tramite `error.response`. Se questo parametro viene omesso sarà accettato qualsiasi codice di risposta.
 
 #### Esempio
 ```js
