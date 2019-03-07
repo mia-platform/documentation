@@ -1,119 +1,115 @@
 # Business Continuity
 
-Con Business Continuity si intendono tutti gli accorgimenti atti a rendere il sistema e i suoi servizi
-disponibili senza interruzioni.
+With Business Continuity we mean all the measures to make the system and its services
+available without interruptions.
 
-In caso di probemi della piattaforma, grazie a questi accorgimenti, gli utenti non hanno percezione dei problemi
-e il servzio continua funzionare regolarmente.
+In case of problems of the platform, thanks to these measures, users have no perception of problems
+and the service continues to work regularly.
 
-La continuità di business si misura in tempo di down rispetto al tempo di riferimento. Tipicamente si prende come
-riferimento l'anno. La continuità di servizio può essere interrotta da fattori che non sono sotto il controllo
-del piano di Business Continuity, come ad esempio: down dei datacenter, calamità naturali, attacchi hacker.
+Business continuity is measured in down time compared to the reference time. Typically we take it as
+reference year. Service continuity can be interrupted by factors that are not under control
+of the Business Continuity plan, such as: data center downs, natural disasters, hacker attacks.
 
-In questi casi entra in funzione il piano di Disaster Recovery.
+In these cases the Disaster Recovery plan starts working.
 
-## Piano di Business Continuity
+## Business Continuity Plan
 
-I fattori che possono influire sulla business continuity di Mia Platform sono possono essere:
+The factors that can affect the business continuity of Mia Platform can be:
 
+- planned:
+    - platform updates;
+    - infrastructure updates;
+    - release of new features;
+- unplanned:
+    - down of the infrastructure;
+    - hacker attacks;
+    - natural disasters;
+    - urgent hotfix releases;
+    - loading of the platform that exceeds the design limits;
+    - human errors.
 
-- pianificati:
-    - aggiornamenti della piattaforma;
-    - aggiornamenti dell'infrastruttura;
-    - rilascio di nuove funzionalità;
-- non pianificati:
-    - down dell'infrastruttura;
-    - attachi hacker;
-    - calamità naturali;
-    - rilasci di hotfix urgenti;
-    - carico della piattaform che supera i limiti di progettazione;
-    - errori umani.
+For scheduled events, 100% business continuity can be guaranteed, instead for unplanned ones,
+it will not always be possible to guarantee continuity of service but to mitigate the effects of the interruption or to make
+take over the disaster recovery plan
 
-Per gli eventi pianificati è possibile garantire al 100% la business continuity, invece per quelli non pianificati,
-non sempre sarà possibile garantire la continuità di servizio ma mitigare gli effetti dell'interruzioni o far
-subentrare il piano di disater recovery
+## Factors that allow Business Continuity
 
-## Fattori che consentono la Business Continuity
+Mia Platform has a stateless microservice architecture. This means that every microservice of the platform is:
+- redundant;
+- scalable;
+- stateless, that is, it does not have a different behavior linked to the order of how the calls are received, but the session is managed
+at the application level.
 
-Mia Platform ha un'architettura a microservizi stateless. Questo significa che ogni microservizio della piattaforma è:
-- ridondato;
-- scalabile;
-- stateless, cioè non ha un comportamento differente legato all'ordine di come riceve le chiamate ma la sessione è gestita
-a livello applicativo.
+The microservice orchestration is delegated to Kubernetes which has a state monitoring management system
+distributed services and therefore does not have a single point of failure.
 
-L'orchestrazione dei microservizi è delegata a Kubernetes che ha un sistema di gestione del monitoraggio dello stato
-dei servizi distribuito e quindi non ha un singolo punto di fallimento.
+Persistence is guaranteed by a mongodb cluster that guarantees persistence and failover thanks to the system
+replication set of the database server itself.
 
-La persistenza è garantita da un cluster mongodb che garantisce la persistenza e il failover grazie al sistema
-di replica set del database server stesso.
+Access to the services via API passes through redevelopable Openresty web servers that make reverse proxies on the various services
+interior.
 
-L'accesso ai servizi via API passa attraverso web server Openresty ridondabili che fanno reverse proxy sui vari servizi
-interni.
+In the case of high reliability applications, the reverse proxy relies on a service registry where all
+services are cataloged.
 
-Nel caso di applicazioni ad elvata affidabilità il reverse proxy si appoggia ad un service registry dove tutti i
-servizi sono catalogati.
+The platform can be installed both on-premise and on cloud, even from different vendors, even simultaneously.
+This ensures that the likelihood of downtime of the service is reduced further.
 
-La piattaforma può essere installata sia onpremise che su cloud, anche di diversi vendor, anche contemporaneamente.
-Questo garantisce che la probabilità di down del servizio sia ridotta ulteriormente.
+## Scheduled events management
 
+### Mia-Platform
+The following are the actions to guarantee business continuity in the case of events planned for Mia Platform:
 
-## Gestione eventi pianificati
+- before starting a planned event verify that:
+    - backups are up to date;
+    - if you release an update the pre-production tests have all passed and the configurations are all under repository;
+    - the delivery pipeline is up-to-date and functioning correctly without error notifications;
+    - the microservices are redundant on at least two nodes;
+    - if there are NON-backward-compatible updates, all the applications that access the updating services have been successfully tested in pre-production
+- if you are releasing an update or a new feature update one node at a time and test that node before propagating the change;
+- in case of errors, roll back to the previous version on the node.
 
-### Mia Platoform
-Seguono le azioni per garantire la business continuity nel caso di eventi pianificati per Mia Platform:
+### Infrastructure
 
-- prima di iniziare un evento pianificato verificare che:
-    - i backup siano aggiornati;
-    - se si rilascia un aggiornamento i test in pre-produzione siano tutti passati e le configurazioni siano tutte sotto repository;
-    - la pipeline di delivery sia aggiornata e correttamente funzionante senza notifiche di errore;
-    - i microservizi siano ridondati su almeno due nodi;
-    - nel caso ci siano aggiornamenti NON retroconpatibili, tutte le applicazioni che accedono ai servizi in aggiornamento siano state testate con successo in pre-produzione
-- se si sta rilasciando un aggiornamento o una nuova funzionalità aggiornare un nodo alla volta e testare quel nodo prima di propagare la modifica;
-- nel caso di errori fare rollback sul nodo alla versione precedente.
+Actions to ensure business continuity during infrastructure upgrade depend on implementation
+of the infrastructure itself. It is advisable to follow the good practices of common use for the infrastructure used.
 
-### Infrastruttura
+However, we recommend the following actions:
 
-Le azioni per garantire la business continuity durante l'aggiornamento dell'infrastruttura dipendono dall'implementazione
-dell'infrastruttura stessa. Si consiglia di seguire le buone pratiche di utilizzo comune per l'infrastruttura utilizzata.
+- check that the updates have been made before in pre-production and the tests are all ok;
+- where possible update a node at a time of the infrastructure so that you can do the gradual tests and be able to roll back
+  if needed.
 
-Su consigliano comunque le seguenti azioni:
+## Management of unplanned events
 
-- verificare che gli aggiornamenti siano stati fatti prima in pre-produzione e i test siano tutti ok;
-- ove possibile aggiornare un nodo alla volta dell'infrastruttura in modo da poter fare i test graduali e poter fare rollback
-  se serve.
+Unplanned events, by their nature, are more difficult to manage and require automatic actions to mitigate
+the possible impacts on the continuity of the service.
 
+Mitigation actions follow for each unplanned event
 
-## Gestione eventi non pianificati
+### Down the infrastructure or natural disaster
 
-Gli eventi non pianificati, per loro natura, sono più difficili da gestire e necessitano di azioni automatiche per mitigare
-i possibili impatti sulla continuità del servzio.
+To avoid the interruption of service of Mia Platform in case of infrastructure problems it is necessary to redundant
+all platform services on different infrastructures.
 
-Seguono le azioni di mitigazione per ogni evento non pianificato
+This can be done by decoupling the physical and virtual infrastructure from the orchestrator.
 
-### Down dell'infrastruttura o calamità naturale
+A typical installation is to use Kubernetes in Federated Replica Set mode. There are several services on the market
+to implement this configuration.
 
-Per evitare l'interruzione di servizio di Mia Platform nel caso di problemi dell'infrastruttura è necessario ridondare
-tutti i servizi della piattaforma su infrastrutture differenti.
+### Hacker attack or overload
 
-Questo è possibile farlo disaccoppiando l'infrastruttura fisica e virtual dall'orchestratore.
+In the case of DOS or DDOS, the guarantee of service continuity is offered by:
 
-Un'installazione tipica è utilizzare Kubernetes in modalità Federated Replica Set. Esistono diversi servizi sul mercato
-per implementare questa configurazione.
+- autoscaling of nodes to absorb excess traffic
+- HTTP / HTTPS filters placed upstream of Mia Platform that block IPs that carry out too many identical and frequent requests
+- drop the excess connections so as not to let other users access until users with ongoing calls have finished their call
 
-### Attacco hacker o sovraccarico
+### Urgent hotfix release
 
-Nel caso di DOS o DDOS la garanzia della continutà di servizio è offerta da:
+In the case of an urgent hotfix, the same measures are recommended for the release of planned updates.
 
-- autoscaling dei nodi per assorbire il traffico in eccesso
-- filtri HTTP/HTTPS posti a monte di Mia Platform che bloccano gli IP che effettuano troppe richieste identiche e frequenti
-- drop delle connessioni in eccesso per non fare accedere ulteriori utenti fino a quando gli utenti con chiamate in corso non hanno finito la loro chiamata
+### Human error
 
-### Rilascio hotfix urgente
-
-Nel caso di hotfix urgente si raccomandano gli stessi accorgimenti utilizzati per il rilascio di aggiornamenti pianificati.
-
-
-### Errore umano
-
-Nel caso di errore è possibile ripristinare la versione precedente se si sono fatti gli aggiornamenti graduali.
-Nel caso di errore distruttivo e nessuna delle opzioni sopra riesce a mitigare gli impatti si rimanda al Disaster Recovery.
+In case of error it is possible to restore the previous version if the gradual updates have been made.
+In the case of a destructive error and none of the above options is able to mitigate the impacts, refer to the Disaster Recovery.

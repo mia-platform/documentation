@@ -1,109 +1,109 @@
-## Come creare una Rest API in 5'min ##
+## How to create a Rest API in 5'min ##
 
-In questa guida scoprirai come creare ed esporre una Rest API con semplicità.
-Quello che ti occorre è l'API Console e il CMS.
+In this guide you will discover how to create and display a Rest API with simplicity.
+What you need is the API Console and the CMS.
 
 !!! info
-    Assicurati di avere i permessi su GIT per rilasciare e di avere installato sia l'API Console che il CMS.
+    Make sure you have GIT permissions to release and install both the API Console and the CMS.
 
-Ti guideremo passo a passo nella creazione di una API di tipo CRUD.
-Useremo come esempio la creazione di un endpoint **/libri** immaginando di avere un sito della biblioteca.
+We will guide you step by step in creating a CRUD API.
+We will use as an example the creation of an endpoint **/books** imagining to have a library site.
 
-Gli step da seguire sono i seguenti:
+The steps to follow are the following:
 
-1. creare la collezione
-2. esporre l'endpoint
+1. create the collection
+2. expose the endpoint
 
-##Creare una nuova collezione
-Immaginiamo quindi di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
+## Create a new collection
+So imagine that you have to create a new collection that contains the books of a library and let's understand what are the steps to be done.
 
-Per creare una nuova collezione bisogna selezionare **Collezioni** sulla menù a sinistra dell'Api Console e selezionare **Crea una collezione**.
+To create a new collection, select **Collections** from the menu on the left of the API and select **Create a collection**.
 
-Per prima cosa è necessario inserire il nome della collezione in camelCase, nel nostro caso inseriremo "libri".
+First you need to enter the name of the collection in camelCase, in our case we will insert "books".
 
-Di default compariranno dei campi che non possono essere modificati: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
+Default fields will appear that can not be changed: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
 
-A questo punto dobbiamo creare il nostro schema del DB andando a creare le proprietà della nostra collezione. L’utente potrà aggiungere una nuova proprietà selezionando **aggiungi riga**. Dopodichè dovrà completare i seguenti campi:
+At this point we have to create our DB schema by creating the properties of our collection. The user can add a new property by selecting **add line**. Then you must complete the following fields:
 
 ![Crea-collezione-riga-titolo](img/crea_collezione.PNG)
 
-* **Nome**: inserire il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
+* **Name**: enter the property name, in camelCase, in our case we will insert "title", "author", "year" etc.
 
-* **Tipo**: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo (oppure un immagine); *number* se è un numero; *date* se è una data con gg/mm/aaaa; *boolean* se può essere solo true o false;*Geopoint* se si desidera salvare un luogo preciso; *Array* se si desidera salvare come un insieme ordinato di proprietà; *Object* se si desidera inserire un oggetto.
+* **Type**: the properties can be of different types: *string* if it is a classic text string (or an image); *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be true or false; *Geopoint* if you want to save a specific place; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
 
-* Se selezioni **required** la proprietà è obbligatoria.
+* If you select **required** the property is mandatory.
 
-* Se selezioni **crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
+* If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
 
-* Se selezioni **nullable** è possibile dare al dato il valore *null*.
+* If you select **nullable**, you can give the value *null*.
 
-* Nel campo **descrizione** è possibile inserire una breve descrizione facoltativa.
+* In the **description** field you can enter a short optional description.
 
-Per creare la collezione a questo punto basta selezionare **crea**.
+To create the collection at this point just select **create**.
 
 !!! Warning
-    la collezione **non è ancora salvata** è necessario premere **salva**. Ti conviene però completare l'endpoint e poi salvare tutto il lavoro
+    the collection **is not saved yet** you need to press **save**. However, you should complete the endpoint and then save all the work
 
-Se si desidera eliminare una proprietà selezionare la riga e selezionare **cancella** (vicino ad "aggiungi riga").
+If you want to delete a property, select the line and select **delete** (next to "add line").
 
-Per **modificare una collezione** è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
+To **edit a collection** simply select the desired collection from the list in "collection" and edit the fields in the screen that is displayed.
 
-##Creare un endpoint
-A questo punto dovrai aggacniare alla tua collezione di libri appena creata un endpoint.
+## Create an endpoint
+At this point you will need to add an endpoint to your newly created book collection.
 
-Per creare un endpoint selezionare **Endpoints** e quindi **Crea un nuovo Endpoint**.
+To create an endpoint, select **Endpoints** and then **Create a new Endpoint**.
 
-**Basepath**: è il prefisso della rotta. Si può impostare come l'indirizzo base alla quale è servita l'Api, relativo all'host (nome o ip) che fornisce l'endpoint. Nel nostro caso ad esempio potremmo inserire “/libri”.
+**Basepath**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or ip) that supplies the endpoint. In our case, for example, we could insert "/books".
 
-**Tipo**: L’endpoint può essere di diversi tipi:
+**Type**: The endpoint can be of different types:
 
-* *Crud*: aggancia il tuo endpoint direttamente ad una delle tue collezioni.
-* *External*: aggancia il tuo endpoint a uno dei servizi esterni censiti nella sezione servizi.
-* *Custom  Microservices*: aggancia il tuo endpoint ad un servizio con logiche interamente create da te.
+* *Crud*: hook your endpoint directly to one of your collections.
+* *External*: hook your endpoint to one of the external services registered in the services section.
+* *Custom Microservices*: hook your endpoint to a service with logics entirely created by you.
 
-In questa sezione creeremo un endpoint di tipo CRUD al quale agganceremo la nostra collezione
+In this section we will create a CRUD endpoint to which we will link our collection
 
-**Collezione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "libri"
+**Collection**: select the collection of which the endpoint is part. In our case "books"
 
-**Descrizione**: descrizione facoltativa dell’endpoint
+**Description**: optional description of the endpoint
 
-Dopodichè selezionare *Crea*.
-A questo punto abbiamo creato il nostro endpoint!
+Then select *Create*.
+At this point we have created our endpoint!
 
-Ora puoi configuare il tuo endpoint attribuendo permessi e modificando la sicurezza.
-I parametri che puoi configurare sono i seguenti:
+Now you can configure your endpoint by assigning permissions and changing security.
+The parameters you can configure are the following:
 
 ![crea-nuovo-endpoint](img/crea_endpoint.PNG)
 
-###Nome dell'Endpoint
-**Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
+### Name of the Endpoint
+**Default Status**: With Default State you can choose whether the elements in the Collection will be made public on the applications as soon as they will be created and will therefore have Public status or if they will instead have Draft status and must therefore be made public by the CMS before being published.
 
-**Collezione**: viene visualizzata la collezione di cui l'endpoint fa parte.
+**Collection**: the collection of which the endpoint belongs is displayed.
 
-**Descrizione**: breve descrizione facoltativa
+**Description**: short optional description
 
-###Gestisci la sicurezza dei tuoi endpoint
-Se la rotta è **pubblica**, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401.
-Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
+### Manage the security of your endpoints
+If the route is **public**, you do not need to be logged in to be able to call it. If it is not public and is called by an unregistered user, it returns 401.
+If it is **secreted** to be able to call it you need to set the Secret header with the correct value (you can see the secret in the homonymous screen)
 
-**Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
+**Groups of users that can access**: It is a logical expression to determine which groups have permission to call a given route. It can also be set to 0 (none) or to 1 (all). If the expression is true, then the user can access the route.
 
 ![sicurezza_endpoint](img/endpoint2.PNG)
 
-###Elenco verbi
-In questa sezione visulizzi tutti i path che possono essere chiamati di un endpoint di tipo CRUD. Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
+### List of verbs
+In this section you can view all the path that can be called of a CRUD endpoint. By selecting the different verbs in the management section it is possible to further detail who has the permissions to do certain actions.
 
-Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta.
+If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific rules related to this route.
 
-Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
+For example, we can set that the post can only be reserved for a specific group of users.
 
 
-## Salva ##
+## Save ##
 
-Adesso abbiamo quindi creato la collezione, agganciato un endpoint e definito i permessi.
-Abbiamo quindi creato la nostra Rest API.
-Non ci resta che salvare e rilasciare in un ambiente.
+Now we have created the collection, hooked an endpoint and defined the permissions.
+We have therefore created our Rest API.
+We just have to save and release in an environment.
 
-Bisogna quindi premere salva e committare il lavoro fatto e poi accedere all'area deploy e scegliere un ambiente su cui rilasciare.
+You must then press save and commit the work done and then access the deployment area and choose an environment to release.
 
-Per popolare la collezione o per cominciare a testare l'API puoi o direttamente andare nell'area **Documentazione** e testare la tua API con lo Swagger oppure [creare una nuova pagina del CMS](../business_suite/api_console_configcms.md) e sfruttare la tua API dal CMS.
+To populate the collection or to start testing the API you can either directly go to the **Documentation** area and test your API with the Swagger or [create a new CMS page](../business_suite/api_console_configcms.md) and take advantage of your API from the CMS.

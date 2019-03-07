@@ -1,13 +1,13 @@
 ##Deploy
-L’API console permette di deployare direttamente le tue configurazioni in un ambiente.
-Grazie a quest automazione il Continuos Deploy è resto più semplice e immediato.
-Inoltre il deploy fa partire in automatico i test per verficare che il branch possa essere rilasciato senza apportare danni al progetto esistente.
+The API Console allows you to directly deploy your configurations in an environment.
+Thanks to this automation the Continuos Deploy is more simple and immediate.
+Furthermore, the deployment automatically starts the tests to verify that the branch can be released without damaging the existing project.
 
-Per rilasciare bisogna avere i permessi da **Owner** su Gitlab.
+To release you must have **Owner** permissions on Gitlab.
 
-Per rilascire l'utente dovrà selezionare l'ambiente e il branch.
+To release the user will have to select the environment and the branch.
 
 !!! info
-    In automatico è selezionato il branch su cui l'utente sta lavorando. Se l'utente vuole però rilasciare un altro branch può selezionare un altro branch.
+    The branch on which the user is working is automatically selected. If the user wants to release another branch he can select another branch.
 
 ![deploy](img/deploy.PNG)

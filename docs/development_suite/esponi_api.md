@@ -1,47 +1,47 @@
-## Esponi un'API
+## Expose an API
 
-Per creare un endpoint selezionare **Endpoints** e quindi **Crea un nuovo Endpoint**.
+To create an endpoint, select **Endpoints** and then **Create a new Endpoint**.
 
-**Basepath**: è il prefisso della rotta. Si può impostare come l'indirizzo base alla quale è servita l'Api, relativo all'host (nome o ip) che fornisce l'endpoint. Nel nostro caso ad esempio potremmo inserire “/libri”.
+**Basepath**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or ip) that supplies the endpoint. In our case, for example, we could insert "/books".
 
-**Tipo**: L’endpoint può essere di diversi tipi:
+**Type**: The endpoint can be of different types:
 
-* *Crud*: aggancia il tuo endpoint direttamente ad una delle tue collezioni.
-* *External*: aggancia il tuo endpoint a uno dei servizi esterni censiti nella sezione servizi.
-* *Custom  Microservices*: aggancia il tuo endpoint ad un servizio con logiche interamente create da te.
+* *Crud*: hook your endpoint directly to one of your collections.
+* *External*: hook your endpoint to one of the external services registered in the services section.
+* *Custom Microservices*: hook your endpoint to a service with logics entirely created by you.
 
-In questa sezione creeremo un endpoint di tipo CRUD al quale agganceremo la nostra collezione
+In this section we will create a CRUD endpoint.
 
-**Collezione**: selezionare la collezione di cui l'endpoint fa parte. Nel nostro caso "libri"
+**Collection**: select the collection of which the endpoint is part. In our case "books"
 
-**Descrizione**: descrizione facoltativa dell’endpoint
+**Description**: optional description of the endpoint
 
-Dopodichè selezionare *Crea*.
-A questo punto abbiamo creato il nostro endpoint!
+Then select *Create*.
+At this point we have created our endpoint!
 
-Ora puoi configuare il tuo endpoint attribuendo permessi e modificando la sicurezza.
-I parametri che puoi configurare sono i seguenti:
+Now you can configure your endpoint by assigning permissions and changing security.
+The parameters you can configure are the following:
 
 ![crea-nuovo-endpoint](img/crea_endpoint.PNG)
 
-###Nome dell'Endpoint
-**Stato di Default**: Con Default State potrai scegliere se gli elementi presenti nella Collezione saranno resi pubblici sugli applicativi appena verranno creati e avranno quindi status Public o se avranno invece come status Draft e dovranno quindi essere resi pubblici dal CMS prima di essere pubblicati.
+### Name of the Endpoint
+**Default Status**: With Default State you can choose whether the elements in the Collection will be made public on the applications as soon as they will be created and will therefore have Public status or if they will instead have Draft status and must therefore be made public by the CMS before being published.
 
-**Collezione**: viene visualizzata la collezione di cui l'endpoint fa parte.
+**Collection**: the collection of which the endpoint belongs is displayed.
 
-**Descrizione**: breve descrizione facoltativa
+**Description**: short optional description
 
-###Gestisci la sicurezza dei tuoi endpoint
-Se la rotta è **pubblica**, non c’è bisogno di essere loggati per poterla chiamare. Se invece non è pubblica e viene chiamata da un utente non loggato, restituisce 401.
-Se è **secreted** per poterla chiamare bisogna settare l’header Secret con il valore corretto (puoi vedere i secret nell’omonima schermata)
+### Manage the security of your endpoints
+If the route is **public**, you do not need to be logged in to be able to call it. If it is not public and is called by an unregistered user, it returns 401.
+If it is **secreted** to be able to call it you need to set the Secret header with the correct value (you can see the secret in the homonymous screen)
 
-**Gruppi di utenti che vi possono accedere**: E’ un’espressione logica per determinare i gruppi che hanno i permessi di chiamare una determinata rotta. Può anche essere impostata a 0 (nessuno) oppure a 1 (tutti). Se l'espressione risulta vera, allora l'utente può accedere alla rotta.
+**Groups of users that can access them**: It is a logical expression to determine which groups have permission to call a given route. It can also be set to 0 (none) or to 1 (all). If the expression is true, then the user can access the route.
 
 ![sicurezza_endpoint](img/endpoint2.PNG)
 
-###Elenco verbi
-In questa sezione visulizzi tutti i path che possono essere chiamati di un endpoint di tipo CRUD. Selezionando i diversi verbi nella sezione management è possibile dettagliare ulteriormente chi ha i permessi di fare determinate azioni.
+###List of verbs
+In this section you can view all the path that can be called of a CRUD endpoint. By selecting the different verbs in the management section it is possible to further detail on who has the permissions to do certain actions.
 
-Se **inherited** è attivo il campo erediterà il comportamento dell’endpoint base, de-selezionandolo puoi impostare regole specifiche legate a questa rotta.
+If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific rules related to this route.
 
-Per esempio possiamo impostare che la post può essere riservata solo ad un gruppo specifico di utenti.  
+For example, we can set that the post can only be reserved for a specific group of users.

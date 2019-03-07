@@ -14,7 +14,7 @@ nav:
   - Release Notes: 'release_notes/apiconsole_releasenotes.md'
   - Info: 'info/version-policy.md'
 
-- Linee Guida:
+- Guidelines:
     - GIT Vademecum: 'guidelines/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'

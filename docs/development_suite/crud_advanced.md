@@ -1,46 +1,46 @@
-##Creare una nuovo CRUD
-Immaginiamo di dover creare una nuova collezione che contenga i libri di una biblioteca e andiamo a capire quali sono i passaggi da svolgere.
+## Create a new CRUD
+Let's imagine we have to create a new collection that contains the books of a library and we go to understand what are the steps to be done.
 
-Per creare una nuova collezione bisogna selezionare **Collezioni** sulla sinistra e selezionare **Add new**.
+To create a new collection, select **Collections** on the left and select **Add new**.
 
-Per prima cosa è necessario inserire il nome della collezione in camelCase, nel nostro caso inseriremo "libri".
+First you need to enter the name of the collection in camelCase, in our case we will insert "books".
 
-Di default ci sono dei campi che non possono essere modificati: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
+By default there are fields that can not be changed: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
 
-L’utente potrà aggiungere una nuova riga selezionando **aggiungi riga**. Dopodichè dovrà completare i seguenti campi:
+The user can add a new line by selecting **add line**. Then you must complete the following fields:
 
 ![Crea-collezione-riga-titolo](img/Crea-collezione-riga-titolo.PNG)
 
-* **Nome**: inserire il nome della proprietà, in camelCase, nel nostro caso inseriremo “titolo”, "autore", "anno" etc.
+* **Name**: enter the property name, in camelCase, in our case we will insert "title", "author", "year" etc.
 
-* **Tipo**: le proprietà possono essere di diversi tipi: *string* se è una classica stringa di testo (oppure un immagine); *number* se è un numero; *date* se è una data con gg/mm/aaaa; *boolean* se può essere solo true o false;*Geopoint* se si desidera salvare un luogo preciso; *Array* se si desidera salvare come un insieme ordinato di proprietà; *Object* se si desidera inserire un oggetto.
+* **Type**: the properties can be of different types: *string* if it is a classic text string (or an image); *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be true or false; *Geopoint* if you want to save a specific place; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
 
-* Se selezioni **required** la proprietà è obbligatoria.
+* If you select **required** the property is mandatory.
 
-* Se selezioni **crypted** il dato verrà criptato nel database. Consigliamo di adottare questa pratica per dati sensibili o riservati.
+* If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
 
-* Se selezioni **nullable** è possibile dare al dato il valore *null*.
+* If you select **nullable**, you can give the value *null*.
 
-* Nel campo **descrizione** è possibile inserire una breve descrizione facoltativa.
+* In the **description** field you can enter a short optional description.
 
-Per creare la collezione selezionare **crea**.
+To create the collection select **create**.
 
 !!! Warning
-    la collezione **non è ancora salvata** è necessario svolgere i passaggi descritti di seguito
+    the collection **has not yet been saved** it is necessary to carry out the steps described below
 
 ![tabella_prop](img/tabella_prop.PNG)
 
-Se si desidera eliminare una riga selezionare la riga e selezionare **cancella** (vicino ad "aggiungi riga").
+If you want to delete a line select the line and select **delete** (next to "add line").
 
-Una volta creata la riga di default viene data la possibilità all'utente di crearne un'altra. Una volta finito di creare tutte le righe necessarie, è sufficente premere un qualsiasi altro punto dello schermo per uscire dalla sezione aggiungi riga.
+Once the default line is created, the user is given the option to create another one. Once you have finished creating all the necessary lines, press any other point on the screen to exit the add line section.
 
-Per **modificare una collezione** è sufficiente selezionare la collezione desiderata tra l’elenco in “collection” e modificare i campi nella schermata che viene visualizzata.
+To **edit a collection** simply select the desired collection from the list in "collection" and edit the fields in the screen that is displayed.
 
-###Indici
-Un indice (nel campo dei database) è una struttura dati realizzata per **migliorare i tempi di ricerca (query) dei dati**. Se una tabella non ha indici, ogni ricerca obbliga il sistema a leggere tutti i dati presenti in essa. L'indice consente invece di ridurre l'insieme dei dati da leggere per completare la ricerca.Tuttavia la creazione di un indice comporta una **riduzione  nelle performance di scrittura**.
+### Indexes
+An index (in the database field) is a data structure designed to **improve search (query) data**. If a table has no indexes, each search forces the system to read all the data in it. Instead, the index allows you to reduce the amount of data to be read to complete the search. However, creating an index reduce the writing performance
 
-Per creare un nuovo indice selezionare **crea un nuovo indice**.
+To create a new index select **create a new index**.
 
-Una volta inserito il nome dell'indice l'utente dovorà scegliere il tipo selezionando tra: *normal, geo e hash*. Dopodichè l'utente potrà scegliere se rendere unico l'indice selezionando **unique**.
+Once the index name has been entered, the user must choose the type by selecting between: *normal, geo and hash*. Then the user can choose whether to make the index unique by selecting **unique**.
 
 ![Indice](img/Indice.PNG)

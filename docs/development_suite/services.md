@@ -1,29 +1,29 @@
-##Servizi
-In questa sezione l'utente può configurare i propri servizi.
+##Services
+In this section the user can configure his services.
 
-I servizi possono essere di due tipi:
+The services can be of two types:
 
-* servizi esterni che si vogliono integrare nella piattaforma
-* servizi custom plugin configurati dall'utente su git.
+* external services that you want to integrate into the platform
+* custom plugin services configured by the user on git.
 
-**Servizi esterni**: L'utente ha la possibilità di chiamare servizi esterni come ad esempio Google Maps.
-In questo caso l'utente dovrà inserire il nome del servizio, selezionare tipo *external services* e inserire l'URL del servizio esterno desiderato. Infine l'utente può inserire una descrizione facoltativa.
+**External services**: The user has the possibility to call external services such as Google Maps.
+In this case the user must enter the service name, select type *external services* and enter the URL of the desired external service. Finally the user can insert an optional description.
 
 ![Services](img/Services.PNG)
 
-**Servizi custom**: I servizi custom sono di due tipi:
+**Custom services**: There are two type of Custom Services: 
 
-* *Already exist*: il servizio è già esistente e quindi l'utente dovrà chiamare il servizio indicando l'url da git.
-* *Generate*: l'utente crea il suo servizio custom.
+* *Already exist*: the service is already existing and therefore the user will have to call the service indicating the URL from git.
+* *Generate*: the user creates his custom service.
 
-In entrambi i casi l'utente può configurare servizi di tipo:
+In both cases, the user can configure services such as:
 
-* *Avanzato*: l'utente deve sempre inserire l'url di git e la revision, dopodichè deve assicurarsi che nella cartella configurazione ci siao due file: deployment.yml e services.yml. Oltre a questi opzionalmente ci può essere il file configmap.yml.
-* *Non avanzato*:  l'utente deve specificare l'url di GIT e la revision. Dopodichè è necessario assicurarsi che dentro la cartella configurazione ci sia il file Docker image che contiente il nome dell'immagine docker del servizio.
-Inoltre è possibile aggiungere delle variabili ambientali.
+* *Advanced*: the user must always insert the git URL and the revision, after which he must make sure that there are two files in the configuration folder: deployment.yml and services.yml. In addition to these optionally there may be the configmap.yml file.
+* *Not advanced*: the user must specify the GIT URL and the revision. Then you need to make sure that there is a Docker image file inside the configuration folder that contains the name of the service docker image.
+Furthermore, environmental variables can be added.
 
-**Importante** il nome viene dato al servizio sull'api console deve essere uguale al "name" che c'è nel file deployment.yml.
+**Important** The name given to the service on the api console must be the same as the "name" that exists in the deployment.yml file.
 
-In caso il servizio sia di tipo *Generate*, l'utente deve inserire il gruppo di Gitlab su cui vuole generare il progetto, il nome, il nome immagine docker. Selezionado *crea* viene creata realmente la cartella su git (viene infatti richiesta un ulteriore autorizzazione all'utente).
+In case the service is of type *Generate*, the user must insert the Gitlab group on which he wants to generate the project, the name, the image docker name. Selecting * create * the folder on git is actually created (additional user authorization is required).
 
-Per creare il servizio infine selezionare **crea**.
+Finally, to create the service select **create**.

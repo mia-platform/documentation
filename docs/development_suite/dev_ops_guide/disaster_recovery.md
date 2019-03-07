@@ -1,41 +1,41 @@
 # Disaster Recovery
 
-Con Disaster Recovery si intendono le procedure per ripristinare una situazione che ha compromesso il corretto
-funzionamento della piattaforma e dove tutti i sistemi di Business Continuity hanno fallito con la conseguente
-non disponibilità dei servizi.
+Disaster Recovery refers to the procedures to restore a situation that has compromised the correct
+operation of the platform and where all the Business Continuity systems have failed with the consequent
+non-availability of services.
 
-Le procedure di Disaster Recovery possono essere divise in tre parti:
+Disaster Recovery procedures can be divided into three parts:
 
-- checklist dei sistemi;
-- manutenzione e verifica;
-- attuazione delle procedure in caso di malfunzionamenti.
+- systems checklist;
+- maintenance and verification;
+- implementation of the procedures in case of malfunctions.
 
-## Checklist dei sistemi
+## Systems checklist
 
-Per poter completare con successo le procedure di Disaster Recovery in caso di guasti è fondamentale che:
+In order to successfully complete the Disaster Recovery procedures in case of failures it is essential that:
 
-- tutti i dati di MongoDB siano sotto backup;
-- tutte le configurazioni custom di Mia Platform siano sotto repository;
-- la catena di continuous delivery e deployment siano attive e funzionanti;
-- si abbia traccia delle versioni delle immagini docker installate;
-- sia aggiornato il documento di deployment con la descrizione di tutta l'infrastruttura di runtime;
-- l'infrastruttura di runtime è generata in automatico da script e gli script sono sotto repository.
+- all the data of MongoDB are backed up;
+- all the Mia Platform custom configurations are under repository;
+- the chain of continuous delivery and deployment are active and functioning;
+- you have track of the versions of the docker images installed;
+- update the deployment document with the description of the entire runtime infrastructure;
+- the runtime infrastructure is generated automatically by scripts and the scripts are under repository.
 
-## Manutenzione e verifica
+## Maintenance and verification
 
-E' necessario che periodicamenre siano fatte le seguenti azioni:
+The following actions must be carried out periodically:
 
-- ogni punto della checklist sia verificato;
-- il sistema sia stressato spegenendo in modo programmato parti dei servizi;
-- si simuli, almeno una volta ogni sei mesi, un'azione di Recovery su un sistema di test.
+- each checklist point is verified;
+- the system is stressed by scheduling parts of the services in a programmed way;
+- simulate, at least once every six months, a Recovery action on a test system.
 
-## Attuazione delle procedure
+## Implementation of the procedures
 
-In caso di problemi le azioni per ripristinare la piattaforma sono:
+In case of problems, the actions to restore the platform are:
 
-- installare l'infrastruttura di riferimento con gli script automatici;
-- installare i nodi di Mia Platform alle versioni che erano sui sistemi in produzione;
-- installare le configurazioni custom;
-- ripristinare i backup di MongoDB.
+- install the reference infrastructure with automatic scripts;
+- install the Mia Platform nodes to the versions that were on the systems in production;
+- install custom configurations;
+- restore MongoDB backups.
 
 > Si consiglia di far eseguire tutte queste operazioni da script automatici.
