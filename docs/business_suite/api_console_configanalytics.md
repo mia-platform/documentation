@@ -1,179 +1,179 @@
-# Come Configurare Gli Analitici da API Console
+# How to Configure Analytics from API Console
 
-Dall'Api Console puoi comodamente configurare e gestire i tuoi analitici.
+From the Api Console you can easily configure and manage your analytics.
 
-!!! note
-    Ricordati che prima di poter configurare gli analitici devi avere già creato le tue collezioni nell'area Collezioni ed esposto i relativi Endpoint.
+!!! notes
+    Before you start with analytics configuration you must create your collections in the Collections area and expose the related Endpoints..
 
-Nel menù verticale di sinistra troverai la sezione **"Analitici"**: in questa sezione è possibile creare tutti gli analitici per monitorare i KPI. Clicca sul bottone **"Aggiungi nuovo"** per iniziare a configurarne uno.
+In the drop down list you will find the **"Analytics"** section: there you'll be able to create analytics and monitor KPIs. Click on the button **"Add new"** to start configuring.
 
 ![](img/add_new.png)
 
 
-Una volta che si inizia a configurare un analitico, si è guidati in un percorso a step. E' possibile configurare analitici a una o due serie (solo nel caso di un grafico di tipo *custom stock*) e nel secondo caso il proocesso è leggermente più articolato.
+When you're in, we'll guide you step-by-step through the analytics configuration. You can also configure Two Serie and One Serie analytics (only for *custom stock* graphics), for the latter the procedure is more complicated.
 
-## **Step 1: Seleziona tipologia**
+## **Step 1: Select type**
 
-In questa fase devi decidere la tipologia di analitico che vuoi configurare. Al momento è possibile creare un analitico di tre tipologie:
+In this phase you have to decide the type of analytic you want to configure. At the moment can choose between three types:
 
-* tipo **custom-stock**, cioè un grafico con in ascissa una serie temporale;
+* type **custom-stock**, i.e. a graph with a time series on the x-axis;
 
 
 ![](img/stock.png)
 
-* tipo **chart**, cioè un grafico non legato al tempo;
+* type **chart**, i.e. a time independent graph;
 
 
 ![](img/chart.png)
 
-* tipo **chart-summary**, cioè un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo.
+* type **chart-summary**, i.e. a graph showing statistics related to one or more time independent data collections.
 
 
 ![](img/chart-summary.png)
 
-!!! note
-    E' possibile fare grafici a più serie solo per i grafici di tipo *custom-stock*.
+!!! notes
+    Multi-serie graphs are available only for *custom-stock* type graphs.
 
 
-Cliccando su "next" si passa al prossimo step.
+Click on "next" to go further.
 
 
-## **Step 2: Configurazione**
+## **Step 2: Configution**
 
-In questa sezione puoi scegliere:
+In this section you can define:
 
-* il **titolo** del grafico, che è un campo obbligatorio e non può contenere spazi bianchi;
+* graph **title**, that is mandatory. It can diplay white spaces;
 
-* la **legenda** del grafico, che è un campo obbligatorio e può essere visibile o non visibile. La legenda mostra automaticamente alcune informazioni extra sull'analitico: il valore massimo del grafico (*max*), il valore minimo del grafico (*min*), la somma di tutti i valori del grafico (*sum*), la media dei valori del grafico (*avg*).
+* graph **legend**, that is also mandatory and can be visible or not. The legend automatically shows some extra information about the analytic: the maximum graph value (*max*), the minimum graph value (*min*), the sum of all graph values (*sum*), the average of graph values (*avg*).
 
-In questa fase, se si è scelto un grafico di tipo *chart*, si può scegliere un **ordinamento**. Le possibilità sono:
+In this phase, if you have chosen a *chart* type graph, you can choose an **order**. The alternatives are:
 
-* *label-asc*, che ordina dalla A alla Z;
+* *label-asc*, to order from A to Z;
 
-* *label-desc*, che ordina dalla Z alla A;
+* *label-desc*, to order from Z to A;
 
-* *value-asc*, che ordina dal più piccolo al più grande;
+* *value-asc*, to order from the smallest to the largest;
 
-* *value-desc*, che ordina dal più grande al più piccolo.
+* *value-desc*, to order from the largest to the smallest.
 
 
-Cliccando su "next" si passa al prossimo step.
+Click on "next" to go further.
 
-##**Step 3: Impostazione Serie**
+##**Step 3: Serie setting**
 
-In questa sezione si configurano la maggior parte delle proprietà dell'analitico:
+In this section, you can configure most of the properties of the analytic:
 
-* il **nome della serie**, che è un campo obbligatorio e non può contenere spazi bianchi;
+* **Name of the serie**, that is mandatory. It can diplay white spaces;
 
-* il **Tipo di grafico**. Le visualizzazioni dei dati possibili sono line, spline, area e column.
+* **Graphic type**. Available visualizations are: line, spline, area and column.
 
-* il **Colore** del grafico;
+* **Color** of the graph;
 
-* il campo **Euro**, che permette di impostare l'unità di misura del grafico automaticamente in euro;
+* The **Euro** field, which allows you to set the unit of measurement of the chart automatically in euros;
 
-*  la **Collezione**, dove si sceglie da quale collezione andare a prendere i dati che verranno mostrati nella serie, es. eroi_buoni;
+* **Collection**, where you choose which collection to go to take the data that will be shown in the series, eg. eroi_buoni;
 
-* il **Filtro**, dove si può scegliere di applicare un filtro ai dati che si vogliono visualizzare dalla collezione. Per esempio sulla collezione ordini non si vogliono visualizzare tutti gli ordini, ma solo quelli con un fatturato maggiore di 30€. Questo campo non è obbligatorio ed è una query, quindi bisogna scrivere in formato json.
+* **Filter**, where you can choose to apply a filter to the data you want to view from the collection. For example, the order collection does not want to display all orders, but only those with a turnover of more than € 30. This field is not mandatory and is a query, so you must write in json format.
 
 ![](img/impostaz_serie1.png)
 
-* **Group**, dove è possibile selezionare la proprietà su cui raggruppare i dati. Questo campo è obbligatorio per i grafici di tipo **chart** e **chart-summary**, ed è possibile selezionare tutte le proprietà di una collezione (es. nome);
+* **Group**, where you can select the property on which to group the data. This field is mandatory for charts of type **chart** and **chart-summary**, and you can select all the properties of a collection (eg name);
 
-* **GroupDate**,  dove è possibile selezionare la proprietà di tipo data su cui raggruppare i dati. Questo campo è obblogatorio per i grafici **custom-stock** ed è possibile selezionare solo le proprietà di tipo data (es.createdAt). Nel caso di grafici custom-stock, in questa fase saà possibile anche modificare il campo **formato dei dati**, per scegliere l'unità temporale su cui raggruppare e quindi visualizzare i dati. Il periodo di raggruppamento temporale può essere l'anno, il mese, la settimana, il giorno, l'ora oppure il minuto.
+* **GroupDate**,  where you can select the data type property on which to group data. This field is mandatory for the **custom-stock** graphs and only the data type (es.createdAt) can be selected. In the case of custom-stock charts, in this phase it is also possible to modify the **data format** field, to choose the time unit on which to group and then display the data. The time grouping period can be the year, month, week, day, hour or minute.
 
-* l'**operatore**, dove si può scegliere l'operazione da svolgere sui dati raggrupati. Le operazioni possibili sono:
-
-
-    * *count*: conta il numero di elementi di un gruppo;
+* **Operator**, where you can choose the operation to be performed on the grouped data. The possible operations are:
 
 
-    * *sum*: somma gli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà il totale degli ordini di ogni cliente)
+    * *count*: counts the number of elements in a group;
 
 
-    * avg: fa la media degli elementi di un gruppo (es. se ho raggruppato gli ordini per nome del cliente, l'operatore restituirà la media degli ordini di ogni cliente)
+    * *sum*: sums the elements of a group (eg if I grouped the orders by customer name, the operator will return the total orders of each customer)
 
 
-    * *last | first | min | max*: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo;
+    * avg: averages the elements of a group (eg if I grouped the orders by customer name, the operator will return the average of the orders of each customer)
 
 
-    * *constant*: ritorna in un gruppo la specifica stringa o costante numerica (default 1). Si può impostare una sola operazione per tracciato/serie.
+    * *last | first | min | max*: respectively returns the last, the first, the minimum and the maximum of each group;
 
 
-* la **proprietà**. In questo campo trovi tutte le proprietà della collezione selezionata e puoi scegliere la proprietà che vuoi mostrare e su cui impostare l'operazione. Il campo è obbligatorio per tutti gli operatori, ad eccezione dell'operatore di *count* che conta automaticamente l'identificativo univoco degli elementi del gruppo.
+    * *constant*: returns in a group the specific string or numeric constant (default 1). Only one operation per path / series can be set.
 
 
-In questa fase è anche possibile abilitare una mongoquery cliccando sullo **switch mongoquery abilitata / disabilitata**. Questo campo permette di scrivere una query su mongo per poter fare delle operazioni più complesse riferite all'operatore scelto (es. si vuole fare una somma sugli ordini di due clienti, ma solo se l'ordine è compreso tra i 50€ e i 100€). Il campo si attiva per tutti gli operatori, ad esclusione dell'operatore di count. Quando si attiva questo switch compare il campo **Type** dove si scrive in formato json la query.
+* **Property**. In this field you will find all the properties of the selected collection and you can choose the property you want to show and set up the operation. The field is mandatory for all operators, with the exception of the * count * operator that automatically counts the unique identifier of the group elements.
+
+
+In this phase it is also possible to enable a mongoquery by clicking on the **mongoquery switch enabled / disabled**. This field allows you to write a query on mongo to be able to do more complex operations related to the chosen operator (eg you want to make a sum on the orders of two customers, but only if the order is between € 50 and € 100 ). The field is activated for all operators, with the exception of the count operator. When this switch is activated, the **Type** field appears, where the query is written in json format.
 
 ![](img/impostaz_serie3.png)
 
-Una volta che si è configurata una serie, è possibile inserire nello stesso grafico una seconda serie attraverso il bottone **"Aggiungi una serie"**.
+Once a series has been configured, a second series can be inserted in the same graph via the **"Add a series"** button.
 
 !!! warning
-    La seconda serie che si imposta avrà nuovamente tutti i campi sopra elencati, ma il **formato dei dati** dovrà essere lo stesso della prima serie.
+    The second set that you set will have all the fields listed above again, but the **data format** will have to be the same as the first series.
 
 
 
-Cliccando su "next" si passa alla fase successiva.
+Click on "next" to go further.
 
-## **Step 4: Configura Asse Y**
+## **Step 4: Configure Y-axis**
 
-La fase di configurazione dell'asse Y si ha solo nel caso di analitici con più serie. E' possibile scegliere di condividere l'asse Y tra i due grafici: questa scelta si fa quando le due serie hanno la stessa scala (numerica, ...). Nel caso in cui l'unità di misura del grafico sia euro si può selezionare automaticamente dal rispettivo switch. Infine si può inserire il titolo dell'asse Y.  
+The phase of configuration of the Y-axis occurs only in the case of analytics with more series. It is possible to choose to share the Y axis between the two graphs: this choice is made when the two series have the same scale (numerical, ...). In the case where the unit of measurement of the graph is euro, it can be selected automatically from the respective switch. Finally you can enter the title of the Y-axis.  
 
-Cliccando su "next" si passa alla fase successiva.
+Click on "next" to go further.
 
-## **Step 5: Avanzate**
+## **Step 5: Avanvanced**
 
-Nelle avanzate è possibile scegliere l'arco temporale dei dati che si voglionon mostrare nell'analitico configurato. Nel caso di un grafico *custom-stock* alla voce **Zoom** si possono scegliere i sgeuenti formati: giorno, settimana, mese, trimestre, semestre, anno, tutto l'arco temporale disponibile.
+In advanced you can choose the time frame of the data that you want to show in the configured analytic. In the case of a *custom-stock chart* under the heading **Zoom**, the following formats can be chosen: day, week, month, quarter, half year, year, all the time available.
 
-Nel caso di un grafico *chart*, è possibile un **intervallo personalizzato** di visualizzazione dei dati: tramite una visualizzazione a calendario si possono scegliere la data di inizio e di fine.
+In the case of a *chart* chart, a **custom interval** of data visualization is possible: through a calendar view you can choose the start and end date.
 
 ![](img/avanzate_calendar.png)
 
 
 
 
-Durante tutto il processo di configurazione tramite il bottone **Previous** è possibile tornare alla fase precedente per modificare i campi. Quando si ha finito di configurare l'analitico è necessario cliccare su **Done**. A questo punto si salva la configurazione su API Console e si deploya il branch nell'ambiente desiderato. A questo punto, accedendo al CMS nell' ambiente in cui si è deployato, sarà possibile vedere il proprio analitico.
+Throughout the configuration process via the **Previous** button you can go back to the previous step to change the fields. When you have finished configuring the analytic you need to click on **Done**. At this point, save the configuration on the API Console and deploy the branch in the desired environment. At this point, by accessing the CMS in the environment in which it is deployed, it will be possible to see its analytic.
 
-## Visualizzazione degli analitici nella dashboard
+## View the analytics in the dashboard
 
-Quando avrai finito la configurazione, salvato e deployato, l'analitico sarà automaticamente visibile nel CMS nella **Dashboard**.
+When you have finished the configuration, saved and deployed, the analytic will be automatically visible in the CMS in the **Dashboard**.
 
-Per gestire la visibilità del singolo analitico, segui il seguente percorso:
+To manage the visibility of the individual analytic, follow the following path:
 
-` > CMS e Analitici > CMS > Dashboard `
+` > CMS and Analytics > CMS > Dashboard `
 
-In questa pagina potrai vedere in tabella tutti gli analitici configurati. Tutti i campi della tabella, ad eccezione del nome dell'analitico, sono modificabili. In particolare puoi modificare:
+On this page you can see all the configured analytics in the table. All fields in the table, with the exception of the analytic name, are editable. In particular you can modify:
 
-* il campo **Attivi**, che se selezionato ti permette di mostrare gli analitici in dashboard, invece se deselezionato l'analitico sarà nascosto;
+* the **Active** field, which if selected allows you to show the analytics in dashboard, but if deselected the analytic will be hidden;
 
-* il campo **Priorità**, che ti permette di scegliere l'ordine di visualizzazione degli analitici in dashboard ordinandoli in modo crescente;
+* the **Priority** field, which allows you to choose the order in which the analytics are displayed in dashboards, ordering them in an increasing way;
 
-* la **Larghezza**, che ti permette di scegliere se visualizzare l'analitico a schermo intero selezionando *Pagina intera*, oppure a mezza pagina selezionando *Mezza pagina*.
+* the **Width**, which allows you to choose whether to view the analytic in full screen by selecting * Full Page *, or half-page by selecting * Half-page *.
 
 ![](img/dashboard.png)
 
 
-## Visualizzazione degli analitici nella pagina della Collezione
+## View the analytics on the Collection page
 
-E' anche possibile visualizzare gli analitici nella pagina di una singola collezione nel CMS. Per farlo, il percorso da seguire è il seguente:
+It is also possible to view the analytics on the page of a single collection in the CMS. To do this, the path to follow is the following:
 
-` > CMS e Analitici > CMS > Nome Collezione > pagina Analitici `
+` > CMS and Analytics > CMS > Collection Name > Analytics page `
 
-In questa pagina puoi gestire la visibilità degli analitici configurati nella pagina della collezione selezionata.
+On this page you can manage the visibility of the analytics configured on the selected collection page.
 
-Se per alcuni analitici è già stata impostata la visibilità nella pagina, allora  saranno visibili in tabella. Se invece vuoi aggiungere la visibilità in un analitico, clicca il bottone **"Aggiungi riga"**. A questo punto potrai compilare tre campi:
+If some visibility has already been set for some analytics on the page, then they will be visible in the table. If you want to add visibility in an analytic, click the **"Add row"** button. At this point you can fill in three fields:
 
-1. **"Analitico"**, che ti permette di scegliere da un menù a tendina l'analitico che vuoi visualizzare nella pagina di quella collezione;
+1. **"Analytic"**, that allows you to choose from the drop-down menu the analytic that you want to display on the page of that collection;
 
-2. **"Priorità""**, che ti permette di scegliere l'ordine in cui vuoi visulizzare l'analitico nella pagina della collezione nel CMS (se inserisci 1 sarà il primo, e così via);
+2. **"Priority""**, which allows you to choose the order in which you want to view the analytic in the collection page in the CMS (if you enter 1 it will be the first one, and so on);
 
-3. **"Larghezza"**, che ti permette di scegliere se visualizzare l'analitico a metà schermo selezionando il valore *Mezza pagina*, oppure a schermo intero, selezionando il valore *Pagina intera*.
+3. **"Width"**, which allows you to choose whether to display the analytic in the middle of the screen by selecting the value *Half page*, or in full screen, selecting the value *Full page*.
 
 ![](img/analitico_collezione.png)
 
-Cliccando su **Crea** comparirà la riga aggiornata in tabella.
+By clicking on **Create** the updated row will appear in the table.
 
-!!! note
-    Ricorda che puoi sempre eliminare la riga, selezionandola nella casella a sinistra a cliccando su **Cancella**
+!!! notes
+    Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
 
     ![](img/analitico_cancella.png)
