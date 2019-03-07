@@ -21,18 +21,31 @@ https://github.com/mia-platform/custom-plugin-java
 ### Template Java - SpringBoot ###
 https://github.com/mia-platform/custom-plugin-java-springboot
 
-## Required basic routes ##
-Each microservice exposes some useful routes to the ecosystem. Through these routes it is in fact possible to have information on the health of the systems, and to carry out debugging checks.
-
-### Health Routes ###
-`/ - / healts /`
-It must return 200 if the service and its possible dependencies are able to provide the one for which it was created.
-For example, the service correctly communicates with the database, all its configurations are correct, has the resources necessary to be executed.
-
-### State Routes ###
-`/ - / ready /`
-Answers 200 only when, upon release, all the preliminary operations necessary for the functioning of the service are completed. This route informs OpenShift about the availability of the service.
-
-### Documentation Routes ##
+# Required basic routes #
+## Documentation Routes ##
 `/ Documentations / swagger / json /`
 Each microservice must expose the swagger documentation route
+
+
+
+## Health routes ##
+Each microservice exposes some useful routes to the ecosystem. Through these routes it is in fact possible to have information on the health of the systems, and to carry out debugging checks.
+
+### Liveness route ###
+`/ - / liveness /`
+
+It returns 200 if the service is up and running.
+
+### Readiness route ###
+`/ - / readiness /`
+
+It returns 200 if the service is able to handle traffic properly.
+For example, the service correctly communicates with the database, all its configurations are correct, has the resources necessary to be executed.
+
+#### Kubernetes usage of liveness and readiness ####
+Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and remedy such situations. 
+
+[Kubernetes kubelet](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) uses liveness probes to know when to restart a Container.
+
+Readiness probes are used to know when a Container is ready to start accepting traffic. When a Pod is not ready, it is removed from Service load balancers
+
