@@ -1,30 +1,30 @@
 site_name: Mia-Platform Docs
 repo_url: https://git.tools.mia-platform.eu/platform/documentations
-site_description: Documentazione della piattaforma Mia Platform
+site_description: Platform documentation of Mia Platform
 site_author: Mia Platform Team
-copyright: Mia srl. Tutti i diritti riservati.
+copyright: Mia srl. All rights reserved.
 
 nav:
 - Home:
   - Mia Platform Docs: 'index.md'
-  - Linee Guida Progettazione: 'guidelines/git_vademecum.md'
+  - Design Guidelines: 'guidelines/git_vademecum.md'
   - Custom Plugin: 'development_suite/plugin_baas_4.md'
-  - CMS e Analitici: 'business_suite/api_console_configcms.md'
+  - CMS and Analytics: 'business_suite/api_console_configcms.md'
   - DevOps: 'development_suite/dev_ops_guide/business_continuity.md'
-  - Release Note: 'release_notes/apiconsole_releasenotes.md'
+  - Release Notes: 'release_notes/apiconsole_releasenotes.md'
   - Info: 'info/version-policy.md'
 
 - Linee Guida:
     - GIT Vademecum: 'guidelines/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
-    - Microservizi Vademecum: 'guidelines/microservice_vademecum.md'
+    - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
 - Runtime Suite:
-    - Overview of all the components: 'runtime_suite/arc_components.md'
-    - Configure the components:
-       - Configure templates for creating services: 'runtime_suite/templates_conf.md'
+    - Components Overview: 'runtime_suite/arc_components.md'
+    - Components Configuration:
+       - Configure Services Creation Templates: 'runtime_suite/templates_conf.md'
        - Configure Cron Service: 'runtime_suite/cron.md'
        - Configure Swagger Aggregator: 'runtime_suite/swagger_conf.md'
        - Configure Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
@@ -32,37 +32,37 @@ nav:
        - Android SDK: 'runtime_suite/sdk_android.md'
 
 - Development Suite:
-  - API Console e Microservizi:
-    - Accedi all'API Console: 'development_suite/accedi_apiconsole.md'
-    - Crea un CRUD 5'min: 'development_suite/quick_rest_api.md'
-    - Crea un Custom Microservices: 'development_suite/plugin_baas_4.md'
-    - Esponi un'API e configura la sua sicurezza: 'development_suite/esponi_api.md'
-    - Gestisci i tuoi Microservizi dall'Api Console: 'development_suite/services.md'
-    - Arricchisci la tua chiamata con dei Decoratori: 'development_suite/decorators.md'
-    - CRUD - Sezione Avanzata: 'development_suite/crud_advanced.md'
-    - Comunicazione fra servizi nella Piattaforma 4: 'development_suite/communication_between_services_mp4.md'
-    - Rilascia le tue configurazioni: 'development_suite/deploy.md'
+  - API Console and Microservices:
+    - Access the API Console: 'development_suite/accedi_apiconsole.md'
+    - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
+    - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
+    - Showing and Safety Configuration of an API: 'development_suite/esponi_api.md'
+    - Manage your Microservices from the Api Console: 'development_suite/services.md'
+    - Enrich your call with some Decorators: 'development_suite/decorators.md'
+    - CRUD - Advanced Section: 'development_suite/crud_advanced.md'
+    - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
+    - Release your configurations: 'development_suite/deploy.md'
 
   - DevOps:
       - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
       - Disaster Recovery: 'development_suite/dev_ops_guide/disaster_recovery.md'
       - Autoscaling Pods: 'development_suite/dev_ops_guide/autoscaling.md'
-      - Linee guida per i log: 'development_suite/dev_ops_guide/log.md'
+      - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'
 
 - Business Suite:
   - CMS:
-    - Utilizzare il CMS: 'business_suite/guide_cms.md'
-    - Configurare il CMS con l'API Console: 'business_suite/api_console_configcms.md'
-    - Configurare il file .json del CMS: 'business_suite/conf_cms.md'
-    - Colorare il CMS: 'business_suite/colorare_il_cms.md'
-    - Aggiornare la versione del CMS: 'business_suite/update_cms.md'
+    - Use CMS: 'business_suite/guide_cms.md'
+    - Configure CMS through API Console: 'business_suite/api_console_configcms.md'
+    - Configure CMS .json file: 'business_suite/conf_cms.md'
+    - Color CMS: 'business_suite/colorare_il_cms.md'
+    - Update CMS: 'business_suite/update_cms.md'
 
-  - Analitici:
-    - Configurare gli Analytics con l'API Console: 'business_suite/api_console_configanalytics.md'
-    - Configurare il file .json degli Analytics: 'business_suite/conf_analytics.md'
+  - Analytics:
+    - Configure Analytics through API Console: 'business_suite/api_console_configanalytics.md'
+    - Configure Analytics .json file: 'business_suite/conf_analytics.md'
 
 - Release Notes:
-    - Piattaforma: 'release_notes/apiconsole_releasenotes.md'
+    - Platform: 'release_notes/apiconsole_releasenotes.md'
 
 
 - Info:
