@@ -20,7 +20,7 @@ Before creating pages or categories try to build the information architecture of
 
 ## How to create a category
 
-! [] (Img / crea-categoria.JPG)
+![](img/crea-categoria.JPG)
 
 To create a category, simply enter the ** Name ** of the category you want to display on the CMS and the display order.
 
@@ -37,7 +37,7 @@ The creation of a page consists of two steps:
 2. Configure the general settings
 
 ### Configure the menu area
-! [] (Img / area-menu.jpg)
+![](img/area-menu.jpg)
 
 In this section you can choose how to represent the page in the CMS side menu. Let's take the example of the Good Heroes page
 
@@ -98,7 +98,7 @@ We can divide this complex area into several parts:
 
 For each property you can configure different fields that allow you to improve the user experience in the CMS:
 
- ! [] (Img / property-generali.JPG)
+![](img/property-generali.JPG)
 
 * ** Interface Type **: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
 
@@ -233,13 +233,13 @@ The query will be: {"state": "working"}
 * ** Live search **: if we want that while we are writing we will see the results (ex: I write A and they appear under the publishing houses that begin with A)
     
     !!! example "An example of Lookup on the weapons collection"
-! [An example of Lookup on the weapons collection] (img / lookup-armi.JPG)
+![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
 
 ## 4. Create a button
 
 From Api Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
 
-! [section I create button] (img / creo-bottone.JPG)
+![section I create button](img/creo-bottone.JPG)
 
 The buttons are displayed in the central area of the CMS near the publish, draft and trash buttons
 
@@ -262,4 +262,4 @@ Sara:
 * icon: phone
 
 here is how our button will appear:
-! [button in cms] (img / button-in-cms.JPG)
+![bottone in cms](img/bottone-in-cms.JPG)
