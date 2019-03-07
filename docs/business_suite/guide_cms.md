@@ -1,10 +1,11 @@
-# Cos’è il CMS
+# CMS
 
 Un Content Management System (CMS) viene utilizzato per inserire, elaborare, pubblicare, cancellare i contenuti che vengono mostrati in un’app o in un sito.
 
 # Accedere al CMS
 
-Per poter accedere al CMS è sufficiente collegarsi da un normale Browser all’indirizzo: <nome-istanza>cms.baas.makeitapp.eu/app_dataentry/Questa è la schermata iniziale dove inserire le credenziali: mail, password, key e secret.
+Per poter accedere al CMS è sufficiente collegarsi da un normale Browser all’indirizzo: <nome-istanza>cms.baas.makeitapp.eu/app_dataentry/
+Questa è la schermata iniziale dove inserire le credenziali: mail, password, key e secret.
 
 ![image alt text](img/image_0.png)
 
@@ -12,7 +13,13 @@ Per poter accedere al CMS è sufficiente collegarsi da un normale Browser all’
 
 Queste due chiavi, insieme a user e password, sono necessarie per accedere al CMS e verranno fornite da Mia.
 
-Esempio di chiavi:KEY:771c47d353e1bd737c3927aa12a9337dabd7f5c48e69d243caaaa8b9801251a5ec4ea24d0827019dbcff21cfe39e3089ae2b42ff505992b7fe0c72641a8117e9173cedecab3b75cc9c284d8fbaae366bf91f851f3393ac6e9c15eab1819933eeaa006dc61bb7e08570e3baa9e2ea1f10ed32e169e4b60285d4ba97b159d4ad2ff266ae68d1acb25da8cc81a91f9245fb8111f101bd2ccebf62aa1229a95ca8e1f263b58ecae9a10dc9ed752d1c9b55422fe4ca3ed5a20c9e858a8f6c13504b5950143879f71acd5c5ec1a731f8978df66bd082f59cf49b381d04371bd6934b45050e4740b34a4dd62dcab34cf678771022cba1383458215e7c9e2bda672a852fSECRET:6a84d1a0e92bbce2ee47bcfc138710b731e14572f5cd12b7d52d2fc003ea229487cd4fd7d495991ce90a98cfda779ee533562894b4f78e38e7ce9481165dc033b4c17e2572f8df5330d2c5794767f084fd3f278446695789911da8fc7627cd86409e0922d0413b033bde651bfd9bb76c87eb63e5e0820260ba6f2fc1aafac54c45c2ee28cce7bf01dd207dd501347627a8ebe67a9cae1d24716519757c440ae94b66172cee6777497f4f14b08a78e1c182be7149b65246e9c28756aaf65375dc148e0c7820eee3adcca14a8d20b8a641cab8c48d92ab0c811913f47da978c98f5a844db7b40e7c66fa692b249481b580cbf184b2e70460f007d064dfb4afade8
+Esempio di chiavi:
+
+KEY:
+771c47d353e1bd737c3927aa12a9337dabd7f5c48e69d243caaaa8b9801251a5ec4ea24d0827019dbcff21cfe39e3089ae2b42ff505992b7fe0c72641a8117e9173cedecab3b75cc9c284d8fbaae366bf91f851f3393ac6e9c15eab1819933eeaa006dc61bb7e08570e3baa9e2ea1f10ed32e169e4b60285d4ba97b159d4ad2ff266ae68d1acb25da8cc81a91f9245fb8111f101bd2ccebf62aa1229a95ca8e1f263b58ecae9a10dc9ed752d1c9b55422fe4ca3ed5a20c9e858a8f6c13504b5950143879f71acd5c5ec1a731f8978df66bd082f59cf49b381d04371bd6934b45050e4740b34a4dd62dcab34cf678771022cba1383458215e7c9e2bda672a852f
+
+SECRET:
+6a84d1a0e92bbce2ee47bcfc138710b731e14572f5cd12b7d52d2fc003ea229487cd4fd7d495991ce90a98cfda779ee533562894b4f78e38e7ce9481165dc033b4c17e2572f8df5330d2c5794767f084fd3f278446695789911da8fc7627cd86409e0922d0413b033bde651bfd9bb76c87eb63e5e0820260ba6f2fc1aafac54c45c2ee28cce7bf01dd207dd501347627a8ebe67a9cae1d24716519757c440ae94b66172cee6777497f4f14b08a78e1c182be7149b65246e9c28756aaf65375dc148e0c7820eee3adcca14a8d20b8a641cab8c48d92ab0c811913f47da978c98f5a844db7b40e7c66fa692b249481b580cbf184b2e70460f007d064dfb4afade8
 
 **N.B.** È importante che nel copia/incolla delle due chiavi non vengano aggiunti spazi o a capo, altrimenti non sarà possibile accedere al CMS.
 
@@ -287,7 +294,8 @@ Il CMS è abilitato a inviare notifiche push ai dispositivi degli utenti in due 
 
 ![image alt text](img/image_20.png)
 
-+ Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica.Esempio: invio della news legata alla presentazione del nuovo libro di Baricco (vedi paragrafo News, Categories e Tags)
++ Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica.
+Esempio: invio della news legata alla presentazione del nuovo libro di Baricco (vedi paragrafo News, Categories e Tags)
 
 Se in fase di definizione del progetto è stato deciso di creare più gruppi di utenti, allora le push saranno abilitate anche per altre funzioni.
 
