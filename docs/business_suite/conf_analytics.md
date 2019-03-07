@@ -1,37 +1,36 @@
 [TOC]
 
-#Guida alla configurazione degli analitici#
+#Advice configuration guide #
 
-Gli analitici sul CMS di Mia-Platform vengono configurati attraverso due tipi di file JSON:
+The analytics on the Mia-Platform CMS are configured through two types of JSON files:
 
- - **widgets**: in questo file sono definiti tutti gli analitici, e cioè quali sono i calcoli e le tipologie di dato
- - **file di configurazione grafica**: in questi file si decide quali grafici del file widget vengono mostrati nella pagina desiderata del CMS. I file JSON di configurazione grafica sono: *dashboard.json*, che permette di configurare cosa viene mostrato nella dashboard del CMS, e un file *analytics.json* per ogni collezione del CMS per configurare cosa viene mostrato nella pagina analytics della collezione in oggetto.
+ - **widgets**: in this file all the analytics are defined, ie which are the calculations and the data types
+ - **graphic configuration file**: in these files you decide which graphs of the widget file are shown on the desired page of the CMS. The graphic configuration JSON files are: *dashboard.json*, which allows you to configure what is shown in the CMS dashboard, and a * analytics.json * file for each CMS collection to configure what is shown on the analytics page of the object.
 
-Il percorso per accedere ai file di configurazione degli analitici su git è:
+The path to access the git analytics configuration files is:
 
-`> nomeprogetto-config /  configurations / backoffice / _analytics-config`
+`> projectname-config / configurations / backoffice / _analytics-config`
 
-All'interno del file `_analytics-config` si trovano i due file widget e dashboard.
+Within the `_analytics-config` file are the two widget and dashboard files.
 
-Per configurare il file analytics.json all'interno di una collezione specifica, il percorso su git è:
-`> custom plugin / nome della collezione / analytics.json`
+To configure the analytics.json file within a specific collection, the git path is:
+`> custom plugin / collection name / analytics.json`
 
-Creando il file *analytics* viene quindi abilitato il tasto Analitici sul CMS e viene visualizzato il grafico così come è stato configurato all'interno del medesimo file.
+By creating the *analytics* file, the Analyzers key is then enabled on the CMS and the graph is displayed as configured in the same file.
 
 
+## How to configure the file *widget* ##
 
-##Come configurare il file *widget*##
+The widget file is the configuration file of the graphs. In my platform you have the possibility to configure two types of graph:
 
-Il file widget è il file di configurazione dei grafici. In mia platform si ha la possibilità di configurare due tipologie di grafico:
++ `` `custom-stock```: is a graph with a time series in abscissa
+! [] (Img / stock.png)
++ `` `chart```: is a graph not tied to time
+! [] (Img / chart.png)
++ `` `chart-summary```: is a graph in which are shown statistics regarding one or more data collections not related to time
+! [] (Img / chart-summary.png)
 
-+ ```custom-stock```: è un grafico con in ascissa una serie temporale
-![](img/stock.png)
-+ ```chart```: è un grafico non legato al tempo
-![](img/chart.png)
-+ ```chart-summary```: è un grafico nel quale vengono mostrate statistiche riguardanti una o più collezioni dati non legate al tempo
-![](img/chart-summary.png)
-
-###Esempio di struttura di configurazione###
+### Example of configuration structure ###
 ```
 {
   "installations": {
@@ -59,76 +58,76 @@ Il file widget è il file di configurazione dei grafici. In mia platform si ha l
     }]
   }
 ```
-###Gli elementi della struttura###
+### The elements of the structure ###
 
-Questo JSON contiene un oggetto i cui elementi sono i diversi grafici.
-La chiave di ogni elemento è il nome del grafico (*installations* nell'esempio sopra) e il valore è un altro oggetto con tutti i parametri di configurazione del grafico.
-Il nome del grafico servirà poi per la creazione dei JSON analytics e dashboard per richiamare il grafico che si vuole visualizzare nella pagina.
+This JSON contains an object whose elements are the different graphs.
+The key of each element is the name of the graph (* installations * in the example above) and the value is another object with all the configuration parameters of the graph.
+The name of the graph will then be used to create the JSON analytics and dashboard to recall the graph that you want to display on the page.
 
- - ***type:*** (string) il tipo di grafico, che può essere ```custom-stock```, ```chart``` oppure ```chart-summary```
- - ***title:*** (string) titolo del grafico da mostrare
- - ***sortBy:*** (enum string) determina l'oridnamento delle serie; le chiavi da utilizzare sono : ```label-asc```, ```label-desc```, ```value-asc```, ```value-desc```.
- - ***legend:*** (boolean/array). Se vuoi vedere o non vedere tutta la legend usa un (boolean): false per disabilitarla, in questo modo non vedrai nulla. Se invece scriverai true la legenda conterrà tutte le statistiche: max (valore massimo) , min (valore minimo) , sum (somma), avg (media).
-**Se vuoi visualizzare solo dei dati selezionati, dovrai trasformare il boolean in un array.
-Es: nel tuo grafico vuoi mostrare solo la somma e la media.
-A livello di codice scriverai: ```"legend": ["sum","avg"]```.
-Ricorda però che l’array non decide l’ordine, ma è preimpostato.
+ - ***type:*** (string) the type of chart, which can be `` `custom-stock```,` `` chart``` or `` `chart-summary```
+ - ***title:*** (string) title of the graph to show
+ - ***sortBy:*** (enum string) determines the series's series; the keys to use are: `` `label-asc```,` `` label-desc```, `` `value-asc```,` `` value-desc```.
+ - ***legend:*** (boolean / array). If you want to see or not see all the legend use a (boolean): false to disable it, in this way you will not see anything. If instead you write true the legend will contain all the statistics: max (maximum value), min (minimum value), sum (sum), avg (average).
+**If you want to display only selected data, you will need to turn the boolean into an array.
+Ex: in your chart you want to show only the sum and the average.
+At the code level you will write: `` `" legend ": [" sum "," avg "]` ``.
+Remember, however, that the array does not decide the order, but is preset.
 
-  ![legenda di un grafico su CMS](img/legend.png)
- 
- - ***yAxis***: permette di creare grafici del tipo `custom_stock` con più serie, le quali condividono la stessa scala sull'asse delle `y`. Se omessa, nel grafico vengono visualizzati due assi delle `y`, con scale diverse, per ogni serie. Le chiavi di questo oggetto permettono di configurare aspetti diversi dell'asse delle `y`  
-    - *shared*: (boolean) se `true`, le serie condivideranno la stessa scala sull'asse delle `y`. Se `false` il grafico si comporterà come se l'intero oggetto `yAxis` non sia stato specificato.
-    - *title*: (string) setta il titolo dell'asse delle `y`.
-    - *labelType*: (string) opzionale, con la stessa sintassi e semantica di `labelType` riferito alla serie (vedi sotto).
- - ***series:*** (array di oggetti) ogni oggetto del array rappresenta un tracciato/serie all'interno del grafico.
- Qualora si volessero visualizzare più tracciati/serie in un solo grafico, basterà mettere più di un oggetto nel array.
-   Ogni oggetto del array *series* è costituito dai seguenti elementi:
-    - *name:* (string) nome del tracciato/serie mostrato nel grafico
-    - *id:* (string)  id del tracciato/serie, di solito corrisponde al name
-    - *type:* (string) line, spline, area, column sono le tipologie di visualizzazione dei dati
-    - *color:* (string) colore del tracciato/serie, i valori ammessi sono i principali colori di css ([elenco colori](https://toolset.mrwebmaster.it/colori/colori-del-web.html))
- - ***labelType:*** (string) opzionale, usare solo con valore 'euro'. Indica il tipo di valore da mostrare nella legenda  
+  ! [legend of a chart on CMS] (img / legend.png)
+ 
+ - ***yAxis***: allows you to create `custom_stock` graphs with multiple series, which share the same scale on the` y` axis. If omitted, the chart displays two `y` axes, with different scales, for each series. The keys of this object allow you to configure different aspects of the `y` axis
+    - * shared *: (boolean) if `true`, the series will share the same scale on the` y` axis. If `false` the chart behaves as if the entire` yAxis` object was not specified.
+    - * title *: (string) sets the title of the `y` axis.
+- * labelType *: (string) optional, with the same syntax and semantics of `labelType` referring to the series (see below).
+ - *** series: *** (array of objects) each object of the array represents a path / series within the graph.
+ If you want to display multiple paths / series in a single graph, just put more than one object in the array.
+   Each object of the * series * array consists of the following elements:
+    - * name: * (string) name of the plot / series shown in the graph
+    - * id: * (string) track / series id, usually matches the name
+    - * type: * (string) line, spline, area, column are the types of data visualization
+    - * color: * (string) color of the plot / series, the allowed values ​​are the main colors of css ([color list] (https://toolset.mrwebmaster.it/colori/colori-del-web.html))
+ - *** labelType: *** (string) optional, use only with 'euro' value. Indicates the type of value to show in the legend
 
- - ***params:*** (oggetto) questo oggetto contiene gli elementi per configurare i valori del tracciato/serie:
-    - *collection:* (string) da quale collezione  prendere i dati che verranno mostrati nel tracciato/serie
-    - *groupdate:* (string) nome della proprietà su cui raggruppare i dati (solo formato data), es. ```createdAt```
-    - *group:* (string) nome della proprietà su cui raggruppare i dati (formati altro rispetto a data), es. ```appSource```
-    - *operations:* (array) indica l'operazione da eseguire sui dati, es. [["count"]]
+ - *** params: *** (object) This object contains the elements to configure the values ​​of the path / series:
+    - * collection: * (string) from which collection to take the data that will be shown in the track / series
+    - * groupdate: * (string) name of the property on which to group data (data format only), ex. `` `CreatedAt```
+    - * group: * (string) name of the property on which to group data (formats other than data), ex. `` `AppSource```
+    - * operations: * (array) indicates the operation to be performed on the data, e.g. [[ "Count"]]
 
-> Il parametro Operation funziona solo con **groupDate** e **group**.
-> Permette di specificare le operazioni da applicare nel gruppo creato da groupDate o group.
-> Questo parametro è un array e deve essere un JSON valido.
-> Ogni operazione è composta da [operationName, operands] dove operationName è un parametro o un'operazione aritmetica di mongo accettata da [group accumulator operators] e operands è il nome della property o una mongo query che restituisca i valori su cui applicare l'operationName  (https://docs.mongodb.com/manual/reference/operator/aggregation-group/).
-> Le **operazioni ammesse** sono:
+> The Operation parameter only works with ** groupDate ** and ** group **.
+> Allows you to specify the operations to be applied in the group created by groupDate or group.
+> This parameter is an array and must be a valid JSON.
+> Each operation consists of [operationName, operands] where operationName is a parameter or a mongo arithmetic operation accepted by [group accumulator operators] and operands is the name of the property or a mongo query that returns the values ​​on which to apply the operationName (https://docs.mongodb.com/manual/reference/operator/aggregation-group/).
+> The ** permitted transactions ** are:
 
-> + ***count***: numera gli elementi di un gruppo, non necessita di un operands.
-> + ***sum***: somma gli operands di ogni gruppo
-> + ***avg***: calcola la media degli operands di un gruppo
-> + ***last|first|min|max***: rispettivamente ritorna l'ultimo, il primo, i minimo e il massimo di ogni gruppo
-> + ***constant***: ritorna in un gruppo la specifica stringa o costante numerica (default 1)
-> **N.B. Si può impostare una sola operazione per tracciato/serie.** Si possono impostare anche operazioni complesse, ad esempio: ["avg", {"$multiply":
-        ["$totalPrice", "$quantity"]}]
+> + *** count ***: numbers the elements of a group, does not require an operands.
+> + *** sum ***: sum the operands of each group
+> + *** avg ***: calculates the average of the operands of a group
+> + *** last | first | min | max ***: respectively returns the last, the first, the minimum and the maximum of each group
+> + *** constant ***: returns in a group the specific string or numerical constant (default 1)
+> ** N.B. You can set only one operation per path / series. ** You can also set up complex operations, for example: ["avg", {"$ multiply":
+        ["$ totalPrice", "$ quantity"]}]
 
- - ***format:*** (string) elemento da popolare solo se si utilizza groupDate per indicare il periodo temporale di raggruppamento di default del tracciato/serie. Formati possibili: ```y``` : anni, ```ym``` : mesi, ```yw``` : settimane, ```ymd``` : giorni, ```ymdh``` : ore, ```ymdhM``` : minuti
- - ***filter:*** (mongoquery) serve per creare il tracciato/serie non su tutti i dati della collezione ma su un sottoinsieme. E' possibile filtrare su una property di tipo data se e solo se questa non è già utilizzata come property per il groupDate.
-La documentazione da consultare per le mongoquery è disponibile a questo [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
-Un esempio di mongoquery su una proprietà è la seguente:
+ - *** format: *** (string) element to be populated only if groupDate is used to indicate the default grouping time period of the plot / series. Possible formats: `` `y```: years,` `` ym```: months, `` `yw```: weeks,` `` ymd```: days, `` `ymdh``` : hours, `` `ymdhM```: minutes
+ - *** filter: *** (mongoquery) is used to create the path / series not on all the data in the collection but on a subset. It is possible to filter on a property of type date if and only if it is not already used as property for the groupDate.
+The documentation to be consulted for the mongoqueries is available at this [link] (https://docs.mongodb.com/manual/tutorial/query-documents/).
+An example of mongoquery on a property is as follows:
 
 `"fiter": {"nome proprietà": {"$gte": valore}}`
 
-Per conoscere tutti i comparatori puoi seguire questo [link](https://docs.mongodb.com/manual/reference/operator/query-comparison/). Nel menù di destra seleziona la tipologia di comparatore e scopri le potenzialità delle mongoquery
+To know all the comparators you can follow this [link] (https://docs.mongodb.com/manual/reference/operator/query-comparison/). In the right menu select the type of comparator and discover the potential of the mongoquery
 
- - ***customRangeDates:*** (boolean) abilita o disabilita i campi date ```startDate``` e ```endDate```, ***solo*** per i grafici di tipo ```chart```.
- - ***start date - end date:*** (number) utilizzabili solo se customRangeDate è settato a true. Inserire il timestamp in millisecondi delle date del periodo di interesse.  
- > Se sono attivi sia rangeDate che customDate su un grafico di tipo custom stock può crearsi confusione. Può essere più funzionale disabilitare rangeDate in quanto lo zoom può essere impostato sia con il cursore che con i bottoni di visualizzazione
+ - *** customRangeDates: *** (boolean) enable or disable the date fields `` `startDate``` and` `` endDate```, *** only *** for graphs of type `` `chart `` `.
+ - *** start date - end date: *** (number) usable only if customRangeDate is set to true. Enter the timestamp in milliseconds of the dates of the period of interest.
+ > If both rangeDate and customDate are active on a custom stock chart, it can be confusing. It can be more functional to disable rangeDate because the zoom can be set both with the cursor and with the display buttons
 
- - ***default zoom:*** (number) permette di decidere con quale livello di zoom di periodo partire nella visualizzazione in un custom stock. 0 : day, 1 : week, 2 : month, 3 : 3 months, 4 : 6 months, 5 : year, 6 : all
+ - *** default zoom: *** (number) allows you to decide how much period zoom to start displaying in a custom stock. 0: day, 1: week, 2: month, 3: 3 months, 4: 6 months, 5: year, 6: all
 
-##Come configurare il file *dashboard* e *analytics*##
+## How to configure the * dashboard * e * analytics * ## file
 
-I file JSON dashboard e analytics permettono di configurare la visualizzazione dei grafici nel CMS rispettivamente nella dashboard e nella sezione analitici all'interno di una collezione.
+JSON files dashboard and analytics allow to configure the visualization of the graphs in the CMS respectively in the dashboard and in the analytical section within a collection.
 
-###Esempio di struttura di configurazione###
+### Example of configuration structure ###
 ```
 [
  {
@@ -143,14 +142,14 @@ I file JSON dashboard e analytics permettono di configurare la visualizzazione d
   }
 ]
 ```
-###Gli elementi della struttura###
+### The elements of the structure ###
 
 
- * ***id:*** (string) nome del grafico nella dashboard (nell'esempio sopra "installations")
- * ***order:*** (number) ordine di visualizzazione del grafico (nell'esempio sopra "2")
- * ***width:*** (number 1-12) larghezza del grafico che può andare **da 1 a 12**. Se ad esempio si hanno due grafici con larghezza 6, questi si vedranno affiancati. Si possono creare diverse combinazioni di visualizzazione in base alla larghezza data.
+ * *** id: *** (string) name of the graph in the dashboard (in the example above "installations")
+ * *** order: *** (number) display order of the graph (in the example above "2")
+ * *** width: *** (number 1-12) width of the chart that can go ** from 1 to 12 **. For example, if you have two graphs with width 6, these will be seen side by side. You can create different display combinations based on the given width.
 
-In questo caso, avendo due grafici con larghezza 12, questi verranno visualizzati uno sotto l'altro.
+In this case, having two graphs with width 12, these will be displayed one below the other.
 
 
-**INSERIRE SCREEN DI ESEMPIO**
+** INSERT EXAMPLE SCREEN **
