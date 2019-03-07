@@ -32,15 +32,13 @@ Each microservice must expose the swagger documentation route
 Each microservice exposes some useful routes to the ecosystem. Through these routes it is in fact possible to have information on the health of the systems, and to carry out debugging checks.
 
 ### Liveness route ###
-`/ - / liveness /`
-
-It returns 200 if the service is up and running.
+`/ - / healts /`
+It returns 200 if the service is able to handle traffic properly.
+For example, the service correctly communicates with the database.
 
 ### Readiness route ###
-`/ - / readiness /`
-
-It returns 200 if the service is able to handle traffic properly.
-For example, the service correctly communicates with the database, all its configurations are correct, has the resources necessary to be executed.
+`/ - / ready /`
+Answers 200 only when, upon release, all the preliminary operations necessary for the functioning of the service are completed. This route informs OpenShift about the availability of the service.
 
 #### Kubernetes usage of liveness and readiness ####
 Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and remedy such situations. 
