@@ -11,7 +11,7 @@ The CMS consists of categories and pages. Pages and categories form the basis of
 
 The **Categories** are useful for grouping similar pages within them. The categories appear only in the CMS menu and represent a different section of the menu.
 
-To give an example: in our cms of the heroes we will create the collection ** Characters ** and inside we will place the different pages of heroes: good heroes, bad heroes, helpers etc ...
+To give an example: in our cms of the heroes we will create the collection **Characters** and inside we will place the different pages of heroes: good heroes, bad heroes, helpers etc ...
 
 The **Pages** instead are used to represent the data of a collection. Within the pages you can manage your collections and the data in it.
 
@@ -22,7 +22,7 @@ Before creating pages or categories try to build the information architecture of
 
 ![](img/crea-categoria.JPG)
 
-To create a category, simply enter the ** Name ** of the category you want to display on the CMS and the display order.
+To create a category, simply enter the **Name** of the category you want to display on the CMS and the display order.
 
 !!! tip
 We advise you to always order by following the tens order. If we want our category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the categories.
@@ -100,7 +100,7 @@ For each property you can configure different fields that allow you to improve t
 
 ![](img/property-generali.JPG)
 
-* ** Interface Type **: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
+* **Interface Type**: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
 
 * *string* if it is a classic text string;
 * *number* if it is a number;
@@ -209,7 +209,7 @@ Let's take an example: I have a property that has been and I want from the CMS t
 Here's how I'll have to build the array of objects:
 **[{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}]**
 
-* ** Value to be saved **: you will have to choose which value to save in the DB, in this case we advise you to save the value.
+* **Value to be saved**: you will have to choose which value to save in the DB, in this case we advise you to save the value.
 
 ### How to view the data of a Lookup
 From a Look up you can also configure additional features that allow you to meet any viewing need
@@ -224,7 +224,7 @@ show the name and surname properties and I want that between the two there is a 
 Let's take an example: in this lookup I want to see only the data that have state = a working.
 The query will be: {"state": "working"}
 
-** ** ** Limit: I can set a maximum number of items to display in my Lookup
+* **Limit**: I can set a maximum number of items to display in my Lookup
 
 * **Automatic Reset**: if we want to reset, that is after having compiled the cell if we want to empty it
 
