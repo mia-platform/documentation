@@ -37,3 +37,41 @@ For more info read the [documentation at www.mkdocs.org][mkdocs]
 
 [doc-site]: https://docs.mia-platform.eu
 [mkdocs]: http://www.mkdocs.org/user-guide/writing-your-docs/#configure-pages-and-navigation
+
+## Come contribuire a questa guida
+
+Questa guida è interamente scritta in Markdown.
+
+Ogni directory è una sezione specifica. Ogni file è un capitolo della guida. Sotto img vanno tutte le immagini.
+Ricordarsi di aggiornare mkdocs.yml se si vogliono aggiungere menu al documento online.
+
+
+### Scrivere la documentazione
+Per aggiungere informazioni è sufficiente seguire i seguenti passi:
+
+ - fare clone di http://git.makeitapp.eu/makeitapp-baas/mia-platform-doc;
+ - creare un branch con il nome <sezione-contenuto> (ad esempio se aggiungo un contenuto a API il branch si chiamerà developer_guide-api-miasezione);
+ - editare i/il file in modifica;
+ - usare ```mkdocs serve``` per vedere sul proprio pc la guida live mentre si modificano i files;
+ - quando finito eseguire  ``` ./publish.sh "your comment" ```
+ - aprire una merge request su http://git.makeitapp.eu/makeitapp-baas/mia-platform-doc
+ - una volta approvata la merge request la documentazione aggiornata sarà visibile su https://docs.mia-platform.eu/
+
+## Brevi istruzioni
+
+### Publish
+When you want to publish a document launch
+
+```
+./publish.sh "your comment"
+```
+Please remember to change the sentence "your comment" with the modifications
+
+
+### Test locally
+To read the doc locally use
+```
+ mkdocs serve
+```
+### References
+For more info read the [documentation at www.mkdocs.org](http://www.mkdocs.org/user-guide/writing-your-docs/#configure-pages-and-navigation)

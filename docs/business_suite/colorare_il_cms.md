@@ -1,41 +1,41 @@
-# Colorare il CMS
+# Color the CMS
 
-## I file di cui hai bisogno
+## The files you need
 
-Per customizzare i colori del CMS devi inanzitutto avere accesso alla Cartella: "Custom CMS" all'interno del repository di GitLab del tuo progetto.
+To customize the colors of the CMS you must first have access to the Folder: "Custom CMS" in the GitLab repository of your project.
 
-Se non è presente la cartella ti consigliamo di:
+If the folder is not present we suggest you:
 
-* Prendere un progetto di esempio con il Custom CMS creato da git lab.
+* Take an example project with the Custom CMS created by git lab.
 
-* Fare un git clone
+* Make a git clone
 
 !!! warning
-    Attenzione! se cloni un progetto esistente verifica in tutti i file creati che sia presente il nome del tuo cliente e non del cliente da cui hai clonato il percorso.
+Warning! if you clone an existing project, verify in all the files created that the name of your customer is present and not of the customer from which you have cloned the path.
 
-Il percorso per trovare la tua cartella è: Nome Progetto > Web Apps > Custom CMS
+The path to find your folder is: Project Name> Web Apps> Custom CMS
 
-All'inerno di questa cartella deve essere presente un'altra cartella che per convenzione ha il nome del cms, tendenzialmente ha quindi il nome del cliente.
+Inside this folder there must be another folder that by convention has the name of the cms, so basically it has the name of the customer.
 
-In questa cartella devono essere presenti altre due cartelle:
+In this folder there must be two other folders:
 
-* una **custom** che contiene il file: *variables.css*
+* a **custom** that contains the file: * variables.css *
 
-* una **img** che contiene il file per personalizzare la tua immagine del CMS.
+* a **img** that contains the file to customize your CMS image.
 
-Una volta che hai tutti questi file sul tuo progetto GIT puoi cominciare a customizzare il tuo CMS!
+Once you have all these files on your GIT project, you can start customizing your CMS!
 
-## Controllo delle variabili di progetto
+## Control of project variables
 
-Per far si che il tuo progetto venga deployato correttamente aggiorna o verifica che siano state aggiornate le seguenti variabili
+To ensure that your project is successfully deployed, update or verify that the following variables have been updated
 
-* 1.  Vai nel fil di gitlab-ci del progetto all'interno di Custom CMS.
+* 1. Go to the project's gitlab-ci thread within Custom CMS.
 
-      Inserisci per ogni path, il nome del progetto cliente e scegli la versione del CMS che vuoi far buildare
+Enter the name of the client project for each path and choose the version of the CMS you want to build
 
-* 2. Vai al path gilab/clients/:nome-cliente/configuration/gitlab-cli.yaml
+* 2. Go to the path gilab / clients /: client-name / configuration / gitlab-cli.yaml
 
-     Controlla e guarda la versione del CMS che vuoi buildare
+Check and see the version of the CMS you want to build
 
 ```
 
@@ -129,36 +129,36 @@ Per far si che il tuo progetto venga deployato correttamente aggiorna o verifica
 ```
 
 
-## I colori delle variabili - variables.css
+## Variable colors - variables.css
 
-**body-bg**: colore di background generale. Tendenzialmente è meglio metterlo sul grigio #f4f4f4
+**body-bg**: general background color. It is best to put it on gray # f4f4f4
 
-**color-search**: colore di background della search
+**color-search**: background color of the search
 
-**color-brand**: colore di background della sidebar
+**color-brand**: background color of the sidebar
 
-**color-text-special**: Sono i titoli delle categorie delle sidebar, il testo dell'utente, e la navigaton bar
+**color-text-special**: These are the titles of the sidebar categories, the user's text, and the navigaton bar
 
-**color-text-special-2**: come i titoli delle proprietà vengono visualizzate in fase di editing e creazione
+**color-text-special-2**: how the title of the properties are displayed during editing and creation
 
-**color-text-special-3**: alcune variabili particolari come: quando clicco su all publish o draft, i placeholder nelle pagine, il colore della barra delle pagine che si caricano
+**color-text-special-3**: some particular variables such as: when I click on all publish or draft, the placeholders on the pages, the color of the page bar that loads
 
-**color-text-negative**: il colore dei campi nella tabella
+**color-text-negative**: the color of the fields in the table
 
-**color-brand-gradient**: colore secondario
+**color-brand-gradient**: secondary color
 
-**color-brand-gradient-3**: quando viene selezionato un elemento nel left menù e il colore dei Mia Api CMS in basso a sx nella barra laterale
+**color-brand-gradient-3**: when an item is selected in the left menu and the color of My CMS Bees on the bottom left in the sidebar
 
 **color-brand-gradient-4**: allert
 
-**color-brand-gradient-5**: tasti error e warning
+**color-brand-gradient-5**: keys error and warning
 
-**color-search-text**: il colore del testo nella search
+**color-search-text**: the color of the text in the search
 
-**color-button**: il colore dei bottoni
+**color-button**: the color of the buttons
 
-**color-brand-gradient-1**: Il colore del titolo delle pagine nel menù laterale
+**color-brand-gradient-1**: The color of the title of the pages in the side menu
 
-**color-brand-bg-notification**: se attivi le notifiche il colore di sfondo del badge
+**color-brand-bg-notification**: if you activate the notifications the background color of the badge
 
-**color-brand-text-notification**: il colore del testo interno alle notifiche
+**color-brand-text-notification**: the text color inside the notifications
