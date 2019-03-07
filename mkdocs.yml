@@ -36,7 +36,7 @@ nav:
     - Access the API Console: 'development_suite/accedi_apiconsole.md'
     - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
     - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
-    - Showing and Safety Configuration of an API: 'development_suite/esponi_api.md'
+    - Expose and manage the safety of an apis: 'development_suite/esponi_api.md'
     - Manage your Microservices from the Api Console: 'development_suite/services.md'
     - Enrich your call with some Decorators: 'development_suite/decorators.md'
     - CRUD - Advanced Section: 'development_suite/crud_advanced.md'

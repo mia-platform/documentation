@@ -16,11 +16,11 @@ details on the [Guideline of Zalando](http://zalando.github.io/restful-api-guide
 Designing the API first and then implementing it is not against Agile principles.
 On the contrary, it allows to speed up the development because it decouples the backend from the frontend and helps to parallelize developments and consequently also to incrementally release features. Initially, the UI will be interfaced with API implementations still in Draft. After a first evaluation of the API's ergonomics aside of the UI the API will evolve and the final server-side logic will be implemented.
 
-![Approach without designing APIs with a platform](img / no-platform.png)
+![Approach without designing APIs with a platform](img/no-platform.png)
 
 Approach without designing the APIs with a platform
 
-![Approach designing APIs with a platform](img / with-platform.png)
+![Approach designing APIs with a platform](img/with-platform.png)
 
 Approach by designing APIs with a platform
 
@@ -92,7 +92,7 @@ There are several debates on versioning or not versioning the APIs. Both approac
 
 What we recommend is
 
-`` `
+```
 Versioning only the major versions that lead to changes in the breakdown of the service and reduce the number of versions
 supported in production at 2: that of current and discontinued use.
 ```
@@ -102,7 +102,7 @@ supported in production at 2: that of current and discontinued use.
 A Mia Platform resource has predefined and prevailed fields that are used for the management of the life cycle of the
 given. If we create a resource without properties we will have a JSON like the following:
 
-`` `
+```
 {
     "creatorId": "public",
     "createdAt": 1504601216920,
@@ -112,7 +112,7 @@ given. If we create a resource without properties we will have a JSON like the f
     "trash": 0,
     "id": "86c32c9f-194e-46a1-b483-a07c118ff2fc"
   }
-`` `
+```
 
 In detail:
 
@@ -369,12 +369,11 @@ you get the resource corresponding to id *ef02dcaa-7a2e-4c31-a505-c2cb014d769e*
 }
 ```
 
-### Ordinamento
+### Sorting
 
-E' possibile ordinare la lista delle risorse ritornate con una GET.
+It is possible to sort the list of resources returned with a GET.
 
-Per ordinare una lista di risorse alla GET bisogna passare il parametro *sort* alla querystring seguita da un elenco
-di campi di sort. La sort ha la sintassi di una [mongo query](https://docs.mongodb.com/manual/reference/method/cursor.sort/).
+To sort a list of GET resources you need to pass the *sort* parameter to the querystring followed by a list of fields of sort. The sort has the syntax of a [mongo query](https://docs.mongodb.com/manual/reference/method/cursor.sort/).
 
 ```
 curl -X GET https://your-url/heroes/?{"$sort":{"name":-1}} \
@@ -383,10 +382,10 @@ curl -X GET https://your-url/heroes/?{"$sort":{"name":-1}} \
 -H "secret: secret"
 ```
 
-In questo esempio sono ordinate le risorse per nome in ordine descrescente. Passando 1 in ordine crescente.
+In this example, the resources are sorted by name in descending order. Passing 1 in ascending order.
 
-Nota: è possibile usare il parametro *mongoQuery* nella query string al posto di passare la stringa mongo direttamente
-nell'url
+Note: you can use the *mongoQuery* parameter in the query string instead of passing the mongo string directly
+url
 
 ```
 curl -X GET https://your-url/heroes?mongoQuery={"$sort":{"name":-1}} \
@@ -395,14 +394,13 @@ curl -X GET https://your-url/heroes?mongoQuery={"$sort":{"name":-1}} \
 -H "secret: secret"
 ```
 
+### Pagination
 
-### Paginazione
+It is possible to paginate a request by passing two parameters:
+- skip: the record from which to start. The first has an index of 0
+- limit: the number of records to be extracted in the query
 
-E' possibile paginare una richiesta passando due parametri:
-- skip: il record dal quale partire. Il primo ha indice 0
-- limit: il numero di record da estrarre nella query
-
-Ad esempio:
+For example:
 
 ```
 curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25} \
@@ -410,10 +408,9 @@ curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25} \
 -H "content-type: application/json" \
 -H "secret: secret"
 ```
+returns the first 25 records of the list.
 
-ritorna i primi 25 record della lista.
-
-E' possibile comporre sort e paginazione.
+It is possible to compose sort and pagination.
 
 ```
 curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25,"$sort":{"name":-1}} \
@@ -422,8 +419,7 @@ curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25,"$sort":{"name":-1}} 
 -H "secret: secret"
 ```
 
-Nota: è possibile usare il parametro *mongoQuery* nella query string al posto di passare la stringa mongo direttamente
-nell'url
+Note: you can use the *mongoQuery* parameter in the query string instead of passing the mongo string directly url
 
 ```
 curl -X GET https://your-url/heroes?mongoQuery={"$skip":0,"$limit":25,"$sort":{"name":-1}} \
@@ -432,13 +428,12 @@ curl -X GET https://your-url/heroes?mongoQuery={"$skip":0,"$limit":25,"$sort":{"
 -H "secret: secret"
 ```
 
-### Filtri
+### Filters
 
-Le risorse possono essere filtrate usando le mongo query. E' possibile filtrare in and e in or in cascata citando tutte
-le proprietà delle risorse. [Maggiori dettagli sul sito di mongo per le query su una risorsa].(https://docs.mongodb.com/manual/tutorial/query-documents/)
+Resources can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of resources. [More details on the mongo site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
 
-Ad esempio possiamo cercare i super eroi di sesso *femminile* apparsi prima del *1990* e che hanno come super potere *speed* oppure
-il nome ha dentro Marvel.
+For example we can look for the super heroes of *female* sex that appeared before *1990* and that have super power *speed* or
+the name has Marvel inside.
 
 ```
 {"$and":[
@@ -450,47 +445,45 @@ il nome ha dentro Marvel.
 }
 ```
 
-### Aggiornare una Risorsa
+### Updating a Resource
 
-Per aggiornare una risorsa è sufficiente invocare una PUT passando nel body la risorsa da aggiornare con il suo *id*.
-Ad esempio se a Ms. Marvel aggiungo il super potere *flight* devo passare nel body l'id e l'array con i super poteri
+To update a resource it is sufficient to invoke a PUT passing in the body the resource to be updated with its *id*.
+For example, if I add the super power *flight* to Ms. Marvel, I have to pass in the body the id and the array with the super powers
 
 ```
 {"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
 "powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
 ```
 
-In ritorno ottengo la risorsa aggiornata
+In return I get the updated resource
 
 > Attenzione: se si vuole aggiornare una Risorsa inviare nel body solo le proprietà modificate per non sovrascrivere
 > le proprietà modificate da altri.
 
+### Deleting a Resource
 
-### Cancellare una Risorsa
+To delete a resource I have two options:
 
-Per eliminare una risorsa ho due opzioni:
+ - Delete it permanently with a DELETE request
+ - Put it in the trash
 
- - Cancellarla definitivamente con una DELETE request
- - Metterla nel cestino
+To put it in the trash can simply set *trash* to 1 (for details see the section [Base fields of a resource] (# base))
 
-Per metterla nel cestino è sufficiente impostare *trash* a 1 (per dettagli si veda la sezione [I campi base di una Risorsa](#base))
-
-Per cancellarla definitivamente
+To delete it permanently
 
 ```
 curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
 ```
 
-### Count del numero di Risorse
+### Count of the number of resources
 
-Può essere utile conoscere quanti elementi contiene un elenco di risorse. A tal scopo è sufficiente invocare una GET
-sul /count della risorsa
+It may be helpful to know how many items contains a list of resources. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
 ```
 curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
 ```
 
-ritorna
+returns
 
 ```
 {
@@ -498,29 +491,25 @@ ritorna
 }
 
 ```
+Note: filters can be applied to the count
 
-Nota: è possibile applicare i filtri al count
+### Delete all Resources
 
-### Eliminare tutte le Risorse
-
-E' possibile eliminare in un colpo solo tutte le risorse di una collezione. Per questo è sufficiente invocare la DELETE con
-l'endpoit /empty della risorsa.
+It is possible to eliminate all the resources of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
 
 ```
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
 ```
+## Document an API
 
-## Documentare una API
+The documentation of an API occurs in two ways:
 
-La documentazione di un'API avviene in due modalità:
+- Automatically when creating a resource from the Modeller API
+- By hand creating a *yaml* file in OpenAPI format called api.yaml and copying the file to the custom_plugin directory
 
-- In automatico quando si crea una risorsa da API Modeller
-- A mano creando un file *yaml* in formato OpenAPI chiamato api.yaml e copiando il file nella directory del custom_plugin
+To write a yaml file, we recommend using the online editor [https://editor.swagger.io/](https://editor.swagger.io/) or an extension of your favorite IDE.
 
-Per scrivere un file yaml si consiglia di utilizzare l'editor online [https://editor.swagger.io/](https://editor.swagger.io/) oppure
-un'estensione del vosto IDE preferito.
-
-Ecco l'esempio di file api.yaml per la risorsa *heroes*
+Here is the example of api.yaml file for the *heroes* resource
 
 ``` yaml
 swagger: '2.0'

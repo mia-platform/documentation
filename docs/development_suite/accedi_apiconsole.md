@@ -1,12 +1,10 @@
-## Accedere all'API Console 
+##Login
 
-Per accedere all’API Console è sufficiente collegarsi da un normale Browser al seguente indirizzo [Link to Api Console](https://console.cloud.mia-platform.eu/login)
+To access the API Console, simply connect from a normal browser to the following address [Link to Api Console](https://console.cloud.mia-platform.eu/login)
 
-Per effettuare la Login bisogna avere gli accessi al progetto GitLab al quale si vuole accedere. La Login si connette infatti direttamente al repository di GitLab, in questo modo gli accessi all'API Console rispecchiano i permessi di GitLab
+To login you must have access to the GitLab project you want to access. The Login in fact connects directly to the GitLab repository, in this way the accesses to the API Console reflect the permissions of GitLab
 
-Una volta effettuato il login si deve scegliere il progetto e il branch sul quale si vuole lavorare.
-
-Il primo passaggio da fare subito dopo il login è il load per caricare evenutali altre modifiche apportate da altri utenti, per farlo premere **carica** e scegliere il branch da caricare.
+Once logged in you must choose the project and the branch on which you want to work.
 
 !!! Warning
-    Se si sta iniziando un **nuovo progetto** la prima cosa da fare è **creare una seceret** e verificare che ce ne sia una e **una sola attiva**. Per farlo vedi il capitolo *"Secret"*.
+    If you are starting a **new project** the first thing to do is **create a secret** and check that there is one and **only one active**. To do this, see the chapter *"Secret"*.

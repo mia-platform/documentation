@@ -1,44 +1,42 @@
-# Comunicazione fra microservizi all'interno della piattaforma 4
+# Communication between microservices within the platform 4
 
-## Introduzione
-La piattaforma 4 è composta da microservizi, in cui ciascuno espone un insieme specifico di funzionalità. Per far comunicare i microservizi tra loro, abbiamo individuato delle best practice e convenzioni per rendere il più possibile uniforme la modalità di comunicazione, sia tra componenti core che tra microservizi custom.
+## Introduction
+Platform 4 is made up of microservices, in which each one presents a specific set of functionalities. To make the microservices communicate with each other, we have identified best practices and conventions to uniform the communication mode, both between core components and custom microservices.
 
-## Convenzioni
+## Conventions
 
-### Protocollo
-Il protocollo di comunicazione scelto per la comunicazione interna è `http`.
+### Protocol
+The communication protocol chosen for internal communication is `http`.
 
-### Hostname e porta
-I servizi vengono rilasciati con hostname uguale al nome del servizio, sulla porta `80`. Quindi ad esempio il crud-service sarà raggiungibile all'url `http://crud-service` (`http://crud-service:80`), il microservice-gateway all'url `http://microservice-gateway` e così via. Questo vale anche per tutti i servizi custom.
+### Hostname and port
+The services are released with hostname equal to the service name, on the `80` port. So for example the crud-service will be reachable at the url `http: // crud-service` (` http: // crud-service: 80`), the microservice-gateway to the url `http: // microservice-gateway` and so on. This is applied to all custom services.
 
-### Formato dati
-Il formato più diffuso nella comunicazione fra i servizi è il `JSON`, che è il più consigliato per la trasmissione di dati strutturati in API REST.
-Non è però scontato il suo utilizzo per tutte le API, infatti, ad esempio per il trasferimento di file si utilizza direttamente il protocollo HTTP per il download, e tipicamente richieste multipart per l'upload.
+### Data format
+The most common format in communication between services is `JSON`, which is the most recommended format for transmitting structured data in REST APIs.
+However, its use for all APIs is not obvious, in fact, for example, for file transfer, the HTTP protocol is used directly for download, and typically multipart requests for uploading.
 
-### Documentazione
-Si invita a consultare la documentazione `OpenAPI` (swagger) dei servizi per controllare effettivamente le rotte e il formato dei dati. Caldamente consigliata è l'esposizione di una documentazione `live`, che sia servita dal servizio stesso e rifletta le effettive rotte del servizio (meglio se generata). Per convenzione la rotta su cui ci si aspetta la documentazione è `/documentation` (per i file statici HTML) e `/documentation/json` o `/documentation/yaml` per il file swagger.
+### Documentation
+Please refer to the `OpenAPI` (swagger) services documentation to actually check the routes and data format. Highly recommended is the display of a `live` documentation, which is served by the service itself and reflects the actual service routes (better if generated). By convention the route on which the documentation is expected is `/documentation` (for static HTML files) and` /documentation/json` or `/documentation/yaml` for the swagger file.
 
-## Comunicazione tra servizi
-Ci sono due possibilità per raggiungere i servizi in generale:
-
-
-- tramite `microservice-gateway`
-- diretta
-
-In ogni caso, è molto importante ricordarsi di portare avanti gli header di Mia che contengono l'id dell'utente, i suoi gruppi etc, in modo che anche il servizio invocato abbia accesso a tali informazioni!
+## Communication between services
+There are two possibilities for reaching services in general:
 
 
-Per facilitare la comunicazione tra i servizi è stata scritta una [libreria in node](plugin_baas_4.md), è comunque possibile chiamare i servizi direttamente tramite http nel caso si utilizzino altre tecnologie.
+- via `microservice-gateway`
+- direct
 
-### Comunicazione tramite microservice-gateway
-Il microservice-gateway raccoglie tutte le API dei microservizi, e offre la possibilità di agganciare web-hook alle chiamate che agiscono come decoratori di PRE (prima della chiamata) e di POST (dopo la chiamata). Le chiamata ai microservizi da fuori potrebbe quindi scatenare altre chiamate ed altra logica a complemento della chiamata stessa. Per avere un comportamento consistente anche quando si chiamano i servizi dall'interno, si consiglia di passare per il microservice-gateway.
+In any case, it is very important to remember to carry on the Mia headers that contain the user id, its groups etc, so that even the invoked service has access to this information!
 
+To facilitate communication between the services, a [library in node has been written](plugin_baas_4.md), it is still possible to call the services directly through http if other technologies are used.
 
-Per chiamare un CRUD tramite il microservice-gateway, bisogna contattare `http://microservice-gateway/<nome-collezione>/<rotte del CRUD>`.
-Per contattare un servizio tramite il microservice-gateway, bisogna contattare `http://microservice-gateway/<nome-servizio>/<rotte-del-servizio>`
+### Communication via microservice-gateway
+The microservice-gateway collects all the microservice APIs, and offers the possibility to hook web-hooks to calls that act as PRE (before the call) and POST (after the call) decorators. The call to the microservices from outside could then trigger other calls and other logic to complement the call itself. To have a consistent behavior even when calling services from within, it is advisable to go through the microservice-gateway.
 
-### Comunicazione diretta
-Se si vuole evitare il passaggio attraverso il microservice-gateway, si può contattare il servizio direttamente come illustrato sopra. Questo è generalmente sconsigliato perché si eludono evenuali decoratori della chiamata, ma è comunque possibile.
+To call a CRUD through the microservice-gateway, you must contact `http: // microservice-gateway / <collection-name> / <routes of the CRUD>`.
+To contact a service through the microservice-gateway, contact `http: // microservice-gateway / <service-name> / <service-routes>`
 
-## Integrazione servizi della piattaforma 3
-Per integrare plugin della piattaforma 3 è necessario ricordarsi di portare avanti anche l'header che contiene i Cookie.
+### Direct communication
+If you want to avoid passing through the microservice-gateway, you can contact the service directly as shown above. This is generally discouraged because any decorators of the call are evaded, but it is still possible.
+
+## Platform services integration 3
+To integrate platform 3 plugins, it is necessary to remember to carry forward also the header containing the Cookies.
