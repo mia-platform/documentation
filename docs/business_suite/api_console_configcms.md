@@ -1,265 +1,265 @@
-# Come Configurare il CMS dall'API Console
+# How to Configure the CMS from the API Console
 
-Dall'Api Console puoi comodamente configurare e gestire il tuo CMS.
+From the API Console you can easily configure and manage your CMS.
 
-!!! note
-    Ricordati che prima di poter configurare il CMS devi avere già creato le tue collezioni nell'are Collezioni ed esposto i relativi Endpoint.
+!!! Note
+Remember that before you can configure the CMS you must have already created your collections in the Collections area and displayed the related Endpoints.
 
-## Categorie e Pagine
+## Categories and Pages
 
-Il CMS è composto da categorie e pagine. Pagine e categorie costituiscono la base della architettura informativa del CMS.
+The CMS consists of categories and pages. Pages and categories form the basis of the CMS information architecture.
 
-Le **Categorie** sono utili per raggruppare al loro interno pagine simili. Le categorie compaiono solamente nel menù del CMS e rappresentano una diversa sezione del menù.
+The ** Categories ** are useful for grouping similar pages within them. The categories appear only in the CMS menu and represent a different section of the menu.
 
-Per fare un esempio: nel nostro cms degli eroi creeremo la collezione **Personaggi** e al suo interno collocheremo le diverse pagine di eroi: eroi buon, eroi cattivi, aiutanti ecc...
+To give an example: in our cms of the heroes we will create the collection ** Characters ** and inside we will place the different pages of heroes: good heroes, bad heroes, helpers etc ...
 
-Le **Pagine** invece servono per rappresentare i dati di una collezione. All'interno delle pagine potrai gestire le tue collezioni e i dati in essa presenti.
-
-!!! tip
-    Prima di creare pagine o categoria prova a costruirti l'architettura informativa del tuo CMS. Sarà molto più semplice a quel punto sapere cosa creare.
-
-## Come creare una categoria
-
-![](img/crea-categoria.JPG)
-
-Per creare una categoria ti basterà inserire il **Nome** della categoria che vuoi visualizzare sul CMS e l'ordine di visualizzazione.
+The ** Pages ** instead are used to represent the data of a collection. Within the pages you can manage your collections and the data in it.
 
 !!! tip
-    Ti consigliamo di ordinare sempre seguendo l'ordine delle decine. Se vogliamo che la nostra categoria sia la prima nel CMS scriveremo quindi 10. Questo ti facilità inseguito il cambio di ordine delle categorie.
+Before creating pages or categories try to build the information architecture of your CMS. It will be much simpler at that point to know what to create.
 
-Nel nostro caso, del CMS degli eroi, quindi scriveremo: Nome = Personaggi e Ordine = 10
+## How to create a category
 
-## Come creare una pagina
+! [] (Img / crea-categoria.JPG)
 
-La creazione di una pagina si compone di due step:
+To create a category, simply enter the ** Name ** of the category you want to display on the CMS and the display order.
 
-1. Configurare l'area del menù
-2. Configurare le impostazioni generali
+!!! tip
+We advise you to always order by following the tens order. If we want our category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the categories.
 
-### Configurare l'area del menù
-![](img/area-menù.JPG)
+In our case, of the CMS of the heroes, then we will write: Name = Characters and Order = 10
 
-In questa sezione potrai scegliere come rappresentare la pagina nel menù laterale del CMS. Facciamo l'esempio della pagina Eroi Buoni
+## How to create a page
 
-**Nome**: Dovrai inserire il nome da visualizzare nel menù per rappresentare la tua pagina. Nel nostro caso: Eroi Buoni
+The creation of a page consists of two steps:
 
-**Endpoint**: Dovrai scegliere a che endpoint agganciare la tua pagina. Nel nostro caso: /eroibuoni
+1. Configure the menu area
+2. Configure the general settings
 
-**Categoria**: Dovrai scegliere la tua pagina in che Categoria dovrà essere inserita. Nel nostro caso agganceremo la categoria Personaggi
+### Configure the menu area
+! [] (Img / area-menu.jpg)
 
-**Icona**: Potrai scegliere se attribuire alla tua pagina un icona che la rappresenti nel CMS. Per fare un esempio: se la tua è la pagina dei libri, potrai scegliere l'icona book per rappresentarla.
-A questo [link](https://fontawesome.com/v3.2.1/icons/) potrai visualizzare e scegliere tutte le icone disponibili.
+In this section you can choose how to represent the page in the CMS side menu. Let's take the example of the Good Heroes page
 
-**Ordine**: Con Ordine potrai scegliere che ordine dare alla tua pagina all'interno di una categoria. Ti consigliamo di dare alle pagine un numero appartenente all'ordine delle decine (es: la pagina 1 avrà l'ordine 10)
+** Name **: You will need to enter the name to be displayed in the menu to represent your page. In our case: Heroes Good
 
-### Configurare le Impostazioni generali
+** Endpoint **: You will have to choose which endpoint to hook your page to. In our case: / eroibuoni
+
+** Category **: You will have to choose your page in which category will be inserted. In our case we will hook the Characters category
+
+** Icon **: You can choose whether to give your page an icon that represents it in the CMS. To give an example: if yours is the book page, you can choose the book icon to represent it.
+At this [link] (https://fontawesome.com/v3.2.1/icons/) you will be able to view and select all the available icons.
+
+** Order **: With Order you can choose what order to give to your page within a category. We advise you to give the pages a number belonging to the tens order (ex: page 1 will have the order 10)
+
+### Configure the General Settings
 ![](img/impostazioni-generali.JPG)
 
-In questa sezione potrai scegliere le configurazioni generali della tua pagina.
+In this section you can choose the general configurations of your page.
 
-**Layout**: puoi decidere il Layout che vorrai dare alla tua collezione. I layout possibili sono:
- * *Table* è la modalità di visualizzazione più classica a tabella.
+** Layout **: you can decide the layout you want to give to your collection. The possible layouts are:
+* * Table * is the most classic table view mode.
 
- * *TableUser* è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella.
+* * TableUser * is the display mode for users. It has in fact a special Reset Password field at the beginning of the table.
 
- * *TablePush* invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inivare il contenuto ai tuoi clienti. 
+* * TablePush * instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers.
 
- * *Card* ogni oggetto sarà rappresentato simile a una Card. Per poter poi visualizzare la card sarà necessario configurarle, a questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card) trovi come farlo.
+* * Card * each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to this [link] (https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare- le-card) find how to do it.
 
- * *Gallery* è invece la rappresentazione perfetta per le immagini.
+* * Gallery * is instead the perfect representation for images.
 
-**Evidenzia un campo**: questa select ti mostra le proprietà che nella tua pagina sono dei boolean. Puoi infatti scegliere di evidenziare una proprietà boolean nel CMS. Se la proprietà è true la vedrai evidenziata in grassetto.
+** Highlight a ** field: this select shows you the properties that are boolean in your page. You can in fact choose to highlight a boolean property in the CMS. If the property is true you will see it highlighted in bold.
 
-**Cancella Definitivamente**: attivando questo check scegli di cancellare definitivamente dal database un elemento. Compare quando vuoi cancellare un elemento in Trash.
+** Permanently Delete **: activating this check choose to permanently delete an element from the database. Appears when you want to delete an item in Trash.
 
-**Blocca**: attivando questo check scegli di bloccare definitivamente una pagina. In questo modo da CMS non si potranno creare nuovi elementi.
+** Block **: activating this check choose to permanently block a page. In this way CMS will not be able to create new elements.
 
-**Nascondi**: attivando questo check scegli di nascondere una pagina.
+** Hide **: by activating this check, choose to hide a page.
 
-**Applica un filtro**: in questo campo potrai applicare un filtro di visibilità alla tua pagina.
-Per scrivere una query ti consigliamo due link: 1) le diverse tipologie di [query](https://docs.mongodb.com/manual/tutorial/query-documents/) 2) tutti i tipi di [operatori](https://docs.mongodb.com/manual/reference/operator/query/#query-selectors) che puoi utilizzare.
+** Apply a filter **: in this field you can apply a visibility filter to your page.
+To write a query we recommend two links: 1) the different types of [query] (https://docs.mongodb.com/manual/tutorial/query-documents/) 2) all types of [operators] (https: //docs.mongodb.com/manual/reference/operator/query/#query-selectors) that you can use.
+
+Let's take an example: in my collection I have a property that is the same as state (indicates the state). In this page I want to see only the data that have how state = a working. In this page I want to see only the data that have how state = a working.
+The query will be: {"state": "working"}
+An example of a more complex query in which, for example, I want to say that the state property must be equal to those stored or rejected can be written as follows: {"$ or": [{"state": "archived"}, { "state": "refused"}]}
+
+## Customizing properties
+
+To make your CMS perfectly compatible with your needs, the last section on which you will be working is your property.
+
+The properties section allows you to customize every single property.
+We can divide this complex area into several parts:
+
+1. the general settings of a company
+2. visibility filters
+3. the area of the lookups
+
+### 1. The general settings of a property
+
+For each property you can configure different fields that allow you to improve the user experience in the CMS:
+
+ ! [] (Img / property-generali.JPG)
+
+* ** Interface Type **: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
+
+* *string* if it is a classic text string;
+* *number* if it is a number;
+* *datetime* is instead a complete date with hours, minutes and seconds;
+* *boolean* if it can only be true or false; * text * if we want the content to be read as html;
+* *textArea* if it is a text field, for example a description;
+* *Lookup* are used to select some values or between a range of values chosen by me or between a range of values taken from another collection. If you are interested in the theme of the Lookups below you will find a dedicated section;
+* *Multilookup* if you want to select multiple values;
+* *Array* if you want to save it as an ordered set of properties;
+* *Object* is a set of properties not ordered;
+* *Geopoint* if you want me to save a specific place;
+* *Files* if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
+
+* ** Label **: is the name you want to be displayed in the CMS.
+
+* ** Description **: you can enter the description of your property.
+
+* ** Order **: indicates the order of the property in the CMS display. Remember to use the tens meter (the first is the number 10), this will make it easier for you to manage the subsequent changes.
+
+* ** Location on the card **: if you have chosen the Card display mode you can choose in which position of the card to display your property. For more information follow this [link] (https://docs.mia-platform.eu/user_guide_and_tools/api_console/guida_api_console/#card-position)
+
+* ** Editable **: if you activate this check the property can be modified by anyone, otherwise it will not be editable by CMS
+
+* ** Visibility **: indicates at what level of the CMS you want to show a property. Layers can be: * Hidden * and is not visible; * All * and is visible in the main table; * Detail and Modal * and it is visible when you click in the table, in the right area of ​​your CMS, at this level you tend to put non-priority information, but which bring value, eg: in-depth information. Last is only in modal: * Modal * that is when I click Expand from the Side edit area.
+
+### 2. The visibility filters
+
+In this section you can control the visibility of a property.
+You can either refuse to make your property appear only under certain conditions.
+
+Visibility can be controlled in two stages:
+
+1. in the process of creating a new element in the CMS
+2. when editing an item
+
+#### Control being created
+
+To control visibility during creation, you must choose which other property affects its visibility.
+
+What should I do?
+
+1. choose the ** property **, I have a select that shows me all my properties.
+2. choose the ** comparator **.
+3. choose the ** value **.
+
+!!! tip "Comparators"
+The supported comparators are the following:
+
+value | comment
+------- | ---------
+`<` | lower
+`<=` | less or equal
+`>` | greater
+`> =` | greater or equal
+`==` | equal
+`! =` | different
+`===` | strictly equal
+`! ==` | strictly different
+
+
+
+#### Control when editing an element
+
+To control the visibility when editing an item, you must follow the same steps for checking when creating.
+However, your property will only appear this time when you want to change an item from CMS.
+
+You will always have to:
+
+1. choose the ** property **.
+2. choose the ** comparator **.
+3. choose the ** value **.
 
 !!! example
-    Facciamo un esempio: nella mia collezione ho una proprietà che è uguale a state (indica lo stato). In questa pagina voglio vedere solo i dati che hanno come state= a working. In questa pagina voglio vedere solo i dati che hanno come state= a working.
-    La query sarà: {"state": "working"}
-    Un esempio di una query più complessa nella quale ad esempio voglio dire che lo proprietà stato deve essere uguale a quelli archiviati o rifiutati potrà essere scritta nel seguente modo: {"$or": [{"state": "archived"},{"state": "refused"}]}
+To give an example: I have a CMS that manages the warehouse of a supermarket, I am in the property * expiry date *,
+I want this property to appear only when the perishable * property is equal to true.
 
-## Customizzare le proprietà
+1. choose the ** property **, I choose perishable.
+2. choose the ** comparator **, in our case ** == **
+3. choose the ** value **, in our case ** true **
 
-Per rendere il tuo CMS perfettamente compatibile sui tuoi bisogni l'ultima sezione sulla quale ti troverai a lavorare sono le tue proprietà.
+## 3. The Lookups
 
-La sezione delle proprietà ti permette di customizzare ogni singola proprietà.
-Possiamo dividere quest'area complessa in più parti:
+Lookups let you show in a property or preset values you choose, or show data from another collection.
 
-1. le impostazioni generali di una prorpietà
-2. i filtri di visibilità
-3. l'area delle lookup
+In fact, there are two types of Lookup:
+* ** Look a collection **: which allows you to show data from another collection
+* ** Inline Source **: which allows you to set values to show.
 
-### 1. Le impostazioni generali di una proprietà
-
-Per ogni proprietà puoi configurare diversi campi che ti permettono di migliorare l'eseprienza utente nel CMS:
-
- ![](img/proprietà-generali.JPG)
-
-* **Tipo di Interfaccia**: in base al tipo della proprietà definito nella collezione, puoi scegliere se migliorare la visibilità di quella proprietà. I tipi di Interfaccia possono essere di diversi tipi:
-    * *string* se è una classica stringa di testo;
-    * *number* se è un numero;
-    * *datetime* è invece una data completa con anche ore, minuti e secondi;
-    * *boolean* se può essere solo true o false; *text* se vogliamo che il contenuto venga letto come html;
-    * *textArea* se è un campo di testo, quindi ad esempio una descrizione;
-    * *Lookup* servono per poter selezionare alcuni valori o tra una gamma di valori scelti da me o tra una gamma di valori presi da un'altra collezione. Se ti interessa il tema delle Lookup più sotto troverai una sezione dedicata;
-    * *Multilookup* se vuoi selezionare più valori;
-    * *Array* se lo vuoi salvare come un insieme ordinato di proprietà;
-    * *Oggetto* è un insieme di proprietà non ordinato;
-    * *Geopoint* se vuoi che salvi un luogo preciso;
-    * *Files* se è un file come ad esempio un immagine o un pdf. Nel nostro caso sceglieremo string volendo semplicemente scrivere il nome del titolo.
-
-* **Etichetta**: è il nome che vuoi che venga visualizzato nel CMS.
-
-* **Descrizione**: puoi inserire la descrzione della tua proprietà.
-
-* **Ordine**: indica l'ordine della proprietà nella visualizzazione del CMS. RIcordati di usare il metro delle decine (la prima è il numero 10), in questo modo ti sarà più semplice gestire le modifiche successive.
-
-* **Posizione nella card**: se hai scelto la modalità di visualizzazione a Card puoi scegliere in che posizione della card far comparire la tua proprietà. Per maggiori informazioni segui questo [link](https://docs.mia-platform.eu/user_guide_and_tools/api_console/guida_api_console/#card-position)
-
-* **Modificabile**: se attivi questo check la proprietà è modificabile da chiunque, altrimenti non sarà modificabile da CMS
-
-* **Visibilità**: indica a che livello del CMS vuoi mostrare una proprietà. I livelli possono essere: *Hidden* e non è visibile; *All* ed è visibile nella tabella principale; *Detail and Modal* ed è visibile quando clicci nella tabella, nella zona destra del tuo CMS, a questo livello tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, es: gli approfondimenti. Ultimo è solo nella modale: *Modal* ovvero quando clicco Expand dall'area di Edit laterale.
-
-### 2. I filtri di visibilità
-
-In questa sezione puoi controllare la visibilità di una proprietà.
-Puoi ovvero decdere di far comparire la tu aproprietà solo a determinate condizioni.
-
-La visibilità può essere controllata in due momenti:
-
-1. in fase di creazione di un nuovo elemento nel CMS
-2. in fase di modifica di un elemento
-
-#### Controllo in fase di creazione
-
-Per controllare la visibilità in fase di creazione devi scegliere quale altra proprietà condiziona la sua visibilità.
-
-Cosa devo fare?
-
-1. scegliere la **proprietà**, ho una select che mi mostra tutte le mie proprietà.
-2. scegliere il **comparatore**.
-3. scegli il **valore**.
-
-!!! tip "Comparatori"
-    I comparatori supportati sono i seguenti:
-
-    valore | commento
-    -------|---------
-    `<` | minore
-    `<=` | minore o uguale
-    `>` | maggiore
-    `>=` | maggiore o uguale
-    `==` | uguale
-    `!=` | diverso
-    `===` | strettamente uguale
-    `!==` | strettamente diverso
-
-
-
-#### Controllo in fase di modifica di un elemento
-
-Per controllare la visibilità in fase di modifica di un elemento devi seguire gli stessi passaggi per il controllo in fase di creazione.
-La tua proprietà però questa volta comparirà solo quando vuoi modificare un elemento da CMS.
-
-Dovrai sempre:
-
-1. scegliere la **proprietà**.
-2. scegliere il **comparatore**.
-3. scegli il **valore**.
-
-!!! example
-    Per fare un esempio: ho un CMS che mi gestisce il magazzino di un supermercato, sono nella proprietà *data di scadenza*,
-    voglio che questa proprietà compaia solamente quando la proprietà *deperibile* è uguale a true.
-
-    1. scegliere la **proprietà**, scelgo deperibile.
-    2. scegliere il **comparatore**, nel nostro caso **==**
-    3. scegli il **valore**, nel nostro caso **true**
-
-## 3. Le Lookup
-
-Le Lookup ti permettono di mostrare in una proprietà o dei valori preimpostati da te scelti, o di mostrare i dati di un'altra collezione.
-
-Esistono infatti due tipologie di Lookup:
-* **Look a collection**: che ti permette di mostrare i dati di un'altra collezione
-* **Inline Source**: che ti permette di impostare dei valori da mostrare.
-
-A questo punto le opzioni divergono.
+At this point the options diverge.
 
 ### Look a collection
 
-Quando selezionerai Look a collection dovrai compilare due valori:
+When you select Look a collection you will have to fill in two values:
 
-1. ID Collezione: vedrai una select e dovrai scegliere la collezione di cui vuoi mostrare i dati
-2. Valore da salvare: vedrai una select e dovrai scegliere quale proprietà della collezione salvarti. Di buon norma è consigliabile salvarsi l'id.
+1. Collection ID: you will see a select and you will have to choose the collection whose data you want to show
+2. Value to save: you will see a select and you will have to choose which property of the collection to save. It is generally advisable to save the id.
 
 ### Inline Source
 
-Quando selezionerai Inline Source dovrai compilare due valori:
+When you select Inline Source you will need to fill in two values:
 
-*  **I dati che vuoi visualizzare**: in questo campo dovrai inserire un array di oggetti che vuoi visualizzare. Ricordati di differenziare il valore da salvare nel database con quello che vuoi mostrare al tuo utente finale.
+* ** The data you want to view **: in this field you will need to insert an array of objects you want to view. Remember to differentiate the value to be saved in the database with what you want to show your end user.
 
 !!! example
-    Facciamo un esempio: ho una proprietà che è stato e voglio dal CMS potere selezionare solo degli stati precisi come Pending, In lavorazione ecc.
-    Ecco come dovrò costruire l'array di oggetti:
-    **[{"name":"In Lavorazione","value":"working"},{"name":"Pending","value":"pending"},{"name":"Archiviato","value":"archived"}]**
+Let's take an example: I have a property that has been and I want from the CMS to be able to select only specific states such as Pending, In Processing etc.
+Here's how I'll have to build the array of objects:
+** [{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}] **
 
-* **Valore da salvare**: dovrai scegliere quale valore salvare nel DB, in questo caso ti consigliamo di salvarti il value.
+* ** Value to be saved **: you will have to choose which value to save in the DB, in this case we advise you to save the value.
 
-### Come visualizzare i dati di una Lookup
- Di una Look up puoi anche configurare delle ulteriori funzionalità che ti permettono di soddisfare qualsiasi esigenza di visualizzazione
+### How to view the data of a Lookup
+From a Look up you can also configure additional features that allow you to meet any viewing need
 
- * **Proprietà visibili** : qui puoi scegliere che proprietà della tua collezione o dell'Inline Source creata mostrare. Le proprietà che vuoi mostrare vanno inserite come se fosse un array di stringhe.
-Quindi se ad esempio volessimo mostrare solo il nome, l'array sarà: ["name"]. Se volessimo mostrare il nome e il cognome sarà invece: ["name", "surname"].
+* ** Visible properties **: Here you can choose which properties of your collection or the inline source created to show. The properties you want to show should be entered as if it were an array of strings.
+So if for example we wanted to show only the name, the array will be: ["name"]. If we want to show the name and surname it will instead be: ["name", "surname"].
 
-* **Delimitatore**: i delimitatori servono quando ho scelto di mostrare più di una proprietà e voglio inserire un delimitatore tra le due proprietà. Es: se prima ho scelto di
-mostrare le proprietà nome e cognome e voglio che tra le due ci sia un trattino dovrò scrivere il trattino in un array di strighe. Il delimitatore verrà quindi: ["-"]
+* ** Delimiter **: the delimiters are used when I have chosen to show more than one property and I want to insert a delimiter between the two properties. Ex: if before I chose to
+show the name and surname properties and I want that between the two there is a hyphen I will have to write the hyphen in an array of strighe. The delimiter will then be: ["-"]
 
-* **Filtro**: Posso anche scegliere di impostare un filtro alla visibilità. Per scrivere una query ti consigliamo due link: 1) le diverse tipologie di query 2) tutti i tipi di operatori che puoi utilizzare.
-Facciamo un esempio: in questa lookup voglio vedere solo i dati che hanno come state= a working.
-La query sarà: {"state": "working"}
+* ** Filter **: I can also choose to set a filter to visibility. To write a query we suggest two links: 1) the different types of queries 2) all types of operators that you can use.
+Let's take an example: in this lookup I want to see only the data that have state = a working.
+The query will be: {"state": "working"}
 
-* **Limite**: Posso impostare un numero massimo di elementi da far visualizzare nella mia Lookup
+** ** ** Limit: I can set a maximum number of items to display in my Lookup
 
-* **Reset Automatico**: se vogliamo che si resetti, ovvero dopo aver compilato la cella se vogliamo svuotarla
+* ** Automatic Reset **: if we want to reset, that is after having compiled the cell if we want to empty it
 
-* **Selezione Automatica**: se vogliamo che selezioni automaticamente il primo valore
+* ** Automatic Selection **: if we want you to select the first value automatically
 
-* **Ricerca live**: se vogliamo che mentre scriviamo ci compaiano i risultati (es: scrivo A e mi compaiono sotto le case editrici che cominciano per A)
+* ** Live search **: if we want that while we are writing we will see the results (ex: I write A and they appear under the publishing houses that begin with A)
+    
+    !!! example "An example of Lookup on the weapons collection"
+! [An example of Lookup on the weapons collection] (img / lookup-armi.JPG)
 
-!!! example "Un esempio di Lookup sulla collezione armi"
-    ![Un esempio di Lookup sulla collezione armi](img/lookup-armi.JPG)
+## 4. Create a button
 
-## 4. Creare un bottone
+From Api Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
 
-Da Api Console è anche possibile scegliere di configurare dei bottoni. I bottoni sono delle azioni che si vogliono fare su un dato o su un insieme di dati.
+! [section I create button] (img / creo-bottone.JPG)
 
-![sezione creo bottone](img/creo-bottone.JPG)
+The buttons are displayed in the central area of the CMS near the publish, draft and trash buttons
 
-I bottoni vengono visualizzati nella zona alta centrale del CMS vicino ai bottoni di publish, draft e trash
+To create a button, go to the Bottni section and configure the following fields:
 
-Per creare un bottone bisogna andare nella sezione Bottni e configurare i seguenti campi:
+* ** ID **: represents the field that uniquely identifies the action. it is an unmodifiable field
+* ** Label **: represents the name you want to appear in the CMS
+* ** Broken **: in this field you will have to enter the route to which your action should point
+* ** Icon **: for each button you can also set an icon
 
-* **ID**: rappresenta il campo che identifica l'azione in modo univoco. è un campo immodificabile
-* **Etichetta**: rappresenta il nome che vuoi che compaia nel CMS
-* **Rotta**: in questo campo dovrai inserire la rotta a cui la tua azione deve puntare
-* **Icona**: per ogni bottone puoi anche impostare una icona
+In the API, you will then be able to conveniently view the buttons created on the card
 
-Nell'Api Console visualizzerai poi comodamente a card i bottoni creati
+!!! example "Example of a button"
+Let's take an example of a button on our Heroes Good page. The button will serve to contact a hero.
+Sara:
 
-!!! example "Esempio di un bottone"
-    Facciamo un esempio di un bottone nella nostra pagina Eroi Buoni. Il bottone servirà a contattare un eroe.
-    Sarà:
+* id: contact-hero
+* label: Contact Hero
+* route: / action
+* icon: phone
 
-    * id: contatta-eroe
-    * etichetta: Contatta Eroe
-    * rotta: /action
-    * icona: phone
-
-    ecco come comparirà il nostro bottone:
-    ![bottone in cms](img/bottone-in-cms.JPG)
+here is how our button will appear:
+! [button in cms] (img / button-in-cms.JPG)
