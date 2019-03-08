@@ -68,9 +68,7 @@ nav:
 - Info:
     - Version Policy: 'info/version-policy.md'
     - Open Source Software in Mia Platform: 'info/oss.md'
-    - Subprocessor: 'info/subprocessor.md'
     - Audit Process: 'info/audit-process.md'
-    - Installation Process: 'info/installation-process.md'
 
 
 theme:
