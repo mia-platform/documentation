@@ -1,6 +1,6 @@
 [TOC]
 
-## Advice configuration guide ##
+# Advice configuration guide
 
 The analytics on the Mia-Platform CMS are configured through two types of JSON files:
 
