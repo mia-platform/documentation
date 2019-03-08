@@ -196,9 +196,9 @@ This avoids that there are compilation errors and therefore duplicates of editor
 
 ![image alt text](img/image_12.png)
 
-* Example *: if as editor you write Baldini & Castoldi for a book and then Baldini & Castoldi for another, the associated books will be considered by two different publishers.
+*Example*: if as editor you write Baldini & Castoldi for a book and then Baldini & Castoldi for another, the associated books will be considered by two different publishers.
 
-* Precompiled information *
+*Precompiled information*
 
 In the property field of a collection you may want to see only certain information. No longer a drop-down menu then, but a field that is automatically populated by taking information from the property of another collection.
 
