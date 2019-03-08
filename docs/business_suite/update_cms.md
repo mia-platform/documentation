@@ -21,6 +21,7 @@ Change the **CMS configuration**. The path to access the configuration file on g
 In the "variables" section you can find **"CMS_VERSION"**, which must be updated with the latest available or desired version of the CMS. At this point, the CMS in test is saved and displayed.
 
 !!! Note
+
 The automatic update of the CMS version only happens for the **test** environment. In fact, in the ".gitlab-ci.yml" file in the "script" section you can see that the test environment is configured in such a way as to automatically update the git version.
 
 ### Second step
