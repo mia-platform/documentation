@@ -48,7 +48,7 @@ In this section you can choose how to represent the page in the CMS side menu. L
 **Category**: You will have to choose your page in which category will be inserted. In our case we will hook the Characters category
 
 **Icon**: You can choose whether to give your page an icon that represents it in the CMS. To give an example: if yours is the book page, you can choose the book icon to represent it.
-At this [link] (https://fontawesome.com/v3.2.1/icons/) you will be able to view and select all the available icons.
+At this [link](https://fontawesome.com/v3.2.1/icons/) you will be able to view and select all the available icons.
 
 **Order**: With Order you can choose what order to give to your page within a category. We advise you to give the pages a number belonging to the tens order (ex: page 1 will have the order 10)
 
@@ -64,7 +64,7 @@ In this section you can choose the general configurations of your page.
 
 * *TablePush* instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers.
 
-* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to this [link] (https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare- le-card) find how to do it.
+* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to this [link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare- le-card) find how to do it.
 
 * *Gallery* is instead the perfect representation for images.
 
@@ -77,7 +77,7 @@ In this section you can choose the general configurations of your page.
 **Hide**: by activating this check, choose to hide a page.
 
 **Apply a filter**: in this field you can apply a visibility filter to your page.
-To write a query we recommend two links: 1) the different types of [query] (https://docs.mongodb.com/manual/tutorial/query-documents/) 2) all types of [operators] (https: //docs.mongodb.com/manual/reference/operator/query/#query-selectors) that you can use.
+To write a query we recommend two links: 1) the different types of [query](https://docs.mongodb.com/manual/tutorial/query-documents/) 2) all types of [operators] (https: //docs.mongodb.com/manual/reference/operator/query/#query-selectors) that you can use.
 
 Let's take an example: in my collection I have a property that is the same as state (indicates the state). In this page I want to see only the data that have how state = a working. In this page I want to see only the data that have how state = a working.
 The query will be: {"state": "working"}
@@ -120,7 +120,7 @@ For each property you can configure different fields that allow you to improve t
 
 * **Order**: indicates the order of the property in the CMS display. Remember to use the tens meter (the first is the number 10), this will make it easier for you to manage the subsequent changes.
 
-* **Location on the card**: if you have chosen the Card display mode you can choose in which position of the card to display your property. For more information follow this [link] (https://docs.mia-platform.eu/user_guide_and_tools/api_console/guida_api_console/#card-position)
+* **Location on the card**: if you have chosen the Card display mode you can choose in which position of the card to display your property. For more information follow this [link](https://docs.mia-platform.eu/user_guide_and_tools/api_console/guida_api_console/#card-position)
 
 * **Editable**: if you activate this check the property can be modified by anyone, otherwise it will not be editable by CMS
 
