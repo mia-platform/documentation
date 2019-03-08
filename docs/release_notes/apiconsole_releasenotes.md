@@ -1,113 +1,113 @@
-#Piattaforma Release Note
-##v.4.15.0 (Jan 16, 2019)
-Novità:
+# Release Release Platform
+## v.4.15.0 (Jan 16, 2019)
+Announcements:
 
-* Abbiamo ristilizzato l'area dei servizi con **l'introduzione della possibilità di aggiungere dei template custom**
+* We have re-established the service area with **the introduction of the possibility to add custom templates**
 
-* Abbiamo **risitlizzato l'area di deploy** e **l'header** dell'appliczione
+* We **resitiate the deployment area** and **the header** of the application
 
-* Abbiamo abilitato la possiblità di scrivere delle **query complesse** per filtrare le singole **proprietà nel CMS**
+* We have enabled the ability to write **complex queries** to filter the individual **properties in the CMS**
 
 
-##v4.14.0 (Dec 18, 2018)
-* Evoluzioni nell'area di configurazione del CMS:
-    * è possibile **evidenziare dei campi nella tabella impostando una query**, il colore di background e il colore del testo. Questo permetterà di avere da parte dell'utente del CMS evidenziati i dati più siginificativi.
-    * abbiamo anche rilasciato la possibilità di **configurare delle notifiche nel menù del cms**. Basterà attivare le notifiche e scegliere la query sui dati che si vuole visualizzare. In questo modo comparirà un badge a fianco alla pagina in cui avete attivato le notifiche che conterà gli elementi presenti in quella collezione in base alla vostra query.
+## v4.14.0 (Dec 18, 2018)
+* Evolutions in the CMS configuration area:
+* you can **highlight fields in the table by setting a query**, background color and text color. This will allow the user of the CMS to highlight the most significant data.
+* we have also released the possibility of **configuring notifications in the cms menu**. Just activate the notifications and choose the query on the data you want to view. In this way a badge will appear next to the page where you have activated the notifications that will count the elements present in that collection based on your query.
 
-* Abbiamo impostato la **cancellazione** delle dipedenze anche per quanto riguada la cancellazione dei decoratori all'interno delle are di **Pre e Post Hook**.
+* We have set **cancellation** of the deductions also as regards the cancellation of the decorators within the **Pre and Post Hook** areas.
 
-* Abbiamo ristilizzato l'header del sito per consentire all'utente una migliore consapevolezza del progetto e del branch in cui sta lavorando.
+* We have restyled the site's header to allow the user a better awareness of the project and of the branch in which he is working.
 
-* è possibile iniziare la **creazione di un progetto dall'home page**. Grazie a questa nuova funzionalità verrà creato un progetto su GitLab vuoto e verrà aggiunto al DB dell'API Console.
+* you can start **creating a project from the home page**. Thanks to this new feature, a project will be created on empty GitLab and will be added to the API API DB.
 
-**Evoluzione nell'import del CMS. - v7.0.16**
+**Evolution in the import of CMS. - v7.0.16**
 
-Da oggi se viene importato un file con id già esistenti, i dati non vengono duplicati, ma aggiornati.
-Se l'id non esiste invece viene creato un nuovo dato.
+From today, if a file with existing ids is imported, the data are not duplicated but updated.
+If the id does not exist, a new data is created instead.
 
 !!! warning
-    Se viene passato un id sbagliato fallisce l'intero import.
+If a wrong id is passed, the entire import fails.
 
-## v4.13.0 (Nov 14, 2018)  
+## v4.13.0 (Nov 14, 2018)
 ### Breaking change api-console-configuration v0.3.0
 
-Abbiamo rilasciato i seguenti aggiornamenti:
+We have released the following updates:
 
-* **nuova versione di api-console-configuration** che è passato dalla v0.2.0 alla v0.3.0.  
-In questa nuova configurazione sono state aggiunte le seguenti novità:
-        * supportiamo l'**ultima versione del CRUD** con l'aggiunta di due nuove rotte: PATCH/ e POST/upsert-one;
-        * abbiamo reso possibile **editare il nome della categoria e della Pagina nel CMS**.
+* **new version of api-console-configuration** that has changed from v0.2.0 to v0.3.0.
+In this new configuration the following new features have been added:
+* we support the **latest version of CRUD** with the addition of two new routes: PATCH / and POST / upsert-one;
+* we have made it possible **to edit the name of the category and the page in the CMS**.
 
-* abbiamo inoltre abilitato la **cancellazione degli analitici** e fatto un fix sui filtri.
+* we have also enabled the **cancellation of the analytics** and made a fix on the filters.
 
-##v.4.12.0 (Oct 31, 2018)
+## v.4.12.0 (Oct 31, 2018)
 
-Con la versione 0.14 abbiamo rilasciato due aggiornamenti:
+With version 0.14 we have released two updates:
 
-* **è stato risolto il conflitto tra due persone che lavorano sullo stesso branch**. Se due persone lavorano sullo stesso branch, il secondo che prova a committare viene ora bloccato. Gli compare infatti un messaggio di errore al commit. Lo sviluppatore può però nella pagina di salva cambiare il branch da rilasciare e creare un branch dal suo commit. In questo modo può visualizzare le sue configurazioni su un nuovo branch.
+* **the conflict between two people working on the same branch has been resolved**. If two people work on the same branch, the second person trying to commit is now blocked. In fact, he receives an error message to commit. The developer can however in the save page change the branch to be released and create a branch from his commit. In this way he can view his configurations on a new branch.
 
-* Sono state create **due nuove interfaceType** per supportare gli oggetti e gli array nella sezione del CMS:
-       * rawobject
-       * rawarray
-Con queste interfacce è possibile modificare direttamente l'oggetto e l'array in formato json.
+* Two new interface types ** were created to support objects and arrays in the CMS section:
+* rawobject
+* rawarray
+With these interfaces you can directly edit the object and the array in json format.
 
 **CMS - v.7.0.14**
 
-Abbiamo rilasciato le seguenti funzionalità:
+We have released the following features:
 
-* gestione delle **nuove interfacce rawObject e rawArray**
-* **cambio delle etichette** nelle azioni di Pubblica ed Elimina
-* fix alla gestione delle **icone**
-* **ACL sui gruppi** che possono accedere al CMS. A questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-gruppi) si trova come configurare questa estensione del CMS.
+* management of **new rawObject and rawArray interfaces**
+* **change of labels** in Public and Delete actions
+* fix to the management of the **icons**
+* **ACL on groups** that can access the CMS. To this [link](https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-groups) is how to configure this extension of the CMS.
 
-##v.4.11.0 (Oct 23, 2018)
+## v.4.11.0 (Oct 23, 2018)
 
-In questa versione abbiamo rilasciato l'**aggiornamento al session manager** e alla nuova acl expression syntax e abbiamo effettuato dei fix sulla configurazione degli analitici.
+In this version we have released the **update to the session manager** and the new acl expression syntax and we have made fixes on the configuration of the analytics.
 
-##v. 4.10.0 (Oct 10, 2018)  
-### Configurazione Analitici
+## v. 4.10.0 (Oct 10, 2018)
+### Analytical configuration
 
-Con la versione 0.12.0 sarà possibile **configurare gli analitici da API Console**.
-A questo [link](https://docs.mia-platform.eu/configurator/api_console_configanalytics/) la documentazione su come è possibile configurarli.
+With version 0.12.0 it will be possible **to configure the analytics from API Console**.
+To this [link](https://docs.mia-platform.eu/configurator/api_console_configanalytics/) the documentation on how you can configure them.
 
-E' stata inoltre rilasciata la possibilità di impostare un acl ai gruppi che accedono alle pagine del CMS. In questo modo alcune pagine possono essere viste solo da alcuni gruppi di utenti.
+The possibility of setting up an acl for groups accessing the pages of the CMS has also been released. In this way, some pages can only be viewed by some user groups.
 
 **CMS - v.7.0.11**
 
-In questa versione del CMS è possibile selezionare le **icone da font-awesome fino alla versione v.5.3.1**, che è l'ultima versione supportata (qui si trova il [link](https://fontawesome.com/icons?d=gallery) per le icone).
+In this version of the CMS you can select the **icons from font-awesome up to version v.5.3.1**, which is the latest version supported (here is the [link] (https://fontawesome.com / icons? d = gallery) for the icons).
 
 !!! warning
-    Se si scelgono icone che erano già utilizzate nella versione precedente, si continueranno a visualizzare nel CMS le icone vecchie. Questo perchè si dà priorità alla retrocompatibilità.
+If you choose icons that were already used in the previous version, you will continue to display the old icons in the CMS. This is because priority is given to backward compatibility.
 
 ## v.4.7.0 (Sept 30, 2018)
 
 **CMS v7.0.4**
 
-In questa versione sono state rilasciate delle nuove personalizzazioni del CMS.
+In this version new CMS customizations have been released.
 
-Sarà infatti possibile definire le seguenti variabili di css:
+It will be possible to define the following css variables:
 
-* color brand gradient 1= permette di personalizzare il colore del **testo nella sidebar del menù**
-* color badge - bg notification= permette di personalizzare il **background color dei badge delle notifiche**
-* color badge - text notification= permette di personalizzare il colore del **testo del badge delle notifiche**
+* color brand gradient 1 = allows you to customize the color of the **text in the menu sidebar**
+* color badge - bg notification = allows you to customize **color background of notifications badges**
+* color badge - text notification = allows you to customize the color of the **notification badge text**
 
-Inoltre da questa versione il font del CMS sarà in **Proxima-nuova**
+Also from this version the CMS font will be in **Proxima-new**
 
 
-**CMS v7.0.0 - Breaking Change (per le Card)**
-Con la versione 7 sono state rilasciate 3 funzionalità importanti:
+**CMS v7.0.0 - Breaking Change (for Cards)**
+With version 7, 3 important features have been released:
 
-1) la **nuova struttura delle Card** con la possibilità di configurare diversi tipi di widget e avere una struttura interamente personalizzabile. Puoi leggere la Documentazione su come configurare le nuove card [qui](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card).
+1) **new card structure** with the possibility of configuring different types of widgets and having a fully customizable structure. You can read the Documentation on how to configure the new cards [here] (https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare-le-card).
 
-2) la funzione di **highlight** è evoluta. Con questa versione è possibile evidenziare delle righe del CMS scrivendo una query e l'utente può configurare anche i colori per evidenziare la riga (colore del testo e dello sfondo). A questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#3-configurare-gli-highlight) un esempio di highlight.
+2) the **highlight** function has evolved. With this version it is possible to highlight the CMS lines by writing a query and the user can also configure the colors to highlight the line (text and background color). To this [link](https://docs.mia-platform.eu/configurator/conf_cms/#3-configurare-gli-highlight) an example of a highlight.
 
-3) è stata aggiunta la possbilità di avere delle **notifiche** nel menù. Leggere a questo [link](https://docs.mia-platform.eu/configurator/conf_cms/#2-configurare-le-notifiche) la documentazione per visualizzare un esempio.
+3) the possibility of having **notifications** in the menu has been added. Read to this [link](https://docs.mia-platform.eu/configurator/conf_cms/#2-configurare-le-notifiche) the documentation to see an example.
 
 
 **CMS v6.1.0**
 
-Con la versione 6.1.0 abbiamo rilasciato nuove funzionalità nell'area export del CMS.
-Da questa versione sarà infatti possibile:
+With version 6.1.0 we have released new features in the CMS export area.
+In fact, from this version it will be possible:
 
-1. **Scegliere se esportare la label o l'id**:  quando esporterai un file visualizzerai un caso le tue proprietà con l'id in un altro con la label. Quesat funzionalità ti permette di avere dei file più leggibili qualora gli id non fossero chiari.
-2. **Scegliere il delimitatore**: potrai scegliere se esportare un file con delimitatore la , o il ; . Questa funzionalità permette a chi utilizza excel di avere una conversione immediata da .csv a excel
+1. **Choose whether to export the label or id**: when you export a file you will see a case of your properties with the id in another with the label. This feature allows you to have more readable files if the ids are not clear.
+2. **Choose the delimiter**: you can choose whether to export a file with delimiter la, or il; . This feature allows those who use excel to have an immediate conversion from .csv to excel
