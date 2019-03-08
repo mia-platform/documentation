@@ -27,7 +27,7 @@ key | example value | Comment
 `Category.order` | 10 | this is the order of the category in the menu. We advise you to always put the order in the tens. In fact, you will want to insert other collections or categories in the future. If before, for example, we would already have a category in order 3 to place this we would have to change all the others in cascade. With the tens, however, just put an intermediate number.
 `hidden` | false, | bringing this field to **true** you can choose not to show the collection in the CMS
 `Blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
-`icon` | book | in this [link] (https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
+`icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
 `order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
 `baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
 `highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
@@ -184,12 +184,12 @@ The cards are composed of two sections:
 The 3 fields are mandatory in configuration but can be left empty.
 If no image is associated with the image, the card will be colored with the side menu color
 
-`` `
+```
 "cardHeader": {
 "titleProperty": "laboratory",
 "subTitleProperty": "productId",
 "imageProperty": ""
-`` `
+```
 
 
 2. **cardContentRows** instead is entirely customizable. Within a card there are 4 types of widgets that can be inserted:
@@ -251,7 +251,7 @@ example !!!
  To insert the card into a collection, write the name of the collection exactly and then insert the card into cmsProperties:
 
 example !!!
-   Here is an example of a final card within the change-requests collection
+Here is an example of a final card within the change-requests collection
 
 ```
 
@@ -394,7 +394,7 @@ Conditional visibility can be set to a property at either time, or only in one o
 
 To set the conditional visibility on a property open Git and follow the following path:
 
-`projectname> configurations> configuration> config-extention> cms-backend> cmsProperties.json`
+`projectname>configurations>configuration>config-extention>cms-backend> cmsProperties.json`
 
 The configuration of cms extensions is written in this file. To set the conditional visibility, write the name of the collection you want to act on and in "properties" specify the name of the property you want to condition.
 
@@ -463,7 +463,7 @@ The **"visibility"** field is used to define the level at which the property is 
 
 **"Edit"** is used to set the conditioned visibility on the property when editing an element, the **"new"** field is used to set it when creating the element. In the example, conditional visibility is set in both phases.
 
-After "edit" or "new" you insert a **"query"** to specify the condition that determines the visibility of the property. In the example the condition is simply that the name is Thor. The query is a mongoquery: you can have support to write the mongoquery to the following [link] (https://docs.mongodb.com/manual/tutorial/query-documents/).
+After "edit" or "new" you insert a **"query"** to specify the condition that determines the visibility of the property. In the example the condition is simply that the name is Thor. The query is a mongoquery: you can have support to write the mongoquery to the following [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
 
 
 ## 5. Access control on groups (ACL on groups)
@@ -472,21 +472,21 @@ This extension allows you to **control access to CMS collections**, depending on
 
 To configure these properties, the path is as follows:
 
-`projectname> configurations> configuration> config-extention> cms-backend> cmsProperties.json`
+`projectname>configurations>configuration>config-extention>cms-backend> cmsProperties.json`
 
 When in json, the ACL on groups fits into all the collections that want to be controlled. **In the ACL property you enter the name of the groups that can see that collection.** The syntax is as follows:
 
-`` `
+```
 "nomecollection": {
-    "AclExpression": "groups.nomegruppo"
+"AclExpression": "groups.nomegruppo"
 }
-`` `
+```
 
 In the rest of the json, all the other properties of the collection are configured. The group to which access is reserved is expressed with "groups.nomegruppo". If the property is not configured, the default collection is visible to everyone.
 
 
 example !!!
-   Here is a complete example of configuration.
+Here is a complete example of configuration.
 
    ```
    "eroibuoni": {
