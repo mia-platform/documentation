@@ -176,4 +176,4 @@ By clicking on **Create** the updated row will appear in the table.
 !!! notes
     Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
 
-    ![](img/analitico_cancella.png)
+![](img/analitico_cancella.png)
