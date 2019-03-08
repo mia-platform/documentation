@@ -163,6 +163,7 @@ At this point you are ready to configure your extensions.
 Cards allow you to view your data no longer in the table, but in the form of Card.
 
 !!! warning
+
 Although cards are an extension, remember that the CMS page you want to display as a card must have the **display type set to card** in its general settings.
 
 The cards are composed of two sections:
@@ -181,6 +182,7 @@ The cards are composed of two sections:
 
 
 !!! Note
+
 The 3 fields are mandatory in configuration but can be left empty.
 If no image is associated with the image, the card will be colored with the side menu color
 
@@ -251,6 +253,7 @@ example !!!
  To insert the card into a collection, write the name of the collection exactly and then insert the card into cmsProperties:
 
 example !!!
+
 Here is an example of a final card within the change-requests collection
 
 ```
@@ -330,6 +333,7 @@ The notifications in the side menu allow you to display the number of elements t
 Notifications are objects composed of only one element: a **query**. Within the query you must specify the condition for which the single data is counted.
 
 example !!!
+
 Here is an example of notification
 
 
@@ -359,6 +363,7 @@ The highlights allow you to highlight rows in the tables. A highlight is an obje
 * **backgroundColor**, which configures the background color in hexadecimal ([Link for hexadecimal colors] (https://www.web-link.it/colori-html.html)).
 
 example !!!
+
 Here is an example of a highlight
 
 
@@ -486,6 +491,7 @@ In the rest of the json, all the other properties of the collection are configur
 
 
 example !!!
+
 Here is a complete example of configuration.
 
    ```
