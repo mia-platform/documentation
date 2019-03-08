@@ -33,7 +33,7 @@ To ensure that your project is successfully deployed, update or verify that the 
 
 Enter the name of the client project for each path and choose the version of the CMS you want to build
 
-* 2. Go to the path gilab / clients /: client-name / configuration / gitlab-cli.yaml
+* 2. Go to the path gilab /clients/:client-name/configuration/gitlab-cli.yaml
 
 Check and see the version of the CMS you want to build
 
