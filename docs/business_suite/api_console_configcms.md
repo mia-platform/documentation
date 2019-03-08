@@ -3,6 +3,7 @@
 From the API Console you can easily configure and manage your CMS.
 
 !!! Note
+
 Remember that before you can configure the CMS you must have already created your collections in the Collections area and displayed the related Endpoints.
 
 ## Categories and Pages
@@ -16,6 +17,7 @@ To give an example: in our cms of the heroes we will create the collection **Cha
 The **Pages** instead are used to represent the data of a collection. Within the pages you can manage your collections and the data in it.
 
 !!! tip
+
 Before creating pages or categories try to build the information architecture of your CMS. It will be much simpler at that point to know what to create.
 
 ## How to create a category
@@ -25,6 +27,7 @@ Before creating pages or categories try to build the information architecture of
 To create a category, simply enter the **Name** of the category you want to display on the CMS and the display order.
 
 !!! tip
+
 We advise you to always order by following the tens order. If we want our category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the categories.
 
 In our case, of the CMS of the heroes, then we will write: Name = Characters and Order = 10
@@ -146,7 +149,10 @@ What should I do?
 2. choose the **comparator**.
 3. choose the **value**.
 
-!!! tip "Comparators"
+!!! tip 
+
+"Comparators"
+
 The supported comparators are the following:
 
 value | comment
@@ -174,6 +180,7 @@ You will always have to:
 3. choose the **value**.
 
 !!! example
+
 To give an example: I have a CMS that manages the warehouse of a supermarket, I am in the property * expiry date *,
 I want this property to appear only when the perishable * property is equal to true.
 
@@ -205,6 +212,7 @@ When you select Inline Source you will need to fill in two values:
 * **The data you want to view**: in this field you will need to insert an array of objects you want to view. Remember to differentiate the value to be saved in the database with what you want to show your end user.
 
 !!! example
+
 Let's take an example: I have a property that has been and I want from the CMS to be able to select only specific states such as Pending, In Processing etc.
 Here's how I'll have to build the array of objects:
 **[{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}]**
@@ -232,7 +240,9 @@ The query will be: {"state": "working"}
 
 * **Live search**: if we want that while we are writing we will see the results (ex: I write A and they appear under the publishing houses that begin with A)
     
-    !!! example "An example of Lookup on the weapons collection"
+!!! example 
+
+"An example of Lookup on the weapons collection"
 ![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
 
 ## 4. Create a button
@@ -252,7 +262,9 @@ To create a button, go to the Bottni section and configure the following fields:
 
 In the API, you will then be able to conveniently view the buttons created on the card
 
-!!! example "Example of a button"
+!!! example 
+
+"Example of a button"
 Let's take an example of a button on our Heroes Good page. The button will serve to contact a hero.
 Sara:
 
