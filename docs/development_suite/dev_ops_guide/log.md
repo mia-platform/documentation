@@ -1,54 +1,54 @@
-# Linee Guida per i log
+# Guidelines for logs
 
-Ogni buon programma deve essere testato nella sua interezza per evitare bug, ma **anche un coverage del 100% non assicura una esperienza “bug free”**; questo perché il pezzo di software difficilmente si troverà ad essere eseguito in totale autonomia senza rientrare in un sistema composto da più parti mobili che comunicano fra di loro.
+Every good program must be interpreted in its entirety to avoid bugs, but **even a 100% coverage is not necessary a "bug free" experience**; this is because software software is available to run in total autonomy without using a system.
 
-Per facilitare questa parte di debug ogni programmatore ha a sua disposizione i log applicativi; ma come nel caso dei test, **scrivere dei log senza seguire una logica e/o senza disciplina può portare ad avere codice non facilmente analizzabile a runtime**.
+To verify this debugging part, every programmer has its own application application logs; but entering the test case, **writing logs without following a logic and / or without discipline can lead to having code not easily analyzed at runtime**.
 
-!!!info
-    Questa guida vuole indicare le buone pratiche individuate all’interno di Mia-Platform per scrivere dei log che possono indicare dove il flusso di esecuzione sta trovando degli intoppi e possibilmente il motivo.
+!!!Information
+    This guide means good practices identified within Mia-Platform to write logs that can indicate the flow of execution is finding hitches and possibly the reason.
 
-## Prerequisiti
-All’inizio dello sviluppo di ogni applicativo, **bisogna valutare bene che libreria di log che si vuole utilizzare e/o se l’eventuale framework http utilizzato non ne fornisce già una adatta allo scopo** o facilmente personalizzabile per essere conforme ai seguenti prerequisiti:
+## Prerequisites
+Regarding the application, you must have a prerequisite structure:
 
-1. supportare almeno i **seguenti livelli di log**
-    * *error*: pari ad un log level di 10
-    * *warn*: pari ad un log level di 20
-    * *info*: pari ad un log level di 30
-    * *debug*: pari ad un log level di 40
-    * *trace*: pari ad un log level di 50
-2. supportare la configurazione del livello via variabile di ambiente chiamata **LOG_LEVEL**
-3. supportare la scrittura del **log solo su stdout**
-4. serializzare **ogni riga di log come json**
-5. supportare l’arricchimento del log con **valori aggiuntivi**
-6. scrittura di default dei seguenti parametri con le **chiavi descritte**:
-    * *reqId*: deve contenere il parametro contenuto nell’header X-Request-ID
-    * *time*: deve continuare il timestamp in millisecondi o la data codificata in stringa iso8601 in UTC
-    * *level*: deve contenere in numero associato al livello di log impostato in stringa o number
-    * *hostname*: deve contenere se possibile il valore dell’header X-Forwarded-Host oppure dell’header Host
-    * *msg*: una stringa intelligibile del motivo per cui il log è stato emesso
-7. se possibile deve fornire un modo di modificare il valore di alcune chiavi sensibili per **evitare di loggare dati sensibili dell’utente** che potrebbero transitare, il comportamento accettato è di avere il valore reale sostituito con una stringa tipo **[REDACTED] o [CONFIDENTIAL]**, non di avere la chiave rimossa dal log
-
-!!! tip
-    Un nice to have è quella di avere la possibilità di passare il log ad un programma non installato in produzione per fare il “pretty-printing” dei log durante lo sviluppo locale, o quando si accede allo stream diretto dei log su k8s.
-
-## Linee Guida
-
-I log di un programma non devono essere necessariamente verbosi di natura per evitare troppo “rumore” che potrebbe far perdere informazioni importanti ma nemmeno troppo “silenziosi” ed ottenere l'effetto contrario e cioè perdere l’idea di come stia procedendo il flusso di informazioni all’interno del programma.
-
->Di seguito proponiamo delle linee guida generali su cosa ci si aspetta all’interno dei vari livelli di log.
-
-## Log di default
-
-Durante lo sviluppo **tenete sempre accesi i log ad un livello pari almeno ad info**, se a questo livello nella console non leggete nulla o non riuscite a ricostruire interamente il flusso delle informazioni all’interno del vostro codice, i log che state scrivendo probabilmente non sono abbastanza.
+1. support at least the ** following log levels **
+    * *error*: equal to a log level of 10
+    * *warn*: equal to a log level of 20
+    * *info*: equal to a log level of 30
+    * *debug*: equal to a log level of 40
+    * *trace*: equal to a log level of 50
+2. support the configuration of the layer via environment variable called **LOG_LEVEL**
+3. support writing the **log only on stdout**
+4. serialize **each line of logs as json**
+5. support enrichment of the log with **additional values​​**
+6. write default of the following parameters with the **keys described**:
+    * *reqId*: must contain the parameter contained in the X-Request-ID header
+    * *time* : must continue timestamp in milliseconds or date encoded in string iso8601 in UTC
+    * *level*: must contain in number associated with the log level set in string or number
+    * *hostname*: must contain, if possible, the value of the X-Forwarded Host header or the Host header
+    * *msg*: an intelligible string of the reason why the log was issued
+7. if possible it must provide a way to modify the value of some sensitive keys to avoid logging **sensitive user data** that could transit, the accepted behavior is to have the real value replaced with a string type **[ REDACTED] or [CONFIDENTIAL]**, not to have the key removed from the log
 
 !!! tip
-     Tenendo sempre accesi i log durante lo sviluppo ed il test in locale inoltre avete la possibilità di vedere anche i log che i framework e le librerie che state usando scrivono di default ed evitare quindi inutili ripetizioni.
+    A nice to have is to have the possibility to pass the log to a program not installed in production to make the "pretty-printing" of the logs during local development, or when accessing the direct stream of the logs on k8s.
+
+##Guidelines
+
+The logs of a program do not necessarily need to be verbose in nature to avoid too much "noise" that could make you lose important but not too "silent" information and get the opposite effect and that is to lose the idea of ​​how the flow of information is proceeding within the program.
+
+> Below we propose general guidelines on what is expected within the various log levels.
+
+## Default log
+
+During development **always keep the logs on at a level equal to at least info**, if at this level in the console you do not read anything or you can not completely rebuild the flow of information within your code, the logs you are writing probably is not enough.
+
+!!! tip
+    Always keeping the logs on while developing and testing locally, you also have the possibility to see the logs that the frameworks and libraries you are using are writing by default and therefore avoid unnecessary repetitions.
 
 ## Error
-In questo livello si suppone di trovare solo messaggi di errori inerenti ad errori logici incontrati durante l’esecuzione del programma.
+At this level, it is assumed to find only error messages related to logical errors encountered during program execution.
 
 !!! warning
-    Il log è inerente all’errore incontrato **non a quello che verrà eventualmente tornato all’utente**, infatti se è possibile arricchite il log con informazioni riguardanti il perché sia avvenuto, per esempio:
+    The log is inherent to the error encountered **not to what will eventually be returned to the user**, in fact if it is possible to enrich the log with information regarding why it happened, for example:
 
 ```javascript
 const expectAlwaysAtLeastOneResult = httpRequest(host, query)
@@ -62,14 +62,14 @@ if (expectAlwaysAtLeastOneResult.length === 0) {
 
 ```
 
-In questo caso non trovare dei risultati provoca un errore nella logica del codice perché per come è stato strutturato il codice con i dati nell’oggetto query non può essere possibile non trovare almeno un risultato, e quindi è utile venire a sapere dove il flusso si è fermato ed il perché soprattutto visto che la risposta sarebbe solo una pagina standard di errore 500. Come potete vedere non viene utilizzato nessun log per tracciare il fatto che la risposta restituita all’utente è un errore perché nell’esempio possiamo supporre che sia il framework http sottostante che stiamo usando a farlo per noi e sarebbe quindi un inutile ripetizione.
+In this case not finding results causes an error in the logic of the code because for how the code was structured with the data in the query object it can not be possible not to find at least one result, and therefore it is useful to know where the flow is is stopped and why above all since the answer would be only a standard error page 500. As you can see, no log is used to track the fact that the response returned to the user is an error because in the example we can assume that it is the underlying http framework we are using to do it for us and would therefore be a useless repetition.
 
 ## Warn
 
 !!! info
-    Anche se questo è uno dei livelli più scarsamente utilizzati a volte può essere utile sapere che si è presa una strada che potrebbe evidenziare un problema evitato per precauzione ma che richiede la nostra attenzione.
+    Although this is one of the most poorly used levels it can sometimes be useful to know that you have taken a path that could highlight a problem avoided as a precaution but that requires our attention.
 
-Per esempio possiamo modificare leggermente l’esempio precedente per renderlo un warning invece di un errore:
+For example, we can slightly modify the previous example to make it a warning instead of an error:
 
 ```javascript
 
@@ -84,14 +84,14 @@ if (expectAlwaysAtLeastOneResult.length === 0) {
 
 ```
 
-In questo caso il codice è strutturato per resistere ad un eventuale dato mancante, ma vogliamo rendere evidente questo caso loggando il fatto che la query utilizzata per recuperare un valore non ha tornato il risultato aspettato ma abbiamo dovuto usare dei valori standard che potrebbero degradare l’esperienza dell’utente.
+In this case, the code is structured to resist any missing data, but we want to make this case clear by logging the fact that the query used to retrieve a value did not return the expected result but we had to use standard values ​​that could degrade the user experience.
 
-##Info
+## Info
 
-Se seguite questa guida il livello info dovrebbe essere quello più utilizzato all’interno del vostro codice. È questo il livello che verrà passato ai vostri applicativi quando verranno eseguiti in pre-produzione e in produzione ed è per questo che è quello fondamentale per individuare il flusso del vostro programma.
+If you follow this guide the info level should be the most used in your code. This is the level that will be passed to your applications when they are run in pre-production and production and that's why it's the key to identifying the flow of your program.
 
 !!! warning
-    Non fatevi però prendere la mano inserendolo prima e dopo ogni chiamata di funzione inseritelo solo in punti di attenzione del vostro codice, dove la presenza o meno di un log nella console vi può fare capire che scelte logiche si stanno eseguendo nel vostro codice:
+    But do not get carried away by inserting it before and after each function call enter it only in points of attention of your code, where the presence or absence of a log in the console can make you understand that logical choices are being made in your code:
 
 ```javascript
 
@@ -106,20 +106,19 @@ if (expectAlwaysAtLeastOneResult.length === 0) {
 log.info('expectAlwaysAtLeastOneResult has been retrived')
 
 ```
-
-In questo esempio dopo il blocco if è stato inserito un log per indicare che la chiamata HTTP effettuata per recuperare un valore obbligatorio da un servizio terzo è stata effettuata con successo e non ha tornato un errore o un valore non consono. In questo caso presumiamo che la chiamata httpRequest lanci una eccezione contenente l'errore HTTP relativo e che venga gestita in un altra parte del codice che non può sapere esattamente quale chiamata sia fallita, per aiutarci a capire fino a che punto sia arriva il codice possiamo lasciare questi indizi tramite info per farci capire che la chiamata fallita non sia proprio questa; infatti nella console vedremo o il log di errore o quello di info, se nessuno dei due appare vuol dire che il codice non è mai arrivata a questo punto del nostro codice.
+In this example, after the if block, a log was inserted to indicate that the HTTP call to retrieve a mandatory value from a third party service was successful and did not return an error or an incorrect value. In this case we assume that the httpRequest call throws an exception containing the relative HTTP error and that it is handled in another part of the code that can not know exactly which call has failed, to help us understand the extent to which the code arrives leave these clues through info to make us understand that the failed call is not just this; in fact, in the console we will see either the error log or the info log, if neither appears to mean that the code has never arrived at this point in our code.
 
 !!! tip
-    Se però la funzione httpRequest si preoccupa già di scrivere dei log intelligibili in console è inutile inserire questo log di info. Come potete capire info è il livello più utile ma anche quello più difficile da utilizzare correttamente senza ottenere un log troppo verboso inutilmente.
+    However, if the httpRequest function already cares about writing intelligible logs in the console, it is useless to insert this info log. As you can understand info is the most useful level but also the most difficult to use correctly without getting a too verbose log unnecessarily.
 
 ## Debug
 
-Al livello debug ci si aspetterà di trovare quelle informazioni utili durante la fase test locale o appunto di debug di problemi riscontrati durante l’utilizzo dell’applicazione nell’ambiente di test; infatti è questo il livello che verrà passato ai vari applicativi quando verranno lanciati in quell’ambiente.
+At the debug level you will be expected to find that information useful during the local test phase or in fact debugging problems encountered while using the application in the test environment; in fact this is the level that will be passed to the various applications when they are launched in that environment.
 
 !!! tip
-     Una buona regola da seguire per inserire dei log di debug è se per qualsiasi motivo durante lo sviluppo o i test è stato necessario fermarsi ed aggiungere dei comandi per scrivere in console dei parametri passati nel nostro codice per capire cosa non stesse funzionando. Ogni volta che capita questa cosa è un buon momento per capire se non è meglio trasformare quell’inserimento temporaneo in un log di debug permanente.
+     A good rule to follow to insert debug logs is if for any reason during development or testing it was necessary to stop and add commands to write in the console parameters passed in our code to understand what was not working. Every time this happens, it's a good time to figure out if it's not better to turn that temporary insertion into a permanent debug log.
 
-Nei log di debug cerchiamo di inserire più informazioni aggiuntive possibile in riferimento al log in questione, per aiutarci a risolvere il problema riscontrato.
+In the debug logs we try to insert as much additional information as possible in reference to the log in question, to help us solve the problem encountered.
 
 ```javascript
 
@@ -136,10 +135,10 @@ log.debug({ expectAlwaysAtLeastOneResult }, 'result to use')
 
 ```
 
-In questo stiamo cercando di capire perché il programma si comporti in modo anomalo e quindi vogliamo assicurarci che in questa parte del programma venga chiamato il servizio corretto con i parametri giusti e che il risultato tornato sia quello che ci aspettiamo.
+In this we are trying to understand why the program behaves abnormally so we want to make sure that in this part of the program the correct service is called with the right parameters and that the returned result is what we expect.
 
 ## Trace
-Il livello trace è da utilizzare solo per entrare in modalità “paranoia”, quando durante il debug del codice si cominciano ad aggiungere dei log per individuare il più piccolo progresso del flusso di informazioni o il progredire delle modifiche apportate ad un oggetto od al contrario di validare che un oggetto non viene mai modificato quando viene passato all’interno delle funzioni.
+The trace level is to be used only to enter the "paranoia" mode, when during the debugging of the code you begin to add logs to identify the smallest progress of the information flow or the progress of the changes made to an object or the contrary of to validate that an object is never modified when it is passed within the functions.
 
 ```javascript
 
@@ -158,10 +157,10 @@ log.debug({ expectAlwaysAtLeastOneResult }, 'result to use')
 
 ```
 
-In questo esempio sono state aggiunte due nuove righe in trace per tracciare il progresso del codice e notare come un oggetto query passato alla funzione httpRequest possa venire modificato per errore invalidando così la chiamata al servizio terzo.
+In this example, two new lines have been added to trace to track the progress of the code and notice how a query object passed to the httpRequest function can be changed by mistake, thus invalidating the call to the third service.
 
-## Conclusione
+## Conclusion
 
->I log per un programmatore sono uno strumento essenziale da utilizzare al meglio sia in fase di sviluppo per individuare al più presto errori di logica che i test non stanno individuando (e quindi poterli integrare di conseguenza), sia durante il normale utilizzo durante i vari stadi di deploy.
+> Logs for a programmer are an essential tool to be used at their best both in the development phase to identify as soon as possible logic errors that the tests are not identifying (and therefore be able to integrate them accordingly), both during normal use during the various Deploy stages.
 
-Inoltre è utile tenere sempre a mente che i log degli ambienti in pre-produzione e produzione vengono raccolti ed indicizzati da Elasticsearch, e quindi i dati aggiuntivi che si inseriscono fino al livello info è meglio che siano facilmente indicizzabili o utilizzabili come elementi per filtrare dei log ben specifici.
+It is also useful to keep in mind that the logs of pre-production and production environments are collected and indexed by Elasticsearch, and therefore the additional data that are entered up to the info level is better that they are easily indexable or usable as elements to filter well specific logs.
