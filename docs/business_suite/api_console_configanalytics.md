@@ -3,7 +3,8 @@
 From the Api Console you can easily configure and manage your analytics.
 
 !!! notes
-    Before you start with analytics configuration you must create your collections in the Collections area and expose the related Endpoints..
+
+Before you start with analytics configuration you must create your collections in the Collections area and expose the related Endpoints..
 
 In the drop down list you will find the **"Analytics"** section: there you'll be able to create analytics and monitor KPIs. Click on the button **"Add new"** to start configuring.
 
@@ -32,7 +33,8 @@ In this phase you have to decide the type of analytic you want to configure. At 
 ![](img/chart-summary.png)
 
 !!! notes
-    Multi-serie graphs are available only for *custom-stock* type graphs.
+
+Multi-serie graphs are available only for *custom-stock* type graphs.
 
 
 Click on "next" to go further.
@@ -109,7 +111,8 @@ In this phase it is also possible to enable a mongoquery by clicking on the **mo
 Once a series has been configured, a second series can be inserted in the same graph via the **"Add a series"** button.
 
 !!! warning
-    The second set that you set will have all the fields listed above again, but the **data format** will have to be the same as the first series.
+
+The second set that you set will have all the fields listed above again, but the **data format** will have to be the same as the first series.
 
 
 
@@ -174,6 +177,7 @@ If some visibility has already been set for some analytics on the page, then the
 By clicking on **Create** the updated row will appear in the table.
 
 !!! notes
-    Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
+
+Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
 
 ![](img/analitico_cancella.png)
