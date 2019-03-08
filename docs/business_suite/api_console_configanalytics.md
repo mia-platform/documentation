@@ -59,7 +59,7 @@ In this phase, if you have chosen a *chart* type graph, you can choose an **orde
 
 Click on "next" to go further.
 
-##**Step 3: Serie setting**
+## **Step 3: Serie setting**
 
 In this section, you can configure most of the properties of the analytic:
 
