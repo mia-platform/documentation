@@ -26,6 +26,7 @@ From today, if a file with existing ids is imported, the data are not duplicated
 If the id does not exist, a new data is created instead.
 
 !!! warning
+
 If a wrong id is passed, the entire import fails.
 
 ## v4.13.0 (Nov 14, 2018)
@@ -77,6 +78,7 @@ The possibility of setting up an acl for groups accessing the pages of the CMS h
 In this version of the CMS you can select the **icons from font-awesome up to version v.5.3.1**, which is the latest version supported (here is the [link] (https://fontawesome.com / icons? d = gallery) for the icons).
 
 !!! warning
+
 If you choose icons that were already used in the previous version, you will continue to display the old icons in the CMS. This is because priority is given to backward compatibility.
 
 ## v.4.7.0 (Sept 30, 2018)
