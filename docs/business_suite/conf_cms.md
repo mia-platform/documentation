@@ -490,31 +490,31 @@ Nel resto del json sono configurate tutte le altre proprietà della collezione. 
 !!!example
    Ecco un esempio completo di configurazione.
 
-   ```
-   "eroibuoni": {
-       "aclExpression":"groups.admin",
-       "analytics": [{
-         "id": "votazioni",
-         "order": 10,
-         "width": 12
-         }],
-         "properties": {
-           "forza": {
-               "cmsVisibility": {
-                   "visibility" :0,
-                   "edit": {
-                       "query": {
-                       "nome":"Thor"
-                       }
-                   },
-                   "new": {
-                       "query": {
-                       "nome":"Thor"
-                       }
-                   }
-               }
-           }
-       }
-   ```
+       ```
+       "eroibuoni": {
+           "aclExpression":"groups.admin",
+           "analytics": [{
+           "id": "votazioni",
+           "order": 10,
+           "width": 12
+            }],
+           "properties": {
+              "forza": {
+                 "cmsVisibility": {
+                     "visibility" :0,
+                     "edit": {
+                         "query": {
+                         "nome":"Thor"
+                         }
+                     },
+                     "new": {
+                         "query": {
+                         "nome":"Thor"
+                         }
+                     }
+                 }
+             }
+         }
+        ```
 
 In questo caso la collezione Eroi Buoni è visibile solo agli amministratori.

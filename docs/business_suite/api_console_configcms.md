@@ -3,7 +3,7 @@
 From the API Console you can easily configure and manage your CMS.
 
 !!! Note
-Remember that before you can configure the CMS you must have already created your collections in the Collections area and displayed the related Endpoints.
+    Remember that before you can configure the CMS you must have already created your collections in the Collections area and displayed the related Endpoints.
 
 ## Categories and Pages
 
@@ -16,7 +16,7 @@ To give an example: in our cms of the heroes we will create the collection **Cha
 The **Pages** instead are used to represent the data of a collection. Within the pages you can manage your collections and the data in it.
 
 !!! tip
-Before creating pages or categories try to build the information architecture of your CMS. It will be much simpler at that point to know what to create.
+    Before creating pages or categories try to build the information architecture of your CMS. It will be much simpler at that point to know what to create.
 
 ## How to create a category
 
@@ -25,7 +25,7 @@ Before creating pages or categories try to build the information architecture of
 To create a category, simply enter the **Name** of the category you want to display on the CMS and the display order.
 
 !!! tip
-We advise you to always order by following the tens order. If we want our category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the categories.
+    We advise you to always order by following the tens order. If we want our category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the categories.
 
 In our case, of the CMS of the heroes, then we will write: Name = Characters and Order = 10
 
@@ -37,7 +37,7 @@ The creation of a page consists of two steps:
 2. Configure the general settings
 
 ### Configure the menu area
-![](img/area-menu.jpg)
+![](img/area-menù.JPG)
 
 In this section you can choose how to represent the page in the CMS side menu. Let's take the example of the Good Heroes page
 
@@ -98,7 +98,7 @@ We can divide this complex area into several parts:
 
 For each property you can configure different fields that allow you to improve the user experience in the CMS:
 
-![](img/property-generali.JPG)
+![](img/proprietà-generali.JPG)
 
 * **Interface Type**: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
 
@@ -205,9 +205,9 @@ When you select Inline Source you will need to fill in two values:
 * **The data you want to view**: in this field you will need to insert an array of objects you want to view. Remember to differentiate the value to be saved in the database with what you want to show your end user.
 
 !!! example
-Let's take an example: I have a property that has been and I want from the CMS to be able to select only specific states such as Pending, In Processing etc.
-Here's how I'll have to build the array of objects:
-**[{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}]**
+    Let's take an example: I have a property that has been and I want from the CMS to be able to select only specific states such as Pending, In Processing etc.
+    Here's how I'll have to build the array of objects:
+    **[{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}]**
 
 * **Value to be saved**: you will have to choose which value to save in the DB, in this case we advise you to save the value.
 
@@ -231,9 +231,9 @@ The query will be: {"state": "working"}
 * **Automatic Selection**: if we want you to select the first value automatically
 
 * **Live search**: if we want that while we are writing we will see the results (ex: I write A and they appear under the publishing houses that begin with A)
-    
-    !!! example "An example of Lookup on the weapons collection"
-![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
+
+!!! example "An example of Lookup on the weapons collection"
+    ![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
 
 ## 4. Create a button
 
@@ -253,13 +253,13 @@ To create a button, go to the Bottni section and configure the following fields:
 In the API, you will then be able to conveniently view the buttons created on the card
 
 !!! example "Example of a button"
-Let's take an example of a button on our Heroes Good page. The button will serve to contact a hero.
-Sara:
+    Let's take an example of a button on our Heroes Good page. The button will serve to contact a hero.
+    Sara:
 
-* id: contact-hero
-* label: Contact Hero
-* route: / action
-* icon: phone
+    * id: contact-hero
+    * label: Contact Hero
+    * route: / action
+    * icon: phone
 
-here is how our button will appear:
-![bottone in cms](img/bottone-in-cms.JPG)
+    here is how our button will appear:
+    ![bottone in cms](img/bottone-in-cms.JPG)

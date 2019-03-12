@@ -1,5 +1,3 @@
-[TOC]
-
 #Advice configuration guide #
 
 The analytics on the Mia-Platform CMS are configured through two types of JSON files:
@@ -28,7 +26,7 @@ The widget file is the configuration file of the graphs. In my platform you have
 + `` `chart```: is a graph not tied to time
 ![](img/chart.png)
 + `` `chart-summary```: is a graph in which are shown statistics regarding one or more data collections not related to time
-![](img /chart-summary.png)
+![](img/chart-summary.png)
 
 ### Example of configuration structure ###
 ```

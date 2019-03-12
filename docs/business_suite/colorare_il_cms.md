@@ -11,7 +11,7 @@ If the folder is not present we suggest you:
 * Make a git clone
 
 !!! warning
-Warning! if you clone an existing project, verify in all the files created that the name of your customer is present and not of the customer from which you have cloned the path.
+    Warning! if you clone an existing project, verify in all the files created that the name of your customer is present and not of the customer from which you have cloned the path.
 
 The path to find your folder is: Project Name> Web Apps> Custom CMS
 

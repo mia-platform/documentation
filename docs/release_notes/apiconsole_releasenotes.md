@@ -1,4 +1,55 @@
 #Piattaforma Release Note
+##v.4.16.0 (March 11, 2019)
+**API Console front-end - v.0.16.0**
+
+This version must be used with backend v0.18.x
+
+Added:
+
+* Advanced section where you can edit the configuration extension
+
+Update:
+
+* now interfaceType in cms section are conditioned by crud property type
+
+* migrate route section in endpoint to new layout with antd
+
+Fix:
+
+* various fix in cms page
+
+**API Console Back-end - v.0.18.0**
+
+Added:
+
+* advanced file edit plugin
+
+Updates:
+
+* various changes in api-gateway configuration:
+
+* debug mode, enabled with correct header sent, better route security (now query parameter are not matched in proxy name maps)
+
+
+* api-gateway version set to v4.0.0
+minor/patches updates to all services
+improved app_dataentry proxy name mapping for better user flow
+update LICENSE
+
+Fix:
+
+* increase max path for fastify
+
+**CRUD - v.0.21.2**
+
+Fix:
+In case of upsert, if the document is not found a new one is inserted on the database. This document did not correctly set the updaterId and the updatedAt
+
+Now invoking /upsert-one on a document not present in the database, a document is inserted with the updaterId and the updatedAt not null
+
+**Custom Plugin Node v.0.7.0**
+
+
 ##v.4.15.0 (Jan 16, 2019)
 Novità:
 
@@ -29,7 +80,7 @@ Se l'id non esiste invece viene creato un nuovo dato.
     Se viene passato un id sbagliato fallisce l'intero import.
 
 ## v4.13.0 (Nov 14, 2018)  
-### Breaking change api-console-configuration v0.3.0
+**Breaking change api-console-configuration v0.3.0**
 
 Abbiamo rilasciato i seguenti aggiornamenti:
 
@@ -65,7 +116,7 @@ Abbiamo rilasciato le seguenti funzionalità:
 In questa versione abbiamo rilasciato l'**aggiornamento al session manager** e alla nuova acl expression syntax e abbiamo effettuato dei fix sulla configurazione degli analitici.
 
 ##v. 4.10.0 (Oct 10, 2018)  
-### Configurazione Analitici
+**Configurazione Analitici**
 
 Con la versione 0.12.0 sarà possibile **configurare gli analitici da API Console**.
 A questo [link](https://docs.mia-platform.eu/configurator/api_console_configanalytics/) la documentazione su come è possibile configurarli.
