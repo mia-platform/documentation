@@ -1,38 +1,38 @@
-## Come configurare il CMS con Mia-Platform 3
+## How to configure the CMS with Mia-Platform 3
 
-Le collezioni che vengono mostrate nel CMS vengono configurate in due file .json differenti:
+The collections shown in the CMS are configured in two different .json files:
 
-* 1) `cms_config.json` dove lo sviluppatore può configurare le impostazioni generali delle pagine nel CMS
+* 1) `cms_config.json` where the developer can configure general page settings in the CMS
 
 
-* 2) `properties.json` dove lo sviluppatore può configurare ogni singola proprietà come può essere visualizzata e gestita.
+* 2) `properties.json` where the developer can configure every single property as it can be viewed and managed.
 
-Entrambi i file si trovano all'interno della specifica cartella all'interno della collezione che si vuole configurare.
+Both files are located inside the specific folder within the collection that you want to configure.
 
 ### cms_config.json
 
- Ipotizziamo di essere all'interno della collezione **heroes** e vogliamo configurare al pagina eroi del nostro cms.
+Let's assume we are within the **heroes** collection and want to configure our cms heroes page.
 
- Apriamo il file `cms_config.json` e costruiremo il seguente file:
+Open the `cms_config.json` file and we will build the following file:
 
 
- chiave | valore di esempio |  Commento
- -------| -------|-------
-  `label` | Eroi | label è l'etichetta che ti permette di scegliere il nome della tua collezione nel menù del CMS. nel nostro caso scriveremo Eroi              
-  `layoutType`| table | puoi decidere il Layout che vorrai dare alla tua collezione. **Table** è la modalità di visualizzazione più classica a tabella. **TableUser** è la modalità di visualizzazione per gli utenti. Ha infatti un campo speciale Reset Password all'inizio della tabella. **TablePush** invece è la tabella perfetta per le push notification o per inviare notifiche ai clienti. A fianco della tabella troverai sempre un tasto Push per inivare il contenuto ai tuoi clienti. Se selezioni **Card** ogni oggetto sarà rappresentato simile a una Card. **Gallery** è invece la rappresentazione perfetta per le immagini
-  `defaultStatus`| draft | può invece essere o **draft** o **publish**. Se scrivi draft una volta che caricherai un elemento non verrà pubblicato automaticamente sui tuoi applicativi, ma dovrai dargli successivamente il comando pubblica. Se scrivi invece publish ogni volta che modifichi o che carichi un elemento verrà pubblicato automaticamente. Nel nostro caso metteremo draft.
-  `defDelete`| false, | se è **true** gli elementi una volta eliminati da trash verranno eliminati definitivamente.se è **false** potrai recuperarli da Mongo, ma non compariranno sul CMS
-  `category`|  | qui potrai configurare la categoria del menù nella quale far comparire la tua collezione.
-    `category.name` | General | questo è il nome della categoria che comparirà nel CMS
-    `category.order`| 10 | questo è l'ordine della categoria nel menù. Ti consigliamo di mettere sempre cifre dell'ordine delle decine. Ti capiterà infatti ti volere inserire in futuro altre collezioni o categorie. Se prima per esempio avremmo avuto già una categoria in ordine 3 per posizionare questa avremmo dovuto cambiare anche tutte le altre a cascata. Con le decine invece basta mettere un numero intermedio.
-  `hidden` | false, | portando questo campo a **true** potrai scegliere di non far comparire la collezione nel CMS
-  `blocked`| false | portando questo campo a **true** potrai scegliere di bloccare la collezione. Nessuno potrà più creare nuovi campi.
-  `icon` | book | in questo [link](https://fontawesome.com/icons) potrai visualizzare tutte le icone disponibili da far visualizzare nel tuo menù
-  `order` | 10 | indica l'ordine di una collezione all'interno di una categoria. Con 10 sarà la prima a comparire. Si consiglia di seguire anche qui la regola delle decine.
-  `baseQuery` | " " | base query ti permette di applicare un filtro generale di visibilità - Deve seguire delle regole di espressioni logiche. Un esempio può essere: nascondere la proprietà Circolo Acli dalle associazioni e servizi. sarà scritta così: { "idAssocServ": { "$ne": "CIRCOLO ACLI"} }
-  `highlight` | " " | in questa stringa potrai inserire il nome di una proprietà della collezione (solo boolean) che quando è true verrà evidenziata nel CMS.
+key | example value | Comment
+------- | ------- | -------
+`label` | Heroes | label is the label that allows you to choose the name of your collection in the CMS menu. in our case we will write Heroes
+`LayoutType` | table | you can decide the layout you want to give to your collection. **Table** is the most classic table view mode. **TableUser** is the display mode for users. It has in fact a special Reset Password field at the beginning of the table. **TablePush** instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers. If you select **Card** each item will be represented similar to a card. **Gallery** is instead the perfect representation for images
+`DefaultStatus` | draft | it can instead be either **draft** or **publish**. If you write draft once you upload an item it will not be published automatically on your applications, but you will have to give it the public command later. If you write publish instead whenever you edit or load an item it will be published automatically. In our case we will put draft.
+`DefDelete` | false, | if it is **true** the elements once deleted by trash will be permanently deleted. if it is **false** you can retrieve them from Mongo, but they will not appear on the CMS
+`Category` | | here you can configure the menu category in which to display your collection.
+`category.name` | General | this is the name of the category that will appear in the CMS
+`Category.order` | 10 | this is the order of the category in the menu. We advise you to always put the order in the tens. In fact, you will want to insert other collections or categories in the future. If before, for example, we would already have a category in order 3 to place this we would have to change all the others in cascade. With the tens, however, just put an intermediate number.
+`hidden` | false, | bringing this field to **true** you can choose not to show the collection in the CMS
+`Blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
+`icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
+`order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
+`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
+`highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
 
-  Il .json finale sarà quindi:
+  So the final .json file will be:
 
 ```
   {
@@ -69,28 +69,28 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 
 ### properties.json
 
-  Il file properties.json è il file che contiene tutti i campi della collezione. Ogni campo ha una struttura simile.
+The properties.json file is the file that contains all the fields in the collection. Each field has a similar structure.
 
-  Di default ci saranno i campi: id, creatorId, createdAt, uptaterId, updatedAt, STATE,
+By default there will be the fields: id, creatorId, createdAt, uptaterId, updatedAt, STATE,
 
-  vediamo nel dettaglio le specifiche di una singola proprietà: es proprietà **nome**
+see in detail the specifications of a single property: es property **name**
 
-  chiave | valore di esempio |  Commento
-  -------| -------|-------
-   `id`| nome | id della proprietà
-   `type` | "string", | i tipi possono essere: string, number, boolean, geopoint, date, object, array of number, array of string, array of object, objectId
-   `required`| false, | **true** se vuoi che il dato sia obbligatorio
-   `label`| Nome | è l'etichetta che vuoi dare alla tua proprietà
-   `cmsVisibility` |  | cmsVisibility permette di decidere a che livello si vuole mostrare una proprietà. I quattro livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicchi nella tabella, nella zona destra del tuo CMS; **3** ed è visibile nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand". Al livello **3** si mettono spiegazioni di informazioni che compaiono agli altri livelli. Al livello **2** tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti.  Nel nostro caso metteremo **1** in quando l'informazione è prioritaria. La proprietà di visibility può anche essere configurata per essere visibile solo in alcuni casi, tramite **“New”** ed **“Edit”**. Entrambi sono oggetti che contengono una query, quindi permettono di impostare condizioni complesse. **“New”** permette di rendere visibile la proprietà in fase di creazione, **“Edit”** permette di rendere visibile la proprietà in fase di modifica.
-   `cmsVisibilty.level`| 1 | I quattro livelli possono essere: **0** e non è visibile; **1** ed è visibile nella tabella principale; **2** ed è visibile quando clicchi nella tabella, nella zona destra del tuo CMS; **3** ed è visibile nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand". Al livello **3** si mettono spiegazioni di informazioni che compaiono agli altri livelli. Al livello **2** tendenzialmente si mettono le informazioni non prioritarie, ma che portano valore, gli approfondimenti.  Nel nostro caso metteremo **1** in quando l'informazione è prioritaria.
-   `cmsOrder`| 10 | è l'ordine che gli vuoi dare all'interno della collezione. nel nostro caso sarà il primo, quindi scriveremo 10
-   `cmsEditable`| true | **true** se vuoi che sia modificabile da CMS
-   `hidden`| false | se vuoi che la proprietà sia invisibile
-   `description`| " " | se vuoi aggiungere una description
-   `cmsCardPosition`| 0 | indica la posizione della proprietà nel layout Card
-   `interfaceType` | string | le proprietà possono essere di diversi tipi: **string** se è una classica stringa di testo; **number** se è un numero; **date** se è una data con gg/mm/aaaa; **datetime** è invece una data completa con anche ore, minuti e secondi; **boolean** se può essere solo true o false; **text** se vogliamo che il contenuto venga letto come html; **textArea** se è un campo di testo, quindi ad esempio una descrizione; **Lookup** servono per poter selezionare alcuni valori o tra una gamma di valori scelti da me o tra una gamma di valori presi da un'altra collezione. **Multilookup** se vuoi selezionare più valori; **Array** se lo vuoi salvare come un insieme ordinato di proprietà; **Oggetto** è un insieme di proprietà non ordinato; **Geopoint** se vuoi che salvi un luogo preciso; **Files** se è un file come ad esempio un immagine o un pdf. Nel nostro caso sceglieremo string volendo semplicemente scrivere il nome del titolo.
+key | example value | Comment
+------- | ------- | -------
+`Id` | name | property id
+`type` | "string", | the types can be: string, number, boolean, geopoint, date, object, array
+`Required` | false, | **true** if you want the data to be mandatory
+`Label` | Name | it's the label you want to give to your property
+`cmsVisibility` | | cmsVisibility allows you to decide at what level you want to show a property. The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority. The visibility property can also be configured to be visible only in some cases, via **"New"** and **"Edit"**. Both are objects that contain a query, so they allow you to set complex conditions. **"New"** allows you to make visible the property being created, **"Edit"** allows you to make visible the property being edited.
+`CmsVisibilty.level` | 1 | The four levels can be: **0** and is not visible; ** 1 ** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
+`CmsOrder` | 10 | it is the order that you want to give it within the collection. in our case it will be the first, so we will write 10
+`CmsEditable` | true | **true** if you want it to be editable by CMS
+`Hidden` | false | if you want the property to be invisible
+`Description` | "" | if you want to add a description
+`CmsCardPosition` | 0 | indicates the location of the property in the Card layout
+`interfaceType` | string | the properties can be of different types: **string** if it is a classic text string; **number** if it is a number; **date** if it is a date with dd / mm / yyyy; **datetime** is instead a complete date with hours, minutes and seconds; **boolean** if it can only be true or false; **text** if we want the content to be read as html; **textArea** if it is a text field, then for example a description; **Lookup** are used to select some values ​​or between a range of values chosen by me or between a range of values taken from another collection. **Multilookup** if you want to select multiple values; **Array** if you want to save it as an ordered set of properties; **Object** is an unordered property set; **Geopoint** if you want me to save a specific place; **Files** if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
 
-   il json finale nella nostra proprietà **nome** che è il nome degli eroi sarà quindi:
+the final json in our property **name** which is the name of the heroes will therefore be:
 
 ```
 "nome": {
@@ -128,98 +128,98 @@ Entrambi i file si trovano all'interno della specifica cartella all'interno dell
 ```
 
 
-# CMS Config-extension in API Console
+# CMS Config-extension in the API Console
 
-Tutte le confgurazioni precedenti vengono gestite automaticamente dall'Api Console.
-Esistono però alcune estensioni che non possono ancora essere configurate dal front-end ma sono gestite da un componente : le config-extension.
+All previous configurations are automatically managed by the API.
+However, there are some extensions that can not yet be configured from the front end but are managed by a component: the config-extension.
 
-le 5 estensioni più importanti sono:
+the 5 most important extensions are:
 
 1. le **card**
-2. le **notifiche** nel menù laterale
-3. gli **highlight**, ovvero la possibilità di evidenziare delle righe nelle tabelle
-4. la **visibilità condizionata** di una proprietà.
-5. il **controllo degli accessi sui gruppi** (ACL sui gruppi).
+2. the **notifications** in the side menu
+3. the **highlight**, or the possibility to highlight lines in the tables
+4. the **conditional visibility** of a property.
+5. the **access control on groups** (ACL on groups).
 
 
-## Impostare GIT per avere le config-extension del cms
+## Set up GIT to have the cms config-extensions
 
-1) quando apri il progetto GIT assicurati che esista una cartella **config-extension**. All'interno della cartella deve essere presente la cartella **cms-backend**.
+1) when you open the GIT project make sure there is a **config-extension** folder. The **cms-backend** folder must be inside the folder.
 
-Se non è presente puoi crearla.
+If it is not present you can create it.
 
-2) una volta aperta la cartella dovrai creare o assicurarti che siano già stati creati i seguenti file:
+2) once you open the folder you will need to create or make sure that the following files have already been created:
 
-* **analyticsConfig.json** (se lo crei per la prima volta al suo interno dovrai inserire un oggetto vuoto)
+* **analyticsConfig.json** (if you create it for the first time you will need to insert an empty object)
 
-* **cmsProperties.json** (se lo crei per la prima volta al suo interno dovrai inserire un oggetto vuoto)
+* **cmsProperties.json** (if you create it for the first time you will need to insert an empty object)
 
-* **dashboardConfig.json** (se lo crei per la prima volta al suo interno dovrai inserire un array vuoto)
+* **dashboardConfig.json** (if you create it for the first time you will need to insert an empty array)
 
-A questo punto sei pronto per configurare le tue estensioni.
+At this point you are ready to configure your extensions.
 
-## 1. Configurare le Card
+## 1. Configure the Card
 
-Le Card ti permettono di visualizzare i tuoi dati non più in tabella, ma sottoforma di Card.
+Cards allow you to view your data no longer in the table, but in the form of Card.
 
 !!! warning
-     Sebbene le card siano un estensione ricordati che la pagina del CMS che vuoi visualizzare come card deve avere nelle sue impostazioni generali il **tipo di visualizzazione impostato a card**.
 
-Le card sono composte da due sezioni:
+Although cards are an extension, remember that the CMS page you want to display as a card must have the **display type set to card** in its general settings.
 
-
-1. il **cardHeader** che rappresenta la struttura alta della card ed è  composta da 3 elementi:
+The cards are composed of two sections:
 
 
-   * l'immagine
+1. **cardHeader** which represents the high structure of the card and is composed of 3 elements:
 
 
-   * il titolo
+* the image
 
 
-   * il sottotitolo
+* the title
 
 
-!!! note
-       I 3 campi sono obbligatori in configurazione ma possono essere lasciati vuoti.
-       Se all'immagine non viene associata nessuna proprietà la card verrà colorata con il colore del menù laterale
+* the subtitle
+
+
+!!! Note
+
+The 3 fields are mandatory in configuration but can be left empty.
+If no image is associated with the image, the card will be colored with the side menu color
 
 ```
 "cardHeader": {
-       "titleProperty": "laboratory",
-       "subTitleProperty": "productId",
-       "imageProperty": ""
+"titleProperty": "laboratory",
+"subTitleProperty": "productId",
+"imageProperty": ""
 ```
 
 
-2. il **cardContentRows** invece è interamente personalizzabile. All'interno di una card esistono 4 tipologie di widget che possono essere inseriti:
+2. **cardContentRows** instead is entirely customizable. Within a card there are 4 types of widgets that can be inserted:
 
 
-  * **textArea** - è un campo di testo alto in cui può essere inserita una descrizione, una nota o una proprietà che richiede uno spazio elevato
+* **textArea** - is a high text field in which a description, a note or a property that requires high space can be entered
 
 
-  * **text**  - è un campo di testo ridotto, in genere può essere utilizzato per mostrare proprietà semplici
+* **text** - is a small text field, it can generally be used to show simple properties
+* **button** - allows you to configure buttons within your cardType. The endpoint to which you want to connect must be specified in the "routes" key.
 
 
-  * **button** - ti permette di configurare dei bottoni all'interno della tua cardType. E' necessario specificare nella chiave "routes" l'endpoint a cui ci si vuole collegare.
+* **link** - allows you to configure buttons that refer to a URL, in order to automatically open an application. In the configuration of the link buttons, it is necessary to specify in the "linksType" key the link to be obtained by pressing the button. Furthermore, in this type of widget it is possible to insert icons to be displayed on the button.
 
+!!! Note
 
-  * **link** - ti permette di configurare dei bottoni che rimandano a un URL, in modo tale da aprire automaticamente un'applicazione. Nella configurazione dei bottoni link, è necessario specificare nella chiave "linksType" il collegamento che si vuole ottenere premendo il bottone. Inoltre in questa tipologia di widget è possibile inserire delle icone da far comparire nel bottone.
+At the moment there are already three link buttons that can be used:
 
-!!! note
+* **Send Mail**, which allows you to send an email. To configure this button it is necessary to insert **"email"** in the configuration of the card in the "linksType" field.
 
-    Al momento esistono già tre bottoni link che possono essere utilizzati:
+* **Call Skype**, which allows you to start a Skype call. To configure this button it is necessary to insert **"skypeCall"** in the card configuration in the "linksType" field.
 
-    * **Invia Mail**, che permette di inviare una mail. Per configurare questo bottone è necessario inserire **"email"** nella configurazione della card nel campo "linksType".
+* **Skype Chat**, which allows you to automatically log in to Skype chat. To configure this button it is necessary to insert **"skypeChat"** in the card configuration in the "linksType" field.
 
-    * **Chiama Skype**, che permette di far partire una chiamata skype. Per configurare questo bottone è necessario inserire **"skypeCall"** nella configurazione della card nel campo "linksType".
+Each widget can consist of multiple properties of the same type. For example. If I choose a text widget within it I can display more properties of type text. The cars based on the number of elements present divide the card space.
 
-    * **Chat Skype**, che permette di accedere automaticamente alla chat di Skype. Per configurare questo bottone è necessario inserire **"skypeChat"** nella configurazione della card nel campo "linksType".
-
-Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare un esempio. Se io scelgo un widget di tipo text al suo interno posso visualizzare più proprietà di tipo text. Le car in base al numero di elementi presenti dividono lo spazio della card.
-
-!!!example
-    Ecco un esempio di card content rows - Con questa visualizzazione vedrai sotto l'header un campo note, due proprietà, due bottoni e due link.
+example !!!
+    Here is an example of card content rows - With this view you will see below the header a field notes, two properties, two buttons and two links.
 
 
 ```
@@ -250,10 +250,11 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
 
 ```
 
- Per inserire la card all'interno di una collezione bisogna scrivere esattamente il nome della collezione e inserire poi la card all'interno di cmsProperties:
+ To insert the card into a collection, write the name of the collection exactly and then insert the card into cmsProperties:
 
-!!!example
-   Ecco un esempio di card finale all'interno della collezione change-requests
+example !!!
+
+Here is an example of a final card within the change-requests collection
 
 ```
 
@@ -316,23 +317,24 @@ Ogni widget può essere composto da più proprietà dello stesso tipo. Per fare 
  }
 
 ```
-Ecco alcuni esempi di card realizzati
+Here are some examples of realized cards
 
 ![](img/card1.JPG) ![](img/card2.JPG)
 
-Nell'esempio abbiamo quindi:
+In the example we have therefore:
 
-* due bottoni - accetta e rifiuta;
+* two buttons - accepts and refuses;
 
-* due link - mail e skype, che permettono di aprire automaticamente le applicazioni di e-mail e skype.
+* two links - mail and skype, which allow you to automatically open the e-mail and skype applications.
 
-##2. Configurare le notifiche
+##2. Configure notifications
 
-Le notifiche nel menù laterale ti permettono di visualizzare sottoforma di notifica il numero di elementi che soddisfano una condizione.
-Le notifiche sono degli oggetti composti da un solo elemento: una **query**. All'interno della query bisogna specificare la condizione per cui il singolo dato venga contato.
+The notifications in the side menu allow you to display the number of elements that satisfy a condition in the notification form.
+Notifications are objects composed of only one element: a **query**. Within the query you must specify the condition for which the single data is counted.
 
-!!!example
-    Ecco un esempio di notifica
+example !!!
+
+Here is an example of notification
 
 
          "notification": {
@@ -344,24 +346,25 @@ Le notifiche sono degli oggetti composti da un solo elemento: una **query**. All
              }
 
 
-   La visualizzazione sarà la seguente:
+   The display will be as follows:
 
    ![](img/notifiche.PNG)
 
-   Nell'esempio la notifica mostra il numero di elementi in ritardo allo stato in lavorazione.
+   In the example, the notification shows the number of delayed elements in the current state.
 
-##3. Configurare gli highlight
+## 3. Configure the highlights
 
-Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight è un oggetto composto da tre parametri:
+The highlights allow you to highlight rows in the tables. A highlight is an object composed of three parameters:
 
-* **query**, cioè la condizione da soddisfare affinchè la riga della tabella sia evidenziata;
+* **query**, ie the condition to be satisfied for the table row to be highlighted;
 
-* **color**, parametro di tipo testo che configura il colore del testo;
+* **color**, text type parameter that configures the text color;
 
-* **backgroundColor**, che configura il colore dello sfondo in esadecimali ([Collegamento per i colori esadecimali](https://www.web-link.it/colori-html.html)).
+* **backgroundColor**, which configures the background color in hexadecimal ([Link for hexadecimal colors] (https://www.web-link.it/colori-html.html)).
 
-!!!example
-    Ecco un esempio di highlight
+example !!!
+
+Here is an example of a highlight
 
 
         "highlight": {
@@ -377,30 +380,30 @@ Gli highlight permettono di evidenziare delle righe nelle tabelle. Un highlight 
            }
 
 
-La visualizzazione sarà la seguente:
+The display will be as follows:
 ![](img/highlight.png)
 
 
-Nell'esempio vengono evidenziate su uno sfondo rosso scritte in bianco, le righe della tabella che sono in ritardo allo stato "in lavorazione".
+In the example, on a red background written in white, the rows of the table that are delayed to the "in process" state are highlighted.
 
 
-##4. Impostare la visibilità condizionata a una proprietà
+## 4. Set conditional visibility to a property
 
-La visibilità condizionata permette di visualizzare una proprietà solo sotto una certa condizione. Da CMS l'utente ha la possibilità di visualizzare una proprietà di una collezione in due momenti:
+Conditional visibility allows you to view a property only under a certain condition. From CMS the user has the possibility to view a property of a collection in two moments:
 
-* in fase di creazione, quando l'utente crea un nuovo elemento in una collezione tramite il bottone "add new";
+* in the creation phase, when the user creates a new item in a collection using the "add new" button;
 
-* in fase di modifica, quando l'utente modifica un elemento esistente dal menu laterale di destra.
+* when editing, when the user modifies an existing element from the right side menu.
 
-La visibilità condizionata può essere impostata su una proprietà in entrambi i momenti, oppure solo in uno dei due, a seconda dell'esigenza.
+Conditional visibility can be set to a property at either time, or only in one of the two, depending on the need.
 
-Per impostare la visibilità condizionata su una proprietà aprire Git e seguire il seguente percorso:
+To set the conditional visibility on a property open Git and follow the following path:
 
-`nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json`
+`projectname>configurations>configuration>config-extention>cms-backend> cmsProperties.json`
 
-In questo file è scritta la configurazione delle estensioni del cms. Per impostare la visibilità condizionata, scrivere il nome della collezione su cui si vuole agire e in "properties" specificare il nome della proprietà che si vuole condizionare.
+The configuration of cms extensions is written in this file. To set the conditional visibility, write the name of the collection you want to act on and in "properties" specify the name of the property you want to condition.
 
-Ecco un esempio di configurazione completa:
+Here is an example of a complete configuration:
 
 ```
 "eroibuoni": {
@@ -429,7 +432,7 @@ Ecco un esempio di configurazione completa:
     }
 ```
 
-In **"properties"** si elencano le proprietà che si vogliono condizionare (nell'esempio solo "forza"). La configurazione solo della visibilità condizionata è la seguente:
+In **"properties"** the properties to be conditioned are listed (in the example, only "force"). The only configuration of conditioned visibility is as follows:
 
 ```
 "cmsVisibility": {
@@ -447,48 +450,49 @@ In **"properties"** si elencano le proprietà che si vogliono condizionare (nell
 }
 ```
 
-Il campo **"visibility"** serve a definire il livello a cui si vuole vedere la proprietà. Le possibilità dei valori sono:
+The **"visibility"** field is used to define the level at which the property is to be viewed. The possibilities of the values are:
 
-* 0, per nascondere la proprietà;
+* 0, to hide the property;
 
-* 1, per visualizzare la proprietà nella pagina principale della collezione;
+* 1, to display the property on the main page of the collection;
 
 ![](img/level_1.png)
 
-* 2, per visualizzare la proprietà nel menu laterale di destra quando si clicca sull'elemento;
+* 2, to display the property in the right side menu when clicking on the item;
 
 ![](img/level_2.png)
 
-* 3, per visualizzare la proprietà nella sezione modale che compare in grande al centro della pagina quando si clicca su "expand".
+* 3, to display the property in the modal section that appears large in the center of the page when you click on "expand".
 
 ![](img/level_3.png)
 
-Il capo **"edit"** serve per impostare la visibilità condizionata sulla proprietà in fase di modifica di un elemento, il campo **"new"** serve per impostarla in fase di creazione dell'elemento. Nell'esempio la visibilità condizionata è impostata in entrambe le fasi.
+**"Edit"** is used to set the conditioned visibility on the property when editing an element, the **"new"** field is used to set it when creating the element. In the example, conditional visibility is set in both phases.
 
-Dopo "edit" o "new" si inserisce una **"query"** per specificare la condizione che determina la visibilità della proprietà. Nell'esempio la condizione è semplicemente che il nome sia Thor. La query è una mongoquery: si può avere supporto per scrivere le mongoquery al seguente [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
+After "edit" or "new" you insert a **"query"** to specify the condition that determines the visibility of the property. In the example the condition is simply that the name is Thor. The query is a mongoquery: you can have support to write the mongoquery to the following [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
 
 
-##5. Controllo accessi sui gruppi (ACL sui gruppi)
+## 5. Access control on groups (ACL on groups)
 
-Questa estensione ti permette di **controllare gli accessi alle collezioni del CMS**, a seconda del gruppo. Infatti è possibile che vari gruppi di utenti accedano allo stesso CMS, ma che non tutte le informazioni siano visibili a tutti.
+This extension allows you to **control access to CMS collections**, depending on the group. In fact it is possible that various groups of users access the same CMS, but that not all information is visible to everyone.
 
-Per configurare queste proprietà il percorso è il seguente:
+To configure these properties, the path is as follows:
 
-`nomeprogetto > configurations > configuration > config-extention > cms-backend > cmsProperties.json`
+`projectname>configurations>configuration>config-extention>cms-backend> cmsProperties.json`
 
-Quando si è nel json, l'ACL sui gruppi si inserisce su tutte le collezioni che vogliono essere controllate. **Nella proprietà dell'ACL si inserisce il nome dei gruppi che possono vedere quella collezione.** La sintassi è la seguente:
+When in json, the ACL on groups fits into all the collections that want to be controlled. **In the ACL property you enter the name of the groups that can see that collection.** The syntax is as follows:
 
 ```
-"nomecollezione" : {
-    "aclExpression":"groups.nomegruppo"
+"nomecollection": {
+"AclExpression": "groups.nomegruppo"
 }
 ```
 
-Nel resto del json sono configurate tutte le altre proprietà della collezione. Il gruppo a cui è riservato l'accesso si esprime con "groups.nomegruppo". Se la proprietà non è configuarata, la collezione di default è visibile a tutti.
+In the rest of the json, all the other properties of the collection are configured. The group to which access is reserved is expressed with "groups.nomegruppo". If the property is not configured, the default collection is visible to everyone.
 
 
-!!!example
-   Ecco un esempio completo di configurazione.
+example !!!
+
+Here is a complete example of configuration.
 
        ```
        "eroibuoni": {
@@ -517,4 +521,4 @@ Nel resto del json sono configurate tutte le altre proprietà della collezione. 
          }
         ```
 
-In questo caso la collezione Eroi Buoni è visibile solo agli amministratori.
+In this case the Heroes Good collection is visible only to administrators.

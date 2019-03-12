@@ -1,19 +1,19 @@
 # CMS
 
-Un Content Management System (CMS) viene utilizzato per inserire, elaborare, pubblicare, cancellare i contenuti che vengono mostrati in un’app o in un sito.
+A Content Management System (CMS) is used to post, process, publish, delete content that is shown in an app or site.
 
-# Accedere al CMS
+# Access the CMS
 
-Per poter accedere al CMS è sufficiente collegarsi da un normale Browser all’indirizzo: <nome-istanza>cms.baas.makeitapp.eu/app_dataentry/
-Questa è la schermata iniziale dove inserire le credenziali: mail, password, key e secret.
+To access the CMS simply connect from a normal browser to: <instance-name> cms.baas.makeitapp.eu/app_dataentry/
+This is the initial screen where to enter the credentials: mail, password, key and secret.
 
 ![image alt text](img/image_0.png)
 
-## Key e Secret
+## Key and Secret
 
-Queste due chiavi, insieme a user e password, sono necessarie per accedere al CMS e verranno fornite da Mia.
+These two keys, together with user and password, are necessary to access the CMS and will be provided by Mia.
 
-Esempio di chiavi:
+Key example:
 
 KEY:
 771c47d353e1bd737c3927aa12a9337dabd7f5c48e69d243caaaa8b9801251a5ec4ea24d0827019dbcff21cfe39e3089ae2b42ff505992b7fe0c72641a8117e9173cedecab3b75cc9c284d8fbaae366bf91f851f3393ac6e9c15eab1819933eeaa006dc61bb7e08570e3baa9e2ea1f10ed32e169e4b60285d4ba97b159d4ad2ff266ae68d1acb25da8cc81a91f9245fb8111f101bd2ccebf62aa1229a95ca8e1f263b58ecae9a10dc9ed752d1c9b55422fe4ca3ed5a20c9e858a8f6c13504b5950143879f71acd5c5ec1a731f8978df66bd082f59cf49b381d04371bd6934b45050e4740b34a4dd62dcab34cf678771022cba1383458215e7c9e2bda672a852f
@@ -21,82 +21,82 @@ KEY:
 SECRET:
 6a84d1a0e92bbce2ee47bcfc138710b731e14572f5cd12b7d52d2fc003ea229487cd4fd7d495991ce90a98cfda779ee533562894b4f78e38e7ce9481165dc033b4c17e2572f8df5330d2c5794767f084fd3f278446695789911da8fc7627cd86409e0922d0413b033bde651bfd9bb76c87eb63e5e0820260ba6f2fc1aafac54c45c2ee28cce7bf01dd207dd501347627a8ebe67a9cae1d24716519757c440ae94b66172cee6777497f4f14b08a78e1c182be7149b65246e9c28756aaf65375dc148e0c7820eee3adcca14a8d20b8a641cab8c48d92ab0c811913f47da978c98f5a844db7b40e7c66fa692b249481b580cbf184b2e70460f007d064dfb4afade8
 
-**N.B.** È importante che nel copia/incolla delle due chiavi non vengano aggiunti spazi o a capo, altrimenti non sarà possibile accedere al CMS.
+**N.B.** It is important that in the copy / paste of the two keys no spaces or wrap are added, otherwise it will not be possible to access the CMS.
 
-# Utenti
+# Users
 
-## Tipologie di utenti
+## Types of users
 
-Possono accedere al CMS solo gli utenti *admin.*
+Only users *admin can access the CMS*
 
-Sul CMS esistono di default due tipologie di utenti: users (tutti gli utenti dell’app o sito) e admin (utenti dell’app abilitati ad accedere al CMS).
+There are two types of users on the CMS: users (all users of the app or site) and admin (users of the app enabled to access the CMS).
 
-In fase di definizione del progetto è possibile decidere di creare più gruppi di utenti. Avere una segmentazione degli utenti in più gruppi può essere utile per determinate attività di marketing e per l’invio di notifiche push a specifici gruppi.
+When defining the project it is possible to decide to create more user groups. Having a segmentation of users in multiple groups can be useful for certain marketing activities and for sending push notifications to specific groups.
 
-L’argomento Notifiche Push verrà approfondito nel paragrafo dedicato.
+The topic Push notifications will be detailed in the dedicated paragraph.
 
-## Aggiungere e modificare utenti
+## Adding and editing users
 
-Per aggiungere un utente bisognerà entrare nella collezione Utenti e quindi cliccare su Add New.
+To add a user you will need to enter the Users collection and then click on Add New.
 
-Comparirà la finestra che segue, nella quale vanno compilati  i campi che descrivono il nostro utente. In particolare in questa finestra si decide che tipologia di accessi dare: se solo user (utente del servizio) oppure anche admin (utente con accesso al cms).
+The following window will appear, in which the fields describing our user must be completed. In particular, in this window you decide which type of access to give: if only user (service user) or even admin (user with access to the cms).
 
 ![image alt text](img/image_1.png)
 
-Nel momento in cui si crea un utente gli si assegna anche una password, che l’utente potrà  modificare al primo accesso e che non si potrà più modificare da CMS.
+When a user is created, he is also assigned a password, which the user can modify at the first access and which can not be changed from CMS.
 
-Da CMS si potrà inviare una push notification per resettarla cliccando su Reset Password.
+From CMS you can send a push notification to reset it by clicking on Reset Password.
 
-In qualsiasi momento si potranno modificare gli utenti abilitando o disabilitando la funzione di admin dalla finestra di modifica.
+At any time users can be modified by enabling or disabling the admin function from the editing window.
 
 ![image alt text](img/image_2.png)
 
-# Gestione dei contenuti
+# Content management
 
-Nel menu laterale del CMS è disponibile l’elenco delle *collezioni* organizzate in *categorie*.
+In the CMS side menu there is a list of *collections* organized into *categories*.
 
-Una collezione è un insieme di dati accomunati da alcune proprietà. Una categoria non è altro che un insieme che contiene le collezioni ed è utile solo all’ordinamento visuale del CMS.
+A collection is a set of data shared by some properties. A category is nothing more than a set that contains collections and is only useful for the visual ordering of the CMS.
 
-Per rendere più immediato l’uso del CMS si consideri l’esempio seguente: un CMS per la gestione dei contenuti dell’app di una biblioteca con il servizio di prestito libri attivo.
+To make the use of the CMS more immediate, consider the following example: a CMS for managing the contents of a library app with the active books loan service.
 
-Lo schema seguente esemplifica lo scheletro del CMS, composto da categorie, collezioni e proprietà applicandolo ad una ipotetica biblioteca.
+The following diagram exemplifies the CMS skeleton, composed of categories, collections and properties, applying it to a hypothetical library.
 
 ![image alt text](img/image_3.png)
 
-Eseguito il login nel CMS, il menù laterale mostra l’elenco delle collezioni gestibili.
+When logged in to the CMS, the side menu shows the list of manageable collections.
 
-La categoria Biblioteca raccoglie le collezioni Schede Libri, Prestito Libri e Lista Editori; la categoria Users contiene le collezioni Utenti e Recensioni; Tools include la collezione Media.
+The Library category collects the collections of the Schede Libri, Loans Books and the List of Publishers; the Users category contains the Users and Reviews collections; Tools includes the Media collection.
 
-Ogni collezione presenta un insieme di dati accomunati da alcune proprietà:
+Each collection presents a set of data that share some properties:
 
-ad esempio nella collezione Schede Libri sono raccolti i libri accomunati dalle proprietà: titolo, genere, autore, trama, immagine di copertina, data di pubblicazione, editore.
+for example, in the Schede Libri collection the books shared by the properties are collected: title, genre, author, plot, cover image, publication date, publisher.
 
-### News, Categorie e Tags: le collezioni di default del CMS
+### News, Categories and Tags: the CMS default collections
 
-Di default sul CMS esistono alcune collezioni: News, Categories, Tags.
-Queste collezioni sono già configurate e quindi pronte per essere utilizzate.
+There are some collections on the CMS: News, Categories, Tags.
+These collections are already configured and therefore ready to be used.
 
-Queste tre collezioni funzionano come un comune blog, e quindi in News si avrà il testo della news (o del post), il titolo, la data di pubblicazione sul sito o nell’app e poi la categoria e i tag.
+These three collections work as a common blog, and then in News you will have the text of the news (or post), the title, the date of publication on the site or in the app and then the category and tags.
 
-Sempre seguendo l’esempio della biblioteca, in **News** si potrebbe annunciare l’evento di presentazione del nuovo libro di Baricco.
+Still following the example of the library, in **News** we could announce the presentation event of the new book by Baricco.
 
-In **Categories** si avranno tutte le categorie alle quali associare una News (vedi paragrafo lookup per la configurazione/creazione dei campi categoria), e quindi in questo caso si può associare alla categoria Presentazioni.
+In **Categories** you will have all the categories to which to associate a News (see paragraph lookup for the configuration / creation of the category fields), and then in this case you can associate to the category Presentations.
 
-In **Tags** si avranno tutti i tag, gli argomenti, associati alla news/post e che saranno utili per indicizzarlo e per ritrovarlo.
+In **Tags** you will have all the tags, the topics, associated to the news / post and that will be useful to index it and to find it again.
 
-Nell’esempio della presentazione del libro di Baricco si avrà quindi:
-
-
-*News: Baricco presenta il suo nuovo libro a Milano il 6 dicembre*
-
-*Categories: Presentazioni*
-
-*Tags: Baricco, Romanzi, Milano, ecc.*
+In the example of the presentation of the book by Baricco you will therefore have:
 
 
-Le proprietà di una collezione possono essere visualizzate nella prima tabella e nella scheda di dettaglio del singolo oggetto che compare a destra quando si seleziona su un elemento (come da immagine che segue).
+* News: Baricco presents its new book in Milan on December 6th *
 
-Nell’esempio dell’app biblioteca, nel menu laterale compaiono alcuni campi aggiuntivi che si è scelto di nascondere dalla vista principale dei contenuti della collezione perché proprietà secondarie o non era utile o funzionale vedere nella prima tabella, come la trama o l’immagine di copertina.
+* Categories: Presentations *
+
+* Tags: Baricco, Novels, Milan, etc. *
+
+
+The properties of a collection can be viewed in the first table and in the detail tab of the single object that appears on the right when selected on an element (as in the image below).
+
+In the example of the library app, in the side menu some additional fields appear that you chose to hide from the main view of the contents of the collection because secondary properties or was not useful or functional to see in the first table, as the plot or image of cover.
 
 ![image alt text](img/image_4.png)
 
@@ -114,235 +114,235 @@ Nell’esempio dell’app biblioteca, nel menu laterale compaiono alcuni campi a
 </table>
 
 
-### Nuovo contenuto (draft / publish)
+### New content (draft / publish)
 
-Se ad esempio si volesse aggiungere la scheda di un nuovo libro si procederà in questo modo:
+For example, if you want to add the card of a new book you will proceed in this way:
 
-* Collezione Schede Libri
+* Collection of Books Cards
 
-* Clic su "add new" in alto a sinistra
+* Click on "add new" on the top left
 
 ![image alt text](img/image_5.png)
 
-Si aprirà una finestra nella quale bisognerà compilare tutti i campi utili per la pubblicazione della scheda libro nell’app (le proprietà).
+A window will open in which you will need to fill in all the fields useful for publishing the book form in the app (properties).
 
-Si ricorda che:
+Remember that:
 
-* I campi con l’asterisco sono obbligatori.
+* Fields with an asterisk are required.
 
-* Passando il mouse sulla "i" si legge il tooltip, e cioè la descrizione di quel campo.
+* Passing the mouse on the "i" one reads the tooltip, that is the description of that field.
 
 ![image alt text](img/image_6.png)
 
-Una volta creata e salvata la scheda libro, questa sarà in draft oppure direttamente pubblicata.
+Once the book form has been created and saved, it will be in draft or directly published.
 
-Lo si riconosce dal simbolo![image alt text](img/image_7.png)(draft) oppure ![image alt text](img/image_8.png) (publish) .
+It is recognized by the symbol![image alt text](img/image_7.png)(draft) or ![image alt text](img/image_8.png) (publish) .
 
-In base al tipo di elemento che si deve pubblicare, sarà utile averlo prima in draft oppure direttamente pubblicato.
+Depending on the type of item to be published, it will be useful to have it first in draft or directly published.
 
-*Esempio*: una nuova scheda libro che una volta pubblicata va direttamente nell’app sarà meglio averla prima in draft, in modo da poterne creare diverse e pubblicarle in un secondo momento. Un nuovo editore nella lista editori (vedi par. Lookup ecc) potrà essere direttamente pubblicato perché solo così comparirà nell’elenco di un’altra collezione.
+*Example*: a new book card that once published goes directly into the app will be better to have it first in draft, so you can create several and publish them later. A new editor in the publishers list (see Section Lookup etc.) can be directly published because only this way will appear in the list of another collection.
 
-Quando viene selezionato il simbolo *publish* oppure *draft* della riga interessata, compariranno 4 bottoni: **edit**, **trash**, **draft**, **publish**.
+When the *publish* or *draft* symbol of the relevant line is selected, 4 buttons will appear: **edit**, **trash**, **draft**, **publish**.
 
 ![image alt text](img/image_9.png)
 
-### Modifica del singolo contenuto (edit)
+### Changing the individual content (edit)
 
-Cliccando su **edit **si aprirà la finestra con tutti i campi modificabili.
+Clicking on **edit** will open the window with all the editable fields.
 
-La x in alto a destra chiude la finestra senza apportare modifiche.
+The x in the upper right corner closes the window without making any changes.
 
-Il tasto Back funziona come la x.
+The Back button works like x.
 
-Il tasto Trash elimina la riga.
+The Trash key deletes the line.
 
-Il tasto Save salva le modifiche fatte.
+The Save button saves the changes made.
 
-### Cancellare il singolo contenuto (trash)
+### Delete the single content (trash)
 
-Per eliminare una riga si clicca su **trash**. In questo modo la riga non sarà eliminata definitivamente: potrà essere recuperata cliccando su trash in alto sotto la barra di ricerca.
+To delete a line click on **trash**. In this way the line will not be permanently deleted: it can be retrieved by clicking on trash at the top below the search bar.
 
-Qualsiasi contenuto cancellato dalla cartella trash, allora non sarà più recuperabile.
+Any content deleted from the trash folder, then it will no longer be recoverable.
 
-### Selezione massiva dei contenuti
+### Massive selection of contents
 
 ![image alt text](img/image_10.png)
 
-**Edit all** apporta la modifica a tutti gli elementi selezionati.
+**Edit all** makes the change to all the selected elements.
 
-Per cambiare il genere a più schede basterà selezionare tutte le schede che servono e cliccare su Edit All.
+To change the genre to multiple tabs, simply select all the tabs you need and click on Edit All.
 
-Si aprirà la finestra che segue, dove si possono selezionare i campi da modificare e che verranno applicati a tutti gli elementi.
+The following window will open, where you can select the fields to be modified and which will be applied to all elements.
 
 ![image alt text](img/image_11.png)
 
 ## Le Lookup
 
-Le lookup servono per compilare i campi di una proprietà incrociando le informazioni da proprietà di altre collezioni.
+Lookups are used to fill in the fields of a property by crossing information from the properties of other collections.
 
-Di seguito i vari casi di utilizzo:
+Here are the various use cases:
 
-*Menù a tendina **preimpostato *
+* Pre-set menu **
 
-Le lookup possono essere utilizzate per creare dei menù a tendina che possono essere molto utili per evitare errori nella compilazione dei campi. La scelta delle voci del menù avviene in fase di definizione del progetto.
+The lookups can be used to create drop-down menus that can be very useful to avoid errors in the compilation of the fields. The selection of the menu items takes place during the definition phase of the project.
 
-*Menù a tendina modificabile*
+* Editable drop-down menu *
 
-Si potrebbe avere bisogno di aggiungere nel tempo elementi a un menu a tendina.
+You may need to add items to a drop down menu over time.
 
-È il caso della lista degli Editori nell’esempio: creando un nuovo elemento nella collezione Lista Editori, questo comparirà nel menù a tendina della proprietà Editore della collezione Schede Libri.
+This is the case of the Editors list in the example: by creating a new element in the List of Editors collection, this will appear in the drop down menu of the Publisher property of the Schede Libri collection.
 
-Questo evita che ci siano errori di compilazione e quindi duplicati di editori.
+This avoids that there are compilation errors and therefore duplicates of editors.
 
 ![image alt text](img/image_12.png)
 
-*Esempio*: se come editore si scrive Baldini & Castoldi per un libro e poi Baldini&Castoldi per un altro, i libri associati verranno considerati di due editori differenti.
+*Example*: if as editor you write Baldini & Castoldi for a book and then Baldini & Castoldi for another, the associated books will be considered by two different publishers.
 
-*Informazione precompilata*
+*Precompiled information*
 
-Nel campo proprietà di una collezione si potrà voler vedere solo determinate informazioni. Non più un menù a tendina quindi, ma un campo che viene popolato automaticamente prendendo le informazioni dalla proprietà di un’altra collezione.
+In the property field of a collection you may want to see only certain information. No longer a drop-down menu then, but a field that is automatically populated by taking information from the property of another collection.
 
-Riprendendo l’esempio della Biblioteca: gli utenti si iscriveranno alla piattaforma con e-mail e username, ma abitualmente nell’app saranno riconoscibili attraverso solo username e con questo potranno scrivere le recensioni dei libri.
+Taking again the example of the Library: users will subscribe to the platform with e-mail and username, but usually in the app they will be recognizable through username only and with this they will be able to write the reviews of the books.
 
-Il personale che gestirà i contenuti sul CMS potrà vedere automaticamente anche l’indirizzo e-mail, non solo lo username. In questo caso quindi, il campo e-mail della collezione Recensioni sarà popolato grazie a una lookup che incrocia gli indirizzi e-mail associati allo username dalla collezione Utenti.
+The staff who will manage the contents on the CMS will also be able to automatically see the e-mail address, not just the username. In this case, therefore, the e-mail field of the Reviews collection will be populated thanks to a lookup that crosses the e-mail addresses associated with the username from the Users collection.
 
 ![image alt text](img/image_13.png)
 
-## Importare / Esportare contenuti
+## Import / Export content
 
-Nel CMS si possono **importare/esportare** dati da file CSV oppure JSON cliccando sul triangolo accanto al nome della collezione in alto nel Cms. Comparirà un pop up dal quale scegliere se importare o esportare dati.
+In the CMS you can **import / export** data from CSV or JSON files by clicking on the triangle next to the collection name at the top of the CMS. A pop-up will appear from which to choose whether to import or export data.
 
 ![image alt text](img/image_14.png)
 
-Quando esporti dei dati puoi anche scegliere due impostazioni:
+When you export data, you can also choose two settings:
 
-1. se visualizzare nel file l'**id** o la **label**. Per fare un esempio se il mio id è **createdAt** e la mia label è **Data Creazione** forse ad un utente terzo la label è più chiara.
+1. whether to display in the file the **id** or the **label**. To give an example if my id is **createdAt** and my label is **Creation Date** maybe to a third party the label is clearer.
 
-2. puoi scegliere se scaricare un file con delimitatore la **,** o il **;** . Il **;** ti è utile se esporti un file in formato .csv e lo vuoi visualizzare con excel
+2. you can choose to download a file with delimiter **,** or **;**. **;** is useful if you export a file in .csv format and you want to view it with excel
 
-**Per importare un file.csv è necessario seguire alcune indicazioni.**
+**To import a .csv file you need to follow some guidelines.**
 
-Scaricare il *“Template”* da compilare. Aprire il Template in Excel. Se il file non è automaticamente in colonne separate andare in “Dati”, Cliccare “ Testo in colonne”, Selezionare “Delimitato”, Selezionare come delimitazione “virgola”, e cliccare su Avanti.
-A questo punto il file sarà pronto per essere compilato
-I campi da **ID** a **TRASH** NON vanno compilati poiché sono campi che vengono generati automaticamente dal sistema.
-Le altre celle vanno riempite in base a come è stato impostato il *Data Modeller*(andare sul proprio Data modeller - Selezionare la collezione- andare su strumenti- proprietà - show default properties).
+Download the *"Template"* to be completed. Open the Template in Excel. If the file is not automatically in separate columns go to "Data", click "Text in columns", select "Delimited", select as "comma" delimitation, and click on Next.
+At this point the file will be ready to be compiled
+The fields from **ID** to **TRASH** are NOT to be completed because they are fields that are automatically generated by the system.
+The other cells must be filled according to how the *Data Modeller* has been set (go to your Data Modeller - select the collection - go to tools - properties - show default properties).
 
-Ad ogni proprietà è stato infatti assegnata una specifica tipologia di dato.
-Le tipologie principali possono essere:
+Each property has been assigned a specific type of data.
+The main types can be:
 
-* Stringa
-* Numero
-* Oggetto
+* String
+* Number
+* Object
 * Array
 
-Per ogni proprietà bisogna compilare il file con una specifica formattazione. Le "  " sono fondamentali e devono essere senza grazie (ovvero non “ ”)
+For each property you need to fill in the file with a specific formatting. The "" are fundamental and must be without thanks (ie not "")
 
-* stringa = testo normale
-* numero = 113213
-* array = [""valore"",2],
-* oggetto = {""chiave"":""valore""}
+* string = normal text
+* number = 113213
+* array = ["" value "", 2],
+* object = {"" key "": "" value ""}
 
-A questo punto si può importare il file.
+At this point you can import the file.
 
-## Visualizzare i contenuti
+## Display the contents
 
-Dove sono presenti molti contenuti, ad esempio le tante schede libro di una biblioteca, si possono utilizzare i **filtri tab** in alto sotto alla barra di ricerca.
+Where there is a lot of content, such as the many library book tabs, you can use the **tab filters** at the top of the search bar.
 
-Si può così visualizzare tutto (All), solo gli elementi pubblicati (Publish), solo gli elementi in bozze (Draft) e infine gli elementi nel cestino (Trash).
+You can view all (All), only published elements (Publish), only elements in drafts (Draft) and finally items in the trash (Trash).
 
 ![image alt text](img/image_15.png)
 
 **	**
 
-### Usare i filtri per la ricerca
+### Use search filters
 
-Cliccando sul simbolo del filtro in alto a destra si può fare una ricerca avanzata, molto utile quando si hanno tanti dati da consultare.
+By clicking on the filter symbol at the top right you can do an advanced search, very useful when you have a lot of data to consult.
 
-Da qui si può fare una ricerca per delle specifiche proprietà.
+From here you can search for specific properties.
 
-Se ad esempio si vogliono cercare tutti i libri editi da Baldini & Castoldi si procederà in questo modo:
+For example, if you want to look for all the books published by Baldini & Castoldi, proceed as follows:
 
-* Primo campo: clic su Editore, che è la proprietà interessata
+* First field: click on Publisher, which is the property concerned
 
-* Secondo campo: selezione di un comparatore, che in questo caso sarà *equals*
+* Second field: selection of a comparator, which in this case will be *equals*
 
-* Terzo campo: digito Baldini & Castoldi che è l’editore che voglio cercare.
+* Third field: I type Baldini & Castoldi which is the publisher I want to search.
 
-I risultati della ricerca compariranno in tabella, sopra saranno presenti dinamicamente i diversi filtri attivi sulla ricerca corrente.
+The results of the research will appear in the table, above will be dynamically present the different active filters on the current research.
 
 ![image alt text](img/image_16.png)
 
-Si possono inoltre aggiungere dei filtri di ricerca ulteriori che andranno ad aggiungersi a quella appena fatta.
+You can also add additional search filters that will be added to the one just made.
 
-*Esempio*: la ricerca di tutti i libri di Baldini & Castoldi pubblicati dal 1995.
+* Example *: the search for all books by Baldini & Castoldi published since 1995.
 
 ![image alt text](img/image_17.png)
 
-# Gestione dei media
+# Media management
 
-Nella collezione Media vengono gestiti tutti gli *upload* sul CMS: immagini, video, pdf e altri allegati che possono essere richiamati nelle altre collezioni, o che sono stati caricati in altre collezioni e sono raccolti qua.
+In the Media collection all *uploads* are managed on the CMS: images, video, pdf and other attachments that can be recalled in the other collections, or that have been uploaded to other collections and are collected here.
 
-Si troveranno, ad esempio, tutte le copertine dei libri della collezione schede libri.
+For example, you will find all the covers of books from the collection of books.
 
-Come per gli altri contenuti, anche nei media si può selezionare un elemento e decidere se pubblicarlo, tenerlo in draft o eliminarlo. Si può inoltre ingrandire l’anteprima con il simbolo ![image alt text](img/image_18.png) oppure riscaricare il file con il simbolo ![image alt text](img/image_19.png)
+As with other content, even in the media you can select an item and decide whether to publish it, keep it in draft or delete it. You can also enlarge the preview with the symbol [image alt text](img /image_18.png) or re-download the file with the symbol! [Image alt text](img / image_19.png)
 
-# Notifiche Push
+# Push notifications
 
-Il CMS è abilitato a inviare notifiche push ai dispositivi degli utenti in due modalità.
+The CMS is enabled to send push notifications to users' devices in two ways.
 
-+ Dalla collezione Push Notification. Cliccando su Push Notification si aprirà una finestra da compilare con il titolo, il messaggio della push e il gruppo di utenti cui inviarla
++ From the Push Notification collection. Clicking on Push Notification will open a window to fill in with the title, the push message and the group of users to send it to.
 
 ![image alt text](img/image_20.png)
 
-+ Dal tasto *send push* all’interno di una collezione. Serve per inviare una notifica su uno specifico elemento. Anche in questo caso si dovrà scegliere il gruppo di utenti cui inviare la notifica.
-Esempio: invio della news legata alla presentazione del nuovo libro di Baricco (vedi paragrafo News, Categories e Tags)
++ From the *send push* key within a collection. It is used to send a notification about a specific item. Also in this case you will have to choose the group of users to send the notification.
+Example: sending of the news related to the presentation of the new book by Baricco (see paragraph News, Categories and Tags)
 
-Se in fase di definizione del progetto è stato deciso di creare più gruppi di utenti, allora le push saranno abilitate anche per altre funzioni.
+If, during the definition of the project, it was decided to create more user groups, then the push will also be enabled for other functions.
 
-Si potrà decidere ad esempio di creare dei gruppi dinamici ai quali inviare una notifica a due giorni dalla consegna del libro.
+For example, you can decide to create dynamic groups to send a notification two days after delivery of the book.
 
-# Gli elementi che compongono il CMS
+# The elements that make up the CMS
 
-### I campi di input
+### The input fields
 
-### Inserimento testo
+### Text entry
 
 ![image alt text](img/image_21.png)
 
-### Campi di selezione
+### Selection fields
 
 ![image alt text](img/image_22.png)
 
-### Campi required
+### Required fields
 
-Sono i campi obbligatori che se non popolati impediscono di salvare l’elemento. Sono contrassegnati dall’asterisco.
+These are the mandatory fields which, if not populated, prevent the element from being saved. They are marked with an asterisk.
 
 ![image alt text](img/image_23.png)
 
-### I tooltip
+### The tooltips
 
-La "i" accanto al nome di un campo indica la presenza di un suggerimento (tooltip): passandoci sopra col mouse compare la descrizione di quel campo oppure le istruzioni su come popolarlo.
+The "i" next to the name of a field indicates the presence of a tip (tooltip): passing over it with the mouse appears the description of that field or the instructions on how to populate it.
 
 ![image alt text](img/image_24.jpg)
 
-### I campi data
+### The date fields
 
 ![image alt text](img/image_25.png)
 
-### Bottone di caricamento allegati
+### Attachment upload button
 
 ![image alt text](img/image_26.png)
 
-### La paginazione
+### Pagination
 
-Nella parte bassa delle schermate sono presenti i controlli di paginazione utili per consultare il catalogo dei contenuti presenti nella collezione corrente.
+In the lower part of the screens there are the pagination controls useful to consult the catalog of contents in the current collection.
 
 ![image alt text](img/image_27.png)
 
 ![image alt text](img/image_28.png)
 
-### Il bottone di logout
+### The logout button
 
-Cliccando sulla freccia accanto allo username, comparirà il pop up di logout per eseguire il logout dal CMS.
+By clicking on the arrow next to the username, the logout pop-up will appear to log out from the CMS.
 
 ![image alt text](img/image_29.png)

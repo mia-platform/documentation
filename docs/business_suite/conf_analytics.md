@@ -7,12 +7,12 @@ The analytics on the Mia-Platform CMS are configured through two types of JSON f
 
 The path to access the git analytics configuration files is:
 
-`> projectname-config / configurations / backoffice / _analytics-config`
+`>projectname-config/configurations/backoffice/_analytics-config`
 
 Within the `_analytics-config` file are the two widget and dashboard files.
 
 To configure the analytics.json file within a specific collection, the git path is:
-`> custom plugin / collection name / analytics.json`
+`>custom plugin/collection name/analytics.json`
 
 By creating the *analytics* file, the Analyzers key is then enabled on the CMS and the graph is displayed as configured in the same file.
 
@@ -21,15 +21,16 @@ By creating the *analytics* file, the Analyzers key is then enabled on the CMS a
 
 The widget file is the configuration file of the graphs. In my platform you have the possibility to configure two types of graph:
 
-+ `` `custom-stock```: is a graph with a time series in abscissa
++ ```custom-stock```: is a graph with a time series in abscissa
 ![](img/stock.png)
-+ `` `chart```: is a graph not tied to time
++ ```chart```: is a graph not tied to time
 ![](img/chart.png)
 + `` `chart-summary```: is a graph in which are shown statistics regarding one or more data collections not related to time
 ![](img/chart-summary.png)
+```
 
 ### Example of configuration structure ###
-```
+
 {
   "installations": {
     "type": "custom_stock",
@@ -62,18 +63,18 @@ This JSON contains an object whose elements are the different graphs.
 The key of each element is the name of the graph (*installations* in the example above) and the value is another object with all the configuration parameters of the graph.
 The name of the graph will then be used to create the JSON analytics and dashboard to recall the graph that you want to display on the page.
 
-- ***type:*** (string) the type of chart, which can be `` `custom-stock```,` `` chart``` or `` `chart-summary```
+- ***type:*** (string) the type of chart, which can be ```custom-stock```,``` chart``` or ```chart-summary```
 - ***title:*** (string) title of the graph to show
-- ***sortBy:*** (enum string) determines the series's series; the keys to use are: `` `label-asc```,` `` label-desc```, `` `value-asc```,` `` value-desc```.
+- ***sortBy:*** (enum string) determines the series's series; the keys to use are: ```label-asc```,``` label-desc```, ```value-asc```,``` value-desc```.
 - ***legend:*** (boolean / array). If you want to see or not see all the legend use a (boolean): false to disable it, in this way you will not see anything. If instead you write true the legend will contain all the statistics: max (maximum value), min (minimum value), sum (sum), avg (average).
 **If you want to display only selected data, you will need to turn the boolean into an array.
 Ex: in your chart you want to show only the sum and the average.
-At the code level you will write: `` `" legend ": [" sum "," avg "]` ``.
+At the code level you will write: ```"legend": ["sum","avg"]```.
 Remember, however, that the array does not decide the order, but is preset.
 
 ![legend of a chart on CMS](img/legend.png)
 
-- ***yAxis***: allows you to create `custom_stock` graphs with multiple series, which share the same scale on the` y` axis. If omitted, the chart displays two `y` axes, with different scales, for each series. The keys of this object allow you to configure different aspects of the `y` axis
+- ***yAxis***: allows you to create `custom_stock` graphs with multiple series, which share the same scale on the`y` axis. If omitted, the chart displays two `y` axes, with different scales, for each series. The keys of this object allow you to configure different aspects of the `y` axis
 - *shared*: (boolean) if `true`, the series will share the same scale on the` y` axis. If `false` the chart behaves as if the entire` yAxis` object was not specified.
 - *title*: (string) sets the title of the `y` axis.
 - *labelType*: (string) optional, with the same syntax and semantics of `labelType` referring to the series (see below).
@@ -88,8 +89,8 @@ Each object of the * series * array consists of the following elements:
 
 - ***params:*** (object) This object contains the elements to configure the values of the path / series:
 - *collection:* (string) from which collection to take the data that will be shown in the track / series
-- *groupdate:* (string) name of the property on which to group data (data format only), ex. `` `CreatedAt```
-- *group:* (string) name of the property on which to group data (formats other than data), ex. `` `AppSource```
+- *groupdate:* (string) name of the property on which to group data (data format only), ex. ```CreatedAt```
+- *group:* (string) name of the property on which to group data (formats other than data), ex. ```AppSource```
 - *operations:* (array) indicates the operation to be performed on the data, e.g. [[ "Count"]]
 
 > The Operation parameter only works with **groupDate** and **group**.
@@ -106,16 +107,16 @@ Each object of the * series * array consists of the following elements:
 > **N.B. You can set only one operation per path / series.** You can also set up complex operations, for example: ["avg", {"$ multiply":
 ["$ totalPrice", "$ quantity"]}]
 
-- ***format:*** (string) element to be populated only if groupDate is used to indicate the default grouping time period of the plot / series. Possible formats: `` `y```: years,` `` ym```: months, `` `yw```: weeks,` `` ymd```: days, `` `ymdh``` : hours, `` `ymdhM```: minutes
+- ***format:*** (string) element to be populated only if groupDate is used to indicate the default grouping time period of the plot / series. Possible formats: ```y```: years,``` ym```: months, ```yw```: weeks,``` ymd```: days, ```ymdh``` : hours, ```ymdhM```: minutes
 - ***filter:*** (mongoquery) is used to create the path / series not on all the data in the collection but on a subset. It is possible to filter on a property of type date if and only if it is not already used as property for the groupDate.
-The documentation to be consulted for the mongoqueries is available at this [link] (https://docs.mongodb.com/manual/tutorial/query-documents/).
+The documentation to be consulted for the mongoqueries is available at this [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
 An example of mongoquery on a property is as follows:
 
 `"fiter": {"nome proprietà": {"$gte": valore}}`
 
-To know all the comparators you can follow this [link] (https://docs.mongodb.com/manual/reference/operator/query-comparison/). In the right menu select the type of comparator and discover the potential of the mongoquery
+To know all the comparators you can follow this [link](https://docs.mongodb.com/manual/reference/operator/query-comparison/). In the right menu select the type of comparator and discover the potential of the mongoquery
 
-- ***customRangeDates:*** (boolean) enable or disable the date fields `` `startDate``` and` `` endDate```, *** only *** for graphs of type `` `chart `` `.
+- ***customRangeDates:*** (boolean) enable or disable the date fields ```startDate``` and ```endDate```, ***only*** for graphs of type ```chart```.
 - ***start date - end date:*** (number) usable only if customRangeDate is set to true. Enter the timestamp in milliseconds of the dates of the period of interest.
 > If both rangeDate and customDate are active on a custom stock chart, it can be confusing. It can be more functional to disable rangeDate because the zoom can be set both with the cursor and with the display buttons
 

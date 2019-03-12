@@ -32,7 +32,7 @@ Each microservice must expose the swagger documentation route
 Each microservice exposes some useful routes to the ecosystem. Through these routes it is in fact possible to have information on the health of the systems, and to carry out debugging checks.
 
 ### Liveness route ###
-`/ - / healts /`
+`/ - / healthz /`
 It returns 200 if the service is able to handle traffic properly.
 For example, the service correctly communicates with the database.
 
