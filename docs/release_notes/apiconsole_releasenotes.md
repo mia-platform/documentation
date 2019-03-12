@@ -127,8 +127,7 @@ The possibility of setting up an acl for groups accessing the pages of the CMS h
 In this version of the CMS you can select the **icons from font-awesome up to version v.5.3.1**, which is the latest version supported (here is the [link] (https://fontawesome.com / icons? d = gallery) for the icons).
 
 !!! warning
-
-If you choose icons that were already used in the previous version, you will continue to display the old icons in the CMS. This is because priority is given to backward compatibility.
+    If you choose icons that were already used in the previous version, you will continue to display the old icons in the CMS. This is because priority is given to backward compatibility.
 
 ## v.4.7.0 (Sept 30, 2018)
 
