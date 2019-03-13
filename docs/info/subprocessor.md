@@ -7,7 +7,7 @@ Follows the list of sub-processors
 
 | THIRD PARTY SERVICE/VENDOR | PURPOSE           | ENTITY COUNTRY | WEBSITE                   |
 |----------------------------|-------------------|----------------|---------------------------|
-| Mongo Atlas                  | DataBase provider | Ireland        | https://www.mongodb.com/  |
+| Mongo Atlas                | DataBase provider | Ireland        | https://www.mongodb.com/  |
 | Google Cloud               | Data hosting      | Ireland        | https://cloud.google.com/ |
 | AWS Service                | Data hosting      | USA            | https://aws.amazon.com/   |
 | Elastic Search             | Log & Monitoring  | USA            | https://www.elastic.co/   |

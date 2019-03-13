@@ -14,6 +14,8 @@ More precisely, Mia-Platform verifies that:
 
 * the number of Instances of CMS API and API Console is equal to or less than the number of Instances purchased.
 
+* which components are installed on the Platform
+
 Mia-Platform activates the Audit procedure with a written notice to the Client of forty-five (45) days.
 
 ##Requirements
