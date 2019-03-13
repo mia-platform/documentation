@@ -48,7 +48,11 @@ In case of upsert, if the document is not found a new one is inserted on the dat
 Now invoking /upsert-one on a document not present in the database, a document is inserted with the updaterId and the updatedAt not null
 
 **Custom Plugin Node v.0.7.0**
+* I metodi `getServiceProxy` e `getDirectServiceProxy` sono disponibili anche sull'istanza di `Service` e non solo su quella di `Request`. CiÃ² implica che sarÃ  possibile utilizzare questi metodi non solo negli handler delle rotte, ma anche nella funzione asincrona in cui generalmente si registrano i plugin in fastify.
 
+* I metodi `get`, `post`, `put`, `patch`, `delete` utilizzati per interrogare gli altri endpoint della piattaforma, accettano un nuovo campo nell'oggetto `options`. Il nome del campo Ã¨ `allowedStatusCodes`; il suo valore Ã¨ un array di interi che indica gli status code ammessi per la risposta dell'endpoint interrogato. Se lo status code della risposta non Ã¨ incluso nei valori dell'array, la promise verrÃ  rigettata dal custom-plugin. Se il campo viene omesso saranno ammessi tutti gli status code.
+
+* Allo startup, il custom-plugin verifica che il formato dei cinque header di Mia rispettino il formato previsto da RFC.
 
 ##v.4.15.0 (Jan 16, 2019)
 Novità:
