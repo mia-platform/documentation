@@ -1,4 +1,4 @@
-#Piattaforma Release Note
+#Platform Release Note
 ##v.4.16.0 (March 11, 2019)
 **API Console front-end - v.0.16.0**
 
@@ -98,7 +98,7 @@ In this new configuration the following new features have been added:
 
 With version 0.14 we have released two updates:
 
-* **the conflict between two people working on the same branch has been resolved**. If two people work on the same branch, the second person trying to commit is now blocked. In fact, he receives an error message to commit. The developer can however in the save page change the branch to be released and create a branch from his commit. In this way he can view his configurations on a new branch.
+* **conflict between two people working on the same branch has been resolved**. If two people work on the same branch, the second person trying to commit is now blocked. In fact, he receives an error message to commit. The developer can however in the save page change the branch to be released and create a branch from his commit. In this way he can view his configurations on a new branch.
 
 * Two new interface types ** were created to support objects and arrays in the CMS section:
 * rawobject
@@ -119,7 +119,7 @@ We have released the following features:
 In this version we have released the **update to the session manager** and the new acl expression syntax and we have made fixes on the configuration of the analytics.
 
 ##v. 4.10.0 (Oct 10, 2018)  
-**Configurazione Analitici**
+**Analytics Configurations**
 
 With version 0.12.0 it will be possible **to configure the analytics from API Console**.
 To this [link](https://docs.mia-platform.eu/configurator/api_console_configanalytics/) the documentation on how you can configure them.
