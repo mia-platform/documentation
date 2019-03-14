@@ -48,14 +48,14 @@ In case of upsert, if the document is not found a new one is inserted on the dat
 Now invoking /upsert-one on a document not present in the database, a document is inserted with the updaterId and the updatedAt not null
 
 **Custom Plugin Node v.0.7.0**
-* I metodi `getServiceProxy` e `getDirectServiceProxy` sono disponibili anche sull'istanza di `Service` e non solo su quella di `Request`. Ciò implica che sarÃ  possibile utilizzare questi metodi non solo negli handler delle rotte, ma anche nella funzione asincrona in cui generalmente si registrano i plugin in fastify.
+* The `getServiceProxy` and` getDirectServiceProxy` methods are also available on the `Service` instance and not just on the` Request` instance. This implies that it will be possible to use these methods not only in route handlers, but also in the asynchronous function in which plugins are generally registered in fastify.
 
-* I metodi `get`, `post`, `put`, `patch`, `delete` utilizzati per interrogare gli altri endpoint della piattaforma, accettano un nuovo campo nell'oggetto `options`. Il nome del campo è¨ `allowedStatusCodes`; il suo valore è¨ un array di interi che indica gli status code ammessi per la risposta dell'endpoint interrogato. Se lo status code della risposta non è¨ incluso nei valori dell'array, la promise verrà  rigettata dal custom-plugin. Se il campo viene omesso saranno ammessi tutti gli status code.
+* The `get`,` post`, `put`,` patch`, `delete` methods used to query the other endpoints of the platform, accept a new field in the` options` object. The name of the field is `allowedStatusCodes`; its value is an array of integers indicating the status codes allowed for the queried endpoint response. If the response status code is not included in the array values, the promise will be rejected by the custom plugin. If the field is omitted, all status codes will be accepted.
 
-* Allo startup, il custom-plugin verifica che il formato dei cinque header di Mia rispettino il formato previsto da RFC.
+* At startup, the custom-plugin verifies that the format of Mia's five headers comply with the RFC format.
 
 ##v.4.15.0 (Jan 16, 2019)
-Novità:
+News:
 
 * We have re-established the service area with **the introduction of the possibility to add custom templates**
 
