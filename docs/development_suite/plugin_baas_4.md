@@ -1,21 +1,16 @@
-# Custom Micorservice in Node.js
+# Custom Microservice in Node.js
 
-Oltre ai componenti e servizi standard (e.g., CRUD), la piattaforma accoglie componenti che incapsulano logiche ad-hoc,
-sviluppati ed integrabili in autonomia: i **Custom Microservices**. Un Custom Microservices (**CM**) è a tutti gli effetti un servizio
-che riceve richieste HTTP, il cui ciclo di vita, utilizzo e rilascio è governato dalla piattaforma.
+In addition to standard components (e.g., CRUD), the platform can include components that encapsulate ad-hoc logics that are autonomously developed and integrated: they are called **Custom Microservices**. A Custom Microservice (**CM**) is a service that receives HTTP requests, whose cycle of use and deploy is managed by the platform.  
 
-Un CM incapsula logiche di business ad-hoc, sviluppabili da qualsiasi utilizzatore della piattaforma
-e può potenzialmente essere scritto in qualsiasi linguaggio di programmazione. Tuttiavia, per facilitarne adozione
-e sviluppo, il team di Mia-Platform ha creato `custom-plugin-lib`, una libreria in [node.js](https://github.com/mia-platform/custom-plugin-lib),
-basata sulla libreria [fastify](https://fastify.io). Utilizzando `custom-plugin-lib` è possibile creare un CM implementando:
 
-* [handler di rotte HTTP](#rotte)
-* [cambiare comportamento in base alle informazioni di quale client ha effetuato la richiesta, dell'utente loggato e dei suoi gruppi di appartenenza](#identificazione-utente-e-client)
-* [richieste ad altri servizi o CM della piattaforma](#interrogazioni-ad-endpoint-e-servizi-della-piattaforma)
-* [decoratori di PRE o di POST](#decoratori-di-pre-e-post)
+A CM encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created a `custom-plugin-lib`, a library in [node.js](https://github.com/mia-platform/custom-plugin-lib),based on the [fastify](https://fastify.io) library. Using `custom-plugin-lib` it is possible to create a CM by implementing the following steps:
 
-Nel resto di questa guida viene descritto come sviluppare, testare, rilasciare un CM in Node.js all'interno della piattaforma,
-utilizzando la libreria `custom-plugin-lib`.
+* [HTTP Routes handler](#rotte)
+* [changing the behaviour according to the client that is making the request, whether the user is logged in and its belonging groups](#identificazione-utente-e-client)
+* [requests to other services or CM of the platform](#interrogazioni-ad-endpoint-e-servizi-della-piattaforma)
+* [PRE and POST decorators](#decoratori-di-pre-e-post)
+
+In the remaining part of this guide it will be described how to develop, test and deploy a CM in Node.js withing the platform ecosystem using the `custom-plugin-lib` library.
 
 ## Installazione e Bootstrap
 
