@@ -1,22 +1,23 @@
 #Audit Process
 
 ##Audit Introduction
-Mia-Platform reserves the right to verify the use of the license in production of the Customers.  
+Mia reserves the right to audit the Client's environments in order to inspect that any usage of Mia-Platform product is licensed.  
 Audit is necessary when the license is hosted on Cloud or On Premise by the client.
 
-More precisely, Mia-Platform verifies that:
+In particular, but not limited to, MIA shall inspect:
 
-* the number of Production Nodes purchased by the Customer is equal to or greater than the number of Nodes of Production used;
+* if the amount of Production Nodes purchased is equal or higher than the amount of Production Nodes actually used;
 
-* the number of Pre-production nodes purchased by the customer is equal to or greater than the number of nodes of Pre-production used;
+* if the amount of Pre-production Nodes purchased is equal or higher than the amount of Pre-production Nodes actually used;
 
-* the number of Users - Operator, Manager and Developer - purchased is equal to or greater than the number of Active Users;
+* if the number of Users - Editor, admin and developer - purchased is equal or higher than the number of Active Users;
 
-* the number of Instances of CMS API and API Console is equal to or less than the number of Instances purchased.
+* if the number of API CMS and API Console Requests is equal or higher than the number of Requests purchased.
 
 * which components are installed on the Platform
 
-Mia-Platform activates the Audit procedure with a written notice to the Client of forty-five (45) days.
+Mia-Platform activates the Audit procedure with a written notice to the Client of
+thirty (30) days.
 
 ##Requirements
 
