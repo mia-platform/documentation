@@ -12,10 +12,9 @@ A CM encapsulates ad-hoc business logics that can be developed by any user of th
 
 In the remaining part of this guide it will be described how to develop, test and deploy a CM in Node.js withing the platform ecosystem using the `custom-plugin-lib` library.
 
-## Installazione e Bootstrap
+## Installation and Bootstrap
 
-Per poter iniziare lo sviluppo è necessario aver installato `node.js` sul proprio computer
-ed inizializzare un progetto node tramite i comandi
+To start developing it is necessary to have installed `node.js` on your laptop and to initialize a node project with the following commands:
 
 
 ```bash
