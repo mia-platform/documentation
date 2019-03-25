@@ -173,7 +173,8 @@ Entrambi i proxy, di default, inoltrano al servizio chiamato i quattro `mia-head
 * `BACKOFFICE_HEADER_KEY`
 
 I valori di queste variabili devono specificare la chiave dei quattro `mia-headers`.
-Oltre a questi, è possibile far inoltrare al servizio chiamato altri headers. Per fare ciò è necessario definire una ulteriore variabile d'ambiente, `ADDITIONAL_HEADERS_TO_PROXY`, il cui valore deve essere una stringa contente le chiavi degli headers da inoltrare separati da una virgola.
+
+Inoltre, è possibile inoltrare al servizio chiamato anche altri headers della richiesta originale. Per fare ciò è necessario definire una ulteriore variabile d'ambiente, `ADDITIONAL_HEADERS_TO_PROXY`, il cui valore deve essere una stringa contente le chiavi degli headers da inoltrare separati da una virgola.
 
 Entrambi i proxy espongono le funzioni
 
