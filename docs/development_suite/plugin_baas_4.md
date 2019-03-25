@@ -165,6 +165,15 @@ Piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzio
 La differenza fondamentale tra i due proxy è che il primo attiva tutte le logiche che sono censite in `microservice-gateway`,
 mentre il secondo no. Ad esempio, se una risorsa esposta dal servizio CRUD è protetta da ACL, questa protezione verrà
 bypassata utilizzando il proxy diretto.
+Entrambi i proxy, di default, inoltrano al servizio chiamato i quattro `mia-headers`. Per fare ciò è necessario che siano presenti le seguenti variabili d'ambiente: 
+
+* `USERID_HEADER_KEY`
+* `GROUPS_HEADER_KEY`
+* `CLIENTTYPE_HEADER_KEY`
+* `BACKOFFICE_HEADER_KEY`
+
+I valori di queste variabili devono specificare la chiave dei quattro `mia-headers`.
+Oltre a questi, è possibile far inoltrare al servizio chiamato altri headers. Per fare ciò è necessario definire una ulteriore variabile d'ambiente, `ADDITIONAL_HEADERS_TO_PROXY`, il cui valore deve essere una stringa contente le chiavi degli headers da inoltrare separati da una virgola.
 
 Entrambi i proxy espongono le funzioni
 
