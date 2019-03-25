@@ -68,6 +68,8 @@ To make understanding our bug fix policy easier, here's some definitions.
 
 **Platform release (4.0):**
 
+* Any significant Mia-Platform new functionalities release and for any backwards incompatible.
+
 * Usually a major version is issued per year
 
 * Product Update option grant the right to access a new major version for free

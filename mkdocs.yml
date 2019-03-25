@@ -22,6 +22,7 @@ nav:
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
 - Runtime Suite:
+    - Overview: 'runtime_suite/overview-runtime-suite.md'
     - Components Overview: 'runtime_suite/arc_components.md'
     - Components Configuration:
        - Configure Services Creation Templates: 'runtime_suite/templates_conf.md'
@@ -32,7 +33,8 @@ nav:
        - Android SDK: 'runtime_suite/sdk_android.md'
 
 - Development Suite:
-  - API Console and Microservices:
+  - Overview: 'development_suite/overview-dev-suite.md'
+  - API Console / Microservices:
     - Access the API Console: 'development_suite/accedi_apiconsole.md'
     - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
     - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
@@ -50,6 +52,7 @@ nav:
       - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'
 
 - Business Suite:
+  - Overview: 'business_suite/overview-business-suite.md'
   - CMS:
     - Use CMS: 'business_suite/guide_cms.md'
     - Configure CMS through API Console: 'business_suite/api_console_configcms.md'
@@ -69,6 +72,9 @@ nav:
     - Version Policy: 'info/version-policy.md'
     - Open Source Software in Mia Platform: 'info/oss.md'
     - Audit Process: 'info/audit-process.md'
+    - Subprocessor: 'info/subprocessor.md'
+    - Installation Process: 'info/installation-process.md'
+    - Bug Policy: 'info/bug-policy.md'
 
 
 
