@@ -39,7 +39,7 @@ nav:
     - Expose and manage the safety of an apis: 'development_suite/esponi_api.md'
     - Manage your Microservices from the Api Console: 'development_suite/services.md'
     - Enrich your call with some Decorators: 'development_suite/decorators.md'
-    - CRUD - Advanced Section: 'development_suite/crud_advanced.md'
+    - CRUD Section: 'development_suite/crud_advanced.md'
     - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
     - Release your configurations: 'development_suite/deploy.md'
 
