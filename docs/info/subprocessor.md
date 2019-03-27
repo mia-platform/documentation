@@ -5,7 +5,7 @@ For all customers who are not hosted on the Mia-Platform Cloud there are no sub-
 
 Follows the list of sub-processors
 
-| THIRD PARTY SERVICE/VENDOR | PURPOSE           | ENTITY COUNTRY | WEBSITE                   |
+| THIRD PARTY SERVICE/VENDOR | PURPOSE           | DATA STORAGE COUNTRY | WEBSITE                   |
 |----------------------------|-------------------|----------------|---------------------------|
 | Mongo Atlas                | DataBase provider | Belgium        | https://www.mongodb.com/  |
 | Google Cloud               | Data hosting      | Belgium        | https://cloud.google.com/ |

@@ -141,7 +141,7 @@ Check and see the version of the CMS you want to build
 
 **color-text-special-2**: how the title of the properties are displayed during editing and creation
 
-**color-text-special-3**: some particular variables such as: when I click on all publish or draft, the placeholders on the pages, the color of the page bar that loads
+**color-text-special-3**: some particular variables such as: when I click on all publish or draft, the placeholders on the pages, the color of the selected row in a table, the color of the page bar that loads
 
 **color-text-negative**: the color of the fields in the table
 
