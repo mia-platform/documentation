@@ -43,6 +43,8 @@ nav:
     - Enrich your call with some Decorators: 'development_suite/decorators.md'
     - CRUD Section: 'development_suite/crud_advanced.md'
     - Advanced Section: 'development_suite/advanced_name_core.md'
+    - API Gateway Advanced Section: 'development_suite/api-gateway-advanced-section.md'
+
     - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
     - Release your configurations: 'development_suite/deploy.md'
 

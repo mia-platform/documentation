@@ -33,3 +33,5 @@ If you want to change the name of a service you will need to compile a json file
 **name**: is the name you wanna give to your service
 
 **key**: is the real name of the service
+
+!!!warning
