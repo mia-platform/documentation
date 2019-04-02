@@ -284,7 +284,7 @@ In the Media collection all *uploads* are managed on the CMS: images, video, pdf
 
 For example, you will find all the covers of books from the collection of books.
 
-As with other content, even in the media you can select an item and decide whether to publish it, keep it in draft or delete it. You can also enlarge the preview with the symbol [image alt text](img /image_18.png) or re-download the file with the symbol! [Image alt text](img / image_19.png)
+As with other content, even in the media you can select an item and decide whether to publish it, keep it in draft or delete it. You can also enlarge the preview with the symbol [image alt text](img/image_18.png) or re-download the file with the symbol! [Image alt text](img/image_19.png)
 
 # Push notifications
 
