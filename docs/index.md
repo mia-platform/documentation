@@ -11,8 +11,8 @@ The platform consists of three suites:
 * The **Business Suite**: Our components to manage data and services
 
 **The suites**
-![](img/suite.PNG)
+![](img/suite-eng.png)
 
 ### Architectural Vision
 How the three suites interact and interact with users and with customer facilities.
-![](img/visione.PNG)
+![](img/suite-schema2.png)
