@@ -3,13 +3,17 @@
 In the advanced section of the API Console it is possible to extend some features of the Mia-Platform components.
 In this section you will find all the information to give more power to your platform
 
+!!! info "**Requirements**"
+    To change all the advanced settings, users should access the API Console and go to the Advanced Section
+
+
+
 ## How to change the name of core services
 Action:
-1. Access the API console and go to the advanced section
 
-2. Go to **Section: api-console-config/ core-service.json**
+1. Go to **Section: api-console-config/ core-service.json**
 
-3. Here you fill find an empty file.
+2. Here you fill find an empty file.
 
 If you want to change the name of a service you will need to compile a json file with the structure similar to the one shown below:
 
@@ -34,4 +38,6 @@ If you want to change the name of a service you will need to compile a json file
 
 **key**: is the real name of the service
 
-!!!warning
+!!! warning
+    Watch out!
+    Remember to delete old services and related files: service, deployment and any config map

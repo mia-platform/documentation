@@ -34,7 +34,7 @@ nav:
 
 - Development Suite:
   - Overview: 'development_suite/overview-dev-suite.md'
-  - API Console / Microservices:
+  - API Console:
     - Access the API Console: 'development_suite/accedi_apiconsole.md'
     - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
     - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
@@ -42,9 +42,9 @@ nav:
     - Manage your Microservices from the Api Console: 'development_suite/services.md'
     - Enrich your call with some Decorators: 'development_suite/decorators.md'
     - CRUD Section: 'development_suite/crud_advanced.md'
-    - Advanced Section: 'development_suite/advanced_name_core.md'
-    - API Gateway Advanced Section: 'development_suite/api-gateway-advanced-section.md'
-
+    - Advanced Section:
+       - Advanced Section: 'development_suite/advanced_name_core.md'
+       - API Gateway Advanced Section: 'development_suite/api-gateway-advanced-section.md'
     - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
     - Release your configurations: 'development_suite/deploy.md'
 
