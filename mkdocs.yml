@@ -23,14 +23,36 @@ nav:
 
 - Runtime Suite:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
-    - Components Overview: 'runtime_suite/arc_components.md'
-    - Components Configuration:
-       - Configure Services Creation Templates: 'runtime_suite/templates_conf.md'
-       - Configure Cron Service: 'runtime_suite/cron.md'
-       - Configure Swagger Aggregator: 'runtime_suite/swagger_conf.md'
-       - Configure Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
-       - iOS SDK: 'runtime_suite/sdk_ios.md'
-       - Android SDK: 'runtime_suite/sdk_android.md'
+    - API & Microservice Ecosystem:
+       - API Gateway: 'runtime_suite/api-gateway.md'
+       - Microservice Gateway: 'runtime_suite/microservice-gateway.md'
+       - BaaS:
+         - Crud: 'runtime_suite/crud-service.md'
+         - Static File Hosting: 'runtime_suite/static-file-service.md'
+         - File Manager Service: 'runtime_suite/files-service.md'
+         - Notifications:
+           - Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
+           - Mail Service: 'runtime_suite/mail-notification.md'
+         - iOS SDK: 'runtime_suite/sdk_ios.md'
+         - Android SDK: 'runtime_suite/sdk_android.md'
+         - PDF Service: 'runtime_suite/pdf-service.md'
+       - Data Management:
+         - SQL Generic Reader: 'runtime_suite/sql-reader.md'
+         - CQRS/Event Source Management: 'runtime_suite/event-source-management.md'
+         - Secure Data Exchange Service: 'runtime_suite/secure-data-exchange-service.md'
+         - Soap To Rest: 'runtime_suite/soap-to-rest.md'
+       - API Automation:
+         - Cronjobs Microservices: 'runtime_suite/cron.md'
+    - Privacy & Security:
+       - Access Management:
+         - Auth Service: 'runtime_suite/auth-service.md'
+         - Users Profile: 'runtime_suite/user-service.md'
+         - ACL Service: 'runtime_suite/acl-service.md'
+         - Session Manager: 'runtime_suite/session-manager.md'
+
+    - Configure Services Creation Templates: 'runtime_suite/templates_conf.md'
+    - Configure Swagger Aggregator: 'runtime_suite/swagger_conf.md'
+
 
 - Development Suite:
   - Overview: 'development_suite/overview-dev-suite.md'
