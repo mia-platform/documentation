@@ -6,16 +6,19 @@ To make sure that the Api-console can create new services starting from a templa
 The templates must be registered in the CRUD, in the `templates` collection, indicating a label that will display the user and the path to the git repository.
 Below is an example of a census for a template:
 
-`` `Bash
-curl -d '{"label": "my-template", "value": "gitlab-url.tar.gz"}' http: // api-console-host / v2 / templates /
-`` `
+```
+curl -d '{"label":"my-template","value":"gitlab-url.tar.gz"}' http://api-console-host/v2/templates/
+
+```
 
 The `value` field must be a URL to the tar.gz version of the git project.
 Below is an example:
 
-`` `
-https: // your-host-gitlab / api / v4 / projects /: project-id / repository / archive.tar.gz
-`` `
+```
+
+https://your-host-gitlab/api/v4/projects/:project-id/repository/archive.tar.gz
+
+```
 
 The Api-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%`:
 
