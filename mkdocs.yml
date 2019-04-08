@@ -21,6 +21,32 @@ nav:
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
+- Development Suite:
+  - Overview: 'development_suite/overview-dev-suite.md'
+  - API Console:
+    - API Design:
+      - Access the API Console: 'development_suite/accedi_apiconsole.md'
+      - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
+      - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
+      - Add a Template Microservices: 'development_suite/templates_conf.md'
+      - Expose and manage the safety of an apis: 'development_suite/esponi_api.md'
+      - Manage your Microservices from the Api Console: 'development_suite/services.md'
+      - Enrich your call with some Decorators: 'development_suite/decorators.md'
+      - CRUD Section: 'development_suite/crud_advanced.md'
+    - Advanced Section:
+      - Advanced Section: 'development_suite/advanced_name_core.md'
+      - API Gateway Advanced Section: 'development_suite/api-gateway-advanced-section.md'
+      - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
+    - Deploy:
+      - Release your configurations: 'development_suite/deploy.md'
+  - API Portal:
+    - Configure Swagger Aggregator: 'development_suite/swagger_conf.md'
+  - Monitoring Dashboard:
+    - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
+    - Disaster Recovery: 'development_suite/dev_ops_guide/disaster_recovery.md'
+    - Autoscaling Pods: 'development_suite/dev_ops_guide/autoscaling.md'
+    - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'
+
 - Runtime Suite:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
     - API & Microservice Ecosystem:
@@ -49,32 +75,6 @@ nav:
          - Users Profile: 'runtime_suite/user-service.md'
          - ACL Service: 'runtime_suite/acl-service.md'
          - Session Manager: 'runtime_suite/session-manager.md'
-
-    - Configure Services Creation Templates: 'runtime_suite/templates_conf.md'
-    - Configure Swagger Aggregator: 'runtime_suite/swagger_conf.md'
-
-
-- Development Suite:
-  - Overview: 'development_suite/overview-dev-suite.md'
-  - API Console:
-    - Access the API Console: 'development_suite/accedi_apiconsole.md'
-    - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
-    - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
-    - Expose and manage the safety of an apis: 'development_suite/esponi_api.md'
-    - Manage your Microservices from the Api Console: 'development_suite/services.md'
-    - Enrich your call with some Decorators: 'development_suite/decorators.md'
-    - CRUD Section: 'development_suite/crud_advanced.md'
-    - Advanced Section:
-       - Advanced Section: 'development_suite/advanced_name_core.md'
-       - API Gateway Advanced Section: 'development_suite/api-gateway-advanced-section.md'
-    - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
-    - Release your configurations: 'development_suite/deploy.md'
-
-  - DevOps:
-      - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
-      - Disaster Recovery: 'development_suite/dev_ops_guide/disaster_recovery.md'
-      - Autoscaling Pods: 'development_suite/dev_ops_guide/autoscaling.md'
-      - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'
 
 - Business Suite:
   - Overview: 'business_suite/overview-business-suite.md'
