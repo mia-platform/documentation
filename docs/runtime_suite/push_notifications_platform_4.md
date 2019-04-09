@@ -56,8 +56,10 @@ The routes are as follows:
 - POST `/ tokens`: sends a notification to a set of registration tokens
 - POST `/ userids`: sends a notification to a group of users specifying their id
 - POST `/ tags`: sends a notification to a group of users marked with a tag (topic or group)
+- POST `/ groups`: sends a notification to a list of user groups
 - POST `/ platforms`: notifies all devices by specifying a list of platforms, (` ios`, `android` for now)
 - POST `/ broadcast`: notifies all devices
+- POST `/ multicast`: notifies all devices (you can specify a custom query to send only to an arbitrary subset of devices)
 
 
 An example of a payload of a call to send a notification to a list of users is as follows:
@@ -92,7 +94,8 @@ An example of a payload of a call to send a notification to a list of users is a
 Note for `ios`: to send silent notifications, which are not displayed by the app, but which simply send a payload in push, put in the options ios` silent: true` and `contentAvailable: true`.
 
 ## Collection
-The service is based on two collections of `CRUD`:` devices` and `notifications`
+The service is based on two collections of `CRUD`:` devices` and `notifications` 
+An additional `users` collection is needed for `/groups` route to work.
 
 ### Devices
 
@@ -114,3 +117,9 @@ This collection keeps the history of notifications sent. Property:
 - platformSpecificContent: object, notification customizations depending on the platform
 - destination: object, a descriptor that contains the type `type` of the destination and the list of recipients
 - outcome: object, the result of sending the notification
+
+### Users
+
+This collection will be only used by `/groups` route. It contains users data. 
+This collection must have property `groups`, an array of strings: it represent the groups an user belongs to.  
+This service will send notifications to groups by collecting ids of users belonging to groups specified as input.
