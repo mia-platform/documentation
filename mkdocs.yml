@@ -45,10 +45,9 @@ nav:
     - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
     - Disaster Recovery: 'development_suite/dev_ops_guide/disaster_recovery.md'
     - Autoscaling Pods: 'development_suite/dev_ops_guide/autoscaling.md'
-    - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'
-    
-- Debugging:
-    - Debugging a single service with Telepresence: 'debugging/telepresence.md'
+    - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'  
+  - Debugging:
+    - Debugging a single service with Telepresence: 'development_suite/debugging/telepresence.md'
 
 - Runtime Suite:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
