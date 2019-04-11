@@ -44,6 +44,7 @@ nav:
 
     - Advanced Section:
       - API Gateway:
+        -  Create config map: 'development_suite/api-gateway-config-map.md'
         -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
       - API Console Config:
         - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
