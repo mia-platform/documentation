@@ -1,17 +1,15 @@
 # Config Map
 
-!!! failure
-    DA TESTARE... Work In Progress
-
 It's a map between two values: *A* and *B*. You set the value of *B* based on the value of *A*.
 
 !!! example
     Map a Capital City to his Country.
-```
-"Rome" "Italy"
-"Brussels" "Belgium"
-"Copenhagen" "Denmark"
-```
+    ```
+    "Rome" "Italy"
+    "Brussels" "Belgium"
+    "Copenhagen" "Denmark"
+    ```
+
 And so on.
 
 
@@ -19,11 +17,10 @@ The first argument can be also a regular expression. To do so you need to prefix
 
 !!! example
     Map a string to UpperCase or LowerCase
-
-```
-"~^[A-Z]+$" "UpperCase"
-"~^[a-z]+$" "LowerCase"
-```
+    ```
+    "~^[A-Z]+$" "UpperCase"
+    "~^[a-z]+$" "LowerCase"
+    ```
 
 
 ## How to set restriction to make a request
@@ -49,16 +46,16 @@ The \$group_expression must be a logical expression and will be evaluated  by th
 
 !!! example
     If `/login-site` received a GET request, this request is always considered valid.
-```
-"~^GET-/login-site" "1";
-```
+    ```
+    "~^GET-/login-site" "1";
+    ```
 
 
 !!! example 
     If it's made a POST request to `/foobar`, it's considered valid only if the Auth Service evaluates as truthy the logical expression `isBackoffice && (groups.admin)`, so that the request comes from the CMS and the user belongs to the admin group or internal group.
-```
-"~^POST-/foobar" "isBackoffice && (groups.admin || groups.interni))";
-```
+    ```
+    "~^POST-/foobar" "isBackoffice && (groups.admin || groups.interni))";
+    ```
 
 
 !!! info
@@ -119,17 +116,15 @@ The variables are:
 
 !!! example
     I want that if it's done a `GET` request to `/login-site` with or without secret `(secreted|unsecreted)` from an authorized or not authorized user `(0|1)`, logged or not logged `(0|1)`, this request is forwarded to the `demo-login-site` service.
-
-```
-"~^(secreted|unsecreted)-(0|1)-(0|1)-GET-/login-site" "demo-login-site";
-```
+    ```
+    "~^(secreted|unsecreted)-(0|1)-(0|1)-GET-/login-site" "demo-login-site";
+    ```
 
 !!! example
     I want that if it's done a `POST` request to `/foo/bar` with an associated secret from a logged user `1` and authorized `1`, it's forwarded to `foo-bar-manager`.
-
-```
-"~^secreted-1-1-POST-/foo/bar" "foo-bar-manager";
-```
+    ```
+    "~^secreted-1-1-POST-/foo/bar" "foo-bar-manager";
+    ```
 
 
 ## How to forward a request to another url
@@ -177,9 +172,28 @@ The variables are:
   
 !!! example
     You want to forward all the GET requests /files/images/avatar/foo/ to /user/foo/avatar/
-```
-"~^GET-/files/images/avatar/(?<username>[\w]+)/$" "/user/$username/avatar/"
-```
+    ```
+    "~^GET-/files/images/avatar/(?<username>[\w]+)/$" "/user/$username/avatar/"
+    ```
 
 !!! info
     If no request is matched by any regular expression, the default proxy_url is set to request_uri (the request is forwarded to itself).
+
+## How to edit which map include
+
+All these files will be included in **maps.conf** file as default.
+You can edit which of them include editing this file. 
+
+Action:
+
+1. Go to Section: api-gateway/maps.conf (it's empty)
+2. Write here your include
+
+!!! warning
+    What you write here will overwrite the default maps.conf file.
+
+!!! example Include maps-proxyName and maps-groupExpression
+    ```
+    include /etc/nginx/customization.d/maps-proxyName.conf;
+    include /etc/nginx/customization.d/maps-groupExpression.conf;
+    ```
