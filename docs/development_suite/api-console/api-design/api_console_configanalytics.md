@@ -3,8 +3,7 @@
 From the Api Console you can easily configure and manage your analytics.
 
 !!! notes
-
-Before you start with analytics configuration you must create your collections in the Collections area and expose the related Endpoints..
+    Before you start with analytics configuration you must create your collections in the Collections area and expose the related Endpoints..
 
 In the drop down list you will find the **"Analytics"** section: there you'll be able to create analytics and monitor KPIs. Click on the button **"Add new"** to start configuring.
 
@@ -19,22 +18,12 @@ In this phase you have to decide the type of analytic you want to configure. At 
 
 * type **custom-stock**, i.e. a graph with a time series on the x-axis;
 
-
-![](img/stock.png)
-
 * type **chart**, i.e. a time independent graph;
-
-
-![](img/chart.png)
 
 * type **chart-summary**, i.e. a graph showing statistics related to one or more time independent data collections.
 
-
-![](img/chart-summary.png)
-
 !!! notes
-
-Multi-serie graphs are available only for *custom-stock* type graphs.
+    Multi-serie graphs are available only for *custom-stock* type graphs.
 
 
 Click on "next" to go further.
@@ -111,10 +100,7 @@ In this phase it is also possible to enable a mongoquery by clicking on the **mo
 Once a series has been configured, a second series can be inserted in the same graph via the **"Add a series"** button.
 
 !!! warning
-
-The second set that you set will have all the fields listed above again, but the **data format** will have to be the same as the first series.
-
-
+    The second set that you set will have all the fields listed above again, but the **data format** will have to be the same as the first series.
 
 Click on "next" to go further.
 
@@ -133,8 +119,6 @@ In the case of a *chart* chart, a **custom interval** of data visualization is p
 ![](img/avanzate_calendar.png)
 
 
-
-
 Throughout the configuration process via the **Previous** button you can go back to the previous step to change the fields. When you have finished configuring the analytic you need to click on **Done**. At this point, save the configuration on the API Console and deploy the branch in the desired environment. At this point, by accessing the CMS in the environment in which it is deployed, it will be possible to see its analytic.
 
 ## View the analytics in the dashboard
@@ -151,7 +135,7 @@ On this page you can see all the configured analytics in the table. All fields i
 
 * the **Priority** field, which allows you to choose the order in which the analytics are displayed in dashboards, ordering them in an increasing way;
 
-* the **Width**, which allows you to choose whether to view the analytic in full screen by selecting * Full Page *, or half-page by selecting * Half-page *.
+* the **Width**, which allows you to choose whether to view the analytic in full screen by selecting * Full Page *,or half-page by selecting * Half-page*.
 
 ![](img/dashboard.png)
 
@@ -177,7 +161,6 @@ If some visibility has already been set for some analytics on the page, then the
 By clicking on **Create** the updated row will appear in the table.
 
 !!! notes
-
-Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
+    Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
 
 ![](img/analitico_cancella.png)
