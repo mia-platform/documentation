@@ -27,7 +27,7 @@ There are two possibilities for reaching services in general:
 
 In any case, it is very important to remember to carry on the Mia headers that contain the user id, its groups etc, so that even the invoked service has access to this information!
 
-To facilitate communication between the services, a [library in node has been written](plugin_baas_4.md), it is still possible to call the services directly through http if other technologies are used.
+To facilitate communication between the services, a [library in node has been written](../development_suite/api-console/api-design/plugin_baas_4.md), it is still possible to call the services directly through http if other technologies are used.
 
 ### Communication via microservice-gateway
 The microservice-gateway collects all the microservice APIs, and offers the possibility to hook web-hooks to calls that act as PRE (before the call) and POST (after the call) decorators. The call to the microservices from outside could then trigger other calls and other logic to complement the call itself. To have a consistent behavior even when calling services from within, it is advisable to go through the microservice-gateway.

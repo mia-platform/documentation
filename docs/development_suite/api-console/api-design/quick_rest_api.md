@@ -106,4 +106,4 @@ We just have to save and release in an environment.
 
 You must then press save and commit the work done and then access the deployment area and choose an environment to release.
 
-To populate the collection or to start testing the API you can either directly go to the **Documentation** area and test your API with the Swagger or [create a new CMS page](../business_suite/api_console_configcms.md) and take advantage of your API from the CMS.
+To populate the collection or to start testing the API you can either directly go to the **Documentation** area and test your API with the Swagger or [create a new CMS page](../../../business_suite/api_console_configcms.md) and take advantage of your API from the CMS.

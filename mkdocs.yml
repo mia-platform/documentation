@@ -8,9 +8,9 @@ nav:
 - Home:
   - Mia Platform Docs: 'index.md'
   - Design Guidelines: 'guidelines/git_vademecum.md'
-  - Custom Plugin: 'development_suite/plugin_baas_4.md'
+  - Custom Plugin: 'development_suite/api-console/api-design/plugin_baas_4.md'
   - CMS and Analytics: 'business_suite/api_console_configcms.md'
-  - DevOps: 'development_suite/dev_ops_guide/business_continuity.md'
+  - DevOps: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
   - Release Notes: 'release_notes/apiconsole_releasenotes.md'
   - Info: 'info/version-policy.md'
 
@@ -19,33 +19,37 @@ nav:
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
+    - Communication among Microservices: 'guidelines/communication_between_services_mp4.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
 - Development Suite:
   - Overview: 'development_suite/overview-dev-suite.md'
   - API Console:
+    - Access the API Console: 'development_suite/api-console/accedi_apiconsole.md'
     - API Design:
-      - Access the API Console: 'development_suite/accedi_apiconsole.md'
-      - Create a CRUD 5'min: 'development_suite/quick_rest_api.md'
-      - Create Custom Microservices: 'development_suite/plugin_baas_4.md'
-      - Add a Template Microservices: 'development_suite/templates_conf.md'
-      - Expose and manage the safety of an apis: 'development_suite/esponi_api.md'
-      - Manage your Microservices from the Api Console: 'development_suite/services.md'
-      - Enrich your call with some Decorators: 'development_suite/decorators.md'
-      - CRUD Section: 'development_suite/crud_advanced.md'
+      - Create a CRUD 5'min: 'development_suite/api-console/api-design/quick_rest_api.md'
+      - Create Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
+      - Add a Template Microservices: 'development_suite/api-console/api-design/templates_conf.md'
+      - Expose and manage the safety of an apis: 'development_suite/api-console/api-design/esponi_api.md'
+      - Manage your Microservices from the Api Console: 'development_suite/api-console/api-design/services.md'
+      - Enrich your call with some Decorators: 'development_suite/api-console/api-design/decorators.md'
+      - CRUD Section: 'development_suite/api-console/api-design/crud_advanced.md'
     - Advanced Section:
-      - Advanced Section: 'development_suite/advanced_name_core.md'
-      - API Gateway Advanced Section: 'development_suite/api-gateway-advanced-section.md'
-      - Communication among Platorm 4 services: 'development_suite/communication_between_services_mp4.md'
+      - API Gateway:
+        -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
+      - API Console Config:
+        - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
     - Deploy:
-      - Release your configurations: 'development_suite/deploy.md'
+      - Release your configurations: 'development_suite/api-console/api-design/deploy.md'
+
   - API Portal:
-    - Configure Swagger Aggregator: 'development_suite/swagger_conf.md'
+    - Configure Swagger Aggregator: 'development_suite/api-portal/swagger_conf.md'
+
   - Monitoring Dashboard:
-    - Business Continuity: 'development_suite/dev_ops_guide/business_continuity.md'
-    - Disaster Recovery: 'development_suite/dev_ops_guide/disaster_recovery.md'
-    - Autoscaling Pods: 'development_suite/dev_ops_guide/autoscaling.md'
-    - Guidelines for logs: 'development_suite/dev_ops_guide/log.md'  
+    - Business Continuity: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
+    - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
+    - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
+    - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
   - Debugging:
     - Debugging a single service with Telepresence: 'development_suite/debugging/telepresence.md'
 
