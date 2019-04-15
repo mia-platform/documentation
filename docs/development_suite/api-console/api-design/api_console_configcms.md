@@ -147,21 +147,20 @@ What should I do?
 3. choose the **value**.
 
 !!! tip
+    "Comparators"
 
-"Comparators"
+     The supported comparators are the following:
 
-The supported comparators are the following:
-
-value | comment
-------- | ---------
-`<` | lower
-`<=` | less or equal
-`>` | greater
-`> =` | greater or equal
-`==` | equal
-`! =` | different
-`===` | strictly equal
-`! ==` | strictly different
+    value | comment
+    ------- | ---------
+    `<` | lower
+    `<=` | less or equal
+    `>` | greater
+    `> =` | greater or equal
+    `==` | equal
+    `! =` | different
+    `===` | strictly equal
+    `! ==` | strictly different
 
 
 
@@ -177,13 +176,12 @@ You will always have to:
 3. choose the **value**.
 
 !!! example
+    To give an example: I have a CMS that manages the warehouse of a supermarket, I am in the property *expiry date*,
+    I want this property to appear only when the *perishable* property is equal to true.
 
-To give an example: I have a CMS that manages the warehouse of a supermarket, I am in the property * expiry date *,
-I want this property to appear only when the perishable * property is equal to true.
-
-1. choose the **property**, I choose perishable.
-2. choose the **comparator**, in our case **==**
-3. choose the **value**, in our case **true**
+    1. choose the **property**, I choose perishable.
+    2. choose the **comparator**, in our case **==**
+    3. choose the **value**, in our case **true**
 
 ## 3. The Lookups
 
@@ -211,7 +209,10 @@ When you select Inline Source you will need to fill in two values:
 !!! example
     Let's take an example: I have a property that has been and I want from the CMS to be able to select only specific states such as Pending, In Processing etc.
     Here's how I'll have to build the array of objects:
-    **[{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}]**
+    ```
+    
+    [{"name": "In Processing", "value": "working"}, {"name": "Pending", "value": "pending"}, {"name": "Archived", " value ":" archived "}]
+    ```
 
 * **Value to be saved**: you will have to choose which value to save in the DB, in this case we advise you to save the value.
 

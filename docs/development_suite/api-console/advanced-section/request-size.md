@@ -1,5 +1,3 @@
-# API Gateway - Advanced section
-
 ## How Controlling Request Sizes
 
 !!! info "**Definition**"
