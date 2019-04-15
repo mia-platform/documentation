@@ -159,12 +159,23 @@ Sia dall'istanza di `Request` (il primo argomento di un handler) sia dell'istanz
 gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della
 Piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte:
 
-* `getServiceProxy` - proxy che passa per `microservice-gateway`
-* `getDirectServiceProxy` - proxy diretto al servizio
+* `getServiceProxy(options)` - proxy che passa per `microservice-gateway`
+* `getDirectServiceProxy(serviceName, options)` - proxy diretto al servizio
 
 La differenza fondamentale tra i due proxy è che il primo attiva tutte le logiche che sono censite in `microservice-gateway`,
 mentre il secondo no. Ad esempio, se una risorsa esposta dal servizio CRUD è protetta da ACL, questa protezione verrà
 bypassata utilizzando il proxy diretto.
+
+Per il proxy diretto è necessario specificare il `serviceName` del servizio da interrogare. La porta non può essere specificata nel `serviceName` ma deve essere passata nel campo `port` delle `options`. Nel caso di `getServiceProxy`, non si deve, invece, specificare il nome del servizio in quanto è implicitamente quello del `microservice-gateway`.
+Il parametro `options` è un oggetto con i seguenti campi opzionali:
+
+* `port` - un intero che identifica la porta del servizio da interrogare
+* `protocol` - una stringa che identifica il protocollo da usare (sono supportati solo 'http' e 'https')
+* `headers` -  un oggetto che rappresenta l'insieme degli header da inoltrare al servizio
+* `prefix` - una stringa che rappresenta il prefisso del path delle chiamate al servizio 
+
+Potenzialmente, il metodo `getDirectServiceProxy`, permette di interrogare anche servizi esterni alla piattaforma. In questo caso, però è necessario tener presente che verranno automaticamente inoltrati gli header di piattaforma.
+
 Entrambi i proxy, di default, inoltrano al servizio chiamato i quattro `mia-headers`. Per fare ciò è necessario che siano presenti le seguenti variabili d'ambiente: 
 
 * `USERID_HEADER_KEY`
