@@ -1,6 +1,6 @@
-# LI.ARS Subprocessor
+# Mia-Platform Subprocessor
 
-LI.ARS uses the following sub-processor to perform the activities of customers who are hosted on Mia-Platform Cloud.
+Mia-Platform uses the following sub-processor to perform the activities of customers who are hosted on Mia-Platform Cloud.
 For all customers who are not hosted on Cloud there are no sub-processors
 
 Follows the list of sub-processors
