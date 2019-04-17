@@ -57,11 +57,18 @@ module.exports = {
 }
 `````
 
-Si parte con le informazioni generali come: **title**, **version**, **description** che devono fare riferimento al set di API complessive fornite da tutti i microservices come un intero sistema. La descrizione può essere fornita come stringa (`description` field) o come percorso di un file Markdown (`descriptionMarkdownFilePath` field). Se il percorso `descriptionMarkdownFilePath `è specificato, questo verrà mostrato nell'interfaccia utente di Swagger anziché nella description.
+At the begenning the swagger-aggregator file needs the generic information like **title**, **version** and **description**, that will generically describe the API set provided by all microservices.
+> There are two ways to provide a description:
+> * using the field `**_description_**: requires a simple string;
+> * using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
 
-L'array dei `services` è semplicemente la lista di tutti gli URL di ciascun microservizio e il prefisso corrispondente da anteporre.
+The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
+ * **_URL_**: by specifying `url` as type the swagger-aggregator will download the microservice swagger by the provided _url_ field;
+ * **_File_**: by specifying `file` as type the swagger-aggregator will take the microservice swagger configurations by the provided _path_ field.
 
-Si prega di convalidare la configurazione con questo jsonschema prima di avviare il servizio. Una configurazione che non supera la convalida infatti impedirà l'avvio del microservice.
+In both of them the user can specify a `prefix` to place before.
+
+Please be sure of validate the configuration with the following _jsonschema_ before run the service, otherwise the microservice will not correctly start.
 
 `````
 /*
