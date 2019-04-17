@@ -59,8 +59,9 @@ module.exports = {
 
 At the begenning the swagger-aggregator file needs the generic information like **title**, **version** and **description**, that will generically describe the API set provided by all microservices.
 > There are two ways to provide a description:
+
 > * using the field `**_description_**: requires a simple string;
-> * using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
+  * using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
 
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
  * **_URL_**: by specifying `url` as type the swagger-aggregator will download the microservice swagger by the provided _url_ field;
