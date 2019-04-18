@@ -11,17 +11,17 @@
  * New Header! You can find a new style in our header.
 Now you can view the photo of your user connected to Git and directly access the Mia-Platform Documentation and your Git project in the header.
 
-* New Sub-header
-We have improved the display of the save area and a new branch. If you have some changes unsaved it's more visible. You can also when it's done the last commit.
+* New Sub-header.  
+We have improved the display of the save area. If you have some changes unsaved it's more visible. You can also see when it's done the last commit.
 
 * If you click on your user, you can view your name, a new Info page and the logout section.
 
-* On the Info page you can view Mia's version number and the Mia core services version number that you are using.
+* On the Info page you can view the Mia-Platform version number and the list of all the Mia core services version number that you are using.
 
 * In the Project Creation section it is now possible to select which core Mia services to activate.
-We have also given the possibility to change the name of the project or to create a subgroup.
+We have also given the possibility to change the name of the gitlab project or to create a subgroup.
 
-* In the Secret Section we have added the possibility of creating random secret and copying them into your table.
+* In the Secret Section we have added the possibility to create a random secret and copying them into your table.
 
 * The Custom Java Plugin has been added to Mia's Plugins
 
@@ -33,7 +33,7 @@ Fix:
 
 * In the Creation of the project we made some fixes to the Environment Tab
 
-* We have fixed some particular cases in which the flags inside the endpoint section broke
+* We have fixed some particular cases in the flags inside the endpoint section broke
 
 * We added the multilookup in the interfacetype of the cms linked to an array
 
