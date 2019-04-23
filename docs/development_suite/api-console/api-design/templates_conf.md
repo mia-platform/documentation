@@ -7,9 +7,10 @@ The templates must be registered in the CRUD, in the `templates` collection, ind
 Below is an example of a census for a template:
 
 ```
-curl -d '{"label":"my-template","value":"gitlab-url.tar.gz"}' http://api-console-host/v2/templates/
-
+curl -d '{"label":"my-template","value":"https://git.tools.mia-platform.eu/platform/templates/<your template name>/-/archive/master/<your template name>-master.tar.gz"}' 'https://console.cloud.mia-platform.eu/v2/api/custom-plugin-templates/' -H 'cookie: <your cookie session here>' -H 'secret: <the secret goes here>' -H'content-type: application/json'
 ```
+
+Replace the placeholders with the correct values.
 
 The `value` field must be a URL to the tar.gz version of the git project.
 Below is an example:
