@@ -4,7 +4,23 @@
 
 **API Console v1.0.0**
 
- This version must be used with backend v1.0.0
+This version must be used with backend v1.0.0
+
+ Breaking Change:
+
+You should add two variables to enable push notifications for the new platform on v1Adapter or to use notification service:
+
+```
+NOTIFICATIONS_SERVICE_PATH={{NOTIFICATIONS_SERVICE_PATH}}
+NOTIFICATIONS_COLLECTION_ROUTES={{NOTIFICATIONS_COLLECTION_ROUTES}}
+```
+
+You can value the variables above even with an empty string if you do not care about the functionality
+
+!!! warning
+    Note that if the configuration project among its scripts has one called prepare-envs.sh the variables must be added with a prefix
+    MIA_ for all environments and DEV_ PREPROD_ or CLOUD_ for values ​​on a particular environment
+    MIA_ is taken as a fallback value
 
  Added:
 
@@ -21,7 +37,7 @@ We have improved the display of the save area. If you have some changes unsaved 
 * In the Project Creation section it is now possible to select which core Mia services to activate.
 We have also given the possibility to change the name of the gitlab project or to create a subgroup.
 
-* In the Secret Section we have added the possibility to create a random secret and copying them into your table.
+* In the Secret Section we have added the possibility to create random secret and copying them into your table.
 
 * The Custom Java Plugin has been added to Mia's Plugins
 
@@ -33,7 +49,7 @@ Fix:
 
 * In the Creation of the project we made some fixes to the Environment Tab
 
-* We have fixed some particular cases in the flags inside the endpoint section broke
+* We have fixed some particular cases in which the flags inside the endpoint section broke
 
 * We added the multilookup in the interfacetype of the cms linked to an array
 
