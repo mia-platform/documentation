@@ -1,4 +1,14 @@
 #Platform Release Note
+
+##v4.19.1 (May 3,2019)
+**BUSINESS SUITE**
+
+**CMS v9.0.1**
+
+Fixed:
+
+With the release of the new version of Google chrome 74 the scroll was broken. We quickly restored the correct display of the CMS
+
 ##v4.19.0 (April 18, 2019)
 **DEVELOPMENT SUITE**
 
@@ -173,7 +183,7 @@ From today, if a file with existing ids is imported, the data are not duplicated
 If the id does not exist, a new data is created instead.
 
 !!! info
-    The Import Service works only with string and number. 
+    The Import Service works only with string and number.
 
 
 ## v4.15.0 (Nov 14, 2018)  
