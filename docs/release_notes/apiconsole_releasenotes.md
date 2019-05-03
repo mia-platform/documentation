@@ -7,7 +7,7 @@
 
 Fixed:
 
-With the release of the new version of Google chrome 74 the scroll was broken. We quickly restored the correct display of the CMS
+With the release of the new version of Google Chrome n.74 the scroll was broken. We quickly restored the correct display of the CMS
 
 ##v4.19.0 (April 18, 2019)
 **DEVELOPMENT SUITE**
