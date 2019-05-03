@@ -124,6 +124,14 @@ Fix:
 
 * increase max path for fastify
 
+**CMS -v8.0.0**
+
+Performance Improved:
+
+To improve performance, on download the resources are cleared of properties field (set to empty array) and all resources are saved into an external object (file src/app/storage.js).
+The retrieve of data from storage is cached with an lru to increase further the performance.
+
+
 **CRUD - v0.21.2**
 
 Fix:

@@ -7,6 +7,7 @@ copyright: Mia srl. All rights reserved.
 nav:
 - Home:
   - Mia Platform Docs: 'index.md'
+  - Getting Started: 'getting_started/quickstart.md'
   - Design Guidelines: 'guidelines/git_vademecum.md'
   - Custom Plugin: 'development_suite/api-console/api-design/plugin_baas_4.md'
   - CMS and Analytics: 'business_suite/overview-business-suite.md'
@@ -59,7 +60,7 @@ nav:
     - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
     - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
     - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
-    
+
 - Runtime Suite:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
     - API & Microservice Ecosystem:
