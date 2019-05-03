@@ -172,7 +172,9 @@ News:
 From today, if a file with existing ids is imported, the data are not duplicated but updated.
 If the id does not exist, a new data is created instead.
 
-!!! warning
+!!! info
+    The Import Service works only with string and number. 
+
 
 ## v4.15.0 (Nov 14, 2018)  
 **Breaking change api-console-configuration v0.3.0**
