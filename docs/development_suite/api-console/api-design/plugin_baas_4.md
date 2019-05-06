@@ -203,9 +203,9 @@ Gli argomenti da passare a queste funzioni sono:
     * un [Buffer](https://nodejs.org/api/buffer.html#)
     * uno [Stream](https://nodejs.org/api/stream.html)
 * `querystring` - facoltativo, un oggetto che rappresenta la querystring
-* `options` - facoltativo, un oggetto che ammette i seguenti campi:
+* `options` - facoltativo, un oggetto che ammette tutte le `options` elencate sopra per i metodi `getServiceProxy` e `getDirectServiceProxy` (che verranno eventualmente sovrascritte), più i seguenti campi:
     * `returnAs` - una stringa che identifica il formato con cui si desidera ricevere la risposta. Può essere `JSON`, `BUFFER` o `STREAM`. Default `JSON`.
-    * `allowedStatusCodes` - un array di interi che definisce quali status code della risposta sono accettati. Se lo status code di risposta non è contenuto in questo array, la promise verrà rifiutata con un errore da cui sarà possibile accedere alla risposta tramite `error.response`. Se questo parametro viene omesso sarà accettato qualsiasi codice di risposta.
+    * `allowedStatusCodes` - un array di interi che definisce quali status code della risposta sono accettati. Se lo status code di risposta non è contenuto in questo array, la promise verrà rifiutata. Se questo parametro viene omesso, la promise viene risolta in ogni caso (anche se il server interrogato risponde 500).
 
 #### Esempio
 ```js
