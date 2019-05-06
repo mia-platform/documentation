@@ -1,6 +1,16 @@
 #Platform Release Note
 
-##v4.19.1 (May 3,2019)
+###v4.19.2 (May 6,2019)
+**DEVELOPMENT SUITE**
+
+**API Console v1.0.2**
+
+Fixed:
+
+We have modified the limit of characters that could be inserted in the field **Name** of the table. Previously they were 32 now there are **no character limits.**
+
+
+###v4.19.1 (May 3,2019)
 **BUSINESS SUITE**
 
 **CMS v9.0.1**
