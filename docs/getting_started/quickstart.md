@@ -15,12 +15,12 @@ For ease of operation, the first version will not have a frontend for end users 
 ## Functionality
 Mangio Sano will rely on two external partners for the development of the App and Website for Final Customers and App for Riders. What the platform in its first version will allow is:
 
-**Manage with a back office**
+**Manage with a back office:**
 
    * dishes
    * rider
    * orders
-   * have statistics on the status of orders
+   * have statistics on the orders
 
 **Allow a third party partner who is developing the frontend of the website and app to:**
 
@@ -40,7 +40,7 @@ For a quick start your APIC is configured with:
 
 * Project created on the API console
 * Installed service file
-* Push notification installed
+* Installed Push notification service
 
 ## What to do in 1'
 
@@ -77,7 +77,7 @@ For the plates collection we will create the following fields:
 * **price**, type: number
 * **quantity**, type: number
 
-You have create your first collection!  
+Great! You have create your first collection!  
 Now you should expose you collection through an Endpoint and create your first API.
 
 Go to the Section Endpoint and press the button "Create new endpoint". Insert the following information.
@@ -88,7 +88,7 @@ Go to the Section Endpoint and press the button "Create new endpoint". Insert th
 
  Press "Create". Now you have created your first API!
 
- For more information about the Endpoint Section and for discover all the potentialities of this section you can read here.
+ For more information about the Endpoint Section and for discover all the potentialities of this section you can [read here]().
 
 ## Create a Crud rider with rider position
 
@@ -107,7 +107,7 @@ So for the riders collection we will create the following fields:
 * **skypeId**, type: string
 * **chat**, type: string
 
-Now you should expose you collection through an Endpoint and create the relative API.
+Now you should expose your collection through an Endpoint and create the relative API.
 
 Go to the Section Endpoint and press the button "Create new endpoint". Insert the following information.
 
@@ -144,7 +144,15 @@ Go to the Section Endpoint and press the button "Create new endpoint". Insert th
 
   Press "Create".
 
+Now let's save our work and Deploy it!  
+Once deployed our endpoints can immediately be tested with the API Portal.
+
 ## Create an External service on maps for the calculation of the arrival time
+
+In the Proxy section you can easily integrate service from other cluster or from other platform.
+
+For our Project we need to integrate the Google Maps API for calculate the arrival time of the order. 
+
 ## Debugging you services with telepresence
 ## Configure you Backoffice with pages and Analytics
 
@@ -185,7 +193,70 @@ Compile the form:
 
 Press Next
 
-Choose the layout: Table
+Choose the layout: Table and press "Done".
 
+The CMS can be configured in many ways. Now we have made a basic configuration, but read our infopoints or our documentation to customize your CMS according to your needs.
+
+**Create the Orders pages**
+
+Press the button:"Create new page".   
+Compile the form:
+
+* Name: Orders
+* Endpoint: select /orders
+* Category: select Orders
+* Icon: [choose you icon]() We have choosen "truck"
+* Order: 10
+
+Press Next
+
+Choose the layout: Table and press "Done".
+
+**Create the Riders pages**
+
+Press the button:"Create new page".   
+Compile the form:
+
+* Name: Riders
+* Endpoint: select /riders
+* Category: select Orders
+* Icon: [choose you icon]() We have choosen "bycicle"
+* Order: 20
+
+Press Next
+
+Choose the layout: Table and press "Done".
+
+**Create an analytics for having statistics about the orders**
+
+As a first step we would like to know the trend of the number of orders we receive every day.
+
+Thanks to the Mia component of the Analytics we can create different graphs.  
+Read our documentation to find out all the possible configurations.
+
+For our analytical we will choose:
+Type: **Custom Stock** that is a graph that has as an abscissa a given time.
+
+In the Configuration section we will choose the Name: **Orders** and we will choose to show the legend.
+We press "Next"
+
+Now we just have to configure our series. The Series is the main part of the Analytics in which we decide our di aggregate our data.
+
+We would like to have a graph that show us the count of orders per each day. We configure our graph with the following fields.
+
+* **Name**: orders
+* **Type**: line
+* **Color**: seagreen
+* **Euro**: no
+* **Collection**: order
+* **Filter**: no filter
+* **GroupDate**: orderData
+* **Data Format**: day
+* **Operator**: count
+
+Press Next. The section Confiugure Y-Axis and Advanced are both advanced configuration that we don't need for our graph we can press "Next" and then "Create".
+
+Great! We have complete our CMS and Analytics Configuration.
+Now let's Save our configuration and Deploy it in a Test Environment so that we can Test it in our CMS!
 
 ## Read your API Documentation and share your API with your Partner
