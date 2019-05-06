@@ -6,7 +6,7 @@
 **API Console v1.0.2**
 
 Fixed:
-
+ 
 We have modified the limit of characters that could be inserted in the field **Name** of the table. Previously they were 32 now there are **no character limits.**
 
 
