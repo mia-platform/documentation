@@ -25,7 +25,7 @@ The widget file is the configuration file of the graphs. In my platform you have
 ![](img/stock.png)
 + ```chart```: is a graph not tied to time
 ![](img/chart.png)
-+ `` `chart-summary```: is a graph in which are shown statistics regarding one or more data collections not related to time
++ ```chart-summary```: is a graph in which are shown statistics regarding one or more data collections not related to time
 ![](img/chart-summary.png)
 ```
 
