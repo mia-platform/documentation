@@ -97,6 +97,7 @@ nav:
     - Configure CMS .json file: 'business_suite/conf_cms.md'
     - Color CMS: 'business_suite/colorare_il_cms.md'
     - Update CMS: 'business_suite/update_cms.md'
+    - Integrate custom frontends into the CMS: 'business_suite/custom-frontends-integration-CMS.md'
 
   - Analytics:
     - Configure Analytics through API Console: 'development_suite/api-console/api-design/api_console_configanalytics.md'
