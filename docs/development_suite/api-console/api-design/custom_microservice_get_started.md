@@ -2,6 +2,7 @@
 
 The API Console allows the user to create custom microservices from a template;
 it manages the following templates:
+
  * **node-fastify**: a ready-to-use Node.JS template that provides a server for restful services through the Mia-Platform [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib) that take advantage of the <a href="https://www.fastify.io/" target="_blank">Fastify</a> server;
 
  * **java spring-boot**: a ready to use Java & <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a> template that provides a server for restful services through the Mia-Platform [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib);
