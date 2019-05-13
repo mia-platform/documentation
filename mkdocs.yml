@@ -30,7 +30,7 @@ nav:
       - Create a CRUD 5'min: 'development_suite/api-console/api-design/quick_rest_api.md'
       - CRUD Section: 'development_suite/api-console/api-design/crud_advanced.md'
       - Manage your Microservices from the Api Console: 'development_suite/api-console/api-design/services.md'
-
+      - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
       - Expose and manage the safety of an apis: 'development_suite/api-console/api-design/esponi_api.md'
       - Enrich your call with some Decorators: 'development_suite/api-console/api-design/decorators.md'
       - Configure CMS: 'development_suite/api-console/api-design/api_console_configcms.md'
