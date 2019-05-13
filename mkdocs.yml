@@ -72,6 +72,7 @@ nav:
          - Notifications:
            - Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
            - Mail Service: 'runtime_suite/mail-notification.md'
+           - Notifcation Manager: 'runtime_suite/notifications-manager.md'
          - iOS SDK: 'runtime_suite/sdk_ios.md'
          - Android SDK: 'runtime_suite/sdk_android.md'
          - PDF Service: 'runtime_suite/pdf-service.md'

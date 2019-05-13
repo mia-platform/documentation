@@ -163,8 +163,7 @@ At this point you are ready to configure your extensions.
 Cards allow you to view your data no longer in the table, but in the form of Card.
 
 !!! warning
-
-Although cards are an extension, remember that the CMS page you want to display as a card must have the **display type set to card** in its general settings.
+    Although cards are an extension, remember that the CMS page you want to display as a card must have the **display type set to card** in its general settings.
 
 The cards are composed of two sections:
 
@@ -182,9 +181,8 @@ The cards are composed of two sections:
 
 
 !!! Note
-
-The 3 fields are mandatory in configuration but can be left empty.
-If no image is associated with the image, the card will be colored with the side menu color
+    The 3 fields are mandatory in configuration but can be left empty.
+    If no image is associated with the image, the card will be colored with the side menu color
 
 ```
 "cardHeader": {
@@ -207,8 +205,7 @@ If no image is associated with the image, the card will be colored with the side
 * **link** - allows you to configure buttons that refer to a URL, in order to automatically open an application. In the configuration of the link buttons, it is necessary to specify in the "linksType" key the link to be obtained by pressing the button. Furthermore, in this type of widget it is possible to insert icons to be displayed on the button.
 
 !!! Note
-
-At the moment there are already three link buttons that can be used:
+    At the moment there are already three link buttons that can be used:
 
 * **Send Mail**, which allows you to send an email. To configure this button it is necessary to insert **"email"** in the configuration of the card in the "linksType" field.
 
@@ -218,7 +215,7 @@ At the moment there are already three link buttons that can be used:
 
 Each widget can consist of multiple properties of the same type. For example. If I choose a text widget within it I can display more properties of type text. The cars based on the number of elements present divide the card space.
 
-example !!!
+!!! example
     Here is an example of card content rows - With this view you will see below the header a field notes, two properties, two buttons and two links.
 
 
@@ -252,9 +249,8 @@ example !!!
 
  To insert the card into a collection, write the name of the collection exactly and then insert the card into cmsProperties:
 
-example !!!
-
-Here is an example of a final card within the change-requests collection
+!!! example
+    Here is an example of a final card within the change-requests collection
 
 ```
 
@@ -332,9 +328,8 @@ In the example we have therefore:
 The notifications in the side menu allow you to display the number of elements that satisfy a condition in the notification form.
 Notifications are objects composed of only one element: a **query**. Within the query you must specify the condition for which the single data is counted.
 
-example !!!
-
-Here is an example of notification
+!!! example
+    Here is an example of notification
 
 
          "notification": {
@@ -362,9 +357,8 @@ The highlights allow you to highlight rows in the tables. A highlight is an obje
 
 * **backgroundColor**, which configures the background color in hexadecimal ([Link for hexadecimal colors] (https://www.web-link.it/colori-html.html)).
 
-example !!!
-
-Here is an example of a highlight
+!!! example
+    Here is an example of a highlight
 
 
         "highlight": {
@@ -490,9 +484,8 @@ When in json, the ACL on groups fits into all the collections that want to be co
 In the rest of the json, all the other properties of the collection are configured. The group to which access is reserved is expressed with "groups.nomegruppo". If the property is not configured, the default collection is visible to everyone.
 
 
-example !!!
-
-Here is a complete example of configuration.
+!!! example
+    Here is a complete example of configuration.
 
        ```
        "eroibuoni": {

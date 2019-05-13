@@ -1,6 +1,7 @@
 #Platform Release Note
 
 ###v4.19.2 (May 6,2019)
+
 **DEVELOPMENT SUITE**
 
 **API Console v1.0.2**

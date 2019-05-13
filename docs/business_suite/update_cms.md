@@ -5,7 +5,7 @@ Here you will find all the steps to update the CMS.
 ## 1. How to understand your version of the CMS
 
 To understand the current version of your CMS, open the CMS page. Scroll down the **left side menu** to the end: at the end of all the collections, you will find the wording **"My API CMS vxxxx"** with an indication of the version (eg v.7.0.10) .
-At this [link](https://docs.mia-platform.eu/release_notes/cms_releasenotes/) you will find a list of the released versions of the CMS and the respective supported features.
+At this [link](https://docs.mia-platform.eu/release_notes/apiconsole_releasenotes/) you will find a list of the released versions of the CMS and the respective supported features.
 
 
 ## 2. How to update the CMS version
@@ -40,4 +40,4 @@ In the file you can find the configuration of all environments (development, pre
 
 For both preprod and cloud environments, in the "variables" section you can update the CMS version to the **"CMS_IMAGE_NAME"** field.
 
-Then you save and deploy the project from the API Console in both environments. At this point it will be possible to see the updated CMS version also in preprod and cloud environments.
+Then you should **save** and **deploy** the project from the API Console in both environments. At this point it will be possible to see the updated CMS version also in preprod and cloud environments.
