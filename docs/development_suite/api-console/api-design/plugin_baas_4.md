@@ -206,7 +206,8 @@ Gli argomenti da passare a queste funzioni sono:
 * `options` - facoltativo, un oggetto che ammette tutte le `options` elencate sopra per i metodi `getServiceProxy` e `getDirectServiceProxy` (che verranno eventualmente sovrascritte), più i seguenti campi:
     * `returnAs` - una stringa che identifica il formato con cui si desidera ricevere la risposta. Può essere `JSON`, `BUFFER` o `STREAM`. Default `JSON`.
     * `allowedStatusCodes` - un array di interi che definisce quali status code della risposta sono accettati. Se lo status code di risposta non è contenuto in questo array, la promise verrà rifiutata. Se questo parametro viene omesso, la promise viene risolta in ogni caso (anche se il server interrogato risponde 500).
-
+    * `isMiaHeaderInjected` - valore booleano che identifica se devono essere inoltrati gli header di Mia nella richiesta. Default `true`.
+  
 #### Esempio
 ```js
 // esempio di post ad un endpoint
