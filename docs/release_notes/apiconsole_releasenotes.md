@@ -1,5 +1,15 @@
 #Platform Release Note
 
+###v4.19.3 (May 22, 2019)
+**BUSINESS SUITE**
+
+**CMS v9.0.2**
+
+Fixed:
+
+The export with filters was paginated and exported only the elements present on the first page, with this fix it will be possible to export correctly all the filtered elements.
+
+
 ###v4.19.2 (May 6,2019)
 
 **DEVELOPMENT SUITE**
@@ -7,7 +17,7 @@
 **API Console v1.0.2**
 
 Fixed:
- 
+
 We have modified the limit of characters that could be inserted in the field **Name** of the table. Previously they were 32 now there are **no character limits.**
 
 

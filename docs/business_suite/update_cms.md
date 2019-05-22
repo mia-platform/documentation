@@ -20,24 +20,16 @@ Change the **CMS configuration**. The path to access the configuration file on g
 
 In the "variables" section you can find **"CMS_VERSION"**, which must be updated with the latest available or desired version of the CMS. At this point, the CMS in test is saved and displayed.
 
-!!! Note
-
-The automatic update of the CMS version only happens for the **test** environment. In fact, in the ".gitlab-ci.yml" file in the "script" section you can see that the test environment is configured in such a way as to automatically update the git version.
 
 ### Second step
 
-Proceed with the **configuration for preprod and prod** environments. To do this the path on git is:
+Proceed with the **configuration for Gitlab CI** . To do this the path on git is:
 
-`>projectnam/config/.gitlab-ci.yml`
+`>projectname/config/.gitlab-ci.yml`
 
-In the file you can find the configuration of all environments (development, preprod and cloud), consisting of three sections:
+In the file you can find the configuration of all environments (development, preprod and cloud).
 
-* internship;
+For each environments, in the "variables" section you can update the CMS version to the **"CMS_IMAGE_NAME"** field.
 
-* variables;
-
-* variables only.
-
-For both preprod and cloud environments, in the "variables" section you can update the CMS version to the **"CMS_IMAGE_NAME"** field.
-
-Then you should **save** and **deploy** the project from the API Console in both environments. At this point it will be possible to see the updated CMS version also in preprod and cloud environments.
+!!! warning
+    You should **save** and **deploy** the project from the API Console in each environments. Only after the deploy it will be possible to see the updated CMS version in each environments.
