@@ -11,6 +11,7 @@ Added:
 
 We have released the **new documentation portal**, called API Portal, created entirely by Mia-platform.
 To support the new API Portal, each project must activate the api-portal among its services.
+To activate, you should set **"api-portal": true** into *enabledServices* object in api-console projects collection into mongo.
 
 ![API Portal](img/api-portal.png)
 
