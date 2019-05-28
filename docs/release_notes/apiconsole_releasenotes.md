@@ -104,13 +104,6 @@ we have created an error handler in exportsHttpInterface, which is passed to cru
 * Management of objects in the queryString  
 In the case of objects within the query parameter of getExport, this was passed to got.stream (which makes a call to the crud) was not managed.
 
-
-**Swagger Aggregator**
-
-Fixed:
-
-* The swagger service remains available even if one of the associated services collapses
-
 **Mongo DB Reader**
 
 Added:
