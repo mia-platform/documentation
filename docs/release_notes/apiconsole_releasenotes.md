@@ -59,6 +59,39 @@ Fixed:
 
 **RUNTIME SUITE**
 
+**Updating fo Core Microservices**
+
+In all core microservices the routes of /healthz and /ready have been implemented.  
+The microservices in node have been updated to version 2 of fastify.
+
+The versions supported by the API console in v.1.1.0 are the following
+
+```
+acl-services: 1.0.2
+cms-backend: 1.0.2
+credential-service: 1.0.0
+crud-service: 1.0.4
+microservice-gateway: 5.0.3
+mongodb-reader: 1.0.0
+session manager: 4.2.2
+swagger-aggregator: 1.0.5
+user-service: 1.0.0
+v1-adapter: 2.0.0
+files-service: 1.0.2
+mail-notification-service: 1.0.2
+notifications-service: 1.0.0
+token-service: 1.0.8
+``f
+
+**NEW MICROSERVICES**
+
+**MailChimp Plugin**  
+This microservices allows to manage the users registration to Mailchimp lists.
+It provides methods to get the groups and to get, add, update or delete the users from a specific list as a user or prospect.
+
+**Notification Manager**  
+This microservice allows to easily and safely set the status (read/unread) of one or more notifications belonging to the requesting user. It also allows to retrive the notifications of a user, hiding the information that relates to the notifications but not to the user (e.g. the list of users who has read a notification).
+
 **V1 Adapter**
 
 Fixed:
