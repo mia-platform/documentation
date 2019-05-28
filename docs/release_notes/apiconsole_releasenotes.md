@@ -81,7 +81,7 @@ files-service: 1.0.2
 mail-notification-service: 1.0.2
 notifications-service: 1.0.0
 token-service: 1.0.8
-``f
+```
 
 **NEW MICROSERVICES**
 
