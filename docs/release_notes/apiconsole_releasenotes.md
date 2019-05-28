@@ -1,4 +1,88 @@
 #Platform Release Note
+##v4.20.0 (May 28, 2019)
+
+**DEVELOPMENT SUITE**
+
+**API Console v1.1.0**
+
+This version must be used with backend v1.1.0
+
+Added:
+
+We have released the **new documentation portal**, called API Portal, created entirely by Mia-platform.
+To support the new API Portal, each project must activate the api-portal among its services.
+
+![API Portal](img/api-portal.png)
+
+!!! warning
+    Once the new api-portal is activated, it will no longer be possible to reach the old route /documentations/swagger
+    The documentation will be available only from the new route: /documentations/api-portal/
+
+**New service management**  
+The service section were divided into two types: services and proxies
+
+The services will no longer be managed using the Git URL and Git Revision, but using the name of the **docker image**.
+
+![New Custom Service](img/custom-service-1.png)
+
+Furthermore, if it is necessary to write advanced configurations it is possible to write the advanced service and deployment files directly from the API console and add all the necessary configmaps files.
+
+![Advanced Section](img/advanced-section.png)
+
+**New type of proxies: cross-projects**
+
+With the introduction of this new service it is possible to link to services created in another project, but present within our infrastructure.
+For security reasons it will be possible to link to the namespaces to which you have access.
+
+![Cross Projects](img/cross-projects.png)
+
+**Revision table**
+
+We have restyled our table component, improving user experience and interactions with the component. It is more responsive, more compact, more readable, the delete is present on every single line, it is possible to resize the columns, and the addition of the elements has been moved downwards
+
+![New Table](img/review-table.png)
+
+**Various**
+
+* we added the placeholders to all the empty sections
+* In the CMS area the default delete is always active, which allows to delete an element from db from the CMS
+* we added in the header the link to the project git
+* we added the ability to add a series to an analytic being edited
+
+Fixed:
+
+* The configured lookups did not save the values
+* The advanced section did not load the files correctly
+* When creating a service, the recommended default name will no longer be the name of the group path, but the name of the namespace. To give an example before the name was: gruph-path/test-name now is: project/test-name.
+* Various graphic fixes
+
+
+**RUNTIME SUITE**
+
+**V1 Adapter**
+
+Fixed:
+
+* We have fixed the fact that from the export of the CMS if I selected the label the id was exported anyway
+* Error handling in export pipes  
+The "error" event, launched by a pipe in the event of an error, was not handled.
+we have created an error handler in exportsHttpInterface, which is passed to crudProxy and associated with the management of the error of got.stream
+
+* Management of objects in the queryString  
+In the case of objects within the query parameter of getExport, this was passed to got.stream (which makes a call to the crud) was not managed.
+
+
+**Swagger Aggregator**
+
+Fixed:
+
+* The swagger service remains available even if one of the associated services collapses
+
+**Mongo DB Reader**
+
+Added:
+
+* Added path parameter to format input function
 
 ###v4.19.3 (May 22, 2019)
 **BUSINESS SUITE**
