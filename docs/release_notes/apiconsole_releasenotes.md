@@ -14,9 +14,9 @@ To support the new API Portal, each project must activate the api-portal among i
 
 ![API Portal](img/api-portal.png)
 
-!!! warning
-    Once the new api-portal is activated, it will no longer be possible to reach the old route /documentations/swagger
-    The documentation will be available only from the new route: /documentations/api-portal/
+!!! warning "Breaking Change"
+    Once the new api-portal is activated, it will no longer be possible to reach the old route `/documentations/swagger/`
+    The documentation will be available only from the new route: `/documentations/api-portal/`
 
 **New service management**  
 The service section were divided into two types: services and proxies
