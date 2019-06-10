@@ -7,7 +7,7 @@ nav:
 - Home:
   - Mia Platform Docs: 'index.md'
   - Getting Started: 'getting_started/quickstart.md'
-  - Design Guidelines: 'guidelines/git_vademecum.md'
+  - Design Guidelines: 'dev_ops_guide/git_vademecum.md'
   - Custom Plugin: 'development_suite/api-console/api-design/plugin_baas_4.md'
   - CMS and Analytics: 'business_suite/overview-business-suite.md'
   - DevOps: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
@@ -15,7 +15,7 @@ nav:
   - Info: 'info/version-policy.md'
 
 - Guidelines:
-    - GIT Vademecum: 'guidelines/git_vademecum.md'
+    - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - API: 'guidelines/api.md'
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
