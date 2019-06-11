@@ -64,7 +64,7 @@ In this section you can choose the general configurations of your page.
 
 * *TablePush* instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers.
 
-* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to this [link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare- le-card) find how to do it.
+* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to do so, find how to do it at the following [link](https://docs.mia-platform.eu/business_suite/conf_cms/#1-configure-the-card).
 
 * *Gallery* is instead the perfect representation for images.
 
@@ -125,7 +125,7 @@ For each property you can configure different fields that allow you to improve t
 
 * **Editable**: if you activate this check the property can be modified by anyone, otherwise it will not be editable by CMS
 
-* **Visibility**: indicates at what level of the CMS you want to show a property. Layers can be: * Hidden * and is not visible; * All * and is visible in the main table; * Detail and Modal * and it is visible when you click in the table, in the right area of ​​your CMS, at this level you tend to put non-priority information, but which bring value, eg: in-depth information. Last is only in modal: * Modal * that is when I click Expand from the Side edit area.
+* **Visibility**: indicates at what level of the CMS you want to show a property. Layers can be: *Hidden* and is not visible; *All* and is visible in the main table; *Detail and Modal* and it is visible when you click in the table, in the right area of ​​your CMS, at this level you tend to put non-priority information, but which bring value, eg: in-depth information. Last is only in modal: *Modal* that is when I click Expand from the Side edit area.
 
 ### 2. The visibility filters
 
@@ -224,7 +224,7 @@ From a Look up you can also configure additional features that allow you to meet
 So if for example we wanted to show only the name, the array will be: ["name"]. If we want to show the name and surname it will instead be: ["name", "surname"].
 
 * **Delimiter**: the delimiters are used when I have chosen to show more than one property and I want to insert a delimiter between the two properties. Ex: if before I chose to
-show the name and surname properties and I want that between the two there is a hyphen I will have to write the hyphen in an array of strighe. The delimiter will then be: ["-"]
+show the name and surname properties and I want that between the two there is a hyphen I will have to write the hyphen in an array of strings. The delimiter will then be: ["-"]
 
 * **Filter**: I can also choose to set a filter to visibility. To write a query we suggest two links: 1) the different types of queries 2) all types of operators that you can use.
 Let's take an example: in this lookup I want to see only the data that have state = a working.
@@ -249,7 +249,7 @@ From Api Console you can also choose to configure buttons. The buttons are actio
 
 The buttons are displayed in the central area of the CMS near the publish, draft and trash buttons
 
-To create a button, go to the Bottni section and configure the following fields:
+To create a button, go to the Buttons section and configure the following fields:
 
 * **ID**: represents the field that uniquely identifies the action. it is an unmodifiable field
 * **Label**: represents the name you want to appear in the CMS
