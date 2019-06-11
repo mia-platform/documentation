@@ -64,7 +64,7 @@ In this section you can choose the general configurations of your page.
 
 * *TablePush* instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers.
 
-* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to this [link](https://docs.mia-platform.eu/configurator/conf_cms/#1-configurare- le-card) find how to do it.
+* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to this [link](https://docs.mia-platform.eu/business_suite/conf_cms/#1-configure-the-card) find how to do it.
 
 * *Gallery* is instead the perfect representation for images.
 
