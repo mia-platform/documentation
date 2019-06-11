@@ -43,3 +43,5 @@ Finally, to create the service select **create**.
 
 !!! warning
     Once that the service is created on Gitlab, the user will not be able to delete it anymore.
+
+At the following [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/) the user can find a more detailed guide and overview about how to create new service starting from Templates.
