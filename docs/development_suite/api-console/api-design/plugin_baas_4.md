@@ -23,18 +23,18 @@ cd my-custom-plugin
 npm init -y
 ```
 
-Aprire il file `package.json` e modificare opportunamente i campi `name`, `description`.
-Il campo `version` all'inzio è meglio valorizzarlo a `0.0.1`.
+Open the `package.json` file and modify the `name`, `description` fields accordingly.
+The `version` field at the beginning is best valued at` 0.0.1`.
 
-`custom-plugin-lib` può essere installata usando `npm`, assieme alla sua dipendenza `fastify-cli`, necessaria per l'avvio
-e l'esecuzione del CM
+`custom-plugin-lib` can be installed with` npm`, along with its `fastify-cli` dependency, necessary for booting
+and the execution of the CM
 
 ```bash
 npm i --save @npm-mia-platform/libraries-custom-plugin fastify-cli
 ```
 
-La libreria può essere utilizzata per istanziare un server HTTP
-in questo modo, incollando il questo pezzo di codice in un file, nominandolo `index.js`
+The library can be used to instantiate an HTTP server
+in this way, pasting this piece of code into a file, naming it `index.js`
 
 ```js
 process.env.USERID_HEADER_KEY=''
@@ -59,47 +59,49 @@ module.exports = customPlugin(async service => {
 })
 ```
 
-Per avviare il CM è sufficiente modificare il file `package.json` in questo modo
+
+To start the CM, simply edit the `package.json` file in this way
+
 ```js
   //...
   "scripts": {
     // ...  
     "start": "fastify start src/index.js",
 ```
-eseguire un ```npm start``` ed aprire un browser alla url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive),
-per ottenere una risposta.
+exectue a ```npm start``` and opne a browser at the url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), to get an answer.
 
-## Factory esposta da `custom-plugin-lib`  
 
-`custom-plugin-lib` esporta una funzione la quale crea l'infrastruttura pronta ad accogliere la definizione
-di rotte e decoratori. Questo estratto di codice ne esemplifica l'utilizzo.
+## Factory exposed by `custom-plugin-lib`
+
+`custom-plugin-lib` exports a function which creates the infrastructure ready to accept the definition
+of routes and decorators. This code extract exemplifies its use.
 ```js
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 
 module.exports = customPlugin(function(service) { })
 ```
-L'argomento della funzione `customPlugin` è una **funzione di dichiarazione** il cui argomento è un oggetto che permette
-di definire rotte e decoratori.
+The argument of the `customPlugin` function is a ** declaration function ** whose argument is an object that allows
+to define routes and decorators.
 
+## Routes
 
-## Rotte
-
-`custom-plugin-lib` permette di definire il comportamento del CM in risposta ad una richiesta HTTP, in stile dichiarativo.
-A tal fine si utilizza la funzione `addRawCustomPlugin` esposta dal primo argomento della funzione di dichiarazione.
+`custom-plugin-lib` allows to define the behavior of the CM in response to an HTTP request, in a declarative style.
+For this purpose, the `addRawCustomPlugin` function is used as shown in the first argument of the declaration function.
 ```js
 service.addRawCustomPlugin(httpVerb, path, handler, schema)
 ```
-i cui argomenti sono, nell'ordine
 
-* `httpVerb` - il verbo HTTP della richiesta (e.g., `GET`)
-* `path` - il path della rotta (e.g., `/status/alive`)
-* [`handler`](#handlers) - funzione che contiene il vero e proprio comportamento. Deve rispettare la stessa interfaccia definita nella
-documentazione degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
-* [`schema`](#schema-e-documentazione-di-una-rotta) - definizione dello schema dati di richiesta e risposta.
-Il formato è quello accettato da [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization)
+whose arguments are, in order
+
+* `httpVerb` - the HTTP verb of the request (e.g.,` GET`)
+* `path` - the route path (e.g.,` /status /alive`)
+* [`handler`](#handlers) - function that contains the actual behavior. It must respect the same interface defined in the
+documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
+* [`scheme`](#scheme-and-documentation-of-a-route) - definition of the request and response data schema.
+The format is the one accepted by [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization)
 
 
-#### Esempio
+#### Example
 ```js
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 
@@ -128,23 +130,23 @@ module.exports = customPlugin(async function(service) {
 
 ## Handlers
 
-Un `handler` è una funzione che rispetta l'interfaccia degli handler di [fastify](https://www.fastify.io/docs/latest/Routes/) ed
-accetta una [Request](https://www.fastify.io/docs/latest/Request/) ed una [Reply](https://www.fastify.io/docs/latest/Reply/).
-Oltre all'interfaccia di Request di fastify, `custom-plugin-lib` decora l'istanza Request con informazioni legate alla Piattaforma come
-l'`id` utente correntemente loggato, i suoi gruppi, il tipo di client che ha eseguito la richiesta HTTP e se la richeista proviene dal CMS.
-Inoltre l'istanza di Request è decorata anche con metodi che permettono di eseguire richieste HTTP verso altri servizi
-rilasciati all'interno della Piattaforma.
+A `handler` is a function that respects the handler interface of [fastify](https://www.fastify.io/docs/latest/Routes/) and
+accepts a [Request](https://www.fastify.io/docs/latest/Request/) and a [Reply](https://www.fastify.io/docs/latest/Reply/).
+In addition to the fastify Request interface, `custom-plugin-lib` decorates the Request instance with information related to the Platform as
+the `id` user currently logged in, its groups, the type of client that performed the HTTP request and if the request comes from the CMS.
+Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services released on the Platform.
 
-### Identificazione Utente e Client
 
-L'istanza di `Request` (il primo argomento di un handler) viene decorato con le funzioni
+### User and Client Identification
 
-* `getUserId` - espone l'`id` dell'utente, se loggato o `null`
-* `getGroups` - espone un array contenente stringhe che identificano i gruppi di appartenenza dell'utente loggato
-* `getClientType` - espone il tipo di client che ha eseguito la richiesta HTTP
-* `isFromBackOffice` - espone un booleano per discriminare se la richiesta HTTP proveniente dal CMS
+The instance of `Request` (the first argument of a handler) is decorated with functions
 
-#### Esempio
+* `getUserId` - exposes the user's ʻid`, if logged in or` null`
+* `getGroups` - exposes an array containing strings that identify the groups to which the logged in user belongs
+* `getClientType` - exposes the type of client that performed the HTTP request
+* `isFromBackOffice` - exposes a boolean to discriminate whether the HTTP request from the CMS
+
+#### Example
 ```js
 async function helloHandler(request, reply) {
   // accesso all'id dell'utente (passato come
@@ -153,62 +155,63 @@ async function helloHandler(request, reply) {
 }
 ```
 
-### Interrogazioni ad Endpoint e Servizi della Piattaforma
 
-Sia dall'istanza di `Request` (il primo argomento di un handler) sia dell'istanza di `Service` (il primo argomento della funzione di dichiarazione) è possibile ottenere un oggetto proxy per interrogare
-gli altri endpoint o servizi che compongono la Piattaforma. Questi proxy si fanno carico di trasmettere gli header della
-Piattaforma automaticamente. Esistono due tipi di proxy, ritornati da due funzioni distinte:
+### Endpoint queries and Platform services
 
-* `getServiceProxy(options)` - proxy che passa per `microservice-gateway`
-* `getDirectServiceProxy(serviceName, options)` - proxy diretto al servizio
+Both from the instance of `Request` (the first argument of a handler) and the instance of` Service` (the first argument of the declaration function) it is possible to obtain a proxy object to query
+the other endpoints or services that make up the Platform. These proxies are responsible for transmitting the headers of the
+Platform automatically. There are two types of proxies, returned by two distinct functions:
 
-La differenza fondamentale tra i due proxy è che il primo attiva tutte le logiche che sono censite in `microservice-gateway`,
-mentre il secondo no. Ad esempio, se una risorsa esposta dal servizio CRUD è protetta da ACL, questa protezione verrà
-bypassata utilizzando il proxy diretto.
+* `getServiceProxy(options)` - proxy passing through `microservice-gateway`
+* `getDirectServiceProxy(serviceName, options)` - direct proxy to the service
 
-Per il proxy diretto è necessario specificare il `serviceName` del servizio da interrogare. La porta non può essere specificata nel `serviceName` ma deve essere passata nel campo `port` delle `options`. Nel caso di `getServiceProxy`, non si deve, invece, specificare il nome del servizio in quanto è implicitamente quello del `microservice-gateway`.
-Il parametro `options` è un oggetto con i seguenti campi opzionali:
+The fundamental difference between the two proxies is that the first one activates all the logics that are registered in `microservice-gateway`,
+while the second does not. For example, if a resource exposed by the CRUD service is protected by ACL, this protection will come
+bypassed using the direct proxy.
 
-* `port` - un intero che identifica la porta del servizio da interrogare
-* `protocol` - una stringa che identifica il protocollo da usare (sono supportati solo 'http' e 'https')
-* `headers` -  un oggetto che rappresenta l'insieme degli header da inoltrare al servizio
-* `prefix` - una stringa che rappresenta il prefisso del path delle chiamate al servizio 
+For the direct proxy it is necessary to specify the `serviceName` of the service to be queried. The port cannot be specified in the `serviceName` but must be passed in the` port` field of the `options`. In the case of `getServiceProxy`, you should not specify the name of the service as it is implicitly that of the` microservice-gateway`.
+The `options` parameter is an object with the following optional fields:
 
-Potenzialmente, il metodo `getDirectServiceProxy`, permette di interrogare anche servizi esterni alla piattaforma. In questo caso, però è necessario tener presente che verranno automaticamente inoltrati gli header di piattaforma.
+* `port` - an integer that identifies the port of the service to be queried
+* `protocol` - a string that identifies the protocol to use (only 'http' and 'https' are supported)
+* `headers` - an object that represents the set of headers to forward to the service
+* `prefix` - a string representing the prefix of the service call path
 
-Entrambi i proxy, di default, inoltrano al servizio chiamato i quattro `mia-headers`. Per fare ciò è necessario che siano presenti le seguenti variabili d'ambiente: 
+Potentially, the `getDirectServiceProxy` method allows you to also query services outside the platform. In this case, however, it is necessary to bear in mind that the platform headers will be automatically forwarded.
+
+Both proxies, by default, forward the four `mia-headers` to the service called. To do this, the following environment variables must be present:
 
 * `USERID_HEADER_KEY`
 * `GROUPS_HEADER_KEY`
 * `CLIENTTYPE_HEADER_KEY`
 * `BACKOFFICE_HEADER_KEY`
 
-I valori di queste variabili devono specificare la chiave dei quattro `mia-headers`.
+The values ​​of these variables must specify the key of the four `mia-headers`.
 
-Inoltre, è possibile inoltrare al servizio chiamato anche altri headers della richiesta originale. Per fare ciò è necessario definire una ulteriore variabile d'ambiente, `ADDITIONAL_HEADERS_TO_PROXY`, il cui valore deve essere una stringa contente le chiavi degli headers da inoltrare separati da una virgola.
+In addition, other headers of the original request can also be forwarded to the named service. To do this it is necessary to define an additional environment variable, `ADDITIONAL_HEADERS_TO_PROXY`, whose value must be a string containing the keys of the headers to be forwarded separated by a comma.
 
-Entrambi i proxy espongono le funzioni
+Both proxies expose the functions
 
-* `get(path, querystring, options)`
-* `post(path, body, querystring, options)`
-* `put(path, body, querystring, options)`
-* `patch(path, body, querystring, options)`
-* `delete(path, body, querystring, options)`
+* `get (path, querystring, options)`
+* `post (path, body, querystring, options)`
+* `put (path, body, querystring, options)`
+* `patch (path, body, querystring, options)`
+* `delete (path, body, querystring, options)`
 
-Gli argomenti da passare a queste funzioni sono:
+The topics to be passed to these functions are:
 
-* `path` - una stringa che identifica la rotta a cui si desidera inviare la richiesta
-* `body` - facoltativo, il body della richiesta che può essere:
-    * un oggetto JSON
-    * un [Buffer](https://nodejs.org/api/buffer.html#)
-    * uno [Stream](https://nodejs.org/api/stream.html)
-* `querystring` - facoltativo, un oggetto che rappresenta la querystring
-* `options` - facoltativo, un oggetto che ammette tutte le `options` elencate sopra per i metodi `getServiceProxy` e `getDirectServiceProxy` (che verranno eventualmente sovrascritte), più i seguenti campi:
-    * `returnAs` - una stringa che identifica il formato con cui si desidera ricevere la risposta. Può essere `JSON`, `BUFFER` o `STREAM`. Default `JSON`.
-    * `allowedStatusCodes` - un array di interi che definisce quali status code della risposta sono accettati. Se lo status code di risposta non è contenuto in questo array, la promise verrà rifiutata. Se questo parametro viene omesso, la promise viene risolta in ogni caso (anche se il server interrogato risponde 500).
-    * `isMiaHeaderInjected` - valore booleano che identifica se devono essere inoltrati gli header di Mia nella richiesta. Default `true`.
-  
-#### Esempio
+* `path` - a string that identifies the route to which you want to send the request
+* `body` - optional, the body of the request which can be:
+    * a JSON object
+    * a [Buffer](https://nodejs.org/api/buffer.html#)
+    * one [Stream](https://nodejs.org/api/stream.html)
+* `querystring` - optional, an object that represents the querystring
+* `options` - optional, an object that admits all the` options` listed above for the `getServiceProxy` and` getDirectServiceProxy` methods (which will eventually be overwritten), plus the following fields:
+    * `returnAs` - a string that identifies the format in which you want to receive the response. It can be `JSON`,` BUFFER` or `STREAM`. Default `JSON`.
+    * `allowedStatusCodes` - an array of integers that defines which status codes of the response are accepted. If the response status code is not contained in this array, the promise will be rejected. If this parameter is omitted, the promise is resolved in any case (even if the interrogated server answers 500).
+    * `isMiaHeaderInjected` - Boolean value that identifies whether Mia's headers should be forwarded in the request. Default `true`.
+
+#### Example
 ```js
 // esempio di post ad un endpoint
 async function tokenGeneration(request, response) {
@@ -238,19 +241,20 @@ async function tokenGeneration(request, response) {
 }
 ```
 
-## Decoratori di PRE e POST
 
-Tramite `custom-plugin-lib` è possibile dichiarare decoratori di PRE e di POST. Dal punto di vista concettuale, un decoratore
-di (1) PRE o di (2) POST è una trasformazione applicata da `microservice-gateway` rispettivamente a (1) una richiesta indirizzata
-verso un servizio (**richiesta originale**) oppure (2) alla risposta (**risposta originale**) che questo servizio invia al
-chiamante. Dal punto di vista pratico, i decoratori sono implementati come richieste HTTP in `POST` verso un CM specificato.
+## PRE and POST decorators
 
-La dichiarazione di un decoratore utilizzando `custom-plugin-lib` avviene in maniera simile alla dichiarazione di una rotta
+Through `custom-plugin-lib` it is possible to declare PRE and POST decorators. From a conceptual point of view, a decorator
+of (1) PRE or (2) POST is a transformation applied from `microservice-gateway` to (1) a request addressed
+to a service (**original request**) or (2) to the reply (**original reply**) that this service sends to
+caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified CM.
+
+The declaration of a decorator using `custom-plugin-lib` occurs in a similar way to the declaration of a route
 
 * `service.addPreDecorator(path, handler)`
 * `service.addPostDecorator(path, handler)`
 
-#### Esempio
+#### Example
 ```js
 module.exports = customService(async function(service) {
   // handler in questo caso è specificato in maniera simile come per le rotte
@@ -258,31 +262,32 @@ module.exports = customService(async function(service) {
 })
 ```
 
-### Accesso e Manipolazione della Richiesta Originale
-Le funzioni utilità esposte dall'istanza `Request` (il primo parametro di un handler) servono per accedere alla richiesta originale
 
-* `getOriginalRequestBody()` - ritorna il body della richiesta originale
-* `getOriginalRequestHeaders()` - ritorna gli headers della richiesta originale
-* `getOriginalRequestMethod()` - ritorna il metodo della richiesta originale
-* `getOriginalRequestPath()` - ritorna il path della richiesta originale
-* `getOriginalRequestQuery()` - ritorna la querystring della richiesta originale
+### Access and Handling of the Original Request
+The utility functions exposed by the `Request` instance (the first parameter of a handler) are used to access the original request
 
-Oltre ai metodi descritti sopra, l'istanza di `Request` espone un'interfaccia per modificare la richiesta originale, la quale che verrà
-inoltrata da `microservice-gateway` al servizio target. Questa interfaccia è accessibile utilizzando il metodo dell'istanza `Request`
-`changeOriginalRequest` il quale ritorna un oggetto con i seguenti metodi:
+* `getOriginalRequestBody ()` - returns the body of the original request
+* `getOriginalRequestHeaders ()` - returns the headers of the original request
+* `getOriginalRequestMethod ()` - returns the original request method
+* `getOriginalRequestPath ()` - returns the path of the original request
+* `getOriginalRequestQuery ()` - returns the querystring of the original request
 
-* `setBody(newBody)` - modifica il body della richiesta originale
-* `setHeaders(newHeaders)` - modifica gli headers della richiesta originale
-* `setQuery(newQuery)` - modifica la querystring della richiesta originale
+In addition to the methods described above, the `Request` instance exposes an interface to modify the original request, which will come
+forwarded by `microservice-gateway` to the target service. This interface is accessible using the `Request` instance method
+`changeOriginalRequest` which returns an object by the following methods:
 
-Per lasciare invariata la richiesta originale, invece, viene utilizzata la funzione `leaveOriginalRequestUnmodified`.
+* `setBody (newBody)` - change the body of the original request
+* `setHeaders (newHeaders)` - modify the headers of the original request
+* `setQuery (newQuery)` - modify the querystring of the original request
 
-In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritornato da `changeOriginalRequest` oppure l'oggetto ritornato da `leaveOriginalRequestUnmodified`.
+To leave the original request unchanged, the `leaveOriginalRequestUnmodified` function is used instead.
 
-### Esempio di Decoratore di PRE
+In all cases the PRE decorator handler must return either the object returned by `changeOriginalRequest` or the object returned by` leaveOriginalRequestUnmodified`.
+
+### Example of PRE Decorators
 ```js
-// questo decoratore di PRE legge un header della richiesta originale
-// e lo converte in parametro della querystring
+// this PRE decorator reads a header of the original request
+// and converts it to a querystring parameter
 async function attachTokenToQueryString(request, response) {
   const originalHeaders = request.getOriginalRequestHeaders()
   const token = originalHeaders['x-token']
@@ -292,38 +297,38 @@ async function attachTokenToQueryString(request, response) {
       .changeOriginalRequest()
       .setQuery({ token })
   }
-  // in caso il token non sia stato specificato negli headers
-  // si lascia invariata la richiesta originale
+  // in case the token was not specified in the headers
+  // the original request is left unchanged
   return request.leaveOriginalRequestUnmodified()
 }
 ```
 
-### Accesso e Manipolazione della Risposta Originale
+### Access and Manipulation of the Original Response
 
-Come per la richiesta original, l'istanza `Request` (il primo parametro di un handler) viene decorato con funzioni utili per
-accedere anche alla risposta originale
+As with the original request, the `Request` instance (the first parameter of a handler) is decorated with useful functions for
+also access the original answer
 
-* `getOriginalResponseBody()`
-* `getOriginalResponseHeaders()`
-* `getOriginalResponseStatusCode()`
+* `getOriginalResponseBody ()`
+* `getOriginalResponseHeaders ()`
+* `getOriginalResponseStatusCode ()`
 
-Oltre alle funzioni descritte sopra, l'istanza `Request` espone un'interfaccia per modificare la risposta originale, la quale che verrà
-inoltrata da `microservice-gateway` al client chiamante. Questa interfaccia è accessibile utilizzando la funzione
-`changeOriginalResponse` concatenandola con invocazioni alle funzioni
+In addition to the functions described above, the `Request` instance exposes an interface to modify the original response, which will come
+forwarded by `microservice-gateway` to the calling client. This interface is accessible using the function
+`changeOriginalResponse` concatenating it with invocations to functions
 
-* `setBody(newBody)` - modifica il body della risposta originale
-* `setHeaders(newHeaders)` - modifica gli headers della risposta originale
-* `setQuery(newQuery)` - modifica la querystring della risposta originale
-* `setStatusCode(newStatusCode)` - modifica lo status code della risposta originale
+* `setBody (newBody)` - change the body of the original answer
+* `setHeaders (newHeaders)` - modify the headers of the original answer
+* `setQuery (newQuery)` - modify the querystring of the original answer
+* `setStatusCode (newStatusCode)` - change the status code of the original response
 
-Per lasciare invariata la risposta originale, invece, viene utilizzata la funzione `leaveOriginalResponseUnmodified`.
+To leave the original answer unchanged, instead, the `leaveOriginalResponseUnmodified` function is used.
 
-In tutti i casi l'handler di un decoratore PRE deve ritornare o l'oggetto ritornato da `changeOriginalResponse` oppure l'oggetto ritornato da `leaveOriginalResponseUnmodified`.
+In all cases the PRE decorator handler must return either the object returned by `changeOriginalResponse` or the object returned by` leaveOriginalResponseUnmodified`.
 
-### Esempio di Decoratore di POST
+### Example of POST Decorators
 ```js
-// questo decoratore di POST legge un token dal body della risposta orginale
-// e lo converte in header.
+// this POST decorator reads a token from the original reply body
+// and converts it into a header.
 async function attachTokenToHeaders(request, response) {
   const originalBody = request.getOriginalResponseBody()
   const token = originalBody.token
@@ -336,28 +341,30 @@ async function attachTokenToHeaders(request, response) {
         "x-token": token,
       })
   }
-  // in caso il token non sia presente nel body della risposta
-  // si lascia invariata la risposta originale
+  // in case the token is not present in the body of the answer
+  // the original answer remains unchanged
   return request.leaveOriginalResponseUnmodified()
 }
 ```
 
-### Stop della Catena dei Decoratori
 
-Tramite `microservice-gateway` è possibile definire una catena sequenziale di decoratori, in modo che l'output di un
-singolo decoratore viene passato al decoratore successivo. In casi particolari, tuttavia, può  essere necessario
-interrompere la catena e ritornare una risposta al chiamante originale.
+### Decorator Chain Stop
 
-A tal fine, l'istanza `Request` (il primo argomento di un handler) espone la funzione
-```js
-abortChain(finalStatusCode, finalBody, finalHeaders)
+Through `microservice-gateway` it is possible to define a sequencer of decorators, so that the output of a
+single decorator is passed to the next decorator. In special cases, however, it may be necessary
+interrupt the chain and return a response to the original caller.
+
+For this purpose, the `Request` instance (the first argument of a handler) exposes the function
+
+```Js
+abortChain (finalStatusCode, finalBody, finalHeaders)
 ```
 
-#### Esempio
+#### Example
 ```js
-// questo decoratore di PRE verifica che sia presente un token
-// nell'header della richiesta originale. Se non è presente
-// interrompe la catena restituendo un error 401 al client
+// this PRE decorator verifies that a token is present
+// in the header of the original request. If it is not present
+// break the chain by returning an error 401 to the client
 async function validateToken(request, response) {
   const headers = request.getOriginalResponseHeaders()
   const token = headers['x-token']
@@ -368,16 +375,16 @@ async function validateToken(request, response) {
 }
 ```
 
-## Schema e Documentazione di una Rotta
+## Route Diagram and Documentation
 
-Un CM sviluppato con `custom-plugin-lib` espone automaticamente anche la documentazione delle rotte e dei decoratori che
-sono implementati. La documentazione viene specificata usando lo standard [OpenAPI 2.0](https://swagger.io/specification/v2/)
-ed esposta tramite [Swagger](https://swagger.io). Una volta avviato il CM, la sua documentazione è accessibile all'indirizzo
-rotta [`http://localhost:3000/documentation`](http://localhost:3000/documentation). La specifica dello schema delle richieste
-e delle risposte di una rotta deve essere conforme al formato accettato da
-[fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
+A CM developed with `custom-plugin-lib` automatically also exposes the documentation of the routes and decorators that
+are implemented. The documentation is specified using the [OpenAPI 2.0 standard] (https://swagger.io/specification/v2/)
+and exhibited through [Swagger](https://swagger.io). Once the CM is started, its documentation can be accessed at
+route [`http: // localhost: 3000 / documentation`] (http: // localhost: 3000 / documentation). The specification of the request scheme
+and responses to a route must conform to the format accepted by
+[Fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
 
-### Esempio
+### Example
 ```js
 const schema = {
   body: {
@@ -411,41 +418,41 @@ const schema = {
 }
 ```
 
-## Variabili d'Ambiente
+## Environment Variables
 
-Come ogni servizio della Piattaforma, un CM deve essere predisposto per essere rilasciato in ambienti diversi, a partire
-dall'ambiente locale (la macchina di sviluppo) fino agli ambienti di sviluppo, test e produzione. Le differenze tra vari
-ambienti sono gestite tramite il meccanismo delle variabili d'ambiente.
+Like any service on the Platform, a CM must be set up to be released in different environments, starting
+from the local environment (the development machine) to development, test and production environments. The differences between various
+environments are managed through the mechanism of environment variables.
 
-Per avviare un CM sviluppato con `custom-plugin-lib` è necessario che siano disponibili al processo `nodejs` le variabili
-d'ambiente
+To start a CM developed with `custom-plugin-lib` the variables need to be available to the` nodejs` process
+environment
 
-```bash
-USERID_HEADER_KEY=miauserid
-GROUPS_HEADER_KEY=miausergroups
-CLIENTTYPE_HEADER_KEY=miaclienttype
-BACKOFFICE_HEADER_KEY=isbackoffice
-MICROSERVICE_GATEWAY_SERVICE_NAME=microservice-gateway
+```Bash
+USERID_HEADER_KEY = miauserid
+GROUPS_HEADER_KEY = miausergroups
+CLIENTTYPE_HEADER_KEY = miaclienttype
+BACKOFFICE_HEADER_KEY = isbackoffice
+MICROSERVICE_GATEWAY_SERVICE_NAME = Microservice-gateway
 ```
 
-Tra queste variabili, quella più interessante è `MICROSERVICE_GATEWAY_SERVICE_NAME`, che contiene il nome di rete (o indirizzo IP)
-al quale è accessibile `microservice-gateway` e viene letta durante la [comunicazione con con gli altri servizi](#interrogazioni-ad-enpoint-e-servizi-della-piattaforma) interni
-alla Piattaforma. L'implicazione è che `MICROSERVICE_GATEWAY_SERVICE_NAME` rende possibile la configurazione del proprio CM in locale
-per interrogare una specifica installazione della Piattaforma. Ad esempio
+Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the network name (or IP address)
+to which `microservice-gateway` is accessible and is read during [internal communication with other services] (# queries-to-enpoint-and-platform-services) internal
+to the Platform. The implication is that `MICROSERVICE_GATEWAY_SERVICE_NAME` makes it possible to configure your local CM
+to query a specific installation of the Platform. For example
 
-```bash
-MICROSERVICE_GATEWAY_SERVICE_NAME=dev.instance.example/v1/
+```Bash
+MICROSERVICE_GATEWAY_SERVICE_NAME = dev.instance.example / v1 /
 ```
 
-Oltre a quelle obbligatorie, tramite `custom-plugin-lib` è possibile definire altre variabili d'ambiente in base alle
-esigenze del singolo CM, per poi accedervi ed utilizzarne i valori nel codice degli handlers. Per la definizione si
-usa il formato [JSON schema](http://json-schema.org/).
+In addition to the mandatory ones, using `custom-plugin-lib` it is possible to define other environment variables based on
+needs of the single CM, to then access them and use their values ​​in the code of the handlers. For the definition yes
+use the [JSON schema] format (http://json-schema.org/).
 
-Nel caso in cui al CM non venga fornito il corretto set di variabili d'ambiente,
-il CM non parte restituendo in output quale variabile d'ambiente manca.
+If the correct set of environment variables is not supplied to the CM,
+the CM does not start by returning in output which environment variable is missing.
 
 
-### Esempio
+### Example
 ```js
 // la variabile d'ambiente VARIABLE deve essere disponibile al processo
 const serverSchema = {    
@@ -478,22 +485,23 @@ module.exports = customPlugin(async service => {
 })
 ```
 
+
 ## Testing
 
-`custom-plugin-lib` è costruita su fastify e quindi si integra con gli [strumenti di testing](https://www.fastify.io/docs/latest/Testing/)
-messi a disposizione dal framework. Un esempio completo di questo tipo di test è presente online nel repository di
-`custom-plugin-lib` su [Github](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/).
+`custom-plugin-lib` is built on fastify and therefore integrates with [testing tools](https://www.fastify.io/docs/latest/Testing/)
+made available by the framework. A complete example of this type of test is present online in the repository of
+`custom-plugin-lib` on [Github](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/).
 
 ### Integration and Unit test
 
-Il testing di un CM costruito con `custom-plugin-lib` può essere effettuato a più livelli di astrazione. Una delle
-possibilià è quella di utilizzare una tecnica che si chiama _fake http injection_ per la quale è possibile simulare
-la ricezione di una richiesta HTTP. In questo modo si esercita tutta la logica del CM dallo strato HTTP, agli handler e
-questo è un esempio di Integration Testing.
+The testing of a CM built with `custom-plugin-lib` can be performed at multiple levels of abstraction. One of
+Possibility is to use a technique called _fake http injection_ for which it is possible to simulate
+receiving an HTTP request. In this way, all the CM logic is exercised from the HTTP layer to the handlers and
+this is an example of Integration Testing.
 
-#### Esempio Integration Test
+#### Example Integration Test
 
-Nell'esempio sottostante il framework di test [Mocha](https://mochajs.org/).
+In the example below the test framework [Mocha](https://mochajs.org/).
 
 ```js
 'use strict'
@@ -538,22 +546,22 @@ describe('/status/alive', () => {
 })
 ```
 
-#### Esempio di Integration Test con mock delle chiamate HTTP
+#### Integration Test Example with HTTP Call Mocking
 
 COMING SOON
 
-#### Esempio di Unit Test
+#### Example of Unit Test
 
 COMING SOON
 
-## Organizzazione del codice
+## Organization of the code
 
 COMING SOON
 
-## Rilascio
+## Release
 
 COMING SOON
 
-## Log e Metriche
+## Log and Metrics
 
 COMING SOON
