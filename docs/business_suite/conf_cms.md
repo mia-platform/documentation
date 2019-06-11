@@ -1,4 +1,4 @@
-## How to configure the CMS with Mia-Platform 3
+# How to configure the CMS with Mia-Platform 3
 
 The collections shown in the CMS are configured in two different .json files:
 
@@ -9,7 +9,7 @@ The collections shown in the CMS are configured in two different .json files:
 
 Both files are located inside the specific folder within the collection that you want to configure.
 
-### cms_config.json
+## cms_config.json
 
 Let's assume we are within the **heroes** collection and want to configure our cms heroes page.
 
@@ -67,7 +67,7 @@ key | example value | Comment
 ```
 
 
-### properties.json
+## properties.json
 
 The properties.json file is the file that contains all the fields in the collection. Each field has a similar structure.
 
@@ -128,7 +128,7 @@ the final json in our property **name** which is the name of the heroes will the
 ```
 
 
-# CMS Config-extension in the API Console
+## CMS Config-extension in the API Console
 
 All previous configurations are automatically managed by the API.
 However, there are some extensions that can not yet be configured from the front end but are managed by a component: the config-extension.
@@ -158,7 +158,7 @@ If it is not present you can create it.
 
 At this point you are ready to configure your extensions.
 
-## 1. Configure the Card
+### 1. Configure the Card
 
 Cards allow you to view your data no longer in the table, but in the form of Card.
 
@@ -323,7 +323,7 @@ In the example we have therefore:
 
 * two links - mail and skype, which allow you to automatically open the e-mail and skype applications.
 
-##2. Configure notifications
+### 2. Configure notifications
 
 The notifications in the side menu allow you to display the number of elements that satisfy a condition in the notification form.
 Notifications are objects composed of only one element: a **query**. Within the query you must specify the condition for which the single data is counted.
@@ -347,7 +347,7 @@ Notifications are objects composed of only one element: a **query**. Within the 
 
    In the example, the notification shows the number of delayed elements in the current state.
 
-## 3. Configure the highlights
+### 3. Configure the highlights
 
 The highlights allow you to highlight rows in the tables. A highlight is an object composed of three parameters:
 
@@ -381,7 +381,7 @@ The display will be as follows:
 In the example, on a red background written in white, the rows of the table that are delayed to the "in process" state are highlighted.
 
 
-## 4. Set conditional visibility to a property
+### 4. Set conditional visibility to a property
 
 Conditional visibility allows you to view a property only under a certain condition. From CMS the user has the possibility to view a property of a collection in two moments:
 
@@ -465,7 +465,7 @@ The **"visibility"** field is used to define the level at which the property is 
 After "edit" or "new" you insert a **"query"** to specify the condition that determines the visibility of the property. In the example the condition is simply that the name is Thor. The query is a mongoquery: you can have support to write the mongoquery to the following [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
 
 
-## 5. Access control on groups (ACL on groups)
+### 5. Access control on groups (ACL on groups)
 
 This extension allows you to **control access to CMS collections**, depending on the group. In fact it is possible that various groups of users access the same CMS, but that not all information is visible to everyone.
 
