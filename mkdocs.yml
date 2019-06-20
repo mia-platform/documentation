@@ -105,7 +105,7 @@ nav:
     - Configure Analytics .json file: 'business_suite/conf_analytics.md'
 
 - Release Notes:
-    - Platform: 'release_notes/apiconsole_releasenotes.md'
+    - Platform: 'release_notes/platform_releasenotes.md'
 
 - Info:
     - Version Policy: 'info/version-policy.md'

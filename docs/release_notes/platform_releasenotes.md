@@ -1,11 +1,11 @@
 #Platform Release Note
 
 ##v4.21.0 (June 18,2019)
-**DEV PORTAL v1.2.0**
+**DEVELOPERS CONSOLE v1.2.0**
 
 ![](img/dev-console.png)
 
-Mia has released the first version of the DEV Portal. The Dev Portal is a tool that allows you to manage the entire life cycle of a software product.
+Mia has released the first version of the Developers Console. The Developers Console is a tool that allows you to manage the entire life cycle of a software product.
 
 **NEW LAUNCHER!!!**
 
@@ -25,7 +25,7 @@ The sections you can access are the following:
 
 ![](img/monitoring.png)
 
-The Monitoring Infrastructure section is the DEV Portal area dedicated to the control and monitoring of its infrastructure.
+The Monitoring Infrastructure section is the Developers Console area dedicated to the control and monitoring of its infrastructure.
 
 The area is divided by the number of environments existing in that specific project. And it is possible to change the environment to be monitored via a tab in the top menu.
 
