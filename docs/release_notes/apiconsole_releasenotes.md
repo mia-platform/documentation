@@ -1,4 +1,115 @@
 #Platform Release Note
+
+##v4.21.0 (June 18,2019)
+**DEV PORTAL v1.2.0**
+
+![](img/dev-console.png)
+
+Mia has released the first version of the DEV Portal. The Dev Portal is a tool that allows you to manage the entire life cycle of a software product.
+
+**NEW LAUNCHER!!!**
+
+The launcher allows you to follow your development flow and access the different DEV PORTAL sections.
+
+The sections you can access are the following:
+
+* **Design**: In the Design area you can design your own APIs according to established guidelines. Create Microservices starting from Templates with configurable standards for you: log, security, readiness, probeness and documentation. All generated configurations are GIT centric.
+
+* **Deploy**: In the Deploy area you can release your services with a click that activates the automatic pipelines and you can visualize the history of your releases
+
+* **Monitoring**: In the Monitoring section it is possible to debug and monitor your own microservices.
+
+* **Documentation**: In the Documentation Portal users find all the documentation of their own APIs and microservices centralized and automatically generated.
+
+**NEW SECTION: MONITORING**
+
+![](img/monitoring.png)
+
+The Monitoring Infrastructure section is the DEV Portal area dedicated to the control and monitoring of its infrastructure.
+
+The area is divided by the number of environments existing in that specific project. And it is possible to change the environment to be monitored via a tab in the top menu.
+
+Within each individual environment you can view all the available pods with specific logs. In addition to viewing the logs, you can refresh the log by clicking "Refresh" and restart the pod by clicking on the "Delete Pod" button.
+
+When the POD is deleted, it is actually erased and pulled onto a new pod. The user will see the logs of the new pod that are generated.
+
+**NEW SECTION: HISTORY IN DEPLOY**
+
+![](img/deploy-history.png)
+
+The History page is the second area of ​​the Deploy section.
+In this tab you can view all the deployments that have taken place.
+
+In the history table I see the following information:
+
+* The status: if the deployment was successful or if it failed
+* The environment in which the deployment took place
+* The deployed version
+* The type of deployment
+* Who carried out the deployment
+* How long did the deployment last?
+* How long ago it was done
+* The git link to view the past deployment log.
+
+**API Console - RENAME IN DESIGN SECTION**
+
+Fixed:
+
+* If I create a field and create another one, the application splits
+
+* In the delete area I see the correct text to insert
+
+* Disable the ability to change the name of a crud property
+
+* possibility to insert the . in the name of an index
+
+**API PORTAL V1.1.0**
+
+Added:
+
+* The basepaths are no longer shown in the left bar, but the tags  
+* Multipart management
+
+Fixed:
+
+* The name of the project is dynamic
+
+**RUNTIME SUITE**
+
+**CRUD v1.1.0**
+
+Added:
+
+Support for patching array items. The $set command works properly on both primitive and RawObject item types, by using `array.$.replace` and `array.$.merge` as keys in the `$set` command object.
+This feature involves the following CRUD operations:
+
+* Patch by ID  
+* Patch many  
+* Patch bulk  
+
+`array.$.replace` Replace entirely the query-matching array item with the content passed as value.
+
+`array.$.merge` Edits only the specified fields of the query-matching array item with the content passed as value.
+
+**Swagger Aggregator v1.1.0**
+
+Added:
+
+* The Swagger now manages the conflict between equal routes
+    * Throw (default): returns an error in case of conflict - it is used for backward compatibility;  
+    * First: if I configure it, the first to arrive wins (the swagger aggregator gets an ordered list so files takes precedence over the crud)  
+* Evolutionary to the feature of the subswagger: `tagName` which if present forces the API with that tag into a single subswagger.
+
+**Files Service v1.1.0**
+
+Added:
+
+* google-storage-api: Add GoogleStorage API as storage  
+* additional-properties: Add additional properties in order to attach some props on upload  
+* prefix-or-hostname: Add PATH_PREFIX for relative urls  
+* swagger-additional-properties: Add swagger definition for additional properties
+
+
 ##v4.20.0 (May 28, 2019)
 
 **DEVELOPMENT SUITE**
