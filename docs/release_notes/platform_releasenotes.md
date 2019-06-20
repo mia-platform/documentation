@@ -9,7 +9,7 @@ Mia has released the first version of the Developers Console. The Developers Con
 
 **NEW LAUNCHER!!!**
 
-The launcher allows you to follow your development flow and access the different DEV PORTAL sections.
+The launcher allows you to follow your development flow and access the different Developer Console sections.
 
 The sections you can access are the following:
 
