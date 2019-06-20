@@ -11,3 +11,4 @@ Follows the list of sub-processors
 | Google Cloud               | Data hosting      | Belgium        | https://cloud.google.com/ |
 | AWS Service                | Data hosting      | Ireland        | https://aws.amazon.com/   |
 | Elastic Search             | Log & Monitoring  | Belgium        | https://www.elastic.co/   |
+| Confluent                  | Event Streaming   | Europe         | https://www.confluent.io/ |
