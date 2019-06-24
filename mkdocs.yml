@@ -17,13 +17,14 @@ nav:
 - Guidelines:
     - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
+    - API: 'guidelines/api.md'
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
     - Communication among Microservices: 'guidelines/communication_between_services_mp4.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
-- Development Suite:
+- Developer Console:
   - Overview: 'development_suite/overview-dev-suite.md'
-  - API Console:
+  - Design:
     - Access the API Console: 'development_suite/api-console/accedi_apiconsole.md'
     - API Design:
       - Create a CRUD 5'min: 'development_suite/api-console/api-design/quick_rest_api.md'
@@ -47,8 +48,12 @@ nav:
         -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
       - API Console Config:
         - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
-    - Deploy:
-      - Release your configurations: 'development_suite/api-console/api-design/deploy.md'
+
+  - Deploy:
+    - Release your configurations: 'development_suite/deploy/deploy.md'
+
+  - Monitoring:
+      - Monitor your configurations: 'development_suite/monitoring/monitoring.md'
 
   - API Portal:
     - Configure Swagger Aggregator: 'development_suite/api-portal/swagger_conf.md'
