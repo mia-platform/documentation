@@ -22,7 +22,7 @@ nav:
     - Communication among Microservices: 'guidelines/communication_between_services_mp4.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
 
-- Developer Console:
+- Developers Console:
   - Overview: 'development_suite/overview-dev-suite.md'
   - Design:
     - Access the API Console: 'development_suite/api-console/accedi_apiconsole.md'
