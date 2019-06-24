@@ -36,7 +36,7 @@ This page is divided in two areas:
 
 ![](img/environments-deploy-detail.png)
 
- 1. The first section shows an **insight on the most recent deploy** and on the details of the specific environment.
+1. The first section shows an **insight on the most recent deploy** and on the details of the specific environment.
  In this section the user can visualize a first set of general information:
 
   * Environment name;
@@ -52,13 +52,13 @@ This page is divided in two areas:
   * Notes made in the deploy phase;
   * Services that were released.
 
- 2. In the second section the user can make the **actual deploy**. To make the deploy the user has first to select the branch. By default, it is proposed the branch related to the most recent commit, but it is always possible to change and select another branch to deploy. To do so, the user just needs to unflag "current" and the selection will be enabled.
+2. In the second section the user can make the **actual deploy**. To make the deploy the user has first to select the branch. By default, it is proposed the branch related to the most recent commit, but it is always possible to change and select another branch to deploy. To do so, the user just needs to unflag "current" and the selection will be enabled.
 
- Once the branch is selected, it is necessary to choose the deploy type. At the moment it is only possible to deploy all services; however, in the future more deploy types will be available.
+Once the branch is selected, it is necessary to choose the deploy type. At the moment it is only possible to deploy all services; however, in the future more deploy types will be available.
 
- Finally, it is possible to enrich the deploy with some notes.
+Finally, it is possible to enrich the deploy with some notes.
 
- By clicking the *Deploy* button, the user will immediately see that at the end of the deploy card will start a progress bar that shows the progress of the deploy.
+By clicking the *Deploy* button, the user will immediately see that at the end of the deploy card will start a progress bar that shows the progress of the deploy.
 
 ![](img/deploy.png)
 
@@ -71,3 +71,21 @@ When the Deploy starts, in addition to the generation of the realtime logs, the 
 At the end of the deploy, the realtime logs remain and the section with the most recent deploy is updated if the deploy is successful.
 
 If the deploy is not not successful, the user will see the progress bar turning red and will see error messages in the realtime logs.
+
+###History Page
+
+![](img/deploy-history.png)
+
+The History Page is the second area in the Deploy section. In this tab it will be possible to visualize all the released deploy.
+
+By default this page is opened on *All the Environments* and on *master* as a branch. However, it is always possible to choose a specific Environment and a specific branch by using a drop down menù.
+
+In the History table the user visualizes the following information:
+* Status: if the deploy is successful or if the deploy is not successful;
+* Environment of the deploy;
+* Deployed version;
+* Deploy type;
+* Who made the deploy;
+* How long was the deploy;
+* How much time ago the deploy was released;
+* Link to Git to visualize the logs of the past deploy.
