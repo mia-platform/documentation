@@ -81,6 +81,7 @@ The History Page is the second area in the Deploy section. In this tab it will b
 By default this page is opened on *All the Environments* and on *master* as a branch. However, it is always possible to choose a specific Environment and a specific branch by using a drop down menù.
 
 In the History table the user visualizes the following information:
+
 * Status: if the deploy is successful or if the deploy is not successful;
 * Environment of the deploy;
 * Deployed version;
