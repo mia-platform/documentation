@@ -10,7 +10,7 @@ The Environments area is composed of an introductory page with an overview of th
 
 ###Overview page of all the Environments
 
-![environments overview](img/environments-overview-page.png)
+![](img/environments-overview-page.png)
 
 The environments overview page shows in a table all the different environments on which it is possible to release. For each environment the user has the possibility to visualize which is the most recent deploy that was successful. This table allows the user to be able to know what has is currently deployed in every environment.
 
@@ -31,22 +31,43 @@ To release the user will have to select the environment and the branch.
 ###Deploy Details Page
 
 From the Environments Overview Page it is possible to directly enter the Details Page of the single Environment.
+
 This page is divided in two areas:
 
-![deploy details](img/environments-deploy-detail.png)
+![](img/environments-deploy-detail.png)
 
-1. An insight on the most recent deploy and on the details on the environment
-Un approfondimento sull’ultimo deploy effettuato e sui dettagli del mio ambiente.
-In questa sezione visualizzo infatti una prima parte di informazioni generali:
-il nome dell’ambiente
-La descrizione
-I pod attivi
-E i link al monitoraggio di quell’ambiente o alle sue configurazioni
-Visualizzo poi tutte le informazioni legate all’ultimo deploy di successo:
-La versione rilasciata
-Il tipo
-Chi lo ha rilasciato e quando
-Le note lasciate in fase di deploy
+ 1. The first section shows an **insight on the most recent deploy** and on the details of the specific environment.
+ In this section the user can visualize a first set of general information:
 
+  * Environment name;
+  * Description;
+  * Active PODs;
+  * Links to the Monitoring section of that environment or to its configurations.
 
-![deploy](img/deploy.PNG)
+ I can also visualize all the information about the most recent successful deployment:
+
+  * Deployed version;
+  * Type;
+  * Who released it and when;
+  * Notes made in the deploy phase;
+  * Services that were released.
+
+ 2. In the second section the user can make the **actual deploy**. To make the deploy the user has first to select the branch. By default, it is proposed the branch related to the most recent commit, but it is always possible to change and select another branch to deploy. To do so, the user just needs to unflag "current" and the selection will be enabled.
+
+ Once the branch is selected, it is necessary to choose the deploy type. At the moment it is only possible to deploy all services; however, in the future more deploy types will be available.
+
+ Finally, it is possible to enrich the deploy with some notes.
+
+ By clicking the *Deploy* button, the user will immediately see that at the end of the deploy card will start a progress bar that shows the progress of the deploy.
+
+![](img/deploy.png)
+
+When the Deploy starts, just below a new section is charged: **the logs**.
+
+A user can see realtime logs that are generated during the deploy.
+
+When the Deploy starts, in addition to the generation of the realtime logs, the section where the most recent successful deploy was described will be covered by an overlay with a loading icon to give evidence that a deploy is on going and that what is being shown is not the most recent successful deploy.
+
+At the end of the deploy, the realtime logs remain and the section with the most recent deploy is updated if the deploy is successful.
+
+If the deploy is not not successful, the user will see the progress bar turning red and will see error messages in the realtime logs.
