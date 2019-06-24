@@ -53,7 +53,7 @@ nav:
     - Release your configurations: 'development_suite/deploy/deploy.md'
 
   - Monitoring:
-      - Monitor your configurations: 'development_suite/monitoring/monitoring.md'
+      - Monitor your applications: 'development_suite/monitoring/monitoring.md'
 
   - API Portal:
     - APIs Documentation: 'development_suite/api-portal/api-documentations.md'
@@ -65,7 +65,7 @@ nav:
     - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
     - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
 
-- Runtime Suite:
+- Runtime Components:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
     - API & Microservice Ecosystem:
        - API Gateway: 'runtime_suite/api-gateway.md'
@@ -95,7 +95,7 @@ nav:
          - ACL Service: 'runtime_suite/acl-service.md'
          - Session Manager: 'runtime_suite/session-manager.md'
 
-- Business Suite:
+- Business Components:
   - Overview: 'business_suite/overview-business-suite.md'
   - CMS:
     - Use CMS: 'business_suite/guide_cms.md'
