@@ -1,4 +1,56 @@
 #Platform Release Note
+##v4.22.0 (June 25,2019)
+
+**DEVELOPERS CONSOLE V1.3.0**
+
+**NEW DASHBOARD METRICS**
+
+Mia has released the new Metrics dashboard to monitor its applications.
+From the new application you will be able to view your configured Kibana dashboards.
+
+![](img/metrics.png)
+
+To add the dashboards you should go to Mongo and within **projects**, for each **environments** of the desired projects insert the key **"dashboards"** with value an array of objects with keys: "id", "label" and "url"
+
+an example follows
+
+```
+"dashboards": [
+    {
+        "id": "the-id",
+        "label": "My Dashboard",
+        "url": "https: //kibana.tools.mia-platform.eu / ......"
+    },
+    ...
+]
+```
+
+!!! warning
+      To add the link follow this procedure : go to Kibana, choose the dashboard, press share - permalink - snapshot - copy url.   
+      Once the url has been copied, the following parameter must be added:
+      **embed = true**
+
+Save to Mongo and you will see your dashboards on the Developer Console
+
+**DESIGN AREA**
+
+Added:
+
+* the possibility of writing the names of the CRUDs in uppercase has also been added  
+* alert message when write collection with upper case  
+* alert message when write endpoint route with upper case  
+
+**DOCUMENTATION SECTION**
+
+Added:
+
+* Tag "All APIS" in sidebar
+
+**CRUD v1.2.0**
+
+Added:
+
+* Support for the CRUD_LIMIT_CONSTRAINT_ENABLED env variables to enable constraints on minimum, maximum and default values. New limits are: maximum 200, minimum 1 and default 25
 
 ##v4.21.0 (June 18,2019)
 **DEVELOPERS CONSOLE v1.2.0**
