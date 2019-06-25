@@ -6,9 +6,9 @@
 
 The platform consists of three suites:
 
-* The **Development Suite**: The suite to create and release the platform in a few clicks
-* The **Runtime Suite**: the suite of technological components
-* The **Business Suite**: Our components to manage data and services
+* The **Developers Console**: The suite to create and release the platform in a few clicks
+* The **Runtime Components**: all our innovative technological components
+* The **Business Components**: Our components to manage data and services
 
 **The suites**
 ![](img/suite-eng.png)
