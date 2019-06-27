@@ -1,4 +1,13 @@
 #Platform Release Note
+###v4.22.1 (June 26,2019)
+
+**CMS v9.1.0**
+
+Added:
+
+Following the update of the crud to v1.2.0 a limit of possible choices was introduced in a lookup of 200 instead of the previous 500
+
+
 ##v4.22.0 (June 25,2019)
 
 **DEVELOPERS CONSOLE V1.3.0**
