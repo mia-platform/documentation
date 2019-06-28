@@ -1,12 +1,70 @@
 #Platform Release Note
-###v4.22.1 (June 26,2019)
+
+##v4.23.0 (June 27,2019)
+**DEVELOPER CONSOLE V1.4.0**
+
+
+* In the launcher, all different documentation portals for each environment will now be available from the menu. They will appear based on the hostnames configured in the project creation phase.
+
+* added `'is production environment'` flag in creation project phase
+
+**API Portal v1.3.0**
+
+Added:
+
+* updated api-explorer  
+* shows the body when status code is 401  
+
+Restyling:
+
+* response headers are shown in a more readable way   
+
+**API Gateway v4.1.0**
+
+Added
+
+* add client-key header support  
+* add mia_client_key cookie support  
+
+Updates
+
+* update nginx to 1.17.0  
+
+Deprecations
+
+* deprecate http header secret support, replaced by client-key header or mia_client_key cookie
+
+**Session Manager v4.3.0**
+
+Added:
+
+* set session cookie to secure if `ORIGINAL_PROTOCOL_HEADER` is set to https  
+
+**CMS Backend v1.1.0**
+
+Added
+
+* `/-/check-up` handler  
+* `/-/healthz` handler    
+* status routes tests    
+* add hook to set secret cookie, setting secure if `ORIGINAL_PROTOCOL_HEADER` is set to https. Skip hook if `BACKOFFICE_HEADER_KEY` is not set to `'true'`    
+
+Dependencies
+
+* Update @mia-platform/lc39 2.1.2 -> 2.2.0  
+* Update eslint 5.16.0 -> 6.0.0  
+* Update mongodb 3.2.5 -> 3.2.7   
+* Update tap 14.1.7 -> 14.2.5  
+
+##v4.22.1 (June 26,2019)
 
 **CMS v9.1.0**
 
 Added:
 
-Following the update of the crud to v1.2.0 a limit of possible choices was introduced in a lookup of 200 instead of the previous 500
+* Following the update of the crud to v1.2.0 a limit of possible choices was introduced in a lookup of 200 instead of the previous 500
 
+* Handle the abscence of makeitapp-baas-secret-cookie
 
 ##v4.22.0 (June 25,2019)
 
@@ -283,7 +341,7 @@ Added:
 
 * Added path parameter to format input function
 
-###v4.19.3 (May 22, 2019)
+##v4.19.3 (May 22, 2019)
 **BUSINESS SUITE**
 
 **CMS v9.0.2**
@@ -293,7 +351,7 @@ Fixed:
 The export with filters was paginated and exported only the elements present on the first page, with this fix it will be possible to export correctly all the filtered elements.
 
 
-###v4.19.2 (May 6,2019)
+##v4.19.2 (May 6,2019)
 
 **DEVELOPMENT SUITE**
 
@@ -304,7 +362,7 @@ Fixed:
 We have modified the limit of characters that could be inserted in the field **Name** of the table. Previously they were 32 now there are **no character limits.**
 
 
-###v4.19.1 (May 3,2019)
+##v4.19.1 (May 3,2019)
 **BUSINESS SUITE**
 
 **CMS v9.0.1**

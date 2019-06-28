@@ -17,7 +17,6 @@ nav:
 - Guidelines:
     - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
-    - API: 'guidelines/api.md'
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
     - Communication among Microservices: 'guidelines/communication_between_services_mp4.md'
     - Docker Vademecum: 'guidelines/docker_vademecum.md'
