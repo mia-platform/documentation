@@ -47,8 +47,12 @@ In this section you can choose how to represent the page in the CMS side menu. L
 
 **Category**: You will have to choose your page in which category will be inserted. In our case we will hook the Characters category
 
-**Icon**: You can choose whether to give your page an icon that represents it in the CMS. To give an example: if yours is the book page, you can choose the book icon to represent it.
-At this [link](https://fontawesome.com/v3.2.1/icons/) you will be able to view and select all the available icons.
+**Icon**: You can choose whether to assign an icon to your page that represents it in the CMS. As an example: you can choose the fas fa-book icon to represent you page that contains books. At this [link](https://fontawesome.com/icons?d=gallery&s=solid&v=5.0.0,5.1.0,5.2.0,5.3.0&m=free) you can view and choose all the available icons.
+
+Attention:
+1. Mia support only the solid, free icon up to version 5.3.0  
+2. You should write the full name of the icon. *book* is not enough. You should write **fas fa-book**
+
 
 **Order**: With Order you can choose what order to give to your page within a category. We advise you to give the pages a number belonging to the tens order (ex: page 1 will have the order 10)
 
