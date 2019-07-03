@@ -10,7 +10,7 @@ it manages the following templates:
  * **angular 2+**: a ready to use <a href="https://angular.io/" target="_blank">Angular 2+</a> template that provides a basic Angular project, already up and running and ready to be customized.
 
 > These templates are all under the voice **CREATE FROM TEMPLATE**:
-> ![](img/Service_create_from_template.png)<br>
+> [![image alt text](img/Service_create_from_template.png)](img/Service_create_from_template.png)<br>
 > The service types can be different based on the API Console you are working on)
 
 ## Our first custom service based on template
@@ -33,13 +33,19 @@ To do this, follow these steps:
     * **gitlab group path**: the gitlab group where you want to save the service repository
     * **gitlab repository name**: the gitlab repository name that you want for your service
     * **docker image name**: the docker image name, you can leave the default one too
-    * look at the result<br>![](img/Service_from_template_creation_page.png)
+    * look at the result<br>[![image alt text](img/Service_from_template_creation_page.png)](img/Service_from_template_creation_page.png)
  4. Create the service
- 5. Click on the K8S configurations written button<br>![](img/k8s_already_written_configs.png)
- 6. Insert a description (optional)
+
+Now you have a customization interface and you can optionally customize some configuration if you want.
+
+!!! note
+    By default are enabled the standard kubernetes configurations, that provide the default configurations yml, but you can use your custom files by clicking, in the *Advanced configuration* section, the appropriate button:<br>[![image alt text](img/api-console-new-service-custom-k8s-conf.png)](img/api-console-new-service-custom-k8s-conf.png)
+
+!!! warning
+    Under the standard customizations you can customize the environment variables (*Environment variable configuration* section); this is an optional operation too, except for the *angular 2+* service, that **REQUIRES** to modify the *HTTP_PORT* variable from 3000 to **8080**, like the image:<br>[![image alt text](img/api-console-new-service-environments.png)](img/api-console-new-service-environments.png)
 
 > <u>**NB.**</u> the API Console will show a yellow label now bacause there are unsaved changes
->![](img/API_console_unsaved_changes.png)
+>[![image alt text](img/API_console_unsaved_changes.png)](img/API_console_unsaved_changes.png)
 > <u>**Do not save the changes now**</u>, we will save them later.
 
 #### 3. Creating the endpoint
@@ -58,20 +64,20 @@ Following the steps for the creation of an endpoint:
     * **type**: select __Custom Microservices__
     * **service**: select the microservice that you just created
     * **description**: the endpoint description
-    * look at the result<br>![](img/Endpoint_custom_microservices_creation.png)
- 4. Click on the create button and your endpoint will be created<br>![](img/Endpoint_custom_microservices_created.png)
+    * look at the result<br>[![image alt text](img/Endpoint_custom_microservices_creation.png)](img/Endpoint_custom_microservices_creation.png)
+ 4. Click on the create button and your endpoint will be created<br>[![image alt text](img/Endpoint_custom_microservices_created.png)](img/Endpoint_custom_microservices_created.png)
 
 #### 4. Save the project
 Finally it's time to save our modifications, so:
 
-1. Click on the save button: ![](img/commit_and_generate.png)
+1. Click on the save button: [![image alt text](img/commit_and_generate.png)](img/commit_and_generate.png)
 2. Insert a commit title
 3. Insert a commit message (optional)
 
 After the deploy you will have your service up and running at the created endpoint.
 To check if the service works, based on the chosen service type, you can:
 
- * call the **/-/healthz** path if the service uses the [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib)<br>![](img/healthz_response.png)<br>
+ * call the **/-/healthz** path if the service uses the [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib)<br>[![image alt text](img/healthz_response.png)](img/healthz_response.png)<br>
 
- * navigate the created endpoint and see the html page (frontend services)<br>![](img/angular_template_page.png)
+ * navigate the created endpoint and see the html page (frontend services)<br>[![image alt text](img/angular_template_page.png)](img/angular_template_page.png)
  * call the base endpoint should ever work for some different type, if the endpoint is not secreted and is public.
