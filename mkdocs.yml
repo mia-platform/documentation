@@ -66,6 +66,7 @@ nav:
   
   - Doctor Service:
     - Services health: 'development_suite/doctor-service/services_status.md'
+    - Configure Doctor Service: 'development_suite/doctor-service/configure_doctor_service.md'
 
 - Runtime Components:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
