@@ -1,6 +1,6 @@
 # Configure Doctor Service
 
-As _core service_, the Doctor Service is easily deployable on every project by using the <a href="https://console.cloud.mia-platform.eu/" target="_blank">Api Console</a>. You just need to add the service and configure it's _configuration file_; we will see how, but first a short overview on _how the service works_.
+As _core service_, the Doctor Service is easily deployable on every project by using the <a href="https://console.cloud.mia-platform.eu/" target="_blank">Api Console</a>. You just need to add the service and configure it's _configuration file_; we will see how, but first a short overview of _how the service works_.
 
 ## How the service works
 
@@ -9,7 +9,7 @@ With the configurations file it's easy to manage all services to `check-up`.
 Specifically, the _Doctor_ allows the user to do two things:
 
 1. `check-up` all services in the configurations file by simply call the _root_ path (e.g. <a href="http://api.dev.gruppocattolica.it/playground/check-up" target="_blank">http://api.dev.gruppocattolica.it/playground/check-up</a>);
-2. `check-up` a subgroup of services by specify the tag &rarr; all services can have a list of _tags_ (optional) and the _Doctor_ will expose a route for each tag, that will return the `check-up` of services with that tag.
+2. `check-up` a subgroup of services by specify the tag &rarr; all services can have a list of _tags_ (optional) and the _Doctor_ will expose a dedicated route for each tag, that will return the `check-up` of services with that tag.
 
 !!! warning
     **<u>NB</u>**. all the services call by the _Doctor_ **MUST** have the `/-/check-up` route.
@@ -20,7 +20,7 @@ Following an overview of the steps that you have to do to integrate the _Doctor 
 
 1. Build the configurations file of the _Doctor Service_
 2. Create the service using the API Console
-3. Set the _Advanced configurations_
+3. Configure the _Advanced configurations_
 4. **Check-up'em all**
 
 !!! Note
@@ -178,3 +178,41 @@ Following the steps to create the services:
 10. Create a new _configurations_ file by using the specific section ![alt_image](./img/create_configurations_file.png)
 11. Insert the [previously created](#1-Build-the-configurations-file) _configurations_ file into the just created file
 12. Save (_Commit and generate_ button)
+
+### 3. Configure the advanced configurations
+
+Now the _Doctor Service_ is up, but it's not even usable.
+Following the instructions to configure the files in the _Advanced Section_.
+
+!!! warning
+    Be care on the advanced section of the API Console
+
+Open the API Console and click on the _Advanced section_ button ![alt_image](./img/advanced_section.png)
+and, after that, edit the following files by adding the doctor service entries:
+
+- **api-gateway/maps-proxyName.before.map**:
+
+    ```map
+    "~^(secreted|unsecreted)-(0|1)-(0|1)-\w+-/check-up" "doctor-service";
+    ```
+
+- **api-gateway/maps-proxyUrl.before.map**:
+
+    ```map
+    "~^(\w+)-/check-up$" "/";
+    ```
+
+- **api-gateway/maps-groupExpression.before.map**:
+
+    ```map
+    "~^\w+-/check-up" "1";
+    ```
+
+### 4. Check-up'em all
+
+Now the `/check-up` route of the project is ready to be called like this:
+
+- `projectBaseUrl/check-up` &rarr; for a _check-up_ of all services
+- `projectBaseUrl/check-up/core` &rarr; for a _check-up_ of core services only (in this example)
+
+**ENJOY!**
