@@ -63,6 +63,9 @@ nav:
     - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
     - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
     - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
+  
+  - Doctor Service:
+    - Services health: 'development_suite/doctor-service/services_status.md'
 
 - Runtime Components:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
