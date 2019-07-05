@@ -196,7 +196,7 @@ and, after that, edit the following files by adding the doctor service entries:
 - **api-gateway/maps-proxyName.before.map**:
 
     ```map
-    "~^(secreted|unsecreted)-(0|1)-(0|1)-\w+-/check-up" "doctor-service";
+    "~^(secreted|unsecreted)-(0|1)-(0|1)-GET-/check-up" "doctor-service";
     ```
 
 - **api-gateway/maps-proxyUrl.before.map**:
@@ -208,7 +208,7 @@ and, after that, edit the following files by adding the doctor service entries:
 - **api-gateway/maps-groupExpression.before.map**:
 
     ```map
-    "~^\w+-/check-up" "1";
+    "~^GET-/check-up" "1";
     ```
 
 ### 4. Check-up'em all
