@@ -139,7 +139,7 @@ Following the steps to create the services:
             - name: nexus-pull-secret
           containers:
             - name: doctor-service
-              image: nexus.mia-platform.eu/core/doctor-service:{    {DOCTOR_SERVICE_IMAGE_TAG}}
+              image: nexus.mia-platform.eu/core/doctor-service:{{DOCTOR_SERVICE_IMAGE_TAG}}
               imagePullPolicy: Always
               resources:
                 limits:
@@ -187,7 +187,10 @@ Following the instructions to configure the files in the _Advanced Section_.
 !!! warning
     Be care on the advanced section of the API Console
 
-Open the API Console and click on the _Advanced section_ button ![alt_image](./img/advanced_section.png)
+Open the API Console and click on the _Advanced section_ button
+
+![alt_image](./img/advanced_section.png)
+
 and, after that, edit the following files by adding the doctor service entries:
 
 - **api-gateway/maps-proxyName.before.map**:
@@ -199,7 +202,7 @@ and, after that, edit the following files by adding the doctor service entries:
 - **api-gateway/maps-proxyUrl.before.map**:
 
     ```map
-    "~^(\w+)-/check-up$" "/";
+    "~^GET-/check-up(?<path>.*)" "$path";
     ```
 
 - **api-gateway/maps-groupExpression.before.map**:
@@ -215,4 +218,4 @@ Now the `/check-up` route of the project is ready to be called like this:
 - `projectBaseUrl/check-up` &rarr; for a _check-up_ of all services
 - `projectBaseUrl/check-up/core` &rarr; for a _check-up_ of core services only (in this example)
 
-**ENJOY!**
+![alt_image](./img/Doctor-Service.png)
