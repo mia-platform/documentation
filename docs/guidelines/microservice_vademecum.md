@@ -41,6 +41,12 @@ For example, the service correctly communicates with the database.
 
 Answers 200 only when, upon release, all the preliminary operations necessary for the functioning of the service are completed. This route informs OpenShift about the availability of the service.
 
+### Check-up route ###
+`/-/check-up`
+
+This route is **<u>exclusively</u>** used by the [**Doctor service**](/development_suite/doctor-service/services_status); it's purpose is to check the status of all the dependencies of the service (by calling the `/-/healthz` route, if exists) and returns `200` if all the dependencies are healthy, `503` if not.
+**<u>NB.</u>** **Never call the `/-/check-up` route of another service in the check-up handler of a service** &rarr; this avoids to have a loop of `/-/check-up` calls, the only one who can call the `/-/check-up` route is the _Doctor service_.
+
 #### Kubernetes usage of liveness and readiness ####
 Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and remedy such situations.
 
