@@ -1,5 +1,52 @@
 #Platform Release Note
 
+##v4.24.0 (July 8,2019)
+
+**Breaking Change**
+
+**CRUD Service v2.0.0**
+
+Implement *nullable flag*.
+Before this, the nullable flag is ignored. The default behavuoir is to convert null into falsy value for the field type type.
+For example, for an integer null value is converted to 0, for a string to '' (empty string).
+
+
+Added:
+
+Both the handlers of /-/check-up and /-/healthz route check the connection to Mongo.
+
+**DEVELOPERS CONSOLE**
+
+* New Home Page!    
+We have released the new homepage from which you can easily access the different sections of the developer portal
+
+* From now on it is possible to change the name of an analytic
+
+* It's also possible to set the visibility level of the repository when creating a project
+
+
+**Doctor Service: new service!**
+
+This microservice allows to check the healthiness of the services within a project.
+
+The API exposed by the doctor service is:
+
+* `GET /`: it respondes with status code `200` if all the services are up; `503` if at least one is down. Furthermore, in the body of the response you can find additional information about the called services.
+
+* `GET /${tag}`: it respondes with status code `200` if all the services tagged with tag are up; `503` if at least one is down. Furthermore, in the body of the response you can find additional information about the called services.
+
+**`/-/check-up` route** it's been added in the following service:
+
+swagger aggregator: 1.2.0  
+mongodb reader:  1.2.0  
+crud service: 2.0.0  
+microservice gateway:  5.1.0  
+file service:  1.2.0  
+cms backend: 1.1.0  
+v1-adapter: 2.1.0  
+notifications-service: 1.1.0  
+notifications-manager: 1.0.0
+
 ##v4.23.0 (June 27,2019)
 **DEVELOPER CONSOLE V1.4.0**
 
@@ -68,6 +115,10 @@ Added:
 
 ##v4.22.0 (June 25,2019)
 
+**Breaking Change**
+
+Add the env variable: `CRUD_LIMIT_CONSTRAINT_ENABLED` to use the v.1.2.0 of the CRUD Service
+
 **DEVELOPERS CONSOLE V1.3.0**
 
 **NEW DASHBOARD METRICS**
@@ -117,7 +168,7 @@ Added:
 
 Added:
 
-* Support for the CRUD_LIMIT_CONSTRAINT_ENABLED env variables to enable constraints on minimum, maximum and default values. New limits are: maximum 200, minimum 1 and default 25
+* Support for the `CRUD_LIMIT_CONSTRAINT_ENABLED` env variables to enable constraints on minimum, maximum and default values. New limits are: maximum 200, minimum 1 and default 25
 
 ##v4.21.0 (June 18,2019)
 **DEVELOPERS CONSOLE v1.2.0**

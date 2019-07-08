@@ -51,7 +51,7 @@ In this section you can choose how to represent the page in the CMS side menu. L
 
 Attention:
 1. Mia support only the solid, free icon up to version 5.3.0  
-2. You should write the full name of the icon. *book* is not enough. You should write **fas fa-book**
+2. You should write the full name of the icon. *book*s is not enough. You should write **fas fa-book**
 
 
 **Order**: With Order you can choose what order to give to your page within a category. We advise you to give the pages a number belonging to the tens order (ex: page 1 will have the order 10)
