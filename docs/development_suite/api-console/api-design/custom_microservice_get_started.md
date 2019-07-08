@@ -74,10 +74,21 @@ Finally it's time to save our modifications, so:
 2. Insert a commit title
 3. Insert a commit message (optional)
 
-After the deploy you will have your service up and running at the created endpoint.
-To check if the service works, based on the chosen service type, you can:
+#### 5. Deploy the project through the API Console
 
- * call the **/-/healthz** path if the service uses the [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib)<br>[![image alt text](img/healthz_response.png)](img/healthz_response.png)<br>
+Before deploy the project to have our service _up and running_ we have to wait the end of the service pipeline, that will create a _Docker image_ of the service that will be deployed.
 
- * navigate the created endpoint and see the html page (frontend services)<br>[![image alt text](img/angular_template_page.png)](img/angular_template_page.png)
- * call the base endpoint should ever work for some different type, if the endpoint is not secreted and is public.
+So, before deploy, navigate on the gitlab repository of the just created service and wait the end of the pipeline; when the pipeline is done you can deploy the project:
+
+1. Login on the API Console
+2. Choose the desired project and branch
+3. Click on the _Deploy_ button<br>[![alt_image](img/api-console-menu.png)](img/api-console-menu.png)
+4. Select the environment and the branch to deploy, then click on the _Deploy_ button<br>[![alt_image](img/api-console-deploy-project.png)](img/api-console-deploy-project.png)
+5. Wait for the end of the deploy process
+
+Now your service should be _up and running_, you can check it like this:
+
+* call the **/-/healthz** path if the service uses the [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib)<br>[![image alt text](img/healthz_response.png)](img/healthz_response.png)<br>
+
+* navigate the created endpoint and see the html page (frontend services)<br>[![image alt text](img/angular_template_page.png)](img/angular_template_page.png)
+* call the base endpoint should ever work for some different type, if the endpoint is not secreted and is public.
