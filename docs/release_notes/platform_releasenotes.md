@@ -1,5 +1,9 @@
 #Platform Release Note
 
+## v4.24.1 (July 8,2019)
+
+Fixed mia k8s service config
+
 ##v4.24.0 (July 8,2019)
 
 **Breaking Change**
