@@ -53,6 +53,7 @@ nav:
 
   - Monitoring:
       - Monitor your applications: 'development_suite/monitoring/monitoring.md'
+      - Configurations: 'development_suite/monitoring/configuration.md'
 
   - API Portal:
     - APIs Documentation: 'development_suite/api-portal/api-documentations.md'
