@@ -64,10 +64,6 @@ nav:
     - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
     - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
     - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
-  
-  - Doctor Service:
-    - Services health: 'development_suite/doctor-service/services_status.md'
-    - Configure Doctor Service: 'development_suite/doctor-service/configure_doctor_service.md'
 
 - Runtime Components:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
@@ -85,6 +81,10 @@ nav:
          - iOS SDK: 'runtime_suite/sdk_ios.md'
          - Android SDK: 'runtime_suite/sdk_android.md'
          - PDF Service: 'runtime_suite/pdf-service.md'
+         - Doctor Service:
+           - Services health: 'runtime_suite/doctor-service/services_status.md'
+           - Configure Doctor Service: 'runtime_suite/doctor-service/configure_doctor_service.md'
+
        - Data Management:
          - SQL Generic Reader: 'runtime_suite/sql-reader.md'
          - CQRS/Event Source Management: 'runtime_suite/event-source-management.md'
