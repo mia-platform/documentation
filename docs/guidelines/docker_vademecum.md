@@ -59,7 +59,7 @@ Follow the following steps:
 * `docker export` transforms the container filesystem into the tarball archive stream in STDOUT.
 
 ## Docker images
-The images are container templates. [At this link] (https://docs.docker.com/engine/docker-overview/) more information.
+The images are container templates. [At this link](https://docs.docker.com/engine/docker-overview/) more information.
 
 * `docker images` shows all images.
 * `docker import` creates an image from a tarball.
@@ -70,6 +70,5 @@ The images are container templates. [At this link] (https://docs.docker.com/engi
 * `docker save` saves an image in a tar archive stream on STDOUT with all levels, tags and parent versions (starting at 0.7).
 * `docker history` shows the history of the image.
 * `docker tag` tags an image with a name (local or registry).
-
 
 [To this Link more useful tips](https://github.com/wsargent/docker-cheat-sheet#dockerfile)
