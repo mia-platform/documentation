@@ -27,16 +27,15 @@ To enable moninoring dashboard on developer console, change the configuration of
 For the project, add a `cluster` key in the environment. The cluster is an object:
 
 ```json
-PROJECT
 {
-  environments: [
+  "environments": [
     {
-      value: 'environment',
-      label: 'Environment',
-      hostname: 'https://my-env.eu',
-      cluster: {
-        hostname: '<my kubernetes cluster hostname>',
-        port: '<my kubernetes cluster port>'
+      "value": "environment",
+      "label": "Environment",
+      "hostname": "https://my-env.eu",
+      "cluster": {
+        "hostname": "<my kubernetes cluster hostname>",
+        "port": "<my kubernetes cluster port>"
       }
     }
   ]
