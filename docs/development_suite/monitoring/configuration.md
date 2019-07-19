@@ -42,3 +42,46 @@ PROJECT
   ]
 }
 ```
+
+Environments JSON schema in the following:
+
+```json
+"environments": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "hostname": { "type": "string" },
+          "isProduction": {
+            "type": "boolean",
+            "default": false
+          },
+          "cluster": {
+            "type": "object",
+            "properties": {
+              "hostname": { "type": "string" },
+              "port": { "type": "number" },
+              "namespace": { "type": "string" }
+            },
+            "required": ["hostname"]
+          },
+          "dashboards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "url": { "type": "string" }
+              },
+              "required": ["id", "label", "url"]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+```
