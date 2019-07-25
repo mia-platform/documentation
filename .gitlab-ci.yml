@@ -4,12 +4,7 @@ image:
 
 variables:
   IMAGE_NAME: core/documentation-site
-  DOCKER_HOST: tcp://docker:2375/
   GIT_DEPTH: 1
-
-services:
-  - name: docker:stable-dind
-    alias: docker
 
 stages:
   - build
