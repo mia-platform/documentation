@@ -1,8 +1,32 @@
 #Platform Release Note
 
-##v4.24.1 (July 8,2019)
+##v4.25.0 (July 24, 2019)
 
-Fixed mia k8s service config
+**Developers Console v1.6.0**
+
+Added:
+
+* support for underscore in endpoint basePath and route  
+* support for collection name with dash
+
+
+Updates:
+
+* update v1-adapter to 2.1.2  
+* update swagger-aggregator to 1.3.0
+
+**Swagger Aggregator v1.3.0**
+
+Added
+
+* api `/swagger/subswaggers/` to retrieve the list of available subswaggers
+
+**V1 Adapter 2.1.2**
+
+Fixed
+
+* resolved key override problem when merging objects into `_q` in `crudProxy`.
+
 
 ##v4.24.0 (July 8,2019)
 
