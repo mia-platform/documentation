@@ -14,56 +14,39 @@ nav:
   - Release Notes: 'release_notes/platform_releasenotes.md'
   - Info: 'info/version-policy.md'
 
-- Guidelines:
-    - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
-    - REST API Vademecum: 'guidelines/rest_api.md'
-    - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
-    - Communication among Microservices: 'guidelines/communication_between_services_mp4.md'
-    - Docker Vademecum: 'guidelines/docker_vademecum.md'
-
 - Developers Console:
   - Overview: 'development_suite/overview-dev-suite.md'
   - Design:
-    - Access the API Console: 'development_suite/api-console/accedi_apiconsole.md'
-    - API Design:
-      - Create a CRUD 5'min: 'development_suite/api-console/api-design/quick_rest_api.md'
-      - CRUD Section: 'development_suite/api-console/api-design/crud_advanced.md'
-      - Manage your Microservices from the Api Console: 'development_suite/api-console/api-design/services.md'
-      - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
-      - Expose and manage the safety of an apis: 'development_suite/api-console/api-design/esponi_api.md'
-      - Enrich your call with some Decorators: 'development_suite/api-console/api-design/decorators.md'
-      - Configure CMS: 'development_suite/api-console/api-design/api_console_configcms.md'
-      - Configure Analytics: 'development_suite/api-console/api-design/api_console_configanalytics.md'
-
-    - Develop a Microservice:
-      - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
-      - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
-      - Debug a Microservice:
-        - Debugging a single service with Telepresence: 'development_suite/debugging/telepresence.md'
-
+    - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
+    - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
+    - Services:
+       - Manage your Microservices from the Api Console: 'development_suite/api-console/api-design/services.md'
+       - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
+       - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
+       - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
+       - Debug a Microservice: 'development_suite/debugging/telepresence.md'
+    - PRE/POST: 'development_suite/api-console/api-design/decorators.md'
+    - Endpoints: 'development_suite/api-console/api-design/esponi_api.md'
+    - CMS and Analytics:
+       - Configure CMS: 'development_suite/api-console/api-design/api_console_configcms.md'
+       - Configure Analytics: 'development_suite/api-console/api-design/api_console_configanalytics.md'
     - Advanced Section:
-      - API Gateway:
-        -  Create config map: 'development_suite/api-gateway-config-map.md'
-        -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
-      - API Console Config:
-        - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
+       - API Gateway:
+         -  Create config map: 'development_suite/api-console/advanced-section/api-gateway-config-map.md'
+         -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
+       - API Console Config:
+         - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
 
   - Deploy:
     - Release your configurations: 'development_suite/deploy/deploy.md'
 
   - Monitoring:
       - Monitor your applications: 'development_suite/monitoring/monitoring.md'
-      - Configurations: 'development_suite/monitoring/configuration.md'
+      - Configure your Monitoring Area: 'development_suite/monitoring/configuration.md'
 
   - API Portal:
     - APIs Documentation: 'development_suite/api-portal/api-documentations.md'
     - Configure Swagger Aggregator: 'development_suite/api-portal/swagger_conf.md'
-
-  - Monitoring Dashboard:
-    - Business Continuity: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
-    - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
-    - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
-    - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
 
 - Runtime Components:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
@@ -99,7 +82,7 @@ nav:
          - ACL Service: 'runtime_suite/acl-service.md'
          - Session Manager: 'runtime_suite/session-manager.md'
 
-- Business Components:
+- Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'
   - CMS:
     - Use CMS: 'business_suite/guide_cms.md'
@@ -115,6 +98,17 @@ nav:
 
 - Release Notes:
     - Platform: 'release_notes/platform_releasenotes.md'
+
+- Guidelines:
+    - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
+    - REST API Vademecum: 'guidelines/rest_api.md'
+    - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
+    - Communication among Microservices: 'guidelines/communication_between_services_mp4.md'
+    - Docker Vademecum: 'guidelines/docker_vademecum.md'
+    - Business Continuity: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
+    - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
+    - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
+    - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
 
 - Info:
     - Version Policy: 'info/version-policy.md'

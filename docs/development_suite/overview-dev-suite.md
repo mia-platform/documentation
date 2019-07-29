@@ -25,3 +25,5 @@ All generated configurations are GIT centric.
 
 * **DOCUMENTATION:** In the Documentation Portal users find all the documentation of their own APIs and microservices centralized and automatically generated.
 From this section it is also possible to test your own APIs.
+
+![image alt text](img/overview-3.png)

@@ -4,15 +4,16 @@
 
 [Quickstart with Mia-Platform](development_suite/api-console/api-design/quick_rest_api.md):discover how to create and release a REST API in 5 minutes
 
-The platform consists of three suites:
 
-* The **Developers Console**: The suite to create and release the platform in a few clicks
-* The **Runtime Suite**: All our innovative technological components
-* The **Business Suite**: Our components to manage data and services
+The product helps developers in two areas:
 
-**The suites**
-![](img/suite-eng.png)
+* on the one hand the management of the life cycle of a software product with a dedicated product: **the Developers console**  
+* on the other hand it accelerates the creation of digital platforms with dedicated products.  
+  In particular:
+    * **Real-time Single view** : the components for aggregate data
+    * **API & Microservices Management** : all our innovative technological components to manage API & Microservices
+    * **Headless CMS** :  to manage data and services
 
-### Architectural Vision
-How the three suites interact and interact with users and with customer facilities.
-![](img/suite-schema2.png)
+
+**Products Overview**
+![](img/products-overview.png)
