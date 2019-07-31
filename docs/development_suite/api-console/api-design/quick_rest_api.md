@@ -88,7 +88,7 @@ If it is **secreted** to be able to call it you need to set the Secret header wi
 
 **Groups of users that can access**: It is a logical expression to determine which groups have permission to call a given route. It can also be set to 0 (none) or to 1 (all). If the expression is true, then the user can access the route.
 
-![sicurezza_endpoint](img/endpoint2.PNG)
+![sicurezza_endpoint](img/endpoint.PNG)
 
 ### List of verbs
 In this section you can view all the path that can be called of a CRUD endpoint. By selecting the different verbs in the management section it is possible to further detail who has the permissions to do certain actions.

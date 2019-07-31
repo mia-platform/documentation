@@ -36,6 +36,7 @@ nav:
          -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
        - API Console Config:
          - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
+         - How to change the number of replicas: 'development_suite/api-console/advanced-section/replicas.md'
 
   - Deploy:
     - Release your configurations: 'development_suite/deploy/deploy.md'

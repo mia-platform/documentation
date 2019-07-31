@@ -5,7 +5,7 @@ it manages the following templates:
 
  * **node-fastify**: a ready-to-use Node.JS template that provides a server for restful services through the Mia-Platform [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib) that take advantage of the <a href="https://www.fastify.io/" target="_blank">Fastify</a> server;
 
- * **java spring-boot**: a ready to use Java & <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a> template that provides a server for restful services through the Mia-Platform [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib);
+ * **java spring-boot**: a ready to use Java & <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a>template that provides a server for restful services through the Mia-Platform [Custom Plugin](/development_suite/api-console/api-design/plugin_baas_4/#factory-esposta-da-custom-plugin-lib);
 
  * **angular 2+**: a ready to use <a href="https://angular.io/" target="_blank">Angular 2+</a> template that provides a basic Angular project, already up and running and ready to be customized.
 
