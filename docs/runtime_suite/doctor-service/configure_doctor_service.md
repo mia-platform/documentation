@@ -44,6 +44,27 @@ As [previously said](#How-the-service-works), the _Doctor Service_ just needs a 
           type: 'string',
         },
       },
+      options: {
+        type: 'object',
+        properties: {
+          prefix: {
+            type: 'string',
+            pattern: '^(\\/.*[A-Za-z1-9])?$',
+            default: '',
+          },
+          port: {
+            type: 'number',
+            default: 80,
+          },
+          protocol: {
+            type: 'string',
+            default: 'http',
+            enum: ['http', 'https'],
+          },
+        },
+        default: {},
+        additionalProperties: false,
+      },
     },
     additionalProperties: false,
   },
@@ -51,6 +72,11 @@ As [previously said](#How-the-service-works), the _Doctor Service_ just needs a 
 ```
 
 As specified into the schema, the tags property is optional &rarr; a _Doctor Service_ can have all services without tags and it still works on the root path.
+Additionally, it is possible to specify an `options` object in order to furtherly manage how the `/-/check-up` route is called.  
+The following options can be provided:  
+  * `prefix`: to specify a prefix to append before `/-/check-up` route. Default is an empty string.
+  * `protocol`: to specify a different protocol. Only `http` or `https` can be specified. Default is `http`.
+  * `port`: to specify a different port. Default is 80.
 
 In the following example we will set just one tag, the core tag, just for core services:
 
@@ -64,7 +90,7 @@ data:
       { "hostname": "crud-service", "tags": ["core"] },
       { "hostname": "microservice-gateway", "tags": ["core"] },
       { "hostname": "swagger-aggregator", "tags": ["core"] },
-      { "hostname": "v1-adapter", "tags": ["core"] },
+      { "hostname": "v1-adapter", "tags": ["core"], "options": { "prefix": "/api/v2", "port": 8888, "protocol": "https" } },
       { "hostname": "node-service" },
       { "hostname": "angular-service" },
       { "hostname": "react-service" },
@@ -76,6 +102,8 @@ metadata:
   name: doctor-service
 
 ```
+
+This way, for `swagger-aggregator` service, doctor-service will call the `/-/check-up` route at `https://auth-service:8888/api/v2/-/check-up`.  
 
 In this way, we should have the following routes:
 
