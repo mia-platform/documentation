@@ -136,6 +136,18 @@ In addition to the fastify Request interface, `custom-plugin-lib` decorates the 
 the `id` user currently logged in, its groups, the type of client that performed the HTTP request and if the request comes from the CMS.
 Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services released on the Platform.
 
+### Context
+Inside the handler scope it's possible to access fastify instance using `this`. 
+
+#### Example
+
+```js
+async function helloHandler(request, reply) {
+    this // fastify context
+    this.decoratedService // fastify decorated service
+    this.config["LOG_LEVEL"] // env variable
+  })
+```
 
 ### User and Client Identification
 
