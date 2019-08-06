@@ -274,6 +274,26 @@ module.exports = customService(async function(service) {
 })
 ```
 
+### Effective received HTTP request
+PRE and POST decorator receive a POST HTTP request from `microservice-gateway` with the following json body:
+
+```json
+{
+  "request": {
+    "method": "GET",
+    "path": "/the-original-request-path",
+    "query": { "my": "query" },
+    "body": { "the": "body" },
+    "headers": { "my": "headers" },
+  },
+  "response": {
+    "body": { "the": "response body" },
+    "headers": { "my": "response headers" },
+    "statusCode": 200,
+  }
+}
+```
+Use this object for testing purposes.
 
 ### Access and Handling of the Original Request
 The utility functions exposed by the `Request` instance (the first parameter of a handler) are used to access the original request
