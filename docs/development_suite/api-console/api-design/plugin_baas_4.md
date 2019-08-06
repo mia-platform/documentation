@@ -136,6 +136,18 @@ In addition to the fastify Request interface, `custom-plugin-lib` decorates the 
 the `id` user currently logged in, its groups, the type of client that performed the HTTP request and if the request comes from the CMS.
 Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services released on the Platform.
 
+### Context
+Inside the handler scope it's possible to access fastify instance using `this`. 
+
+#### Example
+
+```js
+async function helloHandler(request, reply) {
+    this // fastify context
+    this.decoratedService // fastify decorated service
+    this.config["LOG_LEVEL"] // env variable
+  })
+```
 
 ### User and Client Identification
 
@@ -262,6 +274,26 @@ module.exports = customService(async function(service) {
 })
 ```
 
+### Effective received HTTP request
+PRE and POST decorator receive a POST HTTP request from `microservice-gateway` with the following json body:
+
+```json
+{
+  "request": {
+    "method": "GET",
+    "path": "/the-original-request-path",
+    "query": { "my": "query" },
+    "body": { "the": "body" },
+    "headers": { "my": "headers" },
+  },
+  "response": {
+    "body": { "the": "response body" },
+    "headers": { "my": "response headers" },
+    "statusCode": 200,
+  }
+}
+```
+Use this object for testing purposes.
 
 ### Access and Handling of the Original Request
 The utility functions exposed by the `Request` instance (the first parameter of a handler) are used to access the original request
