@@ -56,7 +56,7 @@ Fixed:
 * change error handling and fix subswagger URL
 
 
-**Monitoring & Kubernetes Servicev.1.1.0**
+**Monitoring & Kubernetes Service v.1.1.0**
 
 Added:
 
