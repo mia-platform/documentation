@@ -1,5 +1,79 @@
 #Platform Release Note
 
+##v4.26.0 (August 8, 2019)
+
+**Developers Console - Design - v1.7.0**
+
+Added:
+
+
+* New Navigation Flow
+     - add fallback page check if loaded project is valid  
+     - add fallback page check if branchId is valid  
+     - add default branchId on load design area  
+
+* New Projects Container
+    - add alphabetical sort for project
+    - fix random color
+
+* New Login Page  
+
+![](img/login.png)
+
+* Custom replicas of core services.[Read the documentation to discover how to replicate core service](../development_suite/api-console/advanced-section/replicas.md)
+* Added support for dash character in collection fields  
+* Added support for dash character in collection index  
+
+Updates:
+
+* Reactord v1.8.1  
+* Decorators label and url has been updated to API PRE/POST
+
+Fixed:
+
+* Checkbox in CRUD config table NOT saving information properly  
+
+Deleted:
+
+* Removed the `creationTimestamp` annotation from all yaml files generated.  It was redundant with the commit timestamp and was a major problem for the Merge requests in the configuration project.
+
+**API Portal v.1.6.0**
+
+Added:
+
+The following filters have been added:
+
+* by category  
+* by tag  
+* by method  
+
+![](img/filters-API-Portal.png)
+
+The possibility of searching within the API has also been added
+
+Fixed:
+
+* change error handling and fix subswagger URL
+
+
+**Monitoring & Kubernetes Servicev.1.1.0**
+
+Added:
+
+* Add new query params for api /projects/:projectId/environments/:environmentName/pods/:podName/containers/:containerName/logs
+
+* Now you can set the `accessToken` for a cluster directly within the cluster configurations of the console project. If is not set in the db the value is read from the ENV variables as before.  
+
+* Follow Functionality on Monitoring Dashboard - now see only the last 100 logs
+
+* Button for enable/disable autoscroll on new logs
+
+
+Fixed:
+
+removed milliseconds from countdown when delete a pod
+corrected typo error when delete a pod
+
 ##v4.25.0 (July 24, 2019)
 
 **Developers Console v1.6.0**
