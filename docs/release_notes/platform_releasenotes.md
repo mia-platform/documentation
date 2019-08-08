@@ -60,7 +60,8 @@ Fixed:
 
 Added:
 
-* Add new query params for api /projects/:projectId/environments/:environmentName/pods/:podName/containers/:containerName/logs
+* Add new query params for api /projects/:projectId/environments/:environmentName/pods
+/:podName/containers/:containerName/logs
 
 * Now you can set the `accessToken` for a cluster directly within the cluster configurations of the console project. If is not set in the db the value is read from the ENV variables as before.  
 
@@ -71,8 +72,8 @@ Added:
 
 Fixed:
 
-removed milliseconds from countdown when delete a pod
-corrected typo error when delete a pod
+* removed milliseconds from countdown when delete a pod  
+* corrected typo error when delete a pod  
 
 ##v4.25.0 (July 24, 2019)
 
