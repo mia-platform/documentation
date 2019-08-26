@@ -62,13 +62,14 @@ module.exports = customPlugin(async service => {
 
 To start the CM, simply edit the `package.json` file in this way
 
-```js
+```
+js
   //...
   "scripts": {
     // ...  
     "start": "fastify start src/index.js",
 ```
-exectue a ```npm start``` and opne a browser at the url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), to get an answer.
+execute a ```npm start``` and opne a browser at the url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), to get an answer.
 
 
 ## Factory exposed by `custom-plugin-lib`
@@ -137,7 +138,7 @@ the `id` user currently logged in, its groups, the type of client that performed
 Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services released on the Platform.
 
 ### Context
-Inside the handler scope it's possible to access fastify instance using `this`. 
+Inside the handler scope it's possible to access fastify instance using `this`.
 
 #### Example
 
@@ -393,6 +394,7 @@ abortChain (finalStatusCode, finalBody, finalHeaders)
 ```
 
 #### Example
+
 ```js
 // this PRE decorator verifies that a token is present
 // in the header of the original request. If it is not present
@@ -410,7 +412,7 @@ async function validateToken(request, response) {
 ## Route Diagram and Documentation
 
 A CM developed with `custom-plugin-lib` automatically also exposes the documentation of the routes and decorators that
-are implemented. The documentation is specified using the [OpenAPI 2.0 standard] (https://swagger.io/specification/v2/)
+are implemented. The documentation is specified using the [OpenAPI 2.0 standard](https://swagger.io/specification/v2/)
 and exhibited through [Swagger](https://swagger.io). Once the CM is started, its documentation can be accessed at
 route [`http: // localhost: 3000 / documentation`] (http: // localhost: 3000 / documentation). The specification of the request scheme
 and responses to a route must conform to the format accepted by
