@@ -273,3 +273,33 @@ In the API, you will then be able to conveniently view the buttons created on th
 
     here is how our button will appear:
     ![bottone in cms](img/bottone-in-cms.JPG)
+
+### 4.1. Advanced configurations
+
+Once you created the _button_ on the CMS, you have to configure the _Advanced Configurations_ of your project, otherwise the CMS will not find the created route.
+
+Based on the route that you want to call from CMS, you have to configure one or both of the following files:
+
+* **[maps-proxyBackOfficeName](https://docs.mia-platform.eu/development_suite/api-console/advanced-section/api-gateway-config-map/#how-to-proxy-a-request-through-a-service):** to set the service that you need to call for a specific request;
+
+* **[maps-proxyBackOfficeUrl](https://docs.mia-platform.eu/development_suite/api-console/advanced-section/api-gateway-config-map/#how-to-forward-a-request-to-another-url):** to set the destination url of a specific request;
+
+In the example, we will receive from the CMS a `POST` call to the `/documents-creator/contracts-comparison-cms` endpoint and we have to redirect this call to the _documents-creator_ service at the `/contracts-comparison-cms` path; to do this we have to:
+
+1. edit the **maps-proxyBackOfficeName.before** file by adding the following line:
+  `"~^secreted-1-1-POST-/contracts-comparison-cms($|\?)" "documents-creator";`
+
+2. edit the **maps-proxyBackOfficeUrl.before** file by adding the following line:
+  `"~^POST-/contracts-comparison-cms(?<path>.*)" "/contracts-comparison-cms$path";`
+
+otherwise the CMS will not find the path to consume the REST service.
+
+### 4.2. What does the button do
+
+Once you correctly configured the _Advanced section_ files, you can use the button to send a `POST` request to your custom _endpoint_, but what you will receive in the request _body_?
+
+The request _body_ will contain the following data:
+
+* **actionId**: the ID that you set in the creation phase of the button (in the example above is `contact-hero`)
+
+* **payload**: an array of the rows (CMS elements) selected by the user; every element of the array will contain a record of the CRUD, with all the information of the record, id and CRUD custom fields included.
