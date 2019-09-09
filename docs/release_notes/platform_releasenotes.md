@@ -1,5 +1,41 @@
 #Platform Release Note
 
+##v4.27.0 (September 5, 2019)
+
+**Developers Console v1.8.0**
+
+Added:
+
+New navigation flow of the monitoring area
+
+The user will now be faced with the display of all the pods with the essential information to understand the general state of the system.
+
+![](img/view-pod.png)
+
+Once clicked the pod can choose which container to view the logs on.
+We have also integrated memory and cpu information.
+
+![](img/view-log.png)
+
+The logs are displayed the last 100.
+In the logs it is now possible to perform the following operations:  
+
+* download of all logs  
+* filtering of visible logs  
+* stop of the scroll  
+* clear of the display
+
+Fixed:
+
+* Design CMS - Checkboxes in the property area do not save values
+* The cmslookup interface must appear even if the field is of type objectid
+
+**Headless CMS v9.1.1**
+
+Fixed:
+
+Now you can see in the table the values saved in the lookups and multilookups with the correct formatting
+
 ##v4.26.0 (August 8, 2019)
 
 **Developers Console - Design - v1.7.0**
