@@ -25,6 +25,8 @@ In the logs it is now possible to perform the following operations:
 * stop of the scroll  
 * clear of the display
 
+New Import from JSON functionality when you create a new collection
+
 Fixed:
 
 * Design CMS - Checkboxes in the property area do not save values
