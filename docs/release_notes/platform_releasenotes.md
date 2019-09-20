@@ -17,8 +17,8 @@ We have also integrated memory and cpu information.
 
 ![](img/view-log.png)
 
-The logs are displayed the last 100.
-In the logs it is now possible to perform the following operations:  
+In this view the last 100 logs are shown.
+Morover it is now possible to perform the following operations:  
 
 * download of all logs  
 * filtering of visible logs  
