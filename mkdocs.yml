@@ -57,7 +57,9 @@ nav:
        - BaaS:
          - Crud: 'runtime_suite/crud-service.md'
          - Static File Hosting: 'runtime_suite/static-file-service.md'
-         - File Manager Service: 'runtime_suite/files-service.md'
+         - File Manager Service:
+            - Usage: 'runtime_suite/files-service/usage.md'
+            - Configuration: 'runtime_suite/files-service/configuration.md'
          - Notifications:
            - Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
            - Mail Service: 'runtime_suite/mail-notification.md'
