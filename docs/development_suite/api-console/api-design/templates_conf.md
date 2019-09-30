@@ -75,3 +75,16 @@ Example response for this call:
 So, as imageUrl params in template body, you should use: `https://console.cloud.mia-platform.eu/v2/files/download/65d15696-8724-4103-b672-e29518a55135.gif`
 
 ![Magic](img/magic.gif)
+
+### Change a custom template
+
+To change a custom template, you can use the postman collection below to modify the project.
+
+First, fill with your cookie sid to authenticate. Once authenticated, get the template to modify using `Get templates` collection to find the correct id.
+With the correct template id, `Change existing template` with the id, remove the unchanged fields and modify the correct one.
+
+### Postman collection
+
+Download this collection and import into postman.
+
+[download](download/template.postman_collection.json)
