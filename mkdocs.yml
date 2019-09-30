@@ -20,7 +20,7 @@ nav:
     - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
     - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
     - Services:
-       - Manage your Microservices from the Api Console: 'development_suite/api-console/api-design/services.md'
+       - Manage your Microservices from the Dev Console: 'development_suite/api-console/api-design/services.md'
        - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
        - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
        - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
@@ -34,7 +34,7 @@ nav:
        - API Gateway:
          -  Create config map: 'development_suite/api-console/advanced-section/api-gateway-config-map.md'
          -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
-       - API Console Config:
+       - Dev Console Config:
          - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
          - How to change the number of replicas: 'development_suite/api-console/advanced-section/replicas.md'
 
@@ -89,14 +89,14 @@ nav:
   - Overview: 'business_suite/overview-business-suite.md'
   - CMS:
     - Use CMS: 'business_suite/guide_cms.md'
-    - Configure CMS through API Console: 'development_suite/api-console/api-design/api_console_configcms.md'
+    - Configure CMS through Dev Console: 'development_suite/api-console/api-design/api_console_configcms.md'
     - Configure CMS .json file: 'business_suite/conf_cms.md'
     - Color CMS: 'business_suite/colorare_il_cms.md'
     - Update CMS: 'business_suite/update_cms.md'
     - Integrate custom frontends into the CMS: 'business_suite/custom-frontends-integration-CMS.md'
 
   - Analytics:
-    - Configure Analytics through API Console: 'development_suite/api-console/api-design/api_console_configanalytics.md'
+    - Configure Analytics through Dev Console: 'development_suite/api-console/api-design/api_console_configanalytics.md'
     - Configure Analytics .json file: 'business_suite/conf_analytics.md'
 
 - Release Notes:
