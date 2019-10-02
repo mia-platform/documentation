@@ -35,7 +35,7 @@ Each microservice exposes some useful routes to the ecosystem. Through these rou
 
 It returns 200 if the application correctly runs. If an unrecoverable internal error occurred, this may return a 503 status code.
 For example, if your application implements a connection pool and a connection goes down, the application should not returns 503 on this route because your connection pool is still alive.
-Instead, if your application has only one connection to the database and this goes down, the appliaction should return 503.
+Instead, if your application has only one connection to the database and this goes down and your application doesn't recover the connection properly, the application should return 503.
 
 ### Readiness route ###
 `/-/ready`
