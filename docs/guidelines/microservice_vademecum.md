@@ -52,7 +52,7 @@ This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor
 It's purpose is to check the status of all the dependencies. If your application depends on:
 - an another microservice, this route should invoke the `/-/healthz` route of that service
 - an external microservice, this route should invoke its status route
-- another dependency like Database or Kafka..., this route should check if the dependency is up.
+- another dependency like Database or Kafka..., this route should check if the dependency is reachable.
 
 This route has to return 200 if and only if all pod dependencies are up, 503 otherwise.
 
