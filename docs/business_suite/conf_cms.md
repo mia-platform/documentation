@@ -31,7 +31,7 @@ key | example value | Comment
 `order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
 `baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
 `highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
-
+`confirmBeforeEdit` | "" | if true, enable double check before save
   So the final .json file will be:
 
 ```
@@ -61,7 +61,9 @@ key | example value | Comment
 
   "icon": "book",
 
-  "order": 0
+  "order": 0,
+  
+  "confirmBeforeEdit": true,
 
 }
 ```
