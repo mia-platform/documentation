@@ -1,5 +1,151 @@
 #Platform Release Note
 
+##v4.28.0 (October 18, 2019)
+**Breaking change v4.28.0**
+
+**Export Service**
+
+This is the only breaking change for the configuration created from the console. Other breaking changes are for the console itself.
+
+The new version of the platform need the [export-service](https://git.tools.mia-platform.eu/platform/core/export-service) to enable the export functionality of the cms.
+
+The `export-service` should be into the `multitenant` namespace. To deploy this service, you can use this [deployment file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.deployment.yml) and this [service file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.service.yml).
+
+Once deployed, you **must** set as enabled into dev-console project on mongodb the `export-service` to true.
+
+e.g.
+```json
+project:
+
+{
+  "name": "Demo",
+  ...
+  "enabledServices": {
+    ...
+    "export-service": true
+  }
+}
+```
+
+Create the configuration from the dev-console. This will create an headless service called `export-service` pointing to `multitenant` namespace. To view an example of the created service, [click here](https://git.tools.mia-platform.eu/clients/demo/configuration/blob/test/configuration/export-service.service.yml).
+
+**Custom plugin templates**
+
+This change is already handled for console hosted from mia-platform, but must be handle by self hosted version of the console.
+
+To facilitate subsequent developments and resolve some technical debts, we decided to move `custom-plugin-templates` collection to `services` collection and add other templates info. To enable the marketplace of services section of the console, you should move old templates to this new collection.
+
+This is the [crud configuration](https://git.tools.mia-platform.eu/clients/mia-platform/api-console-configurations/blob/master/config-maps/crud-service/services-services.json), and an example of service:
+```json
+{
+  "name": "Node Template",
+  "archiveUrl": "https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz",
+  "description": "This is the best template to start creating a service in node integrated inside the platform",
+  "type": "template",
+  "supportedBy": "mia-platform",
+  "image": [
+    {
+      "_id": "5db0105743875a0011618815",
+      "name": "36e6b6b4-36e1-4737-b65f-d1fb62bb3647.png",
+      "file": "f2ca3f95-1556-446f-a098-dbc1ff219dc8.png",
+      "size": 1532,
+      "location": "/v2/files/download/f2ca3f95-1556-446f-a098-dbc1ff219dc8.png",
+      "type": "image/png"
+    }
+  ],
+  "supportedByImage": [
+    {
+      "_id": "5db0106143875a0011618816",
+      "name": "e7c7ced2-e40e-465b-9e79-7d5c710badb2.png",
+      "file": "e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+      "size": 139694,
+      "location": "/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+      "type": "image/png"
+    }
+  ]
+}
+```
+**Fixes**
+
+**Logs timeout**
+
+This change is already handled for console hosted from mia-platform, but must be handle by self hosted version of the console.
+This is not a breaking change.
+
+The monitoring logs could run into an issue with the stream timeout.
+Logs may not be a continuous data stream, so logs could run into timeout and your monitoring dashboard users should refresh very often the logs view.
+To fix this issue, you should remove timeout for this specific endpoint. [Here](https://git.tools.mia-platform.eu/platform/dev-portal/kubernetes-service#what-to-do-if-the-request-of-logs-fails-after-some-minutes) there is a documentation about how to enable a continuous stream of logs in node and nginx services. We handle this into the console `kubernetes-service` and the `api-gateway`, but there could be other infrastructure proxy (e.g. the [client-proxy](https://git.tools.mia-platform.eu/clients/mia-platform/client-proxy/blob/master/config-files/conf.d/api-console.conf)).
+
+**Design Section**
+
+Added:
+
+1. **Marketplace in the Service Section**
+
+    ![](img/service-marketplace.png)
+
+    In the services area we have introduced the marketplace.
+    In this section you can find:  
+
+    * Mia templates, or the templates created from your company;  
+    * Example to create microservices;    
+    * Mia Plugins to implement some microservices of Mia's ecosystem microservice.     
+
+
+2. **Group expressions for the Backoffice APIs**
+
+    Now is possible to set up group expressions for the Backoffice APIs on the Endpoints Management page.
+    This way you can show unique access privileges based on the groups created on the CMS.
+
+    ![](img/backoffice-expression.png)
+
+3. To speed up data loading we have introduced a new default index: createdAt = DESCENDANT
+
+4. When you create an endpoints you can start with **/-**
+
+5. Fullscreen mode when you are writing in the Editor.
+
+**Monitoring**
+
+* We have sanitized the logs  
+
+* We have made the refresh me more visible when a pod breaks down
+
+**API Portal**
+
+Added:
+
+* download for file   
+
+* possibility to expand all the response and to copy the elements
+
+
+**Deploy Area**
+
+Added:
+
+* History page now fetch info in polling (2s)
+
+Fixes:
+
+* Add feedback on button click. Now it is not possible to hit multiple times and start multiple deploy
+
+* Fix positive feedback on api error if previous deploy successful
+
+* Fix completedAt data to In progress if pipeline is in running
+
+**Core Services**
+
+New Export Service:   
+This micro-service allows to export a data source to multiple formats.
+Input data source format must be a JSON lines.
+Supported output formats are:
+
+* JSON
+* CSV
+* HTML
+* XLSX
+
 ##v4.27.0 (September 5, 2019)
 
 **Developers Console v1.8.0**
