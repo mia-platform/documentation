@@ -111,7 +111,7 @@ Added:
 
 * We have made the refresh me more visible when a pod breaks down
 
-**API Portal**
+**API Portal v1.6.0**
 
 Added:
 
@@ -134,17 +134,55 @@ Fixes:
 
 * Fix completedAt data to In progress if pipeline is in running
 
+**Back-and Developers Console**
+
+Added:
+
+* Management of readiness and probeness routes in Google Cloud
+
+* Management of backoffice ACL inheritance for endpoint and routes  
+
+* 2 new env variables to interpolate in v1-adapter: EXPORT_SERVICE_URL and EXPORT_SERVICE_NDJSON_URL
+  These variables are needed in v1-adapter in order to use new export-service with CMS
+
+
+Changed:
+
+AC-1220: Change validation regex in Constants / basePath
+
+Updates:
+
+* Dependencies update  
+* api-portal to 1.6.4  
+* cms-backend to 1.2.0  
+* crud-service to 2.0.1  
+* session-manager to 4.4.0  
+* v1-adapter to 2.2.0  
+
+Fixed:
+
+* Fixed ECONNREFUSED error by expecting the templateId in the request and      contacting the CRUD service to get the template info
+
+* Fixed templateUrl CRUD retrieval using value property
+
+
 **Core Services**
 
-New Export Service:   
-This micro-service allows to export a data source to multiple formats.
-Input data source format must be a JSON lines.
-Supported output formats are:
+1. New Export Service:   
+    This micro-service allows to export a data source to multiple formats.
+    Input data source format must be a JSON lines.
+    Supported output formats are:
 
-* JSON
-* CSV
-* HTML
-* XLSX
+    * JSON
+    * CSV
+    * HTML
+    * XLSX
+
+2.  Session Manager v4.4.0:
+
+    implement check-up route
+
+
 
 ##v4.27.0 (September 5, 2019)
 
