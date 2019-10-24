@@ -33,18 +33,29 @@ Each microservice exposes some useful routes to the ecosystem. Through these rou
 ### Liveness route ###
 `/-/healthz`
 
-It returns 200 if the service is able to handle traffic properly.
-For example, the service correctly communicates with the database.
+It returns 200 if the application correctly runs. If an unrecoverable internal error occurred, this may return a 503 status code.
+For example, if your application implements a connection pool and a connection goes down, the application should not returns 503 on this route because your connection pool is still alive.
+Instead, if your application has only one connection to the database and this goes down and your application doesn't recover the connection properly, the application should return 503.
 
 ### Readiness route ###
 `/-/ready`
 
-Answers 200 only when, upon release, all the preliminary operations necessary for the functioning of the service are completed. This route informs OpenShift about the availability of the service.
+This route will identify the container is "able to process new incoming request". During the startup, this route returns 503. After the startup, this route returns 200, if in that time, the pod is able to serve requests.
+In some conditions, the pod can communicate to Kubernetes that it is under pressure and new incoming request may be served with a delay or may not be served at all. In this condition, the readiness route may return 503 even if your pod is up and running.
+
+In this case, Kubernetes avoids sending to the pod new incoming TCP connections. Only once the container returns 200, Kubernetes restores the pod status and inserts it into the pool of the Service allowing new incoming request to reaches the pod.
 
 ### Check-up route ###
 `/-/check-up`
 
-This route is **<u>exclusively</u>** used by the [**Doctor service**](/development_suite/doctor-service/services_status); it's purpose is to check the status of all the dependencies of the service (by calling the `/-/healthz` route, if exists) and returns `200` if all the dependencies are healthy, `503` if not.
+This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor service**](/development_suite/doctor-service/services_status).
+It's purpose is to check the status of all the dependencies. If your application depends on:
+- an another microservice, this route should invoke the `/-/healthz` route of that service
+- an external microservice, this route should invoke its status route
+- another dependency like Database or Kafka..., this route should check if the dependency is reachable.
+
+This route has to return 200 if and only if all pod dependencies are up, 503 otherwise.
+
 **<u>NB.</u>** **Never call the `/-/check-up` route of another service in the check-up handler of a service** &rarr; this avoids to have a loop of `/-/check-up` calls, the only one who can call the `/-/check-up` route is the _Doctor service_.
 
 #### Kubernetes usage of liveness and readiness ####
