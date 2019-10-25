@@ -11,7 +11,7 @@ The new version of the platform need the [export-service](https://git.tools.mia-
 
 The `export-service` should be into the `multitenant` namespace.
 If you do not have already a multitenant namespace, you could create using [this file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/multitenant.namespace.yml) and a file [.secret](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/multitenant.secret.yml) to link to nexus.
-To deploy this service, you can use this [deployment file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.deployment.yml) and this [service file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.service.yml). 
+To deploy this service, you can use this [deployment file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.deployment.yml) and this [service file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.service.yml).
 You can deploy this file with `kubectl` cli:
 ```bash
 kubectl apply -f path/to/export-service.deployment.yml
@@ -80,11 +80,13 @@ This change is already handled for console hosted from mia-platform, but must be
 To upgrade the api-console backend, you must add this environment variables:
 
 ```yaml
+
 - name: MULTITENANT_NAMESPACE
   value: multitenant
 - name: SERVICES_CRUD_BASE_PATH
   value: http://crud-service/api/services
-````
+```
+
 
 and you should remove the `TEMPLATES_CRUD_BASE_PATH` variables, unused from this release.
 
