@@ -1,5 +1,25 @@
 #Platform Release Note
 
+**CMS v9.2.0**
+
+1. Add a parameter to the configuration of a collection that enables the fact that every time I perform an action a confirmation message appears for each action
+
+   ```
+   confirmBeforeEdit: true
+
+   ```
+
+2. We have resized the page and improve the usability of the scroll
+   We made the color of the scrollbar and its size configurable by variable:
+
+   ```
+   --scrollbar-height: 6px (default è 6px)
+   --scrollbar-width: 6px (default è 6px)
+   --scrollbar-color: #000000 (default è rgba(0,0,0,0.2))
+   ```
+
+   You should add this value in the custom css file.
+
 ##v4.28.0 (October 18, 2019)
 **Breaking change v4.28.0**
 
