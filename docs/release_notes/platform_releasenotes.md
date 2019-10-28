@@ -1,5 +1,11 @@
 #Platform Release Note
 
+##4.28.1 (October 28, 2019)
+
+**Login Site**
+
+The login-site has been modified to allow redirects to URLs containing query parameters
+
 **CMS v9.2.0**
 
 1. Add a parameter to the configuration of a collection that enables the fact that every time I perform an action a confirmation message appears for each action
