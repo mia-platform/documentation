@@ -1,6 +1,6 @@
 #Platform Release Note
 
-##4.28.1 (October 28, 2019)
+##v4.28.1 (October 28, 2019)
 
 **Login Site**
 
