@@ -1,147 +1,136 @@
-# How to configure the CMS with Mia-Platform 3
-
-The collections shown in the CMS are configured in two different .json files:
-
-* 1) `cms_config.json` where the developer can configure general page settings in the CMS
-
-
-* 2) `properties.json` where the developer can configure every single property as it can be viewed and managed.
-
-Both files are located inside the specific folder within the collection that you want to configure.
-
-## cms_config.json
-
-Let's assume we are within the **heroes** collection and want to configure our cms heroes page.
-
-Open the `cms_config.json` file and we will build the following file:
-
-
-key | example value | Comment
-------- | ------- | -------
-`label` | Heroes | label is the label that allows you to choose the name of your collection in the CMS menu. in our case we will write Heroes
-`LayoutType` | table | you can decide the layout you want to give to your collection. **Table** is the most classic table view mode. **TableUser** is the display mode for users. It has in fact a special Reset Password field at the beginning of the table. **TablePush** instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers. If you select **Card** each item will be represented similar to a card. **Gallery** is instead the perfect representation for images
-`DefaultStatus` | draft | it can instead be either **draft** or **publish**. If you write draft once you upload an item it will not be published automatically on your applications, but you will have to give it the public command later. If you write publish instead whenever you edit or load an item it will be published automatically. In our case we will put draft.
-`DefDelete` | false, | if it is **true** the elements once deleted by trash will be permanently deleted. if it is **false** you can retrieve them from Mongo, but they will not appear on the CMS
-`Category` | | here you can configure the menu category in which to display your collection.
-`category.name` | General | this is the name of the category that will appear in the CMS
-`Category.order` | 10 | this is the order of the category in the menu. We advise you to always put the order in the tens. In fact, you will want to insert other collections or categories in the future. If before, for example, we would already have a category in order 3 to place this we would have to change all the others in cascade. With the tens, however, just put an intermediate number.
-`hidden` | false, | bringing this field to **true** you can choose not to show the collection in the CMS
-`Blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
-`icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
-`order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
-`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
-`highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
-`confirmBeforeEdit` | "" | if true, enable double check before save
-  So the final .json file will be:
-
-```
-  {
-
-  "label": "heroes",
-
-  "layoutType": "table",
-
-  "cardType": "",
-
-  "defaultStatus": "draft",
-
-  "defDelete": false,
-
-  "category": {
-
-    "name": "General",
-
-    "order": 0
-
-  },
-
-  "hidden": false,
-
-  "blocked": false,
-
-  "icon": "book",
-
-  "order": 0,
-  
-  "confirmBeforeEdit": true,
-
-}
-```
-
-
-## properties.json
-
-The properties.json file is the file that contains all the fields in the collection. Each field has a similar structure.
-
-By default there will be the fields: id, creatorId, createdAt, uptaterId, updatedAt, STATE,
-
-see in detail the specifications of a single property: es property **name**
-
-key | example value | Comment
-------- | ------- | -------
-`Id` | name | property id
-`type` | "string", | the types can be: string, number, boolean, geopoint, date, object, array
-`Required` | false, | **true** if you want the data to be mandatory
-`Label` | Name | it's the label you want to give to your property
-`cmsVisibility` | | cmsVisibility allows you to decide at what level you want to show a property. The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority. The visibility property can also be configured to be visible only in some cases, via **"New"** and **"Edit"**. Both are objects that contain a query, so they allow you to set complex conditions. **"New"** allows you to make visible the property being created, **"Edit"** allows you to make visible the property being edited.
-`CmsVisibilty.level` | 1 | The four levels can be: **0** and is not visible; ** 1 ** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
-`CmsOrder` | 10 | it is the order that you want to give it within the collection. in our case it will be the first, so we will write 10
-`CmsEditable` | true | **true** if you want it to be editable by CMS
-`Hidden` | false | if you want the property to be invisible
-`Description` | "" | if you want to add a description
-`CmsCardPosition` | 0 | indicates the location of the property in the Card layout
-`interfaceType` | string | the properties can be of different types: **string** if it is a classic text string; **number** if it is a number; **date** if it is a date with dd / mm / yyyy; **datetime** is instead a complete date with hours, minutes and seconds; **boolean** if it can only be true or false; **text** if we want the content to be read as html; **textArea** if it is a text field, then for example a description; **Lookup** are used to select some values ​​or between a range of values chosen by me or between a range of values taken from another collection. **Multilookup** if you want to select multiple values; **Array** if you want to save it as an ordered set of properties; **Object** is an unordered property set; **Geopoint** if you want me to save a specific place; **Files** if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
-
-the final json in our property **name** which is the name of the heroes will therefore be:
-
-```
-"nome": {
-   "id": "nome",
-   "type": "string",
-   "required": false,
-   "label": "Nome",
-   "cmsVisibility": {
-            "level": 1,
-             "edit": {
-            "query": {
-              "name": {
-                "$exists": true,
-                "$ne": ""
-              }
-            }
-          },
-          "new": {
-            "query": {
-              "name": {
-                "$exists": true,
-                "$ne": ""
-              }
-            }
-          }
-        },
-    "cmsOrder": 10,
-    "readonly": false,
-    "cmsEditable": true,
-    "hidden": false,
-    "description": "",
-     "cmsCardPosition":0,
-     "interfaceType": "string"
-}
-```
-
 
 ## CMS Config-extension in the API Console
+
+## An example of full field configuration
+
+```JSON
+{
+"namecollection": {
+  "cmsProperties": {
+
+  ///Managed by DEV CONSOLE///  
+    "label": "heroes",
+    "layoutType": "table",
+    "cardType": "",
+    "defaultStatus": "draft",
+    "defDelete": false,
+    "category": {
+      "name": "General",
+      "order": 0 },
+   "hidden": false,
+   "blocked": false,
+   "icon": "book",
+   "order": 0,
+   "confirmBeforeEdit": true,
+
+   "baseQuery": { "isLate": true, "state": "working", "trash": 0},
+
+   "aclExpression":"groups.admin",
+
+   "notification": {
+        "query":
+           {"isLate": true, "state": "working", "trash": 0}
+       },
+
+    "highlight": {
+          "query": {"isLate": true, "state": "working", "trash": 0},
+           "color": "white",
+           "backgroundColor": "#d55d5f"
+        },
+
+  /// Extension for hide search bar ///
+
+   "hiddenSearchBar": true,
+
+  /// Extension for confirm each action ///
+
+  "confirmBeforeEdit": true,
+
+  ///Extension for create cards///
+
+   "cardHeader": {
+     "titleProperty": "laboratory",
+     "subTitleProperty": "productId",
+     "imageProperty": ""
+   },
+   "cardContentRows": [{
+     "type": "textarea",
+     "properties": ["note"]
+   },
+   {
+     "type": "text",
+     "properties": ["newExpirationDate", "newItemNumber"]
+   },
+   {
+     "labels": ["Accetta", "Rifiuta"],
+     "type": "button",
+     "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
+     "ids": ["accetta", "rifiuta"],
+     "icons": ["check", "archive"]
+   },
+   {
+     "type": "link",
+     "labels": ["Mail", "Skype"],
+     "icons": ["at", "skype"],
+     "linksType": ["email", "skypeCall"],
+     "properties": ["mail", "skypeId"]
+   }
+   ],
+
+ ///PROPERTIES AREA ///
+
+  "properties": {
+     "name": {
+
+/// Managed by Dev Console ///
+       "id": "nome",
+       "type": "string",
+       "required": false,
+       "label": "Nome",
+       "cmsVisibility": {
+            "level": 1,
+            "edit": {
+                "query": {"nome":"Thor"}
+                    },
+            "new": {
+              "query": {"nome":"Thor"}
+                    }
+         },
+      "cmsOrder": 10,
+      "readonly": false,
+      "cmsEditable": true,
+      "hidden": false,
+      "description": "",
+      "cmsCardPosition":0,
+      "interfaceType": "string"
+
+      /// CMS LOOKUP O MULTILOOKUP///
+      /// NAVIGATION BETWEEN COLLECTION WITH LINKS///
+      /// BUTTON CONFIGURATIONS ///
+
+            }
+          }
+        }
+      }
+    }
+```
+
+
+# Extension you cannot configure in the CMS section
 
 All previous configurations are automatically managed by the API.
 However, there are some extensions that can not yet be configured from the front end but are managed by a component: the config-extension.
 
-the 5 most important extensions are:
+the extensions are:
 
-1. le **card**
-2. the **notifications** in the side menu
-3. the **highlight**, or the possibility to highlight lines in the tables
-4. the **conditional visibility** of a property.
-5. the **access control on groups** (ACL on groups).
+1.  **card**
+2.  **notifications** in the side menu
+3.  **highlight**, or the possibility to highlight lines in the tables
+4.  **conditional visibility** of a property.
+5.  **access control on groups** (ACL on groups).
+6.  **navigation between collection with link**
+7.  **confirmation message for each action**
+8.  **hide the search bar**
 
 
 ## Set up GIT to have the cms config-extensions
@@ -333,7 +322,7 @@ Notifications are objects composed of only one element: a **query**. Within the 
 !!! example
     Here is an example of notification
 
-
+```
          "notification": {
 
               "query":
@@ -342,6 +331,7 @@ Notifications are objects composed of only one element: a **query**. Within the 
 
              }
 
+```
 
    The display will be as follows:
 
@@ -362,7 +352,7 @@ The highlights allow you to highlight rows in the tables. A highlight is an obje
 !!! example
     Here is an example of a highlight
 
-
+```
         "highlight": {
 
              "query":
@@ -374,7 +364,7 @@ The highlights allow you to highlight rows in the tables. A highlight is an obje
               "backgroundColor": "#d55d5f"
 
            }
-
+```
 
 The display will be as follows:
 ![](img/highlight.png)
@@ -479,7 +469,7 @@ When in json, the ACL on groups fits into all the collections that want to be co
 
 ```
 "nomecollection": {
-"AclExpression": "groups.nomegruppo"
+"aclExpression": "groups.nomegruppo"
 }
 ```
 
@@ -517,3 +507,133 @@ In the rest of the json, all the other properties of the collection are configur
         ```
 
 In this case the Heroes Good collection is visible only to administrators.
+# How to configure the CMS with Mia-Platform 3
+
+The collections shown in the CMS are configured in two different .json files:
+
+* 1) `cms_config.json` where the developer can configure general page settings in the CMS
+
+
+* 2) `properties.json` where the developer can configure every single property as it can be viewed and managed.
+
+Both files are located inside the specific folder within the collection that you want to configure.
+
+## cms_config.json
+
+Let's assume we are within the **heroes** collection and want to configure our cms heroes page.
+
+Open the `cms_config.json` file and we will build the following file:
+
+
+key | example value | Comment
+------- | ------- | -------
+`label` | Heroes | label is the label that allows you to choose the name of your collection in the CMS menu. in our case we will write Heroes
+`LayoutType` | table | you can decide the layout you want to give to your collection. **Table** is the most classic table view mode. **TableUser** is the display mode for users. It has in fact a special Reset Password field at the beginning of the table. **TablePush** instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers. If you select **Card** each item will be represented similar to a card. **Gallery** is instead the perfect representation for images
+`DefaultStatus` | draft | it can instead be either **draft** or **publish**. If you write draft once you upload an item it will not be published automatically on your applications, but you will have to give it the public command later. If you write publish instead whenever you edit or load an item it will be published automatically. In our case we will put draft.
+`DefDelete` | false, | if it is **true** the elements once deleted by trash will be permanently deleted. if it is **false** you can retrieve them from Mongo, but they will not appear on the CMS
+`Category` | | here you can configure the menu category in which to display your collection.
+`category.name` | General | this is the name of the category that will appear in the CMS
+`Category.order` | 10 | this is the order of the category in the menu. We advise you to always put the order in the tens. In fact, you will want to insert other collections or categories in the future. If before, for example, we would already have a category in order 3 to place this we would have to change all the others in cascade. With the tens, however, just put an intermediate number.
+`hidden` | false, | bringing this field to **true** you can choose not to show the collection in the CMS
+`Blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
+`icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
+`order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
+`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
+`highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
+`confirmBeforeEdit` | "" | if true, enable double check before save
+  So the final .json file will be:
+
+```
+  {
+
+  "label": "heroes",
+
+  "layoutType": "table",
+
+  "cardType": "",
+
+  "defaultStatus": "draft",
+
+  "defDelete": false,
+
+  "category": {
+
+    "name": "General",
+
+    "order": 0
+
+  },
+
+  "hidden": false,
+
+  "blocked": false,
+
+  "icon": "book",
+
+  "order": 0,
+
+  "confirmBeforeEdit": true,
+
+}
+```
+
+
+## properties.json
+
+The properties.json file is the file that contains all the fields in the collection. Each field has a similar structure.
+
+By default there will be the fields: id, creatorId, createdAt, uptaterId, updatedAt, STATE,
+
+see in detail the specifications of a single property: es property **name**
+
+key | example value | Comment
+------- | ------- | -------
+`Id` | name | property id
+`type` | "string", | the types can be: string, number, boolean, geopoint, date, object, array
+`Required` | false, | **true** if you want the data to be mandatory
+`Label` | Name | it's the label you want to give to your property
+`cmsVisibility` | | cmsVisibility allows you to decide at what level you want to show a property. The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority. The visibility property can also be configured to be visible only in some cases, via **"New"** and **"Edit"**. Both are objects that contain a query, so they allow you to set complex conditions. **"New"** allows you to make visible the property being created, **"Edit"** allows you to make visible the property being edited.
+`CmsVisibilty.level` | 1 | The four levels can be: **0** and is not visible; ** 1 ** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
+`CmsOrder` | 10 | it is the order that you want to give it within the collection. in our case it will be the first, so we will write 10
+`CmsEditable` | true | **true** if you want it to be editable by CMS
+`Hidden` | false | if you want the property to be invisible
+`Description` | "" | if you want to add a description
+`CmsCardPosition` | 0 | indicates the location of the property in the Card layout
+`interfaceType` | string | the properties can be of different types: **string** if it is a classic text string; **number** if it is a number; **date** if it is a date with dd / mm / yyyy; **datetime** is instead a complete date with hours, minutes and seconds; **boolean** if it can only be true or false; **text** if we want the content to be read as html; **textArea** if it is a text field, then for example a description; **Lookup** are used to select some values ​​or between a range of values chosen by me or between a range of values taken from another collection. **Multilookup** if you want to select multiple values; **Array** if you want to save it as an ordered set of properties; **Object** is an unordered property set; **Geopoint** if you want me to save a specific place; **Files** if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
+
+the final json in our property **name** which is the name of the heroes will therefore be:
+
+```
+"nome": {
+   "id": "nome",
+   "type": "string",
+   "required": false,
+   "label": "Nome",
+   "cmsVisibility": {
+            "level": 1,
+             "edit": {
+            "query": {
+              "name": {
+                "$exists": true,
+                "$ne": ""
+              }
+            }
+          },
+          "new": {
+            "query": {
+              "name": {
+                "$exists": true,
+                "$ne": ""
+              }
+            }
+          }
+        },
+    "cmsOrder": 10,
+    "readonly": false,
+    "cmsEditable": true,
+    "hidden": false,
+    "description": "",
+     "cmsCardPosition":0,
+     "interfaceType": "string"
+}
+```
