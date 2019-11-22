@@ -1,4 +1,3 @@
-
 ## CMS Config-extension in the API Console
 
 ## An example of full field configuration
@@ -102,10 +101,20 @@
       "hidden": false,
       "description": "",
       "cmsCardPosition":0,
-      "interfaceType": "string"
+      "interfaceType": "string",
 
       /// CMS LOOKUP O MULTILOOKUP///
       /// NAVIGATION BETWEEN COLLECTION WITH LINKS///
+      "cmsLinks": [{
+            "collectionIdTarget": "yourCollectionId",
+            
+            //collectionPropertyIdTarget is not required: if not present the navigation will search the value within the search and not within the filters
+            "collectionPropertyIdTarget": "yourPropertyId",
+            
+            //the possible values are equals (eq) or contains (ct); the default value is equal;
+            "operator": "eq" 
+        }]
+      
       /// BUTTON CONFIGURATIONS ///
 
             }
