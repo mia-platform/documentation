@@ -16,34 +16,33 @@
     "category": {
       "name": "General",
       "order": 0 },
-   "hidden": false,
-   "blocked": false,
-   "icon": "book",
-   "order": 0,
-   "confirmBeforeEdit": true,
+    "hidden": false,
+    "blocked": false,
+    "icon": "book",
+    "order": 0,
+    "aclExpression":"groups.admin",
+    "confirmBeforeEdit": true,
 
-   "baseQuery": { "isLate": true, "state": "working", "trash": 0},
+    "baseQuery": { "isLate": true, "state": "working", "trash": 0},
 
-   "aclExpression":"groups.admin",
+    "notification": {
+         "query":
+            {"isLate": true, "state": "working", "trash": 0}
+        },
 
-   "notification": {
-        "query":
-           {"isLate": true, "state": "working", "trash": 0}
-       },
-
-    "highlight": {
-          "query": {"isLate": true, "state": "working", "trash": 0},
+     "highlight": {
+           "query": {"isLate": true, "state": "working", "trash": 0},
            "color": "white",
            "backgroundColor": "#d55d5f"
         },
 
   /// Extension for hide search bar ///
 
-   "hiddenSearchBar": true,
+     "hiddenSearchBar": true,
 
   /// Extension for confirm each action ///
 
-  "confirmBeforeEdit": true,
+     "confirmBeforeEdit": true,
 
   ///Extension for create cards///
 
@@ -103,20 +102,48 @@
       "cmsCardPosition":0,
       "interfaceType": "string",
 
-      /// CMS LOOKUP O MULTILOOKUP///
-      /// NAVIGATION BETWEEN COLLECTION WITH LINKS///
-      "cmsLinks": [{
-            "collectionIdTarget": "yourCollectionId",
-            
-            //collectionPropertyIdTarget is not required: if not present the navigation will search the value within the search and not within the filters
-            "collectionPropertyIdTarget": "yourPropertyId",
-            
-            //the possible values are equals (eq) or contains (ct); the default value is equal;
-            "operator": "eq" 
-        }]
-      
-      /// BUTTON CONFIGURATIONS ///
+     ///acl for properties ///
 
+      "aclExpression":"groups.admin",
+
+      /// if interfaceType = cmslookup or cmsmultilookup ///
+
+				"cmsLookup": {
+					"text": {
+						"sources": [
+							"name"
+						],
+						"delimiters": []
+					},
+					"value": "id",
+					"autoSelect": false,
+					"reset": false,
+					"limit": 5,
+					"query": "",
+					"searchLive": false,
+					"collectionIdSource": "brands"
+				},
+
+    /// button configurations ///
+           "actions": [
+                 {
+                    "id":"sendInvoice",
+                    "label":"Send Invoice",
+                    "route":"/sendinvoice",
+                    "icon":"paper-plane"
+                 }
+               ],
+      /// navigation between collection with links ///
+
+          "cmsLinks": [{
+             "collectionIdTarget": "yourCollectionId",
+
+            /// collectionPropertyIdTarget is not required: if not present the navigation will search the value within the search and not within the filters ///
+             "collectionPropertyIdTarget": "yourPropertyId",
+
+            /// the possible values are equals (eq) or contains (ct); the default value is equal; ///
+            "operator": "eq"
+              }],
             }
           }
         }
@@ -219,7 +246,7 @@ Each widget can consist of multiple properties of the same type. For example. If
     Here is an example of card content rows - With this view you will see below the header a field notes, two properties, two buttons and two links.
 
 
-```
+``` JSON
 
 "cardContentRows": [{
      "type": "textarea",
@@ -252,7 +279,7 @@ Each widget can consist of multiple properties of the same type. For example. If
 !!! example
     Here is an example of a final card within the change-requests collection
 
-```
+``` jSON
 
 "change-requests": {
    "cmsProperties": {
@@ -331,7 +358,7 @@ Notifications are objects composed of only one element: a **query**. Within the 
 !!! example
     Here is an example of notification
 
-```
+``` JSON
          "notification": {
 
               "query":
@@ -361,7 +388,7 @@ The highlights allow you to highlight rows in the tables. A highlight is an obje
 !!! example
     Here is an example of a highlight
 
-```
+``` JSON
         "highlight": {
 
              "query":
@@ -429,7 +456,7 @@ Here is an example of a complete configuration:
 
 In **"properties"** the properties to be conditioned are listed (in the example, only "force"). The only configuration of conditioned visibility is as follows:
 
-```
+``` JSON
 "cmsVisibility": {
     "visibility" :0,
     "edit": {
@@ -476,7 +503,7 @@ To configure these properties, the path is as follows:
 
 When in json, the ACL on groups fits into all the collections that want to be controlled. **In the ACL property you enter the name of the groups that can see that collection.** The syntax is as follows:
 
-```
+``` JSON
 "nomecollection": {
 "aclExpression": "groups.nomegruppo"
 }
@@ -516,6 +543,47 @@ In the rest of the json, all the other properties of the collection are configur
         ```
 
 In this case the Heroes Good collection is visible only to administrators.
+
+### 6. Navigation between collection with link
+
+The goal of this feature is to speed up browsing between collections. to give an example: within an order I have a reference to a user for whom I need to find additional information to contact him. In this way I can configure a link that takes me directly to the users' collection looking for or filtering for the user who was saved in the order
+
+**Configuration**
+
+```JSON
+    "cmsLinks": [{
+       "collectionIdTarget": "yourCollectionId", in our example: users
+
+      /// collectionPropertyIdTarget is not required: if not present the navigation will search the value within the search and not within the filters ///
+       "collectionPropertyIdTarget": "yourPropertyId", in our example maybe the name of the user
+
+      /// the possible values are equals (eq) or contains (ct); the default value is equal; ///
+      "operator": "eq"
+        }],
+```
+
+![](img/navigation-between-collection.png)
+
+### 7. Confirmation message for each action
+
+Some collections are very delicate and need to be sure you want to change some data. with this configuration it will be possible to request a double confirmation for each action.
+
+**Configuration**
+
+``` JSON
+ "confirmBeforeEdit": true,
+```
+
+### 8.  Hide the search bar
+
+With this configuration it is possible to hide the search bar
+
+**Configuration**
+
+``` JSON
+ "hiddenSearchBar": true,
+```
+
 # How to configure the CMS with Mia-Platform 3
 
 The collections shown in the CMS are configured in two different .json files:
@@ -537,14 +605,14 @@ Open the `cms_config.json` file and we will build the following file:
 key | example value | Comment
 ------- | ------- | -------
 `label` | Heroes | label is the label that allows you to choose the name of your collection in the CMS menu. in our case we will write Heroes
-`LayoutType` | table | you can decide the layout you want to give to your collection. **Table** is the most classic table view mode. **TableUser** is the display mode for users. It has in fact a special Reset Password field at the beginning of the table. **TablePush** instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers. If you select **Card** each item will be represented similar to a card. **Gallery** is instead the perfect representation for images
-`DefaultStatus` | draft | it can instead be either **draft** or **publish**. If you write draft once you upload an item it will not be published automatically on your applications, but you will have to give it the public command later. If you write publish instead whenever you edit or load an item it will be published automatically. In our case we will put draft.
-`DefDelete` | false, | if it is **true** the elements once deleted by trash will be permanently deleted. if it is **false** you can retrieve them from Mongo, but they will not appear on the CMS
-`Category` | | here you can configure the menu category in which to display your collection.
+`layoutType` | table | you can decide the layout you want to give to your collection. **table** is the most classic table view mode. **tableUser** is the display mode for users. It has in fact a special Reset Password field at the beginning of the table. **tablePush** instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers. If you select **card** each item will be represented similar to a card. **gallery** is instead the perfect representation for images
+`defaultStatus` | draft | it can instead be either **draft** or **publish**. If you write draft once you upload an item it will not be published automatically on your applications, but you will have to give it the public command later. If you write publish instead whenever you edit or load an item it will be published automatically. In our case we will put draft.
+`defDelete` | false, | if it is **true** the elements once deleted by trash will be permanently deleted. if it is **false** you can retrieve them from Mongo, but they will not appear on the CMS
+`category` | | here you can configure the menu category in which to display your collection.
 `category.name` | General | this is the name of the category that will appear in the CMS
-`Category.order` | 10 | this is the order of the category in the menu. We advise you to always put the order in the tens. In fact, you will want to insert other collections or categories in the future. If before, for example, we would already have a category in order 3 to place this we would have to change all the others in cascade. With the tens, however, just put an intermediate number.
+`category.order` | 10 | this is the order of the category in the menu. We advise you to always put the order in the tens. In fact, you will want to insert other collections or categories in the future. If before, for example, we would already have a category in order 3 to place this we would have to change all the others in cascade. With the tens, however, just put an intermediate number.
 `hidden` | false, | bringing this field to **true** you can choose not to show the collection in the CMS
-`Blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
+`blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
 `icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
 `order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
 `baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
@@ -597,18 +665,18 @@ see in detail the specifications of a single property: es property **name**
 
 key | example value | Comment
 ------- | ------- | -------
-`Id` | name | property id
+`id` | name | property id
 `type` | "string", | the types can be: string, number, boolean, geopoint, date, object, array
-`Required` | false, | **true** if you want the data to be mandatory
-`Label` | Name | it's the label you want to give to your property
-`cmsVisibility` | | cmsVisibility allows you to decide at what level you want to show a property. The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority. The visibility property can also be configured to be visible only in some cases, via **"New"** and **"Edit"**. Both are objects that contain a query, so they allow you to set complex conditions. **"New"** allows you to make visible the property being created, **"Edit"** allows you to make visible the property being edited.
-`CmsVisibilty.level` | 1 | The four levels can be: **0** and is not visible; ** 1 ** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
-`CmsOrder` | 10 | it is the order that you want to give it within the collection. in our case it will be the first, so we will write 10
-`CmsEditable` | true | **true** if you want it to be editable by CMS
-`Hidden` | false | if you want the property to be invisible
-`Description` | "" | if you want to add a description
-`CmsCardPosition` | 0 | indicates the location of the property in the Card layout
-`interfaceType` | string | the properties can be of different types: **string** if it is a classic text string; **number** if it is a number; **date** if it is a date with dd / mm / yyyy; **datetime** is instead a complete date with hours, minutes and seconds; **boolean** if it can only be true or false; **text** if we want the content to be read as html; **textArea** if it is a text field, then for example a description; **Lookup** are used to select some values ​​or between a range of values chosen by me or between a range of values taken from another collection. **Multilookup** if you want to select multiple values; **Array** if you want to save it as an ordered set of properties; **Object** is an unordered property set; **Geopoint** if you want me to save a specific place; **Files** if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
+`required` | false, | **true** if you want the data to be mandatory
+`label` | Name | it's the label you want to give to your property
+`cmsVisibility` | | cmsVisibility allows you to decide at what level you want to show a property. The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority. The visibility property can also be configured to be visible only in some cases, via **"new"** and **"edit"**. Both are objects that contain a query, so they allow you to set complex conditions. **"new"** allows you to make visible the property being created, **"edit"** allows you to make visible the property being edited.
+`cmsVisibilty.level` | 1 | The four levels can be: **0** and is not visible; ** 1 ** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
+`cmsOrder` | 10 | it is the order that you want to give it within the collection. in our case it will be the first, so we will write 10
+`cmsEditable` | true | **true** if you want it to be editable by CMS
+`hidden` | false | if you want the property to be invisible
+`description` | "" | if you want to add a description
+`cmsCardPosition` | 0 | indicates the location of the property in the Card layout
+`interfaceType` | string | the properties can be of different types: **string** if it is a classic text string; **number** if it is a number; **date** if it is a date with dd / mm / yyyy; **datetime** is instead a complete date with hours, minutes and seconds; **boolean** if it can only be true or false; **text** if we want the content to be read as html; **textArea** if it is a text field, then for example a description; **cmslookup** are used to select some values ​​or between a range of values chosen by me or between a range of values taken from another collection. **cmsmultilookup** if you want to select multiple values; **array** if you want to save it as an ordered set of properties; **object** is an unordered property set; **geopoint** if you want me to save a specific place; **Files** if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
 
 the final json in our property **name** which is the name of the heroes will therefore be:
 
