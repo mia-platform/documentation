@@ -74,7 +74,6 @@ Example response for this call:
 
 So, as imageUrl params in template body, you should use: `https://console.cloud.mia-platform.eu/v2/files/download/65d15696-8724-4103-b672-e29518a55135.gif`
 
-![Magic](img/magic.gif)
 
 ### Change a custom template
 
