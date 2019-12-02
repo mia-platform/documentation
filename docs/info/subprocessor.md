@@ -12,3 +12,4 @@ Follows the list of sub-processors
 | AWS Service                | Data hosting      | Ireland        | https://aws.amazon.com/   |
 | Elastic Search             | Log & Monitoring  | Belgium        | https://www.elastic.co/   |
 | Confluent                  | Event Streaming   | Europe         | https://www.confluent.io/ |
+| Auth0                      | Authentication provider| Europe    | https://auth0.com/        |
