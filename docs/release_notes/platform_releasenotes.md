@@ -1,5 +1,20 @@
 #Platform Release Note
 
+**CMS v9.5.0**
+
+Evolution of export functionality.
+From now on it is possible to export only some properties of the collection.
+
+![](img/export-column.png)
+
+**CMS v9.4.0**
+
+
+With this version we have made it possible to navigate between collections via links.
+This allows you to quickly go from one property to another collection while maintaining the reference to the property
+
+[At this link the details on how to configure it](../business_suite/conf_cms.md)
+
 ##v4.28.1 (October 28, 2019)
 
 **Login Site**
