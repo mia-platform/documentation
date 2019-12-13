@@ -24,7 +24,7 @@ nav:
        - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
        - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
        - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
-       - Debug a Microservice: 'development_suite/debugging/telepresence.md'
+
     - PRE/POST: 'development_suite/api-console/api-design/decorators.md'
     - Endpoints: 'development_suite/api-console/api-design/esponi_api.md'
     - CMS and Analytics:
@@ -37,7 +37,8 @@ nav:
        - Dev Console Config:
          - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
          - How to change the number of replicas: 'development_suite/api-console/advanced-section/replicas.md'
-
+  - Test & Debug:
+    - Debug a Microservice: 'development_suite/debugging/telepresence.md'
   - Deploy:
     - Release your configurations: 'development_suite/deploy/deploy.md'
 
