@@ -16,7 +16,6 @@ compile:
   stage: build
 
   script:
-    - printenv
     - mkdocs build
 
   artifacts:
