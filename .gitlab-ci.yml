@@ -1,5 +1,5 @@
 image:
-  name: squidfunk/mkdocs-material:3.0.4
+  name: squidfunk/mkdocs-material:4.6.0
   entrypoint: ["/bin/sh", "-c"]
 
 variables:
@@ -10,7 +10,7 @@ stages:
   - build
   - package
   - tag-image
-  - release-cloud
+  - release
 
 compile:
   stage: build
@@ -43,16 +43,32 @@ build-latest:
     - compile
 
 cloud:
-  stage: release-cloud
-  image: nexus.mia-platform.eu/tools/kubectl:1.13.3
+  stage: release
+  image: nexus.mia-platform.eu/tools/kubectl:2
+
+  before_script:
+    - kube-setup-context.sh "${CI_JOB_NAME}" "${KUBE_CA_PEM}" "${KUBE_URL}" "${KUBE_TOKEN}" "${KUBE_NAMESPACE}"
+    - rm -fr "${DESTINATION_PATH}" "${INTERPOLATED_ENV_FILE}"
 
   script:
-    - ./scripts/setup-context.sh "${KUBE_CONTEXT}" "${KUBE_CERT}" "${KUBE_URL}" "${KUBE_TOKEN}"
-    - ./scripts/interpolate.sh
-    - ./scripts/deploy.sh
+    - kube-prepare-envs.sh "${ENVIRONMENT_PREFIX}" "${ENVIRONMENT_VARIABLES_PREFIX}" "${INTERPOLATED_ENV_FILE}"
+    - set -a && source "${INTERPOLATED_ENV_FILE}"
+    - kube-generate-configmaps.sh "${CONFIGMAPS_FILE}" "${DESTINATION_PATH}"
+    - kube-generate-and-apply-secrets.sh "${SECRETS_FILE}" "${DESTINATION_PATH}"
+    - kube-interpolate-envs.sh "${SOURCE_PATH}" "${DESTINATION_PATH}" "${ENVIRONMENT_VARIABLES_PREFIX}"
+    - kube-deploy.sh "${DESTINATION_PATH}"
 
   variables:
-    KUBE_CONTEXT: "cloud"
-    KUBE_CERT: "${KUBE_MIA_CLOUD_CERT}"
-    KUBE_URL: "${KUBE_MIA_CLOUD_URL}"
+    GIT_DEPTH: 1
+    ENVIRONMENT_VARIABLES_PREFIX: "MIA_"
+    SOURCE_PATH: "${CI_PROJECT_DIR}/configuration"
+    DESTINATION_PATH: "${CI_PROJECT_DIR}/interpolated-files"
+    INTERPOLATED_ENV_FILE: "${CI_PROJECT_DIR}/interpolated.env"
+    CONFIGMAPS_FILE: "${CI_PROJECT_DIR}/configmaps.ini"
+    SECRETS_FILE: "${CI_PROJECT_DIR}/secrets.ini"
+
+    ENVIRONMENT_PREFIX: "CLOUD_"
     KUBE_TOKEN: "${KUBE_MIA_CLOUD_TOKEN}"
+    KUBE_CA_PEM: "${KUBE_MIA_CLOUD_CA_PEM}"
+    KUBE_URL: "${KUBE_MIA_CLOUD_URL}"
+    KUBE_NAMESPACE: "default"
