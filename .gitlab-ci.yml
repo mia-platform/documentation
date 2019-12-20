@@ -1,72 +1,13 @@
-image:
-  name: squidfunk/mkdocs-material:4.6.0
-  entrypoint: ["/bin/sh", "-c"]
+include:
+  - project: 'platform/pipelines-templates'
+    file: '/build/mkdocs/template-documentation-site.yml'
+    ref: 'master'
 
 variables:
   IMAGE_NAME: core/documentation-site
-  GIT_DEPTH: 1
 
-stages:
-  - build
-  - package
-  - tag-image
-  - release
-
-compile:
-  stage: build
-
-  script:
-    - mkdocs build
-
-  artifacts:
-    when: on_success
-    expire_in: 1 day
-    untracked: true
-    paths:
-      - 'site'
-
-build-latest:
-  stage: package
-  image: docker:latest
-
+deploy:
   variables:
-    REMOTE_IMAGE_NAME: ${NEXUS_URL}/${IMAGE_NAME}
-
-  before_script:
-    - docker login -u ${NEXUS_USER} -p ${NEXUS_TOKEN} ${NEXUS_URL}
-
-  script:
-    - docker build --build-arg COMMIT_SHA=${CI_COMMIT_SHA} --pull -t ${REMOTE_IMAGE_NAME}:latest .
-    - docker push ${REMOTE_IMAGE_NAME}:latest
-
-  dependencies:
-    - compile
-
-cloud:
-  stage: release
-  image: nexus.mia-platform.eu/tools/kubectl:2
-
-  before_script:
-    - kube-setup-context.sh "${CI_JOB_NAME}" "${KUBE_CA_PEM}" "${KUBE_URL}" "${KUBE_TOKEN}" "${KUBE_NAMESPACE}"
-    - rm -fr "${DESTINATION_PATH}" "${INTERPOLATED_ENV_FILE}"
-
-  script:
-    - kube-prepare-envs.sh "${ENVIRONMENT_PREFIX}" "${ENVIRONMENT_VARIABLES_PREFIX}" "${INTERPOLATED_ENV_FILE}"
-    - set -a && source "${INTERPOLATED_ENV_FILE}"
-    - kube-generate-configmaps.sh "${CONFIGMAPS_FILE}" "${DESTINATION_PATH}"
-    - kube-generate-and-apply-secrets.sh "${SECRETS_FILE}" "${DESTINATION_PATH}"
-    - kube-interpolate-envs.sh "${SOURCE_PATH}" "${DESTINATION_PATH}" "${ENVIRONMENT_VARIABLES_PREFIX}"
-    - kube-deploy.sh "${DESTINATION_PATH}"
-
-  variables:
-    GIT_DEPTH: 1
-    ENVIRONMENT_VARIABLES_PREFIX: "MIA_"
-    SOURCE_PATH: "${CI_PROJECT_DIR}/configuration"
-    DESTINATION_PATH: "${CI_PROJECT_DIR}/interpolated-files"
-    INTERPOLATED_ENV_FILE: "${CI_PROJECT_DIR}/interpolated.env"
-    CONFIGMAPS_FILE: "${CI_PROJECT_DIR}/configmaps.ini"
-    SECRETS_FILE: "${CI_PROJECT_DIR}/secrets.ini"
-
     ENVIRONMENT_PREFIX: "CLOUD_"
     KUBE_TOKEN: "${KUBE_MIA_CLOUD_TOKEN}"
     KUBE_CA_PEM: "${KUBE_MIA_CLOUD_CA_PEM}"
