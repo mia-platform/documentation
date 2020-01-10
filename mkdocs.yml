@@ -41,6 +41,7 @@ nav:
     - Debug a Microservice: 'development_suite/debugging/telepresence.md'
   - Deploy:
     - Release your configurations: 'development_suite/deploy/deploy.md'
+    - Configure a custom Webhook: 'development_suite/deploy/configuration.md'
 
   - Monitoring:
       - Monitor your applications: 'development_suite/monitoring/monitoring.md'
