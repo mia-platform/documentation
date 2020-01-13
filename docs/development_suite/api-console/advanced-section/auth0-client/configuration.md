@@ -2,7 +2,7 @@
 
 The file for this extension is **/config-extension/auth0-client/config.json**.
 
-Example configuration:
+Example of the configuration:
 
 ```json
 {

@@ -4,7 +4,6 @@ The file for this extension is **/config-extension/authorization-service/auth.js
 
 This extension is merged with the automatically generated configuration, taking precedence.
 
-
 Example configuration:
 
 ```json

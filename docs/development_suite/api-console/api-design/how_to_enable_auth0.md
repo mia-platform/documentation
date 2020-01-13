@@ -1,4 +1,4 @@
-## How to enable Auth0 as identity provider in your project
+## How to enable Auth0 as an identity provider in your project
 
 1. In the project in mongodb, disable the unused service:
     * baas-legacy
@@ -10,13 +10,13 @@
     * auth0-client
     * oauth-login-site
 
-2. Delete the configuration files of the disabledd services;
+2. Delete the configuration files of the disabled services;
 
-3. Log in to the console, go to Design Section -> Advanced section and create the `auth0-client` configuration from scratch as extension. To configure auth0-client, visit [the docs]('/runtime_suite/auth0-client/configuration/'). Configure also the env variables (`REDIS_HOSTS` is required).
+3. Log into the console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from [scratch]('/development_suite/api-design/how_to_enable_auth0/') as an extension. To configure auth0-client, visit [the docs]('/runtime_suite/auth0-client/configuration/'). Configure also the env variables (`REDIS_HOSTS` is required).
 
 4. Link correctly client-type and secret to use the correct auth0 client.
 
-5. Configure auth0 correctly:
+5. Configure auth0 correctly from auth0 dashboard:
     * add rules to inject user metadata in id token:
       ```js
       function (user, context, callback) {
@@ -31,9 +31,9 @@
       }
       ```
 
-      MIA_NAMESPACE is a key written as `customClaimsNamespaces` in `auth0 client` config fill. e.g. `https://mia-platform.eu/`
+      MIA_NAMESPACE is a key written as `customClaimsNamespaces` in `auth0 client` configuration. e.g. `https://mia-platform.eu/`
 
-    * configure the management client to handle user through the **headless cms**. The management client is an application machine 2 machine.
+    * configure the management client to handle users through the **headless cms**. The management client is an application machine 2 machine.
 
     * configure the required client application (remember to properly set allowed callback and logout url)
 
