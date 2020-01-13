@@ -1,4 +1,4 @@
-# Welcome to the Mia-Platform v5 documentation
+# Welcome to the Mia-Platform v4 documentation
 
 ![Mia-Platform](img/logo.png)
 
