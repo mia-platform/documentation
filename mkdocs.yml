@@ -3,6 +3,7 @@ site_description: Platform documentation of Mia Platform
 site_author: Mia Platform Team
 copyright: Mia srl. All rights reserved.
 plugins:
+  - search
   - monorepo
 
 nav:
@@ -87,7 +88,7 @@ nav:
          - Soap To Rest: 'runtime_suite/soap-to-rest.md'
        - API Automation:
          - Cronjobs Microservices: 'runtime_suite/cron.md'
-      
+
        - MongoDB Reader:
          - Filters: 'runtime_suite/mongodb-reader/filters.md'
          - ACL: 'runtime_suite/mongodb-reader/aclrows.md'
