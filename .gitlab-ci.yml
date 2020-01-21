@@ -1,58 +1,15 @@
-image:
-  name: squidfunk/mkdocs-material:3.0.4
-  entrypoint: ["/bin/sh", "-c"]
+include:
+  - project: 'platform/pipelines-templates'
+    file: '/build/mkdocs/template-documentation-site.yml'
+    ref: 'master'
 
 variables:
   IMAGE_NAME: core/documentation-site
-  GIT_DEPTH: 1
 
-stages:
-  - build
-  - package
-  - tag-image
-  - release-cloud
-
-compile:
-  stage: build
-
-  script:
-    - mkdocs build
-
-  artifacts:
-    when: on_success
-    expire_in: 1 day
-    untracked: true
-    paths:
-      - 'site'
-
-build-latest:
-  stage: package
-  image: docker:latest
-
+deploy:
   variables:
-    REMOTE_IMAGE_NAME: ${NEXUS_URL}/${IMAGE_NAME}
-
-  before_script:
-    - docker login -u ${NEXUS_USER} -p ${NEXUS_TOKEN} ${NEXUS_URL}
-
-  script:
-    - docker build --build-arg COMMIT_SHA=${CI_COMMIT_SHA} --pull -t ${REMOTE_IMAGE_NAME}:latest .
-    - docker push ${REMOTE_IMAGE_NAME}:latest
-
-  dependencies:
-    - compile
-
-cloud:
-  stage: release-cloud
-  image: nexus.mia-platform.eu/tools/kubectl:1.13.3
-
-  script:
-    - ./scripts/setup-context.sh "${KUBE_CONTEXT}" "${KUBE_CERT}" "${KUBE_URL}" "${KUBE_TOKEN}"
-    - ./scripts/interpolate.sh
-    - ./scripts/deploy.sh
-
-  variables:
-    KUBE_CONTEXT: "cloud"
-    KUBE_CERT: "${KUBE_MIA_CLOUD_CERT}"
-    KUBE_URL: "${KUBE_MIA_CLOUD_URL}"
+    ENVIRONMENT_PREFIX: "CLOUD_"
     KUBE_TOKEN: "${KUBE_MIA_CLOUD_TOKEN}"
+    KUBE_CA_PEM: "${KUBE_MIA_CLOUD_CA_PEM}"
+    KUBE_URL: "${KUBE_MIA_CLOUD_URL}"
+    KUBE_NAMESPACE: "default"

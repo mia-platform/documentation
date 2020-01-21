@@ -2,6 +2,8 @@ site_name: Mia-Platform Docs
 site_description: Platform documentation of Mia Platform
 site_author: Mia Platform Team
 copyright: Mia srl. All rights reserved.
+plugins:
+  - monorepo
 
 nav:
 - Home:
@@ -31,16 +33,22 @@ nav:
        - Configure CMS: 'development_suite/api-console/api-design/api_console_configcms.md'
        - Configure Analytics: 'development_suite/api-console/api-design/api_console_configanalytics.md'
     - Advanced Section:
-       - API Gateway:
-         -  Create config map: 'development_suite/api-console/advanced-section/api-gateway-config-map.md'
-         -  Request Size: 'development_suite/api-console/advanced-section/request-size.md'
-       - Dev Console Config:
-         - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/advanced_name_core.md'
-         - How to change the number of replicas: 'development_suite/api-console/advanced-section/replicas.md'
+      - API Gateway:
+        -  Create config map: 'development_suite/api-console/advanced-section/api-gateway/config-map.md'
+        -  Request Size: 'development_suite/api-console/advanced-section/api-gateway/request-size.md'
+      - Dev Console Config:
+        - Change the name of Core Microservices: 'development_suite/api-console/advanced-section/dev-console-config/advanced_name_core.md'
+        - How to change the number of replicas: 'development_suite/api-console/advanced-section/dev-console-config/replicas.md'
+      - Authorization Service:
+        - How to configure: 'development_suite/api-console/advanced-section/authorization-service/configuration.md'
+      - Auth0 Client:
+        - How to configure: 'development_suite/api-console/advanced-section/auth0-client/configuration.md'
+    - How to enable Auth0: 'development_suite/api-console/api-design/how_to_enable_auth0.md'
   - Test & Debug:
     - Debug a Microservice: 'development_suite/debugging/telepresence.md'
   - Deploy:
     - Release your configurations: 'development_suite/deploy/deploy.md'
+    - Configuration: 'development_suite/deploy/configuration.md'
 
   - Monitoring:
       - Monitor your applications: 'development_suite/monitoring/monitoring.md'
@@ -79,12 +87,22 @@ nav:
          - Soap To Rest: 'runtime_suite/soap-to-rest.md'
        - API Automation:
          - Cronjobs Microservices: 'runtime_suite/cron.md'
+      
+       - MongoDB Reader:
+         - Filters: 'runtime_suite/mongodb-reader/filters.md'
+         - ACL: 'runtime_suite/mongodb-reader/aclrows.md'
     - Privacy & Security:
-       - Access Management:
-         - Auth Service: 'runtime_suite/auth-service.md'
-         - Users Profile: 'runtime_suite/user-service.md'
-         - ACL Service: 'runtime_suite/acl-service.md'
-         - Session Manager: 'runtime_suite/session-manager.md'
+      - Access Management:
+        - Auth Service: 'runtime_suite/auth-service.md'
+        - Users Profile: 'runtime_suite/user-service.md'
+        - ACL Service: 'runtime_suite/acl-service.md'
+        - Session Manager: 'runtime_suite/session-manager.md'
+        - Auth0 Client:
+          - How to use: 'runtime_suite/auth0-client/how_to_use.md'
+          - Configuration: 'runtime_suite/auth0-client/configuration.md'
+        - Authorization Service:
+          - How to use: 'runtime_suite/authorization-service/how_to_use.md'
+          - Configuration: 'runtime_suite/authorization-service/configuration.md'
 
 - Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'
@@ -121,8 +139,10 @@ nav:
     - Subprocessor: 'info/subprocessor.md'
     - Installation Process: 'info/installation-process.md'
     - Bug Policy: 'info/bug-policy.md'
+    - Migrate from v4 to v5: 'info/migrate-from-v4-to-v5.md'
 
-
+- Previous version:
+    - v4: '!include ./previous_versions/v4/mkdocs.yml'
 
 theme:
   name: 'material'
@@ -143,7 +163,6 @@ theme:
         link: https://www.mia-platform.eu/
       - type: linkedin
         link: https://www.linkedin.com/company/mia-platform/
-
 
 google_analytics:
   - 'UA-122091925-1'

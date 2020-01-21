@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "85bd8017-61e5-4956-b174-5d87b00b1648",
+		"_postman_id": "71c305bb-0c66-41c0-91df-47d2054f67ac",
 		"name": "template",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -22,14 +22,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{API_CONSOLE_HOST}}/v2/api/custom-plugin-templates/",
+					"raw": "{{API_CONSOLE_HOST}}/v2/api/services/",
 					"host": [
 						"{{API_CONSOLE_HOST}}"
 					],
 					"path": [
 						"v2",
 						"api",
-						"custom-plugin-templates",
+						"services",
 						""
 					]
 				}
@@ -60,17 +60,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\t\"label\": \"\",\n\t\t\"value\": \"\",\n\t\t\"description\": \"\",\n\t\t\"type\": \"\",\n\t\t\"imageUrl\": \"\",\n\t\t\"supportedBy\": \"\"\n}"
+					"raw": "{\n  \"name\": \"\",\n  \"archiveUrl\": \"\",\n  \"description\": \"\",\n  \"type\": \"\",\n  \"supportedBy\": \"\",\n  \"image\": [],\n  \"supportedByImage\": []\n}"
 				},
 				"url": {
-					"raw": "{{API_CONSOLE_HOST}}/v2/api/custom-plugin-templates/",
+					"raw": "{{API_CONSOLE_HOST}}/v2/api/services/",
 					"host": [
 						"{{API_CONSOLE_HOST}}"
 					],
 					"path": [
 						"v2",
 						"api",
-						"custom-plugin-templates",
+						"services",
 						""
 					]
 				}
@@ -101,22 +101,23 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"$set\": {\n\t\t\"label\": \"\",\n\t\t\"value\": \"\",\n\t\t\"description\": \"\",\n\t\t\"type\": \"\",\n\t\t\"imageUrl\": \"\",\n\t\t\"supportedBy\": \"\"\n\t}\n}"
+					"raw": "{\n    \"$set\": {\n        \"name\": \"\",\n        \"archiveUrl\": \"\",\n        \"description\": \"\",\n        \"type\": \"\",\n        \"supportedBy\": \"\",\n        \"image\": [],\n        \"supportedByImage\": []\n    }\n}"
 				},
 				"url": {
-					"raw": "{{API_CONSOLE_HOST}}/v2/api/custom-plugin-templates/5cd4229b7da195000f957467",
+					"raw": "{{API_CONSOLE_HOST}}/v2/api/services/5cd4229b7da195000f957467",
 					"host": [
 						"{{API_CONSOLE_HOST}}"
 					],
 					"path": [
 						"v2",
 						"api",
-						"custom-plugin-templates",
+						"services",
 						"5cd4229b7da195000f957467"
 					]
 				}
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

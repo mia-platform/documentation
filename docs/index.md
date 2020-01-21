@@ -1,4 +1,4 @@
-# Welcome to the Mia-Platform documentation
+# Welcome to the Mia-Platform v5 documentation
 
 ![Mia-Platform](img/logo.png)
 
@@ -7,8 +7,8 @@
 
 The product helps developers in two areas:
 
-* on the one hand the management of the life cycle of a software product with a dedicated product: **the Developers console**  
-* on the other hand it accelerates the creation of digital platforms with dedicated products.  
+* on the one hand the management of the life cycle of a software product with a dedicated product: **the Developers console**
+* on the other hand it accelerates the creation of digital platforms with dedicated products.
   In particular:
     * **Fast Data Real-time Single view** : the components for aggregate data
     * **API & Headless CMS** :  component to Manage API and CMS to manage data and services
