@@ -23,7 +23,7 @@ General
   ![](img/example-notification.png)
 
 * Show modal for selecting branch: after the choice of a project you can choose a branch.
-* New MenuItem style on hover: you your endpoints are too long you can see it on hover.
+* New MenuItem style on hover: if your endpoints are too long you can see it on hover.
 
 Fixed:
 
@@ -43,7 +43,7 @@ Service Area
 Endpoint Area
 
 * Changed style in endpoint page - we separate each area with a card  
-* Added remove route functionality: now you cane delete a subroute custom that you have created.
+* Added remove route functionality: now you can delete a subroute custom that you have created.
 
     ![](img/delete-routes.png)
 
