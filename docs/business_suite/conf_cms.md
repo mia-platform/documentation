@@ -143,6 +143,11 @@
 
             /// the possible values are equals (eq) or contains (ct); the default value is equal; ///
             "operator": "eq"
+
+            ///if you wanna navigate to a custom front-edn in the service category you should add the following properties ///:
+                   "targetType": "service":
+                  "collectionIdTarget": "name of the custom frontend"
+                  "queryStringKey": "select" (this is an example, here you can put whatever you custom frontend accepts as parameter in a query)    
               }],
             }
           }
