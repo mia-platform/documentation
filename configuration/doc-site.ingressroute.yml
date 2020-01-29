@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: "labid-doc-site"
+  name: "doc-site"
   labels:
     app.kubernetes.io/instance: "{{INGRESS_NAME}}"
 spec:
