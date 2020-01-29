@@ -1,5 +1,117 @@
 #Platform Release Note
 
+##v5.0.0
+
+!!! danger  "BREAKING CHANGES"
+    * Convert api-gateway configuration to handle new proxy name and remove group expressions from api-gateway  
+    * Update api console configuration to handle update of config-extension and set active authorization-service( if session-manager service is active) into project enabledServices   
+
+**Authorization Service and Auth0Client Service**
+
+Mia Platform boost their security and authentication system with 2new microservices.   
+
+* Read [here](https://docs.mia-platform.eu/development_suite/api-console/api-design/how_to_enable_auth0/) how to enable this new authentication and authorization mode.
+* [Auth0Client](https://docs.mia-platform.eu/runtime_suite/auth0-client/how_to_use/) : This service handles authentication and user management using auth0 as an identity provider.  
+* [Authorization Service](https://docs.mia-platform.eu/runtime_suite/authorization-service/how_to_use/): This service exposes an /auth endpoint that, once that you have provided a configuration, handles the access to a specific combination of route and method.  
+
+**DevOps Console**
+
+General
+
+* You’ll find a new service that sends you alerts, warnings, and notifications about new content.
+
+  ![](img/example-notification.png)
+
+* Show modal for selecting branch: after the choice of a project you can choose a branch.
+* New MenuItem style on hover: if your endpoints are too long you can see it on hover.
+
+Fixed:
+
+* Fix deleteArea in Analytics & Collections container  
+* Fix word-breaking in service container  
+* Fixed alignment dialog box  
+* Fixed children menuItem path  
+* Removed Marketplace links
+* Fixed export service configurations for the openshift orchestrator (exportServiceConf renamed to exportServiceConfig)
+
+Service Area
+
+* Added exposeSwagger switch to Services: if your services expose the route /documentation from the console you can active a flag and show the route of the services direct in the API Portal
+
+  ![](img/show-documentation.png)
+
+Endpoint Area
+
+* Changed style in endpoint page - we separate each area with a card  
+* Added remove route functionality: now you can delete a subroute custom that you have created.
+
+    ![](img/delete-routes.png)
+
+Crud Area
+
+* Field type of *_id* in CRUD can be edited  
+* Allow [TTL Indexes](https://docs.mongodb.com/manual/core/index-ttl/)
+* Allow [Wildcard Indexes](https://docs.mongodb.com/manual/core/index-wildcard/)
+* Disable last index's field delection   
+* Change delete button indexComponent  
+
+Upgrades:  
+
+api-portal to 1.7.0  
+crud-service to 2.1.2  
+v1-adapter to 2.3.0  
+cms-backend to 1.4.0  
+
+
+**API PORTAL v1.7.0**
+
+Added:
+
+* Api-explorer with new form
+
+![](img/new-form.png)
+
+* Add button to authenticate all routes
+
+![](img/authorize-all.png)
+
+* Edit data form using a json
+
+Fixed:
+
+* Remove Menu from the Header  
+* Choose type of data field  
+
+
+**CRUD SERVICE v2.1.2**
+
+* Fix CRUD startup with 0 collections
+* Handle ttl index
+* support *_id* of type string
+
+**V1-ADAPTER 2.3.0**
+
+* Add export in excel
+* Export with columns passed from query params
+* Cookie forward on /users/logout;
+* Implemented auth-adapter for adapting users-related requests to Auth0Client;
+* Using HEADERS_TO_PROXY list into requests towards export service.
+
+**CMS BACKEND 1.4.0**
+
+* Add client-key endpoint to set client-key cookie
+
+**NEW SERVICES: SQL INVOKER**
+
+Sql Invoker Sql Invoker is designed to invoke stored procedure and/or stored function.  
+In this moment, the service supports only:
+Stored procedures that does not return result sets and consequently: performs database side effects get results from INOUT and OUT parameters
+
+**CMS v6.1.0**
+
+* The /count calls are no longer blockers to open a resource  
+* Fix to the gallery page and to paging  
+
 **CMS v9.5.0**
 
 Evolution of export functionality.
@@ -151,11 +263,11 @@ Added:
     ![](img/service-marketplace.png)
 
     In the services area we have introduced the marketplace.
-    In this section you can find:  
+    In this section you can find:
 
-    * Mia templates, or the templates created from your company;  
-    * Example to create microservices;    
-    * Mia Plugins to implement some microservices of Mia's ecosystem microservice.     
+    * Mia templates, or the templates created from your company;
+    * Example to create microservices;
+    * Mia Plugins to implement some microservices of Mia's ecosystem microservice.
 
 
 2. **Group expressions for the Backoffice APIs**
@@ -173,7 +285,7 @@ Added:
 
 **Monitoring**
 
-* We have sanitized the logs  
+* We have sanitized the logs
 
 * We have made the refresh me more visible when a pod breaks down
 
@@ -181,7 +293,7 @@ Added:
 
 Added:
 
-* download for file   
+* download for file
 
 * possibility to expand all the response and to copy the elements
 
@@ -206,7 +318,7 @@ Added:
 
 * Management of readiness and probeness routes in Google Cloud
 
-* Management of backoffice ACL inheritance for endpoint and routes  
+* Management of backoffice ACL inheritance for endpoint and routes
 
 * 2 new env variables to interpolate in v1-adapter: EXPORT_SERVICE_URL and EXPORT_SERVICE_NDJSON_URL
   These variables are needed in v1-adapter in order to use new export-service with CMS
@@ -218,12 +330,12 @@ AC-1220: Change validation regex in Constants / basePath
 
 Updates:
 
-* Dependencies update  
-* api-portal to 1.6.4  
-* cms-backend to 1.2.0  
-* crud-service to 2.0.1  
-* session-manager to 4.4.0  
-* v1-adapter to 2.2.0  
+* Dependencies update
+* api-portal to 1.6.4
+* cms-backend to 1.2.0
+* crud-service to 2.0.1
+* session-manager to 4.4.0
+* v1-adapter to 2.2.0
 
 Fixed:
 
@@ -234,7 +346,7 @@ Fixed:
 
 **Core Services**
 
-1. New Export Service:   
+1. New Export Service:
     This micro-service allows to export a data source to multiple formats.
     Input data source format must be a JSON lines.
     Supported output formats are:
@@ -268,11 +380,11 @@ We have also integrated memory and cpu information.
 ![](img/view-log.png)
 
 In this view the last 100 logs are shown.
-Morover it is now possible to perform the following operations:  
+Morover it is now possible to perform the following operations:
 
-* download of all logs  
-* filtering of visible logs  
-* stop of the scroll  
+* download of all logs
+* filtering of visible logs
+* stop of the scroll
 * clear of the display
 
 New Import from JSON functionality when you create a new collection
@@ -296,30 +408,30 @@ Added:
 
 
 * New Navigation Flow
-     - add fallback page check if loaded project is valid  
-     - add fallback page check if branchId is valid  
-     - add default branchId on load design area  
+     - add fallback page check if loaded project is valid
+     - add fallback page check if branchId is valid
+     - add default branchId on load design area
 
 * New Projects Container
     - add alphabetical sort for project
     - fix random color
 
-* New Login Page  
+* New Login Page
 
 ![](img/login.png)
 
-* Custom replicas of core services.[Read the documentation to discover how to replicate core service](../development_suite/api-console/advanced-section/replicas.md)
-* Added support for dash character in collection fields  
-* Added support for dash character in collection index  
+* Custom replicas of core services.[Read the documentation to discover how to replicate core service](../development_suite/api-console/advanced-section/dev-console-config/replicas.md)
+* Added support for dash character in collection fields
+* Added support for dash character in collection index
 
 Updates:
 
-* Reactord v1.8.1  
+* Reactord v1.8.1
 * Decorators label and url has been updated to API PRE/POST
 
 Fixed:
 
-* Checkbox in CRUD config table NOT saving information properly  
+* Checkbox in CRUD config table NOT saving information properly
 
 Deleted:
 
@@ -331,9 +443,9 @@ Added:
 
 The following filters have been added:
 
-* by category  
-* by tag  
-* by method  
+* by category
+* by tag
+* by method
 
 ![](img/filters-API-Portal.png)
 
@@ -351,7 +463,7 @@ Added:
 * Add new query params for api /projects/:projectId/environments/:environmentName/pods
 /:podName/containers/:containerName/logs
 
-* Now you can set the `accessToken` for a cluster directly within the cluster configurations of the console project. If is not set in the db the value is read from the ENV variables as before.  
+* Now you can set the `accessToken` for a cluster directly within the cluster configurations of the console project. If is not set in the db the value is read from the ENV variables as before.
 
 * Follow Functionality on Monitoring Dashboard - now see only the last 100 logs
 
@@ -360,8 +472,8 @@ Added:
 
 Fixed:
 
-* removed milliseconds from countdown when delete a pod  
-* corrected typo error when delete a pod  
+* removed milliseconds from countdown when delete a pod
+* corrected typo error when delete a pod
 
 ##v4.25.0 (July 24, 2019)
 
@@ -369,13 +481,13 @@ Fixed:
 
 Added:
 
-* support for underscore in endpoint basePath and route  
+* support for underscore in endpoint basePath and route
 * support for collection name with dash
 
 
 Updates:
 
-* update v1-adapter to 2.1.2  
+* update v1-adapter to 2.1.2
 * update swagger-aggregator to 1.3.0
 
 **Swagger Aggregator v1.3.0**
@@ -408,7 +520,7 @@ Both the handlers of /-/check-up and /-/healthz route check the connection to Mo
 
 **DEVELOPERS CONSOLE**
 
-* New Home Page!    
+* New Home Page!
 We have released the new homepage from which you can easily access the different sections of the developer portal
 
 * From now on it is possible to change the name of an analytic
@@ -428,14 +540,14 @@ The API exposed by the doctor service is:
 
 **`/-/check-up` route** it's been added in the following service:
 
-swagger aggregator: 1.2.0  
-mongodb reader:  1.2.0  
-crud service: 2.0.0  
-microservice gateway:  5.1.0  
-file service:  1.2.0  
-cms backend: 1.1.0  
-v1-adapter: 2.1.0  
-notifications-service: 1.1.0  
+swagger aggregator: 1.2.0
+mongodb reader:  1.2.0
+crud service: 2.0.0
+microservice gateway:  5.1.0
+file service:  1.2.0
+cms backend: 1.1.0
+v1-adapter: 2.1.0
+notifications-service: 1.1.0
 notifications-manager: 1.0.0
 
 ##v4.23.0 (June 27,2019)
@@ -450,23 +562,23 @@ notifications-manager: 1.0.0
 
 Added:
 
-* updated api-explorer  
-* shows the body when status code is 401  
+* updated api-explorer
+* shows the body when status code is 401
 
 Restyling:
 
-* response headers are shown in a more readable way   
+* response headers are shown in a more readable way
 
 **API Gateway v4.1.0**
 
 Added
 
-* add client-key header support  
-* add mia_client_key cookie support  
+* add client-key header support
+* add mia_client_key cookie support
 
 Updates
 
-* update nginx to 1.17.0  
+* update nginx to 1.17.0
 
 Deprecations
 
@@ -476,23 +588,23 @@ Deprecations
 
 Added:
 
-* set session cookie to secure if `ORIGINAL_PROTOCOL_HEADER` is set to https  
+* set session cookie to secure if `ORIGINAL_PROTOCOL_HEADER` is set to https
 
 **CMS Backend v1.1.0**
 
 Added
 
-* `/-/check-up` handler  
-* `/-/healthz` handler    
-* status routes tests    
-* add hook to set secret cookie, setting secure if `ORIGINAL_PROTOCOL_HEADER` is set to https. Skip hook if `BACKOFFICE_HEADER_KEY` is not set to `'true'`    
+* `/-/check-up` handler
+* `/-/healthz` handler
+* status routes tests
+* add hook to set secret cookie, setting secure if `ORIGINAL_PROTOCOL_HEADER` is set to https. Skip hook if `BACKOFFICE_HEADER_KEY` is not set to `'true'`
 
 Dependencies
 
-* Update @mia-platform/lc39 2.1.2 -> 2.2.0  
-* Update eslint 5.16.0 -> 6.0.0  
-* Update mongodb 3.2.5 -> 3.2.7   
-* Update tap 14.1.7 -> 14.2.5  
+* Update @mia-platform/lc39 2.1.2 -> 2.2.0
+* Update eslint 5.16.0 -> 6.0.0
+* Update mongodb 3.2.5 -> 3.2.7
+* Update tap 14.1.7 -> 14.2.5
 
 ##v4.22.1 (June 26,2019)
 
@@ -535,7 +647,7 @@ an example follows
 ```
 
 !!! warning
-      To add the link follow this procedure : go to Kibana, choose the dashboard, press share - permalink - snapshot - copy url.   
+      To add the link follow this procedure : go to Kibana, choose the dashboard, press share - permalink - snapshot - copy url.
       Once the url has been copied, the following parameter must be added:
       **embed = true**
 
@@ -545,9 +657,9 @@ Save to Mongo and you will see your dashboards on the Developer Console
 
 Added:
 
-* the possibility of writing the names of the CRUDs in uppercase has also been added  
-* alert message when write collection with upper case  
-* alert message when write endpoint route with upper case  
+* the possibility of writing the names of the CRUDs in uppercase has also been added
+* alert message when write collection with upper case
+* alert message when write endpoint route with upper case
 
 **DOCUMENTATION SECTION**
 
@@ -628,7 +740,7 @@ Fixed:
 
 Added:
 
-* The basepaths are no longer shown in the left bar, but the tags  
+* The basepaths are no longer shown in the left bar, but the tags
 * Multipart management
 
 Fixed:
@@ -644,9 +756,9 @@ Added:
 Support for patching array items. The $set command works properly on both primitive and RawObject item types, by using `array.$.replace` and `array.$.merge` as keys in the `$set` command object.
 This feature involves the following CRUD operations:
 
-* Patch by ID  
-* Patch many  
-* Patch bulk  
+* Patch by ID
+* Patch many
+* Patch bulk
 
 `array.$.replace` Replace entirely the query-matching array item with the content passed as value.
 
@@ -657,17 +769,17 @@ This feature involves the following CRUD operations:
 Added:
 
 * The Swagger now manages the conflict between equal routes
-    * Throw (default): returns an error in case of conflict - it is used for backward compatibility;  
-    * First: if I configure it, the first to arrive wins (the swagger aggregator gets an ordered list so files takes precedence over the crud)  
+    * Throw (default): returns an error in case of conflict - it is used for backward compatibility;
+    * First: if I configure it, the first to arrive wins (the swagger aggregator gets an ordered list so files takes precedence over the crud)
 * Evolutionary to the feature of the subswagger: `tagName` which if present forces the API with that tag into a single subswagger.
 
 **Files Service v1.1.0**
 
 Added:
 
-* google-storage-api: Add GoogleStorage API as storage  
-* additional-properties: Add additional properties in order to attach some props on upload  
-* prefix-or-hostname: Add PATH_PREFIX for relative urls  
+* google-storage-api: Add GoogleStorage API as storage
+* additional-properties: Add additional properties in order to attach some props on upload
+* prefix-or-hostname: Add PATH_PREFIX for relative urls
 * swagger-additional-properties: Add swagger definition for additional properties
 
 
@@ -691,7 +803,7 @@ To activate, you should set **"api-portal": true** into *enabledServices* object
     Once the new api-portal is activated, it will no longer be possible to reach the old route `/documentations/swagger/`
     The documentation will be available only from the new route: `/documentations/api-portal/`
 
-**New service management**  
+**New service management**
 The service section were divided into two types: services and proxies
 
 The services will no longer be managed using the Git URL and Git Revision, but using the name of the **docker image**.
@@ -734,7 +846,7 @@ Fixed:
 
 **Updating fo Core Microservices**
 
-In all core microservices the routes of /healthz and /ready have been implemented.  
+In all core microservices the routes of /healthz and /ready have been implemented.
 The microservices in node have been updated to version 2 of fastify.
 
 The versions supported by the API console in v.1.1.0 are the following
@@ -758,11 +870,11 @@ token-service: 1.0.8
 
 **NEW MICROSERVICES**
 
-**MailChimp Plugin**  
+**MailChimp Plugin**
 This microservices allows to manage the users registration to Mailchimp lists.
 It provides methods to get the groups and to get, add, update or delete the users from a specific list as a user or prospect.
 
-**Notification Manager**  
+**Notification Manager**
 This microservice allows to easily and safely set the status (read/unread) of one or more notifications belonging to the requesting user. It also allows to retrive the notifications of a user, hiding the information that relates to the notifications but not to the user (e.g. the list of users who has read a notification).
 
 **V1 Adapter**
@@ -770,11 +882,11 @@ This microservice allows to easily and safely set the status (read/unread) of on
 Fixed:
 
 * We have fixed the fact that from the export of the CMS if I selected the label the id was exported anyway
-* Error handling in export pipes  
+* Error handling in export pipes
 The "error" event, launched by a pipe in the event of an error, was not handled.
 we have created an error handler in exportsHttpInterface, which is passed to crudProxy and associated with the management of the error of got.stream
 
-* Management of objects in the queryString  
+* Management of objects in the queryString
 In the case of objects within the query parameter of getExport, this was passed to got.stream (which makes a call to the crud) was not managed.
 
 **Mongo DB Reader**
@@ -841,7 +953,7 @@ You can value the variables above even with an empty string if you do not care a
  * New Header! You can find a new style in our header.
 Now you can view the photo of your user connected to Git and directly access the Mia-Platform Documentation and your Git project in the header.
 
-* New Sub-header.  
+* New Sub-header.
 We have improved the display of the save area. If you have some changes unsaved it's more visible. You can also see when it's done the last commit.
 
 * If you click on your user, you can view your name, a new Info page and the logout section.
@@ -871,9 +983,9 @@ Fix:
 
 **RUNTIME SUITE**
 
-* Mia has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js service on Mia-Platform.  
-With this lanucher all the Node.js service will expose two fixed routes for heltinessProbe and for readinessProbe. In addiction is integrated the fastify-swagger module for exposing the service documentation.  
-This Service has been imported in: ACL Service, CMS Backend, Swagger Aggregator, CRUD Service, Session Manager and Mail Service.  
+* Mia has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js service on Mia-Platform.
+With this lanucher all the Node.js service will expose two fixed routes for heltinessProbe and for readinessProbe. In addiction is integrated the fastify-swagger module for exposing the service documentation.
+This Service has been imported in: ACL Service, CMS Backend, Swagger Aggregator, CRUD Service, Session Manager and Mail Service.
 Soon will be implemented in all the Mia services.
 
 * Swagger Aggregator v1.0.2: Swagger is now available with service down. The service down wiil not be shown.
@@ -990,7 +1102,7 @@ If the id does not exist, a new data is created instead.
     The Import Service works only with string and number.
 
 
-## v4.15.0 (Nov 14, 2018)  
+## v4.15.0 (Nov 14, 2018)
 **Breaking change api-console-configuration v0.3.0**
 
 We have released the following updates:
@@ -1026,7 +1138,7 @@ We have released the following features:
 
 In this version we have released the **update to the session manager** and the new acl expression syntax and we have made fixes on the configuration of the analytics.
 
-## v4.12.0 (Oct 10, 2018)  
+## v4.12.0 (Oct 10, 2018)
 **Analytics Configurations**
 
 With version 0.12.0 it will be possible **to configure the analytics from API Console**.

@@ -4,7 +4,7 @@ The Dev-console is able to generate new services starting from a from a git proj
 
 To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on Gitlab and to register it in the configuration of the Dev-console.
 
-The templates must be registered in the CRUD, in the `templates` collection, indicating a label that will display the user and the path to the git repository.
+The templates must be registered in the CRUD, in the `services` collection, indicating a label that will display the user and the path to the git repository.
 
 ## Template string replaced by dev console during service creation
 
@@ -28,29 +28,51 @@ Below is an example of the body of a template:
 
 ```json
 {
-	"label": "my-template",
-	"value": "https://git.tools.mia-platform.eu/api/v4/projects/<your project id>/repository/archive.tar.gz",
-	"description": "my-description",
-	"type": "template",
-	"imageUrl": "https://my-image",
-	"supportedBy": "my-organization"
+  "name": "Node Template",
+  "archiveUrl": "https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz",
+  "description": "This is the best template to start creating a service in node integrated inside the platform",
+  "type": "template",
+  "supportedBy": "mia-platform",
+  "image": [
+    {
+      "_id": "5db0105743875a0011618815",
+      "name": "36e6b6b4-36e1-4737-b65f-d1fb62bb3647.png",
+      "file": "f2ca3f95-1556-446f-a098-dbc1ff219dc8.png",
+      "size": 1532,
+      "location": "/v2/files/download/f2ca3f95-1556-446f-a098-dbc1ff219dc8.png",
+      "type": "image/png"
+    }
+  ],
+  "supportedByImage": [
+    {
+      "_id": "5db0106143875a0011618816",
+      "name": "e7c7ced2-e40e-465b-9e79-7d5c710badb2.png",
+      "file": "e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+      "size": 139694,
+      "location": "/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+      "type": "image/png"
+    }
+  ]
 }
 ```
 
 and the example curl to create the template:
 
 ```bash
-curl -d '{"label":"my-template","value":"https://git.tools.mia-platform.eu/api/v4/projects/<your project id>/repository/archive.tar.gz","description":"my-description","type":"template","imageUrl":"https://my-image","supportedBy":"my-organization"}' 'https://console.cloud.mia-platform.eu/v2/api/custom-plugin-templates/' -H 'cookie: <your cookie session here>' -H 'secret: <the secret goes here>' -H'content-type: application/json'
+curl -d '{"name":"NodeTemplate","archiveUrl":"https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz","description":"Thisisthebesttemplatetostartcreatingaserviceinnodeintegratedinsidetheplatform","type":"template","supportedBy":"mia-platform","image":[{"_id":"5db0105743875a0011618815","name":"36e6b6b4-36e1-4737-b65f-d1fb62bb3647.png","file":"f2ca3f95-1556-446f-a098-dbc1ff219dc8.png","size":1532,"location":"/v2/files/download/f2ca3f95-1556-446f-a098-dbc1ff219dc8.png","type":"image/png"}],"supportedByImage":[{"_id":"5db0106143875a0011618816","name":"e7c7ced2-e40e-465b-9e79-7d5c710badb2.png","file":"e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png","size":139694,"location":"/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png","type":"image/png"}]}' 'https://console.cloud.mia-platform.eu/v2/api/services/' -H 'cookie: <your cookie session here>' -H 'secret: <the secret goes here>' -H'content-type: application/json'
 ```
 
-The `value` field must be a URL to the tar.gz version of the git project.
-Below is an example for project hosted on gitlab:
+The `archiveUrl` field must be a URL to the tar.gz version of the git project;
+below is an example for project hosted on gitlab:
 
-```
-
+```url
 https://your-host-gitlab/api/v4/projects/:project-id/repository/archive.tar.gz
-
 ```
+
+Note that you can now specify an `image` and a `supportedByImage` for the template;
+both fields are `array of objects` that cointain the image file data; the result will be as the following:
+
+![dev-console-custom-service](img/dev-console-custom-service.png)
 
 ## Upload service template image
 
@@ -64,16 +86,17 @@ Example response for this call:
 
 ```json
 {
-	"_id": "5d8a44205c34c8001240bdaa",
-	"name": "magic.gif",
-	"file": "65d15696-8724-4103-b672-e29518a55135.gif",
-	"size": 1458668,
-	"location": "/v2/files/download/65d15696-8724-4103-b672-e29518a55135.gif"
+  "_id": "5d8a44205c34c8001240bdaa",
+  "name": "magic.gif",
+  "file": "65d15696-8724-4103-b672-e29518a55135.gif",
+  "size": 1458668,
+  "location": "/v2/files/download/65d15696-8724-4103-b672-e29518a55135.gif"
 }
 ```
 
-So, as imageUrl params in template body, you should use: `https://console.cloud.mia-platform.eu/v2/files/download/65d15696-8724-4103-b672-e29518a55135.gif`
+So, as imageUrl params in template body, you should use: `https://console.cloud.mia-platform.eu/v2/files/download/65d15696-8724-4103-b672-e29518a55135.gif`.
 
+You can directly use the response body as image file object of your custom template, as described in the [Example of template upload](#example-of-template-upload) paragraph.
 
 ### Change a custom template
 
@@ -84,6 +107,4 @@ With the correct template id, `Change existing template` with the id, remove the
 
 ### Postman collection
 
-Download this collection and import into postman.
-
-[download](download/template.postman_collection.json)
+[Download this collection](download/template.postman_collection.json) and import into postman.
