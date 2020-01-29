@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: documentation-site
-  namespace: default
   annotations:
     date: {{RELEASE_DATE}}
     author: {{AUTHOR_EMAIL}}
@@ -37,6 +36,7 @@ spec:
           resources:
             limits:
               memory: '25Mi'
+              cpu: '10m'
             requests:
               memory: '5Mi'
               cpu: '10m'
