@@ -8,8 +8,8 @@ variables:
 
 deploy:
   variables:
+    KUBE_URL: "${KUBE_TOOLS_URL}"
+    KUBE_TOKEN: "${KUBE_TOOLS_TOKEN}"
+    KUBE_CA_PEM: "${KUBE_TOOLS_CA_PEM}"
+    KUBE_NAMESPACE: "console"
     ENVIRONMENT_PREFIX: "CLOUD_"
-    KUBE_TOKEN: "${KUBE_MIA_CLOUD_TOKEN}"
-    KUBE_CA_PEM: "${KUBE_MIA_CLOUD_CA_PEM}"
-    KUBE_URL: "${KUBE_MIA_CLOUD_URL}"
-    KUBE_NAMESPACE: "default"

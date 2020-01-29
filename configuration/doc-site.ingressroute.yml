@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "labid-doc-site"
+  labels:
+    app.kubernetes.io/instance: "{{INGRESS_NAME}}"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`docs.mia-platform.eu`)
+      middlewares:
+        - name: "{{INGRESS_NAME}}-hsts-headers"
+          namespace: mia-platform
+      kind: Rule
+      services:
+        - name: documentation-site
+          port: 8080
+  tls:
+    secretName: docs-site-cert

@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: docs-site-cert
+  labels:
+    certificate.mia-platform.eu/solver: "http"
+spec:
+  commonName: "docs.mia-platform.eu"
+  dnsNames:
+    - "docs.mia-platform.eu"
+  issuerRef:
+    kind: ClusterIssuer
+    name: "{{INGRESS_NAME}}-cluster-issuer"
+  secretName: docs-site-cert
