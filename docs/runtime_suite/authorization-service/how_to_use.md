@@ -1,6 +1,8 @@
 ## How to use
 
-This service exposes an `/auth` endpoint that, once that you have provided a configuration, handles the access to a specific combination of route and method.
+The authorization service is responsible for authorizing a route to request certain resources.
+
+This service exposes an `/auth` endpoint that, once that you have provided a [configuration](https://docs.mia-platform.eu/runtime_suite/authorization-service/configuration/), handles the access to a specific combination of route and method.
 
 ### Request
 The request at the service should have:

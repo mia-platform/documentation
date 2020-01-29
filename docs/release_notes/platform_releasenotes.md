@@ -52,7 +52,7 @@ Crud Area
 * Field type of *_id* in CRUD can be edited  
 * Allow [TTL Indexes](https://docs.mongodb.com/manual/core/index-ttl/)
 * Allow [Wildcard Indexes](https://docs.mongodb.com/manual/core/index-wildcard/)
-* Disable last index's field delection   
+* Fixed: if an index field cannot be deleted, the delete is disabled   
 * Change delete button indexComponent  
 
 Upgrades:  
@@ -103,7 +103,7 @@ Fixed:
 
 **NEW SERVICES: SQL INVOKER**
 
-Sql Invoker Sql Invoker is designed to invoke stored procedure and/or stored function.  
+Sql Invoker is designed to invoke stored procedure and/or stored function.  
 In this moment, the service supports only:
 Stored procedures that does not return result sets and consequently: performs database side effects get results from INOUT and OUT parameters
 
