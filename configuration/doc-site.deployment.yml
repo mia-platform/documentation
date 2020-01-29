@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: documentation-site
-  namespace: default
   annotations:
     date: {{RELEASE_DATE}}
     author: {{AUTHOR_EMAIL}}
