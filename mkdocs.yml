@@ -118,6 +118,9 @@ nav:
   - Analytics:
     - Configure Analytics through Dev Console: 'development_suite/api-console/api-design/api_console_configanalytics.md'
     - Configure Analytics .json file: 'business_suite/conf_analytics.md'
+    
+- Data Visualization:
+    - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
 - Release Notes:
     - Platform: 'release_notes/platform_releasenotes.md'
