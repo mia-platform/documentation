@@ -26,7 +26,7 @@ If a wrong/malicious/misconfigured client is being used in the request then the 
       "audience": "https://my-host.test.mia-platform.eu"
     }
   },
-  "defaultClient"s: "",
+  "defaultClient": "",
   "managementClient": {
     "auth0Url": "my auth0 url",
     "clientId": "{{AUTH0_MANAGEMENT_CLIENT_ID}}",
