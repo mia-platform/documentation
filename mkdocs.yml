@@ -1,3 +1,4 @@
+
 site_name: Mia-Platform Docs
 site_description: Platform documentation of Mia Platform
 site_author: Mia Platform Team
@@ -33,6 +34,7 @@ nav:
     - CMS and Analytics:
        - Configure CMS: 'development_suite/api-console/api-design/api_console_configcms.md'
        - Configure Analytics: 'development_suite/api-console/api-design/api_console_configanalytics.md'
+       - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
     - Advanced Section:
       - API Gateway:
         -  Create config map: 'development_suite/api-console/advanced-section/api-gateway/config-map.md'
@@ -118,9 +120,6 @@ nav:
   - Analytics:
     - Configure Analytics through Dev Console: 'development_suite/api-console/api-design/api_console_configanalytics.md'
     - Configure Analytics .json file: 'business_suite/conf_analytics.md'
-    
-- Data Visualization:
-    - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
 - Release Notes:
     - Platform: 'release_notes/platform_releasenotes.md'
