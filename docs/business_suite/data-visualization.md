@@ -6,15 +6,21 @@ This page explains how to configure the new frontend for analytics. It is possib
 
 The following configuration allows to manage **both the dashboard configuration and the single chart configuration**, in order to control how you want to visualize your analytics. The configuration is edited in the DevOps Console in the Services area directly in the `service.configmap.yml file`.
 
-Each chart is identified by a name and has:
+Each **chart** is identified by a name and has:
 
 * **Id**;
 * **constructorType**, which sets the type of chart you want. It can be *mapChart* to set a map, *chart* to set an histogram, *stockChart* to set a temporal series.
 * **options**, which control directly highmaps configuration. Within the options there is also the **series configuration**, which always has an id, an endpoint to download data and a name. 
 * **filters**, which are not mandatory and allow to configure filters on the chart.
 
-Each dashboard is identified by its name and has many rows. Each row is an array of object because you can insert more charts per row.
+The **series configuration** is an array of objects that has:
 
+* a univocal id;
+* an endpointData, where you have to specify the endpoint that provides data;
+* a name, that will be showed as a popup label when the users looks at the chart;
+* a color, which can be set only if the constructorType is *chart*.
+
+Each **dashboard** is identified by its name and has many rows. Each row is an array of object because you can insert more charts per row.
 
 Here you can find the configuration of one chart and the configuration of one dashboard that contains one chart in the first row, two charts in the second row and one chart in the third row.
 
@@ -171,7 +177,9 @@ Here you can find an example of the configuration of a stock chart.
           }
         }
 ```
-This example, shows some of the options that (highcharts)[https://api.highcharts.com/highcharts/] enable to control.
+This example, shows some of the options that (highcharts)[https://api.highcharts.com/highcharts/] enable to control. 
+
+The property **fill** allows to control how the chart manages the case in which the data are equal to zero.
 
 ## Filters Configuration
 
