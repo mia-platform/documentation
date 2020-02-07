@@ -135,22 +135,23 @@ To do this you have two ways:
 The last step is to configure the route to go in the correct service. To do this you need to go in the advanced section 
 of the console and manage the Api Gateway backoffice files.
 The extensions to customize are:
+
  * __maps-proxyBackofficeName.before.map__ to map an endpoint to a service name.
  
     Example for the Push Manager service: 
     
     ```
-   "~^secreted-1-GET-/v2/push-manager-fe/" "push-manager-fe";
-   "~^(secreted|unsecreted)-(0|1)-\w+-/v2/push-manager-fe/" "unauthorized";
-   ```
+    "~^secreted-1-GET-/v2/push-manager-fe/" "push-manager-fe";
+    "~^(secreted|unsecreted)-(0|1)-\w+-/v2/push-manager-fe/" "unauthorized";
+    ```
    
  * __maps-proxyBackofficeUrl.before.map__ to proxy an endpoint to another url.
- 
+    
     Example for the Push Manager service: 
     
     ```
-   "~^GET-/v2/push-manager-fe/(?<path>.*|$)$" "$path";
-   ```
+    "~^GET-/v2/push-manager-fe/(?<path>.*|$)$" "$path";
+    ```
  
  According to your use case you can put the customization in both `before` or `after` file.
 
