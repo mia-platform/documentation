@@ -44,7 +44,7 @@ the service must be already Dockerized.
     * **name**: the name of your service
     * **Docker image**: the url of your docker image
     * **description**: insert a custom description
-    * the result will be something like this <br> ![](img/create_custom_service.png)
+    * the result will be something like this <br> ![](img/create_service.png)
 
 #### 3. Endpoints - create the endpoints
 The CRUD and the service are not reachable until you create the corresponding endpoints through the 
