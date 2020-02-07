@@ -126,7 +126,8 @@ To do this you have two ways:
         "_order": 1,
         "icon": "bell",
         "link": "/v2/push-manager-fe/",
-        "iframe": true                  
+        "iframe": true,
+        "__STATE__": "PUBLIC"               
     }
     ```
 
@@ -137,13 +138,16 @@ The extensions to customize are:
  * __maps-proxyBackofficeName.before.map__ to map an endpoint to a service name.
  
     Example for the Push Manager service: 
+    
     ```
    "~^secreted-1-GET-/v2/push-manager-fe/" "push-manager-fe";
    "~^(secreted|unsecreted)-(0|1)-\w+-/v2/push-manager-fe/" "unauthorized";
    ```
+   
  * __maps-proxyBackofficeUrl.before.map__ to proxy an endpoint to another url.
  
     Example for the Push Manager service: 
+    
     ```
    "~^GET-/v2/push-manager-fe/(?<path>.*|$)$" "$path";
    ```
@@ -151,6 +155,7 @@ The extensions to customize are:
  According to your use case you can put the customization in both `before` or `after` file.
 
 To customize these files:
+
  1. Click on Advanced
  2. Click on api-gateway
  3. Search __maps-proxyBackoffice__
