@@ -7,39 +7,48 @@ To integrate this functionality there are steps to follow, all through the API C
 Following the requirements to integrate this  functionality:
 
  * access to the API Console into the desired project;
- * a custom frontend;
- * access to the mongodb server with the collections of the selected project;
- * basic knowledge about the API Console [backoffice proxy name](/development_suite/api-gateway-config-map/#how-to-proxy-a-request-through-a-service) and [backoffice proxy url](/development_suite/api-gateway-config-map/#how-to-forward-a-request-to-another-url) customizations.
+ * a custom frontend already Dockerized;
+ * basic knowledge about the Console [backoffice proxy name](/development_suite/api-gateway-config-map/#how-to-proxy-a-request-through-a-service) and [backoffice proxy url](/development_suite/api-gateway-config-map/#how-to-forward-a-request-to-another-url) customizations.
+
+Note that this guideline is base on the Console version 5 and CMS version 7.x.x
 
 ## Integration steps
 Following the steps to integrate this functionality into the desired CMS.
 
-> All the steps to do are on the API Console
+> All the steps to do are on the Console
 
 #### 1. CRUD - __cmsmenu__ creation
-The CMS needs a specific collection to find the dynamic menu voices, called __cmsmenu__.
-If not already created, the user has to create it to integrate the functionality in exam, or:
+First of all you need a collection named __cmsmenu__ where to insert the menu voices you want to create: 
 
  1. Click on CRUD
  2. Click on __Create new CRUD__
  3. Create the CRUD with the following data:
     * **name**: cmsmenu
     * **description**: insert a custom description
-    * **rows**:<br> ![](img/cmsmenu_CRUD_creation.png)
+    * **rows**:
+        - `name`: String (Required)
+        - `_oder`: Number
+        - `icon`: String (Required)
+        - `link`: String (Required)
+        - `iframe`: Boolean (Required)
+    <br> ![](img/cmsmenu_CRUD_creation.png)
 
 #### 2. Service - create the custom service for your frontends
-We also need to add the custom service of the frontends that we want to integrate into the CMS; to do this:
+You also need to add the custom service of the frontends that you want to integrate into the CMS; note that
+the service must be already Dockerized.
 
  1. Click on Services
  2. Click on __Create new service__
+ 3. Select __Create from an existing Docker image__
  3. Create the service with the following data:
-    * **type**: __Existing Git service__ or __External service__
+    * **name**: the name of your service
+    * **Docker image**: the url of your docker image
     * **description**: insert a custom description
-    * **other field**: based on the type selection, insert the Git URL or the Existing service URL, the name and so on
     * the result will be something like this <br> ![](img/create_custom_service.png)
 
 #### 3. Endpoints - create the endpoints
-Now we have the CRUD and the service up and ready to be used, but we need the endpoints to call, so we will implement it with the following steps:
+The CRUD and the service are not reachable until you create the corresponding endpoints through the 
+following steps:
 
  * **cmsmenu endpoint**:
     1. Click on endpoints
@@ -57,47 +66,89 @@ Now we have the CRUD and the service up and ready to be used, but we need the en
         * **base path**: /custom-service-path
         * **type**: Custom Microservices
         * **description**: insert a custom description
+        * **Remember to unflag the two fields** `Support JSON format on request` **and** `Support JSON format on response`
         * the result will be something like this <br> ![](img/custom_service_endpoint.png)
 
 
-#### 4. CMS and Analytics - CMS configurations
-This step is the creation of the CMS side menu' voice creation that will contain our custom services based on the data of the __cmsmenu__ collection.
-
-Following the steps:
+#### 4. CMS configurations (optional)
+If you want to manage the custom menu configuration through the CMS you can create a page linked to the CRUD __cmsmenu__ collection.
+This step is optional and not needed for the integration but useful to manage the configuration.
 
  1. Click on CMS and Analytics
  2. In the submenu, click on CMS
  3. Click on __Create new page__
  4. Create the page with the following data:
-    * **name**: Service
+    * **name**: the label that you want to visualize 
     * **endpoint**: /cmsmenu
-    * **category**: CRUD
+    * **category**: the category in which you want the page
     * **icon**: insert the name of a [Fontawesom Icon](https://fontawesome.com/), **without** the __fa__ prefix (e.g. __bell__ for the notification bell)
  5. Click on the __Next__ button
- 6. Select the __table__ Layout
+ 6. Select the __table__ Layout and eventually the group expression for the accesses
  7. Finish, the result will be like this ![](img/CMS_service.png)
 
 #### 5. Collection __cmsmenu__ - insert data
-All is configured, but the CMS will not found anything into the cmsmenu collection until we don't put the menu voices that we want.
+It's time to insert the menu data in the __cmsmenu__ collection to make the voice of the menu visible.
 
-To do this we have to put a custom JSON into the cmsmenu collection.
+`name`: the name you want to visualize in the menu
 
-This is the JSON to put into the collection (example of the __Push Manager__ service):
+`_order`: the order of the page inside the category
 
-```json
-{
-	"name": "Push Manager",
-	"_order": 1,
-	"icon": "bell",
-	"link": "/v2/push-manager-fe/", /*link to the frontend base page*/
-	"iframe": true                  /*set it to false to open the page in another tab*/
-}
-```
+`icon`: the name of the icon visible in the menu
 
-#### 6. Backoffice proxy - Customize the proxy configurations
+`link`: the endpoint created for the service (and the path you want to reach in your frontend)
+
+`iframe`: true if you want to open the frontend in the iFrame, false if you want to open in another tab
+
+To do this you have two ways: 
+
+* insert the data in the CMS in the __cmsmenu__ collection: insert a new object specifying the fields.
+        
+    Example of the __Push Manager__ service:
+    
+     - `name`: Push Manager
+     - `_order`: 1
+     - `icon`: bell
+     - `link`: /v2/push-manager-fe/
+     - `iframe`: true
+     
+    In this case the frontend is called in the path `/`. If we wanted to reach the path home you need to put this path 
+    in the link: /v2/push-manager-fe/home.
+    
+    Publish your content  with the publish button. 
+    
+* make a POST to the __cmsmenu__ endpoint with the following body: 
+
+    Example of the __Push Manager__ service):
+
+    ```json
+    {
+        "name": "Push Manager",
+        "_order": 1,
+        "icon": "bell",
+        "link": "/v2/push-manager-fe/",
+        "iframe": true                  
+    }
+    ```
+
+#### 6. Backoffice proxy - Advanced configuration
+The last step is to configure the route to go in the correct service. To do this you need to go in the advanced section 
+of the console and manage the Api Gateway backoffice files.
 The extensions to customize are:
- * __maps-proxyBackofficeName.before.map__ to map an endpoint to a service name ([read the dedicated guide](/development_suite/api-gateway-config-map/#how-to-proxy-a-request-through-a-service))
- * __maps-proxyBackofficeUrl.before.map__ to proxy an endpoint to another url ([read the dedicated guide](/development_suite/api-gateway-config-map/#how-to-forward-a-request-to-another-url))
+ * __maps-proxyBackofficeName.before.map__ to map an endpoint to a service name.
+ 
+    Example for the Push Manager service: 
+    ```
+   "~^secreted-1-GET-/v2/push-manager-fe/" "push-manager-fe";
+   "~^(secreted|unsecreted)-(0|1)-\w+-/v2/push-manager-fe/" "unauthorized";
+   ```
+ * __maps-proxyBackofficeUrl.before.map__ to proxy an endpoint to another url.
+ 
+    Example for the Push Manager service: 
+    ```
+   "~^GET-/v2/push-manager-fe/(?<path>.*|$)$" "$path";
+   ```
+ 
+ According to your use case you can put the customization in both `before` or `after` file.
 
 To customize these files:
  1. Click on Advanced
@@ -105,6 +156,8 @@ To customize these files:
  3. Search __maps-proxyBackoffice__
  4. Customize the configurations
  5. Save and commit<br> ![](img/customize_extensions.png)
+ 
+ It's time to deploy the configuration.
 
-## Test the CMS
-Now finally we can test the endpoint on the CMS<br> ![](img/CMS_service_menu.png)
+## Result
+Once the configuration is deployed you will see the result in the CMS as follows <br> ![](img/CMS_service_menu.png)
