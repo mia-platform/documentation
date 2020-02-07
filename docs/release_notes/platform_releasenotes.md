@@ -1,5 +1,66 @@
 #Platform Release Note
 
+##v5.1.0 (February 7, 2020)
+
+**DevOps Console**
+
+New Section: Debug!
+
+You’ll find in your DevOps Console the new Test & Debug section, that allows you to run a single service locally while connecting that service to a remote Kubernetes cluster. [Read here](https://docs.mia-platform.eu/development_suite/debugging/telepresence/) to discover the full potentiality of this new area.
+
+New functionality: Horizontal Pod Autoscaling
+
+In this new section of the design area I could set the number of replicas for your custom services.
+
+![](img/replicas.png)
+
+!!! note
+    * the feature is active for non-advanced custom services
+    * when you choose to generate the replicas they only work for environments that have the isProduction flag set to true
+    * to set the values ​​you must set both the minimum and the maximum of cpu to your custom services in the services section.
+
+Create a tag
+
+You can tag your configurations from the console. In the area "Commit and Generate" you will find a new section for tag. Typically people use this functionality to mark release points (v1.0.0, and so on). Tag your configuration when you have a stable version of your platform.
+
+![](img/create-tag.png)
+
+Log&Monitoring
+
+* in the table there is a new column "Component" that show you the name of the services associated to the pods and it's version number.
+* added autofocus on search inputs
+
+![](img/components-column.png)
+
+Backend
+
+Added:
+
+* Gitlab webhooks are now automatically added to a new service when created if pipelines.type is webhook in the project
+* Mia-labels e Mia-annotations to services
+* Added new APIGateway configuration
+* route for creating a tag
+
+Fixed:
+
+
+AC-1312: /deployment get data from deployments of gitlab
+
+AC-1417: do not return error if required pipeline is not found (the pipeline have to be set in the field pipelines.type of the project. example: project.pipelines.type = "gitlab-ci")
+
+Kubernetes Service
+
+* Query parameter serviceType (values: core, custom) to route GET pods to filter results by label maintainer
+* Added route for GET deployments
+* Added field component if get pods
+* Updated labelSelector used for getting core/custom services
+
+**CMS 9.7.1**
+
+* Added: e have enabled the possibility of creating quick links also towards custom front-ends. the desired filter will appear in the parameter queries. Read here how to configure them
+
+* Fixed: the menu occasionally got stuck when switching from the dashboard to another page  
+
 ##v5.0.0
 
 !!! danger  "BREAKING CHANGES"
