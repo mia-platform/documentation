@@ -197,7 +197,7 @@ The property **fill** allows to control how the chart manages the case in which 
 There are several types of filters:
 
 * **Select filters**, which enable to set one value per time in the filter. For example in the `orders` collection, if there is a boolean property `shipped`, the select filter can be on the shipped or not shipped data.
-* 
+
 * **Multiselect filters**, which allow to select more than one value of the property. For example in the `orders` collection, if you have a property `country`, the multiselect filter can be on country, allowing you to see at the same time all the orders coming from Italy and Sweden.
 
 
@@ -206,6 +206,7 @@ Moreover, you can filter on the properties of the collection that is providing y
 * **inline filter**, which allows to create a filter on a property of the same collection, specifing the values that the users sees in the `values`field of the configuration;
 
    ```
+   
     "filterSelect": {
         "type": "SELECT",
         "fieldName": "success",
@@ -220,6 +221,7 @@ Moreover, you can filter on the properties of the collection that is providing y
                 ]
         }
      }
+     
  ```
 
 
@@ -227,6 +229,7 @@ Moreover, you can filter on the properties of the collection that is providing y
 
 
   ```
+  
     {
     "filterMultiselect": {
         "type": "MULTISELECT",
@@ -245,6 +248,7 @@ Moreover, you can filter on the properties of the collection that is providing y
              }
         }
     }
+    
  ```
 
 
