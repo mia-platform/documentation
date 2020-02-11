@@ -2,6 +2,14 @@
 
 This page explains how to configure the new frontend for analytics. It is possible to configure multiple dashboards that can be visualized on the CMS. 
 
+To be able to configure your charts and dashboards, in the **Services** section of the DevOps Console, you need to have for each chart:
+
+1. a set of APIs that are responsible for providing properly formatted data;
+2. data-visualization, which is the service that provides the web application;
+3. charts-service, which allows other services to download frontend configurations for a specific dashboard `:dd` from a fixed endpoint `/api/charts/dashboards/:dd`.
+
+All the configurations are managed from the charts-service in the `configmap.yml`file.
+
 ##General Configuration
 
 The following configuration allows to manage **both the dashboard configuration and the single chart configuration**, in order to control how you want to visualize your analytics. The configuration is edited in the DevOps Console in the Services area directly in the `service.configmap.yml file`.
@@ -33,18 +41,18 @@ Here you can find the configuration of one chart and the configuration of one da
           "constructorType": "chartType",
           "options": {
             "title": {
-              "text": "All taps"
+              "text": "Your Title"
             },
             "subtitle": {
-              "text": "The graph shows users taps on all your products over time"
+              "text": "This is your subtitle"
             },
             "legend": {
               "enabled": false
             },
             "series": [{
-              "id": "stock-serie1",
-              "endpointData": "/charts/success-stock/json",
-              "name": "Taps",
+              "id": "12341658ebueòbbfq",
+              "endpointData": "/charts/your-chart/json",
+              "name": "Your Name",
               "color": "#1d6eb5",
               "fill": {
                 "granularity": "days",
@@ -54,17 +62,17 @@ Here you can find the configuration of one chart and the configuration of one da
             }]
           },
           "filters": {
-            "outcomeResult": {
+            "filterName": {
               "type": "SELECT",
               "fieldName": "success",
-              "placeholder": "Filter taps",
-              "title": "Taps Authenticity",
-              "description": "Select authentic or not authentic taps",
+              "placeholder": "Your precompiled text",
+              "title": "Title of the filter",
+              "description": "Subtitle of the filter",
               "options": {
                 "type": "inline",
                 "values": [
-                  {"label": "Authentic", "value": "true"},
-                  {"label": "Not Authentic", "value": "false"}
+                  {"label": "Value1", "value": "true"},
+                  {"label": "Value2", "value": "false"}
                 ]
               }
             }
@@ -72,19 +80,19 @@ Here you can find the configuration of one chart and the configuration of one da
         }
       },
       "dashboard": {
-        "taps": {
+        "dashboardName": {
           "rows": [{ 
             "charts": [
-              {"id": "outcomesResultsStock"}
+              {"id": "chartName1"}
             ]
           }, { 
             "charts": [
-              {"id": "tapsPerCountryWorldMap"},
-              {"id": "tapsPerCityBars"}
+              {"id": "chartName2"},
+              {"id": "chartName3"}
             ]
           },{
             "charts": [
-              {"id": "alarmsBars"}
+              {"id": "chartName4"}
             ]
           }]
         }
@@ -94,7 +102,7 @@ Here you can find the configuration of one chart and the configuration of one da
 
 ## Map Configuration
 
-Here you can find an example of the configuration of a map.
+Here you can find an example of the configuration of a map, that has as constructorType `mapChart`.
 
 ```
         "yourMap": {
@@ -131,7 +139,7 @@ Here you can find an example of the configuration of a map.
          }
     }
 ```
-This example, shows some of the options that (highmaps)[https://api.highcharts.com/highmaps/] enable to control, such as:
+This example, shows some of the **options** that (highmaps)[https://api.highcharts.com/highmaps/] enable to control, such as:
 
 * title of the chart;
 
@@ -140,6 +148,9 @@ This example, shows some of the options that (highmaps)[https://api.highcharts.c
 * the navigation within the map and the zoom, which can be set to true or false;
 
 * the color of the map, which can be managed with a darker scale according to the values.
+
+
+These are not the only configurations that highcharts enable to control: having a look at the configuration more fields can be controlled.
 
 
 ## Stock Chart Configuration
@@ -183,6 +194,58 @@ The property **fill** allows to control how the chart manages the case in which 
 
 ## Filters Configuration
 
+There are several types of filters:
+
+* **Select filters**, which enable to set one value per time in the filter. For example in the `orders` collection, if there is a boolean property `shipped`, the select filter can be on the shipped or not shipped data.
+* 
+* **Multiselect filters**, which allow to select more than one value of the property. For example in the `orders` collection, if you have a property `country`, the multiselect filter can be on country, allowing you to see at the same time all the orders coming from Italy and Sweden.
+
+
+Moreover, you can filter on the properties of the collection that is providing you with the data or on a property of another collection. Therefore, there are two types of filters:
+
+* **inline filter**, which allows to create a filter on a property of the same collection, specifing the values that the users sees in the `values`field of the configuration;
+
+   ```
+    "filterSelect": {
+        "type": "SELECT",
+        "fieldName": "success",
+        "placeholder": "Your placeholder",
+        "title": "Your Title",
+        "description": "Your description",
+        "options": {
+            "type": "inline",
+             "values": [
+                  {"label": "Value1", "value": "true"},   // es. {"label": "shipped", "value": "true"}
+                  {"label": "Value2", "value": "false"}   // es. {"label": "not shipped", "value": "false"}
+                ]
+        }
+     }
+ ```
+
+
+* **lookup filter**, which allows to create a filter on a property of another collection. Here is an example of the configuration:
+
+
+  ```
+    {
+    "filterMultiselect": {
+        "type": "MULTISELECT",
+        "fieldName": "yourProperty",  //here you need to set the property of the collection that is providing the data for the chart on which you want to filter the data
+        "placeholder": "Your placeholder in the filter",
+        "title": "Your Filter name",
+        "description": "Your filter description",
+        "options": {
+            "type": "lookup",
+            "endpoint": "/v2/your-endpoint/",   //here you need to set the target endpoint from which the data are downloaded (es. /v2/menus/)
+            "valueProperty": "propertyName",  //here you need to the name of the property in the target collection on which you want to set the filter (es. _id)
+            "label": {
+                  "pattern": "{{name}}",
+                  "properties": ["labelPropertyName"]  //here you need to set the name of the property in the target collection that you want to show to the user as a label (es. name)
+                }
+             }
+        }
+    }
+ ```
 
 
 
