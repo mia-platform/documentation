@@ -189,6 +189,19 @@ If it is not present you can create it.
 
 * **dashboardConfig.json** (if you create it for the first time you will need to insert an empty array)
 
+* **cmsConfiguration.json** (if you create it for the first time you will need to insert an empty object)
+
+    key | type | Comment
+    ------- | ------- | -------
+    `hideAnalyticsDashboard` | 'boolean' | Set true to hide dashboard panel in cms-site
+
+    Example
+    ```JSON
+    {
+      "hideAnalyticsDashboard": true
+    }
+    ```
+  
 At this point you are ready to configure your extensions.
 
 ### 1. Configure the Card
