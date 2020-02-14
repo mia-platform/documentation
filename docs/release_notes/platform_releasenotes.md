@@ -32,28 +32,25 @@ Log&Monitoring
 
 ![](img/components-column.png)
 
+
 Backend
 
 Added:
 
-* Gitlab webhooks are now automatically added to a new service when created if pipelines.type is webhook in the project
-* Mia-labels e Mia-annotations to services
-* Added new APIGateway configuration
-* route for creating a tag
+* In each project it's been added a new parameter: pipeline object. For each project you can set what type of pipeline it should trigger. Currently the types are managed: gitlab-ci, jenkins and webhook (for custom pipelines)
 
-Fixed:
+* Marketplace configuration:  To add templates, examples or more to your marketplace there is a new parameter to add to each service: the pipeline object.
 
+```JSON
+{
+  "gitlab-ci": {
+    "path": "/projects/yourpath"
+  }
+}
+```
 
-AC-1312: /deployment get data from deployments of gitlab
+With this object you must indicate the type of pipeline with which to start your service and which path to go to get the pipeline.
 
-AC-1417: do not return error if required pipeline is not found (the pipeline have to be set in the field pipelines.type of the project. example: project.pipelines.type = "gitlab-ci")
-
-Kubernetes Service
-
-* Query parameter serviceType (values: core, custom) to route GET pods to filter results by label maintainer
-* Added route for GET deployments
-* Added field component if get pods
-* Updated labelSelector used for getting core/custom services
 
 **CMS 9.7.1**
 
