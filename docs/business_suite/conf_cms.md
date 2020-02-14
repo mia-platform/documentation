@@ -194,11 +194,16 @@ If it is not present you can create it.
     key | type | Comment
     ------- | ------- | -------
     `hideAnalyticsDashboard` | 'boolean' | Set true to hide dashboard panel in cms-site
+    `cmsMenu` | 'Object' | Object to define the cmsMenu configuration
+    `cmsMenu.label` | 'string' | Define a label for the cmsMenu section on the sidebar. Used to override the `Service` label that is used as default
 
     Example
     ```JSON
     {
-      "hideAnalyticsDashboard": true
+      "hideAnalyticsDashboard": true,
+      "cmsMenu": {
+        "label": "My custom label"
+      }
     }
     ```
   
