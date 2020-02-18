@@ -10,7 +10,13 @@ To the official documentation go to [https://docs.mia-platform.eu][doc-site]
 ```
 pip install mkdocs
 pip install mkdocs-material
+pip install mkdocs-monorepo-plugin
+
 ```
+
+!!! note
+
+    Use `pip3` for installation
 
 ### Publish
 When you want to publish a document launch
