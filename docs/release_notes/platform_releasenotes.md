@@ -27,7 +27,7 @@ The developer can decide which basepath is associated to an endpoint by applying
 
 * Fix 401/403 HTML response body on JSON request
 
-* Fix XSS attach on error
+* Fix security vulnerability
 
 * Log & Monitoring: fix loading pod list
 
