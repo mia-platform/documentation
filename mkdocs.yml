@@ -17,7 +17,7 @@ nav:
   - Release Notes: 'release_notes/platform_releasenotes.md'
   - Info: 'info/version-policy.md'
 
-- Developers Console:
+- DevOps Console:
   - Overview: 'development_suite/overview-dev-suite.md'
   - Design:
     - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
@@ -118,8 +118,8 @@ nav:
   - Analytics:
     - Configure Analytics through Dev Console: 'development_suite/api-console/api-design/api_console_configanalytics.md'
     - Configure Analytics .json file: 'business_suite/conf_analytics.md'
-    
-  - Data Visualization: 
+
+  - Data Visualization:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
 - Release Notes:

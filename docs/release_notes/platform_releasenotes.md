@@ -7,7 +7,7 @@
 With zero downtime the platform remains up during the deployment time without downtimes.
 This functionality is currently implemented only on some core services. Templates have been updated with this new feature.
 
-**Internal Rewrite URL**
+**[Internal Rewrite URL](https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/#internal-rewrite-url)**
 
 The developer can decide which basepath is associated to an endpoint by applying an internal rewrite url.
 
@@ -27,7 +27,7 @@ The developer can decide which basepath is associated to an endpoint by applying
 
 * Fix 401/403 HTML response body on JSON request
 
-* Fix XSS attach on error
+* Fix XSS vulnerability on error
 
 * Log & Monitoring: fix loading pod list
 

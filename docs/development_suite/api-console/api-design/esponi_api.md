@@ -9,7 +9,7 @@ To create an endpoint, select **Endpoints** and then **Create a new Endpoint**.
 * *Crud*: hook your endpoint directly to one of your collections.
 * *Custom Microservices*: hook your endpoint to a service with logics entirely created by you.
 * *External*: hook your endpoint to one of the external services registered in the services section.  
-* *Cross-Projects** hook your endpoint to a cross-projects service
+* *Cross-Projects* hook your endpoint to a cross-projects service
 
 
 ### CRUD
@@ -33,6 +33,11 @@ The parameters you can configure are the following:
 
 **Description**: short optional description
 
+#### Internal Rewrite URLs
+
+For the CRUD Endpoint it's not possible to set an internal Rewrite.
+The Internal Rewrite is / by default.
+
 #### Manage the security of your endpoints
 If the route is **public**, you do not need to be logged in to be able to call it. If it is not public and is called by an unregistered user, it returns 401.
 If it is **secreted** to be able to call it you need to set the Secret header with the correct value (you can see the secret in the homonymous screen)
@@ -40,6 +45,7 @@ If it is **secreted** to be able to call it you need to set the Secret header wi
 **Groups of users that can access them**: It is a logical expression to determine which groups have permission to call a given route. It can also be set to 0 (none) or to 1 (all). If the expression is true, then the user can access the route.
 
 ![sicurezza_endpoint](img/endpoint.png)
+
 
 #### Routes
 In this section you can view all the path that can be called of a CRUD endpoint. By selecting the different verbs in the management section it is possible to further detail on who has the permissions to do certain actions.
@@ -51,3 +57,19 @@ If **inherited** is active the field will inherit the behavior of the base endpo
      For example, we can set that the `DELETE/` can only be reserved for a specific group of users (admin).
      We must therefore choose not to inherit global settings. Then we de-select inherited and in the input we write: groups.admin
      ![](img/example-endpoints.png)
+
+## Services
+
+### Internal Rewrite URL
+
+The developer can decide which basepath is associated to an endpoint by applying an internal rewrite url.
+
+![rewrite-url](img/rewriteurl.png)
+
+When a call enters the platform it undergoes a rewrite by the API gateway or the Microservice gateway and arrives at the service with a different path.
+
+So for example in the case mentioned above when the API gateway enters the platform to call `/test-service-1` will call it with `/`
+
+From this section, the user can configure his own custom rewrite and, if necessary, view the default platform.
+
+For CRUD-type services, an internal rewrite cannot be set
