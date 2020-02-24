@@ -194,6 +194,7 @@ If it is not present you can create it.
     key | type | Comment
     ------- | ------- | -------
     `hideAnalyticsDashboard` | 'boolean' | Set true to hide dashboard panel in cms-site
+    `landingPage` | 'string' | Define the default landing page providing a cms page id
     `cmsMenu` | 'Object' | Object to define the cmsMenu configuration
     `cmsMenu.label` | 'string' | Define a label for the cmsMenu section on the sidebar. Used to override the `Service` label that is used as default
 
@@ -201,6 +202,7 @@ If it is not present you can create it.
     ```JSON
     {
       "hideAnalyticsDashboard": true,
+      "landingPage": "myPage"
       "cmsMenu": {
         "label": "My custom label"
       }
