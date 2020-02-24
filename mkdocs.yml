@@ -90,6 +90,7 @@ nav:
          - Cronjobs Microservices: 'runtime_suite/cron.md'
 
        - MongoDB Reader:
+         - Configuration: 'runtime_suite/mongodb-reader/service-configuration.md'
          - Filters: 'runtime_suite/mongodb-reader/filters.md'
          - ACL: 'runtime_suite/mongodb-reader/aclrows.md'
     - Privacy & Security:
