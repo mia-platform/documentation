@@ -4,12 +4,12 @@
 
 **Improve Performance for request without Hook**
 
-We have improved the performance of the calls that do not have hooks hooked by not passing them through the Microservice Gateway Components.
+We have improved the performance of the calls that do not have hooks by not passing them through the Microservice Gateway Components.
 Now only routes that have configured hooks will pass through the Microservice Gateway. All others routes will only pass through the API Gateway and then go direct to the microservice.
 
-**CMS - Configure your landing Page**
+**CMS v9.8.0 - Configure your landing Page**
 
-* CMS v9.8.0:  [Read here how to configure it]()
+[Read here how to configure it](https://docs.mia-platform.eu/business_suite/conf_cms/)
 
   * Implemented landingPage management from cmsConfiguration object, now CMS can be configured to land on a specific service or collection.
   * Added configuration to hide the Dashboard page
