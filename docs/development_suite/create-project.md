@@ -12,11 +12,19 @@ Informazione Progetto
 Configurazione Environemnts
 Configurazone dei servizi attivi
 
-Fase 2: Esposizione su internet
+Fase 2: attivazione Pipeline
+
+Fase 3: Esposizione su internet
 
 Creazione del Dns
 Creazione del certificato https
 Configurazione di Traefik
+
+Fase 4: Aggancio a Mongo
+
+Fase 5: Creazione del Tenant di Auth 0
+
+
 
 Fase 3: CMS
 

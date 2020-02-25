@@ -1,5 +1,27 @@
 #Platform Release Note
 
+##v5.3.0 (February 25,2020)
+
+**Improve Performance for request without Hook**
+
+We have improved the performance of the calls that do not have hooks hooked by not passing them through the Microservice Gateway Components.
+Now only routes that have configured hooks will pass through the Microservice Gateway. All others routes will only pass through the API Gateway and then go direct to the microservice.
+
+**CMS - Configure your landing Page**
+
+* CMS v9.8.0:  [Read here how to configure it]()
+
+  * Implemented landingPage management from cmsConfiguration object, now CMS can be configured to land on a specific service or collection.
+  * Added configuration to hide the Dashboard page
+  * Allow to set a custom label for Service section.
+
+**Fixed**
+
+* CMS: If I try to delete a user from CMS, I get 404
+* CMS: In the CMS the modify all does not open the correct modal
+* DevOps Console: If the session has expired DevOps Console no longer redirects at login
+* DevOps Console: The user, on clicking on an area close to a checkbox, must not enable or disable it
+
 ##v5.2.0 (February 18, 2020)
 
 **Zero Downtime**
