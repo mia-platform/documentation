@@ -64,7 +64,7 @@ If **inherited** is active the field will inherit the behavior of the base endpo
 
 The developer can decide which basepath is associated to an endpoint by applying an internal rewrite url.
 
-![rewrite-url](img/rewriteurl.png)
+![rewrite-url](img/rewrite-url.png)
 
 When a call enters the platform it undergoes a rewrite by the API gateway or the Microservice gateway and arrives at the service with a different path.
 
