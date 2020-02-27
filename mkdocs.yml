@@ -86,6 +86,7 @@ nav:
          - CQRS/Event Source Management: 'runtime_suite/event-source-management.md'
          - Secure Data Exchange Service: 'runtime_suite/secure-data-exchange-service.md'
          - Soap To Rest: 'runtime_suite/soap-to-rest.md'
+         - Mongo 2 Kafka: 'runtime_suite/mongo2kafka.md'
        - API Automation:
          - Cronjobs Microservices: 'runtime_suite/cron.md'
 
