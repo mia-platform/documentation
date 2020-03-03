@@ -25,7 +25,8 @@ The user can add a new line by selecting **add line**. Then you must complete th
 
 To create the collection select **create**.
 
-!!! Warning
+!!! warning
+
     the collection **has not yet been saved** it is necessary to carry out the steps described below
 
 ![tabella_prop](img/tabella_prop.PNG)
