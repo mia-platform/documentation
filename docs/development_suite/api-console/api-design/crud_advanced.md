@@ -45,7 +45,7 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 
 Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
 
-When you have finished creating all the necessary lines, press any other point on the screen to exit the add line section.
+When you have finished creating all the necessary lines, press any other point on the screen to exit the "add line" section.
 
 
 ### Indexes
