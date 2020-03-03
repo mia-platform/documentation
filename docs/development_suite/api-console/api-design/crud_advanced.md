@@ -1,17 +1,24 @@
 ## Create a new CRUD
-Let's imagine we have to create a new collection that contains the books of a library and we go to understand what are the steps to be done.
+In order to create a new CRUD, go on the menu on the left where you see CRUD, select **Crea un CRUD**, and name it filling in the blank space with the name of the collection in camelCase. 
+Press the button **Crea** on the right and the template of your collection will be created. 
 
-To create a new collection, select **Collections** on the left and select **Add new**.
+In our case, we name the collection “book”.
 
-First you need to enter the name of the collection in camelCase, in our case we will insert "books".
+If you need, you can upload your fields from file, selecting **Importa campi da File**
 
-By default there are fields that can not be changed: _id, creatorId, createdAt, updaterId, updatedAt, _STATE_
+As soon as you push **Crea** a new page, "books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
 
-The user can add a new line by selecting **add line**. Then you must complete the following fields:
+In the section **Imposta le proprietà**, you can enter the fields of your collection. 
+By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
 
-![Crea-collezione-riga-titolo](img/Crea-collezione-riga-titolo.PNG)
+You can add new lines by selecting **Aggiungi riga** and fill in the blank spaces with the value you need. 
 
-* **Name**: enter the property name, in camelCase, in our case we will insert "title", "author", "year" etc.
+We added, a new line and we wrote “Title” and ticked the necessary fields.
+
+
+![Crea-collezione-riga-titolo](img/crud-add-line.png)
+
+* **Name**: enter the property name in camelCase; in our case we will insert "Title", "Author", "Year", "New", etc.
 
 * **Type**: the properties can be of different types: *string* if it is a classic text string (or an image); *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be true or false; *Geopoint* if you want to save a specific place; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
 
@@ -19,29 +26,29 @@ The user can add a new line by selecting **add line**. Then you must complete th
 
 * If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
 
-* If you select **nullable**, you can give the value *null*.
+* If you select **nullable**, you can make the value *null*.
 
 * In the **description** field you can enter a short optional description.
 
-To create the collection select **create**.
+To create the collection select **Crea**.
 
-!!! warning
+!!! Warning
 
-    the collection **has not yet been saved** it is necessary to carry out the steps described below
+    the collection **has not yet been saved** it is necessary to continue the process described below
 
 ![tabella_prop](img/tabella_prop.PNG)
 
-If you want to delete a line select the line and select **delete** (next to "add line").
+If you want to delete a line, select red trash symbol on the right of the the table.
 
-Once the default line is created, the user is given the option to create another one. Once you have finished creating all the necessary lines, press any other point on the screen to exit the add line section.
+Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
 
-To **edit a collection** simply select the desired collection from the list in "collection" and edit the fields in the screen that is displayed.
+When you have finished creating all the necessary lines, press any other point on the screen to exit the add line section.
+
 
 ### Indexes
-An index (in the database field) is a data structure designed to **improve search (query) data**. If a table has no indexes, each search forces the system to read all the data in it. Instead, the index allows you to reduce the amount of data to be read to complete the search. However, creating an index reduce the writing performance
+In the third section, Indici, you can configure the indexes, a data structure designed to improve search (query) data. If a table has no indexes, each search forces the system to read all the data in it. Instead, the index allows you to reduce the amount of data to be read to complete the search. However, creating an index reduce the writing performance
 
-To create a new index select **create a new index**.
-
-Once the index name has been entered, the user must choose the type by selecting between: *normal, geo and hash*. Then the user can choose whether to make the index unique by selecting **unique**.
+To create a new index select **crea nuovo**.
+Once you named the index you need to choose among: geo, hash or TTL. Then, you can choose whether to make the index unique by ticking "unique".
 
 ![Indice](img/Indice.PNG)
