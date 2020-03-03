@@ -41,7 +41,7 @@ To create the collection select **Create**.
 
 ![tabella_prop](img/tabella-trash.png)
 
-If you want to delete a line, select red trash symbol on the right of the the table.
+If you want to delete a row, select red trash symbol on the right of the the table.
 
 Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
 
