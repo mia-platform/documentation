@@ -25,7 +25,7 @@
 
 ##v5.3.0 (February 25,2020)
 
-** UN-RELEASED Improve Performance for request without Hook**
+**UN-RELEASED Improve Performance for request without Hook**
 
 !!! warning
     This version is breaking if in the Advanced Section you have configured your custom configmaps not keeping proxyName and proxyUrl aligned.  
