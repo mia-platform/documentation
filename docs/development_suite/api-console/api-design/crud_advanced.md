@@ -13,7 +13,7 @@ As soon as you push **Create** a new page, "Books" in our example, is created an
 In the section **Fields**, you can enter the fields of your collection. 
 By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
 
-You can add new lines by selecting **Add new** and fill in the blank spaces with the value you need. 
+You can add new rows by selecting **Add new** and fill in the blank spaces with the value you need. 
 
 We added, a new field and we wrote “Title” and ticked the fields we needed. 
 
