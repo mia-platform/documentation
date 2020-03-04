@@ -39,7 +39,7 @@ To create the collection select **Create**.
 
     the collection **has not yet been saved** it is necessary to continue the process described below
 
-![tabella_prop](img/tabella-trash.png)
+![tabella_prop](img/tabella-cestino.png)
 
 If you want to delete a row, select red trash symbol on the right of the the table.
 
