@@ -10,7 +10,7 @@ If you need, you can upload your fields from file, selecting **Import fields fro
 
 As soon as you push **Create** a new page, "Books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
 
-In the section **Fields**, you can enter the fields of your collection. 
+In the section **Fields**, you can enter the properties of your collection. 
 By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
 
 You can add new rows by selecting **Add new** and fill in the blank spaces with the value you need. 
