@@ -1,8 +1,31 @@
 #Platform Release Note
 
+##v5.3.1 (March 4,2020)
+
+**Remove Breaking Change n v5.3.0 - disabled the skip of the Microservice Gateway**
+
+ !!! warning    
+    With this release, version 5.3.0 is no more breaking since each call (with or without hooks) has     to pass through the Microservice Gateway Components and, therefore, not aligned configmaps are       not broken.    
+    We are working as quickly as possible to make these features available without being breaking.
+
+
+**Improvements**
+
+  * Design Endpoints: Routes with or without the final / are both accepted.  
+  * Desing - Microservices: restyling of microservices section with card layout
+  * Desing - CRUD: restyling of add new crud section with card layout
+  * Design - Microservices: repository name gets filled automatically while writing the microservice name (internal Hostname) during microservice creation
+  * Desing - Microservices: alert Warning is no more shown in the centre of the page
+
+
+**Fixed**
+
+  * Console homepage: the console shows only the first 25 projects.    
+  * Focus on the menu voice is not correct (for example, the user is on the section CRUD, but CRUD is not the voice of the menu shown as selected)
+
 ##v5.3.0 (February 25,2020)
 
-**Improve Performance for request without Hook**
+** UN-RELEASED Improve Performance for request without Hook**
 
 !!! warning
     This version is breaking if in the Advanced Section you have configured your custom configmaps not keeping proxyName and proxyUrl aligned.  
