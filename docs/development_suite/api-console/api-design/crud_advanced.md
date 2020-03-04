@@ -17,7 +17,7 @@ You can add new lines by selecting **Add new** and fill in the blank spaces with
 
 We added, a new field and we wrote “Title” and ticked the fields we needed. 
 
-![Crea-collezione-riga-titolo](img/CRUD-add-new.png)
+![Crea-collezione-riga-titolo](img/crud-add-new.png)
 
 You can add the fields you need and select the appropriate properties:
 
