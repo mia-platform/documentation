@@ -4,9 +4,8 @@
 
 **Remove Breaking Change n v5.3.0 - disabled the skip of the Microservice Gateway**
 
- !!! warning
-     
-    With this release, version 5.3.0 is no more breaking since each call (with or without hooks) has     to pass through the Microservice Gateway Components and, therefore, not aligned configmaps are       not broken.    
+!!! warning
+    With this release, version 5.3.0 is no more breaking since each call (with or without hooks) has to pass through the Microservice Gateway Components and, therefore, not aligned configmaps are not broken.    
     We are working as quickly as possible to make these features available without being breaking.
 
 
