@@ -6,7 +6,7 @@ In our case, we will name the collection “Books”.
 
 If you need, you can upload your fields from file, selecting **Import fields from File**.
 
-![Crea-collezione](img/Create-CRUD.png)
+![Crea-collezione](img/crea-crud.png)
 
 As soon as you push **Create** a new page, "Books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
 
