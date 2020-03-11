@@ -1,6 +1,6 @@
 ## Create a new CRUD
-In order to create a new CRUD, go on the menu on the left where you see CRUD, select **Create new CRUD**, and name it filling in the blank space with the name of the collection in camelCase. 
-Press the button **Create** on the right and the template of your collection will be created. 
+In order to create a new CRUD, go on the menu on the left where you see CRUD, select **Create new CRUD**, and name it filling in the blank space with the name of the collection in camelCase.
+Press the button **Create** on the right and the template of your collection will be created.
 
 In our case, we will name the collection “Books”.
 
@@ -15,7 +15,7 @@ By default, there are fields that can not be changed, such as: id, creatorId, cr
 
 You can add new rows by selecting **Add new** and fill in the blank spaces with the value you need. 
 
-We added, a new field and we wrote “Title” and ticked the fields we needed. 
+We added, a new field and we wrote “Title” and ticked the fields we needed.
 
 ![Crea-collezione-riga-titolo](img/crud-add-new.png)
 
