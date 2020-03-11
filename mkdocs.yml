@@ -19,6 +19,9 @@ nav:
 
 - DevOps Console:
   - Overview: 'development_suite/overview-dev-suite.md'
+  - Set Up Infrastructure:
+    - Create Project: 'development_suite/set-up-infrastructure/create-project.md'
+    - Manage Environment Variables: 'development_suite/set-up-infrastructure/env-var.md'
   - Design:
     - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
     - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
