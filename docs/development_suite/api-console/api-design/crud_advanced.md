@@ -6,18 +6,18 @@ In our case, we will name the collection “Books”.
 
 If you need, you can upload your fields from file, selecting **Import fields from File**.
 
-![Crea-collezione](img/Create-CRUD.png)
+![Crea-collezione](img/crea-crud.png)
 
 As soon as you push **Create** a new page, "Books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
 
-In the section **Fields**, you can enter the fields of your collection.
-By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, *_STATE.
+In the section **Fields**, you can enter the properties of your collection. 
+By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
 
-You can add new lines by selecting **Add new** and fill in the blank spaces with the value you need.
+You can add new rows by selecting **Add new** and fill in the blank spaces with the value you need. 
 
 We added, a new field and we wrote “Title” and ticked the fields we needed.
 
-![Crea-collezione-riga-titolo](img/CRUD-add-new.png)
+![Crea-collezione-riga-titolo](img/crud-add-new.png)
 
 You can add the fields you need and select the appropriate properties:
 
@@ -39,7 +39,7 @@ To create the collection select **Create**.
 
     the collection **has not yet been saved** it is necessary to continue the process described below
 
-![tabella_prop](img/tabella-trash.png)
+![tabella_prop](img/tabella-cestino.png)
 
 If you want to delete a row, select red trash symbol on the right of the the table.
 
