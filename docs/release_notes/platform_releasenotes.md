@@ -3,16 +3,15 @@
 ##v5.3.1 Patch (March 11,2020)
 This release is a patch that includes only frontend improvements and updates.
 
-**Improvements**    
- * Design: In the configuration of the save page, the infobox is added.       
+**Improvements**  
 
- * Design - CRUD: CRUD property table can now be displayed in alphabetic order.     
-
+ * Design: In the configuration of the save page, the infobox is added.    
+ * Design - CRUD: CRUD property table can now be displayed in alphabetic order.    
  * Design - Microservices: Change the default exposeSwagger value (from false to true) in Create Custom Microservices from template.      
 
-**Fixed**       
- * Design - Microservices: "Delete" button for microservices is not visible.      
- 
+**Fixed**    
+
+ * Design - Microservices: "Delete" button for microservices is not visible.     
  * Design - Microservices: The change of the docker image name of a microservice, switches also the docker image name of other microservices.      
 
 
