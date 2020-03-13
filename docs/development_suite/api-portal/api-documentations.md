@@ -14,6 +14,7 @@ In order to test the APIs, you can access your tags on the right side of the scr
 This section below will show you examples and information per request type: GET, POST, PATCH and DELETE.
 
 GET request: how to "Get a list of plates"
+
 If you want to test the GET end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
 
 ![](img/secret.png)
