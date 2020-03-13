@@ -21,7 +21,7 @@ If you want to test the GET end-point, you need to click the row that will open 
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed. 
 
 Below you can see the screenshot of a successfull requesto to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
-In the second box, you can see the response of the body with the list of the ingredients. 
+In the second box, you can see the response of the body with the list of the plates. 
 
 ![](img/esempio-get.png)
 
