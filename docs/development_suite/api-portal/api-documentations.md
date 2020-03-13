@@ -25,6 +25,9 @@ In the second box, you can see the response of the body with the list of the pla
 
 ![](img/esempio-get.png)
 
+You can see all the Paramters Type: query, path, header, and body. In addition, all the query params are listed and you can filter them. You can also edit it in JASON as shown below. 
+
+![](img/editJASON.png)
 
 POST request: how to "Add a new item to the plates collection" 
 
@@ -33,7 +36,7 @@ Once the single API is selected, in this area you can see the structure of the A
 
 Below you can see the screenshot of a successfull requesto to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
 
-![](img/esempio-post.png)
+![](img/.png)
 
 There are other actions that you can diretcly take on the test window. 
 
