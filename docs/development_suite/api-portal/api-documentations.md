@@ -32,27 +32,32 @@ You can see all the Paramters Type: query, path, header, and body. In addition, 
 
 **POST request: how to "Add a new item to the plates collection"**
 
-If you want to test the POST end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
-Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
+If you want to test the POST end-point, you need to click the row that will open it up. Now you have the ability to test the API request by entering the information that you need. 
+In our case we added a plate of "onion rings" with its description and its price. 
+Then push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
-Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
-We sessucefully added a plate of "french fries" with its description and its price. 
+Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code, a new ID was created and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
 
-![](img/post-plate-added.png)
+
+![](img/PostOnion.png)
 
 
 **DELETE request: how to "Delete a plate from the plates collection"**
+
+If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by putting the ID of the plate that you want to delete and then pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
+
+Below you can see the screenshot of a successfull request to our running API. You can see 204 as No content status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
+
+![](img/deleteOnion.png)
+
+Always remember the status of you object, whether it is private, public, trash or deleted. 
+
+**PATCH request: how to "Update a plate of the collection by ID"**
 
 If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
-
-![](img/.png)
-
-There are other actions that you can diretcly take on the test window. 
-
-**PATCH request: how to "Update a plate of the collection by ID"**
 
 
 
