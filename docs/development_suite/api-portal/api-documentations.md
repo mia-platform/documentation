@@ -7,13 +7,13 @@ The documentation let you know exactly how your API will work and behave, before
 
 You can share API documentation within your company, externally to partners and suppliers. 
 
-In order to test the APIs, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag - in our case, we will select the Tag “Ingredient”.  
+In order to test the APIs, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag - in our case, we will select the Tag “Plates”.  
 
-![](img/listAPI.png)
+![](img/listAPIplates.png)
 
 This section below will show you examples and information per request type: GET, POST, PATCH and DELETE.
 
-GET request: how to "Get a list of ingredients"
+GET request: how to "Get a list of plates"
 If you want to test the GET end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
 
 ![](img/secret.png)
@@ -26,7 +26,7 @@ In the second box, you can see the response of the body with the list of the ing
 ![](img/esempio-get.png)
 
 
-POST request: how to "Add a new item to the ingredient collection" 
+POST request: how to "Add a new item to the plates collection" 
 
 If you want to test the POST end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
@@ -37,7 +37,7 @@ Below you can see the screenshot of a successfull requesto to our running API, w
 
 There are other actions that you can diretcly take on the test window. 
 
-DELETE request: how to ""Delete an item from the ingredient collection" 
+DELETE request: how to ""Delete a plate from the plates collection" 
 
 If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
@@ -48,7 +48,7 @@ Below you can see the screenshot of a successfull requesto to our running API, w
 
 There are other actions that you can diretcly take on the test window. 
 
-PATCH request: how to "Update an item of the ingredient collection by ID"
+PATCH request: how to "Update a plate of the collection by ID"
 
 
 
