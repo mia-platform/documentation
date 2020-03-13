@@ -25,8 +25,6 @@ Still on Auth0, log in to your Regular Application and in the settings section s
   * **allowed web origin**: list of allowed origins from which you can log in;
   * **allowed logout url**: indicates the url callback of the logout. For cms the value to use is `BASE_URL / web-login`.
 
-  [Img] (!)
-
 You must also configure the **allowed logout url** at Tenant level, then access the tenant settings (you can find them at the top right, where there is your user icon) and in the advanced area (the last tab on the right) insert the same **allowed logout url** that you have configured on the application.
 
 ## Step 3. Let's configure a Database for each environment
@@ -52,7 +50,6 @@ This step depends entirely on your business and what you want your users to do.
 Within the *Applications* in the **Connections** section you can choose for each application which social login to activate or deactivate.
 To manage social logins on a global level inside the ** Connections ** section you will find the page **Social** choose what to enable and what not.
 
-[Img-social] (!)
 
 ## Step 5. Management of the User Management application
 
@@ -71,7 +68,6 @@ To complete the management of users by our application:
 2. I access the User Management application created for user management and authorize the Auth0Management API by defining in the permission area which actions I want to do on my application.
 For user management, I should enable all the roles I find filtering by *user*
 
-[Img] (!)
 
 3. Last step I have to create a custom RULES to enable the access of our namespace to user management.
 Then access the ** Rules ** - **Create Rules** - **Empty-Rules** section, enter the name *inject-id-token* and copy the following function:
