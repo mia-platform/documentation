@@ -38,10 +38,9 @@ Then push **Try it** - if the APIs are protected, you need to authenticate yours
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code, a new ID was created and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
 
-
 ![](img/PostOnion.png)
 
-Always remember the status of you object, whether it is private, public, trash or deleted. 
+Always remember the status, whether it is private, public, trash or deleted. 
 
 **DELETE request: how to "Delete a plate from the plates collection"**
 
@@ -51,7 +50,7 @@ Below you can see the screenshot of a successfull request to our running API. Yo
 
 ![](img/deleteOnion.png)
 
-Always remember the status of you object, whether it is private, public, trash or deleted. 
+Always remember the status, whether it is private, public, trash or deleted. 
 
 **PATCH request: how to "Update a plate of the collection by ID"**
 
@@ -65,7 +64,7 @@ Below you can see the screenshot of a successfull request to our running API, we
 
 ![](img/patchPlate.png)
  
-Always remember the status of you object, whether it is private, public, trash or deleted. 
+Always remember the status, whether it is private, public, trash or deleted. 
 
 
  
