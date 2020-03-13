@@ -1,71 +1,80 @@
-# Configurare Auth0
+#Configure Auth0
 
-Una volta che hai creato il tuo progetto e vuoi abilitare la gestione degli utenti sul tuo Headless CMS o su un altro applicativo dovrai seguire questa breve guida.
+Once you have created your project and want to enable user management on your Headless CMS or another application you will need to follow this short guide.
 
-## Prerequisiti
+## Prerequisites
 
-Prima di leggere questa guida assciurati di avere le seguenti condizioni:
+Before reading this guide, make sure you have the following conditions:
 
-* nel tuo progetto devi avere tra i servizi attivi l'auth0-client;
-* devi avere l'accesso ad Auth0 per poterlo configurare;
-* devi creare un nuovo tenant su Auth0 con il nome del tuo cliente.
+* in your project you must have auth0-client among the active services;
+* you must have access to Auth0 to be able to configure it;
+* you need to create a new tenant on Auth0 with your client's name.
 
-## Step 1. Creazione degli applicativi
+## Step 1. Creating the applications
 
-Per gestire i tuoi utenti su Auth0 dovrai creare due applications:
+To manage your users on Auth0 you will need to create two applications:
 
-1. il primo di tipologia **Regular Web Application** con un nome che identifichi il tuo applicativo. Es: Name CMS. Se hai le applicazioni differenziate per ambiente, ovviamente dovrai creare per ogni ambiente un applicativo;
-2. il secondo di tipologia **M2M** per la gestione degli utenti. Ti consigliamo di chiamarlo infatti "User Management CMS".
+1. the first of type **Regular Web Application** with a name that identifies your application. Ex: Name CMS. If you have applications differentiated by environment, obviously you will have to create an application for each environment;
+2. the second of type **M2M** for user management. We advise you to call it "User Management CMS".
 
-## Step 2. Configurazione delle pagine di callback
+## Step 2. Configuring the callback pages
 
-Sempre su Auth0, accedi nella tua Regular Application e nella sezione settings imposta:
+Still on Auth0, log in to your Regular Application and in the settings section set:
 
-  * **allowed callback url**: indica dove auth0 ti rimanda dopo aver fatto la login. Per il cms il valore da utilizzare è `BASE_URL/web-login/callback`;
-  * **allowed web origin**: lista degli allowed origins da cui poter fare la login;
-  * **allowed logout url**: indica la callback url della logout. Per il cms il valore da utilizzare è `BASE_URL/web-login`.
+  * ** allowed callback url **: indicates where auth0 sends you back after logging in. For the cms the value to use is `BASE_URL / web-login / callback`;
+  * **allowed web origin**: list of allowed origins from which you can log in;
+  * **allowed logout url**: indicates the url callback of the logout. For cms the value to use is `BASE_URL / web-login`.
 
-  [img](!)
+  [Img] (!)
 
-Va anche configurato l' **allowed logout url** a livello di Tenant, accedi quindi sui settings del tenant (li trovi in alto a destra, dove c'è l'icona del tuo utente) e nell'area advanced (l'ultimo tab sulla destra) insierisci gli stessi **allowed logout url** che hai configurato sull'applicazione.
+You must also configure the **allowed logout url** at Tenant level, then access the tenant settings (you can find them at the top right, where there is your user icon) and in the advanced area (the last tab on the right) insert the same **allowed logout url** that you have configured on the application.
 
-## Step 3. Configuriamo un Database per ciascun ambiente
+## Step 3. Let's configure a Database for each environment
 
-Di default Auth0 ha attivo solo Database (lo trovi nel menù Connections, sezione Database), se volessimo avere un database unico per tutti gli utenti quindi possiamo anche non seguire questo step. 
+By default Auth0 has only Database active (you can find it in the Connections menu, Database section), if we wanted to have a single database for all users so we can also not follow this step.
 
-Per creare invece più ambienti dobbiamo invece creare più database, uno per ogni ambiente. 
-Per crearli, una volta acceduto tramite il menù alla sezione Connections e Database, cliccare su Create DB Connection e impostare un nome per il database che si sta creando.
-
-!!! warning
-    N.B. Fai attenzione a disabilitare la possibilità di signup (impostazione **Disable Sign Ups**) se non vuoi che gli utenti possano registrarsi autonomamente alla tua applicazione!
-
-Una volta creato il database devi associare ad ogni applicazione il suo DB.
-Per farlo, dal database appena creato vai nella sezione *Applications* e abilita le applicazioni che possono usare quel database.
-
-## Step 4. Configuriamo la login social
-
-Questo passaggio dipende interamente dal tuo business e da quello che vorrai far fare ai tuoi utenti. 
+To create multiple environments instead we must create multiple databases, one for each environment.
+To create them, once accessed through the menu in the Connections and Database section, click on Create DB Connection and set a name for the database being created.
 
 !!! warning
-    Di default Auth0 abilita anche la login con Google. Per disabilitarla, vai su *Connections*, *Social* e disattiva lo switch Google, che dovrebbe essere abilitato.  
+    N.B. Be careful to disable the possibility of signup (setting **Disable Sign Ups**) if you do not want users to be able to register independently to your application!
 
-All'interno delle *Applications* nella sezione **Connections** potrai scegliere per ogni applicativo che social login attivare o disattivare. 
-Per gestire invece le login Social a livello globale all'interno della sezione **Connections** troverai la pagina **Social** scegli cosa abilitare e cosa no. 
+Once the database has been created, you must associate its DB with each application.
+To do this, from the newly created database go to the *Applications* section and enable the applications that can use that database.
 
-[img-social](!)
+## Step 4. Let's configure the social login
 
-## Step 5. Gestione dell'applicativo User Management
+This step depends entirely on your business and what you want your users to do.
 
-Per completare la gestione degli utenti da parte del nostro applicativo:
+!!! warning
+    By default Auth0 also enables login with Google. To disable it, go to *Connections*, *Social* and disable the Google switch, which should be enabled.
 
-1. Creare una API: vai nella sezione APIs e crea una API che abbia come identifier l'URL del tuo backoffice.      
-2. Accedo alla applicazione User Management creata per la gestione degli utenti e autorizzo l'API Auth0Management andando a definire nell'area permission quali azioni voglio far fare sul mio applicativo. 
-Per la gestione degli utenti, dovrei abilitare tutti i ruoli che trovo filtrando per *user*
+Within the *Applications* in the **Connections** section you can choose for each application which social login to activate or deactivate.
+To manage social logins on a global level inside the ** Connections ** section you will find the page **Social** choose what to enable and what not.
 
-[img](!)
+[Img-social] (!)
 
-3. Ultimo passagio devo creare una RULES custom per abilitare l'accesso del nostro namespace alla gestione degli utenti. 
-Accedi quindi alla sezione **Rules** - **Create Rules** - **Empty-Rules**, inserisci il nome *inject-id-token* e copi la seguente funzione:
+## Step 5. Management of the User Management application
+
+To complete the management of users by our application:
+
+1. Create an API: go to the APIs section and create an API that identifies the URL of your back office.
+2. I access the User Management application created for user management and I authorize the Auth0Management API going to define in the permission area which actions I want to do on my application.
+For user management, I should enable all the roles I find filtering by *user*
+
+
+## Step 5. Management of the User Management application
+
+To complete the management of users by our application:
+
+1. Create an API: go to the APIs section and create an API that identifies the URL of your back office.
+2. I access the User Management application created for user management and authorize the Auth0Management API by defining in the permission area which actions I want to do on my application.
+For user management, I should enable all the roles I find filtering by *user*
+
+[Img] (!)
+
+3. Last step I have to create a custom RULES to enable the access of our namespace to user management.
+Then access the ** Rules ** - **Create Rules** - **Empty-Rules** section, enter the name *inject-id-token* and copy the following function:
 
 ```javascript
 function (user, context, callback) {
@@ -80,35 +89,33 @@ function (user, context, callback) {
 }
 ```
 
-4. Sempre nella sezione RULES, nei settings c'è la possibilità di aggiungere delle variabili. Devi aggiungere la variabile con key `MIA_NAMESPACE` (usata nella funzione sopra). Come `value`, dovresti usare `https://BASE_URL/`, sostituendo l'url identificativo del tuo tenant. Questo url non verrà mai chiamato da Auth0, ma serve per scopizzare l'informazione che viene iniettata all'interno dell'id-token dei tuoi utenti.
+4. Still in the RULES section, in the settings there is the possibility to add variables. You have to add the variable with key `MIA_NAMESPACE` (used in the function above). As `value`, you should use` https: // BASE_URL / `, replacing your tenant's identifying url. This url will never be called by Auth0, but it is used to finalize the information that is injected into the id-token of your users.
 
 !!! warning
-    Ricordati il valore che inserisci qua, servirà per il prossimo step e non sarà più visibile!
+    Remember the value you enter here, it will be used for the next step and will no longer be visible!
 
 
-## Step 6: Scrivi le configurazioni sulla Console
+## Step 6: Write the configurations on the Console
 
-[Link sulla guida per le configurazioni sulla console](https://docs.mia-platform.eu/runtime_suite/auth0-client/configuration/)
+[Link on the console configuration guide](https://docs.mia-platform.eu/runtime_suite/auth0-client/configuration/)
 
-Ricordati, quando configuri l'auth0-client, di riutilizzare il valore che hai utilizzato come `MIA_NAMESPACE` nella rule configurata al punto precedente.
+Remember, when configuring the auth0-client, to reuse the value you used as `MIA_NAMESPACE` in the rule configured in the previous point.
 
 e.g.
-Se configuro `MIA_NAMESPACE=https://mia-platform.eu/`, nella configurazione dell'auth0-client dovrò settare:
+If I configure `MIA_NAMESPACE = https://my-platform.eu/`, in the configuration of the auth0-client I will have to set:
 
-```json
+```Json
 {
-  // ... le altre configurazioni,
+  // ... the other configurations,
   customClaimsNamespaces: [
-      "https://mia-platform.eu/app_metadata",
-      "https://mia-platform.eu/user_metadata"
+      "Https://mia-platform.eu/app_metadata"
+      "Https://mia-platform.eu/user_metadata"
   ]
 }
 ```
 
-## Abilita i tuoi utenti
+## Enable your users
 
-[Per configurare i tuoi utenti leggi la documentazione di Auth0](https://auth0.com/docs/users/guides/manage-users-using-the-dashboard)
-
-
+[To configure your users read the Auth0 documentation](https://auth0.com/docs/users/guides/manage-users-using-the-dashboard)
 
 
