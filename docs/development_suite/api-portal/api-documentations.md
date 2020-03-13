@@ -41,6 +41,7 @@ Below you can see the screenshot of a successfull request to our running API, we
 
 ![](img/PostOnion.png)
 
+Always remember the status of you object, whether it is private, public, trash or deleted. 
 
 **DELETE request: how to "Delete a plate from the plates collection"**
 
@@ -54,11 +55,17 @@ Always remember the status of you object, whether it is private, public, trash o
 
 **PATCH request: how to "Update a plate of the collection by ID"**
 
-If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
-Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
+If you want to test the Patch end-point, you need to click the row that will open it up. Now you have the ability to test the API request by editing the fields you want. 
 
-Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
+In our case, we want to edit the name of a plate from "Salmon" to "Salmon with veggie". We retrieved the correct ID from the GET request and we entered it in the "path params". Since we want to change the name of the plate, we will tick **Set** and **name**, writing the new name: Salmon with veggie.
 
+Then, push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
+
+Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code with the new name. In the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java.
+
+![](img/patchPlate.png)
+ 
+Always remember the status of you object, whether it is private, public, trash or deleted. 
 
 
  
