@@ -14,7 +14,7 @@ Prima di leggere questa guida assciurati di avere le seguenti condizioni:
 
 Per gestire i tuoi utenti su Auth0 dovrai creare due applications:
 
-1. il primo di tipologia **Regular Web Application** con un nome che identifichi il tuo applicativo. Es: Name CMS. Se hai le applicazioni differenziate permbiente, ovviamente dovrai creare per ogni ambiente un applicativo;
+1. il primo di tipologia **Regular Web Application** con un nome che identifichi il tuo applicativo. Es: Name CMS. Se hai le applicazioni differenziate per ambiente, ovviamente dovrai creare per ogni ambiente un applicativo;
 2. il secondo di tipologia **M2M** per la gestione degli utenti. Ti consigliamo di chiamarlo infatti "User Management CMS".
 
 ## Step 2. Configurazione delle pagine di callback
@@ -36,8 +36,8 @@ Di default Auth0 ha attivo solo Database (lo trovi nel menù Connections, sezion
 Per creare invece più ambienti dobbiamo invece creare più database, uno per ogni ambiente. 
 Per crearli, una volta acceduto tramite il menù alla sezione Connections e Database, cliccare su Create DB Connection e impostare un nome per il database che si sta creando.
 
-!!! Warning
-N.B. Fai attenzione a disabilitare la possibilità di signup (impostazione **Disable Sign Ups**) se non vuoi che gli utenti possano registrarsi autonomamente alla tua applicazione!
+!!! warning
+    N.B. Fai attenzione a disabilitare la possibilità di signup (impostazione **Disable Sign Ups**) se non vuoi che gli utenti possano registrarsi autonomamente alla tua applicazione!
 
 Una volta creato il database devi associare ad ogni applicazione il suo DB.
 Per farlo, dal database appena creato vai nella sezione *Applications* e abilita le applicazioni che possono usare quel database.
@@ -46,8 +46,8 @@ Per farlo, dal database appena creato vai nella sezione *Applications* e abilita
 
 Questo passaggio dipende interamente dal tuo business e da quello che vorrai far fare ai tuoi utenti. 
 
-!!! Warning
-Di default Auth0 abilita anche la login con Google. Per disabilitarla, vai su *Connections*, *Social* e disattiva lo switch Google, che dovrebbe essere abilitato.  
+!!! warning
+    Di default Auth0 abilita anche la login con Google. Per disabilitarla, vai su *Connections*, *Social* e disattiva lo switch Google, che dovrebbe essere abilitato.  
 
 All'interno delle *Applications* nella sezione **Connections** potrai scegliere per ogni applicativo che social login attivare o disattivare. 
 Per gestire invece le login Social a livello globale all'interno della sezione **Connections** troverai la pagina **Social** scegli cosa abilitare e cosa no. 
@@ -82,8 +82,8 @@ function (user, context, callback) {
 
 4. Sempre nella sezione RULES, nei settings c'è la possibilità di aggiungere delle variabili. Devi aggiungere la variabile con key `MIA_NAMESPACE` (usata nella funzione sopra). Come `value`, dovresti usare `https://BASE_URL/`, sostituendo l'url identificativo del tuo tenant. Questo url non verrà mai chiamato da Auth0, ma serve per scopizzare l'informazione che viene iniettata all'interno dell'id-token dei tuoi utenti.
 
-!!! Warning
-Ricordati il valore che inserisci qua, servirà per il prossimo step e non sarà più visibile!
+!!! warning
+    Ricordati il valore che inserisci qua, servirà per il prossimo step e non sarà più visibile!
 
 
 ## Step 6: Scrivi le configurazioni sulla Console
