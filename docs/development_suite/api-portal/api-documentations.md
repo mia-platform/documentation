@@ -56,7 +56,7 @@ Always remember the status, whether it is private, public, trash or deleted.
 
 If you want to test the Patch end-point, you need to click the row that will open it up. Now you have the ability to test the API request by editing the fields you want. 
 
-In our case, we want to edit the name of a plate from "Salmon" to "Salmon with veggie". We retrieved the correct ID from the GET request and we entered it in the "path params". Since we want to change the name of the plate, we will tick **Set** and **name**, writing the new name: Salmon with veggie.
+In our case, we want to edit the name of a plate from "Salmon" to "Salmon with veggie". We retrieved the correct ID from the GET request and we entered it in the "path params". Since we want to change the name of the plate, we will tick **Set** and **name**, And we will type the new name: Salmon with veggie.
 
 Then, push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
