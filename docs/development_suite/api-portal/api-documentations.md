@@ -26,7 +26,7 @@ In the second box, you can see the response of the body with the list of the pla
 
 ![](img/GET.png)
 
-You can see all the Paramters Type: query, path, header, and body. In addition, all the query params are listed and you can filter them. You can also edit it in JASON as shown below. 
+You can see all the Parameters Type: query, path, header, and body. In addition, all the query params are listed and you can filter them. You can also edit it in JASON as shown below. 
 
 ![](img/editJASON.png)
 
