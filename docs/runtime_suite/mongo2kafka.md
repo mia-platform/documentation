@@ -31,13 +31,11 @@ In the situations in which MongoStream2Kafka is not the most suitable component 
  * **Delete event sends only “_id”**: since the full document is lost and you cannot access to its properties, the Delete event cannot send other information than “_id”.     
 
  * **Kafka events are not sent to topic in the right order**: the resumetoken is used as kafka message key and it is an unique identifier used by Mongo for tracking the stream cursor.   
-
  > To solve this issue, you can choose to create topic with only one partition to allow messages to arrive in the correct order, but you may occur in performance problem at consumer-side.    
 
  * **Changes are not atomic**: MongoChangeStream sends you the last document version. So if multiple changes occur on the same document, Mongo may choose to send you only a change that contains only last document version since. In this case you loose the granularity of “each change”.    
 
- * **Lost event on spike traffic**: The oplog collection is a capped one and, so, it is limited in time and space. On spike traffic, this collection may contains too many changes, so mongo may decides to trash some old changes. If MongoChange2Kafka de-queues slowly, some changes will be lost.   
-
+ * **Lost event on spike traffic**: The oplog collection is a capped one and, so, it is limited in time and space. On spike traffic, this collection may contains too many changes, so mongo may decides to trash some old changes. If MongoChange2Kafka de-queues slowly, some changes will be lost.     
  > To solve this issue, you can increase the oplog window in order to avoid that Mongo trashes any old change.
 
 
