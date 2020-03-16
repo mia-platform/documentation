@@ -15,7 +15,7 @@ MongoStream2Kafka has several advantages:
  * **When MongoChangeStream is not used in a cluster configuration**: MongoChangeStream use the oplog internal collection and it is used by mongo only for updating the replicas. If your Mongo cluster is not configured as clustered, you cannot use MongoChangeStream and MongoChange2Kafka.
 
  * **When you want to scale at MongoDB side**: MongoChangeStream is not partitioned/sharded and, so, it does not scale at MongoDB side.   
- > To solve this issue, two solutions are possible: <br> 
+ > To solve this issue, two solutions are possible:
  
  >  * You can deploy multiple MongoStream2Kafka instances by setting a query to the MongoChangeStream. In this way you are partitioning the event, but your application does not scale up if a spike of traffic occurs. Moreover ,the partition key has to be a good one: a spike cannot follow your key since one partition is used more than other. <br>
  
