@@ -15,8 +15,8 @@ MongoStream2Kafka has several advantages:
  * **When MongoChangeStream is not used in a cluster configuration**: MongoChangeStream use the oplog internal collection and it is used by mongo only for updating the replicas. If your Mongo cluster is not configured as clustered, you cannot use MongoChangeStream and MongoChange2Kafka.
 
  * **When you want to scale at MongoDB side**: MongoChangeStream is not partitioned/sharded and, so, it does not scale at MongoDB side.   
- > To solve this issue, two solutions are possible:       
- >  * You can deploy multiple MongoStream2Kafka instances by setting a query to the MongoChangeStream. In this way you are partitioning the event, but your application does not scale up if a spike of traffic occurs. Moreover ,the partition key has to be a good one: a spike cannot follow your key since one partition is used more than other.      
+ > To solve this issue, two solutions are possible:       <br>
+ * You can deploy multiple MongoStream2Kafka instances by setting a query to the MongoChangeStream. In this way you are partitioning the event, but your application does not scale up if a spike of traffic occurs. Moreover ,the partition key has to be a good one: a spike cannot follow your key since one partition is used more than other.   <br>   
  >  * You can shard your cluster. But be aware from sharding your cluster, you cannot revert this choice!
 
 
@@ -28,8 +28,7 @@ In the situations in which MongoStream2Kafka is not the most suitable component 
 
  * **Delete event sends only “_id”**: since the full document is lost and you cannot access to its properties, the Delete event cannot send other information than “_id”.     
 
- * **Kafka events are not sent to topic in the right order**: the resumetoken is used as kafka message key and it is an unique identifier used by Mongo for tracking the stream cursor.   
- 
+ * **Kafka events are not sent to topic in the right order**: the resumetoken is used as kafka message key and it is an unique identifier used by Mongo for tracking the stream cursor.     
  > To solve this issue, you can choose to create topic with only one partition to allow messages to arrive in the correct order, but you may occur in performance problem at consumer-side.    
 
  * **Changes are not atomic**: MongoChangeStream sends you the last document version. So if multiple changes occur on the same document, Mongo may choose to send you only a change that contains only last document version since. In this case you loose the granularity of “each change”.    
