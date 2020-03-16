@@ -1,37 +1,43 @@
-# Mongo 2 Kafka 
+# MongoStream2Kafka 
 
-## When to use it
+## What is MongoStream2Kafka?
+Using this architectural solution, the Custom microservice, that writes on Mongo, queues the correct changes on Kafka.      
+MongoStream2Kafka has several advantages:    
 
-* quando il cliente ha un budget limitato e poco tempo
+ * It’s a simple and easy to use component since it can be efficient in limited budget and time situations.    
 
-* quando fai le operazioni direttamente su CRUD
-
-il cliente testimonia che la finestra di opilog non sia troppo piccola e non hai bisogno di un carico sufficiente
-
-
-Soluzione architetturale
-Il microservizio Custom che scrive su Mongo accoda le modifiche corrette su Kafka 
+ * It’s the perfect solution for you if you are using CRUD since MongoStream2Kafka allows to execute operations at each data modification.     
 
 
-Limitazioni 
-la delete del change stream manda esclusivamente la _id 
+## When to use MongoStream2Kafka and when not to use it?
+!!! Be Careful: in the followiing situations, MongoStream2Kafka is not the optimal component to be used:    
 
-gli eventi non sono in ordine su kafka.
-il mongo2 kafka utilizza come chiave il resume token che essendo univoco faceva round robin sulle partizioni di quel topic. 1 topic = 1 partizione . se ti puoi permettere di scodare da kafka in maniera lenta lo puoi usare
+ * **When MongoChangeStream is not used in a cluster configuration**: MongoChangeStream use the oplog internal collection and it is used by mongo only for updating the replicas. If your Mongo cluster is not configured as clustered, you cannot use MongoChangeStream and MongoChange2Kafka.
 
-con una partizione non puoi scalare orizzontalmente il consumer 
+ * **When you want to scale at MongoDB side**: MongoChangeStream is not partitioned/sharded and, so, it does not scale at MongoDB side.   
+ > To solve this issue, two solutions are possible:
+ >  * You can deploy multiple MongoStream2Kafka instances by setting a query to the MongoChangeStream. In this way you are partitioning the event, but your application does not scale up if a spike of traffic occurs. Moreover ,the partition key has to be a good one: a spike cannot follow your key since one partition is used more than other.    
+ >  * You can shard your cluster. But be aware from sharding your cluster, you cannot revert this choice!
 
-scalabilità lato producer: diverse istanze di mongo2kafka che accodano su kafka i changestream- mettendone 2 in parallelo sul change stream duplichi gli eventi. Non è shardato il changestream (è possibile nel caso installare diverse installazioni del mongo2kafka - ogni mongo2kafka fa delle querystream diverse) Non hai una scalabilità dinamica tramite replicaset - non sai se l’applicativo è sotto stress e non riesci a gestire i picchi di traffico. 
 
-il tool è scalato orizzontalmente ma il traffico non è omogeneo sulle repliche. 
+In the situations in which MongoStream2Kafka is not the most suitable component to be used, you can ask to our specialists for architectural advices about other solutions.
 
-il changestream funziona solo esclusivamente su un cluster di mongo e non sulla versione standalone
+## Which are MongoStream2Kafka strengths and weaknesses?
 
-opilog window - (finestra di operazioni in cui il server primario va a dire ogni singola operazione che ha fatto ai server secondari all’interno del cluster mongo) - è una capped collection (è limitata in spazio - ci possono stare solo un tot di giga, è un FIFO - First in First Out - il primo pezzo che entra è l’ultimo che esce
-Il resumetoken è la chiave primaria che indica le operazioni effettuate, quando i secondari leggono usano il resumetoken tendono a tenerlo più vicino all’alto del buffer dove scrive il primario. Il resume token viene utilizzato come chiave primaria di kafka. 
-Il primario non si frega se hanno fatto o meno le operazioni, quindi uno dei secondari si può perdere delle operazoni. 
-Succede quando il tempo di applicazione delle modifica (es: accodo su Kafka) è più lenta di tutte el modifiche richieste dal primario e se questa situazione perdura nel tempo, rischi di perderti degli eventi di modifica. Dipende dalla configurazione di Kafka, dove vive Kafka e dal tuo Cluster Mongo. 
+!! Be Careful: in any case, MongoStream2Kafka can be exposed to limitations, that sometimes can be solved by some workarounds:    
 
-lo sharding di Mongo è un’operazione molto complessa, da valutare, esempio gestione di milioni di dati, milioni di utenti su tutto il mongo, crei degli shared per region. Da tenere presente che su ogni shared ti trovi i problemi di cui sopra. 
+ * **Delete event sends only “_id”**: since the full document is lost and you cannot access to its properties, the Delete event cannot send other information than “_id”.     
 
-quando fai l’aggiornamento o la creazione c'è anche il documento con tutti i campi (puoi richiedere il full document) il full document non è esattamente quello che è stato modificato. se hai operazioni molto vicine nel tempo il full document può essere aggiornato ad una modifica successiva e non a quella che stai visualizzando
+ * **Kafka events are not sent to topic in the right order**: the resumetoken is used as kafka message key and it is an unique identifier used by Mongo for tracking the stream cursor.   
+
+ > To solve this point, you can choose to create topic with only one partition to allow messages to arrive in the correct order, but you may occur in performance issue at consumer-side.    
+
+ * **Changes are not atomic**: MongoChangeStream sends you the last document version. So if multiple changes occur on the same document, Mongo may choose to send you only a change that contains only last document version since. In this case you loose the granularity of “each change”.    
+
+ * **Lost event on spike traffic**: The oplog collection is a capped one and, so, it is limited in time and space. On spike traffic, this collection may contains too many changes, so mongo may decides to trash some old changes. If MongoChange2Kafka de-queues slowly, some changes will be lost.   
+
+ > To solve this point, you can increase the oplog window in order to avoid that Mongo trashes any old change.
+
+
+
+
