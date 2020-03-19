@@ -168,7 +168,7 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
           attribution: "@OpenStreetMap"
         }
       ],
-      //Required Map options 
+      // Required Map options 
       center:[40.52, 9.43] //Intial center of the map (LatLng)
       zoom: 5 // Initial zoom map level
     },
@@ -184,7 +184,7 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
       "id": "serie1",
       "endpointData": "/charts/your-endpoint/json",
       "name": "yourName",
-      "markerType": "circleMarker" //Currently, only one supported
+      "markerType": "circleMarker" // Currently, only one supported
       "markerOptions": {
         // Options of the marker
         color: " #8989ff"
