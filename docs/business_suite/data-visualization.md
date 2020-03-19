@@ -152,6 +152,77 @@ This example, shows some of the **options** that (highmaps)[https://api.highchar
 
 These are not the only configurations that highcharts enable to control: having a look at the configuration more fields can be controlled.
 
+## Tile Map Configuration
+
+The Tile Map Chart configuration allows you to insert a custom [leaflet map](https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
+
+```
+"yourMap": {
+  "id": "_id",
+  "constructorType": "tileMapChart",
+  "options": {
+    "chart": {
+      "maps": [
+        {
+          url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution: "@OpenStreetMap"
+        }
+      ],
+      // Required Map options 
+      center:[40.52, 9.43] // Initial center of the map (Lat, Lng)
+      zoom: 5 // Initial zoom map level
+    },
+    
+    "title": {
+      "text": "This is your title"
+    },
+    "subtitle": {
+      "text": "This is your subtitle"
+    },
+    "series": [{
+      "id": "serie1",
+      "endpointData": "/charts/your-endpoint/json",
+      "name": "yourName",
+      "markerType": "circleMarker" // The only one currently supported
+      "markerOptions": {
+        // Options of the marker
+        color: " #8989ff"
+      }
+      // Required additional options for circleMarker
+      minSize: 5,
+      maxSize: 15
+    }]
+  }
+}
+```
+*Options -> Chart:*
+
+In this section you can insert all the options that you want in order to customize your leaflet map (see [Leaflet API reference](https://leafletjs.com/reference-1.6.0.html#map-option)), the only ones required are center and zoom. 
+
+In addition to the map properties defined by leaflet documentation, you have to set `maps`. Here, you can insert different tile layers URLs to personalize the map design, with the associated attributions depending on the chosen provider. You can choose them [here](https://leaflet-extras.github.io/leaflet-providers/preview/). 
+
+Currently the only supported providers are **OpenStreetMap** and **BaseMap**.
+
+*Series:*
+
+Here you specify the *endpointData* that you want to show on the map through the usage of markers. Data recovered from endpoints should be in a specific format:
+
+```
+{
+  label: "name to show on hover", 
+  lat: 40.52, // Latitude
+  lng: 9.45, // Longitude
+  value: 100 // Can be a quantity
+}
+```
+
+* **markerType**: The only marker supported right now is the *'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
+
+* **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see https://leafletjs.com/reference-1.6.0.html#circlemarker) in order to customize the *circleMarker*. 
+
+* **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels).
+
+* **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels).
 
 ## Stock Chart Configuration
 
