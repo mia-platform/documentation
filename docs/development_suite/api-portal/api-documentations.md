@@ -3,7 +3,7 @@
 Documentation is a vital part of any Restful API in order to drive consistency and discipline across your API development workflow. 
 
 In the **Documentation Sections**, you can find automatically generated and kept in sync documentation, that semantically describes the API in a readable structure text format. 
-The documentation let you know exactly how your API will work and behave, before integrating it into your code. It lists all the available REST-ends points and provides all detailed information: description, parameters, and schema.  
+The documentation let you know exactly how your API will work and behave. It lists all the available REST-ends points and provides all detailed information: description, parameters, and schema.  
 
 You can share API documentation within your company, externally to partners and suppliers. 
 
