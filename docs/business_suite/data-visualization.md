@@ -221,6 +221,7 @@ Here you specify the *endpointData* that you want to show on the map through the
 
 * **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels).
 
+
 ## Stock Chart Configuration
 
 Here you can find an example of the configuration of a stock chart.
