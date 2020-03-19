@@ -169,7 +169,7 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
         }
       ],
       // Required Map options 
-      center:[40.52, 9.43] //Intial center of the map (LatLng)
+      center:[40.52, 9.43] // Initial center of the map (LatLng)
       zoom: 5 // Initial zoom map level
     },
     
