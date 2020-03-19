@@ -158,7 +158,7 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
 
 ```
 "yourMap": {
-  "id": "_id",
+  "id": "<some-unique-id>",
   "constructorType": "tileMapChart",
   "options": {
     "chart": {
