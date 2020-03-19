@@ -46,15 +46,15 @@ Below you can see the screenshot of a successfull request to our running API, we
 
 Always remember the status, whether it is private, public, trash or deleted. 
 
-Otherwise, you can add a new item to the collection by directly writing the information you need in the Jason Schema by clicking the **Edit Jason** button. 
+Otherwise, you can add a new item to the collection by directly writing the information you need in the Json Schema by clicking the **Edit Json** button. 
 In our example, we successfully added the plate Lasagna, as we can see 200 as OK success status response code.
-Remember to tick all the boxes of the body params you want to add. In the example, you can see in the Jason Schema we ticked "name" in the body params. 
+Remember to tick all the boxes of the body params you want to add. In the example, you can see in the Json Schema we ticked "name" in the body params. 
 
 ![](img/postLasagna.png)
 
-You can also see the complete Jason Schema and all the type variables both for the request and response. 
+You can also see the complete Json Schema and all the type variables both for the request and response. 
 
-![](img/jason.png)
+![](img/json.png)
 
 **DELETE request: how to "Delete a plate from the plates collection"**
 
