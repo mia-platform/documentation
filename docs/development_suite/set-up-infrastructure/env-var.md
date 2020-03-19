@@ -8,9 +8,9 @@ Environment variables are excellent for decoupling application configurations. T
 They externalize all environment specific aspects of your app and keep your app encapsulated. Now you can run your app anywhere by modifying the environment variables without changing your code and without rebuilding it!
 
 Some specific examples of common scenarios when you should consider using environment variables.
-Which HTTP port to listen on
-What path and folder your files are located in, that you want to serve
-Pointing to a development, staging, test, or production database
+* Which HTTP port to listen on  
+* What path and folder your files are located in, that you want to serve  
+* Pointing to a development, staging, test, or production database  
 
 ## Manage your Variables
 
@@ -18,6 +18,7 @@ Thanks to our Console in the SetUp Infrastructure area it's possibile to manage 
 
 ## Create a Variable
 
+Create a variable is easy and simple. When you start with a new project you fill find 
 
 
 
