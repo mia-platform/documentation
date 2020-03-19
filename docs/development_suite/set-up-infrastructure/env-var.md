@@ -1,4 +1,4 @@
-#Environment Variables
+# Environment Variables
 
 An environment variable is a variable whose value is set outside the program, typically through functionality built into the operating system or microservice.
 An environment variable is made up of a name/value pair, and any number may be created and available for reference at a point in time.
@@ -12,41 +12,25 @@ Some specific examples of common scenarios when you should consider using enviro
 * What path and folder your files are located in, that you want to serve  
 * Pointing to a development, staging, test, or production database  
 
-## Manage your Variables
+# Manage your Variables
 
 Thanks to our Console in the SetUp Infrastructure area it's possibile to manage your Environment Variables
 
+## How to differentiate your variable from one environment to another
+
+
+
 ## Create a Variable
 
-Create a variable is easy and simple. When you start with a new project you fill find 
+When you start with a new project you will find variables already configured.
+to add a new variable press the button at the bottom of the table: create a new variable and fill in the form:
+* the **key** is mandatory and identifies your variable.
+* the **value** is the value you want to attribute to your variable, the one that will be interpolated.
 
 
+## Edit a Variable
 
 
-
-## Priorità delle variabili
-
-Variables of different types can take precedence over other
-variables, depending on where they are defined.
-The order of precedence for variables is (from highest to lowest):
+## Delete a Variable
 
 
-Trigger variables or scheduled pipeline variables.
-Project-level variables or protected variables.
-Group-level variables or protected variables.
-YAML-defined job-level variables.
-YAML-defined global variables.
-
-Deployment variables.
-
-Predefined environment variables.
-
-For example, if you define:
-
-
-API_TOKEN=secure as a project variable.
-
-API_TOKEN=yaml in your .gitlab-ci.yml.
-
-API_TOKEN will take the value secure as the project
-variables take precedence over those defined in .gitlab-ci.yml.
