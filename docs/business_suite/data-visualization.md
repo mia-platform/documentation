@@ -187,9 +187,10 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
         // Options of the marker
         color: " #8989ff"
       }
-      // Required additional options for circleMarker
-      minSize: 5,
-      maxSize: 15
+      // additional options for circleMarker
+      minSize: 3,
+      maxSize: 15,
+      convergenceSpeed: 100
       }]
   }
 }
@@ -214,9 +215,11 @@ Here you specify the *endpointData* that you want to show on the map through the
 
 * **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see https://leafletjs.com/reference-1.6.0.html#circlemarker) in order to customize the *circleMarker*. 
 
-* **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels).
+* **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels). The default value is 3.
 
-* **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels).
+* **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels). The default value is 15.
+
+**convergenceSpeed**: Integer indicaticating the convergence speed between the minSize and maxSize. An higher value corresponds to a slow convergence, while a low value corresponds to an high convergence. The default value is 100.
 
 
 ## Stock Chart Configuration
