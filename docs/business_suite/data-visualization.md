@@ -179,8 +179,7 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
     "subtitle": {
       "text": "This is your subtitle"
     },
-    "series": [
-      {
+    "series": [{
       "id": "serie1",
       "endpointData": "/charts/your-endpoint/json",
       "name": "yourName",
@@ -192,8 +191,7 @@ The Tile Map Chart configuration allows you to insert a custom leaflet map (http
       // Required additional options for circleMarker
       minSize: 5,
       maxSize: 15
-      }
-    ]
+      }]
   }
 }
 ```
