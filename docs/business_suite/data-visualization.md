@@ -157,45 +157,45 @@ These are not the only configurations that highcharts enable to control: having 
 The Tile Map Chart configuration allows you to insert a custom leaflet map (https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
 
 ```
-        "yourMap": {
-          "id": "_id",
-          "constructorType": "tileMapChart",
-          "options": {
-            "chart": {
-              "maps": [
-                {
-                  url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  attribution: "@OpenStreetMap"
-                }
-              ],
-              //Required Map options 
-              center:[40.52, 9.43] //Intial center of the map (LatLng)
-              zoom: 5 // Initial zoom map level
-            },
-            
-            "title": {
-              "text": "This is your title"
-            },
-            "subtitle": {
-              "text": "This is your subtitle"
-            },
-            "series": [
-              {
-              "id": "serie1",
-              "endpointData": "/charts/your-endpoint/json",
-              "name": "yourName",
-              "markerType": "circleMarker" //Currently, only one supported
-              "markerOptions": {
-                // Options of the marker
-                color: " #8989ff"
-              }
-              // Required additional options for circleMarker
-              minSize: 5,
-              maxSize: 15
-              }
-            ]
-         }
-    }
+"yourMap": {
+  "id": "_id",
+  "constructorType": "tileMapChart",
+  "options": {
+    "chart": {
+      "maps": [
+        {
+          url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution: "@OpenStreetMap"
+        }
+      ],
+      //Required Map options 
+      center:[40.52, 9.43] //Intial center of the map (LatLng)
+      zoom: 5 // Initial zoom map level
+    },
+    
+    "title": {
+      "text": "This is your title"
+    },
+    "subtitle": {
+      "text": "This is your subtitle"
+    },
+    "series": [
+      {
+      "id": "serie1",
+      "endpointData": "/charts/your-endpoint/json",
+      "name": "yourName",
+      "markerType": "circleMarker" //Currently, only one supported
+      "markerOptions": {
+        // Options of the marker
+        color: " #8989ff"
+      }
+      // Required additional options for circleMarker
+      minSize: 5,
+      maxSize: 15
+      }
+    ]
+  }
+}
 ```
 *Options -> Chart:*
 
