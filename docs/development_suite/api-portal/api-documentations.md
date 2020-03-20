@@ -18,7 +18,7 @@ This section below will show you examples and information per request type: GET,
 If you want to test the GET end-point, you need to click the row that will open it up. 
 Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
 
-![](img/secret.png)
+![](img/secretPlates.png)
 
 In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these sepcific contents will be passed upon GET request. 
 
