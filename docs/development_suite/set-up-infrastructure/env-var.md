@@ -48,6 +48,8 @@ to add a new variable press the button at the bottom of the table **"create a ne
 * the **key** is mandatory and identifies your variable. Remember **to use the prefix** tom manage the differentiation between environment. 
 * the **value** is the value you want to attribute to your variable, the one that will be interpolated.
 
+![](img/create-env-var.png)
+
 ## Edit a Variable
 
 Changing the value of an existing variable is very simple. Click on the **edit** button in the same row as the variable you want to edit.
@@ -55,11 +57,15 @@ Once you press the vsi button a modal will open.
 The key is an unchangeable value.
 Once the value has been changed, you just have to press the save button.
 
+![](img/edit-env-var.png)
+
 ## Delete a Variable
 
 To delete a variable, press the **delete** button corresponding to the desired variable
 A modal will open.
 To cancel the variable you will be asked to enter the name of the key. The **name of the key must be identical** otherwise you will not be able to delete it.
+
+![](img/delete-env-var.png)
 
 
 
