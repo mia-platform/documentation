@@ -20,7 +20,9 @@ Now you have the ability to test the API request by pushing **Try it** - if the 
 
 ![](img/secret.png)
 
-In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. 
+In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these sepcific contents will be passed upon GET request. 
+
+![](img/queryParams.png)
 
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed. 
 
@@ -29,9 +31,9 @@ In the second box, you can see the response of the body with the list of the pla
 
 ![](img/GET.png)
 
-You can see all the Parameters Type: query, path, header, and body. In addition, all the query params are listed and you can filter them. You can also edit it in JASON as shown below. 
+You can see all the Parameters Type: query, path, header, and body. In addition, all the query params are listed and you can filter them. You can also edit it in JSON as shown below. 
 
-![](img/editJASON.png)
+![](img/editJSON.png)
 
 **POST request: how to "Add a new item to the plates collection"**
 
