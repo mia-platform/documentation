@@ -132,6 +132,7 @@ nav:
     - Platform: 'release_notes/platform_releasenotes.md'
 
 - Guidelines:
+    - Glossary: 'guidelines/glossary.md'
     - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'
