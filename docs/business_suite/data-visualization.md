@@ -10,7 +10,17 @@ To be able to configure your charts and dashboards, in the **Services** section 
 
 All the configurations are managed from the charts-service in the `configmap.yml`file.
 
-##General Configuration
+## General Configuration
+
+### Dashboard configution
+
+A dashboard is configured as a set of rows with specific charts (indentified by their id).
+
+Some configurations can be applied to dashboards in order to customize settings:
+
+ * **rowFullViewportHeight** (Boolean): if set to `true` each row will fit the full browser viewport height.
+
+### Charts configuration
 
 The following configuration allows to manage **both the dashboard configuration and the single chart configuration**, in order to control how you want to visualize your analytics. The configuration is edited in the DevOps Console in the Services area directly in the `service.configmap.yml file`.
 
@@ -33,111 +43,114 @@ Each **dashboard** is identified by its name and has many rows. Each row is an a
 Here you can find the configuration of one chart and the configuration of one dashboard that contains one chart in the first row, two charts in the second row and one chart in the third row.
 
 ```
-  dashboardAndChartsConfig.json: |-
-    {
-      "charts": {
-        "chartName": {
-          "id": "univocalId",
-          "constructorType": "chartType",
-          "options": {
-            "title": {
-              "text": "Your Title"
-            },
-            "subtitle": {
-              "text": "This is your subtitle"
-            },
-            "legend": {
-              "enabled": false
-            },
-            "series": [{
-              "id": "12341658ebueòbbfq",
-              "endpointData": "/charts/your-chart/json",
-              "name": "Your Name",
-              "color": "#1d6eb5",
-              "fill": {
-                "granularity": "days",
-                "untilNow": true,
-                "value": 0
-              }
-            }]
+dashboardAndChartsConfig.json: |-
+  {
+    "charts": {
+      "chartName": {
+        "id": "univocalId",
+        "constructorType": "chartType",
+        "options": {
+          "title": {
+            "text": "Your Title"
           },
-          "filters": {
-            "filterName": {
-              "type": "SELECT",
-              "fieldName": "success",
-              "placeholder": "Your precompiled text",
-              "title": "Title of the filter",
-              "description": "Subtitle of the filter",
-              "options": {
-                "type": "inline",
-                "values": [
-                  {"label": "Value1", "value": "true"},
-                  {"label": "Value2", "value": "false"}
-                ]
-              }
+          "subtitle": {
+            "text": "This is your subtitle"
+          },
+          "legend": {
+            "enabled": false
+          },
+          "series": [{
+            "id": "12341658ebueòbbfq",
+            "endpointData": "/charts/your-chart/json",
+            "name": "Your Name",
+            "color": "#1d6eb5",
+            "fill": {
+              "granularity": "days",
+              "untilNow": true,
+              "value": 0
+            }
+          }]
+        },
+        "filters": {
+          "filterName": {
+            "type": "SELECT",
+            "fieldName": "success",
+            "placeholder": "Your precompiled text",
+            "title": "Title of the filter",
+            "description": "Subtitle of the filter",
+            "options": {
+              "type": "inline",
+              "values": [
+                {"label": "Value1", "value": "true"},
+                {"label": "Value2", "value": "false"}
+              ]
             }
           }
         }
-      },
-      "dashboard": {
-        "dashboardName": {
-          "rows": [{ 
-            "charts": [
-              {"id": "chartName1"}
-            ]
-          }, { 
-            "charts": [
-              {"id": "chartName2"},
-              {"id": "chartName3"}
-            ]
-          },{
-            "charts": [
-              {"id": "chartName4"}
-            ]
-          }]
-        }
+      }
+    },
+    "dashboard": {
+      "dashboardName": {
+        "rows": [{ 
+          "charts": [
+            {"id": "chartName1"}
+          ]
+        }, { 
+          "charts": [
+            {"id": "chartName2"},
+            {"id": "chartName3"}
+          ]
+        },{
+          "charts": [
+            {"id": "chartName4"}
+          ]
+        }]
       }
     }
+  }
 ```
 
-## Map Configuration
+#### Map Configuration
 
 Here you can find an example of the configuration of a map, that has as constructorType `mapChart`.
 
 ```
-        "yourMap": {
-          "id": "_id",
-          "constructorType": "mapChart",
-          "options": {
-            "chart": {
-              "map": "custom/world-highres"
-            },
-            "mapNavigation": {
-              "enabled": true,
-              "enableMouseWheelZoom": false
-            },
-            "title": {
-              "text": "This is your title"
-            },
-            "subtitle": {
-              "text": "This is your subtitle"
-            },
-            "series": [{
-              "id": "serie1",
-              "endpointData": "/charts/your-endpoint/json",
-              "name": "yourName"
-            }],
-            "colorAxis": {
-              "min": 0,
-              "stops": [
-                [0, "#cfe2f3"],
-                [0.3, "#7da9d1"],
-                [0.6, "#4697e0"],
-                [1, "#1d6eb5"]
-              ]
-            }
-         }
+{
+  ...
+  "yourMap": {
+    "id": "_id",
+    "constructorType": "mapChart",
+    "options": {
+      "chart": {
+        "map": "custom/world-highres"
+      },
+      "mapNavigation": {
+        "enabled": true,
+        "enableMouseWheelZoom": false
+      },
+      "title": {
+        "text": "This is your title"
+      },
+      "subtitle": {
+        "text": "This is your subtitle"
+      },
+      "series": [{
+        "id": "serie1",
+        "endpointData": "/charts/your-endpoint/json",
+        "name": "yourName"
+      }],
+      "colorAxis": {
+        "min": 0,
+        "stops": [
+          [0, "#cfe2f3"],
+          [0.3, "#7da9d1"],
+          [0.6, "#4697e0"],
+          [1, "#1d6eb5"]
+        ]
+      }
     }
+  }
+}
 ```
 This example, shows some of the **options** that (highmaps)[https://api.highcharts.com/highmaps/] enable to control, such as:
 
@@ -152,46 +165,49 @@ This example, shows some of the **options** that (highmaps)[https://api.highchar
 
 These are not the only configurations that highcharts enable to control: having a look at the configuration more fields can be controlled.
 
-## Tile Map Configuration
+#### Tile Map Configuration
 
 The Tile Map Chart configuration allows you to insert a custom [leaflet map](https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
 
 ```
-"yourMap": {
-  "id": "_id",
-  "constructorType": "tileMapChart",
-  "options": {
-    "chart": {
-      "maps": [
-        {
-          url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution: "@OpenStreetMap"
+{
+  ...
+  "yourMap": {
+    "id": "_id",
+    "constructorType": "tileMapChart",
+    "options": {
+      "chart": {
+        "maps": [
+          {
+            url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution: "@OpenStreetMap"
+          }
+        ],
+        // Required Map options 
+        center:[40.52, 9.43] // Initial center of the map (Lat, Lng)
+        zoom: 5 // Initial zoom map level
+      },
+      
+      "title": {
+        "text": "This is your title"
+      },
+      "subtitle": {
+        "text": "This is your subtitle"
+      },
+      "series": [{
+        "id": "serie1",
+        "endpointData": "/charts/your-endpoint/json",
+        "name": "yourName",
+        "markerType": "circleMarker" // The only one currently supported
+        "markerOptions": {
+          // Options of the marker
+          color: " #8989ff"
         }
-      ],
-      // Required Map options 
-      center:[40.52, 9.43] // Initial center of the map (Lat, Lng)
-      zoom: 5 // Initial zoom map level
-    },
-    
-    "title": {
-      "text": "This is your title"
-    },
-    "subtitle": {
-      "text": "This is your subtitle"
-    },
-    "series": [{
-      "id": "serie1",
-      "endpointData": "/charts/your-endpoint/json",
-      "name": "yourName",
-      "markerType": "circleMarker" // The only one currently supported
-      "markerOptions": {
-        // Options of the marker
-        color: " #8989ff"
-      }
-      // Required additional options for circleMarker
-      minSize: 5,
-      maxSize: 15
-    }]
+        // Required additional options for circleMarker
+        minSize: 5,
+        maxSize: 15
+      }]
+    }
   }
 }
 ```
@@ -220,50 +236,55 @@ Here you specify the *endpointData* that you want to show on the map through the
 
 * **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see https://leafletjs.com/reference-1.6.0.html#circlemarker) in order to customize the *circleMarker*. 
 
-* **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels).
+* **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels, default: 3).
 
-* **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels).
+* **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels, default: 15).
 
-## Stock Chart Configuration
+* **convergenceSpeed**: Integer indicating the convergence speed for optmizing bubble sizes depending on data (default: 100)
+
+#### Stock Chart Configuration
 
 Here you can find an example of the configuration of a stock chart.
 
 ```
-        "yourStockChart": {
-          "id": "789",
-          "constructorType": "stockChart",
-          "options": {
-            "rangeSelector": {
-              "selected": 1
-            },
-            "title": {
-              "text": "Your Title"
-            },
-            "subtitle": {
-              "text": "Your subtitle"
-            },
-            "legend": {
-              "enabled": false
-            },
-            "series": [{
-              "id": "stock-serie1",
-              "endpointData": "/charts/your-endpoint/json",
-              "name": "yourName",
-              "color": "#1d6eb5",
-              "fill": {
-                "granularity": "days",
-                "untilNow": true,
-                "value": 0
-              }
-            }]
-          }
+{
+  ...
+  "yourStockChart": {
+    "id": "789",
+    "constructorType": "stockChart",
+    "options": {
+      "rangeSelector": {
+        "selected": 1
+      },
+      "title": {
+        "text": "Your Title"
+      },
+      "subtitle": {
+        "text": "Your subtitle"
+      },
+      "legend": {
+        "enabled": false
+      },
+      "series": [{
+        "id": "stock-serie1",
+        "endpointData": "/charts/your-endpoint/json",
+        "name": "yourName",
+        "color": "#1d6eb5",
+        "fill": {
+          "granularity": "days",
+          "untilNow": true,
+          "value": 0
         }
+      }]
+    }
+  }
+}
 ```
 This example, shows some of the options that (highcharts)[https://api.highcharts.com/highcharts/] enable to control. 
 
 The property **fill** allows to control how the chart manages the case in which the data are equal to zero.
 
-## Filters Configuration
+### Filters Configuration
 
 There are several types of filters:
 
@@ -276,33 +297,32 @@ Moreover, you can filter on the properties of the collection that is providing y
 
 * **inline filter**, which allows to create a filter on a property of the same collection, specifing the values that the users sees in the `values`field of the configuration;
 
-   ```
-   
+  ```
+  {
     "filterSelect": {
-        "type": "SELECT",
-        "fieldName": "success",
-        "placeholder": "Your placeholder",
-        "title": "Your Title",
-        "description": "Your description",
-        "options": {
-            "type": "inline",
-             "values": [
-                  {"label": "Value1", "value": "true"},   // es. {"label": "shipped", "value": "true"}
-                  {"label": "Value2", "value": "false"}   // es. {"label": "not shipped", "value": "false"}
-                ]
-        }
-     }
-     
- ```
+      "type": "SELECT",
+      "fieldName": "success",
+      "placeholder": "Your placeholder",
+      "title": "Your Title",
+      "description": "Your description",
+      "options": {
+        "type": "inline",
+          "values": [
+            {"label": "Value1", "value": "true"},   // es. {"label": "shipped", "value": "true"}
+            {"label": "Value2", "value": "false"}   // es. {"label": "not shipped", "value": "false"}
+        ]
+      }
+    }
+  }
+  ```
 
 
 * **lookup filter**, which allows to create a filter on a property of another collection. Here is an example of the configuration:
 
 
   ```
-  
     {
-    "filterMultiselect": {
+      "filterMultiselect": {
         "type": "MULTISELECT",
         "fieldName": "yourProperty",  //here you need to set the property of the collection that is providing the data for the chart on which you want to filter the data
         "placeholder": "Your placeholder in the filter",
