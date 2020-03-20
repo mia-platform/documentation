@@ -22,6 +22,8 @@ Now you have the ability to test the API request by pushing **Try it** - if the 
 
 In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. 
 
+![](img/jason.png)
+
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed. 
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
