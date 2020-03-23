@@ -13,3 +13,6 @@ deploy:
     KUBE_CA_PEM: "${KUBE_TOOLS_CA_PEM}"
     KUBE_NAMESPACE: "console"
     ENVIRONMENT_PREFIX: "CLOUD_"
+  only:
+    - master
+    - tags
