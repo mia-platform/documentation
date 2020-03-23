@@ -3,6 +3,8 @@
 ##v5.4.0 (March 23,2020)
 This version allows to handle the transition from Microservice Gateway: in particular, it can be defined, in each endpoint, which route is going to pass through Microservice Gateway.
 
+It is possible to manage different namespace related to the environment on the same cluster: the field namespace is renamed in projectId in order to define a namespace for each environment. 
+
 **Improvements**  
  
  * Monitoring: "Delete POD" button is replaced by "Restart POD" button which relaunches the POD.     
