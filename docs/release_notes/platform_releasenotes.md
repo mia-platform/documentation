@@ -3,12 +3,12 @@
 ##v5.4.0 (March 23,2020)
 
 **Improvements**  
-
- * Monitoring: The "delete pod" button is substited by the "restart pod" buttun which relaunch the pod.      
+ 
  * Projects: Namespace are renamed to projectId in order to allow Console to manage more objects with more namespaces.     
  * Projects: Added ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE feature toggle in order to enable/disable new create project section on Console.    
- * Projects: When a new project is created, Jenkins pipeline is created and Gitlab webhook is configured. Jenkins is enabled for DevOps Console.     
+ * Projects: Jenkins is enabled for DevOps Console: when a new project is created, Jenkins pipeline is created and Gitlab webhook is configured.      
  * Design - endpoints: handle the transition from Microservice Gateway: the user can choose to pass or not from Microservice Gateway. it is added a new microservice-gateway configuration card, which includes also two JSON checkboxes (request and response).
+ * Monitoring: "Delete POD" button is substited by "Restart POD" button which relaunches the POD.     
 
 **Fixed**    
 
