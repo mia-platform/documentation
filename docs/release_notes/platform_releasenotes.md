@@ -8,7 +8,7 @@
  * Projects: Added ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE feature toggle in order to enable/disable new create project section on Console.    
  * Projects: Jenkins is enabled for DevOps Console: when a new project is created, Jenkins pipeline is created and Gitlab webhook is configured.      
  * Design - endpoints: handle the transition from Microservice Gateway: the user can choose to pass or not from Microservice Gateway. it is added a new microservice-gateway configuration card, which includes also two JSON checkboxes (request and response).
- * Monitoring: "Delete POD" button is substited by "Restart POD" button which relaunches the POD.     
+ * Monitoring: "Delete POD" button is replaced by "Restart POD" button which relaunches the POD.     
 
 **Fixed**    
 
