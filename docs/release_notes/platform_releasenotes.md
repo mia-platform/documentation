@@ -1,5 +1,23 @@
 #Platform Release Note
 
+##v5.4.0 (March 23,2020)
+
+**Improvements**  
+
+ * Monitoring: The "delete pod" button is substited by the "restart pod" buttun which relaunch the pod.      
+ * Projects: Namespace are renamed to projectId in order to allow Console to manage more objects with more namespaces.     
+ * Projects: Added ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE feature toggle in order to enable/disable new create project section on Console.    
+ * Projects: When a new project is created, Jenkins pipeline is created and Gitlab webhook is configured. Jenkins is enabled for DevOps Console.     
+ * Design - endpoints: handle the transition from Microservice Gateway: the user can choose to pass or not from Microservice Gateway. it is added a new microservice-gateway configuration card, which includes also two JSON checkboxes (request and response).
+
+**Fixed**    
+
+ * Design - endpoints: during the sorting, it is not considered the prefix /v2 of CRUD endpoints.    
+ * Design - CMS & Analytics: in the menu of CMS properties, it is not highlighted the selected property.      
+ * Design - collection/endpoint/microservice/proxy: landing on collection/endpoint/microservice/proxy section, it is shown the placeholder as first even if the user has configured new items.   
+ * Design - CMS & Analytics: the v1-adapter service convert the property id into the property _id.  
+
+
 ##v5.3.1 Patch (March 11,2020)
 This release is a patch that includes only frontend improvements and updates.
 
@@ -12,7 +30,7 @@ This release is a patch that includes only frontend improvements and updates.
 **Fixed**    
 
  * Design - Microservices: "Delete" button for microservices is not visible.     
- * Design - Microservices: The change of the docker image name of a microservice, switches also the docker image name of other microservices.      
+ * Design - Microservices: The change of the docker image name of a microservice, switches also the docker image name of other microservices.   
 
 
 ##v5.3.1 (March 4,2020)
