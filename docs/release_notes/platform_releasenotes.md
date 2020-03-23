@@ -1,7 +1,7 @@
 #Platform Release Note
 
 ##v5.4.0 (March 23,2020)
-This version allows to handle the transition from Microservice Gateway: in particular, the user can decide, in each endpoint, which routes are going to pass through Microservice Gateway.
+This version allows to handle the transition from Microservice Gateway: in particular, it can be defined, in each endpoint, which route is going to pass through Microservice Gateway.
 
 **Improvements**  
  
@@ -11,7 +11,7 @@ This version allows to handle the transition from Microservice Gateway: in parti
 
  * Design - endpoints: during the sorting, it is not considered the prefix /v2 of CRUD endpoints.    
  * Design - CMS & Analytics: in the menu of CMS properties, it is not highlighted the selected property.       
- * Design - CMS & Analytics: the v1-adapter service convert the property id into the property _id at each level of the object and so modifies each occurrency. With this fix, the modifcation of id is done only at the first level, avoinding to transform other properties that are called id.    
+ * Design - CMS & Analytics: the v1-adapter service, by converting the property id into the property _id at each level of the object, modifies each occurrency. With this fix, the modifcation of id is done only at the first level, avoinding to transform other properties that are called id.    
 
 
 ##v5.3.1 Patch (March 11,2020)
