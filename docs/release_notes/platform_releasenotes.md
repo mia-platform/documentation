@@ -1,21 +1,17 @@
 #Platform Release Note
 
 ##v5.4.0 (March 23,2020)
+This version allows to handle the transition from Microservice Gateway: in particular, the user can decide, in each endpoint, which routes are going to pass through Microservice Gateway.
 
 **Improvements**  
  
- * Projects: Namespace are renamed to projectId in order to allow Console to manage more objects with more namespaces.     
- * Projects: Added ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE feature toggle in order to enable/disable new create project section on Console.    
- * Projects: Jenkins is enabled for DevOps Console: when a new project is created, Jenkins pipeline is created and Gitlab webhook is configured.      
- * Design - endpoints: handle the transition from Microservice Gateway: the user can choose to pass or not from Microservice Gateway. it is added a new microservice-gateway configuration card, which includes also two JSON checkboxes (request and response).
  * Monitoring: "Delete POD" button is replaced by "Restart POD" button which relaunches the POD.     
 
 **Fixed**    
 
  * Design - endpoints: during the sorting, it is not considered the prefix /v2 of CRUD endpoints.    
- * Design - CMS & Analytics: in the menu of CMS properties, it is not highlighted the selected property.      
- * Design - collection/endpoint/microservice/proxy: landing on collection/endpoint/microservice/proxy section, it is shown the placeholder as first even if the user has configured new items.   
- * Design - CMS & Analytics: the v1-adapter service convert the property id into the property _id.  
+ * Design - CMS & Analytics: in the menu of CMS properties, it is not highlighted the selected property.       
+ * Design - CMS & Analytics: the v1-adapter service convert the property id into the property _id at each level of the object and so modifies each occurrency. With this fix, the modifcation of id is done only at the first level, avoinding to transform other properties that are called id.    
 
 
 ##v5.3.1 Patch (March 11,2020)
@@ -61,11 +57,10 @@ This release is a patch that includes only frontend improvements and updates.
 **UN-RELEASED Improve Performance for request without Hook**
 
 !!! warning
-    This version is breaking if in the Advanced Section you have configured your custom configmaps not keeping proxyName and proxyUrl aligned.  
+    This version is breaking if in the Advanced Section you have configured your custom configmaps not keeping proxyName and proxyUrl aligned (this problem has been fixed with the version 5.4.0).  
 
     An Example:    
     If the file `maps-proxyName.before.map`and the file `maps-proxyUrl.before.map` does not have the same route configured you cannot update the console.
-
 
 
 We have improved the performance of the calls that do not have hooks by not passing them through the [Microservice Gateway Components](/runtime_suite/microservice-gateway/).
