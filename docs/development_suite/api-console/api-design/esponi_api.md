@@ -6,7 +6,7 @@ To handle the transition from Microservice Gateway, you can use, in the section 
 
 This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
 
-![Microservice-Gateway](/img/Microservice_Gateway.png)
+![Microservice-Gateway](docs/development_suite/api-console/api-design/img/Microservice_Gateway.png)
 
 !!! Warning: If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
    
