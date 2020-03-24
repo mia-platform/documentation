@@ -7,10 +7,8 @@ To handle the transition from Microservice Gateway, you can use, in the section 
 This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
 
 
-!!! Warning     
-If your project has the microservice-gateway disabled, this configuration is skipped.
-
-!!! Warning     
+!!! Warning: If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
+   
 The microservice gateway service performs some checks on the content-type header:
 
 * **Request**: If your endpoint uses content-type: *application/json* in requests, check      "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
