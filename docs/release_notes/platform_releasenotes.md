@@ -3,7 +3,7 @@
 ##v5.4.0 (March 23,2020)
 This version allows to handle the transition from Microservice Gateway: in particular, it can be defined, in each endpoint, which route is going to pass through Microservice Gateway.  
 
-You can consult  [here]  (https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/)  the guidelines about this process.
+You can consult  [here](https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/)  the guidelines about this process.
 
 It is also possible to manage different namespaces, related to the environment, on the same cluster: on the project of the Console, the field namespace is renamed projectId in order to define a namespace for each environment. 
 
