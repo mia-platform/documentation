@@ -7,15 +7,15 @@ To handle the transition from Microservice Gateway, you can use, in the section 
 This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
 
 
-     !!! Warning:     
-     If your project has the microservice-gateway disabled, this configuration is skipped.
+!!! Warning     
+If your project has the microservice-gateway disabled, this configuration is skipped.
 
-     !!! Warning:     
-     The microservice gateway service performs some checks on the content-type header:
+!!! Warning     
+The microservice gateway service performs some checks on the content-type header:
 
-      * **Request**: If your endpoint uses content-type: *application/json* in requests, check      "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
+* **Request**: If your endpoint uses content-type: *application/json* in requests, check      "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
 
-      * **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
+* **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
 
 
 ## Expose an API
