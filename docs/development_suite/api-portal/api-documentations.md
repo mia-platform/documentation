@@ -20,7 +20,7 @@ Now you have the ability to test the API request by pushing **Try it** - if the 
 
 ![](img/secretPlates.png)
 
-In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these sepcific contents will be passed upon the GET request. 
+In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these specific contents will be passed upon the GET request. 
 
 
 ![](img/queryParams.png)
