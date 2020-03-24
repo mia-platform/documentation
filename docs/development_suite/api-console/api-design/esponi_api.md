@@ -2,16 +2,18 @@
 
 Thanks to this feature, you can define, in each endpoint, which route is going to pass through Microservice Gateway.
 
-To handle the transition from Microservice Gateway, you can use, in the section Endpoints of the area Design, the Microservice Gateway configuration card. 
+To handle the transition from Microservice Gateway, you can use, in the section Endpoints of the area Design, the Microservice Gateway configuration card, which includes also two JSON checkboxes (request and response).. 
 
 This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
 
 
 !!! Warning: 
-If your project has the microservice-gateway disabled, this configuration is skipped.
+
+     If your project has the microservice-gateway disabled, this configuration is skipped.
 
 !!! Warning: 
-The microservice gateway service performs some checks on the content-type header:
+
+     The microservice gateway service performs some checks on the content-type header:
 
  * **Request**: If your endpoint uses content-type: *application/json* in requests, check Support only JSON format on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
 
