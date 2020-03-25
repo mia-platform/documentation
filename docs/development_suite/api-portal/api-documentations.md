@@ -93,7 +93,7 @@ Below you can see the screenshot of a successfull request to our running API, we
 
 ####Field Update Operators
 
-In the following table you can find the modifiers of the Body Params
+In the following table you can find the modifiers of the Body Params:
 
 
 | Name          | Description                                                               | 
@@ -105,5 +105,8 @@ In the following table you can find the modifiers of the Body Params
 | $currentDate  |Sets the value of a field to current date, either as a Date or a Timestamp |
 | $push         |Appends a specified value to an array                                      |
 
+**Shortcut**
+
+By opening the **Object Properties** you can hide the properties that you don't want to edit just by unticking the boxes.  
 
 Always remember the status, whether it is private, public, trash or deleted                  
