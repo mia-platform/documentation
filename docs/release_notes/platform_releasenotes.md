@@ -7,7 +7,7 @@ This version allows to handle the transition from Microservice Gateway: in parti
 
 You can consult  [here](https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/)  the guidelines about this new feature.
 
-**Manage namespaces**
+**Manage namespaces**     
 
 Now, it is also possible to manage different namespaces, related to the environment, on the same cluster: on the project of the Console, the field namespace is renamed projectId in order to define a namespace for each environment. 
 
