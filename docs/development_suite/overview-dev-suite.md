@@ -42,4 +42,8 @@ Create your dashboards collecting data across the entire DevOps lifecycle to gai
 
 Guarantee security, quality, and consistency across projects and teams, both internal and external, with clear policies enforced through code.
 
-![image alt text](img/overview-3.png)
+
+One Platform to rule them all: design and manage the full lifecycle of your DevOps Value Stream.
+Git, Jenkins, Docker, Nexus, Kubernetes, Terraform, Prometheus, Kibana and many others: control all your preferred tools from the same Console, define pipelines and common standards, and get a clear and simplified governance of your IT assets for your teams.
+
+![image alt text](img/valuestream.png)
