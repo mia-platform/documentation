@@ -2,7 +2,7 @@
 
 Thanks to this feature, you can define, in each endpoint, which route is going to pass through Microservice Gateway.
 
-To handle the transition from Microservice Gateway, you can use, in the section Endpoints of the area Design, the Microservice Gateway configuration card, which includes also two JSON checkboxes (request and response).. 
+To handle the transition from Microservice Gateway, you can use, in the section Endpoints of the area Design, the Microservice Gateway configuration card, which includes also two JSON checkboxes (request and response).   
 
 This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
 
