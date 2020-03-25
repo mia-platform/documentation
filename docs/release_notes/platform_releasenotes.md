@@ -3,7 +3,7 @@
 ##v5.4.0 (March 23,2020)
 This version allows to handle the transition from Microservice Gateway: in particular, it can be defined, in each endpoint, which route is going to pass through Microservice Gateway.  
 
-You can consult [here]((https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/)) the guidelines about this process.
+You can consult  [here]((https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/))  the guidelines about this new feature.
 
 Now, it is also possible to manage different namespaces, related to the environment, on the same cluster: on the project of the Console, the field namespace is renamed projectId in order to define a namespace for each environment. 
 
@@ -13,9 +13,9 @@ Now, it is also possible to manage different namespaces, related to the environm
 
 **Fixed**    
 
- * Design - endpoints: during the sorting, it is not considered the prefix /v2 of CRUD endpoints.    
- * Design - CMS & Analytics: in the menu of CMS properties, it is not highlighted the selected property.       
- * Design - CMS & Analytics: the v1-adapter service, by converting the property id into the property _id at each level of the object, modifies each occurrency. With this fix, the modification of id is done only at the first level, avoiding to transform other properties that are called id.    
+ * Design - Endpoints: During the sorting, it is not considered the prefix /v2 of CRUD endpoints.    
+ * Design - CMS & Analytics: In the menu of CMS properties, it is not highlighted the selected property.       
+ * Design - CMS & Analytics: The v1-adapter service, by converting the property id into the property _id at each level of the object, modifies each occurrency. With this fix, the modification of id is done only at the first level, avoiding to transform other properties that are called id.    
 
 
 ##v5.3.1 Patch (March 11,2020)
