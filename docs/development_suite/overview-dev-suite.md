@@ -3,7 +3,7 @@
 Design and manage the full lifecycle of your DevOps Value Stream
 
 
-![image alt text](img/overview-1.png)
+![image alt text](img/devopsc.png)
 
 Work on a single platform to manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and
 microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your
