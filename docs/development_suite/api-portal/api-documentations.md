@@ -34,6 +34,9 @@ You can hide the visibility of the content of an entire section by pushing the b
 Then you can reactive it by clicking **Expand**
 
 By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unticking the boxes. 
+As you can see below, we unticked creatorId and type, as they don't appear in the list. 
+
+![](img/object-properties.png)
 
 Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
 
