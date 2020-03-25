@@ -28,6 +28,11 @@ In the Query Params section, you can filter and sort all the request configurati
 ![](img/queryParams.png)
 
 
+**Shortcut**
+
+By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unticking the boxes. 
+
+
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed. 
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
@@ -52,7 +57,7 @@ Below you can see the screenshot of a successfull request to our running API, we
 ![](img/PostOnion.png)
 
 
-Always remember the status, whether it is private, public, trash or deleted. 
+Visibility. Always remember the status, whether it is private, public, trash or deleted. 
 
 Otherwise, you can add a new item to the collection by directly writing the information you need in the Json Schema by clicking the **Edit Json** button. 
 In our example, we successfully added the plate Lasagna, as we can see 200 as OK success status response code.
@@ -62,7 +67,9 @@ Remember to tick all the boxes of the body params you want to add. In the exampl
 
 You can also see the complete Json Schema and all the type variables both for the request and response. 
 
+
 ![](img/json.png)
+
 
 ###DELETE request 
 
@@ -74,7 +81,16 @@ Below you can see the screenshot of a successfull request to our running API. Yo
 
 ![](img/deleteOnion.png)
 
-Always remember the status, whether it is private, public, trash or deleted. 
+**Shortcut**
+
+By opening the **Object Properties** you can hide the properties that you don't want to delete just by unticking the boxes. 
+
+For instance, we unticked all the properties that we want to keep.
+You can also look for a property in the search box and then push **add**
+
+![](img/properties.png)
+
+Visibility. Always remember the status, whether it is private, public, trash or deleted. 
 
 ###PATCH request 
 
@@ -109,4 +125,4 @@ In the following table you can find the modifiers of the Body Params:
 
 By opening the **Object Properties** you can hide the properties that you don't want to edit just by unticking the boxes.  
 
-Always remember the status, whether it is private, public, trash or deleted                  
+Visibility. Always remember the status, whether it is private, public, trash or deleted                  
