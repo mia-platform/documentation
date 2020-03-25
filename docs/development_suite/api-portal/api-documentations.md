@@ -21,9 +21,6 @@ The next sections will show you examples and information per request type: GET, 
 ####How to "Get a list of plates"
 
 If you want to test the GET end-point, you need to click the row that will open it up. 
-Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
-
-![](img/secretPlates.png)
 
 In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these specific contents will be passed upon the GET request. 
 
@@ -31,10 +28,17 @@ In the Query Params section, you can filter and sort all the request configurati
 ![](img/queryParams.png)
 
 
-**Shortcut**
+You can hide the visibility of the content of an entire section by pushing the button **Collapse**. 
+
+![](img/expand.png)
+
+Then you can reactive it by clicking **Expand**
 
 By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unticking the boxes. 
 
+Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
+
+![](img/secretPlates.png)
 
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed. 
 
@@ -84,7 +88,6 @@ Below you can see the screenshot of a successfull request to our running API. Yo
 
 ![](img/deleteOnion.png)
 
-**Shortcut**
 
 By opening the **Object Properties** you can hide the properties that you don't want to delete just by unticking the boxes. 
 
@@ -124,7 +127,7 @@ In the following table you can find the modifiers of the Body Params:
 | $currentDate  |Sets the value of a field to current date, either as a Date or a Timestamp |
 | $push         |Appends a specified value to an array                                      |
 
-**Shortcut**
+
 
 By opening the **Object Properties** you can hide the properties that you don't want to edit just by unticking the boxes.  
 
