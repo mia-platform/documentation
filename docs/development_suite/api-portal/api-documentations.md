@@ -93,12 +93,15 @@ Below you can see the screenshot of a successfull request to our running API, we
 
 ####Field Update Operators
 
+In the following table you can find the modifiers of the Body Params
+
+
 | Name          | Description                                                               | 
 | ------------- |:-------------------------------------------------------------------------:| 
 | $set          |Sets the value of a field in a document                                    |
 | $unset        |Removes the specified field from a document                                |
 | $inc          |Increments the value of the field by the specified amount                  | 
-| $mul          |Increments the value of the field by the specified amount                  |
+| $mul          |Multiplies the value of the field by the specified amount                  |
 | $currentDate  |Sets the value of a field to current date, either as a Date or a Timestamp |
 | $push         |Appends a specified value to an array                                      |
 
