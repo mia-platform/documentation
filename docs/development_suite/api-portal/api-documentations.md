@@ -45,11 +45,14 @@ Once the single API is selected, in this area you can see the structure of the A
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java. 
 In the second box, you can see the response of the body with the list of the plates. 
 
+You can see all the Parameters Type: query, path, header, and body.
+
 ![](img/GET.png)
 
-You can see all the Parameters Type: query, path, header, and body. In addition, all the query params are listed and you can filter them. You can also edit it in JSON as shown below. 
+In addition, you can also edit it in JSON as shown below. 
 
 ![](img/editJSON.png)
+
 
 ###POST request
 
@@ -67,6 +70,7 @@ Below you can see the screenshot of a successfull request to our running API, we
 Visibility. Always remember the status, whether it is private, public, trash or deleted. 
 
 Otherwise, you can add a new item to the collection by directly writing the information you need in the Json Schema by clicking the **Edit Json** button. 
+
 In our example, we successfully added the plate Lasagna, as we can see 200 as OK success status response code.
 Remember to tick all the boxes of the body params you want to add. In the example, you can see in the Json Schema we ticked "name" in the body params. 
 
@@ -97,6 +101,7 @@ You can also look for a property in the search box and then push **add**
 ![](img/properties.png)
 
 Visibility. Always remember the status, whether it is private, public, trash or deleted. 
+
 
 ###PATCH request 
 
