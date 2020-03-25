@@ -9,7 +9,6 @@ You can share API documentation within your company, externally to partners and 
 
 In order to test the APIs, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag - in our case, we will select the Tag “Plates”. 
 
-Easily interact and try out every single operation your API exposes.
 
 
 ![](img/listPlates.png)
