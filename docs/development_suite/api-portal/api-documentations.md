@@ -13,7 +13,7 @@ In order to test the APIs, you can access your tags on the right side of the scr
 
 This section below will show you examples and information per request type: GET, POST, PATCH and DELETE.
 
-**GET request: how to "Get a list of plates"**
+###GET request: how to "Get a list of plates"
 
 If you want to test the GET end-point, you need to click the row that will open it up. 
 Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
@@ -37,7 +37,7 @@ You can see all the Parameters Type: query, path, header, and body. In addition,
 
 ![](img/editJSON.png)
 
-**POST request: how to "Add a new item to the plates collection"**
+###POST request: how to "Add a new item to the plates collection"
 
 If you want to test the POST end-point, you need to click the row that will open it up. Now you have the ability to test the API request by entering the information that you need. 
 In our case we added a plate of "onion rings" with its description and its price. 
@@ -60,7 +60,7 @@ You can also see the complete Json Schema and all the type variables both for th
 
 ![](img/json.png)
 
-**DELETE request: how to "Delete a plate from the plates collection"**
+###DELETE request: how to "Delete a plate from the plates collection"
 
 If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by putting the ID of the plate that you want to delete and then pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
@@ -70,16 +70,29 @@ Below you can see the screenshot of a successfull request to our running API. Yo
 
 Always remember the status, whether it is private, public, trash or deleted. 
 
-**PATCH request: how to "Update a plate of the collection by ID"**
+###PATCH request: how to "Update a plate of the collection by ID"
 
 If you want to test the Patch end-point, you need to click the row that will open it up. Now you have the ability to test the API request by editing the fields you want. 
 
-In our case, we want to edit the name of a plate from "Salmon" to "Salmon with veggie". We retrieved the correct ID from the GET request and we entered it in the "path params". Since we want to change the name of the plate, we will tick **$Set** and **name**, and we will type the new name: Salmon with veggie.
+In our case, we want to edit the name of a plate from "Salmon" to "Salmon with veggie". We retrieved the correct ID from the GET request and we entered it in the "path params". Since we want to change the name of the plate, we will tick the operator **$Set** and **name**, and we will type the new name: Salmon with veggie.
 
 Then, push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code with the new name. In the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java.
 
 ![](img/patchPlate.png)
- 
-Always remember the status, whether it is private, public, trash or deleted. 
+
+
+####Field Update Operators
+
+| Name          | Description                                                                | 
+| ------------- |:--------------------------------------------------------------------------:| 
+| $set          | Sets the value of a field in a document                                    |
+| $unset        | Removes the specified field from a document                                |
+| $inc          | Increments the value of the field by the specified amount                  | 
+| $mul          | Increments the value of the field by the specified amount                  |
+| $currentDate  | Sets the value of a field to current date, either as a Date or a Timestamp |
+| $push         | Appends a specified value to an array                                      |
+
+
+Always remember the status, whether it is private, public, trash or deleted                  
