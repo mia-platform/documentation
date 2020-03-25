@@ -1,29 +1,37 @@
 #Overview
 
-“Don’t waste time to setup your platform, just push the code”
+Design and manage the full lifecycle of your DevOps Value Stream
 
 
 ![image alt text](img/overview-1.png)
 
-The Developers Console aims to governs the code life cycle according to the guidelines you have provided and defines the procedures by automating the standards you define so the developers can focus only business logic
-![image alt text](img/overview-2.png)
-It has been designed to simplify the work of developer and consists in different components:
+Work on a single platform to manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and
+microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your
+runtime applications.
 
-* **SET UP INFRASTRUCTURE**: In this area you can configure your Environment;
-manage the environment variables with visibility of the differences between the different environments and set up your own project.
 
-* **DESIGN:** In the Design area it is possible to design your own APIs according to established guidelines. Create Microservices starting from Templates with configurable standards for you: log, security, readiness, probeness and documentation.
-All generated configurations are GIT centric.
+**Infrastructure set-up**
+Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the environment variables.
 
-* **TEST & DEBUG** In the test area you can configure your own consistency tests and code quality that will be performed automatically by the deployment pipelines
+**CD/CI Pipelines**
+Design and build your CI/CD pipelines: choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 
-* **DEPLOY** In the Deploy area you can release your services with a click that activates the automatic pipelines. You can monitor your releases, view the deployment history, and roll back if necessary
+**Microservices and API Design**
+Develop containerized services in any language with Templates. Design your CRUD and GraphQL APIs and expose information to all channels.
 
-* **METRICS** In Metrics è possibile analizzare i dati dei log per monitorare le API,i microservizi e gli applicativi visualizzandone il successo e l’utilizzo.
+**Test Automation & Debug**
+Automate your tests suite to deliver quality software at a sustainable pace. Debug your kubernetes services locally with your preferred debugging tool.
 
-* **MONITORING** In the Monitoring section it is possible to debug and monitor your own microservices. From this area users have direct control over the infrastructure and can choose to restart or cancel their own PODs
+**Deployment**
+Release across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
 
-* **DOCUMENTATION:** In the Documentation Portal users find all the documentation of their own APIs and microservices centralized and automatically generated.
-From this section it is also possible to test your own APIs.
+**Log & Monitoring** 
+Monitor your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
+
+**Metrics**
+Create your dashboards collecting data across the entire DevOps lifecycle to gain a complete overview of your application delivery value stream.
+
+**Platform Governance**
+Guarantee security, quality, and consistency across projects and teams, both internal and external, with clear policies enforced through code.
 
 ![image alt text](img/overview-3.png)
