@@ -8,7 +8,7 @@ This card is equipped with a flag that, if you are enabled, allows to force the 
 
 ![Microservice_Gateway](img/Microservice_Gateway.png)
    
-The microservice gateway service performs some checks on the content-type header:
+The Microservice Gateway service performs some checks on the content-type header:
 
 * **Request**: If your endpoint uses content-type: *application/json* in requests, check      "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
 
