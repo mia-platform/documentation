@@ -7,11 +7,13 @@ The documentation let you know exactly how your API will work and behave, before
 
 You can share API documentation within your company, externally to partners and suppliers. 
 
-In order to test the APIs, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag - in our case, we will select the Tag “Plates”.  
+In order to test the APIs, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag - in our case, we will select the Tag “Plates”. 
+
+
 
 ![](img/listPlates.png)
 
-This section below will show you examples and information per request type: GET, POST, PATCH and DELETE.
+The next sections will show you examples and information per request type: GET, POST, PATCH and DELETE.
 
 ###GET request
 
