@@ -1,61 +1,43 @@
 #Overview
 
-![image alt text](img/runtime-suite.png)
-
-The suite consist in a collection of component that speed up the usability and performance of your platfom, prevent the developer to create services that already exist. Components are configurable, ready to use and eventually customizable. Here you can find the main components listed:
-
-## API & Microservice Ecosystem
-
-* **API Gateway**
-    * API Gateway
-    * Client Proxy
-    * Certificate Service
-* **Microservice Ecosystem**
-    * Microservice Gateway
-* **Marketplace Custom Microservice Template**
-    * NodJS Template
-    * Springboot Template
-* **BaaS**
-    * CRUD Service
-    * Files Manager Service
-    * Static Files Service
-    * Notification Service
-      * Mail Notification Service
-    * SDK Mobile
-* **Data Management**
-    * SQL Generic Reader
-    * CQRS/Event Source Data Management
-    * GraphQL Gateway*
-    * ETL Adapters*
-    * Secure Data Exchange Service
-    * Soap To Rest
-* **M2M**
-    * Stream-Processing*
-    * ChatBot (DialogFlow)*
-    * IoT Gateway (MQTT)*
-    * Payment Gateway*
-* **API Automation**
-    * Cronjobs Microservices
-    * API workflow (API BPM, business process Management)*
-    * API Distributed Transaction*
-
-## Privacy & Security
-
-* **Access Management**
-    * Auth Service
-    * User Service
-    * ACL
-    * Session Manager
-* **Privacy Manager**
-    * Privacy Manager*
-    * Data Access Logger
-    * Anonymizer*
-    * ML Privacy Anomaly Detector*
-* **Logs & Metering**
-    * Logs Collector
-    * Alarms
-    * Metering
-    * ML Anomaly Detector*
 
 
-  \* Coming in 2019
+##Plug-in templates and ready-to-use components to speed up your application development and orchestration
+
+![image alt text](img/microservizi.png)
+
+Develop cloud-native microservices leveraging Mia-Platform’s templates. 
+
+Decouple your business logics from IT systems and channels, easily orchestrate hundreds of microservices and make
+your Company evolve and scale fast.
+
+
+###Microservices Marketplace
+
+Leverage Templates and Examples to develop microservices in your favourite technology. Let development teams focus on the business logics, without worrying about set up, libraries, logs and orchestration.
+
+
+###Orchestrator Services
+
+The essential components to orchestrate your services in production. Put in pipelines sequences of microservices, enrich your API
+calls with PRE/POST decorators, subscribe to topics and publish events to message brokers, schedule Jobs and manage distributed transactions with Saga Patterns.
+
+###BaaS
+
+Connect your Web and mobile app to Cloud services via API and SDK.
+Features include static files hosting, notifications, file management, and CRUD as well as many other backend services.
+
+###Data Services 
+
+Manage data from every source safely via API: execute and aggregate SQL
+and NoSQL queries, commands and stored procedures, translate SOAP to REST API, manage data caches.
+
+###Growth and Voice Services
+
+Monetize your APIs faster: integrate all your payment gateways, manage discounts and promotions, provide Digital Wallet and MGM, and extend your channels to Voice and Bot Services.
+
+###Test and Monitoring 
+
+Test your Graphical User Interface, check up the health status of your services and try out your APIs to understand if they are working efficiently and effectively.
+
+
