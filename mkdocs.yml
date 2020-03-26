@@ -128,8 +128,8 @@ nav:
   - Data Visualization:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
-- Fast Data: 
-  - Overview: 'fast_data/overview.md'
+- Fast Data:   
+    - Overview: 'fast_data/overview.md'
 
 - Release Notes:
     - Platform: 'release_notes/platform_releasenotes.md'
