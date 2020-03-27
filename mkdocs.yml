@@ -20,7 +20,6 @@ nav:
 - DevOps Console:
   - Overview: 'development_suite/overview-dev-suite.md'
   - Set Up Infrastructure:
-    - Create Project: 'development_suite/set-up-infrastructure/create-project.md'
     - Configure Auth0: 'development_suite/set-up-infrastructure/auth-0-setup.md'
     - Manage Environment Variables: 'development_suite/set-up-infrastructure/env-var.md'
   - Design:
