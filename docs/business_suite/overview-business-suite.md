@@ -1,7 +1,9 @@
 #API Management & Headless CMS Overview
 
 
-**The state-of-the-art solution for Full Life Cycle API Management**
+Welcome to the API Management & Headless CMS overview page!
+
+Learn how to gain total control over your APIs, from design and security to versioning and retirement.
 
 
 ![image alt text](img/api_managment.png)
