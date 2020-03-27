@@ -1,7 +1,8 @@
 #DevOps Console Overview
 
-Welcome to The DevOps Console Overview page! 
-you can learn more about hoW to Design and manage the full lifecycle of your DevOps Value Stream.
+Welcome to The DevOps Console Overview page!
+
+You can learn more about how to design and manage the full lifecycle of your DevOps Value Stream.
 
 
 ![image alt text](img/devops_console.png)
