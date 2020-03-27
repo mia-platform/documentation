@@ -1,6 +1,6 @@
 #DevOps Console Overview
 
-Welcome to The DevOps Console Overview page!
+Welcome to the DevOps Console Overview page!
 
 Find out more about how to design and manage the full lifecycle of your DevOps Value Stream.
 
