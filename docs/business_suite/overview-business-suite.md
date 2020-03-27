@@ -4,7 +4,7 @@
 **The state-of-the-art solution for Full Life Cycle API Management**
 
 
-![image alt text](img/apiPortal.png)
+![image alt text](img/api_managment.png)
 
 
 Deliver information everywhere with an API-centric approach. Design and manage your APIs, decouple your systems from your data and open to third-party business opportunities.
