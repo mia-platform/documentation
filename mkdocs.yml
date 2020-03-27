@@ -62,7 +62,7 @@ nav:
     - APIs Documentation: 'development_suite/api-portal/api-documentations.md'
     - Configure Swagger Aggregator: 'development_suite/api-portal/swagger_conf.md'
 
-- Microservice Ecosystem:
+- Microservices Ecosystem:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
     - API & Microservice Ecosystem:
        - API Gateway: 'runtime_suite/api-gateway.md'
