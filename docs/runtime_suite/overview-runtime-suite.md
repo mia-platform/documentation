@@ -1,8 +1,9 @@
 #Microservices Ecosystem Overview
 
 
+Welcome to the Microservices Ecosystem overview page!
 
-**Plug-in templates and ready-to-use components to speed up your application development and orchestration**
+You can learn how to use plug-in templates and ready-to-use components to speed up your application development and orchestration**
 
 
 ![image alt text](img/microservices_ecosystem.png)
