@@ -1,6 +1,8 @@
-#Overview
+#Fast Data Overview
 
-**All your Data organized and available in real time, 24/7**
+Welcome to the Fast Data overview page!
+
+You can learn how to have all your Data organized and available in real time, 24/7
 
 
 ![image alt text](img/fastdataillustrazione.png)
