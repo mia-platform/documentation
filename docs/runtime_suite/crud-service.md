@@ -396,7 +396,7 @@ When the index is created you can use $nearSphere. For example to search an hero
 }
 ```
 
-to get the list of heroes just decode the query and use _q.
+to get the list of heroes just encode the query and use _q.
 
 ```
 curl --request GET \
@@ -441,7 +441,6 @@ returns
 {
   "count": 3
 }
-
 ```
 Note: filters can be applied to the count
 
@@ -512,6 +511,14 @@ It is possible to eliminate all the resources of a collection at a stroke. For t
 ```
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
 ```
+
+## How to use CRUD
+
+
+### When use it
+
+
+### When not use it
 
 ## Response codes of an API
     Below is a list of return codes typical of an API request:
