@@ -142,7 +142,7 @@ https: // your-url / swagger /
 
 An example can be found on the [Mia Platform demo] website (https://preprod.baas.makeitapp.eu/swagger/).
 
-### Creating a Resource
+### Create
 
 To create a resource it is sufficient to send a *POST* request to the endpoint passing in the body the information of the
 resource that you want to create.
@@ -185,7 +185,9 @@ in response, tou will get this resource:
   }
 ```
 
-### Reading a list of resources
+### Read
+
+#### Read a list of resources
 
 To read a resource, simply call the endpoint with a GET
 
@@ -252,7 +254,7 @@ you will get a JSON array that contains all the resources of the resource. The s
   }
 ]
 ```
-### Reading a single resource
+#### Read a single resource
 
 To read only one element, simply pass the id of the resource you want to read to GET.
 
@@ -279,7 +281,7 @@ you get the resource corresponding to id *ef02dcaa-7a2e-4c31-a505-c2cb014d769e*
 }
 ```
 
-### Sorting
+#### Sort
 
 It is possible to sort the list of resources returned with a GET.
 
@@ -304,7 +306,7 @@ curl -X GET https://your-url/heroes?mongoQuery={"$sort":{"name":-1}} \
 -H "secret: secret"
 ```
 
-### Pagination
+#### Paginate
 
 It is possible to paginate a request by passing two parameters:
 - skip: the record from which to start. The first has an index of 0
@@ -313,7 +315,7 @@ It is possible to paginate a request by passing two parameters:
 For example:
 
 ```
-curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25} \
+curl -X GET https://your-url/heroes/?{"$skip":0,"$limit":25} \
 -H "accept: application/json" \
 -H "content-type: application/json" \
 -H "secret: secret"
@@ -323,24 +325,36 @@ returns the first 25 records of the list.
 It is possible to compose sort and pagination.
 
 ```
-curl -X GET https://your-url/heroes?{"$skip":0,"$limit":25,"$sort":{"name":-1}} \
+curl -X GET https://your-url/heroes/?{"$skip":0,"$limit":25,"$sort":{"name":-1}} \
 -H "accept: application/json" \
 -H "content-type: application/json" \
 -H "secret: secret"
 ```
 
-Note: you can use the *mongoQuery* parameter in the query string instead of passing the mongo string directly url
+Note: you can use the *_q_* parameter in the query string instead of passing the mongo string directly url. The query bust be encoded in the URL
+
+from
 
 ```
-curl -X GET https://your-url/heroes?mongoQuery={"$skip":0,"$limit":25,"$sort":{"name":-1}} \
+{"$skip":0,"$limit":25,"$sort":{"name":-1}}
+```
+
+to
+
+```
+%7B%22%24skip%22%3A0%2C%22%24limit%22%3A25%2C%22%24sort%22%3A%7B%22name%22%3A-1%7D%7D
+```
+
+```
+curl -X GET https://your-url/heroes/?_q=%7B%22%24skip%22%3A0%2C%22%24limit%22%3A25%2C%22%24sort%22%3A%7B%22name%22%3A-1%7D%7D \
 -H "accept: application/json" \
 -H "content-type: application/json" \
 -H "secret: secret"
 ```
 
-### Filters
+#### Filters with MongoDB Query
 
-Resources can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of resources. [More details on the mongo site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
+Resources can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of resources. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
 
 For example we can look for the super heroes of *female* sex that appeared before *1990* and that have super power *speed* or
 the name has Marvel inside.
@@ -355,37 +369,65 @@ the name has Marvel inside.
 }
 ```
 
-### Updating a Resource
-
-To update a resource it is sufficient to invoke a PUT passing in the body the resource to be updated with its *id*.
-For example, if I add the super power *flight* to Ms. Marvel, I have to pass in the body the id and the array with the super powers
+The query must be encoded and passed to _q parameter
 
 ```
-{"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
-"powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
+curl -X GET https://your-url/heroes/?_q=%7B%22%24and%22%3A%5B%0A%20%20%20%20%7B%22gender%22%3A%22female%22%7D%2C%0A%20%20%20%20%7B%22year%22%3A%7B%22%24lt%22%3A631148400000%7D%7D%2C%0A%20%20%20%20%7B%22powers%22%3A%7B%22%24regex%22%3A%22speed%22%2C%22%24options%22%3A%22i%22%7D%7D%2C%0A%20%20%20%20%7B%22%24or%22%3A%5B%7B%22name%22%3A%7B%22%24regex%22%3A%22Marvel%22%2C%22%24options%22%3A%22i%22%7D%7D%5D%7D%0A%20%20%5D%0A%7D \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
 ```
 
-In return I get the updated resource
+#### Geospatial Queries
 
-> Attenzione: se si vuole aggiornare una Risorsa inviare nel body solo le proprietà modificate per non sovrascrivere
-> le proprietà modificate da altri.
+On CRUD service it's possible to filter data also for proximity using MongoDB Geospatial Queries.
 
-### Deleting a Resource
+To enable this feature you need to create an Position index on DevOps Console.
 
-To delete a resource I have two options:
+![Position Index](img/position-index.png)
 
- - Delete it permanently with a DELETE request
- - Put it in the trash
-
-To put it in the trash can simply set *trash* to 1 (for details see the section [Base fields of a resource] (# base))
-
-To delete it permanently
+When the index is created you can use $nearSphere. For example to search an hero near you, beetween 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
 
 ```
-curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
+{"position":
+  {"$nearSphere":
+     {"from": [9.18,45.43], "minDistance": 0, "maxDistance": 1200}
+  }
+}
 ```
 
-### Count of the number of resources
+to get the list of heroes just decode the query and use _q.
+
+```
+curl --request GET \
+  --url 'https://your-url/heroes/?_q=%20%7B%22position%22%3A%7B%22%24nearSphere%22%3A%7B%22from%22%3A%5B9.18%2C45.43%5D%2C%22minDistance%22%3A0%2C%22maxDistance%22%3A1200%7D%7D%7D' \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
+  ````
+
+The result will be sorted from the nearest from the farest.
+
+#### Other Filters
+
+You can use more MongoDB filters in query **_q**. Here is the complete list:
+
+- $gt
+- $lt
+- $gte
+- $lte
+- $eq
+- $ne
+- $in
+- $nin
+- $all
+- $exists
+- $nearSphere
+- $regex
+- $elemMatch and $options
+
+> Aggregate cannot be used. To use aggregate please see MongoDB Reader.
+
+#### Count
 
 It may be helpful to know how many items contains a list of resources. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
@@ -403,15 +445,22 @@ returns
 ```
 Note: filters can be applied to the count
 
-### Delete all Resources
+### Update
 
-It is possible to eliminate all the resources of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
+To update a resource it is sufficient to invoke a PUT passing in the body the resource to be updated with its *id*.
+For example, if I add the super power *flight* to Ms. Marvel, I have to pass in the body the id and the array with the super powers
 
 ```
-curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
+{"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
+"powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
 ```
 
-### Patching array items
+In return I get the updated resource
+
+> Attention: if you want to update a Resource, send only the modified properties to the body to not overwrite
+> properties modified by others.
+
+#### Patching array items
 
   - Support for patching array items. The `$set` command works properly on both primitive and `RawObject` item types, by using `array.$.replace` and `array.$.merge` as keys in the `$set` command object.
   This feature involves the following CRUD operations:
@@ -424,19 +473,45 @@ curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  
 See below for some sample cURLs for **/PATCH** */books-endpoint/{:id}*   where ```_q={"attachments.name": "John Doe", _st: "PUBLIC"}```
 
 **Case Merge**
+
 ```
 curl -X PATCH "http://crud-service:3000/books-endpoint/5cf83b600000000000000000?_q=%7B%22attachments.name%22%3A%20%22John%20Doe%22%7D&_st=PUBLIC" -H "accept: application/json" -H "Content-Type: application/json" -d "{ "$set": { "attachments.$.merge": { "name": "renamed attachment" } }}"
 
 ```
+
 **Case Replace**
+
 ```
 curl -X PATCH "http://crud-service:3000/books-endpoint/5cf83b600000000000000000?_q=%7B%22attachments.name%22%3A%20%22John%20Doe%22%7D&_st=PUBLIC" -H "accept: application/json" -H "Content-Type: application/json" -d "{ "$set": { "attachments.$.replace": { "name": "renamed attachment", content: "Lorem ipsum dolor sit amet", "state": "attached" } }}"
 ```
-### Nullable function
+
+#### Nullable function
 
 !!! warning
     If at the time of the insert I specified a NULL field that I did not declare nullable converts it to 0 (integer) or empty string
 
+### Delete
+
+To delete a resource I have two options:
+
+ - Delete it permanently with a DELETE request
+ - Put it in the trash
+
+To put it in the trash can simply set *trash* to 1 (for details see the section [Base fields of a resource] (# base))
+
+To delete it permanently
+
+```
+curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
+```
+
+#### Delete all Resources
+
+It is possible to eliminate all the resources of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
+
+```
+curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
+```
 
 ## Response codes of an API
     Below is a list of return codes typical of an API request:
