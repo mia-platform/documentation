@@ -150,11 +150,6 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 ![tabella_prop](img/tabella-cestino.png)
 
 
-
-!!! Warning
-
-    the collection **has not yet been saved** it is necessary to continue the process described below
-
 ### Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
