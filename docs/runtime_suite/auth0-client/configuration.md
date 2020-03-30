@@ -23,14 +23,18 @@ If a wrong/malicious/misconfigured client is being used in the request then the 
         "email",
         "website"
       ],
-      "audience": "https://my-host.test.mia-platform.eu"
+      "audience": "https://my-host.test.mia-platform.eu",
+      "supportedConnections": [],
+      "defaultConnection": ""
     }
   },
   "defaultClient": "",
   "managementClient": {
     "auth0Url": "my auth0 url",
     "clientId": "{{AUTH0_MANAGEMENT_CLIENT_ID}}",
-    "clientSecret": "{{AUTH0_MANAGEMENT_CLIENT_SECRET}}"
+    "clientSecret": "{{AUTH0_MANAGEMENT_CLIENT_SECRET}}",
+    "supportedConnections": [],
+    "defaultCreateUserConnection": ""
   },
   "customClaimsNamespaces": [
     "https://mia-platform.eu/app_metadata",
@@ -38,6 +42,29 @@ If a wrong/malicious/misconfigured client is being used in the request then the 
   ]
 }
 ```
+
+### Auth0 Connection integration
+
+Auth0 uses connections as a pool of identity sources where users are stored. In order to integrate with specific connections in Auth0 domain, the service configuration enables
+the developer to specify a set of `supportedConnections` for each client (including the _ManagementClient_); the list of connections is used to filter or reject connections provided
+in requests towards the service. 
+
+All clients (except the _ManagementClient_ which uses a different property, see below) can be configured to use a `defaultConnection`, please note that
+if you do not provide a `defaultConnection` then you'll have to specify a connection when contacting the `/authorize` and `/oauth/token` APIs.
+If you instead provide the `defaultConnection` it will be used when no connection is set in the original request.
+
+Keep in mind that the `defaultConnection` **must** be specified in the `supportedConnections` list, otherwise an error is returned at service startup.   
+
+The _ManagementClient_ uses an extra configuration `defaultCreateUserConnection` that is used during user creation. Please note that a connection is
+required by this endpoint thus the need to enforce a default one if none is provided. As for the `defaultConnection` in normal clients, keep in mind 
+that the configured `defaultCreateUserConnection` **must** be specified in the `supportedConnections` list, otherwise an error is returned at service startup.
+
+The endpoints that support connections are the following:
+
+  - `GET /authorize`: will select connection based on request, using specified default connection if none is provided;
+  - `POST /oauth/token`: in a similar fashion to `/authorize` will use provided connection if supported otherwise it uses the default configured.
+  - `GET /users`: will filter connections in original request based on _ManagementClient_ supported connection, if none is provided all supported connections are used by default;
+  - `POST /user/:userId`: will use default connection from _ManagementClient_ if no connection is provided, otherwise will use the one provided (if supported).
 
 ### Supported redis modes
 
