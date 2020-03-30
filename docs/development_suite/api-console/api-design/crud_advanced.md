@@ -149,7 +149,6 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 
 ![tabella_prop](img/tabella-cestino.png)
 
-
 ### Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
