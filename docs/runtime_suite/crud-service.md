@@ -633,7 +633,7 @@ When the index is created you can use $nearSphere. For example to search an hero
 }
 ```
 
-to get the list of heroes just decode the query and use _q.
+to get the list of heroes just encode the query and use _q.
 
 ```
 curl --request GET \
@@ -778,4 +778,31 @@ It is possible to eliminate all the resources of a collection at a stroke. For t
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
 ```
 
-  TODO
+## How to use CRUD
+
+
+### When use it
+
+
+### When not use it
+
+## Response codes of an API
+    Below is a list of return codes typical of an API request:
+
+    - 2xx (Success category)
+    Success status:
+      - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
+      - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
+      - 204 No Content represents the request is successfully processed, but has not returned any content.
+    - 3xx (Redirection Category)
+     - 304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
+    - 4xx (Client Error Category)
+     These status codes represent that the client has raised a faulty request.
+      - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
+      - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
+      - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
+      - 404 Not Found indicates that the requested resource is not available now.
+      - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
+    - 5xx (Server Error Category)
+      - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
+      - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
