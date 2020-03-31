@@ -1,6 +1,6 @@
 # Create a tenant
 
-If you already have a tenant, you could [skip this section](#/create-a-template)
+If you already have a tenant, you could [skip this section](#create-a-template)
 
 The tenant is useful to create a project configured inside an already existent infrastructure.
 In an existent infrastructure some information are repeated for all the projects: *environments*, *cluster informations*, *CI/CD integration*.
@@ -78,7 +78,7 @@ More in detail, a guide how to compile the tenant:
 
 # Create a template
 
-If you already have a template, you could [skip this section](#/create-a-template)
+If you already have a template, you could [skip this section](#create-a-template)
 
 
 # Create a project
