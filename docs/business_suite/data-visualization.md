@@ -165,79 +165,7 @@ This example, shows some of the **options** that (highmaps)[https://api.highchar
 
 These are not the only configurations that highcharts enable to control: having a look at the configuration more fields can be controlled.
 
-<<<<<<< HEAD
-## Tile Map Configuration
-
-The Tile Map Chart configuration allows you to insert a custom leaflet map (https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
-
-```
-"yourMap": {
-  "id": "<some-unique-id>",
-  "constructorType": "tileMapChart",
-  "options": {
-    "chart": {
-      "maps": [
-        {
-          url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution: "@OpenStreetMap"
-        }
-      ],
-      // Required Map options 
-      center:[40.52, 9.43] // Initial center of the map (LatLng)
-      zoom: 5 // Initial zoom map level
-    },
-    "title": {
-      "text": "This is your title"
-    },
-    "subtitle": {
-      "text": "This is your subtitle"
-    },
-    "series": [{
-      "id": "serie1",
-      "endpointData": "/charts/your-endpoint/json",
-      "name": "yourName",
-      "markerType": "circleMarker" // Currently, only one supported
-      "markerOptions": {
-        // Options of the marker
-        color: " #8989ff"
-      }
-      // additional options for circleMarker
-      minSize: 3,
-      maxSize: 15,
-      convergenceSpeed: 100
-      }]
-  }
-}
-```
-*Options -> Chart:*
-
-In this section you can insert all the options that you want in order to customize your leaflet map (see https://leafletjs.com/reference-1.6.0.html#map-option), the only ones required are center and zoom. In addition to the map properties defined by leaflet documentation, you have to set maps. Here, you can insert different tile layers URLs to personalize the map design, with the associated attributions depending on the provider chosen. You can choose them at https://leaflet-extras.github.io/leaflet-providers/preview/. Currently, the only providers supported are **OpenStreetMap** and **BaseMap**.
-
-*Series:*
-
-Here you specify the *endpointData* that you want to show on the map through the usage of markers. Data recovered from endpoints should be in a specific format:
-```
-{
-  label: "name to show on hover", 
-  lat: 40.52, //latitude
-  lng: 9.45, //longitude
-  value: 100 //Can be a quantity
-}
-```
-
-* **markerType**: The only marker supported right now is the *'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
-
-* **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see https://leafletjs.com/reference-1.6.0.html#circlemarker) in order to customize the *circleMarker*. 
-
-* **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels). The default value is 3.
-
-* **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels). The default value is 15.
-
-**convergenceSpeed**: Integer indicaticating the convergence speed between the minSize and maxSize. An higher value corresponds to a slow convergence, while a low value corresponds to an high convergence. The default value is 100.
-
-=======
 #### Tile Map Configuration
->>>>>>> master
 
 The Tile Map Chart configuration allows you to insert a custom [leaflet map](https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
 
@@ -283,7 +211,7 @@ The Tile Map Chart configuration allows you to insert a custom [leaflet map](htt
   }
 }
 ```
-*Options -> Chart:*
+##### Options -> Charts
 
 In this section you can insert all the options that you want in order to customize your leaflet map (see [Leaflet API reference](https://leafletjs.com/reference-1.6.0.html#map-option)), the only ones required are center and zoom. 
 
@@ -291,9 +219,9 @@ In addition to the map properties defined by leaflet documentation, you have to 
 
 Currently the only supported providers are **OpenStreetMap** and **BaseMap**.
 
-*Series:*
+##### Series
 
-Here you specify the *endpointData* that you want to show on the map through the usage of markers. Data recovered from endpoints should be in a specific format:
+In this section you list the different series of data that you want to show on the map. Each serie should have an *endpointData*, which specify the path to be called in order to recover the data points. Each data point should have the following format:
 
 ```
 {
@@ -304,7 +232,9 @@ Here you specify the *endpointData* that you want to show on the map through the
 }
 ```
 
-* **markerType**: The only marker supported right now is the *'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
+Along with the *endpointData*, you can add the following property to fully customize the markers displayed on the map:
+
+* **markerType** * (*required*): The only marker supported right now is the *'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
 
 * **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see https://leafletjs.com/reference-1.6.0.html#circlemarker) in order to customize the *circleMarker*. 
 
@@ -312,7 +242,44 @@ Here you specify the *endpointData* that you want to show on the map through the
 
 * **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels, default: 15).
 
-* **convergenceSpeed**: Integer indicating the convergence speed for optmizing bubble sizes depending on data (default: 100)
+* **convergenceSpeed**: Integer indicating the convergence speed for optimizing bubble sizes depending on data values (default: 100)
+
+By default, the markers are displayed without any clustering. To add the clusterization, you should define an additional *cluster* property.
+
+* **cluster**: Object with the following properties.
+```
+{
+  type: 'weighted | single ' //required,
+  color: color string of the cluster groups,
+  textColor: color string of the text inside the cluster groups
+} 
+
+```
+By default the *color* of cluster groups is equal to the color of markers and the *textColor* is white. Instead the *type* is required. Currently we support two type of cluster: 
+
+* *Weighted* - To display the cluster groups with the sum of values specified for each serie data point. (Ex. group of 3 markers with values 10, 10, and 10 respectively, diplays a cluster with 30 as text)
+
+* *Single* - To display the cluster groups with the number of markers not weighted by custom values. (Ex. group of 3 markers with any value diplays a cluster with 3 as text)
+
+Example of series with cluster option:
+
+```
+"series": [{
+        "id": "serie1",
+        "endpointData": "/charts/your-endpoint/json",
+        "name": "yourName",
+        "markerType": "circleMarker" // The only one currently supported
+        "markerOptions": {
+          // Options of the marker
+          color: " #8989ff"
+        }
+        // Required additional options for circleMarker
+        minSize: 5,
+        maxSize: 15,
+        cluster: {type: "weighted", color: "#ffffff", colorText: "#000000"}
+      }]
+```
+
 
 #### Stock Chart Configuration
 
