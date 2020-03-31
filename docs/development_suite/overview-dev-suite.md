@@ -22,7 +22,7 @@ Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): 
 
 ###Microservices and API Design
 
-Develop containerized services in any language with [Templates](../../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and GraphQL APIs and expose information to all channels.
+Develop containerized services in any language with [Templates](../../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../development_suite/api-console/api-design/crud_advanced.md) and GraphQL APIs and expose information to all channels.
 
 ###Test Automation & Debug
 
