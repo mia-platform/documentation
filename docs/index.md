@@ -40,7 +40,7 @@ If you want to know more about Mia-Platform, please visit our [Release Note](rel
 
 ###Archived Documentation
 
-When an older version of Mia-Platform is no longer supported, the documentation moves to [Previous Version](../../../previous_versions/v4/docs/index.md).
+When an older version of Mia-Platform is no longer supported, the documentation moves to [Previous Version](../../previous_versions/v4/docs/index.md).
 
 
 ###Quickstart
