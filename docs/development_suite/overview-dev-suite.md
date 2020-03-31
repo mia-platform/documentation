@@ -18,7 +18,7 @@ Get started with your project in a few clicks: configure Kubernetes clusters, se
 
 ###CD/CI Pipelines
 
-Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
+Design and build your [CI/CD pipelines](../../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 
 ###Microservices and API Design
 
