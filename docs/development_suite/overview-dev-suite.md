@@ -22,7 +22,7 @@ Design and build your [CI/CD pipelines](https://docs.mia-platform.eu/development
 
 ###Microservices and API Design
 
-Develop containerized services in any language with [Templates](https://docs.mia-platform.eu/runtime_suite/overview-runtime-suite/#microservices-marketplace). Design your [CRUD](https://docs.mia-platform.eu/development_suite/api-console/api-design/crud_advanced/)and GraphQL APIs and expose information to all channels.
+Develop containerized services in any language with [Templates](https://docs.mia-platform.eu/runtime_suite/overview-runtime-suite/#microservices-marketplace). Design your [CRUD](https://docs.mia-platform.eu/development_suite/api-console/api-design/crud_advanced/) and GraphQL APIs and expose information to all channels.
 
 ###Test Automation & Debug
 
