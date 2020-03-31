@@ -13,7 +13,7 @@
 
  * Design: Titles in the Launcher are not aligned with the titles of the Console sections. 
 
- * Design - Microservice: Card and title Cards in Microservices Details are not aligned. 
+ * Design - Microservice: Card and Card's titles in Microservices Details are not aligned. 
 
  * Design - CRUD/Microservices/Pre&Post: During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The description validators are removed.
 
