@@ -54,7 +54,7 @@ and NoSQL queries, commands and stored procedures, translate SOAP to REST API, m
 Monetize your APIs faster: integrate all your payment gateways, manage discounts and promotions, provide Digital Wallet and MGM, and extend your channels to Voice and Bot Services.
 
 * iPaaS Adapter for Mulesoft
-* Geo-gence
+* Geo-fence
 * Monetization
 * Multi-payment Gateway
 * Google Dialogflow Adapter
