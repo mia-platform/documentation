@@ -221,7 +221,7 @@ Currently the only supported providers are **OpenStreetMap** and **BaseMap**.
 
 ##### Series
 
-In this section you list the different series of data that you want to show on the map. Each serie should have an *endpointData*, which specify the path to be called in order to recover the data points. Each data point should have the following format:
+In this section you list the different series of data that you want to show on the map. Each serie should have an *endpointData*, which specifies the path to be called in order to download the data points. Each data point should have the following format:
 
 ```
 {
