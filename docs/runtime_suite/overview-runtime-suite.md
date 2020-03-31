@@ -49,6 +49,7 @@ Features include static files hosting, notifications, file management, and CRUD 
 Manage data from every source safely via API: execute and aggregate SQL
 and NoSQL queries, commands and stored procedures, translate SOAP to REST API, manage data caches.
 
+
 ###Growth and Voice Services
 
 Monetize your APIs faster: integrate all your payment gateways, manage discounts and promotions, provide Digital Wallet and MGM, and extend your channels to Voice and Bot Services.
