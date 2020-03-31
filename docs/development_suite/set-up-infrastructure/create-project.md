@@ -14,7 +14,7 @@ More in detail, a guide how to compile the tenant:
 * `tenantId` (**required**): the human readable id of the tenant (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`
 * `description`: the description of the tenant
 * `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps.
-* `environments`: an array of objects containing the environments definition for the tenant. Any object should contains, for example:
+* `environments` (**required**): an array of objects containing the environments definition for the tenant. Any object should contains, for example:
 
     ```js
       {
@@ -48,7 +48,7 @@ More in detail, a guide how to compile the tenant:
           "type": "gitlab"
         }
       ```
-      Rhe project read the variables from the first parent group of `Configurations` project in Gitlab.
+      The project read the variables from the first parent group of Configurations project in Gitlab.
 
       So, for example, with a gitlab project to be saved in
       `/clients/mia-platform/configurations`, the environment variables are written in `clients/mia-platform` group.
@@ -66,7 +66,7 @@ More in detail, a guide how to compile the tenant:
       ```
       this configuration is saved only in tenant, and should be retrieved at runtime in project fetching from tenant info. So if your tenant has all the env variables of the projects set in one group, this could be changed for all the projects at the same time.
 
-* `pipelines`: the CI/CD pipelines used by the tenant. It is an object, for example:
+* `pipelines` (**required**): the CI/CD pipelines used by the tenant. It is an object, for example:
     ```json
       {
         "type": "gitlab-ci"
