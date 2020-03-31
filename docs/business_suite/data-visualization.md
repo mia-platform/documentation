@@ -259,7 +259,7 @@ By default the *color* of cluster groups is equal to the color of markers and th
 
 * *Weighted* - To display the cluster groups with the sum of values specified for each serie data point. (Ex. group of 3 markers with values 10, 10, and 10 respectively, diplays a cluster with 30 as text)
 
-* *Single* - To display the cluster groups with the number of markers not weighted by custom values. (Ex. group of 3 markers with any value diplays a cluster with 3 as text)
+* *Single* - To display the cluster groups with the number of markers not weighted by custom values. (e.g. group of 3 markers with any value diplays a cluster with 3 as text)
 
 Example of series with cluster option:
 
