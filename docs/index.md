@@ -32,7 +32,7 @@ State-of-the-art solution for API Full Lifecycle Management.
 
 ###More Resources 
 
-If you want to know more about Mia-Platform, please visit our [Release Note](platform_releasenotes) and our [Blog](https://blog.mia-platform.eu/en)
+If you want to know more about Mia-Platform, please visit our [Release Note](docs/release_notes) and our [Blog](https://blog.mia-platform.eu/en)
 
 ###Archived Documentation
 
