@@ -17,9 +17,11 @@ Here's an overview of Mia-Platform suite:
 
 Manage your Kubernetes clusters, define environments, set up test automation, design and run your CI/CD pipelines controlling your preferred tools from one unique Console.
 
+
 ###Microservices Ecosystem
 
 A set of ready to use microservices to speed up your applications’ development.
+
 
 ###Fast Data Real-time Single view
 
@@ -30,13 +32,16 @@ Aggregate and map your data to create real-time Single Views.
 
 State-of-the-art solution for API Full Lifecycle Management.
 
+
 ###More Resources 
 
 If you want to know more about Mia-Platform, please visit our [Release Note](release_notes/platform_releasenotes.md) and our [Blog](https://blog.mia-platform.eu/en).
 
+
 ###Archived Documentation
 
-When an older version of Mia-Platform is no longer supported, the documentation moves to [Previous Version](../previous_versions/v4/docs/index.md).
+When an older version of Mia-Platform is no longer supported, the documentation moves to [Previous Version](../../../previous_versions/v4/docs/index.md).
+
 
 ###Quickstart
 
