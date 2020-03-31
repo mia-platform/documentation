@@ -56,7 +56,10 @@ Ricordarsi di aggiornare mkdocs.yml se si vogliono aggiungere menu al documento 
 Per aggiungere informazioni è sufficiente seguire i seguenti passi:
 
  - fare clone di http://git.makeitapp.eu/makeitapp-baas/mia-platform-doc;
- - creare un branch con il nome <sezione-contenuto> (ad esempio se aggiungo un contenuto a API il branch si chiamerà developer_guide-api-miasezione);
+ - creare un branch con il nome <prefix-name>
+    - prefix: può essere `edit`se stai cambiando una pagina, `new`se stati lavorando ad una nuova sezione che è già in produzione, `prj`se stai scrivendo la documentazione per un progetto non ancora approvato
+    - name: nome della pagina, della modifica o del progetto 
+    
  - editare i/il file in modifica;
  - usare ```mkdocs serve``` per vedere sul proprio pc la guida live mentre si modificano i files;
  - quando finito eseguire  ``` ./publish.sh "your comment" ```
