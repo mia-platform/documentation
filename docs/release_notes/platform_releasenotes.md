@@ -17,7 +17,7 @@
 
  * Design - CRUD/Microservices/Pre&Post: During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The description validators are removed.
 
- * Design - Crud/Proxies/Endpoints: Whene the user wants to see the field's and type's detail, they seem to be disabled. Border, cursor, color and background of the input element are changed.
+ * Design - Crud/Proxies/Endpoints: When the user wants to see the field's and type's detail, they seem to be disabled. Border, cursor, color and background of the input element are changed.
 
 
 ##v5.4.0 (March 23,2020)
