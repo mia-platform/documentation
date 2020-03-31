@@ -14,7 +14,7 @@ runtime applications.
 
 ###Infrastructure set-up
 
-Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the [environment variables](https://docs.mia-platform.eu/development_suite/overview-dev-suite/).
+Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the [environment variables](../development_suite/overview-dev-suite.md).
 
 ###CD/CI Pipelines
 
