@@ -22,10 +22,10 @@ More in detail, a guide how to compile the tenant:
         "value": "development",
         "hosts": [
           {
-            "host": "https://%projectId%.test.mia-platform.eu"
+            "host": "%projectId%.test.mia-platform.eu"
           },
           {
-            "host": "https://cms.%projectId%.test.mia-platform.eu",
+            "host": "cms.%projectId%.test.mia-platform.eu",
             "isBackoffice": true
           }
         ],
