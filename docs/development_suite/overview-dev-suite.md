@@ -1,29 +1,52 @@
-#Overview
+#DevOps Console Overview
 
-“Don’t waste time to setup your platform, just push the code”
+Welcome to the DevOps Console Overview page!
+
+Find out more about how to design and manage the full lifecycle of your DevOps Value Stream.
 
 
-![image alt text](img/overview-1.png)
+![image alt text](img/devops_console.png)
 
-The Developers Console aims to governs the code life cycle according to the guidelines you have provided and defines the procedures by automating the standards you define so the developers can focus only business logic
-![image alt text](img/overview-2.png)
-It has been designed to simplify the work of developer and consists in different components:
+Work on a single platform to manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and
+microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your
+runtime applications.
 
-* **SET UP INFRASTRUCTURE**: In this area you can configure your Environment;
-manage the environment variables with visibility of the differences between the different environments and set up your own project.
 
-* **DESIGN:** In the Design area it is possible to design your own APIs according to established guidelines. Create Microservices starting from Templates with configurable standards for you: log, security, readiness, probeness and documentation.
-All generated configurations are GIT centric.
+###Infrastructure set-up
 
-* **TEST & DEBUG** In the test area you can configure your own consistency tests and code quality that will be performed automatically by the deployment pipelines
+Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the environment variables.
 
-* **DEPLOY** In the Deploy area you can release your services with a click that activates the automatic pipelines. You can monitor your releases, view the deployment history, and roll back if necessary
+###CD/CI Pipelines
 
-* **METRICS** In Metrics è possibile analizzare i dati dei log per monitorare le API,i microservizi e gli applicativi visualizzandone il successo e l’utilizzo.
+Design and build your CI/CD pipelines: choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 
-* **MONITORING** In the Monitoring section it is possible to debug and monitor your own microservices. From this area users have direct control over the infrastructure and can choose to restart or cancel their own PODs
+###Microservices and API Design
 
-* **DOCUMENTATION:** In the Documentation Portal users find all the documentation of their own APIs and microservices centralized and automatically generated.
-From this section it is also possible to test your own APIs.
+Develop containerized services in any language with Templates. Design your CRUD and GraphQL APIs and expose information to all channels.
 
-![image alt text](img/overview-3.png)
+###Test Automation & Debug
+
+Automate your tests suite to deliver quality software at a sustainable pace. Debug your kubernetes services locally with your preferred debugging tool.
+
+###Deployment
+
+Release across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
+
+###Log & Monitoring
+
+Monitor your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
+
+###Metrics
+
+Create your dashboards collecting data across the entire DevOps lifecycle to gain a complete overview of your application delivery value stream.
+
+###Platform Governance
+
+Guarantee security, quality, and consistency across projects and teams, both internal and external, with clear policies enforced through code.
+
+
+One Platform to rule them all: design and manage the full lifecycle of your DevOps Value Stream.
+Git, Jenkins, Docker, Nexus, Kubernetes, Terraform, Prometheus, Kibana and many others: control all your preferred tools from the same Console, define pipelines and common standards, and get a clear and simplified governance of your IT assets for your teams.
+
+
+![image alt text](img/valuestream.png)

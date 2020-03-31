@@ -20,7 +20,6 @@ nav:
 - DevOps Console:
   - Overview: 'development_suite/overview-dev-suite.md'
   - Set Up Infrastructure:
-    - Create Project: 'development_suite/set-up-infrastructure/create-project.md'
     - Configure Auth0: 'development_suite/set-up-infrastructure/auth-0-setup.md'
     - Manage Environment Variables: 'development_suite/set-up-infrastructure/env-var.md'
   - Design:
@@ -63,7 +62,7 @@ nav:
     - APIs Documentation: 'development_suite/api-portal/api-documentations.md'
     - Configure Swagger Aggregator: 'development_suite/api-portal/swagger_conf.md'
 
-- API & Microservice Ecosystem:
+- Microservices Ecosystem:
     - Overview: 'runtime_suite/overview-runtime-suite.md'
     - API & Microservice Ecosystem:
        - API Gateway: 'runtime_suite/api-gateway.md'
@@ -111,7 +110,7 @@ nav:
           - How to use: 'runtime_suite/authorization-service/how_to_use.md'
           - Configuration: 'runtime_suite/authorization-service/configuration.md'
 
-- Headless CMS:
+- API Management & Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'
   - CMS:
     - Use CMS: 'business_suite/guide_cms.md'
@@ -128,10 +127,14 @@ nav:
   - Data Visualization:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
+- Fast Data:   
+    - Overview: 'fast_data/overview.md'
+
 - Release Notes:
     - Platform: 'release_notes/platform_releasenotes.md'
 
 - Guidelines:
+    - Glossary: 'guidelines/glossary.md'
     - GIT Vademecum: 'dev_ops_guide/git_vademecum.md'
     - REST API Vademecum: 'guidelines/rest_api.md'
     - Microservices Vademecum: 'guidelines/microservice_vademecum.md'

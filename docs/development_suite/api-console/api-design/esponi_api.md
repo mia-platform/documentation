@@ -1,3 +1,4 @@
+
 ## Expose an API
 
 To create an endpoint, select **Endpoints** and then **Create a new Endpoint**.
@@ -73,3 +74,22 @@ So for example in the case mentioned above when the API gateway enters the platf
 From this section, the user can configure his own custom rewrite and, if necessary, view the default platform.
 
 For CRUD-type services, an internal rewrite cannot be set
+
+
+## Transition through Microservice Gateway   
+
+Thanks to this feature, you can define, in each endpoint, which route is going to pass through Microservice Gateway.
+
+To handle the transition from Microservice Gateway, you can use, in the section Endpoints of the area Design, the Microservice Gateway configuration card, which includes also two JSON checkboxes (request and response).   
+
+This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
+
+![Microservice_Gateway](img/Microservice_Gateway.png)
+   
+The Microservice Gateway service performs some checks on the content-type header:
+
+* **Request**: If your endpoint uses content-type: *application/json* in requests, check      "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
+
+* **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
+
+!!! Warning: If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.

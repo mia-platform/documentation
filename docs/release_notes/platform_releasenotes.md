@@ -1,5 +1,27 @@
 #Platform Release Note
 
+##v5.4.0 (March 23,2020)
+**Transition from Microservice Gateway**
+
+This version allows to handle the transition from Microservice Gateway: in particular, it can be defined, in each endpoint, which route is going to pass through Microservice Gateway.  
+
+You can consult  [here](https://docs.mia-platform.eu/development_suite/api-console/api-design/esponi_api/)  the guidelines about this new feature.
+
+**Manage namespaces**     
+
+Now, it is also possible to manage different namespaces, related to the environment, on the same cluster: on the project of the Console, the field namespace is renamed projectId in order to define a namespace for each environment. 
+
+**Improvements**  
+ 
+ * Monitoring: "Delete POD" button is replaced by "Restart POD" button which relaunches the POD.     
+
+**Fixed**    
+
+ * Design - Endpoints: During the sorting, it is not considered the prefix /v2 of CRUD endpoints.    
+ * Design - CMS & Analytics: In the menu of CMS properties, it is not highlighted the selected property.       
+ * Design - CMS & Analytics: The v1-adapter service, by converting the property id into the property _id at each level of the object, modifies each occurrency. With this fix, the modification of id is done only at the first level, avoiding to transform other properties that are called id.    
+
+
 ##v5.3.1 Patch (March 11,2020)
 This release is a patch that includes only frontend improvements and updates.
 
@@ -12,7 +34,7 @@ This release is a patch that includes only frontend improvements and updates.
 **Fixed**    
 
  * Design - Microservices: "Delete" button for microservices is not visible.     
- * Design - Microservices: The change of the docker image name of a microservice, switches also the docker image name of other microservices.      
+ * Design - Microservices: The change of the docker image name of a microservice, switches also the docker image name of other microservices.   
 
 
 ##v5.3.1 (March 4,2020)
@@ -43,11 +65,10 @@ This release is a patch that includes only frontend improvements and updates.
 **UN-RELEASED Improve Performance for request without Hook**
 
 !!! warning
-    This version is breaking if in the Advanced Section you have configured your custom configmaps not keeping proxyName and proxyUrl aligned.  
+    This version is breaking if in the Advanced Section you have configured your custom configmaps not keeping proxyName and proxyUrl aligned (this problem has been fixed with the version 5.4.0).  
 
     An Example:    
     If the file `maps-proxyName.before.map`and the file `maps-proxyUrl.before.map` does not have the same route configured you cannot update the console.
-
 
 
 We have improved the performance of the calls that do not have hooks by not passing them through the [Microservice Gateway Components](/runtime_suite/microservice-gateway/).
