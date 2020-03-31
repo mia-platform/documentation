@@ -22,11 +22,11 @@ Design and build your [CI/CD pipelines](../../development_suite/deploy/deploy.md
 
 ###Microservices and API Design
 
-Develop containerized services in any language with [Templates](../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../development_suite/api-console/api-design/crud_advanced.md) and GraphQL APIs and expose information to all channels.
+Develop containerized services in any language with [Templates](../../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and GraphQL APIs and expose information to all channels.
 
 ###Test Automation & Debug
 
-Automate your tests suite to deliver quality software at a sustainable pace. [Debug](../development_suite/debugging/telepresence/) your kubernetes services locally with your preferred debugging tool.
+Automate your tests suite to deliver quality software at a sustainable pace. [Debug](../../development_suite/debugging/telepresence/) your kubernetes services locally with your preferred debugging tool.
 
 ###Deployment
 
@@ -34,7 +34,7 @@ Automate your tests suite to deliver quality software at a sustainable pace. [De
 
 ###Log & Monitoring
 
-[Monitor](../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
+[Monitor](../../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
 
 ###Metrics
 
