@@ -14,7 +14,7 @@ runtime applications.
 
 ###Infrastructure set-up
 
-Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the [environment variables](docs/development_suite/set-up-infrastructure/env-var.md)
+Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the [environment variables](docs/development_suite/set-up-infrastructure/env-var.md).
 
 ###CD/CI Pipelines
 
