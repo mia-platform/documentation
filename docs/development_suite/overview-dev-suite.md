@@ -18,11 +18,11 @@ Get started with your project in a few clicks: configure Kubernetes clusters, se
 
 ###CD/CI Pipelines
 
-Design and build your [CI/CD pipelines](../development_suite/deploy/deploy/): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
+Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 
 ###Microservices and API Design
 
-Develop containerized services in any language with [Templates](../runtime_suite/overview-runtime-suite/#microservices-marketplace). Design your [CRUD](../development_suite/api-console/api-design/crud_advanced/) and GraphQL APIs and expose information to all channels.
+Develop containerized services in any language with [Templates](../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../development_suite/api-console/api-design/crud_advanced.md) and GraphQL APIs and expose information to all channels.
 
 ###Test Automation & Debug
 
@@ -30,7 +30,7 @@ Automate your tests suite to deliver quality software at a sustainable pace. [De
 
 ###Deployment
 
-[Release](../deploy/deploy/#deploy-details-page) across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
+[Release](../deploy/deploy/#deploy-details-page.md) across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
 
 ###Log & Monitoring
 
