@@ -49,6 +49,12 @@ Features include static files hosting, notifications, file management, and CRUD 
 Manage data from every source safely via API: execute and aggregate SQL
 and NoSQL queries, commands and stored procedures, translate SOAP to REST API, manage data caches.
 
+* SQL Generic Reader
+* CQRS/ Even Source Management
+* Secure Data Exchange Service
+* Soap to Rest
+* Mongo 2 Kafka
+
 
 ###Growth and Voice Services
 
