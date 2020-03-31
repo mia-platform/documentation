@@ -16,25 +16,25 @@ More in detail, a guide how to compile the tenant:
 * `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps.
 * `environments`: an array of objects containing the environments definition for the tenant. Any object should contains, for example:
 
-  ```js
-  {
-    "label": "Development",
-    "value": "development",
-    "hosts": [
+    ```js
       {
-        "host": "https://%projectId%.test.mia-platform.eu"
-      },
-      {
-        "host": "https://cms.%projectId%.test.mia-platform.eu",
-        "isBackoffice": true
+        "label": "Development",
+        "value": "development",
+        "hosts": [
+          {
+            "host": "https://%projectId%.test.mia-platform.eu"
+          },
+          {
+            "host": "https://cms.%projectId%.test.mia-platform.eu",
+            "isBackoffice": true
+          }
+        ],
+        "cluster": {
+          "hostname": "127.0.0.1", // hostname of the cluster
+          "namespace": "%projectId%-development"
+        }
       }
-    ],
-    "cluster": {
-      "hostname": "127.0.0.1", // hostname of the cluster
-      "namespace": "%projectId%-development"
-    }
-  }
-  ```
+    ```
 
 * `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. As of now, the only supported type is `gitlab`.
 
