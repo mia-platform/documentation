@@ -277,7 +277,7 @@ Example of series with cluster option:
         minSize: 5,
         maxSize: 15,
         cluster: {type: "weighted", color: "#ffffff", colorText: "#000000"}
-      }]
+}]
 ```
 
 
