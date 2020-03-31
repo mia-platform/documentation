@@ -1,5 +1,25 @@
 #Platform Release Note
 
+##v5.5.0 (March 31,2020)
+
+**Improvements**
+
+ * Design - Microservice: During Microservice creation, default values for GroupName are created. The initial selection of GroupName is on "Services", but, if needed, it can be changed.
+
+ * Design - Microservice: new "Clone" button that allows you to copy webUrl or sshUrl with the aim to clone microservice's repository. Pay attention: this button is present only in new microservices.
+
+
+**Fixed**   
+
+ * Design: Titles in the Launcher are not aligned with the titles of the Console sections. 
+
+ * Design - Microservice: Card and title Cards in Microservices Details are not aligned. 
+
+ * Design - CRUD/Microservices/Pre&Post: During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The description validators are removed.
+
+ * Design - Crud/Proxies/Endpoints: Whene the user wants to see the field's and type's detail, they seem to be disabled. Border, cursor, color and background of the input element are changed.
+
+
 ##v5.4.0 (March 23,2020)
 **Transition from Microservice Gateway**
 
