@@ -6,7 +6,7 @@
 
  * Design - Microservice: During Microservice creation, default values for GroupName are created. The initial selection of GroupName is on "Services", but, if needed, it can be changed.
 
- * Design - Microservice: new "Clone" button that allows you to copy webUrl or sshUrl with the aim to clone microservice's repository. Pay attention: this button is present only in new microservices.
+ * Design - Microservice: New "Clone" button that allows you to copy webUrl or sshUrl with the aim to clone microservice's repository. Pay attention: this button is present only in new microservices.
 
 
 **Fixed**   
