@@ -47,7 +47,7 @@ To create the collection select **Create**.
 
 If you want, you can upload your fields from file, selecting Import fields from File. Remember that the file must be a JSON with the followinf patterns: 
 
-* Enter the property "name" in camelCase;
+* Enter the property "name" in camelCase
 * Add properties with their "types" spelling as follow: 
 - "string"
 - "Date"
