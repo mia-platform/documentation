@@ -80,7 +80,7 @@ Once the default line is created, you can automatically create another one, tick
 Once you are done creating all the rows you need, press any other point on the screen to exit the "add line" section.
 
 
-### Indexes
+## Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
 To create a new index select **create new**.
