@@ -54,11 +54,11 @@ Remember that the file must be a JSON with the following directions:
 
 * Enter the property "name" in camelCase
 * Add properties with their "types" spelling as follow: 
-  * "string"
-  * "Date"
-  * "number"
-  * "boolean"
-  * "GeoPoint"
+   * "string"
+   * "Date"
+   * "number"
+   * "boolean"
+   * "GeoPoint"
   * "RawObject"
   * "Array_string"
   * "Array_number"
