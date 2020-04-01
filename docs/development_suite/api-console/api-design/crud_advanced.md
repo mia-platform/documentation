@@ -42,6 +42,10 @@ You can add the fields you need and select the appropriate properties:
 
 To create the collection select **Create**.
 
+Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
+
+Once you are done creating all the rows you need, press any other point on the screen to exit the "add line" section.
+
 
 ##How to create the fields of your CRUD by importing a JSON
 
@@ -62,6 +66,7 @@ If you want, you can upload your fields from file, selecting Import fields from 
 * "nullable" must be "false" or "true"
 
 
+Once you imported the JSON from files, it automatically appears in the table under the default fields. 
 
 
 !!! Warning
@@ -73,11 +78,6 @@ If you want, you can upload your fields from file, selecting Import fields from 
 If you want to delete a row, select red trash symbol on the right of the the table.
 
 ![tabella_prop](img/tabella-cestino.png)
-
-
-Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
-
-Once you are done creating all the rows you need, press any other point on the screen to exit the "add line" section.
 
 
 ## Indexes
