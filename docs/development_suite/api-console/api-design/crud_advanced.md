@@ -49,7 +49,8 @@ Once you are done creating all the rows you need, press any other point on the s
 
 ##How to create the fields of your CRUD by importing a JSON
 
-If you want, you can upload your fields from file, selecting Import fields from File. Remember that the file must be a JSON with the followinf patterns: 
+If you want, you can upload your fields from file, selecting **Import fields from File**. 
+Remember that the file must be a JSON with the following directions: 
 
 * Enter the property "name" in camelCase
 * Add properties with their "types" spelling as follow: 
