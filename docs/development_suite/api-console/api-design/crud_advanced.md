@@ -6,18 +6,14 @@ In order to create a new CRUD, go on the menu on the left where you see CRUD, se
 
 In our case, we will name the collection “Books”.
 
-Press the button **Create** on the right and the template of your collection will be created.
-
 
 ![Crea-collezione-riga-titolo](img/books.png)
+
+Press the button **Create** on the right and the template of your collection will be created.
 
 
 As soon as you push **Create** a new page, "books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
 
-
-##How to create a CRUD by importing a JSON
-
-If you want, you can upload your fields from file, selecting **Import fields from File**.
 
 In the section **Fields**, you can enter the properties of your collection. 
 By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
@@ -45,6 +41,28 @@ You can add the fields you need and select the appropriate properties:
 * In the **description** field you can enter a short optional description.
 
 To create the collection select **Create**.
+
+
+##How to create the fields of your CRUD by importing a JSON
+
+If you want, you can upload your fields from file, selecting Import fields from File. Remember that the file must be a JSON with the followinf patterns: 
+
+* Enter the property "name" in camelCase;
+* Add properties with their "types" spelling as follow: 
+- "string"
+- "Date"
+- "number"
+- "boolean"
+- "GeoPoint"
+- "RawObject"
+- "Array_string"
+- "Array_number"
+* "required" must be "false" or "true"
+* "crypted" must be "false" or "true"
+* "nullable" must be "false" or "true"
+
+
+
 
 !!! Warning
 
