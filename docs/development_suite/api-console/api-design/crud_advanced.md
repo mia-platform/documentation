@@ -69,10 +69,11 @@ Remember that the file must be a JSON with the following directions:
 
 Here's an example of the file to upload
 
-![Crea-collezione-riga-titolo](img/esempioJsonViewer.png)
+![jason](img/viewer2.png)
 
 
-Once you imported the JSON from files, it automatically appears in the table under the default fields. 
+Once you imported the JSON from files, it automatically appears in the table under the default fields.
+
 
 
 !!! Warning
