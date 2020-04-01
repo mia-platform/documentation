@@ -67,9 +67,68 @@ Remember that the file must be a JSON with the following directions:
 * "nullable" must be "false" or "true"
 
 
-Here's a part of an example of the file to upload.
+Here's an example of the file to upload.
 
-![viewer2](img/viewer2.png)
+```json
+{
+    "name": "updatedAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "crypted": false,
+    "description": "updatedAt"
+  },
+  {
+    "name": "__STATE__",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "crypted": false,
+    "description": "__STATE__"
+  },
+  {
+    "name": "edition",
+    "type": "number",
+    "required": true,
+    "crypted": false,
+    "nullable": true
+  },
+  {
+    "name": "new",
+    "type": "boolean",
+    "required": true,
+    "crypted": false,
+    "nullable": false
+  },
+  {
+    "name": "location",
+    "type": "GeoPoint",
+    "required": false,
+    "crypted": false,
+    "nullable": false
+  },
+  {
+    "name": "address",
+    "type": "RawObject",
+    "required": false,
+    "crypted": true,
+    "nullable": false
+  },
+  {
+    "name": "editors",
+    "type": "Array_string",
+    "required": false,
+    "crypted": false,
+    "nullable": true
+  },
+  {
+    "name": "editions",
+    "type": "Array_number",
+    "required": false,
+    "crypted": false,
+    "nullable": false
+  }
+```
 
 
 Once you imported the JSON from files, it automatically appears in the table under the default fields.
