@@ -67,7 +67,7 @@ Remember that the file must be a JSON with the following directions:
 * "nullable" must be "false" or "true"
 
 
-Here's an example of the file to upload
+Here's a part of an example of the file to upload.
 
 ![viewer2](img/viewer2.png)
 
