@@ -69,7 +69,7 @@ Remember that the file must be a JSON with the following directions:
 
 Here's an example of the file to upload
 
-![jason](img/viewer2.png)
+![viewer2](img/viewer2.png)
 
 
 Once you imported the JSON from files, it automatically appears in the table under the default fields.
