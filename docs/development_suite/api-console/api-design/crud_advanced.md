@@ -68,14 +68,16 @@ If you want, you can upload your fields from file, selecting Import fields from 
 
     the collection **has not yet been saved** it is necessary to continue the process described below
 
-![tabella_prop](img/tabella-cestino.png)
 
 
 If you want to delete a row, select red trash symbol on the right of the the table.
 
+![tabella_prop](img/tabella-cestino.png)
+
+
 Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
 
-When you have finished creating all the necessary lines, press any other point on the screen to exit the "add line" section.
+Once you are done creating all the rows you need, press any other point on the screen to exit the "add line" section.
 
 
 ### Indexes
