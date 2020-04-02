@@ -79,5 +79,7 @@ Test your Graphical User Interface, check up the health status of your services 
 * Test Manager for Frontended web
 * Test Manager for APIs
 * Doctor Service
+    * [Service Health](doctor-service/services_status.md)
+    * [Configuration](doctor-service/configure_doctor_service.md)
 
 
