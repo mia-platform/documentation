@@ -35,7 +35,7 @@ calls with PRE/POST decorators, subscribe to topics and publish events to messag
 Connect your Web and mobile app to Cloud services via API and SDK.
 Features include static files hosting, notifications, file management, and CRUD as well as many other backend services.
 
-* [CRUD](../docs/runtime_suite/crud-service.md)
+* [CRUD](runtime_suite/crud-service.md)
 * Static File Hosting 
 * File Manager 
 * PDF Writer
