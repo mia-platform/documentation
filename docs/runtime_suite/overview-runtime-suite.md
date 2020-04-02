@@ -41,7 +41,10 @@ Features include static files hosting, notifications, file management, and CRUD 
     * [Usage](files-service/usage.md)
     * [Configuration](files-service/usage.md)
 * [PDF Writer](pdf-service.md)
-* [Notification](notifications-manager.md)
+* Notification
+    * [Notifications Manager](notifications-manager.md)
+    * [Push Notifications](push_notifications_platform_4.md)
+    * [Mail Notifications](mail-notification.md)
 * GraphQL Microservice
 * SDK Mobile
     * [Android SDK](sdk_android.md)
