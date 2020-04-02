@@ -36,12 +36,14 @@ Connect your Web and mobile app to Cloud services via API and SDK.
 Features include static files hosting, notifications, file management, and CRUD as well as many other backend services.
 
 * [CRUD](crud-service.md)
-* Static File Hosting 
+* [Static File Hosting](static-file-service.md) 
 * File Manager 
-* PDF Writer
-* Notification
+* [PDF Writer](pdf-service.md)
+* [Notification](notifications-manager.md)
 * GraphQL Microservice
 * SDK Mobile
+    * [SDK Android](sdk_android.md)
+    * [SDK_iOS](sdk_ios.md)
 
 
 ###Data Services 
