@@ -39,7 +39,7 @@ Features include static files hosting, notifications, file management, and CRUD 
 * [Static File Hosting](static-file-service.md) 
 * File Manager
     * [Usage](files-service/usage.md)
-    * [Configuration](/files-service/usage.md)
+    * [Configuration](files-service/usage.md)
 * [PDF Writer](pdf-service.md)
 * [Notification](notifications-manager.md)
 * GraphQL Microservice
