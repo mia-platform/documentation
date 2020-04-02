@@ -1,14 +1,38 @@
 # CRUD Service
 
-CRUD acronym stays for Create-Read-Update-Delete. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
-
-It's possible to configure CRUD Service with more that one collection and to scale it horizotally.
-
-In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
-
-## Introduction
-
 The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. [CRUD Service is configured in the DevOps Console (follow this link for more details)](/api-console/crud-advanced).
+
+Via APIs it's possible to:
+
+- read a collection and filter results;
+- find elements of a collection using MongoDB query syntax;
+- count number of elements in a collection;
+- create a new element in a collection (also with a bulk action);
+- update one or more elements of a collection;
+- delete one or more elements of a collection;
+
+The following guide will help you to get familiar with the APIs of the CRUD Service.
+
+![API Portal](img/crud-api-portal.png)
+
+> Remember: the API Portal visualize all API configured and esposed by CRUD.
+
+## CRUD fields {#base}
+
+In DevOps Console it's possible to define the fields of a CRUD service [see here](/api-console/crud-advanced). Some fields are predefined and help the management of data, others custom and can be configured with different data types.
+
+All fields can be indexed to speed up the data retrieval.
+
+### Predefined fields
+
+The common fields of all collections managed by CRUD are the following: 
+
+- creatorId: id of the user who created the resource
+- createdAt: long that expresses the date and time of creation of the resource in milliseconds since 1970
+- updaterId: id of the user who last modified the resource
+- updatedAt: long which expresses in milliseconds since 1970 the date and time of last update of the resource
+- sync and trash: the sync and trash properties belong to every resource and are represented by numbers with a precise semantics.
+
 
 Via APIs it's possible to:
 
@@ -85,16 +109,27 @@ curl --request GET \
 }
 ```
 
-#### ```__STATE___``` management
+### Data types
 
-**```__STATE__```** is a special field that allows the Mia-Platform CRUD Service to manage a simple publishing workflow. The ```__STATE__``` field can assume the following values:
+When a new field is added it is possible to specify fields of different types:
 
-##### STATE values
+- String
+- Numbers
+- At your place
+- DateTime
+- ....
+- GeoPoint, see RFC 7946: {
+    "type": "Point",
+    "coordinates": [longitude: Double, latitude: Double]
 
-- **PUBLIC**: the document is visible without specifing the value of ```_st``` in the querystring
-- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the querystring the parameter ```_st=DRAFT```
-- **TRASH**: the document is *soft deleted*; you can still query this document specifying in the querystring  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the document is *deleted*; you can still query this document specifying in the querystring  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
+It is configured at startup through the definition of collections (one or more), to provide a consistent HTTP interface and to perform the validation of operations before executing them on the database.
+
+The definition of a collection involves indicating the list and the type of fields and optionally specifying indexes.
+
+In detail:
+
+
+  The sync property can take 3 values: 0, 1 or 2.
 
 By default, when a new itam in CRUD is added via POST, the document status is DRAFT. It's possible to change this behaviour in the endpoint section of the CRUD changing the default beahviour to PUBLIC.
 
@@ -131,43 +166,6 @@ update from DRAFT (default state) to PUBLISH the collection document 5e8a125eb74
 
 ### Collection Properties Types
 
-When a new property is added to a collection it is possible to specify the following types:
-
-- String: UTF-8 character set
-- Number
-- Boolean
-- GeoPoint
-
-```json
-  {
-    "type": "Point",
-    "coordinates": [longitude: Double, latitude: Double]
-  }
-```
-
-- Date
-- Object
-- Array of Strings
-- Array of Numbers
-- Array of Objects
-
-### Collection document Propoerties properties
-
-Each property can defined as:
-
-- **required**: the property cannot be empty
-- **cryped**: the property is crypted at rest
-- **nullable**: the property can be null
-
-### Indexes
-
-A property can be indexed. In DevOps Console/Design/CRUD it can be configured the following indexes:
-
-- **normal**: speedup the filter on that property and the sort (desc or asc)
-- **geo**: for geospatial search
-- **ttl**: is a special single-field indexes that CRUD can use to automatically remove documents from a collection after a certain amount of time
-
-The index can be unique. If set the value of the property must be unique in the collection.
 
 ## CRUD Headers
 
