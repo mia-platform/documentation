@@ -1,11 +1,5 @@
 # CRUD Service
 
-CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
-
-It's possible to configure CRUD Service with more that one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
-
-## Introduction
-
 The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. [CRUD Service is configured in the DevOps Console (follow this link for more details)](/api-console/crud-advanced).
 
 Via APIs it's possible to:
@@ -20,6 +14,54 @@ Via APIs it's possible to:
 The following guide will help you to get familiar with the APIs of the CRUD Service.
 
 ![API Portal](img/crud-api-portal.png)
+
+> Remember: the API Portal visualize all API configured and esposed by CRUD.
+
+## CRUD fields {#base}
+
+In DevOps Console it's possible to define the fields of a CRUD service [see here](/api-console/crud-advanced). Some fields are predefined and help the management of data, others custom and can be configured with different data types.
+
+All fields can be indexed to speed up the data retrieval.
+
+### Predefined fields
+
+The common fields of all collections managed by CRUD are the following: 
+
+- creatorId: id of the user who created the resource
+- createdAt: long that expresses the date and time of creation of the resource in milliseconds since 1970
+- updaterId: id of the user who last modified the resource
+- updatedAt: long which expresses in milliseconds since 1970 the date and time of last update of the resource
+- sync and trash: the sync and trash properties belong to every resource and are represented by numbers with a precise semantics.
+
+
+- read a collection and filter results;
+- find elements of a collection using MongoDB query syntax;
+- count number of elements in a collection;
+- create a new element in a collection (also with a bulk action);
+- update one or more elements of a collection;
+- delete one or more elements of a collection;
+
+### Data types
+
+When a new field is added it is possible to specify fields of different types:
+
+- String
+- Numbers
+- At your place
+- DateTime
+- ....
+- GeoPoint, see RFC 7946: {
+    "type": "Point",
+    "coordinates": [longitude: Double, latitude: Double]
+
+It is configured at startup through the definition of collections (one or more), to provide a consistent HTTP interface and to perform the validation of operations before executing them on the database.
+
+The definition of a collection involves indicating the list and the type of fields and optionally specifying indexes.
+
+In detail:
+
+
+  The sync property can take 3 values: 0, 1 or 2.
 
 > Remember: the API Portal visualize all API configured and exposed by CRUD.
 
@@ -43,36 +85,6 @@ In the following guide we will use a collection named *Plates* that contains a l
 - image: array of photos (a JSON object)
 - position: the geocoded position of a plate
 
-## Configure a CRUD in two minutes
-
-In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
-
-- open DevOps Console project Design Section
-- select CRUD menu
-- press Create new CRUD button
-- configure CRUD
-- select Endpoints menu
-- press Create new endpoint
-- configure the endpoint selecting the CRUD created
-- press Commit&Generate button and save the configuration in the preferred branch
-- select Deploy menu
-- select the environment and branch to deploy and deploy it
-- in less than one minute the new endpoint that exposes the configured CRUD service is available
-- select Documentation menu and open the API Portal, browse the CRUD endpoint deployed
-
- For more details [see here](/api-console/crud-advanced).
-
- ------------------------------------------------------------
-
-## CRUD Collection Properties
-
-Some collection field properties are predefined, others are custom and can be configured with different data types.
-
-All properties can be indexed to speed up the data retrieval. The indexes configuration can be set in DevOps Console/Design/CRUD section.
-
-### Predefined Collection Properties
-
-CRUD by default comes with a set of common properties that simplify the data management:
 
 - **_id**: unique 24 character length hexadecimal String that identifies a document in the collection
 - **creatorId**: String, id of the user who created the document
