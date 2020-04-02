@@ -211,7 +211,7 @@ The Tile Map Chart configuration allows you to insert a custom [leaflet map](htt
   }
 }
 ```
-*Options -> Chart:*
+##### Options -> Charts
 
 In this section you can insert all the options that you want in order to customize your leaflet map (see [Leaflet API reference](https://leafletjs.com/reference-1.6.0.html#map-option)), the only ones required are center and zoom. 
 
@@ -219,9 +219,9 @@ In addition to the map properties defined by leaflet documentation, you have to 
 
 Currently the only supported providers are **OpenStreetMap** and **BaseMap**.
 
-*Series:*
+##### Series
 
-Here you specify the *endpointData* that you want to show on the map through the usage of markers. Data recovered from endpoints should be in a specific format:
+In this section you list the different series of data that you want to show on the map. Each serie should have an *endpointData*, which specifies the path to be called in order to download the data points. Each data point should have the following format:
 
 ```
 {
@@ -232,15 +232,57 @@ Here you specify the *endpointData* that you want to show on the map through the
 }
 ```
 
-* **markerType**: The only marker supported right now is the *'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
+Along with the *endpointData*, you can add the following property to fully customize the markers displayed on the map:
+
+* **markerType** * (*required*): The only marker supported right now is the *'circleMarker'*, which allows showing bubbles with a radius that depends on the value of each data.
 
 * **markerOptions**: Here you can insert all the options defined by leaflet documentation (except the radius which is computed based on the data value -  see https://leafletjs.com/reference-1.6.0.html#circlemarker) in order to customize the *circleMarker*. 
+By default, the markers are displayed without any clustering. To add the clusterization, you should define an additional *cluster* property in the **markerOptions**.
+    * *cluster*: Object with the following properties.
+```
+{
+  type: ['weighted' | 'single'] // Required,
+  color: '#F08080', // Optional, color of the cluster group of markers 
+  textColor: '#FFFFFF' // Optional, color of the text inside the cluster groups
+} 
+
+```
+By default the *color* of cluster groups is equal to the color of markers and the *textColor* is white. Instead the *type* is required. Currently we support two type of cluster:
+     * *Weighted* - To display the cluster groups with the sum of values specified for each serie data point. (e.g. group of 3 markers with values 10, 10, and 10 respectively, diplays a cluster with 30 as text)
+     * *Single* - To display the cluster groups with the number of markers not weighted by custom values. (e.g. group of 3 markers with any value diplays a cluster with 3 as text)
+ ------ 
 
 * **minSize**: Integer indicating the minimum radius of the *circleMarker* (in pixels, default: 3).
 
 * **maxSize**: Integer indicating the maximum radius of the *circleMarker* (in pixels, default: 15).
 
-* **convergenceSpeed**: Integer indicating the convergence speed for optmizing bubble sizes depending on data (default: 100)
+* **convergenceSpeed**: Integer indicating the convergence speed for optimizing bubble sizes depending on data values (default: 100)
+
+
+Example of series with cluster option:
+
+```
+"series": [{
+        "id": "serie1",
+        "endpointData": "/charts/your-endpoint/json",
+        "name": "yourName",
+        "markerType": "circleMarker" // The only one currently supported
+        "markerOptions": {
+          // Options of the marker
+          color: " #8989ff",
+          // Cluster
+          cluster: {
+            type: "weighted", 
+            color: "#ffffff", 
+            colorText: "#000000"
+          }
+        }
+        // Required additional options for circleMarker
+        minSize: 5,
+        maxSize: 15,
+}]
+```
+
 
 #### Stock Chart Configuration
 
