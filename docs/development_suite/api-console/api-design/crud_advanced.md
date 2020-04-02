@@ -88,7 +88,7 @@ Here's an example of the file to upload.
     "description": "__STATE__"
   },
   {
-    "name": "edition",
+    "name": "PublicationDate",
     "type": "number",
     "required": true,
     "crypted": false,
