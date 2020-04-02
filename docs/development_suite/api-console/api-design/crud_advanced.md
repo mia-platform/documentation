@@ -53,19 +53,19 @@ If you want, you can upload your fields from file, selecting **Import fields fro
 Remember that the file must be a JSON with the following directions: 
 
 
-* Enter the property "name" in camelCase
-* Add properties with their "types" spelling as follow:
-    * "string"
-    * "Date"
-    * "number"
-    * "boolean"
-    * "GeoPoint"
-    * "RawObject"
-    * "Array_string"
-    * "Array_number"
-* "required" must be "false" or "true"
-* "crypted" must be "false" or "true"
-* "nullable" must be "false" or "true"
+* Enter the property `name` in camelCase
+* Add properties with their `types` spelling as follow:
+    * `string`
+    * `Date`
+    * `number`
+    * `boolean`
+    * `GeoPoint`
+    * `RawObject`
+    * `Array_string`
+    * `Array_number`
+* `required` must be `false` or `true`
+* `crypted` must be `false` or `true`
+* `nullable` must be `false` or `true`
 
 Here's an example of the file to upload.
 
