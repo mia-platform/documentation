@@ -61,7 +61,6 @@ Remember that the file must be a JSON with the following directions:
     * "boolean"
     * "GeoPoint"
     * "RawObject"
-    * "RawObject"
     * "Array_string"
     * "Array_number"
 * "required" must be "false" or "true"
