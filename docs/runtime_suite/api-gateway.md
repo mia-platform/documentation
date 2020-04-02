@@ -1,41 +1,33 @@
-## API Gateway ##
+## API Gateway
 
-The API Gateway is the microservice responsible for routing requests to the correct service.
-It also manages authentication, performs access control and rate limiting.
+The API Gateway is the microservice responsible for:
+
+- routing requests to the correct service inside Kubernetes;
+- verify the need of authentication and orchestrate the conversation with Auth service.
 
 Its main features are:
 
 * URL Mapping
-* Rate Limit
+* Rate Limit with Burst
 * Http Secure Headers
 * Request Dispaching
-* Secret Management API
+* API Key Management
 * Http Utilities
 * Proxy-Pass Plain
-* SSL Encryption
 * URL Rewriting
+* Microcache
 
-The service is composed by default from multiple nginx servers, 2 listening on ports 80 and 8080, 4 listening on unix sockets to return the error messages.
+The service is based on Nginx. All configurations are written by DevOps Console and stored on Git. Every time the Console deploy a new configuration Kubernetes apply it automaticcaly.
 
-Port 80 is used for application routing, while the backoffice is exposed to 8080.
+![API Gateway](img/gateway.PNG)
 
-![](img/gateway.PNG)
+## Edge Router
 
-### Client Proxy ###
+Edge Router is part of the API Gateway module and protects the API Gateway guaranting:
 
-The image consists of a nginx.conf file that applies the format of the registers and the basic settings.
-It also provides a secure.conf file that implements the best SSL security practice to include in the required server declaration. The path is /etc/nginx/secure.conf.
-The SSL configuration is based on the availability of three files within the / etc / usr / ssl / directory:
+- SSL termination;
+- route dispatching.
 
-- dhparam: a Diffie-Helman key generated with at least 2048 bits (4096 bits are a bit slow at this time)
+### Certificate Management
 
-- sslcrt: the certificate for SSL configuration
-
-- sslkey: the private key for SSL configuration
-
-By default the Nginx server will look for the server declaration within the .conf file within the /etc/nginx/conf.d directory.
-To write the various server declarations, you must follow the [official Nginx documentation](https://nginx.org/en/docs/).
-
-### Certificate Service ###
-
-This microservice manages the creation of the SSL certificates needed by Nginx to allow https connections to the cluster.
+The Edge Router manages the termination of the SSL certificates with auto-renew on Let's Encrypt.
