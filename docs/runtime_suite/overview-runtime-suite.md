@@ -43,7 +43,7 @@ Features include static files hosting, notifications, file management, and CRUD 
 * GraphQL Microservice
 * SDK Mobile
     * [SDK Android](sdk_android.md)
-    * [SDK_iOS](sdk_ios.md)
+    * [SDK iOS](sdk_ios.md)
 
 
 ###Data Services 
