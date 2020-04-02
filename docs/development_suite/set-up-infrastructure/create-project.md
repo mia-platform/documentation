@@ -158,7 +158,7 @@ From the template, you could access to:
 * template.coreLegacyImageName
 
 !!! warning
-  Do not set in tenant in cluster.envs object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
+    Do not set in tenant in cluster.envs object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
 
 An example of template for the `.gitlab-ci.yml` file:
 ```yml
