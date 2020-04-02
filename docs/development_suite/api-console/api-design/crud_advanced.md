@@ -109,7 +109,7 @@ Here's an example of the file to upload.
     "nullable": false
   },
   {
-    "name": "address",
+    "name": "Writer",
     "type": "RawObject",
     "required": false,
     "crypted": true,
