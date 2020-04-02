@@ -63,6 +63,7 @@ Remember that the file must be a JSON with the following directions:
     * `RawObject`
     * `Array_string`
     * `Array_number`
+    * `Array_RawObject`
 * `required` must be `false` or `true`
 * `crypted` must be `false` or `true`
 * `nullable` must be `false` or `true`
@@ -127,7 +128,17 @@ Here's an example of the file to upload.
     "required": false,
     "crypted": false,
     "nullable": false
+  },
+  {
+  "name":"Shops",
+  "type":"Array_RawObject",
+  "required":true,
+  "crypted":false,
+  "nullable":true,
+  "description":"where to find the books"
+
   }
+
 ```
 
 
