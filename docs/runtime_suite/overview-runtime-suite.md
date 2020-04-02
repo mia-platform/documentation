@@ -51,16 +51,18 @@ Features include static files hosting, notifications, file management, and CRUD 
     * [iOS SDK](sdk_ios.md)
 
 
-###Data Services 
+###Data & DB Reader Adapter 
 
-Manage data from every source safely via API: execute and aggregate SQL
-and NoSQL queries, commands and stored procedures, translate SOAP to REST API, manage data caches.
+Manage data from every source safely via API: execute and aggregate SQL and NoSQL queries, commands and stored procedures, translate SOAP to REST API, manage data caches.
 
-* [SQL Generic Reader](sql-reader.md)
-* [CQRS/ Event Source Management](event-source-management.md)
-* [Secure Data Exchange Service](secure-data-exchange-service.md)
+* [SQL DB Reader](sql-reader.md)
+* [Token Service](secure-data-exchange-service.md)
 * [Soap to Rest](soap-to-rest.md)
-* [Mongo 2 Kafka](mongo2kafka.md)
+* [Mongo Kafka Adapters](mongo2kafka.md)
+* Mongo DB Reader
+* Mongo DB Data Dumper
+* SQL Invoker
+* Exporter
 
 
 ###Growth and Voice Services
