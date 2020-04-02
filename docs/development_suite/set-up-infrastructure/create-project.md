@@ -179,10 +179,9 @@ variables:
   extends: .deploy_job
 
   variables:
-    KUBE_URL: "\${KUBE_DEV_URL}"
-    KUBE_TOKEN: "\${KUBE_DEV_TOKEN}"
-    KUBE_CA_PEM: "\${KUBE_DEV_CA_PEM}"
-    KUBE_NAMESPACE: "%cluster.namespace%"
+    KUBE_URL: "\${cluster.envs.KUBE_URL}"
+    KUBE_TOKEN: "\${cluster.envs.KUBE_TOKEN}"
+    KUBE_CA_PEM: "\${cluster.envs.KUBE_CA_PEM}"
     ENVIRONMENT_PREFIX: "%envPrefix%_"
 
   only:
