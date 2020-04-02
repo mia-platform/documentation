@@ -19,7 +19,8 @@ More in detail, a guide how to compile the tenant:
     ```js
       {
         "label": "Development",
-        "value": "development",
+        "envId": "development",
+        "envPrefix": "development",
         "hosts": [
           {
             "host": "%projectId%.test.mia-platform.eu"
@@ -31,10 +32,16 @@ More in detail, a guide how to compile the tenant:
         ],
         "cluster": {
           "hostname": "127.0.0.1", // hostname of the cluster
-          "namespace": "%projectId%-development"
+          "namespace": "%projectId%-development",
+          "envs": {
+            "KUBE_URL": "KUBE_DEV_URL",
+            "KUBE_TOKEN": "KUBE_DEV_TOKEN"
+          }
         }
       }
     ```
+    !!! warning
+        Do not set in cluster.envs object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
 
 * `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. As of now, the only supported type is `gitlab`.
 
@@ -90,7 +97,7 @@ How to compile the tenant:
   * `name` (*required*): name of the template to display;
   * `templateId` (*required*): the human readable id of the tenant (e.g. mia-platform-multitenant-template). It must adhere to this regex: (^[a-z]+[a-z0-9-]*$);
   * `description`: the description of the template;
-  * `archiveUrl`: url to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. (TODO: explain the interpolation)
+  * `archiveUrl`: url to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you should create a custom template. click [here](#how-to-create-a-project-archive) to see how.
   * `cmsImageName`: cms docker image to interpolate in `archiveUrl`. It should contains also the cms tag to use (if `cms-site` service is disabled, it will not be used).
   * `coreLegacyImageName`: baas core docker image to interpolate in `archiveUrl`. It should contains also the cms tag to use (if `baas-legacy` service is disabled, it will not be used).
   * `staticSecret`: some project could use the same static secret for a set of projects (especially used with an architecture with multiple `api-gateway` entrypoint). This is an object, for example:
@@ -123,6 +130,73 @@ How to compile the tenant:
       }
     ```
 
+## How to create a project archive
+
+The project archive is interpolated using [mustache](https://github.com/janl/mustache.js) as template system, using `%` as tags instead of default `{{` or `}}`.
+
+You could create project template to avoid copy/paste in every new project the same base configuration.
+
+At Mia, for example, we create a template to configure a project to use the platform configured to use auth0, headless cms, api portal and traefik configuration. So for a tenant using this template, create this type of project will be a very simple process.
+
+The view, or the data you can interpolate, are some project data. With mustache, we could iterate through an array, so we could have some configuration iterate for all the environments.
+Thee values you could use during template interpolation are:
+
+For the project (you could access using `project.${field}`)
+* projectId
+* name
+* configurationGitPath
+* environments
+
+Inside environments, you could access to:
+* envId
+* envPrefix
+* cluster (an object containing `namespace` and `envs` object). Here you could write the variable name for the specified environment where you set the cluster variable
+* hosts (an array of object, with `host` and `isBackoffice` fields)
+
+From the template, you could access to:
+* template.cmsImageName
+* template.coreLegacyImageName
+
+!!! warning
+  Do not set in tenant in cluster.envs object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
+
+An example of template for the `.gitlab-ci.yml` file:
+```yml
+include:
+  # job template
+  - project: 'platform/pipelines-templates'
+    file: '/deploy/deploy-job.yml'
+    ref: 'master'
+
+%#template.cmsImageName%
+variables:
+  MIA_CMS_IMAGE_NAME: "%template.cmsImageName%"
+%/template.cmsImageName%
+%#project.environments%
+
+%envId%:
+  stage: release
+  extends: .deploy_job
+
+  variables:
+    KUBE_URL: "\${KUBE_DEV_URL}"
+    KUBE_TOKEN: "\${KUBE_DEV_TOKEN}"
+    KUBE_CA_PEM: "\${KUBE_DEV_CA_PEM}"
+    KUBE_NAMESPACE: "%cluster.namespace%"
+    ENVIRONMENT_PREFIX: "%envPrefix%_"
+
+  only:
+    variables:
+      - $ENVIRONMENT_TO_DEPLOY == "%envId%"
+%/project.environments%
+```
+In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the template.
+
+All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, with `n` the number of environments. So, inside the environment, you could use the environment specific fields.
+For other possibilities, please check [mustache](https://github.com/janl/mustache.js) documentation.
+
+You may want to write a file or a a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolate for every environment.
+The interpolation data in those files is the `environments` at the first level (as in `mustache` sections), but you have the project as a key for every environment.
 
 # Create a project
 
