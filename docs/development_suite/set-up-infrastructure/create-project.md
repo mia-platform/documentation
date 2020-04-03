@@ -14,6 +14,8 @@ More in detail, a guide how to compile the tenant:
 * `tenantId` (*required*): the human readable id of the tenant (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
 * `description`: the description of the tenant;
 * `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps;
+* `cmsImageName`: cms docker image to interpolate in template archive. It should contains also the cms tag to use (if `cms-site` service is disabled in project creation, it will not be used).
+* `coreLegacyImageName`: baas core docker image to interpolate in template archive. It should contains also the cms tag to use (if `baas-legacy` service is disabled in project creation, it will not be used).
 * `environments` (*required*): an array of objects containing the environments definition for the tenant. The content of this arrays will be interpolated to replate `%projectId%` with inserted `projectId` field in project creation. Any object should contains, for example:
 
     ```js
@@ -98,8 +100,6 @@ How to compile the tenant:
   * `templateId` (*required*): the human readable id of the tenant (e.g. mia-platform-multitenant-template). It must adhere to this regex: (^[a-z]+[a-z0-9-]*$);
   * `description`: the description of the template;
   * `archiveUrl`: url to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you should create a custom template. click [here](#how-to-create-a-project-archive) to see how.
-  * `cmsImageName`: cms docker image to interpolate in `archiveUrl`. It should contains also the cms tag to use (if `cms-site` service is disabled, it will not be used).
-  * `coreLegacyImageName`: baas core docker image to interpolate in `archiveUrl`. It should contains also the cms tag to use (if `baas-legacy` service is disabled, it will not be used).
   * `staticSecret`: some project could use the same static secret for a set of projects (especially used with an architecture with multiple `api-gateway` entrypoint). This is an object, for example:
       ```json
         {
@@ -153,10 +153,6 @@ Inside environments, you could access to:
 * cluster (an object containing `namespace` and `envs` object). Here you could write the variable name for the specified environment where you set the cluster variable
 * hosts (an array of object, with `host` and `isBackoffice` fields)
 
-From the template, you could access to:
-* template.cmsImageName
-* template.coreLegacyImageName
-
 !!! warning
     Do not set in tenant in cluster.envs object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
 
@@ -168,10 +164,10 @@ include:
     file: '/deploy/deploy-job.yml'
     ref: 'master'
 
-%#template.cmsImageName%
+%#tenant.cmsImageName%
 variables:
-  MIA_CMS_IMAGE_NAME: "%template.cmsImageName%"
-%/template.cmsImageName%
+  MIA_CMS_IMAGE_NAME: "%tenant.cmsImageName%"
+%/tenant.cmsImageName%
 %#project.environments%
 
 %envId%:
@@ -189,7 +185,7 @@ variables:
       - $ENVIRONMENT_TO_DEPLOY == "%envId%"
 %/project.environments%
 ```
-In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the template.
+In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the tenant.
 
 All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, with `n` the number of environments. So, inside the environment, you could use the environment specific fields.
 For other possibilities, please check [mustache](https://github.com/janl/mustache.js) documentation.
