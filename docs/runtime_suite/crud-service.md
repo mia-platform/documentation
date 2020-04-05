@@ -1,5 +1,14 @@
 # CRUD Service
 
+CRUD acronym stays for Create-Read-Update-Delete. The CRUD service purpose is to abstract a Data Collection allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way. 
+
+It's possible to configure CRUD Service with more that one collection and to scale it horizotally.
+
+
+In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
+
+## Introduction
+
 The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. [CRUD Service is configured in the DevOps Console (follow this link for more details)](/api-console/crud-advanced).
 
 Via APIs it's possible to:
@@ -17,19 +26,34 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 
 > Remember: the API Portal visualize all API configured and esposed by CRUD.
 
-## Configure a CRUD in five simples steps
+## Configure a CRUD in two minutes
 
-///// TODO
+In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
 
-## CRUD fields {#base}
+- open DevOps Console project Design Section
+- select CRUD menu
+- press Create new CRUD button
+- configure CRUD
+- select Endpoints menu
+- press Create new enpoint
+- configure the endpoint selecting the CRUD created
+- press Commit&Generate button and save the configuration in the preferred branch
+- select Deploy menu
+- select the environment and branch to deploy and deploy it
+- in less than one minute the new endpoint that exposes the confgiured CRUD service is available
+- select Documentation menu and open the API Portal, browse the CRUD endpoint deplyed
 
-In DevOps Console it's possible to define the fields of a CRUD service [see here](/api-console/crud-advanced). Some fields are predefined others are custom and can be configured with different data types.
+ For more details [see here](/api-console/crud-advanced).
 
-All fields can be indexed to speed up the data retrieval.
+## CRUD Collection Properties {#base}
 
-### Predefined fields
+Some collection field properties are predefined, others are custom and can be configured with different data types.
 
-The common fields of all collections managed by CRUD are the following:
+All properties can be indexed to speed up the data retrieval. The indexes configuration can be set in DevOps Console/Design/CRUD section.
+
+### Predefined Collection Properties
+
+CRUD by default comes with a set of common properties that simplify the data management:
 
 - **_id**: unique ObjectId or String of the single item of the collection
 - **creatorId**: String, id of the user who created the item
@@ -38,29 +62,72 @@ The common fields of all collections managed by CRUD are the following:
 - **updatedAt**: Date, date and time when the item has been updated; this information is overwritten every time the item is updated
 - **`__STATE__`**: String, is the current state of the document, can be one of PUBLIC, DRAFT, TRASH, DELETED. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as DRAFT -> PUBLIC, while others are not.
 
-#### Example of a Collection Item
+#### Example of a Collection with only predefined Properties
 
-If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined fields. When you POST on that CRUD you will obtain the following item.
+If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following item.
+
+```bash
+curl --request GET \
+  --url https://your-url/v2/empty/ \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
+```
 
 ```json
 {
-    "creatorId": "public",
-    "createdAt": 1504601216920,
-    "updaterId": "public",
-    "updatedAt": 1504601216920,
-    "sync": 0,
-    "trash": 0,
-    "id": "86c32c9f-194e-46a1-b483-a07c118ff2fc"
-  }
+  "__STATE__" : "PUBLIC",
+  "_id" : "5e8a125eb74dbf0011444ed3",
+  "createdAt" : "2020-04-05T17:16:14.175Z",
+  "creatorId" : "public",
+  "updatedAt" : "2020-04-05T17:16:14.175Z",
+  "updaterId" : "public"
+}
 ```
 
 #### ```__STATE___``` management
 
+**```__STATE__```** is a special field that allows the Mia-Platform CRUD Service to manage a simple publishing workflow. The ```__STATE__``` field can assume the following values:
 
+##### STATE values
 
-### Data types
+- **PUBLIC**: the item is visible without specifing the value of ```_st``` in the querystring
+- **DRAFT**: the item is in draft status, to retrieve the item you need to specify in the querystring the parameter ```_st=DRAFT```
+- **TRASH**: the item is *soft deleted*; you can still query this item specifying in the querystring  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
+- **DELETED**: the item is *deleted*; you can still query this item specifying in the querystring  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
 
-When a new field is added it is possible to specify fields of different types:
+By default, when a new itam in CRUD is added via POST, the item status is DRAFT. It's possible to change this behaviour in the endpoint section of the CRUD changing the default beahviour to PUBLIC.
+
+It is possible to enable *hard delete* function to delete permanentely an item from the CMS.
+
+##### State Transitions
+
+Only the following transitions are allowed in the publish workflow. 
+
+|  Sorce/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
+|--------------------|---------|--------|--------|----------|
+| PUBLIC             |    -    |   OK   |   OK   |          |
+| DRAFT              |  OK     |   -    |   OK   |          |
+| TRASH              |         | OK     |   -    |   OK     |
+| DELETED            |         |        |   OK   |   -      |
+
+To transit the STATE of an item of a CRUD you need to POST it
+
+```json
+ POST /[COLLECTION_NAME]/{_id}/state
+ ```
+ for example
+
+ ```bash
+ curl --request POST \
+  --url https://demo.cloud.mia-platform.eu/v2/empty/5e8a125eb74dbf0011444ed3/state \
+  --header 'content-type: application/json' \
+  --header 'secret: secret' \
+  --data '{"stateTo":"PUBLIC"}'
+```
+
+### Collection Properties Types
+
+When a new property is added to a collection it is possible to specify the following types:
 
 - String
 - Numbers
@@ -71,38 +138,19 @@ When a new field is added it is possible to specify fields of different types:
     "type": "Point",
     "coordinates": [longitude: Double, latitude: Double]
 
-It is configured at startup through the definition of collections (one or more), to provide a consistent HTTP interface and to perform the validation of operations before executing them on the database.
 
-The definition of a collection involves indicating the list and the type of fields and optionally specifying indexes.
-
-In detail:
-
-
-  The sync property can take 3 values: 0, 1 or 2.
-
-    - 0: the resource is in the "normal" state: visible and synchronizable unless the value of trash;
-    - 1: the resource has been modified locally and must be loaded on the BaaS. This value only makes sense on the client side, it should never appear on the BaaS.
-    - 2: the resource is in the "draft" state (draft). The client application can choose (by configuration) whether or not to save this resource.
-
-    The trash property can take 4 values: 0, 1, 2, -1.
-
-    - 0: the resource is in the "normal" state: visible and synchronizable unless the value of sync;
-    - 1, 2: the resource is in the "trash" state, ie it has not been physically deleted, but it should no longer be visible (2 = not visible even to CMS);
-    - -1: the resource must be permanently deleted from the BaaS. This state only makes sense on the client side, it should never appear on the BaaS.
-
-    A small consideration on sync == 1 and trash == -1: these two values ​​have significance only on the client side and serve for the correct synchronization of the collections, in particular for the push operation. These values ​​should never appear on the BaaS, for this reason, before loading a resource with sync == 1 it is necessary to set sync = 0, while when you have trash == -1 the operation to be performed on the BaaS is the definitive cancellation of the resource.
-
-    | sync                  | trash                 | description               | action  |
-    | --------------------- |---------------------- | ------------------------- | --------|
-    | 1 (client reserved)   | 0	                    | Changed by the client	    | Upload data (with sync set to 0). If no errors then update local data else re-set sync to 1 and skip.|
-    | 2	                    | 0	                    | Draft	                    | Depending on client configuration: keep/delete local data.|
-    | 2	                    | 1	                    | Trash (CMS visible)	    | Delete local data.|
-    | 2	                    | 2	                    | Trash (CMS not visible)   | Delete local data.|
-    | 1	                    | -1 (client reserved)	| Deleted by the client	    | Delete remote data then, if no errors, delete local data.|
-    | 1 (client reserved)   | 1	                    | Trashed by the client	    | Upload data (with sync set to 2). If no errors then delete local data else re-set sync to 1 and skip.|
-    | -                     | -                     | Undefined	                | Delete local data or just skip.|
-
-- id: UUID generated by mongo to identify the resource
+string
+Date
+number
+boolean
+GeoPoint
+RawObject
+Array_string
+Array_number
+Array_RawObject
+required must be false or true
+crypted must be false or true
+nullable must be false or true
 
 
 ## Secure a CRUD
