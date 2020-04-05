@@ -45,7 +45,9 @@ In DevOps Console it's possible to configure the CRUD service. The task it's eas
 
  For more details [see here](/api-console/crud-advanced).
 
-## CRUD Collection Properties {#base}
+ ------------------------------------------------------------
+
+## CRUD Collection Properties
 
 Some collection field properties are predefined, others are custom and can be configured with different data types.
 
@@ -126,111 +128,7 @@ for example
   --data '{"stateTo":"PUBLIC"}'
 ```
 
-### Collection Properties Types
-
-When a new property is added to a collection it is possible to specify the following types:
-
-- String
-- Numbers
-- At your place
-- DateTime
-- ....
-- GeoPoint, see RFC 7946: {
-    "type": "Point",
-    "coordinates": [longitude: Double, latitude: Double]
-
-
-string
-Date
-number
-boolean
-GeoPoint
-RawObject
-Array_string
-Array_number
-Array_RawObject
-required must be false or true
-crypted must be false or true
-nullable must be false or true
-
-
-- **_id**: unique 24 character length hexadecimal String that identifies a document in the collection
-- **creatorId**: String, id of the user who created the document
-- **createdAt**: Date, date and time when the document has been created
-- **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
-- **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
-- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
-
-## Secure a CRUD
-The APIs can be protected in two ways:
- - with Secret key
- - with ACL
-
-If you create a CRUD named `empty` without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
-
-```bash
-curl --request GET \
-  --url https://your-url/v2/empty/ \
-  --header 'accept: application/json' \
-  --header 'secret: secret'
-```
-
-```json
-{
-  "__STATE__" : "PUBLIC",
-  "_id" : "5e8a125eb74dbf0011444ed3",
-  "createdAt" : "2020-04-05T17:16:14.175Z",
-  "creatorId" : "public",
-  "updatedAt" : "2020-04-05T17:16:14.175Z",
-  "updaterId" : "public"
-}
-```
-
-#### ```__STATE___``` management
-
-**```__STATE__```** is a special field that allows the Mia-Platform CRUD Service to manage a simple publishing workflow. The ```__STATE__``` field can assume the following values:
-
-##### STATE values
-
-- **PUBLIC**: the document is visible without specifying the value of ```_st``` in the query string
-- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```
-- **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
-
-> **Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
-
-By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in DevOps Console/Design/Endpoints section.
-
-It is also possible to enable *hard delete* function to delete permanently an document from the CMS.
-
-##### State Transitions
-
-Only the following transitions are allowed in the publish workflow. 
-
-|  Source/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
-|--------------------|---------|--------|--------|----------|
-| PUBLIC             |    -    |   OK   |   OK   |          |
-| DRAFT              |  OK     |   -    |   OK   |          |
-| TRASH              |  OK     | OK     |   -    |   OK     |
-| DELETED            |         |        |   OK   |   -      |
-
-To transit the STATE of an item of a CRUD you need to POST it
-
-```json
- POST /[COLLECTION_NAME]/{_id}/state
- ```
-
-for example
-
- ```bash
- curl --request POST \
-  --url https://your-url/v2/empty/5e8a125eb74dbf0011444ed3/state \
-  --header 'content-type: application/json' \
-  --header 'secret: secret' \
-  --data '{"stateTo":"PUBLIC"}'
-```
-
-update from DRAFT (default state) to PUBLISH the collection document `5e8a125eb74dbf0011444ed3`.
+update from DRAFT (default state) to PUBLISH the collection item 5e8a125eb74dbf0011444ed3.
 
 ### Collection Properties Types
 
@@ -239,27 +137,27 @@ When a new property is added to a collection it is possible to specify the follo
 - String: UTF-8 character set
 - Number
 - Boolean
-- GeoPoint (array of coordinates longitude, latitude)
+- GeoPoint
 
 ```json
-{ "position":
-  [
-    9.232457,
-    45.443919
-  ]
-}
+  {
+    "type": "Point",
+    "coordinates": [longitude: Double, latitude: Double]
+  }
 ```
 
-## CRUD endpoints
-APIs configured with Mia-Platform can be consumed with any technology that supports HTTP procurement.
-For tests during development we recommend one of the following tools:
+- Date
+- Object
+- Array of Strings
+- Array of Numbers
+- Array of Objects
 
-### Collection document Properties properties
+### Collection Item Propoerties properties
 
 Each property can defined as:
 
 - **required**: the property cannot be empty
-- **encrypted**: the property is encrypted at rest
+- **cryped**: the property is crypted at rest
 - **nullable**: the property can be null
 
 ### Indexes
@@ -270,26 +168,75 @@ A property can be indexed. In DevOps Console/Design/CRUD it can be configured th
 - **geo**: for geospatial search
 - **ttl**: is a special single-field indexes that CRUD can use to automatically remove documents from a collection after a certain amount of time
 
-An example can be found on the [Mia Platform demo] website (https://preprod.baas.makeitapp.eu/swagger/.
+The index can be unique. If set the value of the property must be unique in the collection.
 
-### CRUD Documentation
-
-API Portal
-
-### Create
+## CRUD Headers
 
 The CRUD service accept the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringyfied JSON, which is in AND with the query string. Example:
+- ***acl_rows***: an array of mongodb queries that limits the items that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the querystring. Example:
 
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 ```
 
-- ***acl_read_columns***: the list of properties to return in the result (projection). It is an array of strings. Example:
+- ***acl_read_columns***: the list of properties to return in the result. It is an array of strings. Example:
 
 ```json
 acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
+```
+
+Usually this is used by PRE/POST Orchestrator to manage concatenated requestes to CRUD.
+
+## CRUD Security
+
+### Expose a CRUD Service
+
+CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
+
+### CRUD ACL
+
+TODO
+
+#### Rows ACL
+
+TODO
+
+#### Columns ACL
+
+TODO
+
+------------------------------------------------------------
+
+## CRUD Endpoints
+
+APIs configured with Mia-Platform can be consumed with any technology that supports HTTP protocol. For tests during development we recommend one of the following tools:
+
+- [curl](https://curl.haxx.se/)
+- [insomnia](https://insomnia.rest/)
+- [postman](https://www.getpostman.com/)
+
+In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
+
+*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using DevOps Console.
+
+It follows the details about C-R-U-D operations.
+
+
+///////////////////////////////////////////////////////////
+CONTINUE FROM HERE 
+///////////////////////////////////////////////////////////
+
+### Create
+
+To create a resource it is sufficient to send a *POST* request to the endpoint passing in the body the information of the
+resource that you want to create.
+
+```bash
+curl -X POST https://your-url/heroes/ \
+-H  "accept: application/json" \
+-H  "content-type: application/json" \
+-H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
 ```
 
 - ***userId***: the user identifier that do the update
@@ -460,6 +407,7 @@ and the document become the following, without the price property and with the u
   }
 ]
 ```
+
 #### Read a single resource
 
 #### Insert multiple documents
@@ -814,6 +762,18 @@ It is possible to eliminate all the resources of a collection at a stroke. For t
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
 ```
 
+#### JoinService
+
+This  service provides the join feature against two models. That feature is served on /join/<type>/:from/:to/export, where:
+
+- type: one-to-one or one-to-many or many-to-many
+- from: the collection endpoint from which the join starts
+- to: the collection endpoint which the join ends to
+
+This API responses always in application/application/x-ndjson
+
+------------------------------------------------------------
+
 ## How to use CRUD
 
 TODO
@@ -846,24 +806,43 @@ TODO
 
 TODO
 
+## Sync a CRUD offline
+
+It is possible to sync a CRUD service and a device (mobile or app) after a connection lost and sync back data.
+
+This feature will be available on Mia-Platform v6
+
+------------------------------------------------------------
+
+## CRUD Limits
+
+CRUD service has the following limits:
+
+- dimension of a single item in a collection: 16 MB
+- default number of returned items of a collection from a GET: 200
+
 ## Response codes of CRUD
 
 Below is a list of return codes typical of an API request:
 
-- 2xx (Success category)
+- **2xx (Success category)**
 Success status:
   - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
   - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
   - 204 No Content represents the request is successfully processed, but has not returned any content.
-- 3xx (Redirection Category)
+- **3xx (Redirection Category)**
   - 304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
-- 4xx (Client Error Category)
+- **4xx (Client Error Category)**
   These status codes represent that the client has raised a faulty request.
   - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
   - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
   - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
   - 404 Not Found indicates that the requested resource is not available now.
   - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
-- 5xx (Server Error Category)
+- **5xx (Server Error Category)**
   - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
   - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
+
+## Further Readings
+
+  TODO
