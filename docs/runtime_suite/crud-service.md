@@ -17,86 +17,30 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 
 > Remember: the API Portal visualize all API configured and esposed by CRUD.
 
+## Configure a CRUD in five simples steps
+
+///// TODO
+
 ## CRUD fields {#base}
 
-In DevOps Console it's possible to define the fields of a CRUD service [see here](/api-console/crud-advanced). Some fields are predefined and help the management of data, others custom and can be configured with different data types.
+In DevOps Console it's possible to define the fields of a CRUD service [see here](/api-console/crud-advanced). Some fields are predefined others are custom and can be configured with different data types.
 
 All fields can be indexed to speed up the data retrieval.
 
 ### Predefined fields
 
-The common fields of all collections managed by CRUD are the following: 
+The common fields of all collections managed by CRUD are the following:
 
-- creatorId: id of the user who created the resource
-- createdAt: long that expresses the date and time of creation of the resource in milliseconds since 1970
-- updaterId: id of the user who last modified the resource
-- updatedAt: long which expresses in milliseconds since 1970 the date and time of last update of the resource
-- sync and trash: the sync and trash properties belong to every resource and are represented by numbers with a precise semantics.
-
-
-Via APIs it's possible to:
-
-- read a collection and filter results;
-- find documents of a collection using MongoDB query syntax;
-- count number of documents in a collection;
-- create a new element in a collection (also with a bulk action);
-- update one or more documents of a collection;
-- delete one or more documents of a collection;
-
-The following guide will help you to get familiar with the APIs of the CRUD Service.
-
-![API Portal](img/crud-api-portal.png)
-
-> Remember: the API Portal visualize all API configured and esposed by CRUD.
-
-## Configure a CRUD in two minutes
-
-In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
-
-- open DevOps Console project Design Section
-- select CRUD menu
-- press Create new CRUD button
-- configure CRUD
-- select Endpoints menu
-- press Create new enpoint
-- configure the endpoint selecting the CRUD created
-- press Commit&Generate button and save the configuration in the preferred branch
-- select Deploy menu
-- select the environment and branch to deploy and deploy it
-- in less than one minute the new endpoint that exposes the confgiured CRUD service is available
-- select Documentation menu and open the API Portal, browse the CRUD endpoint deplyed
-
- For more details [see here](/api-console/crud-advanced).
-
- ------------------------------------------------------------
-
-## CRUD Collection Properties
-
-Some collection field properties are predefined, others are custom and can be configured with different data types.
-
-All properties can be indexed to speed up the data retrieval. The indexes configuration can be set in DevOps Console/Design/CRUD section.
-
-### Predefined Collection Properties
-
-CRUD by default comes with a set of common properties that simplify the data management:
-
-- **_id**: unique ObjectId or String of the single document of the collection
-- **creatorId**: String, id of the user who created the document
-- **createdAt**: Date, date and time when the document has been created
-- **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
-- **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
+- **_id**: unique ObjectId or String of the single item of the collection
+- **creatorId**: String, id of the user who created the item
+- **createdAt**: Date, date and time when the item has been created
+- **updaterId**: String, id of the user who last updated the item; this information is overwritten every time the item is updated
+- **updatedAt**: Date, date and time when the item has been updated; this information is overwritten every time the item is updated
 - **`__STATE__`**: String, is the current state of the document, can be one of PUBLIC, DRAFT, TRASH, DELETED. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as DRAFT -> PUBLIC, while others are not.
 
-#### Example of a Collection with only predefined Properties
+#### Example of a Collection Item
 
-If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
-
-```bash
-curl --request GET \
-  --url https://your-url/v2/empty/ \
-  --header 'accept: application/json' \
-  --header 'secret: secret'
-```
+If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined fields. When you POST on that CRUD you will obtain the following item.
 
 ```json
 {
@@ -108,6 +52,10 @@ curl --request GET \
   "updaterId" : "public"
 }
 ```
+
+#### ```__STATE___``` management
+
+
 
 ### Data types
 
@@ -166,6 +114,10 @@ update from DRAFT (default state) to PUBLISH the collection document 5e8a125eb74
 
 ### Collection Properties Types
 
+## Secure a CRUD
+The APIs can be protected in two ways:
+ - with Secret key
+ - with ACL
 
 ## CRUD Headers
 
@@ -176,42 +128,58 @@ The CRUD service accept the following header:
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 ```
-
-- ***acl_read_columns***: the list of properties to return in the result. It is an array of strings. Example:
-
-```json
-acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
+{
+       "acl": {
+           "access": {
+               "users": [],
+               "groups": [
+                   "public"
+               ]
+           },
+           "read": {
+               "users": [],
+               "groups": [
+                   "public"
+               ],
+               "secreted": false
+           },
+           "create": {
+               "users": [],
+               "groups": [
+                   "users"
+               ]
+           },
+           "update": {
+               "users": [
+                   "creator"
+               ],
+               "groups": []
+           },
+           "delete": {
+               "users": [
+                   "creator"
+               ],
+               "groups": []
+           },
+           "secreted": true,
+           "enabled": false
+       }
+   }
 ```
+The secret key is configured in the file
 
-Usually this is used by PRE/POST Orchestrator to manage concatenated requestes to CRUD.
+```
+credentials.json
+```
+and must be passed into the header
 
-## CRUD Security
+## CRUD endpoints
+APIs configured with Mia-Platform can be consumed with any technology that supports HTTP procurement.
+For tests during development we recommend one of the following tools:
 
-### Expose a CRUD Service
-
-CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
-
-### CRUD ACL
-
-TODO
-
-#### Rows ACL
-
-TODO
-
-#### Columns ACL
-
-TODO
-
-------------------------------------------------------------
-
-## CRUD Endpoints
-
-APIs configured with Mia-Platform can be consumed with any technology that supports HTTP protocol. For tests during development we recommend one of the following tools:
-
-- [curl](https://curl.haxx.se/)
-- [insomnia](https://insomnia.rest/)
-- [postman](https://www.getpostman.com/)
+- curl: [https://curl.haxx.se] (https://curl.haxx.se/)
+- insomnia: [https://insomnia.rest] (https://insomnia.rest/)
+- postman: [https://www.getpostman.com] (https://www.getpostman.com/)
 
 In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
 
@@ -219,7 +187,11 @@ In the examples for brevity we will use curl. Following are the typical operatio
 
 It follows the details about C-R-U-D operations.
 
-### Create
+An example can be found on the [Mia Platform demo] website (https://preprod.baas.makeitapp.eu/swagger/.
+
+### CRUD Documentation
+
+API Portal
 
 ### Create
 
@@ -391,7 +363,7 @@ It is possible to paginate a request by passing two parameters:
 
 For example:
 
-```
+```bash
 curl -X GET https://your-url/heroes/?{"$skip":0,"$limit":25} \
 -H "accept: application/json" \
 -H "content-type: application/json" \
@@ -401,7 +373,7 @@ returns the first 25 records of the list.
 
 It is possible to compose sort and pagination.
 
-```
+```bash
 curl -X GET https://your-url/heroes/?{"$skip":0,"$limit":25,"$sort":{"name":-1}} \
 -H "accept: application/json" \
 -H "content-type: application/json" \
@@ -412,7 +384,7 @@ Note: you can use the *_q_* parameter in the query string instead of passing the
 
 from
 
-```
+```json
 {"$skip":0,"$limit":25,"$sort":{"name":-1}}
 ```
 
@@ -422,9 +394,7 @@ to
 %7B%22%24skip%22%3A0%2C%22%24limit%22%3A25%2C%22%24sort%22%3A%7B%22name%22%3A-1%7D%7D
 ```
 
-```json
-{"$skip":0,"$limit":25,"$sort":{"name":-1}}
-```
+```bash
 curl -X GET https://your-url/heroes/?_q=%7B%22%24skip%22%3A0%2C%22%24limit%22%3A25%2C%22%24sort%22%3A%7B%22name%22%3A-1%7D%7D \
 -H "accept: application/json" \
 -H "content-type: application/json" \
@@ -450,7 +420,7 @@ the name has Marvel inside.
 
 The query must be encoded and passed to _q parameter
 
-```
+```bash
 curl -X GET https://your-url/heroes/?_q=%7B%22%24and%22%3A%5B%0A%20%20%20%20%7B%22gender%22%3A%22female%22%7D%2C%0A%20%20%20%20%7B%22year%22%3A%7B%22%24lt%22%3A631148400000%7D%7D%2C%0A%20%20%20%20%7B%22powers%22%3A%7B%22%24regex%22%3A%22speed%22%2C%22%24options%22%3A%22i%22%7D%7D%2C%0A%20%20%20%20%7B%22%24or%22%3A%5B%7B%22name%22%3A%7B%22%24regex%22%3A%22Marvel%22%2C%22%24options%22%3A%22i%22%7D%7D%5D%7D%0A%20%20%5D%0A%7D \
 -H "accept: application/json" \
 -H "content-type: application/json" \
@@ -467,7 +437,7 @@ To enable this feature you need to create an Position index on DevOps Console.
 
 When the index is created you can use $nearSphere. For example to search an hero near you, beetween 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
 
-```
+```json
 {"position":
   {"$nearSphere":
      {"from": [9.18,45.43], "minDistance": 0, "maxDistance": 1200}
@@ -477,12 +447,12 @@ When the index is created you can use $nearSphere. For example to search an hero
 
 to get the list of heroes just encode the query and use _q.
 
-```
+```bash
 curl --request GET \
   --url 'https://your-url/heroes/?_q=%20%7B%22position%22%3A%7B%22%24nearSphere%22%3A%7B%22from%22%3A%5B9.18%2C45.43%5D%2C%22minDistance%22%3A0%2C%22maxDistance%22%3A1200%7D%7D%7D' \
   --header 'accept: application/json' \
   --header 'secret: secret'
-  ````
+  ```
 
 The result will be sorted from the nearest from the farest.
 
@@ -510,28 +480,6 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 
 #### Other Filters
 
-You can use more MongoDB filters in query **_q**. Here is the complete list:
-
-- $gt
-- $lt
-- $gte
-- $lte
-- $eq
-- $ne
-- $in
-- $nin
-- $all
-- $exists
-- $nearSphere
-- $regex
-- $elemMatch and $options
-
-> Aggregate cannot be used. To use aggregate please see MongoDB Reader.
-
-#### Count
-
-It may be helpful to know how many documents contains a list of resources. For this purpose it is sufficient to invoke a GET on the /count of the resource
-
 ```bash
 curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
 ```
@@ -552,9 +500,6 @@ To update a resource it is sufficient to invoke a PUT passing in the body the re
 For example, if I add the super power *flight* to Ms. Marvel, I have to pass in the body the id and the array with the super powers
 
 ```json
-{"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
-"powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
-```
 {"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
 "powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
 ```
@@ -580,14 +525,14 @@ See below for some sample cURLs for **/PATCH** */books-endpoint/{:id}*   where `
 
 **Case Merge**
 
-```
+```bash
 curl -X PATCH "http://crud-service:3000/books-endpoint/5cf83b600000000000000000?_q=%7B%22attachments.name%22%3A%20%22John%20Doe%22%7D&_st=PUBLIC" -H "accept: application/json" -H "Content-Type: application/json" -d "{ "$set": { "attachments.$.merge": { "name": "renamed attachment" } }}"
 
 ```
 
 **Case Replace**
 
-```
+```bash
 curl -X PATCH "http://crud-service:3000/books-endpoint/5cf83b600000000000000000?_q=%7B%22attachments.name%22%3A%20%22John%20Doe%22%7D&_st=PUBLIC" -H "accept: application/json" -H "Content-Type: application/json" -d "{ "$set": { "attachments.$.replace": { "name": "renamed attachment", content: "Lorem ipsum dolor sit amet", "state": "attached" } }}"
 ```
 
@@ -607,7 +552,7 @@ To put it in the trash can simply set *trash* to 1 (for details see the section 
 
 To delete it permanently
 
-```
+```bash
 curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
 ```
 
@@ -615,35 +560,60 @@ curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "cont
 
 It is possible to eliminate all the resources of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
 
-```
+```bash
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
 ```
 
 ## How to use CRUD
 
+TODO
 
 ### When use it
 
+TODO
 
 ### When not use it
 
-## Response codes of an API
-    Below is a list of return codes typical of an API request:
+TODO
 
-    - 2xx (Success category)
-    Success status:
-      - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
-      - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
-      - 204 No Content represents the request is successfully processed, but has not returned any content.
-    - 3xx (Redirection Category)
-     - 304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
-    - 4xx (Client Error Category)
-     These status codes represent that the client has raised a faulty request.
-      - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-      - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
-      - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
-      - 404 Not Found indicates that the requested resource is not available now.
-      - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
-    - 5xx (Server Error Category)
-      - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
-      - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
+## Use CRUD in Microservices
+
+TODO
+
+### CRUD with Node.js
+
+TODO
+
+### Call with Java
+
+TODO
+
+### Call with Kotlin
+
+TODO
+
+### Call with Go
+
+TODO
+
+## Response codes of CRUD
+
+Below is a list of return codes typical of an API request:
+
+- 2xx (Success category)
+Success status:
+  - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
+  - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
+  - 204 No Content represents the request is successfully processed, but has not returned any content.
+- 3xx (Redirection Category)
+  - 304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
+- 4xx (Client Error Category)
+  These status codes represent that the client has raised a faulty request.
+  - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
+  - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
+  - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
+  - 404 Not Found indicates that the requested resource is not available now.
+  - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
+- 5xx (Server Error Category)
+  - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
+  - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
