@@ -150,7 +150,7 @@ For the project (you could access using `project.${field}`)
 Inside environments, you could access to:
 * envId
 * envPrefix
-* cluster (an object containing `namespace` and `envs` object). Here you could write the variable name for the specified environment where you set the cluster variable
+* cluster (an object containing `namespace` and `envs` object). Here you find the variables names for the specified environment where you set the cluster variable
 * hosts (an array of object, with `host` and `isBackoffice` fields)
 
 !!! warning
