@@ -46,6 +46,10 @@ In DevOps Console it's possible to configure the CRUD service. The task it's eas
 
  ------------------------------------------------------------
 
+## CRUD Service Configuration
+
+TODO env vars and prerequisite
+
 ## CRUD Collection Properties
 
 Some collection field properties are predefined, others are custom and can be configured with different data types.
@@ -121,7 +125,7 @@ for example
 
  ```bash
  curl --request POST \
-  --url https://demo.cloud.mia-platform.eu/v2/empty/5e8a125eb74dbf0011444ed3/state \
+  --url https://your-url/v2/empty/5e8a125eb74dbf0011444ed3/state \
   --header 'content-type: application/json' \
   --header 'secret: secret' \
   --data '{"stateTo":"PUBLIC"}'
@@ -218,21 +222,31 @@ APIs configured with Mia-Platform can be consumed with any technology that suppo
 
 In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
 
-*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using DevOps Console.
+>*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using DevOps Console.
 
 Let's see how to perform C-R-U-D operations.
 
+All examples are sent to https://your-url Mia-Platfrom instance. We assume that the endpoints are only protected by API Key.
+
+```json
+secret: secret
+```
+
+If your endpoints are also protected by authentication and authorization you need to pass the access token to the curl command.
+
 ### Create
 
-It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is create automatically. A document can be created in three different ways:
+It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is created automatically. A document can be created in three different ways:
 
 - inserting a single JSON document
-- insert or update one JSON document
+- inserting or updating one JSON document
 - inserting multiple JSON documents (bulk)
+
+The JSON document sent to CRUD is validated against the JSON schema defined in DevOps Console before the insertion.
 
 #### Insert a single document
 
-To create a Collection document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection ```plates``` you need to create a JSON like this one:
+To create a document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection ```plates``` you need to create a JSON like this one:
 
 ```json
 {
@@ -245,7 +259,7 @@ and insert it in the collection using a POST request
 
 ```bash
 curl --request POST \
-  --url https://demo.cloud.mia-platform.eu/v2/plates/ \
+  --url https://your-url/v2/plates/ \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'secret: secret' \
@@ -268,7 +282,7 @@ If you are not sure if the document is already present in the collection, you ca
 
 ```bash
 curl --request POST \
-  --url 'https://demo.cloud.mia-platform.eu/v2/plates/upsert-one?name=Spaghetti%20allo%20Scoglio' \
+  --url 'https://your-url/v2/plates/upsert-one?name=Spaghetti%20allo%20Scoglio' \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'secret: secret' \
@@ -277,13 +291,13 @@ curl --request POST \
 
 in response you will obtain the document if already exist or a new document if is not present. The document will reflect all the updates you specified.
 
-**note**: if you don't specify the query string the first document is updated.
+>**note**: if you don't specify the query string the first document of the collection is updated.
 
 If instead of ```$set``` you use ```$setOnInsert``` values are set only if the document don't exist.
 
 With upsert-one you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. It follows the details.
 
-**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that the operation is not atomic.
+>**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that this operation is not atomic.
 
 ##### Unset an item value
 
@@ -311,7 +325,7 @@ The bulk insert can be performed POST on CRUD a JSON **array** of documents. For
 
 ```bash
 curl --request POST \
-  --url https://demo.cloud.mia-platform.eu/v2/plates/bulk \
+  --url https://your-url/v2/plates/bulk \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'secret: secret' \
