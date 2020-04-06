@@ -223,6 +223,14 @@ Let's see how to perform C-R-U-D operations.
 
 ### Create
 
+It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is create automatically. A document can be created in three different ways:
+
+- inserting a single JSON document
+- inserting multiple JSON documents (bulk)
+- insert or update on or more JSON document
+
+#### Insert a single document
+
 To create a Collection document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection ```plates``` you need to create a JSON like this one:
 
 ```json
@@ -253,6 +261,30 @@ in response, you will get this JSON:
 
 where **_id** is the unique identifier of the new document inserted.
 
+#### Insert multiple documents
+
+The bulk insert can be performed POST on CRUD an array of documents. For example to add three dishes to plates collection you have to POST the /bulk on the resource.
+
+```bash
+curl --request POST \
+  --url https://demo.cloud.mia-platform.eu/v2/plates/bulk \
+  --header 'accept: application/json' \
+  --header 'content-type: application/json' \
+  --header 'secret: pippo' \
+  --data '[{"name":"Risotto ai funghi porcini","description":" Risotto with porcini mushrooms"},{"name":"Lasagna","description":"Stacked layers of flat pasta alternating with fillings such as ragù"},{"name":"Tiramisu","description":"Savoiardi dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese"}]'
+```
+
+```json
+[
+ {"_id":"5e8af37ab74dbf0011444ed6"},
+ {"_id":"5e8af37ab74dbf0011444ed7"},
+ {"_id":"5e8af37ab74dbf0011444ed8"}
+]
+```
+
+#### Insert or Update one or more documents
+
+ddd
 
 ### Read
 
@@ -582,6 +614,12 @@ It is possible to eliminate all the resources of a collection at a stroke. For t
 ```bash
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
 ```
+
+### Other features
+
+#### Validate
+
+TODO
 
 #### JoinService
 
