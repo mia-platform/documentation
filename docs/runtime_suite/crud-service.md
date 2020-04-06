@@ -1,9 +1,8 @@
 # CRUD Service
 
-CRUD acronym stays for Create-Read-Update-Delete. The CRUD service purpose is to abstract a Data Collection allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way. 
+CRUD acronym stays for Create-Read-Update-Delete. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
 
 It's possible to configure CRUD Service with more that one collection and to scale it horizotally.
-
 
 In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
 
@@ -14,11 +13,11 @@ The CRUD Service is a microservice that exposes via Restful API a set of MongoDB
 Via APIs it's possible to:
 
 - read a collection and filter results;
-- find elements of a collection using MongoDB query syntax;
-- count number of elements in a collection;
+- find documents of a collection using MongoDB query syntax;
+- count number of documents in a collection;
 - create a new element in a collection (also with a bulk action);
-- update one or more elements of a collection;
-- delete one or more elements of a collection;
+- update one or more documents of a collection;
+- delete one or more documents of a collection;
 
 The following guide will help you to get familiar with the APIs of the CRUD Service.
 
@@ -57,16 +56,16 @@ All properties can be indexed to speed up the data retrieval. The indexes config
 
 CRUD by default comes with a set of common properties that simplify the data management:
 
-- **_id**: unique ObjectId or String of the single item of the collection
-- **creatorId**: String, id of the user who created the item
-- **createdAt**: Date, date and time when the item has been created
-- **updaterId**: String, id of the user who last updated the item; this information is overwritten every time the item is updated
-- **updatedAt**: Date, date and time when the item has been updated; this information is overwritten every time the item is updated
+- **_id**: unique ObjectId or String of the single document of the collection
+- **creatorId**: String, id of the user who created the document
+- **createdAt**: Date, date and time when the document has been created
+- **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
+- **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
 - **`__STATE__`**: String, is the current state of the document, can be one of PUBLIC, DRAFT, TRASH, DELETED. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as DRAFT -> PUBLIC, while others are not.
 
 #### Example of a Collection with only predefined Properties
 
-If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following item.
+If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
 
 ```bash
 curl --request GET \
@@ -92,14 +91,14 @@ curl --request GET \
 
 ##### STATE values
 
-- **PUBLIC**: the item is visible without specifing the value of ```_st``` in the querystring
-- **DRAFT**: the item is in draft status, to retrieve the item you need to specify in the querystring the parameter ```_st=DRAFT```
-- **TRASH**: the item is *soft deleted*; you can still query this item specifying in the querystring  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the item is *deleted*; you can still query this item specifying in the querystring  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
+- **PUBLIC**: the document is visible without specifing the value of ```_st``` in the querystring
+- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the querystring the parameter ```_st=DRAFT```
+- **TRASH**: the document is *soft deleted*; you can still query this document specifying in the querystring  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
+- **DELETED**: the document is *deleted*; you can still query this document specifying in the querystring  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
 
-By default, when a new itam in CRUD is added via POST, the item status is DRAFT. It's possible to change this behaviour in the endpoint section of the CRUD changing the default beahviour to PUBLIC.
+By default, when a new itam in CRUD is added via POST, the document status is DRAFT. It's possible to change this behaviour in the endpoint section of the CRUD changing the default beahviour to PUBLIC.
 
-It is possible to enable *hard delete* function to delete permanentely an item from the CMS.
+It is possible to enable *hard delete* function to delete permanentely an document from the CMS.
 
 ##### State Transitions
 
@@ -112,7 +111,7 @@ Only the following transitions are allowed in the publish workflow.
 | TRASH              |         | OK     |   -    |   OK     |
 | DELETED            |         |        |   OK   |   -      |
 
-To transit the STATE of an item of a CRUD you need to POST it
+To transit the STATE of an document of a CRUD you need to POST it
 
 ```json
  POST /[COLLECTION_NAME]/{_id}/state
@@ -128,7 +127,7 @@ for example
   --data '{"stateTo":"PUBLIC"}'
 ```
 
-update from DRAFT (default state) to PUBLISH the collection item 5e8a125eb74dbf0011444ed3.
+update from DRAFT (default state) to PUBLISH the collection document 5e8a125eb74dbf0011444ed3.
 
 ### Collection Properties Types
 
@@ -152,7 +151,7 @@ When a new property is added to a collection it is possible to specify the follo
 - Array of Numbers
 - Array of Objects
 
-### Collection Item Propoerties properties
+### Collection document Propoerties properties
 
 Each property can defined as:
 
@@ -174,7 +173,7 @@ The index can be unique. If set the value of the property must be unique in the 
 
 The CRUD service accept the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the items that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the querystring. Example:
+- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the querystring. Example:
 
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
@@ -222,15 +221,9 @@ In the examples for brevity we will use curl. Following are the typical operatio
 
 It follows the details about C-R-U-D operations.
 
-
-///////////////////////////////////////////////////////////
-CONTINUE FROM HERE 
-///////////////////////////////////////////////////////////
-
 ### Create
 
-To create a resource it is sufficient to send a *POST* request to the endpoint passing in the body the information of the
-resource that you want to create.
+To create a Collection document use *POST* request and pass in the body the JSON representation of the new document.
 
 ```bash
 curl -X POST https://your-url/heroes/ \
@@ -516,7 +509,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 
 #### Count
 
-It may be helpful to know how many items contains a list of resources. For this purpose it is sufficient to invoke a GET on the /count of the resource
+It may be helpful to know how many documents contains a list of resources. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
 ```bash
 curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
@@ -547,15 +540,15 @@ In return I get the updated resource
 > Attention: if you want to update a Resource, send only the modified properties to the body to not overwrite
 > properties modified by others.
 
-#### Patching array items
+#### Patching array documents
 
-  - Support for patching array items. The `$set` command works properly on both primitive and `RawObject` item types, by using `array.$.replace` and `array.$.merge` as keys in the `$set` command object.
+  - Support for patching array documents. The `$set` command works properly on both primitive and `RawObject` document types, by using `array.$.replace` and `array.$.merge` as keys in the `$set` command object.
   This feature involves the following CRUD operations:
     - Patch by ID
     - Patch many
     - Patch bulk
-  - `array.$.replace` Replace entirely the query-matching array item with the content passed as value.
-  - `array.$.merge`   Edits only the specified fields of the query-matching array item with the content passed as value.
+  - `array.$.replace` Replace entirely the query-matching array document with the content passed as value.
+  - `array.$.merge`   Edits only the specified fields of the query-matching array document with the content passed as value.
 
 See below for some sample cURLs for **/PATCH** */books-endpoint/{:id}*   where ```_q={"attachments.name": "John Doe", _st: "PUBLIC"}```
 
@@ -656,8 +649,8 @@ This feature will be available on Mia-Platform v6
 
 CRUD service has the following limits:
 
-- dimension of a single item in a collection: 16 MB
-- default number of returned items of a collection from a GET: 200
+- dimension of a single document in a collection: 16 MB
+- default number of returned documents of a collection from a GET: 200
 
 ## Response codes of CRUD
 
