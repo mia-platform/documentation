@@ -181,6 +181,7 @@ acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 ```
 
 - ***acl_read_columns***: the list of properties to return in the result. It is an array of strings. Example:
+- ***userId***: the user identifier that do the update
 
 ```json
 acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
@@ -232,8 +233,8 @@ CONTINUE FROM HERE
 It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is create automatically. A document can be created in three different ways:
 
 - inserting a single JSON document
+- insert or update one JSON document
 - inserting multiple JSON documents (bulk)
-- insert or update on or more JSON document
 
 #### Insert a single document
 
@@ -267,16 +268,57 @@ in response, you will get this JSON:
 
 where **_id** is the unique identifier of the new document inserted.
 
+#### Insert or Update one document
+
+If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the endpoint upsert-one. You need to specify in query parameters all data to match eventually the existent document and in request body the JSON document you want to insert or update.
+
+```bash
+curl --request POST \
+  --url 'https://demo.cloud.mia-platform.eu/v2/plates/upsert-one?name=Spaghetti%20allo%20Scoglio' \
+  --header 'accept: application/json' \
+  --header 'content-type: application/json' \
+  --header 'secret: pippo' \
+  --data '{"$set":{"name":"Spaghetti allo Scoglio"}}'
+```
+
+in response you will obtain the document if already exist or a new document if is not present. The document will reflect all the updates you specified.
+
+**note**: if you don't specify the query string the first document is updated.
+
+If instead of ```$set``` you use ```$setOnInsert``` values are set only if the document don't exist.
+
+With upsert-one you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. It follows the details.
+
+##### Unset an item value
+
+TODO
+
+##### Increase a counter
+
+TODO
+
+##### Multiply a value
+
+TODO
+
+##### Set current date
+
+TODO
+
+##### Add an item to an existing array
+
+TODO push
+
 #### Insert multiple documents
 
-The bulk insert can be performed POST on CRUD an array of documents. For example to add three dishes to plates collection you have to POST the /bulk on the resource.
+The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example to add three dishes to plates collection you have to POST the /bulk on the resource.
 
 ```bash
 curl --request POST \
   --url https://demo.cloud.mia-platform.eu/v2/plates/bulk \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --header 'secret: pippo' \
+  --header 'secret: secret' \
   --data '[{"name":"Risotto ai funghi porcini","description":" Risotto with porcini mushrooms"},{"name":"Lasagna","description":"Stacked layers of flat pasta alternating with fillings such as ragù"},{"name":"Tiramisu","description":"Savoiardi dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese"}]'
 ```
 
@@ -288,9 +330,6 @@ curl --request POST \
 ]
 ```
 
-#### Insert or Update one or more documents
-
-ddd
 
 ### Read
 
