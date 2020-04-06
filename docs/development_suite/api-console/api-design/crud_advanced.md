@@ -130,13 +130,12 @@ Here's an example of the file to upload.
     "nullable": false
   },
   {
-  "name":"Shops",
-  "type":"Array_RawObject",
-  "required":true,
-  "crypted":false,
-  "nullable":true,
-  "description":"where to find the books"
-
+    "name":"shops",
+    "type":"Array_RawObject",
+    "required":true,
+    "crypted":false,
+    "nullable":true,
+    "description":"where to find the books"
   }
 
 ```
@@ -148,7 +147,6 @@ Once you imported the JSON from files, it automatically appears in the table und
 If you want to delete a row, select red trash symbol on the right of the the table.
 
 ![tabella_prop](img/tabella-cestino.png)
-
 
 
 !!! Warning
