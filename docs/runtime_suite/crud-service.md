@@ -2,7 +2,7 @@
 
 CRUD acronym stays for Create-Read-Update-Delete. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
 
-It's possible to configure CRUD Service with more that one collection and to scale it horizotally.
+It's possible to configure CRUD Service with more that one collection and to scale it horizontally.
 
 In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
 
@@ -23,7 +23,7 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 
 ![API Portal](img/crud-api-portal.png)
 
-> Remember: the API Portal visualize all API configured and esposed by CRUD.
+> Remember: the API Portal visualize all API configured and exposed by CRUD.
 
 ## Configure a CRUD in two minutes
 
@@ -34,13 +34,13 @@ In DevOps Console it's possible to configure the CRUD service. The task it's eas
 - press Create new CRUD button
 - configure CRUD
 - select Endpoints menu
-- press Create new enpoint
+- press Create new endpoint
 - configure the endpoint selecting the CRUD created
 - press Commit&Generate button and save the configuration in the preferred branch
 - select Deploy menu
 - select the environment and branch to deploy and deploy it
-- in less than one minute the new endpoint that exposes the confgiured CRUD service is available
-- select Documentation menu and open the API Portal, browse the CRUD endpoint deplyed
+- in less than one minute the new endpoint that exposes the configured CRUD service is available
+- select Documentation menu and open the API Portal, browse the CRUD endpoint deployed
 
  For more details [see here](/api-console/crud-advanced).
 
@@ -91,20 +91,20 @@ curl --request GET \
 
 ##### STATE values
 
-- **PUBLIC**: the document is visible without specifing the value of ```_st``` in the querystring
-- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the querystring the parameter ```_st=DRAFT```
-- **TRASH**: the document is *soft deleted*; you can still query this document specifying in the querystring  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the document is *deleted*; you can still query this document specifying in the querystring  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
+- **PUBLIC**: the document is visible without specifying the value of ```_st``` in the query string
+- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```
+- **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
+- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
 
-By default, when a new itam in CRUD is added via POST, the document status is DRAFT. It's possible to change this behaviour in the endpoint section of the CRUD changing the default beahviour to PUBLIC.
+By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC.
 
-It is possible to enable *hard delete* function to delete permanentely an document from the CMS.
+It is possible to enable *hard delete* function to delete permanently an document from the CMS.
 
 ##### State Transitions
 
 Only the following transitions are allowed in the publish workflow. 
 
-|  Sorce/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
+|  Source/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
 |--------------------|---------|--------|--------|----------|
 | PUBLIC             |    -    |   OK   |   OK   |          |
 | DRAFT              |  OK     |   -    |   OK   |          |
@@ -127,7 +127,7 @@ for example
   --data '{"stateTo":"PUBLIC"}'
 ```
 
-update from DRAFT (default state) to PUBLISH the collection document 5e8a125eb74dbf0011444ed3.
+update from DRAFT (default state) to PUBLISH the collection document ```5e8a125eb74dbf0011444ed3```.
 
 ### Collection Properties Types
 
@@ -151,12 +151,12 @@ When a new property is added to a collection it is possible to specify the follo
 - Array of Numbers
 - Array of Objects
 
-### Collection document Propoerties properties
+### Collection document Properties properties
 
 Each property can defined as:
 
 - **required**: the property cannot be empty
-- **cryped**: the property is crypted at rest
+- **encrypted**: the property is encrypted at rest
 - **nullable**: the property can be null
 
 ### Indexes
@@ -173,7 +173,7 @@ The index can be unique. If set the value of the property must be unique in the 
 
 The CRUD service accept the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the querystring. Example:
+- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringyfied JSON, which is in AND with the query string. Example:
 
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
@@ -185,7 +185,7 @@ acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
 ```
 
-Usually this is used by PRE/POST Orchestrator to manage concatenated requestes to CRUD.
+Usually this is used by PRE/POST Orchestrator to manage concatenated request to CRUD.
 
 ## CRUD Security
 
@@ -219,50 +219,40 @@ In the examples for brevity we will use curl. Following are the typical operatio
 
 *Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using DevOps Console.
 
-It follows the details about C-R-U-D operations.
+Let's see how to perform C-R-U-D operations.
 
 ### Create
 
-To create a Collection document use *POST* request and pass in the body the JSON representation of the new document.
+To create a Collection document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection ```plates``` you need to create a JSON like this one:
 
-```bash
-curl -X POST https://your-url/heroes/ \
--H  "accept: application/json" \
--H  "content-type: application/json" \
--H  "secret: secret" -d "{  \"name\": \"Capitan America\",  \"powers\": [    \"agility\", \"strength\", \"speed\", \"endurance\"  ]}"
-```
-
-body is
-
-```
+```json
 {
-  "name": "Capitan America",
-  "powers": [
-    "agility", "strength", "speed", "endurance"
-  ]
+ "name": "Spaghetti al Pomodoro",
+ "description": "The classic italian dish"
 }
 ```
 
-in response, tou will get this resource:
+and insert it in the collection using a POST request
 
+```bash
+curl --request POST \
+  --url https://demo.cloud.mia-platform.eu/v2/plates/ \
+  --header 'accept: application/json' \
+  --header 'content-type: application/json' \
+  --header 'secret: secret' \
+  --data '{"name":"Spaghetti al Pomodoro","description":"The classic italian dish"}'
 ```
+
+in response, you will get this JSON:
+
+```json
 {
-    "creatorId": "public",
-    "createdAt": 1504601266703,
-    "updaterId": "public",
-    "updatedAt": 1504601266703,
-    "sync": 0,
-    "trash": 0,
-    "name": "Capitan America",
-    "powers": [
-      "agility",
-      "strength",
-      "speed",
-      "endurance"
-    ],
-    "id": "ef02dcaa-7a2e-4c31-a505-c2cb014d769e"
-  }
+ "_id":"5e8ae13bb74dbf0011444ed5"
+}
 ```
+
+where **_id** is the unique identifier of the new document inserted.
+
 
 ### Read
 
