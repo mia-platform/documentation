@@ -271,7 +271,7 @@ curl --request POST \
   --url 'https://demo.cloud.mia-platform.eu/v2/plates/upsert-one?name=Spaghetti%20allo%20Scoglio' \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --header 'secret: pippo' \
+  --header 'secret: secret' \
   --data '{"$set":{"name":"Spaghetti allo Scoglio"}}'
 ```
 
@@ -282,6 +282,8 @@ in response you will obtain the document if already exist or a new document if i
 If instead of ```$set``` you use ```$setOnInsert``` values are set only if the document don't exist.
 
 With upsert-one you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. It follows the details.
+
+**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that the operation is not atomic.
 
 ##### Unset an item value
 
