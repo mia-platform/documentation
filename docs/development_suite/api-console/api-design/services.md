@@ -1,10 +1,28 @@
-##Services
-In this section the user can insert new services within the platform ecosystem.
+##Marketplace
 
-More specifically, the user can:
+Welcome to the Marketplace page!
 
-* Import them;
-* Create them starting from a Template.
+In this section you can learn how to create a Microservice on Mia-Platform DevOps Console. 
+
+First, login into Mia-Platform DevOps Console, access the Design area, and click on Microservices on the menu of the left sidebar. You will see the screen as below. 
+
+
+![](img//screenMarketplace.png)
+
+
+
+As you can see there are many  different cards, with the description of the service. Each of them has different coloured labels on the top right corner of the card: example and template. 
+
+You can create a Microservice in 3 ways: 
+* use an Example
+* use a Template
+* use a Docker Image Name
+
+There is one search bar, where you can look for a specific service, and a filter bar where you can refine the search per type - either example or template. 
+
+
+![](img/Marketplace.png)
+
 
 
 ### Import services
