@@ -35,7 +35,7 @@ More in detail, a guide how to compile the tenant:
         "cluster": {
           "hostname": "127.0.0.1", // hostname of the cluster
           "namespace": "%projectId%-development",
-          "envs": {
+          "kubeContextVariables": {
             "KUBE_URL": "KUBE_DEV_URL",
             "KUBE_TOKEN": "KUBE_DEV_TOKEN"
           }
@@ -43,7 +43,7 @@ More in detail, a guide how to compile the tenant:
       }
     ```
     !!! warning
-        Do not set in cluster.envs object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
+        Do not set in cluster.kubeContextVariables object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
 
 * `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. As of now, the only supported type is `gitlab`.
 
@@ -150,11 +150,11 @@ For the project (you could access using `project.${field}`)
 Inside environments, you could access to:
 * envId
 * envPrefix
-* cluster (an object containing `namespace` and `envs` object). Here you find the variables names for the specified environment where you set the cluster variable
+* cluster (an object containing `namespace` and `kubeContextVariables` object). Here you find the variables names for the specified environment where you set the cluster variable
 * hosts (an array of object, with `host` and `isBackoffice` fields)
 
 !!! warning
-    Do not set in tenant in cluster.envs object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
+    Do not set in tenant in cluster.kubeContextVariables object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
 
 An example of template for the `.gitlab-ci.yml` file:
 ```yml
@@ -175,9 +175,9 @@ variables:
   extends: .deploy_job
 
   variables:
-    KUBE_URL: "\${cluster.envs.KUBE_URL}"
-    KUBE_TOKEN: "\${cluster.envs.KUBE_TOKEN}"
-    KUBE_CA_PEM: "\${cluster.envs.KUBE_CA_PEM}"
+    KUBE_URL: "\${cluster.kubeContextVariables.KUBE_URL}"
+    KUBE_TOKEN: "\${cluster.kubeContextVariables.KUBE_TOKEN}"
+    KUBE_CA_PEM: "\${cluster.kubeContextVariables.KUBE_CA_PEM}"
     ENVIRONMENT_PREFIX: "%envPrefix%_"
 
   only:
