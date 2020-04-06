@@ -155,7 +155,6 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 
     the collection **has not yet been saved** it is necessary to continue the process described below
 
-
 ### Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
