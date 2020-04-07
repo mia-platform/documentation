@@ -6,8 +6,8 @@
 
  *  Design - Microservice: New **"View Repository" button** in microservice detail that allows you to go to the repository of the same microservice. 
  
- !!! warning       
-      This button is present only in microservices created from Templates.
+!!! warning
+    This button is present only in microservices created from Templates.
 
  * Auth0 - CMS: For each environment, CMS is able to manage separated users on Auth0Client: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
 
