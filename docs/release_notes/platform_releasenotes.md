@@ -4,32 +4,40 @@
 
 **Improvements**:
 
- *  Design - Microservice: New **"View Repository" button** in microservice detail that allows you to go to the repository of the same microservice. 
- 
-!!! warning
-    This button is present only in microservices created from Templates.
+* Design - Microservice:  
+  New you go directly to your git Repository from the DevOps Console selection **"View Repository" button** in microservice detail page.  
+  Pay Attention: This button is present only in microservices created from Templates.
 
- * Auth0 - CMS: For each environment, CMS is able to manage separated users on Auth0Client: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
+* Auth0 - CMS  
+  For each environment, CMS is able to **manage separated users on Auth0Client**: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
 
- * Log & Monitoring: In the detail of each Pod, the user experience beyond the buttons "Refresh Container" and "Restart Pod" has been improved.
+* Log & Monitoring  
+  In the detail of each Pod, the user experience beyond the buttons "Refresh Container" and "Restart Pod" has been improved.
 
- * Design - Microservice: Restyling of the card of microservice, created from Template or from Docker Image.
+* Design - Microservice  
+  Restyling of the card of microservice, created from Template or from Docker Image.
 
 **Fixed**:
 
- * Design - Endpoints: Now Microservice Gateway is able to manage the error created when content-type is not correct.
+* Design - Endpoints  
+  Now Microservice Gateway is able to manage the **error created when content-type is not correct**.
 
 
-##v5.5.0 (March 31,2020)
+## v5.5.0 (March 31,2020)
 
 **Improvements**
 
- * Design - Microservice: During Microservice creation, default values for GroupName are created. The initial selection of GroupName is on "Services", but, if needed, it can be changed.
+* Design - Microservice  
+  During Microservice creation, **default values for GroupName are created**.  
+  The initial selection of GroupName is on "Services", but, if needed, it can be changed.
 
- * Design - Microservice: New "Clone" button that allows you to copy webUrl or sshUrl with the aim to clone microservice's repository. Pay attention: this button is present only in new microservices.
+* Design - Microservice  
+  Now you can **clone code repository directly from DevOps Console** selecting Clone button on Microservice design page. Clone supports both ssh and https.  
+  Pay attention: this button is present only in microservices created from DevOps Console.
 
 
-**Fixed**   
+
+**Fixed**
 
  * Design: Titles in the Launcher are not aligned with the titles of the Console sections. 
 
