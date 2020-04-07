@@ -21,6 +21,8 @@ You need `HOST` and `PORT` (default: 587) of the `SMTP` server. You can also spe
 
 SMTP authentication is by default ensured by `login` method, by providing `username` and `password`.
 
+If you want to use gmail, have a look to [this page](https://nodemailer.com/usage/using-gmail/).
+
 ## API
 
 The microservice accepts POST requests at the following path:
@@ -94,3 +96,21 @@ So this is equivalent to making 2 different POST requests to `/send` having the 
       "message": "This is an example."
     }
     ```
+
+#### 3. POST to /send with an html message
+
+The service allows to send email with an html content and the receivers clients will renderize the html.
+
+To send an html message you have just to change the `message` field with the `htmlMessage` one.
+
+Following an example of `/send` request with html template (is not a real template but just a piece):
+
+```json
+{
+  "recipient": "carol@domain.com",
+  "subject": "The subject of the email",
+  "sender": "alice@domain.com",
+  "cc": ["dave@domain.com"],
+  "htmlMessage": "<!doctype html><html><head>  <meta name=\\"viewport\\" content=\\"width=device-width\\" />  <meta http-equiv=\\"Content-Type\\" content=\\"text/html; charset=UTF-8\\" />  <title>Simple Transactional Email</title>  ...  ...  ...</head><body class=\\"\\"> <span class=\\"preheader\\">This is preheader text. Some clients will show this text as a    preview.</span>  <table role=\\"presentation\\" border=\\"0\\" cellpadding=\\"0\\" cellspacing=\\"0\\" class=\\"body\\">    <tr>      <td>&nbsp;</td>      <td class=\\"container\\">        ...        ...      </td>      <td>&nbsp;</td>    </tr>  </table></body></html>"
+}
+```
