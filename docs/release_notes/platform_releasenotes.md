@@ -2,7 +2,7 @@
 
 ##v5.5.1 (April 6,2020)
 
-* **Improvements**:
+**Improvements**:
 
  *  Design - Microservice: New **"View Repository" button** in microservice detail that allows you to go to the repository of the same microservice. 
  
