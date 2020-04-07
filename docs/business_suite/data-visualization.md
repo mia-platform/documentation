@@ -361,28 +361,50 @@ Moreover, you can filter on the properties of the collection that is providing y
 
 * **lookup filter**, which allows to create a filter on a property of another collection. Here is an example of the configuration:
 
-
   ```
-    {
-      "filterMultiselect": {
-        "type": "MULTISELECT",
-        "fieldName": "yourProperty",  //here you need to set the property of the collection that is providing the data for the chart on which you want to filter the data
-        "placeholder": "Your placeholder in the filter",
-        "title": "Your Filter name",
-        "description": "Your filter description",
-        "options": {
-            "type": "lookup",
-            "endpoint": "/v2/your-endpoint/",   //here you need to set the target endpoint from which the data are downloaded (es. /v2/menus/)
-            "valueProperty": "propertyName",  //here you need to the name of the property in the target collection on which you want to set the filter (es. _id)
-            "label": {
-                  "pattern": "{{name}}",
-                  "properties": ["labelPropertyName"]  //here you need to set the name of the property in the target collection that you want to show to the user as a label (es. name)
-                }
-             }
+  {
+    "filterMultiselect": {
+      "type": "MULTISELECT",
+      "fieldName": "yourProperty",  //here you need to set the property of the collection that is providing the data for the chart on which you want to filter the data
+      "placeholder": "Your placeholder in the filter",
+      "title": "Your Filter name",
+      "description": "Your filter description",
+      "options": {
+        "type": "lookup",
+        "endpoint": "/v2/your-endpoint/",   //here you need to set the target endpoint from which the data are downloaded (es. /v2/menus/)
+        "valueProperty": "propertyName",  //here you need to the name of the property in the target collection on which you want to set the filter (es. _id)
+        "label": {
+          "pattern": "{{name}}",
+          "properties": ["labelPropertyName"]  //here you need to set the name of the property in the target collection that you want to show to the user as a label (es. name)
         }
+      }
     }
-    
- ```
+  }
+  ```
 
 
+### Actions Configuration
+
+It is possible to add one or more link button in order to perform a GET action targeting a specific url. To set up the actions, you should define an array with the following properties:
+
+```
+{
+  "actions": [{
+    "label": "Test button",
+    "url": "/bubble-map",
+    "openInNewTab": true,
+    "applyActiveFilters": true
+  }]
+}
+```
+
+* **label** (*required*): String value that represents the label displayed on the link button.
+
+* **url** (*required*): GET url.
+
+* **openInNewTab** (*optional*): Boolean value representing wheather or not the link should be open in a new tab. It is *false* by default.
+
+* **applyActiveFilters** (*optional*): Boolean value indicating wheather or not the query parameters of the chart filters should be applied to the specified `url`. It is *false* by default.
+
+The `actions` property should be inserted at the same level of `filters`.
 
