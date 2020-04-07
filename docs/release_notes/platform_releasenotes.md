@@ -2,17 +2,20 @@
 
 ##v5.5.1 (April 6,2020)
 
-**improvements**:
+**Improvements**:
 
- *  Design - Microservice: New "View Repository" button in microservice detail that allows you to go to the repository of the same microservice. Pay attention: this button is present only in microservices created from Templates.
+ *  Design - Microservice: New **"View Repository" button** in microservice detail that allows you to go to the repository of the same microservice. 
+ 
+ !!! warning
+     This button is present only in microservices created from Templates.
 
- * Design - CMS: For each environment, CMS is able to manage separated users on Auth0Client: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
+ * Auth0 - CMS: For each environment, CMS is able to manage separated users on Auth0Client: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
 
  * Log & Monitoring: In the detail of each Pod, the user experience beyond the buttons "Refresh Container" and "Restart Pod" has been improved.
 
  * Design - Microservice: Restyling of the card of microservice, created from Template or from Docker Image.
 
-**fixed**:
+**Fixed**:
 
  * Design - Endpoints: Now Microservice Gateway is able to manage the error created when content-type is not correct.
 
