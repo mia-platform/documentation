@@ -4,7 +4,7 @@
 
 **Improvements**:
 
-* Design - Microservice:  
+* Design - Microservice  
   New you go directly to your git Repository from the DevOps Console selection **"View Repository" button** in microservice detail page.  
   Pay Attention: This button is present only in microservices created from Templates.
 
@@ -19,7 +19,7 @@
 
 **Fixed**:
 
-* Design - Endpoints  
+* Microservice Gateway 5.1.3  
   Now Microservice Gateway is able to manage the **error created when content-type is not correct**.
 
 
