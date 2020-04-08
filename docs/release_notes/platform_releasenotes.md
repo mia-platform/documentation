@@ -15,7 +15,7 @@
 
 * Log & Monitoring  
   In the detail of each Pod, the user experience beyond the buttons "Refresh Logs" and "Restart Pod" has been improved.     
-  ![refresh-logs-restart-pods](img/refresh-logs-restart-pods.jpg)      
+      
   At this [link](https://docs.mia-platform.eu/development_suite/monitoring/monitoring/), you can find more details about Logs and Pods Monitoring.
 
 * Design - Microservices  
