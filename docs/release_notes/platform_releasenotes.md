@@ -7,16 +7,16 @@
 * Design - Microservices  
   New you go directly to your git Repository from the DevOps Console selection **"View Repository" button** in microservice detail page.  
   Pay Attention: This button is present only in microservices created from Templates.
-
-  ![view-repository](img/view-repository.jpg)
+  ![view-repository](img/view-repository.jpg)     
+  At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/), you can find more details about microservices management.
 
 * Auth0 - CMS  
   For each environment, CMS is able to **manage separated users on Auth0Client**: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
 
 * Log & Monitoring  
-  In the detail of each Pod, the user experience beyond the buttons "Refresh Logs" and "Restart Pod" has been improved.
-
-  ![refresh-logs-restart-pods](img/refresh-logs-restart-pods.jpg)
+  In the detail of each Pod, the user experience beyond the buttons "Refresh Logs" and "Restart Pod" has been improved.     
+  ![refresh-logs-restart-pods](img/refresh-logs-restart-pods.jpg)      
+  At this [link](https://docs.mia-platform.eu/development_suite/monitoring/monitoring/), you can find more details about Logs and Pods Monitoring.
 
 * Design - Microservices  
   Restyling of the card of microservice, created from Template or from Docker Image.
@@ -33,15 +33,15 @@
 
 * Design - Microservices  
   During Microservice creation, **default values for GroupName are created**.  
-  The initial selection of GroupName is on "Services", but, if needed, it can be changed.
-
-  ![group-name](img/group-name.jpg)
+  The initial selection of GroupName is on "Services", but, if needed, it can be changed.     
+  ![group-name](img/group-name.jpg)      
+  At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/), you can find more details about microservice creation from Template.
 
 * Design - Microservices  
   Now you can **clone code repository directly from DevOps Console** selecting Clone button on Microservice design page. Clone supports both ssh and https.  
-  Pay attention: this button is present only in microservices created from DevOps Console.
-
-  ![clone-button](img/clone-button.jpg)
+  Pay attention: this button is present only in microservices created from DevOps Console.    
+  ![clone-button](img/clone-button.jpg)    
+  At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/), you can find more details about microservices management.
 
 **Fixed**
 
