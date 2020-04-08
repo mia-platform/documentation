@@ -63,3 +63,14 @@ Finally, to create the service select **create**.
     Once that the service is created on Gitlab, the user will not be able to delete it anymore.
 
 At the following [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/) the user can find a more detailed guide and overview about how to create new service starting from Templates.
+
+
+### Manage services
+
+For each microservice, DevOps Console allows to:
+
+ * Delete the microservice
+
+ * View Repository: this button, present only in microservices created from Templates, allows you to go directly to your git repository from the DevOps Console.
+
+ * Clone: this button, present only in microservices created from DevOps Console, enables to clone code repository directly from DevOps Console. The code repository can be copied with both ssh and https.
