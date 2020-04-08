@@ -4,17 +4,21 @@
 
 **Improvements**:
 
-* Design - Microservice  
+* Design - Microservices  
   New you go directly to your git Repository from the DevOps Console selection **"View Repository" button** in microservice detail page.  
   Pay Attention: This button is present only in microservices created from Templates.
+
+  ![view-repository](img/view-repository.jpg)
 
 * Auth0 - CMS  
   For each environment, CMS is able to **manage separated users on Auth0Client**: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
 
 * Log & Monitoring  
-  In the detail of each Pod, the user experience beyond the buttons "Refresh Container" and "Restart Pod" has been improved.
+  In the detail of each Pod, the user experience beyond the buttons "Refresh Logs" and "Restart Pod" has been improved.
 
-* Design - Microservice  
+  ![refresh-logs-restart-pods](img/refresh-logs-restart-pods.jpg)
+
+* Design - Microservices  
   Restyling of the card of microservice, created from Template or from Docker Image.
 
 **Fixed**:
@@ -27,25 +31,31 @@
 
 **Improvements**
 
-* Design - Microservice  
+* Design - Microservices  
   During Microservice creation, **default values for GroupName are created**.  
   The initial selection of GroupName is on "Services", but, if needed, it can be changed.
 
-* Design - Microservice  
+  ![group-name](img/group-name.jpg)
+
+* Design - Microservices  
   Now you can **clone code repository directly from DevOps Console** selecting Clone button on Microservice design page. Clone supports both ssh and https.  
   Pay attention: this button is present only in microservices created from DevOps Console.
 
-
+  ![clone-button](img/clone-button.jpg)
 
 **Fixed**
 
- * Design: Titles in the Launcher are not aligned with the titles of the Console sections. 
+ * Design    
+   **Titles in the Launcher** are not aligned with the titles of the Console sections. 
 
- * Design - Microservice: Card and Card's titles in Microservices Details are not aligned. 
+ * Design - Microservices    
+   **Card and Card's titles** in Microservices Details are not aligned. 
 
- * Design - CRUD/Microservices/Pre&Post: During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The description validators are removed.
+ * Design - CRUD/Microservices/Pre&Post   
+   During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The **description validators are removed**.
 
- * Design - Crud/Proxies/Endpoints: When the user wants to see the field's and type's detail, they seem to be disabled. Border, cursor, color and background of the input element are changed.
+ * Design - Crud/Proxies/Endpoints   
+   When the user wants to see the field's and type's detail, they seem to be disabled. **Border, cursor, color and background** of the input element are changed.
 
 
 ##v5.4.0 (March 23,2020)
