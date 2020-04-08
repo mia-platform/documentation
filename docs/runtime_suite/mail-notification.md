@@ -37,7 +37,7 @@ Request `body` has to contain the following parameters:
 
 - `subject`: string
 
-- `sender` (or from for multipart email): string representing an email address
+- `sender` (or _from_ for [multipart email](#attachments)): string representing an email address
 
 Optionally you can include:
 
@@ -46,6 +46,19 @@ Optionally you can include:
 - `bcc`: array of strings
 
 - `message` : string
+
+- `htmlMessage` : string representing an html
+
+### Attachments
+
+This service allows to send attachments too, with a little different body.
+
+To send an attachment, there are two main differences with the previous examples:
+
+- the body has to be of type `form-data`
+- the `sender` field is replaced by the `from` field
+
+Look at the [example](#4-post-to-send-with-an-attachment) for a concrete example of attachment email.
 
 ### Some examples
 #### 1. POST to /send with single receiver
@@ -113,4 +126,37 @@ Following an example of `/send` request with html template (is not a real templa
   "cc": ["dave@domain.com"],
   "htmlMessage": "<!doctype html><html><head>  <meta name=\\"viewport\\" content=\\"width=device-width\\" />  <meta http-equiv=\\"Content-Type\\" content=\\"text/html; charset=UTF-8\\" />  <title>Simple Transactional Email</title>  ...  ...  ...</head><body class=\\"\\"> <span class=\\"preheader\\">This is preheader text. Some clients will show this text as a    preview.</span>  <table role=\\"presentation\\" border=\\"0\\" cellpadding=\\"0\\" cellspacing=\\"0\\" class=\\"body\\">    <tr>      <td>&nbsp;</td>      <td class=\\"container\\">        ...        ...      </td>      <td>&nbsp;</td>    </tr>  </table></body></html>"
 }
+```
+
+#### 4. POST to /send with an attachment
+
+This service allows to send attachments too.
+
+Following an example of `curl` with two attachments:
+
+```bash
+curl --location --request POST 'mail-service/send' \
+--form 'from=alice@domain.com' \
+--form 'recipient=carol@domain.com' \
+--form 'subject=The subject of the email' \
+--form 'message=The message of the email' \
+--form 'file1=@/path/to/the/file1'
+--form 'file2=@/path/to/the/file2'
+```
+
+Following an example of form data in node:
+
+```javascript
+const fs = require('fs')
+
+const formData = new FormData()
+formData.append('from', 'alice@domain.com')
+formData.append('recipient', 'carol@domain.com')
+formData.append('subject', 'The subject of the email')
+formData.append('message', 'The message of the email')
+
+const file1Stream = fs.createReadStream('path/to/the/file1')
+const file2Stream = fs.createReadStream('path/to/the/file2')
+formData.append('file1', file1Stream)
+formData.append('file2', file2Stream)
 ```
