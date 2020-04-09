@@ -33,6 +33,7 @@ More in detail, a guide how to compile the tenant:
           }
         ],
         "cluster": {
+          "clusterId": "human-readable-id-of-the-cluster",
           "hostname": "127.0.0.1", // hostname of the cluster
           "namespace": "%projectId%-development",
           "kubeContextVariables": {
@@ -150,7 +151,7 @@ For the project (you could access using `project.${field}`)
 Inside environments, you could access to:
 * envId
 * envPrefix
-* cluster (an object containing `namespace` and `kubeContextVariables` object). Here you find the variables names for the specified environment where you set the cluster variable
+* cluster (an object containing `namespace` and `clusterId` string, `kubeContextVariables` object). Here you find the variables names for the specified environment where you set the cluster variable
 * hosts (an array of object, with `host` and `isBackoffice` fields)
 
 !!! warning
