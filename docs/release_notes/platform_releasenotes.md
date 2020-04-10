@@ -28,13 +28,13 @@ Remove initial `/` to `file_path` on requesting file to gitlab
 * **Microservice Gateway Bug in v5.5.1**  
   To resolve it we have updated the following platform components:  
 
-  * cms-backend  v2.0.1 we changed the /client-key response code from 200 to 204;
-  * Microservice Gateway v5.1.5 no longer returns status code 500 if a service replies with status code 204. 
+    * cms-backend  v2.0.1 we changed the /client-key response code from 200 to 204;
+    * Microservice Gateway v5.1.5 no longer returns status code 500 if a service replies with status code 204. 
   
     !!! WARNING
         It is a breaking change for api returning 200 with an empty content-type when `allowUnknownResponseContentType` in microservice-gateway configuration is set to true.
 
-  * auth-service v1.6.4 returns 204 on API /logout
+    * auth-service v1.6.4 returns 204 on API /logout
 
 * Fix to the menu hover with filters that did not make the text readable
 
