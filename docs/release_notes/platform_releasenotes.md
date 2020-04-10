@@ -2,10 +2,10 @@
 
 ## v5.5.2 -1 Patch (April 10,2020)
 
-
-
 !!! bug
-    With GitLab version 12.9.2 file_path beginning with `/` failed. With this problem, the configuration files of the advanced services cannot be downloaded, so **the Design area is inaccessible**.
+    **Design page of DevOps Console was inaccessible cause by an update of GitLab**
+
+    With GitLab version 12.9.2 file_path beginning with `/` failed. With this problem, the configuration files of the advanced services cannot be downloaded, so the Design area is inaccessible.
 
 **Fixed**
 
