@@ -1,5 +1,17 @@
 # Platform Release Note
 
+## v5.5.2 -1 Patch (April 10,2020)
+
+
+
+!!! bug
+    With GitLab version 12.9.2 file_path beginning with `/` failed.
+
+**Fixed**
+
+Remove initial `/` to `file_path` on requesting file to gitlab
+
+
 ## v5.5.2 (April 9, 2020)
 
 **Improvements**
@@ -15,6 +27,7 @@
 
 * **Microservice Gateway Bug in v5.5.1**  
   To resolve it we have updated the following platform components:  
+
   * cms-backend  v2.0.1 we changed the /client-key response code from 200 to 204;
   * Microservice Gateway v5.1.5 no longer returns status code 500 if a service replies with status code 204. 
   
