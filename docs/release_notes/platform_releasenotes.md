@@ -5,7 +5,7 @@
 
 
 !!! bug
-    With GitLab version 12.9.2 file_path beginning with `/` failed.
+    With GitLab version 12.9.2 file_path beginning with `/` failed. With this problem, the configuration files of the advanced services cannot be downloaded, so **the Design area is inaccessible**.
 
 **Fixed**
 
