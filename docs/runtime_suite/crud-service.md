@@ -79,7 +79,7 @@ CRUD by default comes with a set of common properties that simplify the data man
 - **createdAt**: Date, date and time when the document has been created
 - **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
 - **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
-- **`__STATE__`**: String, is the current state of the document, can be one of PUBLIC, DRAFT, TRASH, DELETED. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as DRAFT -> PUBLIC, while others are not.
+- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
 
 #### Example of a Collection with only predefined Properties
 
