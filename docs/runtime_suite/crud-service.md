@@ -1,10 +1,8 @@
 # CRUD Service
 
-CRUD acronym stays for Create-Read-Update-Delete. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
+CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
 
-It's possible to configure CRUD Service with more that one collection and to scale it horizontally.
-
-In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
+It's possible to configure CRUD Service with more that one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
 
 ## Introduction
 
@@ -35,6 +33,15 @@ We will use the following naming conventions:
 - **value**: the value of a property
 - **query string**: the filter set in the url query
 - **body**: the JSON data passed in a request
+
+In the following guide we will use a collection named *Plates* that contains a list of dishes with the following properties:
+
+- name: name of the plate
+- description: description of the plates
+- price: price of the plate (in euro)
+- ingredients: array of string with the id of the ingredients used
+- image: array of photos (a JSON object)
+- position: the geocoded position of a plate
 
 ## Configure a CRUD in two minutes
 
@@ -402,21 +409,7 @@ In response of this request you will get a JSON array that contains all the docu
       "createdAt" : "2019-12-16T13:49:06.759Z",
       "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
       "description" : "The correct description",
-      "image" : [
-         {
-            "_id" : "5df8bc5495a2a500117fc8d3",
-            "createdAt" : 1576582228061,
-            "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
-            "file" : "5df8bc548fa0c0000fb334e5.jpg",
-            "location" : "https://your-url/files/download/5df8bc548fa0c0000fb334e5.jpg",
-            "name" : "grilled-salmon-fish-on-rectangular-black-ceramic-plate-842142.jpg",
-            "size" : 70733,
-            "sync" : 0,
-            "trash" : 0,
-            "updatedAt" : 1576582228061,
-            "updaterId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f"
-         }
-      ],
+      "image" : [],
       "ingredient" : [
          "5e8200fa2e9dde00112b6853",
          "5e81feaf2e9dde00112b684f",
@@ -433,20 +426,9 @@ In response of this request you will get a JSON array that contains all the docu
       "createdAt" : "2019-12-17T10:37:42.551Z",
       "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
       "description" : "",
-      "image" : [
-         {
-            "_id" : "5df8bb3295a2a500117fc8d2",
-            "file" : "5df8bb328fa0c0000fb334e3.jpg",
-            "location" : "https://your-url/files/download/5df8bb328fa0c0000fb334e3.jpg",
-            "name" : "close-up-photo-of-cooked-pasta-2456435.jpg",
-            "size" : 94274,
-            "type" : "image/jpeg"
-         }
-      ],
+      "image" : [],
       "ingredient" : [
-         "5e81fddd2e9dde00112b684c",
-         "5e81feaf2e9dde00112b684f",
-         "5e81fd882e9dde00112b6849"
+         "5e81fddd2e9dde00112b684c"
       ],
       "name" : "FRIED VEGGIE NOODLE",
       "price" : "10",
@@ -456,7 +438,7 @@ In response of this request you will get a JSON array that contains all the docu
 ]
 ```
 
-> **Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable CRUD_LIMIT_CONSTRAINT_ENABLED to false. If you change it be aware that you can hang the service for out of memory error.
+> **Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
 
 #### Get a single document by _id
 
@@ -513,75 +495,86 @@ It is possible to sort the list of documents returned by a GET passing to the qu
 By default the sort id ascending, using - for descending. The following sort plates by names in alphabetical order.
 
 ```bash
-curl -X GET https://your-url/heroes/?_s=name \
--H "accept: application/json" \
--H "content-type: application/json" \
--H "secret: secret"
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_s=name' \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
 ```
 
-> For multiple sort use _q
+> For sorting with more than one property use _q
 
 #### Paginate
 
 By default GET returns a limited number of documents. You can use pagination to return more documents. Pagination accepts filters and sorts parameters.
 
-It is possible to paginate a request by passing two parameters:
-- skip: the record from which to start. The first has an index of 0
-- limit: the number of records to be extracted in the query
+To paginate you must use the following query parameters:
 
-For example:
+- **_l**: limits the number of documents returned. Minimum value 1. Maximum value 200. You you pass more that 200 the CRUD Service truncate to 200 the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
+- **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
 
-```bash
-curl -X GET https://your-url/heroes/?{"$skip":0,"$limit":25} \
--H "accept: application/json" \
--H "content-type: application/json" \
--H "secret: secret"
-```
-returns the first 25 records of the list.
-
-It is possible to compose sort and pagination.
+This is an example of request that get *two documents per page* and you ask for the *third page* (skip 4 documents).
 
 ```bash
-curl -X GET https://your-url/heroes/?{"$skip":0,"$limit":25,"$sort":{"name":-1}} \
--H "accept: application/json" \
--H "content-type: application/json" \
--H "secret: secret"
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_l=2&_sk=4' \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
 ```
 
-Note: you can use the *_q_* parameter in the query string instead of passing the mongo string directly url. The query bust be encoded in the URL
+Combining _l and _sk you can paginate the request. If you want to visualize the number of pages in your UI you need also count with a request the number of documents.
 
-from
+#### Return a subset of properties
+
+You can return just a some of the document properties (like GraphQL sub-selection or SQL select) using  ```_p``` parameter. You can select multiple properties separated by commas.
+
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_p=name,price' \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
+```
+
+Returns an array of documents with only the properties requested.
 
 ```json
-{"$skip":0,"$limit":25,"$sort":{"name":-1}}
+[
+   {
+      "_id" : "5df8aff66498d30011b19e4d",
+      "name" : "FRIED VEGGIE NOODLE",
+      "price" : "10"
+   },
+   {
+      "_id" : "5df8b8546498d30011b19e4e",
+      "name" : "SPINACH CHICKEN SALAD",
+      "price" : "12"
+   }
+]
 ```
 
-to
+> **Note**: the selection of inner object fields is not supported.
 
-```
-%7B%22%24skip%22%3A0%2C%22%24limit%22%3A25%2C%22%24sort%22%3A%7B%22name%22%3A-1%7D%7D
-```
+#### Combine all together
+
+You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients do the following request.
 
 ```bash
-curl -X GET https://your-url/heroes/?_q=%7B%22%24skip%22%3A0%2C%22%24limit%22%3A25%2C%22%24sort%22%3A%7B%22name%22%3A-1%7D%7D \
--H "accept: application/json" \
--H "content-type: application/json" \
--H "secret: secret"
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_s=name&_l=2&_sk=0&_p=name,ingredient' \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
 ```
 
 #### Filters with MongoDB Query
 
-documents can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
+Documents can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
 
-For example we can look for the super heroes of *female* sex that appeared before *1990* and that have super power *speed* or
-the name has Marvel inside.
+For example we can look for plates that have a name that begins with V, that have price and two ingredients.
 
 ```bash
 {"$and":[
-    {"gender":"female"},
-    {"year":{"$lt":631148400000}},
-    {"powers":{"$regex":"speed","$options":"i"}},
-    {"$or":[{"name":{"$regex":"Marvel","$options":"i"}}]}
+    {"price":{"$exists":true}},
+    {"ingredient":{"$size": 2}},
+    {"name":{"$regex":"^V","$options":"i"}}
   ]
 }
 ```
@@ -589,10 +582,10 @@ the name has Marvel inside.
 The query must be encoded and passed to _q parameter
 
 ```bash
-curl -X GET https://your-url/heroes/?_q=%7B%22%24and%22%3A%5B%0A%20%20%20%20%7B%22gender%22%3A%22female%22%7D%2C%0A%20%20%20%20%7B%22year%22%3A%7B%22%24lt%22%3A631148400000%7D%7D%2C%0A%20%20%20%20%7B%22powers%22%3A%7B%22%24regex%22%3A%22speed%22%2C%22%24options%22%3A%22i%22%7D%7D%2C%0A%20%20%20%20%7B%22%24or%22%3A%5B%7B%22name%22%3A%7B%22%24regex%22%3A%22Marvel%22%2C%22%24options%22%3A%22i%22%7D%7D%5D%7D%0A%20%20%5D%0A%7D \
--H "accept: application/json" \
--H "content-type: application/json" \
--H "secret: secret"
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_q=%7B%22%24and%22%3A%5B%20%20%20%20%20%7B%22ingredient%22%3A%7B%22%24size%22%3A%202%7D%7D%2C%20%7B%22price%22%3A%7B%22%24exists%22%3Atrue%7D%7D%2C%7B%22name%22%3A%7B%22%24regex%22%3A%22%5EV%22%2C%22%24options%22%3A%22i%22%7D%7D%20%5D%20%7D' \
+  --header 'accept: application/json' \
+  --header 'secret: secret'
 ```
 
 #### Geospatial Queries
@@ -603,7 +596,7 @@ To enable this feature you need to create an Position index on DevOps Console.
 
 ![Position Index](img/position-index.png)
 
-When the index is created you can use $nearSphere. For example to search an hero near you, beetween 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
+When the index is created you can use $nearSphere. For example to search a plate near you, beetween 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
 
 ```json
 {"position":
@@ -613,11 +606,11 @@ When the index is created you can use $nearSphere. For example to search an hero
 }
 ```
 
-to get the list of heroes just encode the query and use _q.
+to get the list of plates just encode the query and use _q.
 
 ```bash
 curl --request GET \
-  --url 'https://your-url/heroes/?_q=%20%7B%22position%22%3A%7B%22%24nearSphere%22%3A%7B%22from%22%3A%5B9.18%2C45.43%5D%2C%22minDistance%22%3A0%2C%22maxDistance%22%3A1200%7D%7D%7D' \
+  --url 'https://your-url/v2/plates/?_q=%20%7B%22position%22%3A%7B%22%24nearSphere%22%3A%7B%22from%22%3A%5B9.18%2C45.43%5D%2C%22minDistance%22%3A0%2C%22maxDistance%22%3A1200%7D%7D%7D' \
   --header 'accept: application/json' \
   --header 'secret: secret'
   ```
@@ -642,14 +635,14 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 - $regex
 - $elemMatch and $options
 
-> Aggregate cannot be used. To use aggregate please see MongoDB Reader.
+> Aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
 
 #### Count
 
 It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
 ```bash
-curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
+curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
 ```
 
 returns
@@ -660,7 +653,17 @@ returns
 }
 ```
 
-Note: filters can be applied to the count
+> **Note**: filters can be applied to the count. By default only PUBLIC documents are counted.
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+DA QUI TUTTO DA RIVEDERE
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 ### Update
 
