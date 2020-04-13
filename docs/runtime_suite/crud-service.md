@@ -135,7 +135,7 @@ To transit the STATE of an item of a CRUD you need to POST it
 
 ```json
  POST /[COLLECTION_NAME]/{_id}/state
- ```
+```
 
 for example
 
