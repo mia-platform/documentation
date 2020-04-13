@@ -122,7 +122,7 @@ It is also possible to enable *hard delete* function to delete permanently an do
 
 ##### State Transitions
 
-Only the following transitions are allowed in the publish workflow. 
+Only the following transitions are allowed in the publish workflow.
 
 |  Source/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
 |--------------------|---------|--------|--------|----------|
@@ -195,7 +195,7 @@ The index can be unique. If set the value of the property must be unique in the 
 
 The CRUD service accept the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringyfied JSON, which is in AND with the query string. Example:
+- ***acl_rows***: an array of MongoDB queries that limits the documents that a request can return. The value of acl_rows is a stringified JSON fied, which is in AND with the query string. Example:
 
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
