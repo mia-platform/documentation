@@ -47,10 +47,6 @@ In DevOps Console it's possible to configure the CRUD service. The task it's eas
 
  ------------------------------------------------------------
 
-## CRUD Service Configuration
-
-TODO env vars and prerequisite
-
 ## CRUD Collection Properties
 
 Some collection field properties are predefined, others are custom and can be configured with different data types.
@@ -805,19 +801,19 @@ TODO
 
 TODO
 
-### CRUD with Node.js
+### Node.js
 
 TODO
 
-### Call with Java
+### Java
 
 TODO
 
-### Call with Kotlin
+### Kotlin
 
 TODO
 
-### Call with Go
+### Go
 
 TODO
 
@@ -829,14 +825,32 @@ This feature will be available on Mia-Platform v6
 
 ------------------------------------------------------------
 
-## CRUD Limits
+## Administering CRUD Service
+
+### CRUD Service Configuration
+
+TODO env vars and prerequisite
+
+### CRUD Service status monitoring
+
+TODO health checks
+
+### Log ManagementClient
+
+TODO
+
+### Troubleshooting
+
+TODO
+
+### CRUD Limits
 
 CRUD service has the following limits:
 
 - dimension of a single item in a collection: 16 MB
 - default number of returned items of a collection from a GET: 200
 
-## Response codes of CRUD
+### Response codes of CRUD
 
 Below is a list of return codes typical of an API request:
 
@@ -858,10 +872,9 @@ Success status:
   - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
   - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
 
-## Example and Ideas
+## Example and Ideas on how-to use CRUD
 
 TODO, here you can find some examples on how to use CRUD
-
 
 ## Further Readings
 
