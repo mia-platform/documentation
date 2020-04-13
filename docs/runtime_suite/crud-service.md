@@ -522,7 +522,7 @@ By default GET returns a limited number of documents. You can use pagination to 
 
 To paginate you must use the following query parameters:
 
-- **_l**: limits the number of documents returned. Minimum value 1. Maximum value 200. You you pass more that 200 the CRUD Service truncate to 200 the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
+- **_l**: limits the number of documents returned. Minimum value 1. Maximum value 200. If you pass more that 200, the CRUD Service truncate to 200 the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
 - **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
 
 This is an example of request that get *two documents per page* and you ask for the *third page* (skip 4 documents).
@@ -565,7 +565,7 @@ Returns an array of documents with only the properties requested.
 ```
 
 > **Note**: the selection of inner object fields is not supported.
-
+:
 #### Combine all together
 
 You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients do the following request.
