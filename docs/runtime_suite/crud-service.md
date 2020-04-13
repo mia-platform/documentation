@@ -26,6 +26,17 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 
 > Remember: the API Portal visualize all API configured and exposed by CRUD.
 
+### Conventions
+
+We will use the following naming conventions:
+
+- **collection**: a set of JSON documents
+- **document**: an item that belong to a collection
+- **property**: a field of a document
+- **value**: the value of a property
+- **query string**: the filter set in the url query
+- **body**: the JSON data passed in a request
+
 ## Configure a CRUD in two minutes
 
 In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
@@ -298,75 +309,6 @@ With upsert-one you can also manipulate a single document in the same instance w
 
 ##### Unset an item value
 
-TODO
-
-##### Increase a counter
-
-TODO
-
-##### Multiply a value
-
-TODO
-
-##### Set current date
-
-TODO
-
-##### Add an item to an existing array
-
-TODO push
-
-#### Insert multiple documents
-
-The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example to add three dishes to plates collection you have to POST the /bulk on the resource.
-
-```bash
-curl --request POST \
-  --url https://your-url/v2/plates/bulk \
-  --header 'accept: application/json' \
-  --header 'content-type: application/json' \
-  --header 'secret: secret' \
-  --data '[{"name":"Risotto ai funghi porcini","description":" Risotto with porcini mushrooms"},{"name":"Lasagna","description":"Stacked layers of flat pasta alternating with fillings such as ragù"},{"name":"Tiramisu","description":"Savoiardi dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese"}]'
-```
-
-```json
-[
- {"_id":"5e8af37ab74dbf0011444ed6"},
- {"_id":"5e8af37ab74dbf0011444ed7"},
- {"_id":"5e8af37ab74dbf0011444ed8"}
-]
-```
-
-
-### Read
-
-#### Read a list of resources
-
-#### Insert or Update one document
-
-If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the endpoint upsert-one. You need to specify in query parameters all data to match eventually the existent document and in request body the JSON document you want to insert or update.
-
-```bash
-curl --request POST \
-  --url 'https://your-url/v2/plates/upsert-one?name=Spaghetti%20allo%20Scoglio' \
-  --header 'accept: application/json' \
-  --header 'content-type: application/json' \
-  --header 'secret: secret' \
-  --data '{"$set":{"name":"Spaghetti allo Scoglio"}}'
-```
-
-in response you will obtain the document if already exist or a new document if is not present. The document will reflect all the updates you specified.
-
->**note**: if you don't specify the query string the first document of the collection is updated.
-
-If instead of ```$set``` you use ```$setOnInsert``` values are set only if the document don't exist.
-
-With upsert-one you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. It follows the details.
-
->**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that this operation is not atomic.
-
-##### Unset an item value
-
 If you want to unset an item value when you update just use $unset. For example you want to insert a new document with Rice and unset the price.
 
 ```json
@@ -412,8 +354,6 @@ and the document become the following, without the price property and with the u
   }
 ]
 ```
-
-#### Read a single resource
 
 #### Insert multiple documents
 
@@ -463,7 +403,21 @@ In response of this request you will get a JSON array that contains all the docu
       "createdAt" : "2019-12-16T13:49:06.759Z",
       "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
       "description" : "The correct description",
-      "image" : [],
+      "image" : [
+         {
+            "_id" : "5df8bc5495a2a500117fc8d3",
+            "createdAt" : 1576582228061,
+            "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
+            "file" : "5df8bc548fa0c0000fb334e5.jpg",
+            "location" : "https://your-url/files/download/5df8bc548fa0c0000fb334e5.jpg",
+            "name" : "grilled-salmon-fish-on-rectangular-black-ceramic-plate-842142.jpg",
+            "size" : 70733,
+            "sync" : 0,
+            "trash" : 0,
+            "updatedAt" : 1576582228061,
+            "updaterId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f"
+         }
+      ],
       "ingredient" : [
          "5e8200fa2e9dde00112b6853",
          "5e81feaf2e9dde00112b684f",
@@ -480,9 +434,20 @@ In response of this request you will get a JSON array that contains all the docu
       "createdAt" : "2019-12-17T10:37:42.551Z",
       "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
       "description" : "",
-      "image" : [],
+      "image" : [
+         {
+            "_id" : "5df8bb3295a2a500117fc8d2",
+            "file" : "5df8bb328fa0c0000fb334e3.jpg",
+            "location" : "https://your-url/files/download/5df8bb328fa0c0000fb334e3.jpg",
+            "name" : "close-up-photo-of-cooked-pasta-2456435.jpg",
+            "size" : 94274,
+            "type" : "image/jpeg"
+         }
+      ],
       "ingredient" : [
-         "5e81fddd2e9dde00112b684c"
+         "5e81fddd2e9dde00112b684c",
+         "5e81feaf2e9dde00112b684f",
+         "5e81fd882e9dde00112b6849"
       ],
       "name" : "FRIED VEGGIE NOODLE",
       "price" : "10",
@@ -492,7 +457,7 @@ In response of this request you will get a JSON array that contains all the docu
 ]
 ```
 
-> **Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
+> **Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable CRUD_LIMIT_CONSTRAINT_ENABLED to false. If you change it be aware that you can hang the service for out of memory error.
 
 #### Get a single document by _id
 
@@ -536,7 +501,7 @@ In response to this request you get a JSON Object like the following.
 }
 ```
 
-#### Sort
+> **Note**: the query will return only PUBLIC documents. To retrieve a DRAFT document add to query string ```&_st=DRAFT```
 
 #### Sort
 
@@ -549,22 +514,21 @@ It is possible to sort the list of documents returned by a GET passing to the qu
 By default the sort id ascending, using - for descending. The following sort plates by names in alphabetical order.
 
 ```bash
-curl --request GET \
-  --url 'https://your-url/v2/plates/?_s=name' \
-  --header 'accept: application/json' \
-  --header 'secret: secret'
+curl -X GET https://your-url/heroes/?_s=name \
+-H "accept: application/json" \
+-H "content-type: application/json" \
+-H "secret: secret"
 ```
 
-> For sorting with more than one property use _q
+> For multiple sort use _q
 
 #### Paginate
 
 By default GET returns a limited number of documents. You can use pagination to return more documents. Pagination accepts filters and sorts parameters.
 
-#### Paginate
-
-- **_l**: limits the number of documents returned. Minimum value 1. Maximum value 200. You you pass more that 200 the CRUD Service truncate to 200 the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
-- **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
+It is possible to paginate a request by passing two parameters:
+- skip: the record from which to start. The first has an index of 0
+- limit: the number of records to be extracted in the query
 
 This is an example of request that get *two documents per page* and you ask for the *third page* (skip 4 documents).
 
@@ -608,7 +572,7 @@ curl -X GET https://your-url/heroes/?_q=%7B%22%24skip%22%3A0%2C%22%24limit%22%3A
 
 #### Filters with MongoDB Query
 
-Resources can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of resources. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
+documents can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
 
 You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients do the following request.
 
@@ -681,9 +645,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 
 #### Count
 
-#### Other Filters
-
-You can use more MongoDB filters in query **_q**. Here is the complete list:
+It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
 ```bash
 curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
@@ -759,9 +721,9 @@ To delete it permanently
 curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
 ```
 
-#### Delete all Resources
+#### Delete all documents
 
-It is possible to eliminate all the resources of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
+It is possible to eliminate all the documents of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
 
 ```bash
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
@@ -864,7 +826,7 @@ Success status:
 - **4xx (Client Error Category)**
   These status codes represent that the client has raised a faulty request.
   - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-  - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
+  - 401 Unauthorized indicates that the client is not allowed to access documents, and should re-request with the required credentials.
   - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
   - 404 Not Found indicates that the requested resource is not available now.
   - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
