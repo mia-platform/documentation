@@ -147,7 +147,7 @@ for example
   --data '{"stateTo":"PUBLIC"}'
 ```
 
-update from DRAFT (default state) to PUBLISH the collection document ```5e8a125eb74dbf0011444ed3```.
+update from DRAFT (default state) to PUBLISH the collection document `5e8a125eb74dbf0011444ed3`.
 
 ### Collection Properties Types
 
