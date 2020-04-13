@@ -600,6 +600,41 @@ curl --request GET \
   --header 'accept: application/json' \
   --header 'secret: secret'
 ```
+You can use more MongoDB filters in query **_q**. Here is the complete list:
+
+- $gt
+- $lt
+- $gte
+- $lte
+- $eq
+- $ne
+- $in
+- $nin
+- $all
+- $exists
+- $nearSphere
+- $regex
+- $elemMatch and $options
+
+> **Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
+
+#### Count
+
+It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
+
+```bash
+curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
+```
+
+returns
+
+```json
+{
+  "count": 3
+}
+```
+
+> **Note**: filters can be applied to the count. By default only PUBLIC documents are counted.
 
 #### Geospatial Queries
 
@@ -626,47 +661,9 @@ curl --request GET \
   --url 'https://your-url/v2/plates/?_q=%20%7B%22position%22%3A%7B%22%24nearSphere%22%3A%7B%22from%22%3A%5B9.18%2C45.43%5D%2C%22minDistance%22%3A0%2C%22maxDistance%22%3A1200%7D%7D%7D' \
   --header 'accept: application/json' \
   --header 'secret: secret'
-  ```
-
-The result will be sorted from the nearest from the farest.
-
-#### Other Filters
-
-You can use more MongoDB filters in query **_q**. Here is the complete list:
-
-- $gt
-- $lt
-- $gte
-- $lte
-- $eq
-- $ne
-- $in
-- $nin
-- $all
-- $exists
-- $nearSphere
-- $regex
-- $elemMatch and $options
-
-> Aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
-
-#### Count
-
-It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
-
-```bash
-curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
 ```
 
-returns
-
-```json
-{
-  "count": 3
-}
-```
-
-> **Note**: filters can be applied to the count. By default only PUBLIC documents are counted.
+The result will be sorted from the nearest from the farthest.
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
