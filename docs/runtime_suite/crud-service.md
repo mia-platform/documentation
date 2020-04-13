@@ -25,6 +25,17 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 
 > Remember: the API Portal visualize all API configured and exposed by CRUD.
 
+### Conventions
+
+We will use the following naming conventions:
+
+- **collection**: a set of JSON documents
+- **document**: an item that belong to a collection
+- **property**: a field of a document
+- **value**: the value of a property
+- **query string**: the filter set in the url query
+- **body**: the JSON data passed in a request
+
 ## Configure a CRUD in two minutes
 
 In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
@@ -297,23 +308,51 @@ With upsert-one you can also manipulate a single document in the same instance w
 
 ##### Unset an item value
 
-TODO
+If you want to unset an item value when you update just use $unset. For example you want to insert a new document with Rice and unset the price.
 
-##### Increase a counter
+```json
+[
+  {
+    "_id":"5e9482ed0fb46200115f9231"
+    "name":"Rice"
+    "description":"The description"
+    "price":"20"
+    "__STATE__":"PUBLIC"
+    "creatorId":"public"
+    "updaterId":"public"
+    "updatedAt":"2020-04-13T15:19:09.465Z"
+    "createdAt":"2020-04-13T15:19:09.465Z"
+  }
+]
+```
 
-TODO
+just call
 
-##### Multiply a value
+```bash
+curl --request POST \
+  --url 'https://your-url/v2/plates/upsert-one?name=Rice' \
+  --header 'accept: application/json' \
+  --header 'content-type: application/json' \
+  --header 'secret: secret' \
+  --data '{"$set":{"description":"The correct description"},"$unset":{"price":true}}'
+```
 
-TODO
+and the document become the following, without the price property and with the updated description.
 
-##### Set current date
-
-TODO
-
-##### Add an item to an existing array
-
-TODO push
+```json
+[
+  {
+    "_id":"5e9482ed0fb46200115f9231"
+    "name":"Rice"
+    "description":"The correct description"
+    "__STATE__":"PUBLIC"
+    "creatorId":"public"
+    "updaterId":"public"
+    "updatedAt":"2020-04-13T15:26:51.611Z"
+    "createdAt":"2020-04-13T15:19:09.465Z"
+  }
+]
+```
 
 #### Insert multiple documents
 
@@ -336,130 +375,155 @@ curl --request POST \
 ]
 ```
 
-
 ### Read
 
-#### Read a list of resources
+In this section you will learn how to query a collection.
 
-To read a resource, simply call the endpoint with a GET
+#### Get a list of documents
 
-```
-curl -X GET https://your-url/heroes/ \
+To read a collection, simply call the endpoint with a GET
+
+```bash
+curl -X GET https://your-url/v2/plates/ \
 -H  "accept: application/json"  \
 -H  "content-type: application/json" \
 -H  "secret: secret"
 ```
 
-you will get a JSON array that contains all the resources of the resource. The sorting is by insertion
+> Always end you request with a slash.  https://your-url/plates/ is correct.  https://your-url/plates is wrong.
 
-```
+In response of this request you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must to set STATE to DRAFT.
+
+```json
 [
-  {
-    "creatorId": "public",
-    "createdAt": 1504601033071,
-    "updaterId": "public",
-    "updatedAt": 1504601033071,
-    "sync": 0,
-    "trash": 0,
-    "name": "Ms. Marvel",
-    "powers": [
-      "superhuman strength",
-      "speed",
-      "stamina",
-      "durability",
-      "energy projection and absorption",
-      "flight"
-    ],
-    "id": "ff447759-6a35-405d-89ed-dec38484b6c4"
-  },
-  {
-    "creatorId": "public",
-    "createdAt": 1504601216920,
-    "updaterId": "public",
-    "updatedAt": 1504601216920,
-    "sync": 0,
-    "trash": 0,
-    "name": "Groot",
-    "powers": [
-      "regenerate",
-      "control plants",
-      "fire resistant",
-      "increase mass"
-    ],
-    "id": "86c32c9f-194e-46a1-b483-a07c118ff2fc"
-  },
-  {
-    "creatorId": "public",
-    "createdAt": 1504601266703,
-    "updaterId": "public",
-    "updatedAt": 1504601266703,
-    "sync": 0,
-    "trash": 0,
-    "name": "Capitan America",
-    "powers": [
-      "agility",
-      "strength",
-      "speed",
-      "endurance"
-    ],
-    "id": "ef02dcaa-7a2e-4c31-a505-c2cb014d769e"
-  }
+   {
+      "__STATE__" : "PUBLIC",
+      "_id" : "5df78b5287393f00114e0f20",
+      "createdAt" : "2019-12-16T13:49:06.759Z",
+      "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
+      "description" : "The correct description",
+      "image" : [
+         {
+            "_id" : "5df8bc5495a2a500117fc8d3",
+            "createdAt" : 1576582228061,
+            "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
+            "file" : "5df8bc548fa0c0000fb334e5.jpg",
+            "location" : "https://your-url/files/download/5df8bc548fa0c0000fb334e5.jpg",
+            "name" : "grilled-salmon-fish-on-rectangular-black-ceramic-plate-842142.jpg",
+            "size" : 70733,
+            "sync" : 0,
+            "trash" : 0,
+            "updatedAt" : 1576582228061,
+            "updaterId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f"
+         }
+      ],
+      "ingredient" : [
+         "5e8200fa2e9dde00112b6853",
+         "5e81feaf2e9dde00112b684f",
+         "5e81fd882e9dde00112b6849",
+         "5e8202892e9dde00112b685c"
+      ],
+      "name" : "Salmone affumicato",
+      "updatedAt" : "2020-04-13T15:26:19.819Z",
+      "updaterId" : "public"
+   },
+   {
+      "__STATE__" : "PUBLIC",
+      "_id" : "5df8aff66498d30011b19e4d",
+      "createdAt" : "2019-12-17T10:37:42.551Z",
+      "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
+      "description" : "",
+      "image" : [
+         {
+            "_id" : "5df8bb3295a2a500117fc8d2",
+            "file" : "5df8bb328fa0c0000fb334e3.jpg",
+            "location" : "https://your-url/files/download/5df8bb328fa0c0000fb334e3.jpg",
+            "name" : "close-up-photo-of-cooked-pasta-2456435.jpg",
+            "size" : 94274,
+            "type" : "image/jpeg"
+         }
+      ],
+      "ingredient" : [
+         "5e81fddd2e9dde00112b684c",
+         "5e81feaf2e9dde00112b684f",
+         "5e81fd882e9dde00112b6849"
+      ],
+      "name" : "FRIED VEGGIE NOODLE",
+      "price" : "10",
+      "updatedAt" : "2020-03-30T14:29:31.791Z",
+      "updaterId" : "auth0|5e81fb3565a28c0c5dbaa8c7"
+   }
 ]
 ```
 
-#### Read a single resource
+> **Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable CRUD_LIMIT_CONSTRAINT_ENABLED to false. If you change it be aware that you can hang the service for out of memory error.
 
-To read only one element, simply pass the id of the resource you want to read to GET.
+#### Get a single document by _id
 
-```
-curl -X GET https://your-url/heroes/ef02dcaa-7a2e-4c31-a505-c2cb014d769e  \
+To get just one document read only one element, simply pass the _id of the request
+
+```bash
+curl -X GET https://your-url/v2/plates/5df8aff66498d30011b19e4d \
 -H  "accept: application/json"  \
 -H  "content-type: application/json" \
--H  "secret: secret123"
+-H  "secret: secret"
 ```
 
-you get the resource corresponding to id *ef02dcaa-7a2e-4c31-a505-c2cb014d769e*
+In response to this request you get a JSON Object like the following.
 
-```
+```json
 {
-	"creatorId": "public",
-	"createdAt": 1504601266703,
-	"updaterId": "public",
-	"updatedAt": 1504601266703,
-	"sync": 0,
-	"trash": 0,
-	"name": "Capitan America",
-	"powers": ["agility", "strength", "speed", "endurance"],
-	"id": "ef02dcaa-7a2e-4c31-a505-c2cb014d769e"
+   "__STATE__" : "PUBLIC",
+   "_id" : "5df8aff66498d30011b19e4d",
+   "createdAt" : "2019-12-17T10:37:42.551Z",
+   "creatorId" : "5c4fd1d2-c6d8-4c65-8885-0b74f0309d0f",
+   "description" : "",
+   "image" : [
+      {
+         "_id" : "5df8bb3295a2a500117fc8d2",
+         "file" : "5df8bb328fa0c0000fb334e3.jpg",
+         "location" : "https://your-url/files/download/5df8bb328fa0c0000fb334e3.jpg",
+         "name" : "close-up-photo-of-cooked-pasta-2456435.jpg",
+         "size" : 94274,
+         "type" : "image/jpeg"
+      }
+   ],
+   "ingredient" : [
+      "5e81fddd2e9dde00112b684c",
+      "5e81feaf2e9dde00112b684f",
+      "5e81fd882e9dde00112b6849"
+   ],
+   "name" : "FRIED VEGGIE NOODLE",
+   "price" : "10",
+   "updatedAt" : "2020-03-30T14:29:31.791Z",
+   "updaterId" : "auth0|5e81fb3565a28c0c5dbaa8c7"
 }
 ```
 
+> **Note**: the query will return only PUBLIC documents. To retrieve a DRAFT document add to query string ```&_st=DRAFT```
+
 #### Sort
 
-It is possible to sort the list of resources returned with a GET.
+It is possible to sort the list of documents returned by a GET passing to the query string the **_s_** parameter. The value of the parameter is
 
-To sort a list of GET resources you need to pass the *sort* parameter to the querystring followed by a list of fields of sort. The sort has the syntax of a [mongo query](https://docs.mongodb.com/manual/reference/method/cursor.sort/).
-
+```bash
+[-|empty]<property name>
 ```
-curl -X GET https://your-url/heroes/?{"$sort":{"name":-1}} \
+
+By default the sort id ascending, using - for descending. The following sort plates by names in alphabetical order.
+
+```bash
+curl -X GET https://your-url/heroes/?_s=name \
 -H "accept: application/json" \
 -H "content-type: application/json" \
 -H "secret: secret"
 ```
 
-In this example, the resources are sorted by name in descending order. Passing 1 in ascending order.
-
-Note: you can use the *mongoQuery* parameter in the query string instead of passing the mongo string directly
-url
-
-```
-curl -X GET https://your-url/heroes?mongoQuery={"$sort":{"name":-1}} \
--H "accept: application/json" \
--H "content-type: application/json" \
--H "secret: secret"
-```
+> For multiple sort use _q
 
 #### Paginate
+
+By default GET returns a limited number of documents. You can use pagination to return more documents. Pagination accepts filters and sorts parameters.
 
 It is possible to paginate a request by passing two parameters:
 - skip: the record from which to start. The first has an index of 0
@@ -507,7 +571,7 @@ curl -X GET https://your-url/heroes/?_q=%7B%22%24skip%22%3A0%2C%22%24limit%22%3A
 
 #### Filters with MongoDB Query
 
-Resources can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of resources. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
+documents can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
 
 For example we can look for the super heroes of *female* sex that appeared before *1990* and that have super power *speed* or
 the name has Marvel inside.
@@ -582,7 +646,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 
 #### Count
 
-It may be helpful to know how many documents contains a list of resources. For this purpose it is sufficient to invoke a GET on the /count of the resource
+It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
 ```bash
 curl -X GET https://your-url/heroes/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
@@ -658,9 +722,9 @@ To delete it permanently
 curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
 ```
 
-#### Delete all Resources
+#### Delete all documents
 
-It is possible to eliminate all the resources of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
+It is possible to eliminate all the documents of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
 
 ```bash
 curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
@@ -763,7 +827,7 @@ Success status:
 - **4xx (Client Error Category)**
   These status codes represent that the client has raised a faulty request.
   - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-  - 401 Unauthorized indicates that the client is not allowed to access resources, and should re-request with the required credentials.
+  - 401 Unauthorized indicates that the client is not allowed to access documents, and should re-request with the required credentials.
   - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
   - 404 Not Found indicates that the requested resource is not available now.
   - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
