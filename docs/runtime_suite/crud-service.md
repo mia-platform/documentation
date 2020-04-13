@@ -83,7 +83,7 @@ CRUD by default comes with a set of common properties that simplify the data man
 
 #### Example of a Collection with only predefined Properties
 
-If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following item.
+If you create a CRUD named `empty` without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
 
 ```bash
 curl --request GET \
