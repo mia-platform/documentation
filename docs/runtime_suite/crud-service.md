@@ -293,7 +293,7 @@ curl --request POST \
   --data '{"name":"Spaghetti al Pomodoro","description":"The classic italian dish"}'
 ```
 
-in response, you will get this JSON:
+in response, you will get a JSON object like this:
 
 ```json
 {
