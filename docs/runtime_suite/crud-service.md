@@ -114,9 +114,11 @@ curl --request GET \
 - **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
 - **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
 
-By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC.
+> **Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
 
-It is possible to enable *hard delete* function to delete permanently an document from the CMS.
+By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in DevOps Console/Design/Endpoints section.
+
+It is also possible to enable *hard delete* function to delete permanently an document from the CMS.
 
 ##### State Transitions
 
@@ -126,7 +128,7 @@ Only the following transitions are allowed in the publish workflow.
 |--------------------|---------|--------|--------|----------|
 | PUBLIC             |    -    |   OK   |   OK   |          |
 | DRAFT              |  OK     |   -    |   OK   |          |
-| TRASH              |         | OK     |   -    |   OK     |
+| TRASH              |  OK     | OK     |   -    |   OK     |
 | DELETED            |         |        |   OK   |   -      |
 
 To transit the STATE of an item of a CRUD you need to POST it
@@ -154,13 +156,15 @@ When a new property is added to a collection it is possible to specify the follo
 - String: UTF-8 character set
 - Number
 - Boolean
-- GeoPoint
+- GeoPoint (array of coordinates longitude, latitude)
 
 ```json
-  {
-    "type": "Point",
-    "coordinates": [longitude: Double, latitude: Double]
-  }
+{ "position":
+  [
+    9.232457,
+    45.443919
+  ]
+}
 ```
 
 - Date
@@ -197,12 +201,13 @@ The CRUD service accept the following header:
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 ```
 
-- ***acl_read_columns***: the list of properties to return in the result. It is an array of strings. Example:
-- ***userId***: the user identifier that do the update
+- ***acl_read_columns***: the list of properties to return in the result (projection). It is an array of strings. Example:
 
 ```json
 acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
 ```
+
+- ***userId***: the user identifier that do the update
 
 Usually this is used by PRE/POST Orchestrator to manage concatenated request to CRUD.
 
@@ -211,6 +216,14 @@ Usually this is used by PRE/POST Orchestrator to manage concatenated request to 
 ### Expose a CRUD Service
 
 CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
+
+### Version Management
+
+TODO v2
+
+### API Secret
+
+TODO
 
 ### CRUD ACL
 
@@ -250,7 +263,7 @@ If your endpoints are also protected by authentication and authorization you nee
 
 ### Create
 
-It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is created automatically. A document can be created in three different ways:
+It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is created automatically and the MongoDB indexes configured are create automatically. A document can be created in three different ways:
 
 - inserting a single JSON document
 - inserting or updating one JSON document
@@ -260,7 +273,7 @@ The JSON document sent to CRUD is validated against the JSON schema defined in D
 
 #### Insert a single document
 
-To create a document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection ```plates``` you need to create a JSON like this one:
+To create a document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection `plates` you need to create a JSON like this one:
 
 ```json
 {
@@ -596,7 +609,7 @@ To enable this feature you need to create an Position index on DevOps Console.
 
 ![Position Index](img/position-index.png)
 
-When the index is created you can use $nearSphere. For example to search a plate near you, beetween 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
+When the index is created you can use $nearSphere. For example to search a plate near you, between 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
 
 ```json
 {"position":
