@@ -124,12 +124,12 @@ It is also possible to enable *hard delete* function to delete permanently an do
 
 Only the following transitions are allowed in the publish workflow. 
 
-|  Source/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
+| Source/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
 |--------------------|---------|--------|--------|----------|
-| PUBLIC             |    -    |   OK   |   OK   |          |
-| DRAFT              |  OK     |   -    |   OK   |          |
+| PUBLIC             |    -    |   OK   |   OK   |  -       |
+| DRAFT              |  OK     |   -    |   OK   |  -       |
 | TRASH              |  OK     | OK     |   -    |   OK     |
-| DELETED            |         |        |   OK   |   -      |
+| DELETED            |   -     |   -    |   OK   |   -      |
 
 To transit the STATE of an item of a CRUD you need to POST it
 
@@ -852,10 +852,6 @@ Success status:
 - **5xx (Server Error Category)**
   - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
   - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
-
-## Example and Ideas on how-to use CRUD
-
-TODO, here you can find some examples on how to use CRUD
 
 ## Further Readings
 
