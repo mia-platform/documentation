@@ -83,7 +83,7 @@ CRUD by default comes with a set of common properties that simplify the data man
 
 #### Example of a Collection with only predefined Properties
 
-If you create a CRUD without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
+If you create a CRUD named `empty` without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
 
 ```bash
 curl --request GET \
@@ -147,7 +147,7 @@ for example
   --data '{"stateTo":"PUBLIC"}'
 ```
 
-update from DRAFT (default state) to PUBLISH the collection document ```5e8a125eb74dbf0011444ed3```.
+update from DRAFT (default state) to PUBLISH the collection document `5e8a125eb74dbf0011444ed3`.
 
 ### Collection Properties Types
 
@@ -293,7 +293,7 @@ curl --request POST \
   --data '{"name":"Spaghetti al Pomodoro","description":"The classic italian dish"}'
 ```
 
-in response, you will get this JSON:
+in response, you will get a JSON object like this:
 
 ```json
 {
