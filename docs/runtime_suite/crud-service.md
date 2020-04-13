@@ -139,7 +139,7 @@ To transit the STATE of an item of a CRUD you need to POST it
 
 for example
 
- ```bash
+```bash
  curl --request POST \
   --url https://your-url/v2/empty/5e8a125eb74dbf0011444ed3/state \
   --header 'content-type: application/json' \
@@ -263,7 +263,7 @@ If your endpoints are also protected by authentication and authorization you nee
 
 ### Create
 
-It's possible to create one or more documents in a collection. If in MongoDB the collection doesn't exist the collection is created automatically and the MongoDB indexes configured are create automatically. A document can be created in three different ways:
+It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist CRUD creates it automatically and force the indexes configured in DevOps Console. A document can be created in three different ways:
 
 - inserting a single JSON document
 - inserting or updating one JSON document
