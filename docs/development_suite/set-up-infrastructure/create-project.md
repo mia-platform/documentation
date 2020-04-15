@@ -224,11 +224,11 @@ The project creation is divided in 5 different sections:
 
    * *Description* (optional, readonly): Allows you to keep trace of the environment.
    
-   * *Host* (mandatory, readonly): 
+   * *Host* (mandatory, readonly): Location of the environment.
 
-   * *Backoffice Host* (optional, readonly): 
+   * *Backoffice Host* (optional, readonly): Location of the environment.
 
-   * *Cluster Host* (mandatory, readonly): 
+   * *Cluster Host* (mandatory, readonly): This is the IP adress of the Host.
 
    * *Is production?* (mandatory, readonly): Defines if the environment is a production environment or not.
 
@@ -243,3 +243,7 @@ The project creation is divided in 5 different sections:
    * *Client Type* (mandatory): Typology of the Client that wants to access to your APIs
 
    * *Description* (optional): Allows you to keep trace of the API Key.
+
+At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
+
+Once your project has been created, you will land on the Set-up Infrastructure area of your new project.
