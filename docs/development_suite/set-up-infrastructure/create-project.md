@@ -197,3 +197,49 @@ The interpolation data in those files is the `environments` at the first level (
 # Create a project
 
 To create a project, click on the `Create new project` button on DevOps Console homepage.
+
+The project creation is divided in 5 different sections:
+
+1. **General**: In this section, you are required to insert the general information about your new project:
+
+   * *Tenant* (mandatory): You have to select your Tenant, which enables you to keep the same configuration for different projects, from a list of pre-configured Tenants. 
+
+   * *Project Name* (mandatory): This is the label of your project.
+
+   * *Description* (optional): Allows you to keep trace of the project created.
+
+2. **Repository**: In this section, you have to choose the location and the Template of your new project:
+
+   * *Git repo path* (mandatory, readonly): This is the path that specifies the location of your project on GitLab
+
+   * *Visibility* (mandatory, readonly): The "Internal" visibility states that your project can be cloned by any logged-in user. 
+
+   * *Template* (mandatory): You have to select your Template, which enables you to use pre-filled configurations for your project, from a list of pre-configured Templates. 
+
+3. **Environments**: In this section, you are configuring your project's Development, Preproduction and Production environments. For each environment, the following information needs to be specified: 
+
+   * *Environemnt name* (mandatory, readonly): Name given to your environment.
+
+   * *Environemnt ID* (mandatory, readonly): This is the label given to your environment.
+
+   * *Description* (optional, readonly): Allows you to keep trace of the environment.
+   
+   * *Host* (mandatory, readonly): 
+
+   * *Backoffice Host* (optional, readonly): 
+
+   * *Cluster Host* (mandatory, readonly): 
+
+   * *Is production?* (mandatory, readonly): Defines if the environment is a production environment or not.
+
+   * *Namespace* (mandatory, readonly): 
+
+4. **Services**: In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+
+5. **Configure API Key**: In this section, you are required to set up Client's accesses to your APIs:
+
+   * *API Key* (mandatory): This is the secret, that can be created randomly.
+
+   * *Client Type* (mandatory): Typology of the Client that wants to access to your APIs
+
+   * *Description* (optional): Allows you to keep trace of the API Key.
