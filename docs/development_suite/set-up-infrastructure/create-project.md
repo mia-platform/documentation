@@ -198,6 +198,10 @@ The interpolation data in those files is the `environments` at the first level (
 
 To create a project, click on the `Create new project` button on DevOps Console homepage.
 
+progetto è la base del progetto,
+
+fatto fase installazione, tenent, template, se li hai inizia da 1, altrimenti creali
+
 The project creation is divided in 5 different sections:
 
 1. **General**: In this section, you are required to insert the general information about your new project:
@@ -224,9 +228,9 @@ The project creation is divided in 5 different sections:
 
    * *Description* (optional, readonly): Allows you to keep trace of the environment.
    
-   * *Host* (mandatory, readonly): Location of the environment.
+   * *Host* (mandatory, readonly): Location of the environment. (url che chiama il tuo progetto)
 
-   * *Backoffice Host* (optional, readonly): Location of the environment.
+   * *Backoffice Host* (optional, readonly): Location of the environment. (pezzo di host per il progetto)
 
    * *Cluster Host* (mandatory, readonly): This is the IP adress of the Host.
 
@@ -234,9 +238,13 @@ The project creation is divided in 5 different sections:
 
    * *Namespace* (mandatory, readonly): 
 
-4. **Services**: In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+4. **Services**: 
 
-5. **Configure API Key**: In this section, you are required to set up Client's accesses to your APIs:
+In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+
+5. **Configure API Key**:
+
+ In this section, you are required to set up Client's accesses to your APIs:
 
    * *API Key* (mandatory): This is the secret, that can be created randomly.
 
@@ -246,4 +254,4 @@ The project creation is divided in 5 different sections:
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
 
-Once your project has been created, you will land on the Set-up Infrastructure area of your new project.
+Once your project has been created, you will land on the Set-up Infrastructure area of your new project. (dire quali sono le variabili che vanno assolutamente settate)
