@@ -374,6 +374,41 @@ and the document become the following, without the price property and with the u
 ]
 ```
 
+-----------------------------------
+#### Others TODO
+
+Bisogna aggiungere una collezione Cart che aumenta o diminuisce di 1 se fai il post dello stesso elemento
+
+```
+Supponi di volere mettere un CRUD che conta gli accessi per IP
+```
+{
+  "ip": "127.0.0.1", // chiave unica
+  "access_count": 23,
+  "first_access_user_agent": "Chrome",
+  "last_chrome_access": "2020-04-13",
+  "user_agents": [ "Chrome" ]
+}
+```
+
+Ad ogni accesso è possibile creare un'upsert 
+```
+/accesses/upsert-one?ip=127.0.0.1
+{
+  "$inc": { "access_count": 1 },
+  "$setOnInsert": { "first_access_user_agent" : "Chrome blabla" },
+  "$setCurrentDate": { "last_chrome_access": 1 },
+  "$push": { "user_agents", "Chrome blabla" }
+}
+```
+In questo modo "access_count" viene sempre incrementato di uno, "first_access_user_agent" viene settato solo la prima volta, "last_chrome_access" viene settato all'ultimo accesso di un browser chrome (che quindi il client, in base al browser, può scegliere di fare o non fare) e "user_agents" continua ad essere aggiornato costantemente aggiungendo sempre lo user agent.
+Il tutto a prescindere se l'ip è già stato censito o meno. La differenza con la PATCH è esattamente quello: l'esistenza di un record sul DB. Se il DB non contenesse l'ip "127.0.0.1", la patch infatti in questo caso tornerebbe 0 risultati aggiornati mentre l'upsert one ne inserirebbe uno. Questo per evitare lato client il check dell'esistenza del dato. 
+Comunque, come detto, anche il server in questo caso non farebbe un'azione atomica ma l'intervallo di tempo tra le due operazioni è decisamente basso poichè fatto dal database stesso invece che dal client HTTP.
+
+Sulla "$mul" non saprei che dire però, ma nel complesso era più difficile togliere la funzionalità che lasciarla. In teoria si può utilizzare la mul per fare un booleano: moltiplicando infatti il dato per "-1" è possibile tracciare sul database un booleano con valori "1" e "-1".
+```
+-----------------------------------
+
 #### Insert multiple documents
 
 The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example to add three dishes to plates collection you have to POST the /bulk on the resource.
