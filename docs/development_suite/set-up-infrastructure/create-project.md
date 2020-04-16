@@ -1,3 +1,7 @@
+In this page, you can find the guidelines about project creation.
+
+The first three sections allows you to have the prerequisites to create a project, the last section explains in details how to create a project.
+
 # Create a tenant
 
 If you already have a tenant, you could [skip this section](#create-a-template).
@@ -196,15 +200,20 @@ The interpolation data in those files is the `environments` at the first level (
 
 # Create a project
 
+The project creation section is the base that allows you to have a project that can be managed and developed through each area of DevOps Console.
+
+!!!Warning
+  Before starting to create a project, you have to create the following features with the help of the guidelines explained above:      
+    * *Tenant*: Which is the upper level of projects. Each project created under the same Tenant share the same information, like the configuration of the environments;     
+    * *Template*: It creates a repository with pre-compiled libraries and settings.
+
 To create a project, click on the `Create new project` button on DevOps Console homepage.
-
-progetto è la base del progetto,
-
-fatto fase installazione, tenent, template, se li hai inizia da 1, altrimenti creali
 
 The project creation is divided in 5 different sections:
 
-1. **General**: In this section, you are required to insert the general information about your new project:
+1. **General** 
+
+In this section, you are required to insert the general information about your new project:
 
    * *Tenant* (mandatory): You have to select your Tenant, which enables you to keep the same configuration for different projects, from a list of pre-configured Tenants. 
 
@@ -212,39 +221,44 @@ The project creation is divided in 5 different sections:
 
    * *Description* (optional): Allows you to keep trace of the project created.
 
-2. **Repository**: In this section, you have to choose the location and the Template of your new project:
+2. **Repository** 
 
-   * *Git repo path* (mandatory, readonly): This is the path that specifies the location of your project on GitLab
+In this section, it is indicated the location of your new project and you have to choose its Template:
 
-   * *Visibility* (mandatory, readonly): The "Internal" visibility states that your project can be cloned by any logged-in user. 
+   * *Git repo path* (mandatory, not editable): This is the path, gathered from Project Name and Tenant, that specifies the location of your project on GitLab.
+
+   * *Visibility* (mandatory, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
 
    * *Template* (mandatory): You have to select your Template, which enables you to use pre-filled configurations for your project, from a list of pre-configured Templates. 
 
-3. **Environments**: In this section, you are configuring your project's Development, Preproduction and Production environments. For each environment, the following information needs to be specified: 
+3. **Environments** 
 
-   * *Environemnt name* (mandatory, readonly): Name given to your environment.
+In this section, you are visualizing the configuration of your project's Development, Preproduction and Production environments. The following information are gathered from the selected Tenant and, so,are already configured and are not editable:
 
-   * *Environemnt ID* (mandatory, readonly): This is the label given to your environment.
+   * *Environemnt name* (mandatory, copy not editable): Name given to your environment.
 
-   * *Description* (optional, readonly): Allows you to keep trace of the environment.
+   * *Environemnt ID* (mandatory, copy not editable): This is the label given to your environment.
+
+   * *Description* (mandatory, copy not editable): Allows you to keep trace of the environment.
    
-   * *Host* (mandatory, readonly): Location of the environment. (url che chiama il tuo progetto)
+   * *Host* (mandatory, copy not editable): The host under which the documentation will be provided and the APIs will be available.
 
-   * *Backoffice Host* (optional, readonly): Location of the environment. (pezzo di host per il progetto)
+   * *Backoffice Host* (mandatory, copy not editable): The host under which CMS will be available.
 
-   * *Cluster Host* (mandatory, readonly): This is the IP adress of the Host.
+   * *Cluster Host* (mandatory, copy not editable): This is the IP of the Host.
 
-   * *Is production?* (mandatory, readonly): Defines if the environment is a production environment or not.
+   * *Is production?* (mandatory, copy not editable): Defines if the environment is a production environment or not.
 
-   * *Namespace* (mandatory, readonly): 
+   * *Namespace* (mandatory, copy not editable): Name used as the namespace of kubernetes.
 
-4. **Services**: 
+
+4. **Services** 
 
 In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
 
-5. **Configure API Key**:
+5. **Configure API Key**
 
- In this section, you are required to set up Client's accesses to your APIs:
+In this section, you are required to set up Client's accesses to your APIs:
 
    * *API Key* (mandatory): This is the secret, that can be created randomly.
 
@@ -252,6 +266,20 @@ In this section, you are selecting which services are going to be provided to yo
 
    * *Description* (optional): Allows you to keep trace of the API Key.
 
+
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
 
-Once your project has been created, you will land on the Set-up Infrastructure area of your new project. (dire quali sono le variabili che vanno assolutamente settate)
+Once your project has been created, you will land on the Set-up Infrastructure area of your new project. In this section, you can find a list of variables:
+
+ * Some variables, like CMS_IMAGE_NAME, CRUD_LIMIT_CONSTRAINT_ENABLED and LOG_LEVEL, are pre-filled since are declared by Tenant.
+
+ * Some variables, like CRUD_LIMIT_CONSTRAINT_ENABLED and LOG_LEVEL, are not pre-filled, but are mandatory: so, you have to fill them.
+
+ * Some variables, like MONGODB_SHORT_URL, MONGODB_URL, NOTIFICATIONS_COLLECTION_ROUTES, NOTIFICATIONS_SERVICE_PATH and REDIS_HOSTS, are not pre-filled and are not mandatory.
+
+These variables are saved on GitLab.
+
+To complete the project creation, you have to commit and deploy.
+
+!!!Warning
+  At the end of project creation, a Mongo connection needs to be created in order to enable CRUD.
