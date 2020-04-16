@@ -221,6 +221,8 @@ In this section, you are required to insert the general information about your n
 
    * *Description* (optional): Allows you to keep trace of the project created.
 
+![create-project-section1](img/Create-project-section1.jpg)
+
 2. **Repository** 
 
 In this section, it is indicated the location of your new project and you have to choose its Template:
@@ -230,6 +232,8 @@ In this section, it is indicated the location of your new project and you have t
    * *Visibility* (mandatory, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
 
    * *Template* (mandatory): You have to select your Template, which enables you to use pre-filled configurations for your project, from a list of pre-configured Templates. 
+
+![create-project-section2](img/Create-project-section2.jpg)
 
 3. **Environments** 
 
@@ -251,10 +255,14 @@ In this section, you are visualizing the configuration of your project's Develop
 
    * *Namespace* (mandatory, copy not editable): Name used as the namespace of kubernetes.
 
+![create-project-section3](img/Create-project-section3.jpg)
+
 
 4. **Services** 
 
 In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+
+![create-project-section4](img/Create-project-section4.jpg)
 
 5. **Configure API Key**
 
@@ -266,6 +274,7 @@ In this section, you are required to set up Client's accesses to your APIs:
 
    * *Description* (optional): Allows you to keep trace of the API Key.
 
+![create-project-section5](img/Create-project-section5.jpg)
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
 
