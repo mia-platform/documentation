@@ -1,3 +1,7 @@
+In this page, you can find the guidelines about project creation.
+
+The first three sections allows you to have the prerequisites to create a project, the last section explains in details how to create a project.
+
 # Create a tenant
 
 If you already have a tenant, you could [skip this section](#create-a-template).
@@ -196,7 +200,7 @@ The interpolation data in those files is the `environments` at the first level (
 
 # Create a project
 
-To create a project, click on the `Create new project` button on DevOps Console homepage.
+The project creation section is the base that allows you to have a project that can be managed and developed through each area of DevOps Console.
 
 The project creation is divided in 5 different sections:
 
@@ -214,9 +218,13 @@ In this section, you are required to insert the general information about your n
 
 In this section, you have to choose the location and the Template of your new project:
 
-   * *Git repo path* (mandatory, readonly): This is the path that specifies the location of your project on GitLab
+2. **Repository** 
 
-   * *Visibility* (mandatory, readonly): The "Internal" visibility states that your project can be cloned by any logged-in user. 
+In this section, it is indicated the location of your new project and you have to choose its Template:
+
+   * *Git repo path* (mandatory, not editable): This is the path, gathered from Project Name and Tenant, that specifies the location of your project on GitLab.
+
+   * *Visibility* (mandatory, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
 
    * *Template* (mandatory): You have to select your Template, which enables you to use pre-filled configurations for your project, from a list of pre-configured Templates. 
 
@@ -224,21 +232,25 @@ In this section, you have to choose the location and the Template of your new pr
 
 In this section, you are configuring your project's Development, Preproduction and Production environments. For each environment, the following information needs to be specified: 
 
-   * *Environemnt name* (mandatory, readonly): Name given to your environment.
+In this section, you are visualizing the configuration of your project's Development, Preproduction and Production environments. The following information are gathered from the selected Tenant and, so,are already configured and are not editable:
 
-   * *Environemnt ID* (mandatory, readonly): This is the label given to your environment.
+   * *Environemnt name* (mandatory, copy not editable): Name given to your environment.
 
-   * *Description* (optional, readonly): Allows you to keep trace of the environment.
+   * *Environemnt ID* (mandatory, copy not editable): This is the label given to your environment.
+
+   * *Description* (mandatory, copy not editable): Allows you to keep trace of the environment.
    
-   * *Host* (mandatory, readonly): Location of the environment. (url che chiama il tuo progetto)
+   * *Host* (mandatory, copy not editable): The host under which the documentation will be provided and the APIs will be available.
 
-   * *Backoffice Host* (optional, readonly): Location of the environment. (pezzo di host per il progetto)
+   * *Backoffice Host* (mandatory, copy not editable): The host under which CMS will be available.
 
-   * *Cluster Host* (mandatory, readonly): This is the IP adress of the Host.
+   * *Cluster Host* (mandatory, copy not editable): This is the IP of the Host.
 
-   * *Is production?* (mandatory, readonly): Defines if the environment is a production environment or not.
+   * *Is production?* (mandatory, copy not editable): Defines if the environment is a production environment or not.
 
-   * *Namespace* (mandatory, readonly): 
+   * *Namespace* (mandatory, copy not editable): Name used as the namespace of kubernetes.
+
+![create-project-section3](img/Create-project-section3.jpg)
 
 ## Fase 4. **Services**: 
 
@@ -246,13 +258,15 @@ In this section, you are selecting which services are going to be provided to yo
 
 ## Fase 5. **Configure API Key**:
 
- In this section, you are required to set up Client's accesses to your APIs:
+In this section, you are required to set up Client's accesses to your APIs:
 
    * *API Key* (mandatory): This is the secret, that can be created randomly.
 
    * *Client Type* (mandatory): Typology of the Client that wants to access to your APIs
 
    * *Description* (optional): Allows you to keep trace of the API Key.
+
+![create-project-section5](img/Create-project-section5.jpg)
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
 
