@@ -1,8 +1,22 @@
+# Create a Project
+
 In this page, you can find the guidelines about project creation.
 
-The first three sections allows you to have the prerequisites to create a project, the last section explains in details how to create a project.
+The project creation allows you to have a project, which lifecycle could be completely managed and developed through DevOps Console areas.
 
-# Create a tenant
+The first three sections of this guide allows you to have the prerequisites to create a project, the last section explains in details how to create a project. In particular, to create a project, you need these features:
+
+ * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its Tenant.
+
+ * **Template**: Repository with libraries and pre-filled configurations. Each project could have one or more Template.
+
+ * **DevOps Console**: This is the platform that allows you to manage the complete lifecycle of the project.
+
+ If you already have these three features, you can directly skip to the last section.
+
+ The power of project creation is based on the easiness and quickness of use: indeed, once Tenat and Template are configured, you can create a project with a minimum number of actions.
+
+# Create a Tenant
 
 If you already have a tenant, you could [skip this section](#create-a-template).
 
@@ -12,7 +26,7 @@ In an existent infrastructure some information are repeated for all the projects
 !!! info
     The fields in the tenant cannot be changed during project creation steps (if not specified otherwise)
 
-More in detail, a guide how to compile the tenant:
+More in detail, to compile the tenant, you have to use the following guide:
 
 * `name` (*required*): the name of the tenant to display in selection list;
 * `tenantId` (*required*): the human readable id of the tenant (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
@@ -50,11 +64,11 @@ More in detail, a guide how to compile the tenant:
     !!! warning
         Do not set in cluster.kubeContextVariables object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
 
-* `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. As of now, the only supported type is `gitlab`.
+* `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. Like now, the only supported type is `gitlab`.
 
   There are three way to configure a project:
 
-  1. **empty**: it is not set a default in project creation, but should be configured manually
+  1. **empty**: it is not set as a default in project creation, but should be configured manually.
 
   1. **only type configuration**, for example:
       ```json
@@ -87,7 +101,7 @@ More in detail, a guide how to compile the tenant:
       }
     ```
 
-* `availableNamespaces`: namespaces accessible internally from your project, using `cross-projects` endpoint. It is useful when your tenant is made up of more projects of several projects that communicate with each other. The content of this arrays will be interpolated to replate `%projectId%` with inserted `projectId` field in project creation.
+* `availableNamespaces`: namespaces accessible internally from your project, using `cross-projects` endpoint. It is useful when your tenant is made up of several projects that communicate with each other. The content of this array will be interpolated to replace `%projectId%` with `projectId` field in project creation.
 
 
 # Create a template
@@ -104,7 +118,7 @@ How to compile the tenant:
   * `name` (*required*): name of the template to display;
   * `templateId` (*required*): the human readable id of the tenant (e.g. mia-platform-multitenant-template). It must adhere to this regex: (^[a-z]+[a-z0-9-]*$);
   * `description`: the description of the template;
-  * `archiveUrl`: url to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you should create a custom template. click [here](#how-to-create-a-project-archive) to see how.
+  * `archiveUrl`: url to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you have to create a custom template, click [here](#how-to-create-a-project-archive) to see how.
   * `staticSecret`: some project could use the same static secret for a set of projects (especially used with an architecture with multiple `api-gateway` entrypoint). This is an object, for example:
       ```json
         {
@@ -113,7 +127,7 @@ How to compile the tenant:
           "clientType":"cms"
         }
       ```
-  * `enabledServices`: an object containing as key the service handled by the console and as value a boolean. If the value is true, the service is enable and the DevOps Console will generate the configuration for that service, otherwise it will be skipped by the console. For example:
+  * `enabledServices`: an object containing as key the service handled by the Console and as value a boolean. If the value is true, the service is enabled and the DevOps Console will generate the configuration for that service, otherwise it will be skipped by the Console. For example:
     ```json
       {
         "api-gateway": true,
@@ -143,8 +157,8 @@ You could create project template to avoid copy/paste in every new project the s
 
 At Mia, for example, we create a template to configure a project to use the platform configured to use auth0, headless cms, api portal and traefik configuration. So for a tenant using this template, create this type of project will be a very simple process.
 
-The view, or the data you can interpolate, are some project data. With mustache, we could iterate through an array, so we could have some configuration iterate for all the environments.
-Thee values you could use during template interpolation are:
+The view, or the data you can interpolate, are some project data. With mustache, we could iterate through an array, so we could have some configuration iterated for all the environments.
+The values you could use during template interpolation are:
 
 For the project (you could access using `project.${field}`)
 * projectId
@@ -195,81 +209,94 @@ In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageNam
 All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, with `n` the number of environments. So, inside the environment, you could use the environment specific fields.
 For other possibilities, please check [mustache](https://github.com/janl/mustache.js) documentation.
 
-You may want to write a file or a a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolate for every environment.
+You may want to write a file or a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolated for every environment.
 The interpolation data in those files is the `environments` at the first level (as in `mustache` sections), but you have the project as a key for every environment.
 
-# Create a project
+# How to create a project on DevOps Console
 
-The project creation section is the base that allows you to have a project that can be managed and developed through each area of DevOps Console.
+If you have each pre-requisite mentioned in the first section of this page, you are able to create a new project with the button 'create project' in the Home area of DevOps Console.
 
 The project creation is divided in 5 different sections:
 
-## Fase 1. **General**: 
+## Section 1. **General**: 
 
 In this section, you are required to insert the general information about your new project:
 
-   * *Tenant* (mandatory): You have to select your Tenant, which enables you to keep the same configuration for different projects, from a list of pre-configured Tenants. 
+   * **Tenant** (*mandatory*): You have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
-   * *Project Name* (mandatory): This is the label of your project.
+   * **Project Name** (*mandatory*): This is the label of your project.
 
-   * *Description* (optional): Allows you to keep trace of the project created.
+   * **Description** (*optional*): Allows you to keep trace of the project created.
 
-## Fase 2 **Repository**: 
+![create-project-section1](img/Create-project-section1.jpg)
 
-In this section, you have to choose the location and the Template of your new project:
-
-2. **Repository** 
+## Section 2 **Repository**: 
 
 In this section, it is indicated the location of your new project and you have to choose its Template:
 
-   * *Git repo path* (mandatory, not editable): This is the path, gathered from Project Name and Tenant, that specifies the location of your project on GitLab.
+   * **Git repo path** (*mandatory*, not editable): This is the path, gathered from Project Name and Tenant, that specifies the location of your project on GitLab.
 
-   * *Visibility* (mandatory, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
+   * **Visibility** (*mandatory*, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
 
-   * *Template* (mandatory): You have to select your Template, which enables you to use pre-filled configurations for your project, from a list of pre-configured Templates. 
+   * **Template** (*mandatory*): You have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
-## Fase 3. **Environments**: 
+   ![create-project-section2](img/Create-project-section2.jpg)
 
-In this section, you are configuring your project's Development, Preproduction and Production environments. For each environment, the following information needs to be specified: 
+## Section 3. **Environments**: 
 
-In this section, you are visualizing the configuration of your project's Development, Preproduction and Production environments. The following information are gathered from the selected Tenant and, so,are already configured and are not editable:
+In this section, you are visualizing the configuration of your project's Development, Preproduction and Production environments. The following information are gathered from the selected Tenant and, so, are already configured and are not editable:
 
-   * *Environemnt name* (mandatory, copy not editable): Name given to your environment.
+   * **Environemnt name** (*mandatory*, copy not editable): Name given to your environment.
 
-   * *Environemnt ID* (mandatory, copy not editable): This is the label given to your environment.
+   * **Environemnt ID** (*mandatory*, copy not editable): This is the label given to your environment.
 
-   * *Description* (mandatory, copy not editable): Allows you to keep trace of the environment.
+   * **Description** (*mandatory*, copy not editable): Allows you to keep trace of the environment.
    
-   * *Host* (mandatory, copy not editable): The host under which the documentation will be provided and the APIs will be available.
+   * **Host** (*mandatory*, copy not editable): The host under which the documentation will be provided and the APIs will be available.
 
-   * *Backoffice Host* (mandatory, copy not editable): The host under which CMS will be available.
+   * **Backoffice Host** (*mandatory*, copy not editable): The host under which CMS will be available.
 
-   * *Cluster Host* (mandatory, copy not editable): This is the IP of the Host.
+   * **Cluster Host** (*mandatory*, copy not editable): This is the IP of the Host.
 
-   * *Is production?* (mandatory, copy not editable): Defines if the environment is a production environment or not.
+   * **Is production?** (*mandatory*, copy not editable): Defines if the environment is a production environment or not.
 
-   * *Namespace* (mandatory, copy not editable): Name used as the namespace of kubernetes.
+   * **Namespace** (*mandatory*, copy not editable): Name used as the namespace of kubernetes.
 
 ![create-project-section3](img/Create-project-section3.jpg)
 
-## Fase 4. **Services**: 
+## Section 4. **Services**: 
 
 In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
 
-## Fase 5. **Configure API Key**:
+![create-project-section4](img/Create-project-section4.jpg)
+
+## Section 5. **Configure API Key**:
 
 In this section, you are required to set up Client's accesses to your APIs:
 
-   * *API Key* (mandatory): This is the secret, that can be created randomly.
+   * **API Key** (*mandatory*): This is the secret, that can be created randomly.
 
-   * *Client Type* (mandatory): Typology of the Client that wants to access to your APIs
+   * **Client Type** (*mandatory*): Typology of the Client that wants to access to your APIs.
 
-   * *Description* (optional): Allows you to keep trace of the API Key.
+   * **Description** (*optional*): Allows you to keep trace of the API Key.
 
 ![create-project-section5](img/Create-project-section5.jpg)
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
 
-Once your project has been created, you will land on the Set-up Infrastructure area of your new project.
+Once your project has been created, you will land on the Set-up Infrastructure area of your new project, where you can see your environments and a list of environemnt variables:
 
-prova
+* Some variables, like *CMS_IMAGE_NAME*, are mandatory and pre-filled, since they are gathered from Tenant.
+
+* Some variables, like *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*, are ..... and have default values.
+
+* Some variables, like .... *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*, are mandatory, but not pre-filled: you have to edit these variables.
+
+* Some variables, like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*, are not pre-filled and are not mandatory.
+
+These environment variables are saved on GitLab.
+
+At the end of project creation, you have to commit and deploy your new project,
+
+!!!Warning     
+    In order to activate the CRUD for your project, you have to create a connection with Mongo.
