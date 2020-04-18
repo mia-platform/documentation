@@ -7,8 +7,6 @@ The configuration is split in two sections:
 - [**Technical Configuration**](#technical-configuration) contains the configuration of the technical needs of the service
 - [**DevOps Console Configuration**](#dev-ops-console-configuration) contains the configuration from the Dev-Ops Console
 
-Check the [documentation on repository](https://git.tools.mia-platform.eu/clients/helvetia/timer-service/-/blob/master/README.md) for more.
-
 ## Technical Configuration
 
 The _Timer Service_ is easy to configure, it just needs some environment variable and a dedicated CRUD with a specific structure.
