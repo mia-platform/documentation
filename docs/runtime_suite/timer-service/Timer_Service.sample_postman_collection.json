@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "86e237e6-023a-4a1d-99be-e781665dfc7c",
+		"name": "Timer Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Schedule a 5 minutes timer with kafka outputMode with headers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payload\": {\n        \"eventName\": \"timerExpired\",\n        \"eventContent\": {\n            \"orderId\": \"abc123def456\"\n        }\n    },\n    \"startDate\": \"2020-04-06T08:57:04.650Z\",\n    \"expirationIntervalMs\": 300000,\n    \"applicantService\": \"user-orders\",\n    \"outputMode\": {\n        \"type\": \"kafka\",\n        \"topics\": [\n            \"expiredOrders\",\n            \"usersOrders\"\n        ],\n        \"key\": \"098abc765def_abc123def456\",\n        \"headers\": {\n            \"userId\": \"098abc765def\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://timer-service/schedule",
+					"protocol": "http",
+					"host": [
+						"timer-service"
+					],
+					"path": [
+						"schedule"
+					]
+				},
+				"description": "API to schedule a new expiration on the timer service"
+			},
+			"response": []
+		},
+		{
+			"name": "Schedule a 10 minutes timer with rest outputMode without headers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payload\": {\n        \"user\": {\n            \"name\": \"Mario\",\n            \"surname\": \"Rossi\"\n        },\n        \"_id\": \"098abc765def\",\n        \"orderId\": \"abc123def456\"\n    },\n    \"startDate\": \"2020-04-06T08:57:04.650Z\",\n    \"expirationIntervalMs\": 600000,\n    \"applicantService\": \"user-orders\",\n    \"outputMode\": {\n        \"type\": \"rest\",\n        \"method\": \"post\",\n        \"protocol\": \"https\",\n        \"hostname\": \"user-orders:3000\",\n        \"path\": \"/order-expired\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://timer-service/schedule",
+					"protocol": "http",
+					"host": [
+						"timer-service"
+					],
+					"path": [
+						"schedule"
+					]
+				},
+				"description": "API to schedule a new expiration on the timer service"
+			},
+			"response": []
+		},
+		{
+			"name": "Abort a timer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"expirationId\": \"1234567abcdefg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://timer-service/abort",
+					"protocol": "http",
+					"host": [
+						"timer-service"
+					],
+					"path": [
+						"abort"
+					]
+				},
+				"description": "Route to call the abort a timer"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -180,11 +180,6 @@ Following two examples of a _curl_ to schedule a timer with the two output modes
             "headers": {
                 "header1": "value1"
             }
-        },
-        "expirationDate": "2020-04-06T09:07:04.650Z",
-        "expirationStatus": {
-            "id": 0,
-            "description": "pending"
         }
     }'
     ```
@@ -242,3 +237,226 @@ curl --location --request POST 'http://timer-service/abort' \
   "expirationId": "1234567abcdefg"
 }'
 ```
+
+## Usage examples
+
+Following some usage example.
+
+### Timer that expires after 10 minutes and does a REST call
+
+A client needs, after 10 minutes, to send the payload
+
+```json
+{
+  "user": {
+    "name": "Mario",
+    "surname": "Rossi"
+  },
+  "_id": "1234567abcdefg",
+  "orderId": "abc123def456"
+}
+```
+
+using a POST call to the REST API `https://user-orders:3000/order-expired`.
+
+This can be done by scheduling a timer by calling the POST route `timer-service/schedule` with the following body:
+
+```json
+{
+  "payload": {
+    "user": {
+      "name": "Mario",
+      "surname": "Rossi"
+    },
+    "_id": "098abc765def",
+    "orderId": "abc123def456"
+  },
+  "startDate": "2020-04-06T08:57:04.650Z",
+  "expirationIntervalMs": 600000,
+  "applicantService": "user-orders",
+  "outputMode": {
+    "type": "rest",
+    "method": "post",
+    "protocol": "https",
+    "hostname": "user-orders:3000",
+    "path": "/order-expired"
+  }
+}
+```
+
+and the result will be:
+
+```json
+{
+  "expirationId": "1234567abcdef"
+}
+```
+
+After 10 minutes, the indicated route `https://user-orders:3000/order-expired` will receive the payload and the timer status on the CRUD will be the following:
+
+```json
+{
+  ...
+  ...
+  "expirationStatus": {
+    "id": 1,
+    "description": "expired"
+  }
+}
+```
+
+### Timer that expires after 10 minutes but is aborted before the expiration
+
+Like the example above a client can schedule a timer to send a payload to a REST API after 10 minutes by calling the POST route `timer-service/schedule` with the following body:
+
+```json
+{
+  "payload": {
+    "user": {
+      "name": "Mario",
+      "surname": "Rossi"
+    },
+    "_id": "098abc765def",
+    "orderId": "abc123def456"
+  },
+  "startDate": "2020-04-06T08:57:04.650Z",
+  "expirationIntervalMs": 600000,
+  "applicantService": "user-orders",
+  "outputMode": {
+    "type": "rest",
+    "method": "post",
+    "protocol": "https",
+    "hostname": "user-orders:3000",
+    "path": "/order-expired"
+  }
+}
+```
+
+and the result will be:
+
+```json
+{
+  "expirationId": "1234567abcdef"
+}
+```
+
+After 5 minutes an event occurs and the client doesn't need the timer anymore, so the client should abort the timer.
+
+To do this, the client can do a POST call to the `timer-service/abort` route with the following body:
+
+```json
+{
+  "expirationId": "1234567abcdef"
+}
+```
+
+and the result will be a `204 No Content`, that means the successful timer abortion.
+
+After the abortion, the timer status on the CRUD will be:
+
+```json
+{
+  ...
+  ...
+  "expirationStatus": {
+    "id": 2,
+    "description": "aborted"
+  }
+}
+```
+
+### Timer that expires after 5 minutes and send a payload on kafka
+
+A client needs, after 5 minutes, to send the following payload:
+
+```json
+{
+  "eventName": "timerExpired",
+  "eventContent": {
+    "orderId": "abc123def456"
+  }
+}
+```
+
+on the kafka topics `expiredOrders` and `usersOrders`, with the userId into the _headers_ and using `userId_orderId` as message key.
+
+This can be done by scheduling a timer by calling the POST route `timer-service/schedule` with the following body:
+
+```json
+{
+  "payload": {
+    "eventName": "timerExpired",
+    "eventContent": {
+      "orderId": "abc123def456"
+    }
+  },
+  "startDate": "2020-04-06T08:57:04.650Z",
+  "expirationIntervalMs": 300000,
+  "applicantService": "user-orders",
+  "outputMode": {
+    "type": "kafka",
+    "topics": ["expiredOrders", "usersOrders"],
+    "key": "098abc765def_abc123def456",
+    "headers": {
+      "userId": "098abc765def"
+    }
+  }
+}
+```
+
+and the result will be:
+
+```json
+{
+  "expirationId": "1234567abcdef"
+}
+```
+
+After 5 minutes the timer will expire and the topics `expiredOrders` and `usersOrders` will receive a message with data indicates above.
+
+### Timer with kafka output but error because kafka is not configured
+
+As described into the [environment variables section](./configuration.md/#environment-variables), the kafka configuration is optional (not all projects use kafka).
+
+If the _Timer Service_ has not kafka configured and a client schedules a timer with kafka output by calling the POST route `timer-service/schedule` with the following body:
+
+```json
+{
+  "payload": {
+    "eventName": "timerExpired",
+    "eventContent": {
+      "orderId": "abc123def456"
+    }
+  },
+  "startDate": "2020-04-06T08:57:04.650Z",
+  "expirationIntervalMs": 300000,
+  "applicantService": "user-orders",
+  "outputMode": {
+    "type": "kafka",
+    "topics": ["expiredOrders", "usersOrders"],
+    "key": "098abc765def_abc123def456",
+    "headers": {
+      "userId": "098abc765def"
+    }
+  }
+}
+```
+
+the timer will expire, the service will not find the _kafka publisher_ and the timer will be set to error on CRUD:
+
+```json
+{
+  ...
+  ...
+  "expirationStatus": {
+    "id": 3,
+    "description": "error"
+  }
+}
+```
+
+## Postman collection
+
+You can use [this postman collection](./Timer_Service.sample_postman_collection.json) to call the _Timer Service_ REST APIs.
+
+Obviously you must change the `baseUrl` and add your possibles custom headers/data to the calls.
