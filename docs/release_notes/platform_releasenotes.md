@@ -1,5 +1,25 @@
 # Platform Release Note
 
+## v5.6 (April 21,2020)
+
+**Improvements**
+
+* *Home*    
+  In order to speed up the access to your most-used projects, you can **select your favourite projects** by marking them with the new 'star' button.
+
+* *OpenAPI v3*   
+  API Portal routes have been updated by **targeting newer APIs supporting OpenAPI v3**. Swagger with OpenAPI v3 has been updated to the last LC-39 library.
+
+* **Restyling** of the following sections, introducing the card component: Replicas, API Key and CMS & Analytics.
+
+**Fixed**
+
+ * *Design - CMS*    
+  Increase of the number of downloads possible at the same time: now it is allowed to **export more than the first 25 elements** from CMS. 
+
+ * *Documentation*   
+  In the sections Body Params, Query Params and Path Params, you can always **visualize the complete strings**, and not only strings ID. 
+
 ## v5.5.2 -1 Patch (April 10,2020)
 
 !!! bug
