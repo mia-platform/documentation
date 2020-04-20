@@ -7,6 +7,8 @@
 * *Home*    
   In order to speed up the access to your most-used projects, you can **select your favourite projects** by marking them with the new 'star' button.
 
+  ![favourite-projects1](img/favourite-projects1.jpg)
+
 * *OpenAPI v3*   
   API Portal routes have been updated by **targeting newer APIs supporting OpenAPI v3**. Swagger with OpenAPI v3 has been updated to the last LC-39 library.
 
@@ -19,6 +21,8 @@
 
  * *Documentation*   
   In the sections Body Params, Query Params and Path Params, you can always **visualize the complete strings**, and not only strings ID. 
+
+  ![api-portal-strings](img/api-portal-strings.png)
 
 ## v5.5.2 -1 Patch (April 10,2020)
 
