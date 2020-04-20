@@ -22,7 +22,7 @@
  * *Documentation*   
   In the sections Body Params, Query Params and Path Params, you can always **visualize the complete strings**, and not only strings ID. 
 
-  ![api-portal-strings](img/api-portal-strings.png)
+    ![api-portal-strings](img/api-portal-strings.png)
 
 ## v5.5.2 -1 Patch (April 10,2020)
 
@@ -43,7 +43,7 @@ Remove initial `/` to `file_path` on requesting file to gitlab
 * Design - Microservices  
   When a microservice is created using one of Mia-Platform templates or example, **the probes of that service are already compiled** and contactable by Kubernetes.
 
- ![view-repository](img/probes.png)
+   ![view-repository](img/probes.png)
 
 * Restyling of the following section, introducing the card component: Proxies, Create New Endpoint, API Pre/Post
 
