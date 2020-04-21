@@ -214,7 +214,7 @@ The interpolation data in those files are the environments fields at the first l
 
 # How to create a project on DevOps Console
 
-If you have each pre-requisite mentioned in the first section of this page, you are able to create a new project with the button 'create project' in the Home area of DevOps Console.
+Once you have the tenant and the template correctly configured, you are able to create a new project with the button 'Create project' in the Home area of DevOps Console.
 
 The project creation is divided in 5 different sections:
 
