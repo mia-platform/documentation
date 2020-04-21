@@ -4,11 +4,11 @@
 
 **Improvements**
 
-* *API Portal*   
-  API Portal is **OpenAPI v3** compliant. All microservice swaggers are converted to OpenAPI v3 automatically. Moreover, API-Portal service has been **updated to version 1.9.0**.
+* *API Portal*      
+  Now API Portal is **OpenAPI v3** compliant: all microservice swaggers are converted to OpenAPI v3 automatically. Moreover, APIExplorer has been integrated by adding support for *anyOf*, *oneOf*, *allOf* and *not* schemas. API-Portal service has been **updated to version 1.9.0**.
 
-* *Crud-Service*
-  Crud-Service service has been **updated to version 2.1.4**.
+* *Design*     
+  Each limit to the number of downloads possible at the same time has been removed: the 'export' functionality allows you to **download all the records**. Crud-Service service has been **updated to version 2.1.4**.
 
 * *Home*    
   Now you can **select your favourite projects** by marking them with the new 'star' button!
@@ -19,13 +19,10 @@
 
 **Fixed**
 
- * *Design - CMS*    
-  Increase of the number of downloads possible at the same time in this section: the 'export' functionality allows you to **download all the records** from CMS.
+ * *API Portal*   
+  In the section 'Request' of each method, the message **shows the complete strings**, and not only strings ID. 
 
- * *Documentation*   
-  In the sections Body Params, Query Params and Path Params, you can always **visualize the complete strings**, and not only strings ID. 
-
-    ![api-portal-strings](img/api-portal-strings.png)
+    ![request-string]()
 
 ## v5.5.2 -1 Patch (April 10,2020)
 
