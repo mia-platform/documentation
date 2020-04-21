@@ -64,7 +64,7 @@ More in detail, to compile the tenant, you have to use the following guide:
     !!! warning
         Do not set in cluster.kubeContextVariables object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
 
-* `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. Like now, the only supported type is `gitlab`.
+* `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. The only supported type is `gitlab`.
 
   There are three way to configure a project:
 
