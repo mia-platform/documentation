@@ -2,6 +2,21 @@
 
 ## v5.6 (April 21,2020)
 
+**Project Creation**
+
+This new feature enables you to create a new project, which lifecycle can be completely managed through the different areas of DevOps Console. With the button 'create project' in the Home page of DevOps Console, you can create a project in a few clicks and in a short time.
+
+
+
+!!! warning
+
+    To create a project, it is mandatory to have the following prerequisites:   
+      * Tenant configured
+      * Template configured
+      * DevOps Console 
+
+You can find more information about project creation at this link of Mia Platform Docs.
+
 **Improvements**
 
 * *Home*    
