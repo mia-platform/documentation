@@ -284,7 +284,7 @@ In this section, you are required to set up Client's accesses to your APIs:
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
 
-Once your project has been created, you will land on the Set-up Infrastructure area of your new project, where you can see your environments and a list of environemnt variables:
+Once your project has been created, you will be redirect on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
 * Some variables, like *CMS_IMAGE_NAME*, are mandatory and pre-filled, since they are gathered from Tenant.
 
