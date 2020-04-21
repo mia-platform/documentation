@@ -234,7 +234,7 @@ In this section, you are required to insert the general information about your n
 
 In this section, it is indicated the location of your new project and you have to choose its Template:
 
-   * **Git repo path** (*mandatory*, not editable): This is the path, gathered from Project Name and Tenant, that specifies the location of your project on GitLab.
+   * **Git repo path** (*mandatory*, not editable): This is the path where the configuration will be saved on gitlab, calculated from project name and tenant. It specifies the location of your project on GitLab.
 
    * **Visibility** (*mandatory*, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
 
