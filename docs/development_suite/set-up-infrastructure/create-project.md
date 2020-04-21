@@ -222,7 +222,7 @@ The project creation is divided in 5 different sections:
 
 In this section, you are required to insert the general information about your new project:
 
-   * **Tenant** (*mandatory*): You have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
+   * **Tenant** (*mandatory*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
    * **Project Name** (*mandatory*): This is the label of your project.
 
