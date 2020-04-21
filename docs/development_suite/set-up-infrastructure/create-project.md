@@ -248,7 +248,7 @@ In this section, you are visualizing the configuration of your project's Develop
 
    * **Environemnt name** (*mandatory*, copy not editable): Name given to your environment.
 
-   * **Environemnt ID** (*mandatory*, copy not editable): This is the label given to your environment.
+   * **Environemnt ID** (*mandatory*, copy not editable): This is the human readable id set to your environment.
 
    * **Description** (*mandatory*, copy not editable): Allows you to keep trace of the environment.
    
