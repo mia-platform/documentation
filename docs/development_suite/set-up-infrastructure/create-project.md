@@ -206,7 +206,7 @@ variables:
 ```
 In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the tenant.
 
-All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, with `n` the number of environments. So, inside the environment, you could use the environment specific fields.
+All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, where `n` is the number of environments. So, inside the environment, you could use the environment specific fields.
 For other possibilities, please check [mustache](https://github.com/janl/mustache.js) documentation.
 
 You may want to write a file or a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolated for every environment.
