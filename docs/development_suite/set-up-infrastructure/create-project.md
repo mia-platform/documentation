@@ -236,7 +236,7 @@ In this section, it is indicated the location of your new project and you have t
 
    * **Git repo path** (*mandatory*, not editable): This is the path where the configuration will be saved on gitlab, calculated from project name and tenant. It specifies the location of your project on GitLab.
 
-   * **Visibility** (*mandatory*, copy not editable): The "Internal" visibility states that your project can be cloned by any logged-in user. 
+   * **Visibility** (*mandatory*, copy not editable): The visibility state that your project will be once saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can show the project.
 
    * **Template** (*mandatory*): You have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
