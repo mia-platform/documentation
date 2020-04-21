@@ -22,7 +22,7 @@
  * *API Portal*   
   In the section 'Request' of each method, the message **shows the complete strings**, and not only strings ID. 
 
-    ![request-string]()
+    ![request-string](img/request-string.png)
 
 ## v5.5.2 -1 Patch (April 10,2020)
 
