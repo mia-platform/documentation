@@ -254,7 +254,7 @@ In this section, you have an overview of the configuration of your project envir
    
    * **Host** (*mandatory*, copy not editable): The host which expose the documentation and the APIs.
 
-   * **Backoffice Host** (*mandatory*, copy not editable): The host under which CMS will be available.
+   * **Backoffice Host** (*mandatory*, copy not editable): The host which expose CMS and backoffice APIs.
 
    * **Cluster Host** (*mandatory*, copy not editable): This is the IP of the Host.
 
