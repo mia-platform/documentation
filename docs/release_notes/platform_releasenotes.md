@@ -1,34 +1,17 @@
 # Platform Release Note
 
-## v5.6 (April 21,2020)
-
-**Project Creation**
-
-This new feature enables you to create a new project, which lifecycle can be completely managed through the different areas of DevOps Console. With the button 'create project' in the Home page of DevOps Console, you can create a project in a few clicks and in a short time.
-
-![create-project-button](img/create-project-button.jpg)
-
-!!! warning
-
-    To create a project, it is mandatory to have DevOps Console and the following prerequisites:   
-      * Tenant configured
-      * Template configured
-
-You can find more information about project creation at this link of Mia Platform Docs.
+## v5.5.3 (April 21,2020)
 
 **Improvements**
 
-* *OpenAPI v3*   
-  API Portal routes have been updated by **targeting newer APIs supporting OpenAPI v3**. Swagger with OpenAPI v3 has been updated to the last LC-39 library.
+* *PI Portal*   
+  API Portal is **OpenAPI v3** compliant. All microservice swaggers are converted to OpenAPI v3 automatically. Moreover, API-Portal service has been **updated to version 1.9.0**.
 
 * *Crud-Service*
   Crud-Service service has been **updated to version 2.1.4**.
 
-* *API-Portal*
-  API-Portal service has been **updated to version 1.9.0**.
-
 * *Home*    
-  In order to speed up the access to your most-used projects, you can **select your favourite projects** by marking them with the new 'star' button.
+  Now you can **select your favourite projects** by marking them with the new 'star' button!
 
   ![favourite-projects1](img/favourite-projects1.jpg)
 
@@ -37,7 +20,7 @@ You can find more information about project creation at this link of Mia Platfor
 **Fixed**
 
  * *Design - CMS*    
-  Increase of the number of downloads possible at the same time: now it is allowed to **export more than the first 25 elements** from CMS. 
+  Increase of the number of downloads possible at the same time in this section: the 'export' functionality allows you to **download all the records** from CMS.
 
  * *Documentation*   
   In the sections Body Params, Query Params and Path Params, you can always **visualize the complete strings**, and not only strings ID. 
