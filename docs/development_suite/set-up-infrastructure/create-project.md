@@ -276,7 +276,7 @@ In this section, you are required to set up Client's accesses to your APIs:
 
    * **API Key** (*mandatory*): This is the api key. It can be generated randomly.
 
-   * **Client Type** (*mandatory*): Typology of the Client that wants to access to your APIs.
+   * **Client Type** (*mandatory*): ID of the client that wants to access to your APIs.
 
    * **Description** (*optional*): Allows you to keep trace of the API Key.
 
