@@ -6,7 +6,7 @@
 
 This new feature enables you to create a new project, which lifecycle can be completely managed through the different areas of DevOps Console. With the button 'create project' in the Home page of DevOps Console, you can create a project in a few clicks and in a short time.
 
-
+![create-project-button](img/create-project-button.jpg)
 
 !!! warning
 
