@@ -244,7 +244,7 @@ In this section, it is indicated the location of your new project and you have t
 
 ## Section 3. **Environments**: 
 
-In this section, you are visualizing the configuration of your project's Development, Preproduction and Production environments. The following information are gathered from the selected Tenant and, so, are already configured and are not editable:
+In this section, you have an overview of the configuration of your project environments. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
 
    * **Environemnt name** (*mandatory*, copy not editable): Name given to your environment.
 
