@@ -8,7 +8,7 @@ The first three sections of this guide allows you to have the prerequisites to c
 
  * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its Tenant.
 
- * **Template**: Repository with libraries and pre-filled configurations. Each project could have one or more Template.
+ * **Template**: Repository with libraries and pre-filled configurations. Each tenant could have one or more Template. With the template, you could pre-fill active services in you project and start the project from an existent template, starting with the same configuration for all the similar projects.
 
  * **DevOps Console**: This is the platform that allows you to manage the complete lifecycle of the project.
 
