@@ -12,7 +12,7 @@ The first three sections of this guide allows you to have the prerequisites to c
 
  * **DevOps Console**: This is the platform that allows you to manage the complete lifecycle of the project.
 
- If you already have these three features, you can directly skip to the last section.
+ If you already have these three features, you can directly [skip to the last section](#how-to-create-a-project-on-devops-console).
 
  The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project with a minimum number of actions.
 
