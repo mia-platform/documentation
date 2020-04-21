@@ -157,7 +157,7 @@ You could create project template to avoid copy/paste in every new project the s
 
 At Mia Platform, for example, we create a template to configure a project to use auth0, headless cms, api portal and Traefik configuration. So for a tenant using this template, create this type of project will be a very simple process.
 
-The view, or the data you can interpolate, are some project data. With mustache, we could iterate through an array, so we could have some configuration iterated for all the environments.
+You can interpolate the template with some project data. With mustache, we could iterate through an array, so we could have some configuration iterated for all the environments.
 The values you could use during template interpolation are:
 
 For the project (you could access using `project.${field}`)
