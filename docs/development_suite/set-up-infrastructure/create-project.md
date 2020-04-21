@@ -252,7 +252,7 @@ In this section, you have an overview of the configuration of your project envir
 
    * **Description** (*mandatory*, copy not editable): Allows you to keep trace of the environment.
    
-   * **Host** (*mandatory*, copy not editable): The host under which the documentation will be provided and the APIs will be available.
+   * **Host** (*mandatory*, copy not editable): The host which expose the documentation and the APIs.
 
    * **Backoffice Host** (*mandatory*, copy not editable): The host under which CMS will be available.
 
