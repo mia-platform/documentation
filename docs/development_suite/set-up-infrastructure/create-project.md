@@ -210,7 +210,7 @@ All the section between `%#project.environments%` and `%/project.environments%` 
 For other possibilities, please check [mustache](https://github.com/janl/mustache.js) documentation.
 
 You may want to write a file or a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolated for every environment.
-The interpolation data in those files is the `environments` at the first level (as in `mustache` sections), but you have the project as a key for every environment.
+The interpolation data in those files are the environments fields at the first level (as in `mustache` sections), with the project as a key for every environment.
 
 # How to create a project on DevOps Console
 
