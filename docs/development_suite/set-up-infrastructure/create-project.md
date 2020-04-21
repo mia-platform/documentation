@@ -260,7 +260,7 @@ In this section, you have an overview of the configuration of your project envir
 
    * **Is production?** (*mandatory*, copy not editable): Defines if the environment is a production environment or not.
 
-   * **Namespace** (*mandatory*, copy not editable): Name used as the namespace of kubernetes.
+   * **Namespace** (*mandatory*, copy not editable): the namespace of kubernetes.
 
 ![create-project-section3](img/Create-project-section3.jpg)
 
