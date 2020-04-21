@@ -92,7 +92,7 @@ More in detail, to compile the tenant, you have to use the following guide:
           }
         }
       ```
-      this configuration is saved only in tenant, and should be retrieved at runtime in project fetching from tenant info. So if your tenant has all the env variables of the projects set in one group, this could be changed for all the projects at the same time
+      this configuration is saved only in tenant, and should be retrieved at runtime in project fetching from tenant info. So if your tenant has all the environment variables of the projects set in the parent group, this setting could be changed for all the projects at the same time
 
 * `pipelines` (*required*): the CI/CD pipelines used by the tenant. It is an object, for example:
     ```json
