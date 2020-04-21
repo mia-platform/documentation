@@ -4,7 +4,7 @@
 
 **Improvements**
 
-* *PI Portal*   
+* *API Portal*   
   API Portal is **OpenAPI v3** compliant. All microservice swaggers are converted to OpenAPI v3 automatically. Moreover, API-Portal service has been **updated to version 1.9.0**.
 
 * *Crud-Service*
