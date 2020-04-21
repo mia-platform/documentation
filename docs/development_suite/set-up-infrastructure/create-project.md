@@ -256,7 +256,7 @@ In this section, you have an overview of the configuration of your project envir
 
    * **Backoffice Host** (*mandatory*, copy not editable): The host which expose CMS and backoffice APIs.
 
-   * **Cluster Host** (*mandatory*, copy not editable): This is the IP of the Host.
+   * **Cluster Host** (*mandatory*, copy not editable): This is the IP of the kubernetes cluster where the project will be deployed.
 
    * **Is production?** (*mandatory*, copy not editable): Defines if the environment is a production environment or not.
 
