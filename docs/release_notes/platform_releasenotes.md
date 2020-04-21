@@ -10,22 +10,27 @@ This new feature enables you to create a new project, which lifecycle can be com
 
 !!! warning
 
-    To create a project, it is mandatory to have the following prerequisites:   
+    To create a project, it is mandatory to have DevOps Console and the following prerequisites:   
       * Tenant configured
       * Template configured
-      * DevOps Console 
 
 You can find more information about project creation at this link of Mia Platform Docs.
 
 **Improvements**
 
+* *OpenAPI v3*   
+  API Portal routes have been updated by **targeting newer APIs supporting OpenAPI v3**. Swagger with OpenAPI v3 has been updated to the last LC-39 library.
+
+* *Crud-Service*
+  Crud-Service service has been **updated to version 2.1.4**.
+
+* *API-Portal*
+  API-Portal service has been **updated to version 1.9.0**.
+
 * *Home*    
   In order to speed up the access to your most-used projects, you can **select your favourite projects** by marking them with the new 'star' button.
 
   ![favourite-projects1](img/favourite-projects1.jpg)
-
-* *OpenAPI v3*   
-  API Portal routes have been updated by **targeting newer APIs supporting OpenAPI v3**. Swagger with OpenAPI v3 has been updated to the last LC-39 library.
 
 * **Restyling** of the following sections, introducing the card component: Replicas, API Key and CMS & Analytics.
 
