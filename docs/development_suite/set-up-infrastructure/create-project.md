@@ -68,7 +68,7 @@ More in detail, to compile the tenant, you have to use the following guide:
 
   There are three way to configure a project:
 
-  1. **empty**: it is not set as a default in project creation, but should be configured manually.
+  1. **empty**: it is not set as a default in project creation, but should be configured manually after the project creation.
 
   1. **only type configuration**, for example:
       ```json
