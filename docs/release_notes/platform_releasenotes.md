@@ -35,12 +35,18 @@
 * *CMS*     
   The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
 
-**How to update your DevOps Console?**     
-In case of on-premise Console, to use the previous features, you have to update:      
+**How to update your DevOps Console?**
+ 
+In case of on-premise Console, to use the previous features, you have to update:   
+
  * Console website @1.17.2
+
  * Console backend @1.17.1
+
  * Deploy website @1.0.9
+
  * Infrastructure website @1.2.0
+
  * Env var service @1.0.1
 
 
