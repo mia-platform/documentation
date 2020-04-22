@@ -10,7 +10,7 @@
 * *Home*    
   Now you can **select your favourite projects** by marking them with the new 'star' button!
 
-  ![favourite-projects1](img/favourite-projects1.jpg)
+  ![star-projects1](img/star-projects.png)
 
 * **Restyling** of the following sections, introducing the card component: Replicas, API Key and CMS & Analytics.
 
@@ -35,8 +35,7 @@
 * *CMS*     
   The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
 
-**How to update your DevOps Console?**
- 
+**How to update your DevOps Console?**     
 In case of on-premise Console, to use the previous features, you have to update:   
 
  * Console website @1.17.2
