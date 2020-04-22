@@ -1,6 +1,6 @@
 # Platform Release Note
 
-## v5.5.3 (April 21,2020)
+## v5.5.3 (April 22,2020)
 
 **Improvements**
 
