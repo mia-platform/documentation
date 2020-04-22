@@ -5,7 +5,7 @@
 **Improvements**
 
 * *API Portal*      
-  Now API Portal is **OpenAPI v3** compliant: all microservice swaggers are converted to OpenAPI v3 automatically. (link) Moreover, APIExplorer has been integrated by adding support for *anyOf*, *oneOf*, *allOf* and *not* schemas. API-Portal service has been **updated to version 1.9.0**.
+  Now API Portal is **OpenAPI v3** compliant: all microservice swaggers are converted to OpenAPI v3 automatically. Moreover, APIExplorer has been integrated by adding support for *anyOf*, *oneOf*, *allOf* and *not* schemas. API-Portal service has been **updated to version 1.9.0**.
 
 * *Home*    
   Now you can **select your favourite projects** by marking them with the new 'star' button!
@@ -35,8 +35,13 @@
 * *CMS*     
   The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
 
-**How to update your DevOps Console?**
-
+**How to update your DevOps Console?**     
+In case of on-premise Console, to use the previous features, you have to update:      
+ * Console website @1.17.2
+ * Console backend @1.17.1
+ * Deploy website @1.0.9
+ * Infrastructure website @1.2.0
+ * Env var service @1.0.1
 
 
 ## v5.5.2 -1 Patch (April 10,2020)
