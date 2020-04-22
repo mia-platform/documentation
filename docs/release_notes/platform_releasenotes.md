@@ -14,7 +14,7 @@
 
 * **Restyling** of the following sections, introducing the card component: Replicas, API Key and CMS & Analytics.
 
-* Improved **padding and scrolling** of cards and grids for the correct visualization on Chrome, Safari and Firefox.
+* Improved **padding and scrolling** of cards and grids in order to enhance their correct visualization.
 
 **Fixed**
 
@@ -22,15 +22,15 @@
   Changes, done from two different people on the same branch, are **no more overwritten**. This fix solves the overwrite case in which one person is modifying an advanced file and the other one is modifying a general configuration on the same branch.
 
  * *API Portal*   
-  In the section 'Request' of each method, the message **shows the complete string**, and not only strings ID. 
+  In the section 'Request' of each method, the message **shows the complete string**, and not only string ID. 
 
     ![request-string](img/request-string.png)
 
 * *Branch Selection*     
-  During the choice of the Branch, before entering the Design area, the button 'cancel' is **no more selectable with 'Tab'** of your keyboard.
+  During the choice of the Branch, before entering the Design area, the button 'cancel' is **no more selectable with the 'Tab' key** of your keyboard.
 
 * *Design - Endpoints*     
-  In the detail of an endpoint, the creation of an index with more than one field does **not comprimise CRUD configuration**.
+  In the detail of each endpoint, the creation of an index with more than one field does **not comprimise anymore CRUD configuration**.
 
 * *CMS*     
   The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
