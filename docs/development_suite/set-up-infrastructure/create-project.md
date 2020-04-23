@@ -296,4 +296,4 @@ These environment variables are saved on GitLab.
 At the end of project creation, you have to commit and deploy your new project,
 
 !!!Warning     
-    In order to activate the CRUD for your project, you have to create a connection with Mongo.
+    In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with Mongo.
