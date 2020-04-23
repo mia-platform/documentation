@@ -123,7 +123,6 @@ How to compile the tenant:
       ```json
         {
           "secret": "ugAsOGB0crjx8hAxrvwiomHiGbUCNzvH",
-          "active": true,
           "clientType":"cms"
         }
       ```
