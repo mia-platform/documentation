@@ -29,8 +29,8 @@
 * *Branch Selection*     
   During the choice of the Branch, before entering the Design area, the button 'cancel' is **no more selectable with the 'Tab' key** of your keyboard.
 
-* *Design - Endpoints*     
-  In the detail of each endpoint, the creation of an index with more than one field does **not comprimise anymore CRUD configuration**.
+* *Design - CRUD*     
+  In the detail of each CRUD, the creation of an index with more than one field does **not comprimise anymore CRUD configuration**.
 
 * *CMS*     
   The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
