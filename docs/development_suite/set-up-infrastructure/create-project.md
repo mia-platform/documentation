@@ -287,7 +287,7 @@ Once your project has been created, you will be redirect on the Setup Infrastruc
 
 * Some variables, like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL* are mandatory and pre-filled from project or tenant information.
 
-* Some variables, like .... *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*, are mandatory, but not pre-filled: you have to edit these variables.
+* Some variables, like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*, are not mandatory and not pre-filled.
 
 * Some variables, like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*, are not pre-filled and are not mandatory.
 
