@@ -4,15 +4,13 @@ In this page, you can find the guidelines about project creation.
 
 The project creation allows you to have a project, which lifecycle could be completely managed and developed through DevOps Console areas.
 
-The first three sections of this guide allows you to have the prerequisites to create a project, the last section explains in details how to create a project. In particular, to create a project, you need these features:
+The first three sections of this guide allows you to have the prerequisites to create a project, the last section explains in details how to create a project. In particular, to create a project, you need to have already set up your DevOps Console and have already configured these features:
 
- * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its Tenant.
+ * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its tenant.
 
- * **Template**: Repository with libraries and pre-filled configurations. Each tenant could have one or more Template. With the template, you could pre-fill active services in you project and start the project from an existent template, starting with the same configuration for all the similar projects.
+ * **Template**: Repository with libraries and pre-filled configurations. Each tenant could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project.
 
- * **DevOps Console**: This is the platform that allows you to manage the complete lifecycle of the project.
-
- If you already have these three features, you can directly [skip to the last section](#how-to-create-a-project-on-devops-console).
+ If you have already configured these two features, you can directly [skip to the last section](#how-to-create-a-project-on-devops-console).
 
  The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project with a minimum number of actions.
 
@@ -20,7 +18,7 @@ The first three sections of this guide allows you to have the prerequisites to c
 
 If you already have a tenant, you could [skip this section](#create-a-template).
 
-The tenant is useful to create a project configured inside an already existent infrastructure.
+The tenant is the upper level of the projects and is useful to create a project configured inside an already existent infrastructure.
 In an existent infrastructure some information are repeated for all the projects: *environments*, *cluster informations*, *CI/CD integration*.
 
 !!! info
@@ -108,7 +106,9 @@ More in detail, to compile the tenant, you have to use the following guide:
 
 If you already have a template, you could [skip this section](#create-a-template).
 
-Once you choose a tenant, you could choose a template. A template contains some project specific information, it is a base on which to create your project.
+The template is a repository which contains some project specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and start all the similar projects with the same configuration. So, it is a base on which to create your project.
+
+Mustache is a web template system, which allows you to generate custom templates by replacing all the general information, present in the web template, with your product or organization information.
 
 !!! info
     The fields set by the template can be changed during project creation.
@@ -223,9 +223,9 @@ In this section, you are required to insert the general information about your n
 
    * **Tenant** (*mandatory*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
-   * **Project Name** (*mandatory*): the name of your project, for example showed in project card in DevOps Console home
+   * **Project Name** (*mandatory*): the name of your project, for example showed in project card in DevOps Console home.
 
-   * **Description** (*optional*): Allows you to keep trace of the project created.
+   * **Description** (*optional*): the description of your new project.
 
 ![create-project-section1](img/Create-project-section1.jpg)
 
@@ -233,11 +233,11 @@ In this section, you are required to insert the general information about your n
 
 In this section, it is indicated the location of your new project and you have to choose its Template:
 
-   * **Git repo path** (*mandatory*, not editable): This is the path where the configuration will be saved on gitlab, calculated from project name and tenant. It specifies the location of your project on GitLab.
+   * **Git repo path** (*mandatory*, field not editable): this is the path where the configuration will be saved on gitlab, calculated from project name and tenant. It specifies the location of your project on GitLab.
 
-   * **Visibility** (*mandatory*, copy not editable): The visibility state that your project will be once saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can show the project.
+   * **Visibility** (*mandatory*, field not editable): the visibility state that your project will be once saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can show the project.
 
-   * **Template** (*mandatory*): You have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
+   * **Template** (*mandatory*): you have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
    ![create-project-section2](img/Create-project-section2.jpg)
 
@@ -245,21 +245,21 @@ In this section, it is indicated the location of your new project and you have t
 
 In this section, you have an overview of the configuration of your project environments. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
 
-   * **Environemnt name** (*mandatory*, copy not editable): Name given to your environment.
+   * **Environemnt name** (*mandatory*, field not editable): name given to your environment.
 
-   * **Environemnt ID** (*mandatory*, copy not editable): This is the human readable id set to your environment.
+   * **Environemnt ID** (*mandatory*, field not editable): this is the human readable id set to your environment.
 
-   * **Description** (*mandatory*, copy not editable): Allows you to keep trace of the environment.
+   * **Description** (*mandatory*, field not editable): the description of the environment.
    
-   * **Host** (*mandatory*, copy not editable): The host which expose the documentation and the APIs.
+   * **Host** (*mandatory*, field not editable): the host which expose the documentation and the APIs.
 
-   * **Backoffice Host** (*mandatory*, copy not editable): The host which expose CMS and backoffice APIs.
+   * **Backoffice Host** (*mandatory*, field not editable): the host which expose CMS and backoffice APIs.
 
-   * **Cluster Host** (*mandatory*, copy not editable): This is the IP of the kubernetes cluster where the project will be deployed.
+   * **Cluster Host** (*mandatory*, field not editable): this is the IP of the kubernetes cluster where the project will be deployed.
 
-   * **Is production?** (*mandatory*, copy not editable): Defines if the environment is a production environment or not.
+   * **Is production?** (*mandatory*, field not editable): defines if the environment is a production environment or not.
 
-   * **Namespace** (*mandatory*, copy not editable): the namespace of kubernetes.
+   * **Namespace** (*mandatory*, field not editable): the namespace of kubernetes.
 
 ![create-project-section3](img/Create-project-section3.jpg)
 
@@ -273,11 +273,11 @@ In this section, you are selecting which services are going to be provided to yo
 
 In this section, you are required to set up Client's accesses to your APIs:
 
-   * **API Key** (*mandatory*): This is the api key. It can be generated randomly.
+   * **API Key** (*mandatory*): this is the api key. It can be generated randomly.
 
    * **Client Type** (*mandatory*): ID of the client that wants to access to your APIs.
 
-   * **Description** (*optional*): Allows you to keep trace of the API Key.
+   * **Description** (*optional*): the description of the API Key.
 
 ![create-project-section5](img/Create-project-section5.jpg)
 
