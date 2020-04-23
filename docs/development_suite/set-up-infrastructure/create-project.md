@@ -289,7 +289,7 @@ Once your project has been created, you will be redirect on the Setup Infrastruc
 
 * Some variables, like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*, are not mandatory and not pre-filled.
 
-* Some variables, like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*, are not pre-filled and are not mandatory.
+* Some variables, like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*, are mandatory, but not pre-filled: you have to edit these variables.
 
 These environment variables are saved on GitLab.
 
