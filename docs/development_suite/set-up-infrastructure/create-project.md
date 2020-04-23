@@ -285,9 +285,7 @@ At the end of the process, your project will be created on GitLab, inside the se
 
 Once your project has been created, you will be redirect on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
-* Some variables, like *CMS_IMAGE_NAME*, are mandatory and pre-filled, since they are gathered from Tenant.
-
-* Some variables, like *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*, are ..... and have default values.
+* Some variables, like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL* are mandatory and pre-filled from project or tenant information.
 
 * Some variables, like .... *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*, are mandatory, but not pre-filled: you have to edit these variables.
 
