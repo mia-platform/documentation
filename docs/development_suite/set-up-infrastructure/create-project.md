@@ -2,9 +2,9 @@
 
 In this page, you can find the guidelines about project creation.
 
-The project creation allows you to have a project, which lifecycle could be completely managed and developed through DevOps Console areas.
+The project creation allows you to configure a project, which lifecycle could be completely managed and developed through DevOps Console areas.
 
-The first three sections of this guide allows you to have the prerequisites to create a project, the last section explains in details how to create a project. In particular, to create a project, you need to have already set up your DevOps Console and have already configured these features:
+The first three sections of this guide allows you to have the prerequisites to create a project, the last section explains in detail how to create a project. In particular, to create a project, you need to have already set up your DevOps Console and have already configured these two features:
 
  * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its tenant.
 
@@ -16,13 +16,12 @@ The first three sections of this guide allows you to have the prerequisites to c
 
 # Create a Tenant
 
-If you already have a tenant, you could [skip this section](#create-a-template).
+If you already have a tenant, you can [skip this section](#create-a-template).
 
-The tenant is the upper level of the projects and is useful to create a project configured inside an already existent infrastructure.
-In an existent infrastructure some information are repeated for all the projects: *environments*, *cluster informations*, *CI/CD integration*.
+The tenant is the upper level of the projects and allows to create a project configured inside an already existent infrastructure, which information are repeated for all the projects: *environments*, *cluster informations*, *CI/CD integration*.
 
 !!! info
-    The fields in the tenant cannot be changed during project creation steps (if not specified otherwise)
+    The fields in the tenant cannot be changed during project creation steps (if not specified otherwise).
 
 More in detail, to compile the tenant, you have to use the following guide:
 
@@ -104,11 +103,9 @@ More in detail, to compile the tenant, you have to use the following guide:
 
 # Create a template
 
-If you already have a template, you could [skip this section](#create-a-template).
+If you already have a template, you can [skip this section](#create-a-template).
 
 The template is a repository which contains some project specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and start all the similar projects with the same configuration. So, it is a base on which to create your project.
-
-Mustache is a web template system, which allows you to generate custom templates by replacing all the general information, present in the web template, with your product or organization information.
 
 !!! info
     The fields set by the template can be changed during project creation.
@@ -151,6 +148,8 @@ How to compile the tenant:
 ## How to create a project archive
 
 The project archive is interpolated using [mustache](https://github.com/janl/mustache.js) as template system, using `%` as tags instead of default `{{` or `}}`.
+
+Mustache is a web template system, which allows you to generate custom templates by replacing all the general information, present in the web template, with your product or organization information.
 
 You could create project template to avoid copy/paste in every new project the same base configuration.
 
