@@ -155,7 +155,7 @@ You could create project template to avoid copy/paste in every new project the s
 
 At Mia Platform, for example, we create a template to configure a project to use auth0, headless cms, api portal and Traefik configuration. So for a tenant using this template, create this type of project will be a very simple process.
 
-You can interpolate the template with some project data. With mustache, we could iterate through an array, so we could have some configuration iterated for all the environments.
+You can interpolate the template with some project data. With mustache, we could iterate through an array, so we can have some configuration iterated for all the environments.
 The values you could use during template interpolation are:
 
 For the project (you could access using `project.${field}`)
@@ -222,9 +222,9 @@ In this section, you are required to insert the general information about your n
 
    * **Tenant** (*mandatory*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
-   * **Project Name** (*mandatory*): the name of your project, for example showed in project card in DevOps Console home.
+   * **Project Name** (*mandatory*): the name of your project, which will be shown in the project card in the Home section of DevOps Console.
 
-   * **Description** (*optional*): the description of your new project.
+   * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of DevOps Console..
 
 ![create-project-section1](img/Create-project-section1.jpg)
 
@@ -232,9 +232,9 @@ In this section, you are required to insert the general information about your n
 
 In this section, it is indicated the location of your new project and you have to choose its Template:
 
-   * **Git repo path** (*mandatory*, field not editable): this is the path where the configuration will be saved on gitlab, calculated from project name and tenant. It specifies the location of your project on GitLab.
+   * **Git repo path** (*mandatory*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
 
-   * **Visibility** (*mandatory*, field not editable): the visibility state that your project will be once saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can show the project.
+   * **Visibility** (*mandatory*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
 
    * **Template** (*mandatory*): you have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
@@ -246,19 +246,19 @@ In this section, you have an overview of the configuration of your project envir
 
    * **Environemnt name** (*mandatory*, field not editable): name given to your environment.
 
-   * **Environemnt ID** (*mandatory*, field not editable): this is the human readable id set to your environment.
+   * **Environemnt ID** (*mandatory*, field not editable): the human readable ID set to your environment.
 
-   * **Description** (*mandatory*, field not editable): the description of the environment.
+   * **Description** (*mandatory*, field not editable): this is the description of the environment.
    
-   * **Host** (*mandatory*, field not editable): the host which expose the documentation and the APIs.
+   * **Host** (*mandatory*, field not editable): the host which exposes the documentation and the APIs.
 
-   * **Backoffice Host** (*mandatory*, field not editable): the host which expose CMS and backoffice APIs.
+   * **Backoffice Host** (*mandatory*, field not editable): the host which exposes CMS and backoffice APIs.
 
    * **Cluster Host** (*mandatory*, field not editable): this is the IP of the kubernetes cluster where the project will be deployed.
 
    * **Is production?** (*mandatory*, field not editable): defines if the environment is a production environment or not.
 
-   * **Namespace** (*mandatory*, field not editable): the namespace of kubernetes.
+   * **Namespace** (*mandatory*, field not editable): this is the namespace of kubernetes.
 
 ![create-project-section3](img/Create-project-section3.jpg)
 
@@ -272,17 +272,17 @@ In this section, you are selecting which services are going to be provided to yo
 
 In this section, you are required to set up Client's accesses to your APIs:
 
-   * **API Key** (*mandatory*): this is the api key. It can be generated randomly.
+   * **API Key** (*mandatory*): this is the API Key. It can be generated randomly.
 
    * **Client Type** (*mandatory*): ID of the client that wants to access to your APIs.
 
-   * **Description** (*optional*): the description of the API Key.
+   * **Description** (*optional*): this is the description of the API Key.
 
 ![create-project-section5](img/Create-project-section5.jpg)
 
-At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible on your Console.
+At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible in the Home section of your DevOps Console.
 
-Once your project has been created, you will be redirect on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
+Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
 * All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled.
 
@@ -294,7 +294,7 @@ Once your project has been created, you will be redirect on the Setup Infrastruc
 
 These environment variables are saved on GitLab.
 
-At the end of project creation, you have to commit and deploy your new project.
+At the end of project creation, you have to commit and deploy your new project to effectively finish the process.
 
 !!!Warning     
     In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with Mongo.
