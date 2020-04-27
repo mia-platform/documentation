@@ -268,7 +268,7 @@ In this section, you have an overview of the configuration of your project envir
 
 In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
 
-![create-project4](img/Create-project-section4.jpg)
+![create-project4](img/create-project4.png)
 
 ## Section 5. **Configure API Key**:
 
@@ -280,7 +280,7 @@ In this section, you are required to set up Client's accesses to your APIs:
 
    * **Description** (*optional*): this is the description of the API Key.
 
-![create-project5](img/Create-project-section5.jpg)
+![create-project5](img/create-project5.png)
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible in the Home section of your DevOps Console.
 
