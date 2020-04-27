@@ -224,7 +224,7 @@ The project creation is divided in 5 different steps:
 
 ## Step 1. **General**: 
 
-In this section, you are required to insert the general information about your new project:
+In this step, you are required to insert the general information about your new project:
 
    * **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
@@ -236,7 +236,7 @@ In this section, you are required to insert the general information about your n
 
 ## Step 2 **Repository**: 
 
-In this section, it is indicated the location of your new project and you have to choose its Template:
+In this step, it is indicated the location of your new project and you have to choose its Template:
 
    * **Git repo path** (*required*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
 
@@ -248,7 +248,7 @@ In this section, it is indicated the location of your new project and you have t
 
 ## Step 3. **Environments**: 
 
-In this section, you have an overview of the configuration of your project environments. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
+In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
 
    * **Environemnt name** (*required*, field not editable): name given to your environment.
 
@@ -270,13 +270,13 @@ In this section, you have an overview of the configuration of your project envir
 
 ## Step 4. **Services**: 
 
-In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+In this step, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
 
 ![create-project4](img/create-project4.png)
 
 ## Step 5. **Configure API Key**:
 
-In this section, you are required to set up Client's accesses to your APIs:
+In this step, you are required to set up Client's accesses to your APIs:
 
    * **API Key** (*required*): this is the API Key. It can be generated randomly.
 
