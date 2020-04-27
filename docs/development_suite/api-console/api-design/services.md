@@ -11,53 +11,70 @@ First, login into Mia-Platform DevOps Console, access the Design area, and click
 
 
 
-As you can see there are many  different cards, with the description of the service. Each of them has different coloured labels on the top right corner of the card: example and template. 
+As you can see there are many  different cards, with the description of the service. Each of them has different coloured labels on the top right corner of the card: `r colorize("example", "blue") ` and `r colorize("template", "purple")`.
 
-You can create a Microservice in 3 ways: 
-* use an Example
-* use a Template
-* use a Docker Image Name
-
-There is one search bar, where you can look for a specific service, and a filter bar where you can refine the search per type - either example or template. 
+You can create a Microservice by: 
+    * using an Example: a ready-to-use model;
+    * using a Template: a starting point for a new Microservice;
+    * uploading a Docker Image Name: a file that is used to execute code.
 
 
 ![](img/Marketplace.png)
 
+There is one search bar, where you can look for a specific Microservice, and there is a filter bar where you can refine the search per type - either example or template. 
 
 
-### Import services
+###How to create a Microservice from an Example
 
-The only requirement to import an external service is that the Docker Image needs to be already built.
-By clicking on the *Import* button, a new tab is opened. Here, the user need to specify some information:
+The Microservice can be created starting from existing and ready-to-use Examples:
 
-* Name of the service (required);
-* Path for the Docker Image (required);
-* Description (optional).
+    * Rest2Kafka Example;
+    * Node.js PrePost Example;
+    * Node.js HelloWorld Microservice Example;
+    * Node.js Call CRUD Example;
+    * Node.js Custom Plugin with Mongo Example;
+    * GraphQL-Custom-Plugin Example;
+    * Kafka2Rest Example.
 
-Finally, to create the service select **create**.
+Once you select the Example, you need to fill in the following information:
 
-![](img/services-import.png)
+    * Name of the Microservice (required) - it is an internal hostname;
+    * Description (optional);
+    * GitLab Group Name - where the user wants to save the custom service (required);
+    * GitLab Repository Name - for the custom service (required);
+    * Docker Image Name (required).
 
-### Services from Templates
+![](img/example.png)
 
-The service can be create starting from some existing Templates:
 
-* Node Template;
-* Springboot Template;
-* GraphQL Template;
-* React Template.
+Then, to create the Microservice push  **create**.
 
-Once the Template has been selected, the user needs to insert the following information:
 
-* Name of the service (required);
+###How to create a Microservice from a Template
+
+The Microservice can be created starting from existing Templates:
+
+    * Go Template;
+    * Springboot Template;
+    * React Template;
+    * Angular Template;
+    * Node.js Template;
+       
+
+Once you select the Template, you need to fill in the following information:
+
+* Name of the Microservice (required) - it is an internal hostname;
 * Description (optional);
-* Gitlab Group path where the user wants to save the custom service;
-* Name of the Gitlab repository for the custom service;
-* Name of the Docker Image.
+* GitLab Group Name - where the user wants to save the custom service (required);
+* GitLab Repository Name - for the custom service (required);
+* Docker Image Name (required).
 
-![](img/services-template.png)
 
-Finally, to create the service select **create**.
+![](img/template.png)
+
+
+Then, to create the Microservice push  **create**.
+
 
 !!! warning
     Once that the service is created on Gitlab, the user will not be able to delete it anymore.
@@ -65,7 +82,23 @@ Finally, to create the service select **create**.
 At the following [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/) the user can find a more detailed guide and overview about how to create new service starting from Templates.
 
 
-### Manage services
+###How to create a Microservice from a Docker Image
+
+The only requirement to import an external Microservice is that the Docker Image needs to be already built.
+Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the followinf information:
+
+* Name of the Microservice (required);
+* Docker Image Name - path (required);
+* Description (optional).
+
+
+![](img/dockerImage.png)
+
+
+Then, to create the Microservice push **create**.
+
+
+###Manage Microservices
 
 For each microservice, DevOps Console allows to:
 
