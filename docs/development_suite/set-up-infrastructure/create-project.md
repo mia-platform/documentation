@@ -230,7 +230,7 @@ In this section, you are required to insert the general information about your n
 
    * **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of DevOps Console.
 
-   * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of DevOps Console..
+   * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of DevOps Console.
 
 ![create-project1](img/create-project1.png)
 
@@ -260,7 +260,7 @@ In this section, you have an overview of the configuration of your project envir
 
    * **Backoffice Host** (*required*, field not editable): the host which exposes CMS and backoffice APIs.
 
-   * **Cluster Host** (*required*, field not editable): this is the IP of the kubernetes cluster where the project will be deployed.
+   * **Cluster Host** (*required*, field not editable): this is the IP of the Kubernetes cluster where the project will be deployed.
 
    * **Is production?** (*required*, field not editable): defines if the environment is a production environment or not.
 
@@ -290,17 +290,14 @@ At the end of the process, your project will be created on GitLab, inside the se
 
 Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
-* All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled.
+* Some variables are pre-filled from project or tenant information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
 
-* Some variables, like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL* are pre-filled from project or tenant information.
-
-* Some variables, like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*, are not mandatory and not pre-filled.
-
-* Some variables, like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*, are mandatory, but not pre-filled: you have to edit these variables.
+* All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*.
 
 These environment variables are saved on GitLab.
 
 At the end of project creation, you have to commit and deploy your new project to effectively finish the process.
 
-!!!Warning     
+!!!Warning  
+
     In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with Mongo.
