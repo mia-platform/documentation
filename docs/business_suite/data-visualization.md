@@ -165,6 +165,8 @@ This example, shows some of the **options** that (highmaps)[https://api.highchar
 
 These are not the only configurations that highcharts enable to control: having a look at the configuration more fields can be controlled.
 
+-------
+
 #### Tile Map Configuration
 
 The Tile Map Chart configuration allows you to insert a custom [leaflet map](https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
@@ -206,12 +208,23 @@ The Tile Map Chart configuration allows you to insert a custom [leaflet map](htt
         // Required additional options for circleMarker
         minSize: 5,
         maxSize: 15
-      }]
+      }],
+      "colorAxis": {
+        "stops": [
+          [0, "#cfe2f3"],
+          [0.3, "#7da9d1"],
+          [0.6, "#4697e0"],
+          [1, "#1d6eb5"]
+        ]
+      },
+      "tooltip": {
+        "pointFormat": "<b>{point.label}</b>: {point.actualValue}"
+      }
     }
   }
 }
 ```
-##### Options -> Charts
+##### Chart
 
 In this section you can insert all the options that you want in order to customize your leaflet map (see [Leaflet API reference](https://leafletjs.com/reference-1.6.0.html#map-option)), the only ones required are center and zoom. 
 
@@ -283,6 +296,69 @@ Example of series with cluster option:
 }]
 ```
 
+##### Color Axis
+
+`colorAxis` property can be specified to display different marker colors depending on the value of data. To configure it, we can follow two schema:
+
+- **Absolute Data**
+
+By default data are considered as absolute values. In this case `colorAxis` accepts the following properties:
+
+```
+"colorAxis": {
+  "min": 2,
+  "max": 100, 
+  "stops": [
+    [0, "#cfe2f3"],
+    [0.3, "#7da9d1"],
+    [0.6, "#4697e0"],
+    [1, "#1d6eb5"]
+  ] 
+}
+```
+**min** and **max** properties define the minimum and maximum threshold to compute the color assigned to each marker data. If not defined, the min/max value of data is used.
+
+**stops** define all the different colors to display with the corresponding lower bound (*percentage*). 
+
+- **Relative Data**
+
+Data are relative if its value is expressed by a *percentage*. In this case `colorAxis` accepts only the following properties, both **required**:
+
+```
+"colorAxis": {
+  "isDataRelative": true,
+  "stops": [
+    [0, "#cfe2f3"],
+    [0.3, "#7da9d1"],
+    [0.6, "#4697e0"],
+    [1, "#1d6eb5"]
+  ] 
+}
+```
+**NB:** Currently, we are not supporting `colorAxis` with relative data when *cluster* (see section *Series*) is active.
+
+##### Tooltip
+An additional property that can be inserted in `options` is `tooltip`, which represent the message that appears over each marker. By default, it shows the *label* specified in data or the *name of the series* with the *data value*.
+
+Suppose we have the following data structure:
+
+```
+myData = [
+  {label: 'Milano Centrale', value: 300, peopleCapacity: 600}
+]
+```
+
+To customize this message, it can be inserted the *tooltip* property in the configuration with the following formatting:
+
+```
+"tooltip": {
+  "pointFormat": "<b>{point.label}</b>: {point.peopleCapacity}"
+}
+```
+
+`pointFormat` allows you to write an HTML string with data properties by using the annotation `{point.propertyName}`.
+
+------
 
 #### Stock Chart Configuration
 
