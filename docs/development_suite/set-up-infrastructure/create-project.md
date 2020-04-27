@@ -110,15 +110,16 @@ If you already have a template, you can [skip this section](#how-to-create-a-pro
 The template is a repository which contains some project specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and start all the similar projects with the same configuration. So, it is a base on which to create your project.
 
 !!! info
+
     The fields set by the template can be changed during project creation.
 
-How to compile the tenant:
+How to compile the template:
 
   * `name` (*required*): name of the template to display;
-  * `templateId` (*required*): the human readable id of the tenant (e.g. mia-platform-multitenant-template). It must adhere to this regex: (^[a-z]+[a-z0-9-]*$);
+  * `templateId` (*required*): the human readable id of the template (e.g. mia-platform-multitenant-template). It must adhere to this regex: (^[a-z]+[a-z0-9-]*$);
   * `description`: the description of the template;
   * `archiveUrl`: url to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you have to create a custom template, click [here](#how-to-create-a-project-archive) to see how.
-  * `staticSecret`: some project could use the same static secret for a set of projects (especially used with an architecture with multiple `api-gateway` entrypoint). Keys are optional. This is an object, for example:
+  * `staticSecret`: some project could use the same static secret for a set of projects (especially used with an architecture with multiple `api-gateway` entrypoints). Keys are optional. This is an object, for example:
       ```json
         {
           "secret": "ugAsOGB0crjx8hAxrvwiomHiGbUCNzvH",
@@ -155,7 +156,7 @@ Mustache is a web template system, which allows you to generate custom templates
 
 You could create project template to avoid copy/paste in every new project the same base configuration.
 
-At Mia Platform, for example, we create a template to configure a project to use auth0, headless cms, api portal and Traefik configuration. So for a tenant using this template, create this type of project will be a very simple process.
+At Mia Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a tenant that uses this template, create this type of project will be a very simple process.
 
 You can interpolate the template with some project data. With mustache, we could iterate through an array, so we can have some configuration iterated for all the environments.
 The values you could use during template interpolation are:
@@ -173,6 +174,7 @@ Inside environments, you could access to:
 * hosts (an array of object, with `host` and `isBackoffice` fields)
 
 !!! warning
+
     Do not set in tenant in cluster.kubeContextVariables object the value to access to the cluster, but only the variable key name for the specified environment (as in example)! The values saved here are not encrypted.
 
 An example of template for the `.gitlab-ci.yml` file:
@@ -224,9 +226,9 @@ The project creation is divided in 5 different sections:
 
 In this section, you are required to insert the general information about your new project:
 
-   * **Tenant** (*mandatory*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
+   * **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
-   * **Project Name** (*mandatory*): the name of your project, which will be shown in the project card in the Home section of DevOps Console.
+   * **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of DevOps Console.
 
    * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of DevOps Console..
 
@@ -236,11 +238,11 @@ In this section, you are required to insert the general information about your n
 
 In this section, it is indicated the location of your new project and you have to choose its Template:
 
-   * **Git repo path** (*mandatory*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
+   * **Git repo path** (*required*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
 
-   * **Visibility** (*mandatory*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
+   * **Visibility** (*required*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
 
-   * **Template** (*mandatory*): you have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
+   * **Template** (*required*): you have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
    ![create-project2](img/create-project2.png)
 
@@ -248,21 +250,21 @@ In this section, it is indicated the location of your new project and you have t
 
 In this section, you have an overview of the configuration of your project environments. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
 
-   * **Environemnt name** (*mandatory*, field not editable): name given to your environment.
+   * **Environemnt name** (*required*, field not editable): name given to your environment.
 
-   * **Environemnt ID** (*mandatory*, field not editable): the human readable ID set to your environment.
+   * **Environemnt ID** (*required*, field not editable): the human readable ID set to your environment.
 
-   * **Description** (*mandatory*, field not editable): this is the description of the environment.
+   * **Description** (*required*, field not editable): this is the description of the environment.
    
-   * **Host** (*mandatory*, field not editable): the host which exposes the documentation and the APIs.
+   * **Host** (*required*, field not editable): the host which exposes the documentation and the APIs.
 
-   * **Backoffice Host** (*mandatory*, field not editable): the host which exposes CMS and backoffice APIs.
+   * **Backoffice Host** (*required*, field not editable): the host which exposes CMS and backoffice APIs.
 
-   * **Cluster Host** (*mandatory*, field not editable): this is the IP of the kubernetes cluster where the project will be deployed.
+   * **Cluster Host** (*required*, field not editable): this is the IP of the kubernetes cluster where the project will be deployed.
 
-   * **Is production?** (*mandatory*, field not editable): defines if the environment is a production environment or not.
+   * **Is production?** (*required*, field not editable): defines if the environment is a production environment or not.
 
-   * **Namespace** (*mandatory*, field not editable): this is the namespace of kubernetes.
+   * **Namespace** (*required*, field not editable): this is the namespace of kubernetes.
 
 ![create-project3](img/create-project3.png)
 
@@ -276,9 +278,9 @@ In this section, you are selecting which services are going to be provided to yo
 
 In this section, you are required to set up Client's accesses to your APIs:
 
-   * **API Key** (*mandatory*): this is the API Key. It can be generated randomly.
+   * **API Key** (*required*): this is the API Key. It can be generated randomly.
 
-   * **Client Type** (*mandatory*): ID of the client that wants to access to your APIs.
+   * **Client Type** (*required*): ID of the client that wants to access to your APIs.
 
    * **Description** (*optional*): this is the description of the API Key.
 
