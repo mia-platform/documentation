@@ -220,11 +220,11 @@ Once you have the tenant and the template correctly configured, you are able to 
 
 ![create-project](img/create-project.png)
 
-The project creation is divided in 5 different sections:
+The project creation is divided in 5 different steps:
 
-## Section 1. **General**: 
+## Step 1. **General**: 
 
-In this section, you are required to insert the general information about your new project:
+In this step, you are required to insert the general information about your new project:
 
    * **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
@@ -234,9 +234,9 @@ In this section, you are required to insert the general information about your n
 
 ![create-project1](img/create-project1.png)
 
-## Section 2 **Repository**: 
+## Step 2 **Repository**: 
 
-In this section, it is indicated the location of your new project and you have to choose its Template:
+In this step, it is indicated the location of your new project and you have to choose its Template:
 
    * **Git repo path** (*required*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
 
@@ -246,9 +246,9 @@ In this section, it is indicated the location of your new project and you have t
 
    ![create-project2](img/create-project2.png)
 
-## Section 3. **Environments**: 
+## Step 3. **Environments**: 
 
-In this section, you have an overview of the configuration of your project environments. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
+In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
 
    * **Environemnt name** (*required*, field not editable): name given to your environment.
 
@@ -268,15 +268,15 @@ In this section, you have an overview of the configuration of your project envir
 
 ![create-project3](img/create-project3.png)
 
-## Section 4. **Services**: 
+## Step 4. **Services**: 
 
-In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+In this step, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
 
 ![create-project4](img/create-project4.png)
 
-## Section 5. **Configure API Key**:
+## Step 5. **Configure API Key**:
 
-In this section, you are required to set up Client's accesses to your APIs:
+In this step, you are required to set up Client's accesses to your APIs:
 
    * **API Key** (*required*): this is the API Key. It can be generated randomly.
 
@@ -298,6 +298,6 @@ These environment variables are saved on GitLab.
 
 At the end of project creation, you have to commit and deploy your new project to effectively finish the process.
 
-!!!Warning  
+## Final Step. **Activate CRUD**: 
 
-    In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with Mongo.
+In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with Mongo.
