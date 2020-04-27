@@ -22,11 +22,11 @@ Mia-Platform guarantees **security patches** for the two preceding versions to t
 
 Release | Release Date |  End of Life Date
 -------| -------|-------
-v.6| luglio 2020\* | -
-v.5| dicembre 2019| -
-v.4| luglio 2018 | -
-v.3| settembre 2017 |luglio 2020\*
-v.2| novembre 2016 | dicembre 2019
-v.1| dicembre 2015 | luglio 2018
+v.6| July 2020\* | -
+v.5| January 2020| -
+v.4| July 2018 | -
+v.3| September 2017 |July 2020\*
+v.2| November 2016 | December 2019
+v.1| December 2015 | July 2018
 
 \* to be confirmed

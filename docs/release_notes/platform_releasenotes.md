@@ -1,6 +1,174 @@
-#Platform Release Note
+# Platform Release Note
 
-##v5.4.0 (March 23,2020)
+## v5.6.0 (April 27,2020)
+
+**Project Creation**
+
+This new feature enables you to **create a new project**, which lifecycle can be completely managed through the different areas of DevOps Console.
+
+ With the button 'create project' in the Home section of DevOps Console, you can now **create your new project in a few clicks** and in a short amount of time!
+
+![create-project](img/create-project.png)
+
+!!! warning
+
+    To create a project, you need to have already set up your DevOps Console and have the following prerequisites configured:     
+      * Tenant     
+      * Template       
+
+You can find more details about project creation at this link of Mia Platform Docs.
+
+## v5.5.3 (April 22,2020)
+
+**Improvements**
+
+* *API Portal*      
+  Now API Portal is **OpenAPI v3** compliant: all microservice swaggers are converted to OpenAPI v3 automatically. Moreover, APIExplorer has been integrated by adding support for *anyOf*, *oneOf*, *allOf* and *not* schemas. API-Portal service has been **updated to version 1.9.0**.
+
+* *Home*    
+  Now you can **select your favourite projects** by marking them with the new 'star' button!
+
+  ![star-projects1](img/star-projects.png)
+
+* **Restyling** of the following sections, introducing the card component: Replicas, API Key and CMS & Analytics.
+
+* Improved **padding and scrolling** of cards and grids in order to enhance their correct visualization.
+
+**Fixed**
+
+ * *Branches*    
+  Changes, done from two different people on the same branch, are **no more overwritten**. This fix solves the overwrite case in which one person is modifying an advanced file and the other one is modifying a general configuration on the same branch.
+
+ * *API Portal*   
+  In the section 'Request' of each method, the message **shows the complete string**, and not only string ID. 
+
+    ![request-string](img/request-string.png)
+
+* *Branch Selection*     
+  During the choice of the Branch, before entering the Design area, the button 'cancel' is **no more selectable with the 'Tab' key** of your keyboard.
+
+* *Design - CRUD*     
+  In the detail of each CRUD, the creation of an index with more than one field does **not comprimise anymore CRUD configuration**.
+
+* *CMS*     
+  The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
+
+**How to update your DevOps Console?**     
+In case of on-premise Console, to use the previous features, you have to update:   
+
+ * Console website @1.17.2
+
+ * Console backend @1.17.1
+
+ * Deploy website @1.0.9
+
+ * Infrastructure website @1.2.0
+
+ * Env var service @1.0.1
+
+
+## v5.5.2 -1 Patch (April 10,2020)
+
+!!! bug
+    **Design page of DevOps Console was inaccessible cause by an update of GitLab**
+
+    With GitLab version 12.9.2 file_path beginning with `/` failed. With this problem, the configuration files of the advanced services cannot be downloaded, so the Design area is inaccessible.
+
+**Fixed**
+
+Remove initial `/` to `file_path` on requesting file to gitlab
+
+
+## v5.5.2 (April 9, 2020)
+
+**Improvements**
+
+* Design - Microservices  
+  When a microservice is created using one of Mia-Platform templates or example, **the probes of that service are already compiled** and contactable by Kubernetes.
+
+   ![view-repository](img/probes.png)
+
+* Restyling of the following section, introducing the card component: Proxies, Create New Endpoint, API Pre/Post
+
+**Fixed**
+
+* **Microservice Gateway Bug in v5.5.1**  
+  To resolve it we have updated the following platform components:  
+
+    * cms-backend  v2.0.1 we changed the /client-key response code from 200 to 204;
+    * Microservice Gateway v5.1.5 no longer returns status code 500 if a service replies with status code 204. 
+  
+    !!! WARNING
+        It is a breaking change for api returning 200 with an empty content-type when `allowUnknownResponseContentType` in microservice-gateway configuration is set to true.
+
+    * auth-service v1.6.4 returns 204 on API /logout
+
+* Fix to the menu hover with filters that did not make the text readable
+
+##v5.5.1 (April 6,2020)
+
+!!! Bug  
+    **Microservice-gateway returns 500** if endpoints return 200 without a response body or 204 with `allowUnknownResponseContentType` to false  
+    Fixed in v5.5.2
+
+ 
+**Improvements**:
+
+* Design - Microservices  
+  New you go directly to your git Repository from the DevOps Console selection **"View Repository" button** in microservice detail page.  
+  Pay Attention: This button is present only in microservices created from Templates.
+  ![view-repository](img/view-repository.jpg)     
+  At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/), you can find more details about microservices management.
+
+* Auth0 - CMS  
+  For each environment, CMS is able to **manage separated users on Auth0Client**: in other words, "Development" users can be seen only on Development environment and "Pre Production" users can be seen only on Pre Production environment. This feature is deployed with the version v2.3.0 of Auth0Client.
+
+* Log & Monitoring  
+  In the detail of each Pod, the user experience beyond the buttons "Refresh Logs" and "Restart Pod" has been improved.     
+      
+  At this [link](https://docs.mia-platform.eu/development_suite/monitoring/monitoring/), you can find more details about Logs and Pods Monitoring.
+
+* Design - Microservices  
+  Restyling of the card of microservice, created from Template or from Docker Image.
+
+**Fixed**:
+
+* Microservice Gateway 5.1.3  
+  Now Microservice Gateway is able to manage the **error created when content-type is not correct**.
+
+
+## v5.5.0 (March 31,2020)
+
+**Improvements**
+
+* Design - Microservices  
+  During Microservice creation, **default values for GroupName are created**.  
+  The initial selection of GroupName is on "Services", but, if needed, it can be changed.     
+  ![group-name](img/group-name.jpg)      
+  At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/), you can find more details about microservice creation from Template.
+
+* Design - Microservices  
+  Now you can **clone code repository directly from DevOps Console** selecting Clone button on Microservice design page. Clone supports both ssh and https.  
+  Pay attention: this button is present only in microservices created from DevOps Console.    
+  ![clone-button](img/clone-button.jpg)    
+  At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/), you can find more details about microservices management.
+
+**Fixed**
+
+ * Design    
+   **Titles in the Launcher** are not aligned with the titles of the Console sections. 
+
+ * Design - Microservices    
+   **Card and Card's titles** in Microservices Details are not aligned. 
+
+ * Design - CRUD/Microservices/Pre&Post   
+   During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The **description validators are removed**.
+
+ * Design - Crud/Proxies/Endpoints   
+   When the user wants to see the field's and type's detail, they seem to be disabled. **Border, cursor, color and background** of the input element are changed.
+
+
+## v5.4.0 (March 23,2020)
 **Transition from Microservice Gateway**
 
 This version allows to handle the transition from Microservice Gateway: in particular, it can be defined, in each endpoint, which route is going to pass through Microservice Gateway.  
@@ -37,7 +205,7 @@ This release is a patch that includes only frontend improvements and updates.
  * Design - Microservices: The change of the docker image name of a microservice, switches also the docker image name of other microservices.   
 
 
-##v5.3.1 (March 4,2020)
+## v5.3.1 (March 4,2020)
 
 **Remove Breaking Change n v5.3.0 - disabled the skip of the Microservice Gateway**
 
@@ -92,7 +260,7 @@ Implemented landingPage management from cmsConfiguration object, now CMS can be 
 * DevOps Console: If the session has expired DevOps Console no longer redirects at login
 * DevOps Console: The user, on clicking on an area close to a checkbox, must not enable or disable it
 
-##v5.2.0 (February 18, 2020)
+## v5.2.0 (February 18, 2020)
 
 **Zero Downtime**
 
@@ -124,7 +292,7 @@ The developer can decide which basepath is associated to an endpoint by applying
 * Log & Monitoring: fix loading pod list
 
 
-##v5.1.0 (February 7, 2020)
+## v5.1.0 (February 7, 2020)
 
 **DevOps Console**
 
@@ -182,7 +350,7 @@ With this object you must indicate the type of pipeline with which to start your
 
 * Fixed: the menu occasionally got stuck when switching from the dashboard to another page  
 
-##v5.0.0
+## v5.0.0 (January 10, 2019)
 
 !!! danger  "BREAKING CHANGES"
     * Convert api-gateway configuration to handle new proxy name and remove group expressions from api-gateway  
@@ -309,7 +477,7 @@ This allows you to quickly go from one property to another collection while main
 
 [At this link the details on how to configure it](../business_suite/conf_cms.md)
 
-##v4.28.1 (October 28, 2019)
+## v4.28.1 (October 28, 2019)
 
 **Login Site**
 
@@ -335,7 +503,7 @@ The login-site has been modified to allow redirects to URLs containing query par
 
    You should add this value in the custom css file.
 
-##v4.28.0 (October 18, 2019)
+## v4.28.0 (October 18, 2019)
 **Breaking change v4.28.0**
 
 **Export Service**
@@ -544,7 +712,7 @@ Fixed:
 
 
 
-##v4.27.0 (September 5, 2019)
+## v4.27.0 (September 5, 2019)
 
 **Developers Console v1.8.0**
 
@@ -582,7 +750,7 @@ Fixed:
 
 Now you can see in the table the values saved in the lookups and multilookups with the correct formatting
 
-##v4.26.0 (August 8, 2019)
+## v4.26.0 (August 8, 2019)
 
 **Developers Console - Design - v1.7.0**
 
@@ -657,7 +825,7 @@ Fixed:
 * removed milliseconds from countdown when delete a pod
 * corrected typo error when delete a pod
 
-##v4.25.0 (July 24, 2019)
+## v4.25.0 (July 24, 2019)
 
 **Developers Console v1.6.0**
 
@@ -685,7 +853,7 @@ Fixed
 * resolved key override problem when merging objects into `_q` in `crudProxy`.
 
 
-##v4.24.0 (July 8,2019)
+## v4.24.0 (July 8,2019)
 
 **Breaking Change**
 
@@ -732,7 +900,7 @@ v1-adapter: 2.1.0
 notifications-service: 1.1.0
 notifications-manager: 1.0.0
 
-##v4.23.0 (June 27,2019)
+## v4.23.0 (June 27,2019)
 **DEVELOPER CONSOLE V1.4.0**
 
 
@@ -855,7 +1023,7 @@ Added:
 
 * Support for the `CRUD_LIMIT_CONSTRAINT_ENABLED` env variables to enable constraints on minimum, maximum and default values. New limits are: maximum 200, minimum 1 and default 25
 
-##v4.21.0 (June 18,2019)
+## v4.21.0 (June 18,2019)
 **DEVELOPERS CONSOLE v1.2.0**
 
 ![](img/dev-console.png)

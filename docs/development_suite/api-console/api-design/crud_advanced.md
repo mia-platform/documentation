@@ -1,23 +1,30 @@
-## Create a new CRUD
+##Create a new CRUD
+
 In order to create a new CRUD, go on the menu on the left where you see CRUD, select **Create new CRUD**, and name it filling in the blank space with the name of the collection in camelCase.
-Press the button **Create** on the right and the template of your collection will be created.
-
-In our case, we will name the collection “Books”.
-
-If you need, you can upload your fields from file, selecting **Import fields from File**.
 
 ![Crea-collezione](img/crea-crud.png)
 
-As soon as you push **Create** a new page, "Books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
+In our case, we will name the collection “Books”.
+
+
+![Crea-collezione-riga-titolo](img/books.png)
+
+Press the button **Create** on the right and the template of your collection will be created.
+
+
+As soon as you push **Create** a new page, "books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
+
 
 In the section **Fields**, you can enter the properties of your collection. 
 By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
 
 You can add new rows by selecting **Add new** and fill in the blank spaces with the value you need. 
 
-We added, a new field and we wrote “Title” and ticked the fields we needed.
+We added a new field and we wrote “Title” and ticked the fields we need.
 
-![Crea-collezione-riga-titolo](img/crud-add-new.png)
+
+![Crea-collezione-riga-titolo](img/crud-add-line.png)
+
 
 You can add the fields you need and select the appropriate properties:
 
@@ -35,20 +42,120 @@ You can add the fields you need and select the appropriate properties:
 
 To create the collection select **Create**.
 
+Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
+
+Once you are done creating all the rows you need, press any other point on the screen to exit the "add line" section.
+
+
+##How to create the fields of your CRUD by importing a JSON
+
+If you want, you can upload your fields from file, selecting **Import fields from File**. 
+Remember that the file must be a JSON with the following directions: 
+
+
+* Enter the property `name` in camelCase
+* Add properties with their `types` spelling as follow:
+    * `string`
+    * `Date`
+    * `number`
+    * `boolean`
+    * `GeoPoint`
+    * `RawObject`
+    * `Array_string`
+    * `Array_number`
+    * `Array_RawObject`
+* `required` must be `false` or `true`
+* `crypted` must be `false` or `true`
+* `nullable` must be `false` or `true`
+
+Here's an example of the file to upload.
+
+```json
+{
+    "name": "updatedAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "crypted": false,
+    "description": "updatedAt"
+  },
+  {
+    "name": "__STATE__",
+    "type": "string",
+    "required": true,
+    "nullable": false,
+    "crypted": false,
+    "description": "__STATE__"
+  },
+  {
+    "name": "PublicationDate",
+    "type": "number",
+    "required": true,
+    "crypted": false,
+    "nullable": true
+  },
+  {
+    "name": "new",
+    "type": "boolean",
+    "required": true,
+    "crypted": false,
+    "nullable": false
+  },
+  {
+    "name": "location",
+    "type": "GeoPoint",
+    "required": false,
+    "crypted": false,
+    "nullable": false
+  },
+  {
+    "name": "Writer",
+    "type": "RawObject",
+    "required": false,
+    "crypted": true,
+    "nullable": false
+  },
+  {
+    "name": "editors",
+    "type": "Array_string",
+    "required": false,
+    "crypted": false,
+    "nullable": true
+  },
+  {
+    "name": "editions",
+    "type": "Array_number",
+    "required": false,
+    "crypted": false,
+    "nullable": false
+  },
+  {
+    "name":"shops",
+    "type":"Array_RawObject",
+    "required":true,
+    "crypted":false,
+    "nullable":true,
+    "description":"where to find the books"
+  }
+
+```
+
+
+Once you imported the JSON from files, it automatically appears in the table under the default fields.
+
+
+If you want to delete a row, select red trash symbol on the right of the the table.
+
+![tabella_prop](img/tabella-cestino.png)
+
+
 !!! Warning
 
     the collection **has not yet been saved** it is necessary to continue the process described below
 
-![tabella_prop](img/tabella-cestino.png)
-
-If you want to delete a row, select red trash symbol on the right of the the table.
-
-Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
-
-When you have finished creating all the necessary lines, press any other point on the screen to exit the "add line" section.
 
 
-### Indexes
+##Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
 To create a new index select **create new**.

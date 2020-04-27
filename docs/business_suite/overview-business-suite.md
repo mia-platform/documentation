@@ -22,7 +22,7 @@ pattern.
 
 ###API Portal
 
-Real-time auto-generated documentation of your development services. Test live your APIs, synchronize documentation, client libraries and source code, and get all the information you need in OpenAPI Specification.
+Real-time auto-generated [documentation](../development_suite/api-portal/api-documentations.md) of your development services. Test live your APIs, synchronize documentation, client libraries and source code, and get all the information you need in OpenAPI Specification.
 
 ###Headless CMS
 
@@ -32,6 +32,7 @@ A pratical and intuitive interface to Create, Read, Update and Delete content on
 
 Take decisions leveraging the power of your data. Set your KPIs and monitor your performances in real time with beautiful dashboards.
 Get an omnichannel view of your users and products and turn into a data-driven Company.
+Discover how to configure your [Analytics from the DevOps Console](../development_suite/api-console/api-design/api_console_configanalytics.md) and how to set them through [JSON files](../business_suite/conf_analytics.md).
 
 
 

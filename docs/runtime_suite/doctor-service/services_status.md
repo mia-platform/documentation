@@ -1,6 +1,6 @@
 # The status of a service
 
-As already written in the [_Microservices vademecum_](/guidelines/microservice_vademecum/#health-routes), we care a lot about the services healthy state.
+As already written in the [_Microservices vademecum_](/guidelines/microservice_vademecum/#health-routes), we care a lot about the services health status.
 
 For this purpose we developed a new _core-service_, the **Doctor service**<br>![alt image](./img/computer-doctor.jpg).
 

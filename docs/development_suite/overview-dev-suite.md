@@ -14,27 +14,27 @@ runtime applications.
 
 ###Infrastructure set-up
 
-Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the environment variables.
+Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the [environment variables](../development_suite/overview-dev-suite.md).
 
 ###CD/CI Pipelines
 
-Design and build your CI/CD pipelines: choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
+Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 
 ###Microservices and API Design
 
-Develop containerized services in any language with Templates. Design your CRUD and GraphQL APIs and expose information to all channels.
+Develop containerized services in any language with [Templates](../../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and GraphQL APIs and expose information to all channels.
 
 ###Test Automation & Debug
 
-Automate your tests suite to deliver quality software at a sustainable pace. Debug your kubernetes services locally with your preferred debugging tool.
+Automate your tests suite to deliver quality software at a sustainable pace. [Debug](../../development_suite/debugging/telepresence/) your kubernetes services locally with your preferred debugging tool.
 
 ###Deployment
 
-Release across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
+[Release](../deploy/deploy/#deploy-details-page.md) across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
 
 ###Log & Monitoring
 
-Monitor your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
+[Monitor](../../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
 
 ###Metrics
 
