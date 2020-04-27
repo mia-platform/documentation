@@ -12,7 +12,7 @@ The first three sections of this guide allows you to have the prerequisites to c
 
  If you have already configured these two features, you can directly [skip to the last section](#how-to-create-a-project-on-devops-console).
 
- The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project with a minimum number of actions.
+ The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project in your DevOps Console with a minimum number of actions.
 
 # Create a Tenant
 
@@ -21,6 +21,7 @@ If you already have a tenant, you can [skip this section](#create-a-template).
 The tenant is the upper level of the projects and allows to create a project configured inside an already existent infrastructure, which information are repeated for all the projects: *environments*, *cluster informations*, *CI/CD integration*.
 
 !!! info
+
     The fields in the tenant cannot be changed during project creation steps (if not specified otherwise).
 
 More in detail, to compile the tenant, you have to use the following guide:
@@ -30,8 +31,8 @@ More in detail, to compile the tenant, you have to use the following guide:
 * `description`: the description of the tenant;
 * `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps;
 * `cmsImageName`: cms docker image to interpolate in template archive. It should contains also the cms tag to use (if `cms-site` service is disabled in project creation, it will not be used).
-* `coreLegacyImageName`: baas core docker image to interpolate in template archive. It should contains also the cms tag to use (if `baas-legacy` service is disabled in project creation, it will not be used).
-* `environments` (*required*): an array of objects containing the environments definition for the tenant. The content of this arrays will be interpolated to replate `%projectId%` with inserted `projectId` field in project creation. Any object should contains, for example:
+* `coreLegacyImageName`: baas core docker image to interpolate in template archive. It should contain also the cms tag to use (if `baas-legacy` service is disabled in project creation, it will not be used).
+* `environments` (*required*): an array of objects containing the environments definition for the tenant. The content of these arrays will be interpolated to replace `%projectId%` by inserting `projectId` field in project creation. Each object should contain, for example:
 
     ```js
       {
@@ -59,11 +60,12 @@ More in detail, to compile the tenant, you have to use the following guide:
       }
     ```
     !!! warning
+
         Do not set in cluster.kubeContextVariables object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
 
 * `environmentVariables`: an object describing the configuration to enable the setup infrastructure environment variables section. The only supported type is `gitlab`.
 
-  There are three way to configure a project:
+  There are three ways to configure a project:
 
   1. **empty**: it is not set as a default in project creation, but should be configured manually after the project creation.
 
@@ -73,7 +75,7 @@ More in detail, to compile the tenant, you have to use the following guide:
           "type": "gitlab"
         }
       ```
-      The project read the variables from the first parent group of Configurations project in Gitlab.
+      The project reads the variables from the first parent group of Configurations project in Gitlab.
 
       So, for example, with a gitlab project to be saved in
       `/clients/mia-platform/configurations`, the environment variables are written in `clients/mia-platform` group
@@ -103,7 +105,7 @@ More in detail, to compile the tenant, you have to use the following guide:
 
 # Create a template
 
-If you already have a template, you can [skip this section](#create-a-template).
+If you already have a template, you can [skip this section](#how-to-create-a-project-archive).
 
 The template is a repository which contains some project specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and start all the similar projects with the same configuration. So, it is a base on which to create your project.
 
