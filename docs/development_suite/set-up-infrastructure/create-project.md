@@ -300,4 +300,4 @@ At the end of project creation, you have to commit and deploy your new project t
 
 ## Final Step. **Activate CRUD**: 
 
-In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with Mongo.
+In order to activate the CRUD for your project, you can contact your Mia Platform's responsible to create a connection with MongoDB.
