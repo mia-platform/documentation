@@ -29,7 +29,7 @@ The microservice accepts POST requests at the following path:
 
 - `BASE_URL/send`
 
-- `BASE_URL/send/split-receivers`: each receiver will see itself as single main receiver of the email.
+- `BASE_URL/send/split-recipients`: each receiver will see itself as single main receiver of the email.
 
 Request `body` has to contain the following parameters:
 
@@ -75,8 +75,8 @@ This is an example of the body of the POST to the `/send` endpoint to send an em
 ```
 **Note**: Bob will know that also Carol is receiving the email and viceversa.
 
-#### 2. POST to /send/split-receivers
-This is an example of the body of the POST to the `/send/split-receivers` endpoint to send 2 different emails from Alice (`alice@domain.com`) with subject `The subject of the email` and message `This is an example.` The first email will be sent to Bob (`bob@domain.com`) and the second one will be sent to Carol (`carol@domain.com`). Each recipient will not see that the email was also sent to the other recipient.
+#### 2. POST to /send/split-recipients
+This is an example of the body of the POST to the `/send/split-recipients` endpoint to send 2 different emails from Alice (`alice@domain.com`) with subject `The subject of the email` and message `This is an example.` The first email will be sent to Bob (`bob@domain.com`) and the second one will be sent to Carol (`carol@domain.com`). Each recipient will not see that the email was also sent to the other recipient.
 
 ```json
 {
