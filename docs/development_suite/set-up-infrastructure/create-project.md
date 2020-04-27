@@ -214,6 +214,8 @@ The interpolation data in those files are the environments fields at the first l
 
 Once you have the tenant and the template correctly configured, you are able to create a new project with the button 'Create project' in the Home area of DevOps Console.
 
+![create-project](img/create-project.png)
+
 The project creation is divided in 5 different sections:
 
 ## Section 1. **General**: 
@@ -226,7 +228,7 @@ In this section, you are required to insert the general information about your n
 
    * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of DevOps Console..
 
-![create-project-section1](img/Create-project-section1.jpg)
+![create-project1](img/create-project1.png)
 
 ## Section 2 **Repository**: 
 
@@ -238,7 +240,7 @@ In this section, it is indicated the location of your new project and you have t
 
    * **Template** (*mandatory*): you have to select,from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
-   ![create-project-section2](img/Create-project-section2.jpg)
+   ![create-project2](img/create-project2.png)
 
 ## Section 3. **Environments**: 
 
@@ -260,13 +262,13 @@ In this section, you have an overview of the configuration of your project envir
 
    * **Namespace** (*mandatory*, field not editable): this is the namespace of kubernetes.
 
-![create-project-section3](img/Create-project-section3.jpg)
+![create-project3](img/create-project3.png)
 
 ## Section 4. **Services**: 
 
 In this section, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
 
-![create-project-section4](img/Create-project-section4.jpg)
+![create-project4](img/Create-project-section4.jpg)
 
 ## Section 5. **Configure API Key**:
 
@@ -278,7 +280,7 @@ In this section, you are required to set up Client's accesses to your APIs:
 
    * **Description** (*optional*): this is the description of the API Key.
 
-![create-project-section5](img/Create-project-section5.jpg)
+![create-project5](img/Create-project-section5.jpg)
 
 At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible in the Home section of your DevOps Console.
 
