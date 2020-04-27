@@ -22,6 +22,7 @@ nav:
   - Set Up Infrastructure:
     - Configure Auth0: 'development_suite/set-up-infrastructure/auth-0-setup.md'
     - Manage Environment Variables: 'development_suite/set-up-infrastructure/env-var.md'
+    - Create Project: 'development_suite/set-up-infrastructure/create-project.md'
   - Design:
     - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
     - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
@@ -131,7 +132,7 @@ nav:
   - Data Visualization:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
-- Fast Data:   
+- Fast Data:
     - Overview: 'fast_data/overview.md'
 
 - Release Notes:
