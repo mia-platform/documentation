@@ -1,5 +1,19 @@
 # Platform Release Note
 
+## v5.6.1 (,2020)
+
+**Improvements**
+
+* **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
+
+**Fixed**
+
+* **Projects**       
+  **The filter applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
+
+
+
+
 ## v5.6.0 (April 27,2020)
 
 **Project Creation**
@@ -51,7 +65,7 @@ You can find more details about project creation at this [link](https://docs.mia
   In the detail of each CRUD, the creation of an index with more than one field does **not comprimise anymore CRUD configuration**.
 
 * *CMS*     
-  The limit to the number of downloads possible at the same time in the CMS section has been removed: the 'export' functionality allows you to **download all the records**. Moreover, Crud service has been **updated to version 2.1.4**.
+  The 'export' functionality allows you to **download all the records**: there is no more a limit to the number of records to download. Moreover, Crud service has been **updated to version 2.1.4**.
 
 **How to update your DevOps Console?**     
 In case of on-premise Console, to use the previous features, you have to update:   
