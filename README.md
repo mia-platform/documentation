@@ -55,7 +55,7 @@ Ricordarsi di aggiornare mkdocs.yml se si vogliono aggiungere menu al documento 
 ### Scrivere la documentazione
 Per aggiungere informazioni è sufficiente seguire i seguenti passi:
 
- - fare clone di https://git.tools.mia-platform.eu/platform/documentations.git;
+ - fare clone di git@git.tools.mia-platform.eu:platform/documentations.git;
  - creare un branch con il nome `prefix-name`  
     - **prefix**: può essere     
             `edit` se stai cambiando una pagina,   
