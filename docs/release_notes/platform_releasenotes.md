@@ -4,24 +4,24 @@
 
 **Improvements**
 
-* **Design - CRUD**    
-  In the CRUD section, you can add and edit a property of an index only by seelcting the available properties.
-  
-  !(crud-index)[]
-
 * **Create Project**   
-  At the end of project creation, a tuna riding a rocket will **celebrate its success**!
+  At the end of project creation, an animation, representing a tuna riding a rocket, will **celebrate its success**!
 
 * **Design - Proxies**     
   With the 'delete' button in each Proxy card, you can now **delete proxies** from DevOps Console.   
+
+* **Design - CRUD**    
+  In the CRUD section, you can add and edit a property of an index only by **selecting from the available properties**.
+  
+  ![crud-index](img/crud-index.png)
 
 * **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
 
 !!! warning
 
-    By deleting a Proxy, you are also deleting the associated Endpoint.
+      By deleting a Proxy, you are also deleting the associated Endpoint.
 
-* **Restyling of the visualization** of the button 'delete index'.
+* **Alignment of the visualization** of the button 'delete index'.
 
 **Fixed**
 
