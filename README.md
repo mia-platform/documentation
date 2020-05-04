@@ -55,7 +55,7 @@ Ricordarsi di aggiornare mkdocs.yml se si vogliono aggiungere menu al documento 
 ### Scrivere la documentazione
 Per aggiungere informazioni è sufficiente seguire i seguenti passi:
 
- - fare clone di http://git.makeitapp.eu/makeitapp-baas/mia-platform-doc;
+ - fare clone di git@git.tools.mia-platform.eu:platform/documentations.git;
  - creare un branch con il nome `prefix-name`  
     - **prefix**: può essere     
             `edit` se stai cambiando una pagina,   
@@ -66,7 +66,7 @@ Per aggiungere informazioni è sufficiente seguire i seguenti passi:
  - editare i/il file in modifica;
  - usare ```mkdocs serve``` per vedere sul proprio pc la guida live mentre si modificano i files;
  - quando finito eseguire  ``` ./publish.sh "your comment" ```
- - aprire una merge request su http://git.makeitapp.eu/makeitapp-baas/mia-platform-doc avvisando il PO del Prodotto
+ - aprire una merge request avvisando il PO del Prodotto
  - una volta approvata la merge request la documentazione aggiornata sarà visibile su https://docs.mia-platform.eu/
 
 ## Brevi istruzioni
