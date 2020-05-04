@@ -4,10 +4,10 @@
 
 **Improvements**
 
-* **Create Project**   
+* *Create Project*   
   At the end of project creation, an animation will **celebrate its success**!
 
-* **Design - Proxies**     
+* *Design - Proxies*     
   With the 'delete' button in the detail of each Proxy, you can now **delete proxies** from DevOps Console.   
 
   ![proxies-delete](img/proxies-delete.png)
@@ -16,7 +16,7 @@
 
       By deleting a Proxy, you are also deleting the associated Endpoints.
 
-* **Design - CRUD**    
+* *Design - CRUD*    
   In the CRUD section, you can add and edit a property of an index only by **selecting from the available properties**.
   
   ![crud-index](img/crud-index.png)
@@ -27,10 +27,10 @@
 
 **Fixed**
 
-* **Projects**       
+* *Projects*       
   **Filters applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
 
-* If the **creation of a tag** is not successfull, the error presented is complete and not cut.
+* If the **creation of a tag** is not successful, the error presented is complete and not cut.
 
 ## v5.6.0 (April 27,2020)
 
