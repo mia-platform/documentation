@@ -5,7 +5,7 @@
 **Improvements**
 
 * **Create Project**   
-  At the end of project creation, an animation, representing a tuna riding a rocket, will **celebrate its success**!
+  At the end of project creation, an animation will **celebrate its success**!
 
 * **Design - Proxies**     
   With the 'delete' button in the detail of each Proxy, you can now **delete proxies** from DevOps Console.   
