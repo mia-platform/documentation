@@ -23,7 +23,7 @@ https://github.com/mia-platform/custom-plugin-java-springboot
 
 # Required basic routes #
 ## Documentation Routes ##
-`/documentations/json`
+`/documentation/json`
 
 Each microservice must expose the swagger documentation route
 
