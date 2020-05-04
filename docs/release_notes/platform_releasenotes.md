@@ -4,12 +4,31 @@
 
 **Improvements**
 
+* **Design - CRUD**    
+  In the CRUD section, you can add and edit a property of an index only by seelcting the available properties.
+  
+  !(crud-index)[]
+
+* **Create Project**   
+  At the end of project creation, a tuna riding a rocket will **celebrate its success**!
+
+* **Design - Proxies**     
+  With the 'delete' button in each Proxy card, you can now **delete proxies** from DevOps Console.   
+
 * **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
+
+!!! warning
+
+    By deleting a Proxy, you are also deleting the associated Endpoint.
+
+* **Restyling of the visualization** of the button 'delete index'.
 
 **Fixed**
 
 * **Projects**       
   **The filter applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
+
+* If the **creation of a tag** is not successfull, the error presented is complete and not cut.
 
 
 
