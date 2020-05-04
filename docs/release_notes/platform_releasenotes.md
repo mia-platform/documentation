@@ -1,6 +1,6 @@
 # Platform Release Note
 
-## v5.6.1 (,2020)
+## v5.6.1 (May 5,2020)
 
 **Improvements**
 
@@ -26,12 +26,9 @@
 **Fixed**
 
 * **Projects**       
-  **The filter applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
+  **Filters applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
 
 * If the **creation of a tag** is not successfull, the error presented is complete and not cut.
-
-
-
 
 ## v5.6.0 (April 27,2020)
 
