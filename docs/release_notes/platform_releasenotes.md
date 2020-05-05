@@ -2,7 +2,7 @@
 
 ## v5.6.1 (May 5,2020)
 
-**Improvements**
+**New Features**
 
 * *Design - CRUD*    
   In the CRUD section, you can add and edit a property of an index by **selecting it from a list of available properties**.
@@ -12,12 +12,14 @@
 * *CMS & Analytics*    
   In the CMS section, now it is possible to **filter by groups**, not only the pages attached to a CRUD, but also the micro frontends inserted in the Console.
 
+**Improvements**
+
 * *Create Project*   
   At the end of project creation, an animation will **celebrate its success**!
 
     ![rocket-animation](img/rocket-animation.png)
 
-* **Alignment** of Mia Platform logo position and alignment of the collapsed and expanded Launcher menu on the Console.
+* **Alignment** of Mia Platform logo position and **restyling** of the collapsed and expanded Launcher menu on the Console.
 
 **Fixed**
 
