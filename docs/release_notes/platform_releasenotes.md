@@ -15,6 +15,8 @@
 * *Create Project*   
   At the end of project creation, an animation will **celebrate its success**!
 
+    ![]()
+
 * **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
 
 * **Alignment of the visualization** of the button 'delete index'.
@@ -32,7 +34,7 @@
 
 * *Projects*       
   **Filters applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
-
+ 
 * If the **creation of a tag** is not successful, the error presented is complete and not cut.
 
 **How to update your DevOps Console?**
