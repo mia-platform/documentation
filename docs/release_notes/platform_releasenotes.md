@@ -15,7 +15,7 @@
 * *Create Project*   
   At the end of project creation, an animation will **celebrate its success**!
 
-    ![]()
+    ![gif-rocket]()
 
 * **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
 
