@@ -26,9 +26,9 @@
 
   ![proxies-delete](img/proxies-delete.png)
 
-  !!! warning
+!!! warning
 
-      By deleting a Proxy, you are also deleting the associated Endpoints, but not the generated configuration: you will have to manually delete it.
+     By deleting a Proxy, you are also deleting the associated Endpoints, but not the generated configuration: you will have to manually delete it.
 
 * *Projects*       
   **Filters applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
