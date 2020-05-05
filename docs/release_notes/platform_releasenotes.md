@@ -14,7 +14,7 @@
 
   !!! warning
 
-      By deleting a Proxy, you are also deleting the associated Endpoints.
+      By deleting a Proxy, you are also deleting the associated Endpoints but not the generated configuration, you'll have to manually delete it.
 
 * *Design - CRUD*    
   In the CRUD section, you can add and edit a property of an index by **selecting from the available properties**.
