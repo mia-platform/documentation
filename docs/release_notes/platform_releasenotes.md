@@ -4,22 +4,16 @@
 
 **Improvements**
 
-* *Create Project*   
-  At the end of project creation, an animation will **celebrate its success**!
-
-* *Design - Proxies*     
-  With the 'delete' button in the detail of each Proxy, you can now **delete proxies** from DevOps Console.   
-
-  ![proxies-delete](img/proxies-delete.png)
-
-  !!! warning
-
-      By deleting a Proxy, you are also deleting the associated Endpoints.
-
 * *Design - CRUD*    
-  In the CRUD section, you can add and edit a property of an index only by **selecting from the available properties**.
+  In the CRUD section, you can add and edit a property of an index by **selecting it from a list of the available properties**.
   
   ![crud-index](img/crud-index.png)
+
+* *CMS & Analytics*
+  Now it is possible to **filter by groups**, not only the pages attached to a CRUD, but also the micro frontends inserted in the Console.
+
+* *Create Project*   
+  At the end of project creation, an animation will **celebrate its success**!
 
 * **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
 
@@ -27,10 +21,30 @@
 
 **Fixed**
 
+* *Design - Proxies*     
+  Reinstatement of the 'delete' button in the detail of each Proxy in order to allow you to **delete proxies** from DevOps Console.   
+
+  ![proxies-delete](img/proxies-delete.png)
+
+  !!! warning
+
+      By deleting a Proxy, you are also deleting the associated Endpoints but not the generated configuration, you'll have to manually delete it.
+
 * *Projects*       
   **Filters applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
 
 * If the **creation of a tag** is not successful, the error presented is complete and not cut.
+
+**How to update your DevOps Console?**
+
+In case of on-premise Console, to use the previous features, you have to update:  
+
+* Console webiste @1.18.0
+
+* Console backend @1.18.1
+
+* Infrastructure website @1.2.2
+
 
 ## v5.6.0 (April 27,2020)
 
