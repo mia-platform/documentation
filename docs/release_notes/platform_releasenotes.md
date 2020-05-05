@@ -5,21 +5,19 @@
 **Improvements**
 
 * *Design - CRUD*    
-  In the CRUD section, you can add and edit a property of an index by **selecting it from a list of the available properties**.
+  In the CRUD section, you can add and edit a property of an index by **selecting it from a list of available properties**.
   
   ![crud-index](img/crud-index.png)
 
-* *CMS & Analytics*
-  Now it is possible to **filter by groups**, not only the pages attached to a CRUD, but also the micro frontends inserted in the Console.
+* *CMS & Analytics*    
+  In the CMS section, now it is possible to **filter by groups**, not only the pages attached to a CRUD, but also the micro frontends inserted in the Console.
 
 * *Create Project*   
   At the end of project creation, an animation will **celebrate its success**!
 
     ![gif-animation](img/gif-animation.gif)
 
-* **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
-
-* **Alignment of the visualization** of the button 'delete index'.
+* **Alignment** of Mia Platform logo position and alignment of the collapsed and expanded Launcher menu on the Console.
 
 **Fixed**
 
@@ -30,12 +28,12 @@
 
   !!! warning
 
-      By deleting a Proxy, you are also deleting the associated Endpoints but not the generated configuration, you'll have to manually delete it.
+      By deleting a Proxy, you are also deleting the associated Endpoints, but not the generated configuration: you will have to manually delete it.
 
 * *Projects*       
   **Filters applied to the projects in the Home section of DevOps Console are cleaned** when, after having selected a project, you go back to the Home section. In this way, it is clear that you have not lost some projects that are not included in the filter.
  
-* If the **creation of a tag** is not successful, the error presented is complete and not cut.
+* If the **creation of a tag** is not successful, the error presented is complete and not cut: you will be able to understand the issue.
 
 **How to update your DevOps Console?**
 
