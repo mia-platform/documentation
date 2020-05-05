@@ -7,7 +7,7 @@
 * *Design - CRUD*    
   In the CRUD section, you can add and edit a property of an index by **selecting it from a list of the available properties**.
   
-  ![crud-index]()
+  ![crud-index](img/crud-index.png)
 
 * *CMS & Analytics*
   Now it is possible to **filter by groups**, not only the pages attached to a CRUD, but also the micro frontends inserted in the Console.
@@ -15,7 +15,7 @@
 * *Create Project*   
   At the end of project creation, an animation will **celebrate its success**!
 
-    ![gif-animation]()
+    ![gif-animation](img/gif-animation.gif)
 
 * **Alignment of the collapsed and expanded Launcher menu** and alignment of Mia Platform logo.
 
@@ -26,7 +26,7 @@
 * *Design - Proxies*     
   Reinstatement of the 'delete' button in the detail of each Proxy in order to allow you to **delete proxies** from DevOps Console.   
 
-  ![proxies-delete]()
+  ![proxies-delete](img/proxies-delete.png)
 
   !!! warning
 
