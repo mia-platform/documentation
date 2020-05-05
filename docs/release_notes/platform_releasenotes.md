@@ -17,7 +17,7 @@
       By deleting a Proxy, you are also deleting the associated Endpoints.
 
 * *Design - CRUD*    
-  In the CRUD section, you can add and edit a property of an index only by **selecting from the available properties**.
+  In the CRUD section, you can add and edit a property of an index by **selecting from the available properties**.
   
   ![crud-index](img/crud-index.png)
 
