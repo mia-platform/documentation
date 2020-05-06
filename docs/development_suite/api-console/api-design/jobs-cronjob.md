@@ -2,11 +2,9 @@
 
 In this section, you can find the guidelines about how to create and manage CronJobs using DevOps Console.
 
-A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance.
+A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance. A CronJob doesn not expose API as a microservices does.
 
 Each **Job** creates one or more Pods and guarantee that a specified number of them successfully terminate.
-
-For this reason, a CronJob doesn't expose API as a microservices does.
 
 To learn more about CronJobs, you can find more information on [Kubernetes website](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/).
 
@@ -46,6 +44,6 @@ You can delete a CronJob with the delete button. To confirm the deletion, you ha
 
  ![design-cron-delete1](img/design-cron-delete1.png)
 
-!!!  Warning
+!!!  warning
 
     By eliminating a CronJob on DevOps Console, you are deleting the image on the Console, but not the Pods on Kubernetes and the configuration on GitLab. This implies that, if you delete the Pods on Kubernetes, but not the GitLab configuration, you will find again your CronJob at the next deploy.
