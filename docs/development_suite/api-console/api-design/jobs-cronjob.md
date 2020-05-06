@@ -44,6 +44,6 @@ You can delete a CronJob with the delete button. To confirm the deletion, you ha
 
  ![design-cron-delete1](img/design-cron-delete1.png)
 
-!!!  warning
-
+!! warning
+    
     By eliminating a CronJob on DevOps Console, you are deleting the image on the Console, but not the Pods on Kubernetes and the configuration on GitLab. This implies that, if you delete the Pods on Kubernetes, but not the GitLab configuration, you will find again your CronJob at the next deploy.
