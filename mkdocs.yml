@@ -5,6 +5,8 @@ copyright: Mia srl. All rights reserved.
 plugins:
   - search
   - monorepo
+  - minify:
+      minify_html: true
 
 nav:
 - Home:
@@ -173,14 +175,16 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-  feature:
-    tabs: 'true'
-  extra:
-    social:
-      - type: globe
-        link: https://www.mia-platform.eu/
-      - type: linkedin
-        link: https://www.linkedin.com/company/mia-platform/
+  features:
+    - tabs
+    - instant
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://www.mia-platform.eu/
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/mia-platform/
 
 google_analytics:
   - 'UA-122091925-1'
