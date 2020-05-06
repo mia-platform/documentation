@@ -33,6 +33,8 @@ nav:
        - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
        - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
        - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
+    - CronJob:
+        - Create and Manage Cronjob: 'development_suite/api-console/api-design/jobs-cronjob.md'
 
     - PRE/POST: 'development_suite/api-console/api-design/decorators.md'
     - Endpoints: 'development_suite/api-console/api-design/esponi_api.md'
