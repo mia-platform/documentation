@@ -2,11 +2,9 @@
 
 In this section, you can find the guidelines about how to create and manage CronJobs using DevOps Console.
 
-A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance.
+A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance. A CronJob doesn not expose API as a microservices does.
 
 Each **Job** creates one or more Pods and guarantee that a specified number of them successfully terminate.
-
-For this reason, a CronJob doesn't expose API as a microservices does.
 
 To learn more about CronJobs, you can find more information on [Kubernetes website](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/).
 
