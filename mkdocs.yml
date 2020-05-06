@@ -185,6 +185,7 @@ theme:
 google_analytics:
   - 'UA-122091925-1'
   - 'auto'
+
 markdown_extensions:
   - admonition
   - pymdownx.arithmatex
@@ -199,7 +200,15 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js
