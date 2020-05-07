@@ -45,10 +45,11 @@ In some conditions, the pod can communicate to Kubernetes that it is under press
 
 In this case, Kubernetes avoids sending to the pod new incoming TCP connections. Only once the container returns 200, Kubernetes restores the pod status and inserts it into the pool of the Service allowing new incoming request to reaches the pod.
 
-### Check-up route ###
+### Check-up route
+
 `/-/check-up`
 
-This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor service**](/development_suite/doctor-service/services_status).
+This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor service**](/runtime_suite/doctor-service/services_status/).
 It's purpose is to check the status of all the dependencies. If your application depends on:
 - an another microservice, this route should invoke the `/-/healthz` route of that service
 - an external microservice, this route should invoke its status route
@@ -58,7 +59,8 @@ This route has to return 200 if and only if all pod dependencies are up, 503 oth
 
 **<u>NB.</u>** **Never call the `/-/check-up` route of another service in the check-up handler of a service** &rarr; this avoids to have a loop of `/-/check-up` calls, the only one who can call the `/-/check-up` route is the _Doctor service_.
 
-#### Kubernetes usage of liveness and readiness ####
+#### Kubernetes usage of liveness and readiness
+
 Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and remedy such situations.
 
 [Kubernetes kubelet](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) uses liveness probes to know when to restart a Container.
