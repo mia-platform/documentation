@@ -12,6 +12,10 @@
 * *CMS & Analytics*    
   In the CMS section, now it is possible to **filter by groups**, not only the pages attached to a CRUD, but also the micro frontends inserted in the Console.
 
+* *Design - Microservice*       
+  In Microservice Configuration section, you can now **manage Log Parser**: you can select which tool will be used by the platform to parse your microservice logs.
+
+
 **Improvements**
 
 * *Create Project*   
