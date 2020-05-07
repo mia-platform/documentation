@@ -16,7 +16,7 @@ To learn more about CronJobs, you can find more information on [Kubernetes websi
  
  To manage CronJobs, Mia Platform's DevOps Console offers a specific section, CronJobs, in the Design area:
  
- ![design-cron](img/design-cron.png)
+ ![cronjobs-placeholder](img/cronjobs-placeholder.png)
  
  In this section, you can create your own CronJob with the create button in the menu or in the placeholder.
  
@@ -30,19 +30,19 @@ To learn more about CronJobs, you can find more information on [Kubernetes websi
 
   * **CronJob schedule** (*mandatory*):  This is the scheduling time. You can insert here a CronTab expression by following these [examples](https://crontab.guru/examples.html).
 
- ![design-cron-create](img/design-cron-create.png)
+ ![cronjobs-create](img/cronjobs-create.png)
 
  After the creation of a CronJob, you will be redirected to the CronJob detail where a yaml file is filled with the information provided during the creation:
  
- ![design-cron-detail1](img/design-cron-detail1.png)
+ ![cronjobs-detail](img/cronjobs-detail.png)
 
 Once you have created your CronJob, you can manage it by editing directly its advanced file. The benefits of creating an advanced CronJob are disclosed on [Kubernetes website](https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/#writing-a-cron-job-spec).
 
 ## How to delete CronJobs
 
-You can delete a CronJob with the delete button. To confirm the deletion, you have to insert the correct name of the service in the specific field.
+You can delete a CronJob with the delete button at the bottom of the page. To confirm the deletion, you have to insert the correct name of the Cronjob in the specific field.
 
- ![design-cron-delete1](img/design-cron-delete1.png)
+ ![cronjob-delete](img/cronjobs-delete.png)
 
 !!! warning
     
