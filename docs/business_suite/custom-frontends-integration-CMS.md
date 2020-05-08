@@ -31,6 +31,7 @@ First of all you need a collection named __cmsmenu__ where to insert the menu vo
         - `icon`: String (Required)
         - `link`: String (Required)
         - `iframe`: Boolean (Required)
+        - `groups`: Array (Required since Mia-Platform v5.6.1)
     <br> ![](img/cmsmenu_CRUD_creation.png)
 
 #### 2. Service - create the custom service for your frontends
@@ -99,6 +100,8 @@ It's time to insert the menu data in the __cmsmenu__ collection to make the voic
 
 `iframe`: true if you want to open the frontend in the iFrame, false if you want to open in another tab
 
+`groups`: you can set the required groups a user needs to be able to see the menu in the CMS
+
 To do this you have two ways: 
 
 * insert the data in the CMS in the __cmsmenu__ collection: insert a new object specifying the fields.
@@ -127,7 +130,8 @@ To do this you have two ways:
         "icon": "bell",
         "link": "/v2/push-manager-fe/",
         "iframe": true,
-        "__STATE__": "PUBLIC"               
+        "groups": ["admin"],
+        "__STATE__": "PUBLIC"
     }
     ```
 
