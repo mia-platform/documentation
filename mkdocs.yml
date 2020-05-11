@@ -141,7 +141,7 @@ nav:
 
 - Release Notes:
     - Platform: 'release_notes/platform_releasenotes.md'
-    - Supporto Policy: 'release_notes/support-policy.md'
+    - Support Policy: 'release_notes/support-policy.md'
 
 - Guidelines:
     - Glossary: 'guidelines/glossary.md'
