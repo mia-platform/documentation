@@ -2,7 +2,7 @@
 
 
 ##How to report a bug
-You can report a bug by writing an email to this [address](mailto:roberto.nava@mia-platform.eu).
+You can report a bug by writing an email to this [address](mailto:account@mia-platform.eu).
 ##How we approach bug fixing
 Bug fix releases are more frequent than feature releases, and target the most critical bugs affecting customers. The notation for a bug fix release is the final number in the version (the 1 in 6.0.1, for example).
 
