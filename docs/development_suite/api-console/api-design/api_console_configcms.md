@@ -1,9 +1,11 @@
-# How to Configure the CMS from the API Console
+# How to Configure the CMS from the DevOps Console
 
-From the API Console you can easily configure and manage your CMS.
+From the DevOps Console you can easily configure and manage your CMS.
+
 
 !!! Note
     Remember that before you can configure the CMS you must have already created your collections in the Collections area and displayed the related Endpoints.
+
 
 ## Categories and Pages
 
@@ -11,55 +13,64 @@ The CMS consists of categories and pages. Pages and categories form the basis of
 
 The **Categories** are useful for grouping similar pages within them. The categories appear only in the CMS menu and represent a different section of the menu.
 
-To give an example: in our cms of the heroes we will create the collection **Characters** and inside we will place the different pages of heroes: good heroes, bad heroes, helpers etc ...
+To give an example: in our CMS of the Library we will create the Category **Authors** and inside we will place the different Pages for the types of writer: novelist, poet, screenwriter, etc ...
 
-The **Pages** instead are used to represent the data of a collection. Within the pages you can manage your collections and the data in it.
-
-!!! tip
-    Before creating pages or categories try to build the information architecture of your CMS. It will be much simpler at that point to know what to create.
-
-## How to create a category
-
-![](img/crea-categoria.JPG)
-
-To create a category, simply enter the **Name** of the category you want to display on the CMS and the display order.
+The **Pages** are used to represent the data of a collection. Within the Pages you can manage your collections and the data in it.
 
 !!! tip
-    We advise you to always order by following the tens order. If we want our category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the categories.
+    Before creating Pages or Categories try to build the information architecture of your CMS. It will be much simpler at that point to know what to create.
 
-In our case, of the CMS of the heroes, then we will write: Name = Characters and Order = 10
+## How to create a Category
 
-## How to create a page
+![](img/CreateCategory.png)
 
-The creation of a page consists of two steps:
+To create a category, simply enter the **Name** of the Category you want to display on the CMS and the display order.
+
+!!! tip
+    We advise you to always order by following the tens order. If we want our Category to be the first in the CMS, then we will write 10. This will facilitate the change of order of the Categories.
+
+In our case, we added a Category for the writers: Name = Authors and it will be placed second with the Order = 20
+
+
+## How to create a Page
+
+In order to create a Page, click the blu button *Create new page* and it will be showned as follow: 
+
+![](img/CreatePage.png)
+
+The creation of a page consists of 2 steps:
 
 1. Configure the menu area
 2. Configure the general settings
 
-### Configure the menu area
-![](img/area-menù.JPG)
+### Configure the Menu Area
 
-In this section you can choose how to represent the page in the CMS side menu. Let's take the example of the Good Heroes page
+![](img/CreateNovelist.png)
 
-**Name**: You will need to enter the name to be displayed in the menu to represent your page. In our case: Heroes Good
+In this section you can choose how to represent the page in the CMS side menu. Let's take the example of the Novelist page.
 
-**Endpoint**: You will have to choose which endpoint to hook your page to. In our case: / eroibuoni
+**Name**: You will need to enter the name to be displayed in the menu to represent your page: Novelist. 
 
-**Category**: You will have to choose your page in which category will be inserted. In our case we will hook the Characters category
+**Endpoint**: You will have to choose which endpoint to hook your page to.
+
+**Category**: You will have to choose your page in which category will be inserted. In our case we will hook the Authors category
 
 **Icon**: You can choose whether to assign an icon to your page that represents it in the CMS. As an example: you can choose the fas fa-book icon to represent you page that contains books. At this [link](https://fontawesome.com/icons?d=gallery&s=solid&v=5.0.0,5.1.0,5.2.0,5.3.0&m=free) you can view and choose all the available icons.
 
+
 Attention:
-1. Mia support only the solid, free icon up to version 5.3.0  
+1. Mia-Platform supports only the solid, free icon up to version 5.3.0  
 2. You should write the full name of the icon. *book*s is not enough. You should write **fas fa-book**
 
 
 **Order**: With Order you can choose what order to give to your page within a category. We advise you to give the pages a number belonging to the tens order (ex: page 1 will have the order 10)
 
 ### Configure the General Settings
-![](img/impostazioni-generali.JPG)
 
 In this section you can choose the general configurations of your page.
+
+![](img/CMSsetting.png)
+
 
 **Layout**: you can decide the layout you want to give to your collection. The possible layouts are:
 * *Table* is the most classic table view mode.
@@ -102,7 +113,7 @@ We can divide this complex area into several parts:
 
 For each property you can configure different fields that allow you to improve the user experience in the CMS:
 
-![](img/proprietà-generali.JPG)
+![](img/GoToProperties.png)
 
 * **Interface Type**: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
 
@@ -247,11 +258,13 @@ The query will be: {"state": "working"}
 
 ## 4. Create a button
 
-From Api Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
+From the DevOps Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
 
-![section I create button](img/creo-bottone.JPG)
 
-The buttons are displayed in the central area of the CMS near the publish, draft and trash buttons
+![section I create button](img/Create_Button.png)
+
+
+The buttons are displayed in the central area of the CMS near the publish, draft and trash buttons.
 
 To create a button, go to the Buttons section and configure the following fields:
 
@@ -274,6 +287,7 @@ In the API, you will then be able to conveniently view the buttons created on th
     here is how our button will appear:
     ![bottone in cms](img/bottone-in-cms.JPG)
 
+
 ### 4.1. Advanced configurations
 
 Once you created the _button_ on the CMS, you have to configure the _Advanced Configurations_ of your project, otherwise the CMS will not find the created route.
@@ -294,7 +308,8 @@ In the example, we will receive from the CMS a `POST` call to the `/documents-cr
 
 otherwise the CMS will not find the path to consume the REST service.
 
-### 4.2. What does the button do
+
+### 4.2. What does the button do?
 
 Once you correctly configured the _Advanced section_ files, you can use the button to send a `POST` request to your custom _endpoint_, but what you will receive in the request _body_?
 
