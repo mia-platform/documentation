@@ -4,8 +4,7 @@
 
 !!! bug
 
-     CRUD-Service goes in error if the new property 'groups' of the CRUD 'cmsmenu' does not exist while you are editing a 'cmsmenu' filter based on groups.
-
+     If you have configured 'cmsmenu' CRUD, due to an error in crud-service the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
 
 **New Features**
 
