@@ -2,6 +2,10 @@
 
 ## v5.6.1 (May 5,2020)
 
+!!! bug
+
+     If you have configured 'cmsmenu' CRUD, due to an error in crud-service the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
+
 **New Features**
 
 * *Design - CRUD*    
