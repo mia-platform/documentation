@@ -2,6 +2,11 @@
 
 ## v5.6.1 (May 5,2020)
 
+!!! bug
+
+     CRUD-Service goes in error if the new property 'groups' of the CRUD 'cmsmenu' does not exist while you are editing a 'cmsmenu' filter based on groups.
+
+
 **New Features**
 
 * *Design - CRUD*    
