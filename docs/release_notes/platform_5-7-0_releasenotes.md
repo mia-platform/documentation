@@ -42,9 +42,6 @@
 ## Fixed
 
 * **CMS**     
-  Now the 'export' functionality allows you to **download all the records**: there is no limitation to the number of records to download. Moreover, cms-site has been updated to version 9.8.1 and cms-backend to version 3.0.0.
-
-* **CMS**     
   **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
 
 * **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
