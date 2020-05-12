@@ -3,8 +3,9 @@
 ## v5.6.1 (May 5,2020)
 
 !!! bug
+    **Error in crud-service**
 
-     If you have configured 'cmsmenu' CRUD, due to an error in crud-service the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
+    If you have configured 'cmsmenu' CRUD, the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
 
 **New Features**
 
@@ -49,7 +50,7 @@
 
 In case of on-premise Console, to use the previous features, you have to update:  
 
-* Console webiste @1.18.0
+* Console website @1.18.0
 
 * Console backend @1.18.1
 
