@@ -1,6 +1,6 @@
 # v5.7.0 (May 12,2020)
 
-!!! warning
+!!! info
 
     This version solves the breaking change of v5.6.1: now CMS backend does not go in error. If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added.
 
@@ -18,16 +18,16 @@
 * **Design - Microservices: add a configmap**        
     With this version we have introduced 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. 
 
-  ![microservice](img/microservice-new.png)
+![add-new](img/add-new.png)
   
-* **Design - Microservices: switch to standard mode witohout loosing information**     
+* **Design - Microservices: switch to standard mode without loosing information**     
     We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
+
+ ![to-std](img/to-std.png)
 
 !!! info
 
     We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices. 
-
-  ![new-adv-conf](img/new-adv-conf.png)
 
   [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/) you can find more detailed guidelines about the creation and the management of configurations from DevOps Console.
 
