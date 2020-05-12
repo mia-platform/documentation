@@ -141,7 +141,9 @@ nav:
     - Overview: 'fast_data/overview.md'
 
 - Release Notes:
-    - Platform: 'release_notes/platform_releasenotes.md'
+    - Platform:
+      - Platform v5.7.0: 'release_notes/platform_5-7-0_releasenotes.md'
+      - Platform previous versions: 'release_notes/platform_releasenotes.md'
     - Support Policy: 'release_notes/support-policy.md'
 
 - Guidelines:
