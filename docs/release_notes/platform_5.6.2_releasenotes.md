@@ -2,8 +2,6 @@
 
 ## v5.6.2 (May 12,2020)
 
-**New Features**
-
 **Improvements**
 
 * *Design*       
@@ -12,14 +10,13 @@
 **Fixed**
 
 * *CMS*     
-  Now it is possible to **export all the records** from CMS without any limitation of number. 
+  If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added. In other words, **crud-service does not go in error**.
 
 * *CMS*     
-  **CRUD-Service does not go in error** if the new property 'groups' of the CRUD 'cmsmenu' does not exist while you are editing a 'cmsmenu' filter based on groups.
-  If you have configured 'cmsmenu' CRUD, the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
+  Now the 'export' functionality allows you to **download all the records**: there is no limitation to the number of records to download. Moreover, cms-site has been updated to version 9.8.1 and cms-backend to version 3.0.0.
 
 * *CMS*     
-  **Logout from CMS is enabled** and returns a feedback in case of error.
+  **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
 
 **How to update your DevOps Console?**
 
