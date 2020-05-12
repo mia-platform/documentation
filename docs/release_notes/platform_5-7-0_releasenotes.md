@@ -18,7 +18,7 @@
 * **Design - Microservices: add a configmap**        
     With this version we have introduced 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. 
 
-  ![configmap-add-new](img/configmap-add-new.png)
+![add-new](img/add-new.png)
   
 * **Design - Microservices: switch to standard mode without loosing information**     
     We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
