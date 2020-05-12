@@ -16,16 +16,16 @@
 ## New features
 
 * **Design - Microservices**        
-  Restyling and optimization of Microservice section. 
+  Restyling and optimization of Microservice section: 
 
- [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details guidelines about the creation and the management of microservices from DevOps Console.
+  [Here]() you can find more detailed guidelines about the creation and the management of microservices from DevOps Console.
 
-  ![microservice-new]()
+  ![microservice-new](img/microservice-new.png)
 
 ## Improvements
 
 * **Design - Microservices, Cronjobs and Proxies**      
-  Restyling of Microservices, Cronjobs and Proxies deletion: now, on the footer of the page, there is a **card with the 'delete' button**. If you push it, a pop up appears in the centre of the page. To confirm the deletion, you have to insert the correct name of the service in the specific field.
+  Restyling of Microservices, Cronjobs and Proxies deletion: now, on the footer of the page, there is a **card with the 'delete' button**. If you push it, a pop up appears in the centre of the page to confirm the deletion.
 
   ![footer-button](img/footer-button.png)
 
@@ -34,10 +34,6 @@
 
   ![header-buttons](img/header-buttons.png)
 
-* **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
-  
-* Improvement of the **organization of the elements** of DevOps Console when the width of the window is reduced.
-
 ## Fixed
 
 * **CMS**     
@@ -45,6 +41,10 @@
 
 * **CMS**     
   **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
+
+* **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
+  
+* Improvement of the **organization of the elements** of DevOps Console pages when the width of the window is reduced.
 
 ## How to update your DevOps Console?
 
