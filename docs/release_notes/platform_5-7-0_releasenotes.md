@@ -16,7 +16,7 @@
 ## New features
 
 * **Design - Microservices**        
-  Restyling and optimization of Microservice section: 
+  Optimization of Microservice section: new 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. Restyling of the **'advanced configuration' card**: if you have already created advanced configurations, you can come back to standard configuration without loosing them.
 
   [Here]() you can find more detailed guidelines about the creation and the management of microservices from DevOps Console.
 
@@ -45,6 +45,8 @@
 * **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
   
 * Improvement of the **organization of the elements** of DevOps Console pages when the width of the window is reduced.
+
+  ![width](img/width.png)
 
 ## How to update your DevOps Console?
 
