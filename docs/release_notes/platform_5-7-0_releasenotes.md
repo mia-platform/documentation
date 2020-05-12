@@ -8,7 +8,9 @@
 
 * **Create and Manage Cronjobs**        
   This new section of Design area enables you to create from DevOps Console a new CronJob, a scheduled Job that will be executed periodically on a given schedule, and to manage it. [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about this new capability.
-  
+
+![test-cronjobs](img/test-cronjobs.png)
+
 
 ## New features
 
@@ -29,7 +31,7 @@
 * **CMS**     
   **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
 
-## How to update your DevOps Console?**
+## How to update your DevOps Console?
 
 In case of on-premise Console, to use the previous features, you have to update:  
 
