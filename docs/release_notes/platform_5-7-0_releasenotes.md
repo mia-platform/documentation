@@ -6,8 +6,9 @@
 
 ## New capabilities
 
-* **Cronjobs**        
-  This new feature enables you to create a new CronJob, which lifecycle can be completely managed through the different areas of DevOps Console.
+* **Create and Manage Cronjobs**        
+  This new section of Design area enables you to create from DevOps Console a new CronJob, a scheduled Job that will be executed periodically on a given schedule, and to manage it. [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about this new capability.
+  
 
 ## New features
 
