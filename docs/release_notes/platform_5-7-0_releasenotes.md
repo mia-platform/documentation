@@ -2,25 +2,27 @@
 
 !!! warning
 
-    This version solves the breaking change of v5.6.1: Now CMS backend does not go in error. If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added.
+    This version solves the breaking change of v5.6.1: now CMS backend does not go in error. If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added.
 
 ## New capabilities
 
 * **Create and Manage Cronjobs**        
   This new section of Design area enables you to **create, manage and delete CronJob**, a scheduled Job that will be executed periodically on a given schedule, from DevOps Console. 
-  
-  [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about this new capability.
 
   ![test-cronjobs](img/test-cronjobs.png)
 
+    [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about CronJobs creation and management.
+
+
+
 ## New features
 
-* **Design - Microservices: Add a configmap**        
+* **Design - Microservices: add a configmap**        
     With this version we have introduced 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. 
 
   ![microservice](img/microservice-new.png)
   
-* **Desing - Microservices: Switch to standard mode witohout loosing information**     
+* **Desing - Microservices: switch to standard mode witohout loosing information**     
     We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
     We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices. 
 
