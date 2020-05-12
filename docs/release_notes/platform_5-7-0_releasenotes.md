@@ -1,6 +1,6 @@
 # v5.7.0 (May 12,2020)
 
-!!! warning
+!!! info
 
     This version solves the breaking change of v5.6.1: now CMS backend does not go in error. If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added.
 
@@ -20,7 +20,7 @@
 
   ![microservice](img/microservice-new.png)
   
-* **Design - Microservices: switch to standard mode witohout loosing information**     
+* **Design - Microservices: switch to standard mode without loosing information**     
     We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
 
 !!! info
