@@ -23,7 +23,7 @@ You can create a Microservice by:
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-At [this link]() you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
+At [this link](https://docs.mia-platform.eu/development_suite/api-console/api-design/marketplace/) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
@@ -125,7 +125,7 @@ In this section, you can manage, add and delete the environment variables associ
 
  ### Custom Configuration
 
-In this section, you can add configmaps in order to add files to your microservice. This can be usefull if your microservice requires a particular configuration that reads from a certain type of file (e.g. file service).
+In this section, you can add configmaps in order to add files to your microservice without going to the advanced configuration. This feature can be usefull if your microservice requires a particular configuration that reads from a certain type of file (e.g. file service).
 
 In other words, if your microservice can not be managed in a usable way from environment variables, you can use Custom Configuration to add a configuration to your microservice. 
 
@@ -175,8 +175,11 @@ In this section, you can write your advanced configurations by filling the files
 
     ![service-to-standard](img/service-to-standard.png)
 
-    If you configure your advanced service, deployment and configmaps files, when you come back to standard configuration, you can see your custom configuration files already filled with the environment variables.
+    If you configure your advanced service, deployment and configmaps files, when you come back to standard configuration, you can see your custom configuration files already filled with the environment variables. In other words, you can come back to standard configuration without loosing your advanced settings like your docker image, your variables and your configmaps.
 
+    !!! info
+
+         We suggest you to convert in a standard mode all your microservices in order to achive a better governance of your microservices. 
 
     !!! warning
 
