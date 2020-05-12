@@ -48,7 +48,7 @@
 ## Fixed
 
 * **CMS**     
-  **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
+  **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0, cms-site to version 9.8.1 and cms-backend to version 3.0.0
 
 * **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
   
