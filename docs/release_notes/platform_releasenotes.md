@@ -5,7 +5,7 @@
 !!! bug
     **Error in cmsmenu**
 
-    If you have configured 'cmsmenu' CRUD, the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
+    If you have configured 'cmsmenu' CRUD, the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.7.0.
 
 **New Features**
 
