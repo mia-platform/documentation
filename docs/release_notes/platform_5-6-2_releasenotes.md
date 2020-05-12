@@ -1,16 +1,15 @@
-# Platform Release Note
+# v5.7.0 (May 12,2020)
 
-## v5.6.2 (May 12,2020)
+## Improvements
 
-**Improvements**
+!!! warning
+
+    This version solves the breaking change of v5.6.1: Now CMS backend does not go in error. If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added.
 
 * *Design*       
   **Restyling** of spaces in the Search bar in each section of Design area and the width of the input of each form.
 
-**Fixed**
-
-* *CMS*     
-  If you have configured 'cmsmenu' CRUD, the menu items will be shown in CMS since 'groups' property will be automatically added. In other words, **crud-service does not go in error**.
+## Fixed
 
 * *CMS*     
   Now the 'export' functionality allows you to **download all the records**: there is no limitation to the number of records to download. Moreover, cms-site has been updated to version 9.8.1 and cms-backend to version 3.0.0.
@@ -18,7 +17,7 @@
 * *CMS*     
   **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
 
-**How to update your DevOps Console?**
+## How to update your DevOps Console?**
 
 In case of on-premise Console, to use the previous features, you have to update:  
 
