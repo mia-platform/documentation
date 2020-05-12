@@ -22,15 +22,15 @@
 
 ## Improvements
 
-* **Design - Microservices and Cronjobs**      
-  Restyling of CronJobs and Microservices deletion: now, on the footer of the page, there is a **card with the 'delete' button**.
+* **Design - Microservices, Cronjobs and Proxies**      
+  Restyling of Microservices, Cronjobs and Proxies deletion: now, on the footer of the page, there is a **card with the 'delete' button**. If you push it, a pop up appears in the centre of the page. To confirm the deletion, you have to insert the correct name of the service in the specific field.
 
-![footer-button]()
+  ![footer-button](img/footer-button.png)
 
 * **Design - Microservices**      
   Restyling of Microservices page: name, tag, 'Clone' and 'View Repository' remains **on the header of the page** when the user scrolls down the page.
 
-![header-buttons]()
+  ![header-buttons](img/header-buttons.png)
 
 * **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
   
