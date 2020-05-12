@@ -11,9 +11,7 @@
 
   ![test-cronjobs](img/test-cronjobs.png)
 
-    [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about CronJobs creation and management.
-
-
+[Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about CronJobs creation and management.
 
 ## New features
 
