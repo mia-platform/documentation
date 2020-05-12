@@ -15,16 +15,16 @@
 
 ## New features
 
-* **Design - Microservices: Add a config maps**        
+* **Design - Microservices: Add a configmap**        
     With this version we introduce 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. 
 
-  [Here]() you can find more detailed guidelines about the creation and the management of configurations from DevOps Console.
+  [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/) you can find more detailed guidelines about the creation and the management of configurations from DevOps Console.
 
   ![microservice](img/microservice-new.png)
   
-* **Desing - Microservices: Switch to standard mode witohout losing information**
-    We have simplified the **switch from advanced to standard mode** in the Microservices Area. Now in fact if you can come back to standard configuration **without loosing you advanced settings** like your docker image, your variables and your configmaps.
-    We suggest you to convert in a standard mode all your microservices in order to achive a better governance of your microservices. 
+* **Desing - Microservices: Switch to standard mode witohout loosing information**
+    We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
+    We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices. 
 
 
 ## Improvements
