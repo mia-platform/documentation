@@ -18,8 +18,6 @@
 * **Design - Microservices: Add a configmap**        
     With this version we introduce 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. 
 
-  [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/) you can find more detailed guidelines about the creation and the management of configurations from DevOps Console.
-
   ![microservice](img/microservice-new.png)
   
 * **Desing - Microservices: Switch to standard mode witohout loosing information**
@@ -27,6 +25,8 @@
     We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices. 
 
   ![new-adv-conf](img/new-adv-conf.png)
+
+  [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/) you can find more detailed guidelines about the creation and the management of configurations from DevOps Console.
 
 ## Improvements
 
