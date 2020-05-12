@@ -1,30 +1,11 @@
 # Platform Release Note
 
-## v5.6.2 (May 12,2020)
-
-**New Features**
-
-**Improvements**
-
-* *Design*       
-  **Restyling** of spaces in the Search bar in each section of Design area and the width of the input of each form.
-
-**Fixed**
-
-* *CMS*     
-  Now it is possible to **export all the records** from CMS without any limitation of number.
-
-* *CMS*     
-  **CRUD-Service does not go in error** if the new property 'groups' of the CRUD 'cmsmenu' does not exist while you are editing a 'cmsmenu' filter based on groups.
-
-* *CMS*     
-  **Logout from CMS is enabled** and returns a feedback in case of error.
-
 ## v5.6.1 (May 5,2020)
 
 !!! bug
+    **Error in crud-service**
 
-     If you have configured 'cmsmenu' CRUD, due to an error in crud-service the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
+    If you have configured 'cmsmenu' CRUD, the menu items will not be shown in CMS unless you manually add 'groups' property. The bug will be fixed in v5.6.2.
 
 **New Features**
 
@@ -69,7 +50,7 @@
 
 In case of on-premise Console, to use the previous features, you have to update:  
 
-* Console webiste @1.18.0
+* Console website @1.18.0
 
 * Console backend @1.18.1
 
