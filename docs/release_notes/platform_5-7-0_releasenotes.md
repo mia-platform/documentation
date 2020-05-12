@@ -7,10 +7,11 @@
 ## New capabilities
 
 * **Create and Manage Cronjobs**        
-  This new section of Design area enables you to create from DevOps Console a new CronJob, a scheduled Job that will be executed periodically on a given schedule, and to manage it. [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about this new capability.
+  This new section of Design area enables you to create, manage and delete CronJob, a scheduled Job that will be executed periodically on a given schedule, from DevOps Console. 
+  
+  [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/jobs-cronjob/) you can find more details about this new capability.
 
-![test-cronjobs](img/test-cronjobs.png)
-
+  ![test-cronjobs](img/test-cronjobs.png)
 
 ## New features
 
@@ -19,9 +20,9 @@
 
 ## Improvements
 
-
-* **Design**       
-  **Restyling** of spaces in the Search bar in each section of Design area and the width of the input of each form.
+* **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
+  
+* Improvement of the **organization of the elements** of DevOps Console when the width of the window is reduced.
 
 ## Fixed
 
