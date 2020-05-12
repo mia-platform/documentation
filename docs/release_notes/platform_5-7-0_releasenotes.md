@@ -15,29 +15,31 @@
 
 ## New features
 
-* **Design - Microservices**        
-  Optimization of Microservice section: new 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. Restyling of the **'advanced configuration' card**: if you have already created advanced configurations, you can come back to standard configuration without loosing them.
+* **Design - Microservices: Add a configmap**        
+    With this version we introduce 'add configuration' button that allows you to **create configmaps** in order to add files to your microservice without going to the advanced configuration. 
 
-  [Here]() you can find more detailed guidelines about the creation and the management of microservices from DevOps Console.
+  [Here](https://docs.mia-platform.eu/development_suite/api-console/api-design/services/) you can find more detailed guidelines about the creation and the management of configurations from DevOps Console.
 
-  ![microservice-new](img/microservice-new.png)
+  ![microservice](img/microservice-new.png)
+  
+* **Desing - Microservices: Switch to standard mode witohout loosing information**
+    We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
+    We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices. 
+
 
 ## Improvements
 
 * **Design - Microservices, Cronjobs and Proxies**      
-  Restyling of Microservices, Cronjobs and Proxies deletion: now, on the footer of the page, there is a **card with the 'delete' button**. If you push it, a pop up appears in the centre of the page to confirm the deletion.
+    Restyling of Microservices, Cronjobs and Proxies deletion: now, on the footer of the page, there is a **card with the 'delete' button**. If you push it, a pop up appears in the centre of the page to confirm the deletion.
 
   ![footer-button](img/footer-button.png)
 
 * **Design - Microservices**      
-  Restyling of Microservices page: name, tag, 'Clone' and 'View Repository' remains **on the header of the page** when the user scrolls down the page.
+    Restyling of Microservices page: name, tag, 'Clone' and 'View Repository' remains **on the header of the page** when the user scrolls down the page.
 
   ![header-buttons](img/header-buttons.png)
 
 ## Fixed
-
-* **CMS**     
-  Now the 'export' functionality allows you to **download all the records**: there is no limitation to the number of records to download. Moreover, cms-site has been updated to version 9.8.1 and cms-backend to version 3.0.0.
 
 * **CMS**     
   **Logout from CMS is fixed** and returns a feedback in case of error. Moreover, v1-adapter has been updated to version 2.4.0.
