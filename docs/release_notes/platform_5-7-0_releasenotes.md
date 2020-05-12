@@ -26,6 +26,7 @@
     We have simplified the **switch from advanced to standard mode** in the Microservices section. Now, in fact, you can come back to standard configuration **without loosing your advanced settings** like your docker image, your variables and your configmaps.
     We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices. 
 
+  ![new-adv-conf](img/new-adv-conf.png)
 
 ## Improvements
 
