@@ -18,7 +18,19 @@
 * **Design - Microservice**        
   This
 
+
+
 ## Improvements
+
+* **Design - Microservices and Cronjobs**      
+  Restyling of CronJobs and Microservices deletion: now, on the footer of the page, there is a **card with the 'delete' button**.
+
+![footer-button]()
+
+* **Design - Microservices**      
+  Restyling of Microservices page: name, tag, 'Clone' and 'View Repository' remains **on the header of the page** when the user scrolls down the page.
+
+![header-buttons]()
 
 * **Restyling** of the padding between the Search bar and first input selected in each section of Design area. 
   
@@ -38,6 +50,6 @@ In case of on-premise Console, to use the previous features, you have to update:
 
 * Console website @1.19.0
 
-* Console backend @1.19.0
+* Console backend @1.19.1
 
 If you have a custom CMS, you have also to update it at v9.8.1.
