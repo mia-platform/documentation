@@ -148,6 +148,9 @@ nav:
       - Platform v5.5.3: 'release_notes/platform_5-5-3_releasenotes.md'
       - Platform v5.5.2: 'release_notes/platform_5-5-2_releasenotes.md'
       - Platform v5.5.1: 'release_notes/platform_5-5-1_releasenotes.md'
+      - Platform v5.5.0: 'release_notes/platform_5-5-0_releasenotes.md'
+      - Platform v5.4.0: 'release_notes/platform_5-4-0_releasenotes.md'
+      - Platform v5.3.1: 'release_notes/platform_5-3-1_releasenotes.md'
       - Platform previous versions: 'release_notes/platform_releasenotes.md'
     - Support Policy: 'release_notes/support-policy.md'
 
