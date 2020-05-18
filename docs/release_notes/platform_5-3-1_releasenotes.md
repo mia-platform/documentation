@@ -14,7 +14,7 @@ This release is a patch that includes only frontend improvements and updates.
     
  * **Design - Microservices**
  
- Change the default exposeSwagger value (from false to true) in Create Custom Microservices from template.      
+    Change the default exposeSwagger value (from false to true) in Create Custom Microservices from template.      
 
 ### Fixed
 
