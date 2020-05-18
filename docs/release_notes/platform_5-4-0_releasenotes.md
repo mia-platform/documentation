@@ -15,19 +15,19 @@ Now, it is also possible to manage different namespaces, related to the environm
  
  * **Monitoring**
  
- "Delete POD" button is replaced by "Restart POD" button which relaunches the POD.     
+    "Delete POD" button is replaced by "Restart POD" button which relaunches the POD.     
 
 ## Fixed    
 
  * **Design - Endpoints**
  
-During the sorting, it is not considered the prefix /v2 of CRUD endpoints.  
+    During the sorting, it is not considered the prefix /v2 of CRUD endpoints.  
 
 
  * **Design - CMS & Analytics**
  
- In the menu of CMS properties, it is not highlighted the selected property.
+    In the menu of CMS properties, it is not highlighted the selected property.
  
  * **Design - CMS & Analytics**
 
-The v1-adapter service, by converting the property id into the property _id at each level of the object, modifies each occurrency. With this fix, the modification of id is done only at the first level, avoiding to transform other properties that are called id.    
+    The v1-adapter service, by converting the property id into the property _id at each level of the object, modifies each occurrency. With this fix, the modification of id is done only at the first level, avoiding to transform other properties that are called id.    
