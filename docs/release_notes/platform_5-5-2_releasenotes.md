@@ -1,18 +1,18 @@
-# v5.5.2 -1 Patch (April 10,2020)
+## v5.5.2 -1 Patch (April 10,2020)
 
 !!! bug
     **Design page of DevOps Console was inaccessible cause by an update of GitLab**
 
     With GitLab version 12.9.2 file_path beginning with `/` failed. With this problem, the configuration files of the advanced services cannot be downloaded, so the Design area is inaccessible.
 
-## Fixed
+### Fixed
 
 Remove initial `/` to `file_path` on requesting file to gitlab
 
 
-# v5.5.2 (April 9, 2020)
+## v5.5.2 (April 9, 2020)
 
-## Improvements
+### Improvements
 
 * **Design - Microservices**  
   When a microservice is created using one of Mia-Platform templates or example, **the probes of that service are already compiled** and contactable by Kubernetes.
@@ -21,7 +21,7 @@ Remove initial `/` to `file_path` on requesting file to gitlab
 
 * Restyling of the following section, introducing the card component: Proxies, Create New Endpoint, API Pre/Post
 
-## Fixed
+### Fixed
 
 * **Microservice Gateway Bug in v5.5.1**  
   To resolve it we have updated the following platform components:  
