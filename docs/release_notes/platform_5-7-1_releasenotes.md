@@ -3,7 +3,9 @@
 ## Improvements
 
 * **API Portal** 
+    You can now call an Endpoint from DevOps Console without specifying one of the headers.
 
+    
 
 ## Fixed
 
