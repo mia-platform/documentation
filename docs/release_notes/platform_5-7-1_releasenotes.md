@@ -22,7 +22,10 @@
 
     Mia Platform recommends you to delete al the *.hpa.yaml* files and to mantain all the *.hpa.yml* files.
 
-* **Logs are in *json* format** for both the consumer and the producer.
+
+* **Microservices**
+
+    Doing a plugin starting from Kafka Example, **Logs are in *json* format** for both the consumer and the producer.
 
 
 ## How to update your DevOps Console?
