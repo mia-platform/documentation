@@ -4,7 +4,7 @@
 
 * **Console**      
 
-    From CMS it is now possible to configure  different default environment variables for each template, in order to **overwrite the defaults environment variables applied by DevOps Console**. Inside the data model of each template, you can add 'defaultEnvironmentVariables' to insert a list of environment variables.
+    From CMS it is now possible to configure  different default environment variables for each template, in order to **overwrite the defaults environment variables applied by DevOps Console**. You can configure the environment variables by adding 'defaultEnvironmentVariables' inside the data model of each template.
 
 * You have the possibility to **resize columns** in the Pre/Post section of DevOps Console.
 
