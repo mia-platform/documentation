@@ -5,7 +5,7 @@
 * **API Portal** 
     You can now call an Endpoint from DevOps Console without specifying one of the headers.
 
-    
+    ![API-portal-header](img/API-portal-header.png)
 
 ## Fixed
 
