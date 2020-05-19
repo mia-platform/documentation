@@ -740,3 +740,64 @@ the final json in our property **name** which is the name of the heroes will the
      "interfaceType": "string"
 }
 ```
+
+## How to configure templates default environment variables from CMS
+
+From CMS you can configure the environment variables of each template by adding the property `defaultEnvironmentVariables` inside the data model of each template. By modifying the map of the environment variables, you can overwrite the default environment variables applied by DevOps Console.
+
+To use this feature, you have to fill the `defaultEnvironmentVariables` in this way:
+
+```JSON
+[
+  {
+    "name": "HTTP_PORT",
+    "value": 8080
+  }
+]
+```
+
+!!! info
+
+    You can also add a description field.
+
+Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
+
+```JSON
+  {
+    "id": "5e43d8325686a800116b835b",
+    "pipelines": {
+      "gitlab-ci": {
+        "path": "/projects/782/repository/files/console-pipeline%2Freact-app.gitlab-ci.yml/raw"
+      }
+    },
+    "type": "template",
+    "name": "React Template",
+    "description": "This template allows you to start setting up a front-end project with the React framework",
+    "archiveUrl": "https://github.com/mia-platform-marketplace/React-App-Template/archive/master.tar.gz",
+    "image": [
+      {
+        "_id": "5e53cef5f44d4d00126aae7f",
+        "name": "react.png",
+        "file": "3b5e9a38-262d-4515-b61e-7887fb313beb.png",
+        "size": 7341,
+        "location": "/v2/files/download/3b5e9a38-262d-4515-b61e-7887fb313beb.png"
+      }
+    ],
+    "supportedBy": "Mia-Platform",
+    "supportedByImage": [
+      {
+        "_id": "5db0106143875a0011618816",
+        "name": "e7c7ced2-e40e-465b-9e79-7d5c710badb2.png",
+        "file": "e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+        "size": 139694,
+        "location": "/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png"
+      }
+    ],
+    "defaultEnvironmentVariables": [
+      {
+        "value": 8080,
+        "name": "HTTP_PORT"
+      }
+    ]
+  }
+```
