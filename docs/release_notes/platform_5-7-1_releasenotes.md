@@ -11,6 +11,7 @@
 
     ![column-resize](img/column-resize.png)
 
+    ![column-resize-1](img/column-resize-1.png)
 
 ## Fixed
 
