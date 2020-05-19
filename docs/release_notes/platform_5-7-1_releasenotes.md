@@ -7,7 +7,7 @@
 
     ![API-portal-header](img/API-portal-header.png)
 
-* Now you have the possibility to **resize columns** in the Pre/Post section of DevOps Console.
+* You have the possibility to **resize columns** in the Pre/Post section of DevOps Console.
 
     ![column-resize](img/column-resize.png)
 
@@ -16,10 +16,15 @@
 
 * **Deploy** 
 
-    Horizontal Pod Autoscaler (HPA) file is now **generated with *.yml* extension** instead of *.yaml*. So, HPA files are now deployed.
+    Horizontal Pod Autoscaler (HPA) file is  **generated with *.yml* extension** instead of *.yaml*. So, HPA files can now be deployed successfully.
 
 !!! info
 
         Mia Platform recommends you to delete al the *.hpa.yaml* files and to mantain all the *.hpa.yml* files.
 
 
+## How to update your DevOps Console?
+
+In case of on-premise Console, to use the previous features, you have to update:
+
+* 
