@@ -4,7 +4,7 @@
 
 * **CMS**      
 
-    From CMS it is possible to configure default environment variables, that are different for each template, in order to overwrite the defaults applied by DevOps Console.
+    From CMS it is possible to configure default environment variables, that are different for each template, in order to **overwrite the defaults applied by DevOps Console**.
 
 * You have the possibility to **resize columns** in the Pre/Post section of DevOps Console.
 
