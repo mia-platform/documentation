@@ -9,6 +9,9 @@
 
 * Now you have the possibility to **resize columns** in the Pre/Post section of DevOps Console.
 
+    ![column-resize](img/column-resize.png)
+
+
 ## Fixed
 
 * **Deploy** 
