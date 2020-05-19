@@ -2,9 +2,9 @@
 
 ## Improvements
 
-* **CMS**      
+* **Console**      
 
-    From CMS it is now possible to configure  different default environment variables for each template, in order to **overwrite the defaults applied by DevOps Console**.
+    From CMS it is now possible to configure  different default environment variables for each template, in order to **overwrite the defaults environment variables applied by DevOps Console**. Inside the data model of each template, you can add 'defaultEnvironmentVariables' to insert a list of environment variables.
 
 * You have the possibility to **resize columns** in the Pre/Post section of DevOps Console.
 
@@ -21,11 +21,6 @@
 !!! info
 
     Mia Platform recommends you to delete al the *.hpa.yaml* files and to mantain all the *.hpa.yml* files.
-
-
-* **Microservices**
-
-    Doing a plugin starting from Kafka Example, **Logs are in *json* format** for both the consumer and the producer.
 
 
 ## How to update your DevOps Console?
