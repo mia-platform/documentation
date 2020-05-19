@@ -21,7 +21,7 @@
 
 !!! info
 
-        Mia Platform recommends you to delete al the *.hpa.yaml* files and to mantain all the *.hpa.yml* files.
+    Mia Platform recommends you to delete al the *.hpa.yaml* files and to mantain all the *.hpa.yml* files.
 
 
 ## How to update your DevOps Console?
