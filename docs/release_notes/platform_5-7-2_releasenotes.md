@@ -14,7 +14,6 @@
     If you do not have Documentation in the selected Branch, **Documentation's SubMenu is not shown**.
 
 
-
 ## Fixed
 
 * **Branch**      
