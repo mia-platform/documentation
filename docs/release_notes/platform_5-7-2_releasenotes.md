@@ -7,9 +7,6 @@
 
     ![API-portal-header](img/API-portal-header.png)
 
-* **Branch**     
-    Now it is possible to create **branches with forward slash `/` in the name**.
-
 * **Console Menu**        
     If you do not have Documentation in the selected Branch, **Documentation's SubMenu is not shown**.
 
@@ -17,7 +14,7 @@
 ## Fixed
 
 * **Branch**      
-    When you **commit on an existent branch** on DevOps Console, you are not redirected to the modal of branch selection, but you remain in the 'Commit & Generate' Area.
+    Resolved issues releated to the **loading of branches**, when selecting Design area of DevOps Console.
 
 * **Console Homepage**     
     Restyling of the **homepage cards' boxshadow**: when you select a DevOps Console area, the shadow below the card is no more cut.
