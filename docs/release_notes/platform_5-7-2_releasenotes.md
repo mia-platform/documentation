@@ -23,7 +23,7 @@
 * **Console Homepage**     
     Restyling of the homepage cards' boxshadow: when you select a DevOps Console area, the shadow below the card is no more cut.
 
-
+    ![card-shadow]()
 
 ## How to update your DevOps Console?
 
