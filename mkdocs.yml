@@ -142,6 +142,7 @@ nav:
 
 - Release Notes:
     - Platform:
+      - Platform v5.7.2: 'release_notes/platform_5-7-2_releasenotes.md'
       - Platform v5.7.1: 'release_notes/platform_5-7-1_releasenotes.md'
       - Platform v5.7.0: 'release_notes/platform_5-7-0_releasenotes.md'
       - Platform v5.6.1: 'release_notes/platform_5-6-1_releasenotes.md'
