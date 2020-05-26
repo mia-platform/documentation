@@ -26,7 +26,7 @@
     Resolved an issue affecting **branch loading** when selecting the DevOps Console **Design** area.
 
 * **Console Homepage**     
-    Restyling of the **homepage cards' boxshadow**: when you select a DevOps Console area, the shadow below the card is no more cut.
+    **Homepage cards** have been restyled to avoid displaying a cut shadow below the card when hovering with the mouse.
 
     ![card-shadow](img/card-shadow.png)
 
