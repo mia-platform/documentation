@@ -17,7 +17,7 @@
 
 
 * **Console Menu**        
-    If you do not have Documentation in the selected Branch, **Documentation's SubMenu is not shown**.
+    The **Documentation** menu item won't display in the DevOps Console drawer menu for projects that does not have it.
 
 
 ## Fixed
