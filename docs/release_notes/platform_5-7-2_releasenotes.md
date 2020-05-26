@@ -9,6 +9,7 @@
 
 * **API Portal**   
     The button *Download Schemas*, through which it is possible to choose the format (*OpenAPI 3* or *Swagger 2*) in which you can download your data, has been moved close to the button *Authorize All*.
+
     
 
 * **Console Menu**        
