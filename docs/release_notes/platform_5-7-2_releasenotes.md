@@ -51,11 +51,9 @@ New Examples are published:
 
 In case of on-premise Console, to use these features, you have to update:
 
-* Console website @1.21.0
-
-* Console backend @1.21.0
-
-* Infrastructre Website @1.3.1
+ * Console website @1.21.0
+ * Console backend @1.21.0
+ * Infrastructre Website @1.3.1
 
 Moreover, you have to set the following Feature Toggles to `true`:
 
