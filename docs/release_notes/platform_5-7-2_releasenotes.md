@@ -7,6 +7,8 @@
 
     ![download-schemas](img/download-schemas.png)
 
+    ![download]()
+
 !!! info
 
     Remember that, to visualize the updated API Portal, you have first to commit and deploy.
