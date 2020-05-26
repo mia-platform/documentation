@@ -7,7 +7,7 @@
 
     ![download-schemas](img/download-schemas.png)
 
-    ![download]()
+    ![download](img/download.png)
 
 !!! info
 
