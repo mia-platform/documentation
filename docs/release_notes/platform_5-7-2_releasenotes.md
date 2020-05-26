@@ -1,11 +1,13 @@
 # v5.7.2 (May 26,2020)
 
-## Improvements
+## New features
 
 * **API Portal**     
     Using the new button *Download Schemas* you will be able to **download your API specification** in *OpenAPI 3* or *Swagger 2* format.
 
     ![download-schemas](img/download-schemas.png)
+
+## Improvements
 
 * **Console Menu**        
     The **Documentation** menu item will not be displayed in the DevOps Console drawer menu for projects that does not have it.
