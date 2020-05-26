@@ -23,7 +23,7 @@
 ## Fixed
 
 * **Branch**      
-    Resolved issues releated to the **loading of branches**, selected in the Design area of DevOps Console.
+    Resolved an issue affecting **branch loading** when selecting the DevOps Console **Design** area.
 
 * **Console Homepage**     
     Restyling of the **homepage cards' boxshadow**: when you select a DevOps Console area, the shadow below the card is no more cut.
