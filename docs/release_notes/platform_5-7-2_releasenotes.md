@@ -2,15 +2,19 @@
 
 ## Improvements
 
-* **API Portal**      
+* **API Portal**       
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![API-portal-header](img/API-portal-header.png)
 
-* **API Portal**   
+* **API Portal**     
     The button *Download Schemas*, through which it is possible to choose the format (*OpenAPI 3* or *Swagger 2*) in which you can download your data, has been moved close to the button *Authorize All*.
 
     ![download-schemas](img/download-schemas.png)
+
+* **Microservices**      
+    New **Example /helloWorld** with the classpath Java Springboot.
+
 
 * **Console Menu**        
     If you do not have Documentation in the selected Branch, **Documentation's SubMenu is not shown**.
