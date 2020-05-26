@@ -8,7 +8,7 @@
     ![API-portal-header](img/API-portal-header.png)
 
 * **API Portal**     
-    The button *Download Schemas*, through which it is possible to choose the format (*OpenAPI 3* or *Swagger 2*) in which you can download your data, has been moved close to the button *Authorize All*.
+    Using the new button *Download Schemas* you'll be able to download your API specification in *OpenAPI 3* or *Swagger 2* format
 
     ![download-schemas](img/download-schemas.png)
 
