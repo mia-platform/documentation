@@ -1,11 +1,15 @@
 # v5.7.2 (May 26,2020)
 
 ## Improvements
- 
+
 * **API Portal**      
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![API-portal-header](img/API-portal-header.png)
+
+* **API Portal**   
+    The button *Download Schemas*, through which it is possible to choose the format (*OpenAPI 3* or *Swagger 2*) in which you can download your data, has been moved close to the button *Authorize All*.
+    
 
 * **Console Menu**        
     If you do not have Documentation in the selected Branch, **Documentation's SubMenu is not shown**.
