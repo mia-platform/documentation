@@ -11,7 +11,7 @@
 
 !!! info
 
-    In order to update the API Portal, you have to access the DevOps Console, select you project and commit and deploy your configurations.
+    In order to update the API Portal, you have to access the DevOps Console, select your project and commit and deploy your configurations.
 
 ## Improvements
 
