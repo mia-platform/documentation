@@ -2,19 +2,10 @@
 
 ## Improvements
 
-* **API Portal**       
-    You can now call an Endpoint from DevOps Console **without specifying the headers**.
-
-    ![API-portal-header](img/API-portal-header.png)
-
 * **API Portal**     
     Using the new button *Download Schemas* you'll be able to download your API specification in *OpenAPI 3* or *Swagger 2* format
 
     ![download-schemas](img/download-schemas.png)
-
-* **Microservices**      
-    New **Example /helloWorld** with the classpath Java Springboot.
-
 
 * **Console Menu**        
     The **Documentation** menu item won't display in the DevOps Console drawer menu for projects that does not have it.
@@ -51,14 +42,14 @@ New Examples are published:
 
 In case of on-premise Console, to use these features, you have to update:
 
- * Console website @1.21.0
- * Console backend @1.21.0
- * Infrastructre Website @1.3.1
+ * Console website @1.21.0      
+ * Console backend @1.21.0      
+ * Infrastructre Website @1.3.1      
 
 Moreover, you have to set the following Feature Toggles to `true`:
 
- * `FT_ENABLE_CREATE_CONFIG_MAP_CUSTOM_SERVICE`
- * `FT_ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE`
- * `FT_ENABLE_CRONJOB`
- * `FT_ENABLE_INFRASTRUCTURE_WEBSITE`
- * `FT_ENABLE_MICROSERVICE_GATEWAY_SKIP`
+ * `FT_ENABLE_CREATE_CONFIG_MAP_CUSTOM_SERVICE`      
+ * `FT_ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE`     
+ * `FT_ENABLE_CRONJOB`     
+ * `FT_ENABLE_INFRASTRUCTURE_WEBSITE`     
+ * `FT_ENABLE_MICROSERVICE_GATEWAY_SKIP`     
