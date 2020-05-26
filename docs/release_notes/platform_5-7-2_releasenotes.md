@@ -3,18 +3,18 @@
 ## Improvements
 
 * **API Portal**     
-    Using the new button *Download Schemas* you'll be able to download your API specification in *OpenAPI 3* or *Swagger 2* format.
+    Using the new button *Download Schemas* you will be able to **download your API specification** in *OpenAPI 3* or *Swagger 2* format.
 
     ![download-schemas](img/download-schemas.png)
 
 * **Console Menu**        
-    The **Documentation** menu item will not display in the DevOps Console drawer menu for projects that does not have it.
+    The **Documentation** menu item will not be displayed in the DevOps Console drawer menu for projects that does not have it.
 
 
 ## Fixed
 
 * **Branch**      
-    Resolved an issue affecting **branch loading** when selecting the DevOps Console **Design** area.
+    Resolved an issue affecting **branch loading** when selecting the DevOps Console *Design* area.
 
 * **Console Homepage**     
     **Homepage cards** have been restyled to avoid displaying a cut shadow below the card when hovering with the mouse.
@@ -25,7 +25,7 @@
 
 
 ## Marketplace
-New Examples are published:
+New Examples have been published:
 
 * **springboot-hello-world-example**: example that uses the Mia Platform Custom Plugin Java. [Here](https://github.com/mia-platform-marketplace/springboot-hello-world-example) you can learn more about this example.
 
@@ -42,9 +42,9 @@ New Examples are published:
 
 In case of on-premise Console, to use these features, you have to update:
 
- * Console website @1.21.0      
- * Console backend @1.21.0      
- * Infrastructre Website @1.3.1      
+ * Console website @1.21.0 (`nexus.mia-platform.eu/api-console/website:1.21.0`)          
+ * Console backend @1.21.0 (`nexus.mia-platform.eu/api-console/backend:1.21.0`)          
+ * Infrastructre Website @1.3.1 (`nexus.mia-platform.eu/console/infrastructure-website:1.3.1`)          
 
 Moreover, you have to set the following Feature Toggles to `true`:
 
