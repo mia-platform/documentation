@@ -3,7 +3,7 @@
 ## New features
 
 * **API Portal**     
-    Using the new *Download Schemas* button you will be able to **download your API specification** in *OpenAPI 3* or *Swagger 2* format.
+    With the new *Download Schemas* button you can now **download your API specification** in *OpenAPI 3* or *Swagger 2* format.
 
     ![download-schemas](img/download-schemas.png)
 
@@ -11,7 +11,7 @@
 
 !!! info
 
-    Remember that, to visualize the updated API Portal, you have first to commit and deploy.
+    In order to update the API Portal, you have to access the DevOps Console, select you project and commit and deploy your configurations.
 
 ## Improvements
 
