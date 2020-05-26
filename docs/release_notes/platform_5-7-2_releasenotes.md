@@ -25,7 +25,7 @@
 
 
 ## Marketplace
-New Examples are published:
+New Examples have been published:
 
 * **springboot-hello-world-example**: example that uses the Mia Platform Custom Plugin Java. [Here](https://github.com/mia-platform-marketplace/springboot-hello-world-example) you can learn more about this example.
 
