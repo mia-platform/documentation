@@ -3,12 +3,12 @@
 ## Improvements
 
 * **API Portal**     
-    Using the new button *Download Schemas* you'll be able to download your API specification in *OpenAPI 3* or *Swagger 2* format
+    Using the new button *Download Schemas* you'll be able to download your API specification in *OpenAPI 3* or *Swagger 2* format.
 
     ![download-schemas](img/download-schemas.png)
 
 * **Console Menu**        
-    The **Documentation** menu item won't display in the DevOps Console drawer menu for projects that does not have it.
+    The **Documentation** menu item will not display in the DevOps Console drawer menu for projects that does not have it.
 
 
 ## Fixed
