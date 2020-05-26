@@ -10,7 +10,7 @@
 * **API Portal**   
     The button *Download Schemas*, through which it is possible to choose the format (*OpenAPI 3* or *Swagger 2*) in which you can download your data, has been moved close to the button *Authorize All*.
 
-    
+    ![download-schemas](img/download-schemas.png)
 
 * **Console Menu**        
     If you do not have Documentation in the selected Branch, **Documentation's SubMenu is not shown**.
@@ -19,7 +19,7 @@
 ## Fixed
 
 * **Branch**      
-    Resolved issues releated to the **loading of branches**, when selecting Design area of DevOps Console.
+    Resolved issues releated to the **loading of branches**, selected in the Design area of DevOps Console.
 
 * **Console Homepage**     
     Restyling of the **homepage cards' boxshadow**: when you select a DevOps Console area, the shadow below the card is no more cut.
