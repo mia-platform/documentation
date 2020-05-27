@@ -6,7 +6,7 @@ New **interpolation strings for custom plugins** have been added.
 
 !!! info
 
-    Old strings `CUSTOM_PLUGIN_PROJECT_ID`, `CUSTOM_PLUGIN_SERVICE_NAME` and `CUSTOM_PLUGIN_IMAGE_NAME` are deprecated.
+    Old interpolation strings `CUSTOM_PLUGIN_PROJECT_ID`, `CUSTOM_PLUGIN_SERVICE_NAME` and `CUSTOM_PLUGIN_IMAGE_NAME` are now deprecated.
 
 ## Improvements
 
