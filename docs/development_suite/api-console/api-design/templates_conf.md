@@ -1,6 +1,6 @@
 # Template configuration
 
-The Dev-console is able to generate new services starting from a from a git project or from an existing docker image.
+The Dev-console is able to generate new services starting from a git project or from an existing docker image.
 
 To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on Gitlab and to register it in the configuration of the Dev-console.
 
