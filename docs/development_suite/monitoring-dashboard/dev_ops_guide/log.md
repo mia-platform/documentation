@@ -38,7 +38,7 @@ When an error log is generated, the passed object must necessarily have the key 
 
 NB: none of the fields is mandatory, however it is important not to use custom keys.
 
- ## Use the appropriate logging level
+## Use the appropriate logging level
 
 There are 6 debug levels: ```trace```, ```debug```, ```info```, ```warning```, ```error```, ```fatal```. 
 
