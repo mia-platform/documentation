@@ -3,8 +3,9 @@
 ## New features
 
 * **Templates**       
-         New template interpolation strings `mia_template_image_name_placeholder`, `mia_template_project_id_placeholder`, `mia_template_service_name_placeholder` for custom plugins have been added in order to allow CI of all the templates and examples in the marketplace.
-         You can learn more about templates configuration at this [page](https://docs.mia-platform.eu/development_suite/api-console/api-design/templates_conf/) of Mia Platform Docs.
+         New template interpolation strings `mia_template_image_name_placeholder`, `mia_template_project_id_placeholder`, `mia_template_service_name_placeholder` for custom plugins have been added in order to allow templates to have their own CI. You can learn more about templates configuration at this [page](https://docs.mia-platform.eu/development_suite/api-console/api-design/templates_conf/) of Mia Platform Docs.
+
+la nuova stringa è compliant con le richieste di Node, Java, Go e altri linguaggi, in questo modo i template possono avere una loro CI
 
 !!! info
 
