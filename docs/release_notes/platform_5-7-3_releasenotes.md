@@ -2,7 +2,7 @@
 
 ## New features
 
-New interpolation strings for custom plugins has been added
+New **interpolation strings for custom plugins** have been added.
 
 !!! info
 
@@ -11,4 +11,4 @@ New interpolation strings for custom plugins has been added
 ## Improvements
 
 * **Configmaps**       
-    The space used by configmaps has been reduced by removing indentation from json files.
+    The **space used by configmaps has been reduced** by removing indentation from json files.
