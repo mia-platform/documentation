@@ -5,8 +5,6 @@
 * **Templates**       
          New template interpolation strings `mia_template_image_name_placeholder`, `mia_template_project_id_placeholder`, `mia_template_service_name_placeholder` for custom plugins have been added in order to allow templates to have their own CI. You can learn more about templates configuration at this [page](https://docs.mia-platform.eu/development_suite/api-console/api-design/templates_conf/) of Mia Platform Docs.
 
-la nuova stringa è compliant con le richieste di Node, Java, Go e altri linguaggi, in questo modo i template possono avere una loro CI
-
 !!! info
 
     Old interpolation strings `CUSTOM_PLUGIN_PROJECT_ID`, `CUSTOM_PLUGIN_SERVICE_NAME` and `CUSTOM_PLUGIN_IMAGE_NAME` are now deprecated.
