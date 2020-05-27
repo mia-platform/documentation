@@ -107,7 +107,7 @@ In this section, you can manage the resources dedicated to your microservice:
 
  ![service-detail-configuration](img/service-detail-configuration.png)
 
- ### Environment Variable Configuration
+### Environment Variable Configuration
 
 In this section, you can manage, add and delete the environment variables associated to your microservice. For each variable, you have to define:
 
@@ -121,7 +121,7 @@ In this section, you can manage, add and delete the environment variables associ
 
  You can find more information about environment variables at this [link](https://docs.mia-platform.eu/development_suite/set-up-infrastructure/env-var/) of Mia Platform Docs.
 
- ### Custom Configuration
+### Custom Configuration
 
 In this section, you can add configmaps in order to add files to your microservice without going to the advanced configuration. This feature can be usefull if your microservice requires a particular configuration that reads from a certain type of file (e.g. file service).
 

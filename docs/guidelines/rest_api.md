@@ -88,7 +88,7 @@ https://api.mia-platform.eu/vehicles/?city=Milan
 ### Use names to identify a resource
 The first time an API is defined, we tend to think of the action that is done as if it were a service from
 to call. Let's take an example, we want to make a game on super heroes and the first thing we want to do is to manage
-the profile of a super hero. For example, to read all the erors we might want to write
+the profile of a super hero. For example, to read all the heroes we might want to write
 ```
 /getAllHeroes
 ```
@@ -115,18 +115,16 @@ the *addNew* action and the resource called *Hero*.
 
 So what would be the correct way?
 
-*/ heroes* would be a good example, it does not contain actions but only the name. The next question is: how to tell the server
+`/heroes` would be a good example, it does not contain actions but only the name. The next question is: how to tell the server
 to perform actions on heroes? HTTP verbs come into play here.
 
 The resources always use the *plural* and if we want to access only one resource we can pass the id in the URL.
 For example:
 
-`` `
-- the GET method on path / heroes returns the list of all heroes
-- the GET method on path / heroes / 100 returns the hero with id 100
-- the DELETE method on path / heroes / 100 deletes the hero whose id is 100
-- the POST meotod on path / heroes creates a new hero and returns the detail of the new hero created.
-`` `
+    - the GET method on path / heroes returns the list of all heroes
+    - the GET method on path / heroes / 100 returns the hero with id 100
+    - the DELETE method on path / heroes / 100 deletes the hero whose id is 100
+    - the POST method on path / heroes creates a new hero and returns the detail of the new hero created.
 
 With this simple device the APIs are more concise and consistent!
 
