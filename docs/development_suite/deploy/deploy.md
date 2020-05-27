@@ -1,84 +1,74 @@
-##Deploy
-The Developers Console is the sections that allows developers to directly deploy your configurations in the different environments and check the past history of all the releases on that project.
-Thanks to this automation the **Continuos Deploy** is more simple and immediate.
+# Deploy
+
+## Introduction  
+
+Deploy is the sections that allows developers to directly deploy your configurations in the different environments and check the past history of all the releases on that project.
+
+Thanks to this automation the **Continuous Deploy** is more simple and immediate.
 Furthermore, the deployment automatically starts the tests to verify that the branch can be released without damaging the existing project.
 
-The Deploy section is divided into two areas: **Environments** and **History**.
+The Deploy section is divided into two areas: **Deploy** and **History**.
 
-When an user enters the Deploy section, he is automatically led to Environments area.
-The Environments area is composed of an introductory page with an overview of the different environments and of the single pages that give the details of the specific environment.
+When an user enters the Deploy section, he is automatically led to Deploy area.
 
-###Overview page of all the Environments
+## Deploy Area
 
-![](img/environments-overview-page.png)
+In the deployment area you have to choose in which environment you want to release a branch.
+The console will show you the impacts your release may have
 
-The environments overview page shows in a table all the different environments on which it is possible to release. For each environment the user has the possibility to visualize which is the most recent deploy that was successful. This table allows the user to be able to know what has is currently deployed in every environment.
+Let's see in detail how it works
 
-The information that are visualized are the following:
-* Environment name;
-* Environment description;
-* Environment status that alerts the user if there is a deploy going on or if the deploy is already finished.
-* The latest version that has been deployed: it gives information about the commit, how much time ago it happened and who made it;
-* Deploy type (ex. if the deploy released all the service or only part of them);
-* Who made the deploy.
+### Select environment  
 
-Finally, for each row the user can also enter the **detail section** where he can actually deploy the services.
+The first card you have to choose the environment in which you want to release your configuration. Once you have selected your target environment, you will see what was the last release in that environment.
 
-To release you must have **Owner** permissions on Gitlab.
+![Environment](img/deploy-select-env.png)
 
-To release the user will have to select the environment and the branch.
+### Select branch  
 
-###Deploy Details Page
+In the second card you can choose the branch to be released.
+Once the branch is selected the console will show two things:
 
-From the Environments Overview Page it is possible to directly enter the Details Page of the single Environment.
+* A link to gitlab with the compare between the branch you want to release and the one that is released in that environment.
+* The last 10 commits made on selected branch to let you check if you are releasing the correct configuration.
 
-This page is divided in two areas:
+![Branch](img/deploy-select-branch.png)
 
-![](img/environments-deploy-detail.png)
+### Compare Services  
 
-1. The first section shows an **insight on the most recent deploy** and on the details of the specific environment.
- In this section the user can visualize a first set of general information:
+Once you have chosen the environment and the branch, the last card of the deploy page will be loaded.
+In this card you can see a comparison between the services you want to release and those that are currently running in that environment.
 
-  * Environment name;
-  * Description;
-  * Active PODs;
-  * Links to the Monitoring section of that environment or to its configurations.
+The information shown is:
 
- I can also visualize all the information about the most recent successful deployment:
+* The complete list of micro-services
+* The running version
+* The version you would like to release  
 
-  * Deployed version;
-  * Type;
-  * Who released it and when;
-  * Notes made in the deploy phase;
-  * Services that were released.
+  !!! info
+      Be careful that if you use an environment variables to define the version we are unable to trace the version number
 
-2. In the second section the user can make the **actual deploy**. To make the deploy the user has first to select the branch. By default, it is proposed the branch related to the most recent commit, but it is always possible to change and select another branch to deploy. To do so, the user just needs to unflag "current" and the selection will be enabled.
+* Tags that tell you if your service is new or has been removed
+* The status of the latest build of that service.
 
-Once the branch is selected, it is necessary to choose the deploy type. At the moment it is only possible to deploy all services; however, in the future more deploy types will be available.
+  !!! info
+      Currently you will see the builds of the services of which the platform knows the link to the repo, that is all the services created with the console starting from an example or a template created after April 30th.  
 
-Finally, it is possible to enrich the deploy with some notes.
+  !!! warning
+      the build information will only be available to customers running GitLab Ci as runners
 
-By clicking the *Deploy* button, the user will immediately see that at the end of the deploy card will start a progress bar that shows the progress of the deploy.
+* The link to the history of all builds
+* The link to the change log of your service
 
-![](img/deploy.png)
+![Compare Services](img/compare-services.png)
 
-When the Deploy starts, just below a new section is charged: **the logs**.
+At this point, once you have verified the information, you can deploy your configurations.
 
-A user can see realtime logs that are generated during the deploy.
+## History
 
-When the Deploy starts, in addition to the generation of the realtime logs, the section where the most recent successful deploy was described will be covered by an overlay with a loading icon to give evidence that a deploy is on going and that what is being shown is not the most recent successful deploy.
-
-At the end of the deploy, the realtime logs remain and the section with the most recent deploy is updated if the deploy is successful.
-
-If the deploy is not not successful, the user will see the progress bar turning red and will see error messages in the realtime logs.
-
-###History Page
-
-![](img/deploy-history.png)
+![History](img/deploy-history.png)
 
 The History Page is the second area in the Deploy section. In this tab it will be possible to visualize all the released deploy.
-
-By default this page is opened on *All the Environments* and on *master* as a branch. However, it is always possible to choose a specific Environment and a specific branch by using a drop down menù.
 
 In the History table the user visualizes the following information:
 
