@@ -13,6 +13,9 @@
 
     In order to update the API Portal, you have to access the DevOps Console, select your project and commit and deploy your configurations.
 
+* **API-Gateway configmaps**      
+    Now you can configure the API-Gateway extensions, in the Advanced section of DevOps Console, to manage the custom maps for Nginx.
+
 ## Improvements
 
 * **Console Menu**        
