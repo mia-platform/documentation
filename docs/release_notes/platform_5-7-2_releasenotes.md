@@ -13,14 +13,17 @@
 
     In order to update the API Portal, you have to access the DevOps Console, select your project and commit and deploy your configurations.
 
-* **API-Gateway configmaps**      
-    Now you can configure the API-Gateway extensions, in the Advanced section of DevOps Console, to manage the custom maps for Nginx.
+* **API-Gateway configmaps**       
+    Now you can configure the API-Gateway extensions, in the Advanced section of DevOps Console, to **manage the custom maps for Nginx**.
+
 
 ## Improvements
 
+* **Setup Infrastructure**      
+    Due to the high number of variables, Environment Variables table **supports now pagination**.
+
 * **Console Menu**        
     The **Documentation** menu item will not be displayed in the DevOps Console drawer menu for projects that does not have it.
-
 
 ## Fixes
 
@@ -55,7 +58,7 @@ In case of on-premise Console, to use these features, you have to update:
 
  * Console website @1.21.0 (`nexus.mia-platform.eu/api-console/website:1.21.0`)          
  * Console backend @1.21.0 (`nexus.mia-platform.eu/api-console/backend:1.21.0`)          
- * Infrastructre Website @1.3.1 (`nexus.mia-platform.eu/console/infrastructure-website:1.3.1`)          
+ * Infrastructure Website @1.3.1 (`nexus.mia-platform.eu/console/infrastructure-website:1.3.1`)          
 
 Moreover, you have to set the following Feature Toggles to `true`:
 
