@@ -17,3 +17,4 @@ New **interpolation strings for custom plugins** have been added.
 
 In case of on-premise Console, to use these features, you have to update:
 
+* Console Backend @1.22.0 (`nexus.mia-platform.eu/api-console/backend:1.22.0`)
