@@ -2,7 +2,7 @@
 
 ## New features
 
-New **interpolation strings for custom plugins** have been added.
+New **interpolation strings `mia_template_image_name_placeholder`, `mia_template_project_id_placeholder`, `mia_template_service_name_placeholder` for custom plugins** have been added.
 
 !!! info
 
