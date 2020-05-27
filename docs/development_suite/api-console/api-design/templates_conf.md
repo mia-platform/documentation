@@ -1,6 +1,6 @@
 # Template configuration
 
-The Dev-console is able to generate new services starting from a from a git project or from an existing docker image.
+The Dev-console is able to generate new services starting from a git project or from an existing docker image.
 
 To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on Gitlab and to register it in the configuration of the Dev-console.
 
@@ -8,19 +8,26 @@ The templates must be registered in the CRUD, in the `services` collection, indi
 
 ## Template string replaced by dev console during service creation
 
-The Dev-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%`:
+The Dev-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template` and ending with `_placeholder`:
 
-* `% CUSTOM_PLUGIN_IMAGE_NAME%` -> name of the nexus image entered by the user
-* `% CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project
-* `% CUSTOM_PLUGIN_PROJECT_NAMESPACE%` -> namespace of the dev-console project
-* `% CUSTOM_PLUGIN_SERVICE_NAME%` -> service name chosen by the user
-* `% CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user
-* `% CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service
-* `% CUSTOM_PLUGIN_PROJECT_FULL_PATH%` -> full Gitlab path
-* `% GITLAB_PROJECT%` -> name of the Gitlab project entered by the user
-* `% GITLAB_GROUP%` -> name of the user-entered Gitlab group
-* `% GITLAB_BASE_URL%` -> URL base of Gitlab
-* `% NEXUS_HOSTNAME%` -> Nexus hostname
+* `mia_template_image_name_placeholder` -> name of the nexus image entered by the user
+* `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project
+* `mia_template_project_id_placeholder` -> id of the dev-console project
+* `mia_template_service_name_placeholder` -> service name chosen by the user
+* `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user
+* `%CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service
+* `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` -> full Gitlab path
+* `%GITLAB_PROJECT%` -> name of the Gitlab project entered by the user
+* `%GITLAB_GROUP%` -> name of the user-entered Gitlab group
+* `%GITLAB_BASE_URL%` -> URL base of Gitlab
+* `%NEXUS_HOSTNAME%` -> Nexus hostname
+
+The following strings can still be used but are deprecated:
+
+* `%CUSTOM_PLUGIN_IMAGE_NAME%` -> name of the nexus image entered by the user
+* `%CUSTOM_PLUGIN_PROJECT_ID%` -> id of the dev-console project
+* `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%` -> id of the dev-console project
+* `%CUSTOM_PLUGIN_SERVICE_NAME%` -> service name chosen by the user
 
 ## Example of template upload
 
