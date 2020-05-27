@@ -12,3 +12,8 @@ New **interpolation strings for custom plugins** have been added.
 
 * **Configmaps**       
     The **space used by configmaps has been reduced** by removing indentation from json files.
+    
+## How to update your DevOps Console?
+
+In case of on-premise Console, to use these features, you have to update:
+
