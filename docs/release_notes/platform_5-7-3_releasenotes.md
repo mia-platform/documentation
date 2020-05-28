@@ -7,7 +7,7 @@
 
 !!! info
 
-    Old interpolation strings `CUSTOM_PLUGIN_PROJECT_ID`, `CUSTOM_PLUGIN_SERVICE_NAME` and `CUSTOM_PLUGIN_IMAGE_NAME` are now deprecated.
+    Old interpolation strings `CUSTOM_PLUGIN_PROJECT_ID`, `CUSTOM_PLUGIN_SERVICE_NAME`, `CUSTOM_PLUGIN_PROJECT_NAMESPACE` and `CUSTOM_PLUGIN_IMAGE_NAME` are now deprecated.
 
 ## Improvements
 
