@@ -8,7 +8,7 @@
     ![API-portal-header](img/API-portal-header.png)
 
 * **API Portal**      
-    Now you can download API specifications in both OpenAPI3 3 format and Swagger 2 format in Json and Yaml.
+    Now you can **download API specifications** in both OpenAPI3 3 and Swagger 2 format in Json and Yaml.
 
 
 ## Improvements
