@@ -2,16 +2,32 @@
 
 ## New features
 
-* **API Portal**       
+* **API Portal**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![API-portal-header](img/API-portal-header.png)
 
-* **API Portal**      
-    Now you can **download API specifications** in both OpenAPI3 3 and Swagger 2 format in Json and Yaml.
+* **API Portal**        
+    New section `Example` that **shows a response example** to a call with a specific route and method.
 
+    ![APIportal-example]()
+
+* **API Portal**       
+    Now you can **expand and collapse the response area** with its specific button in the upper left corner. 
+
+    ![APIportal-response-area]()
+
+* **API Portal**        
+    If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: checkbox system has been removed.
+
+    ![APIportal-checkbox]()
 
 ## Improvements
+
+* **API Portal**        
+    API Portal menu has been moved from left to right.
+
+    ![APIportal-menu]()
 
 * **Design - CRUD**
     With the **new header and footer**, CRUD section has been aligned with Microservice and Cronjobs sections.
