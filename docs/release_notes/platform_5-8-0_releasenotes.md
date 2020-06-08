@@ -10,24 +10,24 @@
 * **API Portal**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
 
-    ![APIportal-example]()
+    ![APIportal-example](img/APIportal-example.png)
 
 * **API Portal**       
     Now you can **expand and collapse the response area** with its specific button in the upper left corner. 
 
-    ![APIportal-response-area]()
+    ![APIportal-response-area](img/APIportal-response-area.png)
 
 * **API Portal**        
     If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: checkbox system has been removed.
 
-    ![APIportal-checkbox]()
+    ![APIportal-checkbox](img/APIportal-checkbox.png)
 
 ## Improvements
 
 * **API Portal**        
     API Portal menu has been moved from left to right.
 
-    ![APIportal-menu]()
+    ![APIportal-menu](img/APIportal-menu.png)
 
 * **Design - CRUD**
     With the **new header and footer**, CRUD section has been aligned with Microservice and Cronjobs sections.
