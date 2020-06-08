@@ -27,7 +27,7 @@
 * **API Portal - Collapse**        
     New management of **expansion and collapse of cards and properties through an arrow** near each copy.
 
-    ![APIportal-collapse]()
+    ![APIportal-collapse](img/APIportal-collapse.png)
 
 * **API Portal - Menu**        
     API Portal menu has been moved from left to right.
