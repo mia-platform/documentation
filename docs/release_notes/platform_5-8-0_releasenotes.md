@@ -37,6 +37,10 @@
 * **Design - CRUD**
     With the **new header and footer**, CRUD section has been aligned with Microservice and Cronjobs sections.
 
+* **Design - CRUD**
+    Now you can **increase the VerticalMenu width** in the Design area.
+
+
 ## Fixes
 
     
