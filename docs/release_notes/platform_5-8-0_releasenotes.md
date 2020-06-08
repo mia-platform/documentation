@@ -7,24 +7,29 @@
 
     ![API-portal-header](img/API-portal-header.png)
 
-* **API Portal**        
+* **API Portal - Example**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
 
     ![APIportal-example](img/APIportal-example.png)
 
-* **API Portal**       
+* **API Portal - Response area expansion**       
     Now you can **expand and collapse the response area** with its specific button in the upper left corner. 
 
     ![APIportal-response-area](img/APIportal-response-area.png)
 
 * **API Portal**        
-    If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: checkbox system has been removed.
+    If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: **checkbox system has been removed**.
 
     ![APIportal-checkbox](img/APIportal-checkbox.png)
 
 ## Improvements
 
-* **API Portal**        
+* **API Portal - Collapse**        
+    New management of **expansion and collapse of cards and properties through an arrow** near each copy.
+
+    ![APIportal-collapse]()
+
+* **API Portal - Menu**        
     API Portal menu has been moved from left to right.
 
     ![APIportal-menu](img/APIportal-menu.png)
