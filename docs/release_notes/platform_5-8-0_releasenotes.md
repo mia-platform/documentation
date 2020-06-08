@@ -24,6 +24,9 @@
 
 ## Improvements
 
+* **Horizontal Launcher Menu**        
+    Now the **Launcher Menu is horizontal and always visible** in each area of DevOps Console in order to allow you to change area quickly.
+
 * **API Portal - Collapse**        
     New management of **expansion and collapse of cards and properties through an arrow** near each copy.
 
