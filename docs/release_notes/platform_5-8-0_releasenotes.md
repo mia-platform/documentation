@@ -25,7 +25,7 @@
 ## Improvements
 
 * **Horizontal Launcher Menu**        
-    Now the **Launcher Menu is horizontal and always visible** in each area of DevOps Console in order to allow you to change area quickly.
+    You do not have anymore to open the launcher to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each area of DevOps Console.
 
 * **API Portal - Collapse**        
     New management of **expansion and collapse of cards and properties through an arrow** near each copy.
@@ -43,10 +43,11 @@
 * **Design - CRUD**
     Now you can **increase the VerticalMenu width** in the Design area.
 
-
 ## Fixes
 
-    
+* **Design - CRUD**
+    **Alignment** of the `Required` checkbox position in the CRUD section.
+
 ## How to update your DevOps Console?
 
 In case of on-premise Console, to use these features, you have to update:
