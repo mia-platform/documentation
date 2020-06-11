@@ -7,6 +7,10 @@
 
     ![API-portal-header](img/API-portal-header.png)
 
+!!! info (nota task Ste)
+
+    The exposed swagger is valid
+
 * **API Portal - Example**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
 
