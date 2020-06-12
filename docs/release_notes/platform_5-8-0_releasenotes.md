@@ -2,7 +2,9 @@
 
 ## New features
 
-* **API Portal**        
+### API Portal
+
+* **Endpoint call**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![API-portal-header](img/API-portal-header.png)
@@ -11,38 +13,40 @@
 
     The exposed swagger is valid
 
-* **API Portal - Example**        
+* **Example section**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
 
     ![APIportal-example](img/APIportal-example.png)
 
-* **API Portal - Response area expansion**       
-    Now you can **expand and collapse the response area** with its specific button in the upper left corner. 
+* **Response Area expansion**       
+    Now you can **expand the response area** over the whole width of the page with its specific button in the upper left corner. 
 
     ![APIportal-response-area](img/APIportal-response-area.png)
 
-* **API Portal**        
-    If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: **checkbox system has been removed**.
+* **Properties management improvement**        
+    The **checkbox system of properties has been removed**: now, if you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: .
 
     ![APIportal-checkbox](img/APIportal-checkbox.png)
+
+* **Collapse and expansion management**        
+    New you can **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
+
+    ![APIportal-collapse](img/APIportal-collapse.png)
+
+* **Menu**        
+    API Portal menu has been moved from left to right to simplify UX.
+
+    ![APIportal-menu](img/APIportal-menu.png)
 
 ## Improvements
 
 * **Horizontal Launcher Menu**        
     You do not have anymore to open the launcher to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each area of DevOps Console.
 
-* **API Portal - Collapse**        
-    New management of **expansion and collapse of cards and properties through an arrow** near each copy.
-
-    ![APIportal-collapse](img/APIportal-collapse.png)
-
-* **API Portal - Menu**        
-    API Portal menu has been moved from left to right.
-
-    ![APIportal-menu](img/APIportal-menu.png)
+    ![launcher-menu]()
 
 * **Design - CRUD**
-    With the **new header and footer**, CRUD section has been aligned with Microservice and Cronjobs sections.
+    With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer.
 
 * **Design - CRUD**
     Now you can **increase the VerticalMenu width** in the Design area.
