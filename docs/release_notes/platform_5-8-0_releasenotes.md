@@ -1,14 +1,21 @@
 # v5.8.0 (June 9,2020)
 
-## New features
+## New capabilities
 
-Autenticazione
+### Authentication process review
+
+* **OIDC Client**    (da dire ?)
+    **OIDC Client microservice is now integrated in the DevOps Console** to allow multi app and multi provider login and logout.
+
+
+* **OIDC Client**    (da dire ?)
+    WIth the new authentication APIs you can
 
 ## New features
 
 ### New API Portal version
 
-* **Endpoint call**        
+* **API Portal - Endpoint call**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![API-portal-header](img/API-portal-header.png)
@@ -19,27 +26,27 @@ Autenticazione
 
 upload files da mettere?
 
-* **Example section**        
+* **API Portal - Example section**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
 
     ![APIportal-example](img/APIportal-example.png)
 
-* **Response Area expansion**       
+* **API Portal - Response Area expansion**       
     Now you can **expand the response area** over the whole width of the page with its specific button in the upper left corner. 
 
     ![APIportal-response-area](img/APIportal-response-area.png)
 
-* **Properties management improvement**        
+* **API Portal - Properties management improvement**        
     The **checkbox system of properties has been removed**: now you can simply write in a textbox if you want to pass the corresponding property. If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`.
 
     ![APIportal-checkbox](img/APIportal-checkbox.png)
 
-* **Collapse and expansion management**        
+* **API Portal - Collapse and expansion management**        
     New you can **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
 
     ![APIportal-collapse](img/APIportal-collapse.png)
 
-* **Menu**        
+* **API Portal - Menu**        
     API Portal menu has been moved from left to right to simplify UX.
 
     ![APIportal-menu](img/APIportal-menu.png)
@@ -59,7 +66,6 @@ upload files da mettere?
 
     ![delete-crud](img/delete-crud.png) 
 
-
 * **Design - CRUD**      
     Now you can **increase the VerticalMenu width** in the Design area.
 
@@ -74,7 +80,6 @@ upload files da mettere?
 
 * **Design - CRUD**
     **Alignment** of the `Required` checkbox position in the CRUD section.
-
 
 ## How to update your DevOps Console?
 
