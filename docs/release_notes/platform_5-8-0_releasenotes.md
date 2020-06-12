@@ -6,7 +6,7 @@ Autenticazione
 
 ## New features
 
-### API Portal
+### New API Portal version
 
 * **Endpoint call**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
@@ -28,7 +28,7 @@ Autenticazione
     ![APIportal-response-area](img/APIportal-response-area.png)
 
 * **Properties management improvement**        
-    The **checkbox system of properties has been removed**: now, if you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`: .
+    The **checkbox system of properties has been removed**: now you can simply write in a textbox if you want to pass the corresponding property. If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`.
 
     ![APIportal-checkbox](img/APIportal-checkbox.png)
 
@@ -44,10 +44,13 @@ Autenticazione
 
 ## Improvements
 
-* **Horizontal Launcher Menu**           
+* **Horizontal Launcher Menu**             
     You do not have anymore to open the hamburger menu to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each section of DevOps Console.
 
     ![launcher-menu](img/launcher-menu.png)
+
+* **Design - Microservices**              
+    Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
 
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
@@ -69,6 +72,7 @@ Autenticazione
 
 * **Design - CRUD**
     **Alignment** of the `Required` checkbox position in the CRUD section.
+
 
 ## How to update your DevOps Console?
 
