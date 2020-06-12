@@ -44,16 +44,26 @@ Autenticazione
 
 ## Improvements
 
-* **Horizontal Launcher Menu**        
-    You do not have anymore to open the launcher to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each area of DevOps Console.
+* **Horizontal Launcher Menu**           
+    You do not have anymore to open the hamburger menu to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each section of DevOps Console.
 
     ![launcher-menu](release_notes/img/launcher-menu.png)
 
-* **Design - CRUD**
-    With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer.
+* **Design - CRUD**        
+    With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
 
-* **Design - CRUD**
+      ![delete-crud]() 
+
+
+* **Design - CRUD**      
     Now you can **increase the VerticalMenu width** in the Design area.
+
+    ![width-menu]()
+
+* **Design - Endpoints**       
+    Now 
+
+    ![info-decorators]()
 
 ## Fixes
 
