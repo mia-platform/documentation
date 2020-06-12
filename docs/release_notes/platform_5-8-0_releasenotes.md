@@ -17,6 +17,8 @@ Autenticazione
 
     The exposed swagger is valid
 
+upload files da mettere?
+
 * **Example section**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
 
