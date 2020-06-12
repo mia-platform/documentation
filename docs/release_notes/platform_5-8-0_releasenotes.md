@@ -2,6 +2,10 @@
 
 ## New features
 
+Autenticazione
+
+## New features
+
 ### API Portal
 
 * **Endpoint call**        
@@ -43,7 +47,7 @@
 * **Horizontal Launcher Menu**        
     You do not have anymore to open the launcher to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each area of DevOps Console.
 
-    ![launcher-menu]()
+    ![launcher-menu](release_notes/img/launcher-menu.png)
 
 * **Design - CRUD**
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer.
