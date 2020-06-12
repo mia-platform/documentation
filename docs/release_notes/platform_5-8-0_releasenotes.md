@@ -8,8 +8,8 @@
     **OIDC Client microservice is now integrated in the DevOps Console** to allow multi app and multi provider login and logout.
 
 
-* **OIDC Client**    (da dire ?)
-    WIth the new authentication APIs you can
+* **Authentication APIs**    (da dire ?)
+    With the **new authentication APIs** you can do logout and login with scope website.
 
 ## New features
 
