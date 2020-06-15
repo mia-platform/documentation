@@ -71,10 +71,7 @@ upload files da mettere?
 
     ![width-menu](img/width-menu.png)
 
-* **Design - Endpoints**       
-    New **info message** that specifies that POST decorators work only if the target endpoint replies with 2XX status code.
 
-    ![info-decorators](img/info-decorators.png)
 
 ## Fixes
 
