@@ -1,11 +1,11 @@
-# v5.5.1 (April 6,2020)
+## v5.5.1 (April 6,2020)
 
 !!! Bug  
     **Microservice-gateway returns 500** if endpoints return 200 without a response body or 204 with `allowUnknownResponseContentType` to false  
     Fixed in v5.5.2
 
  
-## Improvements
+### Improvements
 
 * **Design - Microservices**  
   New you go directly to your git Repository from the DevOps Console selection **"View Repository" button** in microservice detail page.  
@@ -24,7 +24,7 @@
 * **Design - Microservices**  
   Restyling of the card of microservice, created from Template or from Docker Image.
 
-## Fixed
+### Fixed
 
 * **Microservice Gateway 5.1.3**  
   Now Microservice Gateway is able to manage the **error created when content-type is not correct**.

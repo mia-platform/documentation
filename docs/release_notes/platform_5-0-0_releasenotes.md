@@ -1,11 +1,11 @@
 
-# v5.0.0 (January 10, 2019)
+## v5.0.0 (January 10, 2019)
 
 !!! danger  "BREAKING CHANGES"
     * Convert api-gateway configuration to handle new proxy name and remove group expressions from api-gateway  
     * Update api console configuration to handle update of config-extension and set active authorization-service( if session-manager service is active) into project enabledServices   
 
-## Authorization Service and Auth0Client Service
+### Authorization Service and Auth0Client Service
 
 Mia Platform boost their security and authentication system with 2new microservices.   
 
@@ -13,7 +13,7 @@ Mia Platform boost their security and authentication system with 2new microservi
 * [Auth0Client](https://docs.mia-platform.eu/runtime_suite/auth0-client/how_to_use/) : This service handles authentication and user management using auth0 as an identity provider.  
 * [Authorization Service](https://docs.mia-platform.eu/runtime_suite/authorization-service/how_to_use/): This service exposes an /auth endpoint that, once that you have provided a configuration, handles the access to a specific combination of route and method.  
 
-## DevOps Console
+### DevOps Console
 
 **General**
 
@@ -54,7 +54,7 @@ Mia Platform boost their security and authentication system with 2new microservi
 * Fixed: if an index field cannot be deleted, the delete is disabled   
 * Change delete button indexComponent  
 
-## Upgrades:  
+### Upgrades:  
 
 api-portal to 1.7.0  
 crud-service to 2.1.2  
@@ -62,7 +62,7 @@ v1-adapter to 2.3.0
 cms-backend to 1.4.0  
 
 
-### API PORTAL v1.7.0
+#### API PORTAL v1.7.0
 
 **Added**:
 
@@ -82,13 +82,13 @@ cms-backend to 1.4.0
 * Choose type of data field  
 
 
-### CRUD SERVICE v2.1.2
+#### CRUD SERVICE v2.1.2
 
 * Fix CRUD startup with 0 collections
 * Handle ttl index
 * support *_id* of type string
 
-### V1-ADAPTER 2.3.0
+#### V1-ADAPTER 2.3.0
 
 * Add export in excel
 * Export with columns passed from query params
@@ -96,11 +96,11 @@ cms-backend to 1.4.0
 * Implemented auth-adapter for adapting users-related requests to Auth0Client;
 * Using HEADERS_TO_PROXY list into requests towards export service.
 
-### CMS BACKEND 1.4.0
+#### CMS BACKEND 1.4.0
 
 * Add client-key endpoint to set client-key cookie
 
-## NEW SERVICES: SQL INVOKER
+### NEW SERVICES: SQL INVOKER
 
 Sql Invoker is designed to invoke stored procedure and/or stored function.  
 In this moment, the service supports only:

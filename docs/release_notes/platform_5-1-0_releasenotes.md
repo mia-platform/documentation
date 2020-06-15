@@ -1,6 +1,6 @@
-# v5.1.0 (February 7, 2020)
+## v5.1.0 (February 7, 2020)
 
-## DevOps Console
+### DevOps Console
 
 New Section: Debug!
 
@@ -31,7 +31,7 @@ In this new section of the design area I could set the number of replicas for yo
 ![](img/components-column.png)
 
 
-## Backend
+### Backend
 
 Added:
 

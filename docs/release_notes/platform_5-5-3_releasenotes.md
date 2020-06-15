@@ -1,7 +1,7 @@
 
-# v5.5.3 (April 22,2020)
+## v5.5.3 (April 22,2020)
 
-## Improvements
+### Improvements
 
 * **API Portal**      
   Now API Portal is **OpenAPI v3** compliant: all microservice swaggers are converted to OpenAPI v3 automatically. Moreover, APIExplorer has been integrated by adding support for *anyOf*, *oneOf*, *allOf* and *not* schemas. API-Portal service has been **updated to version 1.9.0**.
@@ -15,7 +15,7 @@
 
 * Improved **padding and scrolling** of cards and grids in order to enhance their correct visualization.
 
-## Fixed
+### Fixed
 
  * **Branches**    
   Changes, done from two different people on the same branch, are **no more overwritten**. This fix solves the overwrite case in which one person is modifying an advanced file and the other one is modifying a general configuration on the same branch.
@@ -34,7 +34,7 @@
 * **CMS**     
   The 'export' functionality allows you to **download all the records**: there is no more a limit to the number of records to download. Moreover, Crud service has been **updated to version 2.1.4**.
 
-## How to update your DevOps Console?     
+### How to update your DevOps Console?     
 
 In case of on-premise Console, to use the previous features, you have to update:   
 

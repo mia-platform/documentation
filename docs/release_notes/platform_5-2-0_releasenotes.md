@@ -1,6 +1,6 @@
 ## v5.2.0 (February 18, 2020)
 
-## Zero Downtime
+### Zero Downtime
 
 With zero downtime the platform remains up during the deployment time without downtimes.
 This functionality is currently implemented only on some core services. Templates have been updated with this new feature.
@@ -9,7 +9,7 @@ This functionality is currently implemented only on some core services. Template
 
 The developer can decide which basepath is associated to an endpoint by applying an internal rewrite url.
 
-## Improvements
+### Improvements
 
 * **Deploy - History**: refresh button added for update the list of your deploy
 
@@ -17,7 +17,7 @@ The developer can decide which basepath is associated to an endpoint by applying
 
 * **Session Manager (v4.5.0)**: expose `GET /sessions/me` for retrieving session info
 
-## Fixes
+### Fixes
 
 * **Deploy - History**: fix to the filters in the deployment history page
 
