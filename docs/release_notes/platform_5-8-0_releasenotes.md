@@ -31,7 +31,7 @@
 * **API Portal - Endpoint call**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
-    ![API-secret-try](img/api-secret-try.png)
+    ![api-secret-try](img/api-secret-try.png)
 
 !!! info (nota task Ste)
 
