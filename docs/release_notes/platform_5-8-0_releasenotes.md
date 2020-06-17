@@ -33,11 +33,10 @@
 
     ![api-secret-try](img/api-secret-try.png)
 
-!!! info (nota task Ste)
+!!! info
 
-    The exposed swagger is valid
+    The exposed swagger is valid: so, you can download it and read it through programs like [Swagger Editor](https://editor.swagger.io/)
 
-upload files da mettere?
 
 * **API Portal - Example section**        
     New section `Example` that **shows a response example** to a call with a specific route and method.
