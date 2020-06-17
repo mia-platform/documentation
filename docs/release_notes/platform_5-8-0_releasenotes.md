@@ -27,7 +27,6 @@
 * **Deploy - Experience**      
     **New deployment experience**: when you push the "Deploy" button, a new modal appears to confirm you the success of the deployment.
 
-
 ### New API Portal version
 
 * **API Portal - Endpoint call**        
@@ -94,6 +93,17 @@
 
 In case of on-premise Console, to use these features, you have to update:
 
+* Console Website @1.22.0 (`nexus.mia-platform.eu/api-console/website:1.22.0`)
+
+* Console Backend @2.0.0 (`nexus.mia-platform.eu/api-console/backend:2.0.0`)
+
+* Console Environment Variables @1.0.2 (`nexus.mia-platform.eu/console/environments-variables:1.0.2`)
+
+* Kubernetes Service @1.4.1 (`nexus.mia-platform.eu/dev-portal/kubernetes-service:1.4.1`)
+
+* Console Monitoring Dashboard @1.3.6 (`nexus.mia-platform.eu/console/monitoring-dashboard:1.3.6`)
+
+* Console Deploy Website @1.2.0 (`nexus.mia-platform.eu/console/deploy-website:1.2.0`)
 
 Moreover, in case of on-premise Console you have to remove the following authentication services:
 
@@ -102,3 +112,83 @@ Moreover, in case of on-premise Console you have to remove the following authent
 * `session-manager`
 
 and add the new service `authentication-service` with its configurations.
+
+To release the new version 5.8.0, which implements the new authentication flow, you have to modify DevOps Console project configuration and execute manual cleaning operations on Cluster and MongoDB.
+
+**DevOps Console project**
+
+*Setup Infrastructure*
+
+You have to remove the following environment variables:
+
+* `AUTH_SERVICE_BASE_URL`
+
+* `AUTH_CLIENT_ID`
+
+* `AUTH_CLIENT_SECRET`
+
+* `USER_PROPERTY_BASE_URL`
+
+and add following environment variables:
+
+* `MIA_JWT_TOKEN_SIGN_KEY`
+
+* `PROVIDER_TOKEN_PASS_PHRASE`
+
+and verify that the following environment variable is present in each environment:
+
+* `API_CONSOLE_BASE_URL`
+
+*Design - CRUD*
+
+You have to add the collection `userinfo`
+
+*Design - microservices*
+
+You have to remove:
+
+* `auth-service`
+
+* `user-service`
+
+* `session-manager`
+
+and add:
+
+* `authentication-service`
+
+and migrate to managed service:
+
+* `files-service`
+
+*Endpoint*
+
+You have to add:
+
+* `/api/authorize` → `authentication-service`
+
+* `/api/oauth/token` → `authentication-service`
+
+* `/api/refreshtoken` → `authentication-service`
+
+* `/api/userinfo` → `authentication-service`
+
+* `/api/logout` → `authentication-service`
+
+* `/v2/users` → CRUD `userinfo`
+
+**Manual operations**
+
+*MongoDB*
+
+You have to remove:
+* `users`
+* `user-properties`
+
+and you have to empty the collection:
+
+* `user-notifications`
+
+*Cluster K8S*
+
+You have to remove all the `deployment`, `service` and `configmap` from DevOps Console namespace.
