@@ -105,6 +105,8 @@ In case of on-premise Console, to use these features, you have to update:
 
 * Console Deploy Website @1.2.0 (`nexus.mia-platform.eu/console/deploy-website:1.2.0`)
 
+
+
 Moreover, in case of on-premise Console you have to remove the following authentication services:
 
 * `auth-service`
@@ -112,6 +114,9 @@ Moreover, in case of on-premise Console you have to remove the following authent
 * `session-manager`
 
 and add the new service `authentication-service` with its configurations.
+
+
+
 
 To release the new version 5.8.0, which implements the new authentication flow, you have to modify DevOps Console project configuration and execute manual cleaning operations on Cluster and MongoDB.
 
