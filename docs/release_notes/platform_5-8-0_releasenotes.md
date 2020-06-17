@@ -66,6 +66,9 @@
 
 ## Improvements
 
+* **DevOps Console configuration**       
+    DevOps Console uses now the routes `healtz` and `ready` as defined by Mia Platform standard.
+
 * **Horizontal Launcher Menu**             
     You do not have anymore to open the hamburger menu to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each section of DevOps Console.
 
