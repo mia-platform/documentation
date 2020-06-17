@@ -16,10 +16,12 @@
 ### New Deploy area version
 
 * **Deploy - Last deployed version**        
-    Now, when you select the environment in which you want to deploy, you can **visualize the last successful deployed version** and its information (type, user that deployed, duration, time of deployment and logs)
+    Now, when you select the environment in which you want to deploy, you can **visualize the last successful deployed version in the same environment** and its information (type, user that deployed, duration, time of deployment and logs).
 
-* **Deploy - Last 10 commits**        
-    Now, when you select the branch to deploy, you can **visualize the last 10 commits done in the same branch** and the link that redirects you to the Git page of commits differences.
+* **Deploy - Branch compare**        
+    Now, when you select the branch to be deployed, you can **visualize the last 10 commits done in the same branch** and the link that redirects you to the Git page, which shows **commits differences**, in the choosen environment, between the selected branch and the last deployed branch.
+
+
 
 ### New API Portal version
 
