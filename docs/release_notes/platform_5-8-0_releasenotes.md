@@ -18,9 +18,12 @@
 * **Deploy - Last deployed version**        
     Now, when you select the environment in which you want to deploy, you can **visualize the last successful deployed version in the same environment** and its information (type, user that deployed, duration, time of deployment and logs).
 
-* **Deploy - Branch compare**        
+    ![deploy-env](img/deploy-env.png)
+
+* **Deploy - Branch and commits compare**        
     Now, when you select the branch to be deployed, you can **visualize the last 10 commits done in the same branch** and the link that redirects you to the Git page, which shows **commits differences**, in the choosen environment, between the selected branch and the last deployed branch.
 
+    ![deploy-branch](img/deploy-branch.png)
 
 
 ### New API Portal version
