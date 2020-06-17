@@ -74,6 +74,9 @@
 
     ![launcher-menu](img/launcher-menu.png)
 
+* **Design - Microservices**        
+    Log Parser 
+
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
 
