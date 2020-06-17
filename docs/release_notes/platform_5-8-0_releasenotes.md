@@ -163,7 +163,7 @@ and add:
 
 and migrate to managed service:
 
-* `files-service`
+* `files-service` (moreover, all the old `files-service` configurations have to be removed manually from GitLab)
 
 *Endpoint*
 
@@ -197,7 +197,7 @@ and you have to empty the collection:
 
 *Cluster K8S*
 
-You have to remove all the `deployment`, `service` and `configmap` from DevOps Console namespace.
+You have to remove all the `deployment`, `service` and `configmap` from DevOps Console namespace. Moreover, `auth-service`, `user-service`, `session-manager` e `files-service` have to be removed manually.
 
 !!! info
 
