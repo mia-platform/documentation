@@ -13,6 +13,14 @@
 
 ## New features
 
+### New Deploy area version
+
+* **Deploy - Last deployed version**        
+    Now, when you select the environment in which you want to deploy, you can visualize the last successful deployed version and its information (type, user that deployed, duration, time of deployment and logs)
+
+* **Deploy - Last 10 commits**        
+    Now, when you select the branch to deploy, you can visualize the last 10 commits done in the same branch and the link that redirects you to the Git page of commits differences.
+
 ### New API Portal version
 
 * **API Portal - Endpoint call**        
