@@ -1,4 +1,4 @@
-# v5.8.0 (June 18,2020)
+# v5.8.0 (June 19,2020)
 
 ## New capabilities
 
@@ -6,7 +6,6 @@
 
 * **OIDC Client**    (da dire ?)
     **OIDC Client microservice is now integrated in the DevOps Console** to allow multi app and multi provider login and logout.
-
 
 * **Authentication APIs**    (da dire ?)
     With the **new authentication APIs** you can do logout and login with scope website.
@@ -24,6 +23,9 @@
     Now, when you select the branch to be deployed, you can **visualize the last 10 commits done in the same branch** and the link that redirects you to the Git page, which shows **commits differences**, in the choosen environment, between the selected branch and the last deployed branch.
 
     ![deploy-branch](img/deploy-branch.png)
+
+* **Deploy - Experience**      
+    **New deployment experience**: when you push the "Deploy" button, a new modal appears to confirm you the success of the deployment.
 
 
 ### New API Portal version
@@ -70,9 +72,6 @@
 
     ![launcher-menu](img/launcher-menu.png)
 
-* **Design - Microservices**              
-    Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
-
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
 
@@ -83,9 +82,10 @@
 
     ![width-menu](img/width-menu.png)
 
-
-
 ## Fixes
+
+* **Design - Microservices**              
+    Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
 
 * **Design - CRUD**        
     **Alignment** of the `Required` checkbox position in the CRUD section.
