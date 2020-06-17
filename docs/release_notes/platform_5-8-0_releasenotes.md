@@ -1,4 +1,4 @@
-# v5.8.0 (June 9,2020)
+# v5.8.0 (June 18,2020)
 
 ## New capabilities
 
@@ -16,10 +16,10 @@
 ### New Deploy area version
 
 * **Deploy - Last deployed version**        
-    Now, when you select the environment in which you want to deploy, you can visualize the last successful deployed version and its information (type, user that deployed, duration, time of deployment and logs)
+    Now, when you select the environment in which you want to deploy, you can **visualize the last successful deployed version** and its information (type, user that deployed, duration, time of deployment and logs)
 
 * **Deploy - Last 10 commits**        
-    Now, when you select the branch to deploy, you can visualize the last 10 commits done in the same branch and the link that redirects you to the Git page of commits differences.
+    Now, when you select the branch to deploy, you can **visualize the last 10 commits done in the same branch** and the link that redirects you to the Git page of commits differences.
 
 ### New API Portal version
 
