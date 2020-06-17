@@ -116,6 +116,7 @@ Moreover, in case of on-premise Console you have to remove the following authent
 and add the new service `authentication-service` with its configurations.
 
 
+
 Moreover, in case of on-premise Console, to release the new version 5.8.0, you have to modify DevOps Console project configuration and execute manual cleaning operations on Cluster and MongoDB.
 
 **DevOps Console project**
