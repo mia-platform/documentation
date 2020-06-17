@@ -87,7 +87,7 @@
 
 ## Fixes
 
-* **Design - CRUD**
+* **Design - CRUD**        
     **Alignment** of the `Required` checkbox position in the CRUD section.
 
 ## How to update your DevOps Console?
