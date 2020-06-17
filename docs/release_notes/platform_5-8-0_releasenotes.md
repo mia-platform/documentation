@@ -187,7 +187,9 @@ You have to add:
 *MongoDB*
 
 You have to remove:
+
 * `users`
+
 * `user-properties`
 
 and you have to empty the collection:
@@ -197,3 +199,8 @@ and you have to empty the collection:
 *Cluster K8S*
 
 You have to remove all the `deployment`, `service` and `configmap` from DevOps Console namespace.
+
+!!! info
+
+    Once the deployment has been completed, each DevOps Console user will lose all the active sections and will need to log-in again.
+
