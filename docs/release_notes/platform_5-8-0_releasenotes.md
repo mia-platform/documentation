@@ -1,4 +1,4 @@
-# v5.8.0 (June 19,2020)
+# v5.8.0 (June 18,2020)
 
 ## New features
 
@@ -52,6 +52,9 @@
     ![APIportal-menu](img/APIportal-menu.png)
 
 ## Improvements
+
+* **Authentication**       
+    You can define a **different auth provider for fronted and backend** to authenticate users.
 
 * **Horizontal Launcher Menu**             
     Launcher menu is now always in the top bar, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
