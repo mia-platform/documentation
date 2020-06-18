@@ -96,7 +96,7 @@
 
     This version contains a breaking update for on-premise installations. We are working on the updating process of on-premise Console in order to optimize this release. In the meantime, you can contact your Mia Platform referent to know more about simplified release modalities.
 
-In order to update on-premise Console, to use these features, you have to update:
+If you have an on-premise Console installation, to use these features, you have to update:
 
 * Console Website @1.22.0 (`nexus.mia-platform.eu/api-console/website:1.22.0`)
 
@@ -110,17 +110,13 @@ In order to update on-premise Console, to use these features, you have to update
 
 * Console Deploy Website @1.2.0 (`nexus.mia-platform.eu/console/deploy-website:1.2.0`)
 
-
-
-Moreover, in case of on-premise Console you have to remove the following authentication services:
+Moreover, in case of on-premise Console, you have to remove the following authentication services:
 
 * `auth-service`
 
 * `session-manager`
 
 and add the new service `authentication-service` (`nexus.mia-platform.eu/core/authentication-service:1.0.0`) with its configurations.
-
-
 
 Moreover, in case of on-premise Console, to release the new version 5.8.0, you have to modify DevOps Console project configuration and execute manual cleaning operations on Cluster and MongoDB.
 
