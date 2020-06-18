@@ -21,7 +21,7 @@
     ![deploy-branch](img/deploy-branch.png)
 
 * **Experience**      
-    **New deployment experience**: when you click the "Deploy" button a new modal appears to inform about deployment progress.
+    **New deployment experience**: when you click the "Deploy" button a new modal appears to inform you about deployment progress.
 
     ![deploy-modal](img/deploy-modal.png)
 
@@ -48,7 +48,7 @@
     ![APIportal-checkbox](img/APIportal-checkbox.png)
 
 * **Collapse and expansion management**        
-    Now you can **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
+    You can now **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
 
     ![APIportal-collapse](img/APIportal-collapse.png)
 
@@ -60,12 +60,12 @@
 ## Improvements
 
 * **Horizontal Launcher Menu**             
-    Launcher menu is now always visible in the top bar, making it always visible and accessible from any page. You won't be required to open the left drawer anymore and the hamburger menu has been removed.
+    Launcher menu is now always in the top bar, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
 
     ![launcher-menu](img/launcher-menu.png)
 
 * **Design - Microservices**        
-    Log Parser specification for custom microservices has been updated, `pino`, `bunyan` and `nginx` support has been dropped and migrated to: `mia-json` and `mia-ngnix` (previous values has been migrated).
+    Log Parser specification for custom microservices has been updated: `pino`, `bunyan` and `nginx` support has been dropped and migrated to `mia-json` and `mia-ngnix` (previous values have been migrated).
 
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
