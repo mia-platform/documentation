@@ -97,6 +97,8 @@
 * **Design - CRUD**        
     **Alignment** of the `Required` checkbox position in the CRUD section.
 
+* **Alignment of DevOps Console design and style** for all the Browsers (Chrome, Firefox, Safari, Edge and Explorer).
+
 ## How to update your DevOps Console?
 
 In case of on-premise Console, to use these features, you have to update:
