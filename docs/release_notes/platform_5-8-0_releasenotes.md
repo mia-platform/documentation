@@ -141,7 +141,7 @@ You have to remove the following environment variables:
 
 and add following environment variables:
 
-* `MIA_JWT_TOKEN_SIGN_KEY`
+* `MIA_JWT_TOKEN_SIGN_KEY`: random string of at least 2048 bit (no special characters are supported)
 
 * `PROVIDER_TOKEN_PASS_PHRASE`
 
