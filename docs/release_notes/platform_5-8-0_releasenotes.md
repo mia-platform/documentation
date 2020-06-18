@@ -16,7 +16,7 @@
     ![deploy-env](img/deploy-env.png)
 
 * **Deploy - Branch and commits compare**        
-    Now, when you select the branch to deploy, you can **visualize the last 10 commits done in the same branch** and the link that redirects you to the Git page, which shows **commits differences** in the choosen environment between the selected branch and the last deployed branch.
+    Now, when you select the branch to deploy, you can **visualize the last 10 commits done on it** and the **changes** between the last deployed branch on the choosen environment and the selected branch to be deployed.
 
     ![deploy-branch](img/deploy-branch.png)
 
