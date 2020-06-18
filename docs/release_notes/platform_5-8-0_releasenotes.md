@@ -38,7 +38,7 @@
 
 !!! info
 
-    The exposed swagger is valid: so, you can download it and read it through programs like [Swagger Editor](https://editor.swagger.io/)
+    The exposed swagger is valid: so, you can download it and read it with programs like [Swagger Editor](https://editor.swagger.io/)
 
 
 * **API Portal - Example section**        
