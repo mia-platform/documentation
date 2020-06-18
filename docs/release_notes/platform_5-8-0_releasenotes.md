@@ -80,7 +80,7 @@
 ## Fixes
 
 * **DevOps Console configuration**       
-    Status routes of the swagger-aggregator service are now configured correctly using Mia Platform standard routes:`/-/healthz` e `/-/ready`
+    Status routes of the swagger-aggregator service are now configured correctly **using Mia Platform standard routes**:`/-/healthz` e `/-/ready`
 
 * **Design - Microservices**              
     Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the docker registry host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
