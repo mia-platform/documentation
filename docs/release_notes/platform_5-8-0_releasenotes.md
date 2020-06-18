@@ -73,7 +73,7 @@
     ![launcher-menu](img/launcher-menu.png)
 
 * **Design - Microservices**        
-    In the microservice detail, Logs are parsed in a different way and could have now the following values: `mia-ngnix`, `mia-json` and `not parsed`.
+    Log Parser specification for custom microservices has been updated, `pino`, `bunyan` and `nginx` support has been dropped and migrated to: `mia-json` and `mia-ngnix` (previous values has been migrated).
 
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
