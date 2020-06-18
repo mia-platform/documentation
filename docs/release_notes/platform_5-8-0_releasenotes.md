@@ -27,7 +27,7 @@
 
 ### New API Portal version
 
-* **API Portal - Endpoint call**        
+* **Endpoint call**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![api-secret-try](img/api-secret-try.png)
