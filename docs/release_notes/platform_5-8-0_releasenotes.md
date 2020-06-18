@@ -47,17 +47,14 @@
     ![APIportal-collapse](img/APIportal-collapse.png)
 
 * **Menu**        
-    API Portal menu has been moved from left to right to simplify UX.
+    API Portal menu has been **moved from left to right** to simplify UX.
 
     ![APIportal-menu](img/APIportal-menu.png)
 
 * **Fixed files upload**      
-    In the API Portal, you can successfully upload files on each method identified as `file` field.
+    In the API Portal, you can successfully **upload files** on each method identified as `file` field.
 
 ## Improvements
-
-* **Authentication**       
-    You can now define a **different auth provider for fronted and backend** to authenticate users.
 
 * **Horizontal Launcher Menu**             
     Launcher menu is now **always in the top bar**, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
@@ -69,6 +66,9 @@
 
     ![width-menu](img/width-menu.png)
 
+* **Authentication**       
+    You can now define a **different auth provider for fronted and backend** to authenticate users.
+
 * **Design - Microservices**        
     **Log Parser specification** for custom microservices has been updated: `pino`, `bunyan` and `nginx` support has been dropped and migrated to `mia-json` and `mia-ngnix` (previous values have been migrated).
 
@@ -76,7 +76,6 @@
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
 
     ![delete-crud](img/delete-crud.png)        
-
 
 ## Fixes
 
