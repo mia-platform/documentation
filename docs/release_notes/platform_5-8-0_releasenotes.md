@@ -75,7 +75,7 @@
     ![launcher-menu](img/launcher-menu.png)
 
 * **Design - Microservices**        
-    Log Parser 
+    In the microservice detail, Logs are parsed in a different way and could have now the following values: `mia-ngnix`, `mia-json` and `not parsed`.
 
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
