@@ -10,54 +10,49 @@
 
 ### New Deploy area version
 
-* **Deploy - Running deployed version**        
+* **Running deployed version**        
     Now, when you select the environment where you want to deploy, you can visualize information about **the last successful deploy** on that environment (visibile information is the following: deployed commit, deployment type, user that deployed, duration, time of deployment and logs).
 
     ![deploy-env](img/deploy-env.png)
 
-* **Deploy - Branch and commits compare**        
+* **Branch and commits compare**        
     Now, when you select the branch to deploy, you can **visualize the last 10 commits done on it** and the **changes** between the last deployed branch on the choosen environment and the selected branch to be deployed.
 
     ![deploy-branch](img/deploy-branch.png)
 
-* **Deploy - Experience**      
+* **Experience**      
     **New deployment experience**: when you click the "Deploy" button a new modal appears to inform about deployment progress.
 
     ![deploy-modal](img/deploy-modal.png)
 
 ### New API Portal version
 
+* **Example section**        
+    New section `Example` **shows a response sample** to the API currently opened.
+
+    ![APIportal-example](img/APIportal-example.png)
+
 * **Endpoint call**        
     You can now call an Endpoint from DevOps Console **without specifying the headers**.
 
     ![api-secret-try](img/api-secret-try.png)
 
-!!! info
-
-    The exposed swagger is valid: so, you can download it and read it with programs like [Swagger Editor](https://editor.swagger.io/)
-
-
-* **API Portal - Example section**        
-    New section `Example` **shows a response sample** to the API currently opened.
-
-    ![APIportal-example](img/APIportal-example.png)
-
-* **API Portal - Response Area expansion**       
+* **Response Area expansion**       
     Now you can **expand the response area** over the whole width of the page. 
 
     ![APIportal-response-area](img/APIportal-response-area.png)
 
-* **API Portal - Properties management improvement**        
+* **Properties management improvement**        
     The **checkbox system of properties has been removed**: now you can simply write in a textbox if you want to pass the corresponding property. If you want to pass an empty value, you have to leave the property empty and check the corresponding property in the button `Properties`.
 
     ![APIportal-checkbox](img/APIportal-checkbox.png)
 
-* **API Portal - Collapse and expansion management**        
+* **Collapse and expansion management**        
     Now you can **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
 
     ![APIportal-collapse](img/APIportal-collapse.png)
 
-* **API Portal - Menu**        
+* **Menu**        
     API Portal menu has been moved from left to right to simplify UX.
 
     ![APIportal-menu](img/APIportal-menu.png)
@@ -119,7 +114,7 @@ Moreover, in case of on-premise Console you have to remove the following authent
 
 * `session-manager`
 
-and add the new service `authentication-service` (`nexus.mia-platform.eu/core/authentication-service:1.0.0` with its configurations.
+and add the new service `authentication-service` (`nexus.mia-platform.eu/core/authentication-service:1.0.0`) with its configurations.
 
 
 
