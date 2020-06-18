@@ -68,7 +68,7 @@
     DevOps Console uses now the routes `healtz` and `ready` as defined by Mia Platform standard. Logs are now managed on LC-39.
 
 * **Horizontal Launcher Menu**             
-    You do not have anymore to open the hamburger menu to switch from an area to another: now the **Launcher Menu is horizontal and always visible** in each section of DevOps Console.
+    Launcher menu is now always visible in the top bar, making it always visible and accessible from any page. You won't be required to open the left drawer anymore and the hamburger menu has been removed.
 
     ![launcher-menu](img/launcher-menu.png)
 
