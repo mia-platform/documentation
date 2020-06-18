@@ -119,7 +119,7 @@ Moreover, in case of on-premise Console you have to remove the following authent
 
 * `session-manager`
 
-and add the new service `authentication-service` with its configurations.
+and add the new service `authentication-service` (`nexus.mia-platform.eu/core/authentication-service:1.0.0` with its configurations.
 
 
 
