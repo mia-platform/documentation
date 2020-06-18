@@ -59,9 +59,6 @@
 
 ## Improvements
 
-* **DevOps Console configuration**       
-    DevOps Console uses now the routes `healtz` and `ready` as defined by Mia Platform standard. Logs are now managed on LC-39.
-
 * **Horizontal Launcher Menu**             
     Launcher menu is now always visible in the top bar, making it always visible and accessible from any page. You won't be required to open the left drawer anymore and the hamburger menu has been removed.
 
@@ -81,6 +78,9 @@
     ![width-menu](img/width-menu.png)
 
 ## Fixes
+
+* **DevOps Console configuration**       
+    Status routes of the swagger-aggregator service are now configured correctly using Mia Platform standard routes:`/-/healthz` e `/-/ready`
 
 * **Design - Microservices**              
     Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the docker registry host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
