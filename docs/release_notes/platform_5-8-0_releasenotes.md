@@ -53,7 +53,7 @@
     ![APIportal-checkbox](img/APIportal-checkbox.png)
 
 * **API Portal - Collapse and expansion management**        
-    New you can **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
+    Now you can **expand and collapse cards and properties through an arrow** near each copy: `Expand` and `Collapse` buttons have been removed.
 
     ![APIportal-collapse](img/APIportal-collapse.png)
 
