@@ -197,7 +197,7 @@ and you have to empty the collection:
 
 *Cluster K8S*
 
-You have to remove all the `deployment`, `service` and `configmap` from DevOps Console namespace. Moreover, `auth-service`, `user-service`, `session-manager` e `files-service` have to be removed manually.
+You have to remove all the `deployment`, `service` and `configmap` from DevOps Console namespace. Moreover, `auth-service`, `user-service`, `session-manager` and `files-service` have to be removed manually.
 
 !!! info
 
