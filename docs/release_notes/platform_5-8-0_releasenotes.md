@@ -88,7 +88,7 @@
 ## Fixes
 
 * **Design - Microservices**              
-    Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
+    Now, when you are creating a microservice starting from Docker Image, you can **specify the port of the docker registry host** (e.g. `host:port/project/service:tag`) without being blocked by the validation of the field.
 
 * **Design - CRUD**        
     **Alignment** of the `Required` checkbox position in the CRUD section.
