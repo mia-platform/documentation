@@ -51,6 +51,9 @@
 
     ![APIportal-menu](img/APIportal-menu.png)
 
+* **Fixed files upload**      
+    In the API Portal, you can successfully upload files on each method identified as `file` field.
+
 ## Improvements
 
 * **Authentication**       
@@ -61,18 +64,19 @@
 
     ![launcher-menu](img/launcher-menu.png)
 
+* **Design - Menu**      
+    Now you can expand the menu in the Design area.
+
+    ![width-menu](img/width-menu.png)
+
 * **Design - Microservices**        
     Log Parser specification for custom microservices has been updated: `pino`, `bunyan` and `nginx` support has been dropped and migrated to `mia-json` and `mia-ngnix` (previous values have been migrated).
 
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
 
-    ![delete-crud](img/delete-crud.png) 
+    ![delete-crud](img/delete-crud.png)        
 
-* **Design - CRUD**      
-    Now you can **increase the VerticalMenu width** in the Design area.
-
-    ![width-menu](img/width-menu.png)
 
 ## Fixes
 
@@ -84,8 +88,6 @@
 
 * **Design - CRUD**        
     **Alignment** of the `Required` checkbox position in the CRUD section.
-
-* **Alignment of DevOps Console design and style** for all the Browsers (Chrome, Firefox, Safari, Edge and Explorer).
 
 ## How to update your DevOps Console?
 
