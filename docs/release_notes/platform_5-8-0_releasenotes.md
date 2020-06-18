@@ -60,17 +60,17 @@
     You can now define a **different auth provider for fronted and backend** to authenticate users.
 
 * **Horizontal Launcher Menu**             
-    Launcher menu is now always in the top bar, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
+    Launcher menu is now **always in the top bar**, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
 
     ![launcher-menu](img/launcher-menu.png)
 
 * **Design - Menu**      
-    Now you can expand the menu of each section in the Design area.
+    Now you can **expand the menu** of each section in the Design area.
 
     ![width-menu](img/width-menu.png)
 
 * **Design - Microservices**        
-    Log Parser specification for custom microservices has been updated: `pino`, `bunyan` and `nginx` support has been dropped and migrated to `mia-json` and `mia-ngnix` (previous values have been migrated).
+    **Log Parser specification** for custom microservices has been updated: `pino`, `bunyan` and `nginx` support has been dropped and migrated to `mia-json` and `mia-ngnix` (previous values have been migrated).
 
 * **Design - CRUD**        
     With the **new header and footer**, CRUD section has been aligned with Microservices, Proxies and Cronjobs sections: the `Delete` button is now at the footer of the page.
@@ -133,7 +133,7 @@ You have to remove the following environment variables:
 
 * `USER_PROPERTY_BASE_URL`
 
-and add following environment variables:
+and add the following environment variables:
 
 * `MIA_JWT_TOKEN_SIGN_KEY`: random string of at least 2048 bit (no special characters are supported)
 
@@ -145,7 +145,9 @@ and verify that the following environment variable is present in each environmen
 
 *Design - CRUD*
 
-You have to add the collection `userinfo`
+You have to add the collection:
+
+* `userinfo`
 
 *Design - microservices*
 
