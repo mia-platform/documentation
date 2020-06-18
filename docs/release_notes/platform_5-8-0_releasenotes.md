@@ -57,7 +57,7 @@
 ## Improvements
 
 * **Authentication**       
-    You can define a **different auth provider for fronted and backend** to authenticate users.
+    You can now define a **different auth provider for fronted and backend** to authenticate users.
 
 * **Horizontal Launcher Menu**             
     Launcher menu is now always in the top bar, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
@@ -65,7 +65,7 @@
     ![launcher-menu](img/launcher-menu.png)
 
 * **Design - Menu**      
-    Now you can expand the menu in the Design area.
+    Now you can expand the menu of each section in the Design area.
 
     ![width-menu](img/width-menu.png)
 
