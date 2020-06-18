@@ -1,11 +1,5 @@
 # v5.8.0 (June 19,2020)
 
-## New capabilities
-
-### Authentication process review
-
-
-
 ## New features
 
 ### New Deploy area version
