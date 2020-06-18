@@ -143,7 +143,7 @@ and add following environment variables:
 
 * `MIA_JWT_TOKEN_SIGN_KEY`: random string of at least 2048 bit (no special characters are supported)
 
-* `PROVIDER_TOKEN_PASS_PHRASE`
+* `PROVIDER_TOKEN_PASS_PHRASE`: random string of at least 2048 bit (no special characters are supported)
 
 and verify that the following environment variable is present in each environment:
 
