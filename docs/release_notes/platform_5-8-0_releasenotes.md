@@ -27,6 +27,8 @@
 * **Deploy - Experience**      
     **New deployment experience**: when you push the "Deploy" button, a new modal appears to confirm you the success of the deployment.
 
+    ![deploy-modal](img/deploy-modal.png)
+
 ### New API Portal version
 
 * **API Portal - Endpoint call**        
