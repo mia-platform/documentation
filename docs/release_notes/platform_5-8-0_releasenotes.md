@@ -11,7 +11,7 @@
 ### New Deploy area version
 
 * **Deploy - Running deployed version**        
-    Now, when you select the environment in which you want to deploy, you can **visualize the running deployed version in the same environment** and its information (type, user that deployed, duration, time of deployment and logs).
+    Now, when you select the environment where you want to deploy, you can visualize information about **the last successful deploy** on that environment (visibile information is the following: deployed commit, deployment type, user that deployed, duration, time of deployment and logs).
 
     ![deploy-env](img/deploy-env.png)
 
