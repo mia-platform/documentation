@@ -43,7 +43,7 @@
     ![APIportal-example](img/APIportal-example.png)
 
 * **API Portal - Response Area expansion**       
-    Now you can **expand the response area** over the whole width of the page with its specific button in the upper left corner. 
+    Now you can **expand the response area** over the whole width of the page. 
 
     ![APIportal-response-area](img/APIportal-response-area.png)
 
