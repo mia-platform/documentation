@@ -94,7 +94,7 @@
 
 !!! warning
 
-    This version contains a breaking update for on-premise installations. We are working on the updating process of on-premise Console in order to optimize this release. You can contact your Mia Platform referent to know more about simplified release modalities.
+    This version contains a breaking update for on-premise installations. We are working on the updating process of on-premise Console in order to optimize this release. In the meantime, you can contact your Mia Platform referent to know more about simplified release modalities.
 
 In order to update on-premise Console, to use these features, you have to update:
 
