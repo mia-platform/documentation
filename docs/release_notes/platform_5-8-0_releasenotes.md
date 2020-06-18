@@ -21,7 +21,7 @@
     ![deploy-branch](img/deploy-branch.png)
 
 * **Deploy - Experience**      
-    **New deployment experience**: when you push the "Deploy" button, a new modal appears to confirm you the success of the deployment.
+    **New deployment experience**: when you click the "Deploy" button a new modal appears to inform about deployment progress.
 
     ![deploy-modal](img/deploy-modal.png)
 
