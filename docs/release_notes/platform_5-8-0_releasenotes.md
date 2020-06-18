@@ -38,7 +38,7 @@
 
 
 * **API Portal - Example section**        
-    New section `Example` that **shows a response example** to a call with a specific route and method.
+    New section `Example` **shows a response sample** to the API currently opened.
 
     ![APIportal-example](img/APIportal-example.png)
 
