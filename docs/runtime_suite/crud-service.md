@@ -219,23 +219,32 @@ CRUD must not be exposed directly to the Internet but always must be protected b
 
 ### Version Management
 
-TODO v2
+Available in Mia-Platform v6.
 
 ### API Secret
 
-TODO
+If a CRUD is exposed under an API Secret you have to pass the secret into the request header with the name `secret`. The
+
+Example
+
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/your-crud-name/' \
+  --header 'accept: */*' \
+  --header 'secret: your-secret'
+```
 
 ### CRUD ACL
 
-TODO
+Available in Mia-Platform v6.
 
 #### Rows ACL
 
-TODO
+Available in Mia-Platform v6.
 
 #### Columns ACL
 
-TODO
+Available in Mia-Platform v6.
 
 ------------------------------------------------------------
 
@@ -373,41 +382,6 @@ and the document become the following, without the price property and with the u
   }
 ]
 ```
-
------------------------------------
-#### Others TODO
-
-Bisogna aggiungere una collezione Cart che aumenta o diminuisce di 1 se fai il post dello stesso elemento
-
-```
-Supponi di volere mettere un CRUD che conta gli accessi per IP
-```
-{
-  "ip": "127.0.0.1", // chiave unica
-  "access_count": 23,
-  "first_access_user_agent": "Chrome",
-  "last_chrome_access": "2020-04-13",
-  "user_agents": [ "Chrome" ]
-}
-```
-
-Ad ogni accesso è possibile creare un'upsert 
-```
-/accesses/upsert-one?ip=127.0.0.1
-{
-  "$inc": { "access_count": 1 },
-  "$setOnInsert": { "first_access_user_agent" : "Chrome blabla" },
-  "$setCurrentDate": { "last_chrome_access": 1 },
-  "$push": { "user_agents", "Chrome blabla" }
-}
-```
-In questo modo "access_count" viene sempre incrementato di uno, "first_access_user_agent" viene settato solo la prima volta, "last_chrome_access" viene settato all'ultimo accesso di un browser chrome (che quindi il client, in base al browser, può scegliere di fare o non fare) e "user_agents" continua ad essere aggiornato costantemente aggiungendo sempre lo user agent.
-Il tutto a prescindere se l'ip è già stato censito o meno. La differenza con la PATCH è esattamente quello: l'esistenza di un record sul DB. Se il DB non contenesse l'ip "127.0.0.1", la patch infatti in questo caso tornerebbe 0 risultati aggiornati mentre l'upsert one ne inserirebbe uno. Questo per evitare lato client il check dell'esistenza del dato. 
-Comunque, come detto, anche il server in questo caso non farebbe un'azione atomica ma l'intervallo di tempo tra le due operazioni è decisamente basso poichè fatto dal database stesso invece che dal client HTTP.
-
-Sulla "$mul" non saprei che dire però, ma nel complesso era più difficile togliere la funzionalità che lasciarla. In teoria si può utilizzare la mul per fare un booleano: moltiplicando infatti il dato per "-1" è possibile tracciare sul database un booleano con valori "1" e "-1".
-```
------------------------------------
 
 #### Insert multiple documents
 
@@ -600,7 +574,7 @@ Returns an array of documents with only the properties requested.
 ```
 
 > **Note**: the selection of inner object fields is not supported.
-:
+
 #### Combine all together
 
 You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients do the following request.
@@ -700,161 +674,14 @@ curl --request GET \
 
 The result will be sorted from the nearest from the farthest.
 
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-DA QUI TUTTO DA RIVEDERE
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
-
 ### Update
 
 To update a resource it is sufficient to invoke a PUT passing in the body the resource to be updated with its *id*.
-For example, if I add the super power *flight* to Ms. Marvel, I have to pass in the body the id and the array with the super powers
-
-```json
-{"id":"ff447759-6a35-405d-89ed-dec38484b6c4",
-"powers":["superhuman strength","speed","stamina","durability","energy projection and absorption","flight"]}
-```
-
-In return I get the updated resource
-
-> Attention: if you want to update a Resource, send only the modified properties to the body to not overwrite
-> properties modified by others.
-
-#### Patching array items
-
-#### Patching array items
-
-  - Support for patching array documents. The `$set` command works properly on both primitive and `RawObject` document types, by using `array.$.replace` and `array.$.merge` as keys in the `$set` command object.
-  This feature involves the following CRUD operations:
-    - Patch by ID
-    - Patch many
-    - Patch bulk
-  - `array.$.replace` Replace entirely the query-matching array document with the content passed as value.
-  - `array.$.merge`   Edits only the specified fields of the query-matching array document with the content passed as value.
-
-See below for some sample cURLs for **/PATCH** */books-endpoint/{:id}*   where ```_q={"attachments.name": "John Doe", _st: "PUBLIC"}```
-
-**Case Merge**
-
-```bash
-curl -X PATCH "http://crud-service:3000/books-endpoint/5cf83b600000000000000000?_q=%7B%22attachments.name%22%3A%20%22John%20Doe%22%7D&_st=PUBLIC" -H "accept: application/json" -H "Content-Type: application/json" -d "{ "$set": { "attachments.$.merge": { "name": "renamed attachment" } }}"
-
-```
-
-**Case Replace**
-
-```bash
-curl -X PATCH "http://crud-service:3000/books-endpoint/5cf83b600000000000000000?_q=%7B%22attachments.name%22%3A%20%22John%20Doe%22%7D&_st=PUBLIC" -H "accept: application/json" -H "Content-Type: application/json" -d "{ "$set": { "attachments.$.replace": { "name": "renamed attachment", content: "Lorem ipsum dolor sit amet", "state": "attached" } }}"
-```
-
-#### Nullable function
-
-!!! warning
-    If at the time of the insert I specified a NULL field that I did not declare nullable converts it to 0 (integer) or empty string
 
 ### Delete
 
-To delete a resource I have two options:
+To delete a resource just call DELETE with _id.
 
- - Delete it permanently with a DELETE request
- - Put it in the trash
-
-To put it in the trash can simply set *trash* to 1 (for details see the section [Base fields of a resource] (# base))
-
-To delete it permanently
-
-```bash
-curl -X DELETE https://your-url/heroes/ -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret" -d "{  \"id\": \"yourid\"}"
-```
-
-#### Delete all documents
-
-It is possible to eliminate all the documents of a collection at a stroke. For this it is sufficient to invoke the DELETE with the endpoint /empty of the resource.
-
-```bash
-curl -X DELETE https://your-url/heroes/empty -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret123"
-```
-
-### Other features
-
-#### Validate
-
-TODO
-
-#### JoinService
-
-This  service provides the join feature against two models. That feature is served on /join/<type>/:from/:to/export, where:
-
-- type: one-to-one or one-to-many or many-to-many
-- from: the collection endpoint from which the join starts
-- to: the collection endpoint which the join ends to
-
-This API responses always in application/application/x-ndjson
-
-------------------------------------------------------------
-
-## How to use CRUD
-
-TODO
-
-### When use it
-
-TODO
-
-### When not use it
-
-TODO
-
-## Use CRUD in Microservices
-
-TODO
-
-### Node.js
-
-TODO
-
-### Java
-
-TODO
-
-### Kotlin
-
-TODO
-
-### Go
-
-TODO
-
-## Sync a CRUD offline
-
-It is possible to sync a CRUD service and a device (mobile or app) after a connection lost and sync back data.
-
-This feature will be available on Mia-Platform v6
-
-------------------------------------------------------------
-
-## Administering CRUD Service
-
-### CRUD Service Configuration
-
-TODO env vars and prerequisite
-
-### CRUD Service status monitoring
-
-TODO health checks
-
-### Log ManagementClient
-
-TODO
-
-### Troubleshooting
-
-TODO
 
 ### CRUD Limits
 
@@ -884,7 +711,3 @@ Success status:
 - **5xx (Server Error Category)**
   - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
   - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
-
-## Further Readings
-
-  TODO
