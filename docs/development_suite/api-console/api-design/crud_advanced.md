@@ -162,3 +162,8 @@ To create a new index select **create new**.
 Once you named the index you need to choose among: geo, hash or TTL. Then, you can choose whether to make the index unique by ticking "unique".
 
 ![Indice](img/indexes.png)
+
+### How to use CRUD
+
+In this section you can learn how to use API exposed by CRUD services.
+[CRUD API Documentation](/runtime_suite/crud-service/)
