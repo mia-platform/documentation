@@ -346,3 +346,4 @@ In the lower part of the screens there are the pagination controls useful to con
 By clicking on the arrow next to the username, the logout pop-up will appear to log out from the CMS.
 
 ![image alt text](img/image_29.png)
+

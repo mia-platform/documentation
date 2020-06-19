@@ -5,6 +5,8 @@ copyright: Mia srl. All rights reserved.
 plugins:
   - search
   - monorepo
+  - minify:
+      minify_html: true
 
 nav:
 - Home:
@@ -22,14 +24,18 @@ nav:
   - Set Up Infrastructure:
     - Configure Auth0: 'development_suite/set-up-infrastructure/auth-0-setup.md'
     - Manage Environment Variables: 'development_suite/set-up-infrastructure/env-var.md'
+    - Create Project: 'development_suite/set-up-infrastructure/create-project.md'
   - Design:
     - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
     - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
     - Services:
        - Manage your Microservices from the Dev Console: 'development_suite/api-console/api-design/services.md'
+       - Marketplace: 'development_suite/api-console/api-design/marketplace.md'
        - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
        - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
        - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
+    - CronJob:
+        - Create and Manage Cronjob: 'development_suite/api-console/api-design/jobs-cronjob.md'
 
     - PRE/POST: 'development_suite/api-console/api-design/decorators.md'
     - Endpoints: 'development_suite/api-console/api-design/esponi_api.md'
@@ -97,6 +103,10 @@ nav:
          - Configuration: 'runtime_suite/mongodb-reader/service-configuration.md'
          - Filters: 'runtime_suite/mongodb-reader/filters.md'
          - ACL: 'runtime_suite/mongodb-reader/aclrows.md'
+       - Timer Service:
+         - Introduction: 'runtime_suite/timer-service/index.md'
+         - Configuration: 'runtime_suite/timer-service/configuration.md'
+         - Usage: 'runtime_suite/timer-service/usage.md'
     - Privacy & Security:
       - Access Management:
         - Auth Service: 'runtime_suite/auth-service.md'
@@ -127,11 +137,23 @@ nav:
   - Data Visualization:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
 
-- Fast Data:   
+- Fast Data:
     - Overview: 'fast_data/overview.md'
 
 - Release Notes:
-    - Platform: 'release_notes/platform_releasenotes.md'
+    - Platform:
+      - Platform v5:
+        - Platform v5.8: 'release_notes/platform_5-8-0_releasenotes.md'
+        - Platform v5.7: 'release_notes/platform_5-7-0_releasenotes.md'
+        - Platform v5.6: 'release_notes/platform_5-6-0_releasenotes.md'
+        - Platform v5.5: 'release_notes/platform_5-5-0_releasenotes.md'
+        - Platform v5.4: 'release_notes/platform_5-4-0_releasenotes.md'
+        - Platform v5.3: 'release_notes/platform_5-3-0_releasenotes.md'
+        - Platform v5.2: 'release_notes/platform_5-2-0_releasenotes.md'
+        - Platform v5.1: 'release_notes/platform_5-1-0_releasenotes.md'
+        - Platform v5.0: 'release_notes/platform_5-0-0_releasenotes.md'
+      - Platform previous versions: 'release_notes/platform_releasenotes.md'
+    - Support Policy: 'release_notes/support-policy.md'
 
 - Guidelines:
     - Glossary: 'guidelines/glossary.md'
@@ -168,18 +190,21 @@ theme:
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
-  feature:
-    tabs: 'true'
-  extra:
-    social:
-      - type: globe
-        link: https://www.mia-platform.eu/
-      - type: linkedin
-        link: https://www.linkedin.com/company/mia-platform/
+  features:
+    - tabs
+    - instant
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://www.mia-platform.eu/
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/mia-platform/
 
 google_analytics:
   - 'UA-122091925-1'
   - 'auto'
+
 markdown_extensions:
   - admonition
   - pymdownx.arithmatex
@@ -194,7 +219,15 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js

@@ -109,7 +109,7 @@ Here's an example of the file to upload.
     "nullable": false
   },
   {
-    "name": "address",
+    "name": "Writer",
     "type": "RawObject",
     "required": false,
     "crypted": true,
@@ -130,13 +130,12 @@ Here's an example of the file to upload.
     "nullable": false
   },
   {
-  "name":"Shops",
-  "type":"Array_RawObject",
-  "required":true,
-  "crypted":false,
-  "nullable":true,
-  "description":"where to find the books"
-
+    "name":"shops",
+    "type":"Array_RawObject",
+    "required":true,
+    "crypted":false,
+    "nullable":true,
+    "description":"where to find the books"
   }
 
 ```
@@ -149,7 +148,14 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 
 ![tabella_prop](img/tabella-cestino.png)
 
-### Indexes
+
+!!! Warning
+
+    the collection **has not yet been saved** it is necessary to continue the process described below
+
+
+
+##Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
 To create a new index select **create new**.

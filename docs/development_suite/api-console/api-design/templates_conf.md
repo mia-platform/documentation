@@ -1,6 +1,6 @@
 # Template configuration
 
-The Dev-console is able to generate new services starting from a from a git project or from an existing docker image.
+The Dev-console is able to generate new services starting from a git project or from an existing docker image.
 
 To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on Gitlab and to register it in the configuration of the Dev-console.
 
@@ -8,19 +8,26 @@ The templates must be registered in the CRUD, in the `services` collection, indi
 
 ## Template string replaced by dev console during service creation
 
-The Dev-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%`:
+The Dev-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template` and ending with `_placeholder`:
 
-* `% CUSTOM_PLUGIN_IMAGE_NAME%` -> name of the nexus image entered by the user
-* `% CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project
-* `% CUSTOM_PLUGIN_PROJECT_NAMESPACE%` -> namespace of the dev-console project
-* `% CUSTOM_PLUGIN_SERVICE_NAME%` -> service name chosen by the user
-* `% CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user
-* `% CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service
-* `% CUSTOM_PLUGIN_PROJECT_FULL_PATH%` -> full Gitlab path
-* `% GITLAB_PROJECT%` -> name of the Gitlab project entered by the user
-* `% GITLAB_GROUP%` -> name of the user-entered Gitlab group
-* `% GITLAB_BASE_URL%` -> URL base of Gitlab
-* `% NEXUS_HOSTNAME%` -> Nexus hostname
+* `mia_template_image_name_placeholder` -> name of the nexus image entered by the user
+* `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project
+* `mia_template_project_id_placeholder` -> id of the dev-console project
+* `mia_template_service_name_placeholder` -> service name chosen by the user
+* `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user
+* `%CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service
+* `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` -> full Gitlab path
+* `%GITLAB_PROJECT%` -> name of the Gitlab project entered by the user
+* `%GITLAB_GROUP%` -> name of the user-entered Gitlab group
+* `%GITLAB_BASE_URL%` -> URL base of Gitlab
+* `%NEXUS_HOSTNAME%` -> Nexus hostname
+
+The following strings can still be used but are deprecated:
+
+* `%CUSTOM_PLUGIN_IMAGE_NAME%` -> name of the nexus image entered by the user
+* `%CUSTOM_PLUGIN_PROJECT_ID%` -> id of the dev-console project
+* `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%` -> id of the dev-console project
+* `%CUSTOM_PLUGIN_SERVICE_NAME%` -> service name chosen by the user
 
 ## Example of template upload
 
@@ -108,3 +115,64 @@ With the correct template id, `Change existing template` with the id, remove the
 ### Postman collection
 
 [Download this collection](download/template.postman_collection.json) and import into postman.
+
+## How to configure templates default environment variables from CMS
+
+From CMS you can configure the environment variables of each template by adding the property `defaultEnvironmentVariables` inside the data model of each template. By modifying the map of the environment variables, you can overwrite the default environment variables applied by DevOps Console.
+
+To use this feature, you have to fill the `defaultEnvironmentVariables` in this way:
+
+```JSON
+[
+  {
+    "name": "HTTP_PORT",
+    "value": 8080
+  }
+]
+```
+
+!!! info
+
+    You can also add a description field.
+
+Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
+
+```JSON
+  {
+    "id": "5e43d8325686a800116b835b",
+    "pipelines": {
+      "gitlab-ci": {
+        "path": "/projects/782/repository/files/console-pipeline%2Freact-app.gitlab-ci.yml/raw"
+      }
+    },
+    "type": "template",
+    "name": "React Template",
+    "description": "This template allows you to start setting up a front-end project with the React framework",
+    "archiveUrl": "https://github.com/mia-platform-marketplace/React-App-Template/archive/master.tar.gz",
+    "image": [
+      {
+        "_id": "5e53cef5f44d4d00126aae7f",
+        "name": "react.png",
+        "file": "3b5e9a38-262d-4515-b61e-7887fb313beb.png",
+        "size": 7341,
+        "location": "/v2/files/download/3b5e9a38-262d-4515-b61e-7887fb313beb.png"
+      }
+    ],
+    "supportedBy": "Mia-Platform",
+    "supportedByImage": [
+      {
+        "_id": "5db0106143875a0011618816",
+        "name": "e7c7ced2-e40e-465b-9e79-7d5c710badb2.png",
+        "file": "e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+        "size": 139694,
+        "location": "/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png"
+      }
+    ],
+    "defaultEnvironmentVariables": [
+      {
+        "value": 8080,
+        "name": "HTTP_PORT"
+      }
+    ]
+  }
+```

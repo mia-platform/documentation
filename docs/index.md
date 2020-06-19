@@ -1,13 +1,13 @@
 # Mia-Platform documentation
 
 
-Welcome to Mia-Platform Docs, where you can find information to help you learn about Mia-Platform and start exploring its products. 
+Welcome to Mia-Platform Docs, where you can find information to help you learn about Mia-Platform and start exploring its products.
 
 
 Mia‑Platform provides the first end‑to‑end Digital Integration Hub on the market with a full DevOps Lifecycle Management: one unique Console to run Fast Data, Microservices and APIs.
 
 
-Here's an overview of Mia-Platform suite: 
+Here's an overview of Mia-Platform suite:
 
 
 ![Mia-Platform](img/overviewprodotti.png)
@@ -33,7 +33,7 @@ Aggregate and map your data to create real-time Single Views.
 State-of-the-art solution for API Full Lifecycle Management.
 
 
-###More Resources 
+###More Resources
 
 If you want to know more about Mia-Platform, please visit our [Release Note](release_notes/platform_releasenotes.md) and our [Blog](https://blog.mia-platform.eu/en).
 
@@ -46,4 +46,3 @@ When an older version of Mia-Platform is no longer supported, the documentation 
 ###Quickstart
 
 Discover how to create and release a REST API in 5 minutes with [Quickstart with Mia-Platform](development_suite/api-console/api-design/quick_rest_api.md).
-
