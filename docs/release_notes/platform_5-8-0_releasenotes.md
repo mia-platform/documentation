@@ -1,19 +1,20 @@
-# v5.8.0-1 Patch (June 22,2020)
+## v5.8.0-1 Patch (June 22,2020)
 
-## Fixes
+### Fixes
 
 * **Design - CMS**       
     visibility of the "Go to properties" tab in CMS section has been restored.
 
-# v5.8.0 (June 18,2020)
+
+## v5.8.0 (June 18,2020)
 
 !!! bug
 
     This version contains a bug in the Design area that prevents display of the "Go to properties" tab in the CMS section. This bug has been fixed in version 5.8.0-1 Patch.
 
-## New features
+### New features
 
-### New Deploy area version
+#### New Deploy area version
 
 * **Running deployed version**        
     Now, when you select the environment where you want to deploy, you can visualize information about **the last successful deploy** on that environment (visibile information is the following: deployed commit, deployment type, user that deployed, duration, time of deployment and logs).
@@ -30,7 +31,7 @@
 
     ![deploy-modal](img/deploy-modal.png)
 
-### New API Portal version
+#### New API Portal version
 
 * **Example section**        
     New section `Example` **shows a response sample** to the API currently opened.
@@ -65,7 +66,7 @@
 * **Fixed files upload**      
     In the API Portal, you can successfully **upload files** on each method identified as `file` field.
 
-## Improvements
+### Improvements
 
 * **Horizontal Launcher Menu**             
     Launcher menu is now **always in the top bar**, making it always visible and accessible from any page. You will not be required anymore to open the left drawer to switch section and the hamburger menu has been removed.
@@ -88,7 +89,7 @@
 
     ![delete-crud](img/delete-crud.png)        
 
-## Fixes
+### Fixes
 
 * **DevOps Console configuration**       
     Status routes of the swagger-aggregator service are now configured correctly **using Mia Platform standard routes**:`/-/healthz` e `/-/ready`
@@ -99,7 +100,7 @@
 * **Design - CRUD**        
     **Alignment** of the `Required` checkbox position in the CRUD section.
 
-## How to update your DevOps Console?
+### How to update your DevOps Console?
 
 !!! warning
 
