@@ -8,6 +8,10 @@
 
 # v5.8.0 (June 18,2020)
 
+!!! bug
+
+    This version contains a bug which does not allow you to visualize the section "Go to properties" in CMS section. This bug has been fixed in version 5.8.0-1 Patch.
+
 ## New features
 
 ### New Deploy area version
