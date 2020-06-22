@@ -1,4 +1,15 @@
+# v5.8.0-1 Patch (June 22,2020)
+
+## Fixes
+
+* **Design - CMS**       
+    visibility of the "Go to properties" tab in CMS section has been restored.
+
 # v5.8.0 (June 18,2020)
+
+!!! bug
+
+    This version contains a bug in the Design area that prevents display of the "Go to properties" tab in the CMS section. This bug has been fixed in version 5.8.0-1 Patch.
 
 ## New features
 
