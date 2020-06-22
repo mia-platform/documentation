@@ -9,7 +9,7 @@
 
 !!! bug
 
-    This version contains a bug which does not allow you to visualize the section "Go to properties" in CMS section. This bug has been fixed in version 5.8.0-1 Patch.
+    This version contains a bug in the Design area that prevents display of the "Go to properties" tab in the CMS section. This bug has been fixed in version 5.8.0-1 Patch.
 
 ## New features
 
