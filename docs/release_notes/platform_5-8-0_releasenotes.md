@@ -3,7 +3,7 @@
 ## Fixes
 
 * **Design - CMS**       
-    Section "Go to properties" in CMS section is visible and usable.
+    visibility of the "Go to properties" tab in CMS section has been restored.
 
 # v5.8.0 (June 18,2020)
 
