@@ -5,7 +5,6 @@
 * **Design - CMS**       
     Section "Go to properties" in CMS section is visible and usable.
 
-
 # v5.8.0 (June 18,2020)
 
 !!! bug
