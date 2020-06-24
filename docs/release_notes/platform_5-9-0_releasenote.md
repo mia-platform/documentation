@@ -25,7 +25,6 @@
 * **Design - Endpoints**      
     You can now create endpoints with **dots inside the name**.
 
-
 ### Fixes
 
 * **Design - Microservice**      
