@@ -23,7 +23,7 @@
 ### Improvements
 
 * **Design - Endpoints**      
-    You can now create endpoints with **dots inside the name**.
+    You can now define new endpoints with **dots inside the path**.
 
 ### Fixes
 
