@@ -7,7 +7,7 @@
 * **Compare services**        
     You can now **compare the services that you are going to deploy** with the services already deployed.
 
-    ![deploy-compare-serv](himg/deploy-compare-serv.png)
+    ![deploy-compare-serv](img/)
 
 * **Experience**       
     **New deployment experience**: when you click the "Deploy" button a new modal appears to inform you about deployment progress.
