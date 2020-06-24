@@ -15,7 +15,7 @@
     ![deploy-release](hmg/deploy-release.png)
 
 
-#### New Deploy area version
+#### Marketplace news
 
 * **Marketplace**      
     The Marketplace experience on GitHub has been improved. Moreover, the new microservice **Go Example** is now available!
