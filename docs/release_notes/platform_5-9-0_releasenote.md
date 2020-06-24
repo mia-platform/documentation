@@ -34,7 +34,7 @@
     When a microservice is created, the **default log parser value is correct** (default value is actually `mia-json` from the list of new available parsers: `mia-json`, `mia-ngnix` and `not parsed`).
 
  **API Portal**      
-    **Rendering error**, created while adding a new `integer` or `number` property, **has been removed**.
+    Fixed **rendering error** thrown when adding a new `number` property to a form.
 
  **API Portal**   
     Custom multipart fields are now **inserted in the request** and contain also each custom property.
