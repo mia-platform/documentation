@@ -25,6 +25,8 @@
 * **Design - Endpoints**      
     You can now create endpoints with **dots inside the name**.
 
+* **Authentication**      
+    Refresh Token can now be configured in order to **increase the sessions duration**.
 
 ### Fixes
 
