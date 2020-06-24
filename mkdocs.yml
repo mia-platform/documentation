@@ -169,6 +169,7 @@ nav:
 
 - Info:
     - Version Policy: 'info/version-policy.md'
+    - Supported Browsers: 'info/supported-browsers.md'
     - Open Source Software in Mia Platform: 'info/oss.md'
     - Audit Process: 'info/audit-process.md'
     - Subprocessor: 'info/subprocessor.md'
