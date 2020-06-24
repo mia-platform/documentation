@@ -29,10 +29,17 @@
 ### Fixes
 
 * **Design - Microservice**      
-    The switch from advanced to standard configuration is now allowed also in the case in which the environment variable does not contains superscripts (e.g. `{{nomeEnv}}` ).
+    The **switch from advanced to standard configuration is now allowed** also in the case in which the environment variable does not contains superscripts (e.g. `{{nomeEnv}}` ).
 
  **Design - Microservice**      
     When a microservice is created, the **default log parser selection is on one of the new parsers**: `mia-json`, `mia-ngnix` and `not parsed`.
 
  **API Portal**      
     **Rendering error**, created while adding a new `integer` or `number` property, **has been removed**.
+
+ **API Portal**   
+    
+
+
+### How to update your DevOps Console?
+
