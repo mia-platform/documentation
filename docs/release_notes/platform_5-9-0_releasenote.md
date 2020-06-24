@@ -37,7 +37,7 @@
     **Rendering error**, created while adding a new `integer` or `number` property, **has been removed**.
 
  **API Portal**   
-    Custom multipart fields are now **inserted in the request**.
+    Custom multipart fields are now **inserted in the request** and contains also each custom property.
 
 
 ### How to update your DevOps Console?
