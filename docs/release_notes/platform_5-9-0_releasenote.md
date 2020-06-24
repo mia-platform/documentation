@@ -5,9 +5,26 @@
 #### New Deploy area version
 
 * **Compare services**        
-    You can now compare the services that you are going to deploy with the services already deployed.
+    You can now **compare the services that you are going to deploy** with the services already deployed.
+
+
+
+* **Experience**       
+    **New deployment experience**: when you click the "Deploy" button a new modal appears to inform you about deployment progress.
+
+
 
 #### New Deploy area version
 
 * **Marketplace**      
-    The Marketplace experience on GitHub has been improved. Moreover, the new Example **Go Example** is now available!
+    The Marketplace experience on GitHub has been improved. Moreover, the new microservice **Go Example** is now available!
+
+### Improvements
+
+
+
+### Fixes
+
+When you switch from advanced to standard configuration, for the environment variables 
+
+Nella sezione microservizi della Console, quando viene disabilitata la configurazione avanzata (quindi quando si passa dalla configurazione avanzata alla standard riportando le variabili d'ambiente contenute nel deployment.yml ), per le variabili il cui valore deve essere interpolato, quindi nel formato '{{nomeEnv}}', se il valore della Env non contiene gli apici  (e.g. {{nomeEnv}} ) il risultato e'
