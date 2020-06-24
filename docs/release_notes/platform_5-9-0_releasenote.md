@@ -42,3 +42,10 @@
 
 ### How to update your DevOps Console?
 
+In case of on-premise Console, to use these features, you have to update:
+
+* Console Backend v3.0.0
+* Console Frontend v1.23.0
+* Kubernetes Service v1.4.2
+* Deploy Website v1.3.1
+* Deploy Service v1.1.0
