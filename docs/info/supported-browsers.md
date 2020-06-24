@@ -15,7 +15,9 @@ Mia Platform DevOps Console is not supported by:
 
 * Internet Explorer;
 
-* Old versions of Chrome, Firefox, Safari and Edge.
+* Old versions of Chrome, Firefox and Safari;
+
+* Other deprecated Browsers.
 
 !!! info
 
