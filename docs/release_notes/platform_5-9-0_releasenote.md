@@ -26,6 +26,6 @@
 
 ### Fixes
 
-When you switch from advanced to standard configuration, for the environment variables 
+* **Design - Microservice**      
+    The switch from advanced to standard configuration is now allowed also in the case in which the environment variable does not contains superscripts (e.g. {{nomeEnv}} ).
 
-Nella sezione microservizi della Console, quando viene disabilitata la configurazione avanzata (quindi quando si passa dalla configurazione avanzata alla standard riportando le variabili d'ambiente contenute nel deployment.yml ), per le variabili il cui valore deve essere interpolato, quindi nel formato '{{nomeEnv}}', se il valore della Env non contiene gli apici  (e.g. {{nomeEnv}} ) il risultato e'
