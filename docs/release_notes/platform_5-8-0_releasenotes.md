@@ -1,3 +1,13 @@
+## v5.8.1 (June 25,2020)
+
+### New features
+
+#### New Deploy area version
+
+* **Compare services**        
+    You can now compare the services that you are going to deploy with the services already deployed.
+
+
 ## v5.8.0-1 Patch (June 22,2020)
 
 ### Fixes
