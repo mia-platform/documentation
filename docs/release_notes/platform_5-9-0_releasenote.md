@@ -31,7 +31,7 @@
     The **switch from advanced to standard configuration is now allowed** also when the environment variable value contains superscripts not enclosed in quotation marks `"` or `'` (e.g. `{{nomeEnv}}`).
 
  **Design - Microservice**      
-    When a microservice is created, the **default log parser selection is on one of the new parsers**: `mia-json`, `mia-ngnix` and `not parsed`.
+    When a microservice is created, the **default log parser value is correct** (default value is actually `mia-json` from the list of new available parsers: `mia-json`, `mia-ngnix` and `not parsed`).
 
  **API Portal**      
     **Rendering error**, created while adding a new `integer` or `number` property, **has been removed**.
