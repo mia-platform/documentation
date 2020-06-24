@@ -1,5 +1,5 @@
 
-In this page you can find guidelines about the Browsers supported by Mia Platform.
+In this page you can find **guidelines about the Browsers supported by Mia Platform**.
 
 Mia Platform DevOps Console is supported by the following Browsers:
 
