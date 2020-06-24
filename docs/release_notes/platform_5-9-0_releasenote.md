@@ -37,7 +37,7 @@
     Fixed **rendering error** thrown when adding a new `number` property to a form.
 
  **API Portal**   
-    Custom multipart fields are now **inserted in the request** and contain also each custom property.
+    Custom multipart fields are now **inserted in the request** towards the API.
 
 
 ### How to update your DevOps Console?
