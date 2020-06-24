@@ -18,7 +18,7 @@
 #### Marketplace news
 
 * **Marketplace**      
-    The Marketplace experience on GitHub has been improved. Moreover, the new microservice **Go Example** is now available!
+    The Marketplace repositories on GitHub have been improved with guides and tutorials for most of the template and examples. Moreover, the new microservice **Go Example** is now available!
 
 ### Improvements
 
