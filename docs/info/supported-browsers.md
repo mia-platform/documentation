@@ -17,6 +17,8 @@ Mia Platform DevOps Console is not supported by:
 
 * Old versions of Chrome, Firefox, Safari and Edge.
 
-Mia Platform suggests you to **keep your Browser updated** to the last version released.
+!!! info
+
+    Mia Platform suggests you to keep your Browser always updated to the last version released.
 
 
