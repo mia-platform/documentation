@@ -30,18 +30,18 @@
 * **Design - Microservice**      
     The **switch from advanced to standard configuration is now allowed** also when the environment variable value contains superscripts not enclosed in quotation marks `"` or `'` (e.g. `{{nomeEnv}}`).
 
- **Design - Microservice**      
-    When a microservice is created, the **default log parser value is correct** (default value is actually `mia-json` from the list of new available parsers: `mia-json`, `mia-ngnix` and `not parsed`).
+* **Design - Microservice**      
+    When a microservice is created, the **default log parser value is correct** (default value is now `mia-json` from the list of new available parsers: `mia-json`, `mia-ngnix` and `not parsed`).
 
- **API Portal**      
-    Fixed **rendering error** thrown when adding a new `number` property to a form.
+* **API Portal**      
+    Fixed **rendering error** thrown when a new `number` property is added to a form.
 
- **API Portal**   
+* **API Portal**   
     Custom multipart fields are now **inserted in the request** towards the API.
 
 !!! info
 
-    API Portal has been updated to v1.11.2. To udate your API Portal, you have to save the DevOps Console configuration and deploy.
+    API Portal has been updated to v1.11.2. To update your API Portal, you have to save the DevOps Console configuration and deploy.
 
 
 ### How to update your DevOps Console?
