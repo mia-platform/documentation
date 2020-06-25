@@ -44,7 +44,11 @@
 
 In case of on-premise Console, to use these features, you have to update:
 
-* Console Backend v3.0.0
+* Console Backend v3.0.0 (`nexus.mia-platform.eu/api-console/backend:3.0.0`)
+* Console Frontend v1.23.0 (`nexus.mia-platform.eu/api-console/website:1.23.0`)
+* Kubernetes Service v1.4.2 (`nexus.mia-platform.eu/dev-portal/kubernetes-service:1.4.2`)
+* Deploy Website v1.3.1 (`nexus.mia-platform.eu/console/deploy-website:1.3.1`)
+* Deploy Service v1.1.0 (`nexus.mia-platform.eu/console/deploy-service:1.1.0`)
 * Console Frontend v1.23.0
 * Kubernetes Service v1.4.2
 * Deploy Website v1.3.1
