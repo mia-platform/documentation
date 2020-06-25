@@ -7,12 +7,12 @@
 * **Compare services**        
     You can now **compare the services that you are going to deploy** with the services already deployed.
 
-    ![deploy-service](himg/deploy-service.png)
+    ![deploy-service](img/deploy-service.png)
 
 * **Experience**       
     **New deployment experience**: when you click the "Deploy" button a new modal appears to inform you about deployment progress.
 
-    ![deploy-release](hmg/deploy-release.png)
+    ![deploy-release](img/deploy-release.png)
 
 
 #### Marketplace news
