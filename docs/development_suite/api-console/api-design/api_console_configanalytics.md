@@ -110,7 +110,7 @@ The phase of configuration of the Y-axis occurs only in the case of analytics wi
 
 Click on "next" to go further.
 
-## **Step 5: Avanvanced**
+## **Step 5: Advanced**
 
 In advanced you can choose the time frame of the data that you want to show in the configured analytic. In the case of a *custom-stock chart* under the heading **Zoom**, the following formats can be chosen: day, week, month, quarter, half year, year, all the time available.
 
