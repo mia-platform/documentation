@@ -18,7 +18,7 @@
 #### Marketplace news
 
 * **Marketplace**      
-    The Marketplace repositories on GitHub have been improved with guides and tutorials for most of the template and examples. Moreover, the new microservice **Go Example** is now available!
+    The Marketplace repositories on GitHub have been improved with guides and tutorials for most of the template and examples. Moreover, the **new microservice** [Go Example](https://github.com/mia-platform-marketplace/Go-Hello-World-Microservice-Example/blob/master/README.md) is now available!
 
 ### Improvements
 
