@@ -9,7 +9,13 @@ Mia Platform DevOps Console is supported by the following Browsers:
 
 * Safari;
 
-* Edge.
+* Edge;
+
+* Opera;    
+
+* Vivaldi;
+
+* Brave.
 
 Mia Platform DevOps Console is not supported by:
 
