@@ -1,7 +1,9 @@
 
 In this page you can find **guidelines about the Browsers supported by Mia Platform**.
 
-Mia Platform DevOps Console is supported by the following Browsers:
+## Supported Browsers
+
+Use Mia Platform DevOps Console with the latest version of any supported browser:
 
 * Chrome;
 
@@ -16,6 +18,8 @@ Mia Platform DevOps Console is supported by the following Browsers:
 * Vivaldi;
 
 * Brave.
+
+## Unsupported Browsers
 
 Mia Platform DevOps Console is not supported by:
 
