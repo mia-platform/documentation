@@ -11,7 +11,7 @@
 ### Improvements
 
 * **Design - Microservices**        
-    In the microservice detail page, now you can edit the tag assigned from DevOps Console to the microservice. 
+    In the microservice detail page, now you can **edit the tag** assigned from DevOps Console to the microservice. 
     
     ![microservice-tag](img/microservice-tag.png)
 
@@ -24,7 +24,11 @@
     ![browsers-message](img/browsers-message.png)
 
 * **Design - Endpoint**        
-    With the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the Delete button is now at the footer of the page.
+    Now DevOps Console allows you to **create Endpoints with dots in the path**. 
+
+
+* **Design - Endpoint**        
+    With the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
 
     ![endpoint-header-footer](img/endpoint-header-footer.png)
     
