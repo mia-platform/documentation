@@ -8,9 +8,6 @@
 
     ![cron-config](/img/cron-config.png)
 
-* **Marketplace**          
-    The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
-
 ### Improvements
 
 * **Environment Variables**        
@@ -21,8 +18,8 @@
     
     ![microservice-tag](img/microservice-tag.png)
 
-* **Design - Marketplace**        
-    Documentation di Filippo??
+* **Marketplace**          
+    The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
 
 * **Checkpoints**        
     The concept of level for checkpoints has been introduced.
