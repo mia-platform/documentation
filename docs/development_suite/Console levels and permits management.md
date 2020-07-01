@@ -1,7 +1,7 @@
 # Console levels and permits management
 
 Assigning different roles and permissions to each user is a key action for defining responsibilities within your platform ecosystem. 
-The DevOps Console offers a preset set of groups and permissions to be assigned to users. 
+The DevOps Console offers a preset groups and permissions to be assigned to users. 
 Let's see how they are configured. 
 
 ## Console Levels
@@ -15,6 +15,8 @@ The DevOps Console is a hierarchical structure on three levels:
 3. **Project Level**  is the third level of the console. The projects are the heart of the DevOps Console, it is in fact at this level that developers find themselves developing to create their own platform. 
 
 ## User groups by console level
+
+For each level of the hierarchical structure the console offers a set of groups with associated permissions to assign different users.
 
 ### DevOps Console Group
 
