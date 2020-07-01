@@ -10,6 +10,9 @@
 
 ### Improvements
 
+* **Environment Variables**        
+    In order to support multiple docker image pull secret name, you can now replace the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` with the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS`.
+
 * **Design - Microservices**        
     In the microservice detail page, now you can **edit the tag** assigned from DevOps Console to the microservice. 
     
