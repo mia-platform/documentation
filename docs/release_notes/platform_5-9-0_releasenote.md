@@ -21,7 +21,7 @@
 * **Marketplace**          
     The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
 
-* **Checkpoints**        
+* **Timeline**        
     The concept of level for checkpoints has been introduced.
 
 * **Browsers**        
