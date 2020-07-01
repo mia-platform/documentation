@@ -20,7 +20,7 @@ For each level of the hierarchical structure the console offers a set of groups 
 
 ### DevOps Console Group
 
-The only user group present at this level is the **console admin**. The console admins are the only ones who have access to the CMS and can create and manage the various tenants.
+The only user group present at this level is the **console admin**. The console admins are the only ones having access to the Console CMS and being able to manage the entire Console, the tenants, the projects, the Marketplace and can create and manage the various tenants.
 
 ### Tenant Groups
 
@@ -42,7 +42,7 @@ The user groups present at this level are:
 
 - **Project Admin**: the project admin user group has all existing permissions whithin specific projects level. It has both read and edit permissions on all information and functionality in both production and non-production environments;
 
-- **Project Developer**: the user defined as a project developer, unlike the project admin, can neither create nor modify projects but only view information about the project he is working on. He also has no access to the Production Log&Monitoring nor can he view the production environment variables;
+- **Project Developer**: the user defined as a project developer, unlike the project admin, can neither create nor modify projects but only view information about the project he is working on. He also has no access to the Production Log&Monitoring nor can he view the secret production environment variables;
 
 - **Project Reader**: the user defined as project reader has few and selected read-only permissions in the areas of project information, set up, design, deploy, dashboard and Log&Monitoring. The project reader cannot access the Debug area nor modify or deploy the project;
 
