@@ -21,7 +21,7 @@
     The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
 
 * **CMS - Timeline**        
-    Now you can have the possibility to pass the attribute `level` (level 1 or level 2) to the checkpoint in order to have two different hierarchical levels of checkpoints.
+    The concept of hierarchy between checkpoints has been introduced in the Timeline web application, you can now use the `level` property (`1` or `2`) in order to show them with different sizes.
 
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers, a new page will show you the message `not supported browser IE`. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
