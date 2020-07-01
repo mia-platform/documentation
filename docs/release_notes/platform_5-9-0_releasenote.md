@@ -11,6 +11,8 @@
 
 ### Fixes
 
+* **Debug**      
+    Debug section does not show anymore the field `namespace`, but uses the field `projectId`.
 
 ### How to update your DevOps Console?
 
