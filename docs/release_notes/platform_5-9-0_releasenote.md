@@ -6,12 +6,14 @@
 * **Design - CronJobs**        
     Now you can **create and manage configmaps** in the CronJobs section in order to generateyour own custom configurations.
 
+    ![cron-config](/img/cron-config.png)
+
 ### Improvements
 
 * **Design - Microservices**        
     In the microservice detail page, now you can edit the tag assigned from DevOps Console to the microservice. 
     
-    
+    ![microservice-tag](img/microservice-tag.png)
 
 * **Design - Marketplace**        
     Documentation ??
