@@ -16,15 +16,15 @@ During the period of your Mia Cloud Hosting Services, Mia S.r.l. will use any co
 
 ## Service Levels        
 
-The service levels define the percentage of the **Service Time** that will be guaranteed as available monthly (Monthly Service Availability (Uptime)).
+The service levels define the percentage of the **Monthly Service Time** that will be guaranteed as available monthly (Monthly Service Availability (Uptime)).
 
 The two possible service levels are:
 
-* **Basic**: which defines that for 99% of the Service Time, the Service itself will be guaranteed as available; 
+* **Basic**: which defines that for 99% of the Monthly Service Time, the Service itself will be guaranteed as available; 
 
-* **Advanced**: which defines that for 99.5% of the Service Time, the Service itself will be guaranteed as available;
+* **Advanced**: which defines that for 99.5% of the Monthly Service Time, the Service itself will be guaranteed as available;
 
-Mia S.r.l. undertakes, towards the Customer, to offer, with due diligence, the services of infrastructural monitoring and infrastructural assistance, according to the agreed service time and according to the type of service level (**SLA**) indicated by the Customer in the Subscription Form between the two options below.
+Mia S.r.l. undertakes, towards the Customer, to offer, with due diligence, the services of infrastructural monitoring and infrastructural assistance, according to the agreed service time and according to the type of service level (**SLA**) indicated by the Customer in the Subscription Form between the two options below:
 
 Service Level | Service Time Guaranteed 
 -------| -------|
