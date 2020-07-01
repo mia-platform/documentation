@@ -21,6 +21,7 @@ nav:
 
 - DevOps Console:
   - Overview: 'development_suite/overview-dev-suite.md'
+  - Permission Management: 'development_suite/Console levels and permits management.md'
   - Set Up Infrastructure:
     - Configure Auth0: 'development_suite/set-up-infrastructure/auth-0-setup.md'
     - Manage Environment Variables: 'development_suite/set-up-infrastructure/env-var.md'
