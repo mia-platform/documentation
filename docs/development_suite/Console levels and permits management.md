@@ -30,7 +30,7 @@ The user groups present at this level are:
 
 - **Tenant Operations Prod**: users defined as Tenant Operations Prod unlike Tenant Admin do not have access to Debug functionality. They have access to all information and all other project functionality but with read only permissions;
 
-- **Tenant Operations NO Prod**: users defined as Tenant Operations NO Prod have the same rights as Tenant Operations Prod but have permissions limited to environments other than the production.
+- **Tenant Operations NO Prod**: users defined as Tenant Operations NO Prod have the same rights as Tenant Operations Prod but have permissions limited to environments other than the production one.
 
 ### Projects Groups
 
@@ -38,7 +38,16 @@ User groups in this level have limited access to one or more projects they have 
 
 The user groups present at this level are:
 
-- **Project Admin**: the project admin user group has all existing permissions whithin specific projects level. It has both read and edit permissions on all information and functionality in both production and non-production environments.
+- **Project Admin**: the project admin user group has all existing permissions whithin specific projects level. It has both read and edit permissions on all information and functionality in both production and non-production environments;
+
+- **Project Developer**: the user defined as a project developer, unlike the project admin, can neither create nor modify projects but only view information about the project he is working on. He also has no access to the Production Log&Monitoring nor can he view the production environment variables;
+
+- **Project Reader**: the user defined as project reader has few and selected read-only permissions in the areas of project information, set up, design, deploy, dashboard and Log&Monitoring. The project reader cannot access the Debug area nor modify or deploy the project;
+
+- **Project Operations Prod**: the user defined as Project Operations Prod has extended permissions related to the projects to which it is assigned, in all the different environments. Unlike the project admin, he cannot create or edit projects, nor access the Debug section;
+
+- **Project Operations NO Prod**: users defined as Project Operations NO Prod have the same rights as Project Operations Prod but have permissions limited to environments other than the production one.
+
 
 
 
