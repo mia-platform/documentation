@@ -16,7 +16,7 @@ The DevOps Console is a hierarchical structure on three levels:
 
 ## User groups by console level
 
-### DevOps Console Groups
+### DevOps Console Group
 
 The only user group present at this level is the **console admin**. The console admins are the only ones who have access to the CMS and can create and manage the various tenants.
 
