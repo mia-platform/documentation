@@ -1,4 +1,4 @@
-# Console levels and permits management
+# Console levels and permission management
 
 Assigning different roles and permissions to each user is a key action for defining responsibilities within your platform ecosystem. 
 The DevOps Console offers a preset groups and permissions to be assigned to users. 
