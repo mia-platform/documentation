@@ -19,7 +19,10 @@
     ![microservice-tag](img/microservice-tag.png)
 
 * **Design - Marketplace**        
-    Documentation ??
+    Documentation di Filippo??
+
+* **Checkpoints**        
+    The concept of level for checkpoints has been introduced.
 
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers, a new page will show you the message `not supported browser IE`. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
@@ -28,7 +31,6 @@
 
 * **Design - Endpoint**        
     Now DevOps Console allows you to **create Endpoints with dots in the path**. 
-
 
 * **Design - Endpoint**        
     With the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
