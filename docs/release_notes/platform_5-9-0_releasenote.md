@@ -8,6 +8,9 @@
 
     ![cron-config](/img/cron-config.png)
 
+* **Marketplace**          
+    The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
+
 ### Improvements
 
 * **Environment Variables**        
