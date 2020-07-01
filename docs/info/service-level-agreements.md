@@ -43,7 +43,11 @@ Mia S.r.l. undertakes to promptly manage the incident reported by the Client. In
 
 ## SLA Exclusions
 
-* one
+The SLA does not apply to any unavailability of the Mia Cloud Hosting Services:
+
+1. That results from (i) a suspension described in Section 6.6 of the Agreement (Late Payments) or (ii) Customer’s misuse of the Confluent Cloud Service in violation of Section 3 of the Agreement (Acceptable Use);
+
+
 * two
 * three
 
