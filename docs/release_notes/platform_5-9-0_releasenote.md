@@ -1,3 +1,20 @@
+## v5.9.1 (July 2,2020)
+
+
+### New features
+
+* **Design - CronJobs**        
+    Now you can **create and manage configmaps** in the CronJobs section in order to generateyour own custom configurations.
+
+### Improvements
+
+
+### Fixes
+
+
+### How to update your DevOps Console?
+
+
 ## v5.9.0 (June 25,2020)
 
 ### New features
