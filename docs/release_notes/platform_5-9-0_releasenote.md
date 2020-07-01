@@ -8,6 +8,13 @@
 
 ### Improvements
 
+* **Design - Microservices**        
+    In the microservice detail page, now you can edit the tag assigned from DevOps Console to the microservice. 
+    
+    
+
+* **Design - Marketplace**        
+    Documentation ??
 
 ### Fixes
 
