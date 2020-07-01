@@ -3,7 +3,7 @@
 ### New features
 
 * **Design - CronJobs**        
-    Now you can **create and manage configmaps** in the CronJobs section in order to generateyour own custom configurations.
+    Now you can **create and edit custom configurations** for your CronJobs.
 
     ![cron-config](/img/cron-config.png)
 
