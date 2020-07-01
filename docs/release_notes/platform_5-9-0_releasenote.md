@@ -1,6 +1,5 @@
 ## v5.9.1 (July 2,2020)
 
-
 ### New features
 
 * **Design - CronJobs**        
@@ -24,7 +23,6 @@
 * **CMS - Timeline**        
     Now you can have the possibility to pass the attribute `level` (level 1 or level 2) to the checkpoint in order to have two different hierarchical levels of checkpoints.
 
-
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers, a new page will show you the message `not supported browser IE`. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
 
@@ -38,7 +36,6 @@
 
     ![endpoint-header-footer](img/endpoint-header-footer.png)
     
-
 ### Fixes
 
 * **Debug**      
