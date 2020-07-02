@@ -31,6 +31,9 @@
     ![browsers-message-2](img/browsers-message-2.png)
 
 * **Design - Endpoint**        
+    When you remove a POST Decorator from an Endpoint, a message will appear to **notify you about the changes**. 
+
+* **Design - Endpoint**        
     Now DevOps Console allows you to **create Endpoints with dots in the path**. 
 
 * **Design - Endpoint**        
