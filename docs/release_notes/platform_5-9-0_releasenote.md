@@ -20,6 +20,11 @@
 * **CMS - Timeline**        
     The concept of **hierarchy between checkpoints** has been introduced in the Timeline web application. You can now use the `level` property (`1` or `2`) in order to display them with different sizes.
 
+* **Design - Microservices**        
+    Now you can **configure the API documentation path** in each microservice detail.
+
+    ![api-documentation-path](img/api-documentation-path.png)
+
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers (IE), a new page is shown. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
 
