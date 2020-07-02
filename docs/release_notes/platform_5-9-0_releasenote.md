@@ -7,6 +7,11 @@
 
     ![cron-config](img/cron-config.png)
 
+* **Design - Microservices**        
+    Now you can **configure the API documentation path** in each microservice detail.
+
+    ![api-documentation-path](img/api-documentation-path.png)
+
 ### Improvements
 
 * **Design - Microservices**        
@@ -20,10 +25,10 @@
 * **CMS - Timeline**        
     The concept of **hierarchy between checkpoints** has been introduced in the Timeline web application. You can now use the `level` property (`1` or `2`) in order to display them with different sizes.
 
-* **Design - Microservices**        
-    Now you can **configure the API documentation path** in each microservice detail.
+* **Design - Endpoint**        
+    Now DevOps Console allows you to **create Endpoints with dots in the path**. Moreover, with the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
 
-    ![api-documentation-path](img/api-documentation-path.png)
+    ![endpoint-header-footer](img/endpoint-header-footer.png)
 
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers (IE), a new page is shown. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
@@ -31,15 +36,7 @@
     ![browsers-message-2](img/browsers-message-2.png)
 
 * **Design - Endpoint**        
-    When you remove a POST Decorator from an Endpoint, a message will appear to **notify you about the changes**. 
-
-* **Design - Endpoint**        
-    Now DevOps Console allows you to **create Endpoints with dots in the path**. 
-
-* **Design - Endpoint**        
-    With the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
-
-    ![endpoint-header-footer](img/endpoint-header-footer.png)
+    When you remove a POST Decorator from an Endpoint, a message will appear to **notify you about the changes**.    
     
 ### Fixes
 
@@ -48,7 +45,7 @@
     Microservice Gateway has been updated to v5.2.0, which avoids unexpected restarts of the service caused by not supported content types.
 
 * **Debug**      
-    Debug section **does not show anymore the field undefined**.
+    Debug section does not show anymore the **undefined** fields `namespace`.
 
 ### How to update your DevOps Console?
 
