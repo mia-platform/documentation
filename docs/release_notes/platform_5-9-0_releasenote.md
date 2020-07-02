@@ -1,3 +1,64 @@
+## v5.9.1 (July 2,2020)
+
+### New features
+
+* **Design - CronJobs**        
+    Now you can **create and manage custom configurations** for your CronJobs.
+
+    ![cron-config](/img/cron-config.png)
+
+### Improvements
+
+* **Design - Microservices**        
+    In the microservice detail page, now you can **edit the tag** assigned from DevOps Console to the microservice. 
+    
+    ![microservice-tag](img/microservice-tag.png)
+
+* **Marketplace**          
+    The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
+
+* **CMS - Timeline**        
+    The concept of **hierarchy between checkpoints** has been introduced in the Timeline web application. You can now use the `level` property (`1` or `2`) in order to display them with different sizes.
+
+* **Browsers**        
+    DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers (IE), a new page is shown. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
+
+    ![browsers-message](img/browsers-message.png)
+
+* **Design - Endpoint**        
+    Now DevOps Console allows you to **create Endpoints with dots in the path**. 
+
+* **Design - Endpoint**        
+    With the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
+
+    ![endpoint-header-footer](img/endpoint-header-footer.png)
+    
+### Fixes
+
+!!! info
+
+    Microservice Gateway has been updated to v5.2.0, which avoids unexpected restarts of the service caused by not supported content types.
+
+* **Debug**      
+    Debug section **does not show anymore the field undefined**.
+
+### How to update your DevOps Console?
+
+!!! warning
+
+    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of registries.
+
+In case of on-premise Console, to use these features, you have to update:
+
+* Deploy Service v1.1.1 (`nexus.mia-platform.eu/console/deploy-service:1.1.1`) 
+
+* Console Backend v3.1.0 (`nexus.mia-platform.eu/api-console/backend:3.1.0`)
+
+* Console Website v1.24.0 (`nexus.mia-platform.eu/api-console/website:1.24.0`) 
+
+* Test Debug Website: v1.0.1 (`nexus.mia-platform.eu/console/test-debug-website:1.0.1`) 
+
+
 ## v5.9.0 (June 25,2020)
 
 ### New features
