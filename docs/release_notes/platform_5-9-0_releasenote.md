@@ -3,7 +3,7 @@
 ### New features
 
 * **Design - CronJobs**        
-    Now you can **create and maange custom configurations** for your CronJobs.
+    Now you can **create and manage custom configurations** for your CronJobs.
 
     ![cron-config](/img/cron-config.png)
 
@@ -18,7 +18,7 @@
     The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
 
 * **CMS - Timeline**        
-    The concept of hierarchy between checkpoints has been introduced in the Timeline web application, you can now use the `level` property (`1` or `2`) in order to show them with different sizes.
+    The concept of **hierarchy between checkpoints** has been introduced in the Timeline web application. You can now use the `level` property (`1` or `2`) in order to display them with different sizes.
 
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers (IE), a new page is shown. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
@@ -44,6 +44,10 @@
 
 ### How to update your DevOps Console?
 
+!!! warning
+
+    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of registries.
+
 In case of on-premise Console, to use these features, you have to update:
 
 * Deploy Service v1.1.1 (`nexus.mia-platform.eu/console/deploy-service:1.1.1`) 
@@ -53,11 +57,6 @@ In case of on-premise Console, to use these features, you have to update:
 * Console Website v1.24.0 (`nexus.mia-platform.eu/api-console/website:1.24.0`) 
 
 * Test Debug Website: v1.0.1 (`nexus.mia-platform.eu/console/test-debug-website:1.0.1`) 
-
-
-!!! warning
-
-    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of registries.
 
 
 ## v5.9.0 (June 25,2020)
