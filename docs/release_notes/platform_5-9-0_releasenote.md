@@ -45,7 +45,7 @@
     Microservice Gateway has been updated to v5.2.0, which avoids unexpected restarts of the service caused by not supported content types.
 
 * **Debug**      
-    Debug section **does not show anymore the field undefined**.
+    Debug section **does not show anymore the fields `namespace` which were undefined**.
 
 ### How to update your DevOps Console?
 
