@@ -31,6 +31,7 @@ nav:
     - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
     - Services:
        - Manage your Microservices from the Dev Console: 'development_suite/api-console/api-design/services.md'
+        - Service Memory Resources: 'development_suite/api-console/api-design/microservice-memory-resources.md'
        - Marketplace: 'development_suite/api-console/api-design/marketplace.md'
        - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
        - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
