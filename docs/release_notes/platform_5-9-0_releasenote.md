@@ -8,8 +8,6 @@
     ![cron-config](/img/cron-config.png)
 
 ### Improvements
-     
-    In order to support multiple docker image pull secret name, you can now replace the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` with the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS`.
 
 * **Design - Microservices**        
     In the microservice detail page, now you can **edit the tag** assigned from DevOps Console to the microservice. 
@@ -42,8 +40,20 @@
 
 ### How to update your DevOps Console?
 
+In case of on-premise Console, to use these features, you have to update:
+
+* deploy-service v1.1.1 (`nexus.mia-platform.eu/console/deploy-service:1.1.1`) 
+
+* Console backend v3.1.0 (`nexus.mia-platform.eu/api-console/backend:3.1.0`)
+
+* Console website v1.24.0 (`nexus.mia-platform.eu/api-console/website:1.24.0`) 
+
+* test-debug-website: v1.0.1 (`nexus.mia-platform.eu/console/test-debug-website:1.0.1`) 
 
 
+!!! warning
+
+    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of registries.
 
 
 ## v5.9.0 (June 25,2020)
