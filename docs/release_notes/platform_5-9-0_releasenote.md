@@ -51,7 +51,7 @@
 
 !!! warning
 
-    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of registries.
+    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of secrets.
 
 In case of on-premise Console, to use these features, you have to update:
 
