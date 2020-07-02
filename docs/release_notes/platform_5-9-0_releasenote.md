@@ -3,7 +3,7 @@
 ### New features
 
 * **Design - CronJobs**        
-    Now you can **create and edit custom configurations** for your CronJobs.
+    Now you can **create and maange custom configurations** for your CronJobs.
 
     ![cron-config](/img/cron-config.png)
 
