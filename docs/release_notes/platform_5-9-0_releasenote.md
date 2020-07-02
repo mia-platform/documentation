@@ -5,7 +5,7 @@
 * **Design - CronJobs**        
     Now you can **create and manage custom configurations** for your CronJobs.
 
-    ![cron-config](/img/cron-config.png)
+    ![cron-config](img/cron-config.png)
 
 ### Improvements
 
