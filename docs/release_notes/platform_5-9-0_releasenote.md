@@ -20,10 +20,18 @@
 * **CMS - Timeline**        
     The concept of **hierarchy between checkpoints** has been introduced in the Timeline web application. You can now use the `level` property (`1` or `2`) in order to display them with different sizes.
 
+* **Design - Microservices**        
+    Now you can **configure the API documentation path** in each microservice detail.
+
+    ![api-documentation-path](img/api-documentation-path.png)
+
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers (IE), a new page is shown. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
 
-    ![browsers-message-1](img/browsers-message-1.png)
+    ![browsers-message-2](img/browsers-message-2.png)
+
+* **Design - Endpoint**        
+    When you remove a POST Decorator from an Endpoint, a message will appear to **notify you about the changes**. 
 
 * **Design - Endpoint**        
     Now DevOps Console allows you to **create Endpoints with dots in the path**. 
@@ -46,7 +54,7 @@
 
 !!! warning
 
-    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of registries.
+    In order to support multiple docker image registries, the environment variable `CUSTOM_PLUGIN_IMAGE_PULL_SECRET` has been renamed to `CUSTOM_PLUGIN_IMAGE_PULL_SECRETS` and now accepts a comma separated list of secrets.
 
 In case of on-premise Console, to use these features, you have to update:
 
