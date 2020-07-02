@@ -6,6 +6,10 @@ Memory Resource, which is measured in bytes, can be expressed as a plain integer
 
 The different suffixes, applied to different integers or a fixed-point integers, can express the same Memory Resource value. For example: 128974848, 129e6, 129M and 123Mi are approximately the same value.
 
+!!! info
+    
+    In the microservice detail of Mia Platform DevOps Console, you can only express the Memory Resource value in Mi.
+
 If the maximum number of Memory Resources is not expressed, there could be two situations:
 
 * The Container can use the whole memory available on the Node. In this case, the probability of the Container to be killed is higher.
