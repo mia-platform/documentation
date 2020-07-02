@@ -42,13 +42,13 @@
 
 In case of on-premise Console, to use these features, you have to update:
 
-* deploy-service v1.1.1 (`nexus.mia-platform.eu/console/deploy-service:1.1.1`) 
+* Deploy Service v1.1.1 (`nexus.mia-platform.eu/console/deploy-service:1.1.1`) 
 
-* Console backend v3.1.0 (`nexus.mia-platform.eu/api-console/backend:3.1.0`)
+* Console Backend v3.1.0 (`nexus.mia-platform.eu/api-console/backend:3.1.0`)
 
-* Console website v1.24.0 (`nexus.mia-platform.eu/api-console/website:1.24.0`) 
+* Console Website v1.24.0 (`nexus.mia-platform.eu/api-console/website:1.24.0`) 
 
-* test-debug-website: v1.0.1 (`nexus.mia-platform.eu/console/test-debug-website:1.0.1`) 
+* Test Debug Website: v1.0.1 (`nexus.mia-platform.eu/console/test-debug-website:1.0.1`) 
 
 
 !!! warning
