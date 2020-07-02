@@ -5,7 +5,7 @@
 * **Design - CronJobs**        
     Now you can **create and manage custom configurations** for your CronJobs.
 
-    ![cron-config](/img/cron-config.png)
+    ![cron-config](img/cron-config.png)
 
 ### Improvements
 
@@ -23,7 +23,7 @@
 * **Browsers**        
     DevOps Console visualization has been **aligned among different Browsers**. For the unsupported Browsers (IE), a new page is shown. To learn more about supported and unsupported browsers, please visit this [page](https://docs.mia-platform.eu/info/supported-browsers/) of Mia Platform Docs.
 
-    ![browsers-message](img/browsers-message.png)
+    ![browsers-message-1](img/browsers-message-1.png)
 
 * **Design - Endpoint**        
     Now DevOps Console allows you to **create Endpoints with dots in the path**. 
