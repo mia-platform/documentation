@@ -17,7 +17,7 @@
 * **Design - Microservices**        
     In the microservice detail page, now you can **edit the tag** assigned from DevOps Console to the microservice. 
     
-    ![microservice-tag](img/microservice-tag.png)
+    ![tag-micro](img/tag-micro.png)
 
 * **Marketplace**          
     The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
@@ -25,8 +25,8 @@
 * **CMS - Timeline**        
     The concept of **hierarchy between checkpoints** has been introduced in the Timeline web application. You can now use the `level` property (`1` or `2`) in order to display them with different sizes.
 
-* **Design - Endpoint**        
-    Now DevOps Console allows you to **create Endpoints with dots in the path**. Moreover, with the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
+* **Design - Endpoint**   
+    With the new header and footer, Endpoint section has been aligned to CRUD, Microservices, Proxies and Cronjobs sections: the **Delete button is now at the footer of the page**.
 
     ![endpoint-header-footer](img/endpoint-header-footer.png)
 
@@ -43,6 +43,9 @@
 !!! info
 
     Microservice Gateway has been updated to v5.2.0, which avoids unexpected restarts of the service caused by not supported content types.
+
+* **Design - Endpoint**        
+    Now DevOps Console allows you to **create Endpoints with dots in the path**.
 
 * **Debug**      
     Debug section does not show anymore the **undefined** fields `namespace`.
