@@ -5,7 +5,7 @@
 * **Design - CronJobs**        
     Now you can **create and manage custom configurations** for your CronJobs.
 
-    ![cron-config](img/cron-config.png)
+    ![tag-micro](img/tag-micro.png)
 
 * **Design - Microservices**        
     Now you can **configure the API documentation path** in each microservice detail.
