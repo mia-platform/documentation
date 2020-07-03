@@ -4,17 +4,17 @@ In the field CPU Resources, you have to specify the minimum number of 'thousandt
 
 CPU resources are measured in CPU units. One CPU, in Kubernetes, is equivalent to:
 
-* 1 AWS vCPU
+* 1 AWS vCPU;
 
-* 1 GCP Core
+* 1 GCP Core;
 
-* 1 Azure vCore
+* 1 Azure vCore;
 
-* 1 Hyperthread on a bare-metal Intel processor with Hyperthreading
+* 1 Hyperthread on a bare-metal Intel processor with Hyperthreading.
 
 CPU Resources, which are measured in CPU units, can be expressed as an integer or a fractional value with one of these suffixes: m and milli.
 
-The different suffixes, applied to different integers or fractional values, can express the same CPU Resources value. For example: 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. 
+The different suffixes, applied to different integers or fractional values, can express the same CPU Resource value. For example: 100m CPU, 100 milliCPU, and 0.1 CPU are all the same. 
 
 It is not possible to be more precise than 1m and CPU is a always an absolute quantity. For example, 0.1 is the same amount of CPU on a single-core, dual-core, or 48-core machine.
 
