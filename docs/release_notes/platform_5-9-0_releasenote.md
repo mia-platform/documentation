@@ -5,7 +5,7 @@
 * **Design - CronJobs**        
     Now you can **create and manage custom configurations** for your CronJobs.
 
-    ![tag-micro](img/tag-micro.png)
+    ![cron-config](img/cron-config.png)
 
 * **Design - Microservices**        
     Now you can **configure the API documentation path** in each microservice detail.
@@ -17,7 +17,7 @@
 * **Design - Microservices**        
     In the microservice detail page, now you can **edit the tag** assigned from DevOps Console to the microservice. 
     
-    ![microservice-tag](img/microservice-tag.png)
+    ![tag-micro](img/tag-micro.png)
 
 * **Marketplace**          
     The Marketplace **repositories on GitHub have been improved** with guides and tutorials for most of the template and examples. 
