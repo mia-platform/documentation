@@ -6,6 +6,7 @@ Memory Resource, which is measured in bytes, can be expressed as a plain integer
 
 The different suffixes, applied to different integers or fixed-point integers, can express the same Memory Resources value. For example: 128974848, 129e6, 129M and 123Mi are approximately the same value.
 
+
 !!! info
     
     In the microservice detail of Mia Platform DevOps Console, you can only express the Memory Resource value in Mi.
