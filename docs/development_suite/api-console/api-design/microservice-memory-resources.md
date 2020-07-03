@@ -4,7 +4,8 @@ In the field Memory Resources, you have to specify the minimum number of mebibyt
 
 Memory Resource, which is measured in bytes, can be expressed as a plain integer or a fixed-point integer with one of these suffixes: E, P, T, G, M, K, Ei, Pi, Ti, Gi, Mi, Ki.
 
-The different suffixes, applied to different integers or a fixed-point integers, can express the same Memory Resource value. For example: 128974848, 129e6, 129M and 123Mi are approximately the same value.
+The different suffixes, applied to different integers or fixed-point integers, can express the same Memory Resources value. For example: 128974848, 129e6, 129M and 123Mi are approximately the same value.
+
 
 !!! info
     
