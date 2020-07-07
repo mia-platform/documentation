@@ -2,7 +2,7 @@
 
 The Mia Service Level Agreement (**“SLA”**) describes the service availability commitment for the Mia Cloud Hosting Service under the Terms of Service or Subscription Agreement between Mia S.r.l. (“Provider”) and its Customer.
 
-During the period of your Mia Cloud Hosting Services, Mia S.r.l. will use any commercially reasonable efforts to make the Mia Cloud Hosting Services available with a Monthly Service Availability (Uptime) as detailed below in the section *Service Levels*. If Mia does not meet the Service Level, Customers will be eligible to receive a Service Credit after opening an Incident Ticket.
+During the period of your Mia Cloud Hosting Services, Mia S.r.l. will use any commercially reasonable efforts to make the Mia Cloud Hosting Services available with a Monthly Service Availability (Uptime) as detailed below in the section *Service Levels*. 
 
 ## Definitions        
 
