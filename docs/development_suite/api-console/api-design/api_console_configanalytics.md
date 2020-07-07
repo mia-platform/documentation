@@ -29,7 +29,7 @@ In this phase you have to decide the type of analytic you want to configure. At 
 Click on "next" to go further.
 
 
-## **Step 2: Configution**
+## **Step 2: Configuration**
 
 In this section you can define:
 
@@ -49,6 +49,8 @@ In this phase, if you have chosen a *chart* type graph, you can choose an **orde
 
 
 Click on "next" to go further.
+
+![](img/Configuration.gif)
 
 ## **Step 3: Serie setting**
 
