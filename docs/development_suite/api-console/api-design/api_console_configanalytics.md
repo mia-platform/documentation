@@ -137,7 +137,7 @@ On this page you can see all the configured analytics in the table. All fields i
 
 * the **Width**, which allows you to choose whether to view the analytic in full screen by selecting * Full Page *,or half-page by selecting * Half-page*.
 
-![Grafico](img/Grafico.gif)
+![](img/dashboard.png)
 
 
 ## View the analytics on the Collection page
