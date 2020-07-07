@@ -50,7 +50,7 @@ In this phase, if you have chosen a *chart* type graph, you can choose an **orde
 
 Click on "next" to go further.
 
-![](img/Configuration.gif)
+![Configuration](img/Configuration.gif)
 
 ## **Step 3: Serie setting**
 
