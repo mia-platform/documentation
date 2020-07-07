@@ -29,7 +29,7 @@ In this phase you have to decide the type of analytic you want to configure. At 
 Click on "next" to go further.
 
 
-## **Step 2: Configution**
+## **Step 2: Configuration**
 
 In this section you can define:
 
@@ -50,6 +50,8 @@ In this phase, if you have chosen a *chart* type graph, you can choose an **orde
 
 Click on "next" to go further.
 
+![Configuration](img/Configuration.gif)
+
 ## **Step 3: Serie setting**
 
 In this section, you can configure most of the properties of the analytic:
@@ -65,8 +67,6 @@ In this section, you can configure most of the properties of the analytic:
 * **Collection**, where you choose which collection to go to take the data that will be shown in the series, eg. eroi_buoni;
 
 * **Filter**, where you can choose to apply a filter to the data you want to view from the collection. For example, the order collection does not want to display all orders, but only those with a turnover of more than € 30. This field is not mandatory and is a query, so you must write in json format.
-
-![](img/impostaz_serie1.png)
 
 * **Group**, where you can select the property on which to group the data. This field is mandatory for charts of type **chart** and **chart-summary**, and you can select all the properties of a collection (eg name);
 
@@ -95,7 +95,7 @@ In this section, you can configure most of the properties of the analytic:
 
 In this phase it is also possible to enable a mongoquery by clicking on the **mongoquery switch enabled / disabled**. This field allows you to write a query on mongo to be able to do more complex operations related to the chosen operator (eg you want to make a sum on the orders of two customers, but only if the order is between € 50 and € 100 ). The field is activated for all operators, with the exception of the count operator. When this switch is activated, the **Type** field appears, where the query is written in json format.
 
-![](img/impostaz_serie3.png)
+![Serie_setting](img/Serie_setting.gif)
 
 Once a series has been configured, a second series can be inserted in the same graph via the **"Add a series"** button.
 
@@ -137,7 +137,7 @@ On this page you can see all the configured analytics in the table. All fields i
 
 * the **Width**, which allows you to choose whether to view the analytic in full screen by selecting * Full Page *,or half-page by selecting * Half-page*.
 
-![](img/dashboard.png)
+![Grafico](img/Grafico.gif)
 
 
 ## View the analytics on the Collection page
