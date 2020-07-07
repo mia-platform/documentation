@@ -13,6 +13,8 @@ When an user enters the Deploy section, he is automatically led to Deploy area.
 
 ## Deploy Area
 
+![Deploy](img/Deploy.gif)
+
 In the deployment area you have to choose in which environment you want to release a branch.
 The console will show you the impacts your release may have
 
