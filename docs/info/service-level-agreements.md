@@ -31,6 +31,7 @@ Service Level | Service Time Guaranteed
 Basic| >= 99%
 Premium| >= 99,5%
 
+
 ## Service Credits
 
 As part of the Infrastructure Assistance Service, the Client has the right to open an Incident Ticket if he finds a problem of Availability or degradation of the service. Timetables, methods and tools for opening the tickets are specified in the Subscription Form.
