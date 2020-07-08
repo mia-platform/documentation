@@ -5,6 +5,7 @@
 * **Project Creation**        
     Now project creation section is **enabled only for `admin` users**.
 
+
 ### Improvements
 
 * **Design - Microservices**        
