@@ -26,5 +26,8 @@
 * **Design - Endpoint**            
     **Log errors for unfilled fields** at the opening of a route have been removed.
 
+* **API Portal**        
+    Errors related to the choice of the **option `All` in the filter bar** of the API Portal have been removed.
+
 ### How to update your DevOps Console?
 
