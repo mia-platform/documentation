@@ -19,9 +19,8 @@
 
 ### Fixes
 
-* **Design**       
-    The three grey dots of the menù resize icon are **no more visible over the menu item expansion**.
-
+* **Design**            
+    The menu resize icon does **not overlap the menu item expansion** anymore.
 
 ### How to update your DevOps Console?
 
