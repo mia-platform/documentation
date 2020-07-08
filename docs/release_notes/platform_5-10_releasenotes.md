@@ -19,9 +19,6 @@
 
 ### Fixes
 
-* **Design - Endpoint**    (questa l'abbiamo già "data per scontata" nello scorso... non la metterei)
-    The configurations created from **endpoint with dot inside the name** have been fixed.
-
 * **Design - CMS**        
     When you create a CMS page and you attach an endpoint with dot inside the name, the `GoToProperties` section **does not crash anymore**.
 
