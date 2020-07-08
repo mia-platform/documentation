@@ -18,6 +18,11 @@
 
     ![apiportal-strings](img/apiportal-strings.png)
 
+* **Deploy - History**        
+    In History section of Deploy, you can now filter for environment.
+
+    ![deploy-filter](img/deploy-filter.png)
+
 ### Fixes
 
 * **Design**            
