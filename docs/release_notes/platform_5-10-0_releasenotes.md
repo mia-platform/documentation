@@ -2,8 +2,7 @@
 
 ### New features
 
-* **Design - CronJobs**        
-    Now y
+
 
 ### Improvements
 
@@ -11,7 +10,11 @@
     You can now use the **new placeholder to create routes** in the Endpoint section.
 
     ![placeholder-endpoint](img/placeholder-endpoint.png)
-    
+
+* **Design - Microservices**        
+    New links in Microservice configuration section, which allows you to **learn more about Memory resources and CPU resources**.
+
+    ![link-resources](img/link-resources.png)
 
 ### Fixes
 
