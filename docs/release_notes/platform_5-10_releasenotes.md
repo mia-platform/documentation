@@ -8,6 +8,11 @@
 
 ### Improvements
 
+* **Deploy - History**        
+    In History section of Deploy, you can now **filter for environment**.
+
+    ![deploy-filter](img/deploy-filter.png)
+
 * **Design - Microservices**        
     Documentation integration has been added in Microservice configuration section with the addition of links to **learn more about Memory resources and CPU resources**.
 
@@ -17,11 +22,6 @@
     **New tags** `required` and `type` close to each property in API Portal.
 
     ![apiportal-strings](img/apiportal-strings.png)
-
-* **Deploy - History**        
-    In History section of Deploy, you can now filter for environment.
-
-    ![deploy-filter](img/deploy-filter.png)
 
 ### Fixes
 
