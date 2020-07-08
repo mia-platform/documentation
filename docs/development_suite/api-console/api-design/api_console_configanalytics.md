@@ -28,7 +28,7 @@ In this phase you have to decide the type of analytic you want to configure. At 
 
 Click on "next" to go further.
 
-![selectType](img/selectType.png)
+![selectType](img/selectType.PNG)
 
 
 ## **Step 2: Configuration**
