@@ -19,9 +19,6 @@
 
 ### Fixes
 
-* **Design - CMS**        
-    When you create a CMS page and you attach an endpoint with dot inside the name, the `GoToProperties` section **does not crash anymore**.
-
 * **Design**       
     The three grey dots of the menù resize icon are **no more visible over the menu item expansion**.
 
