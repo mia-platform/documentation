@@ -27,7 +27,7 @@
     **Log errors for unfilled fields** at the opening of a route have been removed.
 
 * **API Portal**        
-    Errors related to the choice of the **option `All` in the filter bar** of the API Portal have been removed.
+    Errors related to the choice of the option in the filter bar of the API Portal have been removed, by **eliminating the option `All` in the filter bar**.
 
 ### How to update your DevOps Console?
 
