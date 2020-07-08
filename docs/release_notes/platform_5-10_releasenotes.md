@@ -9,7 +9,7 @@
 ### Improvements
 
 * **Deploy - History**        
-    In History section of Deploy, you can now **filter for environment**.
+    In History section of Deploy, you can now **filter for Environment**.
 
     ![deploy-filter](img/deploy-filter.png)
 
