@@ -10,8 +10,9 @@
 * **Design - Endpoint**        
     You can now use the **new placeholder to create routes** in the Endpoint section.
 
-    ![]()
+    ![placeholder-endpoint](img/placeholder-endpoint.png)
     
+
 ### Fixes
 
 * **Design - Endpoint**    (questa l'abbiamo già "data per scontata" nello scorso... non la metterei)
