@@ -7,13 +7,8 @@
 
 ### Improvements
 
-* **Design - Endpoint**        
-    You can now use the **new placeholder to create routes** in the Endpoint section.
-
-    ![placeholder-endpoint](img/placeholder-endpoint.png)
-
 * **Design - Microservices**        
-    New links in Microservice configuration section, which allows you to **learn more about Memory resources and CPU resources**.
+    Documentation integration has been added in Microservice configuration section with the addition of links to **learn more about Memory resources and CPU resources**.
 
     ![link-resources](img/link-resources.png)
 
