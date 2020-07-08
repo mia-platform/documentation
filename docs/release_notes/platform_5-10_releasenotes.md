@@ -13,6 +13,11 @@
 
     ![link-resources](img/link-resources.png)
 
+* **API Portal**        
+    **New tags** `required` and `type` close to each property in API Portal.
+
+    ![apiportal-strings](img/apiportal-strings.png)
+
 ### Fixes
 
 * **Design**            
