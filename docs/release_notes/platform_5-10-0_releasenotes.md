@@ -1,4 +1,4 @@
-## v5.10.0 (July 9,2020)
+## v5.10 (July 9,2020)
 
 ### New features
 
