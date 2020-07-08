@@ -12,7 +12,7 @@ During the period of your Mia Cloud Hosting Services, Mia S.r.l. will use any co
 
 * **Monthly Service Unavailability (Downtime)**: the Service is unavailable when all users are unable to access (using more than one network connection) the Product and/or a functionality of the Product and/or Add-on Components, due to infrastructural problems. Excluded from these problems are those of an application nature, including but not limited to: bugs in the code of the Product or Add-on Components;
 
-* **Monthly Service Availability (Uptime)** is the availability of the Service. It is calculated monthly by subtracting from the Service Time the sum of all the minutes of unavailability of the Service in the month. The calculation of the Service Availability Time starts from the moment of opening a Severity 1 ticket and ends at its resolution.
+* **Monthly Service Availability (Uptime)** is the availability of the Service. It is calculated monthly by subtracting from the Service Time the sum of all the minutes of unavailability of the Service in the month. The calculation of the Service Availability Time starts from the moment of opening a Severity 1 ticket and ends at its resolution. It is possible to open a ticket by email to the address defined in the Subscription Form containing more information on the procedures and timing of the request.
 
 ## Service Levels        
 
@@ -24,12 +24,7 @@ The two possible service levels are:
 
 * **Premium**: which defines that for 99.5% of the Monthly Service Time, the Service itself will be guaranteed as available;
 
-Mia S.r.l. undertakes, towards the Customer, to offer, with due diligence, the services of infrastructural monitoring and infrastructural assistance, according to the agreed service time and according to the type of service level (**SLA**) indicated by the Customer in the Subscription Form between the two options below:
-
-Service Level | Service Time Guaranteed 
--------| -------|
-Basic| >= 99%
-Premium| >= 99,5%
+Mia S.r.l. undertakes, towards the Customer, to offer the services of infrastructural monitoring and infrastructural assistance, according to the agreed service time and according to the type of service level (**SLA**) indicated by the Customer in the Subscription Form between the two options below:
 
 
 ## Incident Report
