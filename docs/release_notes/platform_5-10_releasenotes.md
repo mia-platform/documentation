@@ -23,5 +23,8 @@
 * **Design**            
     The menu resize icon does **not overlap the menu item expansion** anymore.
 
+* **Design - Endpoint**            
+    **Log errors for unfilled fields** at the opening of a route have been removed.
+
 ### How to update your DevOps Console?
 
