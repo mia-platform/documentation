@@ -37,3 +37,11 @@
 
 ### How to update your DevOps Console?
 
+In case of on-premise Console, to use these features, you have to update:
+
+* Console Backend v3.2.0 (`nexus.mia-platform.eu/api-console/backend:3.2.0`)          
+
+* Console Website v1.25.0 (`nexus.mia-platform.eu/api-console/website:1.25.0`)       
+
+* Deploy Website v1.4.0 (`nexus.mia-platform.eu/console/deploy-website:1.4.0`)       
+       
