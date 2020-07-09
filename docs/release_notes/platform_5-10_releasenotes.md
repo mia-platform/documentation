@@ -2,9 +2,10 @@
 
 ### New features
 
-* **CMS in the project DevOps Console**       
-    Admin users can now access to CMS and modify Projects, Tenant,  directly from CMS,  
-hai un CMS a cui possono accedere solo admin a cui possono modificare tenant, marketplace, 
+* **CMS in the DevOps Console project**       
+    `Admin` users can now access the CMS and **modify Projects, Tenant, Templates, Services, Users and Groups directly from CMS**.
+
+    ![cms-project](img/cms-project.png)
 
 * **Project Creation for admin users**        
     Now project creation section is **enabled only for `admin` users**.
@@ -19,10 +20,10 @@ hai un CMS a cui possono accedere solo admin a cui possono modificare tenant, ma
 * **API Portal**            
     **Log errors for unfilled fields** at the opening of a route have been removed.
 
-* **API Portal**        
+* **API Portal removed All filter**        
     Category filter in the API Portal **does not show anymore the duplicated option** `All`.
 
-* **Deploy - History**        
+* **Deploy History new Environment filter**        
     In History section of Deploy, you can now **filter for Environment**.
 
     ![deploy-filter](img/deploy-filter.png)
