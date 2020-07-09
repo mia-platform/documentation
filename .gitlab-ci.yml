@@ -11,7 +11,7 @@ deploy:
     KUBE_URL: "${KUBE_CONSOLE_URL}"
     KUBE_TOKEN: "${KUBE_CONSOLE_TOKEN}"
     KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
-    KUBE_NAMESPACE: "console"
+    KUBE_NAMESPACE: "console-production"
     ENVIRONMENT_PREFIX: "CLOUD_"
   only:
     - master
