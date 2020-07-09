@@ -36,7 +36,7 @@
     ![link-resources](img/link-resources.png)
 
 * **Aligned menu resize icon in Design**            
-    The menu resize icon does **not overlap the menu item expansion** anymore.
+    The menu resize icon **no longer overlaps with the menu item expansion**.
 
 
 ### How to update your DevOps Console?
