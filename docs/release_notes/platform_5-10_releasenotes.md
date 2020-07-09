@@ -30,13 +30,13 @@
 
 ### Fixes
 
-* **Memory resources and CPU resources in Design Microservices**        
+* **Memory resources and CPU resources documentation integration in Design Microservices**        
     Documentation integration has been added in Microservice configuration section with the addition of links to **learn more about Memory resources and CPU resources**.
 
     ![link-resources](img/link-resources.png)
 
 * **Aligned menu resize icon in Design**            
-    The menu resize icon does **not overlap the menu item expansion** anymore.
+    The menu resize icon **no longer overlaps with the menu item expansion**.
 
 
 ### How to update your DevOps Console?
