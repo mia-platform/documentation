@@ -2,7 +2,7 @@
 
 ### New features
 
-* **CMS in the DevOps Console project**       
+* **CMS in DevOps Console project**       
     `Admin` users can now access the CMS and **modify Projects, Tenant, Templates, Services, Users and Groups directly from CMS**.
 
     ![cms-project](img/cms-project.png)
