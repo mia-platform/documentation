@@ -3,12 +3,12 @@
 ### New features
 
 * **CMS in DevOps Console project**       
-    `Admin` users can now access the CMS and **modify Projects, Tenant, Templates, Services, Users and Groups directly from CMS**.
+    `Console admin` users can now access the CMS and **modify Projects, Tenant, Templates, Services, Users and Groups directly from CMS**.
 
     ![cms-project](img/cms-project.png)
 
 * **Project Creation for admin users**        
-    Now project creation section is **enabled only for `admin` users**.
+    Now project creation section is **enabled only for `tenant-id admin` and `project admin`  users**. To learn more about users permissions, please visit [this page](https://docs.mia-platform.eu/development_suite/Console%20levels%20and%20permits%20management/) of Mia Platform Docs.
 
 ### Improvements
 
