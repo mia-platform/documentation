@@ -2,21 +2,25 @@
 
 ### New features
 
+* **CMS in the project DevOps Console**       
+    Admin users can now access to CMS and modify Projects, Tenant,  directly from CMS,  
+hai un CMS a cui possono accedere solo admin a cui possono modificare tenant, marketplace, 
+
 * **Project Creation for admin users**        
     Now project creation section is **enabled only for `admin` users**.
 
 ### Improvements
+
+* **API Portal tags for type and required properties**        
+    **New tags** to identify the `required` properties and the `type` of each property in the API Portal.
+
+    ![apiportal-strings](img/apiportal-strings.png)
 
 * **API Portal**            
     **Log errors for unfilled fields** at the opening of a route have been removed.
 
 * **API Portal**        
     Category filter in the API Portal **does not show anymore the duplicated option** `All`.
-
-* **API Portal tags for type and required properties**        
-    **New tags** to identify the `required` properties and the `type` of each property in the API Portal.
-
-    ![apiportal-strings](img/apiportal-strings.png)
 
 * **Deploy - History**        
     In History section of Deploy, you can now **filter for Environment**.
