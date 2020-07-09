@@ -28,7 +28,7 @@ spec:
         component: documentation-site
     spec:
       imagePullSecrets:
-        - name: nexus-gcloud
+        - name: mia-platform-repository
       containers:
         - name: documentation-site
           image: nexus.mia-platform.eu/core/documentation-site:latest
