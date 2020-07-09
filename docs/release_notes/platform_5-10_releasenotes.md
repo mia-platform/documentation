@@ -2,37 +2,43 @@
 
 ### New features
 
-* **Project Creation**        
-    Now project creation section is **enabled only for `admin` users**.
+* **CMS in DevOps Console project**       
+    `Admin` users can now access the CMS and **modify Projects, Tenant, Templates, Services, Users and Groups directly from CMS**.
 
+    ![cms-project](img/cms-project.png)
+
+* **Project Creation for admin users**        
+    Now project creation section is **enabled only for `admin` users**.
 
 ### Improvements
 
-* **Deploy - History**        
+* **API Portal - tags for type and required properties**        
+    **New tags** to identify the `required` properties and the `type` of each property in the API Portal.
+
+    ![apiportal-strings](img/apiportal-strings.png)
+
+* **API Portal - managed error for unfilled properites**            
+    Now **errors for unfilled fields** does not appear at the opening of a route, but when the field is not completed.
+
+in pratica prima di quel task, se aprivi una rotta sull'api-portal che aveva dei campi required, ti compariva l'errore "il campo è required" prima ancora che tu compilasse qualche campo
+
+* **API Portal - removed `All` filter**        
+    Category filter in the API Portal **does not show anymore the duplicated option** `All`.
+
+* **Deploy History - new Environment filter**        
     In History section of Deploy, you can now **filter for Environment**.
 
     ![deploy-filter](img/deploy-filter.png)
 
-* **Design - Microservices**        
+### Fixes
+
+* **Memory resources and CPU resources in Design Microservices**        
     Documentation integration has been added in Microservice configuration section with the addition of links to **learn more about Memory resources and CPU resources**.
 
     ![link-resources](img/link-resources.png)
 
-* **API Portal**        
-    **New tags** `required` and `type` close to each property in API Portal.
-
-    ![apiportal-strings](img/apiportal-strings.png)
-
-### Fixes
-
-* **Design**            
+* **Aligned menu resize icon in Design**            
     The menu resize icon does **not overlap the menu item expansion** anymore.
-
-* **Design - Endpoint**            
-    **Log errors for unfilled fields** at the opening of a route have been removed.
-
-* **API Portal**        
-    Category filter in the API Portal **does not show anymore the duplicated option** `All`.
 
 
 ### How to update your DevOps Console?
