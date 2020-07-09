@@ -30,7 +30,7 @@
 
 ### Fixes
 
-* **Memory resources and CPU resources in Design Microservices**        
+* **Memory resources and CPU resources documentation integration in Design Microservices**        
     Documentation integration has been added in Microservice configuration section with the addition of links to **learn more about Memory resources and CPU resources**.
 
     ![link-resources](img/link-resources.png)
