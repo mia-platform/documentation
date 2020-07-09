@@ -20,8 +20,6 @@
 * **API Portal - managed error for unfilled properites**            
     Now **errors for unfilled fields** does not appear at the opening of a route, but when the field is not completed.
 
-in pratica prima di quel task, se aprivi una rotta sull'api-portal che aveva dei campi required, ti compariva l'errore "il campo è required" prima ancora che tu compilasse qualche campo
-
 * **API Portal - removed `All` filter**        
     Category filter in the API Portal **does not show anymore the duplicated option** `All`.
 
