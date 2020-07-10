@@ -30,7 +30,7 @@ nav:
     - QuickStart: 'development_suite/api-console/api-design/quick_rest_api.md'
     - CRUD: 'development_suite/api-console/api-design/crud_advanced.md'
     - Services:
-       - Manage your Microservices from the Dev Console: 
+       - Manage your Microservices from the Dev Console:
             - Configure your Services: 'development_suite/api-console/api-design/services.md'
             - Service Memory Resources: 'development_suite/api-console/api-design/microservice-memory-resources.md'
             - Service CPU Resources: 'development_suite/api-console/api-design/microservices-cpu-resources.md'
@@ -140,6 +140,7 @@ nav:
 
   - Data Visualization:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
+    - Timeline: 'business_suite/timeline.md'
 
 - Fast Data:
     - Overview: 'fast_data/overview.md'
