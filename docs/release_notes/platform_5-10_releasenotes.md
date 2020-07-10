@@ -18,7 +18,7 @@
     ![apiportal-strings](img/apiportal-strings.png)
 
 * **API Portal - managed error for unfilled properites**            
-    Now **errors for unfilled fields** does not appear at the opening of a route, but when the field is not completed.
+    Now **errors for unfilled fields** does not appear at the opening of a route, but when the field is not compiled.
 
 * **API Portal - removed `All` filter**        
     Category filter in the API Portal **does not show anymore the duplicated option** `All`.
