@@ -173,6 +173,7 @@ nav:
     - Disaster Recovery: 'development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery.md'
     - Autoscaling Pods: 'development_suite/monitoring-dashboard/dev_ops_guide/autoscaling.md'
     - Guidelines for logs: 'development_suite/monitoring-dashboard/dev_ops_guide/log.md'
+    - Performance test: 'development_suite/performance-test/performance-test.md'
 
 - Info:
     - Version Policy: 'info/version-policy.md'

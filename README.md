@@ -12,6 +12,7 @@ pip install mkdocs
 pip install mkdocs-material
 pip install mkdocs-monorepo-plugin
 pip install pymdown-extensions
+pip install mkdocs-minify-plugin
 ```
 
 !!! note
