@@ -15,7 +15,6 @@ The SDK project is divided in modules:
 * mkApp - *Core Framework*
 * MIASync
 * CRUD
-* MIAAnalytics - *Coming soon*
 
 The main one, which we will refer as **Core framework**, will give you access to the CRUD functionality of the BaaS backend, the SSO login and the analytics for your projects. This module is compatible up to BaaS 3 version.
 
@@ -843,7 +842,3 @@ func syncState(_ sender: Notification) {
     let progress = status.progress
 }
 ```
-
-
-## MIAAnalytics Framwerork
-*Coming soon*

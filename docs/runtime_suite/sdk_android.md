@@ -1,6 +1,6 @@
 # SDK Android
 
-Mia-Platform provides an SDK that works as intermediator to permit the interactions between the application and the platform. This guide has the aim to explain the structure, the settings and the functioning of Mia-Platform SDK.
+Mia-Platform provides an SDK that works as an intermediator to permit the interactions between the application and the platform. This guide has the aim to explain the structure, the settings and the functioning of Mia-Platform SDK.
 
 ## General information and requisites
 
@@ -9,7 +9,7 @@ Mia-Platform provides an SDK that works as intermediator to permit the interacti
 
 ##Setting up the project
 
-Before starting you need to add the SDK repository and dependencies in your application. Open the **build.gradle** file of your application and add the maven in **repositories**:
+Before starting, you need to add the SDK repository and dependencies in your application. Open the **build.gradle** file of your application and add the maven in **repositories**:
 ```
 repositories {
     maven { url "https://nexus.mia-platform.eu/repository/maven-releases/"
@@ -639,12 +639,6 @@ MKAppInstance.sharedInstance().initModule(new MKPushExtension("sender_id"));
 ```
 Proceed then with creating the push receiver.
 
-TODO: explain how create the push receiver
-
-## Analytics module
-
-Coming soon.
-
 ## CRUD module
 
 **CRUD** is the module of the SDK that interacts with the BaaS starting from version 4. It offers all the tools to create, read, update, and delete objects from and to the BaaS. It offers also the Sync functionality, that can automatically download and upload data and store them in the local database.
@@ -796,7 +790,7 @@ try{
 }
 ```
 
-The DELETE permits to delete a single object or all the objects that satisfy a Mongo query. Also this can be performed syncronously or asynchronously.
+The DELETE permits to delete a single object or all the objects that satisfy a Mongo query. Also this can be performed synchronously or asynchronously.
 
 The PATCH permits to update the state of an object already existent. Before executing you need to define which are the fields that have been updated, you can do this through the methods:
 
