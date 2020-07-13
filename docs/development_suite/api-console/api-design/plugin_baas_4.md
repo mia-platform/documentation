@@ -594,22 +594,4 @@ describe('/status/alive', () => {
 })
 ```
 
-#### Integration Test Example with HTTP Call Mocking
 
-COMING SOON
-
-#### Example of Unit Test
-
-COMING SOON
-
-## Organization of the code
-
-COMING SOON
-
-## Release
-
-COMING SOON
-
-## Log and Metrics
-
-COMING SOON
