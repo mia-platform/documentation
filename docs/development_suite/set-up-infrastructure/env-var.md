@@ -1,6 +1,6 @@
 # Environment Variables
 
-An environment variable is a variable whose value is set outside the program, typically through functionality built into the operating system or microservice.
+An environment variable is a variable whose value is set outside the program, typically through a functionality built into the operating system or microservice.
 An environment variable is made up of a name/value pair, and any number may be created and available for reference at a point in time.
 
 Environment variables are excellent for decoupling application configurations. Typically, our applications require many variables to be set in order for them to work. By relying on external configurations, your app can easily be deployed on different environments. These changes are independent of code changes, so they do not require your application to be rebuilt to change.
@@ -15,7 +15,7 @@ Some specific examples of common scenarios when you should consider using enviro
 
 # Manage your Variables
 
-Thanks to our Console in the SetUp Infrastructure area it's possibile to manage your Environment Variables
+Thanks to our Console in the SetUp Infrastructure area it's possible to manage your Environment Variables.
 
 ## How to differentiate your variable from one environment to another
 
@@ -61,8 +61,7 @@ Once the value has been changed, you just have to press the save button.
 
 ## Delete a Variable
 
-To delete a variable, press the **delete** button corresponding to the desired variable
-A modal will open.
+To delete a variable, press the **delete** button corresponding to the desired variable. A modal will open. 
 To cancel the variable you will be asked to enter the name of the key. The **name of the key must be identical** otherwise you will not be able to delete it.
 
 ![](img/delete-env-var.png)
