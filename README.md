@@ -39,11 +39,12 @@ To read the doc locally use
 ### Test using Docker
 
 ```sh
-docker run --rm -p 8000:8000 --mount "type=bind,source=$(pwd),target=/docs,readonly" squidfunk/mkdocs-material:5.1.5
+mkdocs build
+docker build -t docs .
+docker run -p 8080:8080 docs
 ```
 
-After this command the site will be reachable on http://localhost:8000 and every changes made to the markdown files
-will be hot reloaded to be immidiatly available inside your browser.
+After this command the site will be reachable on http://localhost:8000.
 
 ## Come contribuire a questa guida
 
