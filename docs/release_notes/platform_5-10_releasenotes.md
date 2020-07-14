@@ -10,13 +10,17 @@
 
 ### Improvements
 
+* **Design - Endpoint** - **New experience for creating a new route**     
+    You can now create the first endpoint route clicking on the **new placeholder button.** A convenient popup will allow you to select method and path. 
+    
+    Once the first endpoint route has been created, it will be possible to create further routes by clicking on the `Add new Route` **button at the top right of the card**, now more visible and easy to use.
+
 * **Design - CMS**     
     With the new header and footer, CMS section has been aligned to CRUD, Microservices, Proxies, Endpoint and Cronjobs sections: the **Delete button is now at the footer of the page.**
 
     ![header-footer-CMS](img/header-footer-CMS.PNG)
 
-* **Design - Endpoint** - **New experience for creating a new route**     
-    You can now create a route using the **new popup** that allows you to **select method and path**. Once the first route has been created it will be possible to create further routes by clicking on the **button at the top right of the card**, now more visible and easy to use.
+
 
 
 
