@@ -1,3 +1,41 @@
+## v5.10.1 (July 16,2020)
+
+### New features
+
+* **Design - Decorators**       
+    Now you have the possibility to set up a `CATCH` decorator! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code.
+
+    ![hook-catch](img/hook-catch.PNG)
+
+
+### Improvements
+
+* **Design - CMS**     
+    With the new header and footer, CMS section has been aligned to CRUD, Microservices, Proxies, Endpoint and Cronjobs sections: the **Delete button is now at the footer of the page.**
+
+    ![header-footer-CMS](img/header-footer-CMS.PNG)
+
+* **Design - Endpoint** - **New experience for creating a new route**     
+    You can now create a route using the **new popup** that allows you to **select method and path**. Once the first route has been created it will be possible to create further routes by clicking on the **button at the top right of the card**, now more visible and easy to use.
+
+
+
+### Fixes
+
+* **Design - Endpoint**       
+    In the endpoints section, endpoints that are linked to cross project proxies have now the "Cross" label.
+
+    ![endpoint_proxy](img/endpoint_proxy.PNG)
+
+* **Design - Endpoint**    
+    When you delete a decorator, endpoints will update automatically.
+
+* **Design**    
+    You can now enter white-spaces at the beginning and at the end of forms without an error message appearing.
+
+### How to update your DevOps Console?
+
+
 ## v5.10.0 (July 9,2020)
 
 ### New features
