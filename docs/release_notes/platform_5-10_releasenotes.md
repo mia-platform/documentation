@@ -27,7 +27,7 @@
 ### Fixes
 
 * **Design - Endpoint**       
-    In the endpoints section, endpoints that are linked to cross project proxies have now the **"Cross" label.**
+    In the endpoints section, endpoints that are linked to cross project proxies have now the **`Cross` label.**
 
     ![endpoint_proxy](img/endpoint_proxy.PNG)
 
