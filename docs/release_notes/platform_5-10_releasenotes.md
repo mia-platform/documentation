@@ -69,7 +69,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
     - filePath
 
-    - ref: `branch1`
+    - ref
 
 You can learn more about `customFilesConfig` in [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/templates_conf/) of Mia Platform Docs.
 
