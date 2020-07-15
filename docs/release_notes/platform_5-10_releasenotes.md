@@ -24,13 +24,13 @@
     ![header-footer-CMS](img/header-footer-CMS.PNG)
 
 * **Design Microservices** - **New header and footer**          
-    New support for Plugins in the microservices marketplace. Moreover, other Plugins will be introduced in the marketplace soon!
+    New support for **Plugins in the microservices marketplace**. Moreover, other Plugins will be introduced in the marketplace soon!
 
 
 ### Fixes
 
 * **API Portal** - **security headers for endpoints and routes**      
-    Now the addition of security headers is required only for endpoints and routes configured as `Required API Key`.
+    Now the **addition of security headers is required only for endpoints and routes** configured as `Required API Key`.
 
 * **Design Endpoint - New Cross labels**       
     In the endpoints section, endpoints that are linked to cross project proxies have now the **`Cross` label.**
