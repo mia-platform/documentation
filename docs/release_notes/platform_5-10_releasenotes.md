@@ -3,23 +3,23 @@
 ### New features
 
 * **Design Microservices** - **The Marketplace now includes plugins**          
-    The marketplace is enriched with a new functionality! In addition to templates and examples, **it will now be possible to use plugins** that can be customized according to the user's needs. Starting from the essential ones, new ones will be released in the next weeks.
+    The marketplace has been enriched with a new functionality! In addition to templates and examples, **it will be possible to use plugins** that can be customized according to your needs. Starting from essential plugins, new ones will be released in the next weeks.
 
 * **Design Decorators** - **New type of decorators available**      
     Now you have the **possibility to set up a `CATCH` decorator**! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code. To learn more about decorators you can visit [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/) of Mia Platform Docs.
 
-    ![hook-catch](img/hook-catch.PNG)
+    ![hook-catch_new](img/hook-catch_new.PNG)
 
 ### Improvements
 
 * **Design Endpoint** - **New experience for creating a new route**     
-    You can now create the first endpoint route clicking on the **new placeholder button.** A convenient popup will allow you to select method and path.
+    You can now create the first endpoint route clicking on the **new placeholder button.** A useful popup will allow you to select method and path.
 
-    ![newroute](img/newroute.PNG)
+    ![newroute_new](img/newroute_new.PNG)
     
     Once the first endpoint route has been created, it will be possible to create further routes by clicking on the `Add new Route` **button at the top right of the card**, now more visible and easy to use.
 
-    ![newroute2](img/newroute2.PNG)
+    ![newroute2_new](img/newroute2_new.PNG)
 
 * **Design CMS** - **New header and footer**          
     With the new header and footer, CMS section has been aligned to CRUD, Microservices, Proxies, Endpoint and Cronjobs sections: the **Delete button is now at the footer of the page.**
@@ -35,13 +35,13 @@
 * **Design Endpoint - New Cross labels**       
     In the endpoints section, endpoints that are linked to cross project proxies now display the shorter **`Cross` label.**
 
-    ![endpoint-label](img/endpoint-label.PNG)
+    ![endpoint-labe-new](img/endpoint-labe-new.PNG)
 
 * **Design Endpoint - automatic update of endpoints**    
     When you delete a decorator, **endpoints will update automatically**.
 
 * **Design CRUD - fixed proceId deletion**         
-    The configuration bug that was deleting `projectId` on CRUD has been fixed.
+    The configuration bug that deletes `projectId` on CRUD has been fixed.
 
 * **Design - forms allow white-spaces**    
     You can now enter **white-spaces at the beginning, in the middle and at the end of forms** without an error message appearing.
@@ -62,15 +62,15 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
 * Adding `customFilesConfig` (`array of object` type), which objects in the configuration should have the following properties:
 
-    - repositoryType
+    - `repositoryType`
 
-    - fileType
+    - `fileType`
 
-    - fileName
+    - `fileName`
 
-    - filePath
+    - `filePath`
 
-    - ref
+    - `ref`
 
 ## v5.10.0 (July 9,2020)
 
