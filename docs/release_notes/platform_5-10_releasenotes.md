@@ -72,8 +72,6 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
     - ref
 
-You can learn more about `customFilesConfig` in [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/templates_conf/) of Mia Platform Docs.
-
 ## v5.10.0 (July 9,2020)
 
 ### New features
