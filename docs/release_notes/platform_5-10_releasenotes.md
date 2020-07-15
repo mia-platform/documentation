@@ -67,7 +67,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
     - fileName
 
-    - filePath: `/projects/123/repository/files/service-configurations.yml/raw`
+    - filePath
 
     - ref: `branch1`
 
