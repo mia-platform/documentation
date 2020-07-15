@@ -2,6 +2,11 @@
 
 ### New features
 
+* **Design Microservices** - **The Marketplace now includes plugins**          
+    The marketplace is enriched with a new functionality! In addition to templates and examples, **it will now be possible to use plugins** that can be customized according to the user's needs. Starting from the essential ones, new ones will be released in the next weeks.
+
+    ![marketplace](img/marketplace.PNG)
+
 * **Design Decorators** - **New type of decorators available**      
     Now you have the **possibility to set up a `CATCH` decorator**! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code. To learn more about decorators you can visit [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/) of Mia Platform Docs.
 
@@ -22,9 +27,6 @@
     With the new header and footer, CMS section has been aligned to CRUD, Microservices, Proxies, Endpoint and Cronjobs sections: the **Delete button is now at the footer of the page.**
 
     ![header-footer-CMS](img/header-footer-CMS.PNG)
-
-* **Design Microservices** - **New header and footer**          
-    New support for **Plugins in the microservices marketplace**. Moreover, other Plugins will be introduced in the marketplace soon!
 
 
 ### Fixes
