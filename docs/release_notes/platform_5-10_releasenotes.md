@@ -33,7 +33,7 @@
     Now the **addition of security headers is required only for endpoints and routes** configured as `Required API Key`.
 
 * **Design Endpoint - New Cross labels**       
-    In the endpoints section, endpoints that are linked to cross project proxies have now the **`Cross` label.**
+    In the endpoints section, endpoints that are linked to cross project proxies now display the shorter **`Cross` label.**
 
     ![endpoint_proxy](img/endpoint_proxy.PNG)
 
