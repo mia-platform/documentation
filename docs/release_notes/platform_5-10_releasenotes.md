@@ -1,3 +1,77 @@
+## v5.10.1 (July 16,2020)
+
+### New features
+
+* **Design Microservices** - **The Marketplace now includes plugins**          
+    The marketplace is enriched with a new functionality! In addition to templates and examples, **it will now be possible to use plugins** that can be customized according to the user's needs. Starting from the essential ones, new ones will be released in the next weeks.
+
+* **Design Decorators** - **New type of decorators available**      
+    Now you have the **possibility to set up a `CATCH` decorator**! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code. To learn more about decorators you can visit [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/) of Mia Platform Docs.
+
+    ![hook-catch](img/hook-catch.PNG)
+
+### Improvements
+
+* **Design Endpoint** - **New experience for creating a new route**     
+    You can now create the first endpoint route clicking on the **new placeholder button.** A convenient popup will allow you to select method and path.
+
+    ![newroute](img/newroute.PNG)
+    
+    Once the first endpoint route has been created, it will be possible to create further routes by clicking on the `Add new Route` **button at the top right of the card**, now more visible and easy to use.
+
+    ![newroute2](img/newroute2.PNG)
+
+* **Design CMS** - **New header and footer**          
+    With the new header and footer, CMS section has been aligned to CRUD, Microservices, Proxies, Endpoint and Cronjobs sections: the **Delete button is now at the footer of the page.**
+
+    ![header-footer-CMS](img/header-footer-CMS.PNG)
+
+
+### Fixes
+
+* **API Portal** - **security headers for endpoints and routes**      
+    Now the **addition of security headers is required only for endpoints and routes** configured as `Required API Key`.
+
+* **Design Endpoint - New Cross labels**       
+    In the endpoints section, endpoints that are linked to cross project proxies now display the shorter **`Cross` label.**
+
+    ![endpoint_proxy](img/endpoint_proxy.PNG)
+
+* **Design Endpoint - automatic update of endpoints**    
+    When you delete a decorator, **endpoints will update automatically**.
+
+* **Design CRUD - fixed proceId deletion**         
+    The configuration bug that was deleting `projectId` on CRUD has been fixed.
+
+* **Design - forms allow white-spaces**    
+    You can now enter **white-spaces at the beginning, in the middle and at the end of forms** without an error message appearing.
+
+### How to update your DevOps Console?
+
+In case of on-premise Console, to use these features, you have to update:
+
+* Console Backend v3.3.0 (`nexus.mia-platform.eu/api-console/backend:3.3.0`)          
+
+* Console Website v1.26.0 (`nexus.mia-platform.eu/api-console/website:1.26.0`)       
+
+Moreover, you have to modify the CRUD of the services in the marketplace by:
+
+* Adding the `dockerImage` property (`string` type);
+
+* Removing the `required` check from `archiveUrl`;
+
+* Adding `customFilesConfig` (`array of object` type), which objects in the configuration should have the following properties:
+
+    - repositoryType
+
+    - fileType
+
+    - fileName
+
+    - filePath
+
+    - ref
+
 ## v5.10.0 (July 9,2020)
 
 ### New features
