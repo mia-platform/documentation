@@ -63,7 +63,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
     - repositoryType
 
-    - fileType: 'file`
+    - fileType
 
     - fileName: `service-configurations.yml`
 
