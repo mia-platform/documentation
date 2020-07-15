@@ -2,14 +2,14 @@
 
 ### New features
 
-* **Design - Decorators** - **New type of decorators available**      
-    Now you have the possibility to set up a `CATCH` decorator! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code.
+* **Design Decorators** - **New type of decorators available**      
+    Now you have the **possibility to set up a `CATCH` decorator**! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code. To learn more about decorators you can visit [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/) of Mia Platform Docs.
 
     ![hook-catch](img/hook-catch.PNG)
 
 ### Improvements
 
-* **Design - Endpoint** - **New experience for creating a new route**     
+* **Design Endpoint** - **New experience for creating a new route**     
     You can now create the first endpoint route clicking on the **new placeholder button.** A convenient popup will allow you to select method and path.
 
     ![newroute](img/newroute.PNG)
@@ -18,7 +18,7 @@
 
     ![newroute2](img/newroute2.PNG)
 
-* **Design - CMS** - **New header and footer**          
+* **Design CMS** - **New header and footer**          
     With the new header and footer, CMS section has been aligned to CRUD, Microservices, Proxies, Endpoint and Cronjobs sections: the **Delete button is now at the footer of the page.**
 
     ![header-footer-CMS](img/header-footer-CMS.PNG)
@@ -29,16 +29,16 @@
 
 ### Fixes
 
-* **Design - Endpoint**       
+* **Design Endpoint - New Cross labels**       
     In the endpoints section, endpoints that are linked to cross project proxies have now the **`Cross` label.**
 
     ![endpoint_proxy](img/endpoint_proxy.PNG)
 
-* **Design - Endpoint**    
-    When you delete a decorator, endpoints will update automatically.
+* **Design Endpoint - automatic update of endpoints**    
+    When you delete a decorator, **endpoints will update automatically**.
 
-* **Design**    
-    You can now enter white-spaces at the beginning and at the end of forms without an error message appearing.
+* **Design - forms allow white-spaces**    
+    You can now enter **white-spaces at the beginning, in the middle and at the end of forms** without an error message appearing.
 
 ### How to update your DevOps Console?
 
