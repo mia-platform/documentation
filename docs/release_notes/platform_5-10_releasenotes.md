@@ -40,6 +40,9 @@
 * **Design Endpoint - automatic update of endpoints**    
     When you delete a decorator, **endpoints will update automatically**.
 
+* **Design CRUD - fixed proceId deletion**         
+    The configuration bug that was deleting `projectId` on CRUD has been fixed.
+
 * **Design - forms allow white-spaces**    
     You can now enter **white-spaces at the beginning, in the middle and at the end of forms** without an error message appearing.
 
@@ -111,8 +114,6 @@ You can learn more about `customFilesConfig` in [this page](https://docs.mia-pla
 * **Aligned menu resize icon in Design**            
     The menu resize icon **no longer overlaps with the menu item expansion**.
 
-* **Design CRUD - fixed proceId deletion**         
-    The configuration bug that was deleting `projectId` on CRUD has been fixed.
 
 ### How to update your DevOps Console?
 
