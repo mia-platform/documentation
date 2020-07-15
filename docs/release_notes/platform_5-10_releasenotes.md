@@ -42,6 +42,30 @@
 
 ### How to update your DevOps Console?
 
+In case of on-premise Console, to use these features, you have to update:
+
+* Console Backend v3.2.0 (`nexus.mia-platform.eu/api-console/backend:3.2.0`)          
+
+* Console Website v1.26.0 (`nexus.mia-platform.eu/api-console/website:1.26.0`)       
+
+Moreover, you have to modify the CRUD of the services in the marketplace by:
+
+* Adding the `dockerImage` property (`string` type);
+
+* Removing the `required` from `archiveUrl`;
+
+* Adding `customFilesConfig` (`array of object` type), which objects in the configuration should have the following properties:
+
+    - repositoryType: `gitlab`
+
+    - fileType: 'file`
+
+    - fileName: `service-configurations.yml`
+
+    - filePath: `/projects/123/repository/files/service-configurations.yml/raw`
+
+    - ref: `branch1`
+
 
 ## v5.10.0 (July 9,2020)
 
