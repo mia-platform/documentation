@@ -58,7 +58,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
 * Adding the `dockerImage` property (`string` type);
 
-* Removing the `required` from `archiveUrl`;
+* Removing the `required` check from `archiveUrl`;
 
 * Adding `customFilesConfig` (`array of object` type), which objects in the configuration should have the following properties:
 
