@@ -61,7 +61,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
 * Adding `customFilesConfig` (`array of object` type), which objects in the configuration should have the following properties:
 
-    - repositoryType: `gitlab`
+    - repositoryType
 
     - fileType: 'file`
 
