@@ -44,7 +44,7 @@
 
 In case of on-premise Console, to use these features, you have to update:
 
-* Console Backend v3.2.0 (`nexus.mia-platform.eu/api-console/backend:3.2.0`)          
+* Console Backend v3.3.0 (`nexus.mia-platform.eu/api-console/backend:3.3.0`)          
 
 * Console Website v1.26.0 (`nexus.mia-platform.eu/api-console/website:1.26.0`)       
 
