@@ -65,7 +65,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
     - fileType
 
-    - fileName: `service-configurations.yml`
+    - fileName
 
     - filePath: `/projects/123/repository/files/service-configurations.yml/raw`
 
