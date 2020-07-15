@@ -35,7 +35,7 @@
 * **Design Endpoint - New Cross labels**       
     In the endpoints section, endpoints that are linked to cross project proxies now display the shorter **`Cross` label.**
 
-    ![endpoint_proxy](img/endpoint_proxy.PNG)
+    ![endpoint-label](img/endpoint-label.PNG)
 
 * **Design Endpoint - automatic update of endpoints**    
     When you delete a decorator, **endpoints will update automatically**.
