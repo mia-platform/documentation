@@ -233,7 +233,7 @@ When you select Inline Source you will need to fill in two values:
 * **Value to be saved**: you will have to choose which value to save in the DB, in this case we advise you to save the value.
 
 ### How to view the data of a Lookup
-From a Look up you can also configure additional features that allow you to meet any viewing need
+From a Look up you can also configure additional features that allow you to meet any viewing need.
 
 * **Visible properties**: Here you can choose which properties of your collection or the inline source created to show. The properties you want to show should be entered as if it were an array of strings.
 So if for example we wanted to show only the name, the array will be: ["name"]. If we want to show the name and surname it will instead be: ["name", "surname"].
@@ -254,38 +254,39 @@ The query will be: {"state": "working"}
 * **Live search**: if we want that while we are writing we will see the results (ex: I write A and they appear under the publishing houses that begin with A)
 
 !!! example "An example of Lookup on the weapons collection"
+
     ![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
+
 
 ## 4. Create a button
 
 From the DevOps Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
 
 
-![section I create button](img/Create_Button.png)
+![](img/Create_Button.png)
 
 
-The buttons are displayed in the central area of the CMS near the publish, draft and trash buttons.
+The buttons will be displayed in the central area of the CMS near the other buttons.
 
 To create a button, go to the Buttons section and configure the following fields:
 
 * **ID**: represents the field that uniquely identifies the action. it is an unmodifiable field
 * **Label**: represents the name you want to appear in the CMS
-* **Broken**: in this field you will have to enter the route to which your action should point
+* **Route**: in this field you will have to enter the route to which your action should point
 * **Icon**: for each button you can also set an icon
 
-In the API, you will then be able to conveniently view the buttons created on the card
+In the DevOps Console, you will then be able to conveniently view the buttons created.
 
 !!! example "Example of a button"
-    Let's take an example of a button on our Heroes Good page. The button will serve to contact a hero.
-    Sara:
+    Let's take an example of a button on the Authors page. The button will get info.
 
-    * id: contact-hero
-    * label: Contact Hero
-    * route: / action
-    * icon: phone
+    * id: info
+    * label: Info
+    * route: /test
+    * icon: info
 
-    here is how our button will appear:
-    ![bottone in cms](img/bottone-in-cms.JPG)
+    Here you can see how our button will appear:
+    ![](img/bottoneCMS.png)
 
 
 ### 4.1. Advanced configurations
@@ -315,6 +316,6 @@ Once you correctly configured the _Advanced section_ files, you can use the butt
 
 The request _body_ will contain the following data:
 
-* **actionId**: the ID that you set in the creation phase of the button (in the example above is `contact-hero`)
+* **actionId**: the ID that you set in the creation phase of the button (in the example above is `info`)
 
 * **payload**: an array of the rows (CMS elements) selected by the user; every element of the array will contain a record of the CRUD, with all the information of the record, id and CRUD custom fields included.
