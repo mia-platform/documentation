@@ -7,7 +7,6 @@
 
     ![hook-catch](img/hook-catch.PNG)
 
-
 ### Improvements
 
 * **Design - Endpoint** - **New experience for creating a new route**     
