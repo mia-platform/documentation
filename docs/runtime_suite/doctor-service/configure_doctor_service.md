@@ -8,7 +8,7 @@ The _Doctor Service_ is simply based on one file, the _configurations_ file.
 With the configurations file it's easy to manage all services to `check-up`.
 Specifically, the _Doctor_ allows the user to do two things:
 
-1. `check-up` all services in the configurations file by simply call the _root_ path (e.g. <a href="http://api.dev.gruppocattolica.it/playground/check-up" target="_blank">http://api.dev.gruppocattolica.it/playground/check-up</a>);
+1. `check-up` all services in the configurations file by simply call the _root_ path (e.g. http://api.foobar.it/playground/check-up);
 2. `check-up` a subgroup of services by specify the tag &rarr; all services can have a list of _tags_ (optional) and the _Doctor_ will expose a dedicated route for each tag, that will return the `check-up` of services with that tag.
 
 !!! warning
@@ -24,7 +24,7 @@ Following an overview of the steps that you have to do to integrate the _Doctor 
 4. **Check-up'em all**
 
 !!! Note
-    The following example is based on the _Playground_ project of the Cattolica's API Console.
+    The following example is based on a _Playground_ project.
 
 ### 1. Build the _configurations_ file
 
