@@ -3,7 +3,7 @@
 ### New features
 
 * **Design Microservices** - **The Marketplace now includes plugins**          
-    The marketplace has been enriched with a new functionality! In addition to templates and examples, **it will be possible to use plugins** that can be customized according to your needs. Starting from essential plugins, new ones will be released in the next weeks. Mia Platform Plugin are useful to accellerate the cration of your application. For example SQL Reader
+    The marketplace has been enriched with a new functionality! In addition to templates and examples, **it will be possible to use plugins** that can be customized according to your needs.  Mia Platform Plugins are useful to speed up the creation of your applications. For example, SQL Reader provides SQL queries as REST API, MongoDB Reader Provides MongoDB aggregation pipelines as REST API, SQL Invoker provides a REST API interface to execute SQL Stored Procedures, and so on.
 
     ![marketplace-plugin](marketplace-plugin.PNG)
 
