@@ -5,7 +5,7 @@
 * **Design Microservices** - **The Marketplace now includes plugins**          
     The marketplace has been enriched with a new functionality! In addition to templates and examples, **it will be possible to use plugins** that can be customized according to your needs.  Mia Platform Plugins are useful to speed up the creation of your applications. For example, SQL Reader provides SQL queries as REST API, MongoDB Reader Provides MongoDB aggregation pipelines as REST API, SQL Invoker provides a REST API interface to execute SQL Stored Procedures, and so on.
 
-    ![marketplace-plugin](marketplace-plugin.PNG)
+    ![marketplace-plugin](img/marketplace-plugin.png)
 
 * **Design Decorators** - **New type of decorators available**      
     Now you have the **possibility to set up a `CATCH` decorator**! `CATCH` decorators are invoked whenever the decorated endpoint returns an error status code. To learn more about decorators you can visit [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/) of Mia Platform Docs.
