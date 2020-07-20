@@ -23,7 +23,7 @@ You can add new rows by selecting **Add new** and fill in the blank spaces with 
 We added a new field and we wrote “Title” and ticked the fields we need.
 
 
-![Crea-collezione-riga-titolo](img/crud-add-line.png)
+![Crea-collezione-riga-titolo](img/crud-add-property.png)
 
 
 You can add the fields you need and select the appropriate properties:

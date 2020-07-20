@@ -7,7 +7,7 @@ From the Api Console you can easily configure and manage your analytics.
 
 In the drop down list you will find the **"Analytics"** section: there you'll be able to create analytics and monitor KPIs. Click on the button **"Add new"** to start configuring.
 
-![](img/add_new.png)
+![analyticsAddNew](img/analytics-add-new.png)
 
 
 When you're in, we'll guide you step-by-step through the analytics configuration. You can also configure Two Serie and One Serie analytics (only for *custom stock* graphics), for the latter the procedure is more complicated.
