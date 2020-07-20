@@ -42,7 +42,7 @@
 * **Design Endpoint - automatic update of endpoints**    
     When you delete a decorator, **endpoints will update automatically**.
 
-* **Design CRUD - fixed proceId deletion**         
+* **Design CRUD - fixed projectId deletion**         
     The configuration bug that deletes `projectId` on CRUD has been fixed.
 
 * **Design - forms allow white-spaces**    
