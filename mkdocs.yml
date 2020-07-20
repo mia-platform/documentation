@@ -41,8 +41,8 @@ nav:
     - CronJob:
         - Create and Manage Cronjob: 'development_suite/api-console/api-design/jobs-cronjob.md'
 
-    - Decorators: 'development_suite/api-console/api-design/decorators.md'
-    - Endpoints: 'development_suite/api-console/api-design/esponi_api.md'
+    - PRE/POST: 'development_suite/api-console/api-design/decorators.md'
+    - Endpoints: 'development_suite/api-console/api-design/endpoints.md'
     - CMS and Analytics:
        - Configure CMS: 'development_suite/api-console/api-design/api_console_configcms.md'
        - Configure Analytics: 'development_suite/api-console/api-design/api_console_configanalytics.md'

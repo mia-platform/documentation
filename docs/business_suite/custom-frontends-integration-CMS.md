@@ -18,7 +18,7 @@ Following the steps to integrate this functionality into the desired CMS.
 > All the steps to do are on the Console
 
 #### 1. CRUD - __cmsmenu__ creation
-First of all you need a collection named __cmsmenu__ where to insert the menu voices you want to create: 
+First of all you need a CRUD named __cmsmenu__ where to insert the menu voices you want to create: 
 
  1. Click on CRUD
  2. Click on __Create new CRUD__
@@ -72,7 +72,7 @@ following steps:
 
 
 #### 4. CMS configurations (optional)
-If you want to manage the custom menu configuration through the CMS you can create a page linked to the CRUD __cmsmenu__ collection.
+If you want to manage the custom menu configuration through the CMS you can create a page linked to the __cmsmenu__ CRUD.
 This step is optional and not needed for the integration but useful to manage the configuration.
 
  1. Click on CMS and Analytics
@@ -87,8 +87,8 @@ This step is optional and not needed for the integration but useful to manage th
  6. Select the __table__ Layout and eventually the group expression for the accesses
  7. Finish, the result will be like this ![](img/CMS_service.png)
 
-#### 5. Collection __cmsmenu__ - insert data
-It's time to insert the menu data in the __cmsmenu__ collection to make the voice of the menu visible.
+#### 5. CRUD __cmsmenu__ - insert data
+It's time to insert the menu data in the __cmsmenu__ CRUD to make the voice of the menu visible.
 
 `name`: the name you want to visualize in the menu
 
@@ -104,7 +104,7 @@ It's time to insert the menu data in the __cmsmenu__ collection to make the voic
 
 To do this you have two ways: 
 
-* insert the data in the CMS in the __cmsmenu__ collection: insert a new object specifying the fields.
+* insert the data in the CMS in the __cmsmenu__ CRUD: insert a new object specifying the fields.
         
     Example of the __Push Manager__ service:
     
