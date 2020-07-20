@@ -340,10 +340,6 @@ The utility functions exposed by the `Request` instance (the first parameter of 
  * `getOriginalRequestMethod()` - returns the original request method
  * `getOriginalRequestPath()` - returns the path of the original request
  * `getOriginalRequestQuery()` - returns the querystring of the original request
- * `getOriginalRequestHeaders ()` - returns the headers of the original request
- * `getOriginalRequestMethod ()` - returns the original request method
- * `getOriginalRequestPath ()` - returns the path of the original request
- * `getOriginalRequestQuery ()` - returns the querystring of the original request
 
 In addition to the methods described above, the `Request` instance exposes an interface to modify the original request, which will come
 forwarded by `microservice-gateway` to the target service. This interface is accessible using the `Request` instance method
@@ -352,8 +348,6 @@ forwarded by `microservice-gateway` to the target service. This interface is acc
  * `setBody(newBody)` - change the body of the original request
  * `setHeaders(newHeaders)` - modify the headers of the original request
  * `setQuery(newQuery)` - modify the querystring of the original request
- * `setHeaders (newHeaders)` - modify the headers of the original request
- * `setQuery (newQuery)` - modify the querystring of the original request
 
 To leave the original request unchanged, the `leaveOriginalRequestUnmodified` function is used instead.
 
