@@ -6,7 +6,7 @@ Decorators allow you to perform custom actions upon specific API handler invocat
 
  * **Pre**: invoked *before* the configured route handler;
  * **Post**: invoked *after* the successful execution of configured route handler (a 2xx status code is returned);
- * **Catch**: invoked *after* the failure of configured the configured route handler (any other error status code, 4xx or 5xx).
+ * **Catch**: invoked *after* the failure of the configured route handler (any other error status code, 4xx or 5xx).
 
 ![Decorators landing page](img/decorators-landing.png)
 
