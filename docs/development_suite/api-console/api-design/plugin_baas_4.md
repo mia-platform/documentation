@@ -5,10 +5,10 @@ In addition to standard components (e.g., CRUD), the platform can include compon
 
 A CM encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created `custom-plugin-lib`, a library in [node.js](https://github.com/mia-platform/custom-plugin-lib), based on the [fastify](https://fastify.io) library. Using `custom-plugin-lib` it is possible to create a CM by implementing the following steps:
 
-* [HTTP Routes handler](#rotte)
-* [changing the behaviour according to the client that is making the request, whether the user is logged in and its belonging groups](#identificazione-utente-e-client)
-* [requests to other services or CM of the platform](#interrogazioni-ad-endpoint-e-servizi-della-piattaforma)
-* [PRE and POST decorators](#decoratori-di-pre-e-post)
+* [HTTP Routes handler](#routes)
+* [changing the behaviour according to the client that is making the request, whether the user is logged in and its belonging groups](#user-and-client-identification)
+* [requests to other services or CM of the platform](#endpoint-queries-and-platform-services)
+* [PRE and POST decorators](#pre-and-post-decorators)
 
 In the remaining part of this guide it will be described how to develop, test and deploy a CM in Node.js withing the platform ecosystem using the `custom-plugin-lib` library.
 
