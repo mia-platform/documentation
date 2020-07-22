@@ -142,6 +142,11 @@ nav:
     - Configure Data Visualization Dashboard: 'business_suite/data-visualization.md'
     - Timeline: 'business_suite/timeline.md'
 
+- Libraries:
+  - Kafka:
+    - Kafka2Rest: 'libraries/kafka2rest.md'
+    - Rest2Kafka: 'libraries/rest2kafka.md'
+
 - Fast Data:
     - Overview: 'fast_data/overview.md'
 
