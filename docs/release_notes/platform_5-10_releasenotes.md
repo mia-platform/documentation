@@ -1,5 +1,12 @@
 ## v5.10.2 (July 22,2020)
 
+### Improvements
+
+* **Commit & Generate** - **Introduced release note to tag**      
+    Now you can **add a release note**, which supports markdown, to a created tag. 
+
+    ![tag-rel-note](img/tag-rel-note.png)
+
 ### Fixes
 
 * **Design** - **Fixed placeholder bug**      
