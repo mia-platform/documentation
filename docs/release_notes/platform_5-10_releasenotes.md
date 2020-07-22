@@ -6,6 +6,12 @@
     Fixed the bug on placeholders in the proxies and decorators section: now the inputs entered are no longer trimmed!
 
 
+### How to update your DevOps Console?
+
+In case of on-premise Console, to use these features, you have to update:
+
+
+
 ## v5.10.1 (July 16,2020)
 
 ### New features
