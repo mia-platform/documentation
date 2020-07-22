@@ -1,3 +1,11 @@
+## v5.10.2 (July 22,2020)
+
+### Fixes
+
+* **Design** - **Fixed placeholder bug**      
+    Fixed the bug on placeholders in the proxies and decorators section: now the inputs entered are no longer trimmed!
+
+
 ## v5.10.1 (July 16,2020)
 
 ### New features
