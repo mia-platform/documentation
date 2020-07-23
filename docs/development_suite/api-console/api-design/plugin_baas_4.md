@@ -44,6 +44,7 @@ The library can be used to instantiate an HTTP server.
 To start a CM developed with `custom-plugin-lib` the variables need to be available to the `nodejs` process environment:
 
 * USERID_HEADER_KEY = miauserid
+* USER_PROPERTIES_HEADER_KEY = miauserproperties
 * GROUPS_HEADER_KEY = miausergroups
 * CLIENTTYPE_HEADER_KEY = miaclienttype
 * BACKOFFICE_HEADER_KEY = isbackoffice
@@ -158,6 +159,7 @@ Furthermore, the Request instance is also decorated with methods that allow HTTP
 The instance of `Request` (the first argument of a handler) is decorated with functions
 
 * `getUserId` - exposes the user's ʻid`, if logged in or` null`
+* `getUserProperties` - exposes the user's properties of the logged user or `null`
 * `getGroups` - exposes an array containing strings that identify the groups to which the logged in user belongs
 * `getClientType` - exposes the type of client that performed the HTTP request
 * `isFromBackOffice` - exposes a boolean to discriminate whether the HTTP request from the CMS
