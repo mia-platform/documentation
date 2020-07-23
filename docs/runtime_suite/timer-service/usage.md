@@ -416,7 +416,7 @@ After 5 minutes the timer will expire and the topics `expiredOrders` and `usersO
 
 ### Timer with kafka output but error because kafka is not configured
 
-As described into the [environment variables section](./configuration.md/#environment-variables), the kafka configuration is optional (not all projects use kafka).
+As described into the [environment variables section](../configuration/#environment-variables), the kafka configuration is optional (not all projects use kafka).
 
 If the _Timer Service_ has not kafka configured and a client schedules a timer with kafka output by calling the POST route `timer-service/schedule` with the following body:
 
