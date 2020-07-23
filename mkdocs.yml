@@ -111,6 +111,10 @@ nav:
          - Introduction: 'runtime_suite/timer-service/index.md'
          - Configuration: 'runtime_suite/timer-service/configuration.md'
          - Usage: 'runtime_suite/timer-service/usage.md'
+       - Flow Manager:
+         - Introduction: 'runtime_suite/flow-manager/index.md'
+         - How it works: 'runtime_suite/flow-manager/how-it-works.md'
+         - Configuration: 'runtime_suite/flow-manager/configuration.md'
     - Privacy & Security:
       - Access Management:
         - Auth Service: 'runtime_suite/auth-service.md'
