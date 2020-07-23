@@ -159,7 +159,7 @@ Furthermore, the Request instance is also decorated with methods that allow HTTP
 The instance of `Request` (the first argument of a handler) is decorated with functions
 
 * `getUserId` - exposes the user's ʻid`, if logged in or` null`
-* `getUserProperties` - exposes the users's properties which are injected in the request's header
+* `getUserProperties` - exposes the users's properties of the logged user
 * `getGroups` - exposes an array containing strings that identify the groups to which the logged in user belongs
 * `getClientType` - exposes the type of client that performed the HTTP request
 * `isFromBackOffice` - exposes a boolean to discriminate whether the HTTP request from the CMS
