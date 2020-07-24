@@ -13,7 +13,7 @@
     Fixed the bug on placeholders in the proxies and decorators section: now the inputs entered are no longer trimmed!
 
 * **Design Endpoint** - **Fixed add new route bug**      
-    Fixed the bug that made the previously created routh path appear in the textbook **insert route path**.
+    Fixed the bug that made the previously created route path appear in the textbook **insert route path**.
 
 
 ### How to update your DevOps Console?
@@ -141,7 +141,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
 ### How to update your DevOps Console?
 
-In case of on-premise Console, to use these features, you have to update:
+In the case of on-premise Console, to use these features, you have to update:
 
 * Console Backend v3.2.0 (`nexus.mia-platform.eu/api-console/backend:3.2.0`)          
 
