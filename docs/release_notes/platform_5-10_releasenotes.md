@@ -12,6 +12,9 @@
 * **Design** - **Fixed placeholder bug**      
     Fixed the bug on placeholders in the proxies and decorators section: now the inputs entered are no longer trimmed!
 
+* **Design Endpoint** - **Fixed add new route bug**      
+    Fixed the bug that made the previously created routh path appear in the textbook "insert route path".
+
 
 ### How to update your DevOps Console?
 
