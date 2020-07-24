@@ -15,6 +15,9 @@
 * **Design Endpoint** - **Fixed add new route bug**      
     Fixed the bug that made the previously created route path appear in the textbook **insert route path**.
 
+* **DevOps Console** - **Fixed bug on Safari browser**      
+    Fixed the bug that was preventing scrolling the Menu on the **Safari browser**.
+
 
 ### How to update your DevOps Console?
 
