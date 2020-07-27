@@ -3,7 +3,7 @@
 ### Improvements
 
 * **Commit & Generate** - **Introduced release note to tag**      
-    Now you can **add a release note**, which supports markdown, to a created tag. 
+    You can now **add a release note** when creating a new tag (markdown is supported).
 
     ![tag-rel-note](img/tag-rel-note.png)
 
