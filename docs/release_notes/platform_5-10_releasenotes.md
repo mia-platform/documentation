@@ -16,7 +16,7 @@
     Fixed the bug that made the previously created route path appear in the textbook **insert route path**.
 
 * **DevOps Console** - **Fixed bug on Safari browser**      
-    Fixed the bug that was preventing scrolling the Menu on the **Safari browser**.
+    Fixed the bug that was preventing scrolling on **Safari**.
 
 
 ### How to update your DevOps Console?
