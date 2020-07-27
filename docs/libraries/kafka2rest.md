@@ -1,8 +1,5 @@
-<div align="center">
-
 # Kafka2Rest Kotlin Library
 
-</div>
 This library allow to consume kafka messages and handle them making HTTP REST calls.
 
 ## Install

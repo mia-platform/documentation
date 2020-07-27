@@ -1,10 +1,4 @@
-<div align="center">
-
 # Rest2Kafka Kotlin Library
-
-</div>
-
-**The Mia-Platform Rest2Kafka Kotlin Library**  
 
 This library allows to easily configure a [Ktor][ktor] Web Server which produces kafka messages.
 
