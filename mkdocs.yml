@@ -127,6 +127,14 @@ nav:
         - Authorization Service:
           - How to use: 'runtime_suite/authorization-service/how_to_use.md'
           - Configuration: 'runtime_suite/authorization-service/configuration.md'
+- Marketplace:
+  - Overview: 'marketplace/overview-marketplace.md'
+  - Resources:
+    - Templates: 'marketplace/templates/overview-templates.md'
+    - Examples: 'marketplace/examples/overview-examples.md'
+  - Contribute:
+    - Create a new template: 'marketplace/templates/create-template.md'
+    - Create a new example: 'marketplace/templates/create-example.md'
 
 - API Management & Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'
