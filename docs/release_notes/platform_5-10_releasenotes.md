@@ -25,9 +25,6 @@ In case of on-premise Console, to use these features, you have to update:
 * Console Backend: v3.4.1
 * Console Website: v1.27.0
 
-From this version a new toggle feature has been added: `FT_ENABLE_GOOGLE_TAG_MANAGER` used to enable Google Tag Manager installation and tracking via Google Analytics to collect information about console usage.
-By default it is enabled, if you want to turn it off you have to configure the console backend by setting the environment variable `FT_ENABLE_GOOGLE_TAG_MANAGER` to false
-
 
 
 ## v5.10.1 (July 16,2020)
