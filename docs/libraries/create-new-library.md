@@ -2,6 +2,14 @@
 
 Can't find a specific library? You can create a new one. You will find below the suggested guidelines to develop a complete library to facilitate the creation of Mia Custom Microservices.
 
+## Features
+Your library should easy to the creation of Custom Microservices by providing functions and structures to take advantages of most of Mia-Platform features.
+
+This section contains the guidelines to write your Mia service library.
+
+### Introduction
+
+
 ## Documentation
 Write clear and useful documentation is as important as to write good code. This will help who using your library to interface with the Mia-Platform easily.
 

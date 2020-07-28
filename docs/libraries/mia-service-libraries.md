@@ -5,13 +5,18 @@ We'll call these libraries **Mia service libraries**. You can find the libraries
 
 Actually the libraries available are:
 
-| Library   |      Technologies      |
-|----------|:-------------:|------:|
-| [Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib)|  Node.js, JavaScript |
-| [Mia service Java library](https://github.com/mia-platform/custom-plugin-java) |    Kotlin/Java   |
-| [Mia service Spring Boot library](https://github.com/mia-platform/custom-plugin-java-springboot) | Spring Boot, Kotlin/Java |
-| [Mia service NET library](https://github.com/mia-platform/custom-plugin-java-springboot) | .NET, C# |
+
+| **Library** | **Technologies** |
+| ------|------------|
+|[Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib)|Node.js, JavaScript|
+|[Mia service Java library](https://github.com/mia-platform/custom-plugin-java)| Kotlin/Java|
+|[Mia service Spring Boot library](https://github.com/mia-platform/custom-plugin-java-springboot)|Spring Boot, Kotlin/Java  |
+|[Mia service NET library](https://github.com/mia-platform/custom-plugin-java-springboot)|.NET, C#|
+
 
 More libraries are in developing, but if you need to create a Custom Microservices in a specific language or framework can you [build it from yourself](./create-new-library.md).
+
+!!! info
+    Would you like your library to appear here? send an email with all details to [info@mia-platform.eu](mailto:info@mia-platform.eu)
 
 
