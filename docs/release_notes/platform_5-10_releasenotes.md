@@ -21,10 +21,7 @@
 
 ### How to update your DevOps Console?
 
-In case of on-premise Console, to use these features, you have to update:
-* Console Backend: v3.4.1
-* Console Website: v1.27.0
-
+In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.2 
 
 
 ## v5.10.1 (July 16,2020)
