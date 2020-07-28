@@ -16,7 +16,7 @@ nav:
   - Custom Plugin: 'development_suite/api-console/api-design/plugin_baas_4.md'
   - CMS and Analytics: 'business_suite/overview-business-suite.md'
   - DevOps: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
-  - Release Notes: 'release_notes/platform_releasenotes.md'
+  - Release Notes: 'release_notes/platform_5-10_releasenotes.md'
   - Info: 'info/version-policy.md'
 
 - DevOps Console:
