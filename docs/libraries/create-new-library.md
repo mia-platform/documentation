@@ -1,14 +1,37 @@
 # Create a new Mia service library
 
-Can't find a specific library? You can create a new one. You will find below the suggested guidelines to develop a complete library to facilitate the creation of Mia Custom Microservices.
+Can't find a specific library? You can create a new one. You will find below the suggested guidelines to develop a complete library to facilitate the creation of Mia Custom Microservices.  
 
 ## Features
-Your library should easy to the creation of Custom Microservices by providing functions and structures to take advantages of most of Mia-Platform features.
+Your library should make easy the creation of Custom Microservices by providing functions and structures to take advantages of Mia-Platform features.
+### HTTP client
+The library should include an HTTP client which exposes HTTP verbs.
 
-This section contains the guidelines to write your Mia service library.
+To easily perform [**CRUD**](./../development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
 
-### Introduction
+* `GET` */v2/items*
+* `POST` */v2/items/bulks*
+* `DELETE` */v2/items/{id}*
 
+Calling any [**service**](./../development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of Custom Microservices. To do this, the developer who will use your library should be able to call a route with some options.
+
+Check out the related [Mia service Node.js library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/HTTPClient.md) for an example.
+
+### Decorators
+The library should provide methods to declare and handle the [**DevOps Console decorators**](./../development_suite/api-console/api-design/decorators.md).  
+It should include methods for accessing the original HTTP request and response and change them, according to the [following rules](./../development_suite/api-console/api-design/decorators.md).
+
+Check out the [Mia service Node.js library decorators documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/Decorators.md) for an example.
+
+### API documentation
+The library should be able to expose auto-generated documentation for each endpoint. It should exist a dedicated endpoint where show the API documentation. 
+
+Check out the [Mia service Node.js library API documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/ApiDoc.md) for an example.
+
+### Logging
+The library should be able to create logs in JSON format, using appropriate levels. You can follow our [guideliness for logs](./../development_suite/monitoring-dashboard/dev_ops_guide/log.md). In this way, you can properly view logs in [*Log & monitoring* section of DevOps Console](https://docs.mia-platform.eu/development_suite/overview-dev-suite/#log-monitoring) and using them to create custom dashboards.
+
+Check out the [Mia service Node.js logging documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/Logging.md) for an example.
 
 ## Documentation
 Write clear and useful documentation is as important as to write good code. This will help who using your library to interface with the Mia-Platform easily.
@@ -21,7 +44,7 @@ The Readme file must be small and contain a list in which to link the various mo
 The markdown files of the macro sections have to be placed in a separate `./Docs/` folder.
 
 ### Contents
-The documentation of libraries should answer to the  following questions:
+The documentation of libraries should answer the following questions:
 
 1. What does it do and why should i use it?
 2. How i can easy and rapidly start to use it?
@@ -31,14 +54,18 @@ The documentation of libraries should answer to the  following questions:
 A simple documentation structure to consider all questions  can be the following:
 
 1. **Getting started**
-2. **Setup the local development environment**
+2. **Set up the local development environment**
 3. **Install**  - How to install/include the library.
-4. **Main example** - A little example that immediately highlights the main use of the library. Explained step to step.
+4. **Main example** - A little example that immediately highlights the primary features of the library, explained step to step.
 5. **Configurations** - Required configuration of environment variables and other items.
 6. **Examples** - More advanced examples, with the instruction to easy launch them
 7. **How to**
-    * Declare routes
     * Create a custom service
-    * ...
+    * Declare routes
+    * Add decorators
+    * Call the other services on the Platform project
+    * See API documentation
+    * Testing
+    * Logging
     
     Each feature is explained in detail in related ./docs/feature.md” file

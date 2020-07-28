@@ -150,7 +150,7 @@ nav:
 
 - Libraries:
   - Custom Microservices:
-    - Mia service Libraries: 'libraries/mia-service-libraries.md'
+    - Mia service libraries: 'libraries/mia-service-libraries.md'
     - How to create new libraries: 'libraries/create-new-library.md'
   - Kafka:
     - Kafka2Rest: 'libraries/kafka2rest.md'
