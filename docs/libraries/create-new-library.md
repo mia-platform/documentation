@@ -72,4 +72,3 @@ A simple documentation structure to address all these questions can be the follo
     * Testing
     * Logging
     
-    Each feature is explained in detail in related ./docs/feature.md” file
