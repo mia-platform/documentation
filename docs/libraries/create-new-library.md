@@ -60,7 +60,7 @@ A simple documentation structure to address all these questions can be the follo
 1. **Getting started**
 2. **Set up the local development environment**
 3. **Install**  - How to install/include the library.
-4. **Main example** - A little example that immediately highlights the primary features of the library, explained step to step.
+4. **Kickoff Example** - A little example that immediately highlights the primary features of the library, explained step to step.
 5. **Configurations** - Required configuration of environment variables and other items.
 6. **Examples** - More advanced examples, with the instruction to easy launch them
 7. **How to**
