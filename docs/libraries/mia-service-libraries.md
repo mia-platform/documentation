@@ -17,6 +17,6 @@ Currently available libraries are:
 More libraries are in development, but if you need to create a Custom Microservices in a specific language or framework and feel the need for a library, you can [build your own yourself](./create-new-library.md).
 
 !!! info
-    Would you like your library to appear here? Send an email with all details to [info@mia-platform.eu](mailto:info@mia-platform.eu)
+    Would you like your library to appear here? Send an email with all the details to [info@mia-platform.eu](mailto:info@mia-platform.eu)
 
 
