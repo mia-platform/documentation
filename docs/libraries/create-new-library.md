@@ -6,7 +6,7 @@ Can't find a specific library? You can create a new one. You will find below the
 Your library should make the creation of Custom Microservices easier by providing functions and structures to take advantages of Mia-Platform features.
 
 ### HTTP client
-The library should include an HTTP client which exposes HTTP verbs.
+The library should include an HTTP client which exposes HTTP verbs (`get`, `post`, `patch`, etc).
 
 To easily perform [**CRUD**](./../development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
 
