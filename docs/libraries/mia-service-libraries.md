@@ -3,7 +3,7 @@ For the purpose of facilitating the creation of [Custom Microservices](./../deve
 
 We'll call these libraries **Mia service libraries**. You can find ready-to-use libraries on [Mia-Platform Github repository](https://github.com/mia-platform).
 
-Actually the libraries available are:
+Currently available libraries are:
 
 
 | **Library** | **Technologies** |
