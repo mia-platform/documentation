@@ -63,7 +63,7 @@ A simple documentation structure to address all these questions can be the follo
 4. **Kickoff Example** - A little example that immediately highlights the primary features of the library, explained step to step.
 5. **Configurations** - Required configuration of environment variables and other items.
 6. **Examples** - More advanced examples, with the instruction to easy launch them
-7. **How to**
+7. **How to** - Each feature is explained in detail in related `/docs/Feature.md` file
     * Create a custom service
     * Declare routes
     * Add decorators
