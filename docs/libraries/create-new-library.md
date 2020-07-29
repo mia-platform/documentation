@@ -8,7 +8,7 @@ Your library should make the creation of Custom Microservices easier by providin
 ### HTTP client
 The library should include an HTTP client which exposes HTTP verbs (`get`, `post`, `patch`, etc).
 
-To easily perform [**CRUD**](./../development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
+Moreover, to easily perform [**CRUD**](./../development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
 
 * `GET` */v2/items*
 * `POST` */v2/items/bulks*
