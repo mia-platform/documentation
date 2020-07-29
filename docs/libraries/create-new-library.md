@@ -44,8 +44,7 @@ This section contains specific guidelines to write the documentation of your Mia
 integrated on the various Github repositories of service libraries. For a complete example, you can see [Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib). 
 
 ### Organization of markdown files
-The Readme file must be small and contain a list in which to link the various more detailed sections.
-The markdown files of the macro sections have to be placed in a separate `./Docs/` folder.
+The `README` file must be small and provide an overview of the library and the table of contents with links to the more detailed sections, that should be written in markdown in a separate `/docs` directory.
 
 ### Contents
 The documentation of libraries should answer the following questions:
