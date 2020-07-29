@@ -1,5 +1,5 @@
 # Mia service libraries
-For the purpose of facilitating the creation of [Custom Microservices](./../development_suite/api-console/api-design/plugin_baas_4.md) and interact with the Platform in various languages and frameworks, you can use specific libraries.
+For the purpose of facilitating the creation of [Custom Microservices](./../development_suite/api-console/api-design/plugin_baas_4.md) and interact with Mia-Platform using different languages and frameworks, we have developed a set of libraries.
 
 We'll call these libraries **Mia service libraries**. You can find ready-to-use libraries on [Mia-Platform Github repository](https://github.com/mia-platform).
 
