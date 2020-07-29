@@ -55,7 +55,7 @@ The documentation of libraries should answer the following questions:
 3. How can I put myself into a situation where to use the library with best practices?
 4. How does it interact with Mia-Platform?
 
-A simple documentation structure to consider all questions  can be the following:
+A simple documentation structure to address all these questions can be the following:
 
 1. **Getting started**
 2. **Set up the local development environment**
