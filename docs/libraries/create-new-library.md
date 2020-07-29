@@ -33,7 +33,7 @@ The library should be able to expose auto-generated documentation for each endpo
 Check out the [Mia service Node.js library API documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/ApiDoc.md) for an example.
 
 ### Logging
-The library should be able to create logs in JSON format, using appropriate levels. You can follow our [guideliness for logs](./../development_suite/monitoring-dashboard/dev_ops_guide/log.md). In this way, you can properly view logs in [*Log & monitoring* section of DevOps Console](https://docs.mia-platform.eu/development_suite/overview-dev-suite/#log-monitoring) and using them to create custom dashboards.
+The library should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](./../development_suite/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of DevOps Console](https://docs.mia-platform.eu/development_suite/overview-dev-suite/#log-monitoring) and to use them to create custom dashboards.
 
 Check out the [Mia service Node.js logging documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/Logging.md) for an example.
 
