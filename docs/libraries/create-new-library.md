@@ -4,6 +4,7 @@ Can't find a specific library? You can create a new one. You will find below the
 
 ## Features
 Your library should make the creation of Custom Microservices easier by providing functions and structures to take advantages of Mia-Platform features.
+
 ### HTTP client
 The library should include an HTTP client which exposes HTTP verbs.
 
