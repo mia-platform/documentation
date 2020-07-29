@@ -10,7 +10,10 @@ The library should include an HTTP client which exposes HTTP verbs (`get`, `post
 
 Moreover, to easily perform [**CRUD**](./../development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
 
-* `GET` */v2/items*
+* `get(...)`: `GET` */collectionName*
+* `getById(...)`: `GET` */collectionName/{id}*
+* `create(...)`: `POST` */collectionName/bulks*
+* `deleteById(...)`: `DELETE` */collectionName/{id}*
 * `POST` */v2/items/bulks*
 * `DELETE` */v2/items/{id}*
 
