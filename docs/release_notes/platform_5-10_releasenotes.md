@@ -1,3 +1,25 @@
+## v5.10.3 (July 30,2020)
+
+### New features
+
+* **Devops Console** - **New cards for projects** 
+    In the Homepage of the Devops Console you will now see new card representing individual projects. Every card shows:
+    * Project name
+    * Layer label
+    * Project owner
+    * Team owner
+    * Numbers of pods running
+    * Environment
+    * Status
+    * CPU
+    * RAM
+
+
+### How to update your DevOps Console?
+
+In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.2 
+
+
 ## v5.10.2 (July 28,2020)
 
 ### Improvements
