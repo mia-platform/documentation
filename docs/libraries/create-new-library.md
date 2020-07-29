@@ -50,7 +50,7 @@ The markdown files of the macro sections have to be placed in a separate `./Docs
 ### Contents
 The documentation of libraries should answer the following questions:
 
-1. What does it do and why should i use it?
+1. What does it do and why should I use it?
 2. How i can easy and rapidly start to use it?
 3. How can I put myself into a situation where to use the library with best practices?
 4. How does it interact with the Mia suite?  
