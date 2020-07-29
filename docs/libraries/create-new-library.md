@@ -40,9 +40,7 @@ Check out the [Mia service Node.js logging documentation](https://github.com/mia
 ## Documentation
 Write clear and useful documentation is as important as to write good code. This will help who is using your library to interact with Mia-Platform easily.
 
-This section contains specific guidelines to write the documentation of your Mia service library. We assume that
-integrated on the various Github repositories of service libraries. For a complete example, you can see [Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib). 
-
+This section contains specific guidelines to write the documentation of your Mia service library. We assume the documentation is integrated into the repository of the library. For a complete example, you can see [Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib).
 ### Organization of markdown files
 The `README` file must be small and provide an overview of the library and the table of contents with links to the more detailed sections, that should be written in markdown in a separate `/docs` directory.
 
