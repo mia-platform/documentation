@@ -1,3 +1,29 @@
+## v5.10.2 (July 28,2020)
+
+### Improvements
+
+* **Commit & Generate** - **Introduced release note to tag**      
+    You can now **add a release note** when creating a new tag (markdown is supported).
+
+    ![edit-tag](img/edit-tag.PNG)
+
+### Fixes
+
+* **Design** - **Fixed placeholder bug**      
+    Fixed placeholder message for forms in the proxies and decorators section: now they are no longer trimmed.
+
+* **Design Endpoint** - **Fixed add new route bug**      
+    Fixed the bug that made the previously created route path appear in the textbook **insert route path**.
+
+* **DevOps Console** - **Fixed bug on Safari browser**      
+    Fixed the bug that was preventing scrolling on **Safari**.
+
+
+### How to update your DevOps Console?
+
+In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.2 
+
+
 ## v5.10.1 (July 16,2020)
 
 ### New features
@@ -117,7 +143,7 @@ Moreover, you have to modify the CRUD of the services in the marketplace by:
 
 ### How to update your DevOps Console?
 
-In case of on-premise Console, to use these features, you have to update:
+In the case of on-premise Console, to use these features, you have to update:
 
 * Console Backend v3.2.0 (`nexus.mia-platform.eu/api-console/backend:3.2.0`)          
 

@@ -16,7 +16,7 @@ nav:
   - Custom Plugin: 'development_suite/api-console/api-design/plugin_baas_4.md'
   - CMS and Analytics: 'business_suite/overview-business-suite.md'
   - DevOps: 'development_suite/monitoring-dashboard/dev_ops_guide/business_continuity.md'
-  - Release Notes: 'release_notes/platform_releasenotes.md'
+  - Release Notes: 'release_notes/platform_5-10_releasenotes.md'
   - Info: 'info/version-policy.md'
 
 - DevOps Console:
@@ -57,6 +57,8 @@ nav:
         - How to configure: 'development_suite/api-console/advanced-section/authorization-service/configuration.md'
       - Auth0 Client:
         - How to configure: 'development_suite/api-console/advanced-section/auth0-client/configuration.md'
+      - Swagger Aggregator:
+        - How to configure: 'development_suite/api-console/advanced-section/swagger-aggregator/configuration.md'
     - How to enable Auth0: 'development_suite/api-console/api-design/how_to_enable_auth0.md'
   - Test & Debug:
     - Debug a Microservice: 'development_suite/debugging/telepresence.md'
@@ -165,8 +167,8 @@ nav:
 - Release Notes:
     - Platform:
       - Platform v5:
-        - Platform v5.10: 'release_notes/platform_5-10_releasenotes.md' 
-        - Platform v5.9: 'release_notes/platform_5-9-0_releasenote.md'     
+        - Platform v5.10: 'release_notes/platform_5-10_releasenotes.md'
+        - Platform v5.9: 'release_notes/platform_5-9-0_releasenote.md'
         - Platform v5.8: 'release_notes/platform_5-8-0_releasenotes.md'
         - Platform v5.7: 'release_notes/platform_5-7-0_releasenotes.md'
         - Platform v5.6: 'release_notes/platform_5-6-0_releasenotes.md'
