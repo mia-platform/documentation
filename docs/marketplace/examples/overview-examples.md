@@ -21,7 +21,7 @@ Currently available examples are:
 |[Python Tornado Hello World example](https://github.com/mia-platform-marketplace/python-tornado-hello-world-microservice-example)| Tornado, Python| An example that shows how to build a simple microservice in Python using Tornado framework. |
 |[Python Falcon Hello World example](https://github.com/mia-platform-marketplace/python-falcon-hello-world-microservice-example)| Falcon, Python| An example that shows how to build a simple microservice in Python using Falcon framework. |
 
-More examples are in development, but if you want, you can build an example from your own yourself.
+More examples are in development, but if you want, you can create your examples by yourself.
 
 !!! info
     Would you like your example to appear here? Send an email with all the details to [info@mia-platform.eu](mailto:info@mia-platform.eu)
