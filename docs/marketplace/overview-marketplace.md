@@ -14,7 +14,7 @@ You can start from a:
 <br>![new-templates](./img/new-templates.png)
 Check out the [Template section](./templates/overview-templates.md) for further information.
 
-* **Example**: a specific use-case, a ready-to-use model to create your microservice.     
+* **Example**: a specific use-case, a ready-to-use model to create your microservice.
 <br>![new-examples](img/new-examples.png)
 Check out the [Example section](./examples/overview-examples.md) for further information.
 
