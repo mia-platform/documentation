@@ -17,7 +17,7 @@ Currently available templates are:
 |[Go template](https://github.com/mia-platform-marketplace/Go-Template)| Go |
 |[Go Call CRUD template](https://github.com/mia-platform-marketplace/Go-Call-CRUD-Template)| Go |.
 
-More templates are in development, but if you want, you can build a template from your own yourself.
+More templates are in development, but if you want, you can build a template by yourself.
 
 !!! info
     Would you like your template to appear here? Send an email with all the details to [info@mia-platform.eu](mailto:info@mia-platform.eu)
