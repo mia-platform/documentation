@@ -1,7 +1,7 @@
 # Templates
 
 A **Template** is a base repository from which you can start to create a new Microservice.  
-Usually depends on the related [Mia service library](../../libraries/mia-service-libraries.md). 
+Usually they depend on specific [Mia Service libraries](../../libraries/mia-service-libraries.md).
 
 
 Currently available templates are:
