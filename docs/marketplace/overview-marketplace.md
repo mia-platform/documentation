@@ -2,7 +2,7 @@
 
 The Mia Marketplace contains several code resources to develop your microservices with Mia-Platform.
 
-You can access to Marketplace from the *Design area* of *DevOps Console*, when you are [creating a new microservice](/../development_suite/api-console/api-design/plugin_baas_4/).
+You can access the Marketplace from the *Design area* of *DevOps Console*, when you are [creating a new microservice](/../development_suite/api-console/api-design/plugin_baas_4/).
 
 You will see a set of [examples](./examples/overview-examples.md) and [template](./templates/overview-templates.md), powered and supported by Mia-Platform, that you can select to set-up easily microservice with predefined and tested functionality.
 
