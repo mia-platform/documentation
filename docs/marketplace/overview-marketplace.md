@@ -6,7 +6,7 @@ You can access the Marketplace from the *Design area* of *DevOps Console*, when 
 
 You will see a set of [examples](./examples/overview-examples.md) and [template](./templates/overview-templates.md), powered and supported by Mia-Platform, that you can select to set-up easily microservice with predefined and tested functionality.
 
-You can go deeper into the code of templates and examples visiting the [Marketplace Github repository](https://github.com/mia-platform-marketplace).
+You can go deeper into the code of templates and examples visiting the [Marketplace Github page](https://github.com/mia-platform-marketplace).
 
 You can start from a:
 
