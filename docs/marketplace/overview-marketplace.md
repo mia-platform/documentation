@@ -10,7 +10,7 @@ You can go deeper into the code of templates and examples visiting the [Marketpl
 
 You can start from a:
 
-* **Template**: a base repository from which you can start to create a new Microservice.   
+* **Template**: a base repository from which you can start to create a new Microservice.
 <br>![new-templates](./img/new-templates.png)
 Check out the [Template section](./templates/overview-templates.md) for further information.
 
