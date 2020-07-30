@@ -86,7 +86,6 @@ nav:
             - Usage: 'runtime_suite/files-service/usage.md'
             - Configuration: 'runtime_suite/files-service/configuration.md'
          - Notifications:
-           - Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
            - Mail Service: 'runtime_suite/mail-notification.md'
            - Notifcation Manager: 'runtime_suite/notifications-manager.md'
          - iOS SDK: 'runtime_suite/sdk_ios.md'
@@ -133,10 +132,8 @@ nav:
   - Overview: 'marketplace/overview-marketplace.md'
   - Templates:
     - Mia templates: 'marketplace/templates/overview-templates.md'
-    - Create a new template: 'marketplace/templates/create-template.md'
   - Examples:
-    - Mia example: 'marketplace/examples/overview-examples.md'
-    - Create a new example: 'marketplace/examples/create-example.md'
+    - Mia examples: 'marketplace/examples/overview-examples.md'
 
 - API Management & Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'
