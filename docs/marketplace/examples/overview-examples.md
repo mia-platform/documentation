@@ -1,6 +1,6 @@
 # Examples
 
-An **Example** provides a specific use-case, it's a ready-to-use model to create your microservice.  
+An **Example** provides sample code addressing a specific use-case, it's a ready-to-use model to create your microservice.  
 
 Currently available examples are:
 
