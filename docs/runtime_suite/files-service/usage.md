@@ -12,7 +12,7 @@ This service exposes two routes, one for the upload and one for the download,
 (these can be prefixed by passing the --prefix option at startup):
 
 
-* **Upload**: POST */* with a multipart request containing the file to upload. The file will be stored on
+* **Upload**: `POST /` with a multipart request containing the file to upload. The file will be stored on
 the configured backend, and the file's informations will be stored on mongoDB.
 It returns a json response containing:
 
@@ -27,9 +27,11 @@ It returns a json response containing:
     curl -F "image=@/path/to/image" "http://localhost:8080/"
   ```
 
-During the upload, you can specify other properties that will be ignored.
-If you like, using the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`.
-you can specify a caster function to add other properties to CRUD.
+  During the upload, you can specify other properties that will be ignored.
+  If you like, using the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`.
+  you can specify a caster function to add other properties to CRUD.
 
-* **Download**: GET */download/:file* to download the files that were previously uploaded. Add the *download=1* query parameter to download the file as an attachment.
+* **Download**: `GET /download/:file` to download the files that were previously uploaded. Add the *download=1* query parameter to download the file as an attachment.
+
+* **Delete**: `DELETE /:file` to delete a file that was previously uploaded
 
