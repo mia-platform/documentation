@@ -13,8 +13,8 @@ This service exposes two routes, one for the upload and one for the download,
 
 
 * **Upload**: `POST /` with a multipart request containing the file to upload. The file will be stored on
-the configured backend, and the file's informations will be stored on mongoDB.
-It returns a json response containing:
+the configured backend, and the file's information will be stored on MongoDB.
+It returns a JSON response containing:
 
     * name: original file name
     * file: unique name of the file that should be used to retrieve it using this service
