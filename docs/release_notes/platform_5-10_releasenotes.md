@@ -2,7 +2,7 @@
 
 ### New features
 
-* **Devops Console** - **New cards for projects** 
+* **Devops Console** - **New cards for projects**    
     In the Homepage of the Devops Console you will now see new card representing individual projects. Every card shows:
     * Project name
     * Layer label
@@ -13,6 +13,14 @@
     * Status
     * CPU
     * RAM
+The feature is protected by Feature Toggle with `ENABLE_PROJECTS_CARDS_WITH_K8S_METRICS` flag. Please note that K8s metrics are mocked for now.
+
+### Improvements
+
+* **Design Microservices** - **Introduced new logos and labels in the marketplace**      
+    The service marketplace now includes new **logos** and **tags** through which you can more easily search and find your favorite example, template or plugin.
+
+    ![new_logos_tags](img/new_logos_tags.PNG)
 
 
 ### How to update your DevOps Console?
