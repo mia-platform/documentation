@@ -3,7 +3,7 @@
 
 In this section you can learn how to create and manage Microservices on Mia-Platform DevOps Console. 
 
-You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/marketplace/) of Mia Platform Docs.
+You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview-marketplace.md) of Mia Platform Docs.
 
 You can create a Microservice by: 
 

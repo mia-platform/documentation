@@ -18,7 +18,7 @@ In the remaining part of this guide it will be described how to develop, test an
 
 From the service area it is possible to add a new service starting from the node template that is already set up and configured to use the `custom-plugin-lib`.
 
-Check out the [Marketplace Documentation](https://docs.mia-platform.eu/development_suite/api-console/api-design/marketplace/) for further information
+Check out the [Marketplace Documentation](./../../../marketplace/overview-marketplace.md) for further information
 
 ### Manual install in a new repository
 

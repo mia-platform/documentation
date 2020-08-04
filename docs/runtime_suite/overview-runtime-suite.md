@@ -1,4 +1,4 @@
-#Microservices Ecosystem Overview
+# Microservices Ecosystem Overview
 
 
 Welcome to the Microservices Ecosystem overview page!
@@ -12,9 +12,11 @@ Develop cloud-native microservices leveraging Mia-Platform’s templates. Decoup
 your Company evolve and scale fast.
 
 
-###Microservices Marketplace
+### Microservices Marketplace
 
 Leverage Templates and Examples to develop microservices in your favourite technology. Let development teams focus on the business logics, without worrying about set up, libraries, logs and orchestration.
+
+Check out the [Marketplace section](./../marketplace/overview-marketplace.md) to further detail.
 
 
 ###Orchestrator Services
