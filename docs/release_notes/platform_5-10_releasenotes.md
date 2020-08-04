@@ -22,6 +22,11 @@ The feature is protected by Feature Toggle with `ENABLE_PROJECTS_CARDS_WITH_K8S_
 
     ![new_logos_tags](img/new_logos_tags.PNG)
 
+### Fixes
+
+* **Design Endpoint** - **Fixed visualization bug on endpoint section fields**      
+   Fixed the irregular behavior that resulted in a shared state between the fields in the endpoint section.
+
 
 ### How to update your DevOps Console?
 
