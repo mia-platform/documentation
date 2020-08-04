@@ -9,11 +9,11 @@ You can create a Microservice by:
 
 * **using a Template**: a starting point to create a new Microservice;
 
-![new-templates](img/new-templates.png)
+![new-templates](./../../../marketplace/img/new-templates.png)
 
 * **using an Example**: an existing and ready-to-use model;
 
-![new-examples](img/new-examples.png)
+![new-examples](./../../../marketplace/img/new-examples.png)
 
 * **uploading a Docker Image Name**: a file that is used to execute code.
 
