@@ -1,4 +1,4 @@
-# Why always start from scratch? The Mia-Platofom Marketplace
+# Why always start from scratch? The Mia-Platfom Marketplace
 
 The Mia-Platform Marketplace contains several code resources to develop your microservices with Mia-Platform.
 
