@@ -130,9 +130,9 @@ nav:
 - Marketplace:
   - Overview: 'marketplace/overview-marketplace.md'
   - Templates:
-    - Mia templates: 'marketplace/templates/overview-templates.md'
+    - Mia-Platform templates: 'marketplace/templates/overview-templates.md'
   - Examples:
-    - Mia examples: 'marketplace/examples/overview-examples.md'
+    - Mia-Platform examples: 'marketplace/examples/overview-examples.md'
 
 - API Management & Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'
