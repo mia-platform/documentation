@@ -3,17 +3,17 @@
 
 In this section you can learn how to create and manage Microservices on Mia-Platform DevOps Console. 
 
-You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](https://docs.mia-platform.eu/development_suite/api-console/api-design/marketplace/) of Mia Platform Docs.
+You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview-marketplace.md) of Mia Platform Docs.
 
 You can create a Microservice by: 
 
 * **using a Template**: a starting point to create a new Microservice;
 
-![new-templates](img/new-templates.png)
+![new-templates](./../../../marketplace/img/new-templates.png)
 
 * **using an Example**: an existing and ready-to-use model;
 
-![new-examples](img/new-examples.png)
+![new-examples](./../../../marketplace/img/new-examples.png)
 
 * **uploading a Docker Image Name**: a file that is used to execute code.
 
@@ -21,7 +21,7 @@ You can create a Microservice by:
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-At [this link](https://docs.mia-platform.eu/development_suite/api-console/api-design/marketplace/) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [MarketPlace](./../../../marketplace/overview-marketplace.md) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 

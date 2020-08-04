@@ -1,0 +1,23 @@
+# Templates
+
+A **Template** is a base repository from which you can start to create a new Microservice.  
+Usually they depend on specific [Mia Service libraries](../../libraries/mia-service-libraries.md).
+
+
+Currently available templates are:
+
+
+| **Template** | **Technologies** |
+| ------|------------|
+|[Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/)|Node.js, JavaScript|
+|[Spring Boot template](https://github.com/mia-platform-marketplace/SpringBoot-Custom-Plugin-Template)| Spring Boot, Java|
+|[React template](https://github.com/mia-platform-marketplace/React-App-Template)|React, JavaScript  |
+|[Angular template](https://github.com/mia-platform-marketplace/Angular-App-Template)|Angular, TypeScript  |
+|[TypeScript LC-39 template](https://github.com/mia-platform-marketplace/Typescript-LC39-Template)|Node.js, [LC-39](https://github.com/mia-platform/lc39), TypeScript  |
+|[Go template](https://github.com/mia-platform-marketplace/Go-Template)| Go |
+|[Go Call CRUD template](https://github.com/mia-platform-marketplace/Go-Call-CRUD-Template)| Go |.
+
+More templates are in development, but if you want, you can build a template by yourself.
+
+!!! info
+    Would you like your template to appear here? Send an email with all the details to [info@mia-platform.eu](mailto:info@mia-platform.eu)

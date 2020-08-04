@@ -34,7 +34,6 @@ nav:
             - Configure your Services: 'development_suite/api-console/api-design/services.md'
             - Service Memory Resources: 'development_suite/api-console/api-design/microservice-memory-resources.md'
             - Service CPU Resources: 'development_suite/api-console/api-design/microservices-cpu-resources.md'
-       - Marketplace: 'development_suite/api-console/api-design/marketplace.md'
        - Microservice from template - Get started: 'development_suite/api-console/api-design/custom_microservice_get_started.md'
        - Create a Node Custom Microservices: 'development_suite/api-console/api-design/plugin_baas_4.md'
        - Add a Microservices Template : 'development_suite/api-console/api-design/templates_conf.md'
@@ -86,7 +85,6 @@ nav:
             - Usage: 'runtime_suite/files-service/usage.md'
             - Configuration: 'runtime_suite/files-service/configuration.md'
          - Notifications:
-           - Push Notifications: 'runtime_suite/push_notifications_platform_4.md'
            - Mail Service: 'runtime_suite/mail-notification.md'
            - Notifcation Manager: 'runtime_suite/notifications-manager.md'
          - iOS SDK: 'runtime_suite/sdk_ios.md'
@@ -129,6 +127,12 @@ nav:
         - Authorization Service:
           - How to use: 'runtime_suite/authorization-service/how_to_use.md'
           - Configuration: 'runtime_suite/authorization-service/configuration.md'
+- Marketplace:
+  - Overview: 'marketplace/overview-marketplace.md'
+  - Templates:
+    - Mia-Platform templates: 'marketplace/templates/overview-templates.md'
+  - Examples:
+    - Mia-Platform examples: 'marketplace/examples/overview-examples.md'
 
 - API Management & Headless CMS:
   - Overview: 'business_suite/overview-business-suite.md'

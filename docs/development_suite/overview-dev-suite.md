@@ -1,4 +1,4 @@
-#DevOps Console Overview
+# DevOps Console Overview
 
 Welcome to the DevOps Console Overview page!
 
@@ -12,35 +12,34 @@ microservices design. Run your CI/CD pipelines, deploy on every kind of environm
 runtime applications.
 
 
-###Infrastructure set-up
+### Infrastructure set-up
 
 Get started with your project in a few clicks: configure Kubernetes clusters, set up your environments and manage all the [environment variables](../../development_suite/set-up-infrastructure/env-var/).
 
-###CD/CI Pipelines
+### CD/CI Pipelines
 
 Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 
-###Microservices and API Design
+### Microservices and API Design
+Develop containerized services in any language with [Templates](./../marketplace/templates/overview-templates.md). Design your [CRUD](../../development_suite/api-console/api-design/crud_advanced/) and GraphQL APIs and expose information to all channels.
 
-Develop containerized services in any language with [Templates](../../runtime_suite/overview-runtime-suite/#microservices-marketplace.md). Design your [CRUD](../../development_suite/api-console/api-design/crud_advanced/) and GraphQL APIs and expose information to all channels.
-
-###Test Automation & Debug
+### Test Automation & Debug
 
 Automate your tests suite to deliver quality software at a sustainable pace. [Debug](../../development_suite/debugging/telepresence/) your kubernetes services locally with your preferred debugging tool.
 
-###Deployment
+### Deployment
 
 [Release](../deploy/deploy/#deploy-details-page.md) across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
 
-###Log & Monitoring
+### Log & Monitoring
 
 [Monitor](../../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
 
-###Metrics
+### Metrics
 
 Create your dashboards collecting data across the entire DevOps lifecycle to gain a complete overview of your application delivery value stream.
 
-###Platform Governance
+### Platform Governance
 
 Guarantee security, quality, and consistency across projects and teams, both internal and external, with clear policies enforced through code.
 
