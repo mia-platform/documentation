@@ -21,7 +21,7 @@ You can create a Microservice by:
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-At [this link](https://docs.mia-platform.eu/development_suite/api-console/api-design/marketplace/) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [MarketPlace](/../../marketplace/overview-marketplace.md) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
