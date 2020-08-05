@@ -7,11 +7,12 @@ If you are using this service in your machine, it is very important to set the D
 ## Configuration
 
 This service relies on the existence of a CRUD collection with the following properties:
- - `templateId`: a string identifying the desired template.
- - `htmlTemplate`: a string containing the HTML template of the body of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
- - `htmlHeader`: the HTML template of the header of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
- - `HTMLFooter`: the HTML template of the footer of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
- - `options`: an object containing the available options offered by the Puppeter library. You can find a reference at the [following link](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions). If the `options` property is missing, then the default `options` will be used:
+
+ * `templateId`: a string identifying the desired template.
+ * `htmlTemplate`: a string containing the HTML template of the body of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
+ * `htmlHeader`: the HTML template of the header of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
+ * `HTMLFooter`: the HTML template of the footer of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
+ * `options`: an object containing the available options offered by the Puppeter library. You can find a reference at the [following link](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions). If the `options` property is missing, then the default `options` will be used:
 ```javascript
 {
     format: 'A4',
