@@ -5,13 +5,13 @@ This plugin provides a simple way of generating PDF files from an initial HTML t
 If you are using this service in your machine, it is very important to set the DOCKER environment variable to false.
 
 ## Configuration
+
 This service relies on the existence of a CRUD collection with the following properties:
  - `templateId`: a string identifying the desired template.
- - `htmlTemplate`: a string containing the html template of the body of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
- - `htmlHeader`: the html template of the header of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
- - `htmlFooter`: the html template of the footer of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
- - `options`: an object containing the available options offered by the puppeter library. You can find a reference at the [following link](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions).
-If the `options` property is missing, then the default `options` will be used:
+ - `htmlTemplate`: a string containing the HTML template of the body of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
+ - `htmlHeader`: the HTML template of the header of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
+ - `HTMLFooter`: the HTML template of the footer of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
+ - `options`: an object containing the available options offered by the Puppeter library. You can find a reference at the [following link](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions). If the `options` property is missing, then the default `options` will be used:
 ```javascript
 {
     format: 'A4',
@@ -28,12 +28,13 @@ If the `options` property is missing, then the default `options` will be used:
   }
 ```
 
-The service requires 2 environment variables:
-- `TEMPLATE_CRUD`: The url to read from the CRUD collection (e.g. http://crud-service/templates)
-- `DOCKER`: True, if it runs within docker. False otherwise.
+The service requires two environment variables:
+- `TEMPLATE_CRUD`: The endpoint to read from the CRUD collection (e.g. http://crud-service/templates)
+- `DOCKER`: *True*, if it runs within docker. *False* otherwise.
 
-### Html template
-HTML templates are interpolated using [Handlebars](https://github.com/wycats/handlebars.js/) library. So, the syntax to perform interpolation is the one of the linked library.
+### HTML template
+
+HTML templates are interpolated using [Handlebars](https://github.com/wycats/handlebars.js/) library. So, the syntax to performing the interpolation is that of the linked library.
 
 An example of useful template is the following:
 ```html
@@ -42,7 +43,7 @@ My name is {{name}} and I live in {{address.city}}.
 </div>
 ```
 
-In the **Usage** section we will se how to perform the interpolation.
+In the **Usage** section we will see how to perform the interpolation.
 
 In order to insert an image into the header/footer, you have to insert the img tag containing as value for src the base64 image.
 You can use [this link](https://codebeautify.org/image-to-base64-converter) to upload an image and obtain its base64 version.
@@ -54,22 +55,23 @@ The following is a working header/footer containing an image:
 ```
 
 ## Usage
+
 The service exposes only the `\` in `POST`. The request must contain a body with the following properties:
 ```javascript
 {
-    "data": "object", // an object, possibly nested, containing the data to use for text interpolation in the html template
-    "templateId": "string", // the name given to the template to identify it within the CRUD.
+    "data":  { <data> }, // an object, possibly nested, containing the data to use for text interpolation in the HTML template
+    "templateId": "<temlate name>", // the name given to the template to identify it within the CRUD.
 }
 ```
 
-An example of the body could be he following:
+An example of the body could be the following:
 ```json
 {
     "data": {
         "name": "Francesco",
         "address": {
             "city": "Milan",
-            "streetName": "Via Calatafimi, 10",
+            "streetName": "Via Carlo Imbonati, 18",
         },
     },
     "templateId": "valid-id",
