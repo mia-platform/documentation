@@ -27,6 +27,10 @@ The feature is protected by Feature Toggle with `ENABLE_PROJECTS_CARDS_WITH_K8S_
 * **Design Endpoint** - **Fixed visualization bug on endpoint section fields**      
    Fixed the irregular behavior that resulted in a shared state between the fields in the endpoint section.
 
+ **Design Proxies** - **Fixed the bug in the proxy area infobox**      
+   The proxy area infobox now shows the correct information about the main steps on **how to create a proxy**.
+
+
 
 ### How to update your DevOps Console?
 
