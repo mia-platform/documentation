@@ -1,9 +1,5 @@
 ### PDF Service ###
 
-This plugin provided an easy way to generate PDF files from an initial HTML template. This service is based on the [Puppeteer library](https://github.com/GoogleChrome/puppeteer).
-If you use this service on your computer, it is very important to set the DOCKER environment variable to false.
-
-## Summary
 This plugins provide a simple way for generating PDF files from an intial HTML template. This service relies on the [Puppeteer](https://github.com/GoogleChrome/puppeteer) library.
 
 If you are using this service in your machine, it is very important to set the DOCKER environment variable to false.
