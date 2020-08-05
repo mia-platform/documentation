@@ -2,18 +2,7 @@
 
 ### New features
 
-* **Devops Console** - **New cards for projects**    
-    In the Homepage of the Devops Console you will now see new card representing individual projects. Every card shows:
-    * Project name
-    * Layer label
-    * Project owner
-    * Team owner
-    * Numbers of pods running
-    * Environment
-    * Status
-    * CPU
-    * RAM
-The feature is protected by Feature Toggle with `ENABLE_PROJECTS_CARDS_WITH_K8S_METRICS` flag. Please note that K8s metrics are mocked for now.
+
 
 ### Improvements
 
