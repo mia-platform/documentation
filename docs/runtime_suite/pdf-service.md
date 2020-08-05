@@ -30,8 +30,8 @@ This service relies on the existence of a CRUD collection with the following pro
 ```
 
 The service requires two environment variables:
-- `TEMPLATE_CRUD`: The endpoint to read from the CRUD collection (e.g. http://crud-service/templates)
-- `DOCKER`: *True*, if it runs within docker. *False* otherwise.
+* `TEMPLATE_CRUD`: The endpoint to read from the CRUD collection (e.g. http://crud-service/templates).
+* `DOCKER`: *True*, if it runs within docker. *False* otherwise.
 
 ### HTML template
 
