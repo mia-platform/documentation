@@ -6,7 +6,7 @@ If you are using this service in your machine, it is very important to set the D
 
 ## Configuration
 This service relies on the existence of a CRUD collection with the following properties:
- - `templateId`: a string identifying the desired template
+ - `templateId`: a string identifying the desired template.
  - `htmlTemplate`: a string containing the html template of the body of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
  - `htmlHeader`: the html template of the header of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
  - `htmlFooter`: the html template of the footer of the document. This template can contain particular keywords allowing to obtain an interpolation of the text with some data passed in the request.
