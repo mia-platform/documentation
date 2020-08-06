@@ -133,6 +133,7 @@ nav:
   - Overview: 'marketplace/overview-marketplace.md'
   - Templates:
     - Mia-Platform templates: 'marketplace/templates/overview-templates.md'
+    - Create templates: 'marketplace/templates/template-create.md'
   - Examples:
     - Mia-Platform examples: 'marketplace/examples/overview-examples.md'
 
