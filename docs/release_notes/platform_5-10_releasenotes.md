@@ -7,23 +7,26 @@
 ### Improvements
 
 * **Design Microservices** - **Introduced new logos and labels in the marketplace**      
-    The service marketplace now includes new **logos** and **tags** through which you can more easily search and find your favorite example, template or plugin.
+    The service marketplace now includes new **logos** and renewed **tags** through which you can more easily search and find your favorite example, template or plugin.
 
     ![new_logos_tags](img/new_logos_tags.PNG)
 
 ### Fixes
 
 * **Design Endpoint** - **Fixed visualization bug on endpoint section fields**      
-   Fixed the irregular behavior that resulted in a shared state between the fields in the endpoint section.
+   Fixed the irregular behavior that resulted in a shared state between different fields of the endpoint section.
 
- **Design Proxies** - **Fixed the bug in the proxy area infobox**      
+* **Design Proxies** - **Fixed the bug in the proxy area infobox**      
    The proxy area infobox now shows the correct information about the main steps on **how to create a proxy**.
 
 
 
 ### How to update your DevOps Console?
 
-In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.2 
+In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 
+
+From this version a new toggle feature has been added: `FT_ENABLE_GOOGLE_TAG_MANAGER` to enable Google Tag Manager installation and tracking via Google Analytics to collect information about console usage.
+By default it is enabled, if you want to turn it off you have to configure the console backend by setting the environment variable `FT_ENABLE_GOOGLE_TAG_MANAGER` to false.
 
 
 ## v5.10.2 (July 28,2020)
