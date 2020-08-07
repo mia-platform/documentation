@@ -2,16 +2,18 @@
 
 ### Improvements
 
-* **Api Portal** - **Improved the json editing experience in the documentation**
+* **Api Portal** - **Improved the json editing experience in the documentation**    
    The **json edit panel** is now **larger** by default and **aligned** with the rest of the body parameters. If you wish, you can enlarge it by clicking and dragging the bottom right corner.
 
  ![modifica json](img/modifica json.PNG)
 
 
-* **Api Portal** - **Autogeneration of examples is now enabled**
+
+* **Api Portal** - **Autogeneration of examples is now enabled**    
 In the Api Portal documentation you can now take advantage of self-generated examples to more easily fill the required body params and test your endpoints.
 
 ![example autorilasciati](img/example autorilasciati.PNG)
+
 
 
 * **Design Microservices** - **Introduced new logos and labels in the marketplace**      
@@ -21,8 +23,8 @@ In the Api Portal documentation you can now take advantage of self-generated exa
 
 ### Fixes
 
-* **API Portal** - **Fixed bug on the API Portal**
-Fixed the bug on the generation of swagger-aggregator configurations that prevented the proper functioning of the API Portal.
+* **API Portal** - **Fixed bug on the API Portal**     
+   Fixed the bug on the generation of swagger-aggregator configurations that prevented the proper functioning of the API Portal.
 
 * **Design Endpoint** - **Fixed visualization bug on endpoint section fields**      
    Fixed the irregular behavior that resulted in a shared state between different fields of the endpoint section.
