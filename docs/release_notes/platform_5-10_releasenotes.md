@@ -1,3 +1,46 @@
+## v5.10.3 (July 30,2020)
+
+### Improvements
+
+* **Api Portal** - **Improved the json editing experience in the documentation**    
+   The **json edit panel** is now **larger** by default and **aligned** with the rest of the body parameters. If you wish, you can enlarge it by clicking and dragging the bottom right corner.
+
+ ![modifica json](img/modifica json.PNG)
+
+
+
+* **Api Portal** - **Autogeneration of examples is now enabled**    
+In the Api Portal documentation you can now take advantage of self-generated examples to more easily fill the required body params and test your endpoints.
+
+![example autorilasciati](img/example autorilasciati.PNG)
+
+
+
+* **Design Microservices** - **Introduced new logos and labels in the marketplace**      
+    The service marketplace now includes new **logos** and renewed **tags** through which you can more easily search and find your favorite example, template or plugin.
+
+    ![new_logos_tags](img/new_logos_tags.PNG)
+
+### Fixes
+
+* **API Portal** - **Fixed bug on the API Portal**     
+   Fixed the bug on the generation of swagger-aggregator configurations that prevented the proper functioning of the API Portal.
+
+* **Design Endpoint** - **Fixed visualization bug on endpoint section fields**      
+   Fixed the irregular behavior that resulted in a shared state between different fields of the endpoint section.
+
+* **Design Proxies** - **Fixed the bug in the proxy area infobox**      
+   The proxy area infobox now shows the correct information about the main steps on **how to create a proxy**.
+
+
+
+### How to update your DevOps Console?
+
+In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.5
+
+From this version a new chart option has been added: `enableTelemetry` to enable Google Tag Manager installation and tracking via Google Analytics to collect information about console usage.By default it is disabled, if you want to turn it on you have to correctly configure the `enableTelemetry` option among the values of the chart helm.
+
+
 ## v5.10.2 (July 28,2020)
 
 ### Improvements
