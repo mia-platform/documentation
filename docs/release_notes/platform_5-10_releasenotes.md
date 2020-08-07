@@ -6,6 +6,18 @@
 
 ### Improvements
 
+* **Api Portal** - **Improved the json editing experience in the documentation**
+   The **json edit panel** is now **larger** by default and **aligned** with the rest of the body parameters. If you wish, you can enlarge it by clicking and dragging the bottom right corner.
+
+ ![modifica json](img/modifica json.PNG)
+
+
+* **Api Portal** - **Autogeneration of examples is now enabled**
+In the Api Portal documentation you can now take advantage of self-generated examples to more easily fill the required body params and test your endpoints.
+
+![example autorilasciati](img/example autorilasciati.PNG)
+
+
 * **Design Microservices** - **Introduced new logos and labels in the marketplace**      
     The service marketplace now includes new **logos** and renewed **tags** through which you can more easily search and find your favorite example, template or plugin.
 
