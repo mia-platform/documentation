@@ -1,9 +1,5 @@
 ## v5.10.3 (July 30,2020)
 
-### New features
-
-
-
 ### Improvements
 
 * **Api Portal** - **Improved the json editing experience in the documentation**
@@ -25,6 +21,9 @@ In the Api Portal documentation you can now take advantage of self-generated exa
 
 ### Fixes
 
+* **API Portal** - **Fixed bug on the API Portal**
+Fixed the bug on the generation of swagger-aggregator configurations that prevented the proper functioning of the API Portal.
+
 * **Design Endpoint** - **Fixed visualization bug on endpoint section fields**      
    Fixed the irregular behavior that resulted in a shared state between different fields of the endpoint section.
 
@@ -35,10 +34,9 @@ In the Api Portal documentation you can now take advantage of self-generated exa
 
 ### How to update your DevOps Console?
 
-In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 
+In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.5
 
-From this version a new toggle feature has been added: `FT_ENABLE_GOOGLE_TAG_MANAGER` to enable Google Tag Manager installation and tracking via Google Analytics to collect information about console usage.
-By default it is enabled, if you want to turn it off you have to configure the console backend by setting the environment variable `FT_ENABLE_GOOGLE_TAG_MANAGER` to false.
+From this version a new chart option has been added: `enableTelemetry` to enable Google Tag Manager installation and tracking via Google Analytics to collect information about console usage.By default it is disabled, if you want to turn it on you have to correctly configure the `enableTelemetry` option among the values of the chart helm.
 
 
 ## v5.10.2 (July 28,2020)
