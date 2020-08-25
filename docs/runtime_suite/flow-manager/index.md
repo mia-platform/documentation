@@ -24,16 +24,45 @@ As you can see in the flow above, every step is managed by the _Flow Manager_, n
 - the _Order Service_ forwards a creation request to the _Flow Manager_
 - the _Flow Manager_ sends the `executePayment` _command_ to the _Message Broker_
 - the _Payment Service_, unknown to the _Flow Manager_, handles the command and replies with a `paymentExecuted` event
-- and so on...
+- the _Flow Manager_ listens the `paymentExecuted` event, handles it and replies with the `prepareOrder` command
+- the _Stock Service_ handles the command and replies with a `orderPrepared` event
+- the _Flow Manager_ listens the `orderPrepared`, handles it and replies with the `deliverOrder` command
+- the _Delivery Service_ handles the command and replies with a `orderDelivered` event
+- the flow is complete
 
 As in the example above, the _Flow Manager_ is the core of the _Saga_, contains all the _business logic_ and orchestrates the flow.
 
 More of the information above are about the _Saga Pattern_, _Command/Orchestration_ approach, go ahead into the documentation to know the details about the _Flow Manager_.
 
+## Simple Flow Manager based architecture
+
+To make the _Flow Manager_ architecture clearer, following some diagram of a "_Flow Manager_ based" microservices architecture.
+
+In the example there are the following components (microservices):
+
+- **flow-manager**: the _Flow Manager_ microservice
+- **persistency-manager**: the _Persistency Manager_ microservice (see the dedicated documentation [here](./how-it-works/#the-persistency-manager))
+- **order-service**: a sample microservice that starts the saga
+- **microservice-n**: some microservice that collaborate to continue the saga
+
+The architecture above is simply feasible with the dev console, as showed in the following image:
+
+[![alt_image](img/flow-manager-architecture-dev-console.png)](img/flow-manager-architecture-dev-console.png)
+
+Following two architectures diagrams, based on differents communication protocols (see the dedicated documentation [here](./configuration/#communication-protocols)):
+
+[![alt_image](img/Flow-Manager-generic-message-broker.png)](img/Flow-Manager-generic-message-broker.png)
+<p align="center" style="font-size: 10px">**Flow Manager architecture with message broker**</p>
+
+<br>
+
+[![alt_image](img/Flow-Manager-generic-REST.png)](img/Flow-Manager-generic-REST.png)
+<p align="center" style="font-size: 10px">**Flow Manager architecture with REST protocol**</p>
+
 ## Further details
 
-Follow the pages below for more about the _Flow Manager_:]
+Follow the pages below for more about the _Flow Manager_:
 
-- [_Flow Manager_ - how it works](./how-it-works)
+- [_Flow Manager_ - how it works](./how-it-works.md)
 
-- [_Flow Manager_ configuration](./configuration)
+- [_Flow Manager_ configuration](./configuration.md)

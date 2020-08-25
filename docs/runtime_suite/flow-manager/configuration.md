@@ -62,7 +62,7 @@ The *Flow Manager* behavior will be the following:
 
 Following some examples with explanation.
 
-#### Kafka valid channel - consumer only - ssl auth
+#### Kafka - consumer only - ssl auth
 
 ```json
 {
@@ -88,7 +88,7 @@ Following some examples with explanation.
 }
 ```
 
-#### Kafka valid channel - producer only - no auth
+#### Kafka - producer only - no auth
 
 ```json
 {
@@ -105,23 +105,7 @@ Following some examples with explanation.
 }
 ```
 
-#### Kafka invalid channel - invalid configurations
-
-```json
-{
-  "id": "myKafkaConsumer",
-  "type": "kafka",
-  "configurations": {
-    "brokers": [
-      "http://myKafkaConsumer:9092"
-    ]
-  }
-}
-```
-
-The JSON above is NOT valid because both *inputTopics* and *outputTopics* are missing.
-
-#### Kafka valid channel - complete configurations
+#### Kafka - complete configurations
 
 ```json
 {
@@ -230,7 +214,7 @@ that accepts the following body:
   }
 ```
 
-### Persistency Manager
+## Persistency Manager
 
 This section contains the configurations for the *Persistency Manager*, that is responsible for:
 
@@ -245,7 +229,7 @@ The **persistencyManagement** section must contain a JSON object with the config
 
 For more about the *Persistency Manager* look the [**dedicated documentation**](../how-it-works/#the-persistency-manager).
 
-#### REST Persistency Manager
+### REST Persistency Manager
 
 The *REST* peristency manager uses the REST protocol to contact the service for read and insert/update the sagas.
 
@@ -319,7 +303,7 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
 
     `GET - http://my-persistency-manager:3000/EXAMPLE_123456_SAGA`
 
-### Machine Definition
+## Machine Definition
 
 This is the core section of the *Flow Manager* configurations, because it contains the *Final State Machine* definition.
 
@@ -330,7 +314,7 @@ Following the *Machine Definition* configurations (the **bold** are the required
 - **states**: an array that contains the list of the states of the *Finite state machine* ([explained below](#states-of-the-machine))
 - **businessStates**: an array that contains the list of the states that matters for business ([explained below](#busness-states-of-the-machine))
 
-#### States of the machine
+### States of the machine
 
 The states of the machine are used by the *Flow Manager* to know how to move forward the saga through the flow.
 
@@ -347,7 +331,7 @@ Each state must have the following configurations (the **bold** are the required
     - **inputEvent**: a string with the event that will trigger the transition from the current state
     - **targetState**: the ID of the state to land on (**NB.** must exist a state with this ID);
 
-#### Business states of the machine
+### Business states of the machine
 
 The business states of the machine are a superset of the machine that represents the states of the saga that matter for the business.
 
@@ -360,11 +344,11 @@ Following the configurations of the business states (the **bold** are the requir
 
 **NB.** the id and the description of the business state will be stored by the *Persistency Manager*.
 
-### Configuration example
+## Configuration example
 
 The following example configurations can be used as templates.
 
-#### Kafka example
+### Kafka example
 
 ```json
 {
@@ -489,7 +473,7 @@ The following example configurations can be used as templates.
 }
 ```
 
-#### Rest example
+### Rest example
 
 ```json
 {
@@ -616,3 +600,80 @@ The following example configurations can be used as templates.
   }
 }
 ```
+
+## Troubleshooting
+
+In this section there are common cases of wrong configurations.
+
+### Communication Protocol configurations
+
+#### Kafka - missing topics
+
+```json
+{
+  "id": "myKafkaConsumer",
+  "type": "kafka",
+  "configurations": {
+    "brokers": [
+      "http://myKafkaConsumer:9092"
+    ]
+  }
+}
+```
+
+The JSON above is NOT valid because both *inputTopics* and *outputTopics* are missing.
+
+#### Kafka - missing consumer group
+
+```json
+{
+  "id": "myKafkaConsumer",
+  "type": "kafka",
+  "configurations": {
+    "brokers": [
+      "http://myKafkaConsumer:9092"
+    ],
+    "inputTopics": [
+      "inputTopic"
+    ]
+  }
+}
+```
+
+The JSON above is NOT valid because there are *inputTopics* but the *consumerGroup* property is missing.
+
+#### REST - missing protocol
+
+```json
+{
+  "id": "rest",
+  "type": "rest",
+  "configurations": {
+    "endpoint": "rest-service",
+    "port": 80,
+    "path": "/command",
+    "method": "POST",
+    "headers": {}
+  }
+}
+```
+
+The JSON above is NOT valid because the *protocol* property inside the *configuration* section is missing.
+
+#### REST - missing method
+
+```json
+{
+  "id": "rest",
+  "type": "rest",
+  "configurations": {
+    "protocol": "https",
+    "endpoint": "rest-service",
+    "port": 80,
+    "path": "/command",
+    "headers": {}
+  }
+}
+```
+
+The JSON above is NOT valid because the *method* property inside the *configuration* section is missing.
