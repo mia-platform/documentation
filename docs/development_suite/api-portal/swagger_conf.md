@@ -21,6 +21,19 @@ module.exports = {
       type: 'url',
       url: 'http://localhost:3000/documentation/json',
       prefix: '/',
+      includePaths: [
+        {
+          path: '/pathToInclude-1',
+        },
+        {
+          path: '/pathToInclude-2',
+        }
+      ],
+      excludePaths: [
+        {
+          path: '/pathToExclude-1',
+        }
+      ]
     },
     {
       type: 'url',
@@ -31,6 +44,11 @@ module.exports = {
       type: 'file',
       path: 'tests/localSwaggers/localSwagger.yaml',
       prefix: '/v1',
+      includePaths: [
+        {
+          path: '/pathToInclude-1',
+        }
+      ]
     },
   ],
   baseSwagger: {
@@ -67,7 +85,9 @@ The `services` array contains the URLs and files list from which retrieve the sw
  * **_URL_**: by specifying `url` as type the swagger-aggregator will download the microservice swagger by the provided _url_ field;
  * **_File_**: by specifying `file` as type the swagger-aggregator will take the microservice swagger configurations by the provided _path_ field.
 
-In both of them the user can specify a `prefix` to place before.
+In both of them the user can specify a `prefix` to place before. 
+
+In both of them the user can specify an `includePaths` and an `excludePaths` to filter the paths to be accessible from outside. The filter will include first all the paths according the object passed by `includePaths` then the result will be filtered by the `excludedPaths`.
 
 Please be sure of validate the configuration with the following _jsonschema_ before run the service, otherwise the microservice will not correctly start.
 
@@ -90,6 +110,28 @@ module.exports = {
         type: { enum: ['url'] },
         url: { type: 'string' },
         prefix: { $ref: '#/definitions/prefixDefinition' },
+        excludePaths: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['path'],
+            properties: {
+              path: { type: 'string' },
+            },
+          },
+        },
+        includePaths: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['path'],
+            properties: {
+              path: { type: 'string' },
+            },
+          },
+        },
+      },
+    },
       },
     },
     file: {
@@ -99,6 +141,28 @@ module.exports = {
         type: { enum: ['file'] },
         path: { type: 'string' },
         prefix: { $ref: '#/definitions/prefixDefinition' },
+        excludePaths: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['path'],
+            properties: {
+              path: { type: 'string' },
+            },
+          },
+        },
+        includePaths: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['path'],
+            properties: {
+              path: { type: 'string' },
+            },
+          },
+        },
+      },
+    },
       },
     },
     baseSwagger: {
