@@ -99,6 +99,16 @@ Please be sure of validate the configuration with the following _jsonschema_ bef
 
 module.exports = {
   definitions: {
+    filterPathDefinition: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['path'],
+        properties: {
+          path: { type: 'string' },
+        },
+      },
+    },
     prefixDefinition: {
       type: 'string',
       pattern: '^(((\\/[a-z0-9-/]+([^\\/]))|\\/)|)$',
@@ -110,26 +120,8 @@ module.exports = {
         type: { enum: ['url'] },
         url: { type: 'string' },
         prefix: { $ref: '#/definitions/prefixDefinition' },
-        excludePaths: {
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['path'],
-            properties: {
-              path: { type: 'string' },
-            },
-          },
-        },
-        includePaths: {
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['path'],
-            properties: {
-              path: { type: 'string' },
-            },
-          },
-        },
+        excludePaths: { $ref: '#/definitions/filterPathDefinition' },
+        includePaths: { $ref: '#/definitions/filterPathDefinition' },
       },
     },
       },
@@ -141,27 +133,8 @@ module.exports = {
         type: { enum: ['file'] },
         path: { type: 'string' },
         prefix: { $ref: '#/definitions/prefixDefinition' },
-        excludePaths: {
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['path'],
-            properties: {
-              path: { type: 'string' },
-            },
-          },
-        },
-        includePaths: {
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['path'],
-            properties: {
-              path: { type: 'string' },
-            },
-          },
-        },
-      },
+        excludePaths: { $ref: '#/definitions/filterPathDefinition' },
+        includePaths: { $ref: '#/definitions/filterPathDefinition' },
     },
       },
     },
