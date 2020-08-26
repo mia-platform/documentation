@@ -87,7 +87,7 @@ The `services` array contains the URLs and files list from which retrieve the sw
 
 In both of them the user can specify a `prefix` to place before. 
 
-In both of them the user can specify an `includePaths` and an `excludePaths` to filter the paths to be accessible from outside. The filter will include first all the paths according the object passed by `includePaths` then the result will be filtered by the `excludedPaths`.
+In both of them, the user can specify an `includePaths` and an `excludePaths` to filter the paths to be accessible from outside. The filter will include first all the paths according to the object passed by `includePaths` then the result will be filtered by the `excludedPaths`.
 
 Please be sure of validate the configuration with the following _jsonschema_ before run the service, otherwise the microservice will not correctly start.
 
