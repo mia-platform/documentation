@@ -135,6 +135,7 @@ module.exports = {
         prefix: { $ref: '#/definitions/prefixDefinition' },
         excludePaths: { $ref: '#/definitions/filterPathDefinition' },
         includePaths: { $ref: '#/definitions/filterPathDefinition' },
+      },
     },
       },
     },
