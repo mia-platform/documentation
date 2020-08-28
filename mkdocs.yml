@@ -129,6 +129,10 @@ nav:
         - Authorization Service:
           - How to use: 'runtime_suite/authorization-service/how_to_use.md'
           - Configuration: 'runtime_suite/authorization-service/configuration.md'
+        - Client Credentials:
+            - How to use: 'runtime_suite/client-credentials/how-to-use.md'
+            - Configuration: 'runtime_suite/client-credentials/configuration.md'
+            - Generate JWT Keys: 'runtime_suite/client-credentials/jwt-private-public-key-generation.md'
 - Marketplace:
   - Overview: 'marketplace/overview-marketplace.md'
   - Templates:
