@@ -5,8 +5,6 @@ copyright: Mia srl. All rights reserved.
 plugins:
   - search
   - monorepo
-  - minify:
-      minify_html: true
 
 nav:
 - Home:
