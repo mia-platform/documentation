@@ -1,5 +1,7 @@
 # Client credentials service
 
+The credentials service allow to expose API to perform OAuth2 compliant client credential flows with third party providers.  
+
 In this section, we show you how to use the `client-credentials` service.
 
 ## Endpoints
@@ -157,7 +159,7 @@ The default method (if is not passed during registration) is the `client_secret_
 
 This endpoint generates a new *client id* and *client secret* pair with given *applicationId*. It follows the RFC to [register to a client](https://tools.ietf.org/html/rfc7591).
 
-During the register, it is created the credentials in a specific db and collections, and a client using the given crud url. The *cilent* information are accessible from the crud, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
+During the register, it is created the credentials in a specific db and collections, and a client using the given CRUD URL. The *cilent* information are accessible from the CRUD, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
 
 It returns 201 when credential pair and client is correctly generated, 401 otherwise.
 
@@ -184,7 +186,7 @@ Example response:
 
 It is possible to pass the `token_endpoint_auth_method` parameter in input set to `private_key_jwt`.
 
-For this auth method, it is created a client. The *client* information are accessible from the crud, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
+For this auth method, it is created a client. The *client* information are accessible from the CRUD, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
 
 It returns 201 when client is correctly generated, 401 otherwise.
 
@@ -214,7 +216,8 @@ Example response:
 }
 ```
 
-You can use [this guide](private-public-key-generation-for-private-key-jwt.md) to generate a public key suitable for this operation.
+!!! info
+    You can use [this guide](./jwt-private-public-key-generation.md) to generate JWT public and private key suitable for this operation.
 
 ## The supported auth flow are
 

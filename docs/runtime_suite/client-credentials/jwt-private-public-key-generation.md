@@ -1,6 +1,6 @@
-# Public Key Generation for Private Key JWT
+# JWT Key generation
 
-You can perform this operation using one of the following two utilites:
+You can generate a JWT public and private keys using one of the following two utilities:
 
 - `openssl`
 - `ssh-keygen`
