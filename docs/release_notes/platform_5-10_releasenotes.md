@@ -1,3 +1,26 @@
+## v5.10.4 (September 03,2020)
+
+### New features
+
+### Improvements
+
+* **Dashboard** - **Full screen visualization enabled**
+You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen.
+
+* **Dashboard** - **Collapsible left side bar**
+You can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
+
+* **Design-Decorators** - **"Require body" field set by default**
+The "require body" field is now **selected by default** to speed up the workflow.
+
+### Fixes
+
+* **DevOps Console** - **Solved the visualization bug of the project creation button**   
+The bug that prevented users with permission from viewing and using the **project creation button** has been fixed.
+
+### How to update your DevOps Console?
+
+
 ## v5.10.3 (August 07,2020)
 
 ### Improvements
