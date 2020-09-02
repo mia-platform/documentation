@@ -2,10 +2,12 @@
 
 ### New features
 
-### Improvements
-
 * **Dashboard** - **Full screen visualization enabled**    
 You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen.
+
+![dashboard fullscreen](img/dashboard fullscreen.PNG)
+
+### Improvements
 
 * **Dashboard** - **Collapsible left side bar**    
 You can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
