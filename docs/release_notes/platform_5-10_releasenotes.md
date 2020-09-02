@@ -4,19 +4,29 @@
 
 ### Improvements
 
-* **Dashboard** - **Full screen visualization enabled**
+* **Dashboard** - **Full screen visualization enabled**    
 You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen.
 
-* **Dashboard** - **Collapsible left side bar**
+* **Dashboard** - **Collapsible left side bar**    
 You can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
 
-* **Design-Decorators** - **"Require body" field set by default**
-The "require body" field is now **selected by default** to speed up the workflow.
+![dashboard fullscreen](img/dashboard fullscreen.PNG)
+
+* **Design-Decorators** - **Require body properties set true by default**    
+"Require request body" and "require response body" properties are now **true by default** to speed up the workflow.
+
+![require body](img/require body.PNG)
 
 ### Fixes
 
-* **DevOps Console** - **Solved the visualization bug of the project creation button**   
+* **Design Endpoint** - **Solved the delete button bug on endpoint's routes**   
+It's now possibile to delete any routes of a given microservice endpoint.
+
+* **DevOps Console** - **Solved the visualization bug of the project creation button**      
 The bug that prevented users with permission from viewing and using the **project creation button** has been fixed.
+
+* **DevOps Console** - **Fixed the bug on "Setup infrastructure" buttons**   
+The "setup infrastructure" section is now consistently enabled or disabled depending on the project features
 
 ### How to update your DevOps Console?
 
