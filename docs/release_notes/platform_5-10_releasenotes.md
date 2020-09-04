@@ -7,6 +7,9 @@ You can now expand the dashboard **visualization to full screen** by clicking on
 
 ![dashboard fullscreen](img/dashboard fullscreen.PNG)
 
+* **Design Crud** - **It is now possible to add index names longer than 32 characters**   
+You can now enter index names longer than 32 characters. The previously existing limit has been removed.
+
 ### Improvements
 
 * **Dashboard** - **Collapsible left side bar**    
@@ -14,7 +17,7 @@ You can now compress the **left sidebar** in the dashboard section to enlarge th
 
 ![dashboard fullscreen](img/dashboard fullscreen.PNG)
 
-* **Design-Decorators** - **Require body properties set true by default**    
+* **Design Decorators** - **Require body properties set true by default**    
 "Require request body" and "require response body" properties are now **true by default** to speed up the workflow.
 
 ![require body](img/require body.PNG)
