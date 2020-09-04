@@ -1,4 +1,4 @@
-## v5.10.4 (September 03,2020)
+## v5.10.4 (September ,2020)
 
 ### New features
 
@@ -21,14 +21,17 @@ You can now compress the **left sidebar** in the dashboard section to enlarge th
 
 ### Fixes
 
-* **Design Endpoint** - **Solved the delete button bug on endpoint's routes**   
+* **Design Endpoint** - **Fixed the delete button bug on endpoint's routes**   
 It's now possibile to delete any routes of a given microservice endpoint.
 
-* **DevOps Console** - **Solved the visualization bug of the project creation button**      
+* **DevOps Console** - **Fixed the visualization bug of the project creation button**      
 The bug that prevented users with permission from viewing and using the **project creation button** has been fixed.
 
 * **DevOps Console** - **Fixed the bug on "Setup infrastructure" buttons**   
-The "setup infrastructure" section is now consistently enabled or disabled depending on the project features
+The **"setup infrastructure"** section is now consistently enabled or disabled depending on the project features.
+
+* **Design Microservices** - **Api documentation path placeholder**    
+In the design area, after selecting a microservice you will now view the default documentation path equal to `/documentation/json`.
 
 ### How to update your DevOps Console?
 
