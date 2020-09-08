@@ -1,38 +1,47 @@
 
-### What is an endpoint?
-The endpoints allow you to expose your CRUDs or other custom services. To rapidly create an endpoint linked to a CRUD, can you follow the steps described in a [Design QuickStart](quick_rest_api.md).  
+# What is an endpoint?
+
+An endpoints allow you to expose your CRUD, custom services and proxies. To rapidly create an endpoint linked to a CRUD, can you follow the steps described in a [Design QuickStart](quick_rest_api.md).  
+
 This page will delve into the endpoint types and configuration.
 
 An endpoint can be of different types:
 
 * **CRUD**: hook your endpoint directly to one of your CRUD.
 * **Microservice**: hook your endpoint to a service with logics entirely created by you.
-* **Mia-Platform BaaS**: hook your endpoint to some specific mia-platform services.
 * **External proxy**: hook your endpoint to a proxy linked to a service outside of your cluster.
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
+* **Mia-Platform BaaS** _Deprecated_: hook your endpoint to some specific mia-platform services.
 
 !!! Warning
-    The type is selectable only during the creation phase. You can't change later.
+    The type is selectable only during the creation phase. You can't change it later.
 
-### Basic configuration
+## Basic endpoint properties
 
-![endpoint-configuration](img/qs-configure-endpoint-overview.png)
+All endpoint types share the following properties:
 
-The main properties of endpoint are the following:
-
- * **Basepath**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or ip) that supplies the endpoint. 
+ * **Basepath**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or ip) that supplies the endpoint.
  * **Description**: optional description of the endpoint.
- * **Microservice** (showed for all kind of endpoints except CRUD and Mia-Platform BaaS): the microservice which endpoint linked to. 
- * **CRUD** (showed only for endpoints linked to CRUD): the CRUD which endpoint linked to. 
- * **Default Status**: If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created.  If you choose *DRAFT* status, the elements have to [made public by the CMS](../../../business_suite/guide_cms.md#new-content-draft-publish) before being published.
 
+## Specific endpoint properties
 
+### CRUD
 
-### Internal Rewrite URL
+Upon creation of CRUD type endpoints you will be able to choose any _CRUD Base Path_ from the routes that have been configured in the CRUD section.
+
+You can find more info about how to create an internal endpoint in the [CRUD documentation](crud_dvanced.md)
+
+### Microservice, External Proxy and Cross Project Proxy
+
+These endpoint types all share the microservice property that allows you to link the endpoint to a specific microservice (or proxy) configured in your project.
+
+After you created an endpoint linked to a microservice you'll be able to edit the _Rewrite Base Path_ this path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
+
+#### About Rewrite Base Path
 
 The developer can decide which basepath is associated to an endpoint by applying an internal rewrite url.
 
-When a call enters the platform it undergoes a rewrite by the API gateway or the Microservice gateway and arrives at the service with a different path.
+When a call enters the platform it undergoes a rewrite by the API Gateway or the Microservice Gateway and arrives at the service with a different path.
 
 So for example in the case mentioned above when the API gateway enters the platform to call `/test-service-1` will call it with `/`
 
@@ -65,7 +74,7 @@ This card is equipped with a flag that, if you are enabled, allows to force the 
    
 The Microservice Gateway service performs some checks on the content-type header:
 
-* **Request**: If your endpoint uses content-type: *application/json* in requests, check      "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
+* **Request**: If your endpoint uses content-type: *application/json* in requests, check "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
 
 * **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
 
