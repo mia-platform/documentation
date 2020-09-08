@@ -245,5 +245,3 @@ Now the `/check-up` route of the project is ready to be called like this:
 
 - `projectBaseUrl/check-up` &rarr; for a _check-up_ of all services
 - `projectBaseUrl/check-up/core` &rarr; for a _check-up_ of core services only (in this example)
-
-![alt_image](./img/Doctor-Service.png)
