@@ -6,7 +6,7 @@ It's possible to configure CRUD Service with more that one collection and to sca
 
 ## Introduction
 
-The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. [CRUD Service is configured in the DevOps Console (follow this link for more details)](/api-console/crud-advanced).
+The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. CRUD Service is configured in the DevOps Console, follow this [link](crud-advanced.md) for more details.
 
 Via APIs it's possible to:
 
@@ -53,14 +53,14 @@ In DevOps Console it's possible to configure the CRUD service. The task it's eas
 - configure CRUD
 - select Endpoints menu
 - press Create new endpoint
-- configure the endpoint selecting the CRUD created
+- configure the endpoint selecting the CRUD created and one of its existing internal routhes
 - press Commit&Generate button and save the configuration in the preferred branch
 - select Deploy menu
 - select the environment and branch to deploy and deploy it
 - in less than one minute the new endpoint that exposes the configured CRUD service is available
 - select Documentation menu and open the API Portal, browse the CRUD endpoint deployed
 
- For more details [see here](/api-console/crud-advanced).
+ For more details see [here](crud-advanced.md).
 
  ------------------------------------------------------------
 

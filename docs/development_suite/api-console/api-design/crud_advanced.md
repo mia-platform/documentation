@@ -1,53 +1,63 @@
-##Create a new CRUD
+## Create a new CRUD
 
-In order to create a new CRUD, go on the menu on the left where you see CRUD, select **Create new CRUD**, and name it filling in the blank space with the name of the collection in camelCase.
+In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
-![Crea-collezione](img/crea-crud.png)
+  * **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake-case` as naming convention). In our case, we will name the collection “books”;
+  * **Internal endpoint**: this is the first endpoint that will be exposed by the CRUD service. The console will prefill it but you can change it according to your preference.
 
-In our case, we will name the collection “Books”.
+![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.PNG)
 
+Once you have entered all required fields, press the **Create** button on the right and you will see your newly created CRUD.
 
-![Crea-collezione-riga-titolo](img/books.png)
-
-Press the button **Create** on the right and the template of your collection will be created.
-
-
-As soon as you push **Create** a new page, "books" in our example, is created and you can enter a short and optional description of your collection: we wrote “Collection of books”.
-
+As soon as you push **Create** a new page, "books" in our example, is created and you can enter a short and optional description of your collection: default description will be “Collection of books”.
 
 In the section **Fields**, you can enter the properties of your collection. 
-By default, there are fields that can not be changed, such as: id, creatorId, createdAt, updaterId, updatedAt, _STATE.
+By default, there are fields that can not be changed, such as: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `_STATE_`.
 
-You can add new rows by selecting **Add new** and fill in the blank spaces with the value you need. 
+You can add new fields by selecting **Add new** and fill in the blank form with the value you need.
 
 We added a new field and we wrote “Title” and ticked the fields we need.
 
-
-![Crea-collezione-riga-titolo](img/crud-add-property.png)
-
+![title](img/title.PNG)
 
 You can add the fields you need and select the appropriate properties:
 
-* Enter the property **name** in camelCase; in our case we will insert "Title", "Author", "Year", "New", etc.
+ * **name** (we recommend using `camelCase` naming convention); in our case we will insert "title", "author", "year", "new", etc.
+ * **type**: *string* if it is a classic text string; *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be `true` or `false`; *Geopoint* if you want to save a specific place coordinates; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
+ * If you select **required** the property is mandatory.
+ * If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
+ * If you select **nullable** you can make the value *null*.
+ * In the **description** field you can enter a short optional description.
 
-* Add properties with their **types**: *string* if it is a classic text string (or an image); *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be true or false; *Geopoint* if you want to save a specific place; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
-
-* If you select **required** the property is mandatory.
-
-* If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
-
-* If you select **nullable**, you can make the value *null*.
-
-* In the **description** field you can enter a short optional description.
-
-To create the collection select **Create**.
-
-Once the default line is created, you can automatically create another one, ticking the box "crea un altro".
-
-Once you are done creating all the rows you need, press any other point on the screen to exit the "add line" section.
+![properties](img/properties.PNG)
 
 
-##How to create the fields of your CRUD by importing a JSON
+![default_state](img/default_state.png)
+
+### CRUD Service exposed routes
+
+The CRUD Service will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.
+
+If you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](https://docs.mia-platform.eu/development_suite/api-console/api-design/endpoints/).
+
+Beyond the first route, automatically exposed when creating the CRUD, you can always **add new routes** and **modify existing ones**. 
+When viewing CRUD detail information you can view all the internal routes associated with your CRUD and edit them.
+In our case we will see the first internal endpoint with a **routh base path** equal to "/books". The _default state_ (used on document creation) is set to _DRAFT_ by default.
+
+![internalendpoint](img/internalendpoint.PNG)
+
+To create a new endpoint click on the `Add new` button in the card and fill in **Route base path** and the **Default state** property for the new endpoint.
+
+Please note that these endpoint must be unique through all the configured CRUD, the Console will check for you that this constraint is satisfied when creating or editing any CRUD route in your project. In case this happens you will be warned with an error message.
+
+![newEndpoint](img/newEndpoint.PNG)
+
+You can always change the default state of an existing route by simply clicking on the field default state. The two possible values are _DRAFT_ or _PUBLIC_.
+
+You can delete a route but you must always leave at least one endpoint exposed by the CRUD service, otherwise the CRUD won't be accessible by anyone, neither your custom services in your project.
+
+
+### How to create the fields of your CRUD by importing a JSON
 
 If you want, you can upload your fields from file, selecting **Import fields from File**. 
 Remember that the file must be a JSON with the following directions: 
@@ -153,17 +163,15 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 
     the collection **has not yet been saved** it is necessary to continue the process described below
 
-
-
-##Indexes
+### Indexes
 You can configure the indexes, a data structure designed to improve search (query) data.
 
-To create a new index select **create new**.
+After selecting a CRUD, to create a new index select **create new** in the "Indexes" section.
 Once you named the index you need to choose among: geo, hash or TTL. Then, you can choose whether to make the index unique by ticking "unique".
 
 ![Indice](img/indexes.png)
 
-### How to use CRUD
+## CRUD API Documentation
 
 In this section you can learn how to use API exposed by CRUD services.
 [CRUD API Documentation](/runtime_suite/crud-service/)
