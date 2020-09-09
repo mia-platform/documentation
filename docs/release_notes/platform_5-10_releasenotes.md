@@ -8,7 +8,7 @@ You can now expand the dashboard **visualization to full screen** by clicking on
 ![dashboard fullscreen](img/dashboard fullscreen.PNG)
 
 * **Design Microservices** - **It is now possible to filter services by tag**
-You can now use the search bar to filter your micro services by name of the assigned tag. The assigned tag is by default the same as "custom" but you can change it at any time!
+You can now use the search bar to filter your services by tag. The assigned tag is by default set to "custom" but you can change it at any time!
 
 ![service filter tag](img/service filter tag.PNG)
 
