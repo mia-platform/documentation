@@ -1,4 +1,4 @@
-## v5.10.4 (September ,2020)
+## v5.10.4 (9 September ,2020)
 
 ### New features
 
@@ -7,15 +7,25 @@ You can now expand the dashboard **visualization to full screen** by clicking on
 
 ![dashboard fullscreen](img/dashboard fullscreen.PNG)
 
-* **Design Crud** - **It is now possible to add index names longer than 32 characters**   
-You can now enter index names longer than 32 characters. The previously existing limit has been removed.
+* **Design Microservices** - **It is now possible to filter services by tag**
+You can now use the search bar to filter your micro services by name of the assigned tag. The assigned tag is by default the same as "custom" but you can change it at any time!
+
+![service filter tag](img/service filter tag.PNG)
 
 ### Improvements
+
+* **Design Crud** - **You can now add an index with a name longer than 32 characters**   
+You can now enter index names longer than 32 characters. The previously existing limit has been removed.
 
 * **Dashboard** - **Collapsible left side bar**    
 You can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
 
 ![dashboard fullscreen](img/dashboard fullscreen.PNG)
+
+* **Design Endpoints** - **The custom endpoint tag specifies the service they point to**   
+When you create a new custom endpoint it will now have a tag equal to the name of the service it points to. 
+
+![tag endpoint](img/tag endpoint.PNG)
 
 * **Design Decorators** - **Require body properties set true by default**    
 "Require request body" and "require response body" properties are now **true by default** to speed up the workflow.
@@ -35,6 +45,10 @@ The **"setup infrastructure"** section is now consistently enabled or disabled d
 
 * **Design Microservices** - **Api documentation path placeholder**    
 In the design area, after selecting a microservice you will now view the default documentation path equal to `/documentation/json`.
+
+* **CMS** - **Fixed the bug that caused the CMS to send empty data**   
+Fixed the bug that caused the CMS to send empty objects and arrays instead of not sending the data.
+
 
 ### How to update your DevOps Console?
 
