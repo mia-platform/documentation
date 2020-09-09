@@ -13,6 +13,7 @@ You can now use the search bar to filter your micro services by name of the assi
 ![service filter tag](img/service filter tag.PNG)
 
 * **CMS** - **New clone button**
+A new button is available in the CMS that allows you to clone selected items.
 
 ### Improvements
 
@@ -34,8 +35,8 @@ When you create a new custom endpoint it will now have a tag equal to the name o
 
 ![require body](img/require body.PNG)
 
-* **CMS** - **In the table view the tags are shown as text**   
-In the table view the texts lose all html tags. You will see only text for easier reading
+* **CMS** - **In the table view the HTML tags are not shown**   
+In the table layout view the texts containing HTML tags are cleaned, you will only see relevant text for easier reading.
 
 ### Fixes
 
