@@ -12,6 +12,8 @@ You can now use the search bar to filter your micro services by name of the assi
 
 ![service filter tag](img/service filter tag.PNG)
 
+* **CMS** - **New clone button**
+
 ### Improvements
 
 * **Design Crud** - **You can now add an index with a name longer than 32 characters**   
@@ -32,6 +34,9 @@ When you create a new custom endpoint it will now have a tag equal to the name o
 
 ![require body](img/require body.PNG)
 
+* **CMS** - **In the table view the tags are shown as text**   
+In the table view the texts lose all html tags. You will see only text for easier reading
+
 ### Fixes
 
 * **Design Endpoint** - **Fixed the delete button bug on endpoint's routes**   
@@ -51,6 +56,8 @@ Fixed the bug that caused the CMS to send empty objects and arrays instead of no
 
 
 ### How to update your DevOps Console?
+
+--> New version of the CMS v.9.10.0
 
 
 ## v5.10.3 (August 07,2020)
