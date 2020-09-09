@@ -58,8 +58,9 @@ Fixed the bug that caused the CMS to send empty objects and arrays instead of no
 
 ### How to update your DevOps Console?
 
---> New version of the CMS v.9.10.0
+In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
 
+For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.9.
 
 ## v5.10.3 (August 07,2020)
 
