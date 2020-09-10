@@ -1,3 +1,67 @@
+## v5.10.4 (9 September ,2020)
+
+### New features
+
+* **Dashboard** - **Full screen visualization enabled**    
+You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen.
+
+![dashboard fullscreen](img/dashboard fullscreen.PNG)
+
+* **Design Microservices** - **It is now possible to filter services by tag**
+You can now use the search bar to filter your services by tag. The assigned tag is by default set to "custom" but you can change it at any time!
+
+![service filter tag](img/service filter tag.PNG)
+
+* **CMS** - **New clone button**
+A new button is available in the CMS that allows you to clone selected items.
+
+### Improvements
+
+* **Design Crud** - **You can now add an index with a name longer than 32 characters**   
+You can now enter index names longer than 32 characters. The previously existing limit has been removed.
+
+* **Dashboard** - **Collapsible left side bar**    
+You can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
+
+![dashboard fullscreen](img/dashboard fullscreen.PNG)
+
+* **Design Endpoints** - **The custom endpoint tag specifies the service they point to**   
+When you create a new custom endpoint it will now have a tag equal to the name of the service it points to. 
+
+![tag endpoint](img/tag endpoint.PNG)
+
+* **Design Decorators** - **Require body properties set true by default**    
+"Require request body" and "require response body" properties are now **true by default** to speed up the workflow.
+
+![require body](img/require body.PNG)
+
+* **CMS** - **In the table view the HTML tags are not shown**   
+In the table layout view the texts containing HTML tags are cleaned, you will only see relevant text for easier reading.
+
+### Fixes
+
+* **Design Endpoint** - **Fixed the delete button bug on endpoint's routes**   
+It's now possibile to delete any routes of a given microservice endpoint.
+
+* **DevOps Console** - **Fixed the visualization bug of the project creation button**      
+The bug that prevented users with permission from viewing and using the **project creation button** has been fixed.
+
+* **DevOps Console** - **Fixed the bug on "Setup infrastructure" buttons**   
+The **"setup infrastructure"** section is now consistently enabled or disabled depending on the project features.
+
+* **Design Microservices** - **Api documentation path placeholder**    
+In the design area, after selecting a microservice you will now view the default documentation path equal to `/documentation/json`.
+
+* **CMS** - **Fixed the bug that caused the CMS to send empty data**   
+Fixed the bug that caused the CMS to send empty objects and arrays instead of not sending the data.
+
+
+### How to update your DevOps Console?
+
+In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
+
+For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.11`.
+
 ## v5.10.3 (August 07,2020)
 
 ### Improvements
