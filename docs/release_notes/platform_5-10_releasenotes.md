@@ -60,7 +60,7 @@ Fixed the bug that caused the CMS to send empty objects and arrays instead of no
 
 In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
 
-For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.9.
+For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.11`.
 
 ## v5.10.3 (August 07,2020)
 
