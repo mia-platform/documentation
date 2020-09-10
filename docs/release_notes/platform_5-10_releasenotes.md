@@ -2,28 +2,24 @@
 
 ### New features
 
-* **Dashboard** - **Full screen visualization enabled**    
-You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen.
+* **Dashboard** - **Full screen visualization and collapsible side bar**    
+You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen. Furthermore you can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
 
-![dashboard fullscreen](img/dashboard fullscreen.PNG)
 
-* **Design Microservices** - **It is now possible to filter services by tag**
+![dashboard](img/dashboard.png)
+
+* **Design Microservices** - **It is now possible to filter services by tag**   
 You can now use the search bar to filter your services by tag. The assigned tag is by default set to "custom" but you can change it at any time!
 
 ![service filter tag](img/service filter tag.PNG)
 
-* **CMS** - **New clone button**
+* **CMS** - **New clone button**   
 A new button is available in the CMS that allows you to clone selected items.
 
 ### Improvements
 
 * **Design Crud** - **You can now add an index with a name longer than 32 characters**   
 You can now enter index names longer than 32 characters. The previously existing limit has been removed.
-
-* **Dashboard** - **Collapsible left side bar**    
-You can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
-
-![dashboard fullscreen](img/dashboard fullscreen.PNG)
 
 * **Design Endpoints** - **The custom endpoint tag specifies the service they point to**   
 When you create a new custom endpoint it will now have a tag equal to the name of the service it points to. 
