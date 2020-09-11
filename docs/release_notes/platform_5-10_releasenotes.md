@@ -2,6 +2,13 @@
 
 ### New features
 
+* **CRUD** - **Automatic creation of internal CRUD routes**   
+From now on, when you create a new collection, an internal endpoint will be automatically created. Find more information about the changes in this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/crud_advanced/) about crud creation.   
+
+
+![release_crud_creation](img/release_crud_creation.PNG)
+
+
 * **Dashboard** - **Full screen visualization and collapsible side bar**    
 You can now expand the dashboard **visualization to full screen** by clicking on the "full-screen" icon in the **upper right corner** of the screen. Furthermore you can now compress the **left sidebar** in the dashboard section to enlarge the data visualization.
 
