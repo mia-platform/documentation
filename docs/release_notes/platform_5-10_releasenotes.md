@@ -1,3 +1,20 @@
+## v5.10.5 (14 September ,2020)
+
+### New features
+
+* **Design Microservices** - **The documentation path accepts the dot character**   
+You can now use the dot character within the Api documentation path.
+
+### Fixes
+
+* **Design Microservices** - **Fixed the bug that prevented log parser enabling**  
+Fixed the bug that prevented log parser enabling when the user created a new microservice from marketplace.
+
+* **Design** - **Fixed a bug that prevented saving advanced files**   
+You can now save your advanced files correctly.
+
+
+
 ## v5.10.4 (10 September ,2020)
 
 ### New features
