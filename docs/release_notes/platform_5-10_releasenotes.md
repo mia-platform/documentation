@@ -7,8 +7,8 @@ You can now use the dot character within the Api documentation path.
 
 ### Fixes
 
-* **Design Microservices** - **Fixed the bug that prevented log parser enabling**  
-Fixed the bug that prevented log parser enabling when the user created a new microservice from marketplace.
+* **Design Microservices** - **Fixed log parser default value** 
+Upon service creation, log parser has now a default value equal to `mia-json`.
 
 * **Design** - **Fixed a bug that prevented saving advanced files**   
 You can now save your advanced files correctly.
