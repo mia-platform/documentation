@@ -3,7 +3,7 @@
 ### New features
 
 * **Design Microservices** - **The documentation path accepts the dot character**   
-You can now use the dot character within the Api documentation path.
+You can now use the dot character within the API documentation path.
 
 ### Fixes
 
