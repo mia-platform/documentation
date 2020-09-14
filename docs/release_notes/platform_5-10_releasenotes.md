@@ -1,3 +1,25 @@
+## v5.10.5 (14 September,2020)
+
+### New features
+
+* **Design Microservices** - **The documentation path accepts the dot character**   
+You can now use the dot character within the API documentation path.
+
+### Fixes
+
+* **Design Microservices** - **Fixed log parser default value** 
+Upon service creation, log parser has now a default value equal to `mia-json`.
+
+* **Design** - **Fixed a bug that prevented saving advanced files**   
+You can now save your advanced files correctly.
+
+
+### How to update your DevOps Console?
+
+In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
+
+For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.12`.
+
 ## v5.10.4 (10 September ,2020)
 
 ### New features
