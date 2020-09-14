@@ -14,6 +14,11 @@ Fixed the bug that prevented log parser enabling when the user created a new mic
 You can now save your advanced files correctly.
 
 
+### How to update your DevOps Console?
+
+In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
+
+For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.12`.
 
 ## v5.10.4 (10 September ,2020)
 
