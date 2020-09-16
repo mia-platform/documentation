@@ -19,7 +19,6 @@ import styles from "./styles.module.css";
 import NavbarItem from "@theme/NavbarItem"; // retrocompatible with v1
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import { Cookies } from "react-cookie-consent";
-import { StickyContainer, Sticky } from "react-sticky";
 import { Fragment } from "react-is";
 
 const DefaultNavItemPosition = "right"; // If split links by left/right
@@ -85,138 +84,122 @@ function Navbar() {
   }, [windowSize]);
   const { leftItems, rightItems } = splitNavItemsByPosition(items);
   return (
-    <Fragment>
-      <StickyContainer className={styles.newsBannerContainer}>
-        {/* Other elements can be in between `StickyContainer` and `Sticky`,
-        but certain styles can break the positioning logic used. */}
-        <Sticky topOffset={20}>
-          {() => (
-            <p>
-              Version v6 has been released!
-              <a target="a_blank" href={""}>
-                Find out more!
-              </a>
-            </p>
-          )}
-        </Sticky>
-      </StickyContainer>
-      <nav
-        ref={navbarRef}
-        className={clsx("navbar", "navbar--light", "navbar--fixed-top", {
-          "navbar-sidebar--show": sidebarShown,
-          [styles.navbarHideable]: hideOnScroll,
-          [styles.navbarHidden]: !isNavbarVisible,
-        })}
-      >
-        <div className="navbar__inner">
-          <div className="navbar__items">
-            {items != null && items.length !== 0 && (
-              <div
-                aria-label="Navigation bar toggle"
-                className="navbar__toggle"
-                role="button"
-                tabIndex={0}
-                onClick={showSidebar}
-                onKeyDown={showSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  role="img"
-                  focusable="false"
-                >
-                  <title>Menu</title>
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeMiterlimit="10"
-                    strokeWidth="2"
-                    d="M4 7h22M4 15h22M4 23h22"
-                  />
-                </svg>
-              </div>
-            )}
-            <Link className="navbar__brand" to={logoLink} {...logoLinkProps}>
-              {logoImageUrl != null && (
-                <img
-                  key={isClient}
-                  className="navbar__logo"
-                  src={logoImageUrl}
-                  alt={logoAlt}
-                />
-              )}
-              {title != null && (
-                <strong className={clsx("navbar__title", styles.hideLogoText)}>
-                  {title}
-                </strong>
-              )}
-            </Link>
-            {leftItems.map((item, i) => (
-              <NavbarItem {...item} key={i} />
-            ))}
-          </div>
-          <div className="navbar__items navbar__items--right">
-            {rightItems.map((item, i) => (
-              <NavbarItem {...item} key={i} />
-            ))}
-            {!disableColorModeSwitch && (
-              <Toggle
-                className={styles.displayOnlyInLargeViewport}
-                aria-label="Dark mode toggle"
-                checked={isDarkTheme}
-                onChange={onToggleChange}
-              />
-            )}
-            {getSearchBar({ setIsSearchBarExpanded, isSearchBarExpanded })}
-          </div>
-        </div>
-        <div
-          role="presentation"
-          className="navbar-sidebar__backdrop"
-          onClick={hideSidebar}
-        />
-        <div className="navbar-sidebar">
-          <div className="navbar-sidebar__brand">
-            <Link
-              className="navbar__brand"
-              onClick={hideSidebar}
-              to={logoLink}
-              {...logoLinkProps}
+    <nav
+      ref={navbarRef}
+      className={clsx("navbar", "navbar--light", "navbar--fixed-top", {
+        "navbar-sidebar--show": sidebarShown,
+        [styles.navbarHideable]: hideOnScroll,
+        [styles.navbarHidden]: !isNavbarVisible,
+      })}
+    >
+      <div className="navbar__inner">
+        <div className="navbar__items">
+          {items != null && items.length !== 0 && (
+            <div
+              aria-label="Navigation bar toggle"
+              className="navbar__toggle"
+              role="button"
+              tabIndex={0}
+              onClick={showSidebar}
+              onKeyDown={showSidebar}
             >
-              {logoImageUrl != null && (
-                <img
-                  key={isClient}
-                  className="navbar__logo"
-                  src={logoImageUrl}
-                  alt={logoAlt}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                role="img"
+                focusable="false"
+              >
+                <title>Menu</title>
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeMiterlimit="10"
+                  strokeWidth="2"
+                  d="M4 7h22M4 15h22M4 23h22"
                 />
-              )}
-              {title != null && (
-                <strong className="navbar__title">{title}</strong>
-              )}
-            </Link>
-            {!disableColorModeSwitch && sidebarShown && (
-              <Toggle
-                aria-label="Dark mode toggle in sidebar"
-                checked={isDarkTheme}
-                onChange={onToggleChange}
+              </svg>
+            </div>
+          )}
+          <Link className="navbar__brand" to={logoLink} {...logoLinkProps}>
+            {logoImageUrl != null && (
+              <img
+                key={isClient}
+                className="navbar__logo"
+                src={logoImageUrl}
+                alt={logoAlt}
               />
             )}
-          </div>
-          <div className="navbar-sidebar__items">
-            <div className="menu">
-              <ul className="menu__list">
-                {items.map((item, i) => (
-                  <NavbarItem mobile {...item} onClick={hideSidebar} key={i} />
-                ))}
-              </ul>
-            </div>
+            {title != null && (
+              <strong className={clsx("navbar__title", styles.hideLogoText)}>
+                {title}
+              </strong>
+            )}
+          </Link>
+          {leftItems.map((item, i) => (
+            <NavbarItem {...item} key={i} />
+          ))}
+        </div>
+        <div className="navbar__items navbar__items--right">
+          {rightItems.map((item, i) => (
+            <NavbarItem {...item} key={i} />
+          ))}
+          {!disableColorModeSwitch && (
+            <Toggle
+              className={styles.displayOnlyInLargeViewport}
+              aria-label="Dark mode toggle"
+              checked={isDarkTheme}
+              onChange={onToggleChange}
+            />
+          )}
+          {getSearchBar({ setIsSearchBarExpanded, isSearchBarExpanded })}
+        </div>
+      </div>
+      <div
+        role="presentation"
+        className="navbar-sidebar__backdrop"
+        onClick={hideSidebar}
+      />
+      <div className="navbar-sidebar">
+        <div className="navbar-sidebar__brand">
+          <Link
+            className="navbar__brand"
+            onClick={hideSidebar}
+            to={logoLink}
+            {...logoLinkProps}
+          >
+            {logoImageUrl != null && (
+              <img
+                key={isClient}
+                className="navbar__logo"
+                src={logoImageUrl}
+                alt={logoAlt}
+              />
+            )}
+            {title != null && (
+              <strong className="navbar__title">{title}</strong>
+            )}
+          </Link>
+          {!disableColorModeSwitch && sidebarShown && (
+            <Toggle
+              aria-label="Dark mode toggle in sidebar"
+              checked={isDarkTheme}
+              onChange={onToggleChange}
+            />
+          )}
+        </div>
+        <div className="navbar-sidebar__items">
+          <div className="menu">
+            <ul className="menu__list">
+              {items.map((item, i) => (
+                <NavbarItem mobile {...item} onClick={hideSidebar} key={i} />
+              ))}
+            </ul>
           </div>
         </div>
-      </nav>
-    </Fragment>
+      </div>
+    </nav>
   );
 }
 
