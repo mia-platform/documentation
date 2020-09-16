@@ -53,7 +53,7 @@ Finally to create the Microservice push **create**.
 Once the service is created on your Git provider, you will not be able to delete it anymore from DevOps Console.
 :::
 
-At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/) you can find a more detailed guide and overview about how to create new service starting from Templates.
+At this [link](./custom_microservice_get_started) you can find a more detailed guide and overview about how to create new service starting from Templates.
 
 ## How to create a Microservice from a Docker Image
 
@@ -123,7 +123,7 @@ In this section, you can manage, add and delete the environment variables associ
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
- You can find more information about environment variables at this [link](https://docs.mia-platform.eu/development_suite/set-up-infrastructure/env-var/) of Mia Platform Docs.
+ You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var) of Mia Platform Docs.
 
 ### Custom Configuration
 
