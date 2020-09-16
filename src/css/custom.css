@@ -63,3 +63,6 @@ transition: color .3s;
   margin-bottom: 2rem;
 }
 
+div[role="banner"] {
+  font-size:120%;
+}

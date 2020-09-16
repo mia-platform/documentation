@@ -25,6 +25,12 @@ module.exports = {
   organizationName: "Mia-Platform", // Usually your GitHub org/user name.
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
+    announcementBar: {
+      content:
+        '🚀 Mia-Platform v6.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/platform_6-0-0_releasenotes">Find out more!</a> 🚀',
+      backgroundColor: "#5FA37E",
+      textColor: "#FFF",
+    },
     colorMode: {
       // "light" | "dark"
       defaultMode: "light",
