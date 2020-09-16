@@ -29,7 +29,8 @@ build-latest:
 
 build-site:
   only:
-    - v6
+    - master
+    - tags
 
 deploy-next:
   variables:
