@@ -23,9 +23,7 @@ variables:
 build-latest:
   only:
     - master
-  except:
     - tags
-    - branches
 
 build-site:
   only:
