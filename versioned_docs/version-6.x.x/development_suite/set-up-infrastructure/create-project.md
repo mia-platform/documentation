@@ -238,7 +238,7 @@ The interpolation data in those files are the environments fields at the first l
 
 Once you have the tenant and the template correctly configured, you are able to create a new project with the button `Create project` in the Home area of DevOps Console.
 
-![create-project](img/create-project.png)
+![new-project-cards-headers](img/new-project-cards-headers.png)
 
 The project creation is divided in 5 different steps:
 
@@ -343,9 +343,11 @@ The `layerId` must be equal to one of the layers names inside the `logicalScopeL
 
 `layerId` and `logicalScopeLayers` are mutually exclusive, since the first one must be used when a `tenantId` is specified for the project, while the latter not.
 
-**All the above properties can be defined via CMS** after a project has been created, because they only provide extra information that will be eventually rendered in the DevOps Console Home Page.
+### CMS Configurations
 
-Let's say we have created a project as follows (with `tenantId`):
+All the above properties can be defined via CMS after a project has been created, because they only provide extra information that will be eventually rendered in the DevOps Console Home Page.
+
+Let's say we have created a project as follows:
 
 ```json
 {
@@ -358,7 +360,35 @@ Let's say we have created a project as follows (with `tenantId`):
 }
 ```
 
-To configure all the extra details just add the `info`, `layerId`, and the `color` properties as shown below:
+To configure all the extra details to a project, just add the `info`, `layerId`/`logicalScopeLayers`, and the `color` properties via the CMS Interface.
+
+### Project extra Information (info)
+
+To add extra info about `projectOwner`, `teamContact` and `technologies` for a single project, simply edit the *Information* field:
+
+![info-project-cms](img/info-project-cms.png)
+
+**Project Custom Color (color)**
+
+To edit the custom `color` associated to a project, just change the value in the *Project Color* field:
+
+![color-project-cms](img/color-project-cms.png)
+
+**Project Layer Identifier (layerId)**
+
+If the project has a `tenantId` that includes a definition for its `logicalScopeLayers`, then the *Layer Identifier* field can be defined by simply specifying a layer name that exists in the related `logicalScopeLayers`:
+
+![layerId-project-cms](img/layerId-project-cms.png)
+
+**Project Logical scope layer (logicalScopeLayers)**
+
+Alternatively to the above step, if the project isn't under a `tenantId`, then a `logicalScopeLayers` can be defined directly by editing the *Logical Scope Layer* field:
+
+![logical-layer-project-cms](img/logical-layer-project-cms.png)
+
+At the end of the configuration, on the backend side, the project will have the following data structure:
+
+**Sample of project data structure with tenantId**
 
 ```json
 {
@@ -374,6 +404,25 @@ To configure all the extra details just add the `info`, `layerId`, and the `colo
       "technologies": ["javascript", "dockerfile", "shell"]
     },
     "layerId": "gateway",
+    "color": "green"
+  }
+```
+
+**Sample of project data structure without tenantId**
+
+```json
+{
+    "_id": "ObjectId(...)",
+    "name": "frontend gateway",
+    "projectId": "frontend-gateway",
+    "configurationGitPath": "git-congif-path",
+    "repositoryUrl": "http://example.repository/git-config-path",
+    "info": {
+      "projectOwner": "Mario Rossi",
+      "teamContact": "mario.rossi@email.com",
+      "technologies": ["javascript", "dockerfile", "shell"]
+    },
+    "logicalScopeLayers": [{"name": "gateway", "order": 1}],
     "color": "green"
   }
 ```
