@@ -31,7 +31,7 @@ spec:
         - name: mia-platform-repository
       containers:
         - name: documentation-site-next
-          image: nexus.mia-platform.eu/core/documentation-site:latest
+          image: nexus.mia-platform.eu/core/documentation-site:{{DOCUMENTATION_VERSION_TAG}}
           imagePullPolicy: Always
           resources:
             limits:
