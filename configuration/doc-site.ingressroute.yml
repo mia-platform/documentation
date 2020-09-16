@@ -16,5 +16,13 @@ spec:
       services:
         - name: "documentation-site-next"
           port: 8080
+    - match: Host(`docs.mia-platform.eu`)
+      middlewares:
+        - name: "ingress-controller-hsts-headers"
+          namespace: "mia-platform"
+      kind: Rule
+      services:
+        - name: "documentation-site"
+          port: 8080
   tls:
     secretName: "docs-site-cert"
