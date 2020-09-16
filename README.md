@@ -33,8 +33,8 @@ After this command every time you save, **the site will be automatically live up
 To test searching you have to build the project and runs it on a local server. This is a plugin limit, [Docusaurus-lun-search](https://github.com/lelouch77/docusaurus-lunr-search#how-to-use-) doesn't yet support local development. Enter these commands:
 
 ```shell
-npm run build
-npx http-server ./build
+yarn build
+yarn serve
 ```
 
 This command starts a local development server, the site will be reachable on <http://localhost:8080> window. To see changes you have to restart the server.
@@ -55,9 +55,74 @@ To contribute to the Mia-Platform docs:
 
      - **name**: name of the page, change or project.
 
-     > :warning: **It's important strictly follow branch name conventions**
+     > :warning: **It's strictly important follow branch name conventions**
 
 3. Run locally docs site to test changes before submitting a Merge Request: `npm start`
 4. Submit a merge request, then post the MR URL in the "my documentation" stanza. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+
+### Repository structure
+
+- `src`
+   Contains the custom code.
+     - `src/components`
+     Contains the React custom components
+     - `src/pages`
+     Contains off-documentations pages, like the homepage. **These pages aren't versioned.**
+     - `src/theme`
+     Contains Docusaurus components customized.
+- `docs/`
+   Contains markdown documentation page.
+- `versioned_docs/`
+   Contains  versioned documentation pages.
+     - `versioned_docs/version-6.x.x`
+          Contains the files **related to v6**. In order to understand, the version that is displayed when clicking `Version 6.0.x` in the right top dropdown list.
+     - `versioned_docs/version-5.x.x`
+     Contains the files related to v5
+
+### Create a new version
+
+You can tag a new version run the following command:
+
+```bash
+yarn run docusaurus docs:version <x.x.x>
+```
+
+In general each tagged version has a dedicated folder:
+- `versioned_docs/version-<number version>`
+
+Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
+
+### What files I have to edit?
+
+As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
+
+* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`  
+
+* If the changes are valid for all version you have to copy changes on all versions pages, including `doc\..`.
+
+> :warning: **It's strictly important keep updated the  `doc\` folder**. The next version will be tagged starts from the content of the this folder.
+
+#### Doc pages
+
+As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
+
+* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`  
+
+* If the changes are valid for all version you have to copy changes on all versions pages, including `doc\..`.
+
+> :warning: **It's strictly important keep updated the  `doc\` folder**. The next version will be tagged starts from the content of the this folder.
+
+### Docusaurus configuration
+
+`docusaurus.config.js` it's the unique configuration file. It's used to set plugins, and other basic and advanced settings.
+
+#### Repository deploy rules
+
+All changes pushed to the branch `master` trigger a pipeline that will deploy the docs site on [https://next.docs.mia-platform.eu/](https://next.docs.mia-platform.eu/). So you can see the changes before carrying over to the main site.
+
+To carry over the changes on the main site [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/), you have to tag a new version here on GitLab.
+
+### Resources
+- (https://v2.docusaurus.io/docs/)
 
 [nvm]: https://github.com/creationix/nvm
