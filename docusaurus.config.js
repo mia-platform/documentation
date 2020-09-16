@@ -1,10 +1,19 @@
 const versions = require("./versions.json");
 
-const allDocHomesPaths = [
-  "/docs/",
-  "/docs/next/",
-  ...versions.slice(1).map((version) => `/docs/${version}/`),
-];
+const docsPathPrefix = '/docs'
+
+// Note: these paths must always being accessible since they are written in our
+// customers contracts
+const infoPaths = [
+  '/info/how_to_install',
+  '/info/bug_policy',
+  '/info/supported_browser',
+  '/info/oss',
+  '/info/subprocessor',
+  '/info/mia_service_level_agreement',
+  '/info/audit_process',
+  '/info/version_policy',
+]
 
 module.exports = {
   title: "Mia-Platform Documentation",
@@ -198,11 +207,12 @@ module.exports = {
       "@docusaurus/plugin-client-redirects",
       {
         fromExtensions: ["html"],
-        createRedirects: function (path) {
-          // redirect to /docs from /overview/mia_platform_overview
-          // as introduction has been made the home doc
-          if (allDocHomesPaths.includes(path)) {
-            return [`${path}/overview/mia_platform_overview/`];
+        createRedirects: (path) => {
+          const pathWithoutDocs = path.slice(docsPathPrefix.length)
+
+          // Redirect old /info paths to newer /docs/info paths
+          if (infoPaths.includes(pathWithoutDocs)) {
+            return [pathWithoutDocs]
           }
         },
       },
