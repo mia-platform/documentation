@@ -23,7 +23,7 @@ In the Homepage of the Devops Console you will now see new card representing use
 * CPU
 * RAM
 
-You can find more info [here](https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/create-projectThe)!
+You can find more info [here](https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/create-project)!
 
 ### The DevOps Console is now integrated with Github
 
