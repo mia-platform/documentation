@@ -38,9 +38,9 @@ To contribute to the Mia-Platform docs:
      - `versioned_docs/version-5.x.x`
      Contains the files related to v5
 
-### Create a new version
+## Create a new Docusaurus version
 
-You can tag a new version run the following command:
+You can tag a new Docusaurus version run the following command:
 
 ```bash
 yarn run docusaurus docs:version <x.x.x>
@@ -51,7 +51,24 @@ In general each tagged version has a dedicated folder:
 
 Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
 
-### What files I have to edit?
+## Documentations pages
+Each .md file have to include the following preamble:
+
+```
+---
+id: <id>
+title:  <Title displayed in the page>
+sidebar_label: <Title displayed in the sidebar>
+---
+```
+
+The complete ID of the page is:
+
+ `<path>+id` 
+
+## What files I have to edit?
+
+### To changes documentaton pages
 
 As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
 
@@ -61,23 +78,13 @@ As seen previously, the documentation is versioned, so exist N doc root folders 
 
 > :warning: **It's strictly important keep updated the  `doc\` folder**. The next version will be tagged starts from the content of the this folder.
 
-#### Doc pages
-
-As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
-
-* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`  
-
-* If the changes are valid for all version you have to copy changes on all versions pages, including `doc\..`.
-
-> :warning: **It's strictly important keep updated the  `doc\` folder**. The next version will be tagged starts from the content of the this folder.
-
-### Docusaurus configuration
+### To change main and side menu 
 
 `docusaurus.config.js` it's the unique configuration file. It's used to set plugins, and other basic and advanced settings.
 
 This file define the main top menu:
 
-```
+```js
     navbar: {
         title: "Mia-Platform Docs",
         logo: {
@@ -113,8 +120,18 @@ This file define the main top menu:
             ]
         ],
      },
+     ...
     }
 ```
+Each link has to be the *final id* of a documentation page.
+
+> Eg. the link `docs/business_suite/overview-business-suite` refers to the .md file placed in `docs/business_suite` having as id `overview-business-suite`. The name of the file doesn't matter, but it's advisable to keep align with the id.
+
+The links defined in the `a` properties link the main item menu to a single ** sidebar menu **. In other words, the user will be redirected to the page and see the sidebar menu where the linked page is contained.
+
+`sidebars.js` define the side menu that contains the side menu of documentations 
+
+
 
 #### Repository deploy rules
 
