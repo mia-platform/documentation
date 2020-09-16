@@ -7,7 +7,7 @@ const allDocHomesPaths = [
 ];
 
 module.exports = {
-  title: "Mia-Platform Documentantion",
+  title: "Mia-Platform Documentation",
   tagline: "Learn how Mia-Platform can help you to develop your business",
   url: "https://docs.mia-platform.eu",
   baseUrl: "/",
