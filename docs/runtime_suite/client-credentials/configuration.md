@@ -1,5 +1,8 @@
-# Configuration
-
+---
+id: configuration
+title:  Configuration
+sidebar_label: Configuration
+---
 This service is configurable with env variables.
 
 ## Environment variables
@@ -43,8 +46,6 @@ The service also supports private keys with password. The password provided to t
 ```sh
 openssl genrsa -des3 -out ~/private.key 4096
 ```
-
-
 
 After the creation, you have the private key.
 
@@ -97,4 +98,7 @@ With this configuration, with the secret generated from file `private.key`, in w
 * [JWT profile for oauth2 client authentication](https://tools.ietf.org/html/rfc7523#section-2.2)
 * [Registration of a client](https://tools.ietf.org/html/rfc7591)
 * [Client assertions for `private_key_jwt` auth method](https://tools.ietf.org/html/draft-ietf-oauth-assertions-18)
+<<<<<<< HEAD
+=======
 * [JWT auth](https://tools.ietf.org/html/draft-ietf-oauth-jwt-bearer-12)
+>>>>>>> master

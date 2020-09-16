@@ -1,0 +1,43 @@
+{
+  "name": "mia-platform-doc",
+  "version": "0.0.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "serve": "docusaurus serve"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^2.0.0-alpha.63",
+    "@docusaurus/plugin-client-redirects": "^2.0.0-alpha.63",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.63",
+    "@mdx-js/react": "^1.5.8",
+    "clsx": "^1.1.1",
+    "docusaurus-lunr-search": "^2.1.7",
+    "react": "^16.8.4",
+    "react-cookie-consent": "^5.1.3",
+    "react-dom": "^16.8.4",
+    "react-gtm-module": "^2.0.11",
+    "react-sticky": "^6.0.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@mia-platform/eslint-config-mia": "^3.0.0",
+    "eslint": "^7.8.0"
+  }
+}

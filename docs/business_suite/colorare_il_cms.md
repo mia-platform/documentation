@@ -1,17 +1,21 @@
-# Color the CMS
-
+---
+id: colorare_il_cms
+title:  Color the CMS
+sidebar_label: Color the CMS
+---
 ## The files you need
 
-To customize the colors of the CMS you must first have access to the Folder: "Custom CMS" in the GitLab repository of your project.
 
+To customize the colors of the CMS you must first have access to the Folder: "Custom CMS" in the Git repository of your project.
 If the folder is not present we suggest you:
 
 * Take an example project with the Custom CMS created by git lab.
 
 * Make a git clone
 
-!!! warning
-    Warning! if you clone an existing project, verify in all the files created that the name of your customer is present and not of the customer from which you have cloned the path.
+:::warning
+Warning! if you clone an existing project, verify in all the files created that the name of your customer is present and not of the customer from which you have cloned the path.
+:::
 
 The path to find your folder is: Project Name> Web Apps> Custom CMS
 
@@ -19,7 +23,7 @@ Inside this folder there must be another folder that by convention has the name 
 
 In this folder there must be two other folders:
 
-* a **custom** that contains the file: * variables.css *
+* a **custom** that contains the file: *variables.css*
 
 * a **img** that contains the file to customize your CMS image.
 
@@ -127,7 +131,6 @@ Check and see the version of the CMS you want to build
          variables:
            - $ENVIRONMENT_TO_DEPLOY == "production"
 ```
-
 
 ## Variable colors - variables.css
 

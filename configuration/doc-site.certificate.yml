@@ -9,6 +9,7 @@ spec:
   commonName: "docs.mia-platform.eu"
   dnsNames:
     - "docs.mia-platform.eu"
+    - "next.docs.mia-platform.eu"
   issuerRef:
     kind: ClusterIssuer
     name: "cert-manager-issuer"
