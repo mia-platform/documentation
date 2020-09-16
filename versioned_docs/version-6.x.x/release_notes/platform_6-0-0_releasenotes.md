@@ -29,6 +29,8 @@ You can find more info [here](https://docs.mia-platform.eu/docs/development_suit
 
 You can choose where to save the code repository! DevOps Console now supports **GitHub** as well as **Gitlab**. You can now choose where the DevOps Console will automatically save the code among **Gitlab** or **Github**. You will also be able to login to the DevOps console directly with your **GitHub** account.
 
+![github login example](img/login-github.png)
+
 ### New plugin to support Serverless Functions
 
 ![cards layout](img/function_service.png)
