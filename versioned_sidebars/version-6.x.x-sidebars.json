@@ -149,6 +149,10 @@
         {
           "type": "doc",
           "id": "version-6.x.x/development_suite/api-console/api-design/endpoints"
+        },
+        {
+          "type": "doc",
+          "id": "version-6.x.x/development_suite/api-console/api-design/apikey"
         }
       ]
     },
