@@ -47,7 +47,9 @@ deploy-prod:
     KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
     KUBE_NAMESPACE: "mia-platform-documentation"
     ENVIRONMENT_PREFIX: "CLOUD_"
-    MIA_DOCUMENTATION_VERSION_TAG: "6.0.0"
+
+  pre_script:
+  - export MIA_DOCUMENTATION_VERSION_TAG=$(echo ${CI_COMMIT_TAG} | sed s/v//)
 
   image: nexus.mia-platform.eu/tools/kubectl:2
   stage: deploy
