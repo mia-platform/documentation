@@ -3,7 +3,7 @@ include:
     file: '/build/node/template-react-yarn.yml'
     ref: master
   - project: 'platform/pipelines-templates'
-    file: '/common/docker-build-branch.yml'
+    file: '/common/docker-build-images.yml'
     ref: master
   - project: 'platform/pipelines-templates'
     file: '/common/deploy-job.yml'
