@@ -21,8 +21,9 @@ body {
   flex-direction: column;
 }
 
-.main-rapper {
+.main-wrapper {
   flex: 1 0 auto;
+  min-height: 95vh;
 }
 
 .cookie-banner-box {

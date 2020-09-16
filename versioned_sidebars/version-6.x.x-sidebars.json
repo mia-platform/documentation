@@ -33,10 +33,6 @@
       "id": "version-6.x.x/info/audit_process"
     },
     {
-      "type": "doc",
-      "id": "version-6.x.x/info/migrate_from_v4_to_v5"
-    },
-    {
       "collapsed": true,
       "type": "category",
       "label": "Release notes",
