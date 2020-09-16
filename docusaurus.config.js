@@ -143,7 +143,7 @@ module.exports = {
               to: "/docs/dev_ops_guide/git_vademecum",
             },
             {
-              label: "Walktroughs & Tutorials",
+              label: "Walkthroughs & Tutorials",
               to:
                 "/docs/development_suite/api-console/api-design/plugin_baas_4",
             },

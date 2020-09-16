@@ -38,6 +38,8 @@ export default function DocsVersionDropdownNavbarItem({
     return filteredVersions.map((version, index) => {
       // We try to link to the same doc, in another version
       // When not possible, fallback to the "main doc" of the version
+      const versionLabel =
+        version.label[0] === "5" ? "5.10.x" : "6.0.x (latest)";
 
       const versionDoc =
         activeDocContext?.alternateDocVersions[version.name] ||
@@ -45,7 +47,7 @@ export default function DocsVersionDropdownNavbarItem({
       return {
         fromDropdownVersions: true,
         isNavLink: true,
-        label: version.label,
+        label: versionLabel,
         to: versionDoc.path,
         isActive: () => version === activeDocContext?.activeVersion,
       };
@@ -54,9 +56,10 @@ export default function DocsVersionDropdownNavbarItem({
 
   const dropdownVersion = activeDocContext.activeVersion ?? latestVersion; // Mobile is handled a bit differently
 
-  const dropdownLabel = mobile
-    ? "Versions"
-    : `Version ${dropdownVersion.label}`;
+  const versionLabel =
+    dropdownVersion.label[0] === "5" ? "5.10.x" : "6.0.x (Latest)";
+
+  const dropdownLabel = mobile ? "Versions" : `Version ${versionLabel}`;
   const dropdownTo = mobile
     ? undefined
     : getVersionMainDoc(dropdownVersion).path;

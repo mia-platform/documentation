@@ -57,8 +57,7 @@ const secondRowFeatures = [
       {
         icon: "video",
         target: "_blank",
-        href:
-          "https://hs-5308597.t.hubspotstarter-ib.net/e2t/tc/VVTdHT5ZWwh6VPBVXw61RX-TW3trWRD4fhn-MN2H2jyV3lGmQV1-WJV7CgCSLW47Bdvt345Pn7W4gz7-B40yzydW3rgf7S8xNYPgW2PsKpL5nhQRqW5Y4wG632vhMWN7jKskGXCG91MWjDFpDcJBGW6Lk3yJ18k9jTVytMZp33jMRyW1X8sfL94K0CsN4lBH-bXhY-6N6G7FpTkmsmBW84zY1D7bCRpLW822fVs7KWpv1W5BDlx38y9LQFW26ZHz_71nm8vN1xvT_XqmtqkW7l-Msn6fPzcCW7xhwMz4qzz7fW5nX6Gm8fP09RW6j0JQJ1-w313W3BS3lc86F3SR3lf11",
+        href: "https://vimeo.com/458499518",
         label: "Mia-Platform v6.0 new features",
       },
       {
