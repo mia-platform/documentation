@@ -39,7 +39,6 @@ deploy-next:
     KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
     KUBE_NAMESPACE: "mia-platform-documentation"
     ENVIRONMENT_PREFIX: "CLOUD_"
-    MIA_DOCUMENTATION_VERSION_TAG: "v6"
 
   image: nexus.mia-platform.eu/tools/kubectl:2
   stage: deploy
@@ -54,6 +53,8 @@ deploy-prod:
     KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
     KUBE_NAMESPACE: "mia-platform-documentation"
     ENVIRONMENT_PREFIX: "CLOUD_"
+    MIA_DOCUMENTATION_VERSION_TAG: "6.0.0"
+
   image: nexus.mia-platform.eu/tools/kubectl:2
   stage: deploy
   extends: .deploy_job
