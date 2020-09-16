@@ -1,8 +1,11 @@
-# Template configuration
-
+---
+id: templates_conf
+title:  Template configuration
+sidebar_label: Add a Service Template
+---
 The Dev-console is able to generate new services starting from a git project or from an existing docker image.
 
-To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on Gitlab and to register it in the configuration of the Dev-console.
+To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on any public repository that provides a tar.gz file and to register it in the configuration of the Dev-console.
 
 The templates must be registered in the CRUD, in the `services` collection, indicating a label that will display the user and the path to the git repository.
 
@@ -10,19 +13,21 @@ The templates must be registered in the CRUD, in the `services` collection, indi
 
 The Dev-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template` and ending with `_placeholder`:
 
-* `mia_template_image_name_placeholder` -> name of the nexus image entered by the user
-* `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project
-* `mia_template_project_id_placeholder` -> id of the dev-console project
-* `mia_template_service_name_placeholder` -> service name chosen by the user
-* `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user
-* `%CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service
-* `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` -> full Gitlab path
-* `%GITLAB_PROJECT%` -> name of the Gitlab project entered by the user
-* `%GITLAB_GROUP%` -> name of the user-entered Gitlab group
-* `%GITLAB_BASE_URL%` -> URL base of Gitlab
-* `%NEXUS_HOSTNAME%` -> Nexus hostname
+* `mia_template_image_name_placeholder` -> name of the nexus image entered by the user.
+* `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project.
+* `mia_template_project_id_placeholder` -> id of the dev-console project.
+* `mia_template_service_name_placeholder` -> service name chosen by the user.
+* `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user.
+* `%CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service.
+* `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%` -> full GitHub/GitLab path.
+* `%GIT_PROVIDER_PROJECT%` -> name of the GitHub repository/GitLab project entered by the user.
+* `%GIT_PROVIDER_GROUP%` -> name of the GitHub organization/GitLab group entered by the user.
+* `%GIT_PROVIDER_BASE_URL%` -> URL base of GitLab/GitHub.
+* `%NEXUS_HOSTNAME%` -> Nexus hostname.
 
-The following strings can still be used but are deprecated:
+:::warning
+The following strings still work but are deprecated: it is recommended not to use them as they will be deleted in future versions
+:::
 
 * `%CUSTOM_PLUGIN_IMAGE_NAME%` -> name of the nexus image entered by the user
 * `%CUSTOM_PLUGIN_PROJECT_ID%` -> id of the dev-console project
@@ -114,7 +119,133 @@ With the correct template id, `Change existing template` with the id, remove the
 
 ### Postman collection
 
-[Download this collection](download/template.postman_collection.json) and import into postman.
+Create a JSON file with the following content, then import this collection into Postman:
+
+```JSON
+{
+ "info": {
+  "_postman_id": "71c305bb-0c66-41c0-91df-47d2054f67ac",
+  "name": "template",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+ },
+ "item": [
+  {
+   "name": "Get templates",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "secret",
+      "value": "Jh3cQ4bJYh^xyXSN@D94adEZ",
+      "type": "text"
+     },
+     {
+      "key": "Cookie",
+      "value": "sid=fee6613711d92ff5d54332c04d3491d5fa8c7db95f75990c",
+      "type": "text"
+     }
+    ],
+    "url": {
+     "raw": "{{API_CONSOLE_HOST}}/v2/api/services/",
+     "host": [
+      "{{API_CONSOLE_HOST}}"
+     ],
+     "path": [
+      "v2",
+      "api",
+      "services",
+      ""
+     ]
+    }
+   },
+   "response": []
+  },
+  {
+   "name": "Add template",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "secret",
+      "value": "Jh3cQ4bJYh^xyXSN@D94adEZ",
+      "type": "text"
+     },
+     {
+      "key": "Cookie",
+      "value": "sid=fee6613711d92ff5d54332c04d3491d5fa8c7db95f75990c",
+      "type": "text"
+     },
+     {
+      "key": "Content-Type",
+      "name": "Content-Type",
+      "value": "application/json",
+      "type": "text"
+     }
+    ],
+    "body": {
+     "mode": "raw",
+     "raw": "{\n  \"name\": \"\",\n  \"archiveUrl\": \"\",\n  \"description\": \"\",\n  \"type\": \"\",\n  \"supportedBy\": \"\",\n  \"image\": [],\n  \"supportedByImage\": []\n}"
+    },
+    "url": {
+     "raw": "{{API_CONSOLE_HOST}}/v2/api/services/",
+     "host": [
+      "{{API_CONSOLE_HOST}}"
+     ],
+     "path": [
+      "v2",
+      "api",
+      "services",
+      ""
+     ]
+    }
+   },
+   "response": []
+  },
+  {
+   "name": "Change existing template",
+   "request": {
+    "method": "PATCH",
+    "header": [
+     {
+      "key": "secret",
+      "value": "Jh3cQ4bJYh^xyXSN@D94adEZ",
+      "type": "text"
+     },
+     {
+      "key": "Cookie",
+      "value": "sid=fee6613711d92ff5d54332c04d3491d5fa8c7db95f75990c",
+      "type": "text"
+     },
+     {
+      "key": "Content-Type",
+      "name": "Content-Type",
+      "value": "application/json",
+      "type": "text"
+     }
+    ],
+    "body": {
+     "mode": "raw",
+     "raw": "{\n    \"$set\": {\n        \"name\": \"\",\n        \"archiveUrl\": \"\",\n        \"description\": \"\",\n        \"type\": \"\",\n        \"supportedBy\": \"\",\n        \"image\": [],\n        \"supportedByImage\": []\n    }\n}"
+    },
+    "url": {
+     "raw": "{{API_CONSOLE_HOST}}/v2/api/services/5cd4229b7da195000f957467",
+     "host": [
+      "{{API_CONSOLE_HOST}}"
+     ],
+     "path": [
+      "v2",
+      "api",
+      "services",
+      "5cd4229b7da195000f957467"
+     ]
+    }
+   },
+   "response": []
+  }
+ ],
+ "protocolProfileBehavior": {}
+}
+```
 
 ## How to configure templates default environment variables from CMS
 
@@ -131,9 +262,9 @@ To use this feature, you have to fill the `defaultEnvironmentVariables` in this 
 ]
 ```
 
-!!! info
-
-    You can also add a description field.
+:::info
+You can also add a description field.
+:::
 
 Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
 

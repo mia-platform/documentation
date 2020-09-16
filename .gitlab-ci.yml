@@ -1,18 +1,60 @@
 include:
   - project: 'platform/pipelines-templates'
-    file: '/build/mkdocs/template-documentation-site.yml'
-    ref: 'master'
+    file: '/build/node/template-react-yarn.yml'
+    ref: master
+  - project: 'platform/pipelines-templates'
+    file: '/common/docker-build-branch.yml'
+    ref: master
+  - project: 'platform/pipelines-templates'
+    file: '/common/deploy-job.yml'
+    ref: master
+
+test:
+  rules:
+    - when: never
 
 variables:
   IMAGE_NAME: core/documentation-site
 
-deploy:
+.docker-job:
+  dependencies:
+    - build-site
+
+build-latest:
+  only:
+    - master
+  except:
+    - tags
+    - branches
+
+build-site:
+  only:
+    - v6
+
+deploy-next:
   variables:
     KUBE_URL: "${KUBE_CONSOLE_URL}"
     KUBE_TOKEN: "${KUBE_CONSOLE_TOKEN}"
     KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
-    KUBE_NAMESPACE: "console-production"
+    KUBE_NAMESPACE: "mia-platform-documentation"
     ENVIRONMENT_PREFIX: "CLOUD_"
+    MIA_DOCUMENTATION_VERSION_TAG: "v6"
+
+  image: nexus.mia-platform.eu/tools/kubectl:2
+  stage: deploy
+  extends: .deploy_job
   only:
     - master
+
+deploy-prod:
+  variables:
+    KUBE_URL: "${KUBE_CONSOLE_URL}"
+    KUBE_TOKEN: "${KUBE_CONSOLE_TOKEN}"
+    KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
+    KUBE_NAMESPACE: "mia-platform-documentation"
+    ENVIRONMENT_PREFIX: "CLOUD_"
+  image: nexus.mia-platform.eu/tools/kubectl:2
+  stage: deploy
+  extends: .deploy_job
+  only:
     - tags

@@ -1,6 +1,9 @@
-# Client credentials service
-
-The credentials service allow to expose API to perform OAuth2 compliant client credential flows with third party providers.  
+---
+id: how-to-use
+title:  Client Credentials Service
+sidebar_label: How to use
+---
+The credentials service allow to expose API to perform OAuth2 compliant client credential flows with third party providers.
 
 In this section, we show you how to use the `client-credentials` service.
 
@@ -76,7 +79,10 @@ The assertion JWT must contains the claims specified by [this spec](https://open
 * **iat** (*issued at*): time at which the token is issued;
 * **requested_audiences**: an array of the requested audience.
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 ### /.well-known/jwks.json
 
 Client credentials service exposes an endpoint `.well-known/jwks.json` with an object with the key `keys`, containing an array of JWK values. Those JWKs could be used to verify the signature of the JWT.
@@ -216,8 +222,9 @@ Example response:
 }
 ```
 
-!!! info
-    You can use [this guide](./jwt-private-public-key-generation.md) to generate JWT public and private key suitable for this operation.
+:::note
+You can use [this guide](./jwt-private-public-key-generation.md) to generate JWT public and private key suitable for this operation.
+:::
 
 ## The supported auth flow are
 

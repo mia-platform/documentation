@@ -1,3 +1,8 @@
+---
+id: swagger_conf
+title: Configure Swagger Aggregator
+sidebar_label: Configure Swagger Aggregator
+---
 This microservice is responsible for aggregating the individual swaggers of all the microservices indicated in the configuration.
 He collect all paths from the specified microservice swaggers and show them all on a single swagger page.
 Because the microservices are not aware of the prefixes prefixed by the gateways, this service can be configured to correct the swagger paths with the correct prefix.
@@ -6,7 +11,7 @@ The file to configure the swagger aggregator must exist in the Configuration pro
 
 This Microservice is configured via a configuration file similar to this:
 
-`````
+`````js
 /*
  * Copyright © 2018-present Mia s.r.l.
  * All rights reserved
@@ -77,15 +82,17 @@ module.exports = {
 
 At the begenning the swagger-aggregator file needs the generic information like **title**, **version** and **description**, that will generically describe the API set provided by all microservices.
 > There are two ways to provide a description:
-
+>
 > * using the field `**_description_**: requires a simple string;
-  * using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
+>
+* using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
 
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
- * **_URL_**: by specifying `url` as type the swagger-aggregator will download the microservice swagger by the provided _url_ field;
- * **_File_**: by specifying `file` as type the swagger-aggregator will take the microservice swagger configurations by the provided _path_ field.
 
-In both of them the user can specify a `prefix` to place before. 
+* **_URL_**: by specifying `url` as type the swagger-aggregator will download the microservice swagger by the provided _url_ field;
+* **_File_**: by specifying `file` as type the swagger-aggregator will take the microservice swagger configurations by the provided _path_ field.
+
+In both of them the user can specify a `prefix` to place before.
 
 In both of them, the user can specify an `includePaths` and an `excludePaths` to filter the paths to be accessible from outside. The filter will include first all the paths according to the object passed by `includePaths` then the result will be filtered by the `excludedPaths`.
 

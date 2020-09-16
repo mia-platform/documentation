@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: documentation-site
+  annotations:
+    date: {{RELEASE_DATE}}
+    author: {{AUTHOR_EMAIL}}
+    commit-sha: {{COMMIT_SHA}}
+    fluentbit.io/parser: 'nginx'
+  labels:
+    component: documentation-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: documentation-site
+  revisionHistoryLimit: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        date: {{RELEASE_DATE}}
+        author: {{AUTHOR_EMAIL}}
+        commit-sha: {{COMMIT_SHA}}
+        fluentbit.io/parser: 'nginx'
+      labels:
+        component: documentation-site
+    spec:
+      imagePullSecrets:
+        - name: mia-platform-repository
+      containers:
+        - name: documentation-site
+          image: nexus.mia-platform.eu/core/documentation-site:{{DOCUMENTATION_VERSION_TAG}}
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: '25Mi'
+              cpu: '10m'
+            requests:
+              memory: '5Mi'
+              cpu: '10m'
+          volumeMounts: []
+          env: []
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            tcpSocket:
+              port: 8080
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            tcpSocket:
+              port: 8080
+      volumes: []

@@ -1,13 +1,27 @@
-FROM nexus.mia-platform.eu/core/static-files:3.2.1
+FROM nexus.mia-platform.eu/core/static-files:3.2.3 as build
+
+USER root
+
+WORKDIR /build-dir
+
+COPY ./build .
+
+COPY LICENSE .
+
+RUN echo "mia-platform-docs: $COMMIT_SHA" >> ./commit.sha
+
+################################################################################à
+
+FROM nexus.mia-platform.eu/core/static-files:3.2.3
 
 LABEL maintainer="Mia Platform Core Team<core@mia-platform.eu>" \
-      name="Documentation Site" \
-      description="Website for the documentation of the platform." \
-      url="https://docs.mia-platform.eu"
+  name="Documentation" \
+  description="Mia-Platform documentation website" \
+  eu.mia-platform.url="https://www.mia-platform.eu" \
+  eu.mia-platform.version="0.0.0"
 
-ADD nginx/nginx.conf /etc/nginx/conf.d/
+COPY nginx/website.conf ./conf.d/website.conf
 
-HEALTHCHECK --interval=30s --timeout=3s --retries=2 \
-  CMD wget -sqO- http://localhost/index.html &> /dev/null || exit 1
+WORKDIR /usr/static
 
-COPY /site /usr/static
+COPY --from=build /build-dir ./

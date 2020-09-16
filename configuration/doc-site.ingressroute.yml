@@ -8,13 +8,13 @@ spec:
   entryPoints:
     - "websecure"
   routes:
-    - match: Host(`docs.mia-platform.eu`)
+    - match: Host(`next.docs.mia-platform.eu`)
       middlewares:
         - name: "ingress-controller-hsts-headers"
           namespace: "mia-platform"
       kind: Rule
       services:
-        - name: "documentation-site"
+        - name: "documentation-site-next"
           port: 8080
   tls:
     secretName: "docs-site-cert"

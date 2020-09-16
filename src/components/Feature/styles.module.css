@@ -1,0 +1,54 @@
+.feature {
+  background-color: var(--ifm-card-color);
+  margin: var(--ifm-global-spacing);
+  padding: 1rem;
+  max-width:  calc(var(--ifm-col-width) - var(--ifm-global-spacing)) !important;
+  box-shadow: 0 3px 6px #2d354417, 8px 4px 4px rgba(11,33,74,0.03);
+  border: 1px solid var(--ifm-navbar-search-input-background-color);
+}
+
+
+html[data-theme=dark] .feature {
+  --ifm-card-color:#444950;
+}
+
+.secondRow .feature {
+  --ifm-card-color:var(--ifm-navbar-search-input-background-color)
+}
+
+.feature h3 {
+  font-weight: 450;
+}
+
+.svgIcon {
+  width: 50px;
+  height: 50px;
+  fill:var(--ifm-color-content-secondary);
+  margin-bottom: 10px;
+}
+
+.featureLink {
+    color:inherit;
+    text-decoration: none;
+}
+
+.featureLink:hover {
+  color:inherit;
+  text-decoration: none;
+}
+
+.linkBox {
+  display: flex;
+  margin-bottom:10px
+}
+
+.linkBox span {
+  flex-grow:1;
+  line-height: 25px;
+}
+
+.svgIcon.small{
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+}
