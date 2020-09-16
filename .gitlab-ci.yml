@@ -25,6 +25,11 @@ build-latest:
     - master
     - tags
 
+build-site:
+  only:
+    - branches
+    - tags
+
 deploy-next:
   variables:
     KUBE_URL: "${KUBE_CONSOLE_URL}"
