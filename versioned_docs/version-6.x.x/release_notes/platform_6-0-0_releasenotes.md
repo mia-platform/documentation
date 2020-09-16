@@ -23,13 +23,13 @@ In the Homepage of the Devops Console you will now see new card representing use
 * CPU
 * RAM
 
-  You can find more info [here!](https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/create-projectThe)
+You can find more info [here](https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/create-projectThe)!
 
 ### The DevOps Console is now integrated with Github
 
 You can choose where to save the code repository! DevOps Console now supports **GitHub** as well as **Gitlab**. You can now choose where the DevOps Console will automatically save the code among **Gitlab** or **Github**. You will also be able to login to the DevOps console directly with your **GitHub** account.
 
-### New plugin to support serverless functions
+### New plugin to support Serverless Functions
 
 ![cards layout](img/function_service.png)
 
@@ -37,18 +37,19 @@ In the DevOps Console marketplace you will now find a new ready-to-code plugin n
 
 ### New plugin to orchestrate your services
 
-In the DevOps Console marketplace you will now find a readey-to-code plugin named **flow manager**. The Flow Manager is a **saga orchestrator**. It is capable to manage flows structured by using the Architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach. You can find more info [here!](https://docs.mia-platform.eu/docs/runtime_suite/flow-manager/index)
+In the DevOps Console marketplace you will now find a readey-to-code plugin named **Flow Manager**. The Flow Manager is a **saga orchestrator**. It is capable to manage flows structured by using the Architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach. You can find more info [here!](https://docs.mia-platform.eu/docs/runtime_suite/flow-manager/index)
 
 ### New dashboards available in the DevOps Console
 
 ![cards layout](img/grafana.png)
 
-The DevOps Console now supports a wide range of monitoring dashboards. Thanks to the integration with**Prometheus**and**Grafana**it will now be possible to monitor the status of your**Kubernetes** clusters directly from the DevOps Console. You will be able to monitor the number of pods, cpu and memory consumption. Monitoring your IT systems has never been easier!
+The DevOps Console now supports a wide range of monitoring dashboards. Thanks to the integration with **Prometheus** and **Grafana**it will now be possible to monitor the status of your **Kubernetes** clusters directly from the DevOps Console. You will be able to monitor the number of pods, CPU and memory consumption. Monitoring your IT systems has never been easier!
 The DevOps Console now also integrates the functionality of Istio as service mesh.
- You can find more info [here!](https://docs.mia-platform.eu/docs/business_suite/data-visualization#dashboard-configution)
+
+You can find more info [here!](https://docs.mia-platform.eu/docs/business_suite/data-visualization#dashboard-configution)
 
 ![cards layout](img/Kiali.png)
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.3.12`.
+For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.4.0`.
