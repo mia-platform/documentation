@@ -51,7 +51,7 @@ function Layout(props) {
     permalink,
   } = props;
 
-  const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+  const metaTitle = title ? title : siteTitle;
   const metaImage = image || defaultImage;
   const metaImageUrl = useBaseUrl(metaImage, {
     absolute: true,
