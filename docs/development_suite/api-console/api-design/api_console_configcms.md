@@ -161,25 +161,20 @@ To control visibility during creation, you must choose which other property affe
 What should I do?
 
 1. choose the **property**, I have a select that shows me all my properties.
-2. choose the **comparator**.
+2. choose the **comparator**. The supported comparators are the following:
+
+  value | comment
+  ------- | ---------
+  `<` | lower
+  `<=` | less or equal
+  `>` | greater
+  `> =` | greater or equal
+  `==` | equal
+  `! =` | different
+  `===` | strictly equal
+  `! ==` | strictly different
+
 3. choose the **value**.
-
-:::tip
-**Comparators**  
-
-The supported comparators are the following:
-
-value | comment
-------- | ---------
-`<` | lower
-`<=` | less or equal
-`>` | greater
-`> =` | greater or equal
-`==` | equal
-`! =` | different
-`===` | strictly equal
-`! ==` | strictly different
-:::
 
 #### Control when editing an element
 
