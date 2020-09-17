@@ -1,19 +1,6 @@
 const versions = require("./versions.json");
 
-const docsPathPrefix = '/docs'
-
-// Note: these paths must always being accessible since they are written in our
-// customers contracts
-const infoPaths = [
-  '/info/how_to_install',
-  '/info/bug_policy',
-  '/info/supported_browser',
-  '/info/oss',
-  '/info/subprocessor',
-  '/info/mia_service_level_agreement',
-  '/info/audit_process',
-  '/info/version_policy',
-]
+const docsPathPrefix = "/docs";
 
 module.exports = {
   title: "Mia-Platform Documentation",
@@ -214,12 +201,8 @@ module.exports = {
       {
         fromExtensions: ["html"],
         createRedirects: (path) => {
-          const pathWithoutDocs = path.slice(docsPathPrefix.length)
-
-          // Redirect old /info paths to newer /docs/info paths
-          if (infoPaths.includes(pathWithoutDocs)) {
-            return [pathWithoutDocs]
-          }
+          //  Redirect old / paths to newer /docs/ paths
+          return [path.replace(/^\/docs/g, "")];
         },
       },
     ],
