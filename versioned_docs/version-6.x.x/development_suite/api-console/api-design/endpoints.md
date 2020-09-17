@@ -87,7 +87,7 @@ The Microservice Gateway service performs some checks on the content-type header
 
 * **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
 
-:::Warning
+:::warning
 If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
 :::
 
@@ -97,7 +97,7 @@ In this section you can view all the path that can be called of a CRUD endpoint.
 
 If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific rules related to this route.
 
-:::example
+:::tip Example
 For example, we can set that the `DELETE/` can only be reserved for a specific group of users (admin).
 We must therefore choose not to inherit global settings. Then we de-select inherited and in the input we write: groups.admin  
 ![route example](img/example-endpoints.png)
