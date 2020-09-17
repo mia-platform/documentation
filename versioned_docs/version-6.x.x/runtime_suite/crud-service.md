@@ -3,13 +3,13 @@ id: crud-service
 title:  CRUD Service
 sidebar_label: CRUD Service
 ---
-CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
+CRUD acronym stands for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
 
-It's possible to configure CRUD Service with more that one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
+In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
 
 ## Introduction
 
-The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. CRUD Service is configured in the DevOps Console.
+The CRUD Service, configured in the DevOps Console, is a microservice that exposes via RESTful API a set of MongoDB Collections.
 
 Via APIs it's possible to:
 
@@ -31,7 +31,7 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 We will use the following naming conventions:
 
 - **collection**: a set of JSON documents
-- **document**: an item that belong to a collection
+- **document**: an item that belongs to a collection
 - **property**: a field of a document
 - **value**: the value of a property
 - **query string**: the filter set in the url query
@@ -40,15 +40,14 @@ We will use the following naming conventions:
 In the following guide we will use a collection named *Plates* that contains a list of dishes with the following properties:
 
 - name: name of the plate
-- description: description of the plates
+- description: description of the plate
 - price: price of the plate (in euro)
 - ingredients: array of string with the id of the ingredients used
 - image: array of photos (a JSON object)
-- position: the geocoded position of a plate
 
 ## Configure a CRUD in two minutes
 
-In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
+In the DevOps Console it's possible to configure the CRUD service. The steps are:
 
 - open DevOps Console project Design Section
 - select CRUD menu
@@ -69,20 +68,26 @@ For more details [see here](./../development_suite/api-console/api-design/crud_a
 
 ## CRUD Collection Properties
 
-Some collection field properties are predefined, others are custom and can be configured with different data types.
+Some collection properties are predefined, while others are custom and can be configured with different data types.
 
-All properties can be indexed to speed up the data retrieval. The indexes configuration can be set in DevOps Console/Design/CRUD section.
+All properties can be indexed to speed up the data retrieval.  
+The indexes configuration can be set in the DevOps Console at the Design CRUD section.
 
 ### Predefined Collection Properties
 
 CRUD by default comes with a set of common properties that simplify the data management:
 
-- **_id**: unique 24 character length hexadecimal String that identifies a document in the collection
+- **_id**: String, an unique 24 character length hexadecimal String that identifies a document in the collection
 - **creatorId**: String, id of the user who created the document
 - **createdAt**: Date, date and time when the document has been created
-- **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
-- **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
-- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
+- **updaterId**: String, id of the user who last updated the document  
+(this field is overwritten every time the document is updated)
+- **updatedAt**: Date, date and time when the document has been updated  
+(this field is overwritten every time the document is updated)
+- **\_\_STATE\_\_**: String, the current state of the document that can be: `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`  
+The state of the document can not be set directly, but can be changed via REST API calls.  
+Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.  
+For more details [see below](./crud-service#state-transitions)
 
 #### Example of a Collection with only predefined Properties
 
@@ -90,9 +95,9 @@ If you create a CRUD named `empty` without any configuration in the DevOps Conso
 
 ```bash
 curl --request GET \
-  --url https://your-url/v2/empty/ \
+  --url https://your-url/empty/ \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'secret: YOUR_SECRET'
 ```
 
 ```json
@@ -106,24 +111,31 @@ curl --request GET \
 }
 ```
 
-#### ```__STATE___``` management
+#### \_\_STATE\_\__ management
 
-**```__STATE__```** is a special field that allows the Mia-Platform CRUD Service to manage a simple publishing workflow. The ```__STATE__``` field can assume the following values:
+**\_\_STATE\_\_** is a special field that allows the Mia-Platform CRUD Service to manage a simple publishing workflow. The \_\_STATE\_\_ field can assume the following values:
 
-##### STATE values
+#### State Values
 
 - **PUBLIC**: the document is visible without specifying the value of ```_st``` in the query string
-- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```
-- **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
+- **DRAFT**: the document is in *draft status*, to retrieve it you need to specify in the query string the parameter ```_st=DRAFT```
+- **TRASH**: the document is *soft deleted*; you can still retrieve it by specifying in the query string  ```_st=TRASH```  
+The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to restore it
+- **DELETED**: the document is *deleted*; you can still retrieve it by specifying in the query string  ```_st=DELETED```  
+The Mia-Platform Headless CMS does not visualize this element and it is only possible to recover it programmatically
 
-> **Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
+:::note
+ the query string can specify more than one status separated by commas.  
+ Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
+:::
 
-By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in DevOps Console/Design/Endpoints section.
+By default, when a new item in CRUD is added via POST, the document status is `DRAFT`.  
+It's possible to change this behavior in the endpoint section of the CRUD by changing the default status to `PUBLIC`.  
+This configuration is available in the DevOps Console at the Design Crud section.
 
 It is also possible to enable *hard delete* function to delete permanently an document from the CMS.
 
-##### State Transitions
+#### State Transitions
 
 Only the following transitions are allowed in the publish workflow.
 
@@ -139,8 +151,8 @@ To transit the STATE of an item of a CRUD you need to POST it
 ```json
  POST /[COLLECTION_NAME]/{_id}/state
 ```
-
-for example
+:::tip Example
+update the collection document_id `5e8a125eb74dbf0011444ed3` from DRAFT (default state) to PUBLIC .
 
 ```bash
  curl --request POST \
@@ -149,8 +161,8 @@ for example
   --header 'secret: secret' \
   --data '{"stateTo":"PUBLIC"}'
 ```
+:::
 
-update from DRAFT (default state) to PUBLISH the collection document `5e8a125eb74dbf0011444ed3`.
 
 ### Collection Properties Types
 
@@ -159,34 +171,31 @@ When a new property is added to a collection it is possible to specify the follo
 - String: UTF-8 character set
 - Number
 - Boolean
-- GeoPoint (array of coordinates longitude, latitude)
-
-```json
-{ "position":
-  [
-    9.232457,
-    45.443919
-  ]
-}
-```
-
 - Date
 - Object
 - Array of Strings
 - Array of Numbers
 - Array of Objects
+- GeoPoint (array of coordinates longitude, latitude)
+
+:::tip Example: 
+  ```json
+  { "position": [9.232457, 45.443919] }
+  ```
+:::
 
 ### Collection document Properties properties
 
-Each property can defined as:
+Each property can be defined as:
 
 - **required**: the property cannot be empty
-- **encrypted**: the property is encrypted at rest
+- **encrypted**: the property is encrypted at REST
 - **nullable**: the property can be null
 
 ### Indexes
 
-A property can be indexed. In DevOps Console/Design/CRUD it can be configured the following indexes:
+A property can be indexed in the DevOps Console at the Design CRUD section.  
+It can be configured with the following indexes:
 
 - **normal**: speedup the filter on that property and the sort (desc or asc)
 - **geo**: for geospatial search
@@ -198,27 +207,32 @@ The index can be unique. If set the value of the property must be unique in the 
 
 The CRUD service accept the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringyfied JSON, which is in AND with the query string. Example:
+- ***acl_rows***: an array of mongodb queries that filters the documents that a request can return.  
+The value of acl_rows is a stringyfied JSON, which is in AND with the query string.
 
-```json
-acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
-```
-
+:::note Example
+  ```json
+  acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
+  ```
+:::
 - ***acl_read_columns***: the list of properties to return in the result (projection). It is an array of strings. Example:
 
-```json
-acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
-```
-
+:::note Example
+  ```json
+  acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
+  ```
+:::
 - ***userId***: the user identifier that do the update
 
+:::info
 Usually this is used by PRE/POST Orchestrator to manage concatenated request to CRUD.
+:::
 
 ## CRUD Security
 
 ### Expose a CRUD Service
 
-CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
+CRUD must not be exposed directly to the Internet but must be always protected by the API Gateway or a BFF.
 
 ### Version Management
 
