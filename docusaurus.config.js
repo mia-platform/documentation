@@ -7,7 +7,7 @@ module.exports = {
   tagline: "Learn how Mia-Platform can help you to develop your business",
   url: "https://docs.mia-platform.eu",
   baseUrl: "/",
-  onBrokenLinks: "log",
+  onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "Mia-Platform", // Usually your GitHub org/user name.
   projectName: "Mia-Platform", // Usually your repo name.
