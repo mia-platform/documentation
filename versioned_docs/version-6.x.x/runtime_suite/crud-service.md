@@ -151,6 +151,7 @@ To transit the STATE of an item of a CRUD you need to POST it
 ```json
  POST /[COLLECTION_NAME]/{_id}/state
 ```
+
 :::tip Example
 update the collection document_id `5e8a125eb74dbf0011444ed3` from DRAFT (default state) to PUBLIC .
 
@@ -161,8 +162,8 @@ update the collection document_id `5e8a125eb74dbf0011444ed3` from DRAFT (default
   --header 'secret: secret' \
   --data '{"stateTo":"PUBLIC"}'
 ```
-:::
 
+:::
 
 ### Collection Properties Types
 
@@ -178,10 +179,12 @@ When a new property is added to a collection it is possible to specify the follo
 - Array of Objects
 - GeoPoint (array of coordinates longitude, latitude)
 
-:::tip Example: 
+:::tip Example:
+
   ```json
   { "position": [9.232457, 45.443919] }
   ```
+
 :::
 
 ### Collection document Properties properties
@@ -211,17 +214,23 @@ The CRUD service accept the following header:
 The value of acl_rows is a stringyfied JSON, which is in AND with the query string.
 
 :::note Example
+
   ```json
   acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
   ```
+
 :::
+
 - ***acl_read_columns***: the list of properties to return in the result (projection). It is an array of strings. Example:
 
 :::note Example
+
   ```json
   acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
   ```
+
 :::
+
 - ***userId***: the user identifier that do the update
 
 :::info
@@ -694,7 +703,7 @@ The result will be sorted from the nearest from the farthest.
 
 ### Update
 
-To update a resource it is sufficient to invoke a PUT passing in the body the resource to be updated with its *id*.
+To update a resource it is sufficient to invoke a PATCH passing in the body the resource to be updated with its *id*.
 
 ### Delete
 

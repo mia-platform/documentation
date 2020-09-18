@@ -680,7 +680,7 @@ The result will be sorted from the nearest from the farthest.
 
 ### Update
 
-To update a resource it is sufficient to invoke a PUT passing in the body the resource to be updated with its *id*.
+To update a resource it is sufficient to invoke a PATCH passing in the body the resource to be updated with its *id*.
 
 ### Delete
 
