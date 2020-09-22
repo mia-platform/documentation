@@ -34,7 +34,7 @@ When an error log is generated, the passed object must necessarily have the key 
 |```error.code```|Error code describing the error.            type: ```keyword```|core|
 |```error.id```|Unique identifier for the error.        type: ```keyword```|core|
 |```error.message```|Error message.      type: ```text```|core|
-|```error.stack_trace```|The stack trace of this error in plain text.    type: ```keyword```       Multi-fields: ```error.stack_trace.text``` (type: ```text```) | extended
+|```error.stackTrace```|The stack trace of this error in plain text.    type: ```keyword```       Multi-fields: ```error.stackTrace.text``` (type: ```text```) | extended
 |```error.type```|The type of the error, for example the class name of the exception.       type: ```keyword```       example: ```java.lang.NullPointerException``` |extended|
 
 NB: none of the fields is mandatory, however it is important not to use custom keys.
@@ -76,8 +76,8 @@ Generally, the management of these logs is entrusted to internal libraries:
 
 | ## Event##  | **Level**  | **Field** |
 | ------|------------|------|
-|Incoming request|```trace```|```host```, ```url```, ```user_agent```|
-|Request completed|```info```|```host```, ```http```, ```response_time```,  ```url```, ```user_agent```|
+|Incoming request|```trace```|```host```, ```url```|
+|Request completed|```info```|```host```, ```http```, ```responseTime```,  ```url```|
 
 :::note
 If the service is not REST but takes its inputs from another source, the same criterion is applied; use a log ```trace``` when the processing event starts and a log ```info``` when the event ends; the final log has to contain as much useful information as possible.
@@ -87,13 +87,13 @@ If the service is not REST but takes its inputs from another source, the same cr
 
 In each log, the following fields have to be always present:
 
-* ```request_id```: taken from the platform headers and necessary to trace the flow of each request;
+* ```requestId```: taken from the platform headers and necessary to trace the flow of each request;
 
 * ```time```: that signals the moment when it was generated in ISO 8601 format.
 
 ## Field ECS Definition
 
-The fields ```host```, ```http```, ```url``` e ```user_agent``` have to maintain the format specified in ECS; the available parameters are reported here.
+The fields ```host```, ```http``` and ```url``` have to maintain the format specified in ECS; the available parameters are reported here.
 
 :::info
 None of the fields below is mandatory.
@@ -115,6 +115,10 @@ None of the fields below is mandatory.
 | ```http.request.bytes``` | Total size in bytes of the request (body and headers).     type: ```long```      example: ```1437``` | extended|
 | ```http.request.method```| HTTP request method.      The field value must be normalized to lowercase for querying. See the documentation section "Implementing ECS".      type: ```keyword```      example: ```get```, ```post```, ```put```| extended|
 | ```http.request.referrer``` | Referrer for this HTTP request.      type: ```keyword```     example: ```https://blog.example.com/```| extended|
+| ```http.request.userAgent.device.name``` | Name of the device.     type: ```keyword```      example: ```iPhone``` | extended |
+| ```http.request.userAgent.name``` | Name of the user agent.      type: ```keyword```       example: ```Safari``` | extended |
+| ```http.request.userAgent.original``` | Unparsed user_agent string.      type: ```keyword```        Multi-fields: ```http.request.userAgent.original.text``` (type: ```text```)      example: ```Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1``` | extended |
+| ```http.request.userAgent.version``` | Version of the user agent.      type: ```keyword```     example: ```12.0```. | extended |
 | ```http.response.body.bytes``` | Size in bytes of the response body.     type: ```long```      example: ```887``` | extended|
 | ```http.response.bytes```| Total size in bytes of the response (body and headers).      type: ```long```      example: ```1437``` | extended|
 | ```http.response.status_code``` | HTTP response status code.      type: ```long```     example: ```404``` | extended |
@@ -131,15 +135,6 @@ None of the fields below is mandatory.
 | ```url.port``` | Port of the request, such as 443.      type: ```long```     example: ```443``` | extended |
 | ```url.query``` | The query field describes the query string of the request, such as "q=elasticsearch".     The ```?``` is excluded from the query string. If a URL contains no ```?```, there is no query field. If there is a ```?``` but no query, the query field exists with an empty string. The ```exists``` query can be used to differentiate between the two cases.     type: ```keyword``` | extended |
 | ```url.scheme``` | Scheme of the request, such as "https".      Note: The ```:``` is not part of the scheme.      type: ```keyword```      example: ```https```. | extended |
-
-[*User Agent*](https://www.elastic.co/guide/en/ecs/1.4/ecs-user_agent.html)
-
- **Field**  | **Description**  | **Level** |
-| ------|------------|------|
-| ```user_agent.device.name``` | Name of the device.     type: ```keyword```      example: ```iPhone``` | extended |
-| ```user_agent.name``` | Name of the user agent.      type: ```keyword```       example: ```Safari``` | extended |
-| ```user_agent.original``` | Unparsed user_agent string.      type: ```keyword```        Multi-fields: ```user_agent.original.text``` (type: ```text```)      example: ```Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1``` | extended |
-| ```user_agent.version``` | Version of the user agent.      type: ```keyword```     example: ```12.0```. | extended |
 
 ## Automatic Operations
 
