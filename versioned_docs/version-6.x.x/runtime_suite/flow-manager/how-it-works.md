@@ -32,7 +32,7 @@ Each business state can contain one or more states of the machine.
 "States that matter for the business" means that a business state represents a state of the _Saga_ that is not "Intermediate", that symbolizes what is the whole saga status.
 
 Let's explain it with an example based on the usual _Finite State Machine_ (the _businessStates_ are the numbers in each state):
-[![alt_image](img/sample-finite-state-machine-with-commands.png)](img/sample-finite-state-machine-with-commands.png)
+![alt_image](img/sample-finite-state-machine-with-commands.png)
 
 The image above contains all the internal states of the _Saga_, but not all states could be important for the business. For example, the business could care about:
 
@@ -49,6 +49,19 @@ The one above is just a very simple example that just excludes one _Finite State
 :::note
 The **business states** are a superset of the machine that represents the states of the saga that matter for its business.
 :::
+
+### Business events
+
+Another key concept of the _Flow Manager_ is the one of **Business Events**, a way of grouping the internal events into business relevant ones. 
+
+Each business event can be associated to one or more events.
+
+The concept is explained in the following example based on the usual _Finite State Machine_ (the _businessEvents_ are the numbered ones):
+
+![alt_image](img/sample-finite-state-machine-with-business-events.png)
+
+In the image above, the events belonging to the same business event are grouped by color. As shown, not all the internal events are important for the business. For example,
+*paymenExecuted* and *preparationDone* do not give any business relevant information, while *delivered* does since it sums the success of the whole project.
 
 ## Commands events approach
 
@@ -83,9 +96,9 @@ Usually the following are the best practices for events and commands:
 
 ### Sample flows
 
-Followind some sample flow based on the following finite state machine, in which the rectangles indicate the commands of each state:
+Following some sample flow based on the following finite state machine, in which the rectangles indicate the commands of each state:
 
-[![alt_image](img/sample-finite-state-machine-with-commands.png)](img/sample-finite-state-machine-with-commands.png)
+![alt_image](img/sample-finite-state-machine-with-commands.png)
 
 #### Happy flow
 
@@ -163,7 +176,7 @@ The **metadata** are all the data strictly related to the specific saga, differe
 
 ### Saga data structure
 
-The saga data is splitted, to allow the _Flow Manager_ to be generic, in a static part and in a dynamic part.
+The saga data is split, to allow the _Flow Manager_ to be generic, in a static part and in a dynamic part.
 
 The static part is the common _Saga_ data, or, data that all sagas have:
 
@@ -174,13 +187,37 @@ The static part is the common _Saga_ data, or, data that all sagas have:
   - for a _Payment flow_ it could be the ID of the title to pay
 - the **business state ID** (see [business states](#business-states))
 - the **business state description** (see [business states](#business-states))
-- the **history** of the saga (a list with the events and the related timestamp)
-  - **NB.** the _history_ is not handled by the _Flow Manager_ right now, but from the [_Persistency Manager_](#the-persistency-manager)
+- the **history** of the saga (see [saga history](#saga-history))
 - the **isFinal** flag, that indicates if the current state is a final one
 
 :::note
 All the fields above are common fields of the saga and are not related to the specific case
 :::
+
+#### Saga history
+
+The history of the saga consists in the list of all the occurred states and events saved in chronological order. It has the following structure:
+
+```json
+{
+  "states": [
+    {
+      "state": "The name of the state",
+      "timestamp": "The time at which the saga has moved in the state",
+      "businessStateId": "The id of the associated business state",
+      "businessStateDescription": "The description of the associated business state, if present"
+    } 
+  ],
+  "events": [
+    {
+      "event": "The name of the event",
+      "timestamp": "The time at which the event occurred",
+      "businessEventId": "The id of the associated business event, if present",
+      "businessEventDescription": "The description of the associated business event, if present"
+    } 
+  ]
+}
+```
 
 ## Data persistency and consistency
 
@@ -217,7 +254,7 @@ To read/write data it needs another actor, the **Persistency Manager** ([configu
 
 The tasks of the **Persistency Manager** are to:
 
-- provide a method to [**upsert**](https://en.wiktionary.org/wiki/upsert) a saga by receiving all its data (it sould handle the _history_ too, until it is not handled by the _Flow Manager_ directly)
+- provide a method to [**upsert**](https://en.wiktionary.org/wiki/upsert) a saga by receiving all its data
 
 - provide a method to **get** a saga, that must return:
   - the _current state_
