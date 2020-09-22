@@ -50,8 +50,16 @@ Remember to add a prefix to your variable in the creation phase.
 When you start with a new project you will find variables already configured.
 to add a new variable press the button at the bottom of the table **"create a new variable"** and fill in the form:
 
-* the **key** is mandatory and identifies your variable. Remember **to use the prefix** tom manage the differentiation between environment.
+* the **key** is mandatory and identifies your variable. Remember **to use the prefix** to manage the differentiation between environment.
 * the **value** is the value you want to attribute to your variable, the one that will be interpolated.
+
+:::info
+When a **value** contains some `$` characters it is required to add another `$` just before the original ones, otherwise the variable will be truncated just before the dollar sign.
+
+#### Example
+- **Desired value** to interpolate: `var$var$var`.  
+- **Actual value** to write: `var$$var$$var`.
+:::
 
 ![](img/create-env-var.png)
 
