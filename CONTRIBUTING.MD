@@ -33,8 +33,6 @@ To contribute to the Mia-Platform docs:
    Contains markdown documentation page.
 - `versioned_docs/`
    Contains  versioned documentation pages.
-     - `versioned_docs/version-6.x.x`
-          Contains the files **related to v6**. In order to understand, the version that is displayed when clicking `Version 6.0.x` in the right top dropdown list.
      - `versioned_docs/version-5.x.x`
      Contains the files related to v5
 
@@ -64,21 +62,21 @@ sidebar_label: <Title displayed in the sidebar>
 
 The complete ID of the page is:
 
- `<path>+id` 
+ `<path>+id`
 
 ## What files I have to edit?
 
 ### To changes documentaton pages
 
-As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
+As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder.
 
-* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`  
+* Usually, you should modify only the files in docs folder. Other folder are read-only.
 
-* If the changes are valid for all version you have to copy changes on all versions pages, including `doc\..`.
+* If the changes are valid for a previous version, you have to copy changes on the version pages.
 
 > :warning: **It's strictly important keep updated the  `doc\` folder**. The next version will be tagged starts from the content of the this folder.
 
-### To change main and side menu 
+### To change main and side menu
 
 `docusaurus.config.js` it's the unique configuration file. It's used to set plugins, and other basic and advanced settings.
 
@@ -129,7 +127,7 @@ Each link has to be the *final id* of a documentation page.
 
 The links defined in the `a` properties link the main item menu to a single ** sidebar menu **. In other words, the user will be redirected to the page and see the sidebar menu where the linked page is contained.
 
-`sidebars.js` define the side menu that contains the side menu of documentations 
+`sidebars.js` define the side menu that contains the side menu of documentations
 
 
 

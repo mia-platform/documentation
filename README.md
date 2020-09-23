@@ -73,11 +73,9 @@ To contribute to the Mia-Platform docs:
 - `docs/`
    Contains markdown documentation page.
 - `versioned_docs/`
-   Contains  versioned documentation pages.
-     - `versioned_docs/version-6.x.x`
-          Contains the files **related to v6**. In order to understand, the version that is displayed when clicking `Version 6.0.x` in the right top dropdown list.
+   Contains versioned documentation pages.
      - `versioned_docs/version-5.x.x`
-     Contains the files related to v5
+          Contains the files related to v5
 
 ### Create a new version
 
@@ -94,9 +92,9 @@ Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning
 
 ### What files I have to edit?
 
-As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
+As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder.
 
-* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`  
+* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`
 
 * If the changes are valid for all version you have to copy changes on all versions pages, including `doc\..`.
 
@@ -104,9 +102,9 @@ As seen previously, the documentation is versioned, so exist N doc root folders 
 
 #### Doc pages
 
-As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder. 
+As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder.
 
-* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`  
+* If the changes have to affect only *x.x.x* version, you have to edit the files in related Folder `versioned_docs\version-<version>`
 
 * If the changes are valid for all version you have to copy changes on all versions pages, including `doc\..`.
 
