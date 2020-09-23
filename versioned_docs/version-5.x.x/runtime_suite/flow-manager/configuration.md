@@ -280,6 +280,7 @@ Following the properties for this type (the **bold** are the required one, the *
   ```json
   {
     "latestEvent": "The last event received by the manager",
+    "history": "The updated history of the saga",
     "currentState": "The state of the saga (took from the *Finite state machine* configurations)",
     "associatedEntityId": "The ID of the entity associated to the saga (e.g. the ID of a food delivery order, or of a policy and so on)",
     "isFinal": "Boolean that indicates if the new state is a final state (DEPRECATED)",
@@ -298,7 +299,8 @@ Following the properties for this type (the **bold** are the required one, the *
   ```json
   {
     "currentState": "The state of the saga",
-    "metadata": "All the metadata of the saga"
+    "metadata": "All the metadata of the saga",
+    "history": "The history of the saga"
   }
   ```
 
@@ -337,7 +339,8 @@ Following the *Machine Definition* configurations (the **bold** are the required
 - **initialState**: the saga starting point state; when a new saga is created, the state will be the initial state
 - **creationEvent**: the event who triggers the saga creation, is just a placeholder to be passed to the *Persistency Manager* on the saga creation (it can be useful if the *Persistency Manager* stores a history of the saga's events)
 - **states**: an array that contains the list of the states of the *Finite state machine* ([explained below](#states-of-the-machine))
-- **businessStates**: an array that contains the list of the states that matters for business ([explained below](#busness-states-of-the-machine))
+- **businessStates**: an array that contains the list of the states that matters for business ([explained below](#business-states-of-the-machine))
+- *businessEvents*: an array that contains the list of the events that matter for business ([explained below](#business-events-of-the-machine))
 
 ### States of the machine
 
@@ -354,7 +357,8 @@ Each state must have the following configurations (the **bold** are the required
   - **label**: the label of the command (usually is a imperative sentence, e.g. *updateTheRequest*)
 - *outgoingTransitions*: a list of JSON Objects that contain the details of events available to be received on the current state (if a unexpected event is received, the *Flow Manager* will log an error and ignore it; it is mandatory because a state may not point to other states (e.g. a final one)):
   - **inputEvent**: a string with the event that will trigger the transition from the current state
-  - **targetState**: the ID of the state to land on (**NB.** must exist a state with this ID);
+  - **targetState**: the ID of the state to land on (**NB.** must exist a state with this ID)
+  - *businessEventId*: the ID of the [business event](#business-events-of-the-machine) (**NB.** must exist in the *businessEvents* list)
 
 ### Business states of the machine
 
@@ -365,9 +369,20 @@ Each business state can contain one or more states of the machine (defined above
 Following the configurations of the business states (the **bold** are the required one, the *italic* are the mandatory one):
 
 - **id**: the ID of the business state (is usually a integer code)
-- **description**: a full description of the business state
+- *description*: a full description of the business state
 
 **NB.** the id and the description of the business state will be stored by the *Persistency Manager*.
+
+### Business events of the machine
+
+The business events of the machine are a superset of the machine that represents the events of the saga that matter for the business.
+
+Each business event can be associated with one or more outgoingTransitions of the machine (defined above).
+
+Following the configurations of the business states (the **bold** are the required one, the *italic* are the optional one):
+
+- **id**: the ID of the business event (is usually a integer code)
+- *description*: a full description of the business event
 
 ## Configuration example
 
@@ -437,7 +452,8 @@ The following example configurations can be used as templates.
           },
           {
             "inputEvent": "redirectTheUserToThePaymentPageError",
-            "targetState": "sagaFailed"
+            "targetState": "sagaFailed",
+            "businessEventId": 0
           }
         ]
       },
@@ -449,11 +465,13 @@ The following example configurations can be used as templates.
         "outgoingTransitions": [
           {
             "inputEvent": "paymentCompleted",
-            "targetState": "paymentCompleted"
+            "targetState": "paymentCompleted",
+            "businessEventId": 1
           },
           {
             "inputEvent": "paymentFailed",
-            "targetState": "paymentFailed"
+            "targetState": "paymentFailed",
+            "businessEventId": 1
           }
         ]
       },
@@ -470,7 +488,7 @@ The following example configurations can be used as templates.
         "businessStateId": 2
       },
       {
-        "id": "sagaFaled",
+        "id": "sagaFailed",
         "description": "The saga had a fatal error",
         "isFinal": true,
         "businessStateId": 3
@@ -492,6 +510,20 @@ The following example configurations can be used as templates.
       {
         "id": 3,
         "description": "Saga error"
+      }
+    ],
+    "businessEvents": [
+      {
+        "id": 0,
+        "description": "Saga failure"
+      },
+      {
+        "id": 1,
+        "description": "Payment successful"
+      },
+      {
+        "id": 2,
+        "description": "Payment unsuccessful"
       }
     ]
   }
@@ -561,7 +593,8 @@ The following example configurations can be used as templates.
           },
           {
             "inputEvent": "redirectTheUserToThePaymentPageError",
-            "targetState": "sagaFailed"
+            "targetState": "sagaFailed",
+            "businessEventId": 0
           }
         ]
       },
@@ -577,11 +610,13 @@ The following example configurations can be used as templates.
         "outgoingTransitions": [
           {
             "inputEvent": "paymentCompleted",
-            "targetState": "paymentCompleted"
+            "targetState": "paymentCompleted",
+            "businessEventId": 1
           },
           {
             "inputEvent": "paymentFailed",
-            "targetState": "paymentFailed"
+            "targetState": "paymentFailed",
+            "businessEventId": 1
           }
         ]
       },
@@ -598,7 +633,7 @@ The following example configurations can be used as templates.
         "businessStateId": 2
       },
       {
-        "id": "sagaFaled",
+        "id": "sagaFailed",
         "description": "The saga had a fatal error",
         "isFinal": true,
         "businessStateId": 3
@@ -620,6 +655,20 @@ The following example configurations can be used as templates.
       {
         "id": 3,
         "description": "Saga error"
+      }
+    ],
+    "businessEvents": [
+      {
+        "id": 0,
+        "description": "Saga failure"
+      },
+      {
+        "id": 1,
+        "description": "Payment successful"
+      },
+      {
+        "id": 2,
+        "description": "Payment unsuccessful"
       }
     ]
   }
