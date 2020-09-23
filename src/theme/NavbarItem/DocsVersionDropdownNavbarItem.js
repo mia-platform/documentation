@@ -28,26 +28,18 @@ export default function DocsVersionDropdownNavbarItem({
     // We don't want to render a version dropdown with 0 or 1 item
     // If we build the site with a single docs version (onlyIncludeVersions: ['1.0.0'])
     // We'd rather render a buttonb instead of a dropdown
-    if (versions.length <= 2) {
+    if (versions.length < 2) {
       return undefined;
     }
 
-    // Remove "Next" version, users shouldn't see it
-    const filteredVersions = versions.slice(1);
-
-    return filteredVersions.map((version, index) => {
-      // We try to link to the same doc, in another version
-      // When not possible, fallback to the "main doc" of the version
-      const versionLabel =
-        version.label[0] === "5" ? "5.10.x" : "6.0.x (latest)";
-
+    return versions.map((version, index) => {
       const versionDoc =
         activeDocContext?.alternateDocVersions[version.name] ||
         getVersionMainDoc(version);
       return {
         fromDropdownVersions: true,
         isNavLink: true,
-        label: versionLabel,
+        label: version.label,
         to: versionDoc.path,
         isActive: () => version === activeDocContext?.activeVersion,
       };
@@ -56,14 +48,10 @@ export default function DocsVersionDropdownNavbarItem({
 
   const dropdownVersion = activeDocContext.activeVersion ?? latestVersion; // Mobile is handled a bit differently
 
-  const versionLabel =
-    dropdownVersion.label[0] === "5" ? "5.10.x" : "6.0.x (Latest)";
-
-  const dropdownLabel = mobile ? "Versions" : `Version ${versionLabel}`;
+  const dropdownLabel = mobile ? "Versions" : `Version ${dropdownVersion.label}`;
   const dropdownTo = mobile
     ? undefined
     : getVersionMainDoc(dropdownVersion).path;
-  //const activeDocContext = useActiveDocContext(docsPluginId);
 
   return (
     <DefaultNavbarItem

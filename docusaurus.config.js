@@ -183,6 +183,17 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '6.x (Current)',
+              path: '',
+            },
+            '5.x.x': {
+              label: '5.10.x',
+              path: '5.x',
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
