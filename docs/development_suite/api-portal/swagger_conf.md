@@ -3,6 +3,7 @@ id: swagger_conf
 title: Configure Swagger Aggregator
 sidebar_label: Configure Swagger Aggregator
 ---
+
 This microservice is responsible for aggregating the individual swaggers of all the microservices indicated in the configuration.
 He collect all paths from the specified microservice swaggers and show them all on a single swagger page.
 Because the microservices are not aware of the prefixes prefixed by the gateways, this service can be configured to correct the swagger paths with the correct prefix.
@@ -11,7 +12,7 @@ The file to configure the swagger aggregator must exist in the Configuration pro
 
 This Microservice is configured via a configuration file similar to this:
 
-`````js
+```js
 /*
  * Copyright © 2018-present Mia s.r.l.
  * All rights reserved
@@ -78,14 +79,15 @@ module.exports = {
     ],
   },
 }
-`````
+```
 
 At the begenning the swagger-aggregator file needs the generic information like **title**, **version** and **description**, that will generically describe the API set provided by all microservices.
+
 > There are two ways to provide a description:
 >
 > * using the field `**_description_**: requires a simple string;
 >
-* using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
+> * using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
 
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
 
@@ -98,7 +100,7 @@ In both of them, the user can specify an `includePaths` and an `excludePaths` to
 
 Please be sure of validate the configuration with the following _jsonschema_ before run the service, otherwise the microservice will not correctly start.
 
-`````
+```js
 /*
  * Copyright © 2018-present Mia s.r.l.
  * All rights reserved
@@ -222,4 +224,24 @@ module.exports = {
     },
   ],
 }
-`````
+```
+
+### Transform Paths
+
+It is possible to transform paths and apply custom tags to them with an advanced configuration.
+
+```json
+{
+  "transformPaths": {
+    "/myPath": [{
+      "path": "/my-path",
+      "tags": ["Custom Tag"]
+    }, {
+      "path": "/my-path2",
+      "tags": ["Some other custom tag"]
+    }]
+  }
+}
+```
+
+This configuration will transform any path matching `/myPath` to two different paths `/my-path` and `/my-path2` with the specified tags.
