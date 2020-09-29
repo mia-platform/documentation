@@ -21,3 +21,6 @@ The value of the desired metric for the service in question will be taken from t
 `request` contained in`resources` of the `Deployment` of Kubernetes.
 
 [hpa]: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+
+HPA's files will be generated only for the production environments (`isProduction: true`).  
+In order to be able to use HPA you need to set the environment variable `ENABLE_HPA` to `true` for the production environments.
