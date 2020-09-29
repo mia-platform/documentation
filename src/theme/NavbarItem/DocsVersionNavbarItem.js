@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -6,7 +7,7 @@
  */
 import React from "react";
 import DefaultNavbarItem from "./DefaultNavbarItem";
-import { useActiveVersion, useLatestVersion } from "@theme/hooks/useDocs";
+import {useActiveVersion, useLatestVersion} from "@theme/hooks/useDocs";
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);

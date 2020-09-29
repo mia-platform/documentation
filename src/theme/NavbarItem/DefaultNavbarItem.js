@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -5,21 +6,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useOnClickOutside from "use-onclickoutside";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-
-import {
-  useVersions,
-  useLatestVersion,
-  useActiveDocContext,
-} from "@theme/hooks/useDocs";
-
-const getVersionMainDoc = (version) =>
-  version.docs.find((doc) => doc.id === version.mainDocId);
 
 function NavLink({
   activeBasePath,
@@ -50,24 +42,24 @@ function NavLink({
 
   return (
     <Link
-      {...(href
-        ? {
+      {...(href ?
+        {
             target: "_blank",
             rel: "noopener noreferrer",
             href: prependBaseUrlToHref ? normalizedHref : href,
-          }
-        : {
+          } :
+        {
             isNavLink: true,
             activeClassName,
             to: toUrl,
-            ...(activeBasePath || activeBaseRegex
-              ? {
+            ...(activeBasePath || activeBaseRegex ?
+              {
                   isActive: (_match, location) =>
-                    activeBaseRegex
-                      ? new RegExp(activeBaseRegex).test(location.pathname)
-                      : location.pathname.startsWith(activeBaseUrl),
-                }
-              : null),
+                    activeBaseRegex ?
+                      new RegExp(activeBaseRegex).test(location.pathname) :
+                      location.pathname.startsWith(activeBaseUrl),
+                } :
+              null),
           })}
       {...props}
     >
@@ -76,7 +68,7 @@ function NavLink({
   );
 }
 
-function NavItemDesktop({ items, position, className, ...props }) {
+function NavItemDesktop({items, position, className, ...props}) {
   const dropDownRef = React.useRef(null);
   const dropDownMenuRef = React.useRef(null);
   const [showDropDown, setShowDropDown] = useState(false);
@@ -110,12 +102,12 @@ function NavItemDesktop({ items, position, className, ...props }) {
 
   return (
     <div
-      ref={dropDownRef}
       className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
         "dropdown--left": position === "left",
         "dropdown--right": position === "right",
         "dropdown--show": showDropDown,
       })}
+      ref={dropDownRef}
     >
       <NavLink
         className={navLinkClassNames(className)}
@@ -130,20 +122,20 @@ function NavItemDesktop({ items, position, className, ...props }) {
       >
         {props.label}
       </NavLink>
-      <ul ref={dropDownMenuRef} className="dropdown__menu">
+      <ul className="dropdown__menu" ref={dropDownMenuRef}>
         {items.map(
-          ({ className: childItemClassName, ...childItemProps }, i) => (
+          ({className: childItemClassName, ...childItemProps}, i) => (
             <li key={i}>
               <NavLink
+                activeClassName="dropdown__link--active"
+                className={navLinkClassNames(childItemClassName, true)}
+                fromDropdownVersions={childItemProps.fromDropdownVersions}
                 onKeyDown={(e) => {
                   if (i === items.length - 1 && e.key === "Tab") {
                     e.preventDefault();
                     toggle(false);
                   }
                 }}
-                activeClassName="dropdown__link--active"
-                className={navLinkClassNames(childItemClassName, true)}
-                fromDropdownVersions={childItemProps.fromDropdownVersions}
                 {...childItemProps}
               />
             </li>
@@ -154,7 +146,7 @@ function NavItemDesktop({ items, position, className, ...props }) {
   );
 }
 
-function NavItemMobile({ items, position: _position, className, ...props }) {
+function NavItemMobile({items, className, ...props}) {
   // Need to destructure position from props so that it doesn't get passed on.
   const navLinkClassNames = (extraClassName, isSubList = false) =>
     clsx(
@@ -180,7 +172,7 @@ function NavItemMobile({ items, position: _position, className, ...props }) {
       </NavLink>
       <ul className="menu__list">
         {items.map(
-          ({ className: childItemClassName, ...childItemProps }, i) => (
+          ({className: childItemClassName, ...childItemProps}, i) => (
             <li className="menu__list-item" key={i}>
               <NavLink
                 activeClassName="menu__link--active"
@@ -196,7 +188,7 @@ function NavItemMobile({ items, position: _position, className, ...props }) {
   );
 }
 
-function DefaultNavbarItem({ mobile = false, ...props }) {
+function DefaultNavbarItem({mobile = false, ...props}) {
   const Comp = mobile ? NavItemMobile : NavItemDesktop;
   return <Comp {...props} />;
 }

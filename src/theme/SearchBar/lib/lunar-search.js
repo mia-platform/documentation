@@ -26,23 +26,23 @@ class LunrSearchAdapter {
         lvl1: doc.type === 0 ? null : doc.title,
       },
       url: doc.url,
-      _snippetResult: formattedContent
-        ? {
+      _snippetResult: formattedContent ?
+        {
             content: {
               value: formattedContent,
               matchLevel: "full",
             },
-          }
-        : null,
+          } :
+        null,
       _highlightResult: {
         hierarchy: {
           lvl0: {
             value: doc.type === 0 ? formattedTitle || doc.title : doc.pageTitle,
           },
           lvl1:
-            doc.type === 0
-              ? null
-              : {
+            doc.type === 0 ?
+              null :
+              {
                   value: formattedTitle || doc.title,
                 },
         },
@@ -128,7 +128,7 @@ class LunrSearchAdapter {
     return this.getHit(doc, null, preview);
   }
   search(input) {
-    return new Promise((resolve, rej) => {
+    return new Promise((resolve) => {
       const results = this.getLunrResult(input);
       const hits = [];
       results.length > 5 && (results.length = 5);
@@ -136,7 +136,7 @@ class LunrSearchAdapter {
       this.contentHitsRes = [];
       results.forEach((result) => {
         const doc = this.searchDocs[result.ref];
-        const { metadata } = result.matchData;
+        const {metadata} = result.matchData;
         for (let i in metadata) {
           if (metadata[i].title) {
             if (!this.titleHitsRes.includes(result.ref)) {

@@ -31,19 +31,19 @@ const renderSvg = function (options) {
   return (
     <svg
       className={Classes.hexagon}
-      style={options.style}
       fill={options.fill}
-      xmlns="http://www.w3.org/2000/svg"
-      width="38"
       height="44"
+      style={options.style}
       viewBox="0 0 38 44"
+      width="38"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <polygon points="18.995 .02 0 10.995 0 32.995 18.995 44 38 32.995 38 10.995 18.995 0" />
     </svg>
   );
 };
 
-function Hexagons(props) {
+function Hexagons() {
   return (
     <div style={styles.wrapperHexagon}>
       {renderSvg({
@@ -77,9 +77,8 @@ function Hexagons(props) {
           margin: "70px 0 0 28%",
           width: 16,
           animationDelay: randomArbitrary(0, 4) + "s",
-        },
+        }
       })}
-      ,
       {renderSvg({
         fill: "#50b8da",
         style: {

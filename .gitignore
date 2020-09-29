@@ -5,3 +5,5 @@ build
 .vscode
 .idea
 .history
+
+package-lock.json

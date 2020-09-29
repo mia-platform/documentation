@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, {Fragment, useState} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Hexagons from "../components/Hexagons";
@@ -6,43 +6,41 @@ import Feature from "../components/Feature";
 import HowToBox from "../components/HowToBox";
 
 import SearchBar from "@theme/SearchBar";
-import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import CookieConsent from "react-cookie-consent";
 import styles from "./styles.module.css";
 
 const features = [
   {
-    title: <>Getting Started</>,
+    title: <>{'Getting Started'}</>,
     icon: "rocket",
     toUrl: "/docs/development_suite/api-console/api-design/quick_rest_api",
     description: (
       <>
-        Start to learn the main concepts of Mia-Platform and how to use to
-        develop your services
+        {`Start to learn the main concepts of Mia-Platform and how to use to
+        develop your services`}
       </>
     ),
   },
   {
-    title: <>DevOps Console</>,
+    title: <>{'DevOps Console'}</>,
     icon: "console",
     toUrl: "/docs/development_suite/overview-dev-suite",
     description: (
       <>
-        Start to use only one platform to design and manage the full-cycle of
-        your DevOps
+        {`Start to use only one platform to design and manage the full-cycle of
+        your DevOps`}
       </>
     ),
   },
   {
-    title: <>Learn to build what you want</>,
+    title: <>{'Learn to build what you want'}</>,
     icon: "learn",
     toUrl: "/docs/development_suite/api-console/api-design/plugin_baas_4",
     description: (
       <>
-        Read our tutorials, follow walkthroughs and learn how to decouple your
+        {`Read our tutorials, follow walkthroughs and learn how to decouple your
         IT systems from your channels and develop modern cloud‑native
-        applications.
+        applications.`}
       </>
     ),
   },
@@ -50,9 +48,9 @@ const features = [
 
 const secondRowFeatures = [
   {
-    title: <>What's new?</>,
+    title: <>{'What\'s new?'}</>,
     icon: "new",
-    description: <>Discover new cool features, updates and bug fixes</>,
+    description: <>{'Discover new cool features, updates and bug fixes'}</>,
     links: [
       {
         icon: "video",
@@ -103,16 +101,16 @@ const howToBoxProperties = {
 
 function Home() {
   const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
+  const {siteConfig = {}} = context;
 
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
 
-  const { title, description, links } = howToBoxProperties;
+  const {title, description, links} = howToBoxProperties;
 
   return (
     <Layout
-      title={siteConfig.title}
       description="Mia‑Platform provides the first end‑to‑end Digital Integration Hub on the market with a full DevOps Lifecycle Management: one unique Console to run Fast Data, Microservices and APIs."
+      title={siteConfig.title}
     >
       <Fragment>
         <div className={styles.container}>
@@ -123,11 +121,11 @@ function Home() {
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
               <SearchBar
-                placeholder="Search tutorials"
-                searchBarInHome={true}
-                searchBarId="search_input_home"
                 handleSearchBarToggle={setIsSearchBarExpanded}
                 isSearchBarExpanded={isSearchBarExpanded}
+                placeholder="Search tutorials"
+                searchBarId="search_input_home"
+                searchBarInHome={true}
               />
             </div>
           </header>
@@ -145,9 +143,9 @@ function Home() {
               </div>
               <div className={clsx("row", styles.secondRow)}>
                 <HowToBox
-                  title={title}
                   description={description}
                   links={links}
+                  title={title}
                 />
                 {secondRowFeatures.map((props, idx) => (
                   <Feature key={idx} {...props} />

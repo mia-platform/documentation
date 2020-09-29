@@ -36,9 +36,9 @@ class DocSearch {
     this.input = DocSearch.getInputFromSelector(inputSelector);
     this.queryDataCallback = queryDataCallback || null;
     const autocompleteOptionsDebug =
-      autocompleteOptions && autocompleteOptions.debug
-        ? autocompleteOptions.debug
-        : false;
+      autocompleteOptions && autocompleteOptions.debug ?
+        autocompleteOptions.debug :
+        false;
     // eslint-disable-next-line no-param-reassign
     autocompleteOptions.debug = debug || autocompleteOptionsDebug;
     this.autocompleteOptions = autocompleteOptions;
@@ -199,9 +199,9 @@ class DocSearch {
       // Search doc version of result
       const matchedVersion = url.match(/docs\/(\d+\.x\.x)/);
 
-      const version = matchedVersion?.length
-        ? ` (Version ${matchedVersion[1]})`
-        : "";
+      const version = matchedVersion?.length ?
+        ` (Version ${matchedVersion[1]})` :
+        "";
 
       const displayTitle = utils
         .compact([
@@ -248,7 +248,7 @@ class DocSearch {
   }
 
   static formatURL(hit) {
-    const { url, anchor } = hit;
+    const {url, anchor} = hit;
     if (url) {
       const containsAnchor = url.indexOf("#") !== -1;
       if (containsAnchor) return url;
@@ -266,9 +266,9 @@ class DocSearch {
   }
 
   static getSuggestionTemplate(isSimpleLayout) {
-    const stringTemplate = isSimpleLayout
-      ? templates.suggestionSimple
-      : templates.suggestion;
+    const stringTemplate = isSimpleLayout ?
+      templates.suggestionSimple :
+      templates.suggestion;
     const template = Hogan.compile(stringTemplate);
     return (suggestion) => template.render(suggestion);
   }
@@ -294,13 +294,13 @@ class DocSearch {
     }
 
     const alignClass =
-      middleOfInput - middleOfWindow >= 0
-        ? "algolia-autocomplete-right"
-        : "algolia-autocomplete-left";
+      middleOfInput - middleOfWindow >= 0 ?
+        "algolia-autocomplete-right" :
+        "algolia-autocomplete-left";
     const otherAlignClass =
-      middleOfInput - middleOfWindow < 0
-        ? "algolia-autocomplete-right"
-        : "algolia-autocomplete-left";
+      middleOfInput - middleOfWindow < 0 ?
+        "algolia-autocomplete-right" :
+        "algolia-autocomplete-left";
     const autocompleteWrapper = $(".algolia-autocomplete");
     if (!autocompleteWrapper.hasClass(alignClass)) {
       autocompleteWrapper.addClass(alignClass);

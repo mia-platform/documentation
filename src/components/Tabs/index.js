@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -96,43 +97,45 @@ function Tabs(props) {
   return (
     <div>
       <ul
-        role="tablist"
         aria-orientation="horizontal"
         className={clsx('tabs', {
           'tabs--block': block,
-        })}>
+        })}
+        role="tablist"
+      >
         {values.map(({value, label}) => (
           <li
-            role="tab"
-            tabIndex={0}
             aria-selected={selectedValue === value}
             className={clsx('tabs__item', styles.tabItem, {
               'tabs__item--active': selectedValue === value,
             })}
-            style={
-              keyboardPress
-                ? {}
-                : {
-                    outline: 'none',
-                  }
-            }
             key={value}
-            ref={(tabControl) => tabRefs.push(tabControl)}
-            onKeyDown={(event) => {
-              handleKeydown(tabRefs, event.target, event);
-              handleKeyboardEvent(event);
-            }}
-            onFocus={() => changeSelectedValue(value)}
             onClick={() => {
               changeSelectedValue(value);
               setKeyboardPress(false);
             }}
-            onPointerDown={() => setKeyboardPress(false)}>
+            onFocus={() => changeSelectedValue(value)}
+            onKeyDown={(event) => {
+              handleKeydown(tabRefs, event.target, event);
+              handleKeyboardEvent(event);
+            }}
+            onPointerDown={() => setKeyboardPress(false)}
+            ref={(tabControl) => tabRefs.push(tabControl)}
+            role="tab"
+            style={
+              keyboardPress ?
+                {} :
+                {
+                    outline: 'none',
+                  }
+            }
+            tabIndex={0}
+          >
             {label}
           </li>
         ))}
       </ul>
-      <div role="tabpanel" className="margin-vert--md">
+      <div className="margin-vert--md" role="tabpanel">
         {
           Children.toArray(children).filter(
             (child) => child.props.value === selectedValue,

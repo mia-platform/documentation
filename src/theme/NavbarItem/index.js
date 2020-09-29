@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -11,10 +12,8 @@ const NavbarItemComponents = {
   // Need to lazy load these items as we don't know for sure the docs plugin is loaded
   // See https://github.com/facebook/docusaurus/issues/3360
   docsVersion: () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('@theme/NavbarItem/DocsVersionNavbarItem').default,
   docsVersionDropdown: () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('@theme/NavbarItem/DocsVersionDropdownNavbarItem').default,
 };
 
