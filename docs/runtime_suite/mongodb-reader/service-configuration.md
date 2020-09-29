@@ -3,7 +3,7 @@ id: service-configuration
 title:  MongoDB Reader
 sidebar_label: Configuration
 ---
-MongoDB Reader is a service that allows to expose APIs that execute aggregation pipelines on MongoDB returning the result in several formats such as `json`, `json-line` and `csv`.
+MongoDB Reader is a service that allows to expose APIs that execute [aggregation pipelines](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/) on MongoDB returning the result in several formats such as `json`, `json-line` and `csv`.
 
 ## Profile configuration file
 
