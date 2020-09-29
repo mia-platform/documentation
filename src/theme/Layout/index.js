@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -13,11 +14,11 @@ import UserPreferencesProvider from "@theme/UserPreferencesProvider";
 import AnnouncementBar from "@theme/AnnouncementBar";
 import Navbar from "@theme/Navbar";
 import Footer from "@theme/Footer";
-import CookieConsent, { Cookies } from "react-cookie-consent";
+import CookieConsent, {Cookies} from "react-cookie-consent";
 
 import TagManager from "react-gtm-module";
 
-import { cookieBannerConf } from "./../../constants";
+import {cookieBannerConf} from "./../../constants";
 
 import "./styles.css";
 
@@ -25,7 +26,7 @@ const tagManagerArgs = {
   gtmId: "GTM-WTGCJM6",
 };
 
-function Providers({ children }) {
+function Providers({children}) {
   return (
     <ThemeProvider>
       <UserPreferencesProvider>{children}</UserPreferencesProvider>
@@ -34,11 +35,11 @@ function Providers({ children }) {
 }
 
 function Layout(props) {
-  const { siteConfig = {} } = useDocusaurusContext();
+  const {siteConfig = {}} = useDocusaurusContext();
   const {
     favicon,
     title: siteTitle,
-    themeConfig: { image: defaultImage },
+    themeConfig: {image: defaultImage},
     url: siteUrl,
   } = siteConfig;
   const {
@@ -78,42 +79,42 @@ function Layout(props) {
         <html lang="en" />
 
         {metaTitle && <title>{metaTitle}</title>}
-        {metaTitle && <meta property="og:title" content={metaTitle} />}
-        {favicon && <link rel="shortcut icon" href={faviconUrl} />}
-        {description && <meta name="description" content={description} />}
+        {metaTitle && <meta content={metaTitle} property="og:title" />}
+        {favicon && <link href={faviconUrl} rel="shortcut icon" />}
+        {description && <meta content={description} name="description" />}
         {description && (
-          <meta property="og:description" content={description} />
+          <meta content={description} property="og:description" />
         )}
         {keywords && keywords.length && (
-          <meta name="keywords" content={keywords.join(",")} />
+          <meta content={keywords.join(",")} name="keywords" />
         )}
-        {metaImage && <meta property="og:image" content={metaImageUrl} />}
-        {metaImage && <meta property="twitter:image" content={metaImageUrl} />}
+        {metaImage && <meta content={metaImageUrl} property="og:image" />}
+        {metaImage && <meta content={metaImageUrl} property="twitter:image" />}
         {metaImage && (
-          <meta name="twitter:image:alt" content={`Image for ${metaTitle}`} />
+          <meta content={`Image for ${metaTitle}`} name="twitter:image:alt" />
         )}
-        {permalink && <meta property="og:url" content={siteUrl + permalink} />}
-        {permalink && <link rel="canonical" href={siteUrl + permalink} />}
-        <meta name="twitter:card" content="summary_large_image" />
+        {permalink && <meta content={siteUrl + permalink} property="og:url" />}
+        {permalink && <link href={siteUrl + permalink} rel="canonical" />}
+        <meta content="summary_large_image" name="twitter:card" />
       </Head>
       <AnnouncementBar />
       <Navbar />
       <div className="cookie-banner-box test">
         <CookieConsent
-          location="bottom"
-          buttonText="Accept"
-          declineButtonText="Reject"
-          cookieName={cookieBannerConf.cookie}
-          disableButtonStyles
           buttonClasses="cookie-banner-buttons"
-          enableDeclineButton
+          buttonText="Accept"
+          cookieName={cookieBannerConf.cookie}
           declineButtonClasses="cookie-banner-buttons"
+          declineButtonText="Reject"
+          disableButtonStyles
+          enableDeclineButton
+          location="bottom"
+          onAccept={() => initTagManager()}
           onDecline={() => {}}
           setDeclineCookie
-          onAccept={() => initTagManager()}
         >
           {cookieBannerConf.message}{" "}
-          <a target="a_blank" href={cookieBannerConf.moreInfoLink}>
+          <a href={cookieBannerConf.moreInfoLink} target="a_blank">
             {cookieBannerConf.moreInfoMessage}
           </a>
         </CookieConsent>

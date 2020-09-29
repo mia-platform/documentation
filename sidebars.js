@@ -309,7 +309,7 @@ module.exports = {
               type: "doc",
               id: "libraries/overview_service_libraries",
             },
-            { type: "doc", id: "libraries/create-new-library" },
+            {type: "doc", id: "libraries/create-new-library"},
           ],
         },
         {
@@ -398,7 +398,7 @@ module.exports = {
       ],
     },
   ],
-  fastData: [{ type: "doc", id: "fast_data/overview" }],
+  fastData: [{type: "doc", id: "fast_data/overview"}],
   microservices_ecosystem: [
     {
       type: "doc",

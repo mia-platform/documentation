@@ -9,7 +9,8 @@
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
-    "serve": "docusaurus serve"
+    "serve": "docusaurus serve",
+    "lint": "eslint --ext js ."
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.63",
@@ -36,7 +37,9 @@
     ]
   },
   "devDependencies": {
-    "@mia-platform/eslint-config-mia": "^3.0.0",
-    "eslint": "^7.8.0"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.9.0",
+    "eslint-plugin-react": "7.20.6",
+    "prop-types": "^15.7.2"
   }
 }

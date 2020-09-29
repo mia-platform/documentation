@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) 2017-present, Facebook, Inc.
  *
@@ -5,17 +6,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { useRef, useCallback } from "react";
+import React, {useRef, useCallback} from "react";
 import classnames from "classnames";
-import { useHistory } from "@docusaurus/router";
+import {useHistory} from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const Search = (props) => {
   const initialized = useRef(false);
   const searchBarRef = useRef(null);
   const history = useHistory();
-  const { siteConfig = {} } = useDocusaurusContext();
-  const { baseUrl } = siteConfig;
+  const {siteConfig = {}} = useDocusaurusContext();
+  const {baseUrl} = siteConfig;
   const initAlgolia = (searchDocs, searchIndex, DocSearch) => {
     new DocSearch({
       searchDocs,
@@ -38,14 +39,14 @@ const Search = (props) => {
   };
 
   const getSearchDoc = () =>
-    process.env.NODE_ENV === "production"
-      ? fetch(`${baseUrl}search-doc.json`).then((content) => content.json())
-      : Promise.resolve([]);
+    process.env.NODE_ENV === "production" ?
+      fetch(`${baseUrl}search-doc.json`).then((content) => content.json()) :
+      Promise.resolve([]);
 
   const getLunrIndex = () =>
-    process.env.NODE_ENV === "production"
-      ? fetch(`${baseUrl}lunr-index.json`).then((content) => content.json())
-      : Promise.resolve([]);
+    process.env.NODE_ENV === "production" ?
+      fetch(`${baseUrl}lunr-index.json`).then((content) => content.json()) :
+      Promise.resolve([]);
 
   const loadAlgolia = () => {
     if (!initialized.current) {
@@ -54,7 +55,7 @@ const Search = (props) => {
         getLunrIndex(),
         import("./lib/DocSearch"),
         import("./algolia.css"),
-      ]).then(([searchDocs, searchIndex, { default: DocSearch }]) => {
+      ]).then(([searchDocs, searchIndex, {default: DocSearch}]) => {
         initAlgolia(searchDocs, searchIndex, DocSearch);
       });
       initialized.current = true;
@@ -82,29 +83,27 @@ const Search = (props) => {
     >
       <span
         aria-label="expand searchbar"
-        role="button"
         className={classnames("search-icon", {
           "search-icon-hidden": props.isSearchBarExpanded,
         })}
         onClick={toggleSearchIconClick}
         onKeyDown={toggleSearchIconClick}
+        role="button"
         tabIndex={0}
       />
       <input
-        id={props.searchBarId || "search_input_react"}
-        type="search"
-        placeholder={props.placeholder || "Search"}
         aria-label="Search"
         className={classnames(
           "navbar__search-input",
-          { "search-bar-expanded": props.isSearchBarExpanded },
-          { "search-bar": !props.isSearchBarExpanded }
+          {"search-bar-expanded": props.isSearchBarExpanded},
+          {"search-bar": !props.isSearchBarExpanded}
         )}
+        id={props.searchBarId || "search_input_react"}
         onClick={loadAlgolia}
         onMouseOver={loadAlgolia}
+        placeholder={props.placeholder || "Search"}
         ref={searchBarRef}
-        onFocus={true ? null : toggleSearchIconClick}
-        onBlur={true ? null : toggleSearchIconClick}
+        type="search"
       />
     </div>
   );

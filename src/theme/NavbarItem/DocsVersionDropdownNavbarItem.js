@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -32,7 +33,7 @@ export default function DocsVersionDropdownNavbarItem({
       return undefined;
     }
 
-    return versions.map((version, index) => {
+    return versions.map((version) => {
       const versionDoc =
         activeDocContext?.alternateDocVersions[version.name] ||
         getVersionMainDoc(version);
@@ -49,17 +50,17 @@ export default function DocsVersionDropdownNavbarItem({
   const dropdownVersion = activeDocContext.activeVersion ?? latestVersion; // Mobile is handled a bit differently
 
   const dropdownLabel = mobile ? "Versions" : `Version ${dropdownVersion.label}`;
-  const dropdownTo = mobile
-    ? undefined
-    : getVersionMainDoc(dropdownVersion).path;
+  const dropdownTo = mobile ?
+    undefined :
+    getVersionMainDoc(dropdownVersion).path;
 
   return (
     <DefaultNavbarItem
       {...props}
-      mobile={mobile}
-      label={dropdownLabel}
-      to={dropdownTo}
       items={getItems()}
+      label={dropdownLabel}
+      mobile={mobile}
+      to={dropdownTo}
     />
   );
 }

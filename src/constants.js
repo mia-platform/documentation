@@ -6,4 +6,4 @@ const cookieBannerConf = {
   moreInfoMessage: "For more information, read the Privacy Policy",
 };
 
-export { cookieBannerConf };
+export {cookieBannerConf};

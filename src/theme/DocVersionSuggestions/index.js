@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-literals */
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *

@@ -1,7 +1,8 @@
 import React from "react";
-import SVGIcon from "../SVGIcon";
 import clsx from "clsx";
+import PropTypes from 'prop-types'
 
+import SVGIcon from "../SVGIcon";
 import styles from "./styles.module.css";
 
 const iconComponents = {
@@ -13,7 +14,7 @@ const iconComponents = {
   releaseNotes: SVGIcon.releaseNotesSVG,
 };
 
-function Feature({ toUrl, icon, title, description, links }) {
+function Feature({toUrl, icon, title, description, links}) {
   const IconComponent = iconComponents[icon];
   links = links || [];
 
@@ -26,13 +27,14 @@ function Feature({ toUrl, icon, title, description, links }) {
         <h3>{title}</h3>
         <p>{description}</p>
         <div>
-          {links.map((link) => {
+          {links.map((link, idx) => {
             const LinkIconconComponent = iconComponents[link.icon];
 
             return (
               <a
-                href={link.href}
                 className={styles.linkBox}
+                href={link.href}
+                key={idx}
                 target={link.target}
               >
                 <LinkIconconComponent
@@ -46,6 +48,19 @@ function Feature({ toUrl, icon, title, description, links }) {
       </a>
     </div>
   );
+}
+
+Feature.propTypes = {
+  description: PropTypes.string.isRequired,
+  icon: PropTypes.oneOf(Object.keys(iconComponents)).isRequired,
+  links: PropTypes.arrayOf(PropTypes.shape({
+    icon: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired,
+    target: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
+  })),
+  title: PropTypes.string.isRequired,
+  toUrl: PropTypes.string.isRequired
 }
 
 export default Feature;

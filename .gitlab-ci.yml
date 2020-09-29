@@ -7,8 +7,8 @@ include:
     ref: master
 
 test:
-  rules:
-    - when: never
+  script:
+    - yarn lint
 
 variables:
   IMAGE_NAME: core/documentation-site

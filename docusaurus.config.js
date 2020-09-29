@@ -1,7 +1,3 @@
-const versions = require("./versions.json");
-
-const docsPathPrefix = "/docs";
-
 module.exports = {
   title: "Mia-Platform Documentation",
   tagline: "Learn how Mia-Platform can help you to develop your business",
