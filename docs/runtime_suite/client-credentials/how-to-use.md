@@ -79,10 +79,7 @@ The assertion JWT must contains the claims specified by [this spec](https://open
 * **iat** (*issued at*): time at which the token is issued;
 * **requested_audiences**: an array of the requested audience.
 
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 ### /.well-known/jwks.json
 
 Client credentials service exposes an endpoint `.well-known/jwks.json` with an object with the key `keys`, containing an array of JWK values. Those JWKs could be used to verify the signature of the JWT.

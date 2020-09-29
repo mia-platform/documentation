@@ -98,7 +98,4 @@ With this configuration, with the secret generated from file `private.key`, in w
 * [JWT profile for oauth2 client authentication](https://tools.ietf.org/html/rfc7523#section-2.2)
 * [Registration of a client](https://tools.ietf.org/html/rfc7591)
 * [Client assertions for `private_key_jwt` auth method](https://tools.ietf.org/html/draft-ietf-oauth-assertions-18)
-<<<<<<< HEAD
-=======
 * [JWT auth](https://tools.ietf.org/html/draft-ietf-oauth-jwt-bearer-12)
->>>>>>> master

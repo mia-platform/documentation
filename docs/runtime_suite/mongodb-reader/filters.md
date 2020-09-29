@@ -60,3 +60,52 @@ will lead to (assuming both `minValue` and `maxValue` query string are provided)
     { ...some pipeline stages }
 ]
 ```
+
+Filters can also be used inside a lookup pipeline. 
+
+```
+[
+    {...some pipeline stages },
+    {
+      $lookup: {
+        'from': 'foobar',
+        'pipeline': [
+            {
+                "#matchWithFilters#": [
+                    {
+                        "requiredParameters": ["minValue", "maxValue"],
+                        "query": {
+                            "total": { "$lte": "#maxValue#", "$gte": "#minValue#" }
+                        }
+                    }
+                ]
+            }
+        ],
+        as: 'result'
+      }
+    },
+    {...some pipeline stages },
+]
+```
+
+will lead to the following profile, assuming `acl_rows` header has the value: `{$and: [{prop: "A"}, {prop2: "B"}]}`:
+
+```
+[
+    {...some pipeline stages },
+    {
+      $lookup: {
+        'from': 'foobar',
+        'pipeline': [
+            {
+                "$match": {
+                    "total": { "$lte": "#maxValue#", "$gte": "#minValue#" }
+                }
+            }
+        ],
+        as: 'result'
+      }
+    },
+    {...some pipeline stages },
+]
+```

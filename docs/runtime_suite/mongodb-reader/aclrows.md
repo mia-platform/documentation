@@ -43,3 +43,46 @@ will lead to the following profile, assuming `acl_rows` header has the value: `{
     { ...some pipeline stages }
 ]
 ```
+
+aclrows can also be used inside a lookup pipeline. 
+
+```
+[
+    {...some pipeline stages },
+    {
+      $lookup: {
+        'from': 'foobar',
+        'pipeline': [
+          { "#aclRows#": true },
+        ],
+        as: 'result'
+      }
+    },
+    {...some pipeline stages },
+]
+```
+
+will lead to the following profile, assuming `acl_rows` header has the value: `{$and: [{prop: "A"}, {prop2: "B"}]}`:
+
+```
+[
+    {...some pipeline stages },
+    {
+      $lookup: {
+        'from': 'foobar',
+        'pipeline': [
+            {
+                "$match": {
+                    $and: [
+                        { prop: "A" },
+                        { prop2: "B" }
+                    ]
+                }
+            }
+        ],
+        as: 'result'
+      }
+    },
+    {...some pipeline stages },
+]
+```
