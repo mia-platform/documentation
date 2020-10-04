@@ -23,17 +23,17 @@ To contribute to the Mia-Platform docs:
 
 - `src`
    Contains the custom code.
-     - `src/components`
+  - `src/components`
      Contains the React custom components
-     - `src/pages`
+  - `src/pages`
      Contains off-documentations pages, like the homepage. **These pages aren't versioned.**
-     - `src/theme`
+  - `src/theme`
      Contains Docusaurus components customized.
 - `docs/`
-   Contains markdown documentation page.
+   Contains markdown documentation page for current version.
 - `versioned_docs/`
    Contains  versioned documentation pages.
-     - `versioned_docs/version-5.x.x`
+  - `versioned_docs/version-5.x.x`
      Contains the files related to v5
 
 ## Create a new Docusaurus version
@@ -45,11 +45,49 @@ yarn run docusaurus docs:version <x.x.x>
 ```
 
 In general each tagged version has a dedicated folder:
+
 - `versioned_docs/version-<number version>`
+
+Then you have to insert new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+
+Eg.
+
+```json
+  presets: [
+    [
+      "@docusaurus/preset-classic",
+      {
+        docs: {
+          sidebarPath: require.resolve("./sidebars.js"),
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '6.x (Current)',
+              path: '',
+            },
+            '5.x.x': {
+              label: '5.10.x',
+              path: '5.x',
+            },
+          },
+        },
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+        sitemap: {
+          cacheTime: 600 * 1000, // 600 sec - cache purge period
+          changefreq: "weekly",
+          priority: 0.5,
+        },
+      },
+    ],
+  ],
+```
 
 Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
 
 ## Documentations pages
+
 Each .md file have to include the following preamble:
 
 ```
@@ -64,7 +102,7 @@ The complete ID of the page is:
 
  `<path>+id`
 
-## What files I have to edit?
+## What files I have to edit
 
 ### To changes documentaton pages
 
@@ -121,15 +159,14 @@ This file define the main top menu:
      ...
     }
 ```
+
 Each link has to be the *final id* of a documentation page.
 
 > Eg. the link `docs/business_suite/overview-business-suite` refers to the .md file placed in `docs/business_suite` having as id `overview-business-suite`. The name of the file doesn't matter, but it's advisable to keep align with the id.
 
-The links defined in the `a` properties link the main item menu to a single ** sidebar menu **. In other words, the user will be redirected to the page and see the sidebar menu where the linked page is contained.
+The links defined in the `a` properties link the main item menu to a single **sidebar menu**. In other words, the user will be redirected to the page and see the sidebar menu where the linked page is contained.
 
 `sidebars.js` define the side menu that contains the side menu of documentations
-
-
 
 #### Repository deploy rules
 
@@ -138,6 +175,7 @@ All changes pushed to the branch `master` trigger a pipeline that will deploy th
 To carry over the changes on the main site [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/), you have to tag a new version here on GitLab.
 
 ### Resources
-- (https://v2.docusaurus.io/docs/)
+
+- (<https://v2.docusaurus.io/docs/>)
 
 [nvm]: https://github.com/creationix/nvm
