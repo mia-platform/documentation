@@ -69,7 +69,15 @@ To complete the management of users by our application:
 
 1. Create an API: go to the APIs section and create an API that identifies the URL of your back office.
 2. I access the User Management application created for user management and authorize the Auth0Management API by defining in the permission area which actions I want to do on my application.
-For user management, I should enable all the roles I find filtering by *user*
+For user management, I should enable all the roles I find filtering by *user*.
+
+:::note Access Token and ID Token
+Be aware of the fact that the **token expiration** of these tokens must be the **same**.
+
+**Access Token**: Go to `Dashboard > APIs` and click the created API. Locate the `Token Expiration` (seconds) field. Default value is **86400 seconds** (24 hours), maximum value is **2592000 seconds** (30 days).
+
+**ID Token**: Go to `Dashboard > Applications` and click the right application. Scroll to **Token Lifetime Settings** and locate the `ID Token Expiration` (seconds) field. Default value is **36000 seconds** (10 hours). One of the purposes of the ID Token is to improve user experience by caching user information.
+:::
 
 3. Last step I have to create a custom RULES to enable the access of our namespace to user management.
 Then access the **Rules** - **Create Rules** - **Empty-Rules** section, enter the name *inject-id-token* and copy the following function:
