@@ -112,6 +112,17 @@ If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0
   ]
 }
 ```
+:::warning 
+  To access the user profile you must insert in the scope: **profile**.
+
+  Otherwise, Auth0 will respond with an empty ID Token.
+
+  ```json
+  "scopes": [
+    "profile",
+  ],
+  ```
+:::
 
 ## Step 7: Enable your first user to access CMS
 
