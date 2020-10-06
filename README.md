@@ -42,7 +42,7 @@ This command starts a local development server, the site will be reachable on <h
 
 ### How to contribute
 
-Read related [contribution guide]().
+Read related [contribution guide](/CONTRIBUTING.MD).
 
 ### Resources
 
