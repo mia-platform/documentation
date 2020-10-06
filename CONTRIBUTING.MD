@@ -35,20 +35,22 @@ To contribute to the Mia-Platform docs:
    Contains  versioned documentation pages.
   - `versioned_docs/version-5.x.x`
      Contains the files related to v5
+- `versioned_sidebars/`
+   Contains  versioned sidebars config.
 
 ## Create a new Docusaurus version
 
-You can tag a new Docusaurus version run the following command:
+When you want to create a new version, you can tag the **previous** the following command:
 
 ```bash
 yarn run docusaurus docs:version <x.x.x>
 ```
 
-In general each tagged version has a dedicated folder:
+Each tagged version has a dedicated folder:
 
 - `versioned_docs/version-<number version>`
 
-Then you have to insert new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+**The current  version mustn't be tagged**, you have to do though insert all versions in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
 
 Eg.
 
@@ -62,7 +64,7 @@ Eg.
           lastVersion: 'current',
           versions: {
             current: {
-              label: '6.x (Current)',
+              label: '<Current version' (Current)',
               path: '',
             },
             '5.x.x': {
@@ -71,17 +73,7 @@ Eg.
             },
           },
         },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
-        sitemap: {
-          cacheTime: 600 * 1000, // 600 sec - cache purge period
-          changefreq: "weekly",
-          priority: 0.5,
-        },
-      },
-    ],
-  ],
+        ...
 ```
 
 Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
@@ -106,15 +98,11 @@ The complete ID of the page is:
 
 ### To changes documentaton pages
 
-As seen previously, the documentation is versioned, so exist N doc root folders in addition to the root folder.
+As seen previously, the documentation is versioned, so exist N-1 doc root folders in addition to the root folder.
 
-* Usually, you should modify only the files in docs folder. Other folder are read-only.
+Usually, you should modify only the current version ( `/docs` folder).If the changes are related to bugs or are important for a previous version, you have to copy changes on the version pages.
 
-* If the changes are valid for a previous version, you have to copy changes on the version pages.
-
-> :warning: **It's strictly important keep updated the  `doc\` folder**. The next version will be tagged starts from the content of the this folder.
-
-### To change main and side menu
+### How to change main and side menu
 
 `docusaurus.config.js` it's the unique configuration file. It's used to set plugins, and other basic and advanced settings.
 
@@ -166,7 +154,9 @@ Each link has to be the *final id* of a documentation page.
 
 The links defined in the `a` properties link the main item menu to a single **sidebar menu**. In other words, the user will be redirected to the page and see the sidebar menu where the linked page is contained.
 
-`sidebars.js` define the side menu that contains the side menu of documentations
+`sidebars.js` define the side menu of current version.
+
+Each tagged version has own sidebar. You can view and edit them in the `versioned_sidebars/` folder
 
 #### Repository deploy rules
 
