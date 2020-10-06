@@ -119,7 +119,17 @@ If I configure `MIA_NAMESPACE = https://my-platform.eu/`, in the configuration o
   ]
 }
 ```
+:::warning 
+  To access the user profile you have to insert in the scope: **profile**.
 
+  Otherwise, Auth0 will respond with an empty ID Token.
+
+  ```json
+  "scopes": [
+    "profile",
+  ],
+  ```
+:::
 ## Enable your users
 
 [To configure your users read the Auth0 documentation](https://auth0.com/docs/users/guides/manage-users-using-the-dashboard)
