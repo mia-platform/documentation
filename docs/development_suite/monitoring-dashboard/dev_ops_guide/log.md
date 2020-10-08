@@ -12,94 +12,87 @@ Logs are generated according to [Elastic Common Schema](https://www.elastic.co/g
 The following are guidelines, drawn from [guidelines and best practices suggested by Elastic](https://www.elastic.co/guide/en/ecs/1.4/ecs-guidelines.html), which have to be followed when application logs are generated:
 
 * Field names have to be in ```camelCase```;
-
 * Field names does not have to contain special characters;
-
 * Field names have to properly be used in the singular or plural form according to the content of the field itself;
-
 * For custom fields use, where it makes sense, nesting in objects;
-
 * Avoid using abbreviations in field names as much as possible.
 
+:::note
+Generally, the management of these logs has been entrusted to internal libraries:
+
+* for the services **Node.js** , they will be managed by [lc39](https://github.com/mia-platform/lc39) and [custom-plugin](https://github.com/mia-platform/custom-plugin-lib);
+* for the services **Go** , they will be managed by [glogger](https://github.com/mia-platform/glogger);
+* for the services **Kotlin**  and **Java**, instead, there are no internal libraries nowadays: custom implementations must be made.
+:::
+
 ## Message
+The text message passed to the log is, by default, inserted in the key ```msg```, if only one object has been passed to the logger. Make sure that the key used for the message is the same.
 
-The text message passed to the log is, by default, inserted in the key ```message```, if only one object is passed to the logger. Make sure that the key used for the message is the same.
+## Mandatory Fields
+In each log, the following fields have to be always present:
 
-## Errors
+<<<<<<< HEAD
+| name | type | description |
+| ---- | ----- | ----------- |
+| ```reqId``` | string | taken from the platform headers and necessary to trace the flow of each request;
+| ```time``` | number | that signals the moment when it was generated in Unix timestamp
+| ```level``` | number | this marks the importance level of a log
+=======
+* ```reqId``` (*string*): taken from the platform headers and necessary to trace the flow of each request;
+* ```time``` (*number*): that signals the moment when it was generated in Unix timestamp in seconds
+* ```level``` (*number*): this marks the importance level of a log
+>>>>>>> 11230b8d0a3b09d683d8254f4682fed736e8b93e
 
-When an error log is generated, the passed object must necessarily have the key ```error```, whose value has to be an object of the form specified by ECS for the [Error Fields](https://www.elastic.co/guide/en/ecs/1.4/ecs-error.html), which are shown in the table below:
+### Use the appropriate logging level
+It is important to always use the correct level; Each level has a value expressed in tenths.
+To choose which is the appropriate level, one should rely on the following criteria:
+
+| name | level | description |
+| ---- | ----- | ----------- | 
+| ```trace``` | 10 | to trace the operations flow of the application (do not use in production) |
+| ```debug``` | 20 | to report information that may be useful in troubleshooting (do not use in production) |
+| ```info``` | 30 | in cases where the service has to give information about the branch of code in execution, in general this type of log should be strictly necessary |
+| ```warning```| 40 | in cases of recoverable error, the service can continue to process the request |
+| ```error```| 50 | in cases of not recoverable error and error for which the processing of the request (but not the service) must be interrupted |
+| ```fatal```| 60 | in cases of unexpected and not recoverable error, and as a result of which the service must stop its execution |
+
+:::note
+It is important to enter in logs the right information that is used to track operations, highlight problems and allow troubleshooting.
+It is equally important to pay close attention to what is entered in logs, avoiding, in any case, to insert in the messages or in the custom properties of the log, any value that can lead to privacy data.
+:::
+
+## Mandatory Logs
+Each service must necessarily generate the logs of the table below specifying the following fields in addition to the mandatory field specify above.
+
+| **Event** | **Level** | **Field** |
+| --------- | --------- | --------- |
+|Incoming request|```trace```|```host```, ```url```|
+|Request completed|```info```|```host```, ```http```, ```responseTime```,  ```url```|
+
+:::note
+If the service is not REST but takes its inputs from another source, the same criterion has been applied; 
+Use a log ```trace``` when the processing event starts, and a log ```info``` when the event ends; 
+The final log has to contain as much useful information as possible.
+:::
+
+## Field ECS Definition
+The following are examples taken ECS documentation. None of the fields are mandatory, however it is important to use standard keys, if applicable.
+
+### Errors
+If you want to create error logs we recommend this structure
+When an error log has been generated, the passed object must necessarily have the key ```error```, 
+whose value has to be an object of the form specified by ECS for the [Error Fields](https://www.elastic.co/guide/en/ecs/1.4/ecs-error.html), 
+which are shown in the table below:
 
 | **Field**  | **Description** | **Level** |
-| ------|------------|------|
+| ---------- | --------------- | --------- |
 |```error.code```|Error code describing the error.            type: ```keyword```|core|
 |```error.id```|Unique identifier for the error.        type: ```keyword```|core|
 |```error.message```|Error message.      type: ```text```|core|
 |```error.stackTrace```|The stack trace of this error in plain text.    type: ```keyword```       Multi-fields: ```error.stackTrace.text``` (type: ```text```) | extended
 |```error.type```|The type of the error, for example the class name of the exception.       type: ```keyword```       example: ```java.lang.NullPointerException``` |extended|
 
-NB: none of the fields is mandatory, however it is important not to use custom keys.
-
-## Use the appropriate logging level
-
-There are 6 debug levels: ```trace```, ```debug```, ```info```, ```warning```, ```error```, ```fatal```.
-
-It is important to always use the correct level; to choose which is the appropriate level, one should rely on the following criteria:
-
-* ```fatal```: in cases of unexpected and not recoverable error, and as a result of which the service must stop its execution;
-
-* ```error```: in cases of not recoverable error and error for which the processing of the request (but not the service) must be interrupted;
-
-* ```warning```: in cases of recoverable error, the service can continue to process the request;
-
-* ```info```: in cases where the service has to give information about the branch of code in execution, in general this type of log should be strictly necessary;
-
-* ```debug```: to report information that may be useful in troubleshooting (do not use in production);
-
-* ```trace```: to trace the operations flow of the application (do not use in production).
-
-:::warning
-It is important to enter in the logs the right information that is used to track operations, highlight problems and allow troubleshooting.
-It is equally important to pay close attention to what is entered in the logs, avoiding, in any case, to insert in the messages or in the custom properties of the log, any value that can lead to privacy data.
-:::
-
-## Mandatory Logs
-
-Each core service must necessarily generate the logs of the table below.
-
-:::note
-Generally, the management of these logs is entrusted to internal libraries:
-
-* for the services ## Node.js## , they will be managed by [lc39](https://github.com/mia-platform/lc39) and [custom-plugin](https://github.com/mia-platform/custom-plugin-lib);
-* for the services ## Go## , they will be managed by [glogger](https://github.com/mia-platform/glogger);
-* for the services ## Kotlin##  and ## Java## , instead, there are no internal libraries nowadays: custom implementations must be made.
-:::
-
-| ## Event##  | **Level**  | **Field** |
-| ------|------------|------|
-|Incoming request|```trace```|```host```, ```url```|
-|Request completed|```info```|```host```, ```http```, ```responseTime```,  ```url```|
-
-:::note
-If the service is not REST but takes its inputs from another source, the same criterion is applied; use a log ```trace``` when the processing event starts and a log ```info``` when the event ends; the final log has to contain as much useful information as possible.
-:::
-
-## Mandatory Fields
-
-In each log, the following fields have to be always present:
-
-* ```requestId```: taken from the platform headers and necessary to trace the flow of each request;
-
-* ```time```: that signals the moment when it was generated in ISO 8601 format.
-
-## Field ECS Definition
-
-The fields ```host```, ```http``` and ```url``` have to maintain the format specified in ECS; the available parameters are reported here.
-
-:::info
-None of the fields below is mandatory.
-:::
-
-[*Host*](https://www.elastic.co/guide/en/ecs/1.4/ecs-host.html)
+### [*Host*](https://www.elastic.co/guide/en/ecs/1.4/ecs-host.html) 
 
 | **Field**  | **Description**  | **Level** |
 | ------|------------|------|
@@ -107,7 +100,7 @@ None of the fields below is mandatory.
 | ```host.name```| Name of the host.      It can contain what ```hostname``` returns on Unix systems, the fully qualified domain name, or a name specified by the user. The sender decides which value to use.     type: ```keyword``` | core |
 | ```host.uptime``` | Seconds the host has been up.      type: ```long```      example: ```1325``` | extended|
 
-[*HTTP*](https://www.elastic.co/guide/en/ecs/1.4/ecs-http.html)
+### [*HTTP*](https://www.elastic.co/guide/en/ecs/1.4/ecs-http.html)
 
 | **Field**  | **Description**  | **Level** |
 | ------|------------|------|
@@ -124,7 +117,7 @@ None of the fields below is mandatory.
 | ```http.response.status_code``` | HTTP response status code.      type: ```long```     example: ```404``` | extended |
 | ```http.version``` | HTTP version.      type: ```keyword```      example: ```1``` | extended|
 
-[*URL*](https://www.elastic.co/guide/en/ecs/1.4/ecs-url.html)
+### [*URL*](https://www.elastic.co/guide/en/ecs/1.4/ecs-url.html)
 
  **Field**  | **Description**  | **Level** |
 | ------|------------|------|
@@ -135,19 +128,3 @@ None of the fields below is mandatory.
 | ```url.port``` | Port of the request, such as 443.      type: ```long```     example: ```443``` | extended |
 | ```url.query``` | The query field describes the query string of the request, such as "q=elasticsearch".     The ```?``` is excluded from the query string. If a URL contains no ```?```, there is no query field. If there is a ```?``` but no query, the query field exists with an empty string. The ```exists``` query can be used to differentiate between the two cases.     type: ```keyword``` | extended |
 | ```url.scheme``` | Scheme of the request, such as "https".      Note: The ```:``` is not part of the scheme.      type: ```keyword```      example: ```https```. | extended |
-
-## Automatic Operations
-
-## FluentBit Mappings
-
-For backwards compatibility issues, FluentBit will be configured to remap certain keys:
-
-* ```@timestamp``` will be taken from the field ```time```;
-
-* ```msg``` and ```err``` will be remapped with the ```message``` and ```error``` standards (or ```error.message``` if ```err``` is a string);
-
-* ```reqId``` (and possible variants, such as ```requestId``` and ```request_id```) will be remapped on ```tracing.id```.
-
-## Information on the container
-
-ECS expects fields related to information on the [container](https://www.elastic.co/guide/en/ecs/1.4/ecs-container.html) from which the logs were generated; we expect to be able to extract this information during the log recovery phase, in particular ```container.labels```, ```container.id```, ```container.name``` and ```container.annotations```.
