@@ -55,7 +55,7 @@ To choose which is the appropriate level, one should rely on the following crite
 
 :::note
 It is important to enter in logs the right information that is used to track operations, highlight problems and allow troubleshooting.
-It is equally important to pay close attention to what is entered in logs, avoiding, in any case, to insert in the messages or in the custom properties of the log, any value that can lead to privacy data.
+It is equally important to pay close attention to what is entered in logs, avoiding, in any case, to insert in the messages or in the custom properties of logs, any private value that can lead to privacy issues.
 :::
 
 ## Mandatory Logs
