@@ -117,6 +117,18 @@ More in detail, to compile the tenant, you have to use the following guide:
   * **order** : identifies the numerical order of the layer in order to display it according to the sorting defined by the user.
   When a project is merged with its tenant information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on DevOps Console] for further details.
 
+* `repository` (*required*): object that specifies the information about the repository where have to be created the projects of this tenant.
+  * **basePath**: base path where will be created the project. The user need to have the permission for creating project on this path.
+  * **visibility**: visibility that will have the project.
+
+Note: If gitProvider is `github`, the `basePath` have to be an existing organization. If does not exist, it will not be created.
+If gitProvider is `gitlab`, the basePath is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user have the needed permission to create the group in its parent. 
+
+e.g.:
+- /groupA/groupB -> if groupB does not exist AND user have permission to create group in groupA, then it will be created groupB.
+- /groupA/groupB -> if groupB does not exist AND user have no permission to create group in A, then it will NOT be created groupB.
+- /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
+
 ## Create a template
 
 If you already have a template, you can [skip this section](#how-to-create-a-project-archive).
