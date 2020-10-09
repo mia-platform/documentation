@@ -44,7 +44,8 @@ More in detail, to compile the tenant, you have to use the following guide:
         "envPrefix": "development",
         "hosts": [
           {
-            "host": "%projectId%.test.mia-platform.eu"
+            "host": "%projectId%.test.mia-platform.eu",
+            "scheme": "https"
           },
           {
             "host": "cms.%projectId%.test.mia-platform.eu",
@@ -276,7 +277,7 @@ In this step, an overview of the configuration of your project environments is p
 
 * **Description** (*required*, field not editable): this is the description of the environment.
 
-* **Host** (*required*, field not editable): the host which exposes the documentation and the APIs.
+* **Hosts** (*required*, field not editable): the hosts which exposes the documentation and the APIs.
 
 * **Backoffice Host** (*required*, field not editable): the host which exposes CMS and backoffice APIs.
 
