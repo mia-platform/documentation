@@ -94,6 +94,14 @@ The complete ID of the page is:
 
  `<path>+id`
 
+
+
+You can write the pages using:
+* [GFM markdown syntax](https://guides.github.com/features/mastering-markdown/), the same syntax used in GitHub
+* The [Docusaurus admonitions](https://v2.docusaurus.io/docs/markdown-features/#calloutsadmonitions) (using these instead of *N.B, Info: , eg.*)
+
+For more details see the [Docusaurus documentation](https://docusaurus.io/docs/en/doc-markdown).
+
 ## What files I have to edit
 
 ### To changes documentaton pages
