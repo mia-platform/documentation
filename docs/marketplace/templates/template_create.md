@@ -28,6 +28,10 @@ Check out the [Microservices vademecum](../../guidelines/microservice_vademecum.
 For example, in all Node.js templates, health routes are exposed by [LC-39](https://github.com/mia-platform/lc39)
 :::
 
+:::caution
+Incorrect setting of health routes can cause an infinite restart loop of services which use the template. This happens because Mia-Platform, to ensure business continuity, try to restart services which appear down.
+:::
+
 ### Environment variables
 
 Your template has to let an easy reading of the environment variables. Furthermore, for each variable, it should provide the capability to define a defaults name and value.
