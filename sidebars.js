@@ -47,6 +47,10 @@ module.exports = {
               type: "doc",
               id: "release_notes/platform_6-0-0_releasenotes",
             },
+            {
+              type: "doc",
+              id: "release_notes/v6.1.0",
+            },
           ],
         },
         {
