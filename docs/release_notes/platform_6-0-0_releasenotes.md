@@ -1,4 +1,10 @@
-# v6.0.0 (September 16, 2020)
+---
+id: platform_6-0-0_releasenotes
+title: v6.0.0
+sidebar_label: v6.0.0
+---
+
+_September 16, 2020_
 
 !!! danger  "BREAKING CHANGES"
     The sixth version of the Mia Platform Console has now been released!  Let's cut the chitchat and get down to business: scroll down to learn more about new features and improvements!
