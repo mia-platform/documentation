@@ -22,7 +22,7 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 Each template, or the eventual service library from which depends, should expose health routes.
 These routes provide information on the health of the systems, and let to carry out debugging checks.
-Check out the [Microservices vademecum](../../guidelines/microservice_vademecum.md#health-routes) and [Kubenertes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for details.
+Check out the [Microservices vademecum](../../guidelines/microservice_vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for details.
 
 :::info
 For example, in all Node.js templates, health routes are exposed by [LC-39](https://github.com/mia-platform/lc39)
