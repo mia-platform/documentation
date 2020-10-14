@@ -211,6 +211,10 @@ When you export data, you can also choose two settings:
 
 2. you can choose to download a file with delimiter **,** or **;**. **;** is useful if you export a file in .csv format and you want to view it with excel
 
+The import feature can work both as insertion and as update:
+* If the imported documents do have the field **id** then the documents of the existing collection matching that **id** will be updated.
+* If the imported documents do not have the field **id** then new documents are added to the collection.
+
 **To import a .csv file you need to follow some guidelines.**
 
 Download the *"Template"* to be completed. Open the Template in Excel. If the file is not automatically in separate columns go to "Data", click "Text in columns", select "Delimited", select as "comma" delimitation, and click on Next.
