@@ -45,11 +45,11 @@ module.exports = {
           items: [
             {
               type: "doc",
-              id: "release_notes/platform_6-0-0_releasenotes",
+              id: "release_notes/v6.1.0",
             },
             {
               type: "doc",
-              id: "release_notes/v6.1.0",
+              id: "release_notes/platform_6-0-0_releasenotes",
             },
           ],
         },
