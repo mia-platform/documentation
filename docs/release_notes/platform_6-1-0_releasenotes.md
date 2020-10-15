@@ -1,9 +1,41 @@
 ---
 id: v6.1.0
-title: v6.1.0
-sidebar_label: v6.1.0
+title: v6.1.x 
+sidebar_label: v6.1
 ---
 
+# v6.1.1
+_October 15, 2020_
+
+## New Features
+
+### Node microservices update with a new log format
+
+The node microservices have been updated to the new [lc-39](https://github.com/mia-platform/lc39) version based on the new Mia-Platform guidelines released in v6.1.0.
+
+## Bug fix
+
+### HelloWorld example DotNet
+
+The service is now working correctly. Additionally, the following bugs have been fixed:
+- job 'test' pipeline has been fixed
+- The API explorer was not exposing any of the endpoint’s routes. Now all the routes are exposed, even the status ones.
+- The environment variable CRUD_PATH in the .NET library is no longer required.
+
+### API Portal editor
+
+The API Portal’s editor did not allow to re-open a collapsed patch property. The bug has now been fixed.
+
+## Graphics improvements
+
+* When managing the custom configuration of a microservice, some graphical changes have been done within the file section: new icons for Edit and Copy replaced the previous buttons.
+
+* The bin icon in the “Delete” button has been removed
+
+* The delete buttons within the tables have been ghosted
+
+
+# v6.1.0
 _October 12, 2020_
 
 ## New Features
