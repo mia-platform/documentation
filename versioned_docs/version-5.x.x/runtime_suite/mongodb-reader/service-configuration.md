@@ -3,7 +3,7 @@ id: service-configuration
 title:  MongoDB Reader
 sidebar_label: Configuration
 ---
-MongoDB Reader is a service that allows to expose APIs that execute aggregation pipelines on MongoDB returning the result in several formats such as `json`, `json-line` and `csv`.
+MongoDB Reader is a service that allows to expose APIs that execute [aggregation pipelines](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/) on MongoDB returning the result in several formats such as `json`, `json-line` and `csv`.
 
 ## Profile configuration file
 
@@ -15,14 +15,16 @@ In the `profiles` folder, configuration files like the one that follows must be 
 module.exports = {
   name: 'books/:name',
   parameters: [
+    // The Property where define query parameters,
+    // without parameters must value []
     {
-      type: 'string',
-      name: 'name',
-      required: true,
+      type: <type>,
+      name: <param name>',
+      required: true/false,
     },
   ],
   pathParameters: {
-    cf: {
+    name: {
       type: 'string',
     },
   },
@@ -59,7 +61,7 @@ For each of this files in the profiles folder, the service exposes three APIs:
 
 ### Configuration fields
 
-The object exported by the files in the `profiles` folder must contain the following fields:
+The object exported byt he files in the `profiles` folder must contain the following fields:
 
 * **name**: the string that defines the endpoint (e.g. for the file above the exposed APIs will be of the form `GET /books/:name/json`)
 * **parameters**: an array of objects. Each object defines a query parameter of the API. In particular, it can be defined the name and the type of the parameter and wheter it is requiered or not.

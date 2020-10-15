@@ -15,14 +15,16 @@ In the `profiles` folder, configuration files like the one that follows must be 
 module.exports = {
   name: 'books/:name',
   parameters: [
+    // The Property where define query parameters,
+    // without parameters must value []
     {
-      type: 'string',
-      name: 'name',
-      required: true,
+      type: <type>,
+      name: <param name>',
+      required: true/false,
     },
   ],
   pathParameters: {
-    cf: {
+    name: {
       type: 'string',
     },
   },
