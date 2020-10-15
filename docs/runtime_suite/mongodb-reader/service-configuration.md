@@ -19,8 +19,8 @@ module.exports = {
     // without parameters must value []
     {
       type: <type>,
-      name: <param name>',
-      required: true/false,
+      name: <param name>,
+      required: <true/false>,
     },
   ],
   pathParameters: {
@@ -61,7 +61,7 @@ For each of this files in the profiles folder, the service exposes three APIs:
 
 ### Configuration fields
 
-The object exported by the files in the `profiles` folder must contain the following fields:
+The object exported byt he files in the `profiles` folder must contain the following fields:
 
 * **name**: the string that defines the endpoint (e.g. for the file above the exposed APIs will be of the form `GET /books/:name/json`)
 * **parameters**: an array of objects. Each object defines a query parameter of the API. In particular, it can be defined the name and the type of the parameter and wheter it is requiered or not.

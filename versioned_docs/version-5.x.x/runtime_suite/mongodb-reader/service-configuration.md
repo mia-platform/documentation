@@ -19,8 +19,8 @@ module.exports = {
     // without parameters must value []
     {
       type: <type>,
-      name: <param name>',
-      required: true/false,
+      name: <param name>,
+      required: <true/false>,
     },
   ],
   pathParameters: {
