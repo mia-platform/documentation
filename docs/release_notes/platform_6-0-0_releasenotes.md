@@ -1,6 +1,6 @@
 ---
 id: platform_6-0-0_releasenotes
-title: v6.0.0
+title: v6.0.0 Release Notes
 sidebar_label: v6.0.0
 ---
 
@@ -41,6 +41,6 @@ In the DevOps Console marketplace you will now find a readey-to-code plugin name
 * **DevOps Console** - **New product documentation available!**
 From today you can consult a new and improved version of the product documentation accessible from this [link!](https://docs.mia-platform.eu/)
 
-## How to update your DevOps Console?
+## How to update your DevOps Console
 
 For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.12`.

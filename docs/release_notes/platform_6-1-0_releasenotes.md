@@ -1,23 +1,25 @@
 ---
 id: v6.1.0
-title: v6.1.x 
-sidebar_label: v6.1
+title: Version 6.1.x Release Notes
+sidebar_label: v6.1.x
 ---
 
-# v6.1.1
+## v6.1.1
+
 _October 15, 2020_
 
-## New Features
+### New Features
 
 ### Node microservices update with a new log format
 
 The node microservices have been updated to the new [lc-39](https://github.com/mia-platform/lc39) version based on the new Mia-Platform guidelines released in v6.1.0.
 
-## Bug fix
+### Bug fix
 
 ### HelloWorld example DotNet
 
 The service is now working correctly. Additionally, the following bugs have been fixed:
+
 - job 'test' pipeline has been fixed
 - The API explorer was not exposing any of the endpoint’s routes. Now all the routes are exposed, even the status ones.
 - The environment variable CRUD_PATH in the .NET library is no longer required.
@@ -34,11 +36,11 @@ The API Portal’s editor did not allow to re-open a collapsed patch property. T
 
 * The delete buttons within the tables have been ghosted
 
+## v6.1.0
 
-# v6.1.0
 _October 12, 2020_
 
-## New Features
+### New Features
 
 ### Marketplace categories
 
@@ -77,7 +79,7 @@ Each project now allows to specify a custom scheme for the configured hosts (def
 
 When trying to save the project configuration a new warning shows the user whether some of the custom microservices are missing CPU or Memory limits. It's still possible to save, however we strongly suggest to properly set resource limits.
 
-## Bug fix
+### Bug fix
 
 ### Duplicate environment variables crash
 
@@ -89,13 +91,13 @@ Fixed a bug preventing token refresh when using `grant_type` password.
 
 ### DevOps Console  crash on Endpoint without tags
 
-Fixed a bug that caused application crash when an endpoint had no existing tag. 
+Fixed a bug that caused application crash when an endpoint had no existing tag.
 
 ### Backoffice CRUD Rewrite
 
 A bug affecting the CMS was preventing display and export of collections with rewrite between the exposed endpoint and the configured internal CRUD route.
 
-## Library updates
+### Library updates
 
 ### Logging update
 
@@ -111,15 +113,15 @@ A new service library for **.Net** has been released!
 
 Checkout [Mia Service .Net Library](https://github.com/mia-platform/Mia-service-Net-Library) on GitHub.
 
-## How to update your DevOps Console?
+### How to update your DevOps Console
 
 For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.4.5`.
 
 :::note
 The following _Feature Toggles_ have been removed:
 
-* `FT_ENABLE_CRONJOB` 
-* `FT_ENABLE_CREATE_CONFIG_MAP_CUSTOM_SERVICE` 
+* `FT_ENABLE_CRONJOB`
+* `FT_ENABLE_CREATE_CONFIG_MAP_CUSTOM_SERVICE`
 * `FT_ENABLE_MICROSERVICE_GATEWAY_SKIP`
 * `FT_ENABLE_CREATE_PROJECT_ON_INFRASTRUCTURE_WEBSITE`
 :::
