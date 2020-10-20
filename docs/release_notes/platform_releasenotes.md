@@ -37,19 +37,19 @@ The login-site has been modified to allow redirects to URLs containing query par
 
 This is the only breaking change for the configuration created from the console. Other breaking changes are for the console itself.
 
-The new version of the platform need the [export-service](https://git.tools.mia-platform.eu/platform/core/export-service) to enable the export functionality of the cms.
+The new version of the platform need the [export-Service](https://git.tools.mia-platform.eu/platform/core/export-Service) to enable the export functionality of the cms.
 
-The `export-service` should be into the `multitenant` namespace.
+The `export-Service` should be into the `multitenant` namespace.
 If you do not have already a multitenant namespace, you could create using [this file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/multitenant.namespace.yml) and a file [.secret](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/multitenant.secret.yml) to link to nexus.
-To deploy this service, you can use this [deployment file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.deployment.yml) and this [service file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-service.service.yml).
+To deploy this Service, you can use this [deployment file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-Service.deployment.yml) and this [Service file](https://git.tools.mia-platform.eu/platform/infrastructure/blob/master/kubernetes/configuration/export-Service.Service.yml).
 You can deploy this file with `kubectl` cli:
 
 ```bash
-kubectl apply -f path/to/export-service.deployment.yml
-kubectl apply -f path/to/export-service.service.yml
+kubectl apply -f path/to/export-Service.deployment.yml
+kubectl apply -f path/to/export-Service.Service.yml
 ```
 
-Once deployed, you **must** set as enabled into dev-console project on mongodb the `export-service` to true.
+Once deployed, you **must** set as enabled into dev-console project on mongodb the `export-Service` to true.
 
 e.g.
 
@@ -61,26 +61,26 @@ project:
   ...
   "enabledServices": {
     ...
-    "export-service": true
+    "export-Service": true
   }
 }
 ```
 
-Create the configuration from the dev-console (from the website, commit the configuration to upgrade all services). This will create an headless service called `export-service` pointing to `multitenant` namespace. To view an example of the created service, [click here](https://git.tools.mia-platform.eu/clients/demo/configuration/blob/test/configuration/export-service.service.yml).
+Create the configuration from the dev-console (from the website, commit the configuration to upgrade all Services). This will create an headless Service called `export-Service` pointing to `multitenant` namespace. To view an example of the created Service, [click here](https://git.tools.mia-platform.eu/clients/demo/configuration/blob/test/configuration/export-Service.Service.yml).
 
 **Custom plugin templates**
 
 This change is already handled for console hosted from mia-platform, but must be handle by self hosted version of the console.
 
-To facilitate subsequent developments and resolve some technical debts, we decided to move `custom-plugin-templates` collection to `services` collection and add other templates info. To enable the marketplace of services section of the console, you should move old templates to this new collection.
+To facilitate subsequent developments and resolve some technical debts, we decided to move `custom-plugin-templates` collection to `Services` collection and add other templates info. To enable the marketplace of Services section of the console, you should move old templates to this new collection.
 
-This is the [crud configuration](https://git.tools.mia-platform.eu/clients/mia-platform/api-console-configurations/blob/master/config-maps/crud-service/services-services.json), and an example of service:
+This is the [crud configuration](https://git.tools.mia-platform.eu/clients/mia-platform/api-console-configurations/blob/master/config-maps/crud-Service/Services-Services.json), and an example of Service:
 
 ```json
 {
   "name": "Node Template",
   "archiveUrl": "https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz",
-  "description": "This is the best template to start creating a service in node integrated inside the platform",
+  "description": "This is the best template to start creating a Service in node integrated inside the platform",
   "type": "template",
   "supportedBy": "mia-platform",
   "image": [
@@ -117,7 +117,7 @@ To upgrade the api-console backend, you must add this environment variables:
 - name: MULTITENANT_NAMESPACE
   value: multitenant
 - name: SERVICES_CRUD_BASE_PATH
-  value: http://crud-service/api/services
+  value: http://crud-Service/api/Services
 ```
 
 and you should remove the `TEMPLATES_CRUD_BASE_PATH` variables, unused from this release.
@@ -131,7 +131,7 @@ This is not a breaking change.
 
 The monitoring logs could run into an issue with the stream timeout.
 Logs may not be a continuous data stream, so logs could run into timeout and your monitoring dashboard users should refresh very often the logs view.
-To fix this issue, you should remove timeout for this specific endpoint. [Here](https://git.tools.mia-platform.eu/platform/dev-portal/kubernetes-service#what-to-do-if-the-request-of-logs-fails-after-some-minutes) there is a documentation about how to enable a continuous stream of logs in node and nginx services. We handle this into the console `kubernetes-service` and the `api-gateway`, but there could be other infrastructure proxy (e.g. the [client-proxy](https://git.tools.mia-platform.eu/clients/mia-platform/client-proxy/blob/master/config-files/conf.d/api-console.conf)).
+To fix this issue, you should remove timeout for this specific endpoint. [Here](https://git.tools.mia-platform.eu/platform/dev-portal/kubernetes-Service#what-to-do-if-the-request-of-logs-fails-after-some-minutes) there is a documentation about how to enable a continuous stream of logs in node and nginx Services. We handle this into the console `kubernetes-Service` and the `api-gateway`, but there could be other infrastructure proxy (e.g. the [client-proxy](https://git.tools.mia-platform.eu/clients/mia-platform/client-proxy/blob/master/config-files/conf.d/api-console.conf)).
 
 **Design Section**
 
@@ -141,12 +141,12 @@ Added:
 
     ![](img/service-marketplace.png)
 
-    In the services area we have introduced the marketplace.
+    In the Services area we have introduced the marketplace.
     In this section you can find:
 
     * Mia templates, or the templates created from your company;
-    * Example to create microservices;
-    * Mia Plugins to implement some microservices of Mia's ecosystem microservice.
+    * Example to create Services;
+    * Mia Plugins to implement some Services of Mia's ecosystem Service.
 
 2. **Group expressions for the Backoffice APIs**
 
@@ -198,7 +198,7 @@ Added:
 * Management of backoffice ACL inheritance for endpoint and routes
 
 * 2 new env variables to interpolate in v1-adapter: EXPORT_SERVICE_URL and EXPORT_SERVICE_NDJSON_URL
-  These variables are needed in v1-adapter in order to use new export-service with CMS
+  These variables are needed in v1-adapter in order to use new export-Service with CMS
 
 Changed:
 
@@ -209,20 +209,20 @@ Updates:
 * Dependencies update
 * api-portal to 1.6.4
 * cms-backend to 1.2.0
-* crud-service to 2.0.1
+* crud-Service to 2.0.1
 * session-manager to 4.4.0
 * v1-adapter to 2.2.0
 
 Fixed:
 
-* Fixed ECONNREFUSED error by expecting the templateId in the request and      contacting the CRUD service to get the template info
+* Fixed ECONNREFUSED error by expecting the templateId in the request and contacting the CRUD Service to get the template info
 
 * Fixed templateUrl CRUD retrieval using value property
 
 **Core Services**
 
 1. New Export Service:
-    This micro-service allows to export a data source to multiple formats.
+    This micro-Service allows to export a data source to multiple formats.
     Input data source format must be a JSON lines.
     Supported output formats are:
 
@@ -292,7 +292,7 @@ Added:
 
 ![](img/login.png)
 
-* Custom replicas of core services.[Read the documentation to discover how to replicate core service](../development_suite/api-console/advanced-section/dev-console-config/replicas.md)
+* Custom replicas of core Services.[Read the documentation to discover how to replicate core Service](../development_suite/api-console/advanced-section/dev-console-config/replicas.md)
 * Added support for dash character in collection fields
 * Added support for dash character in collection index
 
@@ -394,26 +394,26 @@ We have released the new homepage from which you can easily access the different
 
 * It's also possible to set the visibility level of the repository when creating a project
 
-**Doctor Service: new service!**
+**Doctor Service: new Service!**
 
-This microservice allows to check the healthiness of the services within a project.
+This Service allows to check the healthiness of the Services within a project.
 
-The API exposed by the doctor service is:
+The API exposed by the doctor Service is:
 
-* `GET /`: it respondes with status code `200` if all the services are up; `503` if at least one is down. Furthermore, in the body of the response you can find additional information about the called services.
+* `GET /`: it respondes with status code `200` if all the Services are up; `503` if at least one is down. Furthermore, in the body of the response you can find additional information about the called Services.
 
-* `GET /${tag}`: it respondes with status code `200` if all the services tagged with tag are up; `503` if at least one is down. Furthermore, in the body of the response you can find additional information about the called services.
+* `GET /${tag}`: it respondes with status code `200` if all the Services tagged with tag are up; `503` if at least one is down. Furthermore, in the body of the response you can find additional information about the called Services.
 
-**`/-/check-up` route** it's been added in the following service:
+**`/-/check-up` route** it's been added in the following Service:
 
 swagger aggregator: 1.2.0
 mongodb reader:  1.2.0
-crud service: 2.0.0
-microservice gateway:  5.1.0
-file service:  1.2.0
+crud Service: 2.0.0
+Service gateway:  5.1.0
+file Service:  1.2.0
 cms backend: 1.1.0
 v1-adapter: 2.1.0
-notifications-service: 1.1.0
+notifications-Service: 1.1.0
 notifications-manager: 1.0.0
 
 ## v4.23.0 (June 27,2019)
@@ -556,11 +556,11 @@ The sections you can access are the following:
 
 * **Design**: In the Design area you can design your own APIs according to established guidelines. Create Microservices starting from Templates with configurable standards for you: log, security, readiness, probeness and documentation. All generated configurations are GIT centric.
 
-* **Deploy**: In the Deploy area you can release your services with a click that activates the automatic pipelines and you can visualize the history of your releases
+* **Deploy**: In the Deploy area you can release your Services with a click that activates the automatic pipelines and you can visualize the history of your releases
 
-* **Monitoring**: In the Monitoring section it is possible to debug and monitor your own microservices.
+* **Monitoring**: In the Monitoring section it is possible to debug and monitor your own Services.
 
-* **Documentation**: In the Documentation Portal users find all the documentation of their own APIs and microservices centralized and automatically generated.
+* **Documentation**: In the Documentation Portal users find all the documentation of their own APIs and Services centralized and automatically generated.
 
 **NEW SECTION: MONITORING**
 
@@ -661,7 +661,7 @@ This version must be used with backend v1.1.0
 Added:
 
 We have released the **new documentation portal**, called API Portal, created entirely by Mia-platform.
-To support the new API Portal, each project must activate the api-portal among its services.
+To support the new API Portal, each project must activate the api-portal among its Services.
 To activate, you should set **"api-portal": true** into *enabledServices* object in api-console projects collection into mongo.
 
 ![API Portal](img/api-portal.png)
@@ -672,20 +672,20 @@ Once the new api-portal is activated, it will no longer be possible to reach the
 The documentation will be available only from the new route: `/documentations/api-portal/`
 :::
 
-**New service management**
-The service section were divided into two types: services and proxies
+**New Service management**
+The Service section were divided into two types: Services and proxies
 
-The services will no longer be managed using the Git URL and Git Revision, but using the name of the **docker image**.
+The Services will no longer be managed using the Git URL and Git Revision, but using the name of the **docker image**.
 
 ![New Custom Service](img/custom-service-1.png)
 
-Furthermore, if it is necessary to write advanced configurations it is possible to write the advanced service and deployment files directly from the API console and add all the necessary configmaps files.
+Furthermore, if it is necessary to write advanced configurations it is possible to write the advanced Service and deployment files directly from the API console and add all the necessary configmaps files.
 
 ![Advanced Section](img/advanced-section.png)
 
 **New type of proxies: cross-projects**
 
-With the introduction of this new service it is possible to link to services created in another project, but present within our infrastructure.
+With the introduction of this new Service it is possible to link to Services created in another project, but present within our infrastructure.
 For security reasons it will be possible to link to the namespaces to which you have access.
 
 ![Cross Projects](img/cross-projects.png)
@@ -707,43 +707,43 @@ Fixed:
 
 * The configured lookups did not save the values
 * The advanced section did not load the files correctly
-* When creating a service, the recommended default name will no longer be the name of the group path, but the name of the namespace. To give an example before the name was: gruph-path/test-name now is: project/test-name.
+* When creating a Service, the recommended default name will no longer be the name of the group path, but the name of the namespace. To give an example before the name was: gruph-path/test-name now is: project/test-name.
 * Various graphic fixes
 
 **RUNTIME SUITE**
 
 **Updating fo Core Microservices**
 
-In all core microservices the routes of /healthz and /ready have been implemented.
-The microservices in node have been updated to version 2 of fastify.
+In all core Services the routes of /healthz and /ready have been implemented.
+The Services in node have been updated to version 2 of fastify.
 
 The versions supported by the API console in v.1.1.0 are the following
 
 ```
-acl-services: 1.0.2
+acl-Services: 1.0.2
 cms-backend: 1.0.2
-credential-service: 1.0.0
-crud-service: 1.0.4
-microservice-gateway: 5.0.3
+credential-Service: 1.0.0
+crud-Service: 1.0.4
+Service-gateway: 5.0.3
 mongodb-reader: 1.0.0
 session manager: 4.2.2
 swagger-aggregator: 1.0.5
-user-service: 1.0.0
+user-Service: 1.0.0
 v1-adapter: 2.0.0
-files-service: 1.0.2
-mail-notification-service: 1.0.2
-notifications-service: 1.0.0
-token-service: 1.0.8
+files-Service: 1.0.2
+mail-notification-Service: 1.0.2
+notifications-Service: 1.0.0
+token-Service: 1.0.8
 ```
 
 **NEW MICROSERVICES**
 
 **MailChimp Plugin**
-This microservices allows to manage the users registration to Mailchimp lists.
+This Services allows to manage the users registration to Mailchimp lists.
 It provides methods to get the groups and to get, add, update or delete the users from a specific list as a user or prospect.
 
 **Notification Manager**
-This microservice allows to easily and safely set the status (read/unread) of one or more notifications belonging to the requesting user. It also allows to retrive the notifications of a user, hiding the information that relates to the notifications but not to the user (e.g. the list of users who has read a notification).
+This Service allows to easily and safely set the status (read/unread) of one or more notifications belonging to the requesting user. It also allows to retrive the notifications of a user, hiding the information that relates to the notifications but not to the user (e.g. the list of users who has read a notification).
 
 **V1 Adapter**
 
@@ -803,7 +803,7 @@ This version must be used with backend v1.0.0
 
  Breaking Change:
 
-You should add two variables to enable push notifications for the new platform on v1Adapter or to use notification service:
+You should add two variables to enable push notifications for the new platform on v1Adapter or to use notification Service:
 
 ```
 NOTIFICATIONS_SERVICE_PATH={{NOTIFICATIONS_SERVICE_PATH}}
@@ -828,16 +828,16 @@ We have improved the display of the save area. If you have some changes unsaved 
 
 * If you click on your user, you can view your name, a new Info page and the logout section.
 
-* On the Info page you can view the Mia-Platform version number and the list of all the Mia core services version number that you are using.
+* On the Info page you can view the Mia-Platform version number and the list of all the Mia core Services version number that you are using.
 
-* In the Project Creation section it is now possible to select which core Mia services to activate.
+* In the Project Creation section it is now possible to select which core Mia Services to activate.
 We have also given the possibility to change the name of the gitlab project or to create a subgroup.
 
 * In the Secret Section we have added the possibility to create random secret and copying them into your table.
 
 * The Custom Java Plugin has been added to Mia's Plugins
 
-* In the Custom Services it is now possible to configure the memory and CPU limits and set the probes
+* In the Service detail it is now possible to configure the memory and CPU limits and set the probes
 
 Fix:
 
@@ -849,16 +849,16 @@ Fix:
 
 * We added the multilookup in the interfacetype of the cms linked to an array
 
-* we have fixed the validation of names on Custom Services
+* we have fixed the validation of names on your Services
 
 **RUNTIME SUITE**
 
-* Mia has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js service on Mia-Platform.
-With this lanucher all the Node.js service will expose two fixed routes for heltinessProbe and for readinessProbe. In addiction is integrated the fastify-swagger module for exposing the service documentation.
+* Mia has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js Service on Mia-Platform.
+With this lanucher all the Node.js Service will expose two fixed routes for heltinessProbe and for readinessProbe. In addiction is integrated the fastify-swagger module for exposing the Service documentation.
 This Service has been imported in: ACL Service, CMS Backend, Swagger Aggregator, CRUD Service, Session Manager and Mail Service.
-Soon will be implemented in all the Mia services.
+Soon will be implemented in all the Mia Services.
 
-* Swagger Aggregator v1.0.2: Swagger is now available with service down. The service down wiil not be shown.
+* Swagger Aggregator v1.0.2: Swagger is now available with Service down. The Service down wiil not be shown.
 
 * Notification Service v0.6.1: it is possible to send push notifications by tag (if there is a collection tag with the tags configured)
 
@@ -868,7 +868,7 @@ Soon will be implemented in all the Mia services.
 
 Added:
 
-* It is possible to send push notifications from CMS using the new notification service (without legacy baas below) and can send notifications by tag (if there is a collection tag with the tags configured)
+* It is possible to send push notifications from CMS using the new notification Service (without legacy baas below) and can send notifications by tag (if there is a collection tag with the tags configured)
 
 Fixed:
 
@@ -911,7 +911,7 @@ Updates:
 * debug mode, enabled with correct header sent, better route security (now query parameter are not matched in proxy name maps)
 
 * api-gateway version set to v4.0.0
-minor/patches updates to all services
+minor/patches updates to all Services
 improved app_dataentry proxy name mapping for better user flow
 update LICENSE
 
@@ -945,7 +945,7 @@ Now invoking /upsert-one on a document not present in the database, a document i
 
 News:
 
-* We have re-established the service area with **the introduction of the possibility to add custom templates**
+* We have re-established the Service area with **the introduction of the possibility to add custom templates**
 
 * We **resitiate the deployment area** and **the header** of the application
 

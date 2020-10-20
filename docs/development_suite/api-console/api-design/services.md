@@ -35,19 +35,19 @@ In the [MarketPlace](./../../../marketplace/overview_marketplace.md) you can fin
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
-* **Name of the Microservice** (*required*): this is the internal hostname;
+* **Name of the Microservice** (*required*): this is the internal hostname
 
-* **Description** (*optional*): this is the description of your microservice;
+* **Description** (*optional*): this is the description of your microservice
 
-* **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your custom microservice;
+* **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
 
 :::warning
 If you are using GitLab and don't see any option in *Git repository owner*, it means that you have no access to the GitLab group where the project resides: please contact your console administrator to solve this issue.
 :::
 
-* **Git Repository Name** (*required*): name of the git repository of the service;
+* **Git Repository Name** (*required*): name of the git repository of the service
 
-* **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "tenant/service-name:tag"). It will be filled with the docker host during the service generation.
+* **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "tenant/service-name:tag"). It will be filled with the docker host during the service generation
 
 ![service-example](img/service-example.png)
 

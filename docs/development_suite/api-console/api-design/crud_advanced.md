@@ -58,7 +58,7 @@ Please note that these endpoint must be unique through all the configured CRUD, 
 
 You can always change the default state of an existing route by simply clicking on the field default state. The two possible values are _DRAFT_ or _PUBLIC_.
 
-You can delete a route but you must always leave at least one endpoint exposed by the CRUD service, otherwise the CRUD won't be accessible by anyone, neither your custom services in your project.
+You can delete a route but you must always leave at least one endpoint exposed by the CRUD service, otherwise the CRUD won't be accessible by anyone, neither your services in your project.
 
 ### How to create the fields of your CRUD by importing a JSON
 

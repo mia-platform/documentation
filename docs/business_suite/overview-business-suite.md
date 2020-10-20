@@ -1,9 +1,9 @@
 ---
 id: overview-business-suite
-title:  API Management & Headless CMS Overview
+title:  Headless CMS Overview
 sidebar_label: Overview
 ---
-Welcome to the API Management & Headless CMS overview page!
+Welcome to the Headless CMS overview page!
 
 Learn how to gain total control over your APIs, from design and security to versioning and retirement.
 

@@ -3,7 +3,7 @@
 Take a walkthrough that covers creating your first real project. You will:
 
 * use [CRUDs](../../development_suite/api-console/api-design/crud_advanced.md).
-* create [Custom Services](../../development_suite/api-console/api-design/plugin_baas_4.md).
+* create [microservices](../../development_suite/api-console/api-design/plugin_baas_4.md).
 * Use and configure a [Plugin](../../business_suite/overview-business-suite.md).
 * configure the [CMS](../../development_suite/api-console/api-design/api_console_configcms.md).
 
@@ -80,16 +80,16 @@ This collection will contain dishes with images. In order to create the CRUD fol
 5. Insert the name `dishes` and press *Create*.
 6. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add New* to create the following fields:
 
-| **Field name** | **Type** |
-| ------|------------|
-| **name** (required) | String |
-| **description**| String |
-| **vegetarian** (required) | Boolean |
-| **vegan** (required) | Boolean |
+| **Field name**             | **Type**         |
+| -------------------------- | ---------------- |
+| **name** (required)        | String           |
+| **description**            | String           |
+| **vegetarian** (required)  | Boolean          |
+| **vegan** (required)       | Boolean          |
 | **ingredients** (required) | Array of Objects |
-| **price** (required) | Number |
-| **calories**| Number |
-| **images** | Array of objects |
+| **price** (required)       | Number           |
+| **calories**               | Number           |
+| **images**                 | Array of objects |
 
 !!! Warning
     Be careful to set each field correctly. You won't be able to change later.
@@ -126,10 +126,10 @@ Checkout the [endpoint documentation](../../development_suite/api-console/api-de
 After the dishes, we have to create the collection of ingredients, storing the name and a description.
 Then create a new `ingredients` CRUD with the following fields:
 
-| **Field name** | **Type** |
-| ------|------------|
-| **name** (required) | String |
-| **description** | String |
+| **Field name**      | **Type** |
+| ------------------- | -------- |
+| **name** (required) | String   |
+| **description**     | String   |
 
 As did earlier, you should expose your collection through an Endpoint and create the relative API.
 
@@ -144,15 +144,15 @@ Create the endpoint entering the following information:
 Now we have to create the collection of riders. We have to know their personal data, the used mean of transport, their position, rank and the data to get in touch with them.
 Then create a new `riders` CRUD with the following fields:
 
-| **Field name** | **Type** |
-| ------|------------|
-| **name** (required) | String |
-| **surname** (required)| String |
-| **email** (required) | String |
-| **phone** (required) | String |
-| **rating** (required)| Array of number |
-| **position** | GeoPoint |
-| **transportType** | String |
+| **Field name**         | **Type**        |
+| ---------------------- | --------------- |
+| **name** (required)    | String          |
+| **surname** (required) | String          |
+| **email** (required)   | String          |
+| **phone** (required)   | String          |
+| **rating** (required)  | Array of number |
+| **position**           | GeoPoint        |
+| **transportType**      | String          |
 
 Expose your collection through an Endpoint and create the relative API.
 
@@ -167,13 +167,13 @@ Create the endpoint entering the following information:
 We need to create a collection of customers. We need to know their personal data and above all the addresses to which we can send the order.  
 Then create a new `customers` CRUD with the following fields:
 
-| **Field name** | **Type** |
-| ------|------------|
-| **name** (required) | String |
-| **surname** (required)| String |
-| **email** (required) | String |
-| **phone** (required) | Number |
-| **addresses** | Array of string |
+| **Field name**         | **Type**        |
+| ---------------------- | --------------- |
+| **name** (required)    | String          |
+| **surname** (required) | String          |
+| **email** (required)   | String          |
+| **phone** (required)   | Number          |
+| **addresses**          | Array of string |
 
 Expose your collection through an Endpoint entering the following information:
 
@@ -186,15 +186,15 @@ Expose your collection through an Endpoint entering the following information:
 By collecting the orders, we want to have all the primary information about our order: the order data and the customer who requested it, the driver and the plates. Last but not least the address to send the order.
 So we will create an `orders` collection with the following fields:
 
-| **Field name** | **Type** |
-| ------|------------|
-| **status** (required) | String |
-| **isLate** | Boolean |
-| **orderedAt**| Date |
-| **customerId** (required) | ObjectId |
-| **dishes** | Array of object |
-| **address** | String |
-| **amount** | Number |
+| **Field name**            | **Type**        |
+| ------------------------- | --------------- |
+| **status** (required)     | String          |
+| **isLate**                | Boolean         |
+| **orderedAt**             | Date            |
+| **customerId** (required) | ObjectId        |
+| **dishes**                | Array of object |
+| **address**               | String          |
+| **amount**                | Number          |
 
 !!! info
     The *dishes* field will contain an array of objects where each element is a single document from the *dishes* collection, instead the *customerId* field contains the id of customer document.

@@ -3,11 +3,11 @@ id: template_create
 title: Create a new template
 sidebar_label: Create templates
 ---
-Can't find a specific template? You can create a new one. Below you will find the suggested guidelines for the development of a template from which you can start to create a new Custom Microservice.  
+Can't find a specific template? You can create a new one. Below you will find the suggested guidelines for the development of a template from which you can start to create your microservice.  
 
 ## The target
 
-Your template should make the creation of Custom Microservices easier by providing a specific technology ready-to-use model.
+Your template should make the creation of microservices easier by providing a specific technology ready-to-use model.
 
 ## Required features
 

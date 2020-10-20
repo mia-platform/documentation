@@ -5,7 +5,7 @@ sidebar_label: Mongo 2 Kafka
 ---
 ## What is MongoStream2Kafka
 
-Using this architectural solution, the Custom microservice, that writes on Mongo, queues the correct changes on Kafka.
+Using this architectural solution, the microservice, that writes on Mongo, queues the correct changes on Kafka.
 MongoStream2Kafka has several advantages:
 
 * It’s a simple and easy to use component since it can be efficient in limited budget and time situations.
