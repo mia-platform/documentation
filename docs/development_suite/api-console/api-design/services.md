@@ -11,15 +11,21 @@ You can create a Microservice from the Marketplace section of DevOps Console. To
 
 You can create a Microservice by:
 
-* **using a Template**: a starting point to create a new Microservice;
+* **using a Plugin**: a ready-to-use Microservice
 
-![new-templates](./../../../marketplace/img/new-templates.png)
+* **using a Template**: a starting point to create a new Microservice
 
-* **using an Example**: an existing and ready-to-use model;
+* **using an Example**: an existing and ready-to-use model
 
-![new-examples](./../../../marketplace/img/new-examples.png)
+* **uploading a Docker Image Name**: an existing Docker image of a Microservice
 
-* **uploading a Docker Image Name**: a file that is used to execute code.
+![new-examples](./img/Marketplace-categories.PNG)
+
+You can search for Microservices, filtering by Plugins, Templates and/or Examples.
+
+Otherwise, you can search for them by category. 
+
+The results of your search will appear **organized by category**. 
 
 ## How to create a Microservice from an Example or from a Template
 

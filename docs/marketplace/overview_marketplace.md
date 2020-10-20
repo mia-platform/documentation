@@ -14,14 +14,22 @@ You will see a set of [examples](./examples/mia_examples.md) and [templates](./t
 You can go deeper into the code of templates and examples visiting the [Mia-Platform Marketplace Github page](https://github.com/mia-platform-marketplace).
 
 You can start from a:
+* **Plugin**: a ready-to-use Microservice.  
+Check out the [Microservice section](./../../docs/runtime_suite/overview-runtime-suite.md) for further information.
 
 * **Template**: a base repository from which you can start to create a new Microservice.  
-![new-templates](./img/new-templates.png)
 Check out the [Template section](./templates/mia_templates.md) for further information.
 
 * **Example**: a specific use-case, a ready-to-use model to create your microservice.  
-![new-examples](img/new-examples.png)
 Check out the [Example section](./examples/mia_examples.md) for further information.
+
+You can search for Microservices, filtering by Plugins, Templates and/or Examples.
+
+Otherwise, you can search for them by category. 
+
+The results of your search will appear **organized by category**.
+
+![new-examples](./../development_suite/api-console/api-design/img/Marketplace-categories.PNG)
 
 :::tip
 
