@@ -36,6 +36,10 @@ The API Portal’s editor did not allow to re-open a collapsed patch property. T
 
 * The delete buttons within the tables have been ghosted
 
+### How to update your DevOps Console
+
+For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.4.8`.
+
 ## v6.1.0
 
 _October 12, 2020_
