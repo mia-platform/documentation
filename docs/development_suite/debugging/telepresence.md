@@ -5,7 +5,7 @@ sidebar_label: Debug a service
 ---
 ## Debug Area
 
-In the debug area you will see the list of all the custom services developed with the Developer Console.
+In the debug area you will see the list of all the microservices developed with the Developer Console.
 
 At the first level you have the necessary information to understand the health of the service: whether it is active or not, and the memory levels used.
 

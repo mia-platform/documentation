@@ -1,24 +1,24 @@
 ---
 id: plugin_baas_4
-title:  Custom Microservice in Node.js
-sidebar_label: Custom Microservice in Node.js
+title:  Microservice in Node.js
+sidebar_label: Microservice in Node.js
 ---
-In addition to standard components (e.g., CRUD), the platform can include components that encapsulate ad-hoc logics that are autonomously developed and integrated: they are called **Custom Microservices**. A Custom Microservice (**CM**) is a service that receives HTTP requests, whose cycle of use and deploy is managed by the platform.  
+In addition to standard components (e.g., CRUD), you can create your own microservices that encapsulate ad-hoc logics that are autonomously developed and integrated. Your microservice receives HTTP requests, its cycle of use and deploy is managed by the platform.  
 
-A CM encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created `custom-plugin-lib`, a library in [node.js](https://github.com/mia-platform/custom-plugin-lib), based on the [fastify](https://fastify.io) library. Using `custom-plugin-lib` it is possible to create a CM by implementing the following steps:
+A microservice encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created [Mia Service Node.js Library](https://github.com/mia-platform/custom-plugin-lib), a library in **node.js**, based on the [fastify](https://fastify.io) library. Using `Mia Service Node.js Library` it is possible to create your own microservice by implementing the following steps:
 
 * [HTTP Routes handler](#routes)
 * [changing the behaviour according to the client that is making the request, whether the user is logged in and its belonging groups](#user-and-client-identification)
-* [requests to other services or CM of the platform](#endpoint-queries-and-platform-services)
+* [requests to other services of the platform](#endpoint-queries-and-platform-services)
 * [PRE and POST decorators](#pre-and-post-decorators)
 
-In the remaining part of this guide it will be described how to develop, test and deploy a CM in Node.js withing the platform ecosystem using the `custom-plugin-lib` library.
+In the remaining part of this guide it will be described how to develop, test and deploy your microservice in Node.js withing the platform ecosystem using the `Mia Service Node.js Library` library.
 
 ## Installation and Bootstrap
 
 ### Install from Marketplace template
 
-From the service area it is possible to add a new service starting from the node template that is already set up and configured to use the `custom-plugin-lib`.
+From the service area it is possible to add a new service starting from the node template that is already set up and configured to use the `Mia Service Node.js Library`.
 
 Check out the [Marketplace Documentation](./../../../marketplace/overview_marketplace.md) for further information
 
@@ -35,15 +35,15 @@ npm init -y
 Open the `package.json` file and modify the `name`, `description` fields accordingly.
 The `version` field at the beginning is best valued at`0.0.1`.
 
-`custom-plugin-lib` can be installed with`npm`, along with its `fastify-cli` dependency, necessary for booting
-and the execution of the CM
+`Mia Service Node.js Library` can be installed with`npm`, along with its `fastify-cli` dependency, necessary for booting
+and the execution of the microservice
 
 ```bash
 npm i --save @mia-platform/custom-plugin-lib
 ```
 
 The library can be used to instantiate an HTTP server.
-To start a CM developed with `custom-plugin-lib` the variables need to be available to the `nodejs` process environment:
+To start developing with `Mia Service Node.js Library` the variables need to be available to the `nodejs` process environment:
 
 * USERID_HEADER_KEY = miauserid
 * USER_PROPERTIES_HEADER_KEY = miauserproperties
@@ -52,8 +52,7 @@ To start a CM developed with `custom-plugin-lib` the variables need to be availa
 * BACKOFFICE_HEADER_KEY = isbackoffice
 * MICROSERVICE_GATEWAY_SERVICE_NAME = Microservice-gateway
 
-Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the network name (or IP address) at which `microservice-gateway` is accessible and is used during [internal communication with other services](#queries-to-enpoint-and-platform-services) in your project namespace. The implication is that `MICROSERVICE_GATEWAY_SERVICE_NAME` makes it possible to configure your local CM
-to query a specific microservice inside your Mia-Platform project. For example
+Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the network name (or IP address) at which `microservice-gateway` is accessible and is used during [internal communication with other services](#queries-to-enpoint-and-platform-services) in your project namespace. The implication is that `MICROSERVICE_GATEWAY_SERVICE_NAME` makes it possible to configure your local microservice to query a specific microservice inside your Mia-Platform project. For example
 
 ```Bash
 MICROSERVICE_GATEWAY_SERVICE_NAME = "microservice-gateway"
@@ -77,7 +76,7 @@ module.exports = customPlugin(async service => {
 })
 ```
 
-To start the CM, simply edit the `package.json` file in this way
+To start the microservice, simply edit the `package.json` file in this way
 
 ```js
 //...
@@ -88,9 +87,9 @@ To start the CM, simply edit the `package.json` file in this way
 
 execute `npm start` and open a browser at the url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), to get an answer.
 
-## Factory exposed by `custom-plugin-lib`
+## Factory exposed by Mia Service Node.js Library
 
-`custom-plugin-lib` exports a function which creates the infrastructure ready to accept the definition
+`Mia Service Node.js Library` exports a function which creates the infrastructure ready to accept the definition
 of routes and decorators. This code extract exemplifies its use.
 
 ```js
@@ -104,7 +103,7 @@ to define routes and decorators.
 
 ## Routes
 
-`custom-plugin-lib` allows to define the behavior of the CM in response to an HTTP request, in a declarative style.
+`Mia Service Node.js Library` allows to define the behavior of the microservice in response to an HTTP request, in a declarative style.
 For this purpose, the `addRawCustomPlugin` function is used as shown in the first argument of the declaration function.
 
 ```js
@@ -152,7 +151,7 @@ module.exports = customPlugin(async function(service) {
 
 A `handler` is a function that respects the handler interface of [fastify](https://www.fastify.io/docs/latest/Routes/) and
 accepts a [Request](https://www.fastify.io/docs/latest/Request/) and a [Reply](https://www.fastify.io/docs/latest/Reply/).
-In addition to the fastify Request interface, `custom-plugin-lib` decorates the Request instance with information related to the Platform as
+In addition to the fastify Request interface, `Mia Service Node.js Library` decorates the Request instance with information related to the Platform as
 the `id` user currently logged in, its groups, the type of client that performed the HTTP request and if the request comes from the CMS.
 Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services released on the Platform.
 
@@ -160,8 +159,8 @@ Furthermore, the Request instance is also decorated with methods that allow HTTP
 
 The instance of `Request` (the first argument of a handler) is decorated with functions
 
-* `getUserId` - exposes the user's ʻid`, if logged in or` null`
-* `getUserProperties` - exposes the user's properties of the logged user or `null`
+* `getUserId` - exposes the user's id, if logged in or, *null*
+* `getUserProperties` - exposes the user's properties of the logged user or *null*
 * `getGroups` - exposes an array containing strings that identify the groups to which the logged in user belongs
 * `getClientType` - exposes the type of client that performed the HTTP request
 * `isFromBackOffice` - exposes a boolean to discriminate whether the HTTP request from the CMS
@@ -282,12 +281,12 @@ async function tokenGeneration(request, response) {
 
 ## PRE and POST decorators
 
-Through `custom-plugin-lib` it is possible to declare PRE and POST decorators. From a conceptual point of view, a decorator
+Through `Mia Service Node.js Library` it is possible to declare PRE and POST decorators. From a conceptual point of view, a decorator
 of (1) PRE or (2) POST is a transformation applied from `microservice-gateway` to (1) a request addressed
 to a service (**original request**) or (2) to the reply (**original reply**) that this service sends to
-caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified CM. In order to use the decorators it is imporant to configure them also in the console. More information are available [in the Decorators docs](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/).
+caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is imporant to configure them also in the console. More information are available [in the Decorators docs](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/).
 
-The declaration of a decorator using `custom-plugin-lib` occurs in a similar way to the declaration of a route
+The declaration of a decorator using `Mia Service Node.js Library` occurs in a similar way to the declaration of a route
 
 * `service.addPreDecorator(path, handler)`
 * `service.addPostDecorator(path, handler)`
@@ -296,7 +295,7 @@ The declaration of a decorator using `custom-plugin-lib` occurs in a similar way
 
 ```js
 module.exports = customService(async function(service) {
-  // Examples of a PRE and a POST decorator definition using `custom-plugin-lib`.
+  // Examples of a PRE and a POST decorator definition using `Mia Service Node.js Library`.
   service.addPreDecorator('/is-valid', handler)   // PRE
   service.addPostDecorator('/is-valid', handler)  // POST
 
@@ -455,10 +454,10 @@ async function validateToken(request, response) {
 
 ## Route Diagram and Documentation
 
-A CM developed with `custom-plugin-lib` automatically also exposes the documentation of the routes and decorators that
+A microservice developed with `Mia Service Node.js Library` automatically also exposes the documentation of the routes and decorators that
 are implemented. The documentation is specified using the [OpenAPI 2.0 standard](https://swagger.io/specification/v2/)
-and exhibited through [Swagger](https://swagger.io). Once the CM is started, its documentation can be accessed at
-route [`http: // localhost: 3000 / documentation`] (http: // localhost: 3000 / documentation). The specification of the request scheme
+and exhibited through [Swagger](https://swagger.io). Once the microservice is started, its documentation can be accessed at
+route *<http://localhost:3000/documentation>*. The specification of the request scheme
 and responses to a route must conform to the format accepted by
 [Fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
 
@@ -499,13 +498,13 @@ const schema = {
 
 ## Environment Variables
 
-Like any service on the Platform, a CM must be set up to be released in different environments, starting from the local environment (the development machine) to development, test and production environments. The differences between various environments are managed through the mechanism of environment variables.  
-In addition to the mandatory ones, using `custom-plugin-lib` it is possible to define other environment variables based on
-needs of the single CM, to then access them and use their values ​​in the code of the handlers. For the definition yes
-use the [JSON schema] format (<http://json-schema.org/>).
+Like any service on the Platform, a microservice must be set up to be released in different environments, starting from the local environment (the development machine) to development, test and production environments. The differences between various environments are managed through the mechanism of environment variables.  
+In addition to the mandatory ones, using `Mia Service Node.js Library` it is possible to define other environment variables based on
+needs of the single microservice, to then access them and use their values ​​in the code of the handlers. For the definition yes
+use the [JSON schema format](<http://json-schema.org/>).
 
-If the correct set of environment variables is not supplied to the CM,
-the CM does not start by returning in output which environment variable is missing.
+If the correct set of environment variables is not supplied to the microservice,
+the microservice does not start by returning in output which environment variable is missing.
 
 ### Example
 
@@ -520,7 +519,7 @@ const serverSchema = {
     },  
   },  
 }  
-const customPlugin = require('@mia-platform/custom-plugin-lib')(serverSchema)
+const customPlugin = require('@mia-platform/Mia Service Node.js Library')(serverSchema)
 
 module.exports = customPlugin(async service => {
   // nel config di service si
@@ -543,15 +542,15 @@ module.exports = customPlugin(async service => {
 
 ## Testing
 
-`custom-plugin-lib` is built on fastify and therefore integrates with [testing tools](https://www.fastify.io/docs/latest/Testing/)
+`Mia Service Node.js Library` is built on fastify and therefore integrates with [testing tools](https://www.fastify.io/docs/latest/Testing/)
 made available by the framework. A complete example of this type of test is present online in the repository of
-`custom-plugin-lib` on [Github](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/test/).
+`Mia Service Node.js Library` on [GitHub](https://github.com/mia-platform/custom-plugin-lib/tree/master/examples/advanced/tests).
 
 ### Integration and Unit test
 
-The testing of a CM built with `custom-plugin-lib` can be performed at multiple levels of abstraction. One of
+The testing of a microservice built with `Mia Service Node.js Library` can be performed at multiple levels of abstraction. One of
 Possibility is to use a technique called _fake http injection_ for which it is possible to simulate
-receiving an HTTP request. In this way, all the CM logic is exercised from the HTTP layer to the handlers and
+receiving an HTTP request. In this way, all the microservice logic is exercised from the HTTP layer to the handlers and
 this is an example of Integration Testing.
 
 #### Example Integration Test
@@ -565,6 +564,7 @@ const assert = require('assert')
 const fastify = require('fastify')
 
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
+
 const index = customPlugin(async service => {
   service.addRawCustomPlugin(
     'GET',

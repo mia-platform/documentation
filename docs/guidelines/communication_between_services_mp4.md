@@ -5,7 +5,7 @@ sidebar_label: Communication between microservices
 ---
 ## Introduction
 
-Platform 4 is made up of microservices, in which each one presents a specific set of functionalities. To make the microservices communicate with each other, we have identified best practices and conventions to uniform the communication mode, both between core components and custom microservices.
+Platform 4 is made up of microservices, in which each one presents a specific set of functionalities. To make the microservices communicate with each other, we have identified best practices and conventions to uniform the communication mode, both between core components and your microservices.
 
 ## Conventions
 
@@ -15,7 +15,7 @@ The communication protocol chosen for internal communication is `http`.
 
 ### Hostname and port
 
-The services are released with hostname equal to the service name, on the `80` port. So for example the crud-service will be reachable at the url `http: // crud-service` (`http: // crud-service: 80`), the microservice-gateway to the url `http: // microservice-gateway` and so on. This is applied to all custom services.
+The services are released with hostname equal to the service name, on the `80` port. So for example the crud-service will be reachable at the url `http: // crud-service` (`http: // crud-service: 80`), the microservice-gateway to the url `http: // microservice-gateway` and so on. This is applied to all microservices.
 
 ### Data format
 

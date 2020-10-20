@@ -56,7 +56,7 @@ module.exports = {
               to: "docs/fast_data/overview",
             },
             {
-              label: "API Management & Headless CMS",
+              label: "Headless CMS",
               to: "docs/business_suite/overview-business-suite",
             },
           ],
@@ -123,7 +123,7 @@ module.exports = {
               href: "https://www.mia-platform.eu/en/products/fast-data",
             },
             {
-              label: "API Management & Headless CMS",
+              label: "Headless CMS",
               href:
                 "https://www.mia-platform.eu/en/products/api-management-and-headless-cms",
             },

@@ -42,23 +42,23 @@ First of all you need a CRUD named __cmsmenu__ where you can store the menu opti
       * `cmsProperties`: Object (Optional)
      ![](img/cmsmenu_CRUD_creation.png)
 
-#### 2. Service - create the custom service for your frontends
+#### 2. Service - create the microservice for your frontends
 
-You also need to add the custom service of the frontends that you want to integrate into the CMS; note that
-the service must be already Dockerized.
+You also need to add the  microservice of the frontends that you want to integrate into the CMS; note that
+the microservice must be already Dockerized.
 
  1. Click on Services
  2. Click on __Create new service__
  3. Select __Create from an existing Docker image__
- 4. Create the service with the following data:
-    * **name**: the name of your service
+ 4. Create the microservice with the following data:
+    * **name**: the name of your microservice
     * **Docker image**: the url of your docker image
     * **description**: insert a custom description
     * the result will be something like this ![](img/create_service.png)
 
 #### 3. Endpoints - create the endpoints
 
-The CRUD and the service are not reachable until you create the corresponding endpoints through the
+The CRUD and the microservice are not reachable until you create the corresponding endpoints through the
 following steps:
 
 * **cmsmenu endpoint**:
@@ -70,12 +70,12 @@ following steps:
         * **description**: insert a custom description
         * the result will be something like this ![](img/crud_endpoint.png)
 
-* **custom service endpoint**:
+* **Microservice endpoint**:
     1. Click on endpoints
     2. Click on __Create new endpoint__
     3. Create the endpoint with the following data:
         * **base path**: /custom-service-path
-        * **type**: Custom Microservices
+        * **type**: Microservice
         * **description**: insert a custom description
         * **Remember to unflag the two fields** `Support JSON format on request` **and** `Support JSON format on response`
         * the result will be something like this ![](img/custom_service_endpoint.png)
@@ -107,7 +107,7 @@ It's time to insert the menu data in the __cmsmenu__ CRUD to make the menu optio
 
 `icon`: the name of the icon visible in the menu
 
-`link`: the endpoint created for the service (and the path you want to reach in your frontend)
+`link`: the endpoint created for the microservice (and the path you want to reach in your frontend)
 
 `iframe`: true if you want to open the frontend in the iFrame, false if you want to open in another tab
 
@@ -116,7 +116,7 @@ It's time to insert the menu data in the __cmsmenu__ CRUD to make the menu optio
 `cmsProperties`: is an optional property which allows you to set some additional experimental properties not yet added directly to the console interface:
 
 - `category`: expects an object with the property `name:string` and allows you to define under which category to place the custom frontend.
-    
+
 :::caution
 **NB**: the name you assign must be created, otherwise you'll have the custom frontend sorted under a category named `Undefined`
 :::
@@ -125,7 +125,7 @@ To do this you have two ways:
 
 * insert the data in the CMS in the __cmsmenu__ CRUD: insert a new object specifying the fields.
 
-    Example of the __Push Manager__ service:
+    Example of the __Push Manager__ microservice:
 
   - `name`: Push Manager
   - `_order`: 1
@@ -141,7 +141,7 @@ To do this you have two ways:
 
 * make a POST to the __cmsmenu__ endpoint with the following body:
 
-    Example of the __Push Manager__ service):
+    Example of the __Push Manager__ microservice):
 
     ```json
     {
@@ -162,13 +162,13 @@ To do this you have two ways:
 
 #### 6. Backoffice proxy - Advanced configuration
 
-The last step is to configure the route to go in the correct service. To do this you need to go in the advanced section
+The last step is to configure the route to go in the correct microservice. To do this you need to go in the advanced section
 of the console and manage the Api Gateway backoffice files.
 The extensions to customize are:
 
-* __maps-proxyBackofficeName.before.map__ to map an endpoint to a service name.
+* __maps-proxyBackofficeName.before.map__ to map an endpoint to a microservice name.
 
-    Example for the Push Manager service:
+    Example for the Push Manager microservice:
 
     ```
     "~^secreted-1-GET-/v2/push-manager-fe/" "push-manager-fe";
@@ -177,7 +177,7 @@ The extensions to customize are:
 
 * __maps-proxyBackofficeUrl.before.map__ to proxy an endpoint to another url.
 
-    Example for the Push Manager service:
+    Example for the Push Manager microservice:
 
     ```bash
     "~^GET-/v2/push-manager-fe/(?<path>.*|$)$" "$path";

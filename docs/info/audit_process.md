@@ -5,10 +5,10 @@ sidebar_label: Audit Process
 ---
 ## Audit Introduction
 
-Mia reserves the right to audit the Client's environments in order to inspect that any usage of Mia-Platform product is licensed.  
+Mia srl reserves the right to audit the Client's environments in order to inspect that any usage of Mia-Platform product is licensed.  
 Audit is necessary when the license is hosted on Cloud or On Premise by the client.
 
-In particular, but not limited to, MIA shall inspect:
+In particular, but not limited to, MIA srl shall inspect:
 
 * if the amount of Production Nodes purchased is equal or higher than the amount of Production Nodes actually used;
 

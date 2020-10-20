@@ -3,11 +3,11 @@ id: create-new-library
 title:  Create a new Mia service library
 sidebar_label: Create a new Mia service library
 ---
-Can't find a specific library? You can create a new one. You will find below the suggested guidelines to develop a complete library to facilitate the creation of Mia Custom Microservices.  
+Can't find a specific library? You can create a new one. You will find below the suggested guidelines to develop a complete library to facilitate the creation of your microservices.  
 
 ## Features
 
-Your library should make the creation of Custom Microservices easier by providing functions and structures to take advantages of Mia-Platform features.
+Your library should make the creation of  Microservices easier by providing functions and structures to take advantages of Mia-Platform features.
 
 ### HTTP client
 
@@ -22,7 +22,7 @@ Moreover, to easily perform [**CRUD**](./../development_suite/api-console/api-de
 * `POST` */v2/items/bulks*
 * `DELETE` */v2/items/{id}*
 
-Calling any [**service**](./../development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of Custom Microservices. To do this, the developer who will use your library should be able to call a route with some options.
+Calling any [**service**](./../development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of microservices. To do this, the developer who will use your library should be able to call a route with some options.
 
 Check out the related [Mia service Node.js library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/HTTPClient.md) for an example.
 
@@ -73,7 +73,7 @@ A simple documentation structure to address all these questions can be the follo
 5. **Configurations** - Required configuration of environment variables and other items.
 6. **Examples** - More advanced examples, with the instruction to easy launch them
 7. **How to** - Each feature is explained in detail in related `/docs/Feature.md` file
-    * Create a custom service
+    * Create your service
     * Declare routes
     * Add decorators
     * Call the other services on the Platform project

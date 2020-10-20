@@ -7,7 +7,7 @@ In this page will be explain how to configure the _Timer Service_ from zero to h
 
 The configuration is split in two sections:
 
-- [**Technical Configuration**](#technical-configuration) contains the configuration of the technical needs of the service
+- [**Technical Configuration**](#technical-configuration) contains the configuration of the technical needs of the Service
 - [**DevOps Console Configuration**](#dev-ops-console-configuration) contains the configuration from the Dev-Ops Console
 
 ## Technical Configuration
@@ -18,9 +18,9 @@ The _Timer Service_ is easy to configure, it just needs some environment variabl
 
 The timer-service allows to do operations on timers just using REST APIs, but can do actions, when an expiration occurs, using REST or KAFKA (kafka is not required).
 
-Following the environment variables needed by the service:
+Following the environment variables needed by the Service:
 
-- **CRUD_SERVICE_NAME**: the name of the crud service (usually `crud-service`)
+- **CRUD_SERVICE_NAME**: the name of the crud Service (usually `crud-Service`)
 - **CRUD_PATH**: the path to call on the CRUD (e.g. `/expirations`)
 - **POLL_INTERVAL_MS**: the milliseconds to wait before do another poll; use case:
     1. the timer-service wakes
@@ -58,9 +58,9 @@ Following the CRUD structure needed by the timer-service to work:
   - *message value* if the `outputMode` is of type **kafka**
 - **startDate**: the start date of the timer (type *date*)
 - **expirationIntervalMs**: the milliseconds, from the startDate, of the timer duration (a timer expires at *startDate* + *expirationIntervalMs*)
-- **applicantService**: a string that represent who set the timer (e.g. a custom service)
+- **applicantService**: a string that represent who set the timer (e.g. a microservice)
 - **outputMode**: an *Object* with the data to send the action when the expiration occurs
-- **expirationDate**: the date of the expiration, created by the service (type *date*)
+- **expirationDate**: the date of the expiration, created by the Service (type *date*)
 - **failureCount**: number for tracking the failure count (used only with **MAX_FAILURE_COUNT**)
 - **expirationStatus**: an *Object* that represetns the status of an expirations and has the following structure:
 
@@ -88,7 +88,7 @@ To configure a _Timer Service_ on the Dev-Ops Console follow the instructions:
         [![alt_image](img/Microservices_Docker_image_name.png)](img/Microservices_Docker_image_name.png)
 
   - set the name and description as you prefer
-  - insert the timer service image name into the _Docker Image Name_ field, or:
+  - insert the timer Service image name into the _Docker Image Name_ field, or:
 
         `nexus.mia-platform.eu/helvetia/timer-service:0.1.1`
 
