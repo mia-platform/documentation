@@ -7,23 +7,36 @@ Mia‑Platform provides the first end‑to‑end Digital Integration Hub on the 
 
 Here's an overview of Mia-Platform suite:
 
-![Mia-Platform](img/overviewprodotti.png)
+![Mia-Platform](img/mia-platform-overview.png)
 
 ### DevOps Console
 
-Manage your Kubernetes clusters, define environments, set up test automation, design and run your CI/CD pipelines controlling your preferred tools from one unique Console.
+Manage your API, Kubernetes clusters, define environments, set up test automation, design and run your CI/CD pipelines controlling your preferred tools from one unique Console.
+
+![Mia-Platform CMS](img/valuestream.png)
+
+Find out more in the [DevOps Console section](./../development_suite/overview-dev-suite.md).
 
 ### Microservices Ecosystem
 
 A set of ready to use microservices to speed up your applications’ development.
 
+![Mia-Platform Plugins](img/mia-platform-overview-plugins.png)
+Find out more in the [Microservices Ecosystem section](./../runtime_suite/overview-runtime-suite.md).
+
 ### Fast Data Real-time Single view
 
 Aggregate and map your data to create real-time Single Views.
 
-### API Management & Headless CMS
+![Mia-Platform Fast Data](img/mia-platform-overview-fast-data.png)
+Find out more in the [Fast Data section](./../fast_data/overview.md).
 
-State-of-the-art solution for API Full Lifecycle Management.
+### Headless CMS
+
+A pratical and intuitive interface for non-technical people who can easily manage content over APIs and supervise business analytics.
+
+![Mia-Platform CMS](img/mia-platform-overview-cms.png)
+Find out more in the [Headless CMS](./../business_suite/overview-business-suite.md) section.
 
 ### More Resources
 

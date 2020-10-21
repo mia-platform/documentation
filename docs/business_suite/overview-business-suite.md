@@ -7,7 +7,7 @@ Welcome to the Headless CMS overview page!
 
 Learn how to gain total control over your APIs, from design and security to versioning and retirement.
 
-![image alt text](./img/api_managment.png)
+![image alt text](./img/mia-platform-overview-cms.png)
 
 Deliver information everywhere with an API-centric approach. Design and manage your APIs, decouple your systems from your data and open to third-party business opportunities.
 
