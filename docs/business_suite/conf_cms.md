@@ -3,162 +3,6 @@ id: conf_cms
 title:  CMS Config-extension in the API Console
 sidebar_label: Configure CMS .json file
 ---
-## An example of full field configuration
-
-```JSON
-{
-"namecollection": {
-  "cmsProperties": {
-
-  ///Managed by DEV CONSOLE///  
-    "label": "heroes",
-    "layoutType": "table",
-    "cardType": "",
-    "defaultStatus": "draft",
-    "defDelete": false,
-    "category": {
-      "name": "General",
-      "order": 0 },
-    "hidden": false,
-    "blocked": false,
-    "icon": "book",
-    "order": 0,
-    "aclExpression":"groups.admin",
-    "confirmBeforeEdit": true,
-
-    "baseQuery": { "isLate": true, "state": "working", "trash": 0},
-
-    "notification": {
-         "query":
-            {"isLate": true, "state": "working", "trash": 0}
-        },
-
-     "highlight": {
-           "query": {"isLate": true, "state": "working", "trash": 0},
-           "color": "white",
-           "backgroundColor": "#d55d5f"
-        },
-
-  /// Extension for hide search bar ///
-
-     "hiddenSearchBar": true,
-
-  /// Extension for confirm each action ///
-
-     "confirmBeforeEdit": true,
-
-  ///Extension for create cards///
-
-   "cardHeader": {
-     "titleProperty": "laboratory",
-     "subTitleProperty": "productId",
-     "imageProperty": ""
-   },
-   "cardContentRows": [{
-     "type": "textarea",
-     "properties": ["note"]
-   },
-   {
-     "type": "text",
-     "properties": ["newExpirationDate", "newItemNumber"]
-   },
-   {
-     "labels": ["Accetta", "Rifiuta"],
-     "type": "button",
-     "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-     "ids": ["accetta", "rifiuta"],
-     "icons": ["check", "archive"]
-   },
-   {
-     "type": "link",
-     "labels": ["Mail", "Skype"],
-     "icons": ["at", "skype"],
-     "linksType": ["email", "skypeCall"],
-     "properties": ["mail", "skypeId"]
-   }
-   ],
-
- ///PROPERTIES AREA ///
-
-  "properties": {
-     "name": {
-
-/// Managed by Dev Console ///
-       "id": "nome",
-       "type": "string",
-       "required": false,
-       "label": "Nome",
-       "cmsVisibility": {
-            "level": 1,
-            "edit": {
-                "query": {"nome":"Thor"}
-                    },
-            "new": {
-              "query": {"nome":"Thor"}
-                    }
-         },
-      "cmsOrder": 10,
-      "readonly": false,
-      "cmsEditable": true,
-      "hidden": false,
-      "description": "",
-      "cmsCardPosition":0,
-      "interfaceType": "string",
-
-     ///acl for properties ///
-
-      "aclExpression":"groups.admin",
-
-      /// if interfaceType = cmslookup or cmsmultilookup ///
-
-    "cmsLookup": {
-     "text": {
-      "sources": [
-       "name"
-      ],
-      "delimiters": []
-     },
-     "value": "id",
-     "autoSelect": false,
-     "reset": false,
-     "limit": 5,
-     "query": "",
-     "searchLive": false,
-     "collectionIdSource": "brands"
-    },
-
-    /// button configurations ///
-           "actions": [
-                 {
-                    "id":"sendInvoice",
-                    "label":"Send Invoice",
-                    "route":"/sendinvoice",
-                    "icon":"paper-plane"
-                 }
-               ],
-      /// navigation between collection with links ///
-
-          "cmsLinks": [{
-             "collectionIdTarget": "yourCollectionId",
-
-            /// collectionPropertyIdTarget is not required: if not present the navigation will search the value within the search and not within the filters ///
-             "collectionPropertyIdTarget": "yourPropertyId",
-
-            /// the possible values are equals (eq) or contains (ct); the default value is equal; ///
-            "operator": "eq",
-
-            ///if you wanna navigate to a custom front-edn in the service category you should add the following properties ///:
-
-                  "targetType": "service",
-                  "serviceIdTarget": "name of the custom frontend",
-                  "queryStringKey": "select" (this is an example, here you can put whatever you custom frontend accepts as parameter in a query)
-              }],
-            }
-          }
-        }
-      }
-    }
-```
 
 # Extension you cannot configure in the CMS section
 
@@ -175,6 +19,7 @@ the extensions are:
 6. **navigation between collection with link**
 7. **confirmation message for each action**
 8. **hide the search bar**
+9. **gallery**
 
 ## Set up GIT to have the cms config-extensions
 
@@ -607,7 +452,31 @@ With this configuration it is possible to hide the search bar
  "hiddenSearchBar": true,
 ```
 
-# How to configure the CMS with Mia-Platform 3
+### 9. Configure the Gallery
+
+Gallery layout allows you to show images and files in the CMS. The image is downloadable by clicking the proper icon.
+
+You can also copy the link and share it directly. There are some different scenarios:
+
+  * if the file location is saved as a URL, its value is copied directly
+  * if file location is saved as path, instead, the copied URL is relative to CMS host
+  * the base URL can be configured to differ from the CMS host, you can customize it by passing the `imageLinkBaseUrl` property in the CMS collection configuration (NB: this base Url is only used when the file location is not a URL itself)
+
+An example that will override the default one to `http://myUrl.it` is shown below:
+
+```json
+{
+  "label": "labelName",
+  "layoutType": "gallery",
+  "defaultStatus": "publish",
+  "imageLinkBaseUrl": "http://myUrl.it",
+  ...
+}
+```
+
+When the copy icon is clicked, the following URL will be saved in your clipboard: `http://myUrl.it/path/to/the/image`
+
+## How to configure the CMS with Mia-Platform 3
 
 The collections shown in the CMS are configured in two different .json files:
 
@@ -617,7 +486,7 @@ The collections shown in the CMS are configured in two different .json files:
 
 Both files are located inside the specific folder within the collection that you want to configure.
 
-## cms_config.json
+### cms_config.json
 
 Let's assume we are within the **heroes** collection and want to configure our cms heroes page.
 
@@ -639,43 +508,33 @@ key | example value | Comment
 `baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
 `highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
 `confirmBeforeEdit` | "" | if true, enable double check before save
+`imageLinkBaseUrl` | "" | a custom URL used to replace the base URL
+
+
   So the final .json file will be:
 
-```
-  {
 
+```json
+{
   "label": "heroes",
-
   "layoutType": "table",
-
   "cardType": "",
-
   "defaultStatus": "draft",
-
   "defDelete": false,
-
   "category": {
-
     "name": "General",
-
     "order": 0
-
   },
-
   "hidden": false,
-
   "blocked": false,
-
   "icon": "book",
-
   "order": 0,
-
   "confirmBeforeEdit": true,
-
+  "imageLinkBaseUrl": "https://example.com",
 }
 ```
 
-## properties.json
+### properties.json
 
 The properties.json file is the file that contains all the fields in the collection. Each field has a similar structure.
 
@@ -734,3 +593,159 @@ the final json in our property **name** which is the name of the heroes will the
      "interfaceType": "string"
 }
 ```
+
+## An example of full field configuration
+
+```json
+{
+  "namecollection": {
+    "cmsProperties": {
+      /// Managed by DevOps Console ///
+      "label": "heroes",
+      "layoutType": "table",
+      "cardType": "",
+      "defaultStatus": "draft",
+      "defDelete": false,
+      "category": {
+        "name": "General",
+        "order": 0
+      },
+      "hidden": false,
+      "blocked": false,
+      "icon": "book",
+      "order": 0,
+      "aclExpression": "groups.admin",
+      "confirmBeforeEdit": true,
+      "baseQuery": {
+        "isLate": true,
+        "state": "working",
+        "trash": 0
+      },
+      "notification": {
+        "query": {
+          "isLate": true,
+          "state": "working",
+          "trash": 0
+        }
+      },
+      "highlight": {
+        "query": {
+          "isLate": true,
+          "state": "working",
+          "trash": 0
+        },
+        "color": "white",
+        "backgroundColor": "#d55d5f"
+      },
+      /// Extension for hide search bar ///
+      "hiddenSearchBar": true,
+      /// Extension for confirm each action ///
+      "confirmBeforeEdit": true,
+      /// Extension for create cards ///
+      "cardHeader": {
+        "titleProperty": "laboratory",
+        "subTitleProperty": "productId",
+        "imageProperty": ""
+      },
+      "cardContentRows": [
+        {
+          "type": "textarea",
+          "properties": ["note"]
+        },
+        {
+          "type": "text",
+          "properties": ["newExpirationDate", "newItemNumber"]
+        },
+        {
+          "labels": ["Accetta", "Rifiuta"],
+          "type": "button",
+          "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
+          "ids": ["accetta", "rifiuta"],
+          "icons": ["check", "archive"]
+        },
+        {
+          "type": "link",
+          "labels": ["Mail", "Skype"],
+          "icons": ["at", "skype"],
+          "linksType": ["email", "skypeCall"],
+          "properties": ["mail", "skypeId"]
+        }
+      ],
+      /// PROPERTIES AREA ///
+      "properties": {
+        "name": {
+          /// Managed by Dev Console ///
+          "id": "nome",
+          "type": "string",
+          "required": false,
+          "label": "Nome",
+          "cmsVisibility": {
+            "level": 1,
+            "edit": {
+              "query": {
+                "nome": "Thor"
+              }
+            },
+            "new": {
+              "query": {
+                "nome": "Thor"
+              }
+            }
+          },
+          "cmsOrder": 10,
+          "readonly": false,
+          "cmsEditable": true,
+          "hidden": false,
+          "description": "",
+          "cmsCardPosition": 0,
+          "interfaceType": "string",
+          ///acl for properties ///
+          "aclExpression": "groups.admin",
+          /// if interfaceType = cmslookup or cmsmultilookup ///
+          "cmsLookup": {
+            "text": {
+              "sources": [
+                "name"
+              ],
+              "delimiters": []
+            },
+            "value": "id",
+            "autoSelect": false,
+            "reset": false,
+            "limit": 5,
+            "query": "",
+            "searchLive": false,
+            "collectionIdSource": "brands"
+          },
+          /// button configurations ///
+          "actions": [
+            {
+              "id": "sendInvoice",
+              "label": "Send Invoice",
+              "route": "/sendinvoice",
+              "icon": "paper-plane"
+            }
+          ],
+          /// navigation between collection with links ///
+          "cmsLinks": [
+            {
+              "collectionIdTarget": "yourCollectionId",
+
+              /// collectionPropertyIdTarget is not required: if not present the navigation will search the value within the search and not within the filters ///
+              "collectionPropertyIdTarget": "yourPropertyId",
+
+              /// the possible values are equals (eq) or contains (ct); the default value is equal; ///
+              "operator": "eq",
+
+              /// if you wanna navigate to a custom front-end in the service category you should add the following properties ///:
+
+              "targetType": "service",
+              "serviceIdTarget": "name of the custom frontend",
+              "queryStringKey": "select"(this is an example, here you can put whatever you custom frontend accepts as parameter in a query)
+            }
+          ],
+        }
+      }
+    }
+  }
+}
