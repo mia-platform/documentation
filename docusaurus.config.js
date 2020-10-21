@@ -173,6 +173,9 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
     },
   },
+  customFields: {
+    versionPathRegex: "docs\\/(\\d+.x)"
+  },
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -214,9 +217,10 @@ module.exports = {
       },
     ],
     [
-      require.resolve("docusaurus-lunr-search"),
+      require.resolve("@mia-platform/docusaurus-lunr-search"),
       {
         excludeRoutes: ["docs/next/**/*"],
+        versionPathRegex: "docs\\/(\\d+.x)"
       },
     ],
   ],

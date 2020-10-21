@@ -1618,6 +1618,26 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/util/-/util-1.6.16.tgz#07a7342f6b61ea1ecbfb31e6e23bf7a8c79b9b57"
   integrity sha512-SFtLGIGZummuyMDPRL5KdmpgI8U19Ble28UjEWihPjGxF1Lgj8aDjLWY8KiaUy9eqb9CKiVCqEIrK9jbnANfkw==
 
+"@mia-platform/docusaurus-lunr-search@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@mia-platform/docusaurus-lunr-search/-/docusaurus-lunr-search-3.0.0.tgz#fa39acc3eed27645b6a21a46c364ca4bff24a606"
+  integrity sha512-nkbY/mBUi5gt17StBw58b3dWAeoViSGgW2wygNEUTk6+T0UpAI9O+yEdDQ1BImnxa5BgBILWM+mHYGBaF7WSzw==
+  dependencies:
+    autocomplete.js "^0.37.0"
+    classnames "^2.2.6"
+    gauge "^3.0.0"
+    hast-util-select "^4.0.0"
+    hast-util-to-text "^2.0.0"
+    hogan.js "^3.0.2"
+    lunr "^2.3.8"
+    lunr-languages "^1.4.0"
+    minimatch "^3.0.4"
+    object-assign "^4.1.1"
+    rehype-parse "^7.0.1"
+    to-vfile "^6.1.0"
+    unified "^9.0.0"
+    unist-util-is "^4.0.2"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -3994,26 +4014,6 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
-
-docusaurus-lunr-search@^2.1.7:
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/docusaurus-lunr-search/-/docusaurus-lunr-search-2.1.7.tgz#46bbfd518e4e3601534996614572c6f4409230c0"
-  integrity sha512-RHrt8li7VIu1ohR+EDM86gSmitTokNFVtc9036wQ9FYZRiHUNoDN+OUPZ65P0nhUiQIAiYkPPxTymDzXTXrmTg==
-  dependencies:
-    autocomplete.js "^0.37.0"
-    classnames "^2.2.6"
-    gauge "^3.0.0"
-    hast-util-select "^4.0.0"
-    hast-util-to-text "^2.0.0"
-    hogan.js "^3.0.2"
-    lunr "^2.3.8"
-    lunr-languages "^1.4.0"
-    minimatch "^3.0.4"
-    object-assign "^4.1.1"
-    rehype-parse "^7.0.1"
-    to-vfile "^6.1.0"
-    unified "^9.0.0"
-    unist-util-is "^4.0.2"
 
 dom-converter@^0.2:
   version "0.2.0"
