@@ -123,7 +123,7 @@ function Home() {
               <SearchBar
                 handleSearchBarToggle={setIsSearchBarExpanded}
                 isSearchBarExpanded={isSearchBarExpanded}
-                placeholder="Search tutorials"
+                placeholder="Search for terms, commands and more..."
                 searchBarId="search_input_home"
                 searchBarInHome={true}
               />

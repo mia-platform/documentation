@@ -12,6 +12,7 @@ import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useOnClickOutside from "use-onclickoutside";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function NavLink({
   activeBasePath,
@@ -30,11 +31,13 @@ function NavLink({
     forcePrependBaseUrl: true,
   });
 
-  const findVersionRegex = /docs\/\d+.x.x/g;
-  const location = ExecutionEnvironment.canUseDOM ? window.location.href : null;
+  const {siteConfig} = useDocusaurusContext();
+  const {versionPathRegex} =  siteConfig?.customFields; //"/docs\/\d+.x.x/g";
 
-  if (location && !fromDropdownVersions && toUrl) {
-    const matchedResults = location.match(findVersionRegex);
+  const currentLocation = ExecutionEnvironment.canUseDOM ? window.location.href : null;
+ 
+  if (currentLocation && !fromDropdownVersions && toUrl) {
+    const matchedResults = currentLocation.match(new RegExp(versionPathRegex));
 
     if (matchedResults?.length)
       toUrl = toUrl.replace("docs", matchedResults[0]);

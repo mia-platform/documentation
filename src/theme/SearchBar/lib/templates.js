@@ -1,4 +1,4 @@
-const prefix = "algolia-docsearch";
+const prefix = 'algolia-docsearch';
 const suggestionPrefix = `${prefix}-suggestion`;
 const footerPrefix = `${prefix}-footer`;
 
@@ -23,7 +23,7 @@ const templates = {
       {{#isTextOrSubcategoryNonEmpty}}
       <div class="${suggestionPrefix}--content">
         <div class="${suggestionPrefix}--subcategory-inline">{{{subcategory}}}</div>
-        <div class="${suggestionPrefix}--title">{{{title}}}{{{version}}}</div>
+        <div class="${suggestionPrefix}--title">{{{title}}}</div>
         {{#text}}<div class="${suggestionPrefix}--text">{{{text}}}</div>{{/text}}
       </div>
       {{/isTextOrSubcategoryNonEmpty}}
