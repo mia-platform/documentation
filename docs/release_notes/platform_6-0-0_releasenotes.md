@@ -36,7 +36,7 @@ In the Homepage of the Devops Console you will now see new card representing use
 In the DevOps Console marketplace you will now find a new ready-to-code plugin named **function service**. The Function service allows you to map functions to endpoints to be executed without creating a fully-fledged dedicated microservice. You can find more info [here!](https://docs.mia-platform.eu/docs/runtime_suite/function-service/configuration)
 
 * **Design Microservices** - **New Flow Manager**
-In the DevOps Console marketplace you will now find a readey-to-code plugin named **flow manager**. The Flow Manager is a saga orchestrator.It is capable to manage flows structured by using the Architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach. You can find more info [here!](https://docs.mia-platform.eu/docs/runtime_suite/flow-manager/index)
+In the DevOps Console marketplace you will now find a ready-to-code plugin named **flow manager**. The Flow Manager is a saga orchestrator.It is capable to manage flows structured by using the Architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach. You can find more info [here!](https://docs.mia-platform.eu/docs/runtime_suite/flow-manager/index)
 
 * **DevOps Console** - **New product documentation available!**
 From today you can consult a new and improved version of the product documentation accessible from this [link!](https://docs.mia-platform.eu/)
