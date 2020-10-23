@@ -22,14 +22,14 @@ In Tenant Setting, at **API Authorization Settings** you set a Default Directory
 After everything is set, you can check it by using the following curl:
 
 ```bash
-curl --location --request POST 'http://auth0_client/oauth/token' \
---header 'client-type: your_client_type' \
---header 'x-forwarded-host: your_host' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=your_grand_type' \
---data-urlencode 'username=your_username' \
---data-urlencode 'password=your_name' \
---data-urlencode 'connection=your_connection'
+curl --location
+    -X POST 'https://MY_PROJECT_URL/oauth/token' \
+    --header 'secret: YOUR_SECRET' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'grant_type=your_grand_type' \
+    --data-urlencode 'username=your_username' \
+    --data-urlencode 'password=your_name' \
+    --data-urlencode 'connection=your_connection'
 ```
 
 :::note
@@ -45,8 +45,8 @@ If all went well, you should get, without the scope **website**:
 {
     "access_token": "your_access_token",
     "id_token": "your_id_token",
-    "scope": "your_scope,
-    "expires_in": your_setting_expire_time,
+    "scope": "your_scope",
+    "expires_in": "your_setting_expire_time",
     "token_type": "Bearer"
 }
 ```
@@ -61,6 +61,15 @@ Using the scope **websiste**:
 
 ## How to configure multiple environment
 
-If you to create a new connection for each environment, following the instructions described above.
+If you want to segregate users for each runtime environment, the simpler solution is to:
+1. Create different databases, one for each environment you want; go to [Auth0 Management Dashboard](https://manage.auth0.com/) and from the *Authentication* section create new databases
+1. While still in Auth0 Management Dashboard, you'll have to allow the database (called `connection`) for each application 
+(you might also define different applications for different environments, in this scenario you'd have to allow the proper connections to your applications)
 
-So you can define **Username-Password-Production** for the production environment, and **Username-Password-Testing** for the testing environment. Remember that each connection has its own databases, so they are completely separated.
+1. In the DevOps Console `Setup Infrastructure` section of your project add a variable for each environment (e.g. `DEV_AUTH0_CONNECTION`, `PREPROD_AUTH0_CONNECTION`, `PROD_AUTH0_CONNECTION`) and specify the proper database `connection` name for each environment.
+1. In the DevOps Console `Design` section modify `auth0-client` configuration for the `managementClient` in order to use the newly created interpolation variable (e.g. `AUTH0_CONNECTION`) for `supportedConnections` and `defaultCreateUserConnection`, and
+1. Make sure that `supportedConnections` is declared for each `client` too, specifying only the connection you want to support in each environment.
+
+:::note
+For more information in regards of the Auth0 Client advanced config checkout out the [configuration documentation page](./configuration#auth0-connection-integration)
+:::
