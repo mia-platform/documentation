@@ -69,6 +69,7 @@ If you want to segregate users for each runtime environment, the simpler solutio
 1. In the DevOps Console `Setup Infrastructure` section of your project add a variable for each environment (e.g. `DEV_AUTH0_CONNECTION`, `PREPROD_AUTH0_CONNECTION`, `PROD_AUTH0_CONNECTION`) and specify the proper database `connection` name for each environment.
 1. In the DevOps Console `Design` section modify `auth0-client` configuration for the `managementClient` in order to use the newly created interpolation variable (e.g. `AUTH0_CONNECTION`) for `supportedConnections` and `defaultCreateUserConnection`, and
 1. Make sure that `supportedConnections` is declared for each `client` too, specifying only the connection you want to support in each environment.
+1. Make sure that `supportedConnections` and `defaultConnection` is declared for `cms` client too, specifying only the connection you want to support in that environment.
 
 :::note
 For more information in regards of the Auth0 Client advanced config checkout out the [configuration documentation page](./configuration#auth0-connection-integration)
