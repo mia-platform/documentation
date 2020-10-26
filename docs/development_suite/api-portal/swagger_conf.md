@@ -5,7 +5,7 @@ sidebar_label: Configure Swagger Aggregator
 ---
 
 This microservice is responsible for aggregating the individual swaggers of all the microservices indicated in the configuration.
-He collect all paths from the specified microservice swaggers and show them all on a single swagger page.
+He collects all paths from the specified microservice swaggers and show them all on a single swagger page.
 Because the microservices are not aware of the prefixes prefixed by the gateways, this service can be configured to correct the swagger paths with the correct prefix.
 
 The file to configure the swagger aggregator must exist in the Configuration project.
@@ -88,6 +88,8 @@ At the begenning the swagger-aggregator file needs the generic information like 
 > * using the field `**_description_**: requires a simple string;
 >
 > * using the field **_descriptionMarkdownFilePath_**: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
+
+The `baseSwagger` object contains the first-level configurations of the final merged swagger. Beside all the field defined by either [OpenApi 2.0](https://swagger.io/specification/v2/) or [OpenApi 3.0](https://swagger.io/specification/) specifications, this object can contain a `prefix` field that will be prepended to the paths of all the routes in the final merged swagger.
 
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
 
