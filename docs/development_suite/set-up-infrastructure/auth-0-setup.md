@@ -94,7 +94,19 @@ function (user, context, callback) {
 Remember the value you enter here: it will be used for the next step and will no longer be visible!
 :::
 
-## Step 6: Write the configurations on the Console
+## Step 6. Configure Logout URLs
+
+This configuration is typically used by your CMS to log out the user but it can be used for other web applications too.
+
+While still on Auth0 management dashboard, in the _Advanced_ tab from the _Tenant Settings_ section, edit the Allowed Logout URLs fields including the logout URLs required by your application.
+
+The following template is applicable for allowing CMS logout in most projects:
+```
+https://cms.<tenant>.test.mia-platform.eu/web-login, https://cms.<tenant>.preprod.mia-platform.eu/web-login, https://cms.<tenant>.cloud.mia-platform.eu/web-login
+```
+
+
+## Step 7: Write the configurations on the Console
 
 [Link on the console configuration guide](https://docs.mia-platform.eu/runtime_suite/auth0-client/configuration/)
 
@@ -124,7 +136,7 @@ If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0
   ```
 :::
 
-## Step 7: Enable your first user to access CMS
+## Step 8: Enable your first user to access CMS
 
 In order to enable your first user to access CMS you need to go to Auth0 User Management dashboard and edit your user. Go to the section `app_metadata` and add the following JSON:  
 
