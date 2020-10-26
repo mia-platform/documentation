@@ -4,6 +4,96 @@ title: Version 6.1.x Release Notes
 sidebar_label: v6.1.x
 ---
 
+## v6.1.2
+
+_October 26, 2020_
+
+### New Features
+
+#### Swagger aggregator
+
+Allow a `prefix` field at the first level of the configuration. All the routes of all the services will be prefixed with this path.  
+
+You can specify a custom prefix to be prepended to your APIs. 
+For example if your services expose `/food` endpoint you can configure the swagger aggregator to prefix all your routes with `/marketplace` prefix and thus the API Portal will display `/marketplace/food`.  
+
+#### Pipeline update to v3
+
+A new version of the deploy platform pipelines for GitLab installations is available. Major benefits of the new version are:
+
+* Access to all future features
+
+* No need for escaping of special characters
+
+* Bugs encountered in the management of secrets with values in multiple lines have been resolved
+
+Contact your Mia-Platform technical representative for information about the configuration. 
+
+#### New .NET Template
+
+The new DotNet Microservice Template is now available.   
+See more on [GitHub](https://github.com/mia-platform-marketplace/DotNet-Microservice-Template).
+
+#### Custom plugin lib
+
+The Mia service Node.js Library now accepts the following options:
+
+* The possibility to add the timeout option to service builder to make requests
+
+* The possibility to add agent option to service builder to make requests
+
+See more on [GitHub](https://github.com/mia-platform/custom-plugin-lib).
+
+#### New version of CMS
+
+The v9.11.0 of CMS is now available, this version brings the following features and improvements:
+
+* In the file manager section it is possible to copy the link of the image by clicking directly the new icon on the card.  
+![](img/copy-image-link.png)
+
+* You can customize the base URL for the copy link described above to differ from the CMS url.
+See how to do it on the [CMS documentation page](https://docs.mia-platform.eu/docs/business_suite/conf_cms#9-configure-the-gallery).
+
+* When exporting data from the CMS, the columns to be selected are named with the assigned labels and not with the id of the column 
+![](img/export-label.png)
+
+#### New pipeline
+
+It is now available a new pipeline to build services using .NET Core.
+Contact your Mia-Platform technical representative for more information. 
+
+### Fixed
+
+#### CRUD Service
+
+* In the automatic creation of the CRUD internal endpoint name, all underscores are now correctly transformed into dashes (in the previous version, in case of multiple underscores only the first occurence was replaced).
+
+* The 32 characters limit to the properties name in the index section has been removed.
+
+#### Requests traceability
+
+The Crud service and Microservice Gateway now insert into logs the correct requestId that improves traceability of requests coming from CMS.
+
+#### Auth0-Client login fix
+
+The login flow with `grant_type` password now uses by default the scope `openid`, thus it aligns to other grant types.  
+
+### Improvements
+
+#### Authorization service v.2.0.1
+
+The log level of the authorization service has been improved to reduce the amount of generated and collected logs. 
+
+## UI improvements
+
+The UI of the microservice repository clone action has been revised.  
+![](img/clone-option.png)
+
+
+### How to update your DevOps Console
+
+For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `3.0.4`.
+
 ## v6.1.1
 
 _October 15, 2020_
