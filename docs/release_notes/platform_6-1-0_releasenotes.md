@@ -92,7 +92,7 @@ The UI of the microservice repository clone action has been revised.
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `3.0.4`.
+For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `3.0.5`.
 
 ## v6.1.1
 
