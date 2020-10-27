@@ -273,6 +273,21 @@ You can also add additional search filters that will be added to the one just ma
 
 ![image alt text](img/image_17.png)
 
+#### How a filter of an empty property works
+
+Nowadays, it is possible to filter a property field to retrieve only the empty ones by using the ***isEmpty*** operator.
+We consider the following value as empty:
+
+* `null` null value, regarding all the filterable types
+* `""` empty string, regarding filterable `string` type
+* `[]` empty array, regarding fiterable `array` type
+* `{}` empty object, regarding filterable `object` type
+
+:::note
+Not all the fields are filterable, for example an `array` type using a ***interfaceType*** equals to `rawarray` is not displayed
+in the list of choosable properties.
+:::
+
 ## Media management
 
 In the Media collection all *uploads* are managed on the CMS: images, video, pdf and other attachments that can be recalled in the other collections, or that have been uploaded to other collections and are collected here.
