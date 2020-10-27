@@ -24,7 +24,7 @@ Check out the [Template section](./templates/mia_templates.md) for further infor
 * **Example**: a specific use-case, a ready-to-use model to create your microservice.  
 Check out the [Example section](./examples/mia_examples.md) for further information.
 
-* **Docker Image Name**: an existing Docker image of a Microservice
+* **Docker Image Name**: an existing Docker image of a Microservice.  
 Check out the [Create services section](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) for further information.
 
 You can search for Microservices, filtering by Plugins, Templates and/or Examples.
