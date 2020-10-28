@@ -12,7 +12,7 @@ Hook microservices must meet a precise http interface to be successfully interro
 
 ![](img/mg.PNG)
 
-### Pre and Post Hooks ###
+### Pre and Post Hooks
 
 Pre and Post Hooks are reusable and convenient tools that can be used with the console. But in which situation is appropriate to use them?  
 
@@ -29,3 +29,9 @@ Be carefull: if you are having performance problems with Pre and Post Hooks, it 
 * debugging difficulties.
 
 Moreover, it is not convenient to use them to define and model business flows and to manage logics with high performances.
+
+### Service logging
+
+:::warning
+Consider never setting the log level to trace in production for this service. If you enable trace logging for it will log request and response body, useful for debugging but it could be an issue in production environments for performance and security reason.
+:::
