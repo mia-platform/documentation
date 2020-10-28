@@ -11,6 +11,10 @@ The http interface of the microservice is independent of the specific storage se
 
 S3, MongoDB and GoogleStorage are currently supported as storage services.
 
+:::warning
+All files uploaded with file-service are **public**, if you want to handle and limit access you need to implement yourself dedicated service.
+:::
+
 ## API
 
 This service exposes two routes, one for the upload and one for the download,
@@ -34,6 +38,10 @@ It returns a JSON response containing:
   During the upload, you can specify other properties that will be ignored.
   If you like, using the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`.
   you can specify a caster function to add other properties to CRUD.
+
+  :::caution
+  In this case, the order of the parameters used for the upload request is important: the param `file` must be the last one or the other CRUD properties will not be valued.
+  :::
 
 * **Download**: `GET /download/:file` to download the files that were previously uploaded. Add the *download=1* query parameter to download the file as an attachment.
 
