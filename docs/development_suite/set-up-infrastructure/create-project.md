@@ -444,6 +444,26 @@ When loading the DevOps Console Home Page, the project `Frontend Gateway` will b
 
 ![new-cards-detail](img/new-cards-detail.png)
 
+## Step 7. **Customize your cluster**
+
+It is possible to add a proxy configuration in cluster configuration in environments.
+A configuration example:
+```json
+{
+  "environments": [
+    {
+      "cluster": {
+        "proxy": {
+          "url": "http://url-to-proxy/"
+        }
+      }
+    }
+  ]
+}
+```
+
+Proxy url supports `http`, `https` and basic auth inside proxy url. For example, an url with basic auth wuold be like `https://username:password@url-to-proxy/`.
+
 ### Final Step: **Activate CRUD**
 
 To activate the CRUD for your project, you can contact your Mia Platform's responsible for creating a connection with MongoDB.

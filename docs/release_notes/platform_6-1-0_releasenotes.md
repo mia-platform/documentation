@@ -19,6 +19,10 @@ For example if your services expose `/food` endpoint you can configure the swagg
 
 See more in the [Swagger Aggregator documentation page](../development_suite/api-portal/swagger_conf).  
 
+#### Supporting kubernetes access through proxy
+
+Now each project can be configured to access its kubernetes cluster below a proxy, checkout the [configuration page](../development_suite/set-up-infrastructure/create-project.md#step-7-customize-your-cluster) for more information.
+
 #### Pipeline update to v3
 
 A new version of the deploy platform pipelines for GitLab installations is available. Major benefits of the new version are:
@@ -80,6 +84,10 @@ The Crud service and Microservice Gateway now insert into logs the correct reque
 #### Auth0-Client login fix
 
 The login flow with `grant_type` password now uses by default the scope `openid`, thus it aligns to other grant types.  
+
+#### Deploy page
+
+Fixed a bug that was preventing deployments of projects using Jenkins pipelines.
 
 ### Improvements
 
