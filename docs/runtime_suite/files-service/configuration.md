@@ -33,18 +33,40 @@ The storage service configuration must follow this json schema: <https://git.too
 ```
 
 ### S3 configuration file
+This configuration allows to store files on any S3-compatibile object storage.
+
+**Example:** Amazon S3 :
+To use Amazon S3 you should configure the files-service as follows: 
+```json
+{
+  "type": "s3",
+  "options": {
+    "key": "<asw-s3-key>",
+    "secret": "<aws-s3-secret>",
+    "bucketName": "<aws-bucket-name>",
+    "region": "<aws-bucket-region>",
+  }
+}
+```
+
+**Example:** Oracle Object Storage S3 Compatible:
+Follow the [documentation](https://docs.cloud.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm) to obtain a pair of *customer access and secret keys*.
 
 ```json
 {
   "type": "s3",
   "options": {
-    "key": "s3-key",
-    "secret": "my-secret",
-    "bucketName": "my-bucket",
-    "region": "eu-west-1"
+    "key": "<customer-secret-access-key>",
+    "secret": "<customer-secret>",
+    "bucketName": "<name-of-the-bucket>",
+    "region": "<oracle-region>",
+    "endpoint": "<bucket-name-space>.compat.objectstorage.<oracle-region>.oraclecloud.com",
+    "s3ForcePathStyle": true,
+    "signatureVersion": "v4"
   }
 }
 ```
+
 
 ### Google Storage configuration file
 
