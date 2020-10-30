@@ -87,25 +87,18 @@ The following options can be provided:
 In the following example we will set just one tag, the core tag, just for core services:
 
 ```json
-apiVersion: v1
-data:
-  'services.json': |
-    [
-      { "hostname": "auth-service", "tags": ["core"] },
-      { "hostname": "cms-backend", "tags": ["core"] },
-      { "hostname": "crud-service", "tags": ["core"] },
-      { "hostname": "microservice-gateway", "tags": ["core"] },
-      { "hostname": "swagger-aggregator", "tags": ["core"] },
-      { "hostname": "v1-adapter", "tags": ["core"], "options": { "prefix": "/api/v2", "port": 8888, "protocol": "https" } },
-      { "hostname": "node-service" },
-      { "hostname": "angular-service" },
-      { "hostname": "react-service" },
-      { "hostname": "java-service" },
-    ]
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  name: doctor-service
+[
+  { "hostname": "auth-service", "tags": ["core"] },
+  { "hostname": "cms-backend", "tags": ["core"] },
+  { "hostname": "crud-service", "tags": ["core"] },
+  { "hostname": "microservice-gateway", "tags": ["core"] },
+  { "hostname": "swagger-aggregator", "tags": ["core"] },
+  { "hostname": "v1-adapter", "tags": ["core"], "options": { "prefix": "/api/v2", "port": 8888, "protocol": "https" } },
+  { "hostname": "node-service" },
+  { "hostname": "angular-service" },
+  { "hostname": "react-service" },
+  { "hostname": "java-service" },
+]
 
 ```
 
@@ -125,128 +118,23 @@ Now it's time to create the real service.
 Following the steps to create the services:
 
 1. Open the API Console and choose the project
-2. Click, on the left, on _Services_
-3. Click on the **Create new service** button
-4. As service type, choose _Import_, to import an existing service
-5. Compile the fields as follow:
+2. Click, on the left, on _Microservices_
+3. Click on the **Create a Microservice** button
+4. Search for _doctor service_ and click on the Doctor Service plugin button
+5. Fill the form:
    - **Name**: the name of the service (in the example is **doctor-service**)
-   - **Docker image**: nexus.mia-platform.eu/core/doctor-service:**tag** where _tag_ is the image tag of the service (info on the <a href="https://git.tools.mia-platform.eu/platform/core/doctor-service/blob/master/CHANGELOG.md" target="_blank">CHANGELOG</a>)
    - **Description**: the description of the service
 6. Click on the **Create** button
-7. Go down and check the **I want to write custom k8s files for this service** checkbox ![alt_image](./img/custom_k8s_configs_check.png)
-8. Insert the following _service.yml_
-
-    ```yml
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: doctor-service
-    spec:
-      type: NodePort
-      ports:
-        - port: 80
-          targetPort: 3000
-          protocol: TCP
-          name: http
-      selector:
-        app: doctor-service
-    ```
-
-9. Insert the following _deployment.yml_
-
-    ```yml
-    apiVersion: v1
-    kind: DeploymentConfig
-    metadata:
-      name: doctor-service
-    spec:
-      replicas: 1
-      revisionHistoryLimit: 3
-      strategy:
-        type: Rolling
-      template:
-        metadata:
-          labels:
-            app: doctor-service
-        spec:
-          imagePullSecrets:
-            - name: nexus-pull-secret
-          containers:
-            - name: doctor-service
-              image: nexus.mia-platform.eu/core/doctor-service:{{DOCTOR_SERVICE_IMAGE_TAG}}
-              imagePullPolicy: Always
-              resources:
-                limits:
-                  memory: 120Mi
-                requests:
-                  memory: 70Mi
-              env:
-                - name: LOG_LEVEL
-                  value: {{LOG_LEVEL}}
-                - name: HTTP_PORT
-                  value: '3000'
-                - name: SERVICES_LIST_PATH
-                  value: /home/node/app/config/services.json
-              volumeMounts:
-                - name: doctor-service-config
-                  mountPath: /home/node/app/config/services.json
-                  subPath: services.json
-                  readOnly: true
-              readinessProbe:
-                tcpSocket:
-                  port: 3000
-                initialDelaySeconds: 5
-                periodSeconds: 10
-              livenessProbe:
-                httpGet:
-                  path: /-/healthz
-                  port: 3000
-                initialDelaySeconds: 15
-                periodSeconds: 20
-          volumes:
-            - name: doctor-service-config
-              configMap:
-                name: doctor-service
-    ```
-
-10. Create a new _configurations_ file by using the specific section ![alt_image](./img/create_configurations_file.png)
+7. Scroll down and click on _Add a configuration_
+8. Edit the environment variable *SERVICES_LIST_PATH* and set */home/node/app/config/services.json*
+9. Fill the form:
+   - **Configuration name**: The name of the configuration (e.g. doctor-service-config)
+   - **Runtime Mount Path**: The folder path where will be created the configuration. Set to */home/node/app/config/*
+10. Click on _Add file_, fill Name with *services.json* and click on *Create*
 11. Insert the [previously created](#1-Build-the-configurations-file) _configurations_ file into the just created file
 12. Save (_Commit and generate_ button)
 
-### 3. Configure the advanced configurations
-
-Now the _Doctor Service_ is up, but it's not even usable.
-Following the instructions to configure the files in the _Advanced Section_.
-
-:::warning
-Be care on the advanced section of the API Console
-:::
-
-Open the API Console and click on the _Advanced section_ button
-
-![alt_image](./img/advanced_section.png)
-
-and, after that, edit the following files by adding the doctor service entries:
-
-- **api-gateway/maps-proxyName.before.map**:
-
-    ```map
-    "~^(secreted|unsecreted)-(0|1)-(0|1)-GET-/check-up" "doctor-service";
-    ```
-
-- **api-gateway/maps-proxyUrl.before.map**:
-
-    ```map
-    "~^GET-/check-up(?<path>.*)" "$path";
-    ```
-
-- **api-gateway/maps-groupExpression.before.map**:
-
-    ```map
-    "~^GET-/check-up" "1";
-    ```
-
-### 4. Check-up'em all
+### 3. Check-up'em all
 
 Now the `/check-up` route of the project is ready to be called like this:
 
