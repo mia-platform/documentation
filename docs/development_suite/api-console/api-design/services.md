@@ -111,7 +111,13 @@ In this section, you can manage the resources dedicated to your microservice:
 
 * **CPU Resources**: You have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
 
-* **Log Parser** (*required*): You can select which tool will be used by the platform to parse your microservice logs, currently supported log parser are *pino*, *nginx* and *bunyan*. If you use an unsupported format or do not want to enable log parsing, please select "no parser".
+* **Log Parser** (*required*): You can select which parser will handle your microservice logs. Currently, you can parse log in the following ways:
+    * *mia-json*: it parses json logs based on the documented format
+    * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-platform (website and api-gateway)
+    * *mia-plain*: it collects logs but it does not parse them
+    * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic   
+
+See more about the log parsers on the [guidelines](https://docs.mia-platform.eu/docs/development_suite/monitoring-dashboard/dev_ops_guide/log)  
 
 * **Probes**: Here you can set your microservice probes, which are routes used by Kubernetes cluster to know if the microservice is working (liveness) and ready to receive requests (readiness). These fields are valorized by default. If you leave these fields empty, there will be a tcp socket on the selected microservice port.
 
