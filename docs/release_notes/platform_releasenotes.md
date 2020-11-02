@@ -660,7 +660,7 @@ This version must be used with backend v1.1.0
 
 Added:
 
-We have released the **new documentation portal**, called API Portal, created entirely by Mia-platform.
+We have released the **new documentation portal**, called API Portal, created entirely by Mia-Platform.
 To support the new API Portal, each project must activate the api-portal among its Services.
 To activate, you should set **"api-portal": true** into *enabledServices* object in api-console projects collection into mongo.
 

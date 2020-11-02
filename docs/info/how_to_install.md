@@ -3,7 +3,7 @@ id: how_to_install
 title: How to install DevOps Console
 sidebar_label: How to install
 ---
-Mia s.r.l. is always aware about the installation status of the Mia-platform's suites.
+Mia s.r.l. is always aware about the installation status of the Mia-Platform's suites.
 
 Installation Process has to be managed by Mia s.r.l. or by a system-integrator partner.
 Please find here below the installation process detailed:
