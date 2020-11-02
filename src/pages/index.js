@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
+import Logo from "../components/Logo";
 import Hexagons from "../components/Hexagons";
 import Feature from "../components/Feature";
 import HowToBox from "../components/HowToBox";
@@ -118,6 +119,7 @@ function Home() {
           <header style={styles.header}>
             <div className={clsx("hero hero--primary", styles.heroBanner)}>
               <div className="container">
+                <Logo />
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
               <SearchBar
