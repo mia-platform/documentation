@@ -3,11 +3,11 @@ id: supported_browser
 title: DevOps Console supported browser
 sidebar_label: Supported browser
 ---
-In this page you can find **guidelines about the Browsers supported by Mia Platform**.
+In this page you can find **guidelines about the Browsers supported by Mia-Platform**.
 
 ## Supported Browsers
 
-Use Mia Platform DevOps Console with the latest version of any supported browser:
+Use Mia-Platform DevOps Console with the latest version of any supported browser:
 
 * Chrome
 * Firefox
@@ -19,7 +19,7 @@ Use Mia Platform DevOps Console with the latest version of any supported browser
 
 ## Unsupported Browsers
 
-Mia Platform DevOps Console is not supported by:
+Mia-Platform DevOps Console is not supported by:
 
 * Internet Explorer;
 
@@ -28,5 +28,5 @@ Mia Platform DevOps Console is not supported by:
 * Other deprecated Browsers.
 
 :::info
-Mia Platform suggests you to keep your Browser always updated to the last version released.
+Mia-Platform suggests you to keep your Browser always updated to the last version released.
 :::

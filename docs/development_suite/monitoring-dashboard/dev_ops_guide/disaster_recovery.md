@@ -18,7 +18,7 @@ Disaster Recovery procedures can be divided into three parts:
 In order to successfully complete the Disaster Recovery procedures in case of failures it is essential that:
 
 - all the data of MongoDB are backed up;
-- all the Mia Platform custom configurations are under repository;
+- all the Mia-Platform custom configurations are under repository;
 - the chain of continuous delivery and deployment are active and functioning;
 - you have track of the versions of the docker images installed;
 - update the deployment document with the description of the entire runtime infrastructure;
@@ -37,7 +37,7 @@ The following actions must be carried out periodically:
 In case of problems, the actions to restore the platform are:
 
 - install the reference infrastructure with automatic scripts;
-- install the Mia Platform nodes to the versions that were on the systems in production;
+- install the Mia-Platform nodes to the versions that were on the systems in production;
 - install custom configurations;
 - restore MongoDB backups.
 

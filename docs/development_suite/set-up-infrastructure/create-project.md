@@ -185,7 +185,7 @@ The project archive is interpolated using [mustache.js](https://github.com/janl/
 
 You could create project template to avoid copy/paste in every new project the same base configuration.
 
-At Mia Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a tenant that uses this template, create this type of project will be a very simple process.
+At Mia-Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a tenant that uses this template, create this type of project will be a very simple process.
 
 You can interpolate the template with some project data. With *mustache.js*, we could iterate through an array, so we can have some configuration iterated for all the environments.
 The values you could use during template interpolation are:
@@ -311,7 +311,7 @@ When the production environment is defined for a project a preview of its **Kube
 
 ### Step 4: **Services**
 
-In this step, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia Platform license that you have purchased.
+In this step, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia-Platform license that you have purchased.
 
 ![create-project4](img/create-project4.png)
 
@@ -446,4 +446,4 @@ When loading the DevOps Console Home Page, the project `Frontend Gateway` will b
 
 ### Final Step: **Activate CRUD**
 
-To activate the CRUD for your project, you can contact your Mia Platform's responsible for creating a connection with MongoDB.
+To activate the CRUD for your project, you can contact your Mia-Platform's responsible for creating a connection with MongoDB.

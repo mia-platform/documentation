@@ -7,7 +7,7 @@ sidebar_label: Configure
 
 In this section you can learn how to create and manage Microservices on Mia-Platform DevOps Console.
 
-You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview_marketplace.md) of Mia Platform Docs.
+You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview_marketplace.md) of Mia-Platform Docs.
 
 You can create a Microservice by:
 
@@ -31,7 +31,7 @@ The results of your search will appear **organized by category**.
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-In the [MarketPlace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [MarketPlace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
@@ -129,7 +129,7 @@ In this section, you can manage, add and delete the environment variables associ
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
- You can find more information about environment variables at this [link](https://docs.mia-platform.eu/development_suite/set-up-infrastructure/env-var/) of Mia Platform Docs.
+ You can find more information about environment variables at this [link](https://docs.mia-platform.eu/development_suite/set-up-infrastructure/env-var/) of Mia-Platform Docs.
 
 ### Custom Configuration
 

@@ -19,7 +19,7 @@ With DevOps Console, when you create a CronJob, you are creating Jobs which conf
 
 ## How to create and manage CronJobs through DevOps Console
 
- To manage CronJobs, Mia Platform's DevOps Console offers a specific section, CronJobs, in the Design area:
+ To manage CronJobs, Mia-Platform's DevOps Console offers a specific section, CronJobs, in the Design area:
 
  ![cronjobs-placeholder](img/cronjobs-placeholder.png)
 

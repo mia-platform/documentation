@@ -22,7 +22,7 @@ Thanks to our Console in the SetUp Infrastructure area it's possible to manage y
 
 ## How to differentiate your variable from one environment to another
 
-Mia-platform uses the **prefix** concept to manage the differentiation between variables.
+Mia-Platform uses the **prefix** concept to manage the differentiation between variables.
 
 Each variable is in fact associated with a prefix indicating the environment in which the variable is to be interpolated.
 
