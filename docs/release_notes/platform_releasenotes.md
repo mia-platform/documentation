@@ -144,7 +144,7 @@ Added:
     In the Services area we have introduced the marketplace.
     In this section you can find:
 
-    * Mia-Platformtemplates, or the templates created from your company;
+    * Mia-Platform templates, or the templates created from your company;
     * Example to create Services;
     * Mia-Platform Plugins to implement some Services of Mia's ecosystem Service.
 
