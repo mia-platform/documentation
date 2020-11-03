@@ -23,15 +23,15 @@ You can create a Microservice by:
 
 You can search for Microservices, filtering by Plugins, Templates and/or Examples.
 
-Otherwise, you can search for them by category. 
+Otherwise, you can search for them by category.
 
-The results of your search will appear **organized by category**. 
+The results of your search will appear **organized by category**.
 
 ## How to create a Microservice from an Example or from a Template
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-In the [MarketPlace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [Marketplace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
@@ -59,7 +59,9 @@ Finally to create the Microservice push **create**.
 Once the service is created on your Git provider, you will not be able to delete it anymore from DevOps Console.
 :::
 
-At this [link](https://docs.mia-platform.eu/development_suite/api-console/api-design/custom_microservice_get_started/) you can find a more detailed guide and overview about how to create new service starting from Templates.
+:::info
+At this [link](../../../development_suite/api-console/api-design/custom_microservice_get_started/) you can find a more detailed guide and overview about how to create new service starting from Templates.
+:::
 
 ## How to create a Microservice from a Docker Image
 
@@ -112,10 +114,10 @@ In this section, you can manage the resources dedicated to your microservice:
 * **CPU Resources**: You have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
 
 * **Log Parser** (*required*): You can select which parser will handle your microservice logs. Currently, you can parse log in the following ways:
-    * *mia-json*: it parses json logs based on the documented format
-    * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-platform (website and api-gateway)
-    * *mia-plain*: it collects logs but it does not parse them
-    * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic   
+  * *mia-json*: it parses json logs based on the documented format
+  * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-platform (website and api-gateway)
+  * *mia-plain*: it collects logs but it does not parse them
+  * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
 See more about the log parsers on the [guidelines](https://docs.mia-platform.eu/docs/development_suite/monitoring-dashboard/dev_ops_guide/log)  
 

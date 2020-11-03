@@ -35,12 +35,7 @@ module.exports = {
       },
       items: [
         {
-          to: "docs/overview/mia_platform_overview",
-          label: "Overview",
-          position: "left",
-        },
-        {
-          label: "Docs by product",
+          label: "Core Platform",
           position: "left",
           items: [
             {
@@ -48,26 +43,33 @@ module.exports = {
               to: "docs/development_suite/overview-dev-suite",
             },
             {
-              label: "Microservices Ecosystem",
+              label: "Core Services & Plugins" ,
               to: "docs/runtime_suite/overview-runtime-suite",
             },
             {
-              label: "Fast Data",
-              to: "docs/fast_data/overview",
-            },
-            {
-              label: "Headless CMS",
-              to: "docs/business_suite/overview-business-suite",
+              to: "docs/marketplace/overview_marketplace",
+              label: "Marketplace",
             },
           ],
         },
         {
-          to: "docs/marketplace/overview_marketplace",
-          label: "Marketplace",
+          to: "docs/fast_data/overview",
+          label: "Fast Data",
           position: "left",
         },
         {
-          to: "docs/development_suite/api-console/api-design/plugin_baas_4",
+          to: "docs/business_suite/overview-business-suite",
+          label: "CMS & Analytics",
+          position: "left",
+        },
+        {
+          label:"Release notes",
+          position: "left",
+          to: "docs/release_notes/release_notes",
+
+        },
+        {
+          to: "docs/guidelines/microservice_vademecum",
           label: "Learn",
           position: "left",
         },
@@ -85,6 +87,43 @@ module.exports = {
     footer: {
       style: "dark",
       links: [
+        {
+          title: "Mia-Platform",
+          items: [
+            {
+              label: "Why Mia-Platform?",
+              to: "/docs/overview/mia_platform_overview",
+            },
+            {
+              label: "How to install",
+              to:"/docs/info/how_to_install",
+            },
+            {
+              label: "Bug Policy",
+              to:"/docs/info/bug_policy",
+            },
+            {
+              label: "Supported browser",
+              to:"/docs/info/supported_browser",
+            },
+            {
+              label: "Open Source Software",
+              to:"/docs/info/oss",
+            },
+            {
+              label: "Subprocessor",
+              to:"/docs/info/subprocessor",
+            },
+            {
+              label: "Service Level Agreement",
+              to:"/docs/info/mia_service_level_agreement",
+            },
+            {
+              label: "Audit Process",
+              to:"/docs/info/audit_process"
+            },
+          ],
+        },
         {
           title: "Company",
           items: [

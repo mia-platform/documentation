@@ -1,7 +1,7 @@
 ---
 id: plugin_baas_4
-title:  Microservice in Node.js
-sidebar_label: Microservice in Node.js
+title:  Create a Microservice starting from Node.js template
+sidebar_label: Create Microservices in Node.js
 ---
 In addition to standard components (e.g., CRUD), you can create your own microservices that encapsulate ad-hoc logics that are autonomously developed and integrated. Your microservice receives HTTP requests, its cycle of use and deploy is managed by the platform.  
 
