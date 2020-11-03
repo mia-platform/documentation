@@ -546,7 +546,7 @@ Added:
 
 ![](img/dev-console.png)
 
-Mia-Platformhas released the first version of the Developers Console. The Developers Console is a tool that allows you to manage the entire life cycle of a software product.
+Mia-Platform has released the first version of the Developers Console. The Developers Console is a tool that allows you to manage the entire life cycle of a software product.
 
 **NEW LAUNCHER!!!**
 
