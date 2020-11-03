@@ -828,7 +828,7 @@ We have improved the display of the save area. If you have some changes unsaved 
 
 * If you click on your user, you can view your name, a new Info page and the logout section.
 
-* On the Info page you can view the Mia-Platform version number and the list of all the Mia-Platformcore Services version number that you are using.
+* On the Info page you can view the Mia-Platform version number and the list of all the Mia-Platform core Services version number that you are using.
 
 * In the Project Creation section it is now possible to select which core Mia-PlatformServices to activate.
 We have also given the possibility to change the name of the gitlab project or to create a subgroup.
