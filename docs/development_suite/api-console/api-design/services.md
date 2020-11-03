@@ -31,7 +31,7 @@ The results of your search will appear **organized by category**.
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-In the [Marketplace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [Marketplace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-PlatformPlatform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 

@@ -8,11 +8,11 @@ Mia-Platform is always aware about the installation status of the Mia-Platform's
 Installation Process has to be managed by Mia-Platform or by a system-integrator partner.
 Please find here below the installation process detailed:
 
-* The client agrees with Mia which suite wants to install
+* The client agrees with Mia-Platform which suite wants to install
 
-* Mia prepares the configuration for the installation
+* Mia-Platform prepares the configuration for the installation
 
-* Mia provides an installation key
+* Mia-Platform provides an installation key
 
 * The key is injected in the cluster configuration
 
