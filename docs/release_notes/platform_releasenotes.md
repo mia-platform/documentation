@@ -146,7 +146,7 @@ Added:
 
     * Mia-Platformtemplates, or the templates created from your company;
     * Example to create Services;
-    * Mia-PlatformPlugins to implement some Services of Mia's ecosystem Service.
+    * Mia-Platform Plugins to implement some Services of Mia's ecosystem Service.
 
 2. **Group expressions for the Backoffice APIs**
 
