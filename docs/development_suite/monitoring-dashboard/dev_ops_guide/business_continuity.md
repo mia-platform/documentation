@@ -56,7 +56,7 @@ interior.
 In the case of high reliability applications, the reverse proxy relies on a service registry where all
 services are cataloged.
 
-The platform can be installed both on-premise and on cloud, even from different vendors, even simultaneously.
+The platform can be installed both on-premise and on PaaS, even from different vendors, even simultaneously.
 This ensures that the likelihood of downtime of the service is reduced further.
 
 ## Scheduled events management

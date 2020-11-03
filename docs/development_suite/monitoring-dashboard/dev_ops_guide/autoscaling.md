@@ -3,7 +3,7 @@ id: autoscaling
 title:  Autoscaling of services
 sidebar_label: Autoscaling Pods
 ---
-The autoscaling of the services released on the platform both in cloud and on premise is entrusted to the resource of
+The autoscaling of the services released on the platform both on PaaS and on premise is entrusted to the resource of
 Kubernetes called [Horizontal Pod Autoscaler][hpa].
 This resource uses the metrics collected by Kubernetes itself to evaluate the need for instantiation
 new pods to divide the work up to a maximum set.

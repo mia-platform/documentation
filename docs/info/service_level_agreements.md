@@ -3,13 +3,13 @@ id: mia_service_level_agreement
 title: Mia-Platform Service Level Agreement
 sidebar_label: Service Level Agreement
 ---
-The Mia-Platform Service Level Agreement (**“SLA”**) describes the service availability commitment for the Mia-Platform Cloud Hosting Service under the Terms of Service or Subscription Agreement between Mia-Platform (“Provider”) and its Customer.
+The Mia-Platform Service Level Agreement (**“SLA”**) describes the service availability commitment for the Mia-Platform PaaS Hosting Service under the Terms of Service or Subscription Agreement between Mia-Platform (“Provider”) and its Customer.
 
-During the period of your Mia-Platform Cloud Hosting Services, Mia-Platform will use any commercially reasonable efforts to make the Mia-PlatformCloud Hosting Services available with a Monthly Service Availability (Uptime) as detailed below in the section *Service Levels*.
+During the period of your Mia-Platform PaaS Hosting Services, Mia-Platform will use any commercially reasonable efforts to make the Mia-Platform PaaS Hosting Services available with a Monthly Service Availability (Uptime) as detailed below in the section *Service Levels*.
 
 ## Definitions
 
-* **Service** refers to the cloud hosting service regulated by the relative Agreement between Customer and Supplier, which includes the provision of the Infrastructure and its monitoring, maintenance and assistance;
+* **Service** refers to the PaaS hosting service regulated by the relative Agreement between Customer and Supplier, which includes the provision of the Infrastructure and its monitoring, maintenance and assistance;
 
 * **Monthly Service Time** is the monthly time in which the Service is required to be available. It is calculated monthly as defined in the Subscription Form or in the absence of a definition by multiplying the days of the month by the 24 hours of the day;
 
