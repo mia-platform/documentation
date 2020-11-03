@@ -492,7 +492,7 @@ Add the env variable: `CRUD_LIMIT_CONSTRAINT_ENABLED` to use the v.1.2.0 of the 
 
 **NEW DASHBOARD METRICS**
 
-Mia-Platformhas released the new Metrics dashboard to monitor its applications.
+Mia-Platform has released the new Metrics dashboard to monitor its applications.
 From the new application you will be able to view your configured Kibana dashboards.
 
 ![](img/metrics.png)
