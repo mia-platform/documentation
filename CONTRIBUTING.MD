@@ -94,9 +94,8 @@ The complete ID of the page is:
 
  `<path>+id`
 
-
-
 You can write the pages using:
+
 * [GFM markdown syntax](https://guides.github.com/features/mastering-markdown/), the same syntax used in GitHub
 * The [Docusaurus admonitions](https://v2.docusaurus.io/docs/markdown-features/#calloutsadmonitions) (using these instead of *N.B, Info: , eg.*)
 
@@ -162,9 +161,49 @@ Each link has to be the *final id* of a documentation page.
 
 The links defined in the `a` properties link the main item menu to a single **sidebar menu**. In other words, the user will be redirected to the page and see the sidebar menu where the linked page is contained.
 
-`sidebars.js` define the side menu of current version.
+`sidebars.json` define the side menu of current version:
 
-Each tagged version has own sidebar. You can view and edit them in the `versioned_sidebars/` folder
+```json
+   {
+    "learn":[
+      {
+        "collapsed":false,
+        "type":"category",
+        "label":"Create Services",
+        "items":[
+          {
+            "type":"doc",
+            "id":"development_suite/api-console/api-design/plugin_baas_4"
+          }
+        ]
+      },
+      {
+        "collapsed":false,
+        "type":"category",
+        "label":"Guidelines",
+        "items":[
+          {"type":"doc","id":"dev_ops_guide/git_vademecum"},
+          {"type":"doc","id":"guidelines/rest_api_vademecum"},
+          {"type":"doc","id":"guidelines/microservice_vademecum"},
+          {"type":"doc","id":"guidelines/communication_between_services_mp4"},
+          {"type":"doc","id":"guidelines/docker_vademecum"},
+          {
+            "type":"doc",
+            "id":"development_suite/monitoring-dashboard/dev_ops_guide/business_continuity"
+          },
+          {
+            "type":"doc",
+            "id":"development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery"
+          },
+        ]
+      }
+    ]
+   }
+```
+
+* To add an item linked to  page  you have to add an object with `"type": "doc"` and the property `"id"` valued with the final id of the page.
+
+* To create a sub-element that contains other elements you have to add an object with `"type": "category"` and the property `"label"` valued with the label of the item.
 
 #### Repository deploy rules
 

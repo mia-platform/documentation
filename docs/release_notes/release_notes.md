@@ -1,7 +1,7 @@
 ---
 id: release_notes
 title: Mia-Platform release notes
-sidebar_label: Overview
+sidebar_label: Mia-Platform release notes
 ---
 | Release | Release notes                                       |
 | ------- | --------------------------------------------------- |

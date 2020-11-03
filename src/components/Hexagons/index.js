@@ -89,6 +89,25 @@ function Hexagons() {
         },
       })}
       {renderSvg({
+        fill: "#614f8c",
+        style: {
+          margin: "10px 25% 0 0",
+          width: 16,
+          right: 0,
+
+          animationDelay: randomArbitrary(0, 4) + "s",
+        }
+      })}
+       {renderSvg({
+        fill: "#e06565",
+        style: {
+          margin: "60px 20% 0 0",
+          width: 16,
+          right:0,
+          animationDelay: randomArbitrary(0, 4) + "s",
+        },
+      })}
+      {renderSvg({
         fill: "#e98e56",
         style: {
           margin: "65px 28% 0 0",

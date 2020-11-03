@@ -13,6 +13,10 @@ In this section, we show you how to use the `client-credentials` service.
 
 In the login flow, you should call the `/oauth/token` endpoint with method POST.
 
+:::note
+  There are two main types of authentication methods, which differ by the details emplyed to prove user identity. The _secret basic_ is based on username and password, while the _private key JWT_ requires as input a signed JWT.
+:::
+
 #### Client secret basic
 
 Request must have a body in `x-www-form-urlencoded` containing the `grant_type=client_credentials` and a basic authorization header set as `base64(clientId:clientSecret)`.
@@ -64,10 +68,11 @@ Example response:
 
 Request must have a body in `x-www-form-urlencoded` containing the follow parameters:
 
-* **grant_type** set to `client_credentials`;
-* **client_assertion_type** set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`;
-* **client_assertion** set to the assertion JWT;
-* **client_id** id of the client.
+* **grant_type** set to `client_credentials`
+* **client_assertion_type** set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+* **client_assertion** set to the assertion JWT
+* **client_id** id of the client
+* **token_endpoint_auth_method** select which authentication method is adopted (in this case it should be set to `private_key_jwt`)
 
 The assertion JWT must contains the claims specified by [this spec](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication):
 
