@@ -1,34 +1,4 @@
 {
-    "overview":[
-      {"type":"doc","id":"overview/mia_platform_overview"},
-      {"type":"doc","id":"info/how_to_install"},
-      {"type":"doc","id":"info/bug_policy"},
-      {"type":"doc","id":"info/supported_browser"},
-      {"type":"doc","id":"info/oss"},
-      {"type":"doc","id":"info/subprocessor"},
-      {"type":"doc","id":"info/mia_service_level_agreement"},
-      {"type":"doc","id":"info/audit_process"},
-      {
-        "collapsed":true,
-        "type":"category",
-        "label":"Release notes",
-        "items":[
-          "release_notes/release_notes",
-          {
-            "collapsed":false,
-            "type":"category",
-            "label":"Versions",
-            "items":[
-              {"type":"doc","id":"release_notes/v6.1.0"},
-              {"type":"doc","id":"release_notes/platform_6-0-0_releasenotes"}
-            ]
-          },
-          {"type":"doc","id":"info/version_policy"},
-          {"type":"doc","id":"info/migrate_from_v4_to_v5"},
-          {"type":"doc","id":"release_notes/support-policy"}
-        ]
-      }
-    ],
     "devOpsConsole":[
       {
         "collapsed":true,
@@ -94,14 +64,10 @@
               },
               {
                 "type":"doc",
-                "id":"development_suite/api-console/api-design/custom_microservice_get_started"
-              },
-              {
-                "type":"doc",
                 "id":"development_suite/api-console/api-design/templates_conf"
               }
             ]
-          },
+          }, 
           {
             "type":"doc",
             "id":"development_suite/api-console/api-design/jobs-cronjob"
@@ -207,7 +173,15 @@
         "label":"Templates",
         "items":[
           {"type":"doc","id":"marketplace/templates/mia_templates"},
-          {"type":"doc","id":"marketplace/templates/template_create"}
+          {
+            "collapsed":true,
+            "label":"Use the templates", 
+            "type":"category",
+            "items":[
+              {"type":"doc","id":"development_suite/api-console/api-design/custom_microservice_get_started"},
+              {"type":"doc","id":"development_suite/api-console/api-design/plugin_baas_4"}
+            ]},
+            {"type":"doc","id":"marketplace/templates/template_create"}
         ]
       },
       "marketplace/examples/mia_examples",
@@ -429,17 +403,6 @@
       {
         "collapsed":false,
         "type":"category",
-        "label":"Create Services",
-        "items":[
-          {
-            "type":"doc",
-            "id":"development_suite/api-console/api-design/plugin_baas_4"
-          }
-        ]
-      },
-      {
-        "collapsed":false,
-        "type":"category",
         "label":"Guidelines",
         "items":[
           {"type":"doc","id":"dev_ops_guide/git_vademecum"},
@@ -469,5 +432,20 @@
           }
         ]
       }
+    ],
+    "releaseNotes":[
+      {"type":"doc","id":"release_notes/release_notes"},
+      {
+        "collapsed":false,
+        "type":"category",
+        "label":"Versions",
+        "items":[
+          {"type":"doc","id":"release_notes/v6.1.0"},
+          {"type":"doc","id":"release_notes/platform_6-0-0_releasenotes"}
+        ]
+      },
+      {"type":"doc","id":"info/version_policy"},
+      {"type":"doc","id":"info/migrate_from_v4_to_v5"},
+      {"type":"doc","id":"release_notes/support-policy"}
     ]
   }

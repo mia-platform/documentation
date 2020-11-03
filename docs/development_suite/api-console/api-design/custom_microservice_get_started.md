@@ -1,106 +1,79 @@
 ---
 id: custom_microservice_get_started
-title: Create from Template
-sidebar_label: Create from Template
+title: Create Microservice from Template
+sidebar_label: Create Microservice from Template
 ---
-## Templates overview
-
-The API Console allows the user to create Services from a template;
-it manages the following templates:
-
-* **node-fastify**: a ready-to-use Node.JS template that provides a server for restful Microservice through the Mia-Platform [Custom Plugin](plugin_baas_4#factory-esposta-da-custom-plugin-lib) that take advantage of the <a href="https://www.fastify.io/" target="_blank">Fastify</a> server;
-
-* **java spring-boot**: a ready to use Java & <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a>template that provides a server for restful Microservice through the Mia-Platform [Custom Plugin](./../api-design/plugin_baas_4#factory-esposta-da-custom-plugin-lib);
-
-* **angular 2+**: a ready to use <a href="https://angular.io/" target="_blank">Angular 2+</a> template that provides a basic Angular project, already up and running and ready to be customized.
+Following we will see how to create a Microservice using the [DevOps Console](./../../overview-dev-suite).
 
 :::info
-These templates are all under the voice **CREATE FROM TEMPLATE**:
-![image alt text](img/Service_create_from_template.png)  
-The Microservice types can be different based on the API Console you are working on)
+The following guide is generic, so you can follow it to create any type of Microservice from template.  
+You can read [here](../../../development_suite/api-console/api-design/plugin_baas_4) a dedicated guide about creating from the **Node.js Template**
 :::
-
-## Our first Microservice based on template
-
-Following we will see how to create a Microservice using the [API Console](./../../overview-dev-suite); this guide is generic, so you can follow it to create any type of Microservice from template.
 
 ### 1. Microservice creation
 
-Into the API Console, we have to create our Microservice (__template-service__ from now).
-To do this, follow these steps:
+In the Dev Ops Console, follow these steps:
 
- 1. Click on `Microservices`
- 2. Click on `Create a Microservice`
- 3. Add the Microservice information:
-    * **type**: your favorite Microservice under the __CREATE FROM TEMPLATE__ voice (the Microservice types can be different based on the API Console you are working on)![](img/Service_create_from_template.png)
-    * **name**: the Microservice name
-    * **description**: the Microservice description
-    * **gitlab group path**: the gitlab group where you want to save the Microservice repository
-    * **gitlab repository name**: the gitlab repository name that you want for your Microservice
-    * **docker image name**: the docker image name, you can leave the default one too
-    * look at the result ![image alt text](img/Service_from_template_creation_page.png)
- 4. Create the Microservice
+ 1. Go to `Design section` and click on `Microservices`
+ 1. Click on `Create a Microservice`:  
+   ![new-examples](./img/Marketplace-categories.PNG)
+   You can search for a template, adding `Templates` to types filter. Each template belongs to specific **Category**. You can filter by category using `Filter by categories` filter.
+ 1. Select a Template and add the Microservice information:
+      * **Name of the Microservice** (*required*): this is the internal hostname
+      * **Description** (*optional*): this is the description of your Microservice
+      * **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
+      * **GitLab Repository name**: the gitlab repository name that you want for your Microservice
+      * **Docker image name**: the docker image name, you can leave the default one too
+ 1. Then click on `Create` button
 
 Now you have a customization interface and you can optionally customize some configuration if you want.
 
 :::note
-By default are enabled the standard kubernetes configurations, that provide the default configurations yml, but you can use your custom files by clicking, in the *Advanced configuration* section, the appropriate button:![image alt text](img/api-console-new-service-custom-k8s-conf.png)
+By default are enabled the standard kubernetes configurations, that provide the default configurations yml, but you can use your custom files by enable *Advanced configuration*
 :::
 
-:::warning
-Under the standard customizations you can customize the environment variables (*Environment variable configuration* section); this is an optional operation too, except for the *angular 2+* Microservice, that **REQUIRES** to modify the *HTTP_PORT* variable from 3000 to **8080**, like the image: ![image alt text](img/api-console-new-service-environments.png)
-:::
+In the *Environment variable configuration section* you can customize the environment variables.
 
-:::note
-**NB.** the API Console will show a yellow label now bacause there are unsaved changes
-![image alt text](img/API_console_unsaved_changes.png).  
-**Do not save the changes now**, we will save them later.
-:::
+![Environment variable configuration section](img/api-console-new-service-environments.png)
 
 ### 2. Creating the endpoint
 
-Now we have our Microservice repository __*already deployed__ on the Mia-Platform <a href="https://nexus.mia-platform.eu/" target="_blank">Nexus repository manager</a>, but we need an endpoint to call to access our Microservice.
-
-:::note
-**__already deployed__**: it depends on the project and technologies we are working on, because we have clients that are not using the Gitlab Continuous Integration mechanism too, so we can need some other step to have the first image built after the Microservice and repository creation.
-**e.g.** if we use a jenkins pipeline we can need to configure a webhoook on the just created repository before continue.
-:::
+Now we need an endpoint to call to access our Microservice.
 
 Following the steps for the creation of an endpoint:
 
- 1. Click on endpoint
- 2. Click on Create new endpoint
+ 1. Go to `Design section` and click on `Endpoints`
+ 2. Click on `Create new endpoint`
  3. Insert the endpoint data:
     * **base path**: the endpoint base path
     * **type**: select __Microservice__
-    * **Microservice**: select the Microservice that you just created
+    * **Microservice**: select the Microservice that you have just created
     * **description**: the endpoint description
-    * look at the result ![image alt text](img/Endpoint_custom_microservices_creation.png)
- 4. Click on the create button and your endpoint will be created! ![image alt text](img/Endpoint_custom_microservices_created.png)
+ 4. Click on the `Create` button and your endpoint will be created
 
-### 3. Save the project
+### 3. Deploy the project
 
-Finally it's time to save our modifications, so:
+Finally it's time to save our configuration, so:
 
-1. Click on the save button: ![image alt text](img/commit_and_generate.png)
+1. On the top, click on `Commit & Generate` button
 2. Insert a commit title
-3. Insert a commit message (optional)
+3. Insert a commit message
 
 ### 4. Deploy the project through the API Console
 
-Before deploy the project to have our Microservice _up and running_ we have to wait the end of the pipeline, that will create a _Docker image_ of the Microservice that will be deployed.
+In order to have our Microservice _up and running_ follow these steps:
 
-So, before deploy, navigate on the gitlab repository of the just created Microservice and wait the end of the pipeline; when the pipeline is done you can deploy the project:
+1. Go to `Deploy section` and click on `Endpoints`
+1. Select the environment and the branch to deploy
+1. Click on the `Deploy` button
+1. Wait for the end of the deploy process
 
-1. Login on the API Console
-2. Choose the desired project and branch
-3. Click on the _Deploy_ button ![alt_image](img/api-console-menu.png)
-4. Select the environment and the branch to deploy, then click on the _Deploy_ button ![alt_image](img/api-console-deploy-project.png)
-5. Wait for the end of the deploy process
+Now your Microservice should be _up and running_, you can check it calling the **/-/healthz** route. You should get a response like this:  
+![image alt text](img/healthz_response.png).  
+The `status` property should be *OK*.
 
-Now your Microservice should be _up and running_, you can check it like this:
+:::note
+Check out the [Microservices vademecum](../../../guidelines/microservice_vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for further details.
+:::
 
-* call the **/-/healthz** path if the Microservice uses the Custom Plugin ![image alt text](img/healthz_response.png).
-
-* navigate the created endpoint and see the html page (front-end Services) ![image alt text](img/angular_template_page.png)
-* call the base endpoint should ever work for some different type, if the endpoint is not secreted and is public.
+Trough the [Log & monitoring section](../../monitoring/monitoring.md) you can monitor the status of the related Microservice container
