@@ -14,7 +14,7 @@ This Microservice is configured via a configuration file similar to this:
 
 ```js
 /*
- * Copyright © 2018-present Mia s.r.l.
+ * Copyright © 2018-present Mia-Platform
  * All rights reserved
  */
 
@@ -104,7 +104,7 @@ Please be sure of validate the configuration with the following _jsonschema_ bef
 
 ```js
 /*
- * Copyright © 2018-present Mia s.r.l.
+ * Copyright © 2018-present Mia-Platform
  * All rights reserved
  */
 
