@@ -12,8 +12,6 @@ import {useHistory, useLocation} from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useVersioning from "@theme/hooks/useVersioning";
 
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-
 const determineDocsVersionFromURL = (
   path,
   versionPathRegex
