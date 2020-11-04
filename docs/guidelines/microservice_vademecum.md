@@ -8,26 +8,6 @@ Microservice applications consist of small, scalable and independently controlle
 ## Allowed languages ​​and available templates ##
 
 You can write your own microservice in any language.
-To date are available this template: NodeJS and Java.
-
-## Template of a new project ##
-
-The creation of a new project is facilitated thanks to the availability of some templates that guarantee the correct configuration of the various settings, including:
-
-- Docker configuration (Dockerfile)
-- Jenkins configuration (Jenkinsfile)
-
-### Template NodeJS ###
-
-<https://git.tools.mia-platform.eu/platform/templates/nodejs-custom-plugin>
-
-### Template POJO Java ###
-
-<https://github.com/mia-platform/custom-plugin-java>
-
-### Template Java - SpringBoot ###
-
-<https://github.com/mia-platform/custom-plugin-java-springboot>
 
 # Required basic routes #
 

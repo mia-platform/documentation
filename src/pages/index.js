@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Logo from "../components/Logo";
@@ -104,8 +104,6 @@ function Home() {
   const context = useDocusaurusContext();
   const {siteConfig = {}} = context;
 
-  const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false);
-
   const {title, description, links} = howToBoxProperties;
 
   return (
@@ -123,8 +121,6 @@ function Home() {
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
               <SearchBar
-                handleSearchBarToggle={setIsSearchBarExpanded}
-                isSearchBarExpanded={isSearchBarExpanded}
                 placeholder="Search for terms, commands and more..."
                 searchBarId="search_input_home"
                 searchBarInHome={true}

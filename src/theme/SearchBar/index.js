@@ -141,7 +141,7 @@ const Search = props => {
 };
 
 Search.propTypes= {
-  handleSearchBarToggle:PropTypes.bool,
+  handleSearchBarToggle:PropTypes.func,
   isSearchBarExpanded:PropTypes.bool,
   placeholder:PropTypes.string,
   searchBarInHome:PropTypes.bool,
