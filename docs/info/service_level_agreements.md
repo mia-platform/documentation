@@ -45,7 +45,7 @@ The SLA does not apply to any unavailability of the Mia-Platform PaaS Hosting Se
 
 1. That results from a suspension of the Mia-PlatformCloud Hosting Services licence due to unauthorized or irregular use.
 
-2. That results from a suspension of the Mia-PlatformCloud Hosting Services licence due to payments delay.
+2. That results from a suspension of the Mia-Platform PaaS Hosting Services licence due to payments delay.
 
 3. Due to suspensions, interruptions, delays, problems caused by force majeure problems, and so by events not attributable, neither indirectly, to Mia-Platform (for example: bugs, anomalies, Internet problems)
 
