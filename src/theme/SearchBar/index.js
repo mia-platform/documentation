@@ -12,6 +12,8 @@ import {useHistory, useLocation} from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useVersioning from "@theme/hooks/useVersioning";
 
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+
 const determineDocsVersionFromURL = (
   path,
   versionPathRegex
@@ -102,6 +104,9 @@ const Search = props => {
     [props.isSearchBarExpanded]
   );
 
+  if (ExecutionEnvironment.canUseDOM)
+    loadAlgolia()
+
   return (
     <div
       className={classnames("navbar__search", {
@@ -129,9 +134,7 @@ const Search = props => {
         )}
         id="search_input_react"
         onBlur={toggleSearchIconClick}
-        onClick={loadAlgolia}
         onFocus={toggleSearchIconClick}
-        onMouseOver={loadAlgolia}
         placeholder={props.placeholder || "Search"}
         ref={searchBarRef}
         type="search"
