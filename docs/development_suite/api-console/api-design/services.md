@@ -115,7 +115,7 @@ In this section, you can manage the resources dedicated to your microservice:
 
 * **Log Parser** (*required*): You can select which parser will handle your microservice logs. Currently, you can parse log in the following ways:
   * *mia-json*: it parses json logs based on the documented format
-  * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-platform (website and api-gateway)
+  * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-Platform (website and api-gateway)
   * *mia-plain*: it collects logs but it does not parse them
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 

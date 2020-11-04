@@ -9,7 +9,7 @@ sidebar_label: Configuration
 * **CRUD_URL** (*required*): the crud url, comprehensive of the files collection name
 * **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location
 * **PATH_PREFIX**: Use a relative path as file location prefix. Incompatible with *PROJECT_HOSTNAME*
-* **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the mia headers)
+* **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the Mia-Platform headers)
 * **TRUSTED_PROXIES** (*required*): the string containing the trusted proxies values
 * **ADDITIONAL_FUNCTION_CASTER_FILE_PATH**: the path of the file that exports the function to cast.
 * **GOOGLE_APPLICATION_CREDENTIALS**: the path to access to the google storage credentials. This is *required* for GoogleStorage type.

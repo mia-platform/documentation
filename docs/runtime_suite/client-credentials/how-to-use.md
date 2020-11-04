@@ -129,7 +129,7 @@ It is important to emphasize that, as stated by [RFC7517](https://tools.ietf.org
 
 ### /tokeninfo
 
-Calling this endpoint passing a valid mia JWT, it returns 200 with the claims in an object.
+Calling this endpoint passing a valid Mia-Platform JWT, it returns 200 with the claims in an object.
 Here it is checked the validity of the JWT, if it is not passed or it is not valid this endpoint returns 401.
 If in the JWT is present an audience, it will be checked with the audience passed in `ACCEPTED_AUDIENCES` env variable.
 

@@ -16,7 +16,7 @@ An endpoint can be of different types:
 * **Microservice**: hook your endpoint to a service with logics entirely created by you.
 * **External proxy**: hook your endpoint to a proxy linked to a service outside of your cluster.
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
-* **Mia-Platform BaaS** _Deprecated_: hook your endpoint to some specific mia-platform services.
+* **Mia-Platform BaaS** _Deprecated_: hook your endpoint to some specific Mia-Platform services.
 
 :::warning
 The type is selectable only during the creation phase. You can't change later.

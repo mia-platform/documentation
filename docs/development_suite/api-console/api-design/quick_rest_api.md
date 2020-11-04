@@ -67,7 +67,7 @@ To create an endpoint:
 
         * *CRUD*: hook your endpoint directly to one of your CRUD.
         * *Microservice*: hook your endpoint to a service with logics entirely created by you.
-        * *Mia-Platform BaaS*: hook your endpoint to some specific mia-platform services.
+        * *Mia-Platform BaaS*: hook your endpoint to some specific Mia-Platform services.
         * *External proxy*: hook your endpoint to a proxy linked to a service outside of your cluster.
         * *Cross Projects proxy*:  hook your endpoint to a proxy linked to another project contained in your cluster.
 
