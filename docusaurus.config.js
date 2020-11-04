@@ -39,6 +39,10 @@ module.exports = {
           position: "left",
           items: [
             {
+              label: "Overview",
+              to: "/docs/overview/mia_platform_overview",
+            },
+            {
               label: "DevOps Console",
               to: "docs/development_suite/overview-dev-suite",
             },
@@ -90,10 +94,6 @@ module.exports = {
         {
           title: "Mia-Platform",
           items: [
-            {
-              label: "Why Mia-Platform?",
-              to: "/docs/overview/mia_platform_overview",
-            },
             {
               label: "How to install",
               to:"/docs/info/how_to_install",
