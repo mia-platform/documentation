@@ -144,9 +144,9 @@ Added:
     In the Services area we have introduced the marketplace.
     In this section you can find:
 
-    * Mia templates, or the templates created from your company;
+    * Mia-Platform templates, or the templates created from your company;
     * Example to create Services;
-    * Mia Plugins to implement some Services of Mia's ecosystem Service.
+    * Mia-Platform Plugins to implement some Services of Mia's ecosystem Service.
 
 2. **Group expressions for the Backoffice APIs**
 
@@ -492,7 +492,7 @@ Add the env variable: `CRUD_LIMIT_CONSTRAINT_ENABLED` to use the v.1.2.0 of the 
 
 **NEW DASHBOARD METRICS**
 
-Mia has released the new Metrics dashboard to monitor its applications.
+Mia-Platform has released the new Metrics dashboard to monitor its applications.
 From the new application you will be able to view your configured Kibana dashboards.
 
 ![](img/metrics.png)
@@ -546,7 +546,7 @@ Added:
 
 ![](img/dev-console.png)
 
-Mia has released the first version of the Developers Console. The Developers Console is a tool that allows you to manage the entire life cycle of a software product.
+Mia-Platform has released the first version of the Developers Console. The Developers Console is a tool that allows you to manage the entire life cycle of a software product.
 
 **NEW LAUNCHER!!!**
 
@@ -660,7 +660,7 @@ This version must be used with backend v1.1.0
 
 Added:
 
-We have released the **new documentation portal**, called API Portal, created entirely by Mia-platform.
+We have released the **new documentation portal**, called API Portal, created entirely by Mia-Platform.
 To support the new API Portal, each project must activate the api-portal among its Services.
 To activate, you should set **"api-portal": true** into *enabledServices* object in api-console projects collection into mongo.
 
@@ -828,9 +828,9 @@ We have improved the display of the save area. If you have some changes unsaved 
 
 * If you click on your user, you can view your name, a new Info page and the logout section.
 
-* On the Info page you can view the Mia-Platform version number and the list of all the Mia core Services version number that you are using.
+* On the Info page you can view the Mia-Platform version number and the list of all the Mia-Platform core Services version number that you are using.
 
-* In the Project Creation section it is now possible to select which core Mia Services to activate.
+* In the Project Creation section it is now possible to select which core Mia-Platform Services to activate.
 We have also given the possibility to change the name of the gitlab project or to create a subgroup.
 
 * In the Secret Section we have added the possibility to create random secret and copying them into your table.
@@ -853,10 +853,10 @@ Fix:
 
 **RUNTIME SUITE**
 
-* Mia has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js Service on Mia-Platform.
+* Mia-Platform has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js Service on Mia-Platform.
 With this lanucher all the Node.js Service will expose two fixed routes for heltinessProbe and for readinessProbe. In addiction is integrated the fastify-swagger module for exposing the Service documentation.
 This Service has been imported in: ACL Service, CMS Backend, Swagger Aggregator, CRUD Service, Session Manager and Mail Service.
-Soon will be implemented in all the Mia Services.
+Soon will be implemented in all the Mia-Platform Services.
 
 * Swagger Aggregator v1.0.2: Swagger is now available with Service down. The Service down wiil not be shown.
 

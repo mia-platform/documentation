@@ -5,8 +5,8 @@ sidebar_label: Audit Process
 ---
 ## Audit Introduction
 
-Mia srl reserves the right to audit the Client's environments in order to inspect that any usage of Mia-Platform product is licensed.  
-Audit is necessary when the license is hosted on Cloud or On Premise by the client.
+Mia-Platform reserves the right to audit the Client's environments in order to inspect that any usage of Mia-Platform product is licensed.  
+Audit is necessary when the license is hosted on PaaS or On Premise by the client.
 
 In particular, but not limited to, MIA srl shall inspect:
 
@@ -31,7 +31,7 @@ Mia-Platform would need the following information for the audit:
 
 * History of the cluster configurations, starting from the last audit/installation. For this the Clients can choose between the two following options:
   1. Enabling AWS Config Service on the Kubernetes clusters: <https://aws.amazon.com/config/>;
-  2. Providing Mia-platform with a logging service where we can log periodically the sizing of the license.
+  2. Providing Mia-Platform with a logging service where we can log periodically the sizing of the license.
 
 ## Process
 

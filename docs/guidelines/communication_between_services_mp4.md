@@ -33,7 +33,7 @@ There are two possibilities for reaching services in general:
 - via `microservice-gateway`
 - direct
 
-In any case, it is very important to remember to carry on the Mia headers that contain the user id, its groups etc, so that even the invoked service has access to this information!
+In any case, it is very important to remember to carry on the Mia-Platform headers that contain the user id, its groups etc, so that even the invoked service has access to this information!
 
 To facilitate communication between the services, a [library in node has been written](../development_suite/api-console/api-design/plugin_baas_4.md), it is still possible to call the services directly through http if other technologies are used.
 

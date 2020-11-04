@@ -17,7 +17,7 @@ In these cases the Disaster Recovery plan starts working.
 
 ## Business Continuity Plan
 
-The factors that can affect the business continuity of Mia Platform can be:
+The factors that can affect the business continuity of Mia-Platform can be:
 
 - planned:
   - platform updates;
@@ -37,7 +37,7 @@ take over the disaster recovery plan
 
 ## Factors that allow Business Continuity
 
-Mia Platform has a stateless microservice architecture. This means that every microservice of the platform is:
+Mia-Platform has a stateless microservice architecture. This means that every microservice of the platform is:
 
 - redundant;
 - scalable;
@@ -56,14 +56,14 @@ interior.
 In the case of high reliability applications, the reverse proxy relies on a service registry where all
 services are cataloged.
 
-The platform can be installed both on-premise and on cloud, even from different vendors, even simultaneously.
+The platform can be installed both on-premise and on PaaS, even from different vendors, even simultaneously.
 This ensures that the likelihood of downtime of the service is reduced further.
 
 ## Scheduled events management
 
 ### Mia-Platform
 
-The following are the actions to guarantee business continuity in the case of events planned for Mia Platform:
+The following are the actions to guarantee business continuity in the case of events planned for Mia-Platform:
 
 - before starting a planned event verify that:
   - backups are up to date;
@@ -94,7 +94,7 @@ Mitigation actions follow for each unplanned event
 
 ### Down the infrastructure or natural disaster
 
-To avoid the interruption of service of Mia Platform in case of infrastructure problems it is necessary to redundant
+To avoid the interruption of service of Mia-Platform in case of infrastructure problems it is necessary to redundant
 all platform services on different infrastructures.
 
 This can be done by decoupling the physical and virtual infrastructure from the orchestrator.
@@ -107,7 +107,7 @@ to implement this configuration.
 In the case of DOS or DDOS, the guarantee of service continuity is offered by:
 
 - autoscaling of nodes to absorb excess traffic
-- HTTP / HTTPS filters placed upstream of Mia Platform that block IPs that carry out too many identical and frequent requests
+- HTTP / HTTPS filters placed upstream of Mia-Platform that block IPs that carry out too many identical and frequent requests
 - drop the excess connections so as not to let other users access until users with ongoing calls have finished their call
 
 ### Urgent hotfix release

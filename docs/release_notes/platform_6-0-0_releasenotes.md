@@ -7,7 +7,7 @@ sidebar_label: v6.0.0
 _September 16, 2020_
 
 :::info
-The sixth version of the Mia Platform Console has now been released!  Let's cut the chitchat and get down to business: scroll down to learn more about new features and improvements!
+The sixth version of the Mia-Platform Console has now been released!  Let's cut the chitchat and get down to business: scroll down to learn more about new features and improvements!
 :::
 
 ## New features
