@@ -830,7 +830,7 @@ We have improved the display of the save area. If you have some changes unsaved 
 
 * On the Info page you can view the Mia-Platform version number and the list of all the Mia-Platform core Services version number that you are using.
 
-* In the Project Creation section it is now possible to select which core Mia-PlatformServices to activate.
+* In the Project Creation section it is now possible to select which core Mia-Platform Services to activate.
 We have also given the possibility to change the name of the gitlab project or to create a subgroup.
 
 * In the Secret Section we have added the possibility to create random secret and copying them into your table.
