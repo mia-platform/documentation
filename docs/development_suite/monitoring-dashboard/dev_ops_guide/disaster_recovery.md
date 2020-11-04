@@ -37,7 +37,7 @@ The following actions must be carried out periodically:
 In case of problems, the actions to restore the platform are:
 
 - install the reference infrastructure with automatic scripts
-- install the Mia-Platform nodes to the versions that were on the systems in production;
+- install the Mia-Platform nodes to the versions that were on the systems in production
 - install custom configurations;
 - restore MongoDB backups.
 
