@@ -104,9 +104,6 @@ const Search = props => {
     [props.isSearchBarExpanded]
   );
 
-  if (ExecutionEnvironment.canUseDOM)
-    loadAlgolia()
-
   return (
     <div
       className={classnames("navbar__search", {
@@ -134,7 +131,9 @@ const Search = props => {
         )}
         id="search_input_react"
         onBlur={toggleSearchIconClick}
+        onClick={loadAlgolia}
         onFocus={toggleSearchIconClick}
+        onMouseOver={loadAlgolia}
         placeholder={props.placeholder || "Search"}
         ref={searchBarRef}
         type="search"
