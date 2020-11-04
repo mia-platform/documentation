@@ -853,7 +853,7 @@ Fix:
 
 **RUNTIME SUITE**
 
-* Mia-Platformhas developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js Service on Mia-Platform.
+* Mia-Platform has developed: [lc39](https://github.com/mia-platform/lc39), a Command line utility that will launch a Fastify instance configured for serving a Node.js Service on Mia-Platform.
 With this lanucher all the Node.js Service will expose two fixed routes for heltinessProbe and for readinessProbe. In addiction is integrated the fastify-swagger module for exposing the Service documentation.
 This Service has been imported in: ACL Service, CMS Backend, Swagger Aggregator, CRUD Service, Session Manager and Mail Service.
 Soon will be implemented in all the Mia-PlatformServices.
