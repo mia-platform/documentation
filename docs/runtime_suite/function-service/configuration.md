@@ -129,7 +129,7 @@ To add a new endpoint to the function service, click on _Add file_, call it as y
 - **path**: Endpoint path _(e.g. /hello-world)_
 - **name**: Friendly name for this function.
 - **handler**: The function executed when the endpoint is reached.
-- **schema**: JSON schema for the request and reply.
+- **schema**: JSON schema for the request and reply. The format is the one accepted by [Fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization).
 
 Libraries already included as dependencies:
 
