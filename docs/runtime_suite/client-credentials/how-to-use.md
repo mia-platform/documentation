@@ -27,26 +27,30 @@ The client expected response is in `application/json` and contains:
 * **expires_in**: how many seconds the token is valid;
 * **token_type**: type of the token. It is `Bearer`.
 
-If the clientId and clientSecret pair not exists on db, it is returned 401 with specific error.
+In case the `clientId` and `clientSecret` pair does not exist on the database, it is returned an unauthorized error (HTTP code 401) with a brief explanation.
 
-The access token is created with:
+The returned **access token** is structured as follows:
 
-In the header, it contains the `kid` field to address the correct signature key to verify the token.
-A token without the `kid` field is invalid.
+- the **header** contains, besides the *algorithm* adopted to generate the token and the token *type*, the `kid` field to address the correct signature key used in the token verification procedure.
 
-In the payload, the claims used are:
+  :::caution
+  A token without the `kid` field is considered invalid.
+  :::
 
-* **iss**: the issuer of the token. Passed from env variable `ISSUER_CLAIMS`;
-* **sub**: the subject requesting the token. It is set to the `clientId`;
-* **exp**: the expiration unix timestamp in second of the token;
-* **iat**: the time at which the JWT was issued;
-* **permissions**: array of the permissions of the client which has issued the token;
-* **jti**: the id of the JWT;
-* **aud**: the audiences of the JWT.
+- the **payload** containinig the following claims:
+
+    * **iss**: the issuer of the token. Passed from env variable `ISSUER_CLAIMS`;
+    * **sub**: the subject requesting the token. It is set to the `clientId`;
+    * **exp**: the expiration unix timestamp in second of the token;
+    * **iat**: the time at which the JWT was issued;
+    * **permissions**: array of the permissions of the client which has issued the token;
+    * **jti**: the id of the JWT;
+    * **aud**: the audiences of the JWT.
+- its signature
 
 Example CURL request:
 
-```sh
+```shell
 curl --location \
     --request POST 'http://client-credentials/oauth/token' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -70,19 +74,62 @@ Request must have a body in `x-www-form-urlencoded` containing the follow parame
 
 * **grant_type** set to `client_credentials`
 * **client_assertion_type** set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-* **client_assertion** set to the assertion JWT
+* **client_assertion** set to the *assertion JWT*
 * **client_id** id of the client
 * **token_endpoint_auth_method** select which authentication method is adopted (in this case it should be set to `private_key_jwt`)
 
-The assertion JWT must contains the claims specified by [this spec](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication):
+The *assertion JWT* must contain:
+- in the header the `kid` field, whose value has been defined during the registration phase
+- in the payload the claims specified by [this spec](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication):
 
-* **iss** (*issuer*): client_id of the oauth client;
-* **sub** (*subject*): client_id of the oauth client;
-* **aud** (*audience*): the issuer given to client credential;
-* **jti** (*jwt id*): a unique identifier of the token. The token must be used only once;
-* **exp** (*expiration time*): expiration time of the token, in unix timestamp;
-* **iat** (*issued at*): time at which the token is issued;
-* **requested_audiences**: an array of the requested audience.
+  * **iss** (*issuer*): client_id of the oauth client;
+  * **sub** (*subject*): client_id of the oauth client;
+  * **aud** (*audience*): the issuer given to client credential;
+  * **jti** (*jwt id*): a unique identifier of the token. The token must be used only once;
+  * **exp** (*expiration time*): expiration time of the token, in unix timestamp;
+  * **iat** (*issued at*): time at which the token is issued;
+  * **requested_audiences**: an array of the requested audience.
+
+:::caution
+In case the *assertion JWT* does not contain all the detailed fields, it is considered invalid and the authentication is rejected with a forbidden error (code 403 HTTP)
+:::
+
+Below is provided an example of *assertion JWT* components:
+
+Header:
+```json
+{
+  "alg": "RS256",
+  "kid": "kid-1",
+  "typ": "JWT"
+}
+```
+
+Payload:
+```json
+{
+  "iss": "<client-id>",
+  "sub": "<client-id>",
+  "aud": "test-issuer",
+  "jti": "0cda23a7b55ef6fa8afd01cbd1c7c70e",
+  "iat": "1604573964",
+  "exp": "1604577564",
+  "requested_audiences": [ "audience-1" ]
+}
+```
+
+Example of CURL request:
+
+```shell
+curl --location \
+  --request POST 'http://client-credentials/oauth/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'grant_type=client_credentials' \
+  --data-urlencode 'client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer' \
+  --data-urlencode 'client_assertion=<assertion-JWT>' \
+  --data-urlencode 'client_id=<client-id>' \
+  --data-urlencode 'token_endpoint_auth_method=private_key_jwt'
+```
 
 
 ### /.well-known/jwks.json
@@ -102,7 +149,7 @@ The JWK contains:
 
 Example CURL request:
 
-```curl
+```shell
 curl 'http://localhost:8080/.well-known/jwks.json'
 ```
 
@@ -135,7 +182,7 @@ If in the JWT is present an audience, it will be checked with the audience passe
 
 Example CURL request:
 
-```sh
+```shell
 curl --location --request POST 'http://client-credential-host/oauth/token' \
 --header 'Authorization: Basic base64(client_id:client_secret)' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -198,7 +245,7 @@ For this auth method, it is created a client. The *client* information are acces
 
 It returns 201 when client is correctly generated, 401 otherwise.
 
-```sh
+```shell
 curl --location --request POST 'http://client-credential-host/register' \
   --header 'Content-Type: application/json' \
   --data-raw '{
@@ -228,7 +275,9 @@ Example response:
 You can use [this guide](./jwt-private-public-key-generation.md) to generate JWT public and private key suitable for this operation.
 :::
 
-## The supported auth flow are
+## Supported Authentication Flow
+
+Below are reported the authentication flows that are supported by Client Credentials service. The flows are sequence diagrams descriptions and they can be visualized using an external tool, such as the one provided at [sequencediagram.org](https://sequencediagram.org).
 
 ### Login flow
 
