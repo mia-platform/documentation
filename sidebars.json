@@ -15,7 +15,7 @@
       {
         "collapsed":true,
         "type":"category",
-        "label":"Setup infrastructure",
+        "label":"Set up infrastructure",
         "items":[
           {
             "type":"doc",
