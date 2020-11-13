@@ -43,4 +43,4 @@ From today you can consult a new and improved version of the product documentati
 
 ## How to update your DevOps Console
 
-For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.12`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 2.2.12`.

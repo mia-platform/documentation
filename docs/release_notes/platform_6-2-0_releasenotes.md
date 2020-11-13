@@ -8,7 +8,7 @@ sidebar_label: v6.2.x
 
 _November 12,2020_  
 
-### Bug fix 
+### Bug fix
 
 #### CRUD  
 
@@ -16,7 +16,7 @@ The elimination of a field once it had been modified with the lateral drawer was
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `3.0.7`. 
+For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 3.0.7`.
 
 ## v6.2.0
 
@@ -24,7 +24,7 @@ _November 11,2020_
 
 ### New Features
 
-#### Files service now supports S3 compatible storages 
+#### Files service now supports S3 compatible storages
 
 The files service **v2.1.0** supports S3 compatible storage. In this [doc](../runtime_suite/files-service/configuration.md) the Oracle Object Storage is described as example.
 
@@ -39,11 +39,12 @@ The feature is not yet integrated with the Console, in order to take advantage o
 Resources that have been manually deployed, without MLP, will not be removed from cluster.
 
 #### New version of CMS
+
 The v9.12.2 of CMS is now available, this version brings the following features:
 
 - It is now possible to apply a new filter operator to check for empty values.
 
-- Italian internationalization has been brought to collection filters. 
+- Italian internationalization has been brought to collection filters.
 
 - When exporting data to file, it is now possible to perform the resolution of data references from other tables. The feature is enabled by default, but it is still possible to export data as they are stored in the database using the option "export data as they are on the database".
 
@@ -69,7 +70,7 @@ Fixed a bug affecting the CMS that was preventing the use of the default status 
 
 #### Microservice Gateway logging redaction
 
-The microservice gateway service logs have been improved to prevent logging sensitive information. The original request body has been 
+The microservice gateway service logs have been improved to prevent logging sensitive information. The original request body has been
 removed from debugging log and is now available only in trace. We strongly recommend not to enable trace log level in production.
 
 #### Console deploy website
@@ -80,7 +81,7 @@ The performances of Deploy website have been increased. Now the project to downl
 
 #### lc39
 
-lc39 has been added to the Console Backend. Now it exposes the swagger schemas and status routes.   
+lc39 has been added to the Console Backend. Now it exposes the swagger schemas and status routes.
 
 ### Core services
 
@@ -96,5 +97,4 @@ All core and plugin services have been tested with success for Mongo 4.4 and Red
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, you have to use the [Helm chart](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `3.0.6`.
-
+For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 3.0.6`.
