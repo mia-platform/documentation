@@ -102,7 +102,7 @@ The UI of the microservice repository clone action has been revised.
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 3.0.5`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.5`.
 
 ## v6.1.1
 
@@ -138,7 +138,7 @@ The API Portal’s editor did not allow to re-open a collapsed patch property. T
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 2.4.8`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 2.4.8`.
 
 ## v6.1.0
 
@@ -219,7 +219,7 @@ Checkout [Mia Service .Net Library](https://github.com/mia-platform/Mia-service-
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 2.4.5`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 2.4.5`.
 
 :::note
 The following _Feature Toggles_ have been removed:
