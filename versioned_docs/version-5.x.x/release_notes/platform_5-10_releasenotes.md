@@ -22,7 +22,7 @@ You can now save your advanced files correctly.
 
 In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
 
-For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.12`.
+For on-premise Console installations, you have to contact your Mia Platform referent to use the `Helm chart version 2.2.12`.
 
 ## v5.10.4 (10 September ,2020)
 
@@ -85,7 +85,7 @@ Fixed the bug that caused the CMS to send empty objects and arrays instead of no
 
 In order to take advantage of new CMS feature and fix you have to update your custom CMS to v9.10.0.
 
-For on-premise Console installations, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart) version `2.2.11`.
+For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 2.2.11`.
 
 ## v5.10.3 (August 07,2020)
 
@@ -119,7 +119,7 @@ In the Api Portal documentation you can now take advantage of self-generated exa
 
 ### How to update your DevOps Console
 
-In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.5
+For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 2.2.5`.
 
 From this version a new chart option has been added: `enableTelemetry` to enable Google Tag Manager installation and tracking via Google Analytics to collect information about console usage.By default it is disabled, if you want to turn it on you have to correctly configure the `enableTelemetry` option among the values of the chart helm.
 
@@ -145,7 +145,7 @@ From this version a new chart option has been added: `enableTelemetry` to enable
 
 ### How to update your DevOps Console
 
-In case of on-premise Console, to use these features, you have to use the [Helm chart version](https://git.tools.mia-platform.eu/platform/devops/console-helm-chart): 2.2.2
+For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 2.2.2`.
 
 ## v5.10.1 (July 16,2020)
 
