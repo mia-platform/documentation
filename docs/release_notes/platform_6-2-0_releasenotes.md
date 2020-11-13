@@ -16,7 +16,7 @@ The elimination of a field once it had been modified with the lateral drawer was
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 3.0.7`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.7`.
 
 ## v6.2.0
 
@@ -97,4 +97,4 @@ All core and plugin services have been tested with success for Mongo 4.4 and Red
 
 ### How to update your DevOps Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know to use the `Helm chart version 3.0.6`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.6`.
