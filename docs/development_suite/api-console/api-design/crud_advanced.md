@@ -30,7 +30,6 @@ You can add the fields you need and select the appropriate properties:
 * **name** (we recommend using `camelCase` naming convention); in our case we will insert "title", "author", "year", "new", etc.
 * **type**: *string* if it is a classic text string; *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be `true` or `false`; *Geopoint* if you want to save a specific place coordinates; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
 * If you select **required** the property is mandatory.
-* If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
 * If you select **nullable** you can make the value *null*.
 * In the **description** field you can enter a short optional description.
 
@@ -77,7 +76,6 @@ Remember that the file must be a JSON with the following directions:
   * `Array_number`
   * `Array_RawObject`
 * `required` must be `false` or `true`
-* `crypted` must be `false` or `true`
 * `nullable` must be `false` or `true`
 
 Here's an example of the file to upload.
@@ -88,7 +86,6 @@ Here's an example of the file to upload.
   "type": "Date",
   "required": true,
   "nullable": false,
-  "crypted": false,
   "description": "updatedAt"
 },
 {
@@ -96,56 +93,48 @@ Here's an example of the file to upload.
   "type": "string",
   "required": true,
   "nullable": false,
-  "crypted": false,
   "description": "__STATE__"
 },
 {
   "name": "PublicationDate",
   "type": "number",
   "required": true,
-  "crypted": false,
   "nullable": true
 },
 {
   "name": "new",
   "type": "boolean",
   "required": true,
-  "crypted": false,
   "nullable": false
 },
 {
   "name": "location",
   "type": "GeoPoint",
   "required": false,
-  "crypted": false,
   "nullable": false
 },
 {
   "name": "Writer",
   "type": "RawObject",
   "required": false,
-  "crypted": true,
   "nullable": false
 },
 {
   "name": "editors",
   "type": "Array_string",
   "required": false,
-  "crypted": false,
   "nullable": true
 },
 {
   "name": "editions",
   "type": "Array_number",
   "required": false,
-  "crypted": false,
   "nullable": false
 },
 {
   "name":"shops",
   "type":"Array_RawObject",
   "required":true,
-  "crypted":false,
   "nullable":true,
   "description":"where to find the books"
 }
