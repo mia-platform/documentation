@@ -4,9 +4,9 @@ title: Create Endpoints
 sidebar_label: Create Endpoints
 ---
 
-# What is an endpoint
+## What is an endpoint
 
-An endpoints allow you to expose your CRUD, services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](quick_rest_api.md).
+An endpoint allows you to expose your CRUD, Services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](quick_rest_api.md).  
 
 This page will delve into the endpoint types and configuration.
 
@@ -31,19 +31,19 @@ All endpoint types share the following properties:
 
 ## Specific endpoint properties
 
-### CRUD
+## CRUD
 
 Upon creation of CRUD type endpoints you will be able to choose any _CRUD Base Path_ from the routes that have been configured in the CRUD section.
 
 You can find more info about how to create an internal endpoint in the [CRUD documentation](crud_advanced.md)
 
-### Microservice, External Proxy and Cross Project Proxy
+## Microservice, External Proxy and Cross Project Proxy
 
 These endpoint types all share the microservice property that allows you to link the endpoint to a specific microservice (or proxy) configured in your project.
 
 After you created an endpoint linked to a microservice you'll be able to edit the _Rewrite Base Path_ this path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
 
-#### About Rewrite Base Path
+## About Rewrite Base Path
 
 The developer can decide which basepath is associated to an endpoint by applying an internal rewrite url.
 
@@ -57,17 +57,64 @@ From this section, you can configure his own custom rewrite and, if necessary, v
 For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal Rewrite is / by default.
 :::
 
-#### Manage the security of your endpoints
+## Manage the security of your endpoints
 
 In the Management section, you can manage the security and the permissions at the endpoint level.
 
 You can configure permissions and security settings of the endpoint.
-If the route is **public**, you do not need to be logged in to be able to call it. If it is not public and is called by an unregistered user, it returns 401.
-If it is **secreted** to be able to call it you need to set the Secret header with the correct value (you can see the secret in the homonymous screen)
 
-**Groups of users that can access them**: It is a logical expression to determine which groups have permission to call a given route. It can also be set to 0 (none) or to 1 (all). If the expression is true, then the user can access the route.
+The security can be managed at three levels:
+
+1. The `Public` flag enabled allows to call endpoint **without the need to be logged in**. If it's disabled and the endpoint is invoked by an **unregistered user**, the request will receive an Unauthorized error.
+1. The `Only with an API Key` flag configures the endpoint to require setting the `secret`/`client_secret` header with a valid **API Key**. To further detail check out the dedicated section.
+1. `User Group Permission` allows defining a logical expression for authorizing or not the call. If the expression validates to **true**, then the user can access the route. You can use the following properties:
+   * `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the only selected clients, identified by the API Key passed in the `secret` or `client_secret` headers.  
+    E.g:
+
+      ```js
+        clientType=="apiKey" || clientType=="apiKey2"
+      ```
+
+    :::info
+    If you have entered a Client Type the endpoint will be secured by API Key even if the `Only with an API Key` flag is disabled
+    :::
+
+   * `groups.<group name>` or `<group name> in groups` to check the **group of logged user**. So you can limit the access to specified groups.
+    E.g:
+
+    ```js
+    // Limit access only to users in "admin" group
+    groups.admin
+    ```
+
+    ```js
+    // Limit access only to users in "admin" or "user" group
+    ["admin", "user"] in groups
+    ```
+
+    * `permissions.<permission name>` or `<permission name> in permissions` for limit the access to entities (being user or other clients) having the specified permissions.
+     E.g:
+
+    ```js
+    // Limit access only to users which have "write:orders" permission
+    permissions["write:orders"]
+    ```
+
+    ```js
+    // Limit access only to users which have "write:orders" or "view:orders" permission
+    ["write:orders","view:orders"] in groups
+    ```
+
+The group expression can also be set to `0` (**none**) or to `1` (**all**). You can combine different expressions using logical operators `&&` (and) and `||` (or).
+
+If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
+Enable the flag `inherited` to use the displayed default expression or disable the flag to change it. However, you can't remove the checks on [isBackoffice](../../../runtime_suite/session-manager.md) property that ensures the expression will be considered only for calls will come from CMS.
 
 ![endpoint_security](img/qs-configure-endpoint-api-key.png)
+
+:::tip
+If you figure out that there's some problem in how you configured the security of your endpoints, go to [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of [Authorization Service](../../../runtime_suite/authorization-service/how_to_use.md). Here you can see the logs about authorization operations, included eventually group expression errors.
+:::
 
 ## Transition through Microservice Gateway
 
@@ -85,18 +132,18 @@ The Microservice Gateway service performs some checks on the content-type header
 
 * **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
 
-:::Warning
+:::warning
 If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
 :::
 
-#### Routes
+## Routes
 
 In this section you can view all the path that can be called of a CRUD endpoint. By selecting the different verbs in the management section it is possible to further detail on who has the permissions to do certain actions.
 
 If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific rules related to this route.
 
-:::example
+:::tip
 For example, we can set that the `DELETE/` can only be reserved for a specific group of users (admin).
-We must therefore choose not to inherit global settings. Then we de-select inherited and in the input we write: groups.admin
+We must therefore choose not to inherit global settings. Then we de-select inherited and in the input we write: groups.admin.
 ![route example](img/example-endpoints.png)
 :::
