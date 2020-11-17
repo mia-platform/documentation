@@ -36,8 +36,6 @@ At this point we have to create our DB schema by creating the properties of our 
 
     * If you select **required** the property is mandatory.
 
-    * If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
-
     * If you select **nullable**, you can give the value *null*.
 
     * In the **description** field you can enter a short optional description.
