@@ -147,12 +147,12 @@ How to compile the template:
 * `archiveUrl`: URL to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you have to create a custom template, click [here](#how-to-create-a-project-archive) to see how.
 * `staticSecret`: some project could use the same static secret for a set of projects (especially used with architecture with multiple `api-gateway` entrypoints). Keys are optional. This is an object, for example:
 
-      ```json
-        {
-          "secret": "ugAsOGB0crjx8hAxrvwiomHiGbUCNzvH",
-          "clientType":"cms"
-        }
-      ```
+  ```json
+    {
+      "secret": "ugAsOGB0crjx8hAxrvwiomHiGbUCNzvH",
+      "clientType":"cms"
+    }
+  ```
 
 * `enabledServices`: an object that contains as key the service handled by the Console and as value a boolean. If the value is true, the service is enabled and the DevOps Console will generate the configuration for that service, otherwise it will be skipped by the Console. For example:
 
