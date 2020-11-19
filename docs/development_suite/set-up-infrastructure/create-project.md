@@ -379,7 +379,16 @@ To configure all the extra details to a project, just add the `info`, `layerId`/
 
 To add extra info about `projectOwner`, `teamContact` and `technologies` for a single project, simply edit the *Information* field:
 
-![info-project-cms](img/info-project-cms.png)
+```json
+{
+    "projectOwner": "Alberto Rossi",
+    "teamContact": "a.rossi@email.it ",
+    "technologies": [
+        "java",
+        "node"
+    ]
+}
+```
 
 **Project Custom Color (color)**
 
