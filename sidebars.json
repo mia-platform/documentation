@@ -70,6 +70,10 @@
           }, 
           {
             "type":"doc",
+            "id":"development_suite/api-console/api-design/replicas"
+          },
+          {
+            "type":"doc",
             "id":"development_suite/api-console/api-design/jobs-cronjob"
           },
           {
