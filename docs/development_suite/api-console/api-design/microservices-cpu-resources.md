@@ -3,7 +3,14 @@ id: microservices-cpu-resources
 title:  Service CPU Resources
 sidebar_label: Define CPU Resources
 ---
-In the field CPU Resources, you have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
+In the field CPU Resources, you have to specify:
+
+* **Min**: the minimum number of "thousandth of a core" (m) that the container needs (in Kubernetes it's the *request*).
+* **Max**: the maximum number of "thousandth of a core" (m) that it can use (in Kubernetes it's the *limit*).
+
+:::info
+To learn more about the meaning of these values inside Kubernetes, please visit [this page](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) of Kubernetes Docs.
+:::
 
 ![memory-resources](img/memory-resources.png)
 
@@ -23,8 +30,8 @@ The different suffixes, applied to different integers or fractional values, can 
 
 It is not possible to be more precise than 1m and CPU is a always an absolute quantity. For example, 0.1 is the same amount of CPU on a single-core, dual-core, or 48-core machine.
 
-:::info
-In the microservice detail of Mia-Platform DevOps Console, you can only express the CPU Resource value in m.
-:::
+In the microservice detail of Mia-Platform DevOps Console, **you can only express the CPU Resource value in m**.
 
+:::info
 To learn more about Memory Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.
+:::
