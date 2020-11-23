@@ -30,7 +30,7 @@ build-site:
 deploy:
   stage: deploy
   trigger:
-    project: "clients/mia-platform/platform-documentation"
+    project: "clients/mia-platform/platform-documentation/configurations"
   only:
     refs:
       - master
