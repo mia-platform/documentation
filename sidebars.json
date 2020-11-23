@@ -255,7 +255,18 @@
         ]
       }
     ],
-    "fastData":[{"type":"doc","id":"fast_data/overview"}],
+    "fastData":[
+      {"type":"doc","id":"fast_data/overview"},
+      {
+        "collapsed":false,
+        "type":"category",
+        "label":"Setup",
+        "items":[
+          {"type": "doc", "id":"fast_data/configure_real_time_updater"},
+          {"type": "doc", "id":"fast_data/configure_single_view_creator"}
+        ]
+      }
+    ],
     "microservices_ecosystem":[
       {"type":"doc","id":"runtime_suite/overview-runtime-suite"},
       {
