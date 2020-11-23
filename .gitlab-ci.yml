@@ -24,7 +24,7 @@ build-site:
     - branches
     - tags
 
-deploy:
+deploy-next:
   stage: deploy
   variables:
     ENVIRONMENT_TO_DEPLOY: PROD
@@ -33,4 +33,14 @@ deploy:
   only:
     refs:
       - master
+
+deploy:
+  stage: deploy
+  variables:
+    ENVIRONMENT_TO_DEPLOY: PROD
+    DOCS_SITE_VERSION: $(echo ${CI_COMMIT_TAG} | sed s/^v//)
+  trigger:
+    project: "clients/mia-platform/platform-documentation/configurations"
+  only:
+    refs:
       - tags
