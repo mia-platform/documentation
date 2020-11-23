@@ -27,34 +27,11 @@ build-site:
     - branches
     - tags
 
-deploy-next:
-  variables:
-    KUBE_URL: "${KUBE_CONSOLE_URL}"
-    KUBE_TOKEN: "${KUBE_CONSOLE_TOKEN}"
-    KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
-    KUBE_NAMESPACE: "mia-platform-documentation"
-    ENVIRONMENT_PREFIX: "CLOUD_"
-    MIA_DOCUMENTATION_VERSION_TAG: "latest"
-
-  image: nexus.mia-platform.eu/tools/kubectl:2
+deploy:
   stage: deploy
-  extends: .deploy_job
+  trigger:
+    project: "clients/mia-platform/platform-documentation"
   only:
-    - master
-
-deploy-prod:
-  variables:
-    KUBE_URL: "${KUBE_CONSOLE_URL}"
-    KUBE_TOKEN: "${KUBE_CONSOLE_TOKEN}"
-    KUBE_CA_PEM: "${KUBE_CONSOLE_CA_PEM}"
-    KUBE_NAMESPACE: "mia-platform-documentation"
-    ENVIRONMENT_PREFIX: "CLOUD_"
-
-  before_script:
-  - export MIA_DOCUMENTATION_VERSION_TAG=$(echo ${CI_COMMIT_TAG} | sed s/v//)
-
-  image: nexus.mia-platform.eu/tools/kubectl:2
-  stage: deploy
-  extends: .deploy_job
-  only:
-    - tags
+    refs:
+      - master
+      - tags
