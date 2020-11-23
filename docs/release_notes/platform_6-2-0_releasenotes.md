@@ -4,6 +4,23 @@ title: Version 6.2.x Release Notes
 sidebar_label: v6.2.x
 ---
 
+## v6.2.2
+
+_November 23,2020_ 
+
+### Core services
+
+#### Management of Custom certificates 
+It is now possible to provide one or more trusted certificates in PEM format in a single file for the services managed by the Console.
+
+#### Core services upgrade
+
+* upgrade of `v1-adapter` to `v3.2.2`: the service now fails if the connection to Mongo is not available
+
+### How to update your DevOps Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.9`.
+
 ## v6.2.1
 
 _November 12,2020_  
