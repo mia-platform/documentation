@@ -29,6 +29,8 @@ build-site:
 
 deploy:
   stage: deploy
+  variables:
+    ENVIRONMENT_TO_DEPLOY: PROD
   trigger:
     project: "clients/mia-platform/platform-documentation/configurations"
   only:
