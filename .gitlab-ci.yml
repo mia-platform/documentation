@@ -2,9 +2,6 @@ include:
   - project: 'platform/pipelines-templates'
     file: '/build/node/template-react-yarn.yml'
     ref: master
-  - project: 'platform/pipelines-templates'
-    file: '/common/deploy-job.yml'
-    ref: master
 
 test:
   script:
