@@ -36,6 +36,7 @@ Here, you should add:
 ```json
 {
   "crud-service": {
+      "key": "crud-service",
       "additionalCACerts": {
           "secretName": "additional-ca-certificates",
           "mountFilePath": "/home/node/app/tls/additional-ca.pem"
