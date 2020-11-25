@@ -116,9 +116,9 @@ integration:
 
 The setup phase is over.
 
-## Create a function from the DevOps Console
+## Create a function from the Console
 
-To deploy a new function service, open the _DevOps Console_ add a new microservice choosing the docker image ```nexus.mia-platform.eu/core/function-service```.
+To deploy a new function service, open the _Console_ add a new microservice choosing the docker image ```nexus.mia-platform.eu/core/function-service```.
 
 Then, create a new configuration for this microservice and call it as you wish, (e.g.: _my-function-service_).
 Type ```/home/node/app/functions``` as _run-time mount point_.
@@ -137,11 +137,11 @@ Libraries already included as dependencies:
 * fs
 
 :::warning
-Warning! You have to create the function file from the DevOps Console, not from the project repository.
+Warning! You have to create the function file from the Console, not from the project repository.
 :::
 
 :::warning
-Every time you change the function code (either from the DevOps Console or the repository) you should '_commit and regenerate_'
+Every time you change the function code (either from the Console or the repository) you should '_commit and regenerate_'
 :::
 
 *_hello.js_ example:*
@@ -181,11 +181,11 @@ Now click *Commit & deploy*, the newly created endpoint will be exposed and test
 The env ```FUNCTIONS_FOLDER``` holds the path to the directory containing the definitions of the functions,
 you are free to customize it and mount there any function.
 When ```FUNCTIONS_FOLDER``` is not specified it defaults to ```/home/node/app/functions```.
-Anyway, you should always create the ```FUNCTIONS_FOLDER``` directory using the "Add configuration" feature on the DevOps Console in order to have it correctly mounted on the microservice.
+Anyway, you should always create the ```FUNCTIONS_FOLDER``` directory using the "Add configuration" feature on the Console in order to have it correctly mounted on the microservice.
 
 ## Run the function service locally
 
-To test the function service locally, clone the DevOps Console configuration repository, then run the script in the configuration root named ```run-function-service-local.sh```.
+To test the function service locally, clone the Console configuration repository, then run the script in the configuration root named ```run-function-service-local.sh```.
 
 Add as extra argument the name of the function-service you want to bootstrap
 (e.g.: _./run-function-service-local.sh config-map-my-function-service_).
@@ -194,7 +194,7 @@ Add as extra argument the name of the function-service you want to bootstrap
 
 ### Setup
 
-To set up unit tests of your endpoints, clone the DevOps Console configuration repository and create a directory to hold the tests. It must follow the naming convention: ```test/config-map- %function-service-name%``` (e.g.: _test/config-map-my-function-service_).
+To set up unit tests of your endpoints, clone the Console configuration repository and create a directory to hold the tests. It must follow the naming convention: ```test/config-map- %function-service-name%``` (e.g.: _test/config-map-my-function-service_).
 In this directory, you can place the unit test files whose name must end with .test.js
 
 ### Create a test

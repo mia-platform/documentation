@@ -5,7 +5,7 @@ sidebar_label: Create CronJobs
 ---
 ## What is a CronJob
 
-In this section, you can find the guidelines about how to create and manage CronJobs using DevOps Console.
+In this section, you can find the guidelines about how to create and manage CronJobs using Console.
 
 A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance. A CronJob doesn not expose API as a microservices does.
 
@@ -14,12 +14,12 @@ Each **Job** creates one or more Pods and guarantee that a specified number of t
 To learn more about CronJobs, you can find more information on [Kubernetes website](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/).
 
 :::info
-With DevOps Console, when you create a CronJob, you are creating Jobs which configures Pods in Kubernetes on a time-based schedule.
+With Console, when you create a CronJob, you are creating Jobs which configures Pods in Kubernetes on a time-based schedule.
 :::
 
-## How to create and manage CronJobs through DevOps Console
+## How to create and manage CronJobs through Console
 
- To manage CronJobs, Mia-Platform's DevOps Console offers a specific section, CronJobs, in the Design area:
+ To manage CronJobs, Mia-Platform's Console offers a specific section, CronJobs, in the Design area:
 
  ![cronjobs-placeholder](img/cronjobs-placeholder.png)
 
@@ -50,5 +50,5 @@ You can delete a CronJob with the delete button at the bottom of the page. To co
  ![cronjob-delete](img/cronjobs-delete.png)
 
 :::warning
-By eliminating a CronJob on DevOps Console, you are deleting the image on the Console, but not the Pods on Kubernetes and the configuration on Git provider. This implies that, if you delete the Pods on Kubernetes, but not the Git configuration, you will find again your CronJob at the next deploy.
+By eliminating a CronJob on Console, you are deleting the image on the Console, but not the Pods on Kubernetes and the configuration on Git provider. This implies that, if you delete the Pods on Kubernetes, but not the Git configuration, you will find again your CronJob at the next deploy.
 :::

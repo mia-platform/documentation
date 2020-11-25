@@ -1,13 +1,13 @@
 ---
 id: overview-dev-suite
-title:  DevOps Console Overview
-sidebar_label: What is DevOps Console?
+title: Console Overview
+sidebar_label: What is Console?
 ---
-Welcome to the DevOps Console Overview page!
+Welcome to the Console Overview page!
 
 Find out more about how to design and manage the full lifecycle of your DevOps Value Stream.
 
-![DevOps Console overview](img/dev-ops-console-overview.png)
+![Console overview](img/dev-ops-console-overview.png)
 
 Work on a single platform to manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and
 microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your

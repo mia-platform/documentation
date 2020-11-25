@@ -8,7 +8,7 @@ In this page will be explain how to configure the _Timer Service_ from zero to h
 The configuration is split in two sections:
 
 - [**Technical Configuration**](#technical-configuration) contains the configuration of the technical needs of the Service
-- [**DevOps Console Configuration**](#dev-ops-console-configuration) contains the configuration from the Dev-Ops Console
+- [**Console Configuration**](#dev-ops-console-configuration) contains the configuration fConsole
 
 ## Technical Configuration
 
@@ -71,11 +71,11 @@ Following the CRUD structure needed by the timer-service to work:
     }
     ```
 
-## Dev-Ops Console Configuration
+## Console Configuration
 
-To configure a _Timer Service_ on the Dev-Ops Console follow the instructions:
+To configure a _Timer Service_ on the Console follow the instructions:
 
-- open the Dev-Ops Console and choose the project
+- open the Console and choose the project
 - create the dedicated CRUD by following the [instructions above](#dedicated-crud), the result will be as the following one:
 
     [![alt_image](img/CRUD_expirations.png)](img/CRUD_expirations.png)

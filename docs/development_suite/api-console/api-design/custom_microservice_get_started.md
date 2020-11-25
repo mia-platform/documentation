@@ -3,7 +3,7 @@ id: custom_microservice_get_started
 title: Create Microservice from Template
 sidebar_label: Create Microservice from Template
 ---
-Following we will see how to create a Microservice using the [DevOps Console](./../../overview-dev-suite).
+Following we will see how to create a Microservice using the [Console](./../../overview-dev-suite).
 
 :::info
 The following guide is generic, so you can follow it to create any type of Microservice from template.  
@@ -12,19 +12,19 @@ You can read [here](../../../development_suite/api-console/api-design/plugin_baa
 
 ### 1. Microservice creation
 
-In the Dev Ops Console, follow these steps:
+In the Console, follow these steps:
 
  1. Go to `Design section` and click on `Microservices`
- 1. Click on `Create a Microservice`:  
+ 2. Click on `Create a Microservice`:  
    ![new-examples](./img/Marketplace-categories.PNG)
    You can search for a template, adding `Templates` to types filter. Each template belongs to specific **Category**. You can filter by category using `Filter by categories` filter.
- 1. Select a Template and add the Microservice information:
+ 3. Select a Template and add the Microservice information:
       * **Name of the Microservice** (*required*): this is the internal hostname
       * **Description** (*optional*): this is the description of your Microservice
       * **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
       * **GitLab Repository name**: the gitlab repository name that you want for your Microservice
       * **Docker image name**: the docker image name, you can leave the default one too
- 1. Then click on `Create` button
+ 4. Then click on `Create` button
 
 Now you have a customization interface and you can optionally customize some configuration if you want.
 

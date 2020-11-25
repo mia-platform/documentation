@@ -5,9 +5,9 @@ sidebar_label: Configure
 ---
 ## Introduction
 
-In this section you can learn how to create and manage Microservices on Mia-Platform DevOps Console.
+In this section you can learn how to create and manage Microservices on Mia-Platform Console.
 
-You can create a Microservice from the Marketplace section of DevOps Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview_marketplace.md) of Mia-Platform Docs.
+You can create a Microservice from the Marketplace section of Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview_marketplace.md) of Mia-Platform Docs.
 
 You can create a Microservice by:
 
@@ -56,7 +56,7 @@ If you are using GitLab and don't see any option in *Git repository owner*, it m
 Finally to create the Microservice push **create**.
 
 :::warning
-Once the service is created on your Git provider, you will not be able to delete it anymore from DevOps Console.
+Once the service is created on your Git provider, you will not be able to delete it anymore from Console.
 :::
 
 :::info
@@ -80,7 +80,7 @@ Finally to create the Microservice push **create**.
 
 ## Manage Microservices
 
-For each microservice, DevOps Console allows to:
+For each microservice, Console allows to:
 
 * **Delete** the microservice: with the 'Delete' button present at the bottom of each microservice detail, you can delete it.
 
@@ -92,9 +92,9 @@ Deleting a microservice, you are also deleting each associated endpoint.
 Deleting the microservice will not delete the files *deployment.yml*, *service.yml* and previously configurated *configmap.yml*.
 :::
 
-* **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the DevOps Console.
+* **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
 
-* **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from DevOps Console. The code repository can be copied with both ssh and https.
+* **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
 
 The detail of each microservice is divided in the following sections:
 
@@ -175,7 +175,7 @@ In this section, you can write your advanced configurations by filling the files
 You have to use Advanced Configuration if you want to write deployment files with more than one container.
 :::
 
- By switching from standard to advanced configuration (and vice versa), DevOps Console allows you to customize your Kubernetes files:
+ By switching from standard to advanced configuration (and vice versa), Console allows you to customize your Kubernetes files:
 
 * **To switch from standard to advanced configuration**, you have to flag the option 'I want to write custom k8s files for this microservice'. Enabling advanced configuration, you can customize your kubernetes files.
 

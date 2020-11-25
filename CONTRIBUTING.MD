@@ -133,7 +133,7 @@ This file define the main top menu:
             position: "left",
             items: [
                 {
-                label: "DevOps Console",
+                label: "Console",
                 to: "docs/development_suite/overview-dev-suite",
                 },
                 {

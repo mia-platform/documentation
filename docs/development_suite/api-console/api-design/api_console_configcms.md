@@ -1,9 +1,9 @@
 ---
 id: api_console_configcms
-title:  How to Configure the CMS from the DevOps Console
-sidebar_label: Configure CMS through DevOps Console
+title:  How to Configure the CMS from the Console
+sidebar_label: Configure CMS through Console
 ---
-From the DevOps Console you can easily configure and manage your CMS.
+From the Console you can easily configure and manage your CMS.
 
 :::note
 Remember that before you can configure the CMS you must have already created your collections in the Collections area and displayed the related Endpoints.
@@ -262,7 +262,7 @@ An example of Lookup on the weapons collection:
 
 ## 4. Create a button
 
-From the DevOps Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
+From the Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
 
 ![](img/CreateButton.png)
 
@@ -275,7 +275,7 @@ To create a button, go to the Buttons section and configure the following fields
 * **Route**: in this field you will have to enter the route to which your action should point
 * **Icon**: for each button you can also set an icon
 
-In the DevOps Console, you will then be able to conveniently view the buttons created.
+In the Console, you will then be able to conveniently view the buttons created.
 
 :::tip
 **Example of a button**  

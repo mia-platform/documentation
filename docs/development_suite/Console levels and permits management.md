@@ -4,18 +4,18 @@ title:  Console levels and permission management
 sidebar_label: Console levels and permission management
 ---
 Assigning different roles and permissions to each user is a key action for defining responsibilities within your platform ecosystem.
-The DevOps Console offers a preset groups and permissions to be assigned to users.
+The Console offers a preset groups and permissions to be assigned to users.
 Let's see how they are configured.
 
 ## Console Levels
 
-The DevOps Console is a hierarchical structure on three levels:
+The Console is a hierarchical structure on three levels:
 
-1. **DevOps Console level** is the highest level and allows the general configuration of your console, at this level you can configure the tenants, the different templates for project creation and you have control of your projects and the marketplace;
+1. **Console level** is the highest level and allows the general configuration of your console, at this level you can configure the tenants, the different templates for project creation and you have control of your projects and the marketplace;
 
 2. **Tenant level** is the second hierarchical level. The tenant can group several projects within it, with the tenant a lot of information can be inherited from the underlying projects without having to configure them;
 
-3. **Project Level**  is the third level of the console. The projects are the heart of the DevOps Console, it is in fact at this level that developers find themselves developing to create their own platform.
+3. **Project Level**  is the third level of the console. The projects are the heart of the Console, it is in fact at this level that developers find themselves developing to create their own platform.
 
 ![alt text](img/DevOps_Console_levels.PNG)
 
@@ -23,7 +23,7 @@ The DevOps Console is a hierarchical structure on three levels:
 
 For each level of the hierarchical structure the console offers a set of groups with associated permissions to assign different users.
 
-### DevOps Console Group
+### Console Group
 
 The only user group present at this level is the **console admin**. The console admins are the only ones having access to the Console CMS and being able to manage the entire Console, the tenants, the projects, the Marketplace and can create and manage the various tenants.
 

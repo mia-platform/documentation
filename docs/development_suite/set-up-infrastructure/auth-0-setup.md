@@ -101,10 +101,10 @@ This configuration is typically used by your CMS to log out the user but it can 
 While still on Auth0 management dashboard, in the _Advanced_ tab from the _Tenant Settings_ section, edit the Allowed Logout URLs fields including the logout URLs required by your application.
 
 The following template is applicable for allowing CMS logout in most projects:
+
 ```
 https://cms.<tenant>.test.mia-platform.eu/web-login, https://cms.<tenant>.preprod.mia-platform.eu/web-login, https://cms.<tenant>.cloud.mia-platform.eu/web-login
 ```
-
 
 ## Step 7: Write the configurations on the Console
 
@@ -113,7 +113,7 @@ https://cms.<tenant>.test.mia-platform.eu/web-login, https://cms.<tenant>.prepro
 Remember, when configuring the auth0-client, to reuse the value you used as `MIA_NAMESPACE` in the rule configured in the previous point.
 
 e.g.
-If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0-client` `config.json` using the Advanced section of DevOps Console, by adding the following property:  
+If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0-client` `config.json` using the Advanced section of Console, by adding the following property:  
 
 ```Json
 {
@@ -124,7 +124,8 @@ If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0
   ]
 }
 ```
-:::warning 
+
+:::warning
   To access the user profile you must insert in the scope: **profile**.
 
   Otherwise, Auth0 will respond with an empty ID Token.
@@ -134,6 +135,7 @@ If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0
     "profile",
   ],
   ```
+
 :::
 
 ## Step 8: Enable your first user to access CMS
@@ -150,7 +152,6 @@ In order to enable your first user to access CMS you need to go to Auth0 User Ma
 
 Now your user has the required permissions for accessing CMS. From now on you can assign users to groups using CMS.
   
-
 ## Enable your users
 
 [To configure your users read the Auth0 documentation](https://auth0.com/docs/users/guides/manage-users-using-the-dashboard)

@@ -1,7 +1,7 @@
 ---
 id: api_console_configanalytics
 title:  How to Configure Analytics from API Console
-sidebar_label: Configure Analytics through Dev Console
+sidebar_label: Configure Analytics through Console
 ---
 From the Api Console you can easily configure and manage your analytics.
 
