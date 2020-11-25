@@ -1,11 +1,9 @@
 {
-  "version-5.x.x/devOpsConsole": [
-    {
+  "version-5.x.x/devOpsConsole": [{
       "collapsed": true,
       "type": "category",
       "label": "Overview",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/overview-dev-suite"
         },
@@ -19,8 +17,7 @@
       "collapsed": true,
       "type": "category",
       "label": "Setup infrastructure",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/set-up-infrastructure/create-project"
         },
@@ -46,8 +43,7 @@
       "collapsed": true,
       "type": "category",
       "label": "Design your projects",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/api-console/api-design/crud_advanced"
         },
@@ -55,8 +51,7 @@
           "collapsed": true,
           "type": "category",
           "label": "Create Services",
-          "items": [
-            {
+          "items": [{
               "type": "doc",
               "id": "version-5.x.x/development_suite/api-console/api-design/services"
             },
@@ -96,8 +91,7 @@
       "collapsed": true,
       "type": "category",
       "label": "Deploy what you have created",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/deploy/deploy"
         },
@@ -111,13 +105,11 @@
       "collapsed": true,
       "type": "category",
       "label": "Advance configuration",
-      "items": [
-        {
+      "items": [{
           "collapsed": true,
           "type": "category",
           "label": "DevOps Console Configuration",
-          "items": [
-            {
+          "items": [{
               "type": "doc",
               "id": "version-5.x.x/development_suite/api-console/advanced-section/dev-console-config/advanced_name_core"
             },
@@ -131,8 +123,7 @@
           "collapsed": true,
           "type": "category",
           "label": "API Gateway",
-          "items": [
-            {
+          "items": [{
               "type": "doc",
               "id": "version-5.x.x/development_suite/api-console/advanced-section/api-gateway/config-map"
             },
@@ -156,19 +147,16 @@
       "collapsed": true,
       "type": "category",
       "label": "Debug",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-5.x.x/development_suite/debugging/telepresence"
-        }
-      ]
+      "items": [{
+        "type": "doc",
+        "id": "version-5.x.x/development_suite/debugging/telepresence"
+      }]
     },
     {
       "collapsed": true,
       "type": "category",
       "label": "Log & monitor your Pods",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/monitoring/monitoring"
         },
@@ -182,8 +170,7 @@
       "collapsed": true,
       "type": "category",
       "label": "API Portal: Test & documentation",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/api-portal/api-documentations"
         },
@@ -198,17 +185,254 @@
       ]
     }
   ],
-  "version-5.x.x/marketplace": [
-    {
+  "version-5.x.x/marketplace": [{
       "type": "doc",
       "id": "version-5.x.x/marketplace/overview_marketplace"
+    },
+
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "Plugins",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-5.x.x/runtime_suite/overview-runtime-suite"
+        },{
+          "collapsed": true,
+          "type": "category",
+          "label": "API & Microservice Ecosystem",
+          "items": [{
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/api-gateway"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/microservice-gateway"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/crud-service"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "File Manager Service",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/files-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/files-service/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Notifications",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/mail-notification"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/notifications-manager"
+                }
+              ]
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/sdk_ios"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/sdk_android"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/pdf-service"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Doctor Service",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/doctor-service/services_status"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/doctor-service/configure_doctor_service"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Data Management",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/sql-reader"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/event-source-management"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/secure-data-exchange-service"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/soap-to-rest"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/mongo2kafka"
+                }
+              ]
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/cron"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Mongo DB Reader",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/mongodb-reader/service-configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/mongodb-reader/filters"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/mongodb-reader/aclrows"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Timer Service",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/timer-service/time_service_introduction"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/timer-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/timer-service/usage"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Flow Manager",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/flow-manager/index"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/flow-manager/how-it-works"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/flow-manager/configuration"
+                }
+              ]
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/function-service/configuration"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Privacy & Security",
+          "items": [{
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/auth-service"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/user-service"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/acl-service"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/session-manager"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Auth0 Client",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/auth0-client/how_to_use"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/auth0-client/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Authorization Service",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/authorization-service/how_to_use"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/authorization-service/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Client Credentials",
+              "items": [{
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/client-credentials/how-to-use"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/client-credentials/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "version-5.x.x/runtime_suite/client-credentials/jwt-private-public-key-generation"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "collapsed": false,
       "type": "category",
       "label": "Templates",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/marketplace/templates/mia_templates"
         },
@@ -226,13 +450,11 @@
       "collapsed": false,
       "type": "category",
       "label": "Libraries",
-      "items": [
-        {
+      "items": [{
           "collapsed": true,
           "type": "category",
           "label": "Custom Microservices",
-          "items": [
-            {
+          "items": [{
               "type": "doc",
               "id": "version-5.x.x/libraries/overview_service_libraries"
             },
@@ -246,8 +468,7 @@
           "collapsed": true,
           "type": "category",
           "label": "Kafka",
-          "items": [
-            {
+          "items": [{
               "type": "doc",
               "id": "version-5.x.x/libraries/kafka2rest"
             },
@@ -260,8 +481,7 @@
       ]
     }
   ],
-  "version-5.x.x/cms": [
-    {
+  "version-5.x.x/cms": [{
       "type": "doc",
       "id": "version-5.x.x/business_suite/overview-business-suite"
     },
@@ -269,8 +489,7 @@
       "collapsed": false,
       "type": "category",
       "label": "CMS",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/business_suite/guide_cms"
         },
@@ -300,8 +519,7 @@
       "collapsed": false,
       "type": "category",
       "label": "Analytics",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/development_suite/api-console/api-design/api_console_configanalytics"
         },
@@ -315,8 +533,7 @@
       "collapsed": false,
       "type": "category",
       "label": "Data visualization",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/business_suite/data-visualization"
         },
@@ -327,276 +544,24 @@
       ]
     }
   ],
-  "version-5.x.x/fastData": [
-    {
-      "type": "doc",
-      "id": "version-5.x.x/fast_data/overview"
-    }
-  ],
-  "version-5.x.x/microservices_ecosystem": [
-    {
-      "type": "doc",
-      "id": "version-5.x.x/runtime_suite/overview-runtime-suite"
-    },
-    {
-      "collapsed": false,
-      "type": "category",
-      "label": "API & Microservice Ecosystem",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/api-gateway"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/microservice-gateway"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/crud-service"
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "File Manager Service",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/files-service/usage"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/files-service/configuration"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Notifications",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/mail-notification"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/notifications-manager"
-            }
-          ]
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/sdk_ios"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/sdk_android"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/pdf-service"
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Doctor Service",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/doctor-service/services_status"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/doctor-service/configure_doctor_service"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Data Management",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/sql-reader"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/event-source-management"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/secure-data-exchange-service"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/soap-to-rest"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/mongo2kafka"
-            }
-          ]
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/cron"
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Mongo DB Reader",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/mongodb-reader/service-configuration"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/mongodb-reader/filters"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/mongodb-reader/aclrows"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Timer Service",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/timer-service/time_service_introduction"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/timer-service/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/timer-service/usage"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Flow Manager",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/flow-manager/index"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/flow-manager/how-it-works"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/flow-manager/configuration"
-            }
-          ]
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/function-service/configuration"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Privacy & Security",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/auth-service"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/user-service"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/acl-service"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/runtime_suite/session-manager"
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Auth0 Client",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/auth0-client/how_to_use"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/auth0-client/configuration"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Authorization Service",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/authorization-service/how_to_use"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/authorization-service/configuration"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Client Credentials",
-          "items": [
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/client-credentials/how-to-use"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/client-credentials/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/client-credentials/jwt-private-public-key-generation"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "version-5.x.x/learn": [
-    {
+  "version-5.x.x/fastData": [{
+    "type": "doc",
+    "id": "version-5.x.x/fast_data/overview"
+  }],
+  "version-5.x.x/learn": [{
       "collapsed": false,
       "type": "category",
       "label": "Create Services",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-5.x.x/development_suite/api-console/api-design/plugin_baas_4"
-        }
-      ]
+      "items": [{
+        "type": "doc",
+        "id": "version-5.x.x/development_suite/api-console/api-design/plugin_baas_4"
+      }]
     },
     {
       "collapsed": false,
       "type": "category",
       "label": "Guidelines",
-      "items": [
-        {
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/dev_ops_guide/git_vademecum"
         },
@@ -639,17 +604,15 @@
       ]
     }
   ],
-  "version-5.x.x/releaseNotes":[
-    {
-      "type":"doc",
-      "id":"version-5.x.x/release_notes/release_notes"
+  "version-5.x.x/releaseNotes": [{
+      "type": "doc",
+      "id": "version-5.x.x/release_notes/release_notes"
     },
     {
-      "collapsed":false,
-      "type":"category",
-      "label":"Versions",
-      "items": [
-        {
+      "collapsed": false,
+      "type": "category",
+      "label": "Versions",
+      "items": [{
           "type": "doc",
           "id": "version-5.x.x/release_notes/platform_5-10_releasenotes"
         },
@@ -691,8 +654,17 @@
         }
       ]
     },
-    {"type":"doc","id":"version-5.x.x/info/version_policy"},
-    {"type":"doc","id":"version-5.x.x/info/migrate_from_v4_to_v5"},
-    {"type":"doc","id":"version-5.x.x/release_notes/support-policy"}
+    {
+      "type": "doc",
+      "id": "version-5.x.x/info/version_policy"
+    },
+    {
+      "type": "doc",
+      "id": "version-5.x.x/info/migrate_from_v4_to_v5"
+    },
+    {
+      "type": "doc",
+      "id": "version-5.x.x/release_notes/support-policy"
+    }
   ]
 }

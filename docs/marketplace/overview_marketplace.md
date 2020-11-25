@@ -9,7 +9,7 @@ The Mia-Platform Marketplace contains several code resources to develop your mic
 
 You can access the Mia-Platform Marketplace from the *Design area* of *DevOps Console*, when you are [creating a new microservice](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
 
-You will see a set of [examples](./examples/mia_examples.md) and [templates](./templates/mia_templates.md), powered and supported by Mia-Platform, you can choose from to easily set-up a microservice with predefined and tested functionality.
+You will see a set of [Plugins](./../../docs/runtime_suite/overview-runtime-suite.md), [Examples](./examples/mia_examples.md) and [Templates](./templates/mia_templates.md), powered and supported by Mia-Platform, you can choose from to easily set-up a microservice with predefined and tested functionality.
 
 You can go deeper into the code of templates and examples visiting the [Mia-Platform Marketplace Github page](https://github.com/mia-platform-marketplace).
 

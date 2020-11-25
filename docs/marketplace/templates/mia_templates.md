@@ -1,7 +1,7 @@
 ---
 id: mia_templates
 title: Templates
-sidebar_label: Mia-Platform templates
+sidebar_label: Mia-Platform Templates
 ---
 A **Template** is a base repository from which you can start to create a new Microservice.  
 Usually they depend on specific [Mia Service libraries](../../libraries/mia-service-libraries.md).

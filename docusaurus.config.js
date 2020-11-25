@@ -47,10 +47,6 @@ module.exports = {
               to: "docs/development_suite/overview-dev-suite",
             },
             {
-              label: "Core Services & Plugins" ,
-              to: "docs/runtime_suite/overview-runtime-suite",
-            },
-            {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
             },

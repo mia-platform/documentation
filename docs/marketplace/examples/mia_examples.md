@@ -1,7 +1,7 @@
 ---
 id: mia_examples
 title: Examples
-sidebar_label: Mia-Platform examples
+sidebar_label: Mia-Platform Examples
 ---
 An **Example** provides sample code addressing a specific use-case, it's a ready-to-use model to create your microservice.  
 
