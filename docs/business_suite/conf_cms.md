@@ -458,9 +458,9 @@ Gallery layout allows you to show images and files in the CMS. The image is down
 
 You can also copy the link and share it directly. There are some different scenarios:
 
-  * if the file location is saved as a URL, its value is copied directly
-  * if file location is saved as path, instead, the copied URL is relative to CMS host
-  * the base URL can be configured to differ from the CMS host, you can customize it by passing the `imageLinkBaseUrl` property in the CMS collection configuration (NB: this base Url is only used when the file location is not a URL itself)
+* if the file location is saved as a URL, its value is copied directly
+* if file location is saved as path, instead, the copied URL is relative to CMS host
+* the base URL can be configured to differ from the CMS host, you can customize it by passing the `imageLinkBaseUrl` property in the CMS collection configuration (NB: this base Url is only used when the file location is not a URL itself)
 
 An example that will override the default one to `http://myUrl.it` is shown below:
 
@@ -510,9 +510,7 @@ key | example value | Comment
 `confirmBeforeEdit` | "" | if true, enable double check before save
 `imageLinkBaseUrl` | "" | a custom URL used to replace the base URL
 
-
   So the final .json file will be:
-
 
 ```json
 {
@@ -600,7 +598,7 @@ the final json in our property **name** which is the name of the heroes will the
 {
   "namecollection": {
     "cmsProperties": {
-      /// Managed by DevOps Console ///
+      /// Managed by Console ///
       "label": "heroes",
       "layoutType": "table",
       "cardType": "",
@@ -674,7 +672,7 @@ the final json in our property **name** which is the name of the heroes will the
       /// PROPERTIES AREA ///
       "properties": {
         "name": {
-          /// Managed by Dev Console ///
+          /// Managed by Console ///
           "id": "nome",
           "type": "string",
           "required": false,

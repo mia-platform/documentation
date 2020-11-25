@@ -1,6 +1,6 @@
 ---
 id: oss
-title: Open Source Software in DevOps Console
+title: Open Source Software in Console
 sidebar_label: Open Source Software
 ---
 It follows the copyright notice of the modules and libraries used in Mia-Platform.
@@ -371,7 +371,7 @@ Mia-Platform includes components subject to the terms and conditions of “open 
 | yallist@3.0.2                                  | ISC                                       | <https://github.com/isaacs/yallist>                            |
 | yui-lint@0.2.0                                 | BSD                                       | <https://github.com/yui/yui-lint>                              |
 
-In the DevOps Console animation for creating a successful project: Taras Chenenko Success confetti @SwaroopBk/ LottieFiles
+In the Console animation for creating a successful project: Taras Chenenko Success confetti @SwaroopBk/ LottieFiles
 
 ## Licenses
 

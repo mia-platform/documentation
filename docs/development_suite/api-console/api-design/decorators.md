@@ -5,7 +5,7 @@ sidebar_label: Create Decorators
 ---
 ## Decorators
 
-Decorators are special endpoint that a microservice can expose. Using the console you can manage your decorators and link them to your endpoint routes.
+Decorators are special endpoint that a microservice can expose. Using the Console you can manage your decorators and link them to your endpoint routes.
 
 Decorators allow you to perform custom actions upon specific API handler invocations. There are three types of decorators:
 
@@ -17,7 +17,7 @@ Decorators allow you to perform custom actions upon specific API handler invocat
 
 ### Manage your decorators
 
-Upon accessing the DevOps Console Design area and selecting the Decorators section in the left menu, you'll see the available types of decorators in the sub menu.
+Upon accessing the Console Design area and selecting the Decorators section in the left menu, you'll see the available types of decorators in the sub menu.
 
 To add a decorator, select the desired type and enter the required information:
 
@@ -155,7 +155,7 @@ while when replying from a **Post** decorator the information will be used to ov
 
 **Abort decorator chain**
 
-All decorator types can interrupt at any time the decorator chain defined in Mia-Platform DevOps Console by retuning status **418**.
+All decorator types can interrupt at any time the decorator chain defined in Mia-Platform Console by retuning status **418**.
 
 An optional body can be provided to customize the response sent to the original caller by returning:
 

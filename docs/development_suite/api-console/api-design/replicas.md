@@ -16,7 +16,7 @@ This process is entrusted to the [Horizontal Pod Autoscaler](https://kubernetes.
 
 ![Replicas landing page](img/replicas.png)
 
-Upon accessing the DevOps Console Design area and selecting the *Replicas* section in the left menu, you'll see the list of your services for which you can set Replicas.
+Upon accessing the Console Design area and selecting the *Replicas* section in the left menu, you'll see the list of your services for which you can set Replicas.
 
 :::caution
 For supporting Replicas a service must have both the [minimum and the maximum of CPU limit set](microservices-cpu-resources.md)

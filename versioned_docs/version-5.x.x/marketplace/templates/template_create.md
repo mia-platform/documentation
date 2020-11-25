@@ -64,8 +64,8 @@ The required strings are:
 
 The optional are:
 
-* `mia_template_project_id_placeholder`  - The id of the dev-console project
-* `%CUSTOM_PLUGIN_PROJECT_NAME%` - The name (label) of the dev-console project.
+* `mia_template_project_id_placeholder`  - The id of the Console project
+* `%CUSTOM_PLUGIN_PROJECT_NAME%` - The name (label) of the Console project.
 * `%CUSTOM_PLUGIN_CREATOR_USERNAME%` - The username of the user who created the service.
 * `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` - The full Gitlab path.
 * `%GITLAB_PROJECT%` - The name of the Gitlab project entered by the user.

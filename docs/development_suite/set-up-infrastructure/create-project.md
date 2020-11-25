@@ -5,9 +5,9 @@ sidebar_label: Create a Project
 ---
 In this page, you can find the guidelines about project creation.
 
-The project creation allows you to configure a project, which lifecycle could be wholly managed and developed through DevOps Console areas.
+The project creation allows you to configure a project, which lifecycle could be wholly managed and developed through Console areas.
 
-The first three sections of this guide allow you to have the prerequisites to create a project. The last section explains in detail how to create a project. In particular, to create a project, you need to have already set up your DevOps Console and have already configured these two features:
+The first three sections of this guide allow you to have the prerequisites to create a project. The last section explains in detail how to create a project. In particular, to create a project, you need to have already set up your Console and have already configured these two features:
 
 * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its tenant.
 
@@ -15,7 +15,7 @@ The first three sections of this guide allow you to have the prerequisites to cr
 
  If you have already configured these two features, you can directly [skip to the last section](#how-to-create-a-project-on-devops-console).
 
- The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project in your DevOps Console with a minimum number of actions.
+ The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project in your Console with a minimum number of actions.
 
 ## Create a Tenant
 
@@ -115,16 +115,17 @@ More in detail, to compile the tenant, you have to use the following guide:
 * `logicalScopeLayers`: an array of objects identifying the set of logical layers available in the current tenant. Each object is shaped as follows:
   * **name** : identifies the name of the logical layer
   * **order** : identifies the numerical order of the layer in order to display it according to the sorting defined by the user.
-  When a project is merged with its tenant information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on DevOps Console] for further details.
+  When a project is merged with its tenant information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on Console] for further details.
 
 * `repository` (*required*): object that specifies the information about the repository where have to be created the projects of this tenant. The object must have the following properties:
   * **basePath**: base path where will be created the project. The user needs to have permission for creating projects on this path.
   * **visibility**: visibility that will have the project.
 
 Note: If gitProvider is `github`, the `basePath` have to be an existing organization. If it does not exist, it will not be created.
-If gitProvider is `gitlab`, the basePath is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent. 
+If gitProvider is `gitlab`, the basePath is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
 
 e.g.:
+
 - /groupA/groupB -> if groupB does not exist AND user have permission to create group in groupA, then it will be created groupB.
 - /groupA/groupB -> if groupB does not exist AND user have no permission to create group in A, then it will NOT be created groupB.
 - /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
@@ -154,7 +155,7 @@ How to compile the template:
     }
   ```
 
-* `enabledServices`: an object that contains as key the service handled by the Console and as value a boolean. If the value is true, the service is enabled and the DevOps Console will generate the configuration for that service, otherwise it will be skipped by the Console. For example:
+* `enabledServices`: an object that contains as key the service handled by the Console and as value a boolean. If the value is true, the service is enabled and the Console will generate the configuration for that service, otherwise it will be skipped by the Console. For example:
 
     ```json
       {
@@ -247,9 +248,9 @@ For other possibilities, please check [mustache.js](https://github.com/janl/must
 You may want to write a file or a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolated for every environment.
 The interpolation data in those files are the environments fields at the first level (as in `mustache.js` sections), with the project as a key for every environment.
 
-## How to create a project on DevOps Console
+## How to create a project on Console
 
-Once you have the tenant and the template correctly configured, you are able to create a new project with the button `Create project` in the Home area of DevOps Console.
+Once you have the tenant and the template correctly configured, you are able to create a new project with the button `Create project` in the Home area of Console.
 
 ![new-project-cards-headers](img/new-project-cards-headers.png)
 
@@ -261,9 +262,9 @@ In this step, you are required to insert the general information about your new 
 
 * **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
 
-* **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of DevOps Console.
+* **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of Console.
 
-* **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of DevOps Console.
+* **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of Console.
 
 ![create-project1](img/create-project1.png)
 
@@ -327,7 +328,7 @@ In this step, you are required to set up Client's accesses to your APIs:
 
 ![create-project5](img/create-project5.png)
 
-At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible in the Home section of your DevOps Console.
+At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible in the Home section of your Console.
 
 Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
@@ -358,7 +359,7 @@ The `layerId` must be equal to one of the layers names inside the `logicalScopeL
 
 ### CMS Configurations
 
-All the above properties can be defined via CMS after a project has been created, because they only provide extra information that will be eventually rendered in the DevOps Console Home Page.
+All the above properties can be defined via CMS after a project has been created, because they only provide extra information that will be eventually rendered in the Console Home Page.
 
 Let's say we have created a project as follows:
 
@@ -449,7 +450,7 @@ At the end of the configuration, on the backend side, the project will have the 
   }
 ```
 
-When loading the DevOps Console Home Page, the project `Frontend Gateway` will be rendered accordingly:
+When loading the Console Home Page, the project `Frontend Gateway` will be rendered accordingly:
 
 ![new-cards-detail](img/new-cards-detail.png)
 
@@ -457,6 +458,7 @@ When loading the DevOps Console Home Page, the project `Frontend Gateway` will b
 
 It is possible to add a proxy configuration in cluster configuration in environments.
 A configuration example:
+
 ```json
 {
   "environments": [

@@ -20,7 +20,7 @@ Its main features are:
 * URL Rewriting
 * Microcache
 
-The service is based on Nginx. All configurations are written by DevOps Console and stored on Git. Every time the Console deploy a new configuration Kubernetes apply it automaticcaly.
+The service is based on Nginx. All configurations are written by Console and stored on Git. Every time the Console deploy a new configuration Kubernetes apply it automaticcaly.
 
 ![API Gateway](img/gateway.PNG)
 

@@ -100,7 +100,7 @@ The log level of the authorization service has been improved to reduce the amoun
 The UI of the microservice repository clone action has been revised.  
 ![](img/clone-option.png)
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.5`.
 
@@ -136,7 +136,7 @@ The API Portal’s editor did not allow to re-open a collapsed patch property. T
 
 * The delete buttons within the tables have been ghosted
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 2.4.8`.
 
@@ -148,7 +148,7 @@ _October 12, 2020_
 
 #### Marketplace categories
 
-In the marketplace of the DevOps Console services are grouped by categories based on their functionality.
+In the marketplace of the Console services are grouped by categories based on their functionality.
 Services can be filtered by category as well as by service type.
 
 :::info
@@ -193,7 +193,7 @@ Fixed a bug that caused an application crash when entering two duplicate environ
 
 Fixed a bug preventing token refresh when using `grant_type` password.
 
-#### DevOps Console  crash on Endpoint without tags
+#### Console  crash on Endpoint without tags
 
 Fixed a bug that caused application crash when an endpoint had no existing tag.
 
@@ -217,7 +217,7 @@ A new service library for **.Net** has been released!
 
 Checkout [Mia Service .Net Library](https://github.com/mia-platform/Mia-service-Net-Library) on GitHub.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 2.4.5`.
 

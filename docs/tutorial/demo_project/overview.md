@@ -55,7 +55,7 @@ The first version of the platform will allow to:
 * Notify when an order has been delivered.
 
 !!! info
-    For a quick start, you will find a project named *Your First Project* installed in your DevOps Console.
+    For a quick start, you will find a project named *Your First Project* installed in your Console.
 
 ## Create CRUDs
 
@@ -117,7 +117,7 @@ That's it? Yes! We have just created a MongoDB collection and a CRUD ready to be
 
     !!! Warning
         All items in design area **are not saved** until you click **Commit & Generate**. However, you can create different entities and then save all the work only at the end.  
-        Internally, when you commit, the DevOps Console properly updates and commit the Kubernetes files on configuration repository of your project.
+        Internally, when you commit, the Console properly updates and commit the Kubernetes files on configuration repository of your project.
 
 Checkout the [endpoint documentation](../../development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
 
@@ -219,7 +219,7 @@ Now, to test our CRUDs, we have to deploy our project:
 Once deployed our endpoints can immediately be tested with the API Portal.
 
 !!! info
-    Internally, the DevOps Console starts CI/CD pipeline of the repository of your project. The pipeline will push the image to docker and upload it to Nexus. Then the image will pull to Kubernetes in order to your services go immediately online
+    Internally, the Console starts CI/CD pipeline of the repository of your project. The pipeline will push the image to docker and upload it to Nexus. Then the image will pull to Kubernetes in order to your services go immediately online
 
 ## Try your API
 

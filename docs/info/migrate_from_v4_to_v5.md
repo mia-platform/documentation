@@ -14,9 +14,9 @@ The correct expression was mapped in the api-gateway, given the method and the p
 
 The `session manager` is replaced in v5 by the `authorization-service`. To see how this service works, read [the authorization service docs](../runtime_suite/authorization-service/how_to_use/). However, the `api-gateway` continues to verify the correct api host in proxyName map (which has changed, as following point 1 explains).
 
-## How DevOps Console makes updating easier
+## How Console makes updating easier
 
-When you go to the **Design** section of the DevOps Console v5 and you open a project that has not been updated yet, The DevOps Console v5 automatically handles some changes:
+When you go to the **Design** section of the Console v5 and you open a project that has not been updated yet, The Console v5 automatically handles some changes:
 
 1. Convert `proxyName` and `backofficeProxyName` to the new map.
 Changed from ```$secreted-$is_allowes-$is_user_logged-$original_request_method-$original_request_uri```

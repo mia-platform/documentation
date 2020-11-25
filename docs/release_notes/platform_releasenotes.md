@@ -49,7 +49,7 @@ kubectl apply -f path/to/export-Service.deployment.yml
 kubectl apply -f path/to/export-Service.Service.yml
 ```
 
-Once deployed, you **must** set as enabled into dev-console project on mongodb the `export-Service` to true.
+Once deployed, you **must** set as enabled into Console project on mongodb the `export-Service` to true.
 
 e.g.
 
@@ -66,7 +66,7 @@ project:
 }
 ```
 
-Create the configuration from the dev-console (from the website, commit the configuration to upgrade all Services). This will create an headless Service called `export-Service` pointing to `multitenant` namespace. To view an example of the created Service, [click here](https://git.tools.mia-platform.eu/clients/demo/configuration/blob/test/configuration/export-Service.Service.yml).
+Create the configuration from the Console (from the website, commit the configuration to upgrade all Services). This will create an headless Service called `export-Service` pointing to `multitenant` namespace. To view an example of the created Service, [click here](https://git.tools.mia-platform.eu/clients/demo/configuration/blob/test/configuration/export-Service.Service.yml).
 
 **Custom plugin templates**
 

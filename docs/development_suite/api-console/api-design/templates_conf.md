@@ -3,19 +3,19 @@ id: templates_conf
 title:  Template configuration
 sidebar_label: Add a Service Template
 ---
-The Dev-console is able to generate new services starting from a git project or from an existing docker image.
+The Console is able to generate new services starting from a git project or from an existing docker image.
 
-To make sure that the Dev-console can create new services starting from a template it is necessary to create the template on any public repository that provides a tar.gz file and to register it in the configuration of the Dev-console.
+To make sure that the Console can create new services starting from a template it is necessary to create the template on any public repository that provides a tar.gz file and to register it in the configuration of the Console.
 
 The templates must be registered in the CRUD, in the `services` collection, indicating a label that will display the user and the path to the git repository.
 
-## Template string replaced by dev console during service creation
+## Template string replaced by Console during service creation
 
-The Dev-console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template` and ending with `_placeholder`:
+The Console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template` and ending with `_placeholder`:
 
 * `mia_template_image_name_placeholder` -> name of the nexus image entered by the user.
-* `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the dev-console project.
-* `mia_template_project_id_placeholder` -> id of the dev-console project.
+* `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the Console project.
+* `mia_template_project_id_placeholder` -> id of the Console project.
 * `mia_template_service_name_placeholder` -> service name chosen by the user.
 * `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` -> description of the service chosen by the user.
 * `%CUSTOM_PLUGIN_CREATOR_USERNAME%` -> username of the user who created the service.
@@ -30,8 +30,8 @@ The following strings still work but are deprecated: it is recommended not to us
 :::
 
 * `%CUSTOM_PLUGIN_IMAGE_NAME%` -> name of the nexus image entered by the user
-* `%CUSTOM_PLUGIN_PROJECT_ID%` -> id of the dev-console project
-* `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%` -> id of the dev-console project
+* `%CUSTOM_PLUGIN_PROJECT_ID%` -> id of the Console project
+* `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%` -> id of the Console project
 * `%CUSTOM_PLUGIN_SERVICE_NAME%` -> service name chosen by the user
 
 ## Example of template upload
@@ -84,11 +84,11 @@ https://your-host-gitlab/api/v4/projects/:project-id/repository/archive.tar.gz
 Note that you can now specify an `image` and a `supportedByImage` for the template;
 both fields are `array of objects` that cointain the image file data; the result will be as the following:
 
-![dev-console-custom-service](img/dev-console-custom-service.png)
+![Console-custom-service](img/dev-console-custom-service.png)
 
 ## Upload service template image
 
-If you have an image to upload, you should upload to dev console using, for example:
+If you have an image to upload, you should upload to Console using, for example:
 
 ```bash
   curl -F "image=@/path/to/image" "https://console.cloud.mia-platform.eu/v2/files/" -H 'cookie: <your cookie session here>' -H 'secret: <the secret goes here>'
@@ -249,7 +249,7 @@ Create a JSON file with the following content, then import this collection into 
 
 ## How to configure templates default environment variables from CMS
 
-From CMS you can configure the environment variables of each template by adding the property `defaultEnvironmentVariables` inside the data model of each template. By modifying the map of the environment variables, you can overwrite the default environment variables applied by DevOps Console.
+From CMS you can configure the environment variables of each template by adding the property `defaultEnvironmentVariables` inside the data model of each template. By modifying the map of the environment variables, you can overwrite the default environment variables applied by Console.
 
 To use this feature, you have to fill the `defaultEnvironmentVariables` in this way:
 
@@ -266,7 +266,7 @@ To use this feature, you have to fill the `defaultEnvironmentVariables` in this 
 You can also add a description field.
 :::
 
-Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
+Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by Console:
 
 ```JSON
   {

@@ -35,6 +35,11 @@ module.exports = {
       },
       items: [
         {
+          to: "docs/development_suite/api-console/api-design/quick_rest_api",
+          label: "Getting Started",
+          position: "left",
+        },
+        {
           label: "Core Platform",
           position: "left",
           items: [
@@ -43,7 +48,7 @@ module.exports = {
               to: "/docs/overview/mia_platform_overview",
             },
             {
-              label: "DevOps Console",
+              label: "Console",
               to: "docs/development_suite/overview-dev-suite",
             },
             {
@@ -67,11 +72,6 @@ module.exports = {
           position: "left",
           to: "docs/release_notes/release_notes",
 
-        },
-        {
-          to: "docs/guidelines/microservice_vademecum",
-          label: "Learn",
-          position: "left",
         },
         {
           type: "docsVersionDropdown",
@@ -142,10 +142,10 @@ module.exports = {
           ],
         },
         {
-          title: "Products",
+          title: "Core Platform",
           items: [
             {
-              label: "DevOps Console",
+              label: "Console",
               href: "https://www.mia-platform.eu/en/products/devops-console",
             },
             {

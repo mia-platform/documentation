@@ -18,7 +18,7 @@ In order to test the APIs, you can access your tags on the right side of the scr
 
 The next sections will show you examples and information per request type: GET, POST, PATCH and DELETE.
 
-The DevOps Console will show you a request example for each request type that you can use to easily test your Api. You just need to copy the request example, paste it in the Json editor and you will be ready to test your Api!
+The Console will show you a request example for each request type that you can use to easily test your Api. You just need to copy the request example, paste it in the Json editor and you will be ready to test your Api!
 
 ### GET request
 

@@ -6,18 +6,19 @@ sidebar_label: v6.2.x
 
 ## v6.2.2
 
-_November 23,2020_ 
+_November 23,2020_
 
 ### Core services
 
-#### Management of Custom certificates 
+#### Management of Custom certificates
+
 It is now possible to provide one or more trusted certificates in PEM format in a single file for the services managed by the Console.
 
 #### Core services upgrade
 
 * upgrade of `v1-adapter` to `v3.2.2`: the service now fails if the connection to Mongo is not available
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.9`.
 
@@ -31,7 +32,7 @@ _November 12,2020_
 
 The elimination of a field once it had been modified with the lateral drawer was not working correctly. The problem has now been fixed.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.7`.
 
@@ -69,7 +70,7 @@ The v9.12.2 of CMS is now available, this version brings the following features:
 
 #### Examples in the Marketplace
 
-The following examples are now working and you can use them in DevOps console: *DotNet Template*, *Node Call Crud* and *Go Call Crud*.
+The following examples are now working and you can use them in console: *DotNet Template*, *Node Call Crud* and *Go Call Crud*.
 
 #### Java Microservices
 
@@ -112,6 +113,6 @@ lc39 has been added to the Console Backend. Now it exposes the swagger schemas a
 
 All core and plugin services have been tested with success for Mongo 4.4 and Redis 6.0 support, except for the BaaS Service, which has not been tested yet.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.6`.

@@ -9,7 +9,7 @@ It's possible to configure CRUD Service with more that one collection and to sca
 
 ## Introduction
 
-The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. CRUD Service is configured in the DevOps Console.
+The CRUD Service is a microservice that exposes via Restful API a set of MongoDB Collection. CRUD Service is configured in the Console.
 
 Via APIs it's possible to:
 
@@ -48,9 +48,9 @@ In the following guide we will use a collection named *Plates* that contains a l
 
 ## Configure a CRUD in two minutes
 
-In DevOps Console it's possible to configure the CRUD service. The task it's easy. The steps are:
+In Console it's possible to configure the CRUD service. The task it's easy. The steps are:
 
-- open DevOps Console project Design Section
+- open Console project Design Section
 - select CRUD menu
 - press Create new CRUD button
 - configure CRUD
@@ -71,7 +71,7 @@ For more details [see here](./../development_suite/api-console/api-design/crud_a
 
 Some collection field properties are predefined, others are custom and can be configured with different data types.
 
-All properties can be indexed to speed up the data retrieval. The indexes configuration can be set in DevOps Console/Design/CRUD section.
+All properties can be indexed to speed up the data retrieval. The indexes configuration can be set in Console/Design/CRUD section.
 
 ### Predefined Collection Properties
 
@@ -86,7 +86,7 @@ CRUD by default comes with a set of common properties that simplify the data man
 
 #### Example of a Collection with only predefined Properties
 
-If you create a CRUD named `empty` without any configuration in the DevOps Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
+If you create a CRUD named `empty` without any configuration in the Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
 
 ```bash
 curl --request GET \
@@ -119,7 +119,7 @@ curl --request GET \
 
 > **Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
 
-By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in DevOps Console/Design/Endpoints section.
+By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in Console/Design/Endpoints section.
 
 It is also possible to enable *hard delete* function to delete permanently an document from the CMS.
 
@@ -186,7 +186,7 @@ Each property can defined as:
 
 ### Indexes
 
-A property can be indexed. In DevOps Console/Design/CRUD it can be configured the following indexes:
+A property can be indexed. In Console/Design/CRUD it can be configured the following indexes:
 
 - **normal**: speedup the filter on that property and the sort (desc or asc)
 - **geo**: for geospatial search
@@ -261,7 +261,7 @@ APIs configured with Mia-Platform can be consumed with any technology that suppo
 
 In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
 
->*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using DevOps Console.
+>*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using Console.
 
 Let's see how to perform C-R-U-D operations.
 
@@ -275,13 +275,13 @@ If your endpoints are also protected by authentication and authorization you nee
 
 ### Create
 
-It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist CRUD creates it automatically and force the indexes configured in DevOps Console. A document can be created in three different ways:
+It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist CRUD creates it automatically and force the indexes configured in Console. A document can be created in three different ways:
 
 - inserting a single JSON document
 - inserting or updating one JSON document
 - inserting multiple JSON documents (bulk)
 
-The JSON document sent to CRUD is validated against the JSON schema defined in DevOps Console before the insertion.
+The JSON document sent to CRUD is validated against the JSON schema defined in Console before the insertion.
 
 #### Insert a single document
 
@@ -653,7 +653,7 @@ returns
 
 On CRUD service it's possible to filter data also for proximity using MongoDB Geospatial Queries.
 
-To enable this feature you need to create an Position index on DevOps Console.
+To enable this feature you need to create an Position index on Console.
 
 ![Position Index](img/position-index.png)
 

@@ -9,13 +9,13 @@ Here's an overview of Mia-Platform suite:
 
 ![Mia-Platform](img/mia-platform-overview.png)
 
-### DevOps Console
+### Console
 
 Manage your API, Kubernetes clusters, define environments, set up test automation, design and run your CI/CD pipelines controlling your preferred tools from one unique Console.
 
 ![Mia-Platform CMS](img/valuestream.png)
 
-Find out more in the [DevOps Console section](./../development_suite/overview-dev-suite.md).
+Find out more in the [Console section](./../development_suite/overview-dev-suite.md).
 
 ### Microservices Ecosystem
 

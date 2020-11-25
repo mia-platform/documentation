@@ -30,7 +30,7 @@ The different suffixes, applied to different integers or fractional values, can 
 
 It is not possible to be more precise than 1m and CPU is a always an absolute quantity. For example, 0.1 is the same amount of CPU on a single-core, dual-core, or 48-core machine.
 
-In the microservice detail of Mia-Platform DevOps Console, **you can only express the CPU Resource value in m**.
+In the microservice detail of Mia-Platform Console, **you can only express the CPU Resource value in m**.
 
 :::info
 To learn more about Memory Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.

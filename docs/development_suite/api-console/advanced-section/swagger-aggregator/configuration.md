@@ -5,7 +5,7 @@ sidebar_label: Swagger Advanced Configuration
 ---
 ## Swagger Aggregator Advanced Configuration
 
-In the advanced tab of the DevOps Console Design section is possible to further customize a project configuration.
+In the advanced tab of the Console Design section is possible to further customize a project configuration.
 
 Regarding the _swagger-aggregator_ service the advanced configuration allows to manage how the swagger API are exposed. Examples of possibile configurations are:
 

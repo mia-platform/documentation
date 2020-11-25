@@ -1,6 +1,6 @@
 ---
 id: how_to_install
-title: How to install DevOps Console
+title: How to install Console
 sidebar_label: How to install
 ---
 Mia-Platform is always aware about the installation status of the Mia-Platform's suites.

@@ -51,7 +51,7 @@ If all went well, you should get, without the scope **website**:
 }
 ```
 
-Using the scope **websiste**: 
+Using the scope **websiste**:
 
 ```json
 {
@@ -62,14 +62,15 @@ Using the scope **websiste**:
 ## How to configure multiple environment
 
 If you want to segregate users for each runtime environment, the simpler solution is to:
+
 1. Create different databases, one for each environment you want; go to [Auth0 Management Dashboard](https://manage.auth0.com/) and from the *Authentication* section create new databases
-1. While still in Auth0 Management Dashboard, you'll have to allow the database (called `connection`) for each application 
+1. While still in Auth0 Management Dashboard, you'll have to allow the database (called `connection`) for each application
 (you might also define different applications for different environments, in this scenario you'd have to allow the proper connections to your applications)
 
-1. In the DevOps Console `Setup Infrastructure` section of your project add a variable for each environment (e.g. `DEV_AUTH0_CONNECTION`, `PREPROD_AUTH0_CONNECTION`, `PROD_AUTH0_CONNECTION`) and specify the proper database `connection` name for each environment.
-1. In the DevOps Console `Design` section modify `auth0-client` configuration for the `managementClient` in order to use the newly created interpolation variable (e.g. `AUTH0_CONNECTION`) for `supportedConnections` and `defaultCreateUserConnection`, and
-1. Make sure that `supportedConnections` is declared for each `client` too, specifying only the connection you want to support in each environment.
-1. Make sure that `supportedConnections` and `defaultConnection` is declared for `cms` client too, specifying only the connection you want to support in that environment.
+1. In the Console `Setup Infrastructure` section of your project add a variable for each environment (e.g. `DEV_AUTH0_CONNECTION`, `PREPROD_AUTH0_CONNECTION`, `PROD_AUTH0_CONNECTION`) and specify the proper database `connection` name for each environment.
+2. In the Console `Design` section modify `auth0-client` configuration for the `managementClient` in order to use the newly created interpolation variable (e.g. `AUTH0_CONNECTION`) for `supportedConnections` and `defaultCreateUserConnection`, and
+3. Make sure that `supportedConnections` is declared for each `client` too, specifying only the connection you want to support in each environment.
+4. Make sure that `supportedConnections` and `defaultConnection` is declared for `cms` client too, specifying only the connection you want to support in that environment.
 
 :::note
 For more information in regards of the Auth0 Client advanced config checkout out the [configuration documentation page](./configuration#auth0-connection-integration)

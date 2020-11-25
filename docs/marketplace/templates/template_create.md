@@ -59,7 +59,7 @@ To get an idea of Dockerfile best practice read this [article](https://www.docke
 
 ### Interpolations string
 
-Your template always has to include interpolations strings to allow service customization properly. The values of these string are provided by DevOps Console.
+Your template always has to include interpolations strings to allow service customization properly. The values of these string are provided by Console.
 The required strings are:
 
 * `mia_template_service_name_placeholder` - The name of the service.
@@ -68,8 +68,8 @@ The required strings are:
 
 The optional are:
 
-* `mia_template_project_id_placeholder`  - The id of the dev-console project
-* `%CUSTOM_PLUGIN_PROJECT_NAME%` - The name (label) of the dev-console project.
+* `mia_template_project_id_placeholder`  - The id of the Console project
+* `%CUSTOM_PLUGIN_PROJECT_NAME%` - The name (label) of the Console project.
 * `%CUSTOM_PLUGIN_CREATOR_USERNAME%` - The username of the user who created the service.
 * `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` - The full Gitlab path.
 * `%GITLAB_PROJECT%` - The name of the Gitlab project entered by the user.
@@ -119,7 +119,7 @@ Check out the [Node.js service template package.json](https://github.com/mia-pla
 
 ### Logging
 
-The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](../../development_suite/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of DevOps Console](./../../development_suite/overview-dev-suite#log-monitoring) and to use them to create custom dashboards.
+The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](../../development_suite/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](./../../development_suite/overview-dev-suite#log-monitoring) and to use them to create custom dashboards.
 
 * The template should provide a logger.
 * If exposes routes, it should generate logs for incoming and completed request.
@@ -128,7 +128,7 @@ The template should be able to generate logs in JSON format, using appropriate l
 
 Write clear and useful documentation is as important as to write good code. This will help who is using your template.
 
-When the service is [created on the DevOps Console](../../development_suite/api-console/api-design/services#manage-microservices), born a new repository with his own readme and changelog. In order to handle these files in a separate way, your template has to have a `.mia-template` folder with the following documentations files:
+When the service is [created on the Console](../../development_suite/api-console/api-design/services#manage-microservices), born a new repository with his own readme and changelog. In order to handle these files in a separate way, your template has to have a `.mia-template` folder with the following documentations files:
 
 * `README.md`  
   This will be the readme of the service that explains how to use it. How to run tests, make a release, etc.
@@ -143,4 +143,4 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 The template should be able to expose auto-generated documentation for each endpoint. It should exist a dedicated endpoint where show the API documentation.
 
-In order to properly view API documentation in the [*Api Portal* of the DevOps Console](./../../development_suite/api-portal/api-documentations.md), it should be exposed in [OAS3(Swagger) format](https://swagger.io/specification/).
+In order to properly view API documentation in the [*Api Portal* of the Console](./../../development_suite/api-portal/api-documentations.md), it should be exposed in [OAS3(Swagger) format](https://swagger.io/specification/).

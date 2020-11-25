@@ -5,7 +5,7 @@ sidebar_label: Dashboard configuration
 ---
 This page explains how to configure the new frontend for analytics. It is possible to configure multiple dashboards that can be visualized on the CMS.
 
-To be able to configure your charts and dashboards, in the **Services** section of the DevOps Console, you need to have for each chart:
+To be able to configure your charts and dashboards, in the **Services** section of the Console, you need to have for each chart:
 
 1. a set of APIs that are responsible for providing properly formatted data;
 2. data-visualization, which is the service that provides the web application;
@@ -25,7 +25,7 @@ Some configurations can be applied to dashboards in order to customize settings:
 
 ### Charts configuration
 
-The following configuration allows to manage **both the dashboard configuration and the single chart configuration**, in order to control how you want to visualize your analytics. The configuration is edited in the DevOps Console in the Services area directly in the `service.configmap.yml file`.
+The following configuration allows to manage **both the dashboard configuration and the single chart configuration**, in order to control how you want to visualize your analytics. The configuration is edited in the Console in the Services area directly in the `service.configmap.yml file`.
 
 Each **chart** is identified by a name and has:
 

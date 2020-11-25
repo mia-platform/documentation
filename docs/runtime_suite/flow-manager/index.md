@@ -48,7 +48,7 @@ In the example there are the following components (microservices):
 - **order-service**: a sample microservice that starts the saga
 - **microservice-n**: some microservice that collaborate to continue the saga
 
-The architecture above is simply feasible with the dev console, as showed in the following image:
+The architecture above is simply feasible with the Console, as showed in the following image:
 
 ![alt_image](img/flow-manager-architecture-dev-console.png)
 
