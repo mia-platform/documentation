@@ -247,9 +247,19 @@ Create a JSON file with the following content, then import this collection into 
 }
 ```
 
-## How to configure templates default environment variables from CMS
+## Configure default templates variables from CMS
 
-From CMS you can configure the environment variables of each template by adding the property `defaultEnvironmentVariables` inside the data model of each template. By modifying the map of the environment variables, you can overwrite the default environment variables applied by Console.
+From CMS you can customize each template by modifying the default values applied for the following properties:
+
+* environment variables
+* CPU and memory limitations
+* liveness and readiness Paths
+* log parser
+* documentation path
+
+### Configure default environment variables
+
+You can configure the environment variables of each template by adding the property `defaultEnvironmentVariables` inside the data model of each template. By modifying the map of the environment variables, you can overwrite the default environment variables applied by DevOps Console.
 
 To use this feature, you have to fill the `defaultEnvironmentVariables` in this way:
 
@@ -266,7 +276,66 @@ To use this feature, you have to fill the `defaultEnvironmentVariables` in this 
 You can also add a description field.
 :::
 
-Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by Console:
+### Configure default resources
+
+You can configure the CPU and memory limitations of each template by adding the property `defaultResources` inside the data model of each template. By modifying the map of the resources, you can overwrite the default limitations imposed by DevOps Console.
+
+To use this feature, you have to fill the `defaultResources` in this way:
+
+```JSON
+{
+  "cpuLimits": {
+    "min": "10m",
+    "max": "100m"
+  },
+  "memoryLimits": {
+    "min": "100Mi",
+    "max": "300Mi"
+    }
+}
+```
+
+:::warning
+Measurements units are required. Limitations are expressed in terms of milliCPUs and MebiBytes.
+:::
+
+### Configure default probes
+
+You can configure the readiness and liveness paths of each template by adding the property `defaultProbes` inside the data model of each template. By modifying the map of the probes, you can overwrite the default paths applied by DevOps Console.
+
+To use this feature, you have to fill the `defaultProbes` in this way:
+
+```JSON
+{
+  "liveness": {
+    "path": "/-/healthz"
+  },
+  "readiness": {
+    "path": "/-/ready"
+  }
+}
+```
+
+### Configure default log parser
+
+You can specify a default log parser for each template by adding the property `defaultLogParser` inside the data model of each template. By selecting a log parser, you can overwrite the default selection applied by DevOps Console.
+
+To use this feature, you have to select one `defaultLogParser` among these:
+
+* `mia-plain` to collecting logs but not parsing them
+* `mia-json` to parsing JSON logs based on the documented format
+* `mia-nginx` to parsing logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
+
+### Configure default documentation path
+
+You can set the documentation path of each template by adding the property `defaultDocumentationPath` inside the data model of each template. By modifying the documentation path, you can overwrite the default path applied by Console.
+
+To use this feature, you have to set the `defaultDocumentationPath` string.
+An example string can be as follows: `/documentation/json`.
+
+### Example Configuration
+
+Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
 
 ```JSON
   {
@@ -304,6 +373,26 @@ Here there is an example of the React Template configuration, which environment 
         "value": 8080,
         "name": "HTTP_PORT"
       }
-    ]
+    ],
+    "defaultResources":{
+      "cpuLimits": {
+        "min": "10m",
+        "max": "100m"
+      },
+      "memoryLimits": {
+        "min": "100Mi",
+        "max": "300Mi"
+      }
+    },
+    "defaultProbes": {
+      "liveness": {
+        "path": "/"
+      },
+      "readiness": {
+        "path": "/"
+      }  
+    },
+    "defaultLogParser": "mia-json",
+    "defaultDocumentationPath": "/documentation/json"
   }
 ```
