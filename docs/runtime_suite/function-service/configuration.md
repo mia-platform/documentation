@@ -18,74 +18,15 @@ The following steps will walk you through the setup of the needed scripts.
 
 You can locally start the function service to test and develop the handlers without the need of deploying to the cloud.
 
-To run the function service clone the _DevOps Console project_ and create a script in the configuration root named ```run-function-service-local.sh```, containing:
-
-```bash
-#!/bin/sh
-BASE_TEST_PATH=./test/
-
-if [ -z "$1" ];  then
-    echo "This will test every function-service in this project."
-    TEST_PATH="${BASE_TEST_PATH}*"
-else
-    echo "This will test the function service '$1'."
-    TEST_PATH="${BASE_TEST_PATH}$1"
-fi
-
-for FILE in $TEST_PATH
-do
-    if test -d $FILE
-    then
-        FUNCTION_SERVICE_NAME="${FILE#$BASE_TEST_PATH}"
-        echo "Testing $FUNCTION_SERVICE_NAME"
-
-        docker run --user root --rm \
-            --env FUNCTIONS_FOLDER=./volume/functions \
-            -v $(pwd)/test/${FUNCTION_SERVICE_NAME}:/home/node/app/volume/tests \
-            -v $(pwd)/config-maps/${FUNCTION_SERVICE_NAME}:/home/node/app/volume/functions \
-            nexus.mia-platform.eu/core/function-service \
-            ./run-test.sh \
-        || { echo "Tests for ${FUNCTION_SERVICE_NAME} failed" ; exit 1; }
-    fi
-done
-```
+To run the function service clone the _DevOps Console project_ and add the [run-function-service-local.sh](run-function-service-local.sh) script. Remember to add execution permissions with `chmod +x run-function-service-local.sh`
 
 ### Unit testing and continuous testing
 
 Every function service handler should be bundled with unit tests. The tests should be started locally, before each commit.
 To achieve continuous testing we provide a Gitlab's pipeline stage to remotely run the unit tests.
 
-To setup the unit testing create a script in the configuration root named ```run-function-service-tests.sh```, containing:
+To setup the unit testing add the [run-function-service-tests.sh](run-function-service-tests.sh) script in the configuration root. Remember to add execution permissions with `chmod +x run-function-service-tests.sh`
 
-```bash
-#!/bin/sh
-BASE_TEST_PATH=./test/
-
-if [ -z "$1" ];  then
-    echo "This will test every function-service in this project."
-    TEST_PATH="${BASE_TEST_PATH}*"
-else
-    echo "This will test the function service '$1'."
-    TEST_PATH="${BASE_TEST_PATH}$1"
-fi
-
-for FILE in $TEST_PATH
-do
-    if test -d $FILE
-    then
-        FUNCTION_SERVICE_NAME="${FILE#$BASE_TEST_PATH}"
-        echo "Testing $FUNCTION_SERVICE_NAME"
-
-        docker run --user root --rm \
-            --env FUNCTIONS_FOLDER=./volume/functions \
-            -v $(pwd)/test/${FUNCTION_SERVICE_NAME}:/home/node/app/volume/tests \
-            -v $(pwd)/config-maps/${FUNCTION_SERVICE_NAME}:/home/node/app/volume/functions \
-            nexus.mia-platform.eu/core/function-service \
-            ./run-test.sh \
-        || { echo "Tests for ${FUNCTION_SERVICE_NAME} failed" ; exit 1; }
-    fi
-done
-```
 
 To setup continuous testing you should append the following pipeline stage to the ```.gitlab-ci.yml``` file.
 
