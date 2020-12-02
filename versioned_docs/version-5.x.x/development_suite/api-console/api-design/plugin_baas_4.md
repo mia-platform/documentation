@@ -1,8 +1,12 @@
 ---
 id: plugin_baas_4
-title:  Custom Microservice in Node.js
-sidebar_label: Custom Microservice in Node.js
+title: Node.js Custom Plugin Lib
+sidebar_label: Node.js Custom Plugin Lib
 ---
+:::info
+This library is available on [GitHub](https://github.com/mia-platform/custom-plugin-lib)
+:::
+
 In addition to standard components (e.g., CRUD), the platform can include components that encapsulate ad-hoc logics that are autonomously developed and integrated: they are called **Custom Microservices**. A Custom Microservice (**CM**) is a service that receives HTTP requests, whose cycle of use and deploy is managed by the platform.  
 
 A CM encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created `custom-plugin-lib`, a library in [node.js](https://github.com/mia-platform/custom-plugin-lib), based on the [fastify](https://fastify.io) library. Using `custom-plugin-lib` it is possible to create a CM by implementing the following steps:

@@ -1,6 +1,6 @@
 ---
 id: overview_service_libraries
-title: What are the service libraries?
+title: What are the Service Libraries?
 sidebar_label: Overview
 ---
 For the purpose of facilitating the creation of [your microservices](./../development_suite/api-console/api-design/plugin_baas_4.md) and interact with Mia-Platform using different languages and frameworks, we have developed a set of libraries.
@@ -11,7 +11,7 @@ Currently available libraries are:
 
 | **Library**                                                                                      | **Technologies**         |
 | ------------------------------------------------------------------------------------------------ | ------------------------ |
-| [Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib)                 | Node.js, JavaScript      |
+| [Mia service Node.js library](../development_suite/api-console/api-design/plugin_baas_4) | Node.js, JavaScript      |
 | [Mia service Java library](https://github.com/mia-platform/custom-plugin-java)                   | Kotlin/Java              |
 | [Mia service Spring Boot library](https://github.com/mia-platform/custom-plugin-java-springboot) | Spring Boot, Kotlin/Java |
 | [Mia service NET library](https://github.com/mia-platform/Mia-service-Net-Library)               | .NET, C#                 |

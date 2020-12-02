@@ -55,6 +55,10 @@ module.exports = {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
             },
+            {
+              to: "docs/libraries/overview_service_libraries",
+              label: "Libraries",
+            }
           ],
         },
         {
@@ -176,9 +180,9 @@ module.exports = {
               to: "/docs/dev_ops_guide/git_vademecum",
             },
             {
-              label: "Walkthroughs & Tutorials",
+              label: "Getting Started",
               to:
-                "/docs/development_suite/api-console/api-design/plugin_baas_4",
+                "/docs/development_suite/api-console/api-design/quick_rest_api",
             },
             {
               label: "Library",
