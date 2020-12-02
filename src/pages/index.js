@@ -14,7 +14,7 @@ const features = [
   {
     title: <>{'Getting Started'}</>,
     icon: "rocket",
-    toUrl: "/docs/development_suite/api-console/api-design/quick_rest_api",
+    toUrl: "/docs/overview/mia_platform_overview",
     description: (
       <>
         {`Start to learn the main concepts of Mia-Platform and how to use to

@@ -33,9 +33,9 @@ module.exports = {
         alt: "Mia_Platform logo",
         src: "img/logo.png",
       },
-      items: [
+      items: [ 
         {
-          to: "docs/development_suite/api-console/api-design/quick_rest_api",
+          to: "docs/overview/mia_platform_overview",
           label: "Getting Started",
           position: "left",
         },
@@ -43,10 +43,6 @@ module.exports = {
           label: "Core Platform",
           position: "left",
           items: [
-            {
-              label: "Overview",
-              to: "/docs/overview/mia_platform_overview",
-            },
             {
               label: "Console",
               to: "docs/development_suite/overview-dev-suite",
@@ -182,7 +178,7 @@ module.exports = {
             {
               label: "Getting Started",
               to:
-                "/docs/development_suite/api-console/api-design/quick_rest_api",
+                "/docs/overview/mia_platform_overview",
             },
             {
               label: "Library",

@@ -1,9 +1,8 @@
 ---
 id: quick_rest_api
-title: Get started by building a quick REST API
-sidebar_label: Getting started
+title: Get started by building a quick REST API in 5 minutes
+sidebar_label: Create a Rest API in 5 minutes
 ---
-## How to create a Rest API in 5'min
 
 In this guide you will discover how to create and display a Rest API with simplicity.
 What you need is the API Console and the CMS.

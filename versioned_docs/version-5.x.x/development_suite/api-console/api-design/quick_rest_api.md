@@ -1,9 +1,8 @@
 ---
 id: quick_rest_api
-title: Get started by building a quick REST API
-sidebar_label: Getting started
+title: Get started by building a quick REST API in 5 minutes
+sidebar_label: Create a Rest API in 5 minutes
 ---
-## How to create a Rest API in 5'min
 
 In this guide you will discover how to create and display a Rest API with simplicity.
 What you need is the API Console and the CMS.
@@ -26,9 +25,9 @@ So imagine that you have to create a new collection that contains the books of a
 
 1. To create a new CRUD, select **CRUD** from the menu on the left of the API and select **Create new CRUD**.
 
-2. First, you need to enter the name of the CRUD in camelCase, in this case we will insert "books". Then you will need to enter an **internal endpoint** that exposes your CRUD internally and its **default state** than could be **DRAFT** or **PUBLIC**. The default values in the console will be a path equal to /endpointname and default state equal to draft. 
+2. First, you need to enter the name of the CRUD in camelCase, in this case we will insert "books". Then you will need to enter an **internal endpoint** that exposes your CRUD internally and its **default state** than could be **DRAFT** or **PUBLIC**. The default values in the console will be a path equal to /endpointname and default state equal to draft.
 Default fields will appear that can not be changed: *_id*, *creatorId*, *createdAt*, *updaterId*, *updatedAt*, *_STATE_*.  
-At this point we have to create our DB schema by creating the properties of our CRUD. In this section you can add a new property by selecting **Add New**. Then you must complete the following fields:    
+At this point we have to create our DB schema by creating the properties of our CRUD. In this section you can add a new property by selecting **Add New**. Then you must complete the following fields:
   ![Crea-collezione-riga-titolo](img/create-CRUD-1.png)
     * **Name**: enter the property name, in camelCase, in our case we will insert "title", "author", "year" etc.
 
@@ -71,8 +70,8 @@ To create an endpoint:
         * *External proxy*: hook your endpoint to a proxy linked to a service outside of your cluster.
         * *Cross Projects proxy*:  hook your endpoint to a proxy linked to another project contained in your cluster.
 
-2. In this case, we will create a CRUD endpoint to which we will link our CRUD just created. Then, as CRUD select the CRUD of which the endpoint is part. In our case *books*. 
-Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](crud_advanced.md) or [endpoint](endpoints.md) documentation. You can also set an optional description. 
+2. In this case, we will create a CRUD endpoint to which we will link our CRUD just created. Then, as CRUD select the CRUD of which the endpoint is part. In our case *books*.
+Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](crud_advanced.md) or [endpoint](endpoints.md) documentation. You can also set an optional description.
 
 The configuration should be like this:
 

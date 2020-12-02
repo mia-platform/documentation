@@ -564,7 +564,12 @@
       ]
     }
   ],
-  "gettingStarted": [{
+  "gettingStarted": [
+    {
+      "type": "doc",
+      "id": "overview/mia_platform_overview"
+    },
+    {
       "collapsed": true,
       "type": "category",
       "label":"Tutorial",

@@ -1,18 +1,5 @@
 {
-  "version-5.x.x/devOpsConsole": [{
-      "collapsed": true,
-      "type": "category",
-      "label": "Overview",
-      "items": [{
-          "type": "doc",
-          "id": "version-5.x.x/development_suite/overview-dev-suite"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/development_suite/api-console/api-design/quick_rest_api"
-        }
-      ]
-    },
+  "version-5.x.x/devOpsConsole": [
     {
       "collapsed": true,
       "type": "category",
@@ -554,13 +541,18 @@
     "type": "doc",
     "id": "version-5.x.x/fast_data/overview"
   }],
-  "version-5.x.x/learn": [{
-      "collapsed": false,
+  "version-5.x.x/gettingStarted": [
+    {
+      "type": "doc",
+      "id": "version-5.x.x/overview/mia_platform_overview"
+    },
+    {
+      "collapsed": true,
       "type": "category",
-      "label": "Create Services",
+      "label":"Tutorial",
       "items": [{
         "type": "doc",
-        "id": "version-5.x.x/development_suite/api-console/api-design/plugin_baas_4"
+        "id": "version-5.x.x/development_suite/api-console/api-design/quick_rest_api"
       }]
     },
     {
