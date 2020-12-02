@@ -244,14 +244,6 @@
             },
             {
               "type": "doc",
-              "id": "version-5.x.x/runtime_suite/sdk_ios"
-            },
-            {
-              "type": "doc",
-              "id": "version-5.x.x/runtime_suite/sdk_android"
-            },
-            {
-              "type": "doc",
               "id": "version-5.x.x/runtime_suite/pdf-service"
             },
             {
@@ -283,10 +275,6 @@
                 {
                   "type": "doc",
                   "id": "version-5.x.x/runtime_suite/secure-data-exchange-service"
-                },
-                {
-                  "type": "doc",
-                  "id": "version-5.x.x/runtime_suite/soap-to-rest"
                 },
                 {
                   "type": "doc",
@@ -445,7 +433,9 @@
     {
       "type": "doc",
       "id": "version-5.x.x/marketplace/examples/mia_examples"
-    },
+    }
+  ],
+  "version-5.x.x/libraries": [
     {
       "collapsed": false,
       "type": "category",
@@ -453,10 +443,26 @@
       "items": [{
           "collapsed": true,
           "type": "category",
-          "label": "Custom Microservices",
+          "label": "Microservices",
           "items": [{
               "type": "doc",
               "id": "version-5.x.x/libraries/overview_service_libraries"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/development_suite/api-console/api-design/plugin_baas_4"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/sdk_ios"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/sdk_android"
+            },
+            {
+              "type": "doc",
+              "id": "version-5.x.x/runtime_suite/soap-to-rest"
             },
             {
               "type": "doc",

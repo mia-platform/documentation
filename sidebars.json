@@ -242,14 +242,6 @@
             },
             {
               "type": "doc",
-              "id": "runtime_suite/sdk_ios"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/sdk_android"
-            },
-            {
-              "type": "doc",
               "id": "runtime_suite/pdf-service"
             },
             {
@@ -281,10 +273,6 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/secure-data-exchange-service"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/soap-to-rest"
                 },
                 {
                   "type": "doc",
@@ -435,18 +423,8 @@
           "id": "marketplace/templates/mia_templates"
         },
         {
-          "collapsed": true,
-          "label": "Use the templates",
-          "type": "category",
-          "items": [{
-              "type": "doc",
-              "id": "development_suite/api-console/api-design/custom_microservice_get_started"
-            },
-            {
-              "type": "doc",
-              "id": "development_suite/api-console/api-design/plugin_baas_4"
-            }
-          ]
+          "type": "doc",
+          "id": "development_suite/api-console/api-design/custom_microservice_get_started"
         },
         {
           "type": "doc",
@@ -454,7 +432,9 @@
         }
       ]
     },
-    "marketplace/examples/mia_examples",
+    "marketplace/examples/mia_examples"
+  ],
+  "libraries": [
     {
       "collapsed": false,
       "type": "category",
@@ -462,10 +442,22 @@
       "items": [{
           "collapsed": true,
           "type": "category",
-          "label": "Custom Microservices",
+          "label": "Microservices",
           "items": [{
               "type": "doc",
               "id": "libraries/overview_service_libraries"
+            },
+            {
+              "type": "doc",
+              "id": "development_suite/api-console/api-design/plugin_baas_4"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/sdk_ios"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/sdk_android"
             },
             {
               "type": "doc",

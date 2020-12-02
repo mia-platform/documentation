@@ -1,8 +1,12 @@
 ---
 id: plugin_baas_4
-title:  Create a Microservice starting from Node.js template
-sidebar_label: Create Microservices in Node.js
+title: Node.js Custom Plugin Lib
+sidebar_label: Node.js Custom Plugin Lib
 ---
+:::info
+This library is available on [GitHub](https://github.com/mia-platform/custom-plugin-lib)
+:::
+
 In addition to standard components (e.g., CRUD), you can create your own microservices that encapsulate ad-hoc logics that are autonomously developed and integrated. Your microservice receives HTTP requests, its cycle of use and deploy is managed by the platform.  
 
 A microservice encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created [Mia Service Node.js Library](https://github.com/mia-platform/custom-plugin-lib), a library in **node.js**, based on the [fastify](https://fastify.io) library. Using `Mia Service Node.js Library` it is possible to create your own microservice by implementing the following steps:
