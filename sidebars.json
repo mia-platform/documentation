@@ -189,25 +189,41 @@
       "id": "marketplace/overview_marketplace"
     },
     {
-      "collapsed": false,
+      "type": "category",
+      "label": "Core Services",
+      "items": [
+        {
+          "type": "doc",
+          "id": "runtime_suite/api-gateway"
+        },
+        {
+          "type": "doc",
+          "id": "runtime_suite/microservice-gateway"
+        },
+        {
+          "type": "doc",
+          "id": "runtime_suite/auth-service"
+        },
+        {
+          "type": "doc",
+          "id": "runtime_suite/user-service"
+        },
+        {
+          "type": "doc",
+          "id": "runtime_suite/session-manager"
+        }
+      ]
+    },
+    {
+      "collapsed": false, 
       "type": "category",
       "label": "Plugins",
-      "items": [{
-          "type": "doc",
-          "id": "runtime_suite/overview-runtime-suite"
-        },
+      "items": [
         {
           "collapsed": true,
           "type": "category",
           "label": "API & Microservice Ecosystem",
-          "items": [{
-              "type": "doc",
-              "id": "runtime_suite/api-gateway"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/microservice-gateway"
-            },
+          "items": [
             {
               "type": "doc",
               "id": "runtime_suite/crud-service"
@@ -269,10 +285,6 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/event-source-management"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/secure-data-exchange-service"
                 },
                 {
                   "type": "doc",
@@ -348,21 +360,10 @@
           "collapsed": true,
           "type": "category",
           "label": "Privacy & Security",
-          "items": [{
-              "type": "doc",
-              "id": "runtime_suite/auth-service"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/user-service"
-            },
+          "items": [
             {
               "type": "doc",
               "id": "runtime_suite/acl-service"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/session-manager"
             },
             {
               "collapsed": true,
