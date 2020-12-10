@@ -78,6 +78,94 @@ Remember that the file must be a JSON with the following directions:
 * `required` must be `false` or `true`
 * `nullable` must be `false` or `true`
 
+`RawObject` and `Array_RawObject` support both a custom JSON Schema.  
+It can be used to specify the schema of the object for the former and the schema of each item of the array for the latter.
+
+To do it, add a property *schema* to the field.  
+The following options are supported:  
+- `properties`: must be a valid 'properties' field of a json schema of type *object*.
+- `required`: array of name properties that are required. It's the **required** field of a JSON schema of type *object*.
+- `additionalProperties`: boolean, `true` if the object can have additional properties.
+
+This is an example of a field of type `RawObject` where is specified the schema object the properties of the object (*properties*), the required properties (`somethingNumber`) and if object could accept additional properties (in this example it is set to false):
+```json
+{
+  "name": "fieldObject",
+  "type": "RawObject",
+  "schema": {
+    "properties": {
+      "somethingArrayObject": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "anotherNumber": { "type": "number" }
+          },
+        }
+      },
+      "somethingNumber": {
+        "type": "number"
+      },
+      "somethingObject": {
+        "type": "object",
+        "properties": {
+          "childNumber": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "required": [
+      "somethingNumber"
+    ],
+    "additionalProperties": false,
+  },
+  "required": false
+}
+```
+
+
+The following is an example of `Array_RawObject` (*Array* of *RawObject*) with the JSON schema of the object items.  
+
+```json
+{
+  "name": "fieldArrayOfObjects",
+  "type": "Array_RawObject",
+  "schema": {
+      "properties": {
+      "name": {
+        "type": "string"
+      },
+      "neastedArr": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+    },
+    "required": [
+      "name"
+    ],
+    "additionalProperties": false,
+  },
+  "required": false
+}
+```
+
+Here, *schema* refers to the object of each item (which are of type `RawObject`). It's NOT the schema of the array itself.  
+So, each item of the array must follows the following rules:
+- *name* property must be a string ad it is required
+- *neastedArr* property must be an array of numbers
+- can have additional properties
+
+The schema specified in *properties* (for both of them) **cannot** have the following operators:
+- `oneOf`
+- `anyOf`
+- `allOf`
+- `if`
+- `$ref`
+
 Here's an example of the file to upload.
 
 ```json
@@ -116,6 +204,13 @@ Here's an example of the file to upload.
 {
   "name": "Writer",
   "type": "RawObject",
+  "schema": {
+    "properties": {
+      ...
+    },
+    "required": ["fieldname1"],
+    "additionalProperties": true
+  },
   "required": false,
   "nullable": false
 },
@@ -134,6 +229,13 @@ Here's an example of the file to upload.
 {
   "name":"shops",
   "type":"Array_RawObject",
+  "schema": {
+    "properties": {
+      ...
+    },
+    "required": ["fieldname1"],
+    "additionalProperties": true
+  },
   "required":true,
   "nullable":true,
   "description":"where to find the books"
@@ -161,4 +263,4 @@ Once you named the index you need to choose among: geo, hash or TTL. Then, you c
 
 ## CRUD API Documentation
 
-To learn how to use API exposed by CRUD services see [CRUD API Documentation](../../../runtime_suite/crud-service/).
+To learn how to use API exposed by CRUD services see [CRUD API Documentation](../../../runtime_suite/crud-service/how-it-works.md).

@@ -59,7 +59,7 @@ The first version of the platform will allow to:
 
 ## Create CRUDs
 
-First of all, your platform should be able to store information. With Mia-Platform you can easily create [MongoDB](https://www.mongodb.com/) collections to be manipulated by a [CRUD](../../runtime_suite/crud-service.md).
+First of all, your platform should be able to store information. With Mia-Platform you can easily create [MongoDB](https://www.mongodb.com/) collections to be manipulated by a [CRUD](../../runtime_suite/crud-service/how-it-works.md).
 
 We will need the following collections to manage this information:
 
