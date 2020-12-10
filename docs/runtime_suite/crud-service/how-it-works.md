@@ -1,7 +1,7 @@
 ---
 id: how-it-works
 title:  CRUD Service
-sidebar_label: CRUD Service
+sidebar_label: Overview
 ---
 CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
 
