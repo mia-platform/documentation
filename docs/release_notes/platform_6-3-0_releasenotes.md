@@ -14,9 +14,9 @@ _December 10,2020_
 
 When editing a field of type `Object` or `Array of Objects` within a collection, the lateral drawer allows you to edit its JSON Schema, enabling the creation of specific schema for custom objects.
 
-To see how the feature works check out the [configuration page](../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).  
+To see how the feature works check out the documentation of the fields creation in the [configuration page](../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).  
 
-[Here](../runtime_suite/crud-service/how-it-works#rawobject-and-array_rawobject-with-schemas) you can read more about what this feature enables you to do (and its limitations).
+[Here](../runtime_suite/crud-service/how-it-works#rawobject-and-array_rawobject-with-schemas) you can read more about `RawObject` and `Array_RawObject` with schemas to understand what this feature enables you to do (and its limitations).
 
 :::info
 This is a beta feature! It has been tested on a limited subset of cases and hence it may be subject to breaking changes. You can still try it right away.
