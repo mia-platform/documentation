@@ -647,6 +647,10 @@
       "label": "Versions",
       "items": [{
           "type": "doc",
+          "id": "release_notes/v6.3.0"
+        },
+        {
+          "type": "doc",
           "id": "release_notes/v6.2.0"
         },
         {
