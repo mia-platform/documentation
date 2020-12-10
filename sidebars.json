@@ -225,9 +225,20 @@
           "label": "API & Microservice Ecosystem",
           "items": [
             {
-              "type": "doc",
-              "id": "runtime_suite/crud-service"
-            },
+              "collapsed": true,
+              "type": "category",
+              "label": "CRUD Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/crud-service/how-it-works"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/crud-service/configuration"
+                }
+              ]
+            },  
             {
               "collapsed": true,
               "type": "category",

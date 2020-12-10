@@ -1,5 +1,5 @@
 ---
-id: crud-service
+id: how-it-works
 title:  CRUD Service
 sidebar_label: CRUD Service
 ---
@@ -22,7 +22,7 @@ Via APIs it's possible to:
 
 The following guide will help you to get familiar with the APIs of the CRUD Service.
 
-![API Portal](img/crud-api-portal.png)
+![API Portal](../img/crud-api-portal.png)
 
 > Remember: the API Portal visualize all API configured and exposed by CRUD.
 
@@ -63,7 +63,7 @@ In Console it's possible to configure the CRUD service. The task it's easy. The 
 - in less than one minute the new endpoint that exposes the configured CRUD service is available
 - select Documentation menu and open the API Portal, browse the CRUD endpoint deployed
 
-For more details [see here](./../development_suite/api-console/api-design/crud_advanced).
+For more details [see here](../../development_suite/api-console/api-design/crud_advanced).
 
  ------------------------------------------------------------
 
@@ -176,6 +176,8 @@ When a new property is added to a collection it is possible to specify the follo
 - Array of Numbers
 - Array of Objects
 
+For the Objects and array of Objects, you could add a JSON Schema describing the expected properties.
+
 ### Collection document Properties properties
 
 Each property can defined as:
@@ -193,6 +195,12 @@ A property can be indexed. In Console/Design/CRUD it can be configured the follo
 - **ttl**: is a special single-field indexes that CRUD can use to automatically remove documents from a collection after a certain amount of time
 
 The index can be unique. If set the value of the property must be unique in the collection.
+
+For the nested objects, it is possible to add an index using the dot notation to specify the indexed field.
+
+:::warning
+Every index that is not specified in the collection definition will be **dropped** at startup, unless its name starts with `preserve_` prefix
+:::
 
 ## CRUD Headers
 
@@ -655,7 +663,7 @@ On CRUD service it's possible to filter data also for proximity using MongoDB Ge
 
 To enable this feature you need to create an Position index on Console.
 
-![Position Index](img/position-index.png)
+![Position Index](../img/position-index.png)
 
 When the index is created you can use $nearSphere. For example to search a plate near you, between 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
 
@@ -685,6 +693,110 @@ To update a resource it is sufficient to invoke a PATCH passing in the body the 
 ### Delete
 
 To delete a resource just call DELETE with _id.
+
+### RawObject and Array_RawObject with schemas
+
+Nested properties of a field of type `RawObject` and `Array_RawObject` can be used in REST APIs with object notation or dot notation.
+
+Example of PATCH with dot notation
+```curl
+curl --location --request PATCH 'demo.mia-platform.eu/v2/books/111111111111111111111111' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "$set": {
+        "metadata.somethingArrayObject.0.anotherNumber": "3",
+        "metadata.somethingObject.childNumber": "9"
+    }
+}'
+```
+
+Example of PATCH with object notation
+```curl
+curl --location --request PATCH 'demo.mia-platform.eu/v2/books/111111111111111111111111' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "$set": {
+        "metadata": {
+          "somethingArrayObject": [
+            {"anotherNumber": "3"}
+          ],
+          "somethingObject": {
+            "childNumber": "9"
+          }
+        }
+    }
+}'
+```
+
+The two operation above have different effect.  
+*"metadata.somethingObject.childNumber": "9"* assigns "9" to the field "childNumber".  
+
+In the "Example with object notation" you are setting a value to the field *metadata*.  
+So the field *metadata* will be exactly:
+```
+{
+  "somethingArrayObject": [
+    {"anotherNumber": "3"}
+  ],
+  "somethingObject": {
+    "childNumber": "9"
+  }
+}
+```
+
+
+Values will be casted based on the JSON Schema.  
+So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
+
+> **Note**: in the `$unset` operation of nested properties it's not made a validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use $unset on nested properties.
+
+Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a *$set* of a *PATCH*) with dot notation. The field have to be valid against the following pattern *FIELD_NAME.* where *FIELD_NAME* is the name of the field. (e.g.: `*set: { "myObject.something": "foobar"}*`). 
+
+> **Note**: the pattern contains *.* and not *\.*, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons.
+
+The operators **.$.merge** and **.$.replace** can also be used on nested arrays.
+
+Example of **$.replace** with a *PATCH bulk*:
+
+```json
+curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "filter": {
+              "_id": "111111111111111111111111",
+              "metadata.somethingArrayOfNumbers": 3
+    },
+    "$set": {
+        "metadata.somethingArrayOfNumbers.$.replace": 5
+    }
+}'
+```
+
+This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayOfNumbers* inside *metadata* equals to 3.   
+It will be set to 5 the item of *somethingArrayOfNumbers* equals to 3.  
+
+In case of array of object can also be used to **$.merge** operators.
+
+```json
+curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "filter": {
+              "_id": "111111111111111111111111",
+              "metadata.somethingArrayObject": {"anotherNumber": 3, "somethingElse": "foo"}
+    },
+    "$set": {
+        "metadata.somethingArrayObject.$.merge": {"anotherNumber": 5}
+    }
+}'
+```
+
+This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *{"anotherNumber": 3, "somethingElse": "foo"}*.   
+It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *{"anotherNumber": 3, "somethingElse": "foo"}*)
+
+:::warning
+The values of **$.replace** and **$.merge** does not support "dot notation". So cannot be done: *"something.$.merge": {"foo.bar.lorem": 5}*
+:::
 
 ### CRUD Limits
 
