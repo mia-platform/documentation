@@ -1,7 +1,7 @@
 .feature {
   background-color: var(--ifm-card-color);
-  margin: var(--ifm-global-spacing);
-  padding: 1rem;
+  margin: calc(var(--ifm-global-spacing) / 2) !important;
+  padding: 1rem !important;
   max-width:  calc(var(--ifm-col-width) - var(--ifm-global-spacing)) !important;
   box-shadow: 0 3px 6px #2d354417, 8px 4px 4px rgba(11,33,74,0.03);
   border: 1px solid var(--ifm-navbar-search-input-background-color);

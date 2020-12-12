@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-import React, {useState} from "react";
-import clsx from "clsx";
-import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import useOnClickOutside from "use-onclickoutside";
+import React, {useState, useRef, useEffect} from 'react';
+import clsx from 'clsx';
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import {useLocation} from '@docusaurus/router';
+import {isSamePath} from '@docusaurus/theme-common';
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
@@ -21,10 +22,13 @@ function NavLink({
   to,
   href,
   label,
-  activeClassName = "navbar__link--active",
+  activeClassName = 'navbar__link--active',
   prependBaseUrlToHref,
   ...props
 }) {
+
+  // TODO all this seems hacky
+  // {to: 'version'} should probably be forbidden, in favor of {to: '/version'}
   let toUrl = useBaseUrl(to);
   const activeBaseUrl = useBaseUrl(activeBasePath);
   const normalizedHref = useBaseUrl(href, {
@@ -32,23 +36,21 @@ function NavLink({
   });
 
   const {siteConfig} = useDocusaurusContext();
-  const {versionPathRegex} =  siteConfig?.customFields; //"/docs\/\d+.x.x/g";
-
+  const {versionPathRegex} =  siteConfig?.customFields;
   const currentLocation = ExecutionEnvironment.canUseDOM ? window.location.href : null;
- 
   if (currentLocation && !fromDropdownVersions && toUrl) {
-    const matchedResults = currentLocation.match(new RegExp(versionPathRegex));
-
-    if (matchedResults?.length)
-      toUrl = toUrl.replace("docs", matchedResults[0]);
+    const regex=new RegExp(versionPathRegex)
+    const matchedResults = currentLocation.match(regex);
+    if (matchedResults?.length && !regex.test(toUrl)) {
+      toUrl = toUrl.replace( 'docs', matchedResults[0]);
+    }
   }
-
   return (
     <Link
       {...(href ?
         {
-            target: "_blank",
-            rel: "noopener noreferrer",
+            target: '_blank',
+            rel: 'noopener noreferrer',
             href: prependBaseUrlToHref ? normalizedHref : href,
           } :
         {
@@ -72,31 +74,33 @@ function NavLink({
 }
 
 function NavItemDesktop({items, position, className, ...props}) {
-  const dropDownRef = React.useRef(null);
-  const dropDownMenuRef = React.useRef(null);
-  const [showDropDown, setShowDropDown] = useState(false);
-  useOnClickOutside(dropDownRef, () => toggle(false));
-
-  function toggle(state) {
-    if (state) {
-      const firstNavLinkOfULElement =
-        dropDownMenuRef?.current?.firstChild?.firstChild;
-
-      if (firstNavLinkOfULElement) {
-        firstNavLinkOfULElement.focus();
+  const dropdownRef = useRef(null);
+  const dropdownMenuRef = useRef(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
+        return;
       }
-    }
 
-    setShowDropDown(state);
-  }
+      setShowDropdown(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
     clsx(
       {
-        "navbar__item navbar__link": !isDropdownItem,
+        'navbar__item navbar__link': !isDropdownItem,
         dropdown__link: isDropdownItem,
       },
-      extraClassName
+      extraClassName,
     );
 
   if (!items) {
@@ -105,59 +109,74 @@ function NavItemDesktop({items, position, className, ...props}) {
 
   return (
     <div
-      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
-        "dropdown--left": position === "left",
-        "dropdown--right": position === "right",
-        "dropdown--show": showDropDown,
+      className={clsx('navbar__item', 'dropdown', 'dropdown--hoverable', {
+        'dropdown--left': position === 'left',
+        'dropdown--right': position === 'right',
+        'dropdown--show': showDropdown,
       })}
-      ref={dropDownRef}
+      ref={dropdownRef}
     >
       <NavLink
         className={navLinkClassNames(className)}
         {...props}
         onClick={props.to ? undefined : (e) => e.preventDefault()}
         onKeyDown={(e) => {
-          if ((e.key === "Enter" && !props.to) || e.key === "Tab") {
+          if (e.key === 'Enter') {
             e.preventDefault();
-            toggle(true);
+            setShowDropdown(!showDropdown);
           }
         }}
       >
         {props.label}
       </NavLink>
-      <ul className="dropdown__menu" ref={dropDownMenuRef}>
-        {items.map(
-          ({className: childItemClassName, ...childItemProps}, i) => (
-            <li key={i}>
-              <NavLink
-                activeClassName="dropdown__link--active"
-                className={navLinkClassNames(childItemClassName, true)}
-                fromDropdownVersions={childItemProps.fromDropdownVersions}
-                onKeyDown={(e) => {
-                  if (i === items.length - 1 && e.key === "Tab") {
-                    e.preventDefault();
-                    toggle(false);
+      <ul className="dropdown__menu" ref={dropdownMenuRef}>
+        {items.map(({className: childItemClassName, ...childItemProps}, i) => (
+          <li key={i}>
+            <NavLink
+              activeClassName="dropdown__link--active"
+              className={navLinkClassNames(childItemClassName, true)}
+              fromDropdownVersions={childItemProps.fromDropdownVersions}
+              onKeyDown={(e) => {
+                if (i === items.length - 1 && e.key === 'Tab') {
+                  e.preventDefault();
+                  setShowDropdown(false);
+                  const nextNavbarItem = dropdownRef.current.nextElementSibling;
+
+                  if (nextNavbarItem) {
+                    nextNavbarItem.focus();
                   }
-                }}
-                {...childItemProps}
-              />
-            </li>
-          )
-        )}
+                }
+              }}
+              {...childItemProps}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );
 }
 
-function NavItemMobile({items, className, ...props}) {
+function NavItemMobile({
+  items,
+  className,
+  // eslint-disable-next-line no-unused-vars
+  position: _position,
   // Need to destructure position from props so that it doesn't get passed on.
+  ...props
+}) {
+  const menuListRef = useRef(null);
+  const {pathname} = useLocation();
+  const [collapsed, setCollapsed] = useState(
+    () => !items?.some((item) => isSamePath(item.to, pathname)) ?? true,
+  );
+
   const navLinkClassNames = (extraClassName, isSubList = false) =>
     clsx(
-      "menu__link",
+      'menu__link',
       {
-        "menu__link--sublist": isSubList,
+        'menu__link--sublist': isSubList,
       },
-      extraClassName
+      extraClassName,
     );
 
   if (!items) {
@@ -168,24 +187,42 @@ function NavItemMobile({items, className, ...props}) {
     );
   }
 
+  const menuListHeight = menuListRef.current?.scrollHeight ?
+    `${menuListRef.current?.scrollHeight}px` :
+    undefined;
   return (
-    <li className="menu__list-item">
-      <NavLink className={navLinkClassNames(className, true)} {...props}>
+    <li
+      className={clsx('menu__list-item', {
+        'menu__list-item--collapsed': collapsed,
+      })}
+    >
+      <NavLink
+        className={navLinkClassNames(className, true)}
+        role="button"
+        {...props}
+        onClick={() => {
+          setCollapsed((state) => !state);
+        }}
+      >
         {props.label}
       </NavLink>
-      <ul className="menu__list">
-        {items.map(
-          ({className: childItemClassName, ...childItemProps}, i) => (
-            <li className="menu__list-item" key={i}>
-              <NavLink
-                activeClassName="menu__link--active"
-                className={navLinkClassNames(childItemClassName)}
-                {...childItemProps}
-                onClick={props.onClick}
-              />
-            </li>
-          )
-        )}
+      <ul
+        className="menu__list"
+        ref={menuListRef}
+        style={{
+          height: !collapsed ? menuListHeight : undefined,
+        }}
+      >
+        {items.map(({className: childItemClassName, ...childItemProps}, i) => (
+          <li className="menu__list-item" key={i}>
+            <NavLink
+              activeClassName="menu__link--active"
+              className={navLinkClassNames(childItemClassName)}
+              {...childItemProps}
+              onClick={props.onClick}
+            />
+          </li>
+        ))}
       </ul>
     </li>
   );

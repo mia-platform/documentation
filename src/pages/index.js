@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Logo from "../components/Logo";
@@ -7,51 +7,40 @@ import Feature from "../components/Feature";
 import HowToBox from "../components/HowToBox";
 
 import SearchBar from "@theme/SearchBar";
+
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useWindowSize, {windowSizes} from '@theme/hooks/useWindowSize';
+
 import styles from "./styles.module.css";
 
 const features = [
   {
-    title: <>{'Getting Started'}</>,
+    title: 'Getting Started',
     icon: "rocket",
     toUrl: "/docs/overview/mia_platform_overview",
-    description: (
-      <>
-        {`Start to learn the main concepts of Mia-Platform and how to use to
-        develop your services`}
-      </>
-    ),
+    description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`
   },
   {
-    title: <>{'DevOps Console'}</>,
+    title: 'Console',
     icon: "console",
     toUrl: "/docs/development_suite/overview-dev-suite",
-    description: (
-      <>
-        {`Start to use only one platform to design and manage the full-cycle of
-        your DevOps`}
-      </>
-    ),
+    description: `Start to use only one platform to design and manage the full-cycle of your DevOps`
   },
   {
-    title: <>{'Learn to build what you want'}</>,
+    title: 'Learn to build what you want',
     icon: "learn",
     toUrl: "/docs/development_suite/api-console/api-design/plugin_baas_4",
-    description: (
-      <>
-        {`Read our tutorials, follow walkthroughs and learn how to decouple your
+    description: `Read our tutorials, follow walkthroughs and learn how to decouple your
         IT systems from your channels and develop modern cloud‑native
-        applications.`}
-      </>
-    ),
+        applications.`
   },
 ];
 
 const secondRowFeatures = [
   {
-    title: <>{'What\'s new?'}</>,
+    title: 'What\'s new?',
     icon: "new",
-    description: <>{'Discover new cool features, updates and bug fixes'}</>,
+    description: 'Discover new cool features, updates and bug fixes',
     links: [
       {
         icon: "video",
@@ -106,6 +95,14 @@ function Home() {
 
   const {title, description, links} = howToBoxProperties;
 
+  const [showHexagons, setHexagonsShown] = useState(false);
+
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+      setHexagonsShown(windowSize === windowSizes.desktop);
+  }, [windowSize]);
+
   return (
     <Layout
       description="Mia‑Platform provides the first end‑to‑end Digital Integration Hub on the market with a full DevOps Lifecycle Management: one unique Console to run Fast Data, Microservices and APIs."
@@ -113,18 +110,16 @@ function Home() {
     >
       <Fragment>
         <div className={styles.container}>
-          <Hexagons />
+        {showHexagons && (<Hexagons />)}
           <header style={styles.header}>
             <div className={clsx("hero hero--primary", styles.heroBanner)}>
               <div className="container">
                 <Logo />
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
-              <SearchBar
-                placeholder="Search for terms, commands and more..."
-                searchBarId="search_input_home"
-                searchBarInHome={true}
-              />
+              <div className="searchBarBox home">
+                <SearchBar />
+              </div>
             </div>
           </header>
         </div>

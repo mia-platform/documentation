@@ -14,20 +14,19 @@ const iconComponents = {
   releaseNotes: SVGIcon.releaseNotesSVG,
 };
 
-function Feature({toUrl, icon, title, description, links}) {
+const getContent=(icon, title, description,links) => {
   const IconComponent = iconComponents[icon];
-  links = links || [];
-
-  return (
-    <div className={clsx("col col--4", styles.feature)}>
-      <a className={styles.featureLink} href={toUrl}>
-        <div>
-          <IconComponent className={styles.svgIcon} />
-        </div>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <div>
-          {links.map((link, idx) => {
+  
+  return (  
+    <>
+      <div>
+        <IconComponent className={styles.svgIcon} />
+      </div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <div>
+        {
+          links.map((link, idx) => {
             const LinkIconconComponent = iconComponents[link.icon];
 
             return (
@@ -43,24 +42,37 @@ function Feature({toUrl, icon, title, description, links}) {
                 <span>{link.label}</span>
               </a>
             );
-          })}
-        </div>
-      </a>
+          })
+        }
+      </div>
+    </>
+  )
+}
+
+function Feature(props) {
+  const {links = []}=props
+  const {icon, title, description,toUrl}=props
+
+  return (
+    <div className={clsx("col col--4", styles.feature)}>
+      {
+        toUrl ? (<a className={styles.featureLink} href={toUrl}>{getContent(icon, title, description,links)}</a>) : (getContent(icon, title, description,links))
+      }
     </div>
-  );
+  )
 }
 
 Feature.propTypes = {
   description: PropTypes.string.isRequired,
   icon: PropTypes.oneOf(Object.keys(iconComponents)).isRequired,
   links: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-    target: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
+    icon: PropTypes.string,
+    href: PropTypes.string,
+    target: PropTypes.string,
+    label: PropTypes.string
   })),
   title: PropTypes.string.isRequired,
-  toUrl: PropTypes.string.isRequired
+  toUrl: PropTypes.string
 }
 
 export default Feature;

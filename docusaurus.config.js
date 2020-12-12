@@ -14,6 +14,14 @@ module.exports = {
       backgroundColor: "#5FA37E",
       textColor: "#FFF",
     },
+    algolia: {
+      placeholder:'Search for terms, features and more...',
+      apiKey: '0907ee3ecd107c2d6e223ce45a6687ab',
+      appId:'58NJDUVYVW',
+      indexName: 'test_mia-platform-docs',
+      contextualSearch: true,
+
+    },
     colorMode: {
       // "light" | "dark"
       defaultMode: "light",
@@ -42,18 +50,24 @@ module.exports = {
         {
           label: "Core Platform",
           position: "left",
+          activeBaseRegex: '(docs|docs/\\d.x)/(development_suite|marketplace|libraries)',
+          to: "/",
           items: [
             {
               label: "Console",
               to: "docs/development_suite/overview-dev-suite",
+              activeBasePath: "docs/development_suite",
             },
             {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
+              activeBasePath: "docs/marketplace",
+
             },
             {
               to: "docs/libraries/overview_service_libraries",
               label: "Libraries",
+              activeBasePath: "docs/libraries",
             }
           ],
         },
@@ -209,7 +223,7 @@ module.exports = {
     },
   },
   customFields: {
-    versionPathRegex: "docs\\/(\\d+.x)"
+    versionPathRegex: "docs\\/\\d+\\.x"
   },
   presets: [
     [
@@ -249,13 +263,6 @@ module.exports = {
           //  Redirect old / paths to newer /docs/ paths
           return [path.replace(/^\/docs/g, "")];
         },
-      },
-    ],
-    [
-      require.resolve("@mia-platform/docusaurus-lunr-search"),
-      {
-        excludeRoutes: ["docs/next/**/*"],
-        versionPathRegex: "docs\\/(\\d+.x)"
       },
     ],
   ],

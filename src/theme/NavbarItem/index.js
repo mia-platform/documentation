@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -15,6 +16,8 @@ const NavbarItemComponents = {
     require('@theme/NavbarItem/DocsVersionNavbarItem').default,
   docsVersionDropdown: () =>
     require('@theme/NavbarItem/DocsVersionDropdownNavbarItem').default,
+  doc: () =>
+    require('@theme/NavbarItem/DocNavbarItem').default,
 };
 
 const getNavbarItemComponent = (type = 'default') => {
