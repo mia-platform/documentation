@@ -18,7 +18,7 @@ module.exports = {
       placeholder:'Search for terms, features and more...',
       apiKey: '0907ee3ecd107c2d6e223ce45a6687ab',
       appId:'58NJDUVYVW',
-      indexName: 'next_mia-platform-docs',
+      indexName: 'mia-platform-docs',
       contextualSearch: true,
 
     },
