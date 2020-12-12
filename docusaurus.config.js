@@ -18,7 +18,7 @@ module.exports = {
       placeholder:'Search for terms, features and more...',
       apiKey: '0907ee3ecd107c2d6e223ce45a6687ab',
       appId:'58NJDUVYVW',
-      indexName: 'mia-platform-docs',
+      indexName: 'next_mia-platform-docs',
       contextualSearch: true,
 
     },
@@ -51,7 +51,7 @@ module.exports = {
           label: "Core Platform",
           position: "left",
           activeBaseRegex: '(docs|docs/\\d.x)/(development_suite|marketplace|libraries)',
-          to: "/",
+          to: "docs/development_suite/overview-dev-suite",
           items: [
             {
               label: "Console",
