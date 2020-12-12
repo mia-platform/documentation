@@ -56,18 +56,14 @@ module.exports = {
             {
               label: "Console",
               to: "docs/development_suite/overview-dev-suite",
-              activeBasePath: "docs/development_suite",
             },
             {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
-              activeBasePath: "docs/marketplace",
-
             },
             {
               to: "docs/libraries/overview_service_libraries",
               label: "Libraries",
-              activeBasePath: "docs/libraries",
             }
           ],
         },
