@@ -159,6 +159,7 @@ html[data-theme='dark'] .DocSearch-Button {
 
 @media only screen and (max-width: 750px) {
   .DocSearch-Dropdown {
-    max-height: 100% !important;
+    height: 100%;
+    max-height: calc(var(--docsearch-vh, 1vh)*100 - var(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-footer-height)) !important;
   }
 }
