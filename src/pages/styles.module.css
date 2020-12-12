@@ -35,13 +35,18 @@
   padding-bottom: calc(var(--ifm-global-spacing)*2);
 }
 
+.searchBarBox {
+ display: flex;
+ justify-content: center;
+ width: 50%;
+}
+
 .wrapperHexagon {
   position: "absolute";
   width: "100%";
   top: 0;
   height: "100%";
 }
-
 
 .container {
   position: relative;

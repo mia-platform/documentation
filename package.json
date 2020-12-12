@@ -13,11 +13,10 @@
     "lint": "eslint --ext js ."
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.63",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-alpha.63",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.63",
+    "@docusaurus/core": "^2.0.0-alpha.69",
+    "@docusaurus/plugin-client-redirects": "^2.0.0-alpha.69",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.69",
     "@mdx-js/react": "^1.5.8",
-    "@mia-platform/docusaurus-lunr-search": "^3.0.0",
     "clsx": "^1.1.1",
     "react": "^16.8.4",
     "react-cookie-consent": "^5.1.3",
