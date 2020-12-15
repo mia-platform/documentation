@@ -83,7 +83,7 @@ In this section you can choose the general configurations of your page.
 
 * *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to do so, find how to do it at the following [link](conf_cms#1-configure-the-card).
 
-* *Gallery* is instead the perfect representation for images. Follow the [link](../../../business_suite/conf_cms/#9-configure-the-gallery) to see how to configure it.
+* *Gallery* is instead the perfect representation for images. Follow the [link](conf_cms.md#9-configure-the-gallery) to see how to configure it.
 
 **Highlight a** field: this select shows you the properties that are boolean in your page. You can in fact choose to highlight a boolean property in the CMS. If the property is true you will see it highlighted in bold.
 

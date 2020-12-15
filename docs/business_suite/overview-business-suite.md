@@ -32,4 +32,4 @@ A pratical and intuitive interface to Create, Read, Update and Delete content on
 
 Take decisions leveraging the power of your data. Set your KPIs and monitor your performances in real time with beautiful dashboards.
 Get an omnichannel view of your users and products and turn into a data-driven Company.
-Discover how to configure your [Analytics from the Console](../development_suite/api-console/api-design/api_console_configanalytics) and how to set them through [JSON files](business_suite/conf_analytics.md).
+Discover how to configure your [Analytics from the Console](./cms_configuration/config_analytics.md) and how to set them through [JSON files](./conf_analytics.md).
