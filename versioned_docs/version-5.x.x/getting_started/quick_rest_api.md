@@ -26,7 +26,7 @@ So imagine that you have to create a new collection that contains the books of a
 1. To create a new CRUD, select **CRUD** from the menu on the left of the API and select **Create new CRUD**.
 
 2. First, you need to enter the name of the CRUD in camelCase, in this case we will insert "books". Then you will need to enter an **internal endpoint** that exposes your CRUD internally and its **default state** than could be **DRAFT** or **PUBLIC**. The default values in the console will be a path equal to /endpointname and default state equal to draft.
-Default fields will appear that can not be changed: *_id*, *creatorId*, *createdAt*, *updaterId*, *updatedAt*, *_STATE_*.  
+Default fields will appear that can not be changed: *_id*, *creatorId*, *createdAt*, *updaterId*, *updatedAt*, *_STATE_*.
 At this point we have to create our DB schema by creating the properties of our CRUD. In this section you can add a new property by selecting **Add New**. Then you must complete the following fields:
   ![Crea-collezione-riga-titolo](img/create-CRUD-1.png)
     * **Name**: enter the property name, in camelCase, in our case we will insert "title", "author", "year" etc.
@@ -35,13 +35,11 @@ At this point we have to create our DB schema by creating the properties of our 
 
     * If you select **required** the property is mandatory.
 
-    * If you select **crypted** the data will be encrypted in the database. We recommend that you adopt this practice for sensitive or confidential data.
-
     * If you select **nullable**, you can give the value *null*.
 
     * In the **description** field you can enter a short optional description.
 
-    For this example, we could create two properties: one for the title and one for the author of the book.  
+    For this example, we could create two properties: one for the title and one for the author of the book.
     If you want to delete a property, click the trash icon inside the related row.
 
 3. To create the CRUD at this point just press **Commit & Generate**.
@@ -66,12 +64,12 @@ To create an endpoint:
 
         * *CRUD*: hook your endpoint directly to one of your CRUD.
         * *Microservice*: hook your endpoint to a service with logics entirely created by you.
-        * *Mia-Platform BaaS*: hook your endpoint to some specific mia-platform services.
+        * *Mia-Platform BaaS*: hook your endpoint to some specific Mia-Platform services.
         * *External proxy*: hook your endpoint to a proxy linked to a service outside of your cluster.
         * *Cross Projects proxy*:  hook your endpoint to a proxy linked to another project contained in your cluster.
 
 2. In this case, we will create a CRUD endpoint to which we will link our CRUD just created. Then, as CRUD select the CRUD of which the endpoint is part. In our case *books*.
-Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](crud_advanced.md) or [endpoint](endpoints.md) documentation. You can also set an optional description.
+Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](../development_suite/api-console/api-design/crud_advanced.md) or [endpoint](../development_suite/api-console/api-design/endpoints.md) documentation. You can also set an optional description.
 
 The configuration should be like this:
 
@@ -84,7 +82,7 @@ At this point we have created our endpoint!
 
 Besides of properties previously set, you can configure permissions and security settings of the endpoint:
 
-In the *Details* section you can set a **Default State**. If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created. If you choose *DRAFT* status, the elements have to [be made public in the CMS](../../../business_suite/guide_cms.md#new-content-draft-publish) before being published.
+In the *Details* section you can set a **Default State**. If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created. If you choose *DRAFT* status, the elements have to [be made public in the CMS](../business_suite/guide_cms.md#new-content-draft-publish) before being published.
 
 ### Manage the security of your endpoints
 
@@ -113,6 +111,6 @@ We have therefore created our Rest API.
 We just have to save and release in an environment. The steps to follow are the following:
 
 1. Click *Commit & Generate* that you can find on the top of the screen.
-2. Then access the [Deploy area](../../deploy/deploy.md) and choose an environment to release.
+2. Then access the [Deploy area](../development_suite/deploy/deploy.md) and choose an environment to release.
 
-To populate the collection or to start testing the API you can either directly go to the [Documentation area](../../api-portal/api-documentations.md) and test your API with the Swagger.
+To populate the collection or to start testing the API you can either directly go to the [Documentation area](../development_suite/api-portal/api-documentations.md) and test your API with the Swagger.

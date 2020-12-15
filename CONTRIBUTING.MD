@@ -182,18 +182,18 @@ The links defined in the `a` properties link the main item menu to a single **si
         "type":"category",
         "label":"Guidelines",
         "items":[
-          {"type":"doc","id":"dev_ops_guide/git_vademecum"},
+          {"type":"doc","id":"guidelines/git_vademecum"},
           {"type":"doc","id":"guidelines/rest_api_vademecum"},
           {"type":"doc","id":"guidelines/microservice_vademecum"},
           {"type":"doc","id":"guidelines/communication_between_services_mp4"},
           {"type":"doc","id":"guidelines/docker_vademecum"},
           {
             "type":"doc",
-            "id":"development_suite/monitoring-dashboard/dev_ops_guide/business_continuity"
+            "id":"getting_started/monitoring-dashboard/dev_ops_guide/business_continuity"
           },
           {
             "type":"doc",
-            "id":"development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery"
+            "id":"getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery"
           },
         ]
       }

@@ -115,7 +115,7 @@ Check out the [Node.js service template package.json](https://github.com/mia-pla
 
 ### Logging
 
-The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](../../development_suite/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of DevOps Console](./../../development_suite/overview-dev-suite#log-monitoring) and to use them to create custom dashboards.
+The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](../../getting_started/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of DevOps Console](./../../development_suite/overview-dev-suite#log-monitoring) and to use them to create custom dashboards.
 
 * The template should provide a logger.
 * If exposes routes, it should generate logs for incoming and completed request.

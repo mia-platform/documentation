@@ -1,5 +1,5 @@
 ---
-id: api_console_configanalytics
+id: config_analytics
 title:  How to Configure Analytics from API Console
 sidebar_label: Configure Analytics through Console
 ---

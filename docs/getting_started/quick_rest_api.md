@@ -69,7 +69,7 @@ To create an endpoint:
         * *Cross Projects proxy*:  hook your endpoint to a proxy linked to another project contained in your cluster.
 
 2. In this case, we will create a CRUD endpoint to which we will link our CRUD just created. Then, as CRUD select the CRUD of which the endpoint is part. In our case *books*.
-Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](crud_advanced.md) or [endpoint](endpoints.md) documentation. You can also set an optional description.
+Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](../development_suite/api-console/api-design/crud_advanced.md) or [endpoint](../development_suite/api-console/api-design/endpoints.md) documentation. You can also set an optional description.
 
 The configuration should be like this:
 
@@ -82,7 +82,7 @@ At this point we have created our endpoint!
 
 Besides of properties previously set, you can configure permissions and security settings of the endpoint:
 
-In the *Details* section you can set a **Default State**. If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created. If you choose *DRAFT* status, the elements have to [be made public in the CMS](../../../business_suite/guide_cms.md#new-content-draft-publish) before being published.
+In the *Details* section you can set a **Default State**. If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created. If you choose *DRAFT* status, the elements have to [be made public in the CMS](../business_suite/guide_cms.md#new-content-draft-publish) before being published.
 
 ### Manage the security of your endpoints
 
@@ -111,6 +111,6 @@ We have therefore created our Rest API.
 We just have to save and release in an environment. The steps to follow are the following:
 
 1. Click *Commit & Generate* that you can find on the top of the screen.
-2. Then access the [Deploy area](../../deploy/deploy.md) and choose an environment to release.
+2. Then access the [Deploy area](../development_suite/deploy/deploy.md) and choose an environment to release.
 
-To populate the collection or to start testing the API you can either directly go to the [Documentation area](../../api-portal/api-documentations.md) and test your API with the Swagger.
+To populate the collection or to start testing the API you can either directly go to the [Documentation area](../development_suite/api-documentations.md) and test your API with the Swagger.

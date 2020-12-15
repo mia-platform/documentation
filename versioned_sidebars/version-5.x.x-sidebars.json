@@ -3,6 +3,15 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "Overview",
+      "items": [{
+        "type": "doc",
+        "id": "version-5.x.x/development_suite/overview-dev-suite"
+      }]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Setup infrastructure",
       "items": [{
           "type": "doc",
@@ -552,7 +561,7 @@
       "label":"Tutorial",
       "items": [{
         "type": "doc",
-        "id": "version-5.x.x/development_suite/api-console/api-design/quick_rest_api"
+        "id": "version-5.x.x/getting_started/quick_rest_api"
       }]
     },
     {
@@ -561,7 +570,7 @@
       "label": "Guidelines",
       "items": [{
           "type": "doc",
-          "id": "version-5.x.x/dev_ops_guide/git_vademecum"
+          "id": "version-5.x.x/guidelines/git_vademecum"
         },
         {
           "type": "doc",
@@ -581,23 +590,23 @@
         },
         {
           "type": "doc",
-          "id": "version-5.x.x/development_suite/monitoring-dashboard/dev_ops_guide/business_continuity"
+          "id": "version-5.x.x/getting_started/monitoring-dashboard/dev_ops_guide/business_continuity"
         },
         {
           "type": "doc",
-          "id": "version-5.x.x/development_suite/monitoring-dashboard/dev_ops_guide/disaster_recovery"
+          "id": "version-5.x.x/getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery"
         },
         {
           "type": "doc",
-          "id": "version-5.x.x/development_suite/monitoring-dashboard/dev_ops_guide/autoscaling"
+          "id": "version-5.x.x/getting_started/monitoring-dashboard/dev_ops_guide/autoscaling"
         },
         {
           "type": "doc",
-          "id": "version-5.x.x/development_suite/monitoring-dashboard/dev_ops_guide/log"
+          "id": "version-5.x.x/getting_started/monitoring-dashboard/dev_ops_guide/log"
         },
         {
           "type": "doc",
-          "id": "version-5.x.x/development_suite/performance-test/performance-test"
+          "id": "version-5.x.x/getting_started/performance-test/performance-test"
         }
       ]
     }

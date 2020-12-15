@@ -207,7 +207,7 @@ A bug affecting the CMS was preventing display and export of collections with re
 
 Open source libraries [custom plugin lib](https://github.com/mia-platform/custom-plugin-lib), [lc39](https://github.com/mia-platform/lc39) and [glogger](https://github.com/mia-platform/glogger) received a major update.
 
-The new versions feature new logging format based on [Mia-Platform guidelines](../development_suite/monitoring-dashboard/dev_ops_guide/log.md).
+The new versions feature new logging format based on [Mia-Platform guidelines](../getting_started/monitoring-dashboard/dev_ops_guide/log.md).
 
 See library changelogs to find out more.
 

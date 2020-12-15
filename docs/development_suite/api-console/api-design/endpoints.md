@@ -6,7 +6,7 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, Services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](quick_rest_api.md).  
+An endpoint allows you to expose your CRUD, Services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](../../../getting_started/quick_rest_api.md).  
 
 This page will delve into the endpoint types and configuration.
 

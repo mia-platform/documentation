@@ -5,7 +5,7 @@ Take a walkthrough that covers creating your first real project. You will:
 * use [CRUDs](../../development_suite/api-console/api-design/crud_advanced.md).
 * create [microservices](../../development_suite/api-console/api-design/plugin_baas_4.md).
 * Use and configure a [Plugin](../../business_suite/overview-business-suite.md).
-* configure the [CMS](../../development_suite/api-console/api-design/api_console_configcms.md).
+* configure the [CMS](../../business_suite/cms_configuration/config_cms.md).
 
 At the end of these steps, your services will run on Mia-Platform PaaS.
 

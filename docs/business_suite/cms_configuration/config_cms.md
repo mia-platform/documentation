@@ -1,5 +1,5 @@
 ---
-id: api_console_configcms
+id: config_cms
 title:  How to Configure the CMS from the Console
 sidebar_label: Configure CMS through Console
 ---
@@ -81,7 +81,7 @@ In this section you can choose the general configurations of your page.
 
 * *TablePush* instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers.
 
-* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to do so, find how to do it at the following [link](../../../business_suite/conf_cms/#1-configure-the-card).
+* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to do so, find how to do it at the following [link](conf_cms#1-configure-the-card).
 
 * *Gallery* is instead the perfect representation for images. Follow the [link](../../../business_suite/conf_cms/#9-configure-the-gallery) to see how to configure it.
 

@@ -46,20 +46,24 @@ module.exports = {
           to: "docs/overview/mia_platform_overview",
           label: "Getting Started",
           position: "left",
+          activeBaseRegex: '(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines)',
         },
         {
           label: "Core Platform",
           position: "left",
-          activeBaseRegex: '(docs|docs/\\d.x)/(development_suite|marketplace|libraries)',
+          activeBaseRegex: '(docs|docs/\\d.x)/(development_suite|marketplace|libraries|runtime_suite)',
           to: "docs/development_suite/overview-dev-suite",
           items: [
             {
               label: "Console",
               to: "docs/development_suite/overview-dev-suite",
+              activeBaseRegex: '(docs|docs/\\d.x)/development_suite',
             },
             {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
+              activeBaseRegex: '(docs|docs/\\d.x)/(marketplace|runtime_suite|development_suite/api-console/api-design/custom_microservice_get_started)',
+
             },
             {
               to: "docs/libraries/overview_service_libraries",
@@ -71,17 +75,21 @@ module.exports = {
           to: "docs/fast_data/overview",
           label: "Fast Data",
           position: "left",
+          activeBaseRegex: '(docs|docs/\\d.x)/fast_data',
+
         },
         {
           to: "docs/business_suite/overview-business-suite",
           label: "CMS & Analytics",
           position: "left",
+          activeBaseRegex: '(docs|docs/\\d.x)/business_suite',
+
         },
         {
           label:"Release notes",
           position: "left",
           to: "docs/release_notes/release_notes",
-
+          activeBaseRegex: '(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))',
         },
         {
           type: "docsVersionDropdown",
@@ -183,7 +191,7 @@ module.exports = {
           items: [
             {
               label: "Guidelines",
-              to: "/docs/dev_ops_guide/git_vademecum",
+              to: "/docs/guidelines/git_vademecum",
             },
             {
               label: "Getting Started",
