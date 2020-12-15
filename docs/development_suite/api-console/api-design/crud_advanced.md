@@ -5,6 +5,10 @@ sidebar_label: Create CRUDs
 ---
 ## Create a new CRUD
 
+:::info
+CRUDs created in Console are made available by the [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md)
+:::
+
 In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
 * **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake-case` as naming convention). In our case, we will name the collection “books”;
@@ -83,11 +87,13 @@ It can be used to specify the schema of the object for the former and the schema
 
 To do it, add a property *schema* to the field.  
 The following options are supported:  
+
 - `properties`: must be a valid 'properties' field of a json schema of type *object*.
 - `required`: array of name properties that are required. It's the **required** field of a JSON schema of type *object*.
 - `additionalProperties`: boolean, `true` if the object can have additional properties.
 
 This is an example of a field of type `RawObject` where is specified the schema object the properties of the object (*properties*), the required properties (`somethingNumber`) and if object could accept additional properties (in this example it is set to false):
+
 ```json
 {
   "name": "fieldObject",
@@ -125,7 +131,6 @@ This is an example of a field of type `RawObject` where is specified the schema 
 }
 ```
 
-
 The following is an example of `Array_RawObject` (*Array* of *RawObject*) with the JSON schema of the object items.  
 
 ```json
@@ -155,11 +160,13 @@ The following is an example of `Array_RawObject` (*Array* of *RawObject*) with t
 
 Here, *schema* refers to the object of each item (which are of type `RawObject`). It's NOT the schema of the array itself.  
 So, each item of the array must follows the following rules:
+
 - *name* property must be a string ad it is required
 - *neastedArr* property must be an array of numbers
 - can have additional properties
 
 The schema specified in *properties* (for both of them) **cannot** have the following operators:
+
 - `oneOf`
 - `anyOf`
 - `allOf`
