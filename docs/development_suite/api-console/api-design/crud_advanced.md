@@ -28,7 +28,14 @@ You can add new fields by selecting **Add new** and fill in the blank form with 
 You can add the fields you need and select the appropriate properties:
 
 * **name** (we recommend using `camelCase` naming convention); in our case we will insert "title", "author", "year", "new", etc.
-* **type**: *string* if it is a classic text string; *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be `true` or `false`; *Geopoint* if you want to save a specific place coordinates; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
+* **type**:
+  * **string** if it is a classic text string
+  * **number** if it is a number
+  * **date** if it is a date. The date it must be a string **compliant with ISO-8601 standard** with the following format: *YYYY-MM-DDTHH:mm:ss.sssZ*
+  * **boolean** if it can only be `true` or `false`
+  * **Geopoint** if you want to save a specific place coordinates
+  * **Array** if you want to save as an ordered set of properties
+  * **Object** if you want to insert an object.
 * If you select **required** the property is mandatory.
 * If you select **nullable** you can make the value *null*.
 * In the **description** field you can enter a short optional description.
@@ -83,11 +90,13 @@ It can be used to specify the schema of the object for the former and the schema
 
 To do it, add a property *schema* to the field.  
 The following options are supported:  
+
 - `properties`: must be a valid 'properties' field of a json schema of type *object*.
 - `required`: array of name properties that are required. It's the **required** field of a JSON schema of type *object*.
 - `additionalProperties`: boolean, `true` if the object can have additional properties.
 
 This is an example of a field of type `RawObject` where is specified the schema object the properties of the object (*properties*), the required properties (`somethingNumber`) and if object could accept additional properties (in this example it is set to false):
+
 ```json
 {
   "name": "fieldObject",
@@ -125,7 +134,6 @@ This is an example of a field of type `RawObject` where is specified the schema 
 }
 ```
 
-
 The following is an example of `Array_RawObject` (*Array* of *RawObject*) with the JSON schema of the object items.  
 
 ```json
@@ -155,11 +163,13 @@ The following is an example of `Array_RawObject` (*Array* of *RawObject*) with t
 
 Here, *schema* refers to the object of each item (which are of type `RawObject`). It's NOT the schema of the array itself.  
 So, each item of the array must follows the following rules:
+
 - *name* property must be a string ad it is required
 - *neastedArr* property must be an array of numbers
 - can have additional properties
 
 The schema specified in *properties* (for both of them) **cannot** have the following operators:
+
 - `oneOf`
 - `anyOf`
 - `allOf`
