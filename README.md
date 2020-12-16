@@ -27,18 +27,16 @@ This command rapidly launch the site on <http://localhost:3000> and open up a br
 yarn start
 ```
 
-After this command every time you save, **the site will be automatically live updated.**
+After this command, every time you save **the site will be automatically live updated.**
 
-> :warning: **In this mode the searching won't work**: see the following instruction to know how to launch the site with all features activated
-
-To test searching you have to build the project and runs it on a local server. This is a plugin limit, [Docusaurus-lun-search](https://github.com/lelouch77/docusaurus-lunr-search#how-to-use-) doesn't yet support local development. Enter these commands:
+To test the site built you have to build the project and runs it on a local server with following commands:
 
 ```shell
 yarn build
 yarn serve
 ```
 
-This command starts a local development server, the site will be reachable on <http://localhost:8080> window. To see changes you have to restart the server.
+This command starts a local development server, the site will be reachable on <http://localhost:3000> window. To see changes you have to restart the server.
 
 ### How to contribute
 
