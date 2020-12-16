@@ -608,31 +608,11 @@
         },
         {
           "type": "doc",
-          "id": "guidelines/communication_between_services_mp4"
-        },
-        {
-          "type": "doc",
           "id": "guidelines/docker_vademecum"
         },
         {
           "type": "doc",
-          "id": "getting_started/monitoring-dashboard/dev_ops_guide/business_continuity"
-        },
-        {
-          "type": "doc",
-          "id": "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery"
-        },
-        {
-          "type": "doc",
-          "id": "getting_started/monitoring-dashboard/dev_ops_guide/autoscaling"
-        },
-        {
-          "type": "doc",
           "id": "getting_started/monitoring-dashboard/dev_ops_guide/log"
-        },
-        {
-          "type": "doc",
-          "id": "getting_started/performance-test/performance-test"
         }
       ]
     }

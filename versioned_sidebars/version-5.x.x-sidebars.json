@@ -582,10 +582,6 @@
         },
         {
           "type": "doc",
-          "id": "version-5.x.x/guidelines/communication_between_services_mp4"
-        },
-        {
-          "type": "doc",
           "id": "version-5.x.x/guidelines/docker_vademecum"
         },
         {
@@ -603,10 +599,6 @@
         {
           "type": "doc",
           "id": "version-5.x.x/getting_started/monitoring-dashboard/dev_ops_guide/log"
-        },
-        {
-          "type": "doc",
-          "id": "version-5.x.x/getting_started/performance-test/performance-test"
         }
       ]
     }
