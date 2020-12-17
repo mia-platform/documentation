@@ -1,18 +1,22 @@
 {
-  "devOpsConsole": [{
+  "devOpsConsole": [
+    {
       "collapsed": true,
       "type": "category",
       "label": "Overview",
-      "items": [{
-        "type": "doc",
-        "id": "development_suite/overview-dev-suite"
-      }]
+      "items": [
+        {
+          "type": "doc",
+          "id": "development_suite/overview-dev-suite"
+        }
+      ]
     },
     {
       "collapsed": true,
       "type": "category",
       "label": "Set up infrastructure",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "development_suite/set-up-infrastructure/create-project"
         },
@@ -38,7 +42,8 @@
       "collapsed": true,
       "type": "category",
       "label": "Design your projects",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "development_suite/api-console/api-design/crud_advanced"
         },
@@ -46,7 +51,8 @@
           "collapsed": true,
           "type": "category",
           "label": "Create Services",
-          "items": [{
+          "items": [
+            {
               "type": "doc",
               "id": "development_suite/api-console/api-design/services"
             },
@@ -86,7 +92,8 @@
       "collapsed": true,
       "type": "category",
       "label": "Deploy what you have created",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "development_suite/deploy/deploy"
         },
@@ -100,11 +107,13 @@
       "collapsed": true,
       "type": "category",
       "label": "Advance configuration",
-      "items": [{
+      "items": [
+        {
           "collapsed": true,
           "type": "category",
           "label": "Console Configuration",
-          "items": [{
+          "items": [
+            {
               "type": "doc",
               "id": "development_suite/api-console/advanced-section/dev-console-config/advanced_name_core"
             },
@@ -122,7 +131,8 @@
           "collapsed": true,
           "type": "category",
           "label": "API Gateway",
-          "items": [{
+          "items": [
+            {
               "type": "doc",
               "id": "development_suite/api-console/advanced-section/api-gateway/config-map"
             },
@@ -146,16 +156,19 @@
       "collapsed": true,
       "type": "category",
       "label": "Debug",
-      "items": [{
-        "type": "doc",
-        "id": "development_suite/debugging/telepresence"
-      }]
+      "items": [
+        {
+          "type": "doc",
+          "id": "development_suite/debugging/telepresence"
+        }
+      ]
     },
     {
       "collapsed": true,
       "type": "category",
       "label": "Log & monitor your Pods",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "development_suite/monitoring/monitoring"
         },
@@ -169,7 +182,8 @@
       "collapsed": true,
       "type": "category",
       "label": "API Portal: Test & documentation",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "development_suite/api-portal/api-documentations"
         },
@@ -184,7 +198,8 @@
       ]
     }
   ],
-  "marketplace": [{
+  "marketplace": [
+    {
       "type": "doc",
       "id": "marketplace/overview_marketplace"
     },
@@ -208,7 +223,8 @@
           "collapsed": true,
           "type": "category",
           "label": "Authorization Service",
-          "items": [{
+          "items": [
+            {
               "type": "doc",
               "id": "runtime_suite/authorization-service/how_to_use"
             },
@@ -229,152 +245,135 @@
       ]
     },
     {
-      "collapsed": false, 
+      "collapsed": false,
       "type": "category",
       "label": "Plugins",
       "items": [
         {
           "collapsed": true,
           "type": "category",
-          "label": "API & Microservice Ecosystem",
+          "label": "ACL Service",
           "items": [
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "CRUD Service",
-              "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/crud-service/how-it-works"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/crud-service/configuration"
-                }
-              ]
-            },  
+              "type": "doc",
+              "id": "runtime_suite/acl-service/overview"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Auth0 Client",
+          "items": [
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "File Manager Service",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/files-service/usage"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/files-service/configuration"
-                }
-              ]
-            },
-            {
-              "collapsed": true,
-              "type": "category",
-              "label": "Notifications",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/mail-notification"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/notifications-manager"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/auth0-client/configuration"
             },
             {
               "type": "doc",
-              "id": "runtime_suite/pdf-service"
-            },
+              "id": "runtime_suite/auth0-client/usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Client Credentials",
+          "items": [
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "Doctor Service",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/doctor-service/services_status"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/doctor-service/configure_doctor_service"
-                }
-              ]
-            },
-            {
-              "collapsed": true,
-              "type": "category",
-              "label": "Data Management",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/sql-reader"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/event-source-management"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/mongo2kafka"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/client-credentials/configuration"
             },
             {
               "type": "doc",
-              "id": "runtime_suite/cron"
+              "id": "runtime_suite/client-credentials/usage"
             },
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "Mongo DB Reader",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/mongodb-reader/service-configuration"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/mongodb-reader/filters"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/mongodb-reader/aclrows"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/client-credentials/jwt_keys"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Cron Scheduler",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/cron-scheduler/overview"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Crud Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/crud-service/overview_and_usage"
             },
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "Timer Service",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/timer-service/time_service_introduction"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/timer-service/configuration"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/timer-service/usage"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/crud-service/configuration"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Doctor Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/doctor-service/configuration"
             },
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "Flow Manager",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/flow-manager/index"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/flow-manager/how-it-works"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/flow-manager/configuration"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/doctor-service/usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Files Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/files-service/configuration"
             },
+            {
+              "type": "doc",
+              "id": "runtime_suite/files-service/usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Flow Manager Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/flow-manager-service/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/flow-manager-service/how_it_works"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/flow-manager-service/configuration"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Function Service",
+          "items": [
             {
               "type": "doc",
               "id": "runtime_suite/function-service/configuration"
@@ -384,43 +383,116 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "Privacy & Security",
+          "label": "Kafka2Firebase",
           "items": [
             {
               "type": "doc",
-              "id": "runtime_suite/acl-service"
+              "id": "runtime_suite/kafka2firebase/overview"
             },
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "Auth0 Client",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/auth0-client/how_to_use"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/auth0-client/configuration"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/kafka2firebase/configuration"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Mongo2Kafka",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/mongo2kafka/configuration"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "MongoDB Reader",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/mongodb-reader/configuration"
             },
             {
-              "collapsed": true,
-              "type": "category",
-              "label": "Client Credentials",
-              "items": [{
-                  "type": "doc",
-                  "id": "runtime_suite/client-credentials/how-to-use"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/client-credentials/configuration"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/client-credentials/jwt-private-public-key-generation"
-                }
-              ]
+              "type": "doc",
+              "id": "runtime_suite/mongodb-reader/filtering"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/mongodb-reader/acl"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Push Notification Manager",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/push-notification-manager/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/push-notification-manager/usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "SES Mail Notification Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/ses-mail-notification-service/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/ses-mail-notification-service/usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "SQL DB Reader",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/sql-db-reader/configuration_and_usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "SQL Invoker",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/sql-invoker/configuration_and_usage"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Timer Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/timer-service/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/timer-service/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/timer-service/usage"
             }
           ]
         }
@@ -430,7 +502,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Templates",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "marketplace/templates/mia_templates"
         },
@@ -451,11 +524,13 @@
       "collapsed": false,
       "type": "category",
       "label": "Libraries",
-      "items": [{
+      "items": [
+        {
           "collapsed": true,
           "type": "category",
           "label": "Microservices",
-          "items": [{
+          "items": [
+            {
               "type": "doc",
               "id": "libraries/overview_service_libraries"
             },
@@ -481,7 +556,8 @@
           "collapsed": true,
           "type": "category",
           "label": "Kafka",
-          "items": [{
+          "items": [
+            {
               "type": "doc",
               "id": "libraries/kafka2rest"
             },
@@ -494,7 +570,8 @@
       ]
     }
   ],
-  "cms": [{
+  "cms": [
+    {
       "type": "doc",
       "id": "business_suite/overview-business-suite"
     },
@@ -502,7 +579,8 @@
       "collapsed": false,
       "type": "category",
       "label": "CMS",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "business_suite/guide_cms"
         },
@@ -532,7 +610,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Analytics",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "business_suite/cms_configuration/config_analytics"
         },
@@ -546,7 +625,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Data visualization",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "business_suite/data-visualization"
         },
@@ -557,7 +637,8 @@
       ]
     }
   ],
-  "fastData": [{
+  "fastData": [
+    {
       "type": "doc",
       "id": "fast_data/overview"
     },
@@ -565,7 +646,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Setup",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "fast_data/configure_real_time_updater"
         },
@@ -584,17 +666,20 @@
     {
       "collapsed": true,
       "type": "category",
-      "label":"Tutorial",
-      "items": [{
-        "type": "doc",
-        "id": "getting_started/quick_rest_api"
-      }]
+      "label": "Tutorial",
+      "items": [
+        {
+          "type": "doc",
+          "id": "getting_started/quick_rest_api"
+        }
+      ]
     },
     {
       "collapsed": false,
       "type": "category",
       "label": "Guidelines",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "guidelines/git_vademecum"
         },
@@ -617,7 +702,8 @@
       ]
     }
   ],
-  "releaseNotes": [{
+  "releaseNotes": [
+    {
       "type": "doc",
       "id": "release_notes/release_notes"
     },
@@ -625,7 +711,8 @@
       "collapsed": false,
       "type": "category",
       "label": "Versions",
-      "items": [{
+      "items": [
+        {
           "type": "doc",
           "id": "release_notes/v6.3.0"
         },

@@ -1,6 +1,6 @@
 ---
 id: usage
-title:  Timer Service usage
+title: Timer Service Usage
 sidebar_label: Usage
 ---
 The _Timer Service_ is very easy to use.

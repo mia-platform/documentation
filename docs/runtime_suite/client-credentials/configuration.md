@@ -1,12 +1,14 @@
 ---
 id: configuration
-title:  Configuration
+title: Client Credentials
 sidebar_label: Configuration
 ---
-This service is configurable with env variables.
+The credentials service allow to expose API to perform OAuth2 compliant client credential flows with third party providers.
+
+In this section, we show you how to use the `client-credentials` service.
 
 ## Environment variables
-
+This service is configurable with env variables.  
 The environment variables accepted by this service:
 
 * **LOG_LEVEL** (defaults to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
@@ -30,7 +32,7 @@ The environment variables accepted by this service:
 
 ## RSA Key Management
 
-### Creation
+#### Creation
 
 This service accept a **private RSA key** to sign the generated jwt.
 NIST recommends 2048-bit keys for RSA. An RSA key length of 3072 bits should be used if security is required beyond 2030.
@@ -55,7 +57,7 @@ You should create the key as secret in kubernetes, using:
 kubectl -n my-namespace create secret generic prova-secret --from-file="~/private.key"
 ```
 
-### Configure the service volume
+#### Configure the service volume
 
 You should set the key as volume from secret in the `client-credentials` service.
 

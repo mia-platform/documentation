@@ -1,8 +1,14 @@
 ---
 id: configuration
-title:  configuration
+title: Files Service
 sidebar_label: Configuration
 ---
+This microservice allows you to upload and download files to a third-party service.
+**Google Cloud Storage**, **mongoDB** and **Amazon s3** are currently supported.
+Consequently, it needs to know a mongoDB in which to save the files, a valid Amazon s3 bucket configuration or a Google Storage credentials.
+
+In addition, after each upload it saves the file's information using the [CRUD Service](../crud-service/configuration.md) on a configurable mongoDB collection (usually files).
+
 ## Environment variables
 
 * **CONFIG_FILE_PATH** (*required*): the path of the configuration file to configure connection with the online bucket for the supported services
@@ -18,7 +24,88 @@ One of *PATH_PREFIX* and *PROJECT_HOSTNAME* is required.
 
 ## Configuration file
 
-The storage service configuration must follow this json schema: <https://git.tools.mia-platform.eu/platform/plugins/files-service/blob/master/config.jsonschema.js>
+The storage service configuration must follow this json schema: 
+
+```json
+/*
+ * Copyright © 2018-present Mia s.r.l.
+ * All rights reserved
+ */
+
+'use strict'
+
+module.exports = {
+  oneOf: [
+    {
+      type: 'object',
+      required: ['type', 'options'],
+      additionalProperties: false,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['mongodb'],
+        },
+        options: {
+          type: 'object',
+          required: ['url', 'bucketName'],
+          additionalProperties: false,
+          properties: {
+            url: { type: 'string' },
+            bucketName: { type: 'string' },
+          },
+        },
+      },
+    },
+    {
+      type: 'object',
+      required: ['type', 'options'],
+      additionalProperties: false,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['s3'],
+        },
+        options: {
+          type: 'object',
+          required: ['key', 'secret', 'bucketName'],
+          additionalProperties: false,
+          properties: {
+            key: { type: 'string' },
+            secret: { type: 'string' },
+            bucketName: { type: 'string' },
+            region: {
+              type: 'string',
+              default: 'eu-west-1',
+            },
+            endpoint: { type: 'string' },
+            s3ForcePathStyle: { type: 'boolean' },
+            signatureVersion: { type: 'string' },
+          },
+        },
+      },
+    },
+    {
+      type: 'object',
+      required: ['type', 'options'],
+      additionalProperties: false,
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['googleStorage'],
+        },
+        options: {
+          type: 'object',
+          required: ['bucketName'],
+          additionalProperties: false,
+          properties: {
+            bucketName: { type: 'string' },
+          },
+        },
+      },
+    },
+  ],
+}
+```
 
 ### MongoDB configuration file
 
