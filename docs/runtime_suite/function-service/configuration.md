@@ -1,10 +1,8 @@
 ---
 id: configuration
-title:  Function Service
-sidebar_label: Function Service
+title: Function Service
+sidebar_label: Configuration
 ---
-## Intro
-
 The function service lets you map code to endpoints without provisioning a fully-fledged dedicated microservice.
 
 You can create several function services within the same  _DevOps Console project_.

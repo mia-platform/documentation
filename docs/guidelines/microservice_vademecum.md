@@ -42,7 +42,7 @@ In this case, Kubernetes avoids sending to the pod new incoming TCP connections.
 
 `/-/check-up`
 
-This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor service**](../runtime_suite/doctor-service/services_status/).
+This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor service**](../runtime_suite/doctor-service/configuration).
 It's purpose is to check the status of all the dependencies. If your application depends on:
 
 - an another microservice, this route should invoke the `/-/healthz` route of that service

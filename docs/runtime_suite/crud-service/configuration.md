@@ -1,11 +1,8 @@
 ---
 id: configuration
-title: Configuration
+title: CRUD Service Configuration
 sidebar_label: Configuration
 ---
-
-## Console
-
 This service is fully integrated and totally configurable through the design section of the Console, in the `CRUD` page. If you use the Console, please read [how to create a crud](../../development_suite/api-console/api-design/crud_advanced.md).
 
 ## CRUD configuration
@@ -30,7 +27,7 @@ Collection definitions contains:
 * **description**: collection description;
 * **endpointBasePath** (*required*): path of the endpoint exposed by CRUD service;
 * **defaultState** (default to `DRAFT`): default state when you save the document into collection. The possible states are: `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. You can insert a document with another state declaring it in creation.
-* **fields** (*required*): an array with the object of the various types. The fields *MUST* contain [the default collection properties](./how-it-works.md#predefined-collection-properties)
+* **fields** (*required*): an array with the object of the various types. The fields *MUST* contain [the default collection properties](overview_and_usage#predefined-collection-properties)
   * **name** (*required*): name of the field saved in mongo
   * **type** (*required*)
     * *string*
@@ -50,7 +47,7 @@ Collection definitions contains:
 
 Example of collection definition:
 
-```
+```js
 [
   {
     name: 'metadata',

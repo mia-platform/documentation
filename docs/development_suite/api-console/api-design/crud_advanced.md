@@ -5,10 +5,14 @@ sidebar_label: Create CRUDs
 ---
 ## Create a new CRUD
 
+:::info
+CRUDs created in the Console are handled and exposed to the services within your project by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md)
+:::
+
 In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
 * **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake-case` as naming convention). In our case, we will name the collection “books”;
-* **Internal endpoint**: this is the first endpoint that will be exposed by the CRUD service. The console will prefill it but you can change it according to your preference.
+* **Internal endpoint**: this is the first endpoint that will be exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md). The console will prefill it but you can change it according to your preference.
 
 ![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.PNG)
 
@@ -39,14 +43,13 @@ You can add the fields you need and select the appropriate properties:
 * If you select **required** the property is mandatory.
 * If you select **nullable** you can make the value *null*.
 * In the **description** field you can enter a short optional description.
-
 ![properties](img/properties.PNG)
 
 ![default_state](img/default_state.png)
 
 ### CRUD Service exposed routes
 
-The CRUD Service will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.
+The [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.
 
 If you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](./endpoints).
 
@@ -64,7 +67,7 @@ Please note that these endpoint must be unique through all the configured CRUD, 
 
 You can always change the default state of an existing route by simply clicking on the field default state. The two possible values are _DRAFT_ or _PUBLIC_.
 
-You can delete a route but you must always leave at least one endpoint exposed by the CRUD service, otherwise the CRUD won't be accessible by anyone, neither your services in your project.
+You can delete a route but you must always leave at least one endpoint exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither your services in your project.
 
 ### How to create the fields of your CRUD by importing a JSON
 
@@ -273,4 +276,6 @@ Once you named the index you need to choose among: geo, hash or TTL. Then, you c
 
 ## CRUD API Documentation
 
-To learn how to use API exposed by CRUD services see [CRUD API Documentation](../../../runtime_suite/crud-service/how-it-works.md).
+After the [deploy](../../deploy/deploy), you will find your CRUDs API Documentation available on the [API Portal](../../api-portal/api-documentations).
+
+To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).

@@ -6,7 +6,7 @@ sidebar_label: v6.3.x
 
 ## v6.3.0
 
-_December 10,2020_ 
+_December 10,2020_
 
 ### New features
 
@@ -16,7 +16,7 @@ When editing a field of type `Object` or `Array of Objects` within a collection,
 
 To see how the feature works check out the documentation of the fields creation in the [configuration page](../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).  
 
-[Here](../runtime_suite/crud-service/how-it-works#rawobject-and-array_rawobject-with-schemas) you can read more about `RawObject` and `Array_RawObject` with schemas to understand what this feature enables you to do (and its limitations).
+[Here](../runtime_suite/crud-service/overview_and_usage#rawobject-and-array_rawobject-with-schemas) you can read more about `RawObject` and `Array_RawObject` with schemas to understand what this feature enables you to do (and its limitations).
 
 :::info
 This is a beta feature! It has been tested on a limited subset of cases and hence it may be subject to breaking changes. You can still try it right away.
@@ -69,13 +69,13 @@ A bug preventing CronJob creation has been fixed.
 
 Fixed a problem preventing the CRUD Service health check to work correctly, caused by the configuration of Kubernets probes.
 
-#### Marketplace templates and examples 
+#### Marketplace templates and examples
 
 Fixed encoding problem for binary files of Angular, React, Rest2Kafka and Kafka2Rest templates and examples that prevented their correct microservice creation. Now, all binary files are correctly encoded when creating the repositories on GitHub and GitLab.
 
 #### MLP support for manual delete
 
-The manual delete of a service which had been deployed with MLP caused the failure of the service at the successive deploy. The problem has now been fixed. 
+The manual delete of a service which had been deployed with MLP caused the failure of the service at the successive deploy. The problem has now been fixed.
 
 ### How to update your DevOps Console
 

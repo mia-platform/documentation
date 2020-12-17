@@ -1,6 +1,6 @@
 ---
 id: configuration
-title:  Timer Service Configuration
+title: Timer Service Configuration
 sidebar_label: Configuration
 ---
 In this page will be explain how to configure the _Timer Service_ from zero to hero.
@@ -78,14 +78,14 @@ To configure a _Timer Service_ on the Console follow the instructions:
 - open the Console and choose the project
 - create the dedicated CRUD by following the [instructions above](#dedicated-crud), the result will be as the following one:
 
-    [![alt_image](img/CRUD_expirations.png)](img/CRUD_expirations.png)
+    ![alt_image](img/CRUD_expirations.png)
 
 - create the microservice:
   - go to the microservices section
   - click on _Create a Microservice_
   - click on _Docker Image Name_
 
-        [![alt_image](img/Microservices_Docker_image_name.png)](img/Microservices_Docker_image_name.png)
+        ![alt_image](img/Microservices_Docker_image_name.png)
 
   - set the name and description as you prefer
   - insert the timer Service image name into the _Docker Image Name_ field, or:
@@ -95,4 +95,4 @@ To configure a _Timer Service_ on the Console follow the instructions:
   - click on the _Create_ button
   - add the environment variables by following the [instructions above](#environment-variables); the result should be like the following:
 
-        [![alt_image](img/Microservices_environment_variables.png)](img/Microservices_environment_variables.png)
+        ![alt_image](img/Microservices_environment_variables.png)

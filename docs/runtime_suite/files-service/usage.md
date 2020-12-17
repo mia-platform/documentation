@@ -1,22 +1,8 @@
 ---
 id: usage
-title:  usage
+title: Usage
 sidebar_label: Usage
 ---
-## Summary
-
-This microservice offers the functionality of uploading and downloading files using third-party services.
-
-The http interface of the microservice is independent of the specific storage service used, which is configured at startup. The uploaded files are also recorded in a collection managed by the CRUD.
-
-S3, MongoDB and GoogleStorage are currently supported as storage services.
-
-:::warning
-All files uploaded with file-service are **public**, if you want to handle and limit access you need to implement yourself dedicated service.
-:::
-
-## API
-
 This service exposes two routes, one for the upload and one for the download,
 (these can be prefixed by passing the --prefix option at startup):
 
