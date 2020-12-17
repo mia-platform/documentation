@@ -421,7 +421,7 @@ In this section you will learn how to query a collection.
 
 #### Get a list of documents
 
-To read a collection, simply call the endpoint with a GET
+To list a collection, simply call the endpoint with a **GET**
 
 ```bash
 curl -X GET https://your-url/v2/plates/ \
@@ -475,7 +475,7 @@ In response of this request you will get a JSON array that contains all the docu
 
 #### Get a single document by _id
 
-To get just one document read only one element, simply pass the _id of the request
+To get just one document read only one element, simply pass the *_id* of the document as path param.
 
 ```bash
 curl -X GET https://your-url/v2/plates/5df8aff66498d30011b19e4d \
@@ -688,20 +688,170 @@ The result will be sorted from the nearest from the farthest.
 
 ### Update
 
-To update a resource it is sufficient to invoke a PATCH passing in the body the resource to be updated with its *id*.
+You can update one or more documents in a collection. The operations of the update are made by using a **PATCH** request:
+
+In the body of the request you can use the following operators:
+
+* `$set`
+  This operator replaces the value of the field with specified value:  
+  `{ $set: { <field1>: <value1>, ... } }`
+
+* `$unset`
+  This operator unsets a particular item value:  
+  `{ $unset: { <field1>: true, ... } }`
+
+* `$inc`
+  This operator increments a field by a specified value:  
+  `{ $inc: {<field1>: <amount1>, <field2>: <amount2>, ...} }`
+
+* `$mul`
+  This operator multiply the value of a field by a specified number:  
+  `{ $mul: { <field1>: <number1>, ... } }`
+
+* `$currentDate`
+  This operator sets the value of a field to the current date:  
+  `{ $currentDate: { <field1>: true, ... } }`
+:::note
+The field must be of type `Date`. The format of dates it's **ISO-8601**: YYYY-MM-DDTHH:mm:ss.sssZ
+:::
+
+* `$push`
+  This operator appends a specified value to an array field:  
+  `{ $push: { <field1>: {<prop1>: <value1>, <prop2>: <value2>, ...}, ... } }`
+
+:::tip
+The syntax is [MongoDB Field Update Operators](https://docs.mongodb.com/manual/reference/operator/update-field/) like.
+:::
+
+#### Update a single document
+
+To update a single document use `PATCH` passing the *_id* of the document as path param.  
+In the body you have to pass a JSON with the desired operators set.
+
+The route to call is the following:
+
+`PATCH` `https://your-url/<CRUD collection endpoint>/{id}`
+
+**E.g**:
+
+```curl
+curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aaz0011526361' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "$set": {
+        "title": "The Caves of Steel",
+        "author: "Isaac Asimov"
+    },
+    "$inc": {
+      "qta":1
+    }
+}'
+```
+
+#### Update multiple documents
+
+To update multiple documents you have two possibilities:
+
+* **Update multiple documents that match a query**  
+  In order to do this, you have to use a **PATCH** request, filtering by query params the documents you want to update.  
+  You can filter by fields values, the [_q query param](#filters-with-mongodb-query) and [STATE](#predefined-collection-properties) using `_st` param.  
+  In the body you have to pass a JSON with the desired set of operators with with the new values.
+
+  The route to call is the following:
+
+  `PATCH` `https://your-url/<CRUD collection endpoint>/`
+
+  **e.g.**:
+
+  ```curl
+  curl --location --request PATCH 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=PUBLIC' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "$set": {
+        "discount": true
+      }
+  }'
+  ```
+
+* **Update multiple documents, each one with its own modifications**  
+  In order to do this, you have to use a **PATCH** request with an array as the request body.
+  Each element represents a document to update and it's an object with the following properties:
+  * `filter`
+    Contains the filter conditions for select the document. As seen above you can filter by fields values, the [_q query param](#filters-with-mongodb-query) and `_st` param.
+  * `update`
+    Contains the update operators with the new values.
+
+  The route to call is the following:
+
+  `PATCH` `https://your-url/<CRUD collection endpoint>/bulk`
+
+  **E.g**:
+
+  ```curl
+  curl --location --request PATCH 'url.mia-platform.eu/v2/books/bulk' \
+  --header 'Content-Type: application/json' \
+  --data-raw '[
+    {
+      "filter":{"_id":"1f11d444830aaz0011526361"},
+      "update": {
+        "$set": {
+          "discount": true
+        }
+      }
+    },   
+    {
+      "filter":{_id":"2f11d514830aaz0071523223"},
+      "update": {
+        "$set": {
+          "discount": true
+        }
+      }
+    }
+
+  ]'
+  ```
 
 ### Delete
 
-To delete a resource just call DELETE with _id.
+You can delete one or more documents in a collection.
+
+#### Delete a single document
+
+To delete a single document use a **DELETE** request passing the *_id* of the document as path param.  
+
+The route to call is the following:
+
+`DELETE` `https://your-url/<CRUD collection endpoint>/{id}`
+
+**e.g.**:
+
+```curl
+curl --location --request DELETE 'url.mia-platform.eu/v2/books/1f11d444830aaz0011526361'
+```
+
+#### Delete multiple documents
+
+To delete multiple document you have to use a `DELETE` request filtering by query params the documents you want to delete.  
+You can filter by fields values, the [_q query param](#filters-with-mongodb-query) and [STATE](#predefined-collection-properties) using `_st` param.  
+
+The route to call is the following:
+
+`DELETE` `https://your-url/<CRUD collection endpoint>/`
+
+**e.g.**:
+
+```curl
+curl --location --request DELETE 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=DRAFT'
+```
 
 ### RawObject and Array_RawObject with schemas
 
 Nested properties of a field of type `RawObject` and `Array_RawObject` can be used in REST APIs with object notation or dot notation.
 
-Example of PATCH with dot notation
+Example of `PATCH` with dot notation
 
 ```curl
-curl --location --request PATCH 'demo.mia-platform.eu/v2/books/111111111111111111111111' \
+curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/111111111111111111111111' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "$set": {
@@ -711,10 +861,10 @@ curl --location --request PATCH 'demo.mia-platform.eu/v2/books/11111111111111111
 }'
 ```
 
-Example of PATCH with object notation
+Example of `PATCH` with object notation
 
 ```curl
-curl --location --request PATCH 'demo.mia-platform.eu/v2/books/111111111111111111111111' \
+curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/111111111111111111111111' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "$set": {
@@ -747,19 +897,18 @@ So the field *metadata* will be exactly:
 }
 ```
 
-
 Values will be casted based on the JSON Schema.  
 So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
 
 > **Note**: in the `$unset` operation of nested properties it's not made a validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use $unset on nested properties.
 
-Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a *$set* of a *PATCH*) with dot notation. The field have to be valid against the following pattern *FIELD_NAME.* where *FIELD_NAME* is the name of the field. (e.g.: `*set: { "myObject.something": "foobar"}*`). 
+Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a *$set* of a *`PATCH`*) with dot notation. The field have to be valid against the following pattern *FIELD_NAME.* where *FIELD_NAME* is the name of the field. (e.g.: `*set: { "myObject.something": "foobar"}*`).
 
 > **Note**: the pattern contains *.* and not *\.*, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons.
 
 The operators **.$.merge** and **.$.replace** can also be used on nested arrays.
 
-Example of **$.replace** with a *PATCH bulk*:
+Example of **$.replace** with a **PATCH bulk**:
 
 ```json
 curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
@@ -775,7 +924,7 @@ curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
 }'
 ```
 
-This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayOfNumbers* inside *metadata* equals to 3.   
+This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayOfNumbers* inside *metadata* equals to 3.
 It will be set to 5 the item of *somethingArrayOfNumbers* equals to 3.  
 
 In case of array of object can also be used to **$.merge** operators.
@@ -794,7 +943,7 @@ curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
 }'
 ```
 
-This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *{"anotherNumber": 3, "somethingElse": "foo"}*.   
+This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayObject* inside *metadata* equals to *{"anotherNumber": 3, "somethingElse": "foo"}*.
 It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *{"anotherNumber": 3, "somethingElse": "foo"}*)
 
 :::warning

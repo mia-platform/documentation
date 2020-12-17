@@ -63,7 +63,7 @@ This will create in your current directory the `public.key` file containing your
 
 ## Client Credential Key format
 
-The Client Credential accept the public key in a JWK format. You can you a library or and online tool to generate the needed JWK.
+The Client Credential accept the public key in a JWK format. You can you a library or an online tool to generate the needed JWK.
 We suggest the following [online tool](https://russelldavies.github.io/jwk-creator/).
 Configure it like this:
 

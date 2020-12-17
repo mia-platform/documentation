@@ -92,7 +92,7 @@
   },
   {
     "name": "Flow Manager Service",
-    "description": "The Flow Manager is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named Saga Pattern",
+    "description": "The Flow Manager is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named Saga Pattern.",
     "category": {
       "id": "stream",
       "label": "Data Stream"

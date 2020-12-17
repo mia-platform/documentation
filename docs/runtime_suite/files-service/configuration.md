@@ -4,8 +4,8 @@ title: Files Service
 sidebar_label: Configuration
 ---
 This microservice allows you to upload and download files to a third-party service.
-**Google Cloud Storage**, **mongoDB** and **Amazon s3** are currently supported.
-Consequently, it needs to know a mongoDB in which to save the files, a valid Amazon s3 bucket configuration or a Google Storage credentials.
+**Google Cloud Storage**, **MongoDB** and **Amazon s3** are currently supported.
+Consequently, it needs to know a MongoDB in which to save the files, a valid Amazon s3 bucket configuration or a Google Storage credentials.
 
 In addition, after each upload it saves the file's information using the [CRUD Service](../crud-service/configuration.md) on a configurable mongoDB collection (usually files).
 
