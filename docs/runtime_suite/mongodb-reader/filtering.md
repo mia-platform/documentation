@@ -19,7 +19,7 @@ Dynamic filtering (available since `v1.3.0`) can be implemented with the `#match
 
 Notes: 
  * parameters to be interpolated in the query **must** be provided wrapped in single `#` as in `#paramName#`. It's different from what you specify for static filtering to avoid interpolation conflicts;
- * the `#matchWithFilters#` operator should be used as the single key inside a pipeline stage as you'd normally do with mongodb aggregation stages. 
+ * the `#matchWithFilters#` operator should be used as the single key inside a pipeline stage as you'd normally do with Mongodb aggregation stages. 
 
 Sample configuration:
 
