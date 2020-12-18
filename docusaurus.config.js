@@ -16,7 +16,7 @@ module.exports = {
     },
     algolia: {
       placeholder:'Search for terms, features and more...',
-      apiKey: '0907ee3ecd107c2d6e223ce45a6687ab',
+      apiKey: '602a752c6342891e2488bea38b0d9292',
       appId:'58NJDUVYVW',
       indexName: 'mia-platform-docs',
       contextualSearch: true,
