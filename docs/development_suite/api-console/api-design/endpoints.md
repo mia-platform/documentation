@@ -66,7 +66,10 @@ You can configure permissions and security settings of the endpoint.
 The security can be managed at three levels:
 
 1. The `Public` flag enabled allows to call endpoint **without the need to be logged in**. If it's disabled and the endpoint is invoked by an **unregistered user**, the request will receive an Unauthorized error.
-1. The `Only with an API Key` flag configures the endpoint to require setting the `secret`/`client_secret` header with a valid **API Key**. To further detail check out the dedicated section.
+2. The `Only with an API Key` flag configures the endpoint to require setting the `secret`/`client-key` header with a valid [API Key](api_key.md). You can also set a `mia_client_key` cookie with the value of the API Key.
+:::tip Example of request passing an API Key
+`curl --request GET --url <https://your-url/endpoint> --header 'accept: application/json' --header 'secret: <Api Key value'`
+:::
 1. `User Group Permission` allows defining a logical expression for authorizing or not the call. If the expression validates to **true**, then the user can access the route. You can use the following properties:
    * `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the only selected clients, identified by the API Key passed in the `secret` or `client_secret` headers.  
     E.g:
@@ -114,6 +117,10 @@ Enable the flag `inherited` to use the displayed default expression or disable t
 
 :::tip
 If you figure out that there's some problem in how you configured the security of your endpoints, go to [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of [Authorization Service](../../../runtime_suite/authorization-service/how_to_use.md). Here you can see the logs about authorization operations, included eventually group expression errors.
+:::
+
+:::tip Api Key
+Check out the [API Key section](api_key.md) to know more about the API Keys
 :::
 
 ## Transition through Microservice Gateway
