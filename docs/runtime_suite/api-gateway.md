@@ -18,7 +18,7 @@ Its main features are:
 * Rate Limit with Burst
 * Http Secure Headers
 * Request Dispaching
-* API Key Management
+* [API Key](../development_suite/api-console/api-design/api-key) Management
 * Http Utilities
 * Proxy-Pass Plain
 * URL Rewriting
