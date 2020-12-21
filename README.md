@@ -38,6 +38,16 @@ yarn serve
 
 This command starts a local development server, the site will be reachable on <http://localhost:3000> window. To see changes you have to restart the server.
 
+> :warning: The Search is configured to **not working locally**.  
+
+## Search
+
+The search is provided by [Algolia](https://www.algolia.com/).
+
+To see search analytics you can login to Algolia with account data stored to *Mia shared* vault of your *1Password* account.
+
+The documentation si linked to Algolia account by the Algolia property define in [docusaurus.config.js](docusaurus.config.js) file. Here are specified the Api Key, the App id and the index to address.
+
 ### How to contribute
 
 Read related [contribution guide](/CONTRIBUTING.MD).

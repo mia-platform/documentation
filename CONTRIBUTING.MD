@@ -80,6 +80,9 @@ Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning
 
 ## Documentations pages
 
+> :warning: If you want to edit o create documentation for **marketplace plugins you have to write documentation directly in the plugin repository**.  
+Check out the following [guide](https://makeitapp.atlassian.net/wiki/spaces/MIAP/pages/2373877834/Docs+Aggregator)
+
 Each .md file have to include the following preamble:
 
 ```
