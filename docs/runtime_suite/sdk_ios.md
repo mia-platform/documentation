@@ -3,6 +3,10 @@ id: sdk_ios
 title:  iOS SDK
 sidebar_label: iOS SDK
 ---
+:::caution deprecation
+This library is deprecated
+:::
+
 Mia-Platform provides an SDK that works as intermediator to permit the interactions between the application and the platform. In this document we will guide you to add the Mia-Platform SDK to your project, initialize it and explain the most common actions available to you.
 
 ## General information and requisites

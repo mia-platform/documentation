@@ -3,6 +3,10 @@ id: sdk_android
 title: Android SDK
 sidebar_label: Android SDK
 ---
+:::caution deprecation
+This library is deprecated
+:::
+
 Mia-Platform provides an SDK that works as an intermediator to permit the interactions between the application and the platform. This guide has the aim to explain the structure, the settings and the functioning of Mia-Platform SDK.
 
 ## General information and requisites
