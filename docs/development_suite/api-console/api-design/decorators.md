@@ -21,14 +21,14 @@ Upon accessing the Console Design area and selecting the Decorators section in t
 
 To add a decorator, select the desired type and enter the required information:
 
-* Name: a human-readable name that will be used to identify the decorator;
-* Protocol: the scheme to be used when invoking the decorator (http/https);
-* Microservice: the service name defined in the specific Design area section;
-* Port: the port that should be used when invoking the decorator (typically port `80` is enough since the requests are performed inside the runtime environment);
-* Path: the path where the decorator is available;
-* require request body: use this to enforce request body presence before invoking the decorator;
-* require response body (only for Post and Catch decorators): use this to enforce response body presence before invoking the decorator;
-* description: a custom field that can be used to describe the decorator usage information.
+* `Name`: a human-readable name that will be used to identify the decorator
+* `Protocol`: the scheme to be used when invoking the decorator (http/https)
+* `Microservice`: the service name defined in the specific Design area section
+* `Port`: the port that should be used when invoking the decorator. Typically you have to **use port 80** for all services created and released by the console.
+* `Path`: the path where the decorator is available.
+* `require request body`: use this to enforce request body presence before invoking the decorator
+* `require response body` (only for Post and Catch decorators): use this to enforce response body presence before invoking the decorator
+* `description`: a custom field that can be used to describe the decorator usage information
 
 ![Empty Decorators creation form](img/decorators-create-post-empty.png)
 ![Filled Decorators creation form](img/decorators-create-post-filled.png)
