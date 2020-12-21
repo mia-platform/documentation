@@ -5,6 +5,11 @@ sidebar_label: Configure
 ---
 ## Introduction
 
+:::caution
+All Microservices of the platform as a default are internally exposed on the **80 port** with **hostname equal to the service name**.  
+So for example the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) will be reachable at the url `http://crud-service`. This is applied to all microservices.
+:::
+
 In this section you can learn how to create and manage Microservices on Mia-Platform Console.
 
 You can create a Microservice from the Marketplace section of Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview_marketplace.md) of Mia-Platform Docs.
