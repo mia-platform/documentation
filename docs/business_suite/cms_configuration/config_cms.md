@@ -296,9 +296,9 @@ Once you created the _button_ on the CMS, you have to configure the _Advanced Co
 
 Based on the route that you want to call from CMS, you have to configure one or both of the following files:
 
-* **[maps-proxyBackOfficeName](https://docs.mia-platform.eu/development_suite/api-console/advanced-section/api-gateway-config-map/#how-to-proxy-a-request-through-a-service):** to set the service that you need to call for a specific request;
+* **[maps-proxyBackOfficeName](../../development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-proxy-a-request-through-a-service):** to set the service that you need to call for a specific request;
 
-* **[maps-proxyBackOfficeUrl](https://docs.mia-platform.eu/development_suite/api-console/advanced-section/api-gateway-config-map/#how-to-forward-a-request-to-another-url):** to set the destination url of a specific request;
+* **[maps-proxyBackOfficeUrl](../../development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-forward-a-request-to-another-url):** to set the destination url of a specific request;
 
 In the example, we will receive from the CMS a `POST` call to the `/documents-creator/contracts-comparison-cms` endpoint and we have to redirect this call to the _documents-creator_ service at the `/contracts-comparison-cms` path; to do this we have to:
 

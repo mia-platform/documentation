@@ -3,6 +3,10 @@ id: api-gateway
 title:  API Gateway
 sidebar_label: API Gateway
 ---
+:::info
+To know how to apply the advanced configurations to the API Gateway check out the [related section](../development_suite/api-console/advanced-section/api-gateway/how-to)
+:::
+
 The API Gateway is the microservice responsible for:
 
 - routing requests to the correct service inside Kubernetes;
