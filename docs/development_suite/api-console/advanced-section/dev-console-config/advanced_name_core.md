@@ -7,8 +7,7 @@ In the advanced section of the API Console it is possible to extend some feature
 In this section you will find all the information to give more power to your platform
 
 :::info
-**Requirements**  
-To change all the advanced settings, users should access the API Console and go to the Advanced Section
+To change all the advanced settings, you have to access to the Console, go to the Advanced Section and click on the `Advanced` tab
 :::
 
 ## How to change the name of core services
