@@ -29,7 +29,7 @@ function NotFound() {
             <p>
               <ul>
                 <li>Go back to <a href="/">home page</a></li>
-                <li><a href={getMailLink()} target="blank">Contact us</a> to let know that the link is broken</li>
+                <li><a href={getMailLink()} target="blank">Let us know</a></li>
                 <li><a href="/overview/mia_platform_overview">Find out how to get started with Mia-Platform</a></li>
               </ul>
             </p>
