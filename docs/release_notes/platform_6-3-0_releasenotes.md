@@ -4,9 +4,33 @@ title: Version 6.3.x Release Notes
 sidebar_label: v6.3.x
 ---
 
+## v6.3.1
+
+_December 22, 2020_
+
+### New features
+
+#### CMS Auth0 users search
+
+Free text search is now supported in order to allow searching for users using the standard CMS search bar.
+
+### Bug fix
+
+#### CMS Auth0 users pagination
+
+The CMS page for Auth0 users presented an error when trying to ask more than 100 users, since this is the maximum supported by Auth0 itself we're limiting user pages to 100 items.
+
+:::info
+To take advantage of this fix you have to [update your CMS version](../business_suite/update_cms) to **v9.12.3**
+:::
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.12`.
+
 ## v6.3.0
 
-_December 10,2020_
+_December 10, 2020_
 
 ### New features
 
