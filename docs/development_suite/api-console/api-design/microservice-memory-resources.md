@@ -3,7 +3,7 @@ id: microservice-memory-resources
 title:  Service Memory Resources
 sidebar_label: Define memory resources
 ---
-In the field Memory Resources, you have to specify the minimum number of mebibytes (Mi) that the container needs and the maximum number of mebibytes (Mi) that it can use.
+In the field Memory Resources, you have to specify the minimum (_Request_) number of mebibytes (Mi) that the container needs and the maximum (_Limit_) number of mebibytes (Mi) that it can use.
 
 ![memory-resources](img/memory-resources.png)
 

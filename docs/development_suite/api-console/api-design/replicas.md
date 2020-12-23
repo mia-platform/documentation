@@ -26,16 +26,16 @@ In the table rows, for each service, you can directly change the following param
 
 * **Min Replica**: the minimum number of replicas that must be running.
 * **Max Replica**: the maximum number of replicas that can be concurrent running.
-* **CPU Threshold**: this number it's a **percentage of the sum of the requests of all current replicas**. The request of each replica is its [CPU min limit](microservices-cpu-resources.md) of the service.
-* **Generate**: enable this flag to actually creating the replicas while the next deploy.
+* **CPU Threshold**: this number represents the **percentage** that kubernetes should consider to trigger a pod scale, for further details about the algorithm used by Kubernetes Pod Autoscaler check out the [Kubernetes documentation page](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details)
+* **Generate**: enable this flag to actually creating the replicas configuration when saving the configuration.
 
 ## How it works
 
 [HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) uses the metrics collected by Kubernetes itself to evaluate the need for instantiation
 new pods to divide the work up to a maximum set.
 
-When the total current CPU utilization by the replicas set exceeds the **CPU Threshold**, if the **Max Replica** number allows it, a new replica is run.  
-If the total CPU usage drops below the **CPU Threshold**, after a period of time replicas are removed
+When the total current CPU utilization by the replicas set exceeds the **CPU Threshold**, if the **Max Replica** number allows it, a new replica is scheduled for creation.  
+If the total CPU usage drops below the **CPU Threshold**, after a period of time useless replicas are removed.
 
 ## How to scale services manually
 
@@ -89,5 +89,5 @@ spec:
 ```
 
 :::info
-Specific details about scaling algorithm are available in [this Kubernetes docs page](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#algorithm-details)
+For more information concerning the Kubernetes feature check out [the Kubernetes documentation page](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
 :::
