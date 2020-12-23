@@ -291,9 +291,13 @@ To use this feature, you have to fill the `defaultResources` in this way:
   "memoryLimits": {
     "min": "100Mi",
     "max": "300Mi"
-    }
+  }
 }
 ```
+
+:::info
+Please note that in the previous example `min` corresponds to the `request` value in Kubernetes while `max` corresponds to the `limit` value in Kubernetes.
+:::
 
 :::warning
 Measurements units are required. Limitations are expressed in terms of milliCPUs and MebiBytes.

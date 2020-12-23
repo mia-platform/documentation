@@ -5,11 +5,11 @@ sidebar_label: Define CPU Resources
 ---
 In the field CPU Resources, you have to specify:
 
-* **Min**: the minimum number of "thousandth of a core" (m) that the container needs (in Kubernetes it's the *request*).
-* **Max**: the maximum number of "thousandth of a core" (m) that it can use (in Kubernetes it's the *limit*).
+* **Request**: the minimum number of "thousandth of a core" (m) that the container needs (in Kubernetes it's the *request*).
+* **Limit**: the maximum number of "thousandth of a core" (m) that it can use (in Kubernetes it's the *limit*).
 
 :::info
-To learn more about the meaning of these values inside Kubernetes, please visit [this page](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) of Kubernetes Docs.
+To learn more about the meaning of these values inside Kubernetes, please visit [this page](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) in the Kubernetes documentation.
 :::
 
 ![memory-resources](img/memory-resources.png)
