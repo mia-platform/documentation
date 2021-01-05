@@ -679,6 +679,10 @@
       ]
     },
     {
+      "type": "doc",
+      "id": "getting_started/faqs"
+    },
+    {
       "collapsed": false,
       "type": "category",
       "label": "Guidelines",
