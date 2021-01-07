@@ -20,6 +20,10 @@ The next sections will show you examples and information per request type: GET, 
 
 The Console will show you a request example for each request type that you can use to easily test your Api. You just need to copy the request example, paste it in the Json editor and you will be ready to test your Api!
 
+:::info
+If you want to hide some endpoints of your API from the API Portal documentation you can do this in the [Management section](../api-console/api-design/endpoints.md#manage-the-visibility-of-your-endpoints) of the endpoint you want to hide
+:::
+
 ### GET request
 
 #### How to "Get a list of plates"
