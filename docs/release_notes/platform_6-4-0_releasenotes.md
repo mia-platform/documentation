@@ -70,7 +70,7 @@ Use `CMS Site v9.12.4` to take advantage of the fix, make sure you follow the gu
 
 Fix issues of clients with public key set as empty object when auth method is `client_secret_basic`. Now the request is correctly handled.
 
-Use `Client Credentials service v2.0.1` to take advange of the fix.
+Use `Client Credentials service v2.0.1` to take advantage of the fix.
 
 ### Improvements
 
