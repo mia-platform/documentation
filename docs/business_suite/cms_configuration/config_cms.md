@@ -85,20 +85,33 @@ In this section you can choose the general configurations of your page.
 
 * *Gallery* is instead the perfect representation for images. Follow the [link](conf_cms.md#9-configure-the-gallery) to see how to configure it.
 
-**Highlight a** field: this select shows you the properties that are boolean in your page. You can in fact choose to highlight a boolean property in the CMS. If the property is true you will see it highlighted in bold.
+**Base Query**: in this field you can apply a visibility filter to your page. You can write a [MongoDB query](https://docs.mongodb.com/manual/tutorial/query-documents/) and using all types of [operators](https://docs.mongodb.com/manual/reference/operator/query/#query-selectors). This field is not required.
+:::tip Base query example
+In this page I want to see only the data that have how state *archived* or *refused*
 
-**Permanently Delete**: activating this check choose to permanently delete an element from the database. Appears when you want to delete an item in Trash.
+```json
+{
+  "$or":[
+   {"state": "archived"}, 
+   {"state": "refused"}
+  ]
+}
+```
 
-**Block**: activating this check choose to permanently block a page. In this way CMS will not be able to create new elements.
+:::
 
-**Hide**: by activating this check, choose to hide a page.
+**Highlight a field**: enabling this check to highlight rows in the CMS. In the **query** field enter a [MongoDB query](https://docs.mongodb.com/manual/tutorial/query-documents/) to choose which rows to highlight. In the **background color** field you can set the background color with which to highlight the data.
+In the **text color** field you can instead choose the color of the text. You can enter any valid HTML colors, using the name or the hexadecimal value.
 
-**Apply a filter**: in this field you can apply a visibility filter to your page.
-To write a query we recommend two links: 1) the different types of [query](https://docs.mongodb.com/manual/tutorial/query-documents/) 2) all types of [operators] (https: //docs.mongodb.com/manual/reference/operator/query/#query-selectors) that you can use.
+**Notifies**: enabling this check to show or not a badge in the CMS menu area. The badge will display the number of elements that satisfy a condition. With the field **query**, in the **query** field enter a [MongoDB query](https://docs.mongodb.com/manual/tutorial/query-documents/) to set the condition. Badges will be shown as follows:
 
-Let's take an example: in my collection I have a property that is the same as state (indicates the state). In this page I want to see only the data that have how state = a working. In this page I want to see only the data that have how state = a working.
-The query will be: {"state": "working"}
-An example of a more complex query in which, for example, I want to say that the state property must be equal to those stored or rejected can be written as follows: {"$ or": [{"state": "archived"}, { "state": "refused"}]}
+![CMS notifications example](img/notifiche.PNG)
+
+**Permanently Delete**: activating this check choose to delete an element from the database. Appears when you want to delete an item in Trash.
+
+**Enable Block**: activating this check choose to block a page. In this way CMS will not be able to create new elements.
+
+**Enable Hide**: by activating this check, choose to hide a page.
 
 ## Customizing properties
 
@@ -107,11 +120,11 @@ To make your CMS perfectly compatible with your needs, the last section on which
 The properties section allows you to customize every single property.
 We can divide this complex area into several parts:
 
-1. the general settings of a company
-2. visibility filters
-3. the area of the lookups
+1. [The general settings of a company](#the-general-settings-of-a-property)
+2. [Visibility filters](#the-visibility-filters)
+3. [The area of the lookups](#the-lookups)
 
-### 1. The general settings of a property
+### The general settings of a property
 
 For each property you can configure different fields that allow you to improve the user experience in the CMS:
 
@@ -144,7 +157,7 @@ For each property you can configure different fields that allow you to improve t
 
 * **Visibility**: indicates at what level of the CMS you want to show a property. Layers can be: *Hidden* and is not visible; *All* and is visible in the main table; *Detail and Modal* and it is visible when you click in the table, in the right area of ​​your CMS, at this level you tend to put non-priority information, but which bring value, eg: in-depth information. Last is only in modal: *Modal* that is when I click Expand from the Side edit area.
 
-### 2. The visibility filters
+### The visibility filters
 
 In this section you can control the visibility of a property.
 You can either refuse to make your property appear only under certain conditions.
@@ -196,7 +209,7 @@ I want this property to appear only when the *perishable* property is equal to t
 3. choose the **value**, in our case **true**
 :::
 
-## 3. The Lookups
+### The Lookups
 
 Lookups let you show in a property or preset values you choose, or show data from another collection.
 
@@ -207,14 +220,14 @@ In fact, there are two types of Lookup:
 
 At this point the options diverge.
 
-### Look a collection
+#### Look a collection
 
 When you select Look a collection you will have to fill in two values:
 
 1. Collection ID: you will see a select and you will have to choose the collection whose data you want to show
 2. Value to save: you will see a select and you will have to choose which property of the collection to save. It is generally advisable to save the id.
 
-### Inline Source
+#### Inline Source
 
 When you select Inline Source you will need to fill in two values:
 
@@ -233,7 +246,7 @@ Here's how I'll have to build the array of objects:
 
 * **Value to be saved**: you will have to choose which value to save in the DB, in this case we advise you to save the value.
 
-### How to view the data of a Lookup
+#### How to view the data of a Lookup
 
 From a Look up you can also configure additional features that allow you to meet any viewing need.
 
@@ -260,7 +273,7 @@ An example of Lookup on the weapons collection:
 ![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
 :::
 
-## 4. Create a button
+## Create a button
 
 From the Console you can also choose to configure buttons. The buttons are actions that you want to do on a data or a set of data.
 
@@ -290,7 +303,7 @@ Here you can see how our button will appear:
 ![](img/bottoneCMS.png)
 :::
 
-### 4.1. Advanced configurations
+### Advanced configurations
 
 Once you created the _button_ on the CMS, you have to configure the _Advanced Configurations_ of your project, otherwise the CMS will not find the created route.
 
@@ -310,7 +323,7 @@ In the example, we will receive from the CMS a `POST` call to the `/documents-cr
 
 otherwise the CMS will not find the path to consume the REST service.
 
-### 4.2. What does the button do
+### What does the button do
 
 Once you correctly configured the _Advanced section_ files, you can use the button to send a `POST` request to your custom _endpoint_, but what you will receive in the request _body_?
 
