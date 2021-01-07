@@ -135,7 +135,7 @@ Disabling this flag for a specific route will allow defining a custom behaviour 
 
 Managing the visibility of endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permission that users do not possess.  
 
-:::note
+:::caution
 It is important to notice that changing the visibility of an endpoint or a route **will not alter its functionality**, a route will **still be contactable** even if its visibility is hidden.
 :::
 
