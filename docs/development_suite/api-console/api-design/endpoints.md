@@ -123,6 +123,22 @@ If you figure out that there's some problem in how you configured the security o
 Check out the [API Key section](api_key.md) to know more about the API Keys
 :::
 
+## Manage the visibility of your endpoints
+
+In the Management section, you can manage the endpoint visibility in the [API Portal](../../api-portal/api-documentations.md).
+
+The `Show in API Portal` flag enabled allows seeing all endpoint routes in the [API Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
+
+The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be present in the API Portal and which should not.  
+The `inherited` flag enabled (by default) will guarantee that the selected route will inherit the visibility of its base endpoint.
+Disabling this flag for a specific route will allow defining a custom behaviour for that route.
+
+Managing the visibility of endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permission that users do not possess.  
+
+:::note
+It is important to notice that changing the visibility of an endpoint or a route **will not alter its functionality**, a route will **still be contactable** even if its visibility is hidden.
+:::
+
 ## Transition through Microservice Gateway
 
 Thanks to this feature, you can define, in each endpoint, which route is going to pass through Microservice Gateway.
