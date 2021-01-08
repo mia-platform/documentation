@@ -31,7 +31,7 @@ Check out the [related section](../development_suite/deploy/deploy#compare-servi
 
 ### When a project is deployed, what is released?
 
-No, it won't. The Deploy of a project will only release the configuration [set as a *Git repo path* during project creation](../development_suite/set-up-infrastructure/create-project#step-2-repository).
+The Deploy of a project will only release the configuration [set as a *Git repo path* during project creation](../development_suite/set-up-infrastructure/create-project#step-2-repository).
 
 :::tip
 From Console, click on Git provider icon, at the top right part of the Console, to open the project configurations repository
@@ -101,3 +101,9 @@ You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a 
 :::tip
 You can visit the [API Portal](../development_suite/api-portal/api-documentations) to see the documentation of your CRUDs APIs.
 :::
+
+## Endpoints
+
+### How can I hide an endpoint from the API Portal?
+
+You can change the visibility of any endpoint (and its routes) in the endpoint Management section by disabling the `Show in API Portal` flag. Check out the [related section](../development_suite/api-console/api-design/endpoints.md#manage-the-visibility-of-your-endpoints) for more details.
