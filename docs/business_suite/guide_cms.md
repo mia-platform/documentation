@@ -296,7 +296,7 @@ With one or more filters active, click on the plus button to the left of the *ad
 a dialog where you can define the following properties:
 
 * `Display label`: the displayed name of the filter
-* `Display by default`: whether the filter will be selected by default when the page is open
+* `Display by default`: whether the filter will be selected by default when the page is opened.
 
 If you have at least one filter saved, a button with the list icon will appear next to the *add filter* button. By clicking
 on it, you can view, apply, modify, and delete all the saved filters.
