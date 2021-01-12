@@ -301,7 +301,7 @@ a dialog where you can define the following properties:
 If you have at least one filter saved, a button with the list icon will appear next to the *add filter* button. By clicking
 on it, you can view, apply, modify, and delete all the saved filters.
 
-![image alt text](img/cms-filter-save.gif)
+![cms filter save](img/cms-filter-save.gif)
 
 #### Enabling the feature
 
