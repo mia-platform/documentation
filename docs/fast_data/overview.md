@@ -3,27 +3,38 @@ id: overview
 title:  Fast Data Overview
 sidebar_label: Overview
 ---
-Welcome to the Fast Data overview page!
 
-Keep all your Data organized and available in real time, 24/7
+Keep all your **Data organized and available in real time, 24/7**.
 
 ![fast data overview](img/fastdata-overview.png)
 
-Collect data from any existing system and organize it according to your business needs. Build a single point of truth to keep your data flow consistent and updated in real time 24/7. Leverage Fast Data to build IoT solutions, business Single Views, transactional applications and much more.
+Collect data from any existing system and organize it according to your business needs. Build a single point of truth to keep your data flow consistent and updated in real-time 24/7.
 
-### Importer
+Fast Data main goal is to **aggregate business data from different sources into a single MongoDB collection** called [single view](sv_concepts.md). These collections can be easily **queried by your APIs**. The aggregation is performed only when needed, that is **when changes occur to the source data**.
 
-Let Data flow from Kafka’s topics to your collections, ready to be processed, aggregated and imported to your platform.
+Focus only on your existing data and the structures where aggregate them, your [single views](sv_concepts.md) will be **automatically updated**.
+
+## Fast Data Architecture and Flow
+
+![fast data architecture](img/fastdata-arch.jpg)
+
+In this section, you can have an overview of the components and the processes of Fast Data. You can easily configure Fast Data directly from the Console.  
+
+### Change Data Capture
+
+The first component is the **Change Data Capture (CDC)** in charge of notifying to Kafka any change in your original sources of data happens. From now on, we will call the sources **systems**.  
+You can implement it however you want.
 
 ### Real-Time Updater
 
-Automatically update the collections on your Fast Data DB any time there is a change in data.
+The Real-Time Updater component listens to Kafka messages and is in charge of keeping the **projections collections** up to date with the systems. Each source system table that contains data linked to a single view will have a projection collection. This collection contains the [standardized](sv_concepts.md#define-canonical-formats) values of the fields of the related system table. This set of collections will be used from the Single View Creator to update the single views.
 
-Find out more about configuring Real Time Updater in the [dedicated section](configure_real_time_updater.md).
+![real-time updater schema](img/fastdata-realtimeupdater-schema-detail.jpg)
 
 ### Single View Creator
 
-Easily query and aggregate data from different sources to create your omnichannel Single View, according to your business needs. Apply
-mapping logics to your data sets and validate them with a JSON Schema.
+The Single View Creator component creates and updates a specific single view.
 
-Find out more about configuring Single View Creator in the [dedicated section](configure_single_view_creator.md).
+![single view creator schema](img/fastdata-svc-schema-detail.jpg)
+
+First, the Single View Creator **aggregate** data of projections, then **maps** these values to an object with the correct single view fields. Finally, updates the single view collection.

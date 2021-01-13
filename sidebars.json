@@ -605,6 +605,10 @@
       "id": "fast_data/overview"
     },
     {
+      "type": "doc",
+      "id": "fast_data/sv_concepts"
+    },
+    {
       "collapsed": false,
       "type": "category",
       "label": "Setup",
