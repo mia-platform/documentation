@@ -303,7 +303,7 @@ on it, you can view, apply, modify, and delete all the saved filters.
 
 ![cms filter save](img/cms-filter-save.gif)
 
-#### Enabling the feature
+#### How to enable the feature
 
 To enable this feature in your CMS you have to 
 [create a CRUD](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/crud_advanced) named
