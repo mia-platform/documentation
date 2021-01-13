@@ -241,7 +241,7 @@ Don't you see anything? Do not worry! There is no data in our CRUD yet. In the n
 ### Create services
 
 Mia-Platform adopts a microservices architecture, so our food delivery platform will be sliced into a set of smaller and interconnected services. Each microservices will be responsible for a single business logic.  
-With Mia-Platform you can easily create and orchestrate your microservices. You can create a service from [examples](../../marketplace/examples/mia_examples.md) and [templates](../../marketplace/templates/mia_templates.md) or get one ready to use. There is a [whole set](../../runtime_suite/overview-runtime-suite.md) based on different use cases.  
+With Mia-Platform you can easily create and orchestrate your microservices. You can create a service from [examples](../../marketplace/examples/mia_examples.md) and [templates](../../marketplace/templates/mia_templates.md) or get one ready to use. There is a [whole set](../../runtime_suite/mia-platform-plugins.md based on different use cases.  
 
 :::info
 For this walkthrough we'll use a ready-to-use service that we'll customize. You can find this in the [Marketplace](../../marketplace/overview_marketplace.md), with many other templates, example and ready-to-use services.
