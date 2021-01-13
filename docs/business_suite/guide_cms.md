@@ -292,7 +292,7 @@ in the list of choosable properties.
 
 Once created, search filters can be saved for future usage.
 
-With one or more filters active, click on the plus button to the left of the *add filter* button, and you will be prompt with
+With one or more filters active, click on the `+` button to the left of the *add filter* button, and you will be prompt with
 a dialog where you can define the following properties:
 
 * `Display label`: the displayed name of the filter
