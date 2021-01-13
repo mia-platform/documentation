@@ -288,6 +288,40 @@ Not all the fields are filterable, for example an `array` type using a ***interf
 in the list of choosable properties.
 :::
 
+### Save search filters
+
+Once created, search filters can be saved for future usage.
+
+With one or more filters active, click on the `+` button to the left of the *add filter* button, and you will be prompt with
+a dialog where you can define the following properties:
+
+* `Display label`: the displayed name of the filter
+* `Display by default`: whether the filter will be selected by default when the page is opened.
+
+If you have at least one filter saved, a button with the list icon will appear next to the *add filter* button. By clicking
+on it, you can view, apply, modify, and delete all the saved filters.
+
+![cms filter save](img/cms-filter-save.gif)
+
+#### How to enable the feature
+
+To enable this feature in your CMS you have to 
+[create a CRUD](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/crud_advanced) named
+`cmsfilters` with the following properties (all not required and not nullable):
+
+* `collection` (String)
+* `values` (Array of object)
+* `default` (Boolean)
+* `label` (String)
+* `userId` (String)
+
+![image alt text](img/cmsfilters-collection.png)
+
+Once the CRUD is created, you have to
+[expose it](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/endpoints#crud) 
+through an endpoint with base path `/cmsfilters`.
+
+
 ## Media management
 
 In the Media collection all *uploads* are managed on the CMS: images, video, pdf and other attachments that can be recalled in the other collections, or that have been uploaded to other collections and are collected here.
