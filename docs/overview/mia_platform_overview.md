@@ -22,7 +22,7 @@ Find out more in the [Console section](./../development_suite/overview-dev-suite
 A set of ready to use microservices to speed up your applications’ development.
 
 ![Mia-Platform Plugins](img/mia-platform-overview-plugins.png)
-Find out more in the [Microservices Ecosystem section](./../runtime_suite/overview-runtime-suite.md).
+Find out more in the [Microservices Ecosystem section](./../runtime_suite/mia-platform-plugins.md).
 
 ### Fast Data Real-time Single view
 
