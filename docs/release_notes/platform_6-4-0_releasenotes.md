@@ -4,6 +4,51 @@ title: Version 6.4.x Release Notes
 sidebar_label: v6.4.x
 ---
 
+## v6.4.1
+
+_January 14, 2021_
+
+### New features
+
+#### Files deletion from Git repository
+
+Service related files deletion is now supported: when a service is deleted from the console, all of its files will be deleted from git repos.  
+For instance, the files list includes:
+
+- in `/configuration` folder:
+  - `service` and `deployment` YAML files for the deleted service
+  - configmaps YAML files
+- in `/config-maps` folder:  
+  - folders related to the deleted configmaps for the service  
+
+Specific file deletion is supported too, without the needing to delete an entire service.
+
+Also *HPA* YAML files will be deleted for services whose replicas generation has been disabled.
+
+### Bug fix
+
+#### Advanced files shown as empty content
+
+When using the *Advanced Section* in the *Design Area* of the Console, some files where shown as *Empty Content* in the sidebar even if they had content, the bug has been fixed.
+
+#### CMS User search with multiple Auth0 connections
+
+User search from the CMS has been fixed for projects having multiple users connections.
+
+### Improvements
+
+#### Proxy page
+
+Information displayed in the [Proxies](../development_suite/api-console/api-design/proxy.md) page are now editable.
+
+#### General UX/UI improvements
+
+A new icon has been introduced for external links, forms now properly feature field autofocus to help usability and many more minor improvements has been introduced.
+
+### How to update your DevOps Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.14`.
+
 ## v6.4.0
 
 _January 07, 2021_
