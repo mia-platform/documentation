@@ -29,6 +29,12 @@ You can [apply custom configurations directly from the Console](../api-console/a
 If you want to hide some endpoints of your API from the API Portal documentation you can do this in the [Management section](../api-console/api-design/endpoints.md#manage-the-visibility-of-your-endpoints) of the endpoint you want to hide
 :::
 
+## CRUD Documentation
+
+After released a [CRUD](../api-design/../api-console/api-design/crud_advanced.md) you can find the relative APIs documentation in the API Portal.  
+APIs are exposed automatically by the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage), check out the [CRUD Endpoints section](../../runtime_suite/crud-service/overview_and_usage#crud-endpoints) to know all details of endpoints and how to perform CRUD operations.  
+Below you can find some basic examples of CRUD operations you can do with API Portal.
+
 ### GET request
 
 #### How to "Get a list of plates"
@@ -56,7 +62,7 @@ Now you have the ability to test the API request by pushing **Try it** - if the 
 
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
 
-Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java.
+Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 In the second box, you can see the response of the body with the list of the plates.
 
 You can see all the Parameters Type: query, path, header, and body.
@@ -75,7 +81,7 @@ If you want to test the POST end-point, you need to click the row that will open
 In our case we added a plate of "onion rings" with its description and its price.
 Then push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
-Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code, a new ID was created and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java.
+Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code, a new ID was created and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
 ![](img/PostOnion.png)
 
@@ -98,7 +104,7 @@ You can also see the complete Json Schema and all the type variables both for th
 
 If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by putting the ID of the plate that you want to delete and then pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
-Below you can see the screenshot of a successfull request to our running API. You can see 204 as No content status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java.
+Below you can see the screenshot of a successfull request to our running API. You can see 204 as No content status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
 ![](img/deleteOnion.png)
 
@@ -121,7 +127,7 @@ In our case, we want to edit the name of a plate from "Salmon" to "Salmon with v
 
 Then, push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
-Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code with the new name. In the black box on the right, you can see the request, that can be seen as a cURL,in Node, in Javascript, and in Java.
+Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code with the new name. In the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
 ![](img/patchPlate.png)
 
