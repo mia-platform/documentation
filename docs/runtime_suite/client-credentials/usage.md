@@ -17,7 +17,12 @@ In the login flow, you should call the `/oauth/token` endpoint with method POST.
 
 #### Client secret basic
 
-Request must have a body in `x-www-form-urlencoded` containing the `grant_type=client_credentials` and a basic authorization header set as `base64(clientId:clientSecret)`.
+Request must have a body in `x-www-form-urlencoded` containing:
+
+* the `grant_type=client_credentials`
+* the `audience=aud1` (required only if the **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** environment variable is set to `true`)
+
+and a basic authorization header set as `base64(clientId:clientSecret)`.
 
 The client expected response is in `application/json` and contains:
 
@@ -53,7 +58,8 @@ curl --location \
     --request POST 'http://client-credentials/oauth/token' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Authorization: Basic base64(client_id:client_secret)' \
-    --data-urlencode 'grant_type=client_credentials;audience=aud1'
+    --data-urlencode 'grant_type=client_credentials' \
+    --data-urlencode 'audience=aud1'
 ```
 
 Example response:
@@ -181,10 +187,8 @@ If in the JWT is present an audience, it will be checked with the audience passe
 Example CURL request:
 
 ```shell
-curl --location --request POST 'http://client-credential-host/oauth/token' \
---header 'Authorization: Basic base64(client_id:client_secret)' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=client_credentials'
+curl --location --request GET 'http://client-credential-host/tokeninfo' \
+--header 'Authorization: Bearer {{myJWT}}' \
 ```
 
 Example response:
@@ -218,10 +222,10 @@ It returns 201 when credential pair and client is correctly generated, 401 other
 
 ```sh
 curl --location --request POST 'http://client-credential-host/register' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "client_name": "my client name",
-  }`
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "client_name": "my client name"
+    }'
 ```
 
 Example response:
@@ -300,7 +304,7 @@ client->>clcr_service: POST /oauth/token
 clcr_service->>crud_service: GET {client_id,hash_client_secret}
 
 clcr_service->>clcr_service: generate Mia JWT
-note over clcr_service: iss: helvetia-idp\n sub: client-id\n aud: permessi\n exp: expiration\n iat: data di rilascio del jwt\n jti: id del jwt
+note over clcr_service: iss: my-idp\n sub: client-id\n aud: permission\n exp: expiration\n iat: jwt issue date\n jti: jwt id
 
 clcr_service->>client: {access_token, expires_in, token_type}
 ```
