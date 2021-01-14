@@ -107,3 +107,13 @@ You can visit the [API Portal](../development_suite/api-portal/api-documentation
 ### How can I hide an endpoint from the API Portal?
 
 You can change the visibility of any endpoint (and its routes) in the endpoint Management section by disabling the `Show in API Portal` flag. Check out the [related section](../development_suite/api-console/api-design/endpoints.md#manage-the-visibility-of-your-endpoints) for more details.
+
+### How can I call a proxy endpoint from my microservices?
+
+The [proxy endpoints](../development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](../runtime_suite/api-gateway.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
+
+You can also use the [Mia-Platform Service Libraries](../libraries/overview_service_libraries) that help you to get a proxy towards the API Gateway.
+
+:::tip
+Checkout the [Mia service Node.js Library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/HTTPClient.md) to know how to call the platform services with a proxy object
+:::

@@ -83,6 +83,10 @@
         {
           "type": "doc",
           "id": "development_suite/api-console/api-design/api-key"
+        },
+        {
+          "type": "doc",
+          "id": "development_suite/api-console/api-design/proxies"
         }
       ]
     },
