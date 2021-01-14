@@ -107,8 +107,9 @@
     {
       "collapsed": true,
       "type": "category",
-      "label": "Advance configuration",
-      "items": [{
+      "label": "Advanced configuration",
+      "items": [
+        {
           "collapsed": true,
           "type": "category",
           "label": "Console Configuration",
@@ -139,6 +140,10 @@
               "id": "development_suite/api-console/advanced-section/api-gateway/request-size"
             }
           ]
+        },
+        {
+          "type": "doc",
+          "id": "development_suite/api-console/advanced-section/swagger-aggregator/configuration"
         },
         {
           "type": "doc",
@@ -174,22 +179,8 @@
       ]
     },
     {
-      "collapsed": true,
-      "type": "category",
-      "label": "API Portal: Test & documentation",
-      "items": [{
-          "type": "doc",
-          "id": "development_suite/api-portal/api-documentations"
-        },
-        {
-          "type": "doc",
-          "id": "development_suite/api-portal/swagger_conf"
-        },
-        {
-          "type": "doc",
-          "id": "development_suite/api-console/advanced-section/swagger-aggregator/configuration"
-        }
-      ]
+      "type": "doc",
+      "id": "development_suite/api-portal/api-documentations"
     }
   ],
   "marketplace": [{
@@ -206,6 +197,10 @@
         {
           "type": "doc",
           "id": "runtime_suite/microservice-gateway"
+        },
+        {
+          "type": "doc",
+          "id": "runtime_suite/swagger-aggregator"
         },
         {
           "type": "doc",
