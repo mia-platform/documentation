@@ -17,7 +17,7 @@ Allow a `prefix` field at the first level of the configuration. All the routes o
 You can specify a custom prefix to be prepended to your APIs.
 For example if your services expose `/food` endpoint you can configure the swagger aggregator to prefix all your routes with `/marketplace` prefix and thus the API Portal will display `/marketplace/food`.  
 
-See more in the [Swagger Aggregator documentation page](../development_suite/api-portal/swagger_conf).  
+See more in the [Swagger Aggregator documentation page](../development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
 
 #### Supporting kubernetes access through proxy
 
