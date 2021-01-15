@@ -1,4 +1,6 @@
-module.exports = {
+const createRedirects = require("./createRedirects");
+
+const config = {
   title: "Mia-Platform Documentation",
   tagline: "Learn how Mia-Platform can help you to develop your business",
   url: "https://docs.mia-platform.eu",
@@ -15,12 +17,11 @@ module.exports = {
       textColor: "#FFF",
     },
     algolia: {
-      placeholder:'Search for terms, features and more...',
-      apiKey: '602a752c6342891e2488bea38b0d9292',
-      appId:'58NJDUVYVW',
-      indexName: 'mia-platform-docs',
+      placeholder: "Search for terms, features and more...",
+      apiKey: "602a752c6342891e2488bea38b0d9292",
+      appId: "58NJDUVYVW",
+      indexName: "mia-platform-docs",
       contextualSearch: true,
-
     },
     colorMode: {
       // "light" | "dark"
@@ -41,55 +42,56 @@ module.exports = {
         alt: "Mia_Platform logo",
         src: "img/logo.png",
       },
-      items: [ 
+      items: [
         {
           to: "docs/overview/mia_platform_overview",
           label: "Getting Started",
           position: "left",
-          activeBaseRegex: '(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines)',
+          activeBaseRegex:
+            "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines)",
         },
         {
           label: "Core Platform",
           position: "left",
-          activeBaseRegex: '(docs|docs/\\d.x)/(development_suite|marketplace|libraries|runtime_suite)',
+          activeBaseRegex:
+            "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|runtime_suite)",
           to: "docs/development_suite/overview-dev-suite",
           items: [
             {
               label: "Console",
               to: "docs/development_suite/overview-dev-suite",
-              activeBaseRegex: '(docs|docs/\\d.x)/development_suite',
+              activeBaseRegex: "(docs|docs/\\d.x)/development_suite",
             },
             {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
-              activeBaseRegex: '(docs|docs/\\d.x)/(marketplace|runtime_suite|development_suite/api-console/api-design/custom_microservice_get_started)',
-
+              activeBaseRegex:
+                "(docs|docs/\\d.x)/(marketplace|runtime_suite|development_suite/api-console/api-design/custom_microservice_get_started)",
             },
             {
               to: "docs/libraries/overview_service_libraries",
               label: "Libraries",
-            }
+            },
           ],
         },
         {
           to: "docs/fast_data/overview",
           label: "Fast Data",
           position: "left",
-          activeBaseRegex: '(docs|docs/\\d.x)/fast_data',
-
+          activeBaseRegex: "(docs|docs/\\d.x)/fast_data",
         },
         {
           to: "docs/business_suite/overview-business-suite",
           label: "CMS & Analytics",
           position: "left",
-          activeBaseRegex: '(docs|docs/\\d.x)/business_suite',
-
+          activeBaseRegex: "(docs|docs/\\d.x)/business_suite",
         },
         {
-          label:"Release notes",
+          label: "Release notes",
           position: "left",
           to: "docs/release_notes/release_notes",
-          activeBaseRegex: '(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))',
+          activeBaseRegex:
+            "(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))",
         },
         {
           type: "docsVersionDropdown",
@@ -110,31 +112,31 @@ module.exports = {
           items: [
             {
               label: "How to install",
-              to:"/docs/info/how_to_install",
+              to: "/docs/info/how_to_install",
             },
             {
               label: "Bug Policy",
-              to:"/docs/info/bug_policy",
+              to: "/docs/info/bug_policy",
             },
             {
               label: "Supported browser",
-              to:"/docs/info/supported_browser",
+              to: "/docs/info/supported_browser",
             },
             {
               label: "Open Source Software",
-              to:"/docs/info/oss",
+              to: "/docs/info/oss",
             },
             {
               label: "Subprocessor",
-              to:"/docs/info/subprocessor",
+              to: "/docs/info/subprocessor",
             },
             {
               label: "Service Level Agreement",
-              to:"/docs/info/mia_service_level_agreement",
+              to: "/docs/info/mia_service_level_agreement",
             },
             {
               label: "Audit Process",
-              to:"/docs/info/audit_process"
+              to: "/docs/info/audit_process",
             },
           ],
         },
@@ -195,8 +197,7 @@ module.exports = {
             },
             {
               label: "Getting Started",
-              to:
-                "/docs/overview/mia_platform_overview",
+              to: "/docs/overview/mia_platform_overview",
             },
             {
               label: "Library",
@@ -227,7 +228,7 @@ module.exports = {
     },
   },
   customFields: {
-    versionPathRegex: "docs\\/\\d+\\.x"
+    versionPathRegex: "docs\\/\\d+\\.x",
   },
   presets: [
     [
@@ -235,15 +236,15 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          lastVersion: 'current',
+          lastVersion: "current",
           versions: {
             current: {
-              label: '6.x (Current)',
-              path: '',
+              label: "6.x (Current)",
+              path: "",
             },
-            '5.x.x': {
-              label: '5.10.x',
-              path: '5.x',
+            "5.x.x": {
+              label: "5.10.x",
+              path: "5.x",
             },
           },
         },
@@ -263,11 +264,10 @@ module.exports = {
       "@docusaurus/plugin-client-redirects",
       {
         fromExtensions: ["html"],
-        createRedirects: (path) => {
-          //  Redirect old / paths to newer /docs/ paths
-          return [path.replace(/^\/docs/g, "")];
-        },
+        createRedirects,
       },
     ],
   ],
 };
+
+module.exports = config;
