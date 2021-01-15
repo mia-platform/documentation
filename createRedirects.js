@@ -2,7 +2,7 @@
 const redirectPaths = {
   "/docs/business_suite/guide_cms" : "/user_guide_and_tools/cms/guide_cms",
   "/docs/runtime_suite/swagger-aggregator": "/docs/development_suite/api-portal/swagger_conf",
-  "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log": "/docs/development-suite/monitoring-dashboard/dev_ops_guide/log"
+  "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log": "/docs/development_suite/monitoring-dashboard/dev_ops_guide/log"
 };
 
 const createRedirects = (path) => {
