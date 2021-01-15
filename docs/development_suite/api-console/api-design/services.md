@@ -146,7 +146,7 @@ In this section, you can manage, add and delete the environment variables associ
 
 ### Custom Configuration
 
-In this section, you can add configmaps in order to add files to your microservice without going to the advanced configuration. This feature can be usefull if your microservice requires a particular configuration that reads from a certain type of file (e.g. file service).
+In this section, you can add custom configurations to your microservice without the need of using the advanced service configuration. This feature can be useful in different occasions, either when your microservice requires a specific functionality or to have access to particular kubernetes files.
 
 In other words, if your microservice can not be managed in a usable way from environment variables, you can use Custom Configuration to add a configuration to your microservice.
 
@@ -154,17 +154,64 @@ In other words, if your microservice can not be managed in a usable way from env
 You can use Custom Configuration if you want to write deployment files with a maximum of one container.
 :::
 
+There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
+
+#### Add a Configuration
+
  With the button 'Add a Configuration', you can add a custom configuration by defining:
+
+ * **Type** (*required*): This is the type of your configuration: *configmap* or *secret*.
 
 * **Configuration Name** (*required*): This is the name of your configuration.
 
 * **Runtime Mount Path** (*required*): Path inside the service where you want to mount the directory.
 
- ![service-add-configuration](img/service-add-configuration.png)
+![service-add-configuration](img/service-add-configuration.png)
 
-For each configuration created, a new card will be visible. You can push 'add file' to generate a .json or .yml file to write your custom configurations. With the button 'Delete File' you can cancel a file inside your custom configuration.
+For each configuration created, a new card will be visible.
+
+#### ConfigMaps
+
+You can mount files to your microservice using *configmaps*. This feature can be useful if your microservice requires a particular configuration that can be read from a certain type of file (e.g. a complex configuration file that can't be provided via simple environment variables).
+
+Check out the files service [example](https://docs.mia-platform.eu/docs/runtime_suite/files-service/configuration) to further understand the role of configmaps in microservices.
+
+You can click _Add file_ to generate a new custom file (e.g. a JSON or YAML file, but could be anything you need) and start writing your custom configurations. With the _Delete File_ button you can remove the file from your custom configuration.
 
  ![service-add-file-new](img/service-add-file-new.png)
+
+#### Secrets
+
+You can use this type of configuration in order to mount Kubernetes Secrets to your microservice.
+Kubernetes secrets let you store and manage sensitive information (such as passwords, OAuth tokens, ssh keys, etc).
+
+:::note
+Check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret/) for more information about secrets.
+:::
+
+
+:::warning
+Secrets associated to microservices must exists on your Kubernetes namespace.
+
+:::
+If your projects uses `mlp`, the Mia-Platform cli deploy tool, you can configure the `mlp.yaml` file inside your project configuration repository to generate secrets for you on the namespace.
+
+To release custom secrets with mlp, add these lines to the mlp.yaml file:
+```
+secrets:
+  - name: "client-credential-private-key"
+    when: "always"
+    data:
+      - from: "file"
+        file: "/tmp/private.key"
+```
+Once you have created a secret file on your kubernetes namespace, you can use this feature to associate it to your microservice.
+
+When secrets are linked to a microservice, its deployment files are accordingly modified to automatically mount your secret files on kubernetes. This will allow you to use their private content directly from your microservice.
+
+:::info
+Once you'll add a secret to one of your microservices, the secret's name will be recorded and you'll be able to reuse it by easily adding the same secret to multiple microservices.
+:::
 
 ### Advanced Configuration
 
