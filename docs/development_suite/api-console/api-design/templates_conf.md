@@ -11,7 +11,7 @@ The templates must be registered in the CRUD, in the `services` collection, indi
 
 ## Template string replaced by Console during service creation
 
-The Console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template` and ending with `_placeholder`:
+The Console will create a repository in which it will copy the template files replacing all occurrences of the following strings between `%` or the ones starting with `mia_template_` and ending with `_placeholder`:
 
 * `mia_template_image_name_placeholder` -> name of the nexus image entered by the user.
 * `%CUSTOM_PLUGIN_PROJECT_NAME%` -> name (label) of the Console project.
@@ -44,34 +44,41 @@ Below is an example of the body of a template:
   "archiveUrl": "https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz",
   "description": "This is the best template to start creating a service in node integrated inside the platform",
   "type": "template",
+  "categoryId": "code",
   "supportedBy": "mia-platform",
   "image": [
     {
       "_id": "5db0105743875a0011618815",
-      "name": "36e6b6b4-36e1-4737-b65f-d1fb62bb3647.png",
-      "file": "f2ca3f95-1556-446f-a098-dbc1ff219dc8.png",
+      "name": "NodeTemplate.png",
+      "file": "image.png",
       "size": 1532,
-      "location": "/v2/files/download/f2ca3f95-1556-446f-a098-dbc1ff219dc8.png",
-      "type": "image/png"
+      "location": "/path/to/your/image.png",
+      "sync": 0,
+      "trash": 0
     }
   ],
   "supportedByImage": [
     {
       "_id": "5db0106143875a0011618816",
-      "name": "e7c7ced2-e40e-465b-9e79-7d5c710badb2.png",
-      "file": "e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+      "name": "MiaPlatform.png",
+      "file": "imageSupport.png",
       "size": 139694,
-      "location": "/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
-      "type": "image/png"
+      "location": "/path/to/your/imageSupport.png",
+      "sync": 0,
+      "trash": 0
     }
-  ]
+  ],
+  "pipelines": {
+    "gitlab-ci":
+    {
+    "path":"/path/to/your/pipeline/file/node-template-ci.yml/raw"
+    }
+  },
+  "documentation": {
+    "type": "markdown",
+    "url": "https://raw.githubusercontent.com/mia-platform-marketplace/Node-Template/master/README.md"
+  }
 }
-```
-
-and the example curl to create the template:
-
-```bash
-curl -d '{"name":"NodeTemplate","archiveUrl":"https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz","description":"Thisisthebesttemplatetostartcreatingaserviceinnodeintegratedinsidetheplatform","type":"template","supportedBy":"mia-platform","image":[{"_id":"5db0105743875a0011618815","name":"36e6b6b4-36e1-4737-b65f-d1fb62bb3647.png","file":"f2ca3f95-1556-446f-a098-dbc1ff219dc8.png","size":1532,"location":"/v2/files/download/f2ca3f95-1556-446f-a098-dbc1ff219dc8.png","type":"image/png"}],"supportedByImage":[{"_id":"5db0106143875a0011618816","name":"e7c7ced2-e40e-465b-9e79-7d5c710badb2.png","file":"e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png","size":139694,"location":"/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png","type":"image/png"}]}' 'https://console.cloud.mia-platform.eu/v2/api/services/' -H 'cookie: <your cookie session here>' -H 'secret: <the secret goes here>' -H'content-type: application/json'
 ```
 
 The `archiveUrl` field must be a URL to the tar.gz version of the git project;
@@ -81,10 +88,37 @@ below is an example for project hosted on gitlab:
 https://your-host-gitlab/api/v4/projects/:project-id/repository/archive.tar.gz
 ```
 
-Note that you can now specify an `image` and a `supportedByImage` for the template;
+Note that you can specify an `image` and a `supportedByImage` for the template;
 both fields are `array of objects` that cointain the image file data; the result will be as the following:
 
 ![Console-custom-service](img/dev-console-custom-service.png)
+
+The field `categoryId` helps to group templates by their purpose.  
+Mia-platform current categories are the following:
+
+* **Authentication & Authorization** with categoryId `auth`: services in this category are meant to authenticate users and grant them the correct authorization level.
+* **Business Intelligence** with categoryId `business`: services that help the user in providing, grouping and visualizing information for a specific business area.
+* **Data Stream** with categoryId `stream`: this category groups services that transform a data stream into another for compatibility purposes.
+* **Database** with categoryId `database`: services that perform CRUD operations on database collections.
+* **Monitoring** with categoryId `monitoring`: services in this category are meant to monitor other services status, verifying their healthiness.
+* **Notification** with categoryId `notification`: this category groups services that handle notifications between users and update their status.
+* **Ready to Code** with categoryId `code`: examples and templates written in different coding languages which help during new services development.
+* **Utility** with categoryId `utility`: this category group services that perform more specific functionalities that do not belong to other categories.
+
+Templates that do not receive a specific category will be considered part of the `Utility` category.
+
+You can also specify which pipelines your template should run with the `pipelines` field.  
+This step is important to perform Continuous Integration (CI) of your templates any time their code is modified.
+
+Every template should be well documented and the field `documentation` helps in this purpose.  
+In fact, during service creation by template, it is possible to access the template documentation by clicking  
+on `View documentation` button, which will appear only if the `documentation` field has been filled correctly.  
+Two properties must be specified inside `documentation`:
+
+* `type`, currently only two types exist:
+  * `markdown`: represents a markdown file (with `.md` file extension), for example a `README.md` file inside of a git repository.
+  * `externalLink`: represents a link to an external website page, for example to Mia Platform documentation.
+* `url`, contains the url where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).
 
 ## Upload service template image
 
@@ -121,7 +155,7 @@ With the correct template id, `Change existing template` with the id, remove the
 
 Create a JSON file with the following content, then import this collection into Postman:
 
-```JSON
+```json
 {
  "info": {
   "_postman_id": "71c305bb-0c66-41c0-91df-47d2054f67ac",
@@ -256,6 +290,9 @@ From CMS you can customize each template by modifying the default values applied
 * liveness and readiness Paths
 * log parser
 * documentation path
+* category
+* pipelines
+* documentation
 
 ### Configure default environment variables
 
@@ -263,7 +300,7 @@ You can configure the environment variables of each template by adding the prope
 
 To use this feature, you have to fill the `defaultEnvironmentVariables` in this way:
 
-```JSON
+```json
 [
   {
     "name": "HTTP_PORT",
@@ -282,7 +319,7 @@ You can configure the CPU and memory limitations of each template by adding the 
 
 To use this feature, you have to fill the `defaultResources` in this way:
 
-```JSON
+```json
 {
   "cpuLimits": {
     "min": "10m",
@@ -309,7 +346,7 @@ You can configure the readiness and liveness paths of each template by adding th
 
 To use this feature, you have to fill the `defaultProbes` in this way:
 
-```JSON
+```json
 {
   "liveness": {
     "path": "/-/healthz"
@@ -341,12 +378,12 @@ An example string can be as follows: `/documentation/json`.
 
 Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
 
-```JSON
+```json
   {
-    "id": "5e43d8325686a800116b835b",
+    "_id": "5e43d8325686a800116b835b",
     "pipelines": {
       "gitlab-ci": {
-        "path": "/projects/782/repository/files/console-pipeline%2Freact-app.gitlab-ci.yml/raw"
+        "path": "/path/to/react/pipeline/file/React-template.gitlab-ci.yml/raw"
       }
     },
     "type": "template",
@@ -355,48 +392,38 @@ Here there is an example of the React Template configuration, which environment 
     "archiveUrl": "https://github.com/mia-platform-marketplace/React-App-Template/archive/master.tar.gz",
     "image": [
       {
-        "_id": "5e53cef5f44d4d00126aae7f",
-        "name": "react.png",
-        "file": "3b5e9a38-262d-4515-b61e-7887fb313beb.png",
-        "size": 7341,
-        "location": "/v2/files/download/3b5e9a38-262d-4515-b61e-7887fb313beb.png"
+        "_id": "5f23d5bf5b95f0001160de72",
+        "name": "React.png",
+        "file": "image.png",
+        "size": 19288,
+        "location": "/path/to/react/image.png",
+        "sync": 0,
+        "trash": 0
       }
     ],
     "supportedBy": "Mia-Platform",
     "supportedByImage": [
       {
         "_id": "5db0106143875a0011618816",
-        "name": "e7c7ced2-e40e-465b-9e79-7d5c710badb2.png",
-        "file": "e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png",
+        "name": "MiaPlatform.png",
+        "file": "imageSupport.png",
         "size": 139694,
-        "location": "/v2/files/download/e5ee5be6-e16d-4404-99a6-2f3ed2f91b64.png"
+        "location": "/path/to/react/imageSupport.png",
+        "sync":0,
+        "trash":0
       }
     ],
+    "categoryId": "code",
+    "defaultLogParser": "mia-nginx",
     "defaultEnvironmentVariables": [
       {
-        "value": 8080,
-        "name": "HTTP_PORT"
+        "name":"HTTP_PORT",
+        "value": 8080
       }
     ],
-    "defaultResources":{
-      "cpuLimits": {
-        "min": "10m",
-        "max": "100m"
-      },
-      "memoryLimits": {
-        "min": "100Mi",
-        "max": "300Mi"
-      }
-    },
-    "defaultProbes": {
-      "liveness": {
-        "path": "/"
-      },
-      "readiness": {
-        "path": "/"
-      }  
-    },
-    "defaultLogParser": "mia-json",
-    "defaultDocumentationPath": "/documentation/json"
+    "documentation": {
+      "type":"markdown",
+      "url":"https://raw.githubusercontent.com/mia-platform-marketplace/React-App-Template/master/README.md"
+    }
   }
 ```
