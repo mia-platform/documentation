@@ -748,6 +748,26 @@ curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aa
 }'
 ```
 
+:::caution
+If you want to update an [Array RawObject property](#rawobject-and-array_rawobject-with-schemas) using the [positional operators](https://docs.mongodb.com/manual/reference/operator/update/positional-all/) `.$.merge` and `.$.replace`, you have to specify the position of the element by filtering by property with the [_q query param](#filters-with-mongodb-query).  
+You have to filter the field by object/value. The value of the filter must be URL encoded. If the **filter matches multiple elements will be patched only the first occurrence**.
+
+
+The following example replace the element of the property `arrayOfAuthors` containing the value `{"name:"wrongName"}` with the object `{"name":"author correct name"}`. The not encoded `_q` is `arrayOfAuthors={"name":"wrongName"}`:
+
+```curl
+curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aaz0011526361?_q=%7B%arrayOfAuthors%22%3A%7B%22name%22%3A%2222wrongName%22%7D%7D' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "$set": {
+        "arrayOfAuthors.$.replace":{"name":"author correct name"},
+    },
+}'
+```
+
+This is valid for **all types of Array field**, including arrays of numbers and strings.
+:::
+
 #### Update multiple documents
 
 To update multiple documents you have two possibilities:
@@ -900,11 +920,15 @@ So the field *metadata* will be exactly:
 Values will be casted based on the JSON Schema.  
 So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
 
-> **Note**: in the `$unset` operation of nested properties it's not made a validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use $unset on nested properties.
+:::note
+In the `$unset` operation of nested properties it's not made a validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use $unset on nested properties.
+:::
 
 Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a *$set* of a *`PATCH`*) with dot notation. The field have to be valid against the following pattern *FIELD_NAME.* where *FIELD_NAME* is the name of the field. (e.g.: `*set: { "myObject.something": "foobar"}*`).
 
-> **Note**: the pattern contains *.* and not *\.*, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons.
+:::note
+The pattern contains `.` and not `\.`, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons
+:::
 
 The operators **.$.merge** and **.$.replace** can also be used on nested arrays.
 
