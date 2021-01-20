@@ -4,6 +4,18 @@ title: Version 6.4.x Release Notes
 sidebar_label: v6.4.x
 ---
 
+## v6.4.2
+
+_January 20, 2021_
+
+### Improvements
+
+Microservice-gateway node version has been updated to `lts Node 14`.
+
+### How to update your DevOps Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.15`.
+
 ## v6.4.1
 
 _January 14, 2021_
