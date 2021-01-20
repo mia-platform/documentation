@@ -71,7 +71,7 @@ The object exported byt he files in the `profiles` folder must contain the follo
   * **collectionName**: the name of the collection on which to execute the aggregation.
   * **aggragationFunction**: a function that takes as input the output of the `inputFormatter` and returns the [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/), i.e. an array of stages.
 * **castInterpolatedPipeline**: This function is deprecated and it has to be left as in the example above unless the deprected JSON file configuration described below is used.
-* **outputFormatter**: a function that takes three parameters as input: one document of the aggregation result, the ouput format (json, jsonl or csv) and the output of the `inputFormatter` function. The scope of this function is to format the output of the aggragation as one prefers.
+* **outputFormatter**: a function that takes three parameters as input: one document of the aggregation result, the ouput format (`json`, `jsonl` or `csv`) and the output of the `inputFormatter` function. The scope of this function is to format the output of the aggragation as one prefers.
 
 ### Deprecated configuration
 
