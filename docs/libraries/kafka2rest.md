@@ -54,6 +54,7 @@ First of all you need to initialize Kafka2Rest with:
 * Generics `<K, V>` used in library [ConsumerRecords](https://kafka.apache.org/11/javadoc/org/apache/kafka/clients/consumer/ConsumerRecords.html).
 * [Kafka Consumer](https://kafka.apache.org/20/javadoc/org/apache/kafka/clients/consumer/Consumer.html). Remember to set false "enable.auto.commit" property if you need to handle processors failures.
 * A [Config](https://git.tools.mia-platform.eu/platform/libraries/kafka2rest/blob/master/src/main/kotlin/eu/miaplatform/kafka2rest/config/ConfigBuilder.kt) object.
+* [Kafka Producer (Optional)](https://kafka.apache.org/20/javadoc/org/apache/kafka/clients/producer/Producer.html). This parameter must be set in order to use the `onExceptionTopic` configuration.
 
 #### Config Parameters
 
@@ -62,6 +63,7 @@ First of all you need to initialize Kafka2Rest with:
 |maxIntervalBetweenPolls|The maximum time (Duration) interval between two consecutive poll. When this timeout is exceeded the method `isRunning()` returns false.|
 |topicList|The list of topic to subscribe to.|
 |pollTimeout|The time (Duration) spent waiting in poll if data is not available in the buffer. If 0, returns immediately with any records that are available currently in the buffer, else returns empty. Must not be negative.|
+|onExceptionTopic|(Optional) Defines a topic where messages causing unhandled processor exceptions will be stored. Kafka2Rest will enrich the message headers with two properties `retryNumber` and `errors`.|
 |retriesLimit||
 |sleepPeriod||
 
