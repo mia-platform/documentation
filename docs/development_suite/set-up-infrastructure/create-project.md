@@ -23,7 +23,7 @@ If you already have a tenant, you can [skip this section](#create-a-template).
 
 The tenant is the upper level of the projects. It allows to create a project configured inside an already existent infrastructure, which information are repeated for all the projects: *environments*, *cluster information*, *CI/CD integration*.
 
-::info
+:::info
 The fields in the tenant cannot be changed during project creation steps (if not specified otherwise).
 :::
 
