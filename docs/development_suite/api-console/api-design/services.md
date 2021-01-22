@@ -213,6 +213,10 @@ When secrets are linked to a microservice, its deployment files are accordingly 
 Once you'll add a secret to one of your microservices, the secret's name will be recorded and you'll be able to reuse it by easily adding the same secret to multiple microservices.
 :::
 
+:::warning
+You need to give **additional permissions** to the console service account in order to be able to get the list of the secrets on the cluster.
+:::
+
 ### Advanced Configuration
 
 In this section, you can write your advanced configurations by filling the files:
