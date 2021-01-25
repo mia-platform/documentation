@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Logo from "../components/Logo";
@@ -9,38 +9,38 @@ import HowToBox from "../components/HowToBox";
 import SearchBar from "@theme/SearchBar";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useWindowSize, {windowSizes} from '@theme/hooks/useWindowSize';
+import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
 
 import styles from "./styles.module.css";
 
 const features = [
   {
-    title: 'Getting Started',
+    title: "Getting Started",
     icon: "rocket",
     toUrl: "/docs/overview/mia_platform_overview",
-    description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`
+    description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`,
   },
   {
-    title: 'Console',
+    title: "Console",
     icon: "console",
     toUrl: "/docs/development_suite/overview-dev-suite",
-    description: `Start to use only one platform to design and manage the full-cycle of your DevOps`
+    description: `Start to use only one platform to design and manage the full-cycle of your DevOps`,
   },
   {
-    title: 'Learn to build what you want',
+    title: "Learn to build what you want",
     icon: "learn",
     toUrl: "/docs/development_suite/api-console/api-design/plugin_baas_4",
     description: `Read our tutorials, follow walkthroughs and learn how to decouple your
         IT systems from your channels and develop modern cloud‑native
-        applications.`
+        applications.`,
   },
 ];
 
 const secondRowFeatures = [
   {
-    title: 'What\'s new?',
+    title: "What's new?",
     icon: "new",
-    description: 'Discover new cool features, updates and bug fixes',
+    description: "Discover new cool features, updates and bug fixes",
     links: [
       {
         icon: "video",
@@ -67,6 +67,10 @@ const howToBoxProperties = {
       href: "/docs/development_suite/api-console/api-design/services",
     },
     {
+      label: "Expose services",
+      href: "/docs/development_suite/api-console/api-design/endpoints",
+    },
+    {
       label: "Store data in a CRUD",
       href: "/docs/development_suite/api-console/api-design/crud_advanced",
     },
@@ -75,12 +79,8 @@ const howToBoxProperties = {
       href: "/docs/development_suite/deploy/deploy",
     },
     {
-      label: "Debug a service",
-      href: "/docs/development_suite/debugging/telepresence",
-    },
-    {
       label: "Take advantage of a ready-to-use service",
-      href: "/docs/runtime_suite/overview-runtime-suite",
+      href: "/docs/marketplace/overview_marketplace",
     },
     {
       label: "Monitor infrastructure",
@@ -91,16 +91,16 @@ const howToBoxProperties = {
 
 function Home() {
   const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const { siteConfig = {} } = context;
 
-  const {title, description, links} = howToBoxProperties;
+  const { title, description, links } = howToBoxProperties;
 
   const [showHexagons, setHexagonsShown] = useState(false);
 
   const windowSize = useWindowSize();
 
   useEffect(() => {
-      setHexagonsShown(windowSize === windowSizes.desktop);
+    setHexagonsShown(windowSize === windowSizes.desktop);
   }, [windowSize]);
 
   return (
@@ -110,7 +110,7 @@ function Home() {
     >
       <Fragment>
         <div className={styles.container}>
-        {showHexagons && (<Hexagons />)}
+          {showHexagons && <Hexagons />}
           <header style={styles.header}>
             <div className={clsx("hero hero--primary", styles.heroBanner)}>
               <div className="container">
