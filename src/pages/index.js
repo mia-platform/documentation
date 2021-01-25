@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Logo from "../components/Logo";
@@ -9,7 +9,7 @@ import HowToBox from "../components/HowToBox";
 import SearchBar from "@theme/SearchBar";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useWindowSize, { windowSizes } from "@theme/hooks/useWindowSize";
+import useWindowSize, {windowSizes} from "@theme/hooks/useWindowSize";
 
 import styles from "./styles.module.css";
 
@@ -91,9 +91,9 @@ const howToBoxProperties = {
 
 function Home() {
   const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
+  const {siteConfig = {}} = context;
 
-  const { title, description, links } = howToBoxProperties;
+  const {title, description, links} = howToBoxProperties;
 
   const [showHexagons, setHexagonsShown] = useState(false);
 
