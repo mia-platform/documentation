@@ -1,8 +1,9 @@
 ---
 id: kafka2rest
-title:  Kafka2Rest Kotlin Library
+title: Kafka2Rest Kotlin Library
 sidebar_label: Kafka2Rest
 ---
+
 This library allow to consume kafka messages and handle them making HTTP REST calls.
 
 ## Install
@@ -125,57 +126,3 @@ You can also send messages to kafka host building ProducerManager and using the 
     val producerManager = ProducerManager("localhost:9092")
     producerManager.sendMessage(myKafkaMessage, "topic1")
 ```
-
----
-
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## 3.0.0
-
-### BREAKING CHANGES
-
-* Removed all constructor except the primary.
-* ProducerManager has been detached from Kafka2Rest controller class.
-
-### Added
-
-* [CAOED-147](https://makeitapp.atlassian.net/browse/CAOED-147) health methods `isRunning()` and `isConnected()`.
-
-## 2.2.2
-
-* [TNPT1-41](https://makeitapp.atlassian.net/browse/TNPT1-41) Avoid to continue to process messages on commit error
-
-## 2.2.1
-
-### Fixed
-
-* update `close` method for graceful shut down
-
-### 2.2.0
-
-* [LUEE-41](https://makeitapp.atlassian.net/browse/LUEE-41) Added a commit error handler callback function to notify application of commit failures
-* [CC1B-442](https://makeitapp.atlassian.net/browse/CC1B-442) Allow to pass headers in RESTController.get() and RESTController.put()
-* [CC1B-441](https://makeitapp.atlassian.net/browse/CC1B-441) Allow to pass key (not required) in KafkaMessage()
-* [TNPT1-29](https://makeitapp.atlassian.net/browse/TNPT1-29) Retry if processor fails
-
-## 2.0.0
-
-### Fixed
-
-* [MP4-932](https://makeitapp.atlassian.net/browse/MP4-932) Make http sync
-
-## 1.0.0
-
-### Changed
-
-* publish script updated into the build.gradle file
-
-### Fixed
-
-* offset value fixed on the _commitSync_ function
-* [MP4-932](https://makeitapp.atlassian.net/browse/MP4-932) Make http sync
