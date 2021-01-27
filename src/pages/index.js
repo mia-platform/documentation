@@ -29,7 +29,7 @@ const features = [
   {
     title: "Learn to build what you want",
     icon: "learn",
-    toUrl: "/docs/development_suite/api-console/api-design/plugin_baas_4",
+    toUrl: "/docs/getting_started/video_pills/video_pills",
     description: `Read our tutorials, follow walkthroughs and learn how to decouple your
         IT systems from your channels and develop modern cloud‑native
         applications.`,

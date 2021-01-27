@@ -1,0 +1,27 @@
+.videoCtn {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.videoBox {
+  position: relative;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 6px #2d354417, 8px 4px 4px rgba(11,33,74,0.03);
+  border: 1px solid var(--ifm-navbar-search-input-background-color);
+  border-right: 0px;
+  overflow: hidden;
+  padding-top: 56.50%;
+}
+
+.videoBox iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border:0;
+  width: 100.5%;
+  height: 100.5%;
+}
+
+html[data-theme=dark] .videoBox {
+  --ifm-card-color:#444950;
+}

@@ -680,6 +680,10 @@
       "id": "overview/mia_platform_overview"
     },
     {
+      "type": "doc",
+      "id": "getting_started/video_pills/video_pills"
+    },
+    {
       "collapsed": true,
       "type": "category",
       "label": "Tutorial",
