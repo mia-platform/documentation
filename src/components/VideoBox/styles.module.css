@@ -21,7 +21,3 @@
   width: 100.5%;
   height: 100.5%;
 }
-
-html[data-theme=dark] .videoBox {
-  --ifm-card-color:#444950;
-}
