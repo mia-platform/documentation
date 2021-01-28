@@ -18,7 +18,7 @@ When creating a new branch, a problem during the configuration generation caused
 
 Resolved a bug that prevented the commit after the creation of a [TTL index](../runtime_suite/crud-service/overview_and_usage#indexes).
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.1.2`.
 
@@ -71,6 +71,6 @@ The plugins from the Console marketplace are now linked to the official Mia-Plat
 
 From now on, when you save your work you'll be automatically redirected back to the last page you visited.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.1.1`.
