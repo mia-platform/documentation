@@ -12,7 +12,7 @@ _January 20, 2021_
 
 Microservice-gateway node version has been updated to `lts Node 14`.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.15`.
 
@@ -57,7 +57,7 @@ Information displayed in the [Proxies](../development_suite/api-console/api-desi
 
 A new icon has been introduced for external links, forms now properly feature field autofocus to help usability and many more minor improvements has been introduced.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.14`.
 
@@ -135,6 +135,6 @@ Use `Client Credentials service v2.0.1` to take advantage of the fix.
 
 Code snippets have now a different layout to better differentiate them from regular text.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.13`.

@@ -101,6 +101,6 @@ Fixed encoding problem for binary files of Angular, React, Rest2Kafka and Kafka2
 
 The manual delete of a service which had been deployed with MLP caused the failure of the service at the successive deploy. The problem has now been fixed.
 
-### How to update your DevOps Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.0.11`.
