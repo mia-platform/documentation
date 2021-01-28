@@ -690,6 +690,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "tutorial/node_ms/node_ms_tutorial"
+        },
+        {
+          "type": "doc",
           "id": "getting_started/quick_rest_api"
         }
       ]
