@@ -4,6 +4,24 @@ title: Version 6.5.x Release Notes
 sidebar_label: v6.5.x
 ---
 
+## v6.5.1
+
+_January 28, 2021_
+
+### Bug fix
+
+#### New branch creation
+
+When creating a new branch, a problem during the configuration generation caused the failure of the Deployment. The bug has now been fixed.
+
+#### TTL Index creation
+
+Resolved a bug that prevented the commit after the creation of a [TTL index](../runtime_suite/crud-service/overview_and_usage#indexes).
+
+### How to update your DevOps Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.1.2`.
+
 ## v6.5.0
 
 _January 26, 2021_
