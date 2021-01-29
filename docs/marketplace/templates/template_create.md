@@ -49,7 +49,7 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 ### Dockerfile
 
-Your template has to have a [Dockerfile](https://docs.mia-platform.eu/guidelines/docker_vademecum/) built with the best practices.
+Your template has to have a [Dockerfile](../../guidelines/docker_vademecum) built with the best practices.
 
 Check out the [Node.js service template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/Dockerfile) to see an example.
 

@@ -151,7 +151,7 @@ For each property you can configure different fields that allow you to improve t
 
 * **Order**: indicates the order of the property in the CMS display. Remember to use the tens meter (the first is the number 10), this will make it easier for you to manage the subsequent changes.
 
-* **Location on the card**: if you have chosen the Card display mode you can choose in which position of the card to display your property. For more information follow this [link](https://docs.mia-platform.eu/user_guide_and_tools/api_console/guida_api_console/#card-position)
+* **Location on the card**: if you have chosen the Card display mode you can choose in which position of the card to display your property.
 
 * **Editable**: if you activate this check the property can be modified by anyone, otherwise it will not be editable by CMS
 

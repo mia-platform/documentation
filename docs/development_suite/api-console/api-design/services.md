@@ -124,7 +124,7 @@ In this section, you can manage the resources dedicated to your microservice:
   * *mia-plain*: it collects logs but it does not parse them
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
-See more about the log parsers on the [guidelines](https://docs.mia-platform.eu/docs/getting_started/monitoring-dashboard/dev_ops_guide/log)  
+See more about the log parsers on the [guidelines](../../../getting_started/monitoring-dashboard/dev_ops_guide/log)  
 
 * **Probes**: Here you can set your microservice probes, which are routes used by Kubernetes cluster to know if the microservice is working (liveness) and ready to receive requests (readiness). These fields are valorized by default. If you leave these fields empty, there will be a tcp socket on the selected microservice port.
 
@@ -142,7 +142,7 @@ In this section, you can manage, add and delete the environment variables associ
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
- You can find more information about environment variables at this [link](https://docs.mia-platform.eu/development_suite/set-up-infrastructure/env-var/) of Mia-Platform Docs.
+ You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var/) of Mia-Platform Docs.
 
 ### Custom Configuration
 
@@ -160,7 +160,7 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
  With the button 'Add a Configuration', you can add a custom configuration by defining:
 
- * **Type** (*required*): This is the type of your configuration: *configmap* or *secret*.
+* **Type** (*required*): This is the type of your configuration: *configmap* or *secret*.
 
 * **Configuration Name** (*required*): This is the name of your configuration.
 
@@ -174,7 +174,7 @@ For each configuration created, a new card will be visible.
 
 You can mount files to your microservice using *configmaps*. This feature can be useful if your microservice requires a particular configuration that can be read from a certain type of file (e.g. a complex configuration file that can't be provided via simple environment variables).
 
-Check out the files service [example](https://docs.mia-platform.eu/docs/runtime_suite/files-service/configuration) to further understand the role of configmaps in microservices.
+Check out the files service [example](../../../runtime_suite/files-service/configuration) to further understand the role of configmaps in microservices.
 
 You can click _Add file_ to generate a new custom file (e.g. a JSON or YAML file, but could be anything you need) and start writing your custom configurations. With the _Delete File_ button you can remove the file from your custom configuration.
 
@@ -189,7 +189,6 @@ Kubernetes secrets let you store and manage sensitive information (such as passw
 Check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret/) for more information about secrets.
 :::
 
-
 :::warning
 Secrets associated to microservices must exists on your Kubernetes namespace.
 
@@ -197,6 +196,7 @@ Secrets associated to microservices must exists on your Kubernetes namespace.
 If your projects uses `mlp`, the Mia-Platform cli deploy tool, you can configure the `mlp.yaml` file inside your project configuration repository to generate secrets for you on the namespace.
 
 To release custom secrets with mlp, add these lines to the mlp.yaml file:
+
 ```
 secrets:
   - name: "client-credential-private-key"
@@ -205,6 +205,7 @@ secrets:
       - from: "file"
         file: "/tmp/private.key"
 ```
+
 Once you have created a secret file on your kubernetes namespace, you can use this feature to associate it to your microservice.
 
 When secrets are linked to a microservice, its deployment files are accordingly modified to automatically mount your secret files on kubernetes. This will allow you to use their private content directly from your microservice.

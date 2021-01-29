@@ -7,7 +7,7 @@ The Session Manager microservice manages the users session within the platform, 
 
 The Session Manager also collaborates with the user management services for the authentication part. The control that this microservice does is currently quite sophisticated and the logical expression evaluates more parameters:
 
-1. the **group**, a variable that identifies the group to which the caller belongs. The group must be written as "group-group". For more information see the following [link] (<https://docs.mia-platform.eu/configurator/conf_cms/#5-controllo-accessi-sui-gruppi-acl-sui-groups>).
+1. the **group**, a variable that identifies the group to which the caller belongs. The group must be written as "group-group". For more information see the following [link](../business_suite/cms_configuration/conf_cms#access-control-on-groups).
 
 2. **isBackOffice**, a Boolean variable that evaluates whether the call comes from the Back-Office or not.
 

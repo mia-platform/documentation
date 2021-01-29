@@ -58,7 +58,7 @@ The v9.11.0 of CMS is now available, this version brings the following features 
 ![](img/copy-image-link.png)
 
 * You can customize the base URL for the copy link described above to differ from the CMS url.
-See how to do it on the [CMS documentation page](https://docs.mia-platform.eu/docs/business_suite/conf_cms#9-configure-the-gallery).
+See how to do it on the [CMS documentation page](../business_suite/cms_configuration/conf_cms#configure-the-gallery).
 
 * When exporting data from the CMS, the columns to be selected are named with the assigned labels and not with the id of the column.
 

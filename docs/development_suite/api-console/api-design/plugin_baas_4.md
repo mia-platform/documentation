@@ -288,7 +288,7 @@ async function tokenGeneration(request, response) {
 Through `Mia Service Node.js Library` it is possible to declare PRE and POST decorators. From a conceptual point of view, a decorator
 of (1) PRE or (2) POST is a transformation applied from `microservice-gateway` to (1) a request addressed
 to a service (**original request**) or (2) to the reply (**original reply**) that this service sends to
-caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is imporant to configure them also in the console. More information are available [in the Decorators docs](https://docs.mia-platform.eu/development_suite/api-console/api-design/decorators/).
+caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is imporant to configure them also in the console. More information are available [in the Decorators docs](decorators).
 
 The declaration of a decorator using `Mia Service Node.js Library` occurs in a similar way to the declaration of a route
 

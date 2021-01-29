@@ -35,7 +35,7 @@ When configured in the Console Design section, associated secrets will be automa
 
 Please note that additional permissions to the console service account are required in order to enable this functionality.
 
-For further details regarding secrets in microservices check out the complete [documentation](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/services#secrets).
+For further details regarding secrets in microservices check out the complete [documentation](../development_suite/api-console/api-design/services#secrets).
 
 #### CMS Export with labels for Excel
 

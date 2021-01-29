@@ -212,6 +212,7 @@ When you export data, you can also choose two settings:
 2. you can choose to download a file with delimiter **,** or **;**. **;** is useful if you export a file in .csv format and you want to view it with excel
 
 The import feature can work both as insertion and as update:
+
 * If the imported documents do have the field **id** then the documents of the existing collection matching that **id** will be updated.
 * If the imported documents do not have the field **id** then new documents are added to the collection.
 
@@ -305,8 +306,8 @@ on it, you can view, apply, modify, and delete all the saved filters.
 
 #### How to enable the feature
 
-To enable this feature in your CMS you have to 
-[create a CRUD](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/crud_advanced) named
+To enable this feature in your CMS you have to
+[create a CRUD](../development_suite/api-console/api-design/crud_advanced) named
 `cmsfilters` with the following properties (all not required and not nullable):
 
 * `collection` (String)
@@ -318,9 +319,8 @@ To enable this feature in your CMS you have to
 ![image alt text](img/cmsfilters-collection.png)
 
 Once the CRUD is created, you have to
-[expose it](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/endpoints#crud) 
+[expose it](../development_suite/api-console/api-design/endpoints#crud)
 through an endpoint with base path `/cmsfilters`.
-
 
 ## Media management
 
