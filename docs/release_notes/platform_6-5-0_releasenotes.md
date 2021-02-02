@@ -4,6 +4,43 @@ title: Version 6.5.x Release Notes
 sidebar_label: v6.5.x
 ---
 
+## v6.5.2
+
+_February 02, 2021_
+
+### New Features
+
+#### Added `$unset` support for ObjectId type
+
+It is now possible to use the MongoDB `$unset` operator invoking the PATCH CRUD APIs for properties of type `ObjectId`.
+
+#### New Kotlin Templates and Examples in the Marketplace
+
+The following Kotlin Templates and Examples are now available in the Marketplace, visit their GitHub repository to access the documentation.
+
+* Ktor Template: https://github.com/mia-platform-marketplace/Ktor-Template   
+* Ktor Hello World Example: https://github.com/mia-platform-marketplace/Ktor-Hello-World-Example   
+* Ktor Multi Module Template: https://github.com/mia-platform-marketplace/Ktor-Multi-Module-Template   
+* Ktor Multi Module Hello World Example: https://github.com/mia-platform-marketplace/Ktor-Multi-Module-Hello-World-Example   
+
+### Improvements
+
+#### Auth0 User search in CMS
+
+Auth0 user search from the CMS now uses the, broader, "contains" operator in order to get the list of searched users.
+
+#### Endpoint card reorganization
+
+The Endpoint detail view has been reorganized to better separate security related configurations from documentation.
+
+#### New Template for creating projects without CMS
+
+It is now available a new Template for the creation of projects without CMS on Mia-Platform PaaS.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.1.3`.
+
 ## v6.5.1
 
 _January 28, 2021_
