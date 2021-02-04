@@ -4,6 +4,20 @@ title: Version 6.5.x Release Notes
 sidebar_label: v6.5.x
 ---
 
+## v6.5.3
+
+_February 04, 2021_
+
+### Bug fix
+
+#### Undefined environment variables in new microservices
+
+Fixed a bug causing the incorrect definition of environment variables when creating a microservice from Template or Example.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.1.5`.
+
 ## v6.5.2
 
 _February 02, 2021_
