@@ -12,7 +12,7 @@ const config = {
   themeConfig: {
     announcementBar: {
       content:
-        '🚀 Mia-Platform v6.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/platform_6-0-0_releasenotes">Find out more!</a> 🚀',
+        '🚀 Mia-Platform v7.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.0">Find out more!</a> 🚀',
       backgroundColor: "#5FA37E",
       textColor: "#FFF",
     },
@@ -239,8 +239,12 @@ const config = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "6.x (Current)",
+              label: "7.x (Current)",
               path: "",
+            },
+            "6.x.x": {
+              label: "6.5.x",
+              path: "6.x",
             },
             "5.x.x": {
               label: "5.10.x",

@@ -1,0 +1,133 @@
+---
+id: node_ms_tutorial
+title: Create a Node.js Microservice Tutorial
+sidebar_label: Create a Node.js Microservice
+---
+
+import VideoBox from "./../../../../src/components/VideoBox";
+
+In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js template](../../marketplace/templates/mia_templates) from the [Marketplace](../../marketplace/overview_marketplace).
+
+## What We’ll Build
+
+In this tutorial we'll develop a simply **Node.js microservice that expose a route** through the [Mia-Platform API Gateway](../../runtime_suite/api-gateway).
+
+In particular calling the route we'll get a response in base of the value of an [environment variable](../../development_suite/set-up-infrastructure/env-var).
+In this example we'll creating a **CRUD for storing customers and orders** with a set of orders and develop a Microservice that **calculate the shipping cost for a specific order**. If the order belong to a new customer the shipping it's free, otherwise it's calculate from a fixed value.
+
+## Prerequisites
+
+We’ll assume that you have some familiarity with **JavaScript** and **Node.js**, but you can follow along even if you're coming from a different programming language. All concepts explained following are valid for all languages and frameworks.
+
+Prepare your favourite IDE to interact with Git repositories.
+
+## Create CRUDs
+
+First of all open your project, and create the following [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) collections. In order to do this follow these steps:
+
+### Customers CRUD
+
+1. In the [Console](../../development_suite/overview-dev-suite) select your project.
+2. Select _Design section_.
+3. Select the branch _master_.
+4. Go to section [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and click _Create new CRUD_.
+5. Insert the name `customers` and press _Create_.
+6. Now you have to set your collection's fields. Scroll to _Fields_ section and click _Add New_ to create the following fields:
+
+:::tip
+You can accelerate the field creation process [importing them from JSON](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
+In order to do this download <a download target="_blank" href="/docs_files_to_download/orders.json"> orders crud JSON</a> and <a download target="_blank" href="/docs_files_to_download/customers.json"> customers crud JSON</a>.
+:::
+
+| **Field name**          | **Type** |
+| ----------------------- | -------- |
+| **name** (required)     | String   |
+| **lastname** (required) | String   |
+| **newCustomer**         | Boolean  |
+
+### Orders CRUD
+
+Create `orders` CRUD with the following fields:
+
+| **Field name**      | **Type**         |
+| ------------------- | ---------------- |
+| **date** (required) | Date             |
+| **orderItems**      | Array of Objects |
+| **customerId**      | ObjectId         |
+
+:::info
+Checkout [CRUD Section](../../development_suite/api-console/api-design/crud_advanced.md) or see this short [video](../../getting_started/video_pills/video_pills#how-to-create-a-crud) to learn how create CRUDs
+:::
+
+![CRUD in console](img/node-ms-crud.png)
+
+**Now you should expose your collection through an Endpoint and create your first API.**
+
+1. Go to section [Endpoints](../../development_suite/api-console/api-design/endpoints.md) and click _Create new endpoint_. Then enter the following information:
+
+   - `/customers` as **Base path**.
+   - `CRUD` as **Type**.
+   - Select `customers` as **CRUD**.
+
+2. Click _Create_. You have just created your first API!
+   The detail view shows other configurations that we'll use later. Scroll down to _Routes_ section to see an overview of routes of your API.
+
+3. Create a new endpoint with the following information:
+
+   - `/orders` as **Base path**.
+   - `CRUD` as **Type**.
+   - Select `orders` as **CRUD**.
+
+![CRUD in console](img/node-ms-endpoint.png)
+
+4. To confirm changes just press **Commit & Generate**. We suggest to write a proper title for each commit, in this case, we can enter `Created CRUDs "customer","orders" and the related endpoints`.
+
+:::caution
+All items in design area **are not saved** until you click **Commit & Generate**. However, you can create different entities and then save all the work only at the end.  
+Internally, when you commit, the Console properly updates and commit the Kubernetes files on configuration repository of your project.
+:::
+
+:::info
+Checkout the [endpoint documentation](../../development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
+:::
+
+## Create the Microservice from the Marketplace Template
+
+:::tip
+Watch this short video to learn how it's easy to create a Node.js Microservice from templates
+:::
+
+<VideoBox videoName={"createNodeMS"} />
+
+A Microservice can be created starting from existing Templates. Starting from a Mia-Platform Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices(such as testing, logging, health routes, etc).
+
+In the [Marketplace](../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
+
+We'll create a microservice from [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/):
+
+1. Go to section [Microservices section](../../development_suite/api-console/api-design/services.md) and click _Create a Microservice_.
+2. Search the template `Node.js Template`, then click the related tab.
+3. Now enter the following information:
+   - `get-shipping-cost` as **Name**.
+   - Select the suggested option as **Docker Image Name**.
+4. Commit the changes
+
+## The code base
+
+## Deploy
+
+## Health routes
+
+## API Documentation
+
+## Let's coding! Expose a route
+
+### Envoironment variable
+
+### Call the other services on the Platform project: read data from CRUDs
+
+## Write tests
+
+## Try the Microservice
+
+## Monitoring

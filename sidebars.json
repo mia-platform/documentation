@@ -651,17 +651,47 @@
   ],
   "fastData": [
     {
-      "type": "doc",
-      "id": "fast_data/overview"
+      "collapsed": false,
+      "type": "category",
+      "label": "Overview and concepts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "fast_data/overview"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/sv_concepts"
+        }
+      ]
     },
     {
       "type": "doc",
-      "id": "fast_data/sv_concepts"
+      "id": "fast_data/set_up_fast_data"
     },
     {
       "collapsed": false,
       "type": "category",
-      "label": "Setup",
+      "label": "Design Fast Data",
+      "items": [
+        {
+          "type": "doc",
+          "id": "fast_data/create_projection"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/cast_functions"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/single_view"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Fast Data outside Console",
       "items": [
         {
           "type": "doc",
@@ -742,27 +772,7 @@
       "items": [
         {
           "type": "doc",
-          "id": "release_notes/v6.5.0"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v6.4.0"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v6.3.0"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v6.2.0"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v6.1.0"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/platform_6-0-0_releasenotes"
+          "id": "release_notes/v7.0.0"
         }
       ]
     },

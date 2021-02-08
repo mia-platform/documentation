@@ -3,12 +3,6 @@ id: configure_single_view_creator
 title: Single View Creator
 sidebar_label: Configure Single View Creator
 ---
-## Single View
-
-A Single View allows to aggregate data from different sources in order to have a single collection that includes all needed entity information (e.g customers, policies, etc. ).
-
-Once a projections has been modified and some **Projections Changes** has been created the **Single Views** must be updated or deleted, to do so you have to create and configure the Single View Creator.
-In this section we'll see how to do this.
 
 ## Microservice initialization
 
@@ -228,7 +222,7 @@ aggregator = aggregatorBuilder(mongoDb)
 
 ### Which one to use
 
-If you want to work with MongoDb Aggregation Pipeline you should always go for the `startAggregation`.  
+If you want to work with MongoDb Aggregation Pipeline you should always go for the `startAggregation`.
 
 If you need to apply some custom logic to the aggregation, for example, if some external information is needed and an HttpClient should be interrogated, you will need to implement a custom aggregator (use the builder to get access to the HttpClient).
 
@@ -257,7 +251,7 @@ Inside the mapper it can be applied a renaming and repositioning of the fields.
 :::note
 We suggest to implement inside the mapper all the aggregation logic that can be reused for all the clients that will read the Single Views, they should be as generic as possible.
 It's good to have some calculation and aggregation logic inside Single View Creator as far as it is reusable.
-If you have to apply some custom logic try to do it inside and API Adapter specific for the client.  
+If you have to apply some custom logic try to do it inside and API Adapter specific for the client.
 :::
 
 ## Validation
