@@ -46,7 +46,7 @@ const secondRowFeatures = [
         icon: "video",
         target: "_blank",
         href: "https://vimeo.com/458499518",
-        label: "Mia-Platform v6.0 new features",
+        label: "Mia-Platform v7.0 new features",
       },
       {
         icon: "releaseNotes",

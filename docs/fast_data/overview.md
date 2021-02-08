@@ -1,7 +1,7 @@
 ---
 id: overview
-title:  Fast Data Overview
-sidebar_label: Overview
+title: Mia-Platform Fast Data
+sidebar_label: Mia-Platform Fast Data
 ---
 
 Keep all your **Data organized and available in real time, 24/7**.
@@ -12,17 +12,17 @@ Collect data from any existing system and organize it according to your business
 
 Fast Data main goal is to **aggregate business data from different sources into a single MongoDB collection** called [single view](sv_concepts.md). These collections can be easily **queried by your APIs**. The aggregation is performed only when needed, that is **when changes occur to the source data**.
 
-Focus only on your existing data and the structures where aggregate them, your [single views](sv_concepts.md) will be **automatically updated**.
+Focus only on your data and how you need to aggregate them, your [single views](sv_concepts.md) will be **automatically updated**.
 
 ## Fast Data Architecture and Flow
 
 ![fast data architecture](img/fastdata-arch.jpg)
 
-In this section, you can have an overview of the components and the processes of Fast Data. You can easily configure Fast Data directly from the Console.  
+In this section, you can have an overview of the components and the processes of Fast Data. You can easily configure Fast Data directly from the Console.
 
 ### Change Data Capture
 
-The first component is the **Change Data Capture (CDC)** in charge of notifying to Kafka any change in your original sources of data happens. From now on, we will call the sources **systems**.  
+The first component is the **Change Data Capture (CDC)** in charge of notifying to Kafka any change in your original sources of data happens. From now on, we will call the sources **Systems of Records**.  
 You can implement it however you want.
 
 ### Real-Time Updater

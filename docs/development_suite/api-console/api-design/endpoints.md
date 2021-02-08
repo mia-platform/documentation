@@ -6,7 +6,7 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, Services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](../../../getting_started/quick_rest_api.md).  
+An endpoint allows you to expose your CRUD, Services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](../../../getting_started/quick_rest_api.md).
 
 This page will delve into the endpoint types and configuration.
 
@@ -17,6 +17,7 @@ An endpoint can be of different types:
 * **External proxy**: hook your endpoint to a proxy linked to a service outside of your cluster.
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
 * **Mia-Platform BaaS** _Deprecated_: hook your endpoint to some specific Mia-Platform services.
+* **Fast Data Projection**: hook your endpoint to the service which expose the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
 
 :::warning
 The type is selectable only during the creation phase. You can't change later.
@@ -42,6 +43,10 @@ You can find more info about how to create an internal endpoint in the [CRUD doc
 These endpoint types all share the microservice property that allows you to link the endpoint to a specific microservice (or proxy) configured in your project.
 
 After you created an endpoint linked to a microservice you'll be able to edit the _Rewrite Base Path_ this path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
+
+## Fast Data Projection
+
+This endpoint type link the endpoint to a microservice which expose the projection API. This APIs are read only, because it is not possible to modify a projection without passing from Kafka.
 
 ## About Rewrite Base Path
 
@@ -71,7 +76,7 @@ The security can be managed at three levels:
 `curl --request GET --url <https://your-url/endpoint> --header 'accept: application/json' --header 'secret: <Api Key value'`
 :::
 1. `User Group Permission` allows defining a logical expression for authorizing or not the call. If the expression validates to **true**, then the user can access the route. You can use the following properties:
-   * `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the only selected clients, identified by the API Key passed in the `secret` or `client_secret` headers.  
+   * `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the only selected clients, identified by the API Key passed in the `secret` or `client_secret` headers.
     E.g:
 
       ```js
@@ -129,11 +134,11 @@ In the Management section, you can manage the endpoint visibility in the [API Po
 
 The `Show in API Portal` flag enabled allows seeing all endpoint routes in the [API Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
 
-The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be present in the API Portal and which should not.  
+The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be present in the API Portal and which should not.
 The `inherited` flag enabled (by default) will guarantee that the selected route will inherit the visibility of its base endpoint.
 Disabling this flag for a specific route will allow defining a custom behaviour for that route.
 
-Managing the visibility of endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permission that users do not possess.  
+Managing the visibility of endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permission that users do not possess.
 
 :::caution
 It is important to notice that changing the visibility of an endpoint or a route **will not alter its functionality**, a route will **still be contactable** even if its visibility is hidden.
