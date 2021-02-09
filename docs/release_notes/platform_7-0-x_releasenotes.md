@@ -1,5 +1,5 @@
 ---
-id: v7.0.0
+id: v7.0.x
 title: Version 7.0.x Release Notes
 sidebar_label: v7.0.x
 ---

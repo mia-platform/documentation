@@ -12,7 +12,7 @@ const config = {
   themeConfig: {
     announcementBar: {
       content:
-        '🚀 Mia-Platform v7.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.0">Find out more!</a> 🚀',
+        '🚀 Mia-Platform v7.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.x">Find out more!</a> 🚀',
       backgroundColor: "#5FA37E",
       textColor: "#FFF",
     },

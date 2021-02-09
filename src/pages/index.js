@@ -43,15 +43,15 @@ const secondRowFeatures = [
     description: "Discover new cool features, updates and bug fixes",
     links: [
       {
-        icon: "video",
-        target: "_blank",
-        href: "https://vimeo.com/458499518",
-        label: "Mia-Platform v7.0 new features",
-      },
-      {
         icon: "releaseNotes",
         href: "/docs/release_notes/release_notes",
         label: "Read the release notes",
+      },
+      {
+        icon: "video",
+        target: "_blank",
+        href: "https://vimeo.com/510176279",
+        label: "Mia-Platform v7.0 new features",
       },
     ],
   },
