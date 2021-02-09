@@ -226,6 +226,14 @@ const config = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
     },
+    metadatas: [
+      {name:'og:type', content: 'website'},
+      {name:'og:image', content: 'img/mia-logo-link-preview.png'},
+      {name:'og:image:width', content: '1200'},
+      {name:'og:image:heigth', content: '630'},
+      {name:'twitter:card', content: 'summary_large_image'},
+      {name:'twitter:image', content: 'img/mia-logo-link-preview.png'},
+    ],
   },
   customFields: {
     versionPathRegex: "docs\\/\\d+\\.x",
