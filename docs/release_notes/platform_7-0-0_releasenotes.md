@@ -34,7 +34,7 @@ In particular situations, the file highlight in the advanced section had the wro
 
 #### New button to access Mia-Platform documentation
 
-Infobox pointing to Mia-Platform documentation have been replaced with a new icon. Click it to quickly access the details of the feature you are using on [Mia-Platform documentation](docs.mia-platform.eu).
+Infobox pointing to Mia-Platform documentation have been replaced with a new icon. Click it to quickly access the details of the feature you are using on [Mia-Platform documentation](https://docs.mia-platform.eu/).
 
 ## How to update your Console
 
