@@ -228,11 +228,11 @@ const config = {
     },
     metadatas: [
       {name:'og:type', content: 'website'},
-      {name:'og:image', content: 'img/mia-logo-link-preview.png'},
+      {name:'og:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
       {name:'og:image:width', content: '1200'},
       {name:'og:image:heigth', content: '630'},
       {name:'twitter:card', content: 'summary_large_image'},
-      {name:'twitter:image', content: 'img/mia-logo-link-preview.png'},
+      {name:'twitter:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
     ],
   },
   customFields: {
