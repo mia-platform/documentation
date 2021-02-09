@@ -18,7 +18,7 @@ The seventh version of Mia-Platform has now been released! Let's cut the chitcha
 
 #### Payment Gateway Manager
 
-A new plugin is available from the Mia-Platform Marketplace, the Payment Gateway Manager. Check out its [documentation]() for details.
+A new plugin is available from the Mia-Platform Marketplace, the Payment Gateway Manager. Check out its documentation for details.
 
 ### Bug fix
 
