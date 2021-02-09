@@ -231,8 +231,10 @@ const config = {
       {name:'og:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
       {name:'og:image:width', content: '1200'},
       {name:'og:image:heigth', content: '630'},
-      {name:'twitter:card', content: 'summary_large_image'},
+      {name:'twitter:card', content: 'summary'},
       {name:'twitter:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
+      {name:'twitter:image:width', content: '1200'},
+      {name:'twitter:image:heigth', content: '630'}
     ],
   },
   customFields: {
