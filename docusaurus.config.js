@@ -10,7 +10,7 @@ const config = {
   organizationName: "Mia-Platform", // Usually your GitHub org/user name.
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
-    image: "https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png",
+    image: "img/mia-logo-link-preview.png",
     announcementBar: {
       content:
         '🚀 Mia-Platform v7.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.x">Find out more!</a> 🚀',
