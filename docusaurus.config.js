@@ -227,15 +227,15 @@ const config = {
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
     },
     metadatas: [
-      {name:'og:type', content: 'website'},
-      {name:'og:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
-      {name:'og:image:type', content: 'image/png'},
-      {name:'og:image:width', content: '1200'},
-      {name:'og:image:height', content: '630'},
-      {name:'twitter:card', content: 'summary_large_image'},
-      {name:'twitter:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
-      {name:'twitter:image:width', content: '1200'},
-      {name:'twitter:image:height', content: '630'}
+      {property:'og:type', content: 'website'},
+      {property:'og:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
+      {property:'og:image:type', content: 'image/png'},
+      {property:'og:image:width', content: '1200'},
+      {property:'og:image:height', content: '630'},
+      {property:'twitter:card', content: 'summary_large_image'},
+      {property:'twitter:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
+      {property:'twitter:image:width', content: '1200'},
+      {property:'twitter:image:height', content: '630'}
     ],
   },
   customFields: {
