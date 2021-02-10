@@ -41,4 +41,4 @@ Infobox pointing to Mia-Platform documentation have been replaced with a new ico
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 2.2.12`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.2.1`.
