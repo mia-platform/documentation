@@ -438,6 +438,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Payment Gateway Manager",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/how_it_works"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Push Notification Manager",
               "items": [
                 {

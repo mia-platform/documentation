@@ -43,10 +43,20 @@ To solve this issue, you can choose to create topic with only one partition to a
 
 * **Changes are not atomic**: MongoChangeStream sends you the last document version. So if multiple changes occur on the same document, Mongo may choose to send you only a change that contains only last document version since. In this case you loose the granularity of “each change”.
 
-* **Lost event on spike traffic**: The oplog collection is a capped one and, so, it is limited in time and space. On spike traffic, this collection may contains too many changes, so mongo may decides to trash some old changes. If MongoChange2Kafka de-queues slowly, some changes will be lost.
+* **Lost event on spike traffic**: the oplog collection is a capped one and, so, it is limited in time and space. On spike traffic, this collection may contains too many changes, so mongo may decides to trash some old changes. If MongoChange2Kafka de-queues slowly, some changes will be lost.
 
 :::tip
 To solve this issue, you can increase the oplog window in order to avoid that Mongo trashes any old change.
+:::
+
+* **Kafka authentication errors**: if the kafka producer is not able to successfully authenticate, it will keep retrying.
+The service will not go down, but it will not work until the authentication is successful.
+
+:::tip
+To solve this issue, you can set an alarm on the logs of the service. The expected error log in case of authentication failure is:
+```shell
+{"timestamp":"{timestamp}","level":50,"thread":"kafka-producer-network-thread | producer-1","logger":"org.apache.kafka.clients.NetworkClient","message":"[Producer clientId=producer-1] Connection to node -1 ({KAFKA_HOST}) failed authentication due to: Authentication failed","context":"default"}
+```
 :::
 
 ## Invalid resume token recovery strategy

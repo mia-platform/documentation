@@ -156,6 +156,19 @@
     "docLandingPage": "runtime_suite/mongodb-reader/configuration"
   },
   {
+    "name": "Payment Gateway Manager",
+    "description": "Payment Gateway Manager helps you connect your services with different payment gateways in an easy fashion",
+    "category": {
+      "id": "business",
+      "label": "Business Intelligence"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/payment-gateway-manager_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/payment-gateway-manager/how_it_works"
+  },
+  {
     "name": "Push Notification Manager",
     "description": "This microservice offers some useful features for easily and safely handling the push notifications data.",
     "category": {
