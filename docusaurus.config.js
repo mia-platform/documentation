@@ -228,7 +228,7 @@ const config = {
     },
     metadatas: [
       {property:'og:type', content: 'website'},
-      {property:'og:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
+      {name:'image', property:'og:image', content: 'https://next.docs.mia-platform.eu/img/mia-logo-link-preview.png'},
       {property:'og:image:type', content: 'image/png'},
       {property:'og:image:width', content: '1200'},
       {property:'og:image:height', content: '630'},
