@@ -19,7 +19,7 @@ The seventh version of Mia-Platform has now been released! Let's cut the chitcha
 You can now use Mia-Platform Console to configure [Projections](../fast_data/create_projection), [Cast Functions](../fast_data/cast_functions) and [Single Views](../fast_data/single_view). Mia-Platform v7 enables the configuration and update of fast data projections without coding effort in the dedicated section of the Design Area. 
 Checkout the official [Fast Data documentation](../fast_data/overview) to know everything you need. 
 
-<img src="img/fastdata-browser.png" alt="Fast Data screenshot" width="600"/>  
+![Fast Data screenshot](img/fastdata-browser.png)
 
 #### Payment Gateway Manager
 
