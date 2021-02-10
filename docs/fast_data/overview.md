@@ -16,25 +16,30 @@ Focus only on your data and how you need to aggregate them, your [single views](
 
 ## Fast Data Architecture and Flow
 
-![fast data architecture](img/fastdata-arch.jpg)
+![fast data architecture](img/fastdata-arch.png)
 
 In this section, you can have an overview of the components and the processes of Fast Data. You can easily configure Fast Data directly from the Console.
 
-### Change Data Capture
+### Sending data on Kafka
 
-The first component is the **Change Data Capture (CDC)** in charge of notifying to Kafka any change in your original sources of data happens. From now on, we will call the sources **Systems of Records**.  
+You need to implement a service able to send to Kafka any change in your original sources of data happens. From now on, we will call the sources **Systems of Records**.  
 You can implement it however you want.
 
 ### Real-Time Updater
 
-The Real-Time Updater component listens to Kafka messages and is in charge of keeping the **projections collections** up to date with the systems. Each source system table that contains data linked to a single view will have a projection collection. This collection contains the [standardized](sv_concepts.md#define-canonical-formats) values of the fields of the related system table. This set of collections will be used from the Single View Creator to update the single views.
+The Real-Time Updater component consumes Kafka messages and is in charge of keeping the **projections collections** up to date with the systems. For each System you create, a new realt-time updater is automatically created (please note that they are not visible in the `Microservice` area).
 
-![real-time updater schema](img/fastdata-realtimeupdater-schema-detail.jpg)
+Each source system table that contains data linked to a single view will have a projection collection. These collections contain the [standardized](sv_concepts#define-canonical-formats) values of the fields of the related system table. This set of collections will be used from the Single View Creator to update the single view collections.   
+In order to know which single view needs to be updated, the Single View Creator periodically reads a collection named `fast-data-projections-changes` which contains all the info it needs. To gather these data we need to define one strategy for each projection, because when the projection is affected by a change we need to calculate which single views are impacted. This is made possible by the `strategies`.
+
+For instance if we have a table A that when modified impacts the tables B and C, when receiving a change on table A we need to calculate also the impacted rows on table B and table C and all the single views that depend on them.
+
+![real-time updater schema](img/fastdata-realtimeupdater-schema-detail.png)
 
 ### Single View Creator
 
 The Single View Creator component creates and updates a specific single view.
 
-![single view creator schema](img/fastdata-svc-schema-detail.jpg)
+![single view creator schema](img/fastdata-svc-schema-detail.png)
 
 First, the Single View Creator **aggregate** data of projections, then **maps** these values to an object with the correct single view fields. Finally, updates the single view collection.

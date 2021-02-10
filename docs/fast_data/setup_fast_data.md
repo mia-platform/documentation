@@ -1,14 +1,14 @@
 ---
 id: set_up_fast_data
-title: Set up Fast Data
+title: Fast Data Set up
 sidebar_label: Set up
 ---
 
+Mia-Platform Fast Data is built upon Kafka, in order to configure the Fast Data within the Console, we assume an already set up Kafka cluster.
+
 ## Kafka
 
-Kafka is an event streaming platform to write messages containing data received from disparate source systems and makes them available to target systems in near real time.
-
-To configure the Fast Data with the Console, we assume an already set up Kafka cluster.
+Kafka is an event streaming platform used to write messages containing data received from disparate source systems and makes them available to target systems in near real time.
 
 :::info
 To correctly configure your Kafka cluster, you can visit [this site](https://eventsizer.io/).
@@ -35,11 +35,11 @@ To view which configurations you are able to set, view the [Kafka documentation]
 
 ### Confluent cloud
 
-> *Note*: This documentation about confluent cloud has been checked on date 5th February 2021. Some information could be outdated. Check out the official documentation of confluent [here](https://docs.confluent.io/)
+> *Note*: This documentation about Confluent Cloud has been last checked on date 5th February 2021. Some information could be outdated. Check out the official documentation of Confluent [here](https://docs.confluent.io/)
 
 If you use a cluster in Confluent cloud, you could create topics both from UI and from CLI.
 
-#### Use confluent cloud UI
+#### Use Confluent Cloud UI
 
 First, you need to log in to [Confluent Cloud](https://confluent.cloud/login), click on environment and cluster when you want to create the topic.
 
@@ -47,7 +47,7 @@ If you don't have a cluster, create one following this [documentation](https://d
 
 ##### Create topic
 
-On the left menù, click on `Topics` and `Add a topic` button. Insert the topic name and the number of partitions required. Here you could create with defaults or customize topic settings.
+On the left menu, click on `Topics` and `Add a topic` button. Insert the topic name and the number of partitions required. Here you could create with defaults or customize topic settings.
 
 :::info
 We suggest to use a topic name like `project.environment.projection-json`
@@ -57,7 +57,7 @@ We suggest to use a topic name like `project.environment.projection-json`
 
 ##### Create service account
 
-On the left menù, click on `API access` and add key (if not already exists) for `Granular access`.
+On the left menu, click on `API access` and add key (if not already exists) for `Granular access`.
 Here you could select an already existent service account or create a new one.
 
 :::info
@@ -76,9 +76,9 @@ Once created the service account, you can set from user interface:
 * *operation*: for each topic, you should set **READ** and **WRITE** operation.
 * *permission*: could be ALLOW or DENY. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
 
-#### Use confluent cloud CLI
+#### Use Confluent Cloud CLI
 
-First, you should [install the confluent cli](https://docs.confluent.io/ccloud-cli/current/install.html).
+First, you should [install the Confluent Cli](https://docs.confluent.io/ccloud-cli/current/install.html).
 
 Once installed, to create a new topic (with some custom config) run:
 
@@ -103,7 +103,7 @@ If you have not a service account, you could create it [following this guide](#c
 
 ### Consumer group ACL from UI
 
-To set up the ACL for the consumer group, from the confluent cloud UI you should set:
+To set up the ACL for the consumer group, from the Confluent Cloud UI you should set:
 
 * *type*: set **Consumer group** type
 * *consumer group ID*: write consumer group ID configured in environent variables
@@ -111,7 +111,7 @@ To set up the ACL for the consumer group, from the confluent cloud UI you should
 * *operation*: You should set the **READ** operation;
 * *permission*: could be ALLOW or DENY. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
 
-### Consumer group ACL from confluent CLI
+### Consumer group ACL from Confluent CLI
 
 If you set `my-consumer-group.development` as consumer group id, you can configure from cli:
 
@@ -137,5 +137,4 @@ Here is the list:
 * **KAFKA_SASL_PASSWORD**: password to log in to Kafka cluster
 * **MONGODB_URL**: the url to mongo db. It is the same used, for example, for crud service
 
-## Import data to Kafka
-
+If you need to customize **KAFKA_GROUP_ID**, **KAFKA_SASL_USERNAME** and **KAFKA_SASL_PASSWORD** for some System of Records, [click here](./advanced#kafka-configuration)

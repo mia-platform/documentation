@@ -8,10 +8,10 @@ sidebar_label: Single View Concepts
 **Data-driven** and **user experience** are not only trend concepts, they are real needs of all modern companies.
 To really become a data-driven company and offer a modern user experience all of your business data must be **updated and available 24/7 for all digital touchpoint**.
 
-The first technical problem to overcome in order to be able to be such company is the **data fragmentation** and the complexity of its management.
-Year after year, vital company data have been isolated and stranded in "watertight compartments". For example, the **data of the customer**, required to support and sales processes, can be placed in many different disconnected locations.
+The first technical problem to overcome in order to be able to be such a company is the **data fragmentation** and the complexity of its management.
+Year after year, vital company data have been isolated and stranded in "watertight compartments". For example, the **customer data**, required for customer support and sales processes, can be placed in many different disconnected locations.
 
-A **single view** addresses this problem aggregating all business entity relevant data, standardizing formats, into a single structure that can be easy **queried by your APIs**. For example, you can create a customer single view extracting data from different front office and back office applications, aggregate and serve them to everyone: from sales and marketing, to call centers and technical support.
+A **single view** addresses this problem aggregating all business entity relevant data, standardizing formats, into a single structure that can be easily **queried by your APIs**. For example, you can create a customer single view extracting data from different front office and back office applications, aggregate and serve them to everyone: from sales and marketing, to call centers and technical support.
 
 With Mia-Platform Fast Data you can easily create real-time updated single views and stop the costly and inefficient data fragmentation.
 
@@ -40,7 +40,13 @@ For example, every customer document should contain a **unique identifier** such
 
 ### Define canonical formats
 
-You also need to define canonical formats of the fields. For example, a customer phone number may be stored as a string in one system, and as an integer in another. The **cast functions** you will write will contain the logic needed to store the heterogeneous data of source tables in a data with a defined canonical type.
+Since data may be represented with different formats in different systems, you also need to define canonical formats of the fields.
+
+For example, a customer phone number may be stored as a string in one system, and as an integer in another; for this reason, you can use the [cast functions](cast_functions) in order to store the heterogeneous data of source tables in a single, well-defined canonical type.
+
+:::note
+A set of default Cast Functions is already provided but you are free to design your own custom functions.
+:::
 
 :::tip
 Check out the related section to know how to create a single view directly from the Console
