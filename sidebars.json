@@ -685,6 +685,10 @@
         {
           "type": "doc",
           "id": "fast_data/single_view"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/advanced"
         }
       ]
     },
@@ -693,10 +697,6 @@
       "type": "category",
       "label": "Fast Data outside Console",
       "items": [
-        {
-          "type": "doc",
-          "id": "fast_data/configure_real_time_updater"
-        },
         {
           "type": "doc",
           "id": "fast_data/configure_single_view_creator"

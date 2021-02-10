@@ -10,7 +10,7 @@ Different kind of table could store data in many different ways.
 You could have a numeric value stored as a string that was supposed to be an integer, or you could also have a date field stored in different formats in different tables but you would like to have date fields all in the same format (for example you receive a date with the format `YYYYMMDD` and you want to cast it to ISO format).
 
 Cast functions meant to solve all these problems giving you full control over the format that data are going to have in your projections.
-Cast functions are simple javascript functions that receive the value coming from the Kafka topics and return the value in the format you need for you projection fields.
+Cast functions are simple JavaScript functions that receive the value coming from the Kafka topics and return the value in the format you need for you projection fields.
 
 This enable you to define the output format and type of the imported fields.
 
@@ -18,24 +18,34 @@ This enable you to define the output format and type of the imported fields.
 Since JavaScript is untyped, a conversion function needs some care to be implemented correctly
 :::
 
+Click on the `Cast Functions` voice of the left menu to see all the Cast Functions.
+
 ## Cast Function Default
 
-The Console provides your project with a set of default cast functions ready to use, so that you can start to create your projection without writing any line of code to cast your data in the correct format.
+The Console provides your project with a set of default cast functions ready to use, so that you can start to create your projection without writing any line of code to cast your data in the correct format. Hover the zoom icon to see the implementation of the default cast functions.
+
+![Default cast functions implementation](img/fastdata-default-castfunction-zoom.png)
+
 If you need more control over the casting of your data, you can also create your custom cast functions.
+
+:::caution
+If value to cast is invalid (e.g. a character as input of a cast to `defaultCastToInteger`), all default cast functions returns undefined or null, based on the cases. These fallback values are saved as `NULL` in MongoDB.   
+Be aware of that if your fields are not `nullable`, in these cases you should define your own Custom Cast Functions with the fallback you need.
+:::
 
 ## Create a Custom Cast Function
 
 To define your own custom cast functions click on the *Create* button above the `Custom cast functions` table. This will open a drawer where you can define the property of your own cast function.
 
 - **Name**: is the the name of your cast function. It cannot contains spaces or special characters.
-- **Type**: is the type of the value returned by the cast function.
+- **Returned Type**: is the type of the value returned by the cast function.
 - **Expression**: is the javascript implementation of the cast function. It needs to be an exported function as default.
 
 ### Let's see an example
 
-Name: *castToIntBase10*
-Type: *Number*
-Expression:
+Name: `castToIntBase10`
+Returned Type: `Number`
+Expression: 
 
 ```javascript
 module.exports = function (valueToCast, fieldName, logger) {
@@ -48,6 +58,8 @@ As you can see in the example above, the cast function accepts three arguments:
 - **valueToCast**: it is the value received as it's received from the data source
 - **fieldName**: the name of the field associated with the value (e.g.: *restaurantName*)
 - **logger**: the logger you can use to log in your function (an instance of the [Pino logger](https://github.com/pinojs/pino)).
+
+To know the technical limitation you have in your cast function, [read here](./single_view#technical-limitation-in-custom-functions-and-files)
 
 ## How and when are updated the Default Cast Functions?
 

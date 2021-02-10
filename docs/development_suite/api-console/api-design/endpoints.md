@@ -32,19 +32,19 @@ All endpoint types share the following properties:
 
 ## Specific endpoint properties
 
-## CRUD
+### CRUD
 
 Upon creation of CRUD type endpoints you will be able to choose any _CRUD Base Path_ from the routes that have been configured in the CRUD section.
 
 You can find more info about how to create an internal endpoint in the [CRUD documentation](crud_advanced.md)
 
-## Microservice, External Proxy and Cross Project Proxy
+### Microservice, External Proxy and Cross Project Proxy
 
 These endpoint types all share the microservice property that allows you to link the endpoint to a specific microservice (or proxy) configured in your project.
 
 After you created an endpoint linked to a microservice you'll be able to edit the _Rewrite Base Path_ this path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
 
-## Fast Data Projection
+### Fast Data Projection
 
 This endpoint type link the endpoint to a microservice which expose the projection API. This APIs are read only, because it is not possible to modify a projection without passing from Kafka.
 
