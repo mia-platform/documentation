@@ -166,7 +166,7 @@
     "type": "plugin",
     "imagePath": "docs/runtime_suite/marketPlaceImg/payment-gateway-manager_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
-    "docLandingPage": "runtime_suite/payment-gateway-manager/how_it_works"
+    "docLandingPage": "runtime_suite/payment-gateway-manager/overview"
   },
   {
     "name": "Push Notification Manager",
