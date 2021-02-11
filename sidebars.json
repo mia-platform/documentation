@@ -442,6 +442,10 @@
               "items": [
                 {
                   "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/overview"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/how_it_works"
                 },
                 {
