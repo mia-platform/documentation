@@ -13,7 +13,7 @@ const config = {
     image: "img/mia-logo-link-preview.png",
     announcementBar: {
       content:
-        '🚀 Mia-Platform v7.0 now Generally Available! GitHub integration, serveless functions support, and other features. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.x">Find out more!</a> 🚀',
+        '🚀 Mia-Platform v7.0 now Generally Available! Now you can configure Fast Data directly from the Console. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.x">Find out more!</a> 🚀',
       backgroundColor: "#5FA37E",
       textColor: "#FFF",
     },
