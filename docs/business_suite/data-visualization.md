@@ -34,6 +34,10 @@ Each **chart** is identified by a name and has:
 * **options**, which control directly highmaps configuration. Within the options there is also the **series configuration**, which always has an id, an endpoint to download data and a name.
 * **filters**, which are not mandatory and allow to configure filters on the chart.
 
+:::info
+As **options** you can use any valid `highcharts` options, based on the **constructorType** chosen. Only the **series configuration** is different from the `highcharts` one, because is mandatory to use an endpoint as data source
+:::
+
 The **series configuration** is an array of objects that has:
 
 * a univocal id;
