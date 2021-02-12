@@ -4,8 +4,6 @@ title: Advanced
 sidebar_label: Advanced
 ---
 
-## Advanced
-
 If you need it, you can customize some configuration of the services used by Fast Data.
 
 ### Projections Changes

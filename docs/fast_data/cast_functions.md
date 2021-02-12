@@ -59,7 +59,7 @@ As you can see in the example above, the cast function accepts three arguments:
 - **fieldName**: the name of the field associated with the value (e.g.: *restaurantName*)
 - **logger**: the logger you can use to log in your function (an instance of the [Pino logger](https://github.com/pinojs/pino)).
 
-To know the technical limitation you have in your cast function, [read here](./single_view#technical-limitation-in-custom-functions-and-files)
+To know the technical limitation you have in your cast function, [read here](./cast_functions#technical-limitation)
 
 ## How and when are updated the Default Cast Functions?
 
@@ -96,3 +96,15 @@ Let's see an example:
 
 As you can see, in your project you keep going to be able to use all the default cast functions, although *defaultCastUnitTimestampToISOString*, in our example, is no more supported.
 If you create a new project, this default cast function will not be provided instead.
+
+## Technical limitation
+
+In your custom cast functions you can import only the node modules present in the following list:
+
+* [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
+* [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
+* [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
+
+:::caution
+It is used the node version 12.
+:::

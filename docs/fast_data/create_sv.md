@@ -205,7 +205,7 @@ Remember to write the filename equal to filename inside advanced configuration!
 
 To enable the continuous integration, you could start a pipeline checking for changes inside the `fast-data-files` folder and triggers test, lint and others useful scripts.
 
-To know the technical limitation you have in these files, [read here](./single_view#technical-limitation-in-custom-functions-and-files)
+To know the technical limitation you have in these files, [read here](./single_view#technical-limitation)
 
 ## How to consume the Single View
 
@@ -215,9 +215,9 @@ You could [check here](/docs/development_suite/api-console/api-design/endpoints)
 
 [Click here](/docs/runtime_suite/crud-service/overview_and_usage) if you want the usage documentation for the CRUD.
 
-## Technical limitation in custom functions and files
+## Technical limitation
 
-In your custom functions (e.g.: `cast functions`) and files (e.g. `fast-data-files`) you can import only the node modules present in the following list:
+In your custom files (e.g. `fast-data-files`) you can import only the node modules present in the following list:
 
 * [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
 * [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
