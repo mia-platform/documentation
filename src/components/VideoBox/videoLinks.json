@@ -2,5 +2,6 @@
   "createNodeMS": "444835728",
   "createCrud": "439966435",
   "configureCMS": "439976844",
-  "configureAnalytics": "439980289"
+  "configureCMSAnalytics": "439980289",
+  "v7":"510307523"
 }
