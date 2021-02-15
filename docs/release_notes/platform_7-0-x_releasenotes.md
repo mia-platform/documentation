@@ -1,7 +1,7 @@
 ---
 id: v7.0.x
 title: Version 7.0.x Release Notes
-sidebar_label: v7.0.x
+sidebar_label: v7.0
 ---
 
 ## v7.0.0
@@ -16,8 +16,8 @@ The seventh version of Mia-Platform has now been released! Let's cut the chitcha
 
 #### Fast Data on Mia-Platform Console
 
-You can now use Mia-Platform Console to configure [Projections](../fast_data/create_projection), [Cast Functions](../fast_data/cast_functions) and [Single Views](../fast_data/single_view). Mia-Platform v7 enables the configuration and update of fast data projections without coding effort in the dedicated section of the Design Area. 
-Checkout the official [Fast Data documentation](../fast_data/overview) to know everything you need. 
+You can now use Mia-Platform Console to configure [Projections](../fast_data/create_projection), [Cast Functions](../fast_data/cast_functions) and [Single Views](../fast_data/single_view). Mia-Platform v7 enables the configuration and update of fast data projections without coding effort in the dedicated section of the Design Area.
+Checkout the official [Fast Data documentation](../fast_data/overview) to know everything you need.
 
 ![Fast Data screenshot](img/fastdata-browser.png)
 

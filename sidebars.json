@@ -782,6 +782,10 @@
   "releaseNotes": [
     {
       "type": "doc",
+      "id": "release_notes/mia-platform-v7"
+    },
+    {
+      "type": "doc",
       "id": "release_notes/release_notes"
     },
     {
