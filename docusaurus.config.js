@@ -49,7 +49,7 @@ const config = {
           label: "Getting Started",
           position: "left",
           activeBaseRegex:
-            "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines)",
+            "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)",
         },
         {
           label: "Core Platform",
