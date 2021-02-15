@@ -13,7 +13,7 @@ const getContent=(isDesktop,title,subtitle) => {
     <>
       {isDesktop &&
       <div className={styles.imgBox}>
-        <img src="/static/img/tuna-logo.png"/>
+        <img src="/img/tuna-logo.png"/>
       </div>}
       <div className={styles.titlesBox}>
           <span className={styles.title}>{title}</span>

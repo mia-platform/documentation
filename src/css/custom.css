@@ -130,14 +130,14 @@ html[data-theme='dark'] .DocSearch-Button {
 
 @font-face {
   font-family: "MuseoSans";
-  src: url('/static/font/MuseoSans_500.otf')  format("opentype");
+  src: url('/font/MuseoSans_500.otf')  format("opentype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "MuseoSans";
-  src: url('/static/font/MuseoSans_900.otf')  format("opentype");
+  src: url('/font/MuseoSans_900.otf')  format("opentype");
   font-weight: 900;
   font-style: normal;
 }
