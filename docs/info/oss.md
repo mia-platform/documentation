@@ -17,361 +17,363 @@ Mia-Platform includes components subject to the terms and conditions of “open 
 | NGinx          | Apache-2.0 | |
 | Express.js     | Apache-2.0 | |
 | Swagger IO     | Apache-2.0 | |
- @types/events@1.2.0                            | MIT                                       | <https://github.com/DefinitelyTyped/DefinitelyTyped>           |
-| @types/node@10.12.2                            | MIT                                       | <https://github.com/DefinitelyTyped/DefinitelyTyped>           |
-| @types/pino@4.16.1                             | MIT                                       | <https://github.com/DefinitelyTyped/DefinitelyTyped>           |
-| JSONStream@1.3.5,(MIT OR Apache-2.0)         | |<https://github.com/dominictarr/JSONStream> |                                                                |
-| abbrev@1.1.1                                   | ISC                                       | <https://github.com/isaacs/abbrev-js>                          |
-| abstract-logging@1.0.0                         | MIT                                       | <https://github.com/jsumners/abstract-logging>                 |
-| ajv@6.5.4                                      | MIT                                       | <https://github.com/epoberezkin/ajv>                           |
-| ansi-align@2.0.0                               | ISC                                       | <https://github.com/nexdrew/ansi-align>                        |
-| ansi-regex@2.1.1                               | MIT                                       | <https://github.com/chalk/ansi-regex>                          |
-| ansi-regex@3.0.0                               | MIT                                       | <https://github.com/chalk/ansi-regex>                          |
-| ansi-styles@3.2.1                              | MIT                                       | <https://github.com/chalk/ansi-styles>                         |
-| anymatch@2.0.0                                 | ISC                                       | <https://github.com/micromatch/anymatch>                       |
-| aproba@1.2.0                                   | ISC                                       | <https://github.com/iarna/aproba>                              |
-| are-we-there-yet@1.1.4                         | ISC                                       | <https://github.com/iarna/are-we-there-yet>                    |
-| argparse@1.0.10                                | MIT                                       | <https://github.com/nodeca/argparse>                           |
-| arr-diff@4.0.0                                 | MIT                                       | <https://github.com/jonschlinkert/arr-diff>                    |
-| arr-flatten@1.1.0                              | MIT                                       | <https://github.com/jonschlinkert/arr-flatten>                 |
-| arr-union@3.1.0                                | MIT                                       | <https://github.com/jonschlinkert/arr-union>                   |
-| array-unique@0.3.2                             | MIT                                       | <https://github.com/jonschlinkert/array-unique>                |
-| assign-symbols@1.0.0                           | MIT                                       | <https://github.com/jonschlinkert/assign-symbols>              |
-| async-each@1.0.1                               | MIT                                       | <https://github.com/paulmillr/async-each>                      |
-| atob@2.1.2,(MIT OR Apache-2.0)               | | git://git.coolaj86.com/coolaj86/atob.js   |                                                                |
-| avvio@5.9.0                                    | MIT                                       | <https://github.com/mcollina/avvio>                            |
-| balanced-match@1.0.0                           | MIT                                       | <https://github.com/juliangruber/balanced-match>               |
-| base@0.11.2                                    | MIT                                       | <https://github.com/node-base/base>                            |
-| binary-extensions@1.12.0                       | MIT                                       | <https://github.com/sindresorhus/binary-extensions>            |
-| boxen@1.3.0                                    | MIT                                       | <https://github.com/sindresorhus/boxen>                        |
-| brace-expansion@1.1.11                         | MIT                                       | <https://github.com/juliangruber/brace-expansion>              |
-| braces@2.3.2                                   | MIT                                       | <https://github.com/micromatch/braces>                         |
-| bson@1.1.0                                     | Apache-2.0                                | <https://github.com/mongodb/js-bson>                           |
-| cache-base@1.0.1                               | MIT                                       | <https://github.com/jonschlinkert/cache-base>                  |
-| callback-stream@1.1.0                          | MIT                                       | <https://github.com/mcollina/callback-stream>                  |
-| camelcase@4.1.0                                | MIT                                       | <https://github.com/sindresorhus/camelcase>                    |
-| capture-stack-trace@1.0.1                      | MIT                                       | <https://github.com/floatdrop/capture-stack-trace>             |
-| chalk@2.4.1                                    | MIT                                       | <https://github.com/chalk/chalk>                               |
-| chokidar@2.0.4                                 | MIT                                       | <https://github.com/paulmillr/chokidar>                        |
-| chownr@1.0.1                                   | ISC                                       | <https://github.com/isaacs/chownr>                             |
-| ci-info@1.6.0                                  | MIT                                       | <https://github.com/watson/ci-info>                            |
-| class-utils@0.3.6                              | MIT                                       | <https://github.com/jonschlinkert/class-utils>                 |
-| cli-boxes@1.0.0                                | MIT                                       | <https://github.com/sindresorhus/cli-boxes>                    |
-| code-point-at@1.1.0                            | MIT                                       | <https://github.com/sindresorhus/code-point-at>                |
-| collection-visit@1.0.0                         | MIT                                       | <https://github.com/jonschlinkert/collection-visit>            |
-| color-convert@1.9.3                            | MIT                                       | <https://github.com/Qix-/color-convert>                        |
-| color-name@1.1.3                               | MIT                                       | <https://github.com/dfcreative/color-name>                     |
-| commist@1.0.0                                  | MIT                                       | <https://github.com/mcollina/commist>                          |
-| component-emitter@1.2.1                        | MIT                                       | <https://github.com/component/emitter>                         |
-| concat-map@0.0.1                               | MIT                                       | <https://github.com/substack/node-concat-map>                  |
-| configstore@3.1.2                              | BSD-2-Clause                              | <https://github.com/yeoman/configstore>                        |
-| console-control-strings@1.1.0                  | ISC                                       | <https://github.com/iarna/console-control-strings>             |
-| copy-descriptor@0.1.1                          | MIT                                       | <https://github.com/jonschlinkert/copy-descriptor>             |
-| core-util-is@1.0.2                             | MIT                                       | <https://github.com/isaacs/core-util-is>                       |
-| create-error-class@3.0.2                       | MIT                                       | <https://github.com/floatdrop/create-error-class>              |
-| cross-spawn@5.1.0                              | MIT                                       | <https://github.com/IndigoUnited/node-cross-spawn>             |
-| crypto-random-string@1.0.0                     | MIT                                       | <https://github.com/sindresorhus/crypto-random-string>         |
-| debug@2.6.9                                    | MIT                                       | <https://github.com/visionmedia/debug>                         |
-| debug@3.2.6                                    | MIT                                       | <https://github.com/visionmedia/debug>                         |
-| decode-uri-component@0.2.0                     | MIT                                       | <https://github.com/SamVerschueren/decode-uri-component>       |
-| deep-extend@0.5.1                              | MIT                                       | <https://github.com/unclechu/node-deep-extend>                 |
-| deep-extend@0.6.0                              | MIT                                       | <https://github.com/unclechu/node-deep-extend>                 |
-| deepmerge@2.2.1                                | MIT                                       | <https://github.com/KyleAMathews/deepmerge>                    |
-| define-property@0.2.5                          | MIT                                       | <https://github.com/jonschlinkert/define-property>             |
-| define-property@1.0.0                          | MIT                                       | <https://github.com/jonschlinkert/define-property>             |
-| define-property@2.0.2                          | MIT                                       | <https://github.com/jonschlinkert/define-property>             |
-| delegates@1.0.0                                | MIT                                       | <https://github.com/visionmedia/node-delegates>                |
-| depd@1.1.2                                     | MIT                                       | <https://github.com/dougwilson/nodejs-depd>                    |
-| destroy@1.0.4                                  | MIT                                       | <https://github.com/stream-utils/destroy>                      |
-| detect-libc@1.0.3                              | Apache-2.0                                | <https://github.com/lovell/detect-libc>                        |
-| dot-prop@4.2.0                                 | MIT                                       | <https://github.com/sindresorhus/dot-prop>                     |
-| dotenv@6.0.0                                   | BSD-2-Clause                              | <https://github.com/motdotla/dotenv>                           |
-| dotenv@6.1.0                                   | BSD-2-Clause                              | <https://github.com/motdotla/dotenv>                           |
-| duplexer3@0.1.4                                | BSD-3-Clause                              | <https://github.com/floatdrop/duplexer3>                       |
-| duplexify@3.6.1                                | MIT                                       | <https://github.com/mafintosh/duplexify>                       |
-| ee-first@1.1.1                                 | MIT                                       | <https://github.com/jonathanong/ee-first>                      |
-| encodeurl@1.0.2                                | MIT                                       | <https://github.com/pillarjs/encodeurl>                        |
-| end-of-stream@1.4.1                            | MIT                                       | <https://github.com/mafintosh/end-of-stream>                   |
-| escape-html@1.0.3                              | MIT                                       | <https://github.com/component/escape-html>                     |
-| escape-string-regexp@1.0.5                     | MIT                                       | <https://github.com/sindresorhus/escape-string-regexp>         |
-| esprima@4.0.1                                  | BSD-2-Clause                              | <https://github.com/jquery/esprima>                            |
-| etag@1.8.1                                     | MIT                                       | <https://github.com/jshttp/etag>                               |
-| execa@0.7.0                                    | MIT                                       | <https://github.com/sindresorhus/execa>                        |
-| expand-brackets@2.1.4                          | MIT                                       | <https://github.com/jonschlinkert/expand-brackets>             |
-| extend-shallow@2.0.1                           | MIT                                       | <https://github.com/jonschlinkert/extend-shallow>              |
-| extend-shallow@3.0.2                           | MIT                                       | <https://github.com/jonschlinkert/extend-shallow>              |
-| extend@3.0.2                                   | MIT                                       | <https://github.com/justmoon/node-extend>                      |
-| extglob@2.0.4                                  | MIT                                       | <https://github.com/micromatch/extglob>                        |
-| fast-decode-uri-component@1.0.0                | MIT                                       | <https://github.com/delvedor/fast-decode-uri-component>        |
-| fast-deep-equal@2.0.1                          | MIT                                       | <https://github.com/epoberezkin/fast-deep-equal>               |
-| fast-json-parse@1.0.3                          | MIT                                       | <https://github.com/mcollina/fast-json-parse>                  |
-| fast-json-stable-stringify@2.0.0               | MIT                                       | <https://github.com/epoberezkin/fast-json-stable-stringify>    |
-| fast-json-stringify@1.9.1                      | MIT                                       | <https://github.com/fastify/fast-json-stringify>               |
-| fast-safe-stringify@1.2.3                      | MIT                                       | <https://github.com/davidmarkclements/fast-safe-stringify>     |
-| fastify-cli@0.22.1                             | MIT                                       | <https://github.com/fastify/fastify-cli>                       |
-| fastify-env@0.6.1                              | MIT                                       | <https://github.com/fastify/fastify-env>                       |
-| fastify-mongodb@0.9.1                          | MIT                                       | <https://github.com/fastify/fastify-mongodb>                   |
-| fastify-plugin@1.2.1                           | MIT                                       | <https://github.com/fastify/fastify-plugin>                    |
-| fastify-static@0.14.0                          | MIT                                       | <https://github.com/fastify/fastify-static>                    |
-| fastify-swagger@0.15.1                         | MIT                                       | <https://github.com/fastify/fastify-swagger>                   |
-| fastify@1.13.0                                 | MIT                                       | <https://github.com/fastify/fastify>                           |
-| fastq@1.6.0                                    | ISC                                       | <https://github.com/mcollina/fastq>                            |
-| fill-range@4.0.0                               | MIT                                       | <https://github.com/jonschlinkert/fill-range>                  |
-| find-my-way@1.15.4                             | MIT                                       | <https://github.com/delvedor/find-my-way>                      |
-| flatstr@1.0.8                                  | MIT                                       | <https://github.com/davidmarkclements/flatstr>                 |
-| for-in@1.0.2                                   | MIT                                       | <https://github.com/jonschlinkert/for-in>                      |
-| forwarded@0.1.2                                | MIT                                       | <https://github.com/jshttp/forwarded>                          |
-| fragment-cache@0.2.1                           | MIT                                       | <https://github.com/jonschlinkert/fragment-cache>              |
-| fresh@0.5.2                                    | MIT                                       | <https://github.com/jshttp/fresh>                              |
-| fs-minipass@1.2.5                              | ISC                                       | <https://github.com/npm/fs-minipass>                           |
-| fs.realpath@1.0.0                              | ISC                                       | <https://github.com/isaacs/fs.realpath>                        |
-| fsevents@1.2.4                                 | MIT                                       | <https://github.com/strongloop/fsevents>                       |
-| gauge@2.7.4                                    | ISC                                       | <https://github.com/iarna/gauge>                               |
-| generify@3.0.2                                 | MIT                                       | <https://github.com/mcollina/generify>                         |
-| get-stream@3.0.0                               | MIT                                       | <https://github.com/sindresorhus/get-stream>                   |
-| get-value@2.0.6                                | MIT                                       | <https://github.com/jonschlinkert/get-value>                   |
-| glob-parent@3.1.0                              | ISC                                       | <https://github.com/es128/glob-parent>                         |
-| glob-stream@6.1.0                              | MIT                                       | <https://github.com/gulpjs/glob-stream>                        |
-| glob@7.1.2                                     | ISC                                       | <https://github.com/isaacs/node-glob>                          |
-| glob@7.1.3                                     | ISC                                       | <https://github.com/isaacs/node-glob>                          |
-| global-dirs@0.1.1                              | MIT                                       | <https://github.com/sindresorhus/global-dirs>                  |
-| got@6.7.1                                      | MIT                                       | <https://github.com/sindresorhus/got>                          |
-| graceful-fs@4.1.14                             | ISC                                       | <https://github.com/isaacs/node-graceful-fs>                   |
-| has-flag@3.0.0                                 | MIT                                       | <https://github.com/sindresorhus/has-flag>                     |
-| has-unicode@2.0.1                              | ISC                                       | <https://github.com/iarna/has-unicode>                         |
-| has-value@0.3.1                                | MIT                                       | <https://github.com/jonschlinkert/has-value>                   |
-| has-value@1.0.0                                | MIT                                       | <https://github.com/jonschlinkert/has-value>                   |
-| has-values@0.1.4                               | MIT                                       | <https://github.com/jonschlinkert/has-values>                  |
-| has-values@1.0.0                               | MIT                                       | <https://github.com/jonschlinkert/has-values>                  |
-| help-me@1.1.0                                  | MIT                                       | <https://github.com/mcollina/help-me>                          |
-| http-errors@1.6.3                              | MIT                                       | <https://github.com/jshttp/http-errors>                        |
-| http-errors@1.7.1                              | MIT                                       | <https://github.com/jshttp/http-errors>                        |
-| iconv-lite@0.4.21                              | MIT                                       | <https://github.com/ashtuchkin/iconv-lite>                     |
-| ignore-walk@3.0.1                              | ISC                                       | <https://github.com/isaacs/ignore-walk>                        |
-| import-lazy@2.1.0                              | MIT                                       | <https://github.com/sindresorhus/import-lazy>                  |
-| imurmurhash@0.1.4                              | MIT                                       | <https://github.com/jensyt/imurmurhash-js>                     |
-| inflight@1.0.6                                 | ISC                                       | <https://github.com/npm/inflight>                              |
-| inherits@2.0.3                                 | ISC                                       | <https://github.com/isaacs/inherits>                           |
-| ini@1.3.5                                      | ISC                                       | <https://github.com/isaacs/ini>                                |
-| ipaddr.js@1.8.0                                | MIT                                       | <https://github.com/whitequark/ipaddr.js>                      |
-| is-absolute@1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/is-absolute>                 |
-| is-accessor-descriptor@0.1.6                   | MIT                                       | <https://github.com/jonschlinkert/is-accessor-descriptor>      |
-| is-accessor-descriptor@1.0.0                   | MIT                                       | <https://github.com/jonschlinkert/is-accessor-descriptor>      |
-| is-binary-path@1.0.1                           | MIT                                       | <https://github.com/sindresorhus/is-binary-path>               |
-| is-buffer@1.1.6                                | MIT                                       | <https://github.com/feross/is-buffer>                          |
-| is-ci@1.2.1                                    | MIT                                       | <https://github.com/watson/is-ci>                              |
-| is-data-descriptor@0.1.4                       | MIT                                       | <https://github.com/jonschlinkert/is-data-descriptor>          |
-| is-data-descriptor@1.0.0                       | MIT                                       | <https://github.com/jonschlinkert/is-data-descriptor>          |
-| is-descriptor@0.1.6                            | MIT                                       | <https://github.com/jonschlinkert/is-descriptor>               |
-| is-descriptor@1.0.2                            | MIT                                       | <https://github.com/jonschlinkert/is-descriptor>               |
-| is-docker@1.1.0                                | MIT                                       | <https://github.com/sindresorhus/is-docker>                    |
-| is-extendable@0.1.1                            | MIT                                       | <https://github.com/jonschlinkert/is-extendable>               |
-| is-extendable@1.0.1                            | MIT                                       | <https://github.com/jonschlinkert/is-extendable>               |
-| is-extglob@2.1.1                               | MIT                                       | <https://github.com/jonschlinkert/is-extglob>                  |
-| is-finite@1.0.2                                | MIT                                       | <https://github.com/sindresorhus/is-finite>                    |
-| is-fullwidth-code-point@1.0.0                  | MIT                                       | <https://github.com/sindresorhus/is-fullwidth-code-point>      |
-| is-fullwidth-code-point@2.0.0                  | MIT                                       | <https://github.com/sindresorhus/is-fullwidth-code-point>      |
-| is-glob@3.1.0                                  | MIT                                       | <https://github.com/jonschlinkert/is-glob>                     |
-| is-glob@4.0.0                                  | MIT                                       | <https://github.com/jonschlinkert/is-glob>                     |
-| is-installed-globally@0.1.0                    | MIT                                       | <https://github.com/sindresorhus/is-installed-globally>        |
-| is-negated-glob@1.0.0                          | MIT                                       | <https://github.com/jonschlinkert/is-negated-glob>             |
-| is-npm@1.0.0                                   | MIT                                       | <https://github.com/sindresorhus/is-npm>                       |
-| is-number@3.0.0                                | MIT                                       | <https://github.com/jonschlinkert/is-number>                   |
-| is-obj@1.0.1                                   | MIT                                       | <https://github.com/sindresorhus/is-obj>                       |
-| is-path-inside@1.0.1                           | MIT                                       | <https://github.com/sindresorhus/is-path-inside>               |
-| is-plain-object@2.0.4                          | MIT                                       | <https://github.com/jonschlinkert/is-plain-object>             |
-| is-redirect@1.0.0                              | MIT                                       | <https://github.com/sindresorhus/is-redirect>                  |
-| is-relative@1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/is-relative>                 |
-| is-retry-allowed@1.1.0                         | MIT                                       | <https://github.com/floatdrop/is-retry-allowed>                |
-| is-stream@1.1.0                                | MIT                                       | <https://github.com/sindresorhus/is-stream>                    |
-| is-unc-path@1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/is-unc-path>                 |
-| is-windows@1.0.2                               | MIT                                       | <https://github.com/jonschlinkert/is-windows>                  |
-| isarray@1.0.0                                  | MIT                                       | <https://github.com/juliangruber/isarray>                      |
-| isexe@2.0.0                                    | ISC                                       | <https://github.com/isaacs/isexe>                              |
-| isobject@2.1.0                                 | MIT                                       | <https://github.com/jonschlinkert/isobject>                    |
-| isobject@3.0.1                                 | MIT                                       | <https://github.com/jonschlinkert/isobject>                    |
-| js-yaml@3.12.0                                 | MIT                                       | <https://github.com/nodeca/js-yaml>                            |
-| json-schema-traverse@0.4.1                     | MIT                                       | <https://github.com/epoberezkin/json-schema-traverse>          |
-| json-stable-stringify@1.0.1                    | MIT                                       | <https://github.com/substack/json-stable-stringify>            |
-| jsonify@0.0.0                                  | Public Domain                             | <https://github.com/substack/jsonify>                          |
-| jsonparse@1.3.1                                | MIT                                       | <https://github.com/creationix/jsonparse>                      |
-| kind-of@3.2.2                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
-| kind-of@4.0.0                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
-| kind-of@5.1.0                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
-| kind-of@6.0.2                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
-| latest-version@3.1.0                           | MIT                                       | <https://github.com/sindresorhus/latest-version>               |
-| leven@1.0.2                                    | MIT                                       | <https://github.com/sindresorhus/leven>                        |
-| light-my-request@3.1.0                         | BSD-3-Clause                              | <https://github.com/fastify/light-my-request>                  |
-| lodash.debounce@4.0.8                          | MIT                                       | <https://github.com/lodash/lodash>                             |
-| lowercase-keys@1.0.1                           | MIT                                       | <https://github.com/sindresorhus/lowercase-keys>               |
-| lru-cache@4.1.3                                | ISC                                       | <https://github.com/isaacs/node-lru-cache>                     |
-| make-dir@1.3.0                                 | MIT                                       | <https://github.com/sindresorhus/make-dir>                     |
-| make-promises-safe@1.1.0                       | MIT                                       | <https://github.com/mcollina/make-promises-safe>               |
-| makeerror@1.0.11                               | BSD-3-Clause                              | <https://github.com/daaku/nodejs-makeerror>                    |
-| map-cache@0.2.2                                | MIT                                       | <https://github.com/jonschlinkert/map-cache>                   |
-| map-visit@1.0.0                                | MIT                                       | <https://github.com/jonschlinkert/map-visit>                   |
-| memory-pager@1.1.0                             | MIT                                       | <https://github.com/mafintosh/memory-pager>                    |
-| micromatch@3.1.10                              | MIT                                       | <https://github.com/micromatch/micromatch>                     |
-| middie@3.2.0                                   | MIT                                       | <https://github.com/fastify/middleman>                         |
-| mime@1.4.1                                     | MIT                                       | <https://github.com/broofa/node-mime>                          |
-| minimatch@3.0.4                                | ISC                                       | <https://github.com/isaacs/minimatch>                          |
-| minimist@0.0.8                                 | MIT                                       | <https://github.com/substack/minimist>                         |
-| minimist@1.2.0                                 | MIT                                       | <https://github.com/substack/minimist>                         |
-| minipass@2.2.4                                 | ISC                                       | <https://github.com/isaacs/minipass>                           |
-| minizlib@1.1.0                                 | MIT                                       | <https://github.com/isaacs/minizlib>                           |
-| mixin-deep@1.3.1                               | MIT                                       | <https://github.com/jonschlinkert/mixin-deep>                  |
-| mkdirp@0.5.1                                   | MIT                                       | <https://github.com/substack/node-mkdirp>                      |
-| mongodb-core@3.1.7                             | Apache-2.0                                | <https://github.com/mongodb-js/mongodb-core>                   |
-| mongodb@3.1.8                                  | Apache-2.0                                | <https://github.com/mongodb/node-mongodb-native>               |
-| ms@2.0.0                                       | MIT                                       | <https://github.com/zeit/ms>                                   |
-| ms@2.1.1                                       | MIT                                       | <https://github.com/zeit/ms>                                   |
-| nan@2.11.1                                     | MIT                                       | <https://github.com/nodejs/nan>                                |
-| nanomatch@1.2.13                               | MIT                                       | <https://github.com/micromatch/nanomatch>                      |
-| needle@2.2.0                                   | MIT                                       | <https://github.com/tomas/needle>                              |
-| node-pre-gyp@0.10.0                            | BSD-3-Clause                              | <https://github.com/mapbox/node-pre-gyp>                       |
-| nopt@4.0.1                                     | ISC                                       | <https://github.com/npm/nopt>                                  |
-| normalize-path@2.1.1                           | MIT                                       | <https://github.com/jonschlinkert/normalize-path>              |
-| npm-bundled@1.0.3                              | ISC                                       | <https://github.com/npm/npm-bundled>                           |
-| npm-packlist@1.1.10                            | ISC                                       | <https://github.com/npm/npm-packlist>                          |
-| npm-run-path@2.0.2                             | MIT                                       | <https://github.com/sindresorhus/npm-run-path>                 |
-| npmlog@4.1.2                                   | ISC                                       | <https://github.com/npm/npmlog>                                |
-| number-is-nan@1.0.1                            | MIT                                       | <https://github.com/sindresorhus/number-is-nan>                |
-| object-assign@4.1.1                            | MIT                                       | <https://github.com/sindresorhus/object-assign>                |
-| object-copy@0.1.0                              | MIT                                       | <https://github.com/jonschlinkert/object-copy>                 |
-| object-visit@1.0.1                             | MIT                                       | <https://github.com/jonschlinkert/object-visit>                |
-| object.pick@1.3.0                              | MIT                                       | <https://github.com/jonschlinkert/object.pick>                 |
-| on-finished@2.3.0                              | MIT                                       | <https://github.com/jshttp/on-finished>                        |
-| once@1.4.0                                     | ISC                                       | <https://github.com/isaacs/once>                               |
-| ordered-read-streams@1.0.1                     | MIT                                       | <https://github.com/armed/ordered-read-streams>                |
-| os-homedir@1.0.2                               | MIT                                       | <https://github.com/sindresorhus/os-homedir>                   |
-| os-tmpdir@1.0.2                                | MIT                                       | <https://github.com/sindresorhus/os-tmpdir>                    |
-| osenv@0.1.5                                    | ISC                                       | <https://github.com/npm/osenv>                                 |
-| p-finally@1.0.0                                | MIT                                       | <https://github.com/sindresorhus/p-finally>                    |
-| package-json@4.0.1                             | MIT                                       | <https://github.com/sindresorhus/package-json>                 |
-| pad-left@2.1.0                                 | MIT                                       | <https://github.com/jonschlinkert/pad-left>                    |
-| pad-right@0.2.2                                | MIT                                       | <https://github.com/jonschlinkert/pad-right>                   |
-| parse-ms@1.0.1                                 | MIT                                       | <https://github.com/sindresorhus/parse-ms>                     |
-| pascalcase@0.1.1                               | MIT                                       | <https://github.com/jonschlinkert/pascalcase>                  |
-| path-dirname@1.0.2                             | MIT                                       | <https://github.com/es128/path-dirname>                        |
-| path-is-absolute@1.0.1                         | MIT                                       | <https://github.com/sindresorhus/path-is-absolute>             |
-| path-is-inside@1.0.2,(WTFPL OR MIT)          | | <https://github.com/domenic/path-is-inside> |                                                                |
-| path-key@2.0.1                                 | MIT                                       | <https://github.com/sindresorhus/path-key>                     |
-| path-to-regexp@2.4.0                           | MIT                                       | <https://github.com/pillarjs/path-to-regexp>                   |
-| pify@3.0.0                                     | MIT                                       | <https://github.com/sindresorhus/pify>                         |
-| pino-colada@1.4.4                              | MIT                                       | <https://github.com/lrlna/pino-colada>                         |
-| pino-std-serializers@2.3.0                     | MIT                                       | <https://github.com/pinojs/pino-std-serializers>               |
-| pino@4.17.6                                    | MIT                                       | <https://github.com/pinojs/pino>                               |
-| plur@1.0.0                                     | MIT                                       | <https://github.com/sindresorhus/plur>                         |
-| posix-character-classes@0.1.1                  | MIT                                       | <https://github.com/jonschlinkert/posix-character-classes>     |
-| prepend-http@1.0.4                             | MIT                                       | <https://github.com/sindresorhus/prepend-http>                 |
-| prettier-bytes@1.0.4                           | ISC                                       | <https://github.com/Flet/prettier-bytes>                       |
-| pretty-ms@2.1.0                                | MIT                                       | <https://github.com/sindresorhus/pretty-ms>                    |
-| process-nextick-args@2.0.0                     | MIT                                       | <https://github.com/calvinmetcalf/process-nextick-args>        |
-| proxy-addr@2.0.4                               | MIT                                       | <https://github.com/jshttp/proxy-addr>                         |
-| pseudomap@1.0.2                                | ISC                                       | <https://github.com/isaacs/pseudomap>                          |
-| pump@2.0.1                                     | MIT                                       | <https://github.com/mafintosh/pump>                            |
-| pump@3.0.0                                     | MIT                                       | <https://github.com/mafintosh/pump>                            |
-| pumpify@1.5.1                                  | MIT                                       | <https://github.com/mafintosh/pumpify>                         |
-| punycode@2.1.1                                 | MIT                                       | <https://github.com/bestiejs/punycode.js>                      |
-| quick-format-unescaped@1.1.2                   | MIT                                       | <https://github.com/davidmarkclements/quick-format>            |
-| range-parser@1.2.0                             | MIT                                       | <https://github.com/jshttp/range-parser>                       |
-| rc@1.2.7,(BSD-2-Clause OR MIT OR Apache-2.0) | | <https://github.com/dominictarr/rc>         |                                                                |
-| rc@1.2.8,(BSD-2-Clause OR MIT OR Apache-2.0) | | <https://github.com/dominictarr/rc>         |                                                                |
-| readable-stream@2.3.6                          | MIT                                       | <https://github.com/nodejs/readable-stream>                    |
-| readable-stream@3.0.6                          | MIT                                       | <https://github.com/nodejs/readable-stream>                    |
-| readdirp@2.2.1                                 | MIT                                       | <https://github.com/paulmillr/readdirp>                        |
-| regex-not@1.0.2                                | MIT                                       | <https://github.com/jonschlinkert/regex-not>                   |
-| registry-auth-token@3.3.2                      | MIT                                       | <https://github.com/rexxars/registry-auth-token>               |
-| registry-url@3.1.0                             | MIT                                       | <https://github.com/sindresorhus/registry-url>                 |
-| remove-trailing-separator@1.1.0                | ISC                                       | <https://github.com/darsain/remove-trailing-separator>         |
-| repeat-element@1.1.3                           | MIT                                       | <https://github.com/jonschlinkert/repeat-element>              |
-| repeat-string@1.6.1                            | MIT                                       | <https://github.com/jonschlinkert/repeat-string>               |
-| require_optional@1.0.1                         | Apache-2.0                                | <https://github.com/christkv/require_optional>                 |
-| resolve-from@2.0.0                             | MIT                                       | <https://github.com/sindresorhus/resolve-from>                 |
-| resolve-from@4.0.0                             | MIT                                       | <https://github.com/sindresorhus/resolve-from>                 |
-| resolve-url@0.2.1                              | MIT                                       | <https://github.com/lydell/resolve-url>                        |
-| ret@0.1.15                                     | MIT                                       | <https://github.com/fent/ret.js>                               |
-| reusify@1.0.4                                  | MIT                                       | <https://github.com/mcollina/reusify>                          |
-| rimraf@2.6.2                                   | ISC                                       | <https://github.com/isaacs/rimraf>                             |
-| safe-buffer@5.1.1                              | MIT                                       | <https://github.com/feross/safe-buffer>                        |
-| safe-buffer@5.1.2                              | MIT                                       | <https://github.com/feross/safe-buffer>                        |
-| safe-regex@1.1.0                               | MIT                                       | <https://github.com/substack/safe-regex>                       |
-| safer-buffer@2.1.2                             | MIT                                       | <https://github.com/ChALkeR/safer-buffer>                      |
-| saslprep@1.0.2                                 | MIT                                       | <https://github.com/reklatsmasters/saslprep>                   |
-| sax@1.2.4                                      | ISC                                       | <https://github.com/isaacs/sax-js>                             |
-| semver-diff@2.1.0                              | MIT                                       | <https://github.com/sindresorhus/semver-diff>                  |
-| semver-store@0.3.0                             | MIT                                       | <https://github.com/delvedor/semver-store>                     |
-| semver@5.5.0                                   | ISC                                       | <https://github.com/npm/node-semver>                           |
-| semver@5.6.0                                   | ISC                                       | <https://github.com/npm/node-semver>                           |
-| send@0.16.2                                    | MIT                                       | <https://github.com/pillarjs/send>                             |
-| set-blocking@2.0.0                             | ISC                                       | <https://github.com/yargs/set-blocking>                        |
-| set-value@0.4.3                                | MIT                                       | <https://github.com/jonschlinkert/set-value>                   |
-| set-value@2.0.0                                | MIT                                       | <https://github.com/jonschlinkert/set-value>                   |
-| setprototypeof@1.1.0                           | ISC                                       | <https://github.com/wesleytodd/setprototypeof>                 |
-| shebang-command@1.2.0                          | MIT                                       | <https://github.com/kevva/shebang-command>                     |
-| shebang-regex@1.0.0                            | MIT                                       | <https://github.com/sindresorhus/shebang-regex>                |
-| signal-exit@3.0.2                              | ISC                                       | <https://github.com/tapjs/signal-exit>                         |
-| snapdragon-node@2.1.1                          | MIT                                       | <https://github.com/jonschlinkert/snapdragon-node>             |
-| snapdragon-util@3.0.1                          | MIT                                       | <https://github.com/jonschlinkert/snapdragon-util>             |
-| snapdragon@0.8.2                               | MIT                                       | <https://github.com/jonschlinkert/snapdragon>                  |
-| source-map-resolve@0.5.2                       | MIT                                       | <https://github.com/lydell/source-map-resolve>                 |
-| source-map-url@0.4.0                           | MIT                                       | <https://github.com/lydell/source-map-url>                     |
-| source-map@0.5.7                               | BSD-3-Clause                              | <https://github.com/mozilla/source-map>                        |
-| sparse-bitfield@3.0.3                          | MIT                                       | <https://github.com/mafintosh/sparse-bitfield>                 |
-| split-string@3.1.0                             | MIT                                       | <https://github.com/jonschlinkert/split-string>                |
-| split2@2.2.0                                   | ISC                                       | <https://github.com/mcollina/split2>                           |
-| sprintf-js@1.0.3                               | BSD-3-Clause                              | <https://github.com/alexei/sprintf.js>                         |
-| static-extend@0.1.2                            | MIT                                       | <https://github.com/jonschlinkert/static-extend>               |
-| statuses@1.4.0                                 | MIT                                       | <https://github.com/jshttp/statuses>                           |
-| statuses@1.5.0                                 | MIT                                       | <https://github.com/jshttp/statuses>                           |
-| stream-shift@1.0.0                             | MIT                                       | <https://github.com/mafintosh/stream-shift>                    |
-| string-width@1.0.2                             | MIT                                       | <https://github.com/sindresorhus/string-width>                 |
-| string-width@2.1.1                             | MIT                                       | <https://github.com/sindresorhus/string-width>                 |
-| string_decoder@1.1.1                           | MIT                                       | <https://github.com/nodejs/string_decoder>                     |
-| strip-ansi@3.0.1                               | MIT                                       | <https://github.com/chalk/strip-ansi>                          |
-| strip-ansi@4.0.0                               | MIT                                       | <https://github.com/chalk/strip-ansi>                          |
-| strip-eof@1.0.0                                | MIT                                       | <https://github.com/sindresorhus/strip-eof>                    |
-| strip-json-comments@2.0.1                      | MIT                                       | <https://github.com/sindresorhus/strip-json-comments>          |
-| supports-color@5.5.0                           | MIT                                       | <https://github.com/chalk/supports-color>                      |
-| tar@4.4.1                                      | ISC                                       | <https://github.com/npm/node-tar>                              |
-| term-size@1.2.0                                | MIT                                       | <https://github.com/sindresorhus/term-size>                    |
-| through2-filter@2.0.0                          | MIT                                       | <https://github.com/brycebaril/through2-filter>                |
-| through2@2.0.3                                 | MIT                                       | <https://github.com/rvagg/through2>                            |
-| through@2.3.8                                  | MIT                                       | <https://github.com/dominictarr/through>                       |
-| timed-out@4.0.1                                | MIT                                       | <https://github.com/floatdrop/timed-out>                       |
-| tiny-lru@1.6.1                                 | BSD-3-Clause                              | <https://github.com/avoidwork/tiny-lru>                        |
-| tmpl@1.0.4                                     | BSD-3-Clause                              | <https://github.com/daaku/nodejs-tmpl>                         |
-| to-absolute-glob@2.0.2                         | MIT                                       | <https://github.com/jonschlinkert/to-absolute-glob>            |
-| to-object-path@0.3.0                           | MIT                                       | <https://github.com/jonschlinkert/to-object-path>              |
-| to-regex-range@2.1.1                           | MIT                                       | <https://github.com/micromatch/to-regex-range>                 |
-| to-regex@3.0.2                                 | MIT                                       | <https://github.com/jonschlinkert/to-regex>                    |
-| toidentifier@1.0.0                             | MIT                                       | <https://github.com/component/toidentifier>                    |
-| unc-path-regex@0.1.2                           | MIT                                       | <https://github.com/regexhq/unc-path-regex>                    |
-| union-value@1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/union-value>                 |
-| unique-stream@2.2.1                            | MIT                                       | <https://github.com/eugeneware/unique-stream>                  |
-| unique-string@1.0.0                            | MIT                                       | <https://github.com/sindresorhus/unique-string>                |
-| unset-value@1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/unset-value>                 |
-| unzip-response@2.0.1                           | MIT                                       | <https://github.com/sindresorhus/unzip-response>               |
-| upath@1.1.0                                    | MIT                                       | <https://github.com/anodynos/upath>                            |
-| update-notifier@2.5.0                          | BSD-2-Clause                              | <https://github.com/yeoman/update-notifier>                    |
-| uri-js@4.2.2                                   | BSD-2-Clause                              | <https://github.com/garycourt/uri-js>                          |
-| urix@0.1.0                                     | MIT                                       | <https://github.com/lydell/urix>                               |
-| url-parse-lax@1.0.0                            | MIT                                       | <https://github.com/sindresorhus/url-parse-lax>                |
-| use@3.1.1                                      | MIT                                       | <https://github.com/jonschlinkert/use>                         |
-| util-deprecate@1.0.2                           | MIT                                       | <https://github.com/TooTallNate/util-deprecate>                |
-| walker@1.0.7                                   | Apache-2.0                                | <https://github.com/daaku/nodejs-walker>                       |
-| which@1.3.1                                    | ISC                                       | <https://github.com/isaacs/node-which>                         |
-| wide-align@1.1.2                               | ISC                                       | <https://github.com/iarna/wide-align>                          |
-| widest-line@2.0.1                              | MIT                                       | <https://github.com/sindresorhus/widest-line>                  |
-| wrappy@1.0.2                                   | ISC                                       | <https://github.com/npm/wrappy>                                |
-| write-file-atomic@2.3.0                        | ISC                                       | <https://github.com/iarna/write-file-atomic>                   |
-| xdg-basedir@3.0.0                              | MIT                                       | <https://github.com/sindresorhus/xdg-basedir>                  |
-| xtend@4.0.1                                    | MIT                                       | <https://github.com/Raynos/xtend>                              |
-| yallist@2.1.2                                  | ISC                                       | <https://github.com/isaacs/yallist>                            |
-| yallist@3.0.2                                  | ISC                                       | <https://github.com/isaacs/yallist>                            |
-| yui-lint@0.2.0                                 | BSD                                       | <https://github.com/yui/yui-lint>                              |
+   vtypes/events  v1.2.0                            | MIT                                       | <https://github.com/DefinitelyTyped/DefinitelyTyped>           |
+|   vtypes/node  v10.12.2                            | MIT                                       | <https://github.com/DefinitelyTyped/DefinitelyTyped>           |
+|   vtypes/pino  v4.16.1                             | MIT                                       | <https://github.com/DefinitelyTyped/DefinitelyTyped>           |
+| JSONStream  v1.3.5,(MIT OR Apache-2.0)         | |<https://github.com/dominictarr/JSONStream> |                                                                |
+| abbrev  v1.1.1                                   | ISC                                       | <https://github.com/isaacs/abbrev-js>                          |
+| abstract-logging  v1.0.0                         | MIT                                       | <https://github.com/jsumners/abstract-logging>                 |
+| ajv  v6.5.4                                      | MIT                                       | <https://github.com/epoberezkin/ajv>                           |
+| ansi-align  v2.0.0                               | ISC                                       | <https://github.com/nexdrew/ansi-align>                        |
+| ansi-regex  v2.1.1                               | MIT                                       | <https://github.com/chalk/ansi-regex>                          |
+| ansi-regex  v3.0.0                               | MIT                                       | <https://github.com/chalk/ansi-regex>                          |
+| ansi-styles  v3.2.1                              | MIT                                       | <https://github.com/chalk/ansi-styles>                         |
+| anymatch  v2.0.0                                 | ISC                                       | <https://github.com/micromatch/anymatch>                       |
+| aproba  v1.2.0                                   | ISC                                       | <https://github.com/iarna/aproba>                              |
+| are-we-there-yet  v1.1.4                         | ISC                                       | <https://github.com/iarna/are-we-there-yet>                    |
+| argparse  v1.0.10                                | MIT                                       | <https://github.com/nodeca/argparse>                           |
+| arr-diff  v4.0.0                                 | MIT                                       | <https://github.com/jonschlinkert/arr-diff>                    |
+| arr-flatten  v1.1.0                              | MIT                                       | <https://github.com/jonschlinkert/arr-flatten>                 |
+| arr-union  v3.1.0                                | MIT                                       | <https://github.com/jonschlinkert/arr-union>                   |
+| array-unique  v0.3.2                             | MIT                                       | <https://github.com/jonschlinkert/array-unique>                |
+| assign-symbols  v1.0.0                           | MIT                                       | <https://github.com/jonschlinkert/assign-symbols>              |
+| async-each  v1.0.1                               | MIT                                       | <https://github.com/paulmillr/async-each>                      |
+| atob  v2.1.2,(MIT OR Apache-2.0)               | | git://git.coolaj86.com/coolaj86/atob.js   |                                                                |
+| avvio  v5.9.0                                    | MIT                                       | <https://github.com/mcollina/avvio>                            |
+| balanced-match  v1.0.0                           | MIT                                       | <https://github.com/juliangruber/balanced-match>               |
+| base  v0.11.2                                    | MIT                                       | <https://github.com/node-base/base>                            |
+| binary-extensions  v1.12.0                       | MIT                                       | <https://github.com/sindresorhus/binary-extensions>            |
+| boxen  v1.3.0                                    | MIT                                       | <https://github.com/sindresorhus/boxen>                        |
+| brace-expansion  v1.1.11                         | MIT                                       | <https://github.com/juliangruber/brace-expansion>              |
+| braces  v2.3.2                                   | MIT                                       | <https://github.com/micromatch/braces>                         |
+| bson  v1.1.0                                     | Apache-2.0                                | <https://github.com/mongodb/js-bson>                           |
+| cache-base  v1.0.1                               | MIT                                       | <https://github.com/jonschlinkert/cache-base>                  |
+| callback-stream  v1.1.0                          | MIT                                       | <https://github.com/mcollina/callback-stream>                  |
+| camelcase  v4.1.0                                | MIT                                       | <https://github.com/sindresorhus/camelcase>                    |
+| capture-stack-trace  v1.0.1                      | MIT                                       | <https://github.com/floatdrop/capture-stack-trace>             |
+| chalk  v2.4.1                                    | MIT                                       | <https://github.com/chalk/chalk>                               |
+| chokidar  v2.0.4                                 | MIT                                       | <https://github.com/paulmillr/chokidar>                        |
+| chownr  v1.0.1                                   | ISC                                       | <https://github.com/isaacs/chownr>                             |
+| ci-info  v1.6.0                                  | MIT                                       | <https://github.com/watson/ci-info>                            |
+| class-utils  v0.3.6                              | MIT                                       | <https://github.com/jonschlinkert/class-utils>                 |
+| cli-boxes  v1.0.0                                | MIT                                       | <https://github.com/sindresorhus/cli-boxes>                    |
+| code-point-at  v1.1.0                            | MIT                                       | <https://github.com/sindresorhus/code-point-at>                |
+| collection-visit  v1.0.0                         | MIT                                       | <https://github.com/jonschlinkert/collection-visit>            |
+| color-convert  v1.9.3                            | MIT                                       | <https://github.com/Qix-/color-convert>                        |
+| color-name  v1.1.3                               | MIT                                       | <https://github.com/dfcreative/color-name>                     |
+| commist  v1.0.0                                  | MIT                                       | <https://github.com/mcollina/commist>                          |
+| component-emitter  v1.2.1                        | MIT                                       | <https://github.com/component/emitter>                         |
+| concat-map  v0.0.1                               | MIT                                       | <https://github.com/substack/node-concat-map>                  |
+| configstore  v3.1.2                              | BSD-2-Clause                              | <https://github.com/yeoman/configstore>                        |
+| console-control-strings  v1.1.0                  | ISC                                       | <https://github.com/iarna/console-control-strings>             |
+| copy-descriptor  v0.1.1                          | MIT                                       | <https://github.com/jonschlinkert/copy-descriptor>             |
+| core-util-is  v1.0.2                             | MIT                                       | <https://github.com/isaacs/core-util-is>                       |
+| create-error-class  v3.0.2                       | MIT                                       | <https://github.com/floatdrop/create-error-class>              |
+| cross-spawn  v5.1.0                              | MIT                                       | <https://github.com/IndigoUnited/node-cross-spawn>             |
+| crypto-random-string  v1.0.0                     | MIT                                       | <https://github.com/sindresorhus/crypto-random-string>         |
+| cruise-control  v2.5.34                          | BSD-2-Clause                              | <https://github.com/linkedin/cruise-control>                   |
+| cruise-control-ui  v0.3.4                        | BSD-2-Clause                              | <https://github.com/linkedin/cruise-control-ui>                |
+| debug  v2.6.9                                    | MIT                                       | <https://github.com/visionmedia/debug>                         |
+| debug  v3.2.6                                    | MIT                                       | <https://github.com/visionmedia/debug>                         |
+| decode-uri-component  v0.2.0                     | MIT                                       | <https://github.com/SamVerschueren/decode-uri-component>       |
+| deep-extend  v0.5.1                              | MIT                                       | <https://github.com/unclechu/node-deep-extend>                 |
+| deep-extend  v0.6.0                              | MIT                                       | <https://github.com/unclechu/node-deep-extend>                 |
+| deepmerge  v2.2.1                                | MIT                                       | <https://github.com/KyleAMathews/deepmerge>                    |
+| define-property  v0.2.5                          | MIT                                       | <https://github.com/jonschlinkert/define-property>             |
+| define-property  v1.0.0                          | MIT                                       | <https://github.com/jonschlinkert/define-property>             |
+| define-property  v2.0.2                          | MIT                                       | <https://github.com/jonschlinkert/define-property>             |
+| delegates  v1.0.0                                | MIT                                       | <https://github.com/visionmedia/node-delegates>                |
+| depd  v1.1.2                                     | MIT                                       | <https://github.com/dougwilson/nodejs-depd>                    |
+| destroy  v1.0.4                                  | MIT                                       | <https://github.com/stream-utils/destroy>                      |
+| detect-libc  v1.0.3                              | Apache-2.0                                | <https://github.com/lovell/detect-libc>                        |
+| dot-prop  v4.2.0                                 | MIT                                       | <https://github.com/sindresorhus/dot-prop>                     |
+| dotenv  v6.0.0                                   | BSD-2-Clause                              | <https://github.com/motdotla/dotenv>                           |
+| dotenv  v6.1.0                                   | BSD-2-Clause                              | <https://github.com/motdotla/dotenv>                           |
+| duplexer3  v0.1.4                                | BSD-3-Clause                              | <https://github.com/floatdrop/duplexer3>                       |
+| duplexify  v3.6.1                                | MIT                                       | <https://github.com/mafintosh/duplexify>                       |
+| ee-first  v1.1.1                                 | MIT                                       | <https://github.com/jonathanong/ee-first>                      |
+| encodeurl  v1.0.2                                | MIT                                       | <https://github.com/pillarjs/encodeurl>                        |
+| end-of-stream  v1.4.1                            | MIT                                       | <https://github.com/mafintosh/end-of-stream>                   |
+| escape-html  v1.0.3                              | MIT                                       | <https://github.com/component/escape-html>                     |
+| escape-string-regexp  v1.0.5                     | MIT                                       | <https://github.com/sindresorhus/escape-string-regexp>         |
+| esprima  v4.0.1                                  | BSD-2-Clause                              | <https://github.com/jquery/esprima>                            |
+| etag  v1.8.1                                     | MIT                                       | <https://github.com/jshttp/etag>                               |
+| execa  v0.7.0                                    | MIT                                       | <https://github.com/sindresorhus/execa>                        |
+| expand-brackets  v2.1.4                          | MIT                                       | <https://github.com/jonschlinkert/expand-brackets>             |
+| extend-shallow  v2.0.1                           | MIT                                       | <https://github.com/jonschlinkert/extend-shallow>              |
+| extend-shallow  v3.0.2                           | MIT                                       | <https://github.com/jonschlinkert/extend-shallow>              |
+| extend  v3.0.2                                   | MIT                                       | <https://github.com/justmoon/node-extend>                      |
+| extglob  v2.0.4                                  | MIT                                       | <https://github.com/micromatch/extglob>                        |
+| fast-decode-uri-component  v1.0.0                | MIT                                       | <https://github.com/delvedor/fast-decode-uri-component>        |
+| fast-deep-equal  v2.0.1                          | MIT                                       | <https://github.com/epoberezkin/fast-deep-equal>               |
+| fast-json-parse  v1.0.3                          | MIT                                       | <https://github.com/mcollina/fast-json-parse>                  |
+| fast-json-stable-stringify  v2.0.0               | MIT                                       | <https://github.com/epoberezkin/fast-json-stable-stringify>    |
+| fast-json-stringify  v1.9.1                      | MIT                                       | <https://github.com/fastify/fast-json-stringify>               |
+| fast-safe-stringify  v1.2.3                      | MIT                                       | <https://github.com/davidmarkclements/fast-safe-stringify>     |
+| fastify-cli  v0.22.1                             | MIT                                       | <https://github.com/fastify/fastify-cli>                       |
+| fastify-env  v0.6.1                              | MIT                                       | <https://github.com/fastify/fastify-env>                       |
+| fastify-mongodb  v0.9.1                          | MIT                                       | <https://github.com/fastify/fastify-mongodb>                   |
+| fastify-plugin  v1.2.1                           | MIT                                       | <https://github.com/fastify/fastify-plugin>                    |
+| fastify-static  v0.14.0                          | MIT                                       | <https://github.com/fastify/fastify-static>                    |
+| fastify-swagger  v0.15.1                         | MIT                                       | <https://github.com/fastify/fastify-swagger>                   |
+| fastify  v1.13.0                                 | MIT                                       | <https://github.com/fastify/fastify>                           |
+| fastq  v1.6.0                                    | ISC                                       | <https://github.com/mcollina/fastq>                            |
+| fill-range  v4.0.0                               | MIT                                       | <https://github.com/jonschlinkert/fill-range>                  |
+| find-my-way  v1.15.4                             | MIT                                       | <https://github.com/delvedor/find-my-way>                      |
+| flatstr  v1.0.8                                  | MIT                                       | <https://github.com/davidmarkclements/flatstr>                 |
+| for-in  v1.0.2                                   | MIT                                       | <https://github.com/jonschlinkert/for-in>                      |
+| forwarded  v0.1.2                                | MIT                                       | <https://github.com/jshttp/forwarded>                          |
+| fragment-cache  v0.2.1                           | MIT                                       | <https://github.com/jonschlinkert/fragment-cache>              |
+| fresh  v0.5.2                                    | MIT                                       | <https://github.com/jshttp/fresh>                              |
+| fs-minipass  v1.2.5                              | ISC                                       | <https://github.com/npm/fs-minipass>                           |
+| fs.realpath  v1.0.0                              | ISC                                       | <https://github.com/isaacs/fs.realpath>                        |
+| fsevents  v1.2.4                                 | MIT                                       | <https://github.com/strongloop/fsevents>                       |
+| gauge  v2.7.4                                    | ISC                                       | <https://github.com/iarna/gauge>                               |
+| generify  v3.0.2                                 | MIT                                       | <https://github.com/mcollina/generify>                         |
+| get-stream  v3.0.0                               | MIT                                       | <https://github.com/sindresorhus/get-stream>                   |
+| get-value  v2.0.6                                | MIT                                       | <https://github.com/jonschlinkert/get-value>                   |
+| glob-parent  v3.1.0                              | ISC                                       | <https://github.com/es128/glob-parent>                         |
+| glob-stream  v6.1.0                              | MIT                                       | <https://github.com/gulpjs/glob-stream>                        |
+| glob  v7.1.2                                     | ISC                                       | <https://github.com/isaacs/node-glob>                          |
+| glob  v7.1.3                                     | ISC                                       | <https://github.com/isaacs/node-glob>                          |
+| global-dirs  v0.1.1                              | MIT                                       | <https://github.com/sindresorhus/global-dirs>                  |
+| got  v6.7.1                                      | MIT                                       | <https://github.com/sindresorhus/got>                          |
+| graceful-fs  v4.1.14                             | ISC                                       | <https://github.com/isaacs/node-graceful-fs>                   |
+| has-flag  v3.0.0                                 | MIT                                       | <https://github.com/sindresorhus/has-flag>                     |
+| has-unicode  v2.0.1                              | ISC                                       | <https://github.com/iarna/has-unicode>                         |
+| has-value  v0.3.1                                | MIT                                       | <https://github.com/jonschlinkert/has-value>                   |
+| has-value  v1.0.0                                | MIT                                       | <https://github.com/jonschlinkert/has-value>                   |
+| has-values  v0.1.4                               | MIT                                       | <https://github.com/jonschlinkert/has-values>                  |
+| has-values  v1.0.0                               | MIT                                       | <https://github.com/jonschlinkert/has-values>                  |
+| help-me  v1.1.0                                  | MIT                                       | <https://github.com/mcollina/help-me>                          |
+| http-errors  v1.6.3                              | MIT                                       | <https://github.com/jshttp/http-errors>                        |
+| http-errors  v1.7.1                              | MIT                                       | <https://github.com/jshttp/http-errors>                        |
+| iconv-lite  v0.4.21                              | MIT                                       | <https://github.com/ashtuchkin/iconv-lite>                     |
+| ignore-walk  v3.0.1                              | ISC                                       | <https://github.com/isaacs/ignore-walk>                        |
+| import-lazy  v2.1.0                              | MIT                                       | <https://github.com/sindresorhus/import-lazy>                  |
+| imurmurhash  v0.1.4                              | MIT                                       | <https://github.com/jensyt/imurmurhash-js>                     |
+| inflight  v1.0.6                                 | ISC                                       | <https://github.com/npm/inflight>                              |
+| inherits  v2.0.3                                 | ISC                                       | <https://github.com/isaacs/inherits>                           |
+| ini  v1.3.5                                      | ISC                                       | <https://github.com/isaacs/ini>                                |
+| ipaddr.js  v1.8.0                                | MIT                                       | <https://github.com/whitequark/ipaddr.js>                      |
+| is-absolute  v1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/is-absolute>                 |
+| is-accessor-descriptor  v0.1.6                   | MIT                                       | <https://github.com/jonschlinkert/is-accessor-descriptor>      |
+| is-accessor-descriptor  v1.0.0                   | MIT                                       | <https://github.com/jonschlinkert/is-accessor-descriptor>      |
+| is-binary-path  v1.0.1                           | MIT                                       | <https://github.com/sindresorhus/is-binary-path>               |
+| is-buffer  v1.1.6                                | MIT                                       | <https://github.com/feross/is-buffer>                          |
+| is-ci  v1.2.1                                    | MIT                                       | <https://github.com/watson/is-ci>                              |
+| is-data-descriptor  v0.1.4                       | MIT                                       | <https://github.com/jonschlinkert/is-data-descriptor>          |
+| is-data-descriptor  v1.0.0                       | MIT                                       | <https://github.com/jonschlinkert/is-data-descriptor>          |
+| is-descriptor  v0.1.6                            | MIT                                       | <https://github.com/jonschlinkert/is-descriptor>               |
+| is-descriptor  v1.0.2                            | MIT                                       | <https://github.com/jonschlinkert/is-descriptor>               |
+| is-docker  v1.1.0                                | MIT                                       | <https://github.com/sindresorhus/is-docker>                    |
+| is-extendable  v0.1.1                            | MIT                                       | <https://github.com/jonschlinkert/is-extendable>               |
+| is-extendable  v1.0.1                            | MIT                                       | <https://github.com/jonschlinkert/is-extendable>               |
+| is-extglob  v2.1.1                               | MIT                                       | <https://github.com/jonschlinkert/is-extglob>                  |
+| is-finite  v1.0.2                                | MIT                                       | <https://github.com/sindresorhus/is-finite>                    |
+| is-fullwidth-code-point  v1.0.0                  | MIT                                       | <https://github.com/sindresorhus/is-fullwidth-code-point>      |
+| is-fullwidth-code-point  v2.0.0                  | MIT                                       | <https://github.com/sindresorhus/is-fullwidth-code-point>      |
+| is-glob  v3.1.0                                  | MIT                                       | <https://github.com/jonschlinkert/is-glob>                     |
+| is-glob  v4.0.0                                  | MIT                                       | <https://github.com/jonschlinkert/is-glob>                     |
+| is-installed-globally  v0.1.0                    | MIT                                       | <https://github.com/sindresorhus/is-installed-globally>        |
+| is-negated-glob  v1.0.0                          | MIT                                       | <https://github.com/jonschlinkert/is-negated-glob>             |
+| is-npm  v1.0.0                                   | MIT                                       | <https://github.com/sindresorhus/is-npm>                       |
+| is-number  v3.0.0                                | MIT                                       | <https://github.com/jonschlinkert/is-number>                   |
+| is-obj  v1.0.1                                   | MIT                                       | <https://github.com/sindresorhus/is-obj>                       |
+| is-path-inside  v1.0.1                           | MIT                                       | <https://github.com/sindresorhus/is-path-inside>               |
+| is-plain-object  v2.0.4                          | MIT                                       | <https://github.com/jonschlinkert/is-plain-object>             |
+| is-redirect  v1.0.0                              | MIT                                       | <https://github.com/sindresorhus/is-redirect>                  |
+| is-relative  v1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/is-relative>                 |
+| is-retry-allowed  v1.1.0                         | MIT                                       | <https://github.com/floatdrop/is-retry-allowed>                |
+| is-stream  v1.1.0                                | MIT                                       | <https://github.com/sindresorhus/is-stream>                    |
+| is-unc-path  v1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/is-unc-path>                 |
+| is-windows  v1.0.2                               | MIT                                       | <https://github.com/jonschlinkert/is-windows>                  |
+| isarray  v1.0.0                                  | MIT                                       | <https://github.com/juliangruber/isarray>                      |
+| isexe  v2.0.0                                    | ISC                                       | <https://github.com/isaacs/isexe>                              |
+| isobject  v2.1.0                                 | MIT                                       | <https://github.com/jonschlinkert/isobject>                    |
+| isobject  v3.0.1                                 | MIT                                       | <https://github.com/jonschlinkert/isobject>                    |
+| js-yaml  v3.12.0                                 | MIT                                       | <https://github.com/nodeca/js-yaml>                            |
+| json-schema-traverse  v0.4.1                     | MIT                                       | <https://github.com/epoberezkin/json-schema-traverse>          |
+| json-stable-stringify  v1.0.1                    | MIT                                       | <https://github.com/substack/json-stable-stringify>            |
+| jsonify  v0.0.0                                  | Public Domain                             | <https://github.com/substack/jsonify>                          |
+| jsonparse  v1.3.1                                | MIT                                       | <https://github.com/creationix/jsonparse>                      |
+| kind-of  v3.2.2                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
+| kind-of  v4.0.0                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
+| kind-of  v5.1.0                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
+| kind-of  v6.0.2                                  | MIT                                       | <https://github.com/jonschlinkert/kind-of>                     |
+| latest-version  v3.1.0                           | MIT                                       | <https://github.com/sindresorhus/latest-version>               |
+| leven  v1.0.2                                    | MIT                                       | <https://github.com/sindresorhus/leven>                        |
+| light-my-request  v3.1.0                         | BSD-3-Clause                              | <https://github.com/fastify/light-my-request>                  |
+| lodash.debounce  v4.0.8                          | MIT                                       | <https://github.com/lodash/lodash>                             |
+| lowercase-keys  v1.0.1                           | MIT                                       | <https://github.com/sindresorhus/lowercase-keys>               |
+| lru-cache  v4.1.3                                | ISC                                       | <https://github.com/isaacs/node-lru-cache>                     |
+| make-dir  v1.3.0                                 | MIT                                       | <https://github.com/sindresorhus/make-dir>                     |
+| make-promises-safe  v1.1.0                       | MIT                                       | <https://github.com/mcollina/make-promises-safe>               |
+| makeerror  v1.0.11                               | BSD-3-Clause                              | <https://github.com/daaku/nodejs-makeerror>                    |
+| map-cache  v0.2.2                                | MIT                                       | <https://github.com/jonschlinkert/map-cache>                   |
+| map-visit  v1.0.0                                | MIT                                       | <https://github.com/jonschlinkert/map-visit>                   |
+| memory-pager  v1.1.0                             | MIT                                       | <https://github.com/mafintosh/memory-pager>                    |
+| micromatch  v3.1.10                              | MIT                                       | <https://github.com/micromatch/micromatch>                     |
+| middie  v3.2.0                                   | MIT                                       | <https://github.com/fastify/middleman>                         |
+| mime  v1.4.1                                     | MIT                                       | <https://github.com/broofa/node-mime>                          |
+| minimatch  v3.0.4                                | ISC                                       | <https://github.com/isaacs/minimatch>                          |
+| minimist  v0.0.8                                 | MIT                                       | <https://github.com/substack/minimist>                         |
+| minimist  v1.2.0                                 | MIT                                       | <https://github.com/substack/minimist>                         |
+| minipass  v2.2.4                                 | ISC                                       | <https://github.com/isaacs/minipass>                           |
+| minizlib  v1.1.0                                 | MIT                                       | <https://github.com/isaacs/minizlib>                           |
+| mixin-deep  v1.3.1                               | MIT                                       | <https://github.com/jonschlinkert/mixin-deep>                  |
+| mkdirp  v0.5.1                                   | MIT                                       | <https://github.com/substack/node-mkdirp>                      |
+| mongodb-core  v3.1.7                             | Apache-2.0                                | <https://github.com/mongodb-js/mongodb-core>                   |
+| mongodb  v3.1.8                                  | Apache-2.0                                | <https://github.com/mongodb/node-mongodb-native>               |
+| ms  v2.0.0                                       | MIT                                       | <https://github.com/zeit/ms>                                   |
+| ms  v2.1.1                                       | MIT                                       | <https://github.com/zeit/ms>                                   |
+| nan  v2.11.1                                     | MIT                                       | <https://github.com/nodejs/nan>                                |
+| nanomatch  v1.2.13                               | MIT                                       | <https://github.com/micromatch/nanomatch>                      |
+| needle  v2.2.0                                   | MIT                                       | <https://github.com/tomas/needle>                              |
+| node-pre-gyp  v0.10.0                            | BSD-3-Clause                              | <https://github.com/mapbox/node-pre-gyp>                       |
+| nopt  v4.0.1                                     | ISC                                       | <https://github.com/npm/nopt>                                  |
+| normalize-path  v2.1.1                           | MIT                                       | <https://github.com/jonschlinkert/normalize-path>              |
+| npm-bundled  v1.0.3                              | ISC                                       | <https://github.com/npm/npm-bundled>                           |
+| npm-packlist  v1.1.10                            | ISC                                       | <https://github.com/npm/npm-packlist>                          |
+| npm-run-path  v2.0.2                             | MIT                                       | <https://github.com/sindresorhus/npm-run-path>                 |
+| npmlog  v4.1.2                                   | ISC                                       | <https://github.com/npm/npmlog>                                |
+| number-is-nan  v1.0.1                            | MIT                                       | <https://github.com/sindresorhus/number-is-nan>                |
+| object-assign  v4.1.1                            | MIT                                       | <https://github.com/sindresorhus/object-assign>                |
+| object-copy  v0.1.0                              | MIT                                       | <https://github.com/jonschlinkert/object-copy>                 |
+| object-visit  v1.0.1                             | MIT                                       | <https://github.com/jonschlinkert/object-visit>                |
+| object.pick  v1.3.0                              | MIT                                       | <https://github.com/jonschlinkert/object.pick>                 |
+| on-finished  v2.3.0                              | MIT                                       | <https://github.com/jshttp/on-finished>                        |
+| once  v1.4.0                                     | ISC                                       | <https://github.com/isaacs/once>                               |
+| ordered-read-streams  v1.0.1                     | MIT                                       | <https://github.com/armed/ordered-read-streams>                |
+| os-homedir  v1.0.2                               | MIT                                       | <https://github.com/sindresorhus/os-homedir>                   |
+| os-tmpdir  v1.0.2                                | MIT                                       | <https://github.com/sindresorhus/os-tmpdir>                    |
+| osenv  v0.1.5                                    | ISC                                       | <https://github.com/npm/osenv>                                 |
+| p-finally  v1.0.0                                | MIT                                       | <https://github.com/sindresorhus/p-finally>                    |
+| package-json  v4.0.1                             | MIT                                       | <https://github.com/sindresorhus/package-json>                 |
+| pad-left  v2.1.0                                 | MIT                                       | <https://github.com/jonschlinkert/pad-left>                    |
+| pad-right  v0.2.2                                | MIT                                       | <https://github.com/jonschlinkert/pad-right>                   |
+| parse-ms  v1.0.1                                 | MIT                                       | <https://github.com/sindresorhus/parse-ms>                     |
+| pascalcase  v0.1.1                               | MIT                                       | <https://github.com/jonschlinkert/pascalcase>                  |
+| path-dirname  v1.0.2                             | MIT                                       | <https://github.com/es128/path-dirname>                        |
+| path-is-absolute  v1.0.1                         | MIT                                       | <https://github.com/sindresorhus/path-is-absolute>             |
+| path-is-inside  v1.0.2,(WTFPL OR MIT)          | | <https://github.com/domenic/path-is-inside> |                                                                |
+| path-key  v2.0.1                                 | MIT                                       | <https://github.com/sindresorhus/path-key>                     |
+| path-to-regexp  v2.4.0                           | MIT                                       | <https://github.com/pillarjs/path-to-regexp>                   |
+| pify  v3.0.0                                     | MIT                                       | <https://github.com/sindresorhus/pify>                         |
+| pino-colada  v1.4.4                              | MIT                                       | <https://github.com/lrlna/pino-colada>                         |
+| pino-std-serializers  v2.3.0                     | MIT                                       | <https://github.com/pinojs/pino-std-serializers>               |
+| pino  v4.17.6                                    | MIT                                       | <https://github.com/pinojs/pino>                               |
+| plur  v1.0.0                                     | MIT                                       | <https://github.com/sindresorhus/plur>                         |
+| posix-character-classes  v0.1.1                  | MIT                                       | <https://github.com/jonschlinkert/posix-character-classes>     |
+| prepend-http  v1.0.4                             | MIT                                       | <https://github.com/sindresorhus/prepend-http>                 |
+| prettier-bytes  v1.0.4                           | ISC                                       | <https://github.com/Flet/prettier-bytes>                       |
+| pretty-ms  v2.1.0                                | MIT                                       | <https://github.com/sindresorhus/pretty-ms>                    |
+| process-nextick-args  v2.0.0                     | MIT                                       | <https://github.com/calvinmetcalf/process-nextick-args>        |
+| proxy-addr  v2.0.4                               | MIT                                       | <https://github.com/jshttp/proxy-addr>                         |
+| pseudomap  v1.0.2                                | ISC                                       | <https://github.com/isaacs/pseudomap>                          |
+| pump  v2.0.1                                     | MIT                                       | <https://github.com/mafintosh/pump>                            |
+| pump  v3.0.0                                     | MIT                                       | <https://github.com/mafintosh/pump>                            |
+| pumpify  v1.5.1                                  | MIT                                       | <https://github.com/mafintosh/pumpify>                         |
+| punycode  v2.1.1                                 | MIT                                       | <https://github.com/bestiejs/punycode.js>                      |
+| quick-format-unescaped  v1.1.2                   | MIT                                       | <https://github.com/davidmarkclements/quick-format>            |
+| range-parser  v1.2.0                             | MIT                                       | <https://github.com/jshttp/range-parser>                       |
+| rc  v1.2.7,(BSD-2-Clause OR MIT OR Apache-2.0) | | <https://github.com/dominictarr/rc>         |                                                                |
+| rc  v1.2.8,(BSD-2-Clause OR MIT OR Apache-2.0) | | <https://github.com/dominictarr/rc>         |                                                                |
+| readable-stream  v2.3.6                          | MIT                                       | <https://github.com/nodejs/readable-stream>                    |
+| readable-stream  v3.0.6                          | MIT                                       | <https://github.com/nodejs/readable-stream>                    |
+| readdirp  v2.2.1                                 | MIT                                       | <https://github.com/paulmillr/readdirp>                        |
+| regex-not  v1.0.2                                | MIT                                       | <https://github.com/jonschlinkert/regex-not>                   |
+| registry-auth-token  v3.3.2                      | MIT                                       | <https://github.com/rexxars/registry-auth-token>               |
+| registry-url  v3.1.0                             | MIT                                       | <https://github.com/sindresorhus/registry-url>                 |
+| remove-trailing-separator  v1.1.0                | ISC                                       | <https://github.com/darsain/remove-trailing-separator>         |
+| repeat-element  v1.1.3                           | MIT                                       | <https://github.com/jonschlinkert/repeat-element>              |
+| repeat-string  v1.6.1                            | MIT                                       | <https://github.com/jonschlinkert/repeat-string>               |
+| require_optional  v1.0.1                         | Apache-2.0                                | <https://github.com/christkv/require_optional>                 |
+| resolve-from  v2.0.0                             | MIT                                       | <https://github.com/sindresorhus/resolve-from>                 |
+| resolve-from  v4.0.0                             | MIT                                       | <https://github.com/sindresorhus/resolve-from>                 |
+| resolve-url  v0.2.1                              | MIT                                       | <https://github.com/lydell/resolve-url>                        |
+| ret  v0.1.15                                     | MIT                                       | <https://github.com/fent/ret.js>                               |
+| reusify  v1.0.4                                  | MIT                                       | <https://github.com/mcollina/reusify>                          |
+| rimraf  v2.6.2                                   | ISC                                       | <https://github.com/isaacs/rimraf>                             |
+| safe-buffer  v5.1.1                              | MIT                                       | <https://github.com/feross/safe-buffer>                        |
+| safe-buffer  v5.1.2                              | MIT                                       | <https://github.com/feross/safe-buffer>                        |
+| safe-regex  v1.1.0                               | MIT                                       | <https://github.com/substack/safe-regex>                       |
+| safer-buffer  v2.1.2                             | MIT                                       | <https://github.com/ChALkeR/safer-buffer>                      |
+| saslprep  v1.0.2                                 | MIT                                       | <https://github.com/reklatsmasters/saslprep>                   |
+| sax  v1.2.4                                      | ISC                                       | <https://github.com/isaacs/sax-js>                             |
+| semver-diff  v2.1.0                              | MIT                                       | <https://github.com/sindresorhus/semver-diff>                  |
+| semver-store  v0.3.0                             | MIT                                       | <https://github.com/delvedor/semver-store>                     |
+| semver  v5.5.0                                   | ISC                                       | <https://github.com/npm/node-semver>                           |
+| semver  v5.6.0                                   | ISC                                       | <https://github.com/npm/node-semver>                           |
+| send  v0.16.2                                    | MIT                                       | <https://github.com/pillarjs/send>                             |
+| set-blocking  v2.0.0                             | ISC                                       | <https://github.com/yargs/set-blocking>                        |
+| set-value  v0.4.3                                | MIT                                       | <https://github.com/jonschlinkert/set-value>                   |
+| set-value  v2.0.0                                | MIT                                       | <https://github.com/jonschlinkert/set-value>                   |
+| setprototypeof  v1.1.0                           | ISC                                       | <https://github.com/wesleytodd/setprototypeof>                 |
+| shebang-command  v1.2.0                          | MIT                                       | <https://github.com/kevva/shebang-command>                     |
+| shebang-regex  v1.0.0                            | MIT                                       | <https://github.com/sindresorhus/shebang-regex>                |
+| signal-exit  v3.0.2                              | ISC                                       | <https://github.com/tapjs/signal-exit>                         |
+| snapdragon-node  v2.1.1                          | MIT                                       | <https://github.com/jonschlinkert/snapdragon-node>             |
+| snapdragon-util  v3.0.1                          | MIT                                       | <https://github.com/jonschlinkert/snapdragon-util>             |
+| snapdragon  v0.8.2                               | MIT                                       | <https://github.com/jonschlinkert/snapdragon>                  |
+| source-map-resolve  v0.5.2                       | MIT                                       | <https://github.com/lydell/source-map-resolve>                 |
+| source-map-url  v0.4.0                           | MIT                                       | <https://github.com/lydell/source-map-url>                     |
+| source-map  v0.5.7                               | BSD-3-Clause                              | <https://github.com/mozilla/source-map>                        |
+| sparse-bitfield  v3.0.3                          | MIT                                       | <https://github.com/mafintosh/sparse-bitfield>                 |
+| split-string  v3.1.0                             | MIT                                       | <https://github.com/jonschlinkert/split-string>                |
+| split2  v2.2.0                                   | ISC                                       | <https://github.com/mcollina/split2>                           |
+| sprintf-js  v1.0.3                               | BSD-3-Clause                              | <https://github.com/alexei/sprintf.js>                         |
+| static-extend  v0.1.2                            | MIT                                       | <https://github.com/jonschlinkert/static-extend>               |
+| statuses  v1.4.0                                 | MIT                                       | <https://github.com/jshttp/statuses>                           |
+| statuses  v1.5.0                                 | MIT                                       | <https://github.com/jshttp/statuses>                           |
+| stream-shift  v1.0.0                             | MIT                                       | <https://github.com/mafintosh/stream-shift>                    |
+| string-width  v1.0.2                             | MIT                                       | <https://github.com/sindresorhus/string-width>                 |
+| string-width  v2.1.1                             | MIT                                       | <https://github.com/sindresorhus/string-width>                 |
+| string_decoder  v1.1.1                           | MIT                                       | <https://github.com/nodejs/string_decoder>                     |
+| strip-ansi  v3.0.1                               | MIT                                       | <https://github.com/chalk/strip-ansi>                          |
+| strip-ansi  v4.0.0                               | MIT                                       | <https://github.com/chalk/strip-ansi>                          |
+| strip-eof  v1.0.0                                | MIT                                       | <https://github.com/sindresorhus/strip-eof>                    |
+| strip-json-comments  v2.0.1                      | MIT                                       | <https://github.com/sindresorhus/strip-json-comments>          |
+| supports-color  v5.5.0                           | MIT                                       | <https://github.com/chalk/supports-color>                      |
+| tar  v4.4.1                                      | ISC                                       | <https://github.com/npm/node-tar>                              |
+| term-size  v1.2.0                                | MIT                                       | <https://github.com/sindresorhus/term-size>                    |
+| through2-filter  v2.0.0                          | MIT                                       | <https://github.com/brycebaril/through2-filter>                |
+| through2  v2.0.3                                 | MIT                                       | <https://github.com/rvagg/through2>                            |
+| through  v2.3.8                                  | MIT                                       | <https://github.com/dominictarr/through>                       |
+| timed-out  v4.0.1                                | MIT                                       | <https://github.com/floatdrop/timed-out>                       |
+| tiny-lru  v1.6.1                                 | BSD-3-Clause                              | <https://github.com/avoidwork/tiny-lru>                        |
+| tmpl  v1.0.4                                     | BSD-3-Clause                              | <https://github.com/daaku/nodejs-tmpl>                         |
+| to-absolute-glob  v2.0.2                         | MIT                                       | <https://github.com/jonschlinkert/to-absolute-glob>            |
+| to-object-path  v0.3.0                           | MIT                                       | <https://github.com/jonschlinkert/to-object-path>              |
+| to-regex-range  v2.1.1                           | MIT                                       | <https://github.com/micromatch/to-regex-range>                 |
+| to-regex  v3.0.2                                 | MIT                                       | <https://github.com/jonschlinkert/to-regex>                    |
+| toidentifier  v1.0.0                             | MIT                                       | <https://github.com/component/toidentifier>                    |
+| unc-path-regex  v0.1.2                           | MIT                                       | <https://github.com/regexhq/unc-path-regex>                    |
+| union-value  v1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/union-value>                 |
+| unique-stream  v2.2.1                            | MIT                                       | <https://github.com/eugeneware/unique-stream>                  |
+| unique-string  v1.0.0                            | MIT                                       | <https://github.com/sindresorhus/unique-string>                |
+| unset-value  v1.0.0                              | MIT                                       | <https://github.com/jonschlinkert/unset-value>                 |
+| unzip-response  v2.0.1                           | MIT                                       | <https://github.com/sindresorhus/unzip-response>               |
+| upath  v1.1.0                                    | MIT                                       | <https://github.com/anodynos/upath>                            |
+| update-notifier  v2.5.0                          | BSD-2-Clause                              | <https://github.com/yeoman/update-notifier>                    |
+| uri-js  v4.2.2                                   | BSD-2-Clause                              | <https://github.com/garycourt/uri-js>                          |
+| urix  v0.1.0                                     | MIT                                       | <https://github.com/lydell/urix>                               |
+| url-parse-lax  v1.0.0                            | MIT                                       | <https://github.com/sindresorhus/url-parse-lax>                |
+| use  v3.1.1                                      | MIT                                       | <https://github.com/jonschlinkert/use>                         |
+| util-deprecate  v1.0.2                           | MIT                                       | <https://github.com/TooTallNate/util-deprecate>                |
+| walker  v1.0.7                                   | Apache-2.0                                | <https://github.com/daaku/nodejs-walker>                       |
+| which  v1.3.1                                    | ISC                                       | <https://github.com/isaacs/node-which>                         |
+| wide-align  v1.1.2                               | ISC                                       | <https://github.com/iarna/wide-align>                          |
+| widest-line  v2.0.1                              | MIT                                       | <https://github.com/sindresorhus/widest-line>                  |
+| wrappy  v1.0.2                                   | ISC                                       | <https://github.com/npm/wrappy>                                |
+| write-file-atomic  v2.3.0                        | ISC                                       | <https://github.com/iarna/write-file-atomic>                   |
+| xdg-basedir  v3.0.0                              | MIT                                       | <https://github.com/sindresorhus/xdg-basedir>                  |
+| xtend  v4.0.1                                    | MIT                                       | <https://github.com/Raynos/xtend>                              |
+| yallist  v2.1.2                                  | ISC                                       | <https://github.com/isaacs/yallist>                            |
+| yallist  v3.0.2                                  | ISC                                       | <https://github.com/isaacs/yallist>                            |
+| yui-lint  v0.2.0                                 | BSD                                       | <https://github.com/yui/yui-lint>                              |
 
-In the Console animation for creating a successful project: Taras Chenenko Success confetti @SwaroopBk/ LottieFiles
+In the Console animation for creating a successful project: Taras Chenenko Success confetti   vSwaroopBk/ LottieFiles
 
 ## Licenses
 

@@ -11,12 +11,6 @@ const config = {
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
     image: "img/mia-logo-link-preview.png",
-    announcementBar: {
-      content:
-        '🚀 Mia-Platform v7.0 now Generally Available! Now you can configure Fast Data directly from the Console. <a rel="noopener noreferrer" href="/docs/release_notes/v7.0.x">Find out more!</a> 🚀',
-      backgroundColor: "#5FA37E",
-      textColor: "#FFF",
-    },
     algolia: {
       placeholder: "Search for terms, features and more...",
       apiKey: "602a752c6342891e2488bea38b0d9292",
