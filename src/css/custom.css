@@ -21,6 +21,7 @@
   --ifm-color-warning: var(--ifm-color-warning-lightest);
   --ifm-alert-color: black;
   --searchbar-placeholder: 'Search for terms, features and more...';
+  --ifm-font-family-museosans: "MuseoSans";
 }
 
 .docusaurus-highlight-code-line {
@@ -125,6 +126,20 @@ html[data-theme='dark'] .DocSearch-Button {
   .home .DocSearch-Button-Placeholder:before {
     --searchbar-placeholder: 'Search...';
   }
+}
+
+@font-face {
+  font-family: "MuseoSans";
+  src: url('/static/font/MuseoSans_500.otf')  format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MuseoSans";
+  src: url('/static/font/MuseoSans_900.otf')  format("opentype");
+  font-weight: 900;
+  font-style: normal;
 }
 
 /* navBar Responsiveness */
