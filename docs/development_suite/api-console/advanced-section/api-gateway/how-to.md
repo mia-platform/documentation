@@ -58,7 +58,7 @@ $secret_resolution-$is_allowed-$original_request_method-$original_request_uri $p
 
 The variables are:
 
-- `$secret_resolution` : it checks if there is a `secret` associated to the request. Values: *secreted* or *unsecreted*
+- `$secret_resolution` : it checks if there is a `client-key` associated to the request. Values: *secreted* or *unsecreted*
 - `$is_allowed` : *1* if the user has the required permission to access the resource (based on the nginx *auth_request*), *0* otherwise
 - `$original_request_method` : request method. Allowed values are: *GET*, *DELETE*, *POST*, *PATH*, *PUT* or *\w+* to enable all methods
 - `$original_request_uri` :  request uri prefix
@@ -79,7 +79,7 @@ $secret_resolution-$is_allowed-$request_method-$request_uri $proxy_backoffice_na
 
 The variables are:
 
-- `$secret_resolution` : it checks if there is a `secret` associated to the request. Values: *secreted* or *unsecreted*
+- `$secret_resolution` : it checks if there is a `client-key` associated to the request. Values: *secreted* or *unsecreted*
 - `$is_allowed` : *1* if the user has the required permission to access the resource (based on the nginx *auth_request*), *0* otherwise
 - `$original_request_method` : request method. Allowed values are: *GET*, *DELETE*, *POST*, *PATH*, *PUT* or *\w+* to enable all methods
 - `$original_request_uri` :  request uri prefix
@@ -90,7 +90,7 @@ If no request is matched by any regular expression, the default request is forwa
 :::
 
 :::tip
-I want that if it's done a `GET` request to `/login-site` with or without secret `(secreted|unsecreted)` from an authorized or not authorized user `(0|1)`, this request is forwarded to the `demo-login-site` service.
+I want that if it's done a `GET` request to `/login-site` with or without client-key `(secreted|unsecreted)` from an authorized or not authorized user `(0|1)`, this request is forwarded to the `demo-login-site` service.
 
 ```
 "~^(secreted|unsecreted)-(0|1)-GET-/login-site" "demo-login-site";
@@ -99,7 +99,7 @@ I want that if it's done a `GET` request to `/login-site` with or without secret
 :::
 
 :::tip
-I want that if it's done a `POST` request to `/foo/bar` with an associated secret from an authorized user `1`, it's forwarded to `foo-bar-manager`.
+I want that if it's done a `POST` request to `/foo/bar` with an associated client-key from an authorized user `1`, it's forwarded to `foo-bar-manager`.
 
 ```
 "~^secreted-1-POST-/foo/bar" "foo-bar-manager";
