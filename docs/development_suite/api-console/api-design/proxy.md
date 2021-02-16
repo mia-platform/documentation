@@ -52,7 +52,7 @@ In order to create a new external proxy, open the `Proxies` in the *Design area*
 ![cross proxy creation](img/how_to_create_cross_proxy.gif)
 
 :::caution
-When you call an [external proxy](#create-a-new-external-proxy) any cookie/secret are removed to avoid security issues. Instead, when you call a [cross projects proxy](#create-a-new-cross-projects-proxy) you will keep them.
+When you call an [external proxy](#create-a-new-external-proxy) any cookie/client-key are removed to avoid security issues. Instead, when you call a [cross projects proxy](#create-a-new-cross-projects-proxy) you will keep them.
 :::
 
 ## Expose a Proxy
