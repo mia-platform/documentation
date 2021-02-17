@@ -10,6 +10,11 @@ This service must be explicitly included in a project in case you want to send p
 
 ## Requirements
 
+You can configure this service to send emails with one of the following modes:
+
+- [**SES:**](#SES) to use `Amazon SES` to send emails
+- [**SMTP:**](#SMTP) to use `SMTP` to send emails
+
 ### SES
 
 The microservice uses `Amazon SES` service in order to send email.
