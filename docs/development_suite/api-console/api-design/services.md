@@ -132,11 +132,29 @@ See more about the log parsers on the [guidelines](../../../getting_started/moni
 
 ### Environment Variable Configuration
 
-In this section, you can manage, add and delete the environment variables associated to your microservice. For each variable, you have to define:
+In this section, you can manage, add and delete the environment variables associated to your microservice.  
+
+To add a new environment variable you will have to specify which type of value you are going to use.  
+Currently, the following types exists:
+
+* **Plain Text**: values belonging to this type are strings that define the value that we want to associate to that specific environment variable key. For this type it is necessary to specify the **Value** that we want to link to that specific environment variable. **Value** can also be an interpolated string, to do so the value to interpolate needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
+* **From Secret**: this type represents a value that is obtained from a Kubernetes Secret. For this type, it is necessary to specify the **Secret Name** and the **Secret Key** from which this value can be retrieved.
+
+:::info
+If you want more information about adding Kubernetes secrets to a microservice visit the following [link](./services#secrets).
+:::
+
+Therefore, for each variable, you have to define:
 
 * **Key** (*required*)
 
-* **Value** (*required*)
+* **Value Type** (*required*)
+
+* **Value** (*present and required only if **Value Type** is Plain Text*)
+
+* **Secret Name** (*present and required only if **Value Type** is From Secret*)
+
+* **Secret Key** (*present and required only if **Value Type** is From Secret*)
 
 * **Description**
 
@@ -217,6 +235,8 @@ Once you'll add a secret to one of your microservices, the secret's name will be
 :::warning
 You need to give **additional permissions** to the console service account in order to be able to get the list of the secrets on the cluster.
 :::
+
+It is also possible to use Kubernetes secrets to setup specific environment variables, follow this [link](./services#environment-variable-configuration) to understand how to do so.  
 
 ### Advanced Configuration
 
