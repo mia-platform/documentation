@@ -92,7 +92,7 @@ If you create a CRUD named `empty` without any configuration in the Console you 
 curl --request GET \
   --url https://your-url/v2/empty/ \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 ```json
@@ -146,7 +146,7 @@ for example
  curl --request POST \
   --url https://your-url/v2/empty/5e8a125eb74dbf0011444ed3/state \
   --header 'content-type: application/json' \
-  --header 'secret: secret' \
+  --header 'client-key: client-key' \
   --data '{"stateTo":"PUBLIC"}'
 ```
 
@@ -232,9 +232,9 @@ CRUD must not be exposed directly to the Internet but always must be protected b
 
 Available in Mia-Platform v6.
 
-### API Secret
+### API Key
 
-If a CRUD is exposed under an API Secret you have to pass the secret into the request header with the name `secret`. The
+If a CRUD is exposed under an [API Key](../../development_suite/api-console/api-design/api-key) you have to pass the key into the request header with the name `client-key`.
 
 Example
 
@@ -242,7 +242,7 @@ Example
 curl --request GET \
   --url 'https://your-url/v2/your-crud-name/' \
   --header 'accept: */*' \
-  --header 'secret: your-secret'
+  --header 'client-key: your-client-key'
 ```
 
 ### CRUD ACL
@@ -276,7 +276,7 @@ Let's see how to perform C-R-U-D operations.
 All examples are sent to <https://your-url> Mia-Platfrom instance. We assume that the endpoints are only protected by API Key.
 
 ```json
-secret: secret
+client-key: client-key
 ```
 
 If your endpoints are also protected by authentication and authorization you need to pass the access token to the curl command.
@@ -309,7 +309,7 @@ curl --request POST \
   --url https://your-url/v2/plates/ \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --header 'secret: secret' \
+  --header 'client-key: client-key' \
   --data '{"name":"Spaghetti al Pomodoro","description":"The classic italian dish"}'
 ```
 
@@ -332,7 +332,7 @@ curl --request POST \
   --url 'https://your-url/v2/plates/upsert-one?name=Spaghetti%20allo%20Scoglio' \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --header 'secret: secret' \
+  --header 'client-key: client-key' \
   --data '{"$set":{"name":"Spaghetti allo Scoglio"}}'
 ```
 
@@ -373,7 +373,7 @@ curl --request POST \
   --url 'https://your-url/v2/plates/upsert-one?name=Rice' \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --header 'secret: secret' \
+  --header 'client-key: client-key' \
   --data '{"$set":{"description":"The correct description"},"$unset":{"price":true}}'
 ```
 
@@ -403,7 +403,7 @@ curl --request POST \
   --url https://your-url/v2/plates/bulk \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --header 'secret: secret' \
+  --header 'client-key: client-key' \
   --data '[{"name":"Risotto ai funghi porcini","description":" Risotto with porcini mushrooms"},{"name":"Lasagna","description":"Stacked layers of flat pasta alternating with fillings such as ragù"},{"name":"Tiramisu","description":"Savoiardi dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese"}]'
 ```
 
@@ -427,7 +427,7 @@ To list a collection, simply call the endpoint with a **GET**
 curl -X GET https://your-url/v2/plates/ \
 -H  "accept: application/json"  \
 -H  "content-type: application/json" \
--H  "secret: secret"
+-H  "client-key: client-key"
 ```
 
 > Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
@@ -481,7 +481,7 @@ To get just one document read only one element, simply pass the *_id* of the doc
 curl -X GET https://your-url/v2/plates/5df8aff66498d30011b19e4d \
 -H  "accept: application/json"  \
 -H  "content-type: application/json" \
--H  "secret: secret"
+-H  "client-key: client-key"
 ```
 
 In response to this request you get a JSON Object like the following.
@@ -531,7 +531,7 @@ By default the sort id ascending, using - for descending. The following sort pla
 curl --request GET \
   --url 'https://your-url/v2/plates/?_s=name' \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 > For sorting with more than one property use _q
@@ -551,7 +551,7 @@ This is an example of request that get *two documents per page* and you ask for 
 curl --request GET \
   --url 'https://your-url/v2/plates/?_l=2&_sk=4' \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 Combining _l and_sk you can paginate the request. If you want to visualize the number of pages in your UI you need also count with a request the number of documents.
@@ -564,7 +564,7 @@ You can return just a some of the document properties (like GraphQL sub-selectio
 curl --request GET \
   --url 'https://your-url/v2/plates/?_p=name,price' \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 Returns an array of documents with only the properties requested.
@@ -594,7 +594,7 @@ You can combine all together. For example to get the first 2 plates, sorted by n
 curl --request GET \
   --url 'https://your-url/v2/plates/?_s=name&_l=2&_sk=0&_p=name,ingredient' \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 #### Filters with MongoDB Query
@@ -618,7 +618,7 @@ The query must be encoded and passed to _q parameter
 curl --request GET \
   --url 'https://your-url/v2/plates/?_q=%7B%22%24and%22%3A%5B%20%20%20%20%20%7B%22ingredient%22%3A%7B%22%24size%22%3A%202%7D%7D%2C%20%7B%22price%22%3A%7B%22%24exists%22%3Atrue%7D%7D%2C%7B%22name%22%3A%7B%22%24regex%22%3A%22%5EV%22%2C%22%24options%22%3A%22i%22%7D%7D%20%5D%20%7D' \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 You can use more MongoDB filters in query **_q**. Here is the complete list:
@@ -644,7 +644,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
 
 ```bash
-curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  "content-type: application/json" -H  "secret: secret"
+curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  "content-type: application/json" -H  "client-key: client-key"
 ```
 
 returns
@@ -681,7 +681,7 @@ to get the list of plates just encode the query and use _q.
 curl --request GET \
   --url 'https://your-url/v2/plates/?_q=%20%7B%22position%22%3A%7B%22%24nearSphere%22%3A%7B%22from%22%3A%5B9.18%2C45.43%5D%2C%22minDistance%22%3A0%2C%22maxDistance%22%3A1200%7D%7D%7D' \
   --header 'accept: application/json' \
-  --header 'secret: secret'
+  --header 'client-key: client-key'
 ```
 
 The result will be sorted from the nearest from the farthest.
