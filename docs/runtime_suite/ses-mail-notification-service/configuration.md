@@ -1,11 +1,16 @@
 ---
 id: configuration
-title: Mail Service
+title: SES Mail Notification Service
 sidebar_label: Configuration
 ---
 Mail Service allows sending e-mails via **AWS SES** or **SMTP**.
 
 ## Requirements
+
+You can configure this service to send emails with one of the following modes:
+
+- [**SES:**](#SES) to use `Amazon SES` to send emails
+- [**SMTP:**](#SMTP) to use `SMTP` to send emails
 
 ### SES
 
