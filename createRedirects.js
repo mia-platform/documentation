@@ -3,7 +3,8 @@ const redirectPaths = {
   "/docs/business_suite/guide_cms" : "/user_guide_and_tools/cms/guide_cms",
   "/docs/runtime_suite/swagger-aggregator": "/docs/development_suite/api-portal/swagger_conf",
   "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log": "/docs/development_suite/monitoring-dashboard/dev_ops_guide/log",
-  "/docs/development_suite/api-console/api-design/endpoints":"/development_suite/api-console/api-design/esponi_api"
+  "/docs/development_suite/api-console/api-design/endpoints": "/development_suite/api-console/api-design/esponi_api",
+  "/docs/runtime_suite/ses-mail-notification-service/configuration": "/docs/runtime_suite/mail-notification"
 };
 
 const createRedirects = (path) => {
