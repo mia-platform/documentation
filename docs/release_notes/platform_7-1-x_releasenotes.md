@@ -1,7 +1,7 @@
 ---
 id: v7.1.x
 title: Version 7.1.x Release Notes
-sidebar_label: v7.1.x
+sidebar_label: v7.1
 ---
 
 ## v7.1.0
