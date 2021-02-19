@@ -39,6 +39,6 @@ Infobox pointing to Mia-Platform documentation have been replaced with a new ico
 
 ![new infobox image](img/new-infobox.jpg)  
 
-## How to update your Console
+### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.2.1`.

@@ -795,6 +795,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "release_notes/v7.1.x"
+        },
+        {
+          "type": "doc",
           "id": "release_notes/v7.0.x"
         }
       ]
