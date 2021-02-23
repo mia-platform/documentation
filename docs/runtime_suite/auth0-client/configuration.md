@@ -119,7 +119,7 @@ The configuration must follow this schema:
 }
 ```
 
-Clients are indexed by their client type name; please note that the default client is only used when there's no specified client in the request and the default client is configured.
+Clients are indexed by their client type name; please note that the default client is only used when there is no specified client in the request and the default client is configured.
 If a wrong/malicious/misconfigured client is being used in the request then the response will be immediately rejected with Unauthorized (401) status code.
 
 ## Example of configuration
