@@ -83,17 +83,10 @@ module.exports = (logger, databaseName) => async(document, mongoClient) => {
 }
 ```
 
-The function must return an array of objects containing the keys of the single view that needs to be updated.
+The function must return an array of objects containing the keys of the Single View that needs to be updated.
 
-In the simplest case the document already contains the projection identifier fields, so we can extract it from the input document.
-For example the Single View identifier is:
-
-```js
-[
-  { restaurantIdentifier: "restaurant-id-1" },
-  { restaurantIdentifier: "restaurant-id-2" },
-]
-```
+In the simplest case the document already contains the Single View key fields, so we can extract it from the input document.
+For instance if the Single View key is composed by two fields:
 
 ```js
 {
@@ -113,7 +106,7 @@ and the input document is:
 }
 ```
 
-we can extract the identifier from the document itself
+we can extract the identifier from the document itself and return it as an array
 
 ```js
 module.exports = (logger, databaseName) => async (aDocument) => {
@@ -144,7 +137,7 @@ const {
 }
 ```
 
-We don't have `field_b` and `field_d`, so we need to fetch the table that contains first `field_d` and the the table that contains `field_b`
+We don't have `field_b`, so we need to fetch the table that contains `field_b` and we will do it using `field_c` as the conjunction element for the first look up and finally `field_d` to get the correct element that contains the desired `field_b`
 
 ```js
 module.exports = (logger, databaseName) => async(aDocument, mongoClient) =>  => {
@@ -154,16 +147,20 @@ module.exports = (logger, databaseName) => async(aDocument, mongoClient) =>  => 
     } = aDocument
     const projectionsDb = mongoClient.db(databaseName)
 
-    // retrieve first document using projectionsDb
+    // retrieve first document using projectionsDb and input field_c
     const firstRetrieve = await projectionsDb.collection(startingProjection).findOne({
-      field_c: field_c
+      field_c,
     })
 
+    const {
+      field_d
+    } = firstRetrieve
     // retrieve all documents that match field_d from the first retrieved document
     const results = await projectionsDb.collection(projectionWithKey).find({
-      field_d: firstRetrieve.field_d
+      field_d,
     })
 
+    // returns an array of identifier, one for each results
     const identifiers = results.map(({ field_b }) => {
       return {
         field_a,
