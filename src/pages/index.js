@@ -87,6 +87,10 @@ const howToBoxProperties = {
       label: "Monitor infrastructure",
       href: "/docs/development_suite/monitoring/monitoring",
     },
+    {
+      label: "Create Public Variables",
+      href: "/docs/development_suite/api-console/api-design/public_variables",
+    },
   ],
 };
 
