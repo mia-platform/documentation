@@ -132,9 +132,8 @@ Here is the list:
 * **LOG_LEVEL**: it should already be set as envirnoment variables
 * **FAST_DATA_PROJECTIONS_DATABASE_NAME**: name of the db where projections are saved
 * **KAFKA_BROKERS**: the host of your Kafka cluster (with the port)
-* **KAFKA_GROUP_ID**: consumer group id set in Kafka
 * **KAFKA_SASL_USERNAME**: username to log in to Kafka cluster
 * **KAFKA_SASL_PASSWORD**: password to log in to Kafka cluster
 * **MONGODB_URL**: the url to mongo db. It is the same used, for example, for crud service
 
-If you need to customize **KAFKA_GROUP_ID**, **KAFKA_SASL_USERNAME** and **KAFKA_SASL_PASSWORD** for some System of Records, [click here](./advanced#kafka-configuration)
+If you need to customize **KAFKA_SASL_USERNAME** and **KAFKA_SASL_PASSWORD** for some Systems of Record, [click here](./advanced#kafka-configuration)
