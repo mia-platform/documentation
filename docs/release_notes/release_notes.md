@@ -5,5 +5,6 @@ sidebar_label: Mia-Platform release notes
 ---
 | Release | Release notes                                       |
 | ------- | --------------------------------------------------- |
+| v7.2.x    | [See release notes](v7.2.x) |
 | v7.1.x    | [See release notes](v7.1.x) |
 | v7.0.0    | [See release notes](v7.0.x) |
