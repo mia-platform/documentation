@@ -27,6 +27,10 @@ You can now specify a custom Kafka authentication mechanism by supplying the `ka
 
 The support for different format of Kafka messages has been implemented. You can now choose which format of Kafka message you expect to have for each system. If the format you need is not supported yet, you can create your own Kafka message adapter. Check out the [documentation](../fast_data/create_projection.md#kafka-messages-format) for configuration information.
 
+#### Fast Data virtual delete
+
+Now the Real-Time updater of the Fast Data make always virtual delete of the projections instead of real delete. Check out the [documentation](../fast_data/create_projection#projection-fields).
+
 #### Generate projection fields from data sample
 
 After the creation of a projection, you can configure its fields by importing them from a JSON or a CSV. Check the [documentation](../fast_data/create_projection.md#generate-projection-fields-from-data-sample) to learn how to use the feature.
