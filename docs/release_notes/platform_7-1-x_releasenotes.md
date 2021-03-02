@@ -37,8 +37,8 @@ Topics are now managed per-system rather than globally meaning you can define di
 
 ### Marketplace
 
- * [mongo2kafka](../runtime_suite/mongo2kafka/configuration) has been 
- updated to v1.1.0: `nexus.mia-platform.eu/core/mongo2kafka:1.1.0`
+* [mongo2kafka](../runtime_suite/mongo2kafka/configuration) has been updated to v1.1.0: `nexus.mia-platform.eu/core/mongo2kafka:1.1.0`  
+A recovery strategy has been added to recover operations when trying to start consuming the MongoDB stream when a resume token returns an errors.
 
 ### How to update your Console
 
