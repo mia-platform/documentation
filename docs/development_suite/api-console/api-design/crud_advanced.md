@@ -45,7 +45,43 @@ You can add the fields you need and select the appropriate properties:
 * In the **description** field you can enter a short optional description.
 ![properties](img/properties.PNG)
 
-![default_state](img/default_state.png)
+### Create nested CRUDs
+
+Fields of type `Object` and `Array of Object` can be used to create nested CRUDs. You just need to add a field of type `Object` or `Array of Object` and click on the edit button to configure it through the lateral drawer: use the JSON Schema Editor to define its properties.
+
+An example of a possible valid schema:
+
+```json
+{ 
+    "properties": {
+        "address": {
+            "title": "user address",
+            "type": "string"
+        },
+        "groups": {
+            "default": [ "users" ],
+            "items": { "type": "string" },
+            "title": "groups of the user",
+            "type": "array"
+        },
+        "name": {
+            "example": "Jane",
+            "title": "The user name",
+            "type": "string"
+        },
+        "phone": {
+            "title": "mobile number of user",
+            "type": "integer"
+        }
+    },
+    "additionalProperties": false,
+    "required": ["address", "groups", "name", "phone"]
+}
+```
+
+:::warning
+A JSON Schema containing the type of the object is not accepted, because the `type` property is defined through the dedicated UI.
+:::
 
 ### CRUD Service exposed routes
 
@@ -66,6 +102,9 @@ Please note that these endpoint must be unique through all the configured CRUD, 
 ![newEndpoint](img/newEndpoint.PNG)
 
 You can always change the default state of an existing route by simply clicking on the field default state. The two possible values are _DRAFT_ or _PUBLIC_.
+
+![default_state](img/default_state.png)
+
 
 You can delete a route but you must always leave at least one endpoint exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither your services in your project.
 
