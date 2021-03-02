@@ -162,6 +162,10 @@ The aggregation pipeline is the part of the Single View creation process in whic
 
 Based on the start strategy choosen (startAggregation or startCustom) the aggregator should be a Mongo aggregation pipeline or a custom function.
 
+:::caution
+When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `Crud Service`) is set to `DELETED`.
+:::
+
 ### StartAggregation
 
 The aggregator function needs to be an async function that takes in input a `logger` and the `Single View Key`, and output an array containing all the pipeline stages.
