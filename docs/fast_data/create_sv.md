@@ -173,6 +173,10 @@ module.exports = (logger, databaseName) => async(aDocument, mongoClient) =>  => 
 }
 ```
 
+:::caution
+When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `Crud Service`) is set to `DELETED`.
+:::
+
 #### How can I write tests?
 
 We believe that all the files of a program must be tested. To allow you to do it, you can add the `package.json` in the `fast-data-files` folder with the test scripts with your preferred test runner.
