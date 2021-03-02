@@ -123,7 +123,7 @@ ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation RE
 
 ## Set up environment variables
 
-When you start using Fast Data, you should set some environment variables in the `Envs` section in Console to correctly deploy your project. [Click here](/docs/development_suite/set-up-infrastructure/env-var) to view how this section works, and how to differentiate the environment variables through environments.
+When you start using Fast Data, you should set some environment variables in the `Envs` section in Console to correctly deploy your project. [Click here](../development_suite/set-up-infrastructure/env-var) to view how this section works, and how to differentiate the environment variables through environments.
 
 The environment variables to set are shared for all the System of Source, and all this environment variables must be added if a System of Records has been created.
 

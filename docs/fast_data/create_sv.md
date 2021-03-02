@@ -6,7 +6,7 @@ sidebar_label: Single View
 
 ## Create the single view collection
 
-To create and expose the single view, the first step is to [create the collection definition](/docs/development_suite/api-console/api-design/crud_advanced).
+To create and expose the single view, the first step is to [create the collection definition](../development_suite/api-console/api-design/crud_advanced).
 
 Once defined the data structure, you could create the single view.
 
@@ -53,7 +53,7 @@ The advanced configuration object contains the following properties:
 
 When the `Single View Creator` will be configured, it will look at the changes stored in the **projections changes collection**. In order to know which specific Single View needs to be updated, based on the projections records just modified by the importer, the Single View Creator will look at the projection change `identifier`.
 
-In order to do so, **strategies** need to be implemented. These strategies are basically the way to retrieve the unique identifiers of the single view that needs to be updated or created as consequence of the changes on the projection. The output of the strategies will be used by the `Real-Time Updater` to record a change in the proper `projection-changes` collection for each identifier.   
+In order to do so, **strategies** need to be implemented. These strategies are basically the way to retrieve the unique identifiers of the single view that needs to be updated or created as consequence of the changes on the projection. The output of the strategies will be used by the `Real-Time Updater` to record a change in the proper `projection-changes` collection for each identifier.  
 
 For instance, consider having a single view *sv_restaurants* that contains the name of the restaurants and their menu.
 In our example this single view could be built with data coming from two different projections: *restaurants*, containing the basic informations about the restaurants, and *dishes* containing instead the list of the available dishes for each restaurant, linked using the `id` of the restaurant.
@@ -212,9 +212,9 @@ To know the technical limitation you have in these files, [read here](./single_v
 
 You can expose the Single View through the crud-service without write any code, or you can always create a custom service to access to MongoDB if you have special needs.
 
-You could [check here](/docs/development_suite/api-console/api-design/endpoints) how to expose an endpoint of the CRUD service outside your project through the Console.
+You could [check here](../development_suite/api-console/api-design/endpoints) how to expose an endpoint of the CRUD service outside your project through the Console.
 
-[Click here](/docs/runtime_suite/crud-service/overview_and_usage) if you want the usage documentation for the CRUD.
+[Click here](../runtime_suite/crud-service/overview_and_usage) if you want the usage documentation for the CRUD.
 
 ## Technical limitation
 

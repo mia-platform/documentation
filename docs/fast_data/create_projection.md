@@ -47,7 +47,7 @@ where `projectId`, `environmentId` and `projectionName` are filled with, respect
 In the card `Fields` in projection, you can add new fields.
 
 :::info
-By default, since the Crud Service is used underneath, projections have the [predefined collection properties](/docs/runtime_suite/crud-service/overview_and_usage#predefined-collection-properties), even if they are not visible
+By default, since the Crud Service is used underneath, projections have the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties), even if they are not visible
 in projection field table
 :::
 
@@ -96,7 +96,7 @@ Import of fields is supported only for the following data types: `String`, `Numb
 
 ### Indexes
 
-In the card `Indexes`, you can add indexes to the collection. To learn more about crud indexes, [click here](/docs/runtime_suite/crud-service/overview_and_usage#indexes).
+In the card `Indexes`, you can add indexes to the collection. To learn more about crud indexes, [click here](../runtime_suite/crud-service/overview_and_usage#indexes).
 However, differently from Indexes that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
 An `_id` index is created by default and it is not deletable.
@@ -105,7 +105,7 @@ An `_id` index is created by default and it is not deletable.
 
 You can expose a projections through API, only with `GET` method (the data in the projections are modifiable only by the Real Time Updater service).
 
-To expose the Fast Data projection, [create an Endpoint](/docs/development_suite/api-console/api-design/endpoints) with type `Fast Data Projection` linked to the desired projection.
+To expose the Fast Data projection, [create an Endpoint](../development_suite/api-console/api-design/endpoints) with type `Fast Data Projection` linked to the desired projection.
 
 :::info
 It is not required for the Fast Data to work the exposed API. It is an optional behaviour if you need to have access to the data without access directly from database.

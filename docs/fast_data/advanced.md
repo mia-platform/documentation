@@ -8,9 +8,9 @@ If you need it, you can customize some configuration of the services used by Fas
 
 ### Projections Changes
 
-You can choose to use a collection you have already created in the CRUD section through advanced configuration.   
+You can choose to use a collection you have already created in the CRUD section through advanced configuration.  
 
-In order to do that, your collection is supposed to have the following fields (apart from the default ones): 
+In order to do that, your collection is supposed to have the following fields (apart from the default ones):
 
 ```json
 [
@@ -21,15 +21,17 @@ In order to do that, your collection is supposed to have the following fields (a
 ]
 ```
 
-You also need to have the following additional indexes: 
+You also need to have the following additional indexes:
 
-Add an index with *name* `type_change_state`, *type* `normal`, *unique* `false`.   
-You need to add the following index fields: 
+Add an index with *name* `type_change_state`, *type* `normal`, *unique* `false`.  
+You need to add the following index fields:
+
 - *name* `type`, *order* `ASCENDENT`
 - *name* `changes.state`, *order* `ASCENDENT`
 
-Add another index with *name* `type_identifier`, *type* `normal`, *unique* `true`.   
-You need to add the following index fields: 
+Add another index with *name* `type_identifier`, *type* `normal`, *unique* `true`.  
+You need to add the following index fields:
+
 - *name* `type`, *order* `ASCENDENT`
 - *name* `identifier`, *order* `ASCENDENT`
 
@@ -46,7 +48,7 @@ Doing this, **all** the Systems of Records services will write changes into the 
 
 ### Kafka configuration
 
-As default all the Systems of Records services will use the same Kafka Group Id, Sasl Username e Password that you have set in the [Envs section](./set_up_fast_data#set-up-environment-variables).   
+As default all the Systems of Records services will use the same Kafka Group Id, Sasl Username e Password that you have set in the [Envs section](./set_up_fast_data#set-up-environment-variables).  
 If you need tu customize these variables for some Systems of Record, you can do that going to the `Advanced` section of the `Design` area in Console. Open `fast-data` from menu and open the `projections.json` file and write a configuration such as the following:
 
 ```json

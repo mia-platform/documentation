@@ -29,7 +29,7 @@ The Console provides your project with a set of default cast functions ready to 
 If you need more control over the casting of your data, you can also create your custom cast functions.
 
 :::caution
-If value to cast is invalid (e.g. a character as input of a cast to `defaultCastToInteger`), all default cast functions returns undefined or null, based on the cases. These fallback values are saved as `NULL` in MongoDB.   
+If value to cast is invalid (e.g. a character as input of a cast to `defaultCastToInteger`), all default cast functions returns undefined or null, based on the cases. These fallback values are saved as `NULL` in MongoDB.  
 Be aware of that if your fields are not `nullable`, in these cases you should define your own Custom Cast Functions with the fallback you need.
 :::
 
@@ -45,7 +45,7 @@ To define your own custom cast functions click on the *Create* button above the 
 
 Name: `castToIntBase10`
 Returned Type: `Number`
-Expression: 
+Expression:
 
 ```javascript
 module.exports = function (valueToCast, fieldName, logger) {
