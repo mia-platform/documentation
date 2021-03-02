@@ -21,7 +21,7 @@ On Premise installations require specific changes to the deploy pipelines, pleas
 
 #### Real-time-updater authentication mechanism
 
-You can now specify a custom Kafka authentication mechanism by supplying the `kafka.saslMechanism` property to your system advanced configuration in the console, check out the [documentation](https://docs.mia-platform.eu/docs/fast_data/advanced#kafka-configuration) for further information.
+You can now specify a custom Kafka authentication mechanism by supplying the `kafka.saslMechanism` property to your system advanced configuration in the console, check out the [documentation](../fast_data/advanced#kafka-configuration) for further information.
 
 #### Fast Data CDC Events Management
 
