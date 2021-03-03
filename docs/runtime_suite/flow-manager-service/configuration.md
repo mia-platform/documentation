@@ -28,20 +28,20 @@ Following the details of each section.
 
 ## Communication Protocols
 
-It contains a list of JSON Objects with the configurations of the communication protocol, that will be called **channels** from now.
+It contains a list of JSON Objects with the configurations of the communication protocol (**channel**, from now on).
 
 **NB.** each channel could have a custom configurations schema.
 
 Each *channel type* must be one of the supported types. Following the supported channel types:
 
 - [**kafka**](#kafka-communication-protocol): the channel that will be connected to an [*Apache Kafka*](https://kafka.apache.org/) server and will allow the service to publish/consume messages (*commands/events*)
-- [**REST**](#rest-communication-protocol): the channel that will allow the service to send *commands* and receive *events* through REST calls
+- [**REST**](#rest-communication-protocol): the channel that will allow the service to send *commands* and receive *events* through REST API
 
 ### Kafka communication protocol
 
-This *channel* allows the service to connect to a kafka server and consume/produce messages on it.
+This *channel* type allows the service to connect to a kafka server and consume/produce messages on it.
 
-The channels are the following (the **bold** are the required ones, the *italic* are the mandatory ones):
+The channel properties are the following (the **bold** are the required ones, the *italic* are the mandatory ones):
 
 - **id**: the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
 - **type**: the type of the channel, must be *kafka*
@@ -133,9 +133,9 @@ Following some examples with explanation.
 
 ### REST communication protocol
 
-This *channel* allows the service to exchange commands and events with external services through REST calls.
+This *channel* type allows the service to exchange commands and events with external services through REST API.
 
-The channels are the following (the **bold** are the required ones, the *italic* are the optional ones):
+The channel properties are the following (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **id**: the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
 - **type**: the type of the channel, must be *rest*
@@ -176,47 +176,43 @@ The *Flow Manager* expects a successful response (*code 2xx*), and it does not c
 
 #### Receiving events
 
-To receive events, the *Flow Manager* exposes the route
-
-`POST - /event`
-
-that accepts the following body:
+To receive events, the *Flow Manager* exposes the route `POST - /event` that accepts a body that must be structured as follows:
 
 ```json
 {
-    "type": "object",
-    "properties": {
-      "key": {
-        "type": "string",
-        "description": "The id of the saga"
-      },
-      "value": {
-        "type": "object",
-        "description": "The data about the event",
-        "properties": {
-          "messageLabel": {
-            "type": "string",
-            "description": "The label of the event"
-          },
-          "messagePayload": {
-            "description": "The payload of the event"
-          }
-        },
-        "required": ["messageLabel", "messagePayload"],
-        "additionalProperties": false
-      }
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The id of the saga"
     },
-    "required": ["key", "value"],
-    "additionalProperties": false
-  }
+    "value": {
+      "type": "object",
+      "description": "The data about the event",
+      "properties": {
+        "messageLabel": {
+          "type": "string",
+          "description": "The label of the event"
+        },
+        "messagePayload": {
+          "description": "The payload of the event"
+        }
+      },
+      "required": ["messageLabel", "messagePayload"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["key", "value"],
+  "additionalProperties": false
+}
 ```
 
 ## Persistency Manager
 
 This section contains the configurations for the *Persistency Manager*, that is responsible for:
 
-- the insert/upload of a saga
-- the retrieval of a saga
+- inserting/updating a saga
+- retrieving a saga
 
 The *persistency manager type* must be one of the supported types. Following the supported types:
 

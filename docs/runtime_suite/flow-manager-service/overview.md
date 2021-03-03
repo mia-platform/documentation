@@ -3,7 +3,7 @@ id: overview
 title: Flow Manager
 sidebar_label: Overview
 ---
-The _Flow Manager_ is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named [**Saga Pattern**](https://blog.couchbase.com/saga-pattern-implement-business-transactions-using-microservices-part/) and, in particular, the [Command/Orchestration approach](https://blog.couchbase.com/saga-pattern-implement-business-transactions-using-microservices-part-2/).
+The [_Flow Manager_](https://blog.mia-platform.eu/en/flow-manager-the-saga-orchestrator-of-mia-platform) is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named **Saga Pattern** using, in particular, the [Command/Orchestration approach](https://blog.mia-platform.eu/en/saga-pattern-how-to-manage-distributed-transactions-with-microservices).
 
 ## Introduction
 
