@@ -32,6 +32,7 @@ Each business state can contain one or more states of the machine.
 "States that matter for the business" means that a business state represents a state of the _Saga_ that is not "Intermediate", that symbolizes what is the whole saga status.
 
 Let's explain it with an example based on the usual _Finite State Machine_ (the _businessStates_ are the numbers in each state):
+
 ![alt_image](img/sample-finite-state-machine-with-commands.png)
 
 The image above contains all the internal states of the _Saga_, but not all states could be important for the business. For example, the business could care about:
@@ -44,7 +45,7 @@ When an order is delivered, the _businessState_ will be **1**, that means that t
 
 In this way the users can look for successfully completed orders just by looking for the orders with _businessState_ set to **1**.
 
-The one above is just a very simple example that just excludes one _Finite State Machine_ from the business states, but in real cases with we worked the business states are less than half of the _Final State Machine_ ones.
+The one above is just a very simple example that just excludes one _Finite State Machine_ state from the _Business States_, but in real scenarios the actual _Business States_ can be less than half of the _Finite State Machine_ ones.
 
 :::note
 The **business states** are a superset of the machine that represents the states of the saga that matter for its business.
@@ -61,11 +62,11 @@ The concept is explained in the following example based on the usual _Finite Sta
 ![alt_image](img/sample-finite-state-machine-with-business-events.png)
 
 In the image above, the events belonging to the same business event are grouped by color. As shown, not all the internal events are important for the business. For example,
-*paymenExecuted* and *preparationDone* do not give any business relevant information, while *delivered* does since it sums the success of the whole project.
+*paymentExecuted* and *preparationDone* do not give any business relevant information, while *delivered* does since it sums the success of the whole project.
 
 ## Commands events approach
 
-The _Flow Manager_, to correctly handle the saga flow, needs the support of other actors, or, microservices that execute the tasks to move forward the saga.
+In order to correctly handle the saga flow, the _Flow Manager_, needs the support of other actors, or, microservices that execute the tasks to move forward the saga.
 
 To do this, the service uses the _command/event_ approach, or:
 
@@ -76,8 +77,10 @@ To do this, the service uses the _command/event_ approach, or:
 If a command execution fails, an error event will be sent by the _executor actor_ instead of the _done event_; in this case, the possible management of the error state is delegated to the user that writes the _Flow Manager_ configurations file (to go, for example, in a error state with remediations actions).
 
 :::warning
-**NB.** if an event is unexpected in the current state, the _Flow Manager_ will log an error and will ignore it.
+If an unexpected event for the current state is received, the _Flow Manager_ will just generate an error log and ignore the event.
 :::
+
+### Naming convention and best practices
 
 Usually the following are the best practices for events and commands:
 
@@ -221,7 +224,7 @@ The history of the saga consists in the list of all the occurred states and even
 
 ## Data persistency and consistency
 
-The purpose of the _Flow Manager_ is to guarantee the data consistency.
+The purpose of the _Flow Manager_ is to guarantee data consistency.
 
 To do this, the service should be the only one to manipulate the _Saga_'s data and [**metadata**](#service-metadata).
 
@@ -235,7 +238,9 @@ Specifically the service does the following steps to ensure the data consistency
   - takes the **metadata** from the event payload (that should be only the new metadata, added during the command handling by the specific service)
   - takes the current _Saga_'s metadata from the database
   - merges the current metadata with the new metadata (it is just a first level merge, nested objects will be completely substitute with the new ones):
-    - `{ name: 'Chester', surname: 'Bennington', address: { country: 'California' } }`undefinedmerged withundefined`{ name: 'Chester', surname: 'Bennington', age: 41, address: { zip: '12345' } }`undefinedwill becomeundefined`{ name: 'Chester', surname: 'Bennington', age: 41, address: { zip: '12345' } }`
+    - `{ name: 'Chester', surname: 'Bennington', address: { country: 'California' } }`, merged with:
+    - `{ name: 'Chester', surname: 'Bennington', age: 41, address: { zip: '12345' } }`, will become:
+    - `{ name: 'Chester', surname: 'Bennington', age: 41, address: { zip: '12345' } }`.
   - saves the merged metadata into the database
   - if a command must be sent, it puts the merged metadata into the payload
 
@@ -248,13 +253,13 @@ Obviusly some other service could need to read from the _Saga_'s database, it's 
 
 ### The persistency manager
 
-The _Flow Manager_ has not a direct link to the database, because it does not know the kind of the database and so on.
+To avoid any database coupling, the _Flow Manager_ does not have a direct link any the database.
 
-To read/write data it needs another actor, the **Persistency Manager** ([configured into the configurations file](./configuration#persistency-manager)).
+To perform read/write operations on data it requires another actor: the **Persistency Manager** ([configurable in the configurations file](./configuration#persistency-manager)).
 
 The tasks of the **Persistency Manager** are to:
 
-- provide a method to [**upsert**](https://en.wiktionary.org/wiki/upsert) a saga by receiving all its data
+- provide a method to [**upsert**](https://en.wiktionary.org/wiki/upsert) a saga by receiving all of its data
 
 - provide a method to **get** a saga, that must return:
   - the _current state_
