@@ -3,6 +3,19 @@ id: v7.2.x
 title: Version 7.2.x Release Notes
 sidebar_label: v7.2
 ---
+## v7.2.1
+
+_March 04, 2021_
+
+### Bug Fix
+
+#### System of record creation
+
+The incorrect configuration of a new system of record caused the inability to commit.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.4.2`.
 
 ## v7.2.0
 
