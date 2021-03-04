@@ -79,10 +79,6 @@ An example of a possible valid schema:
 }
 ```
 
-:::warning
-A JSON Schema containing the type of the object is not accepted, because the `type` property is defined through the dedicated UI.
-:::
-
 ### CRUD Service exposed routes
 
 The [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.
