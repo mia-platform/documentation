@@ -11,7 +11,7 @@ _March 04, 2021_
 
 #### System of record creation
 
-The incorrect configuration of a new system of record caused the inability to commit.
+The creation of a new system of record in the [Projection](../fast_data/create_projection.md) page caused the inability to commit, due to an incorrect configuration of the system.
 
 ### How to update your Console
 
