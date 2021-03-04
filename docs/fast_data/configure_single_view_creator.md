@@ -264,19 +264,13 @@ The validation of a Single View determines what to do with the current update. I
 
 For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be upserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
 
-The input fields of the validation function are the logger and the Single View, while the output is an object containing two fields:
-
-- `ok`: a boolean indicating if the Single View is valid or not
-- `error`: a string containing an error in case the Single View is not valid
+The input fields of the validation function are the logger and the Single View, while the output is a boolean containing the result of the validation.
 
 ```js
 function singleViewValidator(logger, singleView) {
   ... checks on singleView
 
-  return {
-    ok: validationResult,
-    error: errors
-  }
+  return validationResult
 }
 ```
 
