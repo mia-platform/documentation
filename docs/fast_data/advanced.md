@@ -90,7 +90,7 @@ To change the number of replicas of the Real-Time Updater service, go to the `Ad
 }
 ```
 
-where `REPLICAS` is the number of replicas you want to set for the Real-Time Updater associated with the system `my-system-id-1`.   
+where `REPLICAS` is the number of replicas you want to set for the Real-Time Updater associated with the system `my-system-id-1`.  
 Example:
 
 ```json
