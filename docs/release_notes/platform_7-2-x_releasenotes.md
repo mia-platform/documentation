@@ -3,6 +3,87 @@ id: v7.2.x
 title: Version 7.2.x Release Notes
 sidebar_label: v7.2
 ---
+
+## v7.2.2
+
+_March 10, 2021_
+
+### New Features
+
+#### Real Time updater Request and Limit
+
+After the initialization of the Real Time Updater, the Request and Limit parameters are set according to the following default values:
+
+- Memory: 80Mi for Request and 250Mi for Limit
+- CPU: 20 millicpu for Request and 100 millicpu for Limit
+
+:::info
+At the moment it is not possible to change these values through Mia-Platform Console. These default values are only modifiable for on-premise installations through the new helm chart configuration values.
+:::
+
+Check out Mia-Platform [documentation](../fast_data/create_projection#real-time-updater-cpu-and-memory-requests-and-limits) to know more.
+
+#### Real Time updater Replicas
+
+You can now set the number of replicas of the Real Time Updater using the Advanced section of the Design Area. Follow the [documentation](../fast_data/advanced#real-time-updater-replicas) for further details.
+
+#### Definition of type property in Schema editor
+
+When configuring the schema of a field of type object in the MongoDB CRUD page, the Schema Editor (accessible by clicking the row edit button) accepts JSON Schemas containing the `type` property. However the only accepted value for it is `object`. Check the Schema Editor [documentation](../development_suite/api-console/api-design/crud_advanced#create-nested-cruds) to know more.
+
+### Library updates
+
+Open source libraries [custom plugin lib](https://github.com/mia-platform/custom-plugin-lib), [lc39](https://github.com/mia-platform/lc39) and [glogger](https://github.com/mia-platform/glogger) received a minor update.
+The new versions feature an improved logging format for `time` property that now shows timestamps with millisecond precision.
+
+- `lc39` new version is `v3.3.0`
+- `glogger` new version is `v2.1.1`
+- `custom plugin lib` new version is `v2.3.0`
+
+### Core services
+
+The following services have been updated to use the latest versions of lc39, glogger and custom plugin lib:
+
+- Client Credentials
+- Authentication Service
+- Authorization Service
+- Auth0 Client
+- IP Geolocation Service
+- CMS Backend
+- CRUD Service
+- Microservice Gateway
+- Session Manager
+- Swagger Aggregator
+- v1Adapter
+- Flow Manager
+- User Service
+- Timer Service
+- MongoDB Reader
+- The following templates and examples of Mia-Platform [Marketplace](../marketplace/overview_marketplace.md):
+
+  - Node.js Custom Plugin with Mongo Example
+  - Slack Webhook Example
+  - Node.js Template
+  - Node.js HelloWorld Microservice Example
+
+### Bug Fix
+
+#### Environment variable creation
+
+In a microservice, it is now possible to create a new environment variable without the definition of its value. Also, it is possible to empty its value through inline edit. Check out Mia-Platform [documentation](../development_suite/api-console/api-design/services#environment-variable-configuration) to know how to configure Microservices environment variables.
+
+#### Geo indexes support for projection
+
+The possibility to create an index of type `geo` in the [Projections](../fast_data/create_projection#create-a-projection) has been removed, since such type is not supported.
+
+#### Gitlab Deploy token
+
+Fixed a bug affecting the generation of the Gitlab token that enables the Deploy. The bug could potentially cause the inability to Deploy in projects involving a high number of users performing numerous deployments.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.0`.
+
 ## v7.2.1
 
 _March 04, 2021_
