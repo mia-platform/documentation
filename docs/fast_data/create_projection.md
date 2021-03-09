@@ -273,6 +273,30 @@ Now that you have committed and pushed your custom adapter function you can set 
 }
 ```
 
+## Real-Time Updater replicas
+
+### What needs the replicas for
+
+Replicas ensures that a specified number of pod replicas are running at any given time. It is used to guarantee the availability of a specified number of identical Pods.
+
+### How to set replicas
+
+If you do not specify replicas, then it defaults to 1.
+
+To know how to set replicas for the Real-Time Updater, [read here](/docs/fast_data/advanced#real-time-updater-replicas).
+
+## Real-Time Updater CPU and Memory Requests and Limits
+
+Real-Time Updater has default settings for the CPU and memory requests and limits. These defaults are set at Console installation time.
+For Console PaaS, these are already set with values:
+
+- Memory Limit: 250Mi
+- Memory Request: 80Mi
+- CPU Limit: 100m
+- CPU Request: 20m
+
+To know the limits on your on-premise Console installation, please contact your Mia Platform referent.
+
 ## Technical limitation
 
 In your custom files (e.g. `kafka-adapters`) you can import only the node modules present in the following list:

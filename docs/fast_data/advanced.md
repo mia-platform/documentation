@@ -75,3 +75,30 @@ If you need tu customize these variables for some Systems of Record, you can do 
 :::warning
 You should not set write username and password as plain text in advanced files. Use always interpolation and set them in [Envs section](../development_suite/set-up-infrastructure/env-var).
 :::
+
+### Real-Time Updater replicas
+
+To change the number of replicas of the Real-Time Updater service, go to the `Advanced` section of the `Design` area in Console. Open `fast-data` from menu, click on the `projections.json` file and write a configuration such as the following:
+
+```json
+{
+    "systems": {
+        "my-system-id-1": {
+            "replicas": REPLICAS
+        }
+    }
+}
+```
+
+where `REPLICAS` is the number of replicas you want to set for the Real-Time Updater associated with the system `my-system-id-1`.   
+Example:
+
+```json
+{
+    "systems": {
+        "my-system-id-1": {
+            "replicas": 2
+        }
+    }
+}
+```
