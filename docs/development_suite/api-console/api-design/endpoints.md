@@ -80,7 +80,7 @@ The security can be managed at three levels:
     E.g:
 
       ```js
-        clientType=="apiKey" || clientType=="apiKey2"
+        clientType == "apiKey" || clientType == "apiKey2"
       ```
 
     :::info
@@ -113,7 +113,7 @@ The security can be managed at three levels:
     ["write:orders","view:orders"] in groups
     ```
 
-The group expression can also be set to `0` (**none**) or to `1` (**all**). You can combine different expressions using logical operators `&&` (and) and `||` (or).
+The group expression can also be set to `false` (to block all accesses to the API) or to `true` (to grant **all** accesses to the API). You can combine different expressions using logical operators `&&` (and) and `||` (or).
 
 If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
 Enable the flag `inherited` to use the displayed default expression or disable the flag to change it. However, you can't remove the checks on [isBackoffice](../../../runtime_suite/session-manager.md) property that ensures the expression will be considered only for calls will come from CMS.
@@ -171,7 +171,8 @@ In this section you can view all the path that can be called of a CRUD endpoint.
 If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific rules related to this route.
 
 :::tip
-For example, we can set that the `DELETE/` can only be reserved for a specific group of users (admin).
-We must therefore choose not to inherit global settings. Then we de-select inherited and in the input we write: groups.admin.
+For example, we can set that the `DELETE /` route can only be reserved for a specific group of users (admin).
+If it differes from the endpoint settings we must therefore choose not to inherit global settings; we can de-select inherited and in the input we write: `groups.admin`.
+
 ![route example](img/example-endpoints.png)
 :::
