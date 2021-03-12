@@ -228,10 +228,6 @@ Usually this is used by PRE/POST Orchestrator to manage concatenated request to 
 
 CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
 
-### Version Management
-
-Available in Mia-Platform v6.
-
 ### API Key
 
 If a CRUD is exposed under an [API Key](../../development_suite/api-console/api-design/api-key) you have to pass the key into the request header with the name `client-key`.
@@ -244,20 +240,6 @@ curl --request GET \
   --header 'accept: */*' \
   --header 'client-key: your-client-key'
 ```
-
-### CRUD ACL
-
-Available in Mia-Platform v6.
-
-#### Rows ACL
-
-Available in Mia-Platform v6.
-
-#### Columns ACL
-
-Available in Mia-Platform v6.
-
-------------------------------------------------------------
 
 ## CRUD Endpoints
 
