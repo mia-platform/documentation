@@ -5,7 +5,8 @@ const redirectPaths = {
   "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log": "/docs/development_suite/monitoring-dashboard/dev_ops_guide/log",
   "/docs/development_suite/api-console/api-design/endpoints": "/development_suite/api-console/api-design/esponi_api",
   "/docs/runtime_suite/ses-mail-notification-service/configuration": "/docs/runtime_suite/mail-notification",
-  "/docs/guidelines/git_vademecum": "/dev_ops_guide/git_vademecum/"
+  "/docs/guidelines/git_vademecum": "/dev_ops_guide/git_vademecum/",
+  "/docs/development_suite/api-console/api-design/services": "/docs/guidelines/communication_between_services_mp4"
 };
 
 const createRedirects = (path) => {
