@@ -3,11 +3,25 @@ id: crud_advanced
 title: Create CRUDs
 sidebar_label: Create CRUDs
 ---
-## Create a new CRUD
+## What is a CRUD?
+
+A CRUD is a service that allows you to interact with persistently stored data and modify it by using four main functions:
+
+* **Create**
+* **Read**
+* **Update**
+* **Delete**
+
+These functions combined define the acronym **CRUD** and are described in detail [here](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).  
+In this section, you will understand how to create and configure a CRUD without worrying about setting up any database on your own.
 
 :::info
 CRUDs created in the Console are handled and exposed to the services within your project by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md)
 :::
+
+To manage your CRUDs, Mia-Platform's Console offers a specific section, **MongoDB CRUD**, in the **Design** area of your project.
+
+## Create a new CRUD
 
 In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
@@ -18,10 +32,15 @@ In order to create a new CRUD, open the dedicated section, select **Create new C
 
 Once you have entered all required fields, press the **Create** button on the right and you will see your newly created CRUD.
 
-As soon as you push **Create** a new page, "books" in our example, is created and you can enter a short and optional description of your collection: default description will be “Collection of books”.
+As soon as you push **Create**, a new page ("books" in our example) is created and you can enter a short and optional description of your collection: default description will be “Collection of books”.
 
 In the section **Fields**, you can enter the properties of your collection.
-By default, there are fields that can not be changed, such as: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `_STATE_`.
+By default, there are fields that can not be changed, such as: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `_STATE_`.  
+These fields are internally required; you can use them to perform queries or to create [indexes](./crud_advanced#indexes).  
+
+:::info
+[Here](../../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) you can find a detailed description of the default fields.
+:::
 
 You can add new fields by selecting **Add new** and fill in the blank form with the value you need.
 
@@ -33,13 +52,18 @@ You can add the fields you need and select the appropriate properties:
 
 * **name** (we recommend using `camelCase` naming convention); in our case we will insert "title", "author", "year", "new", etc.
 * **type**:
-  * **string** if it is a classic text string
-  * **number** if it is a number
-  * **date** if it is a date. The date it must be a string **compliant with ISO-8601 standard** with the following format: *YYYY-MM-DDTHH:mm:ss.sssZ*
-  * **boolean** if it can only be `true` or `false`
+  * **String** if it is a classic text string
+  * **Number** if it is a number
+  * **Date** if it is a date. The date must be a string **compliant with ISO-8601 standard** with the following format: *YYYY-MM-DDTHH:mm:ss.sssZ*
+  * **Boolean** if it can only be `true` or `false`
   * **Geopoint** if you want to save a specific place coordinates
-  * **Array** if you want to save as an ordered set of properties
   * **Object** if you want to insert an object.
+  * **Array of** if you want to save as an ordered set of properties. Array items must be of the same type. Currently, accepted types are:
+    * **String**
+    * **Number**
+    * **Object**
+  * **ObjectId** if you want to save a unique reference to another CRUD that uses an objectId as primary key.
+
 * If you select **required** the property is mandatory.
 * If you select **nullable** you can make the value *null*.
 * In the **description** field you can enter a short optional description.
@@ -48,6 +72,19 @@ You can add the fields you need and select the appropriate properties:
 ### Create nested CRUDs
 
 Fields of type `Object` and `Array of Object` can be used to create nested CRUDs. You just need to add a field of type `Object` or `Array of Object` and click on the edit button to configure it through the lateral drawer: use the JSON Schema Editor to define its properties.
+
+`Object` and `Array of Object` support both a custom JSON Schema.  
+It can be used to specify the schema of the object for the former and the schema of each item of the array for the latter.
+
+The following options are supported:  
+
+* `properties`: must be a valid 'properties' field of a json schema of type *object*.
+* `required`: array of name properties that are required. It's the **required** field of a JSON schema of type *object*.
+* `additionalProperties`: boolean, `true` if the object can have additional properties.
+
+:::caution
+When configuring the JSON schema of a field of type `Object` you can also add the `type` option to the schema, but the only accepted value for this option is `object`.
+:::
 
 An example of a possible valid schema:
 
@@ -79,14 +116,42 @@ An example of a possible valid schema:
 }
 ```
 
+The schema specified in *properties* (for both of them) **cannot** have the following operators:
+
+* `oneOf`
+* `anyOf`
+* `allOf`
+* `if`
+* `$ref`
+
+The JSON Schema Editor validates the JSON schema that you provide as input and gives feedback if some errors are made.  
+In particular, it checks if your input follows JSON rules and if it is a valid json schema as defined before.  
+
+:::caution
+Adding the previously listed operators (like `oneOf`, for example) in the input schema will not make the validation fail.  
+Remember to avoid using them.
+:::
+
+You can also create nested CRUDs by importing a JSON file, check this [section](./crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json) to understand how.
+
 ### CRUD Service exposed routes
 
-The [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.
+The [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.  
+This is particularly helpful when you want one of your microservices to maintain a specific state and, to do so, you need to persistently store some data. Since this data has the only purpose of describing the state of your microservice, it is preferable to avoid exposing it to the outside world (it can also be confidential data, that you want to keep private).  
+Therefore, our CRUD Service will handle this situation for you, by making your microservices interact with your CRUDs internal routes without the need to define an external endpoint route that will unnecessarily expose your CRUD.
 
-If you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](./endpoints).
+Otherwise, if you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](./endpoints). By doing so, you will be able to view your CRUD API Documentation in Mia-Platform [API Portal](../../api-portal/api-documentations), where you can also interact with your CRUD and test the calls to it.
+
+:::info
+To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).
+:::
 
 Beyond the first route, automatically exposed when creating the CRUD, you can always **add new routes** and **modify existing ones**.
-When viewing CRUD detail information you can view all the internal routes associated with your CRUD and edit them.
+In each CRUD's detail page you can view all the internal routes associated with your CRUD and edit them.  
+The definition of multiple internal routes can be useful when you want to gather different documents based on their `__STATE__` property. For example, one internal route can gather all documents in `DRAFT` state, another one the ones in `PUBLIC` state.  
+:::info
+For an in depth description of the `__STATE__` field, follow this [link](../../../runtime_suite/crud-service/overview_and_usage#__state__-management).  
+:::
 In our case we will see the first internal endpoint with a **routh base path** equal to "/books". The _default state_ (used on document creation) is set to _DRAFT_ by default.
 
 ![internalendpoint](img/internalendpoint.PNG)
@@ -101,8 +166,7 @@ You can always change the default state of an existing route by simply clicking 
 
 ![default_state](img/default_state.png)
 
-
-You can delete a route but you must always leave at least one endpoint exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither your services in your project.
+You can delete a route but you must always leave at least one endpoint exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither the services in your project.
 
 ### How to create the fields of your CRUD by importing a JSON
 
@@ -123,15 +187,8 @@ Remember that the file must be a JSON with the following directions:
 * `required` must be `false` or `true`
 * `nullable` must be `false` or `true`
 
-`RawObject` and `Array_RawObject` support both a custom JSON Schema.  
-It can be used to specify the schema of the object for the former and the schema of each item of the array for the latter.
-
-To do it, add a property *schema* to the field.  
-The following options are supported:  
-
-- `properties`: must be a valid 'properties' field of a json schema of type *object*.
-- `required`: array of name properties that are required. It's the **required** field of a JSON schema of type *object*.
-- `additionalProperties`: boolean, `true` if the object can have additional properties.
+`RawObject` and `Array_RawObject` support both a custom JSON Schema that is explained [here](./crud_advanced#create-nested-cruds).  
+To correctly import it, add a property *schema* to the field that contains the custom JSON Schema.  
 
 This is an example of a field of type `RawObject` where is specified the schema object the properties of the object (*properties*), the required properties (`somethingNumber`) and if object could accept additional properties (in this example it is set to false):
 
@@ -202,17 +259,9 @@ The following is an example of `Array_RawObject` (*Array* of *RawObject*) with t
 Here, *schema* refers to the object of each item (which are of type `RawObject`). It's NOT the schema of the array itself.  
 So, each item of the array must follows the following rules:
 
-- *name* property must be a string ad it is required
-- *neastedArr* property must be an array of numbers
-- can have additional properties
-
-The schema specified in *properties* (for both of them) **cannot** have the following operators:
-
-- `oneOf`
-- `anyOf`
-- `allOf`
-- `if`
-- `$ref`
+* *name* property must be a string ad it is required
+* *neastedArr* property must be an array of numbers
+* additional properties are allowed
 
 Here's an example of the file to upload.
 
@@ -284,8 +333,8 @@ Here's an example of the file to upload.
     "required": ["fieldname1"],
     "additionalProperties": true
   },
-  "required":true,
-  "nullable":true,
+  "required": true,
+  "nullable": true,
   "description":"where to find the books"
 }
 ```
@@ -302,15 +351,21 @@ The collection **has not yet been saved** it is necessary to continue the proces
 
 ### Indexes
 
-You can configure the indexes, a data structure designed to improve search (query) data.
+You can configure the indexes, a data structure designed to improve search (query) data, by avoiding to scan every document inside of a collection.  
 
-After selecting a CRUD, to create a new index select **create new** in the "Indexes" section.
-Once you named the index you need to choose among: geo, hash or TTL. Then, you can choose whether to make the index unique by ticking "unique".
+After selecting a MongoDB CRUD, to create a new index select **Add index** in the "Indexes" section.
+
+Once you named your index, you can choose among 4 types:
+
+* **Normal**
+* **Geo**
+* **Hash**
+* **TTL**
+
+:::info
+If you want to know more about what indexes are, how you can use them and what type of index suits your needs, please consult the [crud service documentation](../../../runtime_suite/crud-service/overview_and_usage#indexes).
+:::
+
+You can also choose whether to make the index unique by ticking the correspondent checkbox.
 
 ![Indice](img/indexes.png)
-
-## CRUD API Documentation
-
-After the [deploy](../../deploy/deploy), you will find your CRUDs API Documentation available on the [API Portal](../../api-portal/api-documentations).
-
-To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).
