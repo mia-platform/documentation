@@ -82,7 +82,12 @@ CRUD by default comes with a set of common properties that simplify the data man
 - **createdAt**: Date, date and time when the document has been created
 - **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
 - **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
-- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
+- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.  
+
+The only editable field among the default ones is `_id` where you can change the property `type` and choose between:
+
+- `ObjectId` (default value): corresponds to [MongoDB objectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) that is the unique key to identify a document.
+- `String`: id of type string that follows UUID v4 format.
 
 #### Example of a Collection with only predefined Properties
 
@@ -106,7 +111,7 @@ curl --request GET \
 }
 ```
 
-#### ```__STATE___``` management
+#### ```__STATE__``` management
 
 **```__STATE__```** is a special field that allows the Mia-Platform CRUD Service to manage a simple publishing workflow. The ```__STATE__``` field can assume the following values:
 
@@ -188,13 +193,14 @@ Each property can defined as:
 
 ### Indexes
 
-A property can be indexed. In Console/Design/CRUD it can be configured the following indexes:
+Any CRUD field can be indexed. In Console/Design/MongoDB CRUD the following indexes can be configured:
 
-- **normal**: speedup the filter on that property and the sort (desc or asc)
-- **geo**: for geospatial search
-- **ttl**: is a special single-field indexes that CRUD can use to automatically remove documents from a collection after a certain amount of time
+- **Normal**: standard [MongoDB index](https://docs.mongodb.com/manual/indexes/) which can hold references to a single field or to multiple ones.
+- **Geo**: geospatial index that supports queries on a 2D plane. Follow this [link](https://docs.mongodb.com/manual/geospatial-queries/) to learn more about MongoDB geospatial queries.
+- **Hash**: hashed indexes use hashes of the value of a single field in order to distribute data across multiple machines, avoiding to overload a single machine. Visit MongoDB [documentation](https://docs.mongodb.com/manual/core/index-hashed/) to learn more about this type of indexes.
+- **TTL**: single field indexes whose purpose is to automatically remove documents from a collection after a specific amount of time. MongoDB TTL indexes are explained in detail [here](https://docs.mongodb.com/manual/core/index-ttl/).
 
-The index can be unique. If set the value of the property must be unique in the collection.
+For the indexes of type Normal, Geo and TTL, you can choose whether to make the index unique. A unique index ensures that all the indexed fields do not possess duplicated values. If set, the value of the indexed fields must be unique in the collection.  
 
 For the nested objects, it is possible to add an index using the dot notation to specify the indexed field.
 
@@ -674,30 +680,30 @@ You can update one or more documents in a collection. The operations of the upda
 
 In the body of the request you can use the following operators:
 
-* `$set`
+- `$set`
   This operator replaces the value of the field with specified value:  
   `{ $set: { <field1>: <value1>, ... } }`
 
-* `$unset`
+- `$unset`
   This operator unsets a particular item value:  
   `{ $unset: { <field1>: true, ... } }`
 
-* `$inc`
+- `$inc`
   This operator increments a field by a specified value:  
   `{ $inc: {<field1>: <amount1>, <field2>: <amount2>, ...} }`
 
-* `$mul`
+- `$mul`
   This operator multiply the value of a field by a specified number:  
   `{ $mul: { <field1>: <number1>, ... } }`
 
-* `$currentDate`
+- `$currentDate`
   This operator sets the value of a field to the current date:  
   `{ $currentDate: { <field1>: true, ... } }`
 :::note
 The field must be of type `Date`. The format of dates it's **ISO-8601**: YYYY-MM-DDTHH:mm:ss.sssZ
 :::
 
-* `$push`
+- `$push`
   This operator appends a specified value to an array field:  
   `{ $push: { <field1>: {<prop1>: <value1>, <prop2>: <value2>, ...}, ... } }`
 
@@ -734,7 +740,6 @@ curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aa
 If you want to update an [Array RawObject property](#rawobject-and-array_rawobject-with-schemas) using the [positional operators](https://docs.mongodb.com/manual/reference/operator/update/positional-all/) `.$.merge` and `.$.replace`, you have to specify the position of the element by filtering by property with the [_q query param](#filters-with-mongodb-query).  
 You have to filter the field by object/value. The value of the filter must be URL encoded. If the **filter matches multiple elements will be patched only the first occurrence**.
 
-
 The following example replace the element of the property `arrayOfAuthors` containing the value `{"name:"wrongName"}` with the object `{"name":"author correct name"}`. The not encoded `_q` is `arrayOfAuthors={"name":"wrongName"}`:
 
 ```curl
@@ -754,7 +759,7 @@ This is valid for **all types of Array field**, including arrays of numbers and 
 
 To update multiple documents you have two possibilities:
 
-* **Update multiple documents that match a query**  
+- **Update multiple documents that match a query**  
   In order to do this, you have to use a **PATCH** request, filtering by query params the documents you want to update.  
   You can filter by fields values, the [_q query param](#filters-with-mongodb-query) and [STATE](#predefined-collection-properties) using `_st` param.  
   In the body you have to pass a JSON with the desired set of operators with with the new values.
@@ -775,12 +780,12 @@ To update multiple documents you have two possibilities:
   }'
   ```
 
-* **Update multiple documents, each one with its own modifications**  
+- **Update multiple documents, each one with its own modifications**  
   In order to do this, you have to use a **PATCH** request with an array as the request body.
   Each element represents a document to update and it's an object with the following properties:
-  * `filter`
+  - `filter`
     Contains the filter conditions for select the document. As seen above you can filter by fields values, the [_q query param](#filters-with-mongodb-query) and `_st` param.
-  * `update`
+  - `update`
     Contains the update operators with the new values.
 
   The route to call is the following:
