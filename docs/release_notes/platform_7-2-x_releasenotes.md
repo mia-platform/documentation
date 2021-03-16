@@ -4,6 +4,61 @@ title: Version 7.2.x Release Notes
 sidebar_label: v7.2
 ---
 
+## v7.2.3
+
+_March 17, 2021_
+
+### Improvements
+
+#### Masked environment variables
+
+In the [Environments area](../development_suite/set-up-infrastructure/env-var) variables are now hidden by default. You can show them by clicking the button "Show variables value" in the card top-right corner.
+
+Additionally, the UI of the page has been revised:
+
+- The "Add new environment variable" button has been moved to the top-right corner
+- The Edit and Delete commands have been replaced by the dedicated icons
+
+![Masked Environment Variables](img/environment-variables.jpg)
+
+#### Public Variables drawer
+
+[Public Variables](../development_suite/api-console/api-design/public_variables) are now editable using the drawer UI with textareas to make it easier to edit large variables. Inline editing is still possible.
+
+![Public variables editing with drawer](img/public-variables-editing-with-drawer.gif)
+
+### Bug Fix
+
+#### MLP backslash escaping
+
+Fixed a bug affecting Mia-Platform pipelines that caused Environment variables with backslash character to be improperly escaped. To take advantage of the fix you need to use Mia-Platform pipelines v3.  
+Contact your Mia-Platform technical referent to update your pipelines.
+
+#### API Portal with proper log parser
+
+[API Portal](../development_suite/api-portal/api-documentations) is now configured to use proper `mia-nginx` log parser.
+
+#### Backoffice endpoint permission conversion
+
+It is now possible to set the [backoffice endpoint permissions](../development_suite/api-console/api-design/endpoints#manage-the-security-of-your-endpoints) to `0` avoiding the unintentional malfunctioning of the _Authorization Service_.
+The preferred way to write the logical expression in the endpoint permission is still to use `true` or `false` instead of `1` or `0`.  
+
+#### Validation on Fast Data Projections' name
+
+Validation on [Fast Data Projections](../fast_data/create_projection#create-a-projection)' name was missing for projections belonging to different [Systems of Record](../fast_data/create_projection#create-a-system-of-record). The creation of Fast Data Projections in different Systems of Record with the same name is now forbidden.
+
+### UI Improvements
+
+#### Browser tab title revision
+
+The browser tab title now shows the Console section and the project you are working on to speed up navigation across multiple tabs.  
+
+![New browser tab title](img/Tabs.jpg)
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.2`.
+
 ## v7.2.2
 
 _March 10, 2021_
