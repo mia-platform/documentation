@@ -10,13 +10,23 @@ To create a projection, you should create a System of Record. This is the data s
 
 The creation of the System of Record requires to insert a system ID, useful to recognize the system.
 
-### Projections Changes
+## Delete a System of Record
+
+To delete a System of Record, you have to click the Delete button at the bottom-right corner of the System of Record detail page.  
+The deletion is not allowed until you have at least one Projection inside the System, hence you need to delete all the projections in a System before being able to delete it.  
+
+## Projections Changes
 
 When a projection is updated, the Real-Time Updater changes a collection called, by default, `fast-data-projections-changes` inserting the information of the document updated.
 
 This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view.
 
 You can choose to use a collection you have already created in the CRUD section through advanced configuration. To do that, [read here](./advanced#projections-changes)
+
+:::note
+If you delete **all the Systems of Records**, the default *Projections Changes* collection will be deleted as well, because it is no more useful.  
+This will not happen if you have chosen to use your own custom Projections Changes collection through the [advanced](./advanced) section.
+:::
 
 ## Create a Projection
 
