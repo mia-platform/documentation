@@ -130,20 +130,32 @@ For each property you can configure different fields that allow you to improve t
 
 ![](img/GoToProperties.png)
 
-* **Interface Type**: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property. Interface types can be of different types:
+* **Interface Type**: Depending on the type of property defined in the collection, you can choose whether to improve the visibility of that property.  
 
-* *string* if it is a classic text string;
-* *number* if it is a number;
-* *datetime* is instead a complete date with hours, minutes and seconds;
-* *boolean* if it can only be true or false; *text* if we want the content to be read as html;
-* *Text* if you wanna write a description with heading, bold, italic and many other features. You will save it as a HTML text.
-* *textArea* if it is a text field, for example a description, but you dont'wanna make any particular configuration on it and you save it as a string plane;
-* *Lookup* are used to select some values or between a range of values chosen by me or between a range of values taken from another collection. If you are interested in the theme of the Lookups below you will find a dedicated section;
-* *Multilookup* if you want to select multiple values;
-* *Array* if you want to save it as an ordered set of properties;
-* *Object* is a set of properties not ordered;
-* *Geopoint* if you want me to save a specific place;
-* *Files* if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
+  Interface types can be of different types:
+
+  * *String*: if it is a classic text string;
+  * *Number*: if it is a number;
+  * *Date*: if it is a date;
+  * *Date Time*: is instead a complete date with hours, minutes and seconds;
+  * *Boolean*: if it can only be true or false; *text* if we want the content to be read as html;
+  * *Text*: if you wanna write a description with heading, bold, italic and many other features. You will save it as a HTML text.
+  * *Text Area*: if it is a text field, for example a description, but you dont'wanna make any particular configuration on it and you save it as a string plane;
+  * *Lookup*: are used to select some values or between a range of values chosen by me or between a range of values taken from another collection. If you are interested in the theme of the Lookups below you will find a dedicated section;
+  * *Multilookup*: if you want to select multiple values;
+  * *Array*: if you want to save it as an ordered set of properties;
+  * *Object* :is a set of properties not ordered;
+  * *Geopoint*: if you want me to save a specific place;
+  * *Files*: if it is a file such as an image or a pdf. In our case we will choose string simply wanting to write the name of the title.
+
+
+:::info
+  `Date` and `Date Time` allow you to set a `Date format` to decide what information will be displayed. Some possible formats are: `dd/MM/yyyy`, `dd/MM/yyyy HH:mm`.  
+  (for more details click [here](https://code.angularjs.org/1.6.1/docs/api/ng/filter/date))
+
+  In case you decide to show the Hours, the time will be converted to the timezone used by your device system.
+:::
+
 
 * **Label**: is the name you want to be displayed in the CMS.
 
