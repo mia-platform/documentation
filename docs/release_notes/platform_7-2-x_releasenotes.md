@@ -27,6 +27,10 @@ Additionally, the UI of the page has been revised:
 
 ![Public variables editing with drawer](img/public-variables-editing-with-drawer.gif)
 
+#### Delete System of Record
+
+[Systems of Record](../fast_data/create_projection#delete-a-system-of-record) can now be deleted when they have no projections. To do that, just click on the Delete button at the bottom-right corner of the System of Record detail page. If you delete **all the Systems of Records**, the default [Projections Changes](../fast_data/create_projection#projections-changes) collection will be deleted as well, because it is no more useful.  
+
 ### Bug Fix
 
 #### MLP backslash escaping
