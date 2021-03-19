@@ -71,6 +71,10 @@ Once you click to `Create field` button, a form is prompted where you should ins
 * `Primary Key`: set the field as part of the primary key, default to false.
 
 :::caution
+Setting the Primary Keys does **not** create automatically the unique indexes. You need to create them by yourself.
+:::
+
+:::caution
 When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `Crud Service`) is set to `DELETED`.
 :::
 
