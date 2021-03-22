@@ -23,7 +23,7 @@ The steps to follow are the following:
 
 So imagine that you have to create a new collection that contains the books of a library. To do this, let's see which steps need to be done:
 
-1. To create a new CRUD, select **CRUD** from the menu on the left of the API and select **Create new CRUD**.
+1. To create a new CRUD, select **MongoDB CRUD** from the menu on the left of the API and select **Create new CRUD**.
 
 2. First, you need to enter the name of the CRUD in camelCase, in this case we will insert "books". Then you will need to enter an **internal endpoint** that exposes your CRUD internally and its **default state** than could be **DRAFT** or **PUBLIC**. The default values in the console will be a path equal to /endpointname and default state equal to draft.
 Default fields will appear that can not be changed: *_id*, *creatorId*, *createdAt*, *updaterId*, *updatedAt*, *_STATE_*.
@@ -56,26 +56,32 @@ At this point you will need to add an endpoint to your newly created book CRUD.
 
 To create an endpoint:
 
-1. Select **Endpoints** and then **Create a new Endpoint**. You can configure the following properties:
+1. Select **Endpoints** and then **Create new endpoint**. You can configure the following properties:
 
-    - **Basepath**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or ip) that supplies the endpoint. In our case, for example, we could insert */books*.
+    * **Basepath**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or ip) that supplies the endpoint. In our case, for example, we could insert */books*.
 
-    - **Type**: The endpoint can be of different types:
+    * **Type**: The endpoint can be of different types:
 
-        * *CRUD*: hook your endpoint directly to one of your CRUD.
-        * *Microservice*: hook your endpoint to a service with logics entirely created by you.
-        * *Mia-Platform BaaS*: hook your endpoint to some specific Mia-Platform services.
-        * *External proxy*: hook your endpoint to a proxy linked to a service outside of your cluster.
-        * *Cross Projects proxy*:  hook your endpoint to a proxy linked to another project contained in your cluster.
+        * **CRUD**: hook your endpoint directly to one of your CRUD.
+        * **Microservice**: hook your endpoint to a service with logics entirely created by you.
+        * **Mia-Platform BaaS**: hook your endpoint to some specific Mia-Platform services.
+        * **External proxy** _Deprecated_: hook your endpoint to a proxy linked to a service outside of your cluster.
+        * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
+        * **Fast Data Projection**: hook your endpoint to the service which expose the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
 
-2. In this case, we will create a CRUD endpoint to which we will link our CRUD just created. Then, as CRUD select the CRUD of which the endpoint is part. In our case *books*.
-Once you have selected your CRUD, you will need to select one of the existing routes associated with your CRUD. You can find more information on CRUD and how to create a route in the [CRUD](../development_suite/api-console/api-design/crud_advanced.md) or [endpoint](../development_suite/api-console/api-design/endpoints.md) documentation. You can also set an optional description.
+2. In this case, we will create a CRUD type endpoint to which we will link our newly created CRUD.  
+Endpoints of type CRUD require also to specify the CRUD Base Path which will be the **internal endpoint** that you previously defined during your new CRUD creation. You can also set an optional description.
 
-The configuration should be like this:
+:::info
+You can find more information on CRUDs and how to create an endpoint in the [CRUD](../development_suite/api-console/api-design/crud_advanced.md) and [endpoint](../development_suite/api-console/api-design/endpoints.md) documentation.
+:::
+
+Your configuration should be like this one:
 
 ![create-new-endpoint](img/qs-create-endpoint-1.png)
 
-3. Then select *Create*.
+3. Then select *Create*.  
+
 At this point we have created our endpoint!
 
 ## Configure the endpoint
