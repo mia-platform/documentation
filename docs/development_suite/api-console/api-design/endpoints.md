@@ -8,11 +8,11 @@ sidebar_label: Create Endpoints
 
 An endpoint allows you to expose your CRUD, Services and proxies. To rapidly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](../../../getting_started/quick_rest_api.md).
 
-This page will delve into the endpoint types and configuration.
+This page will delve into the endpoint types and configuration and will describe all the functionalities that you can find in the section **Endpoints** of the **Design** area of [Mia-Platform Console](../../overview-dev-suite).
 
 An endpoint can be of different types:
 
-* **CRUD**: hook your endpoint directly to one of your CRUD.
+* **CRUD**: hook your endpoint directly to one of your CRUDs.
 * **Microservice**: hook your endpoint to a service with logics entirely created by you.
 * **External proxy**: hook your endpoint to a proxy linked to a service outside of your cluster.
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
@@ -20,7 +20,7 @@ An endpoint can be of different types:
 * **Fast Data Projection**: hook your endpoint to the service which expose the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
 
 :::warning
-The type is selectable only during the creation phase. You can't change later.
+The type is selectable only during the creation phase. You can't change it later.
 :::
 
 ## Basic endpoint properties
@@ -42,11 +42,12 @@ You can find more info about how to create an internal endpoint in the [CRUD doc
 
 These endpoint types all share the microservice property that allows you to link the endpoint to a specific microservice (or proxy) configured in your project.
 
-After you created an endpoint linked to a microservice you'll be able to edit the _Rewrite Base Path_ this path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
+After you created an endpoint linked to a microservice you'll be able to edit the _Rewrite Base Path_. This path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
 
 ### Fast Data Projection
 
-This endpoint type link the endpoint to a microservice which expose the projection API. This APIs are read only, because it is not possible to modify a projection without passing from Kafka.
+This endpoint type exposes a microservice which is linked to the projection API.  
+These APIs are read only, because it is not possible to modify a projection without passing from Kafka.
 
 ## About Rewrite Base Path
 
@@ -54,9 +55,8 @@ The developer can decide which basepath is associated to an endpoint by applying
 
 When a call enters the platform it undergoes a rewrite by the API Gateway or the Microservice Gateway and arrives at the service with a different path.
 
-So for example in the case mentioned above when the API gateway enters the platform to call `/test-service-1` will call it with `/`
-
-From this section, you can configure his own custom rewrite and, if necessary, view the default platform.
+For example, you can create an endpoint hooked to a microservice with a basepath like `/hello-service` and set as Rewrite Base Path something like `/customers`.  
+In this way, the API Gateway (or the Microservice Gateway) will rewrite any call to `/hello-service` into `/hello-service/customers` and send it to the hooked service.
 
 :::warning
 For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal Rewrite is / by default.
@@ -64,18 +64,16 @@ For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal
 
 ## Manage the security of your endpoints
 
-In the Management section, you can manage the security and the permissions at the endpoint level.
-
-You can configure permissions and security settings of the endpoint.
+In the **Security Management** section, you can manage the security and the permissions at the endpoint level.
 
 The security can be managed at three levels:
 
-1. The `Public` flag enabled allows to call endpoint **without the need to be logged in**. If it's disabled and the endpoint is invoked by an **unregistered user**, the request will receive an Unauthorized error.
+1. The `Public` flag enabled allows to call endpoint **without the need to be logged in**. If it is disabled and the endpoint is invoked by an **unregistered user**, the request will receive an Unauthorized error.
 2. The `Only with an API Key` flag configures the endpoint to require setting the `secret`/`client-key` header with a valid [API Key](api_key.md). You can also set a `mia_client_key` cookie with the value of the API Key.
 :::tip Example of request passing an API Key
-`curl --request GET --url <https://your-url/endpoint> --header 'accept: application/json' --header 'secret: <Api Key value'`
+`curl --request GET --url <https://your-url/endpoint> --header 'accept: application/json' --header 'secret: <Api Key value>'`
 :::
-1. `User Group Permission` allows defining a logical expression for authorizing or not the call. If the expression validates to **true**, then the user can access the route. You can use the following properties:
+3. `User Group Permission` allows defining a logical expression for authorizing or not the call. If the expression validates to **true**, then the user can access the route. You can use the following properties:
    * `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the only selected clients, identified by the API Key passed in the `secret` or `client_secret` headers.
     E.g:
 
@@ -113,24 +111,36 @@ The security can be managed at three levels:
     ["write:orders","view:orders"] in groups
     ```
 
-The group expression can also be set to `false` (to block all accesses to the API) or to `true` (to grant **all** accesses to the API). You can combine different expressions using logical operators `&&` (and) and `||` (or).
+The group expression can also be set to `false` (to block all accesses to the API) or to `true` (to grant **all** accesses to the API). You can combine different expressions using logical operators `&&` (and) and `||` (or).  
+
+For example, create an endpoint with the following security configuration:
+
+* **Public** flag set to `true`.
+* **Only with API Key** flag set to `false`.
+* **User Group Permission** field set with the following expression: `groups.foo || clientType=="bar"`.
+
+With this configuration, calls to this endpoint will have a different outcome depending on the credentials the user provides/has. Here is a list of possible outcomes:
+
+* An unregistered user tries to contact your endpoint without providing any API key: the user receives an unauthorized error because the **User Group Permission** condition is falsy.
+* An authenticated user with authorization group `foo` calls your endpoint without providing any API key: the call is successful since the first condition of **User Group Permission** is truthy and the API Key is not required.
+* An unregistered user tries to contact your endpoint and provides the correct API Key value for the clientType `bar`: the call is successful since the second condition of **User Group Permission** is truthy, and endpoint is open to not authenticated calls.
 
 If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
-Enable the flag `inherited` to use the displayed default expression or disable the flag to change it. However, you can't remove the checks on [isBackoffice](../../../runtime_suite/session-manager.md) property that ensures the expression will be considered only for calls will come from CMS.
+Enable the flag `inherited` to use the displayed default expression or disable the flag to change it. However, you can't remove the checks on [isBackoffice](../../../runtime_suite/session-manager.md) property that ensures the expression will be considered only for calls coming from the CMS.
 
 ![endpoint_security](img/qs-configure-endpoint-api-key.png)
 
 :::tip
-If you figure out that there's some problem in how you configured the security of your endpoints, go to [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of [Authorization Service](../../../runtime_suite/authorization-service/how_to_use.md). Here you can see the logs about authorization operations, included eventually group expression errors.
+If you figure out that there is some problem in how you configured the security of your endpoints, go to [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of [Authorization Service](../../../runtime_suite/authorization-service/how_to_use.md). Here you can see the logs about authorization operations, included eventually group expression errors.
 :::
 
 :::tip Api Key
-Check out the [API Key section](api_key.md) to know more about the API Keys
+Check out the [API Key section](api_key.md) to know more about the API Keys.
 :::
 
 ## Manage the visibility of your endpoints
 
-In the Management section, you can manage the endpoint visibility in the [API Portal](../../api-portal/api-documentations.md).
+In the **Security Management** section, you can also manage the endpoint visibility in the API Portal.
 
 The `Show in API Portal` flag enabled allows seeing all endpoint routes in the [API Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
 
@@ -146,33 +156,74 @@ It is important to notice that changing the visibility of an endpoint or a route
 
 ## Transition through Microservice Gateway
 
-Thanks to this feature, you can define, in each endpoint, which route is going to pass through Microservice Gateway.
+Thanks to this feature, you can define, in all endpoints of type **CRUD** or **Microservice**, which route is going to pass through Microservice Gateway.  
 
-To handle the transition from Microservice Gateway, you can use, in the section Endpoints of the area Design, the Microservice Gateway configuration card, which also includes two JSON checkboxes (request and response).
+In the **Configure microservice gateway** section you can manage the transition through the Microservice Gateway for all requests to the endpoint you are customizing.  
 
-This card is equipped with a flag that, if you are enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
+This card is equipped with a flag that, if enabled, allows to force the endpoint that you are editing to pass through the Microservice Gateway:
 
 ![Microservice_Gateway](img/Microservice_Gateway.png)
 
-The Microservice Gateway service performs some checks on the content-type header:
+For endpoints of type **Microservice**, this section includes also two flags related to the format of the request/response.  
+In particular, the Microservice Gateway service performs some checks on the **content-type** header:
 
-* **Request**: If your endpoint uses content-type: *application/json* in requests, check "Support only JSON format" on request, otherwise uncheck it. If this is unchecked, you won't be able to access the request body from decorators, if set.
+* **Request**: If your endpoint uses content-type: *application/json* in requests, enable "Support only JSON format on request" flag. If this flag is disabled, you won't be able to access the request body from decorators, if set.
 
-* **Response**: If your endpoint uses content-type: *application/json* in response, check "Support only JSON format" on response, otherwise uncheck it. If this is unchecked, you won't be able to access the response body from the POST decorators, if set.
+* **Response**: If your endpoint uses content-type: *application/json* in responses, check "Support only JSON format on response" flag. If this flag is disabled, you won't be able to access the response body from the POST decorators, if set.
 
 :::warning
 If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
 :::
 
+:::caution
+
+* Due to an issue with microservice-gateway, content-type: `application/x-www-form-urlencoded` is converted to JSON.
+* Due to another issue with microservice-gateway, if binary data (e.g. PDF file) passes through this service it could be wrongly encoded, resulting in corrupted files.
+
+:::
+
 ## Routes
 
-In this section you can view all the path that can be called of a CRUD endpoint. By selecting the different verbs in the management section it is possible to further detail on who has the permissions to do certain actions.
+In this section you can create and manage all the routes that can be called from your endpoint in order to have a more granular control over them.  
+Endpoints of type **CRUD** and **Fast Data Projection** have a specific set of routes and it is not possible to create new ones, but you can still manage the configuration of each of them.  
+For all other endpoint types, you can create a new route by clicking the `Add new Route` button. You should then specify the **http verb** the **path** of the new route.  
+Regarding the http verb, you can choose among the following:
 
-If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific rules related to this route.
+* **GET**
+* **POST**
+* **PUT**
+* **PATCH**
+* **DELETE**
+
+![route creation](img/create-route.png)
+
+Once you have created all the routes that you need, you can start configuring them and even decide a different behaviour for each one.  
+By selecting one verb in the sidebar of this section it is possible to see a detailed view about the configuration of the selected route.  
+Here, it is possible to set or unset all the flags described in the other sections, but with a deeper granularity. In fact, while in the sections described before you were configuring your endpoint, in this section you are managing one specific route verb of your endpoint.  
+For example, if in the **Security Management** section, you have checked the **Public** flag of a **Microservice** type endpoint with basepath `/test` it means that **all** routes that start with `/test` will be **Public** too.  
+Instead if, in the same endpoint page, you uncheck the **Public** flag in the **Routes** section for the route `/management` with verb `DELETE` you will only change the behaviour of that specific route with that specific verb.  
+Here we list some example routes and their behaviour with the configuration explained above:
+
+* GET '/test': **Public** is `true`.
+* GET '/test/management': **Public** is `true`.
+* GET '/test/customers': **Public** is `true`.
+* DELETE '/test/management': **Public** is `false`.
+* DELETE '/test/management/sales': **Public** is `true`.
+
+This feature is really helpful when you have to define a custom behavior for one of your routes that differs from the default one that you defined at endpoint level.
+
+If **inherited** flag is enabled the field will inherit the behavior from its endpoint.  
+By unchecking it, you can set specific rules for the selected route.
 
 :::tip
 For example, we can set that the `DELETE /` route can only be reserved for a specific group of users (admin).
-If it differes from the endpoint settings we must therefore choose not to inherit global settings; we can de-select inherited and in the input we write: `groups.admin`.
+If it differes from the endpoint settings we must choose not to inherit global settings; we can uncheck the "inherited" flag and, in the input field, we are now able to write: `groups.admin`.
 
 ![route example](img/example-endpoints.png)
+:::
+
+For endpoints of type **CRUD**, **Microservice** and **Fast Data Projection** it is also possible to link decorators to the selected route verb.  
+
+:::info
+For a detailed description on how to link a decorator to a route visit this [link](./decorators.md#link-a-decorator-to-a-route).
 :::
