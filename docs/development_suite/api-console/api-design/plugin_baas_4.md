@@ -120,7 +120,7 @@ whose arguments are, in order
 * `path` - the route path (e.g.,`/status /alive`)
 * [`handler`](#handlers) - function that contains the actual behavior. It must respect the same interface defined in the
 documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
-* [`schema`](#scheme-and-documentation-of-a-route) - definition of the request and response data schema.
+* [`schema`](#route-diagram-and-documentation) - definition of the request and response data schema.
 The format is the one accepted by [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization)
 
 #### Example
