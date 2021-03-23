@@ -32,6 +32,10 @@ The Console Helm Chart has been updated to correctly synchronize all the propert
 
 The pop-over to create a new [Public Variable](../development_suite/api-console/api-design/public_variables) offers now a textarea field for every environment, to simplify the creation of variables with large values in projects with numerous environments.
 
+#### OpenShift support for HPA and Log Parser
+
+Configuration generated for OpenShift clusters now completely supports [HPA (Horizontal Pod Autoscaler)](../development_suite/api-console/api-design/replicas#what-needs-the-replicas-for) and Mia-Platform [standard log parser annotations](../development_suite/api-console/api-design/services#microservice-configuration).
+
 ### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.5`.
