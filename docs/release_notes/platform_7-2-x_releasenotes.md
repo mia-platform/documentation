@@ -22,7 +22,7 @@ Before deploying, the warning message regarding [secrets](../development_suite/a
 
 When configuring a [microservice environment variable](../development_suite/api-console/api-design/services#environment-variable-configuration), opening the lateral drawer and saving without making any edit was causing the application to fail. The bug has now been fixed.
 
-#### Marketplace sync 
+#### Marketplace sync
 
 The Console Helm Chart has been updated to correctly synchronize all the properties of the microservices in the Marketplace when updating Mia-Platform Console in On Premise installations.
 
@@ -34,7 +34,7 @@ The pop-over to create a new [Public Variable](../development_suite/api-console/
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.4`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.5`.
 
 ## v7.2.3
 
