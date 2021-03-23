@@ -4,6 +4,38 @@ title: Version 7.2.x Release Notes
 sidebar_label: v7.2
 ---
 
+## v7.2.4
+
+_March 24, 2021_
+
+### Bug Fix
+
+#### Delete last public variables
+
+Resolved bug that prevented to delete all the [public variables](../development_suite/api-console/api-design/public_variables). Now the deletion of the last public variable works properly.
+
+#### Warning for missing secret for environment variables
+
+Before deploying, the warning message regarding [secrets](../development_suite/api-console/api-design/services#secrets) not found on cluster was not correctly signaling the absence of secrets when they had been added as source of a [microservice environment variable](../development_suite/api-console/api-design/services#environment-variable-configuration) value.
+
+#### Microservice enviroment variable edit through drawer
+
+When configuring a [microservice environment variable](../development_suite/api-console/api-design/services#environment-variable-configuration), opening the lateral drawer and saving without making any edit was causing the application to fail. The bug has now been fixed.
+
+#### Marketplace sync 
+
+The Console Helm Chart has been updated to correctly synchronize all the properties of the microservices in the Marketplace when updating Mia-Platform Console in On Premise installations.
+
+### Improvements
+
+#### Textarea for every environment in Public Variable creation popover
+
+The pop-over to create a new [Public Variable](../development_suite/api-console/api-design/public_variables) offers now a textarea field for every environment, to simplify the creation of variables with large values in projects with numerous environments.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.4`.
+
 ## v7.2.3
 
 _March 17, 2021_
