@@ -2,6 +2,7 @@
 id: v7.2.x
 title: Version 7.2.x Release Notes
 sidebar_label: v7.2
+image: "https://next.docs.mia-platform.eu/img/release-note-link-preview.png",
 ---
 
 ## v7.2.4
