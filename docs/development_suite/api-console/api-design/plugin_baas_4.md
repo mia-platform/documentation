@@ -497,6 +497,16 @@ const schema = {
     },
     required: ['x-foo']
   }
+
+  response: {
+    200: {
+      type: 'object',
+      properties: {
+        responseKey: { type: 'string' },
+        otherResponseKey: { type: 'number' }
+      }
+    }
+  },
 }
 ```
 
