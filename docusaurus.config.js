@@ -10,7 +10,7 @@ const config = {
   organizationName: "Mia-Platform", // Usually your GitHub org/user name.
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
-    image: "https://next.docs.mia-platform.eu/img/documentazione-link-preview.png",
+    image: "https://next.docs.mia-platform.eu/img/documentation-link-preview.png",
     algolia: {
       placeholder: "Search for terms, features and more...",
       apiKey: "602a752c6342891e2488bea38b0d9292",
