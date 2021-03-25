@@ -2,7 +2,7 @@
 id: release_notes
 title: Mia-Platform release notes
 sidebar_label: Mia-Platform release notes
-image: "https://next.docs.mia-platform.eu/img/release-note-link-preview.png",
+image: "https://next.docs.mia-platform.eu/img/release-note-link-preview.png"
 ---
 | Release | Release notes                                       |
 | ------- | --------------------------------------------------- |
