@@ -5,6 +5,24 @@ sidebar_label: v7.2
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.2.5
+
+_March 25, 2021_
+
+### Bug Fix
+
+#### Compare table in the Deploy area
+
+Resolved a bug preventing the Compare table to be displayed in the Deploy area in projects with advanced services.
+
+#### Public Variables always treated as strings
+
+Public Variables are now ensured to always be treated as strings to prevent interpolation issues on configuration files.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.5.6`.
+
 ## v7.2.4
 
 _March 24, 2021_
