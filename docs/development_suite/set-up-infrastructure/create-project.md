@@ -121,14 +121,31 @@ More in detail, to compile the tenant, you have to use the following guide:
   * **basePath**: base path where will be created the project. The user needs to have permission for creating projects on this path.
   * **visibility**: visibility that will have the project.
 
-Note: If gitProvider is `github`, the `basePath` have to be an existing organization. If it does not exist, it will not be created.
+:::caution
+If gitProvider is `github`, the `basePath` have to be an existing organization. If it does not exist, it will not be created.
 If gitProvider is `gitlab`, the basePath is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
 
 e.g.:
 
-- /groupA/groupB -> if groupB does not exist AND user have permission to create group in groupA, then it will be created groupB.
-- /groupA/groupB -> if groupB does not exist AND user have no permission to create group in A, then it will NOT be created groupB.
-- /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
+* /groupA/groupB -> if groupB does not exist AND user have permission to create group in groupA, then it will be created groupB.
+* /groupA/groupB -> if groupB does not exist AND user have no permission to create group in A, then it will NOT be created groupB.
+* /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
+:::
+
+* `dockerImageNameSuggestion`: object that defines the docker image name suggestion that will be passed to every project created in your tenant. This suggestion will appear when you [create a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template) in the `Docker Image Name` field.  
+The object should have the following properties:
+
+  * **type** (*required*): string that defines the type of suggestion, currently three types exist:
+
+    * `PROJECT_ID` (*default*): the suggestion for the Docker image name will be in the following format: `<project-id>/<your-service-name>`. This is the default behaviour, even without setting this property the suggestion will follow this format. You must **not** set `prefix` property if you have chosen this type.
+    * `REPOSITORY`: the suggestion for the Docker image name will be in the following format: `<your-group-name>/<your-repo-name>`. You must **not** set `prefix` property if you have chosen this type.
+    * `CONSTANT_PREFIX`: the suggestion for the Docker image name will be in the following format: `<prefix-value>/<your-service-name>`. `prefix` property is required for this type and will replace `prefix-value`.  
+
+  * **prefix**: string that defines the prefix that will appear in the suggestion for the Docker image name. This property must be defined only when **type** property value is `CONSTANT_PREFIX`.  
+
+:::info
+`<your-service-name>`, `<your-group-name>`, `<your-repo-name>`, are field values that you will decide during the [creation of a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template). Some of these values must be defined in order to receive a suggestion for the Docker image name (depending on the suggestion **type**).
+:::
 
 ## Create a template
 
@@ -302,7 +319,7 @@ In this step, an overview of the configuration of your project environments is p
 
 ![create-project3](img/create-project3.png)
 
-**A note about Project Metrics**
+#### A note about Project Metrics
 
 When the production environment is defined for a project a preview of its **Kubernetes Metrics** will be rendered inside the related card in the Home Page. These metrics will show the following information:
 
@@ -344,14 +361,14 @@ At the end of project creation, you have to commit and deploy your new project t
 
 In order to improve the governance of your projects, you may want to add additional details such as :
 
-- `technologies`: the list of technologies used in the project codebase
-- `projectOwner` and `teamContact`: the name and contact of the project owner
-- `color`: a custom color that can be used as an additional categorization, especially if a label has been already defined (e.g you may decide within your organization that all projects flagged with a *gateway* are associated with the same color).
+* `technologies`: the list of technologies used in the project codebase
+* `projectOwner` and `teamContact`: the name and contact of the project owner
+* `color`: a custom color that can be used as an additional categorization, especially if a label has been already defined (e.g you may decide within your organization that all projects flagged with a *gateway* are associated with the same color).
 
-- `layerId`: a label which identifies a logical layer and can help to categorize projects in custom groups (e.g: *gateway* or *data-lake* are some samples of logical layer names that can be applied to a project).
+* `layerId`: a label which identifies a logical layer and can help to categorize projects in custom groups (e.g: *gateway* or *data-lake* are some samples of logical layer names that can be applied to a project).
 The `layerId` must be equal to one of the layers names inside the `logicalScopeLayers` property of the related **tenant** object . When the layer is found in the tenant, then the project model is enriched with the `logicalScopeLayers` property according to the values found.
 
-- `logicalScopeLayers`: an array of objects shaped as follows:
+* `logicalScopeLayers`: an array of objects shaped as follows:
   * **name** : identifies the name of the logical layer
   * **order** : identifies the numerical order of the layer in order to display it according to the sorting defined by the user.
 
@@ -391,19 +408,19 @@ To add extra info about `projectOwner`, `teamContact` and `technologies` for a s
 }
 ```
 
-**Project Custom Color (color)**
+#### Project Custom Color (color)
 
 To edit the custom `color` associated to a project, just change the value in the *Project Color* field:
 
 ![color-project-cms](img/color-project-cms.png)
 
-**Project Layer Identifier (layerId)**
+#### Project Layer Identifier (layerId)
 
 If the project has a `tenantId` that includes a definition for its `logicalScopeLayers`, then the *Layer Identifier* field can be defined by simply specifying a layer name that exists in the related `logicalScopeLayers`:
 
 ![layerId-project-cms](img/layerId-project-cms.png)
 
-**Project Logical scope layer (logicalScopeLayers)**
+#### Project Logical scope layer (logicalScopeLayers)
 
 Alternatively to the above step, if the project isn't under a `tenantId`, then a `logicalScopeLayers` can be defined directly by editing the *Logical Scope Layer* field:
 
@@ -411,7 +428,7 @@ Alternatively to the above step, if the project isn't under a `tenantId`, then a
 
 At the end of the configuration, on the backend side, the project will have the following data structure:
 
-**Sample of project data structure with tenantId**
+#### Sample of project data structure with tenantId
 
 ```json
 {
@@ -431,7 +448,7 @@ At the end of the configuration, on the backend side, the project will have the 
   }
 ```
 
-**Sample of project data structure without tenantId**
+#### Sample of project data structure without tenantId
 
 ```json
 {
