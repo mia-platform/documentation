@@ -10,6 +10,10 @@ If you need it, you can customize some configuration of the services used by Fas
 
 You can choose to use a collection you have already created in the CRUD section through advanced configuration.  
 
+:::caution
+The custom collection will be used as Projections Changes collection **by all the System of Records**.
+:::
+
 In order to do that, your collection is supposed to have the following fields (apart from the default ones):
 
 ```json
