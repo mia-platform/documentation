@@ -17,14 +17,16 @@ The deletion is not allowed until you have at least one Projection inside the Sy
 
 ## Projections Changes
 
-When a projection is updated, the Real-Time Updater changes a collection called, by default, `fast-data-projections-changes` inserting the information of the document updated.
+When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information of the document updated.
+
+It's created one Projections Changes collection for each System of Records as default.
 
 This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view.
 
-You can choose to use a collection you have already created in the CRUD section through advanced configuration. To do that, [read here](./advanced#projections-changes)
+You can choose to use a collection you have already created in the CRUD section through advanced configuration. To do that, [read here](./advanced#projections-changes).
 
 :::note
-If you delete **all the Systems of Records**, the default *Projections Changes* collection will be deleted as well, because it is no more useful.  
+When you delete a Systems of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.  
 This will not happen if you have chosen to use your own custom Projections Changes collection through the [advanced](./advanced) section.
 :::
 
