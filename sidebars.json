@@ -97,6 +97,10 @@
         {
           "type": "doc",
           "id": "development_suite/api-console/api-design/public_variables"
+        },
+        {
+          "type": "doc",
+          "id": "development_suite/api-console/api-design/miacraft"
         }
       ]
     },
