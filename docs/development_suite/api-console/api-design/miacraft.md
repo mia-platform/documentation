@@ -45,7 +45,7 @@ The arrows created between the microservices can be deleted via the context menu
 ![Mia-Craft eliminate-arrow](img/eliminate-arrow.gif)
 
 :::note 
-If present, the connection between the API Gateway and the Client cannot be removed
+If present, the connection between the API Gateway and the Client cannot be removed. The same rule is applied for the connection between API Gateway and CMS Site.
 :::
 
 ### Save the visualization created
