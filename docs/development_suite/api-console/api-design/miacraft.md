@@ -17,12 +17,12 @@ All the icons shown correspond to a specific type of microservice except for the
 
 | Icon      | Description |
 | :-----------: | ----------- |
-| ![Mia-Craft cmssite-icon](img/cmssite-icon.png)      | CMS  Site     |
-| ![Mia-Craft apigateway-icon](img/apigateway-icon.PNG)      |  API Gateway       |
-| ![Mia-Craft crud-icon](img/crud-icon.png)    | CRUD       |
-| ![Mia-Craft service-icon](img/service-icon.png)     | Microservices which type is “core”       |
-| ![Mia-Craft custom-service-icon](img/custom-service-icon.png)     |  Microservices which type is “custom”       |
-| ![Mia-Craft client-icon](img/client-icon.png)     |  Client       |
+| ![Mia-Craft client-icon](img/client-icon.png)|Client|
+| ![Mia-Craft apigateway-icon](img/apigateway-icon.PNG)|[API Gateway](../../../runtime_suite/api-gateway.md)|
+| ![Mia-Craft service-icon](img/service-icon.png)| Microservices which type is “core” |
+| ![Mia-Craft custom-service-icon](img/custom-service-icon.png)|  Microservices which type is “custom”|
+| ![Mia-Craft crud-icon](img/crud-icon.png)| [CRUD](crud_advanced.md)|
+| ![Mia-Craft cmssite-icon](img/cmssite-icon.png)| [CMS  Site](../../../business_suite/guide_cms.md)|
 
 ## Main functionalities
 
