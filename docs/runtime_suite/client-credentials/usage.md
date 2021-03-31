@@ -12,7 +12,7 @@ In this section, we show you how to use the `client-credentials` service.
 In the login flow, you should call the `/oauth/token` endpoint with method POST.
 
 :::note
-  There are two main types of authentication methods, which differ by the details emplyed to prove user identity. The _secret basic_ is based on username and password, while the _private key JWT_ requires as input a signed JWT.
+  There are two main types of authentication methods, which differ by the details employed to prove user identity. The _secret basic_ is based on username and password, while the _private key JWT_ requires as input a signed JWT.
 :::
 
 #### Client secret basic
