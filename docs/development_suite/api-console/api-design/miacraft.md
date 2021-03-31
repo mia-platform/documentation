@@ -11,7 +11,7 @@ The aim of Mia-Craft is to help the user to obtain a graphical overview of the p
 
 From the project configuration, Mia-Craft creates the starting visualization where the microservices are shown without connections between them except for the connection between the Client and the API Gateway (if present) and the connection between the CMS Site and the API Gateway (if both of them present in the configuration file). An example is in the following picture.
 
-![Mia-Craft landing page](img/mia-craft-starting.png)
+![Mia-Craft visualization](img/mia-craft-visualization.png)
 
 All the icons shown correspond to a specific type of microservice except for the “Client”:
 
