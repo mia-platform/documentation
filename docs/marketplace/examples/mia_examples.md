@@ -13,16 +13,21 @@ Currently available examples are:
 |[Node.js Pre/Post decorators example](https://github.com/mia-platform-marketplace/Node.js-PrePost-Microservice-Example)| Node.js, JavaScript| Example of using Pre and Post [decorators](../../development_suite/api-console/api-design/decorators.md) to send a message to a Slack Channel. |
 |[Node.js Call CRUD example](https://github.com/mia-platform-marketplace/Node.js-Call-CRUD-Example)| Node.js, JavaScript| Example of a Node.js microservice which enables to use Mia-Platform Custom Plugin to access the CRUD. |
 |[Node.js Custom Plugin with Mongo example](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Mongo-Example)| Node.js, JavaScript, MongoDB|  Example of using Mia-Platform Custom Plugin and queries to access MongoDB. |
-|[TypeScript LC-39 example](https://github.com/mia-platform-marketplace/Typescript-LC39-Hello-World-Example)| Node.js, [LC-39](https://github.com/mia-platform/lc39), TypeScript | An example that shows how to build a simple microservice in TypeScript, using LC-39 module. |
 |[GraphQL Custom Plugin example](https://github.com/mia-platform-marketplace/GraphQL-Custom-Plugin-Example)|Node.js, JavaScript, GraphQL |  Example of integrating GraphQL in a Node.js microservice. |
 |[.NET Hello World example](https://github.com/mia-platform-marketplace/DotNet-Hello-World-Microservice-Example/)|.NET, C# | An example that shows how to build a simple .NET microservice. |
 |[Spring Boot Hello World example](https://github.com/mia-platform-marketplace/springboot-hello-world-example)|Spring Boot, Java | An example that shows how to build a simple Spring Boot microservice. |
 |[Spring Boot Pre/Post decorators example](https://github.com/mia-platform-marketplace/Springboot-PrePost-Decorator-Example)| Spring Boot, Java | Example of using Pre and Post [decorators](../../development_suite/api-console/api-design/decorators.md) in a Spring Boot microservice. |
 |[Go Hello World example](https://github.com/mia-platform-marketplace/Go-Hello-World-Microservice-Example)| Go | An example that shows how to build a simple microservice in Go. |
+|[Go Call CRUD example](https://github.com/mia-platform-marketplace/Go-Call-CRUD-Template)| Go |Example of a Go microservice which enables to use Mia-Platform Custom Plugin to access the CRUD.|
 |[Rust Hello World example](https://github.com/mia-platform-marketplace/rust-hello-world-example)|Rust | An example that shows how to build a simple microservice in Rust. |
 |[C++ Oat++ Hello World example](https://github.com/mia-platform-marketplace/cpp-oatpp-hello-world-microservice-example)| Oat++, C++ | An example that shows how to use the Oat ++ library to set-up a microservice. |
 |[Python Tornado Hello World example](https://github.com/mia-platform-marketplace/python-tornado-hello-world-microservice-example)| Tornado, Python| An example that shows how to build a simple microservice in Python using Tornado framework. |
 |[Python Falcon Hello World example](https://github.com/mia-platform-marketplace/python-falcon-hello-world-microservice-example)| Falcon, Python| An example that shows how to build a simple microservice in Python using Falcon framework. |
+|[TypeScript LC-39 example](https://github.com/mia-platform-marketplace/Typescript-LC39-Hello-World-Example)| Node.js, [LC-39](https://github.com/mia-platform/lc39), TypeScript | An example that shows how to build a simple microservice in TypeScript, using LC-39 module. |
+|[Ktor Hello World example](https://github.com/mia-platform-marketplace/Ktor-Hello-World-Example)|Ktor, Kotlin| An example that shows how to build a simple microservice in Kotlin using Ktor framework. |
+|[Ktor multi-module Hello World example](hhttps://github.com/mia-platform-marketplace/Ktor-Multi-Module-Hello-World-Example)|Ktor, Kotlin| An example that shows how to build a simple microservice in Kotlin using Ktor framework with multiple modules. |
+|Rest2Kafka Example| Ktor, Kotlin | An example that shows how to build a Ktor Web Server which produces Kafka messages. |
+|Kafka2Rest Example| Ktor, Kotlin | An example that shows how Kafka messages can be consumed and handled through HTTP REST calls. |
 
 More examples are in development, but if you want, you can create your examples by yourself.
 

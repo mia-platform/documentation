@@ -10,15 +10,17 @@ Currently available templates are:
 
 | **Template** | **Technologies** |
 | ------|------------|
-|[Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/)|Node.js, JavaScript|
-|[Spring Boot template](https://github.com/mia-platform-marketplace/SpringBoot-Custom-Plugin-Template)| Spring Boot, Java|
-|[React template](https://github.com/mia-platform-marketplace/React-App-Template)|React, JavaScript  |
-|[Angular template](https://github.com/mia-platform-marketplace/Angular-App-Template)|Angular, TypeScript  |
-|[TypeScript LC-39 template](https://github.com/mia-platform-marketplace/Typescript-LC39-Template)|Node.js, [LC-39](https://github.com/mia-platform/lc39), TypeScript  |
+|[Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/)| Node.js, JavaScript |
+|[Spring Boot template](https://github.com/mia-platform-marketplace/SpringBoot-Custom-Plugin-Template)| Spring Boot, Java |
+|[React template](https://github.com/mia-platform-marketplace/React-App-Template)| React, JavaScript |
+|[Angular template](https://github.com/mia-platform-marketplace/Angular-App-Template)| Angular, TypeScript |
 |[Go template](https://github.com/mia-platform-marketplace/Go-Template)| Go |
-|[Go Call CRUD template](https://github.com/mia-platform-marketplace/Go-Call-CRUD-Template)| Go |.
+|[.NET template](https://github.com/mia-platform-marketplace/DotNet-Microservice-Template)| .NET, C# |
+|[TypeScript LC-39 template](https://github.com/mia-platform-marketplace/Typescript-LC39-Template)|Node.js, [LC-39](https://github.com/mia-platform/lc39), TypeScript  |
+|[Ktor template](https://github.com/mia-platform-marketplace/Ktor-Template)| Ktor, Kotlin |
+|[Ktor multi module template](https://github.com/mia-platform-marketplace/Ktor-Multi-Module-Template)| Ktor, Kotlin |.
 
-More templates are in development, but if you want, you can build a template by yourself.
+More templates are in development, but if you want, you can [build a template](template_create) by yourself.
 
 :::tip
 
