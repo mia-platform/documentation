@@ -5,6 +5,20 @@ sidebar_label: v7.3
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.3.1
+
+_April 2, 2021_
+
+### Bug Fix
+
+#### Incorrect configuration download
+
+The download of the branch configuration was not working correctly because of a missing property. 
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.6.1`.
+
 ## v7.3.0
 
 _March 31, 2021_
