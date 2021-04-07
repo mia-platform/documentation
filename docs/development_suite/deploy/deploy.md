@@ -5,80 +5,152 @@ sidebar_label: Release your configurations
 ---
 ## Introduction  
 
-Deploy is the sections that allows developers to directly deploy your configurations in the different environments and check the past history of all the releases on that project.
+Deploy is the section of the console that allows developers to deploy configurations of a specific project on different environments. It can also be used to visualize the history of previous releases on that project.
 
-Thanks to this automation the **Continuous Deploy** is more simple and immediate.
-Furthermore, the deployment automatically starts the tests to verify that the branch can be released without damaging the existing project.
+This section allows to follow in a simple and effective way a **Continuous Deployment** approach, integrating automated tests and releasing new code versions without damaging the existing project.
 
 The Deploy section is divided into two areas: **Deploy** and **History**.
-
-When an user enters the Deploy section, he is automatically led to Deploy area.
+When a user enters the Deploy section, he is automatically led to Deploy area.
 
 ## Deploy Area
 
 ![Deploy](img/Deploy.gif)
 
-In the deployment area you have to choose in which environment you want to release a branch.
-The console will show you the impacts your release may have
+In this area, you can select in which environment you want to release your project configurations and which branch to deploy.
+You will be also able to start the deployment process from this section.
 
 Let's see in detail how it works
 
 ### Select environment  
 
-The first card you have to choose the environment in which you want to release your configuration. Once you have selected your target environment, you will see what was the last release in that environment.
+The first card will let you choose the environment in which you want to release your configuration. 
 
 ![Environment](img/deploy-select-env.png)
 
+Once you have selected your target environment, you will be able to see all the details regarding the last release in that environment.
+
 ### Select branch  
 
-In the second card you can choose the branch to be released.
-Once the branch is selected the console will show two things:
-
-* A link to gitlab with the compare between the branch you want to release and the one that is released in that environment.
-* The last 10 commits made on selected branch to let you check if you are releasing the correct configuration.
+In the second card, you can choose the branch to be released.
 
 ![Branch](img/deploy-select-branch.png)
 
-### Compare Services  
+Once the branch is selected the console will show:
 
-Once you have chosen the environment and the branch, the last card of the deploy page will be loaded.
-In this card you can see a comparison between the services you want to release and those that are currently running in that environment.
+* A link to the Gitlab page showing the code comparison between the branch you want to release and the one that has been previously released in that environment.
+* The last 10 commits on the selected branch (this information will help you check if you are releasing a correct configuration).
 
-The information shown is:
 
-* The complete list of micro-services
+### Deploy details
+
+Once you have selected the branch and the environment, the deploy page will load a card containing additional deployment details.
+
+In particular, this card will show a comparison between the services that are going to be released and those that are currently running in the selected environment.
+This card will let you decide the deployment strategy, **smart deploy** or **deploy all**, and the ability to always release services that do not follow semantic versioning.
+
+In this section you will be able to access the following information:
+
+* The complete list of micro-services to be released
+* The deploy outcome 
 * The running version
-* The version you would like to release  
+* The version you are going to release 
 
 :::info
-Be careful that if you use an environment variables to define the version we are unable to trace the version number
+Please note that using an environment variable to define the version will cause the inability to trace the correct version number.
 :::
 
-* Tags that tell you if your service is new or has been removed
+* The tag that identifies whether the service is new or has been removed
 * The status of the latest build of that service.
 
 :::info
-Currently you will see the builds of the services of which the platform knows the link to the repo, that is all the services created with the console starting from an example or a template created after April 30th.  
+The card will show only the builds of the services whose link to the repo is known by the platform. This condition includes all the services created using the console either starting from an example or a template created after April 30th, 2020.  
 :::
 
 :::warning
-The build information will only be available to customers running GitLab Ci as runners
+The build information will only be available to customers running GitLab CI as runners
 :::
 
 * The link to the history of all builds
-* The link to the change log of your service
+* The link to the changelog of your service
 
 ![Compare Services](img/compare-services.png)
 
 At this point, once you have verified the information, you can deploy your configurations.
 
+### Smart Deploy
+
+By toggling the appropriate switch you can activate/deactivate the **Smart Deploy** functionality. 
+
+![Smart Toggle Button](img/smart-toggle-button.png)
+
+This functionality will let you release your microservices in a smart way, since only the updated services will be deployed through the console. 
+
+**Smart Deploy** leverages Kubernetes deployment strategies to ensure that only necessary Pods are recreated. During each deploy updated pods gets replicated to prevent disservice, however, on big projects, this might avoid huge resource consumption spikes or longer deployment times.
+
+:::warning
+This feature can be activated only in projects using **mlp**, the Mia-Platform official command line deployment tool. 
+:::
+
+A service is considered to be eligible for a new deployment on certain circumstances: when you update the pod specification from the console, when you update the value of a pod dependency (such as a config map key) and so on. 
+
+:::warning
+It is important to **save** the configuration at least one time after the feature smart deploy has been activated. This operation will help avoid unconsistent behaviours when deploying your services. 
+:::
+
+:::info
+In order to avoid unnecessary deployments, services created using an **advanced configuration** should be manually modified by **removing all the old interpolated annotations**.
+:::
+
+When deploying for the first time using this feature, some services might not be able to collect all the necessary information to show the effective deployment strategy adopted. However, service that do not show actual differences on the cluser will not be deployed.
+
+#### Deploy All
+
+By deselecting the Smart Deploy toggle, you will switch to **Deploy all** strategy.
+
+:::info
+Smart deploy is enabled by default, if you want to force a deploy of all the services you should disable the toggle.
+:::
+
+This strategy does not check if a microservice configuration has been updated and directly schedule the deployment of all the services. In big projects this might cause resource consumption spikes and longer deployment times. However, it can be useful to ensure a new and clean deployment environment.
+
+#### Understanding Deploy Outcome Column
+
+The column **Deploy outcome** will help you understand which services will be deployed or deleted by pressing  
+the deploy button. 
+
+Rocket icons indicate services that are going to be considered by the smart deploy feature, while the sleeping symbol indicates services that are not going to be updated as their configuration haven't changed since the last deployment.
+
+* A _Deploy_ near the icon indicates that the service configuration is changed, so it will update the microservice.
+* A _Delete_ near the icon indicates that the service configuration is deleted, so it will delete the microservice.
+* A _No Update_ near the icon indicates that the service configuration remains the same.
+
+![Service To Deploy](img/service-to-deploy-column.png)
+
+:::warning
+If a microservice has interpolated environment variables and one of them is modified, the service will be deployed again even if the **Deploy outcome** column shows **No update**.
+:::
+
+#### Semantic Versioning
+
+![Semantic Versioning](img/smart-deploy-checkbox.png)
+
+By checking the dedicated checkbox you can force the deployment of microservices that do not follow semantic versioning. 
+
+:::info
+If you are not following sematic versioning, for example using `image:latest` or `image:branchName`, you can force the deployment by using the dedicated checkbox.
+:::
+
+:::warning
+It is not recommended to activate the checkbox in a production environment, because if some of your services by mistake have a pre-release or latest version tag they will be redeployed.
+::: 
+
 ## History
+
+The History Page is the second area of the Deploy section. In this tab it will be possible to visualize all the released deploy.
 
 ![History](img/deploy-history.png)
 
-The History Page is the second area in the Deploy section. In this tab it will be possible to visualize all the released deploy.
-
-In the History table the user visualizes the following information:
+In the History table the user will be able to visualize the following information:
 
 * Status: if the deploy is successful or if the deploy is not successful;
 * Environment of the deploy;
