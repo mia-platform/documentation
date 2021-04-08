@@ -5,19 +5,30 @@ Docusaurus use **Markdown**, check out the [official docs](https://v2.docusaurus
 To contribute to the Mia-Platform docs:
 
 1. Clone git@git.tools.mia-platform.eu:platform/documentations.git;
-2. Create a branch named according to these rules:
-     `prefix-name`
-     - **prefix** can be:
-      `edit` if you are changing a page.
-      `new` if you are working on a new section related to features already gone to production.
-      `prj` if you are writing docs about a yet not approved project.
 
-     - **name**: name of the page, change or project.
+2. Create a branch named according to these rules: `activity/task-topic`
+    - **activity** can be:
+      - `edit` if you are changing one or more pages.  
+      - `new` if you are working on a new page or section related to features already in production.  
+      - `project` if you are writing the documentation of a project before or during the development.  
+      - `remove` if you are deleting information.  
+      
+    - **task (optional)**: the ID of the task you are working on, if existing.
 
-     > :warning: **It's strictly important follow branch name conventions**
+    - **topic**: a short description of what you are documenting.
 
-3. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
-4. Submit a merge request, then post the MR URL in the "my documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+    Example: `new/MD-333-authentication-section`    
+
+    Additionally, branches named `release-note/vX.Y.Z` are dedicated to the documentation of the `Mia-Platform` incoming updates.
+
+    > :warning: **It's strictly important to follow branch name conventions**
+
+3. Share your knowledge!
+
+4. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
+
+5. Submit a merge request (name it according to the rule: `Activity (task): topic`), then post the MR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+  
 
 ## Repository structure
 
