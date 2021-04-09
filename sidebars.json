@@ -18,6 +18,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "development_suite/set-up-infrastructure/authorization-flow"
+        },
+        {
+          "type": "doc",
           "id": "development_suite/set-up-infrastructure/create-project"
         },
         {
