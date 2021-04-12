@@ -8,6 +8,10 @@ sidebar_label: Create Replicas
 Replicas allow you to set the number of replicas for your services in purpose to autoscaling them **CPU usage-based**.  
 The feature is thought to generate the replicas **only for the productions environments** where the [Environment Variable](../.-/../../set-up-infrastructure/env-var.md) `ENABLE_HPA` is set to `true`.
 
+:::caution
+Based on your release pipeline, the `ENABLE_HPA` environment variable could need the environment prefix (e.g. `PROD_`) or not.
+:::
+
 :::info
 This process is entrusted to the [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) Kubernetes resource  
 :::
