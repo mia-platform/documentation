@@ -117,6 +117,19 @@
     "docLandingPage": "runtime_suite/function-service/configuration"
   },
   {
+    "name": "HTTP Proxy Manager",
+    "description": "A simple yet blazing fast proxy service that can be used to centralize request proxying.",
+    "category": {
+      "id": "utility",
+      "label": "Utility"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/http-proxy-manager_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/http-proxy-manager/configuration"
+  },
+  {
     "name": "Kafka2Firebase",
     "description": "Use this is plugin to convert kafka messages into Firebase push notification.",
     "category": {

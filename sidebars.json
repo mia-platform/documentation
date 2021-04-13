@@ -405,6 +405,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "HTTP Proxy Manager",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/http-proxy-manager/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/http-proxy-manager/how_to_use"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/http-proxy-manager/overview"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Kafka2Firebase",
               "items": [
                 {
