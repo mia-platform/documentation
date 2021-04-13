@@ -76,6 +76,8 @@ If you need tu customize these variables for some Systems of Record, you can do 
 
 `my-system-id-1` is the name of the system which you want to customize the kafka configuration. System not specified in this file will use the default values.
 
+If you are using Kafka without authentication, set both **saslUsername** and **saslPassword** to empty string.
+
 :::warning
 You should not set write username and password as plain text in advanced files. Use always interpolation and set them in [Envs section](../development_suite/set-up-infrastructure/env-var).
 :::
