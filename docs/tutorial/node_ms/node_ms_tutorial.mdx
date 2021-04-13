@@ -172,10 +172,10 @@ Now we'll try to deploy the Console project.
 
 By [deploying](../../development_suite/deploy/deploy) your Console project a new Kubernetes Pod will be created for your custom service. In this case we'll also release the previously created CRUDs:
 
-1. Go to section _Deploy_ and click _Create new CRUD_.
-2. As environment select _Development_
+1. Go to section _Deploy_.
+2. As environment select _Development_.
 3. Select the correct branch. You can see the related last commits.
-4. Click _Deploy_
+4. Click _Deploy_.
 
 A pipeline will be triggered by the Console to start the deploy of your project.
 
@@ -327,7 +327,7 @@ const schema = {
     },
   },
   response: {
-    '200: {
+    '200': {
       type: 'object',
       properties: {
         shippingCost: { type: 'number' },
