@@ -9,12 +9,12 @@ This service proxies http calls to external services.
 
 The service needs the following environment variable:
 
-- **CONFIGURATION_PATH**: the file path of the service configuration file
-- **CONFIGURATION_FILE_NAME**: the filename of the service configuration file (without the extension)
-- **LOG_LEVEL** (default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
-- **HTTP_PORT** (default to `8080`): port where the web server is exposed;
-- **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
-- **DELAY_SHUTDOWN_SECONDS** (default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
+- **CONFIGURATION_PATH** (required): the file path of the service configuration file
+- **CONFIGURATION_FILE_NAME** (required): the filename of the service configuration file (without the extension)
+- **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
+- **HTTP_PORT** (optional, default to `8080`): port where the web server is exposed;
+- **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
+- **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
 
 ## Configuration
 
