@@ -189,9 +189,50 @@ To access it, select the _Docs_ tab in the top menu and select `Development`, as
 
 For now, we can see the default exposed routes of CRUDs that we can use to read and manipulate the data of relative MongoDB collection. Later, here we'll see the routes of the microservice that we'll expose.
 
+## How to test? Let's write tests!
+
+Now, we have to implement the route that calculates the shipping cost for a specific order. We could have started by writing the code first, but Mia-Platform strongly encourages the use of Test Driven Development.  
+Writing tests first allows us to focus on the needed requirements and in addition, makes the code easier to evolve over time. After each change, we can run tests to check if everything still works.
+
+Let's write a simple test for `/hello` route:
+
+Let's get back on the IDE and open `test/index.test.js` file and replace the "Insert your tests..." comment with the following code:
+
+```js
+t.test('GET /hello', (t) => {
+  t.test('Correct message', async (t) => {
+    const response = await fastify.inject({
+      method: 'GET',
+      url: '/hello',
+    })
+    t.equal(response.statusCode, 200)
+    t.same(JSON.parse(response.payload), {
+      message: 'Hello by your first microservice',
+    })
+  })
+  t.end()
+})
+```
+
+In this code, we are using the [Tap](https://node-tap.org/) library to write a test for the base success case.
+
+Now run tests using the proper NPM script command, in your terminal enter:
+
+```zsh
+npm run test
+```
+
+The tests should fail because the route is not implemeted yet.
+
+Later in the tutorial we'll come back to write tests and exploring the topic.
+
+:::info Node Tap
+Check out the [official documentation](https://node-tap.org/docs/getting-started/) for details about Tap features
+:::
+
 ## Let's code! Implement a route
 
-Now, we have to implement the route that calculates the shipping cost for a specific order; let's get back on the IDE and open the `index.js` file:
+Open the `index.js` file:
 
 ```js
 'use strict'
@@ -264,55 +305,96 @@ module.exports = customService(async function index(service) {
 
 Import `hello.js` file and use `addRawCustomPlugin` to add the route. Thus function requires the **HTTP method, the path of the route and a handler and an optionally JSON schema**.
 
-## How to test? Let's write tests!
-
-Now, we could push code on the master, deploy and try, but Mia-Platform strongly encourages good use of tests. This allows us to test our microservice without put online and in addition, makes the code easier to evolve over time. After each change, we can run tests to check if all still works.
-
-Let's write a simple test for `/hello` route:
-
-Open `test/index.test.js` file and replace the "Insert your tests.." comment with the following code:
-
-```js
-t.test('GET /hello', (t) => {
-  t.test('Correct message', async (t) => {
-    const response = await fastify.inject({
-      method: 'GET',
-      url: '/hello',
-    })
-    t.equal(response.statusCode, 200)
-    t.same(JSON.parse(response.payload), {
-      message: 'Hello by your first microservice',
-    })
-  })
-  t.end()
-})
-```
-
-In this code, we are using the [Tap](https://node-tap.org/) library to write a test for the base success case.
-
-Now run tests by the properly NPM script command. In terminal enter:
+Now that the route is completed run again the tests writing in the terminal the properly NPM script command:
 
 ```zsh
 npm run test
 ```
 
-The tests should be ok and you should see in the terminal the following messages:
+Now the tests should be ok and you should see in the terminal the following messages:
 
 ![Test success](img/node-ms-test-1-success.png)
-
-Later in the tutorial we'll come back to write tests and exploring the topic.
-
-:::info Node Tap
-Check out the [official documentation](https://node-tap.org/docs/getting-started/) for details about Tap features
-:::
 
 ## Implement the route
 
 Now we have to implement the route `GET /get-shipping-cost`. This route will receive an `orderId` in the query string and return the correct shipping cost.
 
+### Write the tests
+
+Let's start writing a simple test for `GET /get-shipping-cost` route.  
+To simplify we will show only one test: the correct calculation of the shipping cost for a new customer. You can find the other tests (no new customer, customer/order not found) in the [tutorial repository](https://github.com/mia-platform/Node.js-Microservice-Tutorial).
+
+Open `test/index.test.js` file and on the top add the [Nock](https://github.com/nock/nock) module:
+
+```js
+...
+const lc39 = require('@mia-platform/lc39')
+const nock = require('nock')
+
+nock.disableNetConnect()
+```
+
+We'll use it for mocks the call to the CRUD. In this way, we can simulate responses from HTTP requests. `nock.disableNetConnect()` indeed disable the real HTTP requests.
+
+Now add the following test to `tests/index.test.js` file:
+
+```js
+const t = require('tap')
+const lc39 = require('@mia-platform/lc39')
+const nock = require('nock')
+
+const NEW_CUSTOMER_SHIPPING_COST = 5000
+
+...
+
+  t.test('GET /get-shipping-cost', t => {
+    const CRUD_URL = 'http://crud-service'
+
+    t.test('New customer shipping cost', async t => {
+      const orderId = '1'
+
+      const mockedOrder = {
+        customerId: '2',
+      }
+
+      const { customerId } = mockedOrder
+
+      const mockedCustomer = {
+        customerVATId: customerId,
+        newCustomer: true,
+      }
+
+      const getOrderScope = nock(CRUD_URL)
+        .get(`/orders/${orderId}`)
+        .reply(200, mockedOrder)
+
+      const getCustomerScope = nock(CRUD_URL)
+        .get(`/customers/${customerId}`)
+        .reply(200, mockedCustomer)
+
+      const response = await fastify.inject({
+        method: 'GET',
+        url: '/get-shipping-cost',
+        query: {
+          orderId,
+        },
+      })
+      t.equal(response.statusCode, 200)
+      t.same(JSON.parse(response.payload), { shippingCost: NEW_CUSTOMER_SHIPPING_COST })
+
+      // Check if the mocked requests have been really called by the handler
+      getOrderScope.done()
+      getCustomerScope.done()
+    })
+    t.end()
+  })
+```
+
+In this code we have tested that the shipping cost for a new customer will be correctly returned.
+
 ### Write the handler
 
-Let's start writing the route handler: into the `handlers` folder add a file named `getShippingCost.js` as done previously.
+Now let's write the route handler: into the `handlers` folder add a file named `getShippingCost.js` as done previously.
 
 First, define the schema for request and response:
 
@@ -420,7 +502,7 @@ To take in deeper how to use API exposed by the CRUD Service check out the [CRUD
 
 ### Add the route
 
-Let's go back to `index.js` file and add the route `GET /get-shipping-cost` handled by the function write previously:
+Let's go back to `index.js` file and add the route `GET /get-shipping-cost` handled by the function written previously:
 
 ```js
 'use strict'
@@ -440,80 +522,7 @@ module.exports = customService(async function index(service) {
 })
 ```
 
-### Write the tests
-
-Now let's write a simple test for `GET /get-shipping-cost` route.  
-To simplify we will show only one test: the correct calculation of the shipping cost for a new customer. You can find the other tests (no new customer, customer/order doesn't found) in the [tutorial repository]((https://github.com/mia-platform/Node.js-Microservice-Tutorial).
-
-Open `test/index.test.js` file and on the top add the [Nock](https://github.com/nock/nock) module:
-
-```js
-...
-const lc39 = require('@mia-platform/lc39')
-const nock = require('nock')
-
-nock.disableNetConnect()
-```
-
-We'll use it for mocks the call to the CRUD. In this way, we can simulate responses from HTTP requests. `nock.disableNetConnect()` indeed disable the real HTTP requests.
-
-Now add the following test to `tests/index.test.js` file:
-
-```js
-const t = require('tap')
-const lc39 = require('@mia-platform/lc39')
-const nock = require('nock')
-
-const NEW_CUSTOMER_SHIPPING_COST = 5000
-
-...
-
-  t.test('GET /get-shipping-cost', t => {
-    const CRUD_URL = 'http://crud-service'
-
-    t.test('New customer shipping cost', async t => {
-      const orderId = '1'
-
-      const mockedOrder = {
-        customerId: '2',
-      }
-
-      const { customerId } = mockedOrder
-
-      const mockedCustomer = {
-        customerVATId: customerId,
-        newCustomer: true,
-      }
-
-      const getOrderScope = nock(CRUD_URL)
-        .get(`/orders/${orderId}`)
-        .reply(200, mockedOrder)
-
-      const getCustomerScope = nock(CRUD_URL)
-        .get(`/customers/${customerId}`)
-        .reply(200, mockedCustomer)
-
-      const response = await fastify.inject({
-        method: 'GET',
-        url: '/get-shipping-cost',
-        query: {
-          orderId,
-        },
-      })
-      t.equal(response.statusCode, 200)
-      t.same(JSON.parse(response.payload), { shippingCost: NEW_CUSTOMER_SHIPPING_COST })
-
-      // Check if the mocked requests have been really called by the handler
-      getOrderScope.done()
-      getCustomerScope.done()
-    })
-    t.end()
-  })
-```
-
-In this code we have tested that the shipping cost for a new customer will be correctly returned.
-
-Now run tests by the properly NPM script command:
+Now run tests implemented previously by the properly NPM script command:
 
 ```zsh
 npm run test
