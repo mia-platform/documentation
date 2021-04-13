@@ -12,9 +12,29 @@ Once defined the data structure, you could create the single view.
 
 ## Create the Single View Creator service
 
-A Single View allows to aggregate data from different sources in order to have a single collection that includes all needed entity information (e.g customers, policies, etc. ).
+Once a projections has been modified and some Projections Changes has been created the Single Views must be updated or deleted.to do so you have to create and configure the Single View Creator. 
 
-Once a projection has been modified and some Projections Changes have been created the Single Views must be updated or deleted, to do so you have to create and configure the Single View Creator. [Click here](configure_single_view_creator) to see how to do this.
+A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to once System of Records through a Projection Changes.
+
+```
+system_1
+ _______________     __________________________
+| projection_1 |---> |projection_change type A |  ----> single_view_creator_1  
+| projection_2 |---> |_________________________|                      \ 
+|______________|                                                       \update
+                                                                         ________________
+                                                                        | single_view_A |
+                                                                        |_______________|
+system_2                                                                /
+ _______________     __________________________                        / update
+| projection_3 |---> |projection_change type B |  ----> single_view_creator_2  
+| projection_4 |---> |_________________________|
+|______________|
+
+```
+
+
+[Click here](configure_single_view_creator) to see how to create and configure the Single View Creator.
 
 ## Link projections to the Single View
 
