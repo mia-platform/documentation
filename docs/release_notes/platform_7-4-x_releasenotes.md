@@ -9,6 +9,20 @@ image: "img/release-note-link-preview.png"
 
 _April 14, 2021_
 
+### Marketplace
+
+#### HTTP Proxy Manager
+
+The HTTP Proxy Manager, a microservice which acts as a proxy between client and external services, is now available on the Marketplace. Check out its [documentation](../runtime_suite/http-proxy-manager/overview) to know more.
+
+#### Single View Creator Template
+
+It's now available on the Marketplace the [Single View Creator Template](../fast_data/configure_single_view_creator) which enables you to start to work on your Single View Creator with most of the code already configured.    
+
+When you create the service from the template, all the environment variables are already set. What you need to do is just to change some of them depending on your needs. Also, the repository of your Single View Creator will be created, with all the code and tests already written. Most of the code is ready to use, you just need to change three functions which depend on your own data.    
+
+The template is available only on Mia-Platform PaaS Marketplace. If you want to have it on your on-premise installation, please contact your Mia-Platform technical referent.
+
 ### New Features
 
 ### Bug Fix
@@ -52,12 +66,6 @@ To improve usability of the Pod table in the [Logs](../development_suite/monitor
 #### Use Real-Time Updater without Kafka Authentication
 
 Set the `saslPassword` and `saslUsername` of your Real-Time Updater to empty if you don't want to use a kafka authentication for the service.
-
-### Marketplace
-
-#### HTTP Proxy Manager
-
-The HTTP Proxy Manager, a microservice which acts as a proxy between client and external services, is now available on the Marketplace. Check out its [documentation](../runtime_suite/http-proxy-manager/overview) to know more.
 
 ### BaaS deprecation
 
