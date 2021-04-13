@@ -5,6 +5,70 @@ sidebar_label: v7.4
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.4.1
+
+_April 14, 2021_
+
+### New Features
+
+### Bug Fix
+
+#### Show in API Portal flag visibility
+
+The [Show in API Portal](../development_suite/api-console/api-design/endpoints#manage-the-visibility-of-your-endpoints) flag was displayed even for endpoints that do not feature any documentation; the flag has been removed in those circustamces and kept only where needed (e.g. CRUD endpoints and Endpoints towards custom services).
+
+#### Empty Public Variables file issues
+
+Project configuration is now properly loaded even when public variables file is empty.
+
+#### Public Variables folder creation
+
+Some on-premise installations featured the creation of the Public Variables folder even though the feature toggle was disabled. The folder is now created only when the feature toggle is active.
+
+#### Public Variables prefix trim
+
+As of now, for backward compatibility reasons, Public Variables *must* start with the `MIA_` prefix; if a file features a different prefix it is kept as-is during configuration load but will be prefixed with `MIA_` upon configuration save.
+
+:::note
+As of now, the `MIA_` prefix is handled by the Console, so you **don't have to insert it the Public Variable section**, however if you're manually setting the variabile inside the `.env` file you should prefix it.
+
+For instance if you're manually editing the `.env` file to insert the variable `MY_CUSTOM_VARIABLE` you should write it as `MIA_MY_CUSTOM_VARIABLE`.
+:::
+
+#### Logs environment `value` field deprecation
+
+In [Logs](../development_suite/monitoring/monitoring) area, project environments were handled using the deprecated `value` property, preventing the Pods list to be rendered properly. The are now using the correct `envId` property instead.
+
+### Improvements
+
+#### Logs search filter preserved
+
+When using the [Logs](../development_suite/monitoring/monitoring) section filter and navigate through pod details and logs the search query filter is now preserved, meaning that if you open one and then go back, the list will still be filtered.
+
+#### Logs section sticky header
+
+To improve usability of the Pod table in the [Logs](../development_suite/monitoring/monitoring) section the header has been changed to always be visible.
+
+#### Use Real-Time Updater without Kafka Authentication
+
+Set the `saslPassword` and `saslUsername` of your Real-Time Updater to empty if you don't want to use a kafka authentication for the service.
+
+### Marketplace
+
+#### HTTP Proxy Manager
+
+The HTTP Proxy Manager, a microservice which acts as a proxy between client and external services, is now available on the Marketplace. Check out its [documentation](../runtime_suite/http-proxy-manager/overview) to know more.
+
+### BaaS deprecation
+
+It is not possible to create a project that uses the services `Authentication with BaaS` and `Login Site` anymore.
+
+[Endpoints](../development_suite/api-console/api-design/endpoints) of type Mia-Platform BaaS are now officially deprecated.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.2`.
+
 ## v7.4.0
 
 _April 8, 2021_
