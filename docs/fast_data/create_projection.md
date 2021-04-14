@@ -54,14 +54,16 @@ projectId.environmentId.projectionName-json
 
 where `projectId`, `environmentId` and `projectionName` are filled with, respectively, the id of the console project, the id of the environment associated and the name of the projection.
 
+### Projection metadata
+
+A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the Core Service responsible for creating the collection on MongoDB.    
+These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
+
+These fields have no `Cast function` assigned because they are not used for mapping of fields from the Kafka Message received. This means that if the Kafka Message contains a field with the name equals to one of the metadata fields, this is not copied on the projection.   
+
 ### Projection fields
 
 In the card `Fields` in projection, you can add new fields.
-
-:::info
-By default, since the Crud Service is used underneath, projections have the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties), even if they are not visible
-in projection field table
-:::
 
 Once you click to `Create field` button, a form is prompted where you should insert the following fields (all fields are required):
 
@@ -116,6 +118,8 @@ In the card `Indexes`, you can add indexes to the collection. To learn more abou
 However, differently from Indexes that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
 An `_id` index is created by default and it is not deletable.
+
+Both custom fields and metadata can be used as fields for indexes. 
 
 ### Expose projections through API
 
