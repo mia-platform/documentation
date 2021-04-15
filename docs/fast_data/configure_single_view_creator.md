@@ -36,28 +36,11 @@ Here some tips:
 - `PROJECTIONS_CHANGES_COLLECTION`: if you have set a custom projection change collection name from advanced, then set its name. Otherwise it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for.
 - `SINGLE_VIEWS_PORTFOLIO_ORIGIN`: should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`
 - `SINGLE_VIEWS_ERRORS_COLLECTION`: it is the name of a MongoDB Crud you want to use as collection for single view errors.
+- `KAFKA_BA_TOPIC`: topic where to send the `before-after`, which is the single view document before and after a change
+- `SEND_BA_TO_KAFKA`: true if you want to send to Kafka the `before-after` information about the update changes of the single view
+- `KAFKA_SVC_EVENTS_TOPIC`: topic used to queue Single View Creator state changes (e.g. single view creation)
 
 Now, we start the single-view-creator:
-
-```js
-await singleViewCreator.startCustom(
-  aggregator,
-  mapper,
-  validator,
-  singleViewKeyExtractor,
-  upsertFunction,
-  deleteFunction
-)
-```
-
-- `aggregator` is the function that performs the aggregation over the projections
-- `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
-- `validator` is the validation function, which determines if the Single View is valid (and so upserted to Mongo) or not (and so deleted)
-- `singleViewKeyExtractor` is the function that extracts, from the projections changes identifier record, the key used by the aggregator to identify the data to gather
-- `upsertFunction` is the function that upsert the Single View to the Single Views collection on Mongo
-- `deleteFunction` is the function that delete the Single View from the Single Views collection on Mongo
-
-In this template we use `startCustom`:
 
 ```js
 const resolvedOnStop = singleViewCreator.startCustom({
@@ -69,6 +52,13 @@ const resolvedOnStop = singleViewCreator.startCustom({
   deleteSingleView: fullDeleteSV(),
 })
 ```
+
+- `strategy` is the function that performs the aggregation over the projections
+- `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
+- `validator` is the validation function which determines if the Single View is valid (and so upserted to Mongo) or not (and so deleted)
+- `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the single view document on mongo to update or delete
+- `upsertSingleView` is the function that upserts the Single View to the Single Views collection on Mongo
+- `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo
 
 `upsertSV` and `fullDeleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view. 
 
@@ -96,9 +86,9 @@ You can use the template and all the Mia-Platform libraries **only under license
 For further information contact your Mia Platform referent
 :::
 
-::note
-This documentation refers to the `@mia-platform-internal/single-view-creator-lib` ^8.0.2
-:: 
+:::note
+This documentation refers to the `@mia-platform-internal/single-view-creator-lib` ^8.0.2.
+::: 
 
 The core of your work on this service are the files inside the `src` folder. 
 
@@ -124,7 +114,9 @@ module.exports = function singleViewKeyGenerator(logger, projectionChangeIdentif
 If it's empty, than it will be executed a delete on the single view identified by the singleViewKeyGenerator result. 
 If it's not empty, than it will be executed an upsert on the single view identified by the singleViewKeyGenerator result. 
 
-**Note**: If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
+:::note 
+If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
+:::
 
 ```js
 module.exports = (mongoDb) => {
@@ -210,7 +202,7 @@ In case the validation is succeded, the upsert function will be called with the 
 - `singleView` is the result of the mapping operation
 - `singleViewKey` is the Single View key
 
-On the other hand, if the validation has a negative result, the delete function will be called with the same arguments, expect from `singleView`, which will not be handled by the delete function.
+On the other hand, if the validation has a negative result, the delete function will be called with the same arguments, except for the `singleView`, which will not be handled by the delete function.
 
 In both cases, some operation should be done on `singleViewCollection` in order to modify the Single View with the current `singleViewKey`, with the idea of "merging" the current result with the one already present in the database.
 
@@ -221,7 +213,7 @@ For both functions, the output is composed of an object containing two fields:
 - `old` which contains the old Single View
 - `new` which contains the new Single View
 
-These values will be the respective `old` and `new` fields of the `before_after` collection, that is the collection to track any result of the Single View creator.
+These values will be the respectively the `before` and `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator.
 
 ```js
 async function upsertSingleViewFunction(
