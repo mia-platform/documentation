@@ -1,6 +1,6 @@
 ---
 id: configuration
-title: Push Notification Manager
+title: Mail Notifications Manager
 sidebar_label: Configuration
 ---
 This microservice allows to easily and safely set the status (read/unread) of one or more notifications belonging to the requesting user. It also allows to retrive the notifications of a user, hiding the information that relates to the notifications but not to the user (e.g. the list of users who has read a notification).
