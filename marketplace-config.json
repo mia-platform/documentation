@@ -127,7 +127,7 @@
     "type": "plugin",
     "imagePath": "docs/runtime_suite/marketPlaceImg/http-proxy-manager_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
-    "docLandingPage": "runtime_suite/http-proxy-manager/configuration"
+    "docLandingPage": "runtime_suite/http-proxy-manager/overview"
   },
   {
     "name": "Kafka2Firebase",
