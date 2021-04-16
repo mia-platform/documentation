@@ -4,15 +4,90 @@ title: Single View
 sidebar_label: Single View
 ---
 
-## Create the single view collection
+## How Single View works
 
-To create and expose the single view, the first step is to [create the collection definition](../development_suite/api-console/api-design/crud_advanced).
+A Single View is a collection formed by an aggregation of data from different collections (e.g. restaurants, dishes, reviews, etc). If you want to know more about what Single Views are and how they are used, visit the [Single View Concepts](../fast_data/sv_concepts) page.
 
-Once defined the data structure, you could create the single view.
+For example, suppose to have the following projections: 
+- RESTAURANTS: `ID`, `NAME`
+- DISHES: `ID`, `NAME`, `INGREDIENTS`, `RESTAURANT_ID`
+- REVIEWS: `ID`, `TEXT`, `STARS`, `DISH_ID`
+
+And these projections are connected among them with this logic:
+- a restaurant can have multiple dishes
+- a single dish can be owned by a single restaurant
+- a dish can have multiple reviews, but the review is about a single dish
+
+As shown in the following diagram:
+
+![Fast Data projection ER-Diagram](img/fastdata-projections-er-diagram.jpg)
+
+These relations allow us to know how to pass from one projection to another one.    
+For example, if we have the following review:
+```yaml
+ID: 'review-123'
+TEXT: 'lorem ipsum'
+STARS: 2
+DISH_ID: 'dish-2'
+```
+
+and we want to know what is the name of the restaurant that has received this review, we just have to: 
+- look up in the projection DISHES the dish whose `ID` equals `dish-2`
+- get the `RESTAURANT_ID` of the restaurant which owns `dish-2`
+- look up in the projection `RESTAURANTS` and get the `NAME` of the restaurant whose `ID` equals to the `RESTAURANT_ID` associated to `dish-2`.
+
+Now we want to create the Single View `point-of-sale` that has the following information: a point of sale has a `restaurantId` as unique identifier of the point of sale, and a `name` that is the name of the restaurant. It also contains the list of dishes with their `id`, `name` and reviews with their `stars` and `text`.
+
+```yaml
+restaurantId: RESTAURANT.ID
+name: RESTAURANT.NAME
+dishes:
+      - id: DISHES.ID
+        name: DISHES.NAME
+        reviews:
+                - stars: REVIEWS.STARS
+                  text: REVIEWS.TEXT
+```
+
+> *Note*: in the single view the names of the fields can be different from the names of the fields of the projections they aggregate.
+
+![Fast Data Single View Projections link](img/fastdata-single-view-projection-diagram.png)
+
+As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occurs (e.g.: the name of a dish changes, or a new reviews is written, or some dishes are removed) the single view interested in these changes has to be regenerated.    
+In our case, let's assume that a new review is added to the projection REVIEWS with the following data:
+
+```yaml
+ID: 'review-123'
+TEXT: 'lorem ipsum'
+STARS: 2
+DISH_ID: 'dish-2'
+```
+
+we need to update the single view with `restaurantId` equals to the restaurant that owns the dishes with `ID` equals to `dish-2`. 
+
+In order to maintain the consistency between Single View data and the content of the projections, the Single Views need to be linked to the projections they aggregate, so that when some documents of the projections are updated, the single view containing that information can be updated accordingly.    
+So, it must be defined a function for each projection associated with the single view. These functions are called `strategies` and are used to know which specific single view document must be updated as a consequence of the update of a projection document. To know how to create a strategies [read here](./single_view#strategies)
+
+## Create the Single View
+
+Click on the Single Views voice of the left menu, which opens the Single View page, and click the button to create a new Single View.   
+Fill the modal with the name of the Single View, that is going to be the name of the collection. 
+
+Once created, you will be redirected to the Single View detail page.   
+
+## Single View Data Model
+
+Single views collections are created on the _CRUD Service_, so we add all the [default fields](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) and indexes required for the CRUD collections in creation.
+
+To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card. 
+
+![Fast Data Single View Fields](img/single-view-detail-fields.png)
+
+The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](../development_suite/api-console/api-design/crud_advanced#create-a-new-crud). To know more about indexes [click here](../runtime_suite/crud-service/overview_and_usage#indexes).
 
 ## Create the Single View Creator service
 
-Once a projections has been modified and some Projections Changes has been created the Single Views must be updated or deleted.to do so you have to create and configure the Single View Creator. 
+You need to create a **Single View Creator** to update or delete a Single View when a Projection Changes is created. This happens every time a Projection has been modified.   
 
 A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to once System of Records through a Projection Changes.
 
@@ -33,53 +108,27 @@ system_2                                                                /
 
 ```
 
+To associate the single view with the service, add a service in the `Single view creator services` card in the Single View detail page. You can attach more than one service to the Single View.     
 
-[Click here](configure_single_view_creator) to see how to create and configure the Single View Creator.
+After you have attached the microservice to the single view, a link to the microservice will appear. Click on the link to navigate to the detail page of the microservice. 
 
-## Link projections to the Single View
+![Fast Data Single View Microservice](img/single-view-detail-microservice.png)
 
-To create the Projections Changes, which are used by the Single View Creator, you must correctly configure the projection from the `Advanced` section of the `Design` area in Console and then create the `changes` function.
+:::note
+These links are only for documentation purpose. You can use them to track which services are responsible for keeping updated the Single View.  
+:::
 
-In the `Advanced` section, open `fast-data` from menu and open the `projections.json` file.
+[Click here](configure_single_view_creator) to see how to configure the Single View Creator.
 
-Here, you should write a configuration object as follows:
-
-```json
-{
-  "systems": {
-    "SYSTEM ID": {
-      "projections": {
-        "PROJECTION NAME": {
-          "changes": {
-            "SINGLE VIEW NAME": {
-              "main": "FUNCTION NAME"
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-The advanced configuration object contains the following properties:
-
-* *SYSTEM ID*: id of the system, as configured in Console;
-* *PROJECTION NAME*: name of the projection, as configured in Console;
-* *SINGLE VIEW NAME*: name of the desired single view;
-* *FUNCTION NAME*: function name which should be used. The function name should correspond to the file name which exports the main function. See below to know how to create the file for the strategies.
-
-### Strategies
+## Strategies
 
 When the `Single View Creator` will be configured, it will look at the changes stored in the **projections changes collection**. In order to know which specific Single View needs to be updated, based on the projections records just modified by the importer, the Single View Creator will look at the projection change `identifier`.
 
 In order to do so, **strategies** need to be implemented. These strategies are basically the way to retrieve the unique identifiers of the single view that needs to be updated or created as consequence of the changes on the projection. The output of the strategies will be used by the `Real-Time Updater` to record a change in the proper `projection-changes` collection for each identifier.  
 
-For instance, consider having a single view *sv_restaurants* that contains the name of the restaurants and their menu.
-In our example this single view could be built with data coming from two different projections: *restaurants*, containing the basic informations about the restaurants, and *dishes* containing instead the list of the available dishes for each restaurant, linked using the `id` of the restaurant.
-Supposing that the description field of a single dish for the restaurant *restaurant-id-1* is updated, you would need to update the document of the single view *restaurant* with the `id` that matches *restaurant-id-1*. To do that, you need to write a function that, starting from the updated dish, returns the identifier of the single view that needs to be updated, in this example it would be the `id` of the restaurant.
+### Write your Strategies
 
-The strategies function can be created in the repository of the project configuration.
+The strategy functions can be created in the repository of the project configuration.
 
 In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
@@ -220,13 +269,33 @@ configurations/
 
 the file included in Real Time Updater service will be `myFn1.js` and `myFn2.js`.
 
-:::info
-Remember to write the filename equal to filename inside advanced configuration!
-:::
-
 To enable the continuous integration, you could start a pipeline checking for changes inside the `fast-data-files` folder and triggers test, lint and others useful scripts.
 
 To know the technical limitation you have in these files, [read here](./single_view#technical-limitation)
+
+### Link projections to the Single View
+
+In the detail page of the Single View, click on the `Strategies` tab. 
+
+![Fast Data Single View Strategies](img/single-view-detail-strategies.png)
+
+Here it's shown a table in which you have to specify the all projections that will be read to get the data that the single view needs (remember that a Single View is an aggregation of data from different projections).    
+
+To each listed projections you have to link a file without the extension `.js` which is the entry point of your **strategy function**.   
+
+Example: 
+
+```txt
+configurations/
+    |-- fast-data-files
+        |-- strategies/
+              |-- my-system/
+                    |-- myStrategyForProjection1.js
+                    |-- someFunctions.js
+```
+
+Where `myStrategyForProjection1.js` is the file that exports the strategy function and internally it uses some functions imported from the `someFunctions.js` file.   
+So, you have to set `myStrategyForProjection1` as **main function file** for the projection associated.
 
 ## How to consume the Single View
 
@@ -235,6 +304,14 @@ You can expose the Single View through the crud-service without write any code, 
 You could [check here](../development_suite/api-console/api-design/endpoints) how to expose an endpoint of the CRUD service outside your project through the Console.
 
 [Click here](../runtime_suite/crud-service/overview_and_usage) if you want the usage documentation for the CRUD.
+
+## How to delete a Single View
+
+To delete a Single View just click on the `Delete` button in the Single View detail page.
+
+:::warning
+Deleting a Single View does **not** delete the microservice associated.
+:::
 
 ## Technical limitation
 
