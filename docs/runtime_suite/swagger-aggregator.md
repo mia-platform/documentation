@@ -7,7 +7,7 @@ sidebar_label: Swagger Aggregator
 
 The Swagger Aggregator service is responsible for aggregating the individual [swaggers](https://swagger.io/docs/specification/2-0/what-is-swagger/) of all the microservices indicated in the configuration. He collects all paths from the specified microservice swaggers and merge them all on a single swagger definition. To correctly handle the possible rewrite of the gateways, this service can be configured to handle the swagger paths with the correct prefix.
 
-This service allows you to always have the right version of documentation of your API. Aggregate documentation will be available in the [API Portal](../development_suite/api-portal/api-documentations).
+This service allows you to always have the right version of documentation of your API. The aggregated documentation will be available in the [API Portal](../development_suite/api-portal/api-documentations).
 
 You can expose documentation which implements [OpenApi 2.0](https://swagger.io/specification/v2/)/[OpenApi 3.0](https://swagger.io/specification/) specifications.
 
@@ -101,27 +101,69 @@ The `baseSwagger` object contains the first-level configurations of the final me
 
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
 
-* **_URL_**: by specifying `url` as type the swagger-aggregator will download the microservice swagger by the provided _url_ field;
-* **_File_**: by specifying `file` as type the swagger-aggregator will take the microservice swagger configurations by the provided _path_ field.
+* **_URL_**: by specifying `url` as `type` property the swagger-aggregator will download the microservice swagger by the provided `url` property. For this service type the required properties will be `type`, `url` and `prefix`.
+* **_File_**: by specifying `file` as `type` property the swagger-aggregator will take the microservice swagger configurations by the provided `path` property. For this service type the required properties will be `type`, `path` and `prefix`.
 
-In both of them the user can specify a `prefix` to place before.
+In both of them, the user must specify a `prefix` to place before the url or the file path. Any string that begins with `/` is accepted.
 
-In both of them, the user can specify an `includePaths` and an `excludePaths` to filter the paths to be accessible from outside. The filter will include first all the paths according to the object passed by `includePaths` then the result will be filtered by the `excludedPaths`.
-
-:::caution
-Please be sure to validate the configuration with the following <a download target="_blank" href="/docs_files_to_download/swagger-aggregator-config.jsonschema.js"> jsonschema</a> before run the service, otherwise the microservice will not correctly start.
+:::info
+Passing the string `/` as `prefix` means that no prefix will be added to your service urls or paths.
 :::
 
-### Transform Paths
+In both service types, the user can specify `includePaths` and `excludePaths` optional properties to filter the routes to be accessible in the swagger documentation. The filter will include first all the routes according to the objects present in the `includePaths` property, then the result will be filtered by the objects present in the `excludedPaths` property.
 
-It is possible to transform paths and apply custom tags to them with an advanced configuration.
+Both properties should be an array of objects and each object requires `path` property.
+In each object it is also possible to define a `verb` property that specifies which verb of that specific path should be included/excluded.
 
 ```json
 {
+  "type": "url",
+  "url": "http://petstore.swagger.io/v2/swagger.json",
+  "prefix": "/foo",
+  "includePaths": [
+    {
+      "path": "/pathToInclude-1",
+    },
+    {
+      "path": "/pathToInclude-2",
+      "verb": "get"
+    }
+  ],
+  "excludePaths": [
+    {
+      "path": "/pathToInclude-1/pathToExclude-1",
+    }
+  ]
+}
+```
+
+Here is a list of the routes that will or not be shown in the aggregated swagger documentation based on the example above:
+
+* `/pathToInclude-1/clients` with any route verb: this route will be shown since the first part of the route path is present in the includePaths array.
+* `/pathToInclude-3` with any route verb: this route will **not** be shown since the first part of the route path is not present in the includePaths array.
+* `/pathToInclude-1/pathToExclude-1/managers` with any route verb: this route will **not** be shown since the first part of the route path is present in the excludePaths array.
+* `/pathToInclude-2` with `get` verb: this route will be shown since the route path precisely matches the one present in the includePaths array with the same verb.
+* `/pathToInclude-2` with `post` verb: this route will **not** be shown because, even if the route path precisely matches the one present in the includePaths array, the specified verb is different.
+* `/pathToInclude-2/customers` with `get` verb: this route will **not** be shown because the route path does not precisely match the one present in the includePaths array, even if the specified verb is the same.
+
+:::caution
+It is important to notice that the behaviour of these two properties changes depending on the presence of `verb` property. If `verb` property is not defined all sub-routes that match the `path` property will be included/excluded.
+
+Otherwise, if `verb` property is defined, only the routes that exactly match the `path` and `verb` property will included/excluded.
+:::
+
+It is also possible to transform paths and apply custom tags to them with `transformPaths` property.
+
+```json
+{
+  "type": "url",
+  "url": "http://petstore.swagger.io/v2/swagger.json",
+  "prefix": "/foo",
   "transformPaths": {
     "/myPath": [{
       "path": "/my-path",
-      "tags": ["Custom Tag"]
+      "tags": ["Custom Tag"],
+      "verbsToTransform": ["get", "post"]
     }, {
       "path": "/my-path2",
       "tags": ["Some other custom tag"]
@@ -130,14 +172,33 @@ It is possible to transform paths and apply custom tags to them with an advanced
 }
 ```
 
-This configuration will transform any path matching `/myPath` to two different paths `/my-path` and `/my-path2` with the specified tags.
+Here is a list of the routes that will or not be transformed in the aggregated swagger documentation based on the example above:
+
+* `/myPath` with `get` verb: this route will be transformed into two different routes `/my-path` and `/my-path2` with the specified tags and `get` verb.
+* `/myPath` with `delete` verb: this route will be transformed into another route `/my-path2` with `Some other custom tag` tag and `delete` verb.
+* `/yourPath` with any verb: this route will not be transformed since it does not match any transformPath.
+* `/myPath/customers` with `get` verb: this route will be transformed into another route `/my-path2/customers` with `Some other custom tag` tag and `get` verb. It will not be transformed into `/my-path/customers` because it does not exactly match `path` property.
+
+:::caution
+It is important to notice that the behaviour of `transformPaths` property changes depending on the presence of `verbsToTransform` property. If `verbsToTransform` property is not defined all sub-routes that match the `path` property will be transformed.
+
+Otherwise, if `verbsToTransform` property is defined, only the routes that exactly match the `path` and `verb` property will transformed.
+:::
+
+:::caution
+Please be sure to validate the configuration with the following <a download target="_blank" href="/docs_files_to_download/swagger-aggregator-config.jsonschema.js"> jsonschema</a> before run the service, otherwise the microservice will not correctly start.
+:::
+
+:::info
+For additional information about the more advanced properties that can be defined in swagger-aggregator configuration (e.g., `subSwaggers` property) visit [this page](../development_suite/api-console/advanced-section/swagger-aggregator/configuration).
+:::
 
 ## APIs
 
 The two main APIs exposed by this service are:
 
-- `/swagger/json`: it gives the JSON that aggregates the swagger definitions (specification [OpenApi 2.0](https://swagger.io/specification/v2/)) of the microservices listed in configuration.
-- `/openapi/v3/json`: the same as above but the specification is [OpenApi 3.0](https://swagger.io/specification/).
+* `/swagger/json`: it gives the JSON that aggregates the swagger definitions (specification [OpenApi 2.0](https://swagger.io/specification/v2/)) of the microservices listed in configuration.
+* `/openapi/v3/json`: the same as above but the specification is [OpenApi 3.0](https://swagger.io/specification/).
 
 The service also responds with the swagger static website at the path `/swagger/` (only OpenApi 2.0 v2 specification).
 
