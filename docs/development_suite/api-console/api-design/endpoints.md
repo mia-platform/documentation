@@ -18,6 +18,7 @@ An endpoint can be of different types:
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
 * **Mia-Platform BaaS** _Deprecated_: hook your endpoint to some specific Mia-Platform services.
 * **Fast Data Projection**: hook your endpoint to the service which expose the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
+* **Fast Data Single View**: hook your endpoint to the service which expose the Fast Data Single View. This type is visible only if Fast Data is enabled in the Console.
 
 :::warning
 The type is selectable only during the creation phase. You can't change it later.
@@ -46,8 +47,13 @@ After you created an endpoint linked to a microservice you'll be able to edit th
 
 ### Fast Data Projection
 
-This endpoint type exposes a microservice which is linked to the projection API.  
-These APIs are read only, because it is not possible to modify a projection without passing from Kafka.
+This endpoint type is used to read data of the [Fast Data projection](../../../fast_data/create_projection).  
+These APIs are read only, because they should be edited only by the [Real-Time Updater](../../../fast_data/overview#real-time-updater).
+
+### Fast Data Single View
+
+This endpoint type is used to read data of the [Fast Data Single View](../../../fast_data/sv_concepts).  
+These APIs are read only, because they should be edited only by the [Single View Creator](../../../fast_data/single_view#create-the-single-view-creator-service).
 
 ## About Rewrite Base Path
 
