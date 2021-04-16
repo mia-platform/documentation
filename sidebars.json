@@ -409,7 +409,7 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/http-proxy-manager/configuration"
+                  "id": "runtime_suite/http-proxy-manager/overview"
                 },
                 {
                   "type": "doc",
@@ -417,7 +417,7 @@
                 },
                 {
                   "type": "doc",
-                  "id": "runtime_suite/http-proxy-manager/overview"
+                  "id": "runtime_suite/http-proxy-manager/configuration"
                 }
               ]
             },
