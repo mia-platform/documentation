@@ -220,15 +220,11 @@ This adapter is a function that accepts as arguments the kafka message and the l
 
 * **offset**: the offset of the kafka message
 * **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
-* **keyObject**: an object containing the primary keys of the projection, or null. It is used to know which projection document need to be updated with the changes set in the value.
+* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document need to be updated with the changes set in the value.
 * **value**: the data values of the projection, or null
 
 If the `value` is null, the operation is supposed to be a delete.
-If the `keyObject` is null, will be automatically gotten from the `value` the fields you set as primary key to know which projection have to be updated.
-
-:::caution
-You cannot return both `value` and `keyObject` as null
-:::
+The `keyObject` **cannot** be null.
 
 In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
@@ -259,7 +255,7 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys) {
   // your adapting logic
 
   return {
-    keyObject: keyToReturn, // type object (null or object)
+    keyObject: keyToReturn, // type object (NOT nullable)
     value: valueToReturn, // type object (null or object)
     timestampDate: new Date(parseInt(timestampAsString)), // type Date
     offset: parseInt(offsetAsString), // type number
