@@ -78,4 +78,4 @@ Envs section now displays both the environment identifier and its label in the e
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.3`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.4`.
