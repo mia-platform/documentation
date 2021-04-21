@@ -123,6 +123,13 @@ Rocket icons indicate services that are going to be considered by the smart depl
 * A _Deploy_ near the icon indicates that the service configuration is changed, so it will update the microservice.
 * A _Delete_ near the icon indicates that the service configuration is deleted, so it will delete the microservice.
 * A _No Update_ near the icon indicates that the service configuration remains the same.
+* A _No Info Available_ near the icon indicate the console could not collect enough information to display the outcome 
+
+:::info
+An incomplete deploy outcome column might indicate the configuration has not been properly saved.  
+
+Please notice that this represents the impossibility to provide a complete preview, however, the smart deploy feature will still deploy the modified services.
+:::
 
 ![Service To Deploy](img/service-to-deploy-column.png)
 
