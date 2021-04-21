@@ -48,7 +48,7 @@ The plugin is available only on Mia-Platform PaaS Marketplace. In order to have 
 
 #### Possibility to display _Coming Soon_ microservices
 
-In the [Marketplace](../marketplace/overview_marketplace), console administrators can add and show **Coming Soon** templates, plugins and examples.
+In the [Marketplace](../marketplace/overview_marketplace), console administrators can add and show _Coming Soon_ templates, plugins and examples.
 
 In order to add a Coming Soon service you need to create your service in the Console CMS of On Premise installations and set the **Coming Soon** label to `true`.
 
@@ -64,7 +64,7 @@ Switching between environments in the [_Logs_](https://docs.mia-platform.eu/docs
 
 A proper error message is displayed if something goes wrong during Pod container log retrieval.
 
-#### New `Deploy outcome` option
+#### New Deploy outcome option
 
 A proper 'No info available' feedback is now provided in the Deploy Outcome column when there is not enough information to compute the preview. Read [Smart Deploy documentation](../development_suite/deploy/deploy#understanding-deploy-outcome-column) for additional information.
 
@@ -72,7 +72,7 @@ A proper 'No info available' feedback is now provided in the Deploy Outcome colu
 
 The Deploy section is now able to show services with versions coming from interpolated public variables. Once you have successfully configured your microservice, the value of the public variable corresponding to the selected environment will be displayed in the `New version` column of the Deploy Details.
 
-#### Environment `id` and `name` display
+#### Environment id and name display
 
 Envs section now displays both the environment identifier and its label in the environments table.
 
