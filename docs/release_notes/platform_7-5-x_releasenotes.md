@@ -27,7 +27,9 @@ Core services configuration now supports ConfigMaps larger than __1MB__ (this li
 
 
 :::note
-For technical reasons, ConfigMap resources cannot be split more than __20 times__, hence the current maximum supported size for a ConfigMap is __16MB__.
+ConfigMap resources cannot be split more than __20 times__, hence the current maximum supported size for a ConfigMap is __16MB__.
+This is necessary to avoid the handle of very huge files, that could bring to DOS attack if not correctly handled.
+If you have a ConfigMap that exceeds this limit, contact your Mia-Platform referent.
 :::
 
 #### Public Variables warning customization
