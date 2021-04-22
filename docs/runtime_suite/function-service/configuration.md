@@ -165,7 +165,7 @@ t.test('functions-service', async t => {
     FUNCTIONS_FOLDER: __dirname  + '/../functions',
   })
 
-  t.tearDown(async() => {
+  t.teardown(async() => {
     await fastify.close()
   })
 
