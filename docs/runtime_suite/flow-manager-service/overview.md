@@ -60,6 +60,16 @@ Following two architectures diagrams, based on differents communication protocol
 ![alt_image](img/Flow-Manager-generic-REST.png)
 **Flow Manager architecture with REST protocol**
 
+## Horizontal scaling
+
+### Kafka approach
+
+Using the [Kafka approach](./configuration.md#kafka-communication-protocol) allows the service to horizontal scale because the messages are processed sequentially and, moreover, the kafka message key is the ID of the saga, and is unique &rarr; grants the messages order because messages are in the same topic partition.
+
+:::warning
+The maximum number of replicas is limited by the maximum number of the kafka topics partitions.
+:::
+
 ## Further details
 
 Follow the pages below for more about the _Flow Manager_:

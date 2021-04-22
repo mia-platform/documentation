@@ -41,7 +41,7 @@ Each *channel type* must be one of the supported types. Following the supported 
 
 This *channel* type allows the service to connect to a kafka server and consume/produce messages on it.
 
-The channel properties are the following (the **bold** are the required ones, the *italic* are the mandatory ones):
+The channel properties are the following (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **id**: the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
 - **type**: the type of the channel, must be *kafka*
@@ -226,7 +226,7 @@ For more about the *Persistency Manager* look the [**dedicated documentation**](
 
 The *REST* peristency manager uses the REST protocol to contact the service for read and insert/update the sagas.
 
-Following the properties for this type (the **bold** are the required one, the *italic* are the mandatory one):
+Following the properties for this type (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **type**: the type of the persistency manager, it must be **rest**
 - **configurations**: the other configurations of the manager
@@ -302,7 +302,7 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
 
 This is the core section of the *Flow Manager* configurations, because it contains the *Final State Machine* definition.
 
-Following the *Machine Definition* configurations (the **bold** are the required one, the *italic* are the mandatory one):
+Following the *Machine Definition* configurations (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **initialState**: the saga starting point state; when a new saga is created, the state will be the initial state
 - **creationEvent**: the event who triggers the saga creation, is just a placeholder to be passed to the *Persistency Manager* on the saga creation (it can be useful if the *Persistency Manager* stores a history of the saga's events)
@@ -314,7 +314,7 @@ Following the *Machine Definition* configurations (the **bold** are the required
 
 The states of the machine are used by the *Flow Manager* to know how to move forward the saga through the flow.
 
-Each state must have the following configurations (the **bold** are the required one, the *italic* are the mandatory one):
+Each state must have the following configurations (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **id**: a string that contains the ID of the state (usually is a camel case human readable string that tells what the state represents)
 - *description*: the state description
@@ -334,7 +334,7 @@ The business states of the machine are a superset of the machine that represents
 
 Each business state can contain one or more states of the machine (defined above).
 
-Following the configurations of the business states (the **bold** are the required one, the *italic* are the mandatory one):
+Following the configurations of the business states (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **id**: the ID of the business state (is usually a integer code)
 - *description*: a full description of the business state
@@ -347,7 +347,7 @@ The business events of the machine are a superset of the machine that represents
 
 Each business event can be associated with one or more outgoingTransitions of the machine (defined above).
 
-Following the configurations of the business states (the **bold** are the required one, the *italic* are the optional one):
+Following the configurations of the business states (the **bold** are the required ones, the *italic* are the optional ones):
 
 - **id**: the ID of the business event (is usually a integer code)
 - *description*: a full description of the business event
