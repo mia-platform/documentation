@@ -208,6 +208,19 @@
     "docLandingPage": "runtime_suite/ses-mail-notification-service/configuration"
   },
   {
+    "name": "Single View Creator",
+    "description": "This is the best plugin to use for creating a Single View Creator for your Fast Data",
+    "category": {
+      "id": "fast-data",
+      "label": "Fast Data"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/single-view-creator_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/single-view-creator/configuration"
+  },
+  {
     "name": "SQL DB Reader",
     "description": "Provide SQL queries as REST API.",
     "category": {

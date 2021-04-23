@@ -518,6 +518,17 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Single View Creator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/single-view-creator/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "SQL DB Reader",
               "items": [
                 {
