@@ -8,7 +8,11 @@ sidebar_label: Configure Single View Creator
 
 Each Single View needs a dedicated Microservice. This service will listen on the **Projections changes** that affect the Single view and consequently update its data. This service is the `Single View Creator`.
 
-To start configure your Single View Creator, you can start from the *Single View Creator Template*.
+To start configure your own Single View Creator, you can begin from the *Single View Creator Template*.
+
+:::info
+If you are searching for a ready-to-use plugin that only requires some configuration files to update your single views, please visit this [link](../runtime_suite/single-view-creator/configuration).
+:::
 
 ## Single View Creator Template
 
@@ -27,9 +31,9 @@ service.decorate('patient', singleViewCreator.k8sPatient)
 
 Where `config` is an object whose fields represent the [Microservice environment variables](../development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
-Some environment variable will be pre-compiled when you create the service from template, other will be not but will have a placeholder as value. Replace it with the correct value. 
+Some environment variable will be pre-compiled when you create the service from template, other will be not but will have a placeholder as value. Replace it with the correct value.
 
-Here some tips: 
+Here some tips:
 
 - `TYPE`: should be the name of the single view which your single view creator is responsible for
 - `SINGLE_VIEWS_COLLECTION`: should be the name of the single view which your single view creator is responsible for
@@ -60,7 +64,7 @@ const resolvedOnStop = singleViewCreator.startCustom({
 - `upsertSingleView` is the function that upserts the Single View to the Single Views collection on Mongo
 - `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo
 
-`upsertSV` and `fullDeleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view. 
+`upsertSV` and `fullDeleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view.
 
 :::note
 The `fullDeleteSV` function makes a *real delete* of the document on MongoDb. So, unlike the **projections** deletion, it does *not* make a virtual delete.
@@ -88,12 +92,13 @@ For further information contact your Mia Platform referent
 
 :::note
 This documentation refers to the `@mia-platform-internal/single-view-creator-lib` ^8.0.2.
-::: 
+:::
 
-The core of your work on this service are the files inside the `src` folder. 
+The core of your work on this service are the files inside the `src` folder.
 
-**singleViewKey.js**: It takes in input the identifier of the projection change and return the key object used to select the document of the Single View collection that need to be updated.   
-In the example below, we expect to have the field `myId` as primary key of the Single View collection.   
+**singleViewKey.js**: It takes in input the identifier of the projection change and return the key object used to select the document of the Single View collection that need to be updated.
+
+In the example below, we expect to have the field `myId` as primary key of the Single View collection.
 
 ```js
 const get = require('lodash.get')
@@ -110,11 +115,12 @@ module.exports = function singleViewKeyGenerator(logger, projectionChangeIdentif
 }
 ```
 
-**pipeline.js**: It takes as input a MongoDB instance and returns a function. This function takes as input the projection change identifier and returns an array.   
-If it's empty, than it will be executed a delete on the single view identified by the singleViewKeyGenerator result. 
-If it's not empty, than it will be executed an upsert on the single view identified by the singleViewKeyGenerator result. 
+**pipeline.js**: It takes as input a MongoDB instance and returns a function. This function takes as input the projection change identifier and returns an array.
 
-:::note 
+If it's empty, than it will be executed a delete on the single view identified by the singleViewKeyGenerator result.
+If it's not empty, than it will be executed an upsert on the single view identified by the singleViewKeyGenerator result.
+
+:::note
 If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
 :::
 

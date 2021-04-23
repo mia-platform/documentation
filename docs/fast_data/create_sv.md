@@ -8,12 +8,14 @@ sidebar_label: Single View
 
 A Single View is a collection formed by an aggregation of data from different collections (e.g. restaurants, dishes, reviews, etc). If you want to know more about what Single Views are and how they are used, visit the [Single View Concepts](../fast_data/sv_concepts) page.
 
-For example, suppose to have the following projections: 
+For example, suppose to have the following projections:
+
 - RESTAURANTS: `ID`, `NAME`
 - DISHES: `ID`, `NAME`, `INGREDIENTS`, `RESTAURANT_ID`
 - REVIEWS: `ID`, `TEXT`, `STARS`, `DISH_ID`
 
 And these projections are connected among them with this logic:
+
 - a restaurant can have multiple dishes
 - a single dish can be owned by a single restaurant
 - a dish can have multiple reviews, but the review is about a single dish
@@ -22,8 +24,10 @@ As shown in the following diagram:
 
 ![Fast Data projection ER-Diagram](img/fastdata-projections-er-diagram.jpg)
 
-These relations allow us to know how to pass from one projection to another one.    
+These relations allow us to know how to pass from one projection to another one.
+
 For example, if we have the following review:
+
 ```yaml
 ID: 'review-123'
 TEXT: 'lorem ipsum'
@@ -31,7 +35,8 @@ STARS: 2
 DISH_ID: 'dish-2'
 ```
 
-and we want to know what is the name of the restaurant that has received this review, we just have to: 
+and we want to know what is the name of the restaurant that has received this review, we just have to:
+
 - look up in the projection DISHES the dish whose `ID` equals `dish-2`
 - get the `RESTAURANT_ID` of the restaurant which owns `dish-2`
 - look up in the projection `RESTAURANTS` and get the `NAME` of the restaurant whose `ID` equals to the `RESTAURANT_ID` associated to `dish-2`.
@@ -53,7 +58,8 @@ dishes:
 
 ![Fast Data Single View Projections link](img/fastdata-single-view-projection-diagram.png)
 
-As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occurs (e.g.: the name of a dish changes, or a new reviews is written, or some dishes are removed) the single view interested in these changes has to be regenerated.    
+As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occurs (e.g.: the name of a dish changes, or a new reviews is written, or some dishes are removed) the single view interested in these changes has to be regenerated.  
+
 In our case, let's assume that a new review is added to the projection REVIEWS with the following data:
 
 ```yaml
@@ -63,23 +69,25 @@ STARS: 2
 DISH_ID: 'dish-2'
 ```
 
-we need to update the single view with `restaurantId` equals to the restaurant that owns the dishes with `ID` equals to `dish-2`. 
+we need to update the single view with `restaurantId` equals to the restaurant that owns the dishes with `ID` equals to `dish-2`.
 
-In order to maintain the consistency between Single View data and the content of the projections, the Single Views need to be linked to the projections they aggregate, so that when some documents of the projections are updated, the single view containing that information can be updated accordingly.    
+In order to maintain the consistency between Single View data and the content of the projections, the Single Views need to be linked to the projections they aggregate, so that when some documents of the projections are updated, the single view containing that information can be updated accordingly.  
+
 So, it must be defined a function for each projection associated with the single view. These functions are called `strategies` and are used to know which specific single view document must be updated as a consequence of the update of a projection document. To know how to create a strategies [read here](./single_view#strategies)
 
 ## Create the Single View
 
-Click on the Single Views voice of the left menu, which opens the Single View page, and click the button to create a new Single View.   
-Fill the modal with the name of the Single View, that is going to be the name of the collection. 
+Click on the Single Views voice of the left menu, which opens the Single View page, and click the button to create a new Single View.  
 
-Once created, you will be redirected to the Single View detail page.   
+Fill the modal with the name of the Single View, that is going to be the name of the collection.
+
+Once created, you will be redirected to the Single View detail page.  
 
 ## Single View Data Model
 
 Single views collections are created on the _CRUD Service_, so we add all the [default fields](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) and indexes required for the CRUD collections in creation.
 
-To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card. 
+To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card.
 
 ![Fast Data Single View Fields](img/single-view-detail-fields.png)
 
@@ -87,11 +95,11 @@ The type fields supported are the same of the collection you can create in the [
 
 ## Create the Single View Creator service
 
-You need to create a **Single View Creator** to update or delete a Single View when a Projection Changes is created. This happens every time a Projection has been modified.   
+You need to create a **Single View Creator** to update or delete a Single View when a Projection Changes is created. This happens every time a Projection has been modified.
 
-A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to once System of Records through a Projection Changes.
+A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to once System of Records through Projection Changes.
 
-```
+```shell
 system_1
  _______________     __________________________
 | projection_1 |---> |projection_change type A |  ----> single_view_creator_1  
@@ -108,9 +116,9 @@ system_2                                                                /
 
 ```
 
-To associate the single view with the service, add a service in the `Single view creator services` card in the Single View detail page. You can attach more than one service to the Single View.     
+To associate the single view with the service, add a service in the `Single view creator services` card in the Single View detail page. You can attach more than one service to the Single View.
 
-After you have attached the microservice to the single view, a link to the microservice will appear. Click on the link to navigate to the detail page of the microservice. 
+After you have attached the microservice to the single view, a link to the microservice will appear. Click on the link to navigate to the detail page of the microservice.
 
 ![Fast Data Single View Microservice](img/single-view-detail-microservice.png)
 
@@ -118,7 +126,12 @@ After you have attached the microservice to the single view, a link to the micro
 These links are only for documentation purpose. You can use them to track which services are responsible for keeping updated the Single View.  
 :::
 
-[Click here](configure_single_view_creator) to see how to configure the Single View Creator.
+:::info
+In the [Marketplace](../marketplace/overview_marketplace), you can find a template and a plugin that can help you in configuring all the **Single View Creator** services that you need. In particular:
+
+- **Single View Creator**: this is a ready-to-use plugin that requires you to provide a configuration with three files in it. For more information about this plugin visit this [link](../runtime_suite/single-view-creator/configuration).
+- **Single View Creator Template**: it is a template that allows you to write your own single view creator service while providing you many utility functions. To know more about it, please go [here](configure_single_view_creator).
+:::
 
 ## Strategies
 
@@ -275,15 +288,15 @@ To know the technical limitation you have in these files, [read here](./single_v
 
 ### Link projections to the Single View
 
-In the detail page of the Single View, click on the `Strategies` tab. 
+In the detail page of the Single View, click on the `Strategies` tab.
 
 ![Fast Data Single View Strategies](img/single-view-detail-strategies.png)
 
-Here it's shown a table in which you have to specify the all projections that will be read to get the data that the single view needs (remember that a Single View is an aggregation of data from different projections).    
+Here it's shown a table in which you have to specify the all projections that will be read to get the data that the single view needs (remember that a Single View is an aggregation of data from different projections).
 
-To each listed projections you have to link a file without the extension `.js` which is the entry point of your **strategy function**.   
+To each listed projections you have to link a file without the extension `.js` which is the entry point of your **strategy function**.
 
-Example: 
+Example:
 
 ```txt
 configurations/
@@ -294,7 +307,8 @@ configurations/
                     |-- someFunctions.js
 ```
 
-Where `myStrategyForProjection1.js` is the file that exports the strategy function and internally it uses some functions imported from the `someFunctions.js` file.   
+Where `myStrategyForProjection1.js` is the file that exports the strategy function and internally it uses some functions imported from the `someFunctions.js` file.
+
 So, you have to set `myStrategyForProjection1` as **main function file** for the projection associated.
 
 ## How to consume the Single View
@@ -317,9 +331,9 @@ Deleting a Single View does **not** delete the microservice associated.
 
 In your custom files (e.g. `fast-data-files`) you can import only the node modules present in the following list:
 
-* [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
-* [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
-* [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
+- [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
+- [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
+- [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
 
 :::caution
 It is used the node version 12.

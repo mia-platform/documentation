@@ -749,18 +749,11 @@
         },
         {
           "type": "doc",
-          "id": "fast_data/advanced"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Fast Data outside Console",
-      "items": [
+          "id": "fast_data/configure_single_view_creator"
+        },
         {
           "type": "doc",
-          "id": "fast_data/configure_single_view_creator"
+          "id": "fast_data/advanced"
         }
       ]
     }
