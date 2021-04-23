@@ -5,23 +5,23 @@ sidebar_label: Endpoints Overview
 ---
 ## What is the Endpoints Overview
 
-The Endpoints Overview is a visualization tool accessible from the Projects[TODO ?] section of the console by selecting a specific tenant and clicking on the EP button[TODO ?]. The Endpoints Overview aims to help the user to obtain a graphical cross-project overview of the configuration of all the projects into the selected tenant. A particular focus of this graphical overview is about the projects' endpoints with special attention on the endpoints' security.  
+The Endpoints Overview is a visualization tool accessible from the Projects[TODO ?] Section of the console by selecting a specific tenant and clicking on the EP button[TODO ?]. The Endpoints Overview aims to help the user to obtain a graphical cross-project overview of the configuration for all the projects into the selected tenant. A particular focus of this graphical overview is about the projects' endpoints with special attention on the endpoints' security.  
 
 From the project configuration, Endpoints Overview creates the starting tabular visualization of the endpoints where each row shows: 
 * *Project*: Project name.
 * *Project owner*: Project owner name.
 * *Endpoint/API*: Endpoint name.
-* *Show in API Portal*: Label that shows if the endpoint appears in the API portal.
-* *API-Key*: Label that shows if the endpoint is protected by an API-key.
-* *Public*: Label that shows if the endpoint is public.
-* *Group Expression*: Label that shows if the endpoint is protected by a group expression and the concerning expressions.
-* *Decorator PRE*: Label that shows if a PRE decorator is configured for the endpoint and the concerning decorators.  
+* *Show in API Portal*: A label that shows if the endpoint appears in the API portal.
+* *API-Key*: A label that shows if the endpoint is protected by an API-key.
+* *Public*: A label that shows if the endpoint is public.
+* *Group Expression*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
+* *Decorator PRE*: A label that shows if a PRE decorator is configured for the endpoint and the concerning decorators.  
 
 An example is in the following picture.
 
 ![Endpoints Overview visualization](img/endpoints-overview-visualization.png)
 
-Through this tool the governance entity of the tenant can have a graphical overview of the global configuration and the security of all the projects and endpoints.
+Through this tool, the government entity of the tenant can have a graphical overview of the global configuration and the security of all the projects and endpoints.
 
 ## Main functionalities
 
@@ -43,7 +43,7 @@ The Endpoint Overview output can be sorted by each one of the features by clicki
 
 ### FIltering
 
-The Endpoints Overview results can be filtered using the drop-down menus concerning the project names and the required features. The Endpoints Overview results are filtered showing only the row that satisfies all the chosen filters.
+The Endpoints Overview results can be filtered using the drop-down menus concerning the project names and the required features. The Endpoints Overview results are filtered showing only the rows that satisfy all the chosen filters.
 
 ![Project filter](img/project-name-filter.png)
 
@@ -51,5 +51,5 @@ The Endpoints Overview results can be filtered using the drop-down menus concern
 
 ![Filter](img/filter.png)
 
-In the presented example the Endpoint Overview result is filtered for the endpoints into *Portale Benessere* or *Customers* projects having both *API-Key* and *Group expression* features settled to true.  
+In the presented example the Endpoint Overview result is filtered for the endpoints into *Portale Benessere* or *Customers* projects having both *API-Key* and *Group expression* features set to true.  
 [TODO to be changed the projects names]
