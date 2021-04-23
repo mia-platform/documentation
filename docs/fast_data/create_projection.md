@@ -4,15 +4,17 @@ title: Projection
 sidebar_label: Projections
 ---
 
-## Create a System of Record
+## Create a System of Records
 
-To create a projection, you should create a System of Record. This is the data source which update the projections.
+To create a projection, you should create a System of Records. This is the data source which updates the projections.
 
-The creation of the System of Record requires to insert a system ID, useful to recognize the system.
+To do so, open the **Projections** section in the fast data group of Mia-Platform Console. Then, select the create button.
 
-## Delete a System of Record
+The creation of a System of Records requires you to insert a system ID, useful to recognize the system.
 
-To delete a System of Record, you have to click the Delete button at the bottom-right corner of the System of Record detail page.  
+## Delete a System of Records
+
+To delete a System of Records, you have to click the Delete button at the bottom-right corner of the System of Records detail page.  
 The deletion is not allowed until you have at least one Projection inside the System, hence you need to delete all the projections in a System before being able to delete it.  
 
 ## Projections Changes
@@ -32,8 +34,8 @@ This will not happen if you have chosen to use your own custom Projections Chang
 
 ## Create a Projection
 
-To create a projection using the Console, select the System of Record from which the projection is taken.
-In the System of Record detail, scroll until the `Projection` card and click on the create button.
+To create a projection using the Console, select the System of Records from which the projection is taken.
+In the System of Records detail, search for the `Projections` card and click on the create button.
 Here, you can insert the name of your projection.
 
 :::info
@@ -56,10 +58,11 @@ where `projectId`, `environmentId` and `projectionName` are filled with, respect
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the Core Service responsible for creating the collection on MongoDB.    
+A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the Core Service responsible for creating the collection on MongoDB.
+
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 
-These fields have no `Cast function` assigned because they are not used for mapping of fields from the Kafka Message received. This means that if the Kafka Message contains a field with the name equals to one of the metadata fields, this is not copied on the projection.   
+These fields have no `Cast function` assigned because they are not used for mapping of fields from the Kafka Message received. This means that if the Kafka Message contains a field with the name equals to one of the metadata fields, this is not copied on the projection.
 
 ### Projection fields
 
@@ -119,7 +122,16 @@ However, differently from Indexes that can be created on a normal CRUD, in this 
 
 An `_id` index is created by default and it is not deletable.
 
-Both custom fields and metadata can be used as fields for indexes. 
+Both custom fields and metadata can be used as fields for indexes.
+
+:::caution
+In order for the Real Time Updater to correctly update its projections two actions are necessary:
+
+* You should define at least one custom field with flags **Primary Key** and **Required** set to true in the `Fields` card.
+* Then, you should create an index using the previously defined custom field and set to true the index **unique** flag.
+
+In this way, the Real Time Updater updates the projection document with the correct primary key value instead of creating a new document.
+:::
 
 ### Expose projections through API
 
