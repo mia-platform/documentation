@@ -5,15 +5,15 @@ sidebar_label: Endpoints Overview
 ---
 ## What is the Endpoints Overview
 
-The Endpoints Overview is a visualization tool accessible from the Projects[TODO ?] Section of the console by selecting a specific tenant and clicking on the EP button[TODO ?]. The Endpoints Overview aims to help the user to obtain a graphical cross-project overview of the configuration for all the projects into the selected tenant. A particular focus of this graphical overview is about the projects' endpoints with special attention on the endpoints' security.  
+The Endpoints Overview is a visualization tool accessible from the Projects[TODO ?] Section of the console by selecting a specific tenant and clicking on the EP button[TODO ?]. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security of the projects' endpoints.  
 
-From the project configuration, Endpoints Overview creates the starting tabular visualization of the endpoints where each row shows: 
+Endpoints Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Project*: Project name.
 * *Project owner*: Project owner name.
 * *Endpoint/API*: Endpoint name.
 * *Show in API Portal*: A label that shows if the endpoint appears in the API portal.
 * *API-Key*: A label that shows if the endpoint is protected by an API-key.
-* *Public*: A label that shows if the endpoint is public.
+* *Public*: A label that shows if the endpoint is public (the API is accessible even if the user is not logged in).
 * *Group Expression*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
 * *Decorator PRE*: A label that shows if a PRE decorator is configured for the endpoint and the concerning decorators.  
 
