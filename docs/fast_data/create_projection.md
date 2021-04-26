@@ -115,6 +115,10 @@ At the end of the upload an internal function will try to cast the types correct
 Import of fields is supported only for the following data types: `String`, `Number`, `Boolean` or `Date`. For example, you cannot import fields of type object.
 :::
 
+:::caution
+You cannot import fields with name equals to one of the metadata fields.
+:::
+
 ### Indexes
 
 In the card `Indexes`, you can add indexes to the collection. To learn more about crud indexes, [click here](../runtime_suite/crud-service/overview_and_usage#indexes).
