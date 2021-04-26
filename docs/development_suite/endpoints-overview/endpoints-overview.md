@@ -27,11 +27,16 @@ Through this tool, the government entity of the tenant can have a graphical over
 
 ### Graphical features representation
 
-* The user can consult endpoints status. The status is represented by a painted circle that can be green or red jointly a true or false label respectively representing the presence of the feature or its absence.
+The user can consult endpoints' status, represented by a painted circle and the label *true* or *false*. The meaning of the circle depends on its colour:
 
-* The *Group expression* feature is also represented by a painted circle and has the group expressions as labels.
+* Red: the absence of a security feature in the corresponding column.
+* Green: the presence of a security feature in the corresponding column.
+* Grey: the presence of a feature that does not direcly influence the security of the endpoint.
+* Orange: the absence of a feature that does not direcly influence the security of the endpoint.
 
-* The *Decorator PRE* feature is represented by a painted circle that can be grey or orange, that because the presence or the absence of a decorator does not directly influence the security of the endpoint. The painted circle is combined with labels that specify the type of decorators.
+The *Group expression* column also displays the group expressions as labels.  
+
+The *Decorator PRE* column also specifies the type of decorators as labels.  
 
 ![Graphical features](img/graphical-features.png)  
 [TODO change the image with the udated one]
@@ -43,7 +48,7 @@ The Endpoint Overview output can be sorted by each one of the features by clicki
 
 ### FIltering
 
-The Endpoints Overview results can be filtered using the drop-down menus concerning the project names and the required features. The Endpoints Overview results are filtered showing only the rows that satisfy all the chosen filters.
+The Endpoints Overview results can be filtered by the project names and the categories within the columns using the drop-down menus. By doing so, only the Endpoints Overview's rows satisfying the chosen filters will be shown.
 
 ![Project filter](img/project-name-filter.png)
 
@@ -51,5 +56,5 @@ The Endpoints Overview results can be filtered using the drop-down menus concern
 
 ![Filter](img/filter.png)
 
-In the presented example the Endpoint Overview result is filtered for the endpoints into *Portale Benessere* or *Customers* projects having both *API-Key* and *Group expression* features set to true.  
+In the presented example, the Endpoint Overview result is filtered to display only the endpoints into *Portale Benessere* or *Customers* projects having both *API-Key* and *Group expression* features set to true.  
 [TODO to be changed the projects names]
