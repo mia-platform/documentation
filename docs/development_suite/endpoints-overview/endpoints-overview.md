@@ -5,7 +5,7 @@ sidebar_label: Endpoints Overview
 ---
 ## What is the Endpoints Overview
 
-The Endpoints Overview is a visualization tool accessible from the Projects[TODO ?] Section of the console by selecting a specific tenant and clicking on the EP button[TODO ?]. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security of the projects' endpoints.  
+The Endpoints Overview is a visualization tool accessible from the Projects Section of the console by selecting a specific tenant and clicking on the Overview button. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security of the projects' endpoints.  
 
 Endpoints Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Project*: Project name.
@@ -39,7 +39,7 @@ The *Group expression* column also displays the group expressions as labels.
 The *Decorator PRE* column also specifies the type of decorators as labels.  
 
 ![Graphical features](img/graphical-features.png)  
-[TODO change the image with the udated one]
+
 ### Sorting
 
 The Endpoint Overview output can be sorted by each one of the features by clicking on the attributes presented in the first table row.
@@ -56,5 +56,4 @@ The Endpoints Overview results can be filtered by the project names and the cate
 
 ![Filter](img/filter.png)
 
-In the presented example, the Endpoint Overview result is filtered to display only the endpoints into *Portale Benessere* or *Customers* projects having both *API-Key* and *Group expression* features set to true.  
-[TODO to be changed the projects names]
+In the presented example, the Endpoint Overview result is filtered to display only the endpoints into *Project_01* or *Project_02* projects having both *API-Key* and *Group expression* features set to true.  
