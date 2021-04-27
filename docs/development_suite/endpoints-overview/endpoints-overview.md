@@ -46,7 +46,7 @@ The Endpoint Overview output can be sorted by each one of the features by clicki
 
 ![Sort](img/sort.png)
 
-### FIltering
+### Filtering
 
 The Endpoints Overview results can be filtered by the project names and the categories within the columns using the drop-down menus. By doing so, only the Endpoints Overview's rows satisfying the chosen filters will be shown.
 
