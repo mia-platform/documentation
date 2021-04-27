@@ -5,7 +5,7 @@ sidebar_label: Endpoints Overview
 ---
 ## What is the Endpoints Overview
 
-The Endpoints Overview is a visualization tool accessible from the Projects Section of the console by selecting a specific tenant and clicking on the Overview button. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security of the projects' endpoints.  
+The Endpoints Overview is a visualization tool accessible from the Tenant Section. This feature is accessible from the console host at the path `/tenants/:tenantId/endpoints-overview/` through the url `$HOSTNAME_CONSOLE/tenants/:tenantId/endpoints-overview/`. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security configuration of the projects' endpoints.  
 
 Endpoints Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Project*: Project name.
@@ -27,7 +27,7 @@ Through this tool, the government entity of the tenant can have a graphical over
 
 ### Graphical features representation
 
-The user can consult endpoints' status, represented by a painted circle and the label *true* or *false*. The meaning of the circle depends on its colour:
+The user can consult endpoints' status, represented by a dot and the label *true* or *false*. The meaning of the dot depends on its colour:
 
 * Red: the absence of a security feature in the corresponding column.
 * Green: the presence of a security feature in the corresponding column.
@@ -48,7 +48,7 @@ The Endpoint Overview output can be sorted by each one of the features by clicki
 
 ### Filtering
 
-The Endpoints Overview results can be filtered by the project names and the categories within the columns using the drop-down menus. By doing so, only the Endpoints Overview's rows satisfying the chosen filters will be shown.
+The Endpoints Overview results can be filtered by the project names and the attributes within the columns using the drop-down menus. By doing so, only the Endpoints Overview's rows satisfying the chosen filters will be shown.
 
 ![Project filter](img/project-name-filter.png)
 
