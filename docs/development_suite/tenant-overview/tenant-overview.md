@@ -1,13 +1,13 @@
 ---
-id: endpoints-overview
-title: Endpoints Overview
-sidebar_label: Endpoints Overview
+id: tenant-overview
+title: Tenant Overview
+sidebar_label: Tenant Overview
 ---
-## What is the Endpoints Overview
+## What is the Tenant Overview
 
-The Endpoints Overview is a visualization tool accessible from the Tenant Section. This feature is accessible from the console host at the path `/tenants/:tenantId/endpoints-overview/` through the url `$HOSTNAME_CONSOLE/tenants/:tenantId/endpoints-overview/`. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security configuration of the projects' endpoints.  
+The Tenant Overview is a visualization tool accessible from the Tenant Section. This feature is accessible from the console host at the path `/tenants/:tenantId/endpoints-overview/` through the url `$HOSTNAME_CONSOLE/tenants/:tenantId/endpoints-overview/`. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security configuration of the projects' endpoints.  
 
-Endpoints Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
+Tenant Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Project*: Project name.
 * *Project owner*: Project owner name.
 * *Endpoint/API*: Endpoint name.
@@ -34,7 +34,7 @@ The user can consult endpoints' status, represented by a dot and the label *true
 * Grey: the presence of a feature that does not direcly influence the security of the endpoint.
 * Orange: the absence of a feature that does not direcly influence the security of the endpoint.
 
-The *Group expression* column also displays the group expressions as labels.  
+The *Group expression* column also displays the group expressions as labels, each label represents the expression string provided in the endpoint configuration. In this case the label *"true"* means that there is no check over the group expression and therefore the endpoint is not protected, conversely the label *"false"* means that it is not possible to access the endpoint. A custom group expression is shown as label with a grey dot.  
 
 The *Decorator PRE* column also specifies the type of decorators as labels.  
 
@@ -42,13 +42,13 @@ The *Decorator PRE* column also specifies the type of decorators as labels.
 
 ### Sorting
 
-The Endpoint Overview output can be sorted by each one of the features by clicking on the attributes presented in the first table row.
+The Tenant Overview output can be sorted by each one of the features by clicking on the attributes presented in the first table row.
 
 ![Sort](img/sort.png)
 
 ### Filtering
 
-The Endpoints Overview results can be filtered by the project names and the attributes within the columns using the drop-down menus. By doing so, only the Endpoints Overview's rows satisfying the chosen filters will be shown.
+The Tenant Overview results can be filtered by the project names and the attributes within the columns using the drop-down menus. By doing so, only the Endpoints Overview's rows satisfying the chosen filters will be shown.
 
 ![Project filter](img/project-name-filter.png)
 
@@ -56,4 +56,4 @@ The Endpoints Overview results can be filtered by the project names and the attr
 
 ![Filter](img/filter.png)
 
-In the presented example, the Endpoint Overview result is filtered to display only the endpoints into *Project_01* or *Project_02* projects having both *API-Key* and *Group expression* features set to true.  
+In the presented example, the Tenant Overview result is filtered to display only the endpoints into *Project_01* or *Project_02* projects having both *API-Key* and *Group expression* features set to true.  
