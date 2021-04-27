@@ -19,13 +19,13 @@ Services that act as decorators have been added and placed near the Microservice
 
 When using the right click on a custom microservices or the CRUD service, a context menu will be displayed that allows to directly reach the configuration page of a custom microservice, or the MongoDB CRUD section of the Console.
 
-![link on Mia-Craft](./img/link on Mia-Craft.png)
+![link on Mia-Craft](./img/link-on-Mia-Craft.png)
 
 #### Addition of Mia-Craft legend
 
 An explanatory legend has been added to simplify the comprehension of a Mia-Craft visualization
 
-![legend on Mia-Craft](./img/legenda Mia-Craft.png)
+![legend on Mia-Craft](./img/legenda-Mia-Craft.png)
 
 ### Breaking Changes
 
