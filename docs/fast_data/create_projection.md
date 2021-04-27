@@ -77,6 +77,8 @@ Once you click to `Create field` button, a form is prompted where you should ins
 * `Nullable`: declare field as nullable, default to false.
 * `Primary Key`: set the field as part of the primary key, default to false.
 
+It's **mandatory** to set at least one Primary Key for each Projection. Otherwise, you will not be able to save your configuration.
+
 :::caution
 Setting the Primary Keys does **not** create automatically the unique indexes. You need to create them by yourself.
 :::

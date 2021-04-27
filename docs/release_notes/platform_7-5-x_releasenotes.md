@@ -5,6 +5,56 @@ sidebar_label: v7.5
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.5.1
+
+_April 27, 2021_
+
+### New Features
+
+#### Addition of services that act as decorators into Mia-Craft visualization
+
+Services that act as decorators have been added and placed near the Microservice Gateway, to be more easily recognizable.
+
+#### Direct links from Mia-Craft to Microservices and MongoDB CRUD sections
+
+When using the right click on a custom microservices or the CRUD service, a context menu will be displayed that allows to directly reach the configuration page of a custom microservice, or the MongoDB CRUD section of the Console.
+
+![link on Mia-Craft](./img/link on Mia-Craft.png)
+
+#### Addition of Mia-Craft legend
+
+An explanatory legend has been added to simplify the comprehension of a Mia-Craft visualization
+
+![legend on Mia-Craft](./img/legenda Mia-Craft.png)
+
+### Breaking Changes
+
+#### Primary Key required for Projections
+
+It's now mandatory to have set at least one [Primary Key](../fast_data/create_projection#projection-fields) for each Projection. Otherwise, you will not be able to save your configuration.
+
+#### Kafka Message Adapters objectKey
+
+[Custom Kafka Message Adapter](../fast_data/create_projection#custom) **cannot** return null for `objectKey` attribute. Check out to return a valid object value.
+
+### Bug Fix
+
+#### ConfigMap delete for advanced microservices
+
+Saving a Project with an advanced microservices with configmaps lead to a `Downloading configuration` error due to its elimination. This bug has now been fixed and the advanced configmap are not deleted anymore.
+
+#### HPA configurations delete
+
+Fixed bug that caused the deletion of HPA files manually created on the repository when the file name was equal to a service name.
+
+#### Projection fields generated from data sample
+
+Fixed bug that broke the configuration after the import of fields from data sample for Projections.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.5`.
+
 ## v7.5.0
 
 _April 22, 2021_
@@ -24,7 +74,6 @@ You can also set the strategies for each projection directly in the [Strategies]
 #### Large Configmaps support
 
 Core services configuration now supports ConfigMaps larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
-
 
 :::note
 ConfigMap resources cannot be split more than __20 times__, hence the current maximum supported size for a ConfigMap is __16MB__.
