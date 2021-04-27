@@ -53,7 +53,7 @@ Fixed bug that broke the configuration after the import of fields from data samp
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.5`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.6`.
 
 ## v7.5.0
 
