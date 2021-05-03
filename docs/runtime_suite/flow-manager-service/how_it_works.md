@@ -1,9 +1,9 @@
 ---
 id: how_it_works
-title: How does Flow Manager work?
+title: How does the Flow Manager work?
 sidebar_label: How it works
 ---
-In this page will be explained the how the _Flow Manager_ works.
+In this page it will be explained how the _Flow Manager_ works.
 
 ## The finite state machine
 
@@ -264,3 +264,27 @@ The tasks of the **Persistency Manager** are to:
 - provide a method to **get** a saga, that must return:
   - the _current state_
   - the _Saga_'s _metadata_
+
+## Interacting with the Flow Manager
+
+The _Flow Manager_ service exposes a POST route on `/saga` that allows to create new _Sagas_. It automatically stores the saga on your persistency manager, creates the id of the _Saga_, sends the creation command and returns the id.
+It requires the following body:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "associatedEntityId": {
+      "type": "string",
+      "description": "The id of the entity associated to the saga",
+    },
+    "metadata": {
+      "type": "object",
+      "description": "The metadata associated to the saga",
+      "additionalProperties": true,
+    },
+  },
+  "required": ["associatedEntityId", "metadata"],
+  "additionalProperties": false,
+}
+```

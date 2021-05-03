@@ -131,6 +131,28 @@ Following some examples with explanation.
 }
 ```
 
+#### Sending commands
+
+The *Flow Manager* sends commands via Kafka messages using the _Saga id_ as key, while the message payload should be in the form:
+
+```json
+{
+  "messageLabel": "The label of the command",
+  "messagePayload": "The payload needed by the called service to execute the command"
+}
+```
+
+#### Receiving events
+
+The *Flow Manager* receives events via Kafka messages using the _Saga id_ as key, while the message payload should be in the form:
+
+```json
+{
+  "messageLabel": "The label of the event",
+  "messagePayload": "The payload of the event"
+}
+```
+
 ### REST communication protocol
 
 This *channel* type allows the service to exchange commands and events with external services through REST API.
@@ -216,7 +238,8 @@ This section contains the configurations for the *Persistency Manager*, that is 
 
 The *persistency manager type* must be one of the supported types. Following the supported types:
 
-- [**rest**](#rest-persistency-manager): the only supported channel right now, that will use the REST protocol to interact with the persistency manager service
+- [**rest**](#rest-persistency-manager): will use the REST API to interact with an external persistency manager service
+- [**mongo**](#mongo-persistency-manager): will directly connect to a MongoDB instance to interact with the persistency manager collection.
 
 The **persistencyManagement** section must contain a JSON object with the configurations. See the following sections for the details by type.
 
@@ -292,11 +315,76 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
 
 - **insert/update**:
 
-    `POST - http://my-persistency-manager:3000/EXAMPLE_123456_SAGA`
+  `POST - http://my-persistency-manager:3000/EXAMPLE_123456_SAGA`
 
 - **get**:
 
-    `GET - http://my-persistency-manager:3000/EXAMPLE_123456_SAGA`
+  `GET - http://my-persistency-manager:3000/EXAMPLE_123456_SAGA`
+
+### Mongo Persistency Manager
+
+The Mongo peristency manager directly connects to a MongoDB cluster for reading and inserting/updating the saga information.
+
+The properties for this type, which are **all required**, follows:
+
+- **type**: the type of the persistency manager, it must be **mongo**
+- **configurations**: an object containing the other configurations of the manager
+  - **connectionUri**: the connection string of the Mongo instance (e.g. `mongodb://...`)
+  - **collectionName**: the collection in which the sagas will be stored
+
+**NB.** the interactions between the *Flow Manager* and the *Persistency Manager* are the following:
+
+- **at boot**: the *Flow Manager* connects to the `MongoDB` instance using the `connectionUri`
+
+- **insert/update**: the *Flow Manager* performs a `replaceOne` operation with the following content:
+
+  ```json
+  {
+    "latestEvent": "The last event received by the manager",
+    "history": "The updated history of the saga",
+    "currentState": "The state of the saga (took from the *Finite state machine* configurations)",
+    "associatedEntityId": "The ID of the entity associated to the saga (e.g. the ID of a food delivery order, or of a policy and so on)",
+    "isFinal": "Boolean that indicates if the new state is a final state (DEPRECATED)",
+    "businessStateId": "The ID of the business state (explained later)",
+    "businessStateDescription": "The description of the business state (explained later)",
+    "metadata": "The metadata of the saga, a JSON Object with all the business stuffs related to the saga, that are unknown to the Flow Manager",
+    "sagaId": "The generated saga identification code"
+  }
+  ```
+
+- **get**: the *Flow Manager* performs a `findOne` operation that must return this body:
+
+  ```json
+  {
+    "currentState": "The state of the saga",
+    "metadata": "All the metadata of the saga",
+    "history": "The history of the saga"
+  }
+  ```
+
+##### Mongo Persistency Manager use case
+
+With the following configurations:
+
+```json
+{
+  "type": "mongo",
+  "configurations": {
+    "connectionUri": "mongodb://localhost:27017/myDB",
+    "collectionName": "my-collection"
+  }
+}
+```
+
+and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
+
+- **insert/update**:  
+  `collection(my-collection)`  
+  `replaceOne(EXAMPLE_123456_SAGA)`
+
+- **get**:  
+  `collection(my-collection)`  
+  `findOne(EXAMPLE_123456_SAGA)`
 
 ## Machine Definition
 
