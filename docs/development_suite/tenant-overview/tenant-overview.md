@@ -27,7 +27,7 @@ Through this tool, the government entity of the tenant can have a graphical over
 
 ### Graphical features representation
 
-The user can consult endpoints' status, represented by a dot and the label *true* or *false*. The meaning of the dot depends on its colour:
+The user can consult endpoints' status, represented by a dot and a configuration label. The meaning of the dot depends on its colour:
 
 * Red: the absence of a security feature in the corresponding column.
 * Green: the presence of a security feature in the corresponding column.
