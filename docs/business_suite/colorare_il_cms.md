@@ -37,7 +37,7 @@ To ensure that your project is successfully deployed, update or verify that the 
 
 Enter the name of the client project for each path and choose the version of the CMS you want to build
 
-* 2. Go to the path gilab /clients/:client-name/configuration/gitlab-cli.yaml
+* 2. Go to the gitlab path /clients/:client-name/configuration/gitlab-cli.yaml
 
 Check and see the version of the CMS you want to build
 
@@ -140,7 +140,7 @@ Check and see the version of the CMS you want to build
 
 **color-brand**: background color of the sidebar
 
-**color-text-special**: These are the titles of the sidebar categories, the user's text, and the navigaton bar
+**color-text-special**: These are the titles of the sidebar categories, the user's text, and the navigation bar
 
 **color-text-special-2**: how the title of the properties are displayed during editing and creation
 
@@ -152,7 +152,7 @@ Check and see the version of the CMS you want to build
 
 **color-brand-gradient-3**: when an item is selected in the left menu and the color of My CMS Bees on the bottom left in the sidebar
 
-**color-brand-gradient-4**: allert
+**color-brand-gradient-4**: alert
 
 **color-brand-gradient-5**: keys error and warning
 
@@ -165,3 +165,101 @@ Check and see the version of the CMS you want to build
 **color-brand-bg-notification**: if you activate the notifications the background color of the badge
 
 **color-brand-text-notification**: the text color inside the notifications
+
+## Customize the CMS theme at runtime
+
+:::caution
+This feature is supported only from the CMS version 9.14.0
+:::
+
+It is possible to dynamically change the logo and the colors of the CMS at runtime. To enable this feature you have to
+expose the endpoint `/cms-theme`. The endpoint should return a JSON array, the first element of which should be an 
+object containing the custom theme to apply. We suggest doing that through a CRUD, as outlined in the 
+[Configure the Console](#configure-the-console) section.
+
+:::info
+If you do not expose the endpoint, or if the endpoint returns an error or an empty array, the CMS will keep using the 
+default theme applied at build time as described in the [dedicated section](#the-files-you-need).
+:::
+
+In the custom theme configuration, you can specify a custom value for the logo url and for any of the variables listed
+in the [Variable colors](#variable-colors---variablescss) section. It follows an example of a valid configuration:
+
+```json
+{
+  "logo": "url",
+  "body-bg": "#e3eee3",
+  "color-search": "#396093",
+  "color-text-special": "#396093",
+  "color-text-special-2": "#fff",
+  "color-text-special-3": "#F3FFF3",
+  "color-text-negative": "#00331a",
+  "color-brand": "#86c2da",
+  "color-brand-gradient": "#73808F",
+  "color-brand-gradient-3": "#00a2e2",
+  "color-brand-gradient-4": "#D1A565",
+  "color-brand-gradient-5": "#d71920",
+  "color-search-text": "white",
+  "color-button": "#5F5F5F",
+  "color-brand-gradient-1": "#fff"
+}
+```
+
+:::info
+None of these fields are mandatory. If you do not specify a custom value for one of the fields, the CMS will keep using
+the default value applied at build time.
+:::
+
+:::caution
+If you specify the url of a custom logo, please keep in mind that it has to be reachable from the same host of your CMS.
+We, therefore, recommend uploading the desired image in the [File service](../runtime_suite/files-service/configuration).
+:::
+
+### Configure the Console
+
+1. **CRUD - `cmstheme` creation**
+   
+   The first thing to do is to create a CRUD named `cmstheme` where you can store your custom theme configurations. You
+   can follow [these steps](../development_suite/api-console/api-design/crud_advanced) to create your CRUD using the
+   following data:
+    - **name**: `cmstheme`
+    - **properties**: 
+         - `logo`: String (Optional)
+         - `body-bg`: String (Optional)
+         - `color-search`: String (Optional)
+         - `color-text-special`: String (Optional)
+         - `color-text-special-2`: String (Optional)
+         - `color-text-special-3`: String (Optional)
+         - `color-text-negative`: String (Optional)
+         - `color-brand`: String (Optional)
+         - `color-brand-gradient`: String (Optional)
+         - `color-brand-gradient-1`: String (Optional)
+         - `color-brand-gradient-3`: String (Optional)
+         - `color-brand-gradient-4`: String (Optional)
+         - `color-brand-gradient-5`: String (Optional)
+         - `color-search-text`: String (Optional)
+         - `color-button`: String (Optional)
+
+    You can create the fields importing this <a download target="_blank" href="/docs_files_to_download/cmsthemeConfig.json">JSON file</a> and following [this guide](../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
+         
+
+2. **Endpoint - create the `/cms-theme` endpoint**
+
+  Now you can create the new endpoint with base path `/cms-theme` following 
+  [this guide](../development_suite/api-console/api-design/endpoints). The type of this endpoint is CRUD as we want it 
+  to expose the CRUD we created in the previous step.
+
+  The CMS will call the `GET -/cms-theme/` to receive an array of configurations. If you want to filter the results
+  of this call and return to the CMS the desired one, you may attach a
+  [PRE decorator](../development_suite/api-console/api-design/decorators) to this endpoint.
+
+  :::note
+  If the endpoint returns to the CMS an array with multiple elements, the first one will be applied.
+  :::
+
+3. **Optional - expose the CRUD in the CMS**
+
+   Last step you can optionally create another endpoint exposing the same CRUD created and use the endpoint to
+   display the CRUD in the CMS following [these steps](./cms_configuration/config_cms.md).
+
+Now you can commit and deploy your project.
