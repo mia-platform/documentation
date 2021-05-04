@@ -5,6 +5,46 @@ sidebar_label: v7.5
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.5.2
+
+_May 5, 2021_
+
+### New Features
+
+#### `MIA_` prefix management for Public Variables
+
+It is now possible to avoid the addition of the `MIA_` prefix to [public variables keys](../development_suite/api-console/api-design/public_variables.md#where-public-variables-are-saved) when they are saved in the public variables folder. To do so, console administrators can access the Console [CMS](../business_suite/guide_cms) and add to your project `deploy` object the following property `useMiaPrefixEnvs` set to `false`. After this, remove from the public variables folder all `MIA_` prefixes from all public variables keys of all `.env` files.
+
+:::caution
+`MIA_` prefix is necessary for projects that use bash script for their deploy pipelines. Therefore, this property should be set to `true` only for projects that use mlp.
+:::
+
+### Bug Fix
+
+#### Validation for configMap file names
+
+Fixed bug that caused the pipeline to fail if a configMap file name contained a blank space. Now, the validation is the same regex used by kubernetes.
+
+#### MongoDB Index fields update
+
+Fixed MongoDB indexes order and creation of a new field in an existing index.
+
+#### Recreate a previously deleted configmap file
+
+Fixed bug that caused the console to save an incorrect project configuration if a user deletes and recreates a configmap file with the same name after saving.
+
+#### Burger icon menu actions for cms analytics
+
+Removed the malfunctioning features `Print Chart` and `View Data Table` of the analytics that that caused an incorrect visualization.
+
+#### Cms card images crop
+
+Fixed bug that was preventing to show card images with the right size.  The fix is available in cms-site v9.14.0. Please update your project to take advantage of it.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.7.7`.
+
 ## v7.5.1
 
 _April 27, 2021_
