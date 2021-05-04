@@ -374,6 +374,10 @@ You can set the documentation path of each template by adding the property `defa
 To use this feature, you have to set the `defaultDocumentationPath` string.
 An example string can be as follows: `/documentation/json`.
 
+### Configure Component ID
+
+When creating a service from marketplace a link to the original component id can be established by supplying the `componentId` property to the marketplace service. The newly created service will register this identifier in the `sourceComponentId` property.
+
 ### Example Configuration
 
 Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
