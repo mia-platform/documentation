@@ -54,6 +54,20 @@ In this case, there exists a precise hierarchy to establish which value should b
 Naming a public variable as a project-level variable will have the effect of completely overwrite its values.
 :::
 
+### Where public variables are saved
+
+Public variables are saved inside your project Configuration repository on the git provider. They are stored on the path `/variables/ENV_ID.env` where ENV_ID is the envId of your environment. There is one .env file for each environment.  
+
+:::note
+For on premise installations the folder where are stored the `.env` files of the Public Variables may differ based on the configuration of your installation. 
+The name of the folder is defined by the **publicVariablesFolderName** configuration in the Helm Chart. The default value is **variables**.
+:::
+  
+Based on you project configuration, the variables inside the .env file will be saved either with a `MIA_` prefix or not.    
+
+You can choice about having or not the prefix: you can set the property `useMiaPrefixEnvs` of the field `deploy` of your project to either `true` to save env vars with prefix or `false` to save only the env var name.   
+If you are not authorized to do it, please ask to your Mia Platform referent.    
+
 ## ReadOnly public variables
 
 In the public variables section, you will not only be able to see and edit the configurations you previously created, but it will be possible to see some variables displayed in `readOnly` mode, which cannot be updated, deleted or overwritten. It will not be possible to create new variables with the same `key` as well. 
