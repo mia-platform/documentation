@@ -194,6 +194,16 @@ How to compile the template:
         "oauth-login-site": true
       }
     ```
+* `deploy`: an object that identifies some deploy related configurations. 
+
+  ```json
+    {
+      "runnerTool": "mlp",
+      "useMiaPrefixEnvs": false
+    }
+  ```
+    - **runnerTool**: Set it to `mlp` if the project use it as command line deployment tool. It's required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled. 
+    - **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
 
 ## How to create a project archive
 
