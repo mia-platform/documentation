@@ -9,7 +9,7 @@ The Monitoring Infrastructure section is the Developer Console area dedicated to
 
 The area is divided by the number of environments existing in the specific project. In the top menu, it is possible to change the environment to be monitored.
 
-Within each environment, you can view all the available pods and their current properties. With the "Refresh Pods" button you can refresh the table and check changes in the pods status.
+Within each environment, you can view all the available pods and their current properties. You can refresh the table and check changes in the pods status clicking on the refresh button.
 
 The labels of the columns in the table are:
 * **Name**: the name that identifies the pod
