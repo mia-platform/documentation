@@ -5,7 +5,7 @@ sidebar_label: Release your configurations
 ---
 ## Introduction  
 
-Deploy is the section of the console that allows developers to deploy configurations of a specific project on different environments. It can also be used to visualize the history of previous releases on that project.
+Deploy is the section of the console that allows developers to deploy configurations of a specific project on different runtime environments. It can also be used to visualize the history of previous releases on that project.
 
 This section allows to follow in a simple and effective way a **Continuous Deployment** approach, integrating automated tests and releasing new code versions without damaging the existing project.
 
@@ -16,18 +16,18 @@ When a user enters the Deploy section, he is automatically led to Deploy area.
 
 ![Deploy](img/Deploy.gif)
 
-In this area, you can select in which environment you want to release your project configurations and which branch to deploy.
+In this area, you can select in which runtime environment you want to release your project configurations and which branch to deploy.
 You will be also able to start the deployment process from this section.
 
 Let's see in detail how it works
 
-### Select environment  
+### Select runtime environment  
 
-The first card will let you choose the environment in which you want to release your configuration. 
+The first card will let you choose the runtime environment in which you want to release your configuration. 
 
 ![Environment](img/deploy-select-env.png)
 
-Once you have selected your target environment, you will be able to see all the details regarding the last release in that environment.
+Once you have selected your target runtime environment, you will be able to see all the details regarding the last release in that runtime environment.
 
 ### Select branch  
 
@@ -37,15 +37,15 @@ In the second card, you can choose the branch to be released.
 
 Once the branch is selected the console will show:
 
-* A link to the Gitlab page showing the code comparison between the branch you want to release and the one that has been previously released in that environment.
+* A link to the Gitlab page showing the code comparison between the branch you want to release and the one that has been previously released in that runtime environment.
 * The last 10 commits on the selected branch (this information will help you check if you are releasing a correct configuration).
 
 
 ### Deploy details
 
-Once you have selected the branch and the environment, the deploy page will load a card containing additional deployment details.
+Once you have selected the branch and the runtime environment, the deploy page will load a card containing additional deployment details.
 
-In particular, this card will show a comparison between the services that are going to be released and those that are currently running in the selected environment.
+In particular, this card will show a comparison between the services that are going to be released and those that are currently running in the selected runtime environment.
 This card will let you decide the deployment strategy, **smart deploy** or **deploy all**, and the ability to always release services that do not follow semantic versioning.
 
 In this section you will be able to access the following information:
@@ -148,7 +148,7 @@ If you are not following sematic versioning, for example using `image:latest` or
 :::
 
 :::warning
-It is not recommended to activate the checkbox in a production environment, because if some of your services by mistake have a pre-release or latest version tag they will be redeployed.
+It is not recommended to activate the checkbox in a production runtime environment, because if some of your services by mistake have a pre-release or latest version tag they will be redeployed.
 ::: 
 
 ## History
@@ -160,7 +160,7 @@ The History Page is the second area of the Deploy section. In this tab it will b
 In the History table the user will be able to visualize the following information:
 
 * Status: if the deploy is successful or if the deploy is not successful;
-* Environment of the deploy;
+* Runtime environment of the deploy;
 * Deployed version;
 * Deploy type;
 * Who made the deploy;
