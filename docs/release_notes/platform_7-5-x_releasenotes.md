@@ -7,11 +7,11 @@ image: "img/release-note-link-preview.png"
 
 ## v7.5.2
 
-_May 5, 2021_
+_May 12, 2021_
 
 ### New Features
 
-#### `MIA_` prefix management for Public Variables
+#### MIA_ prefix management for Public Variables
 
 It is now possible to avoid the addition of the `MIA_` prefix to [public variables keys](../development_suite/api-console/api-design/public_variables.md#where-public-variables-are-saved) when they are saved in the public variables folder. To do so, console administrators can access the Console [CMS](../business_suite/guide_cms) and add to your project `deploy` object the following property `useMiaPrefixEnvs` set to `false`. After this, remove from the public variables folder all `MIA_` prefixes from all public variables keys of all `.env` files.
 
