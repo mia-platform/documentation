@@ -378,6 +378,16 @@ An example string can be as follows: `/documentation/json`.
 
 When creating a service from marketplace a link to the original component id can be established by supplying the `componentId` property to the marketplace service. The newly created service will register this identifier in the `sourceComponentId` property.
 
+### Configure Console Links
+
+A service created from marketplace can feature custom links to other console pages, managed by different microfrontend plugins; to configure them on newly created services setup new objects in the `links` property for each template or plugin you whish.
+
+A link is an object shaped as follows:
+
+- `label` _string_ (required): the label to be shown in the link button, it does not support internationalization and is shown right next to a _View_ copy (e.g. with label set to **Resource** the resulting button will be **View Resource**);
+- `targetSection` _string_ (required): the name of the registered microfrontend where the link should land (e.g.: `flow-manager`);
+- `enableIf` _string_: the name of a feature toggle to be used to optionally display the link. 
+
 ### Example Configuration
 
 Here there is an example of the React Template configuration, which environment variables can be modified in order to overwrite the defaults applied by DevOps Console:
