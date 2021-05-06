@@ -439,6 +439,41 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Micro LC",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/authentication"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/analytics"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/backend"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/core_configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/plugin_configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/microlc/setup"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Mongo2Kafka",
               "items": [
                 {
