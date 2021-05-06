@@ -78,3 +78,25 @@ The transaction can be refund by calling `HTTP POST` on `http://payment-gateway-
 ```
 
 If the reply returns `200` as HTTP Status code, the refund has been performed correctly.
+
+### 4) Check Transaction Status
+
+You can ask the Payment Gateway Manager to trigger a check on a particular order by calling an `HTTP GET` on `http://payment-gateway-manager/generic-provider/check?shopTransactionId=my-stid`.
+
+After the check has been performed, the PGM may notify the result to the same external service used by the M2M callback flow, as specified by the `PAYMENT_CALLBACK_URL` environment variable.
+
+The explicit check API can be used whenever M2M verification for a specific payment didn't call the callback url successfully or, more generally,
+if the chosen payment method doesn't support M2M callbacks at all.
+
+The notification may include a body as follows:
+
+```
+{
+  "providerName": "generic-provider",
+  "paymentType": "CREDITCARD",
+  "isSuccessful": true,
+  "resultDescription": "Transaction completed",
+  "paymentID": "payment-123456789",
+  "shopTransactionID": "123456789"
+}
+```
