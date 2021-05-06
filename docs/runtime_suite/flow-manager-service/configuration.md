@@ -241,6 +241,10 @@ The *persistency manager type* must be one of the supported types. Following the
 - [**rest**](#rest-persistency-manager): will use the REST API to interact with an external persistency manager service
 - [**mongo**](#mongo-persistency-manager): will directly connect to a MongoDB instance to interact with the persistency manager collection.
 
+The main use cases of the two methods are:
+- `rest`: allows to decouple flow manager from the underlying data store and enables post-processing of metadata before saving them persistently.
+- `mongo`: avoids the creation of a custom service, coupling the flow manager with a specific database to save data directly.
+
 The **persistencyManagement** section must contain a JSON object with the configurations. See the following sections for the details by type.
 
 For more about the *Persistency Manager* look the [**dedicated documentation**](./how_it_works#the-persistency-manager).
@@ -344,7 +348,7 @@ The properties for this type, which are **all required**, follows:
     "history": "The updated history of the saga",
     "currentState": "The state of the saga (took from the *Finite state machine* configurations)",
     "associatedEntityId": "The ID of the entity associated to the saga (e.g. the ID of a food delivery order, or of a policy and so on)",
-    "isFinal": "Boolean that indicates if the new state is a final state (DEPRECATED)",
+    "isFinal": "Boolean that indicates if the new state is a final state",
     "businessStateId": "The ID of the business state (explained later)",
     "businessStateDescription": "The description of the business state (explained later)",
     "metadata": "The metadata of the saga, a JSON Object with all the business stuffs related to the saga, that are unknown to the Flow Manager",
@@ -378,12 +382,12 @@ With the following configurations:
 
 and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
 
-- **insert/update**:  
-  `collection(my-collection)`  
+- **insert/update**:
+  `collection(my-collection)`
   `replaceOne(EXAMPLE_123456_SAGA)`
 
-- **get**:  
-  `collection(my-collection)`  
+- **get**:
+  `collection(my-collection)`
   `findOne(EXAMPLE_123456_SAGA)`
 
 ## Machine Definition
@@ -406,9 +410,9 @@ Each state must have the following configurations (the **bold** are the required
 
 - **id**: a string that contains the ID of the state (usually is a camel case human readable string that tells what the state represents)
 - *description*: the state description
-- **isFinal**: a boolean that indicates if the state is a final one (**DEPRECATED**)
+- **isFinal**: a boolean that indicates if the state is a final one
 - **businessStateId**: the ID of the [business state](#business-states-of-the-machine) (**NB.** must exist in the *businessStates* list)
-- *outputCommand*: a JSON Object that contains the details of the command to send in output when the saga lands on the state(it is mandatory because a state may not need to send any command):
+- *outputCommand*: a JSON Object that contains the details of the command to send in output when the saga lands on the state (it is not mandatory since a state may not need to send any command):
   - **channel**: the ID of the *channel* used to send the command (**NB.** must exist into the *communicationProtocols* configurations)
   - **label**: the label of the command (usually is a imperative sentence, e.g. *updateTheRequest*)
 - *outgoingTransitions*: a list of JSON Objects that contain the details of events available to be received on the current state (if a unexpected event is received, the *Flow Manager* will log an error and ignore it; it is mandatory because a state may not point to other states (e.g. a final one)):
