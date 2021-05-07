@@ -72,6 +72,14 @@ When you want to add custom configurations to a page, **you have to add** its `<
 * `cmsProperties` where you can configure general page settings in the CMS
 * `properties` where you can configure every single property as it can be viewed and managed.
 
+You can configure a CMS page using a **fast-data-projection** endpoint, its `<page id>`, and then configure the `cmsProperties` and `properties` correctly.
+
+:::info
+A CMS page connected to a projection can **not** be edited, it is **read-only**.
+The property `cmsEditable` must be `false` for each properties of the collection.
+The property `cmsProperties.blocked` should be `true`.
+:::
+
 ### cmsProperties
 
 Let's assume we are within the **heroes** collection and want to configure our CMS heroes page.
