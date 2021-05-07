@@ -14,7 +14,7 @@ Tenant Overview collects data on the project configuration and creates a table p
 * *Show in API Portal*: A label that shows if the endpoint appears in the API portal.
 * *API-Key*: A label that shows if the endpoint is protected by an API-key.
 * *Public*: A label that shows if the endpoint is public (the API is accessible even if the user is not logged in).
-* *Group Expression*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
+* *User Group Permission*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
 * *Decorator PRE*: A label that shows if a PRE decorator is configured for the endpoint and the concerning decorators.  
 
 An example is in the following picture.
@@ -34,7 +34,7 @@ The user can consult endpoints' status, represented by a dot and a configuration
 * Grey: the presence of a feature that does not direcly influence the security of the endpoint.
 * Orange: the absence of a feature that does not direcly influence the security of the endpoint.
 
-The *Group expression* column also displays the group expressions as labels, each label represents the expression string provided in the endpoint configuration. In this case the label *"true"* means that there is no check over the group expression and therefore the endpoint is not protected, conversely the label *"false"* means that it is not possible to access the endpoint. A custom group expression is shown as label with a grey dot.  
+The *User Group Permission* column also displays the group expressions as labels, each label represents the expression string provided in the endpoint configuration. In this case the label *"true"* means that there is no check over the group expression and therefore the endpoint is not protected, conversely the label *"false"* means that it is not possible to access the endpoint. A custom group expression is shown as label with a grey dot.  
 
 The *Decorator PRE* column also specifies the type of decorators as labels.  
 
@@ -56,4 +56,4 @@ The Tenant Overview results can be filtered by the project names and the attribu
 
 ![Filter](img/filter.png)
 
-In the presented example, the Tenant Overview result is filtered to display only the endpoints into *Project_01* or *Project_02* projects having both *API-Key* and *Group expression* features set to true.  
+In the presented example, the Tenant Overview result is filtered to display only the endpoints into *Project_01* or *Project_02* projects having both *API-Key* set to *required* and *User Group Permission* features set to *false*.  
