@@ -141,9 +141,11 @@ In this way, the Real Time Updater updates the projection document with the corr
 
 ### Expose projections through API
 
-You can expose a projections through API, only with `GET` method (the data in the projections are modifiable only by the Real Time Updater service).
+You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real Time Updater service).
 
 To expose the Fast Data projection, [create an Endpoint](../development_suite/api-console/api-design/endpoints) with type `Fast Data Projection` linked to the desired projection.
+
+You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](../business_suite/cms_configuration/conf_cms#configure-pages).
 
 :::info
 It is not required for the Fast Data to work the exposed API. It is an optional behaviour if you need to have access to the data without access directly from database.
