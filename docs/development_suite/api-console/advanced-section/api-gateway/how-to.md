@@ -12,7 +12,7 @@ To change all the advanced settings, you have to access to the Console, go to th
 
 ## What is a Map?
 
-The **Map** concept will often be mentioned on this page. In this context, we refer to the [Nginx Map Module](http://nginx.org/en/docs/http/ngx_http_map_module.htlml) which allows you to compare the values of an Nginx variable with some conditions and assign it a new value depending on the match. In other words, it's a map between two values: *A* and *B*. The value of *B* will be set based on the value of *A*.
+The **Map** concept will often be mentioned on this page. In this context, we refer to the [Nginx Map Module](https://nginx.org/en/docs/http/ngx_http_map_module.html) which allows you to compare the values of an Nginx variable with some conditions and assign it a new value depending on the match. In other words, it's a map between two values: *A* and *B*. The value of *B* will be set based on the value of *A*.
 
 As first variable you can specify a simple string:
 
