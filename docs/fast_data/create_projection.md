@@ -328,8 +328,8 @@ For Console PaaS, these are already set with values:
 
 * Memory Limit: 250Mi
 * Memory Request: 80Mi
-* CPU Limit: 100m
-* CPU Request: 20m
+* CPU Limit: 200m
+* CPU Request: 40m
 
 To know the limits on your on-premise Console installation, please contact your Mia Platform referent.
 
