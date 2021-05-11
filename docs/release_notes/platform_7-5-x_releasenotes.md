@@ -7,7 +7,7 @@ image: "img/release-note-link-preview.png"
 
 ## v7.5.2
 
-_May 12, 2021_
+_Release date to be defined_
 
 ### New Features
 
