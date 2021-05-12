@@ -21,7 +21,7 @@ For ease of operation, the first version will not have a frontend for end-users 
 
 ## Prerequisites
 
-We’ll assume that you have some familiarity with **JavaScript** and **Node.js**, but you can follow along even if you're coming from a different programming language. All concepts explained following are valid for all languages and frameworks.
+We’ll assume that you have some familiarity with **JavaScript** and **Node.js**, but you can follow along even if you're coming from a different programming language. All concepts explained in the following are valid for all languages and frameworks.
 
 Prepare your favourite IDE to interact with Git repositories.
 Don't scary, you won't write too much code. One of the main Mia-Platform goals is to give you an **open ready-to-use infrastructure to allow to focus on business logic**.
@@ -78,7 +78,7 @@ This collection will contain dishes with images. In order to create the CRUD fol
 3. Select the branch *master*.
 4. Go to section [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and click *Create new CRUD*.
 5. Insert the name `dishes` and press *Create*.
-6. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add New* to create the following fields:
+6. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add Field* to create the following fields:
 
 | **Field name**             | **Type**         |
 | -------------------------- | ---------------- |
@@ -100,7 +100,7 @@ That's it? Yes! We have just created a MongoDB collection and a CRUD ready to be
 
 **Now you should expose your collection through an Endpoint and create your first API.**
 
-1. Go to section [Endpoints](../../development_suite/api-console/api-design/endpoints.md) and click *Create new endpoint*. Then enter the following information:
+1. Go to section [Endpoints](../../development_suite/api-console/api-design/endpoints.md) and click *Add new*. Then enter the following information:
    */dishes* as **Base path**.
    *CRUD* as **Type**.
     Select *dishes* as **CRUD**.
@@ -253,4 +253,4 @@ As mentioned above there is no data in our CRUDs, and in order to correctly deve
 
 1. In *Design area*,go to [Microservices section](../../development_suite/api-console/api-design/services.md) and click *Create a Microservice*.
 2. Search the example `Data generator example`, then click the related tab.
-3. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add New* to create the following fields:
+3. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add Field* to create the following fields:

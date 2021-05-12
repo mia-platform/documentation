@@ -25,7 +25,7 @@ To manage your CRUDs, Mia-Platform's Console offers a specific section, **MongoD
 
 In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
-* **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake-case` as naming convention). In our case, we will name the collection “books”;
+* **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake_case` as naming convention). In our case, we will name the collection “books”;
 * **Internal endpoint**: this is the first endpoint that will be exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md). The console will prefill it but you can change it according to your preference.
 
 ![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.PNG)
@@ -158,7 +158,7 @@ In our case we will see the first internal endpoint with a **routh base path** e
 
 To create a new endpoint click on the `Add new` button in the card and fill in **Route base path** and the **Default state** property for the new endpoint.
 
-Please note that these endpoint must be unique through all the configured CRUD, the Console will check for you that this constraint is satisfied when creating or editing any CRUD route in your project. In case this happens you will be warned with an error message.
+Please note that these endpoints must be unique through all the configured CRUD, the Console will check for you that this constraint is satisfied when creating or editing any CRUD route in your project. In case this happens you will be warned with an error message.
 
 ![newEndpoint](img/newEndpoint.PNG)
 
