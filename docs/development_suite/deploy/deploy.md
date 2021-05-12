@@ -85,7 +85,7 @@ By toggling the appropriate switch you can activate/deactivate the **Smart Deplo
 
 This functionality will let you release your microservices in a smart way, since only the updated services will be deployed through the console. 
 
-**Smart Deploy** leverages Kubernetes deployment strategies to ensure that only necessary Pods are recreated. During each deploy updated pods gets replicated to prevent disservice, however, on big projects, this might avoid huge resource consumption spikes or longer deployment times.
+**Smart Deploy** leverages Kubernetes deployment strategies to ensure that only necessary Pods are recreated. During each deploy updated pods get replicated to prevent disservice, however, on big projects, this might avoid huge resource consumption spikes or longer deployment times.
 
 :::warning
 This feature can be activated only in projects using **mlp**, the Mia-Platform official command line deployment tool. 
@@ -111,19 +111,18 @@ By deselecting the Smart Deploy toggle, you will switch to **Deploy all** strate
 Smart deploy is enabled by default, if you want to force a deploy of all the services you should disable the toggle.
 :::
 
-This strategy does not check if a microservice configuration has been updated and directly schedule the deployment of all the services. In big projects this might cause resource consumption spikes and longer deployment times. However, it can be useful to ensure a new and clean deployment environment.
+This strategy does not check if a microservice configuration has been updated and directly schedules the deployment of all the services. In big projects this might cause resource consumption spikes and longer deployment times. However, it can be useful to ensure a new and clean deployment environment.
 
 #### Understanding Deploy Outcome Column
 
-The column **Deploy outcome** will help you understand which services will be deployed or deleted by pressing  
-the deploy button. 
+The column **Deploy outcome** will help you understand which services will be deployed or deleted by pressing the deploy button.
 
 Rocket icons indicate services that are going to be considered by the smart deploy feature, while the sleeping symbol indicates services that are not going to be updated as their configuration haven't changed since the last deployment.
 
 * A _Deploy_ near the icon indicates that the service configuration is changed, so it will update the microservice.
 * A _Delete_ near the icon indicates that the service configuration is deleted, so it will delete the microservice.
 * A _No Update_ near the icon indicates that the service configuration remains the same.
-* A _No Info Available_ near the icon indicate the console could not collect enough information to display the outcome 
+* A _No Info Available_ near the icon indicates the console could not collect enough information to display the outcome.
 
 :::info
 An incomplete deploy outcome column might indicate the configuration has not been properly saved.  
