@@ -11,8 +11,7 @@ It is possible to integrate `microlc` inside the Mia-Platform Console with almos
 Following the requirements to integrate this functionality:
 
 - access to the Console into the desired project;
-- add the [authentication configuration](authentication.md) and [core configuration](core_configuration.md) to expose;
-- basic knowledge about the Console [backoffice proxy name](../../development_suite/api-console/advanced-section/api-gateway/how-to#request-from-the-frontend---port-8080).
+- the [authentication configuration](authentication.md) `JSON` and the [core configuration](core_configuration.md) `JSON` to expose.
 
 ## Integration steps
 
@@ -23,41 +22,64 @@ Following steps must be made on Console and will deploy a `microlc` configured i
 Here you are going to create an instance of `fe-container`.
 
 1. Go to the `Microservices` section;
-2. Create a new microservice using the `Microlc frontend` in the `Microfrontend` section.
+2. Create a new microservice using the `Microlc frontend` plugin available in the `Microfrontend` section of the marketplace;
 3. Configure the microservice with a custom name and description;
 4. Complete the creation to deploy an instance of the `fe-container`.
 
-#### 2. Microservice creation for `be-config`
+### 2. Microservice creation for `be-config`
 
 Here you are going to create an instance of `be-config`.
 
 1. Go to the `Microservices` section;
-2. Create a new microservice using the `Microlc backend` in the `Microfrontend` section;
+2. Create a new microservice using the `Microlc backend` plugin available in the `Microfrontend` section of the marketplace;
 3. Configure the microservice with a custom name and description;
-4. Complete the creation to deploy an instance of the `be-container`;
-5. After the deployment, you **must** configure its [environment variables](backend.md#configurations-loading) and the 
-   `ConfigMap` used to store the exposed configurations.  
-   **NOTE:** You **must** do this for both the configurations.
-   
+4. Complete the creation of the `be-container` instance;
+5. Define a `ConfigMap` for the microservice;
+6. Create 2 files inside that `ConfigMap`,
+   where you will store your [authentication configuration](authentication.md#example) 
+   and [microlc configuration](core_configuration.md#example);
+5. Configure its [environment variables](backend.md#configurations-loading) with the paths where the configuration files are stored.
    
 At the end of these 2 steps, the situation should be similar to the following:
 
 ![Microservices configured](../img/microlc_ms_setup.png)
 
-#### 3. Endpoint configuration for `fe-container`
+### 3. Endpoint configuration for `fe-container`
 
 1. Create a new endpoint;
-2. Define the `Base path` where you want to expose `fe-container`;
+2. Define the `Base path` where you want to expose `fe-container` (e.g. `/microlc`);
 3. As type, use `Microservice`;
 4. Select the microservice name used for `fe-container`;
 5. Complete the creation.
 
 After that, the situation should be similar to the following:
 
-![Endpoint configured](../img/microlc_setup_endpoint.png)
+![Endpoint configured](../img/microlc_setup_endpoint_fe.png)
+
+### 4. Endpoint configuration for `be-config`
+
+1. Create a new endpoint;
+2. Define the `Base path` where you want to expose `be-container` (e.g. `/`);
+3. As type, use `Microservice`;
+4. Select the microservice name used for `be-container`;
+5. Complete the creation.
+
+:::caution
+From the outside, the endpoints `/api/v1/microlc/configuration` and `/api/v1/microlc/authentication` exposed by this microservice must be always reachable.
+
+So, if you set `/` as `Base path`, the `SERVICE_PREFIX` env variable must be set to `/api/v1/microlc`;  
+while, if you set `/api` as `Base path`, the `SERVICE_PREFIX` env variable must be set to `/v1/microlc`;  
+and so on...
+:::
+
+After that, the situation should be similar to the following:
+
+![Endpoint configured](../img/microlc_setup_endpoint_be.png)
 
 ## Result
 
-At the end of this, you should have a complete instance of `microlc` up and running!
+At the end of this, you should have a complete instance of `microlc` up and running, 
+exposed at the `Base path` provided for the [fe-container](setup.md#3-endpoint-configuration-for-fe-container)
+(e.g. `https://your-host.com/microlc`). 
 
 ![Endpoint configured](../img/microlc_up_running.png)

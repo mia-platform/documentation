@@ -82,6 +82,12 @@ const config = {
           activeBaseRegex: "(docs|docs/\\d.x)/business_suite",
         },
         {
+          to: "docs/dev_portal/overview",
+          label: "Dev portal",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/dev_portal",
+        },
+        {
           label: "Release notes",
           position: "left",
           to: "docs/release_notes/release_notes",
