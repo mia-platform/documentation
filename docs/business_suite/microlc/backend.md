@@ -15,8 +15,8 @@ Both are written in `Node.js` and `Fastify` with the support of [Mia service Nod
 The configuration returned by each endpoint is read from a `JSON` file that **must be accessible** from the **be-config** instance.
 
 The path where each `JSON` is stored can be configured using the following environment variables:
-- **`AUTHENTICATION_CONFIGURATION_PATH`**, for [authentication](authentication.md#authentication-configuration);
-- **`MICROLC_CONFIGURATION_PATH`**, for [core](core_configuration.md#configuration-structure).
+- **`AUTHENTICATION_CONFIGURATION_PATH`**, for [authentication](authentication.md#example);
+- **`MICROLC_CONFIGURATION_PATH`**, for [core](core_configuration.md#example).
 
 :::info
 **be-config** is available as [Docker image](https://hub.docker.com/r/miaplatform/microlc-config-manager):

@@ -51,14 +51,14 @@ branding of the application.
 - _required_: `false`;
 - _description_: contains the properties that are usually applied in the HTML `header` tag.
 
-### pageTitle
+#### pageTitle
 
 - _type_: string;
 - _required_: `false`;
 - _description_: the string that will be displayed on the browser tab;
 - _default_: `Microlc`.
 
-### favicon
+#### favicon
 
 - _type_: string;
 - _required_: `false`;
@@ -71,25 +71,25 @@ branding of the application.
 - _required_: `true`;
 - _description_: contains the information needed to display the company logo.
 
-### url_light_image
+#### url_light_image
 
 - _type_: string;
 - _required_: `true`;
 - _description_: the url of the logo image for light theme.
 
-### url_dark_image
+#### url_dark_image
 
 - _type_: string;
 - _required_: `false`;
 - _description_: the url of the logo image for dark theme.
 
-### navigation_url
+#### navigation_url
 
 - _type_: string;
 - _required_: `false`;
 - _description_: the url of the site in which the user is redirected if the logo is clicked.
 
-### alt
+#### alt
 
 - _type_: string;
 - _required_: `true`;
@@ -102,7 +102,7 @@ branding of the application.
 - _required_: `true`;
 - _description_: contains the variables that will be used to brand the application overriding the default style.
 
-### primaryColor
+#### primaryColor
 
 - _type_: string;
 - _required_: `false`;
@@ -116,7 +116,8 @@ branding of the application.
 - _type_: string;
 - _required_: `false`;
 - _description_: the location on the page in which the menu is located;
-- _default_: `sideBar`.
+- _default_: `sideBar`;
+- _accepted values_: [`sideBar`, `topBar`].
 
 ## Plugin parameters
 
@@ -188,13 +189,13 @@ The information regarding the plugins to embed in the application are contained 
 - _required_: `true` for `integrationMode` of type `href`;
 - _description_: contains the details about the href integration.
 
-### url
+#### url
 
 - _type_: string;
 - _required_: `true`;
 - _description_: the url of the external application.
 
-### sameWindow
+#### sameWindow
 
 - _type_: boolean;
 - _required_: `true`;
@@ -238,7 +239,8 @@ The information regarding the plugins to embed in the application are contained 
     },
     "variables": {
       "primaryColor": "red"
-    }
+    },
+    "menuLocation": "topBar"
   },
   "analytics": {
     "privacyLink": "https://policies.google.com/",
@@ -259,7 +261,6 @@ The information regarding the plugins to embed in the application are contained 
     },
     {
       "id": "plugin-2",
-      "allowedGroups": [],
       "label": "Plugin number 2",
       "icon": "fas fa-tag",
       "order": 1,
