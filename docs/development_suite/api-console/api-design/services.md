@@ -196,6 +196,10 @@ Check out the files service [example](../../../runtime_suite/files-service/confi
 
 You can click _Add file_ to generate a new custom file (e.g. a JSON or YAML file, but could be anything you need) and start writing your custom configurations. With the _Delete File_ button you can remove the file from your custom configuration.
 
+:::note
+Custom services configuration now supports ConfigMaps larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
+:::
+
  ![service-add-file-new](img/service-add-file-new.png)
 
 #### Secrets
