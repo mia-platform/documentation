@@ -86,6 +86,9 @@ The configuration must follow this schema:
             "type": "string",
             "enum": ["client_secret_basic"],
             "default": "client_secret_basic"
+          },
+          "additionalAuthFields": {
+            "type": "object"
           }
         }
       }
@@ -108,13 +111,15 @@ A proxy can have the following fields:
   -  [*client_credentials*](https://oauth.net/2/grant-types/client-credentials/)
   -  [*password*](https://oauth.net/2/grant-types/password/)
 - **authType**: the method used to stuff the client credentials in the request when asking for a new access token. This is required only for the Client Credential Grant flow. At the moment, the service only supports the *client_secret_basic* type.
+- **additionalAuthFields**: an object containing additional fields to be used in the authentication request. These fields are added in the request body performed to acquire the access token. Both object keys and values must be of type string.
 
 ## Configuration example
 
 In this example, the _Proxy Manager_ is configured to proxy requests to three external services.
 - The first one is located at `external-service.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/external-service` endpoint.
-- The second one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
-- The thid service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
+- The second one is located at `mia-client-credentials.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/mia-service` endpoint. It employs additional fields that are added in the request to retrieve an access token.
+- The thid one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
+- The latter service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
 
 ```json
 {
@@ -127,6 +132,18 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
       "targetBaseUrl": "https://external-service.com",
       "basePath": "/external-service",
       "grantType": "client_credentials"
+    },
+    {
+      "authentication": "oauth2",
+      "clientId": "6739ef20e75817a79c02",
+      "clientSecret": "GBAfweVL7YWtP6gudLIjbRZV_NdW",
+      "tokenIssuerUrl": "http://mia-client-credentials.com/auth/oauth/token",
+      "targetBaseUrl": "https://mia-service.com",
+      "basePath": "/mia-service",
+      "grantType": "client_credentials",
+      "additionalAuthFields": {
+        "audience": "mia-audience"
+      }
     },
     {
       "authentication": "oauth2",
