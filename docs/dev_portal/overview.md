@@ -12,12 +12,12 @@ Mia built the dev portal using [`microlc`](https://github.com/mia-platform/micro
 Dev portal encloses in a single-page application, the following tools:
 
 - _[Docusaurus](https://docusaurus.io/)_: used to create documentation section;
-- _[ReDoc](https://github.com/Redocly/redoc/blob/master/README.md)_: used to display the OpenAPI/Swagger-generated API reference documentation.
+- _[RapiDoc](https://mrin9.github.io/RapiDoc/)_: used to display the OpenAPI/Swagger-generated API reference documentation.
 
 For more details about the configurations of these tools, refer to the following pages.
 
 ## Expected final result
 
-After the configuration of [Docusaurus](docusaurus.md) and [ReDoc](redoc.md), your final result should be similar to this:
+After the configuration of [Docusaurus](docusaurus.md) and [RapiDoc](rapidoc.md), your final result should be similar to this:
 
 ![Final Result](img/final-result.png)
