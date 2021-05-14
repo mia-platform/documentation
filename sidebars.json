@@ -205,6 +205,10 @@
     {
       "type": "doc",
       "id": "development_suite/api-portal/api-documentations"
+    },
+    {
+      "type": "doc",
+      "id": "development_suite/tenant-overview/tenant-overview"
     }
   ],
   "marketplace": [
