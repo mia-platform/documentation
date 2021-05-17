@@ -35,7 +35,7 @@ application theme through different configurations.
 The **fe-container** is also available as [Docker image](https://hub.docker.com/r/miaplatform/microlc).
 :::
 
-It follows a list of the featured offered and handled by the **fe-container**.
+It follows a list of the features offered and handled by the **fe-container**.
 
 ### Base layout
 
