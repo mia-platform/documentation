@@ -10,7 +10,7 @@ The Flow Manager Visualizer helps you graphically visualize your [flow manager](
 
 By selecting the _Flow Manager_ menu in the Design Area you will be presented with the list of `flow-manager` services that are currently configured in your project.
 
-![Flow Manager Main Area](img/flow-manager/screen1.png)
+![Flow Manager Main Area](img/flow-manager/main-area.png)
 
 In the visualizer you can move through your flow states, see the commands that are triggered upon a state change and view the events that may cause a state transition.
 
@@ -25,7 +25,7 @@ When a state transition finishes, the `flow-manager` state might issue a comman
 
 <div style={{textAlign: 'center'}}>
 
-![Two states with triggered command](img/flow-manager/screen2.png)
+![Two states with triggered command](img/flow-manager/state-commands.png)
 
 </div>
 
@@ -40,7 +40,7 @@ An event is represented by the small card with an _arrow icon_ on its left, all 
 
 <div style={{textAlign: 'center'}}>
 
-![Event causes state transition](img/flow-manager/screen3.png)
+![Event causes state transition](img/flow-manager/event-transition.png)
 
 </div>
 
@@ -55,10 +55,11 @@ Moreover, in order to simplify the flow visualization, those events that lead to
 
 ## Highlights
 
-Flow manager state machine can be complex and hard to grasp even when visualized. For this reason, a highlight mode can be enabled by user: by clicking on the top-right button shown below, it is possible to enter the highlight mode with the aim to colour specific paths in order to clearly follow a specific data flow.
+Flow manager state machine can be complex and hard to grasp even when visualized.  
+For this reason, a highlight mode can be enabled by user: by clicking on the top-right button shown below, it is possible to enter the highlight mode with the aim to colour specific paths in order to clearly follow a specific data flow.
 In particular, when highlight mode is activated:
-- with one click on an event, it is possible to highlight where the event will lead; then, by repeating the click on the event, the specific highlight is turned off
-- with one click on a state, it is possible to highlight all the events that may bring the saga to that state; then, by repeating the click on the state, the specific highlight is turned off 
+- with one click on an event, it is possible to highlight where the event will lead; then, by repeating the click on the event, the specific highlight is turned off;
+- with one click on a state, it is possible to highlight all the events that may bring the saga to that state; then, by repeating the click on the state, the specific highlight is turned off.
 
 :::info
 User can reset all the highlights that have been progressively turned on by clicking on the top-right button, and consequently exiting the highlight mode.
@@ -66,6 +67,6 @@ User can reset all the highlights that have been progressively turned on by clic
 
 <div style={{textAlign: 'center'}}>
 
-![Highlight disable](img/flow-manager/highlight2.gif)
+![Highlight disable](img/flow-manager/highlight.gif)
 
 </div>
