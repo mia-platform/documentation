@@ -14,28 +14,28 @@ To create an istance of `RapiDoc`:
 
 1. Go to the `Microservices` section;
 2. Create a new microservice using the `Microlc RapiDoc Plugin` in the `Dev Portal` category of the marketplace;
-   ![RapiDoc Plugin](img/docusaurus_adapter_marketplace.png)
+   ![RapiDoc Plugin](img/rapidoc_marketplace.png)
 3. Configure the microservice with a custom name and description;
 4. Complete the creation to deploy an instance of `RapiDoc`.
 
 ## RapiDoc endpoint configuration
 
 1. Create a new endpoint;
-2. Define the `Base path` where you want to expose `ReDoc` (e.g. `/plugin-rapidoc`);
+2. Define the `Base path` where you want to expose `RapiDoc` (e.g. `/plugin-rapidoc`);
 3. As type, use `Microservice`;
 4. Select the microservice name used for `RapiDoc`;
 5. Complete the creation.
 
 After that, the situation should be similar to the following:
 
-![Endpoint configured](./img/docusaurus_redoc_final_config.png)
+![Endpoint configured](./img/rapidoc_final_config.png)
 
 ## RapiDoc configuration
 
 Like all the plugins of `microlc` you should refer to the [core configuration section](../business_suite/microlc/core_configuration.md#plugins)
 for the setup and to correctly configure RapiDoc you **must** set one `props`:
 
-- _openApiSpecUrl_ : the url to your `Swagger` or `OpenApi` specification.
+- _openApiSpecUrl_ : the url to your `Swagger` or `OpenApi` specification in `json` format.
 
 Here follows a full configuration example:
 
@@ -59,4 +59,4 @@ Here follows a full configuration example:
 After a deployment, your new Dev Portal should be exposed at the `/` path of your host (e.g. `https://your-host-com/`),
 and should be similar to the following:
 
-![RapiDoc Example](./img/redoc_example.png)
+![RapiDoc Example](./img/rapidoc_example.png)
