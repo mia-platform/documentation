@@ -14,7 +14,7 @@ To create an istance of `ReDoc`:
 
 1. Go to the `Microservices` section;
 2. Create a new microservice using the `Microlc ReDoc Plugin` in the `Dev Portal` category of the marketplace;
-   ![Redoc Plugin](img/docusaurus_adapter_marketplace.png)
+   ![Redoc Plugin](../dev_portal/img/docusaurus_adapter_marketplace.png)
 3. Configure the microservice with a custom name and description;
 4. Complete the creation to deploy an instance of `ReDoc`.
 
@@ -28,7 +28,7 @@ To create an istance of `ReDoc`:
 
 After that, the situation should be similar to the following:
 
-![Adapter configured](./img/docusaurus_redoc_final_config.png)
+![Adapter configured](../dev_portal/img/docusaurus_redoc_final_config.png)
 
 ## ReDoc configuration
 
@@ -59,4 +59,4 @@ Here follows a full configuration example:
 After a deployment, your new Dev Portal should be exposed at the `/` path of your host (e.g. `https://your-host-com/`),
 and should be similar to the following:
 
-![Redoc Example](./img/redoc_example.png)
+![Redoc Example](../dev_portal/img/redoc_example.png)
