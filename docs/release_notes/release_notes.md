@@ -6,6 +6,7 @@ image: "img/release-note-link-preview.png"
 ---
 | Release | Release notes                                       |
 | ------- | --------------------------------------------------- |
+| v7.6.x    | [See release notes](v7.6.x) |
 | v7.5.x    | [See release notes](v7.5.x) |
 | v7.4.x    | [See release notes](v7.4.x) |
 | v7.3.x    | [See release notes](v7.3.x) |
