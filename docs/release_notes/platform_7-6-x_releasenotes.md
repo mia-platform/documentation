@@ -15,6 +15,8 @@ _May 19, 2021_
 
 A whole new section is now available in the Design Area featuring the finite state machine representation of any service based on the Flow Manager Service Plugin from marketplace.
 
+![Flow Manager main area](../development_suite/api-console/api-design/img/flow-manager/main-area.png)
+
 To learn more on the section and the available features check out the [documentation page](../development_suite/api-console/api-design/flow-manager-visualizer).
 
 #### Addition of external services to a Mia-Craft visualization
@@ -27,15 +29,13 @@ Moreover, it is possible to add a custom external service with a custom name.
 
 Lastly, user can delete an external custom added into the visualization with a right click on it.
 
-#### Missing service placeholder for MongoDB CRUD section
+#### Large Configmaps support
 
-If [Crud Service](../runtime_suite/crud-service/overview_and_usage) is not enabled as a core service or created as a custom one, [MongoDB CRUD](development_suite/api-console/api-design/crud_advanced) section is not accessible and the following placeholder will be shown in place of it.
-
-![Missing Service Placeholder](./img/placeholder.png)
+Custom services configuration now supports [ConfigMaps](../development_suite/api-console/api-design/services#configmaps) larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
 
 #### Create a cms page using a fast-data-projection endpoint
 
-It is now possible to create a cms page using a [fast-data-projection endpoint](../fast_data/create_projection). All you have to do is just configure it through the [CMS extensions](../business_suite/cms_configuration/conf_cms#configure-pages).
+It is now possible to create a cms page using a [fast-data-projection endpoint](../fast_data/create_projection) by configuring it through the [CMS extensions](../business_suite/cms_configuration/conf_cms#configure-pages).
 
 :::caution
 A cms page of a fast-data-projection endpoint is **read-only**. You are not allowed to make any changes.
@@ -50,6 +50,10 @@ It is now possible to avoid the addition of the `MIA_` prefix to [public variabl
 :::
 
 ### Bug Fix
+
+#### V1-Adapter check required service
+
+Added validation to check whether all the services that the `V1-Adapter` needs are enabled as core services of the project. If one of them is disabled, an error will be thrown when saving the configuration. Please contact your Mia-Platform referent to enable the required services in your project.
 
 #### 404 page for non existing collections
 
@@ -77,10 +81,6 @@ Fixed bug that was preventing the display of card images with the right size. Th
 
 ### Improvements
 
-#### Large Configmaps support
-
-Custom services configuration now supports ConfigMaps larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
-
 #### CMS link in Environments details
 
 In the Environments table of Envs area, the hosts related to the project's CMS are now links that open the CMS in a new tab.
@@ -91,7 +91,11 @@ In [Deploy details](../development_suite/deploy/deploy#deploy-details) table of 
 
 #### Increased Real-Time Updater resources
 
-It's been increased the CPU request to `40m` and limit to `200m` of the [Real-Time Updater](../fast_data/create_projection#real-time-updater-cpu-and-memory-requests-and-limits)
+It's been increased the CPU request to `40m` and limit to `200m` of the [Real-Time Updater](../fast_data/create_projection#real-time-updater-cpu-and-memory-requests-and-limits).
+
+#### Missing service placeholder for MongoDB CRUD section
+
+If the [Crud Service](../runtime_suite/crud-service/overview_and_usage) is not enabled as a core service in the project, the [MongoDB CRUD](development_suite/api-console/api-design/crud_advanced) section displays a placeholder to signal the need for the service configuration.
 
 ### Marketplace
 
