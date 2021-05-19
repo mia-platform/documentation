@@ -492,7 +492,7 @@ return {
 }
 ```
 
-With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](../../runtime_suite/microservice-gateway). In this case, we have got a proxy for [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) and use it to read documents from CRUDs collection.
+With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](../../runtime_suite/microservice-gateway/overview). In this case, we have got a proxy for [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) and use it to read documents from CRUDs collection.
 
 `allowedStatusCodes` options allows to define which status codes of the response are accepted. If the response status code is not contained in this array, the promise will be rejected.
 
