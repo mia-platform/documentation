@@ -181,7 +181,7 @@ Do **not** edit `baseSwagger.conf` file, it is now deprecated and should not be 
 
 ## prefix
 
-Use first level `prefix` property to add to all routes a prefix. This feature may be useful when using multiple [API Gateways](../../../../runtime_suite/api-gateway.md) or when having a custom reverse proxy before your project.
+Use first level `prefix` property to add to all routes a prefix. This feature may be useful when using multiple [API Gateways](../../../../runtime_suite/api-gateway/overview.md) or when having a custom reverse proxy before your project.
 
 ### prefix Example
 

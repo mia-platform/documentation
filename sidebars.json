@@ -225,8 +225,19 @@
       "label": "Core Services",
       "items": [
         {
-          "type": "doc",
-          "id": "runtime_suite/api-gateway"
+          "collapsed": true,
+          "type": "category",
+          "label": "API Gateway",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/api-gateway/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/api-gateway/configuration"
+            }
+          ]
         },
         {
           "collapsed": true,

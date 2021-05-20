@@ -5,7 +5,7 @@ sidebar_label: Authorization Flow
 ---
 
 Security is a matter of great importance for all companies. In order to protect your digital assets it is important to have a secure infrastructure.
-Mia-Platform can help you setting up your infrastructure by providing you strong and reliable **authentication** and **authorization** mechanisms.  
+Mia-Platform can help you to set up your infrastructure by providing you strong and reliable **authentication** and **authorization** mechanisms.  
 In this page, you can find out how Mia-Platform authorization flow works.
 
 ## Authentication and Authorization
@@ -43,7 +43,7 @@ It should have previously performed a login process, thus obtaining a token that
 
 ### API Gateway
 
-[API Gateway](../../runtime_suite/api-gateway) is responsible for receiving all client requests and routing them to the correct service.
+[API Gateway](../../runtime_suite/api-gateway/overview.md) is responsible for receiving all client requests and routing them to the correct service.
 For every received request, it will redirect its headers to the Authorization service. If the user is authorized to access the requested resource, the API Gateway will proxy both the client request and the service response to the corresponding recipient.
 
 ### Authorization Service

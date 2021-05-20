@@ -18,7 +18,7 @@ All the icons shown correspond to a specific type of microservice except for the
 | Icon      | Description |
 | :-----------: | ----------- |
 | <img src="img/client-icon.png" alt="client-icon" width="100"/>|Client|
-| <img src="img/apigateway-icon.PNG" alt="apigateway-icon" width="180"/>|[API Gateway](../../../runtime_suite/api-gateway.md)|
+| <img src="img/apigateway-icon.PNG" alt="apigateway-icon" width="180"/>|[API Gateway](../../../runtime_suite/api-gateway/overview.md)|
 | <img src="img/service-icon.png" alt="service-icon" width="100"/> | Microservices which type is “core” |
 | <img src="img/custom-service-icon.png" alt="custom-service-icon" width="100"/>|  Microservices which type is “custom”|
 | <img src="img/crud-icon.png" alt="crud-icon" width="100"/>| [CRUD](crud_advanced.md)|

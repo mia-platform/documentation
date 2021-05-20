@@ -59,7 +59,7 @@ When you call an [external proxy](#create-a-new-external-proxy) any cookie/clien
 
 Before using a proxy you have to expose it by an [endpoint](endpoints.md#what-is-an-endpoint).
 
-The `Type` of the endpoint must be `External Proxy/Cross Projects proxy`. In the `Microservice` field select the name of the proxy you want to expose. The proxy endpoint will be exposed on [API gateway](../../../runtime_suite/api-gateway.md).
+The `Type` of the endpoint must be `External Proxy/Cross Projects proxy`. In the `Microservice` field select the name of the proxy you want to expose. The proxy endpoint will be exposed on [API gateway](../../../runtime_suite/api-gateway/overview.md).
 
 ![Expose proxy](img/how_to_expose_proxy.gif)
 

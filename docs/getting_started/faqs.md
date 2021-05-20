@@ -110,7 +110,7 @@ You can change the visibility of any endpoint (and its routes) in the endpoint M
 
 ### How can I call a proxy endpoint from my microservices?
 
-The [proxy endpoints](../development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](../runtime_suite/api-gateway.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
+The [proxy endpoints](../development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](../runtime_suite/api-gateway/overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
 
 You can also use the [Mia-Platform Service Libraries](../libraries/overview_service_libraries) that help you to get a proxy towards the API Gateway.
 
