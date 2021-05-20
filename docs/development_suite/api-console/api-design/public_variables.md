@@ -59,14 +59,20 @@ Naming a public variable as a project-level variable will have the effect of com
 Public variables are saved inside your project Configuration repository on the git provider. They are stored on the path `/variables/ENV_ID.env` where ENV_ID is the envId of your environment. There is one .env file for each environment.  
 
 :::note
-For on premise installations the folder where are stored the `.env` files of the Public Variables may differ based on the configuration of your installation. 
+For on premise installations the folder where are stored the `.env` files of the Public Variables may differ based on the configuration of your installation.
 The name of the folder is defined by the **publicVariablesFolderName** configuration in the Helm Chart. The default value is **variables**.
 :::
-  
-Based on you project configuration, the variables inside the .env file will be saved either with a `MIA_` prefix or not.    
 
-You can choice about having or not the prefix: you can set the property `useMiaPrefixEnvs` of the field `deploy` of your project to either `true` to save env vars with prefix or `false` to save only the env var name.   
-If you are not authorized to do it, please ask to your Mia Platform referent.    
+Public variables are saved by the console with their values enclosed in single quotes.
+
+:::note
+It is highly suggested to use the console when editing public variables, however, in some cases, you might want to edit the file directly. In that case, it is mandatory to use single quotes around the values, like this: `VARIABLE_NAME='VARIABLE_VALUE'`.
+:::
+
+Based on you project configuration, the variables inside the .env file will be saved either with a `MIA_` prefix or not.
+
+You can choose about having or not the prefix: you can set the property `useMiaPrefixEnvs` of the field `deploy` of your project to either `true` to save env vars with prefix or `false` to save only the env var name.
+If you are not authorized to do it, please ask to your Mia Platform referent.
 
 ## ReadOnly public variables
 
