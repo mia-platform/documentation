@@ -66,7 +66,7 @@ The name of the folder is defined by the **publicVariablesFolderName** configura
 Public variables are saved by the Console with their values enclosed in single quotes.
 
 :::note
-It is highly suggested to use the console when editing public variables, however, in some cases, you might want to edit the file directly. In that case, it is mandatory to use single quotes around the values, like this: `VARIABLE_NAME='VARIABLE_VALUE'`.
+It is highly suggested to use the Console when editing public variables, however, in some cases, you might want to edit the file directly. In that case, it is mandatory to use single quotes around the values, like this: `VARIABLE_NAME='VARIABLE_VALUE'`.
 :::
 
 Based on you project configuration, the variables inside the .env file will be saved either with a `MIA_` prefix or not.
