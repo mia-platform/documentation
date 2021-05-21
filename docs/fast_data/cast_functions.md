@@ -6,13 +6,13 @@ sidebar_label: Cast Functions
 
 ## What is a cast function and why I need it?
 
-Different kind of table could store data in many different ways.
+Different kinds of table could store data in many different ways.
 You could have a numeric value stored as a string that was supposed to be an integer, or you could also have a date field stored in different formats in different tables but you would like to have date fields all in the same format (for example you receive a date with the format `YYYYMMDD` and you want to cast it to ISO format).
 
-Cast functions meant to solve all these problems giving you full control over the format that data are going to have in your projections.
+Cast functions are meant to solve all these problems giving you full control over the format that data are going to have in your projections.
 Cast functions are simple JavaScript functions that receive the value coming from the Kafka topics and return the value in the format you need for you projection fields.
 
-This enable you to define the output format and type of the imported fields.
+This enables you to define the output format and type of the imported fields.
 
 :::note
 Since JavaScript is untyped, a conversion function needs some care to be implemented correctly
@@ -29,7 +29,7 @@ The Console provides your project with a set of default cast functions ready to 
 If you need more control over the casting of your data, you can also create your custom cast functions.
 
 :::caution
-If value to cast is invalid (e.g. a character as input of a cast to `defaultCastToInteger`), all default cast functions returns undefined or null, based on the cases. These fallback values are saved as `NULL` in MongoDB.  
+If the value to cast is invalid (e.g. a character as input of a cast to `defaultCastToInteger`), all default cast functions return undefined or null, based on the cases. These fallback values are saved as `NULL` in MongoDB.  
 Be aware of that if your fields are not `nullable`, in these cases you should define your own Custom Cast Functions with the fallback you need.
 :::
 
@@ -37,7 +37,7 @@ Be aware of that if your fields are not `nullable`, in these cases you should de
 
 To define your own custom cast functions click on the *Create* button above the `Custom cast functions` table. This will open a drawer where you can define the property of your own cast function.
 
-- **Name**: is the the name of your cast function. It cannot contains spaces or special characters.
+- **Name**: is the the name of your cast function. It cannot contain spaces or special characters.
 - **Returned Type**: is the type of the value returned by the cast function.
 - **Expression**: is the javascript implementation of the cast function. It needs to be an exported function as default.
 
@@ -55,15 +55,15 @@ module.exports = function (valueToCast, fieldName, logger) {
 
 As you can see in the example above, the cast function accepts three arguments:
 
-- **valueToCast**: it is the value received as it's received from the data source
+- **valueToCast**: it is the value as it's received from the data source
 - **fieldName**: the name of the field associated with the value (e.g.: *restaurantName*)
 - **logger**: the logger you can use to log in your function (an instance of the [Pino logger](https://github.com/pinojs/pino)).
 
 To know the technical limitation you have in your cast function, [read here](./cast_functions#technical-limitation)
 
-## How and when are updated the Default Cast Functions?
+## How and when are the Default Cast Functions updated?
 
-As default, your project is provided with a set of default cast functions you can see in the `Default cast functions` table.
+By default, your project is provided with a set of default cast functions you can see in the `Default cast functions` table.
 
 What happens when the Console changes the default cast function?
 
@@ -94,7 +94,7 @@ Let's see an example:
 
 ![Fast Data without deleted default castFunction](img/fastdata-delete-castfunction-without-deleted.png)
 
-As you can see, in your project you keep going to be able to use all the default cast functions, although *defaultCastUnitTimestampToISOString*, in our example, is no more supported.
+As you can see, in your project you are still able to use all the default cast functions, although *defaultCastUnitTimestampToISOString*, in our example, is no longer supported.
 If you create a new project, this default cast function will not be provided instead.
 
 ## Technical limitation

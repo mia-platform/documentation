@@ -8,7 +8,7 @@ sidebar_label: Configure Single View Creator
 
 Each Single View needs a dedicated Microservice. This service will listen on the **Projections changes** that affect the Single view and consequently update its data. This service is the `Single View Creator`.
 
-To start configure your own Single View Creator, you can begin from the *Single View Creator Template*.
+To start configuring your own Single View Creator, you can begin from the *Single View Creator Template*.
 
 :::info
 If you are searching for a ready-to-use plugin that only requires some configuration files to update your single views, please visit this [link](../runtime_suite/single-view-creator/configuration).
@@ -19,7 +19,7 @@ If you are searching for a ready-to-use plugin that only requires some configura
 ### Initialize the service
 
 The service starts in `index.js` file.
-First of all, the template use the [Custom Plugin Lib](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/plugin_baas_4) to instantiate a service.
+First of all, the template uses the [Custom Plugin Lib](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/plugin_baas_4) to instantiate a service.
 Inside its callback, the `single-view-creator-lib`  is initialized to deal with the complexity of the Fast-data components.
 
 ```js
@@ -96,7 +96,7 @@ This documentation refers to the `@mia-platform-internal/single-view-creator-lib
 
 The core of your work on this service are the files inside the `src` folder.
 
-**singleViewKey.js**: It takes in input the identifier of the projection change and return the key object used to select the document of the Single View collection that need to be updated.
+**singleViewKey.js**: It takes as input the identifier of the projection change and returns the key object used to select the document of the Single View collection that needs to be updated.
 
 In the example below, we expect to have the field `myId` as primary key of the Single View collection.
 
@@ -182,7 +182,7 @@ The validation of a Single View determines what to do with the current update. I
 
 For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be upserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
 
-As default, in this template we set as validator a function that returns always true. So we accept all kind of single views, but, if you need it, you can replace that function with your own custom validator.
+By default, in this template we set as validator a function that returns always true. So we accept all kind of single views, but, if you need it, you can replace that function with your own custom validator.
 
 The input fields of the validation function are the logger and the Single View, while the output is a boolean containing the result of the validation.
 
