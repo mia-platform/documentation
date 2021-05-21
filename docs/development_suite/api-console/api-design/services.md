@@ -184,7 +184,9 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
 * **Runtime Mount Path** (*required*): Path inside the service where you want to mount the directory.
 
-![service-add-configuration](img/service-add-configuration.png)
+Moreover, you can decide to preserve files and directories already existing in the Runtime Mount Path directory, by activating the related checkbox.
+
+![service-add-configuration](img/New_configuration_-_subpath_configmap.png)
 
 For each configuration created, a new card will be visible.
 
@@ -196,11 +198,14 @@ Check out the files service [example](../../../runtime_suite/files-service/confi
 
 You can click _Add file_ to generate a new custom file (e.g. a JSON or YAML file, but could be anything you need) and start writing your custom configurations. With the _Delete File_ button you can remove the file from your custom configuration.
 
+When a new file is added, if the preservation of already existing files and directories has been activated, into the deployment file it is possible to verify the existence of the `subPath` property, whose value has been attached at the end of the Mount Path.
+In this way, all the files of the ConfigMap are loaded in the position defined as Runtime Mount Path, without however deleting any existing files (unless they have the same name as the files of the ConfigMap, in which case they are overwritten).
+
 :::note
 Custom services configuration now supports ConfigMaps larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
 :::
 
- ![service-add-file-new](img/service-add-file-new.png)
+ ![service-add-file-new](img/Add_file_-_subpath_configmap.png)
 
 #### Secrets
 
