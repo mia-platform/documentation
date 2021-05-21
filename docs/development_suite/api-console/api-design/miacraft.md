@@ -17,12 +17,13 @@ All the icons shown correspond to a specific type of microservice except for the
 
 | Icon      | Description |
 | :-----------: | ----------- |
-| ![Mia-Craft client-icon](img/client-icon.png)|Client|
-| ![Mia-Craft apigateway-icon](img/apigateway-icon.PNG)|[API Gateway](../../../runtime_suite/api-gateway.md)|
-| ![Mia-Craft service-icon](img/service-icon.png)| Microservices which type is “core” |
-| ![Mia-Craft custom-service-icon](img/custom-service-icon.png)|  Microservices which type is “custom”|
-| ![Mia-Craft crud-icon](img/crud-icon.png)| [CRUD](crud_advanced.md)|
-| ![Mia-Craft cmssite-icon](img/cmssite-icon.png)| [CMS  Site](../../../business_suite/guide_cms.md)|
+| <img src="img/client-icon.png" alt="client-icon" width="100"/>|Client|
+| <img src="img/apigateway-icon.PNG" alt="apigateway-icon" width="180"/>|[API Gateway](../../../runtime_suite/api-gateway/overview.md)|
+| <img src="img/service-icon.png" alt="service-icon" width="100"/> | Microservices which type is “core” |
+| <img src="img/custom-service-icon.png" alt="custom-service-icon" width="100"/>|  Microservices which type is “custom”|
+| <img src="img/crud-icon.png" alt="crud-icon" width="100"/>| [CRUD](crud_advanced.md)|
+| <img src="img/cmssite-icon.png" alt="cmssite-icon" width="100"/> | [CMS  Site](../../../business_suite/guide_cms.md)|
+
 
 ## Main functionalities
 
@@ -52,5 +53,37 @@ If present, the connection between the API Gateway and the Client cannot be remo
 
 The visualization created by the user can be saved and retrieved the next time that the user access this area. This can be done via the 'Save visualization' button on the top right of the window. The new visualization is saved in the project git repository in the file 'mia-craft-config.json'.
 
-![Mia-Craft save-configuration](img/save-configuration.png)
+![Mia-Craft save-configuration](img/save-configuration.gif)
 
+### Reset the generated visualization
+
+The visualization can be brought back to a starting default position at any moment via the reset button, which repositions all the services in a precise way. 
+
+![Mia-Craft reset-configuration](img/reset-configuration.gif)
+
+As it can be seen in the following example, the API Gateway, the CMS site and the Client are going to be positioned on the left and the other services on the right based on the following logic: 
+* in the top area are going to be positioned the services that act as decorators;
+* in the middle is going to be positioned the microservice gateway;
+* in the bottom area are going to be positioned all the other services.
+
+![Mia-Craft reset-configuration-position](img/reset-configuration.png)
+
+### Create external services
+
+In order to better represent the graphical overview of the project architecture, external services can be added. 
+There are four typologies of external services available: Kafka, MongoDB, Redis and Custom. For each of them there is a specific icon and a custom name that a user can specify in the process of creating it. There is no limit in the number of external services that can be created for each typology, however the only constraint is the fact that the custom name chosen for a new external service must be different from the names of the console's services such as api-gateway, cms-site or the names of any custom service created by the user in the Configuration tab.
+
+| Icon      | Description |
+| :-----------: | ----------- |
+| <img src="img/kafka-icon.png" alt="kafka-icon" width="100"/> |Kafka|
+| <img src="img/mongodb-icon.png" alt="mongodb-icon" width="100"/> | Mongo DB |
+| <img src="img/redis-icon.png" alt="redis-icon" width="100"/> |  Redis|
+| <img src="img/custom-external-service-icon.png" alt="custom-external-service-icon" width="100"/> | Custom external service|
+
+The external services can be added as it can be seen in the following representation.
+
+![Mia-Craft create-external-service](img/create-external-service.gif)
+
+Furthermore, the external services can be deleted via the context menu that can be seen by doing a right click on the external service that should be deleted.
+
+![Mia-Craft delete-external-service](img/delete-external-service.gif)

@@ -10,7 +10,7 @@ In this tutorial we'll see how to create and expose a Node.js Microservice using
 
 ## What We’ll Build
 
-In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](../../runtime_suite/api-gateway).
+In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](../../runtime_suite/api-gateway/overview.md).
 
 Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](../../development_suite/set-up-infrastructure/env-var).
 Moreover we'll create a **CRUD for storing customers and orders** and develop a Microservice that **calculates the shipping cost for a specific order**. If the order belongs to a new customer the shipping cost is reduced, otherwise, a default cost is applied.
@@ -492,7 +492,7 @@ return {
 }
 ```
 
-With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](../../runtime_suite/microservice-gateway). In this case, we have got a proxy for [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) and use it to read documents from CRUDs collection.
+With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](../../runtime_suite/microservice-gateway/overview). In this case, we have got a proxy for [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) and use it to read documents from CRUDs collection.
 
 `allowedStatusCodes` options allows to define which status codes of the response are accepted. If the response status code is not contained in this array, the promise will be rejected.
 

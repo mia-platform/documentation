@@ -1,20 +1,20 @@
 ---
 id: configuration
-title:   Swagger Aggregator Advanced Configuration
+title: Swagger Aggregator Advanced Configuration
 sidebar_label: Swagger Aggregator
 ---
 
-In the advanced tab of the Console Design section you can configure the [Swagger Aggregator](../../../../runtime_suite/swagger-aggregator.md) in advanced mode.
+In the advanced tab of the Console Design section, you can configure the [Swagger Aggregator](../../../../runtime_suite/swagger-aggregator.md) in advanced mode.
 
-The advanced configuration allows managing how the swagger API are exposed. Examples of possible configurations are:
+The advanced configuration allows managing how the swagger APIs are exposed. Examples of possible configurations are:
 
-* Create further custom routes
+- Create further custom routes
 
-* Rewrite swagger routes to match different specifications depending on the context
+- Rewrite swagger routes to match different specifications depending on the context
 
-* Define sub-swaggers to expose only a subset of the whole API
+- Define sub-swaggers to expose only a subset of the whole API
 
-* Collect and combine swaggers from other services to expose them in a single interface as a whole.
+- Collect and combine swaggers from other services to expose them in a single interface as a whole.
 
 :::note
 This configuration affects the API documentation available in the [API Portal](../../../api-portal/api-documentations).
@@ -31,17 +31,17 @@ In the `swagger-aggregator` list item is possible that you will find some `.conf
 
 Here is the list of the deprecated `.conf` files:
 
-* urls.before.conf
-* urls.after.conf
-* description.conf
-* baseSwagger.conf
-* subswaggers.conf
-:::
+- urls.before.conf
+- urls.after.conf
+- description.conf
+- baseSwagger.conf
+- subswaggers.conf
+  :::
 
 Below are reported the more advanced properties that can be configured at the first level of `swagger-aggregator.json` file and how they can be employed to customize the Swagger Aggregator functionalities.
 
 :::info
-Remember that all the following properties (with the exceptions of `servicesUrlsBefore` and `servicesUrlsAfter`) can also be set through configuration file, as described [here](../../../../runtime_suite/swagger-aggregator.md).
+Remember that all the following properties (with the exceptions of `servicesUrlsBefore` and `servicesUrlsAfter`) can also be set through the configuration file, as described [here](../../../../runtime_suite/swagger-aggregator.md).
 :::
 
 ## servicesUrlsBefore and servicesUrlsAfter
@@ -58,11 +58,11 @@ Do **not** edit `urls.before.conf` and `urls.after.conf` files, they are now dep
 
 Both properties are **array** where each object can have the following properties:
 
-* `type`
-  * `url`: by specifying Url as type the swagger-aggregator will download the microservice swagger by the provided `url` field
-  * `file`: by specifying file as type the swagger-aggregator will take the microservice swagger configurations by the provided `path` field.
-* `url`/`path`: microservice swagger url/file path
-* `prefix` (*optional*): the prefix
+- `type`
+  - `url`: by specifying Url as type the swagger-aggregator will download the microservice swagger by the provided `url` field
+  - `file`: by specifying file as type the swagger-aggregator will take the microservice swagger configurations by the provided `path` field.
+- `url`/`path`: microservice swagger url/file path
+- `prefix` (_optional_): the prefix
 
 In both of them, the user can specify an `includePaths` and an `excludePaths` array, useful to filter the paths that are accessible from outside. The filter will include first all the paths according to the object passed by `includePaths` then the result will be filtered by the `excludedPaths`.
 
@@ -87,13 +87,13 @@ By adding the above `servicesUrlsBefore` property to the `swagger-aggregator.jso
 
 ## subswaggers
 
-Use `subswaggers` property to define, as described briefly above, a set of sub-swaggers that represents a limited view on all the API that services expose within a project.
+Use `subswaggers` property to define, as described briefly above, a set of sub-swaggers that represents a limited view on all the APIs that services expose within a project.
 
 :::caution
 Do **not** edit `subswaggers.conf` file, it is now deprecated and should not be used anymore. Add this property in the `swagger-aggregator.json` file instead.
 :::
 
-There are many reasons to enable this feature, one of them is that they are used to cluster different endpoints under specific tags or to group routes so that they can be encapsulated into other projects.
+There are many reasons to enable this feature, one of them could be to use them to cluster different endpoints under specific tags or to group routes so that they can be encapsulated into other projects.
 
 ### subswagger Example
 
@@ -107,22 +107,23 @@ There are many reasons to enable this feature, one of them is that they are used
 }
 ```
 
-Each element must be defined by `<reference-name>.json` key,that can be used as a handle in the [servicesUrlsBefore](#servicesurlsbefore-and-servicesurlsafter) to select which group should be exposed in other projects swaggers, and can include the following properties:
+Each element must be defined by `<reference-name>.json` key, which can be used as a handle in the [servicesUrlsBefore](#servicesurlsbefore-and-servicesurlsafter) to select which group should be exposed in other projects swaggers. It can include the following properties:
 
-* `name`: represents the name associated to the group in the swagger interface.
-* `tagName`: represents the name under which all the routes that match the expression are grouped.
-* `expression`: is evaluated as a simple JavaScript code that filters out from the sub-swagger group all the routes whose expression returns false.
+- `name`: represents the name associated with the group in the swagger interface.
+- `tagName`: represents the name under which all the routes that match the expression are grouped.
+- `expression`: is evaluated as a simple JavaScript code that filters out from the sub-swagger group all the routes whose expression returns false.
 
-In order to exploit the expression function depending on different contexts, three JS variables are provided to support the filtering process:
-  * `method`: it represents which HTTP method can be used to call a specific route
+To exploit the expression function depending on different contexts, three JS variables are provided to support the filtering process:
 
-  * `path`: it represents the path called for a specific route
+- `method`: it represents which HTTP method can be used to call a specific route
 
-  * `tags`: it is the list of tags that decorates a specific route
+- `path`: it represents the path called for a specific route
+
+- `tags`: it is the list of tags that decorates a specific route
 
 Here is provided an example of what a sub-swagger.conf configuration file might look likes:
 
-### subswaggers full example
+### subswaggers full-example
 
 ```json
 "subswaggers": {
@@ -180,32 +181,32 @@ Do **not** edit `baseSwagger.conf` file, it is now deprecated and should not be 
 
 ## prefix
 
-Use first level `prefix` property to add to all routes a prefix. This feature may be useful when using multiple [API Gateway](../../../../runtime_suite/api-gateway.md) or when having a custom reverse proxy before your project.
+Use first level `prefix` property to add to all routes a prefix. This feature may be useful when using multiple [API Gateways](../../../../runtime_suite/api-gateway/overview.md) or when having a custom reverse proxy before your project.
 
 ### prefix Example
 
 ```json
 {
-   "title":"Documentation",
-   "descriptionMarkdownFilePath":"tests/DESCRIPTION.md",
-   "version":"1.0.0",
-   "prefix":"/your-prefix",
-   "services":[
-      {
-         "type":"url",
-         "url":"http://your-microservice/documentation/json",
-         "prefix":"/"
-      },
-      {
-         "type":"url",
-         "url":"http://your-second-microservice/documentation/json",
-         "prefix":"/second-prefix"
-      }
-   ],
-   "baseSwagger":{
-      "swagger":"2.0"
-   }
+  "title": "Documentation",
+  "descriptionMarkdownFilePath": "tests/DESCRIPTION.md",
+  "version": "1.0.0",
+  "prefix": "/your-prefix",
+  "services": [
+    {
+      "type": "url",
+      "url": "http://your-microservice/documentation/json",
+      "prefix": "/"
+    },
+    {
+      "type": "url",
+      "url": "http://your-second-microservice/documentation/json",
+      "prefix": "/second-prefix"
+    }
+  ],
+  "baseSwagger": {
+    "swagger": "2.0"
+  }
 }
 ```
 
-In this example, all routes documented by `your-microservice` swagger will receive `/your-prefix` as prefix, while all routes documented by `your-second-microservice` swagger will receive `/your-prefix/second-prefix` as prefix.
+In this example, all the routes documented by `your-microservice` swagger will receive `/your-prefix` as prefix, while all the other routes documented by `your-second-microservice` swagger will receive `/your-prefix/second-prefix` as prefix.

@@ -88,6 +88,10 @@
         },
         {
           "type": "doc",
+          "id": "development_suite/api-console/api-design/flow-manager-visualizer"
+        },
+        {
+          "type": "doc",
           "id": "development_suite/api-console/api-design/endpoints"
         },
         {
@@ -205,6 +209,10 @@
     {
       "type": "doc",
       "id": "development_suite/api-portal/api-documentations"
+    },
+    {
+      "type": "doc",
+      "id": "development_suite/tenant-overview/tenant-overview"
     }
   ],
   "marketplace": [
@@ -217,12 +225,38 @@
       "label": "Core Services",
       "items": [
         {
-          "type": "doc",
-          "id": "runtime_suite/api-gateway"
+          "collapsed": true,
+          "type": "category",
+          "label": "API Gateway",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/api-gateway/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/api-gateway/configuration"
+            }
+          ]
         },
         {
-          "type": "doc",
-          "id": "runtime_suite/microservice-gateway"
+          "collapsed": true,
+          "type": "category",
+          "label": "Microservice Gateway",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/performance"
+            }
+          ]
         },
         {
           "type": "doc",
@@ -433,6 +467,17 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/kafka2firebase/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Microlc Redoc Plugin",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microlc-redoc-plugin/overview"
                 }
               ]
             },
@@ -825,6 +870,10 @@
         {
           "type": "doc",
           "id": "getting_started/quick_rest_api"
+        },
+        {
+          "type": "doc",
+          "id": "tutorial/requests_limits/requests_limits_tutorial"
         }
       ]
     },
@@ -874,6 +923,10 @@
       "type": "category",
       "label": "Versions",
       "items": [
+        {
+          "type": "doc",
+          "id": "release_notes/v7.6.x"
+        },
         {
           "type": "doc",
           "id": "release_notes/v7.5.x"
