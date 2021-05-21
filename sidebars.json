@@ -473,6 +473,17 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Microlc Redoc Plugin",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microlc-redoc-plugin/overview"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Mongo2Kafka",
               "items": [
                 {
