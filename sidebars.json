@@ -503,6 +503,17 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "ReDoc",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/redoc/overview"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "SES Mail Notification Service",
               "items": [
                 {
