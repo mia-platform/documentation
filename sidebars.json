@@ -243,16 +243,20 @@
           "collapsed": true,
           "type": "category",
           "label": "Microservice Gateway",
-          "items": [{
-            "type": "doc",
-            "id": "runtime_suite/microservice-gateway/overview"
-          }, {
-            "type": "doc",
-            "id": "runtime_suite/microservice-gateway/configuration"
-          }, {
-            "type": "doc",
-            "id": "runtime_suite/microservice-gateway/performance"
-          }]
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/performance"
+            }
+          ]
         },
         {
           "type": "doc",
