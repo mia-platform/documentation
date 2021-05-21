@@ -19,16 +19,16 @@ The deletion is not allowed until you have at least one Projection inside the Sy
 
 ## Projections Changes
 
-When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information of the document updated.
+When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information about the updated document.
 
-It's created one Projections Changes collection for each System of Records as default.
+One Projections Changes collection is created for each System of Records as default.
 
 This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view.
 
 You can choose to use a collection you have already created in the CRUD section through advanced configuration. To do that, [read here](./advanced#projections-changes).
 
 :::note
-When you delete a Systems of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.  
+When you delete a System of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.  
 This will not happen if you have chosen to use your own custom Projections Changes collection through the [advanced](./advanced) section.
 :::
 
@@ -48,27 +48,27 @@ To view the details of a projection, click on the arrow button at the end of the
 
 Once in the projection detail page, there is a card with detail of `Kafka topics`.
 Here, you can modify the default name of the topics per environment.
-The topic name are pre-compiled with our suggestion name:
+The topics names are pre-compiled with our suggested name:
 
 ```txt
 projectId.environmentId.projectionName-json
 ```
 
-where `projectId`, `environmentId` and `projectionName` are filled with, respectively, the id of the console project, the id of the environment associated and the name of the projection.
+where `projectId`, `environmentId` and `projectionName` are filled with, respectively, the id of the console project, the id of the associated environment and the name of the projection.
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the Core Service responsible for creating the collection on MongoDB.
+A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the a service responsible for creating the collection on MongoDB.
 
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 
-These fields have no `Cast function` assigned because they are not used for mapping of fields from the Kafka Message received. This means that if the Kafka Message contains a field with the name equals to one of the metadata fields, this is not copied on the projection.
+These fields have no `Cast function` assigned because they are not used for mapping of fields from the Kafka Message received. This means that if the Kafka Message contains a field with the same name as one of the metadata fields, it is not copied on the projection.
 
 ### Projection fields
 
 In the card `Fields` in projection, you can add new fields.
 
-Once you click to `Create field` button, a form is prompted where you should insert the following fields (all fields are required):
+Once you click the `Create field` button, a form is prompted where you should insert the following fields (all fields are required):
 
 * `Name`: name of the projection field;
 * `Type`: one of `String`, `Number`, `Boolean` or `Date`
@@ -89,8 +89,8 @@ When the `real-time updater` deletes a projection document, it actually makes a 
 
 #### Generate projection fields from data sample
 
-In the card `Fields` in projection, you can upload a data sample to generate fields by clicking on the appropriate button. Doing this will replace the current fields with those contained within the file
-The file extension supported are: `.csv` and `.json`.
+In the card `Fields` in projection, you can upload a data sample to generate fields by clicking on the appropriate button. Doing this will replace the current fields with those contained within the file.
+The supported file extension are: `.csv` and `.json`.
 
 Example json
 
@@ -118,7 +118,7 @@ Import of fields is supported only for the following data types: `String`, `Numb
 :::
 
 :::caution
-You cannot import fields with name equals to one of the metadata fields.
+You cannot import fields with the same name as one of the metadata fields.
 :::
 
 ### Indexes
@@ -148,7 +148,7 @@ To expose the Fast Data projection, [create an Endpoint](../development_suite/ap
 You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](../business_suite/cms_configuration/conf_cms#configure-pages).
 
 :::info
-It is not required for the Fast Data to work the exposed API. It is an optional behaviour if you need to have access to the data without access directly from database.
+The exposed API is not required for Fast Data to work. It is an optional behaviour in case you need access to the data without directly accessing it from the database.
 :::
 
 ### Kafka messages format
@@ -176,9 +176,9 @@ Where `THE_FORMAT` is the format of your Kafka Messages and can be one of the fo
 
 It's the default one.
 
-The `timestamp` of the Kafka message have to be a  stringified integer greater than zero. This integer have to be a valid timestamp.  
-The `key` of the Kafka message have to be a stringified object containing the primary key of the projection.  
-The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.  
+The `timestamp` of the Kafka message havs to be a  stringified integer greater than zero. This integer havs to be a valid timestamp.
+The `key` of the Kafka message havs to be a stringified object containing the primary key of the projection.
+The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 The `offset` is the offset of the kafka message.
 
 Example of a delete operation
@@ -240,7 +240,7 @@ This adapter is a function that accepts as arguments the kafka message and the l
 
 * **offset**: the offset of the kafka message
 * **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
-* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document need to be updated with the changes set in the value.
+* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
 * **value**: the data values of the projection, or null
 
 If the `value` is null, the operation is supposed to be a delete.
@@ -288,7 +288,7 @@ The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are 
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
 
-Once you have created your own custom adapter for the Kafka messages, commit and push to load on git your code.  
+Once you have created your own custom adapter for the Kafka messages, commit and push to load your code on git.
 Now you need to go on the Console and save in order to generate the configuration for your `Real Time Updater` service that uses the adapter you created.
 
 :::note

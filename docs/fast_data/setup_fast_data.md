@@ -53,7 +53,7 @@ On the left menu, click on `Topics` and `Add a topic` button. Insert the topic n
 We suggest to use a topic name like `project.environment.projection-json`
 :::
 
-> *Note*: if this documentation looks not to be updated, follow the [official one](https://docs.confluent.io/cloud/current/client-apps/topics/manage.html#create-a-topic)
+> *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/cloud/current/client-apps/topics/manage.html#create-a-topic)
 
 ##### Create service account
 
@@ -64,7 +64,7 @@ Here you could select an already existent service account or create a new one.
 We suggest you to create a service account for each project and environment.
 :::
 
-> *Note*: if this documentation looks not to be updated, follow the [official one](https://docs.confluent.io/cloud/current/access-management/service-account.html#use-ccloud-service-accounts-to-produce-and-consume)
+> *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/cloud/current/access-management/service-account.html#use-ccloud-service-accounts-to-produce-and-consume)
 
 ##### Create ACL rules
 
@@ -119,13 +119,13 @@ If you set `my-consumer-group.development` as consumer group id, you can configu
 ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation READ --consumer-group "my-consumer-group.development" --cluster CLUSTER_ID;
 ```
 
-> *Note*: if this documentation looks not to be updated, follow the [official one](https://docs.confluent.io/platform/current/clients/consumer.html)
+> *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/platform/current/clients/consumer.html)
 
 ## Set up environment variables
 
 When you start using Fast Data, you should set some environment variables in the `Envs` section in Console to correctly deploy your project. [Click here](../development_suite/set-up-infrastructure/env-var) to view how this section works, and how to differentiate the environment variables through environments.
 
-The environment variables to set are shared for all the System of Source, and all this environment variables must be added if a System of Records has been created.
+The environment variables to set are shared for all the System of Source, and all these environment variables must be added if a System of Records has been created.
 
 Here is the list:
 
