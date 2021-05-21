@@ -62,5 +62,5 @@ and should be similar to the following:
 ![RapiDoc Example](./img/rapidoc_example.png)
 
 :::caution
-We suggest to use RapiDoc to set up the Dev Portal, but in case of `small (<~300kb)` OpenApi specification file you can consider to use Redoc; for this plugin, we highly suggest to read the [ReDoc Documentation](../runtime_suite/redoc/overview.md)
+We suggest to use RapiDoc to set up the Dev Portal, but in case of `small (<~300kb)` OpenApi specification file you can consider to use Redoc; for this plugin, we highly suggest to read the [ReDoc Documentation](../runtime_suite/microlc-redoc-plugin/overview.md)
 :::
