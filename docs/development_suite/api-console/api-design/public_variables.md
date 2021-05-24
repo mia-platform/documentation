@@ -63,7 +63,11 @@ For on premise installations the folder where are stored the `.env` files of the
 The name of the folder is defined by the **publicVariablesFolderName** configuration in the Helm Chart. The default value is **variables**.
 :::
 
-Public variables are saved by the Console with their values enclosed in single quotes.
+Public variables are saved by the Console with their values enclosed in single quotes. Thanks to that, it is possible to use multiline public variables.
+
+:::warning
+The use of a single quote character `'` inside of a public variable is not allowed. If you need that character, you might escape it using a backslash character `\` before it (e.g. `value-with-single-quote\'`).
+:::
 
 Based on you project configuration, the variables inside the .env file will be saved either with a `MIA_` prefix or not.
 
