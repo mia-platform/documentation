@@ -118,15 +118,28 @@ In this section, you can manage the resources dedicated to your microservice:
 
 * **CPU Resources**: You have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
 
-* **Log Parser** (*required*): You can select which parser will handle your microservice logs. Currently, you can parse log in the following ways:
+* **Static replicas** (*required*): You have to specify the number of replicas of your microservice.  
+  When a new microservice is created its default value is *1*.
+
+  It is possible to have two different behaviours when a microservice has a [hpa](./replicas) configured.
+  * *static replicas greater than 0*: the *hpa replicas* has priority and so they will be used.
+  * *static replicas equals 0*: the *static replicas* has priority and so no microservice will be deployed.
+
+  :::note
+  A static replicas value can not be interpolated by an environment variable
+  :::
+
+* **Log Parser** (*required*): You can select which parser will handle your microservice logs.   
+  Currently, you can parse log in the following ways:
   * *mia-json*: it parses json logs based on the documented format
   * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-Platform (website and api-gateway)
   * *mia-plain*: it collects logs but it does not parse them
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
-See more about the log parsers on the [guidelines](../../../getting_started/monitoring-dashboard/dev_ops_guide/log)  
+  See more about the log parsers on the [guidelines](../../../getting_started/monitoring-dashboard/dev_ops_guide/log)  
 
 * **Probes**: Here you can set your microservice probes, which are routes used by Kubernetes cluster to know if the microservice is working (liveness) and ready to receive requests (readiness). These fields are valorized by default. If you leave these fields empty, there will be a tcp socket on the selected microservice port.
+
 
  ![service-detail-configuration](img/service-detail-configuration.png)
 

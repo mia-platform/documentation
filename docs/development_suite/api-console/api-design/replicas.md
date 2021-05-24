@@ -9,7 +9,9 @@ Replicas allow you to set the number of replicas for your services in purpose to
 The feature is thought to generate the replicas **only for the productions environments** where the [Environment Variable](../.-/../../set-up-infrastructure/env-var.md) `ENABLE_HPA` is set to `true`.
 
 :::caution
-Based on your release pipeline, the `ENABLE_HPA` environment variable could need the environment prefix (e.g. `PROD_`) or not.
+Based on your release pipeline, the `ENABLE_HPA` environment variable could need the environment prefix (e.g. `PROD_`) or not.  
+
+The replicas configured will not work properly if the [static replicas](./services#microservice-configuration) is set to 0.
 :::
 
 :::info
