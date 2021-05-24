@@ -247,6 +247,65 @@ You need to give **additional permissions** to the console service account in or
 
 It is also possible to use Kubernetes secrets to setup specific environment variables, follow this [link](./services#environment-variable-configuration) to understand how to do so.  
 
+### Provide a CA Certificate to a custom service
+
+In an enterprise environment, to encrypt SSL connections, there could be a set of custom certificates signed by one or more trusted certificates.
+By following this guide you'll be able to provide one or more trusted certificates in PEM format in a single file for your **custom** services.
+
+To configure a custom CA certificate for a custom service you should:
+
+1. Verify if the service you want to provide an additional certificate with supports this feature by visiting its dedicated documentation page.
+2. Have the CA certificate in `pem` format, and rename the file in `additional-ca.pem`.
+3. Create a Kubernetes Secret in the namespace (replace `YOUR_NAMESPACE` with your namespace name) of the project that needs it using the command:
+
+```sh
+kubectl -n YOUR_NAMESPACE create secret generic additional-ca-certificates --from-file=additional-ca.pem
+```
+
+This command will create a secret like the following:
+
+```yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: additional-ca-certificates
+data:
+  additional-ca.pem: "base64-content"
+```
+
+The `additional-ca.pem` content is created in base64.
+
+In the Console, access to your project and enter in the design section, select the working branch and click on the custom service in the `Microservices` section.
+
+Once here, you should add a [custom configuration](#add-a-configuration) to your microservice. In particular, to create the configuration necessary to add `additional-ca.pem`, you should fill the form with data that depends on the service for which you want to add this feature.
+
+Lastly, you should add a new environment variable to your custom service. To do so, go to the [environment variables card](#environment-variable-configuration) of your service and click on the button to add a new one. In the form that will open you should add data that may vary based on the service for which you want to add this feature.
+
+Next paragraph will give you the correct data that you need to create both the custom configuration and the environment variable necessary to add a CA certificate based on which service you are working on.
+
+#### Custom configuration and environment variable data
+
+In this section, we will list all the information necessary to correctly configure additional CA certs for services that support this feature.
+
+##### Node Services
+
+In order to correctly configure your Node service to handle additional CA certs, you should add a custom configuration with the following data:
+
+* **Type**: `Secret`
+* **Configuration Name**: `additional-ca-certificates` (which is the name of the previously generated secret)
+* **Runtime Mount Path**: `/home/node/app/tls`
+
+Then, click on the submit button to confirm your choices.
+
+Finally, you should create a new environment variable passing the following data:
+
+* **Key**: `NODE_EXTRA_CA_CERTS`
+* **Value Type**: `Plain Text`
+* **Value**: `/home/node/app/tls/additional-ca.pem` (which is the mountpath of your configuration file concatenated with your certificate file)
+* **Description** (*optional*): any description that may help you.
+
+Once saved all these changes, you should see the volume correctly mounted in the generated deployment file.
+
 ### Advanced Configuration
 
 In this section, you can write your advanced configurations by filling the files:
