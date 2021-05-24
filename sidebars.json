@@ -243,16 +243,20 @@
           "collapsed": true,
           "type": "category",
           "label": "Microservice Gateway",
-          "items": [{
-            "type": "doc",
-            "id": "runtime_suite/microservice-gateway/overview"
-          }, {
-            "type": "doc",
-            "id": "runtime_suite/microservice-gateway/configuration"
-          }, {
-            "type": "doc",
-            "id": "runtime_suite/microservice-gateway/performance"
-          }]
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/microservice-gateway/performance"
+            }
+          ]
         },
         {
           "type": "doc",
@@ -463,6 +467,17 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/kafka2firebase/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Microlc Redoc Plugin",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microlc-redoc-plugin/overview"
                 }
               ]
             },
@@ -956,7 +971,7 @@
         },
         {
           "type": "doc",
-          "id": "dev_portal/redoc"
+          "id": "dev_portal/rapidoc"
         }
       ]
     }

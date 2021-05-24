@@ -6,7 +6,7 @@ sidebar_label: Single View Concepts
 ## Why Single View?
 
 **Data-driven** and **user experience** are not only trend concepts, they are real needs of all modern companies.
-To really become a data-driven company and offer a modern user experience all of your business data must be **updated and available 24/7 for all digital touchpoint**.
+To really become a data-driven company and offer a modern user experience all of your business data must be **updated and available 24/7 for all digital touchpoints**.
 
 The first technical problem to overcome in order to be able to be such a company is the **data fragmentation** and the complexity of its management.
 Year after year, vital company data have been isolated and stranded in "watertight compartments". For example, the **customer data**, required for customer support and sales processes, can be placed in many different disconnected locations.
@@ -36,7 +36,7 @@ In this section we'll describe the main tasks to perform in order to correctly d
 ### Identify common fields
 
 First, you have to define **common fields** that must appear in each document.
-For example, every customer document should contain a **unique identifier** such as a number or an email address. This will be the primary key of the single view and will be **indexed as a primary key**. Analyzing query patterns will also help identify secondary indexes that need to be created. For example, we may regularly query customers against location and products or services they have purchased.
+For example, every customer document should contain a **unique identifier** such as a number or an email address. This will be the primary key of the single view and will be **indexed as a primary key**. Analyzing query patterns will also help identify secondary indexes that need to be created. For example, we may regularly query customers against locations they have visited and products or services they have purchased.
 
 ### Define canonical formats
 

@@ -143,6 +143,19 @@
     "docLandingPage": "runtime_suite/kafka2firebase/overview"
   },
   {
+    "name": "Microlc Redoc Plugin",
+    "description": "This plugin enables you to embed inside your dev portal the ReDoc page for API's documentation.",
+    "category": {
+      "id": "devportal",
+      "label": "Dev Portal"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/microlc-redoc-plugin_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/microlc-redoc-plugin/overview"
+  },
+  {
     "name": "Mongo2Kafka",
     "description": "Stream your MongoDB changes to Kafka",
     "category": {

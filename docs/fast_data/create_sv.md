@@ -18,7 +18,7 @@ And these projections are connected among them with this logic:
 
 - a restaurant can have multiple dishes
 - a single dish can be owned by a single restaurant
-- a dish can have multiple reviews, but the review is about a single dish
+- a dish can have multiple reviews, but each review is about a single dish
 
 As shown in the following diagram:
 
@@ -58,7 +58,7 @@ dishes:
 
 ![Fast Data Single View Projections link](img/fastdata-single-view-projection-diagram.png)
 
-As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occurs (e.g.: the name of a dish changes, or a new reviews is written, or some dishes are removed) the single view interested in these changes has to be regenerated.  
+As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occur (e.g.: the name of a dish changes, or a new reviews is written, or some dishes are removed) the single view interested in these changes has to be regenerated.
 
 In our case, let's assume that a new review is added to the projection REVIEWS with the following data:
 
@@ -97,7 +97,7 @@ The type fields supported are the same of the collection you can create in the [
 
 You need to create a **Single View Creator** to update or delete a Single View when a Projection Changes is created. This happens every time a Projection has been modified.
 
-A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to once System of Records through Projection Changes.
+A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to onc System of Records through Projection Changes.
 
 ```shell
 system_1
@@ -123,7 +123,7 @@ After you have attached the microservice to the single view, a link to the micro
 ![Fast Data Single View Microservice](img/single-view-detail-microservice.png)
 
 :::note
-These links are only for documentation purpose. You can use them to track which services are responsible for keeping updated the Single View.  
+These links are for documentation purposes only. You can use them to track which services are responsible for keeping the Single View updated.  
 :::
 
 :::info
@@ -145,8 +145,8 @@ The strategy functions can be created in the repository of the project configura
 
 In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
-Strategies files needs to be created below a folder named `fast-data-files`, if your project does not have it, create it.
-In this folder, create a folder named as `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Record.
+Strategies files need to be created below a folder named `fast-data-files`, if your project does not have it, create it.
+In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Record.
 
 For instance if you want to create a strategy function for the system `my-system` you need to create the following directory tree:
 
@@ -313,7 +313,7 @@ So, you have to set `myStrategyForProjection1` as **main function file** for the
 
 ## How to consume the Single View
 
-You can expose the Single View through the crud-service without write any code, or you can always create a custom service to access to MongoDB if you have special needs.
+You can expose the Single View through the crud-service without writing any code, or you can always create a custom service to access to MongoDB if you have special needs.
 
 You could [check here](../development_suite/api-console/api-design/endpoints) how to expose an endpoint of the CRUD service outside your project through the Console.
 

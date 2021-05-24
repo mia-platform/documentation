@@ -1,9 +1,8 @@
 ---
-id: redoc
+id: overview
 title: ReDoc
-sidebar_label: ReDoc
+sidebar_label: Overview
 ---
-
 [ReDoc](https://redoc.ly/) is an OpenAPI-genereted API reference documentation generator that can be use to produce documentation for your APIs quickly.
 
 In the dev portal, `ReDoc` can be used to create the API documentations just setting up the link to your OpenAPI specification.
@@ -14,7 +13,7 @@ To create an istance of `ReDoc`:
 
 1. Go to the `Microservices` section;
 2. Create a new microservice using the `Microlc ReDoc Plugin` in the `Dev Portal` category of the marketplace;
-   ![Redoc Plugin](img/docusaurus_adapter_marketplace.png)
+   ![Redoc Plugin](./img/redoc_marketplace.png)
 3. Configure the microservice with a custom name and description;
 4. Complete the creation to deploy an instance of `ReDoc`.
 
@@ -28,11 +27,11 @@ To create an istance of `ReDoc`:
 
 After that, the situation should be similar to the following:
 
-![Adapter configured](./img/docusaurus_redoc_final_config.png)
+![Adapter configured](./img/redoc_final_config.png)
 
 ## ReDoc configuration
 
-Like all the plugins of `microlc` you should refer to the [core configuration section](../business_suite/microlc/core_configuration.md#plugins)
+Like all the plugins of `microlc` you should refer to the [core configuration section](../../business_suite/microlc/core_configuration.md#plugins)
 for the setup and to correctly configure Redoc you **must** set one `props`:
 
 - _openApiSpecUrl_ : the url to your `Swagger` or `OpenApi` specification.
