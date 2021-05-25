@@ -5,14 +5,14 @@ sidebar_label: Tenant Overview
 ---
 ## What is the Tenant Overview
 
-The Tenant Overview is a visualization tool accessible from the Tenant Section. This feature is accessible from the console host at the path `/tenants/:tenantId/endpoints-overview/` through the url `$HOSTNAME_CONSOLE/tenants/:tenantId/endpoints-overview/`. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security configuration of the projects' endpoints.  
+The Tenant Overview is a visualization tool accessible from the Tenant Section. This feature is accessible from the console host at the path `/tenants/:tenantId/overview/endpoints` through the url `$HOSTNAME_CONSOLE/tenants/:tenantId/overview/endpoints`. This provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security configuration of the projects' endpoints.  
 
 Tenant Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Project*: Project name.
 * *Project owner*: Project owner name.
 * *Endpoint/API*: Endpoint name.
 * *Show in API Portal*: A label that shows if the endpoint appears in the API portal.
-* *API-Key*: A label that shows if the endpoint is protected by an API-key.
+* *API Key*: A label that shows if the endpoint is protected by an API-key.
 * *Public*: A label that shows if the endpoint is public (the API is accessible even if the user is not logged in).
 * *User Group Permission*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
 * *Decorator PRE*: A label that shows if a PRE decorator is configured for the endpoint and the concerning decorators.  
@@ -56,4 +56,4 @@ The Tenant Overview results can be filtered by the project names and the attribu
 
 ![Filter](img/filter.png)
 
-In the presented example, the Tenant Overview result is filtered to display only the endpoints into *Project_01* or *Project_02* projects having both *API-Key* set to *required* and *User Group Permission* features set to *false*.  
+In the presented example, the Tenant Overview result is filtered to display only the endpoints into *Project_abcd* project having both *API Key* set to *required* and *User Group Permission* features set to *true*.  
