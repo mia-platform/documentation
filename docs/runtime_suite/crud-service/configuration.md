@@ -3,86 +3,31 @@ id: configuration
 title: CRUD Service Configuration
 sidebar_label: Configuration
 ---
-This service is fully integrated and totally configurable through the design section of the Console, in the `CRUD` page. If you use the Console, please read [how to create a crud](../../development_suite/api-console/api-design/crud_advanced.md).
+This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **Crud Service** plugin.
 
-## CRUD configuration
+## Configure a CRUD Service to use MongoDB CRUD section
 
-This service is configured with environment variables and collection definitions.
+In order to start using the MongoDB CRUD section, all you have to do is adding it from the Marketplace: all the ConfigMaps and environment variables it needs will be precompiled with no need to change them.
 
-### Environment variables
+:::info
+The CRUD Service supports custom CA certs. If you want to learn more about these certificates and how to configure them in your CRUD Service visit [this page](../../development_suite/api-console/api-design/services#provide-a-ca-certificate-to-a-custom-service)
+:::
+
+### ConfigMap
+
+The Crud Service default configmap is mounted in `/home/node/app/collections`. You can freely choose its name during the service creation.
+
+Furthermore, the ConfigMap is not editable, as it is fundamental for the MongoDB CRUD section to work: it is not possible to add files, edit the mountPath or delete it.
+
+However, you will find a link that will redirect you to **MongoDB CRUD** dedicated section where you can continue to configure your project [CRUDs](../../development_suite/api-console/api-design/crud_advanced.md). By doing so, you will automatically define the collections that will be handled by the service, which means that there is no need to add any configuration files.
+
+## Environment variables
 
 * **MONGODB_URL** (*required*): the MongoDB connection string;
-* **COLLECTION_DEFINITION_FOLDER** (*required*): the path to the folder where all collections are defined;
+* **COLLECTION_DEFINITION_FOLDER** (*required, default `/home/node/app/collections`*): the path to the folder where all collections are defined;
 * **USER_ID_HEADER_KEY** (*required*): header key used to know which user makes the request. User id is useful to add `creatorId` and `updaterId` field in collection document;
 * **CRUD_LIMIT_CONSTRAINT_ENABLED**: (*default: `true`*): a boolean value to enable the query limit constraint feature. If it is enabled, the max limit of the get list APIs is 200.
-
-### Collection definition
-
-The collection definition can be in `json` or in `js` format. You can also specify indexes in collection definition.
-
-Collection definitions contains:
-
-* **id** (*required*): unique id of the collection;
-* **name** (*required*): name of the collection;
-* **description**: collection description;
-* **endpointBasePath** (*required*): path of the endpoint exposed by CRUD service;
-* **defaultState** (default to `DRAFT`): default state when you save the document into collection. The possible states are: `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. You can insert a document with another state declaring it in creation.
-* **fields** (*required*): an array with the object of the various types. The fields *MUST* contain [the default collection properties](overview_and_usage#predefined-collection-properties)
-  * **name** (*required*): name of the field saved in mongo
-  * **type** (*required*)
-    * *string*
-    * *ObjectId*
-    * *number*
-    * *boolean*
-    * *Date*
-    * *GeoPoint*
-    * *RawObject*: an object with any nested properties. You can set JSON Schema to handle a specific set of properties
-    * *Array*: an array of *strings*, *number*, *RawObject* or *ObjectId*
-  * **description**: description of the field
-  * **required** (not handled for Array type): set a field as required
-  * **nullable** (not handled for Array type): set a property is nullable
-  * **schema**: the schema for the field (available only for *RawObject*).
-  * **items**: an object containing the various types possible for *Array*. If type *RawObject* is selected, it is possible to define the JSON Schema definition of the *RawObject* adding a *schema* property inside the *items* object.
-* **indexes**: an array of index definition
-
-Example of collection definition:
-
-```js
-[
-  {
-    name: 'metadata',
-    type: 'RawObject',
-    schema: {
-      properties: {
-        somethingString: { type: 'string' },
-        somethingArrayOfNumbers: {
-          type: 'array',
-          items: { type: 'number' }
-        },
-      },
-      required: ['somethingNumber'],
-      additionalProperties: false
-    },
-    required: false
-  },
-  {
-    name: 'attachments',
-    type: 'Array',
-    items: {
-      type: 'RawObject',
-      schema: {
-        properties: {
-          name: { type: 'string' },
-          neastedArr: {
-            type: 'array',
-            items: { type: 'number' }
-          },
-        },
-        required: ['name'],
-        additionalProperties: false
-      }
-    },
-    required: false
-  }
-]
-```
+* **TRUSTED_PROXIES** (*default: `10.0.0.0/8,172.16.0.0/12,192.168.0.0/16`*): the string containing the trusted proxies values.
+* **HTTP_PORT**: The port exposed by the service.
+* **LOG_LEVEL** (*default: `info`*): level of the log. It could be trace, debug, info, warn, error, fatal.
+* **EXPOSE_METRICS** (*default: `false`*): boolean that specifies if prometeus metrics should be exposed or not.
