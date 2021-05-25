@@ -13,10 +13,10 @@ A CRUD is a service that allows you to interact with persistently stored data an
 * **Delete**
 
 These functions combined define the acronym **CRUD** and are described in detail [here](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).  
-In this section, you will understand how to create and configure a CRUD without worrying about setting up any database on your own.
+In this section, you will understand how to configure your first [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) collections through user interface by creating and managing one or more CRUDs without worrying about setting up any database on your own.
 
-:::info
-CRUDs created in the Console are handled and exposed to the services within your project by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md)
+:::caution
+If the MongoDB CRUD section in your project is disabled because the `crud-service` had not been added during project creation, you can autonomously add it to your branch by creating it from the Marketplace. Visit its [documentation](../../../runtime_suite/crud-service/configuration.md) to learn how to do so.
 :::
 
 To manage your CRUDs, Mia-Platform's Console offers a specific section, **MongoDB CRUD**, in the **Design** area of your project.
