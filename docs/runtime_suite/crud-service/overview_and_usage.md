@@ -5,6 +5,12 @@ sidebar_label: Overview and Usage
 ---
 CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
 
+Mia-Platform Console takes advantage of the CRUD Service to let you configure CRUDs through a dedicated UI, the [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) section.
+
+:::note
+At the moment, you can have only one Crud Service in your branch at a time.
+:::
+
 It's possible to configure CRUD Service with more that one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
 
 ## Introduction
@@ -46,26 +52,6 @@ In the following guide we will use a collection named *Plates* that contains a l
 - image: array of photos (a JSON object)
 - position: the geocoded position of a plate
 
-## Configure a CRUD in two minutes
-
-In Console it's possible to configure the CRUD service. The task it's easy. The steps are:
-
-- open Console project Design Section
-- select CRUD menu
-- press Create new CRUD button
-- configure CRUD
-- select Endpoints menu
-- press Create new endpoint
-- configure the endpoint selecting the CRUD created and one of its existing internal routes
-- press Commit&Generate button and save the configuration in the preferred branch
-- select Deploy menu
-- select the environment and branch to deploy and deploy it
-- in less than one minute the new endpoint that exposes the configured CRUD service is available
-- select Documentation menu and open the API Portal, browse the CRUD endpoint deployed
-
-For more details [see here](../../development_suite/api-console/api-design/crud_advanced).
-
- ------------------------------------------------------------
 
 ## CRUD Collection Properties
 
