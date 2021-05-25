@@ -205,6 +205,10 @@ How to compile the template:
     - **runnerTool**: Set it to `mlp` if the project use it as command line deployment tool. It's required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled. 
     - **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
 
+:::note
+If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `MIA_` prefix by hand. This is not made automatically by the Console.
+:::
+
 ## How to create a project archive
 
 The project archive is interpolated using [mustache.js](https://github.com/janl/mustache.js) as template system, using `%` as tags instead of default `{{` or `}}`.
