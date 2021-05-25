@@ -121,6 +121,10 @@ ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation RE
 
 > *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/platform/current/clients/consumer.html)
 
+## Add a CRUD Service to your project
+
+Projections and single views created in the Console are handled by the [Crud Service](../runtime_suite/crud-service/overview_and_usage.md). Therefore, if your project does not already have a [Crud Service](../runtime_suite/crud-service/overview_and_usage.md) you should add one. Follow [this link](../runtime_suite/crud-service/configuration.md) to learn how to correctly create and configure your CRUD Service.
+
 ## Set up environment variables
 
 When you start using Fast Data, you should set some environment variables in the `Envs` section in Console to correctly deploy your project. [Click here](../development_suite/set-up-infrastructure/env-var) to view how this section works, and how to differentiate the environment variables through environments.
