@@ -37,10 +37,4 @@ Dev portal encloses in a single-page application, the following tools:
 - _[Docusaurus](https://docusaurus.io/)_: used to create documentation section;
 - _[RapiDoc](https://mrin9.github.io/RapiDoc/)_: used to display the OpenAPI/Swagger-generated API reference documentation.
 
-For more details about the configurations of these tools, refer to the following pages.
-
-## Expected final result
-
-After the configuration of [Docusaurus](docusaurus.md) and [RapiDoc](rapidoc.md), your final result should be similar to this:
-
-![Final Result](img/final-result.png)
+For more details about the configurations of the `Dev Portal`, or to understand how to configure these tools individually, refer to the following pages.
