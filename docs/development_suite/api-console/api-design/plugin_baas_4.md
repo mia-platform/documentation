@@ -12,7 +12,7 @@ In addition to standard components (e.g., CRUD), you can create your own microse
 A microservice encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created [Mia Service Node.js Library](https://github.com/mia-platform/custom-plugin-lib), a library in **node.js**, based on the [fastify](https://fastify.io) library. Using `Mia Service Node.js Library` it is possible to create your own microservice by implementing the following steps:
 
 * [HTTP Routes handler](#routes)
-* [changing the behaviour according to the client that is making the request, whether the user is logged in and its belonging groups](#user-and-client-identification)
+* [changing the behavior according to the client that is making the request, whether the user is logged in and its belonging groups](#user-and-client-identification)
 * [requests to other services of the platform](#endpoint-queries-and-platform-services)
 * [PRE and POST decorators](#pre-and-post-decorators)
 
@@ -56,20 +56,19 @@ To start developing with `Mia Service Node.js Library` the variables need to be 
 * BACKOFFICE_HEADER_KEY = isbackoffice
 * MICROSERVICE_GATEWAY_SERVICE_NAME = Microservice-gateway
 
-Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the network name (or IP address) at which `microservice-gateway` is accessible and is used during [internal communication with other services](#queries-to-enpoint-and-platform-services) in your project namespace. The implication is that `MICROSERVICE_GATEWAY_SERVICE_NAME` makes it possible to configure your local microservice to query a specific microservice inside your Mia-Platform project. For example
+Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the network name (or IP address) at which `microservice-gateway` is accessible and is used during [internal communication with other services](#endpoint-queries-and-platform-services) in your project namespace. The implication is that `MICROSERVICE_GATEWAY_SERVICE_NAME` makes it possible to configure your local microservice to query a specific microservice inside your Mia-Platform project. For example
 
 ```Bash
 MICROSERVICE_GATEWAY_SERVICE_NAME = "microservice-gateway"
 ```
 
-To instantiate the HTTP server you can paste the following piece of code in the service entrypoint (tipically the `index.js` file).
+To instantiate the HTTP server you can paste the following piece of code in the service entrypoint (typically the `index.js` file).
 
 ```js
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 module.exports = customPlugin(async service => {
 
-  // alle richieste in GET sulla rotta /status/alive
-  // rispondi con l'oggetto JSON { "status": "ok" }
+  // at the GET request on /status/alive route, respond with the JSON object { "status": "ok" }
   service.addRawCustomPlugin(
     'GET',
     '/status/alive',
@@ -128,12 +127,12 @@ The format is the one accepted by [fastify](https://www.fastify.io/docs/latest/V
 ```js
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
 
-// comportamento in risposta all'interrogazione
+// behavior in response to the query
 async function aliveHandler(request, reply) {
   return { status: 'ok' }
 }
 
-// schema della risposta
+// response schema
 const aliveSchema = {
   response: {
     200: {
@@ -145,7 +144,7 @@ const aliveSchema = {
   },
 }
 
-// wiring e dichiarazione delle rotte
+// wiring and route declaration
 module.exports = customPlugin(async function(service) {
   service.addRawCustomPlugin('GET', '/status/alive', aliveHandler, aliveSchema)
 })
@@ -173,8 +172,7 @@ The instance of `Request` (the first argument of a handler) is decorated with fu
 
 ```js
 async function helloHandler(request, reply) {
-  // accesso all'id dell'utente (passato come
-  // header all'interno della piattaforma)
+  // access to the user id (passed as header inside the platform)
   return `Hello ${request.getUserId()}`
 }
 ```
@@ -187,9 +185,9 @@ Inside the handler scope it's possible to access fastify instance using `this`.
 
 ```js
 module.exports = customPlugin(async function(service) {
-  // decorating custom enviroment variable
+  // decorating custom environment variable
   service.decorate('decoratedService', service.config.DECORATED_SERVICE)
-  // creating custum route
+  // creating custom route
   service.addRawCustomPlugin('GET', '/hello', helloHandler)
 })
 
@@ -288,7 +286,7 @@ async function tokenGeneration(request, response) {
 Through `Mia Service Node.js Library` it is possible to declare PRE and POST decorators. From a conceptual point of view, a decorator
 of (1) PRE or (2) POST is a transformation applied from `microservice-gateway` to (1) a request addressed
 to a service (**original request**) or (2) to the reply (**original reply**) that this service sends to
-caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is imporant to configure them also in the console. More information are available [in the Decorators docs](decorators).
+caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is important to configure them also in the console. More information are available [in the Decorators docs](decorators).
 
 The declaration of a decorator using `Mia Service Node.js Library` occurs in a similar way to the declaration of a route
 
@@ -523,7 +521,7 @@ the microservice does not start by returning in output which environment variabl
 ### Example
 
 ```js
-// la variabile d'ambiente VARIABLE deve essere disponibile al processo
+// the env var VARIABLE will be available at runtime
 const serverSchema = {
   type: 'object',
   required: ['VARIABLE'],  
@@ -536,9 +534,7 @@ const serverSchema = {
 const customPlugin = require('@mia-platform/Mia Service Node.js Library')(serverSchema)
 
 module.exports = customPlugin(async service => {
-  // nel config di service si
-  // possono trovare le variabili
-  // d'ambiente dichiarate
+  // in the config it is possible to find the declared env vars
   const VARIABILE = service.config.VARIABILE
 
   service.addRawCustomPlugin(
@@ -546,7 +542,7 @@ module.exports = customPlugin(async service => {
     '/variable',
     async function (request, reply) {
       return {
-        // è possibile accedere alla configurazione tramite `this.config`
+        // it is possible to access to the configuration through `this.config`
         secret: this.config.VARIABLE,
       }
     }
@@ -590,7 +586,7 @@ const index = customPlugin(async service => {
 })
 
 const createTestServer = () => {
-  // silent => trace for enabliing logs
+  // silent => trace for enabling logs
   const createdServer = fastify({ logger: { level: 'silent' } })
   createdServer.register(index)
   return createdServer

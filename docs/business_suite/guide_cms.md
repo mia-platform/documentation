@@ -7,7 +7,7 @@ A Content Management System (CMS) is used to post, process, publish, delete cont
 
 ## Access the CMS
 
-To access the CMS simply connect from a normal browser to:  cms.baas.makeitapp.eu/app_dataentry/
+To access the CMS simply connect from a normal browser to the cms URL.
 This is the initial screen where to enter the credentials: mail, password, key and secret.
 
 ![image alt text](img/image_0.png)
@@ -68,11 +68,11 @@ The following diagram exemplifies the CMS skeleton, composed of categories, coll
 
 When logged in to the CMS, the side menu shows the list of manageable collections.
 
-The Library category collects the collections of the Schede Libri, Loans Books and the List of Publishers; the Users category contains the Users and Reviews collections; Tools includes the Media collection.
+The Library category collects the collections of the Books Cards, Loans Books and the List of Publishers; the Users category contains the Users and Reviews collections; Tools includes the Media collection.
 
 Each collection presents a set of data that share some properties:
 
-for example, in the Schede Libri collection the books shared by the properties are collected: title, genre, author, plot, cover image, publication date, publisher.
+for example, in the Books Cards collection the books shared by the properties are collected: title, genre, author, plot, cover image, publication date, publisher.
 
 ### News, Categories and Tags: the CMS default collections
 
@@ -81,19 +81,19 @@ These collections are already configured and therefore ready to be used.
 
 These three collections work as a common blog, and then in News you will have the text of the news (or post), the title, the date of publication on the site or in the app and then the category and tags.
 
-Still following the example of the library, in **News** we could announce the presentation event of the new book by Baricco.
+Still following the example of the library, in **News** we could announce the presentation event of the new book by John Smith.
 
 In **Categories** you will have all the categories to which to associate a News (see paragraph lookup for the configuration / creation of the category fields), and then in this case you can associate to the category Presentations.
 
 In **Tags** you will have all the tags, the topics, associated to the news / post and that will be useful to index it and to find it again.
 
-In the example of the presentation of the book by Baricco you will therefore have:
+In the example of the presentation of the book by John Smith you will therefore have:
 
-* News: Baricco presents its new book in Milan on December 6th *
+* News: John Smith presents its new book in Milan on December 6th *
 
 * Categories: Presentations *
 
-* Tags: Baricco, Novels, Milan, etc. *
+* Tags: John Smith, Novels, Milan, etc. *
 
 The properties of a collection can be viewed in the first table and in the detail tab of the single object that appears on the right when selected on an element (as in the image below).
 
@@ -181,13 +181,13 @@ The lookups can be used to create drop-down menus that can be very useful to avo
 
 You may need to add items to a drop down menu over time.
 
-This is the case of the Editors list in the example: by creating a new element in the List of Editors collection, this will appear in the drop down menu of the Publisher property of the Schede Libri collection.
+This is the case of the Editors list in the example: by creating a new element in the List of Editors collection, this will appear in the drop down menu of the Publisher property of the Books Cards collection.
 
 This avoids that there are compilation errors and therefore duplicates of editors.
 
 ![image alt text](img/image_12.png)
 
-*Example*: if as editor you write Baldini & Castoldi for a book and then Baldini & Castoldi for another, the associated books will be considered by two different publishers.
+*Example*: if as editor you write Smith & Smith for a book and then Doe & Doe for another, the associated books will be considered by two different publishers.
 
 *Precompiled information*
 
@@ -256,13 +256,13 @@ By clicking on the filter symbol at the top right you can do an advanced search,
 
 From here you can search for specific properties.
 
-For example, if you want to look for all the books published by Baldini & Castoldi, proceed as follows:
+For example, if you want to look for all the books published by Smith & Smith, proceed as follows:
 
 * First field: click on Publisher, which is the property concerned
 
 * Second field: selection of a comparator, which in this case will be *equals*
 
-* Third field: I type Baldini & Castoldi which is the publisher I want to search.
+* Third field: I type Smith & Smith which is the publisher I want to search.
 
 The results of the research will appear in the table, above will be dynamically present the different active filters on the current research.
 
@@ -270,7 +270,7 @@ The results of the research will appear in the table, above will be dynamically 
 
 You can also add additional search filters that will be added to the one just made.
 
-* Example *: the search for all books by Baldini & Castoldi published since 1995.
+* Example *: the search for all books by Smith & Smith published since 1995.
 
 ![image alt text](img/image_17.png)
 
@@ -281,12 +281,12 @@ We consider the following value as empty:
 
 * `null` null value, regarding all the filterable types
 * `""` empty string, regarding filterable `string` type
-* `[]` empty array, regarding fiterable `array` type
+* `[]` empty array, regarding filterable `array` type
 * `{}` empty object, regarding filterable `object` type
 
 :::note
 Not all the fields are filterable, for example an `array` type using a ***interfaceType*** equals to `rawarray` is not displayed
-in the list of choosable properties.
+in the list of properties to choose.
 :::
 
 ### Save search filters
@@ -339,7 +339,7 @@ The CMS is enabled to send push notifications to users' devices in two ways.
 ![image alt text](img/image_20.png)
 
 * From the *send push* key within a collection. It is used to send a notification about a specific item. Also in this case you will have to choose the group of users to send the notification.
-Example: sending of the news related to the presentation of the new book by Baricco (see paragraph News, Categories and Tags)
+Example: sending of the news related to the presentation of the new book by Smith (see paragraph News, Categories and Tags)
 
 If, during the definition of the project, it was decided to create more user groups, then the push will also be enabled for other functions.
 

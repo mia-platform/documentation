@@ -38,7 +38,7 @@ To create multiple environments instead we must create multiple databases, one f
 To create them, once accessed through the menu in the Connections and Database section, click on Create DB Connection and set a name for the database being created.
 
 :::warning
-Be careful to disable the possibility of signup (setting **Disable Sign Ups**) if you do not want users to be able to register independently to your application!
+Be careful to disable the possibility of sign up (setting **Disable Sign Ups**) if you do not want users to be able to register independently to your application!
 :::
 
 Once the database has been created, you must associate its DB with each application.

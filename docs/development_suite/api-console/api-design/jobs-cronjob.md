@@ -7,7 +7,7 @@ sidebar_label: Create CronJobs
 
 In this section, you can find the guidelines about how to create and manage CronJobs using Console.
 
-A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance. A CronJob doesn not expose API as a microservices does.
+A **CronJob** is a scheduled Job that will be executed periodically on a given schedule. For example, you can use CronJobs to conduct repeated tasks like sending emails, running backups or automating system maintenance. A CronJob does not expose API as a microservices does.
 
 Each **Job** creates one or more Pods and guarantee that a specified number of them successfully terminate.
 

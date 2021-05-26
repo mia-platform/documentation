@@ -46,7 +46,7 @@ By selecting the **Create Another** checkbox, you can keep the popover opened to
 
 ### Inheritance with Env variables
 
-When generating a public variable, it might occur that the choosen name overlaps with other variables already existing in the project configuration. In particular, project level variables set in the [Environments](../../../development_suite/set-up-infrastructure/env-var.md) section are taken into consideration, since they share the same scope and purpose. 
+When generating a public variable, it might occur that the chosen name overlaps with other variables already existing in the project configuration. In particular, project level variables set in the [Environments](../../../development_suite/set-up-infrastructure/env-var.md) section are taken into consideration, since they share the same scope and purpose. 
 
 In this case, there exists a precise hierarchy to establish which value should be considered. In the deployment pipeline public variables are mounted after Env variables, hence their value will take the precedence over a project level configuration in case of overlaps.
 

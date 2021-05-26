@@ -94,7 +94,7 @@ This feature can be activated only in projects using **mlp**, the Mia-Platform o
 A service is considered to be eligible for a new deployment on certain circumstances: when you update the pod specification from the console, when you update the value of a pod dependency (such as a config map key) and so on. 
 
 :::warning
-It is important to **save** the configuration at least one time after the feature smart deploy has been activated. This operation will help avoid unconsistent behaviours when deploying your services. 
+It is important to **save** the configuration at least one time after the feature smart deploy has been activated. This operation will help avoid inconsistent behaviors when deploying your services. 
 :::
 
 :::info

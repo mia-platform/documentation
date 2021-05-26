@@ -28,7 +28,7 @@ So imagine that you have to create a new collection that contains the books of a
 2. First, you need to enter the name of the CRUD in camelCase, in this case we will insert "books". Then you will need to enter an **internal endpoint** that exposes your CRUD internally and its **default state** than could be **DRAFT** or **PUBLIC**. The default values in the console will be a path equal to /endpointname and default state equal to draft.
 Default fields will appear that can not be changed: *_id*, *creatorId*, *createdAt*, *updaterId*, *updatedAt*, *_STATE_*.
 At this point we have to create our DB schema by creating the properties of our CRUD. In this section you can add a new property by selecting **Add New**. Then you must complete the following fields:
-  ![Crea-collezione-riga-titolo](img/create-CRUD-1.png)
+  ![create-collection-field](img/create-CRUD-1.png)
     * **Name**: enter the property name, in camelCase, in our case we will insert "title", "author", "year" etc.
 
     * **Type**: the properties can be of different types: *string* if it is a classic text string (or an image); *number* if it is a number; *date* if it is a date with dd / mm / yyyy; *boolean* if it can only be true or false; *Geopoint* if you want to save a specific place; *Array* if you want to save as an ordered set of properties; *Object* if you want to insert an object.
@@ -42,7 +42,7 @@ At this point we have to create our DB schema by creating the properties of our 
     For this example, we could create two properties: one for the title and one for the author of the book.
     If you want to delete a property, click the trash icon inside the related row.
 
-3. To create the CRUD at this point just press **Commit & Generate**.
+1. To create the CRUD at this point just press **Commit & Generate**.
 
     :::warning
     All items in design area **are not saved** until you click **Commit & Generate**. However, you can create different entities and then save all the work only at the end
@@ -105,7 +105,7 @@ If the **Only with an API key** flag is checked to be able to call the endpoint,
 
 In this section, you can view all the paths of a CRUD endpoint that can be called. By selecting the different route, it is possible to further detail who has the permissions to do specific actions.
 
-If **inherited** is active the field will inherit the behaviour of the base endpoint, de-selecting it can set specific security rules related to this route.
+If **inherited** is active the field will inherit the behavior of the base endpoint, de-selecting it can set specific security rules related to this route.
 
 For example, we can set that the post can only be reserved for a specific group of users.
 

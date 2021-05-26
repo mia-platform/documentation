@@ -6,6 +6,7 @@ include:
 test:
   script:
     - yarn lint
+    # - ./node_modules/.bin/cspell "./docs/**" // TODO: re enable when services documentation are verified
 
 variables:
   IMAGE_NAME: core/documentation-site

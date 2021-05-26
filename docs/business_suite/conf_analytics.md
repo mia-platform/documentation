@@ -116,7 +116,7 @@ Each object of the *series* array consists of the following elements:
 The documentation to be consulted for the mongoqueries is available at this [link](https://docs.mongodb.com/manual/tutorial/query-documents/).
 An example of mongoquery on a property is as follows:
 
-`"fiter": {"nome proprietà": {"$gte": valore}}`
+`"filter": {"property name": {"$gte": value}}`
 
 To know all the comparators you can follow this [link](https://docs.mongodb.com/manual/reference/operator/query-comparison/). In the right menu select the type of comparator and discover the potential of the mongoquery
 

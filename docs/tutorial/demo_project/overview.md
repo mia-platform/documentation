@@ -23,7 +23,7 @@ For ease of operation, the first version will not have a frontend for end-users 
 
 We’ll assume that you have some familiarity with **JavaScript** and **Node.js**, but you can follow along even if you're coming from a different programming language. All concepts explained in the following are valid for all languages and frameworks.
 
-Prepare your favourite IDE to interact with Git repositories.
+Prepare your favorite IDE to interact with Git repositories.
 Don't scary, you won't write too much code. One of the main Mia-Platform goals is to give you an **open ready-to-use infrastructure to allow to focus on business logic**.
 
 ## What features we will implement

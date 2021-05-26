@@ -59,9 +59,9 @@ const resolvedOnStop = singleViewCreator.startCustom({
 
 - `strategy` is the function that performs the aggregation over the projections
 - `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
-- `validator` is the validation function which determines if the Single View is valid (and so upserted to Mongo) or not (and so deleted)
+- `validator` is the validation function which determines if the Single View is valid (and so inserted or updated to Mongo) or not (and so deleted)
 - `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the single view document on mongo to update or delete
-- `upsertSingleView` is the function that upserts the Single View to the Single Views collection on Mongo
+- `upsertSingleView` is the function that update or insert the Single View to the Single Views collection on Mongo
 - `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo
 
 `upsertSV` and `fullDeleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view.
@@ -180,7 +180,7 @@ The `startCustom` function accepts a function in the configuration object called
 
 The validation of a Single View determines what to do with the current update. If the single  view is determined as "non-valid", the delete function will be called. Otherwise, if the result of the validation is positive, it will be updated or inserted in the Single Views collection, through the upsert function. Delete function and upsert function will be explained in the next paragraph.
 
-For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be upserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
+For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be updated or inserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
 
 By default, in this template we set as validator a function that returns always true. So we accept all kind of single views, but, if you need it, you can replace that function with your own custom validator.
 
@@ -201,7 +201,7 @@ If you want, you can replace both `upsertSV` and `fullDeleteSV` with your own cu
 
 These functions represents the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
 
-In case the validation is succeded, the upsert function will be called with the following arguments:
+In case the validation is succeeded, the upsert function will be called with the following arguments:
 
 - `logger` is the logger
 - `singleViewCollection`is the the Mongo collection object

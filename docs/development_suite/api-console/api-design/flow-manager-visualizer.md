@@ -21,7 +21,7 @@ In the visualizer you can move through your flow states, see the commands that a
 States are represented by cards with a colored border on top. 
 A state can be an initial state (marked as _START_) or final state (marked as _FINAL_).
 
-When a state transition finishes, the `flow-manager` state might issue a command through a channel. This behaviour is represented by the small _thunder icon_ below the card. Clicking on it will display more information concerning which command is issued.
+When a state transition finishes, the `flow-manager` state might issue a command through a channel. This behavior is represented by the small _thunder icon_ below the card. Clicking on it will display more information concerning which command is issued.
 
 <div style={{textAlign: 'center'}}>
 

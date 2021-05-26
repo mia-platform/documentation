@@ -122,6 +122,6 @@ telepresence --expose 3000  --swap-deployment your-service-java --env-json your-
 
 ### 6b. Configure Intellij with your service Java JSON as debug configurations
 
-![Img](img/java-installij.png)
+![Img](img/java-intellij.png)
 
 ### 7b. Run debug intellij

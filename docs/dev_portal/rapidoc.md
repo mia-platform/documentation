@@ -10,7 +10,7 @@ In the dev portal, `RapiDoc` can be used to create the API documentations just s
 
 ## Microservice creation for `RapiDoc`
 
-To create an istance of `RapiDoc`:
+To create an instance of `RapiDoc`:
 
 1. Go to the `Microservices` section;
 2. Create a new microservice using the `Microlc RapiDoc Plugin` in the `Dev Portal` category of the marketplace;

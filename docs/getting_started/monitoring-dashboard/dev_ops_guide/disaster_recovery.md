@@ -41,4 +41,4 @@ In case of problems, the actions to restore the platform are:
 - install custom configurations
 - restore MongoDB backups.
 
-> Si consiglia di far eseguire tutte queste operazioni da script automatici.
+> It is recommended that all of these operations be performed by automatic scripts.

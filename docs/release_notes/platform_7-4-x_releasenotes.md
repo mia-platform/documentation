@@ -29,7 +29,7 @@ The template is available only on Mia-Platform PaaS Marketplace. If you want to 
 
 #### Show in API Portal flag visibility
 
-The [Show in API Portal](../development_suite/api-console/api-design/endpoints#manage-the-visibility-of-your-endpoints) flag was displayed even for endpoints that do not feature any documentation; the flag has been removed in those circustamces and kept only where needed (e.g. CRUD endpoints and Endpoints towards custom services).
+The [Show in API Portal](../development_suite/api-console/api-design/endpoints#manage-the-visibility-of-your-endpoints) flag was displayed even for endpoints that do not feature any documentation; the flag has been removed in those circumstances and kept only where needed (e.g. CRUD endpoints and Endpoints towards custom services).
 
 #### Empty Public Variables file issues
 
@@ -94,7 +94,7 @@ Check out the [smart deploy documentation](../development_suite/deploy/deploy#sm
 Please note smart deployments require **mlp**, the Mia-Platform official command line deployment tool. Contact your Mia-Platform referent to make sure this feature is enabled and ready to use for your projects.
 
 :::caution
-To take full advantage of the feature you're required to save the configuration; also, the first smart deploy will necessarely trigger a deploy of all the services.
+To take full advantage of the feature you're required to save the configuration; also, the first smart deploy will necessarily trigger a deploy of all the services.
 :::
 
 #### Public Variables configuration

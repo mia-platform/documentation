@@ -137,7 +137,7 @@ The object should have the following properties:
 
   * **type** (*required*): string that defines the type of suggestion, currently three types exist:
 
-    * `PROJECT_ID` (*default*): the suggestion for the Docker image name will be in the following format: `<project-id>/<your-service-name>`. This is the default behaviour, even without setting this property the suggestion will follow this format. You must **not** set `prefix` property if you have chosen this type.
+    * `PROJECT_ID` (*default*): the suggestion for the Docker image name will be in the following format: `<project-id>/<your-service-name>`. This is the default behavior, even without setting this property the suggestion will follow this format. You must **not** set `prefix` property if you have chosen this type.
     * `REPOSITORY`: the suggestion for the Docker image name will be in the following format: `<your-group-name>/<your-repo-name>`. You must **not** set `prefix` property if you have chosen this type.
     * `CONSTANT_PREFIX`: the suggestion for the Docker image name will be in the following format: `<prefix-value>/<your-service-name>`. `prefix` property is required for this type and will replace `prefix-value`.  
 
@@ -167,7 +167,7 @@ How to compile the template:
 
   ```json
     {
-      "secret": "ugAsOGB0crjx8hAxrvwiomHiGbUCNzvH",
+      "secret": "my-secret",
       "clientType":"cms"
     }
   ```
@@ -315,9 +315,9 @@ In this step, it is indicated the location of your new project and you have to c
 
 In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
 
-* **Environemnt name** (*required*, field not editable): the name given to your environment.
+* **Environment name** (*required*, field not editable): the name given to your environment.
 
-* **Environemnt ID** (*required*, field not editable): the human-readable ID set to your environment.
+* **Environment ID** (*required*, field not editable): the human-readable ID set to your environment.
 
 * **Description** (*required*, field not editable): this is the description of the environment.
 
@@ -413,8 +413,8 @@ To add extra info about `projectOwner`, `teamContact` and `technologies` for a s
 
 ```json
 {
-    "projectOwner": "Alberto Rossi",
-    "teamContact": "a.rossi@email.it ",
+    "projectOwner": "John Smith",
+    "teamContact": "j.smith@email.it ",
     "technologies": [
         "java",
         "node"
@@ -453,8 +453,8 @@ At the end of the configuration, on the backend side, the project will have the 
     "repositoryUrl": "http://example.repository/git-config-path",
     "tenantId": "mia-platform",
     "info": {
-      "projectOwner": "Mario Rossi",
-      "teamContact": "mario.rossi@email.com",
+      "projectOwner": "John Smith",
+      "teamContact": "john.smith@email.com",
       "technologies": ["javascript", "dockerfile", "shell"]
     },
     "layerId": "gateway",
@@ -472,8 +472,8 @@ At the end of the configuration, on the backend side, the project will have the 
     "configurationGitPath": "git-congif-path",
     "repositoryUrl": "http://example.repository/git-config-path",
     "info": {
-      "projectOwner": "Mario Rossi",
-      "teamContact": "mario.rossi@email.com",
+      "projectOwner": "John Smith",
+      "teamContact": "john.smith@email.com",
       "technologies": ["javascript", "dockerfile", "shell"]
     },
     "logicalScopeLayers": [{"name": "gateway", "order": 1}],
@@ -504,7 +504,7 @@ A configuration example:
 }
 ```
 
-Proxy url supports `http`, `https` and basic auth inside proxy url. For example, an url with basic auth wuold be like `https://username:password@url-to-proxy/`.
+Proxy url supports `http`, `https` and basic auth inside proxy url. For example, an url with basic auth would be like `https://username:password@url-to-proxy/`.
 
 ### Final Step: **Activate CRUD**
 

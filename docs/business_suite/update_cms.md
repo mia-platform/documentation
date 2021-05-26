@@ -7,7 +7,7 @@ Here you will find all the steps to update the CMS.
 
 ## 1. How to understand your version of the CMS
 
-To understand the current version of your CMS, open the CMS page. Scroll down the **left side menu** to the end: at the end of all the collections, you will find the wording **"My API CMS vxxxx"** with an indication of the version (eg v.7.0.10).
+To understand the current version of your CMS, open the CMS page. Scroll down the **left side menu** to the end: at the end of all the collections, you will find the wording **"My API CMS v7.0.10]"** with the indication of the version (in this example v7.0.10).
 
 In the [release notes](../release_notes/release_notes), you will find the eventual information about new CMS versions and features.
 

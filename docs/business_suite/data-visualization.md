@@ -15,9 +15,9 @@ All the configurations are managed from the charts-service in the `configmap.yml
 
 ## General Configuration
 
-### Dashboard configution
+### Dashboard configuration
 
-A dashboard is configured as a set of rows with specific charts (indentified by their id).
+A dashboard is configured as a set of rows with specific charts (identified by their id).
 
 Some configurations can be applied to dashboards in order to customize settings:
 
@@ -49,7 +49,7 @@ Each **dashboard** is identified by its name and has many rows. Each row is an a
 
 Here you can find the configuration of one chart and the configuration of one dashboard that contains one chart in the first row, two charts in the second row and one chart in the third row.
 
-```
+```json
 dashboardAndChartsConfig.json: |-
   {
     "charts": {
@@ -67,7 +67,7 @@ dashboardAndChartsConfig.json: |-
             "enabled": false
           },
           "series": [{
-            "id": "12341658ebueòbbfq",
+            "id": "12341658",
             "endpointData": "/charts/your-chart/json",
             "name": "Your Name",
             "color": "#1d6eb5",
@@ -121,7 +121,7 @@ dashboardAndChartsConfig.json: |-
 
 Here you can find an example of the configuration of a map, that has as constructorType `mapChart`.
 
-```
+```json
 {
   ...
   "yourMap": {
@@ -142,7 +142,7 @@ Here you can find an example of the configuration of a map, that has as construc
         "text": "This is your subtitle"
       },
       "series": [{
-        "id": "serie1",
+        "id": "series1",
         "endpointData": "/charts/your-endpoint/json",
         "name": "yourName"
       }],
@@ -178,7 +178,7 @@ These are not the only configurations that highcharts enable to control: having 
 
 The Tile Map Chart configuration allows you to insert a custom [leaflet map](https://leafletjs.com/) with a set of markers. Generally, to configure it you need to set the following properties:
 
-```
+```json
 {
   ...
   "yourMap": {
@@ -204,7 +204,7 @@ The Tile Map Chart configuration allows you to insert a custom [leaflet map](htt
         "text": "This is your subtitle"
       },
       "series": [{
-        "id": "serie1",
+        "id": "series1",
         "endpointData": "/charts/your-endpoint/json",
         "name": "yourName",
         "markerType": "circleMarker" // The only one currently supported
@@ -242,9 +242,9 @@ Currently the only supported providers are **OpenStreetMap** and **BaseMap**.
 
 ##### Series
 
-In this section you list the different series of data that you want to show on the map. Each serie should have an *endpointData*, which specifies the path to be called in order to download the data points. Each data point should have the following format:
+In this section you list the different series of data that you want to show on the map. Each series should have an *endpointData*, which specifies the path to be called in order to download the data points. Each data point should have the following format:
 
-```
+```json
 {
   label: "name to show on hover",
   lat: 40.52, // Latitude
@@ -271,7 +271,7 @@ By default, the markers are displayed without any clustering. To add the cluster
 ```
 
 By default the *color* of cluster groups is equal to the color of markers and the *textColor* is white. Instead the *type* is required. Currently we support two type of cluster
-     **Weighted*- To display the cluster groups with the sum of values specified for each serie data point. (e.g. group of 3 markers with values 10, 10, and 10 respectively, diplays a cluster with 30 as text)
+     **Weighted*- To display the cluster groups with the sum of values specified for each series data point. (e.g. group of 3 markers with values 10, 10, and 10 respectively, diplays a cluster with 30 as text)
      * *Single* - To display the cluster groups with the number of markers not weighted by custom values. (e.g. group of 3 markers with any value diplays a cluster with 3 as text)
  ------
 
@@ -283,9 +283,9 @@ By default the *color* of cluster groups is equal to the color of markers and th
 
 Example of series with cluster option:
 
-```
+```json
 "series": [{
-        "id": "serie1",
+        "id": "series1",
         "endpointData": "/charts/your-endpoint/json",
         "name": "yourName",
         "markerType": "circleMarker" // The only one currently supported
@@ -354,15 +354,15 @@ An additional property that can be inserted in `options` is `tooltip`, which rep
 
 Suppose we have the following data structure:
 
-```
+```js
 myData = [
-  {label: 'Milano Centrale', value: 300, peopleCapacity: 600}
+  {label: 'Milan Centrale', value: 300, peopleCapacity: 600}
 ]
 ```
 
 To customize this message, it can be inserted the *tooltip* property in the configuration with the following formatting:
 
-```
+```json
 "tooltip": {
   "pointFormat": "<b>{point.label}</b>: {point.peopleCapacity}"
 }
@@ -370,13 +370,13 @@ To customize this message, it can be inserted the *tooltip* property in the conf
 
 `pointFormat` allows you to write an HTML string with data properties by using the annotation `{point.propertyName}`.
 
-------
+---
 
 #### Stock Chart Configuration
 
 Here you can find an example of the configuration of a stock chart.
 
-```
+```json
 {
   ...
   "yourStockChart": {
@@ -396,7 +396,7 @@ Here you can find an example of the configuration of a stock chart.
         "enabled": false
       },
       "series": [{
-        "id": "stock-serie1",
+        "id": "stock-series1",
         "endpointData": "/charts/your-endpoint/json",
         "name": "yourName",
         "color": "#1d6eb5",
