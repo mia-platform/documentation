@@ -152,7 +152,7 @@ The `Show in API Portal` flag enabled allows seeing all endpoint routes in the [
 
 The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be present in the API Portal and which should not.
 The `inherited` flag enabled (by default) will guarantee that the selected route will inherit the visibility of its base endpoint.
-Disabling this flag for a specific route will allow defining a custom behaviour for that route.
+Disabling this flag for a specific route will allow defining a custom behavior for that route.
 
 Managing the visibility of endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permission that users do not possess.
 
@@ -203,12 +203,12 @@ Regarding the http verb, you can choose among the following:
 
 ![route creation](img/create-route.png)
 
-Once you have created all the routes that you need, you can start configuring them and even decide a different behaviour for each one.  
+Once you have created all the routes that you need, you can start configuring them and even decide a different behavior for each one.  
 By selecting one verb in the sidebar of this section it is possible to see a detailed view about the configuration of the selected route.  
 Here, it is possible to set or unset all the flags described in the other sections, but with a deeper granularity. In fact, while in the sections described before you were configuring your endpoint, in this section you are managing one specific route verb of your endpoint.  
 For example, if in the **Security Management** section, you have checked the **Public** flag of a **Microservice** type endpoint with basepath `/test` it means that **all** routes that start with `/test` will be **Public** too.  
-Instead if, in the same endpoint page, you uncheck the **Public** flag in the **Routes** section for the route `/management` with verb `DELETE` you will only change the behaviour of that specific route with that specific verb.  
-Here we list some example routes and their behaviour with the configuration explained above:
+Instead if, in the same endpoint page, you uncheck the **Public** flag in the **Routes** section for the route `/management` with verb `DELETE` you will only change the behavior of that specific route with that specific verb.  
+Here we list some example routes and their behavior with the configuration explained above:
 
 * GET '/test': **Public** is `true`.
 * GET '/test/management': **Public** is `true`.
@@ -219,11 +219,11 @@ Here we list some example routes and their behaviour with the configuration expl
 This feature is really helpful when you have to define a custom behavior for one of your routes that differs from the default one that you defined at endpoint level.
 
 If **inherited** flag is enabled the field will inherit the behavior from its endpoint.  
-By unchecking it, you can set specific rules for the selected route.
+By uncheck it, you can set specific rules for the selected route.
 
 :::tip
 For example, we can set that the `DELETE /` route can only be reserved for a specific group of users (admin).
-If it differes from the endpoint settings we must choose not to inherit global settings; we can uncheck the "inherited" flag and, in the input field, we are now able to write: `groups.admin`.
+If it differs from the endpoint settings we must choose not to inherit global settings; we can uncheck the "inherited" flag and, in the input field, we are now able to write: `groups.admin`.
 
 ![route example](img/example-endpoints.png)
 :::

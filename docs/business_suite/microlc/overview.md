@@ -12,11 +12,11 @@ applications) at runtime, while providing configuration options and useful out-o
 
 The project is open source, and it can be found on [GitHub](https://github.com/mia-platform/microlc). Although the
 core components are written in Typescript and React, microlc is **technology-agnostic**, which means that it integrates
-seamlessly with your favourite toolkit, being it Angular, React, Vue, or anything else you like: even vanilla JavaScript!
+seamlessly with your favorite toolkit, being it Angular, React, Vue, or anything else you like: even vanilla JavaScript!
 
 ## Architecture
 
-![Architecture](../img/microlc_architettura.png)
+![Architecture](../img/microlc_architecture.png)
 
 `microlc` is composed by three main blocks: **fe-container**, **be-config** and a varying number
 of **plugins**.

@@ -15,7 +15,7 @@ These two terms are often seen together, but they actually have a very different
 ### Authentication
 
 Authentication is the process of verifying that your identity is the one that you declared by providing some credentials that only you know or possess.
-These credentials will be validated and, if the validation is successful, the system will identificate you and give you access to different resources based on your authorization level, which will be described in the next section.  
+These credentials will be validated and, if the validation is successful, the system will identify you and give you access to different resources based on your authorization level, which will be described in the next section.  
 Authentication is important in order to give access to your assets only to entities that proved their identity.
 
 ### Authorization

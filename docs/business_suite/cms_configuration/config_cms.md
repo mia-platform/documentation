@@ -105,7 +105,7 @@ In the **text color** field you can instead choose the color of the text. You ca
 
 **Notifies**: enabling this check to show or not a badge in the CMS menu area. The badge will display the number of elements that satisfy a condition. With the field **query**, in the **query** field enter a [MongoDB query](https://docs.mongodb.com/manual/tutorial/query-documents/) to set the condition. Badges will be shown as follows:
 
-![CMS notifications example](img/notifiche.PNG)
+![CMS notifications example](img/notifications.PNG)
 
 **Permanently Delete**: activating this check choose to delete an element from the database. Appears when you want to delete an item in Trash.
 
@@ -140,7 +140,7 @@ For each property you can configure different fields that allow you to improve t
   * *Date Time*: is instead a complete date with hours, minutes and seconds;
   * *Boolean*: if it can only be true or false; *text* if we want the content to be read as html;
   * *Text*: if you wanna write a description with heading, bold, italic and many other features. You will save it as a HTML text.
-  * *Text Area*: if it is a text field, for example a description, but you dont'wanna make any particular configuration on it and you save it as a string plane;
+  * *Text Area*: if it is a text field, for example a description, but you do not want to make any particular configuration on it and you save it as a string plane;
   * *Lookup*: are used to select some values or between a range of values chosen by me or between a range of values taken from another collection. If you are interested in the theme of the Lookups below you will find a dedicated section;
   * *Multilookup*: if you want to select multiple values;
   * *Array*: if you want to save it as an ordered set of properties;
@@ -282,7 +282,7 @@ The query will be: {"state": "working"}
 
 :::tip
 An example of Lookup on the weapons collection:
-![An example of Lookup on the weapons collection](img/lookup-armi.JPG)
+![An example of Lookup on the weapons collection](img/lookup-weapons.JPG)
 :::
 
 ## Create a button

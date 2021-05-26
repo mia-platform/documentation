@@ -26,7 +26,7 @@ Real-time auto-generated [documentation](../development_suite/api-portal/api-doc
 
 ### Headless CMS
 
-A pratical and intuitive interface to Create, Read, Update and Delete content on APIs, independently from the front-ends. Control different types of Users, Customize CMS and dashboards for your business and deliver a real Omnichannel Customer Experience.
+A practical and intuitive interface to Create, Read, Update and Delete content on APIs, independently from the front-ends. Control different types of Users, Customize CMS and dashboards for your business and deliver a real Omnichannel Customer Experience.
 
 ### Analytics
 

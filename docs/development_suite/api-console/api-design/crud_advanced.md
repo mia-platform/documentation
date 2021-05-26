@@ -152,7 +152,7 @@ The definition of multiple internal routes can be useful when you want to gather
 :::info
 For an in depth description of the `__STATE__` field, follow this [link](../../../runtime_suite/crud-service/overview_and_usage#__state__-management).  
 :::
-In our case we will see the first internal endpoint with a **routh base path** equal to "/books". The _default state_ (used on document creation) is set to _DRAFT_ by default.
+In our case we will see the first internal endpoint with a **route base path** equal to "/books". The _default state_ (used on document creation) is set to _DRAFT_ by default.
 
 ![internalendpoint](img/internalendpoint.PNG)
 
@@ -237,15 +237,15 @@ The following is an example of `Array_RawObject` (*Array* of *RawObject*) with t
   "type": "Array_RawObject",
   "schema": {
       "properties": {
-      "name": {
-        "type": "string"
-      },
-      "neastedArr": {
-        "type": "array",
-        "items": {
-          "type": "number"
+        "name": {
+          "type": "string"
+        },
+        "nestedArr": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
         }
-      },
     },
     "required": [
       "name"
@@ -260,7 +260,7 @@ Here, *schema* refers to the object of each item (which are of type `RawObject`)
 So, each item of the array must follows the following rules:
 
 * *name* property must be a string ad it is required
-* *neastedArr* property must be an array of numbers
+* *nestedArr* property must be an array of numbers
 * additional properties are allowed
 
 Here's an example of the file to upload.
@@ -343,7 +343,7 @@ Once you imported the JSON from files, it automatically appears in the table und
 
 If you want to delete a row, select red trash symbol on the right of the the table.
 
-![tabella_prop](img/tabella-cestino.png)
+![tabella_prop](img/tabella-trash.png)
 
 :::warning
 The collection **has not yet been saved** it is necessary to continue the process described below

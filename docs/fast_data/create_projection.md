@@ -148,7 +148,7 @@ To expose the Fast Data projection, [create an Endpoint](../development_suite/ap
 You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](../business_suite/cms_configuration/conf_cms#configure-pages).
 
 :::info
-The exposed API is not required for Fast Data to work. It is an optional behaviour in case you need access to the data without directly accessing it from the database.
+The exposed API is not required for Fast Data to work. It is an optional behavior in case you need access to the data without directly accessing it from the database.
 :::
 
 ### Kafka messages format
@@ -176,8 +176,8 @@ Where `THE_FORMAT` is the format of your Kafka Messages and can be one of the fo
 
 It's the default one.
 
-The `timestamp` of the Kafka message havs to be a  stringified integer greater than zero. This integer havs to be a valid timestamp.
-The `key` of the Kafka message havs to be a stringified object containing the primary key of the projection.
+The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
+The `key` of the Kafka message has to be a stringified object containing the primary key of the projection.
 The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 The `offset` is the offset of the kafka message.
 

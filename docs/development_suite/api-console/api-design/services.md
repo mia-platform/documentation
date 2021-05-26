@@ -1,6 +1,6 @@
 ---
 id: services
-title:  Configure your Services
+title: Configure your Services
 sidebar_label: Configure
 ---
 ## Introduction
@@ -93,10 +93,6 @@ For each microservice, Console allows to:
 Deleting a microservice, you are also deleting each associated endpoint.
 :::
 
-:::warning
-Deleting the microservice will not delete the files *deployment.yml*, *service.yml* and previously configurated *configmap.yml*.
-:::
-
 * **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
 
 * **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
@@ -121,7 +117,7 @@ In this section, you can manage the resources dedicated to your microservice:
 * **Static replicas** (*required*): You have to specify the number of replicas of your microservice.  
   When a new microservice is created its default value is *1*.
 
-  It is possible to have two different behaviours when a microservice has a [hpa](./replicas) configured.
+  It is possible to have two different behaviors when a microservice has a [hpa](./replicas) configured.
   * *static replicas greater than 0*: the *hpa replicas* has priority and so they will be used.
   * *static replicas equals 0*: the *static replicas* has priority and so no microservice will be deployed.
 
@@ -352,7 +348,7 @@ By switching from standard to advanced configuration, you will lose every standa
     If you configure your advanced service, deployment and configmaps files, when you come back to standard configuration, you can see your custom configuration files already filled with the environment variables. In other words, you can come back to standard configuration without loosing your advanced settings like your docker image, your variables and your configmaps.
 
 :::info
-We suggest you to convert in a standard mode all your microservices in order to achive a better governance of your microservices.
+We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices.
 :::
 
 :::warning

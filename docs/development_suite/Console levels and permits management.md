@@ -29,7 +29,7 @@ The only user group present at this level is the **console admin**. The console 
 
 ### Tenant Groups
 
-User groups at this level have permissions for one or more tenants defined by the console admins. Their permissions are extended to all existing projects whitin these tenants.
+User groups at this level have permissions for one or more tenants defined by the console admins. Their permissions are extended to all existing projects in these tenants.
 
 The user groups present at this level are:
 

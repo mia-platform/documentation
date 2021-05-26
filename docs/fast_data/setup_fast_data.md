@@ -18,21 +18,6 @@ To correctly configure your Kafka cluster, you can visit [this site](https://eve
 
 You can create a topic using Kafka cli, or if you use the Confluent Cloud you can use the user interface.
 
-<!-- TODO: Aggiungere ACL?
-### Kafka CLI
-
-First, you have to [download the latest Kafka release](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.7.0/kafka_2.13-2.7.0.tgz) and extract it.
-
-To create a Kafka topic named `my-project.development.projections-json` with 3 partitions on a server exposed on `localhost:9092` with some configuration options, run:
-
-```sh
-bin/kafka-topics.sh --create --topic 'my-project.development.projections-json' --partitions 3 --replication-factor 1 --bootstrap-server localhost:9092 --config cleanup.policy=compact --config retention.ms=2592000000
-```
-
-To view which configurations you are able to set, view the [Kafka documentation](https://kafka.apache.org/documentation/#topicconfigs).
-
- TODO: capire come creare ACL -->
-
 ### Confluent cloud
 
 > *Note*: This documentation about Confluent Cloud has been last checked on date 5th February 2021. Some information could be outdated. Check out the official documentation of Confluent [here](https://docs.confluent.io/)
@@ -106,7 +91,7 @@ If you have not a service account, you could create it [following this guide](#c
 To set up the ACL for the consumer group, from the Confluent Cloud UI you should set:
 
 * *type*: set **Consumer group** type
-* *consumer group ID*: write consumer group ID configured in environent variables
+* *consumer group ID*: write consumer group ID configured in environment variables
 * *pattern type*: literal or prefixed. If you want to declare an ACL for each topic you should use `literal`;
 * *operation*: You should set the **READ** operation;
 * *permission*: could be ALLOW or DENY. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
@@ -133,7 +118,7 @@ The environment variables to set are shared for all the System of Source, and al
 
 Here is the list:
 
-* **LOG_LEVEL**: it should already be set as envirnoment variables
+* **LOG_LEVEL**: it should already be set as environment variables
 * **FAST_DATA_PROJECTIONS_DATABASE_NAME**: name of the db where projections are saved
 * **KAFKA_BROKERS**: the host of your Kafka cluster (with the port)
 * **KAFKA_SASL_USERNAME**: username to log in to Kafka cluster

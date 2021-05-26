@@ -33,7 +33,7 @@ Find out more in the [Fast Data section](./../fast_data/overview.md).
 
 ### Headless CMS
 
-A pratical and intuitive interface for non-technical people who can easily manage content over APIs and supervise business analytics.
+A practical and intuitive interface for non-technical people who can easily manage content over APIs and supervise business analytics.
 
 ![Mia-Platform CMS](img/mia-platform-overview-cms.png)
 Find out more in the [Headless CMS](./../business_suite/overview-business-suite.md) section.

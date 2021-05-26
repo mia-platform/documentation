@@ -13,7 +13,7 @@ In the drop down list you will find the **"Analytics"** section: there you'll be
 
 ![analyticsAddNew](img/analytics-add-new.png)
 
-When you're in, we'll guide you step-by-step through the analytics configuration. You can also configure Two Serie and One Serie analytics (only for *custom stock* graphics), for the latter the procedure is more complicated.
+When you're in, we'll guide you step-by-step through the analytics configuration. You can also configure Two Series and One Series analytics (only for *custom stock* graphics), for the latter the procedure is more complicated.
 
 ## **Step 1: Select type**
 
@@ -26,7 +26,7 @@ In this phase you have to decide the type of analytic you want to configure. At 
 * type **chart-summary**, i.e. a graph showing statistics related to one or more time independent data collections.
 
 :::note
-Multi-serie graphs are available only for *custom-stock* type graphs.
+Multi series graphs are available only for *custom-stock* type graphs.
 :::
 
 Click on "next" to go further.
@@ -55,11 +55,11 @@ Click on "next" to go further.
 
 ![configuration](img/configuration.PNG)
 
-## **Step 3: Serie setting**
+## **Step 3: Series setting**
 
 In this section, you can configure most of the properties of the analytic:
 
-* **Name of the serie**, that is mandatory. It can diplay white spaces;
+* **Name of the series**, that is mandatory. It can diplay white spaces;
 
 * **Graphic type**. Available visualizations are: line, spline, area and column.
 
@@ -67,7 +67,7 @@ In this section, you can configure most of the properties of the analytic:
 
 * The **Euro** field, which allows you to set the unit of measurement of the chart automatically in euros;
 
-* **Collection**, where you choose which collection to go to take the data that will be shown in the series, eg. eroi_buoni;
+* **Collection**, where you choose which collection to go to take the data that will be shown in the series, eg. good_heroes;
 
 * **Filter**, where you can choose to apply a filter to the data you want to view from the collection. For example, the order collection does not want to display all orders, but only those with a turnover of more than € 30. This field is not mandatory and is a query, so you must write in json format.
 
@@ -151,7 +151,7 @@ If some visibility has already been set for some analytics on the page, then the
 
 3. **"Width"**, which allows you to choose whether to display the analytic in the middle of the screen by selecting the value *Half page*, or in full screen, selecting the value *Full page*.
 
-![](img/analitico_collezione.png)
+![analytics collection](img/analytics-collection.png)
 
 By clicking on **Create** the updated row will appear in the table.
 
@@ -159,4 +159,4 @@ By clicking on **Create** the updated row will appear in the table.
 Remember that you can always delete the line by selecting it in the box on the left by clicking on **Delete**.
 :::
 
-![](img/analitico_cancella.png)
+![analytics delete](img/analytics-delete.png)

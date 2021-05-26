@@ -161,7 +161,7 @@ The information regarding the plugins to embed in the application are contained 
 ### integrationMode
 
 - _type_: string;
-- _enum_: `hfer`, `qiankun`, `iframe`;
+- _enum_: `href`, `qiankun`, `iframe`;
 - _required_: `true`;
 - _description_: the way in which the plugin is integrated in `microlc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
 

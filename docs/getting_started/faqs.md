@@ -1,6 +1,6 @@
 ---
 id: faqs
-title: Mia-Plaform FAQs
+title: Mia-Platform FAQs
 sidebar_label: FAQs
 ---
 

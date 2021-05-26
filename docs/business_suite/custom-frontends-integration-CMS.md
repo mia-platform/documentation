@@ -77,7 +77,7 @@ following steps:
         * **base path**: /custom-service-path
         * **type**: Microservice
         * **description**: insert a custom description
-        * **Remember to unflag the two fields** `Support JSON format on request` **and** `Support JSON format on response`
+        * **Remember to uncheck the two fields** `Support JSON format on request` **and** `Support JSON format on response`
         * the result will be something like this ![](img/custom_service_endpoint.png)
 
 #### 4. CMS configurations (optional)

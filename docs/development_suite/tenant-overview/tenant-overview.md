@@ -31,8 +31,8 @@ The user can consult endpoints' status, represented by a dot and a configuration
 
 * Red: the absence of a security feature in the corresponding column.
 * Green: the presence of a security feature in the corresponding column.
-* Grey: the presence of a feature that does not direcly influence the security of the endpoint.
-* Orange: the absence of a feature that does not direcly influence the security of the endpoint.
+* Grey: the presence of a feature that does not directly influence the security of the endpoint.
+* Orange: the absence of a feature that does not directly influence the security of the endpoint.
 
 The *User Group Permission* column also displays the group expressions as labels, each label represents the expression string provided in the endpoint configuration. In this case the label *"true"* means that there is no check over the group expression and therefore the endpoint is not protected, conversely the label *"false"* means that it is not possible to access the endpoint. A custom group expression is shown as label with a grey dot.  
 

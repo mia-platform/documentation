@@ -99,7 +99,7 @@ key | example value | Comment
 `blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
 `icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
 `order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
-`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the Acli Circle property from associations and services. it will be written like this: {"idAssocServ": {"$ ne": "CIRCOLO ACLI"}}
+`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the FOO BAR property from associations and services. it will be written like this: {"idAssocServices": {"$ne": "FOO BAR"}}
 `highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
 `confirmBeforeEdit` | "" | if true, enable double check before save
 `imageLinkBaseUrl` | "" | a custom URL used to replace the base URL
@@ -145,7 +145,7 @@ key | example value | Comment
 `required` | false, | **true** if you want the data to be mandatory
 `label` | Name | it's the label you want to give to your property
 `cmsVisibility` | | cmsVisibility allows you to decide at what level you want to show a property. The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority. The visibility property can also be configured to be visible only in some cases, via **"new"** and **"edit"**. Both are objects that contain a query, so they allow you to set complex conditions. **"new"** allows you to make visible the property being created, **"edit"** allows you to make visible the property being edited.
-`cmsVisibilty.level` | 1 | The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
+`cmsVisibility.level` | 1 | The four levels can be: **0** and is not visible; **1** and is visible in the main table; **2** and is visible when you click in the table, in the right area of your CMS; **3** and is visible in the modal section that appears large in the center of the page when you click on "expand". At the **3** level, explanations of information appearing on the other levels. At level **2** we tend to put non-priority information, but which bring value, insights. In our case we will put **1** in when the information is a priority.
 `cmsOrder` | 10 | it is the order that you want to give it within the collection. in our case it will be the first, so we will write 10
 `cmsEditable` | true | **true** if you want it to be editable by CMS
 `hidden` | false | if you want the property to be invisible
@@ -196,7 +196,7 @@ the final json in our property **name** which is the name of the heroes will the
 
 ## Configure extensions
 
-You can configure extensions for every single page by modifyng `cmsProperties.json` file. As said before for each page you have to add a `<page id>` (the **CMS page endpoint without the initial slash**) key.
+You can configure extensions for every single page by modifying `cmsProperties.json` file. As said before for each page you have to add a `<page id>` (the **CMS page endpoint without the initial slash**) key.
 
 ### Configure the Card Layout
 
@@ -262,10 +262,10 @@ Here is an example of card content rows - With this view you will see below the 
     "properties": ["newExpirationDate", "newItemNumber"]
   },
   {
-    "labels": ["Accetta", "Rifiuta"],
+    "labels": ["Accept", "Refuse"],
     "type": "button",
     "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-    "ids": ["accetta", "rifiuta"],
+    "ids": ["accept", "refuse"],
     "icons": ["check", "archive"]
   },
   {
@@ -300,10 +300,10 @@ Here is an example of a final card within the change-requests collection:
        "properties": ["newExpirationDate", "newItemNumber"]
      },
      {
-       "labels": ["Accetta", "Rifiuta"],
+       "labels": ["Accept", "Refuse"],
        "type": "button",
        "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-       "ids": ["accetta", "rifiuta"],
+       "ids": ["accept", "refuse"],
        "icons": ["check", "archive"]
      },
      {
@@ -320,7 +320,7 @@ Here is an example of a final card within the change-requests collection:
    }
   }
  },
- "fasonisti-properties": {
+ "our-properties": {
    "cmsProperties": {
      "cardHeader": {
        "titleProperty": "name",
@@ -378,7 +378,7 @@ To configure notifications you have to define an object inside the `cmsPropertie
 
 The display will be as follows:
 
-![](img/notifiche.PNG)
+![notify](img/notifications.PNG)
 
 In the example, the notification shows the number of delayed elements in the current state.
 
@@ -517,7 +517,7 @@ In the rest of the JSON, all the other properties of the collection are configur
   "width": 12
   }],
   "properties": {
-    "forza": {
+    "strength": {
       "cmsVisibility": {
         "visibility" :0,
         "edit": {
@@ -669,10 +669,10 @@ When the copy icon is clicked, the following URL will be saved in your clipboard
           "properties": ["newExpirationDate", "newItemNumber"]
         },
         {
-          "labels": ["Accetta", "Rifiuta"],
+          "labels": ["Accept", "Refuses"],
           "type": "button",
           "routes": ["/api/change-request/accept", "/api/change-request/refuse"],
-          "ids": ["accetta", "rifiuta"],
+          "ids": ["accept", "refuses"],
           "icons": ["check", "archive"]
         },
         {

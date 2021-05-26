@@ -25,7 +25,7 @@ When using the right click on a custom microservices or the CRUD service, a cont
 
 An explanatory legend has been added to simplify the comprehension of a Mia-Craft visualization
 
-![legend on Mia-Craft](./img/legenda-Mia-Craft.png)
+![legend on Mia-Craft](./img/legend-Mia-Craft.png)
 
 ### Breaking Changes
 

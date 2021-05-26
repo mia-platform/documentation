@@ -65,7 +65,7 @@ See some examples:
 
 * keyboard shortcuts not functioning as expected.
 
-Assessing bugs using symptom severity makes sure that we prioritise the most impactful fixes. We give high priority to security issues.
+Assessing bugs using symptom severity makes sure that we prioritize the most impactful fixes. We give high priority to security issues.
 
 ## How to get access to bug fixes
 

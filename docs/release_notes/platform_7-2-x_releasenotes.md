@@ -37,7 +37,7 @@ Resolved bug that prevented to delete all the [public variables](../development_
 
 Before deploying, the warning message regarding [secrets](../development_suite/api-console/api-design/services#secrets) not found on cluster was not correctly signaling the absence of secrets when they had been added as source of a [microservice environment variable](../development_suite/api-console/api-design/services#environment-variable-configuration) value.
 
-#### Microservice enviroment variable edit through drawer
+#### Microservice environment variable edit through drawer
 
 When configuring a [microservice environment variable](../development_suite/api-console/api-design/services#environment-variable-configuration), opening the lateral drawer and saving without making any edit was causing the application to fail. The bug has now been fixed.
 

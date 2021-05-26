@@ -25,7 +25,7 @@ After this change, deploy the configuration.
 
 # How to enable monitoring on developers console
 
-To enable moninoring dashboard on developer console, change the configuration of the project on mongo.
+To enable monitoring dashboard on developer console, change the configuration of the project on mongo.
 
 For the project, add a `cluster` key in the environment. The cluster is an object:
 
