@@ -13,7 +13,7 @@ _May 26, 2021_
 
 #### Mia-Platform core services configuration
 
-The `core services` are the microservices that enable the Mia-Platform Console functionalities. Starting from today, we will progressively give you the power to configure them with all the options available in the microservices area: core services will be converted into custom services in continuos roll-out. This change allows you to make the Console fit your needs as much as possible and increase your visibility on the behaviour of your project.
+The `core services` are the microservices that enable the Mia-Platform Console functionalities. Starting from today, we will progressively give you the power to configure them with all the options available in the microservices area: core services will be converted into custom services in continuous roll-out. This change allows you to make the Console fit your needs as much as possible and increase your visibility on the behaviour of your project.
 
 #### Fully manageable crud-service
 
