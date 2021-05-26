@@ -34,11 +34,8 @@ Here you are going to create an instance of `be-config`.
 2. Create a new microservice using the `Microlc backend` plugin available in the `Microfrontend` section of the marketplace;
 3. Configure the microservice with a custom name and description;
 4. Complete the creation of the `be-container` instance;
-5. Define a `ConfigMap` for the microservice;
-6. Create 2 files inside that `ConfigMap`,
-   where you will store your [authentication configuration](authentication.md#example) 
-   and [microlc configuration](core_configuration.md#example);
-5. Configure its [environment variables](backend.md#configurations-loading) with the paths where the configuration files are stored.
+5. In the `ConfigMap` section, edit the [`configuration.json`](core_configuration.md#example) and the [`authentication.json`](authentication.md#example),
+   according to your needs
    
 At the end of these 2 steps, the situation should be similar to the following:
 

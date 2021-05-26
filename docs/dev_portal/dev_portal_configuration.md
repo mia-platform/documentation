@@ -25,7 +25,7 @@ Here you are going to create an instance of the `Dev Portal backend`.
    ![Dev Portal backend](./img/dev_portal_backend.png)
 3. Configure the microservice with a custom name and description;
 4. Complete the creation of the `Dev Portal backend` instance;
-5. In the ConfigMap section, edit the [theming](../business_suite/microlc/core_configuration.md#theming) section of the file `configuration.json`, to customize the portal with your logos;
+5. In the `ConfigMap` section, edit the [theming](../business_suite/microlc/core_configuration.md#theming) section of the file `configuration.json`, to customize the portal with your logos;
    :::caution
    The remaining configurations are already set for the `Dev Portal`: to know more about their purpose, please consult the [`Core Configuration`](../business_suite/microlc/core_configuration.md) section of `microlc`. 
    :::
