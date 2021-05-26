@@ -971,6 +971,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "dev_portal/components_overview"
+        },
+        {
+          "type": "doc",
           "id": "dev_portal/docusaurus"
         },
         {
