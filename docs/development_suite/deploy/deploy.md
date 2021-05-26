@@ -101,7 +101,11 @@ It is important to **save** the configuration at least one time after the featur
 In order to avoid unnecessary deployments, services created using an **advanced configuration** should be manually modified by **removing all the old interpolated annotations**.
 :::
 
-When deploying for the first time using this feature, some services might not be able to collect all the necessary information to show the effective deployment strategy adopted. However, service that do not show actual differences on the cluser will not be deployed.
+When deploying for the first time using this feature, some services might not be able to collect all the necessary information to show the effective deployment strategy adopted. However, service that do not show actual differences on the cluster will not be deployed.
+
+:::warning
+It is highly recommended not to do actions such as modifying a version, an env var, a configmap directly on the cluster, otherwise the checksum that is generated at the deployment does not work correctly and consequently the information reported in the Deploy details table will be misleading. 
+:::
 
 #### Deploy All
 
