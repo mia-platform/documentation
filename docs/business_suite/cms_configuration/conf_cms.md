@@ -610,7 +610,7 @@ When the copy icon is clicked, the following URL will be saved in your clipboard
 
 ```json
 {
-  "namecollection": {
+  "<page id>": {
     "cmsProperties": {
       // Managed by Console ///
       "label": "heroes",
