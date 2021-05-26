@@ -85,7 +85,7 @@ To deploy docusaurus, you can use the plugin `Microlc Docusaurus Template` avail
 ### 7. Docusaurus assets configuration
 
 1. Create a new endpoint;
-2. Define the `Base path` as `/docusaurus/assets`.
+2. Define the `Base path` as `/documentation/assets`.
 3. As type, use `Microservice`;
 4. Select the microservice name used for `Docusaurus`;
 5. Complete the creation;
