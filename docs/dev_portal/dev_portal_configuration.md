@@ -35,10 +35,10 @@ At the end of this step, the situation should be similar to the following:
 ### 2. Endpoint configuration for Dev Portal backend
 
 1. Create a new endpoint;
-2. As `Base path`, use `/api`;
+2. As `Base path`, use `/api/v1/microlc`;
    :::caution
-   The endpoint exposed by the `Dev Portal backend` microservice must always be reachable at `/api/v1/microlc/...`: 
-   as in the microservice we defined the environment variable `SERVICE_PREFIX=/v1/microlc/`, here `/api` is enough.
+   The endpoints exposed by the `Dev Portal backend` microservice must always be reachable at `/api/v1/microlc/...`: 
+   as in the microservice we defined the environment variable `SERVICE_PREFIX=/`, here `/api/v1/microlc` is enough.
    :::
 3. As type, use `Microservice`;
 4. Select the microservice name used for the `Dev Portal backend`;

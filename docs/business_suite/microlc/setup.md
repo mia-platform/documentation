@@ -56,7 +56,11 @@ After that, the situation should be similar to the following:
 ### 4. Endpoint configuration for `be-config`
 
 1. Create a new endpoint;
-2. Define the `Base path` where you want to expose `be-container` (e.g. `/`);
+2. As `Base path`, use `/api/v1/microlc`;
+   :::caution
+   The endpoints exposed by the `be-container` microservice must always be reachable at `/api/v1/microlc/...`:
+   as in the microservice we defined the environment variable `SERVICE_PREFIX=/`, here `/api/v1/microlc` is enough.
+   :::
 3. As type, use `Microservice`;
 4. Select the microservice name used for `be-container`;
 5. Complete the creation.
