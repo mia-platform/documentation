@@ -8,9 +8,7 @@ It is possible to integrate the Dev Portal inside the Mia-Platform Console with 
 
 ## Integration requirements
 
-Following the requirements to integrate this functionality:
-
-- access to the Console into the desired project;
+To integrate the `Dev Portal`, you only need to access to the project on which you want to expose it.
 
 ## Integration steps
 
