@@ -3,6 +3,8 @@ id: usage
 title: Client Credentials Usage
 sidebar_label: Usage
 ---
+import Mermaid from "./../../../src/components/Mermaid";
+
 In this section, we show you how to use the `client-credentials` service.
 
 ## Endpoints
@@ -279,133 +281,99 @@ You can use [this guide](jwt_keys) to generate JWT public and private key suitab
 
 ## Supported Authentication Flow
 
-Below are reported the authentication flows that are supported by Client Credentials service. The flows are sequence diagrams descriptions and they can be visualized using an external tool, such as the one provided at [sequencediagram.org](https://sequencediagram.org).
+Below are reported the authentication flows that are supported by Client Credentials service. The flows are sequence diagrams descriptions.
 
 ### Login flow
 
 Below it is visible the sequence diagram of the login flow:
 
-```mermaid
+<Mermaid chart={`
 sequenceDiagram
 title: Login client credentials
-
 participant client
 participant clcr_service
 participant crud_service
-
-# RFC (https://tools.ietf.org/html/rfc6749#section-4.4)
-
-# Login
-note over client: grant_type in body\nclient_id&client_secret in Basic header
-# l'endpoint può essere diverso, nel caso cambiarlo tramite AG
+note over client: grant_type in body <br> client_id&client_secret in Basic header
 client->>clcr_service: POST /oauth/token
-
-# opzione credentials-service
 clcr_service->>crud_service: GET {client_id,hash_client_secret}
-
 clcr_service->>clcr_service: generate Mia JWT
-note over clcr_service: iss: my-idp\n sub: client-id\n aud: permission\n exp: expiration\n iat: jwt issue date\n jti: jwt id
-
+note over clcr_service: iss: my-idp <br> sub: client-id <br> aud: permission <br> exp: expiration <br> iat: jwt issue date <br> jti: jwt id
 clcr_service->>client: {access_token, expires_in, token_type}
-```
+`}/>
 
 ### Authorization flow (internal client)
 
 Below it is visible the sequence diagram of the authorization flow from internal client:
 
-```mermaid
+<Mermaid chart={`
 sequenceDiagram
-title: Flusso di auth from a console project
-
+title: Authentication flow from a console project
 participant client
 participant api_gateway
 participant authorization_service
 participant clcr_service
 participant resource_owner
-
-# Solo AG frontend. Va gestita lo switch di auth da frontend a backoffice
-
 client->>api_gateway: GET /foobar
 api_gateway->>authorization_service: /auth {client-type,isbackoffice,method,path}
 authorization_service->>clcr_service: /tokeninfo {authorization Bearer AT}
-
 clcr_service->>clcr_service: verify token expiration,signature
-
 opt if not logged
 clcr_service->>authorization_service: 401 with error
 authorization_service->>api_gateway: 401 with error
 api_gateway->>client: 401 with error
 end
-
 clcr_service->>authorization_service: 200 {aud or permission,sub}
-
-note over authorization_service: authorization_service handle\n groups,client-type and isbackoffice in logical expression,\nwe should add permissions
-
+note over authorization_service: authorization_service handle <br>  groups,client-type and isbackoffice in logical expression, <br> we should add permissions
 authorization_service->>authorization_service: evaluate permissions
-
 opt if have not the permission
 authorization_service->>api_gateway: 401 with error
 api_gateway->>client: 401 with error
 end
-
-authorization_service->>api_gateway: 200 \n {miauserid,miausergroups,miauserproperties,client-type}
-
+authorization_service->>api_gateway: 200  <br>  {miauserid,miausergroups,miauserproperties,client-type}
 api_gateway->>resource_owner: GET /foobar {Authorization Bearer AT} + platform headers
-```
+`}/>
 
 ### Authorization flow (external client)
 
 Below it is visible the sequence diagram of the authorization flow from external client:
 
-```mermaid
+<Mermaid chart={`
 sequenceDiagram
-title: Flusso di auth from external with an AT
-
+title: Authentication flow from external with an AT
 participant client
 participant resource_owner
 participant clcr_service
-
 client->>resource_owner: GET /foobar {Authorization Bearer AT}
 resource_owner->>resource_owner: Take AT from request
-
 opt if AT not in request
 resource_owner->>client: 401
 end
-
 resource_owner->>clcr_service: GET /.well-known/jwks.json
 clcr_service->>resource_owner: [keys]
-
 resource_owner->>resource_owner: validate AT JWT {expire,signature,..}
-
 opt if AT not valid
 resource_owner->>client: 401
 end
-
 resource_owner->>resource_owner: verify permission
 opt if not enough permission
 resource_owner->client: 403
 end
-
 resource_owner->>resource_owner: make some stuff
 resource_owner->>client: ok
-```
+`}/>
 
 ### Tokeninfo
 
 Below it is visible the sequence diagram to access to the JWT info:
 
-```mermaid
+<Mermaid chart={`
 sequenceDiagram
 title: Tokeninfo
-
 participant client
 participant clcr_service
-
-# RFC (https://tools.ietf.org/html/rfc6749#section-4.4)
-
 client->>clcr_service: GET /tokeninfo header Authorization Bearer AT
 clcr_service->>clcr_service: check expiration
 clcr_service->>clcr_service: check signature
 clcr_service->>clcr_service: decode jwt
 clcr_service->>client: {permission: []}
-```
+`}/>
