@@ -195,11 +195,11 @@ Session created could have a scope, settable through `SESSION_SCOPE` env variabl
 
 ## Sync user metadata into mongodb
 
-Usign this service, users are saved only in auth0 database. If links to user id are required in a project, you could sync auth0 user metadata in a mongodb collection.
+Using this service, users are saved only in auth0 database. If links to user id are required in a project, you could sync auth0 user metadata in a mongodb collection.
 
 This feature is disabled by default, but you could activate it by adding all these envs:
 
 * `MONGO_DB_URL` [**optional**]: mongodb url that needs to be connected to your mongo instance;
 * `USERS_DATABASE_NAME` [**optional**]: mongodb database name where you want to save user metadata;
 * `USERS_COLLECTION_NAME` [**optional**]: mongodb collection name where you want to save user metadata;
-* `USERS_PROPERTIES_TO_SAVE` [**optional**]: comma separated list of properties to mantain in sync.
+* `USERS_PROPERTIES_TO_SAVE` [**optional**]: comma separated list of properties to maintain in sync.

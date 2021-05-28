@@ -120,10 +120,12 @@ module.exports = {
 ```
 
 ### S3 configuration file
-This configuration allows to store files on any S3-compatibile object storage.
+
+This configuration allows to store files on any S3-compatible object storage.
 
 **Example:** Amazon S3 :
-To use Amazon S3 you should configure the files-service as follows: 
+To use Amazon S3 you should configure the files-service as follows:
+
 ```json
 {
   "type": "s3",

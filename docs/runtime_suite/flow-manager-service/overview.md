@@ -11,15 +11,15 @@ The _Flow Manager_ receives a [_Finite State Machine_](https://brilliant.org/wik
 
 To handle the flow it needs other "actors", or, services that listen the _Flow Manager_ commands and reply with events (later will be explained the commands/events approach) through a common channel, usually a [_Message Broker_](https://www.ibm.com/cloud/learn/message-brokers).
 
-Let's explain with an example of a well-known flow, the _Ecommerce_ one.
+Let's explain with an example of a well-known flow, the _e-commerce_ one.
 
-The following schema contains a simple _Ecommerce_ finite state machine (for simplicity, error flows are omitted):
+The following schema contains a simple _commerce_ finite state machine (for simplicity, error flows are omitted):
 
 ![alt_image](img/sample-finite-state-machine.png)
 
 The _Flow Manager_, with this _Finite State Machine_, can orchestrate the saga flow through the states above, working like in the following image (the _Flow Manager_ is the _Order Saga Orchestrator_):
 
-![alt_image](img/ecommerce-sample-flow-with-orchestrator.png)
+![alt_image](img/e-commerce-sample-flow-with-orchestrator.png)
 
 As you can see in the flow above, every step is managed by the _Flow Manager_, named _Order Saga Orchestrator_ in the example above, so the flow could be the following:
 
@@ -52,7 +52,7 @@ The architecture above is simply feasible with the Console, as showed in the fol
 
 ![alt_image](img/flow-manager-architecture-dev-console.png)
 
-Following two architectures diagrams, based on differents communication protocols (see the dedicated documentation [here](./configuration/#communication-protocols)):
+Following two architectures diagrams, based on different communication protocols (see the dedicated documentation [here](./configuration/#communication-protocols)):
 
 ![alt_image](img/Flow-Manager-generic-message-broker.png)
 **Flow Manager architecture with message broker**

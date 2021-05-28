@@ -74,7 +74,7 @@ To do this, the service uses the _command/event_ approach, or:
 - another service listens the command, executes it and replies with a **event** into the expected channel
 - the _Flow Manager_ listens the event from the channel and, if is a expected event in the current state, goes to the next state, related to the event
 
-If a command execution fails, an error event will be sent by the _executor actor_ instead of the _done event_; in this case, the possible management of the error state is delegated to the user that writes the _Flow Manager_ configurations file (to go, for example, in a error state with remediations actions).
+If a command execution fails, an error event will be sent by the _executor actor_ instead of the _done event_; in this case, the possible management of the error state is delegated to the user that writes the _Flow Manager_ configurations file (to go, for example, in a error state with remediation actions).
 
 :::warning
 If an unexpected event for the current state is received, the _Flow Manager_ will just generate an error log and ignore the event.
@@ -156,7 +156,7 @@ it received the **preparationDone** event instead and, since this event was unex
 
 The _Flow Manager_ is a platform core service and this implies that it must be generic and configurable with each _Saga_ flow.
 
-To do this, it cannot know the nature of the data behind a saga, it cannot know if the _Saga_ represents a _Food delivery order_, a _Ecommerce order_ or other.
+To do this, it cannot know the nature of the data behind a saga, it cannot know if the _Saga_ represents a _Food delivery order_, a _e-commerce order_ or other.
 
 For this reason the service is agnostic and does not know anything about the data related to the saga, but how can it handle it so?
 
@@ -249,7 +249,7 @@ With the behavior explained above, the _Flow Manager_ can guarantee:
 - to be the only one to edit the _Saga_'s data
 - to provide all metadata to the "side services" that will listen to the commands, so that the "side services" don't need to read it from the database
 
-Obviusly some other service could need to read from the _Saga_'s database, it's not a problem, the important thing is that **the _Flow Manager_ should be the only one to write on it**.
+Obviously some other service could need to read from the _Saga_'s database, it's not a problem, the important thing is that **the _Flow Manager_ should be the only one to write on it**.
 
 ### The persistency manager
 
