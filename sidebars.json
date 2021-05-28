@@ -962,13 +962,17 @@
     },
     {
       "type": "doc",
-      "id": "dev_portal/microlc_configuration"
+      "id": "dev_portal/dev_portal_configuration"
     },
     {
       "collapsed": false,
       "type": "category",
       "label": "Available components",
       "items": [
+        {
+          "type": "doc",
+          "id": "dev_portal/components_overview"
+        },
         {
           "type": "doc",
           "id": "dev_portal/docusaurus"

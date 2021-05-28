@@ -34,11 +34,8 @@ Here you are going to create an instance of `be-config`.
 2. Create a new microservice using the `Microlc backend` plugin available in the `Microfrontend` section of the marketplace;
 3. Configure the microservice with a custom name and description;
 4. Complete the creation of the `be-container` instance;
-5. Define a `ConfigMap` for the microservice;
-6. Create 2 files inside that `ConfigMap`,
-   where you will store your [authentication configuration](authentication.md#example) 
-   and [microlc configuration](core_configuration.md#example);
-5. Configure its [environment variables](backend.md#configurations-loading) with the paths where the configuration files are stored.
+5. In the `ConfigMap` section, edit the [`configuration.json`](core_configuration.md#example) and the [`authentication.json`](authentication.md#example),
+   according to your needs
    
 At the end of these 2 steps, the situation should be similar to the following:
 
@@ -59,7 +56,11 @@ After that, the situation should be similar to the following:
 ### 4. Endpoint configuration for `be-config`
 
 1. Create a new endpoint;
-2. Define the `Base path` where you want to expose `be-container` (e.g. `/`);
+2. As `Base path`, use `/api/v1/microlc`;
+   :::caution
+   The endpoints exposed by the `be-container` microservice must always be reachable at `/api/v1/microlc/...`:
+   as in the microservice we defined the environment variable `SERVICE_PREFIX=/`, here `/api/v1/microlc` is enough.
+   :::
 3. As type, use `Microservice`;
 4. Select the microservice name used for `be-container`;
 5. Complete the creation.

@@ -34,7 +34,7 @@ Here follows a full configuration example:
   "icon": "fas fa-book",
   "order": 1,
   "integrationMode": "qiankun",
-  "pluginRoute": "/docusaurus/",
+  "pluginRoute": "/documentation/",
   "pluginUrl": "https://plugin-url.com",
   "props": {
     "docusaurusUrl": "https://docusaurus-url.com/docusaurus-template/"
@@ -83,7 +83,7 @@ To deploy docusaurus, you can use the plugin `Microlc Docusaurus Template` avail
 4. Complete the creation to deploy an instance of the adapter.
 
 :::note
-By default, it is configured to use `/docusaurus/` as base url:
+By default, it is configured to use `/documentation/` as base url:
 to change it, edit the value exported in the `baseUrl.js`, placed on the root of the project repository.
 :::
 
@@ -100,8 +100,8 @@ to change it, edit the value exported in the `baseUrl.js`, placed on the root of
 
 1. Create a new endpoint;
 2. Define the `Base path`, that must adhere the format: `/{docusaurusAdapterPluginRouteValue}/assets`.  
-   **e.g.** if you set `/docusaurus/` in the [adapter configuration](docusaurus.md#docusaurus-adapter), 
-   the `Base path` must be defined as `/docusaurus/assets`;
+   **e.g.** if you set `/documentation/` in the [adapter configuration](docusaurus.md#docusaurus-adapter), 
+   the `Base path` must be defined as `/documentation/assets`;
 3. As type, use `Microservice`;
 4. Select the microservice name used for `Docusaurus`;
 5. Complete the creation;
