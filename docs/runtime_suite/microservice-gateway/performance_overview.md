@@ -44,7 +44,7 @@ Factors such as the amount of data involved or the way used to comunicate with t
 Each scenario includes multiple categories of users and **the number of requests per second** the Microservice Gateway can serve for that userbase. 
 
 :::caution note
-In order to scale to even higher number of users, we suggest **increasing the number of replicas** and treat each replica as one of the identitied user categories.
+In order to scale to even higher number of users, we suggest **increasing the number of replicas** and treat each replica as one of the identified user categories.
 :::
 
 <br />
@@ -122,7 +122,7 @@ When considering more users, we recommend switching to multiple replicas and low
 
 ##### Passing through API Gateway
 
-In this scenarion, passing through the API Gateway may help in lowering memory requests and levels:
+In this scenarios, passing through the API Gateway may help in lowering memory requests and levels:
 
 | Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
 |:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|

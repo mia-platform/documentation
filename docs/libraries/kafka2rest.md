@@ -48,7 +48,7 @@ repositories {
 
 Kafka2Rest is based on **Filters** and **Processors**. You can develop your custom Filters and Processor implementing the [FilterInterface](https://git.tools.mia-platform.eu/platform/libraries/kafka2rest/blob/master/src/main/kotlin/eu/miaplatform/kafka2rest/interfaces/FilterInterface.kt) and [ProcessorInterface](https://git.tools.mia-platform.eu/platform/libraries/kafka2rest/blob/master/src/main/kotlin/eu/miaplatform/kafka2rest/interfaces/ProcessorInterface.kt) or use existent [filters](https://git.tools.mia-platform.eu/platform/libraries/kafka2rest/tree/master/src/main/kotlin/eu/miaplatform/kafka2rest/filters) and [processors](https://git.tools.mia-platform.eu/platform/libraries/kafka2rest/tree/master/src/main/kotlin/eu/miaplatform/kafka2rest/processors).
 
-### Inizialization
+### Initialization
 
 First of all you need to initialize Kafka2Rest with:
 
@@ -105,7 +105,7 @@ If true the linked processor run its `process()` method and do something.
 
 ### Start
 
-Just start Kafka2Rest. Invonking the `start()` method Kafka2Rest will run on new thread and listen kafka topics.
+Just start Kafka2Rest. Invoking the `start()` method Kafka2Rest will run on new thread and listen kafka topics.
 
 ```kotlin
     kafka2rest.start()
