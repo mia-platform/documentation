@@ -198,7 +198,7 @@ Every index that is not specified in the collection definition will be **dropped
 
 The CRUD service accept the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringyfied JSON, which is in AND with the query string. Example:
+- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the query string. Example:
 
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
@@ -271,7 +271,7 @@ To create a document use *POST* request and pass, in the body of the request, th
 
 ```json
 {
- "name": "Spaghetti al Pomodoro",
+ "name": "Spaghetti with tomato sauce",
  "description": "The classic italian dish"
 }
 ```
@@ -284,7 +284,7 @@ curl --request POST \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'client-key: client-key' \
-  --data '{"name":"Spaghetti al Pomodoro","description":"The classic italian dish"}'
+  --data '{"name":"Spaghetti with tomato sauce","description":"The classic italian dish"}'
 ```
 
 in response, you will get a JSON object like this:
@@ -307,7 +307,7 @@ curl --request POST \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'client-key: client-key' \
-  --data '{"$set":{"name":"Spaghetti allo Scoglio"}}'
+  --data '{"$set":{"name":"Spaghetti with seafood"}}'
 ```
 
 in response you will obtain the document if already exist or a new document if is not present. The document will reflect all the updates you specified.
@@ -378,7 +378,7 @@ curl --request POST \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'client-key: client-key' \
-  --data '[{"name":"Risotto ai funghi porcini","description":" Risotto with porcini mushrooms"},{"name":"Lasagna","description":"Stacked layers of flat pasta alternating with fillings such as ragù"},{"name":"Tiramisu","description":"Savoiardi dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese"}]'
+  --data '[{"name":"Risotto with champinones mushrooms","description":"Risotto with champinones mushrooms"},{"name":"Lasagna","description":"Stacked layers of flat pasta alternating with fillings such as Bolognese sauce"},{"name":"Tiramisu","description":"Biscuits dipped in coffee, layered with a whipped mixture of eggs, sugar, and mascarpone cheese"}]'
 ```
 
 ```json
@@ -423,7 +423,7 @@ In response of this request you will get a JSON array that contains all the docu
          "5e81fd882e9dde00112b6849",
          "5e8202892e9dde00112b685c"
       ],
-      "name" : "Salmone affumicato",
+      "name" : "Smoked salmon",
       "updatedAt" : "2020-04-13T15:26:19.819Z",
       "updaterId" : "public"
    },
@@ -671,7 +671,7 @@ In the body of the request you can use the following operators:
   `{ $set: { <field1>: <value1>, ... } }`
 
 - `$unset`
-  This operator unsets a particular item value:  
+  This operator unset a particular item value:  
   `{ $unset: { <field1>: true, ... } }`
 
 - `$inc`

@@ -13,7 +13,7 @@ _May 26, 2021_
 
 #### Mia-Platform core services configuration
 
-The `core services` are the microservices that enable the Mia-Platform Console functionalities. Starting from today, we will progressively give you the power to configure them with all the options available in the microservices area: core services will be converted into custom services in continuous roll-out. This change allows you to make the Console fit your needs as much as possible and increase your visibility on the behaviour of your project.
+The `core services` are the microservices that enable the Mia-Platform Console functionalities. Starting from today, we will progressively give you the power to configure them with all the options available in the microservices area: core services will be converted into custom services in continuous roll-out. This change allows you to make the Console fit your needs as much as possible and increase your visibility on the behavior of your project.
 
 #### Fully manageable crud-service
 
@@ -27,7 +27,7 @@ If the MongoDB CRUD section in your project is disabled because the `crud-servic
 Only a single instance of `Crud Service` can exist for each branch. If `Crud Service` is already present among custom services, the marketplace will not show the `Crud Service` plugin.
 :::
 
-#### Multiline Pulic Variables
+#### Multiline Public Variables
 
 It is now possible to write, save, use, and read multiline [Public Variables](../development_suite/api-console/api-design/public_variables#where-public-variables-are-saved). The Public Variables table has readonly entries for variables which contain a new line, so that they are only editable in the drawer.
 

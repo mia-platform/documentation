@@ -30,4 +30,4 @@ However, you will find a link that will redirect you to **MongoDB CRUD** dedicat
 * **TRUSTED_PROXIES** (*default: `10.0.0.0/8,172.16.0.0/12,192.168.0.0/16`*): the string containing the trusted proxies values.
 * **HTTP_PORT**: The port exposed by the service.
 * **LOG_LEVEL** (*default: `info`*): level of the log. It could be trace, debug, info, warn, error, fatal.
-* **EXPOSE_METRICS** (*default: `false`*): boolean that specifies if prometeus metrics should be exposed or not.
+* **EXPOSE_METRICS** (*default: `false`*): boolean that specifies if prometheus metrics should be exposed or not.
