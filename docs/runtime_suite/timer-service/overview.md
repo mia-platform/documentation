@@ -4,7 +4,7 @@ title: Timer Service
 sidebar_label: Overview
 ---
 The aim of _Timer Service_ is to perform an action when a timer is expired.
-This allows to schedule a timeout for asynchrous actions that can fail without a notification of the called service.
+This allows to schedule a timeout for asynchronous actions that can fail without a notification of the called service.
 
 ## Introduction
 

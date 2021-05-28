@@ -27,7 +27,7 @@ Optionally you can include:
 
 - `htmlMessage` : string representing an html
 
-### Attachments
+## Attachments
 
 This service allows to send attachments too, with a little different body.
 
@@ -38,9 +38,9 @@ To send an attachment, there are two main differences with the previous examples
 
 Look at the [example](#post-to-send-with-an-attachment) for a concrete example of attachment email.
 
-### Some examples
+## Some examples
 
-#### POST to /send with single receiver
+### POST to /send with single receiver
 
 This is an example of the body of the POST to the `/send` endpoint to send an email from Alice (`alice@domain.com`) to Bob (`bob@domain.com`) and Carol (`carol@domain.com`) with subject `The subject of the email` and message `This is an example.` Dave (`dave@domain.com`) will receive the email in *cc*.
 
@@ -58,7 +58,7 @@ This is an example of the body of the POST to the `/send` endpoint to send an em
 Bob will know that also Carol is receiving the email and viceversa.
 :::
 
-#### POST to /send/split-recipients
+### POST to /send/split-recipients
 
 This is an example of the body of the POST to the `/send/split-recipients` endpoint to send 2 different emails from Alice (`alice@domain.com`) with subject `The subject of the email` and message `This is an example.` The first email will be sent to Bob (`bob@domain.com`) and the second one will be sent to Carol (`carol@domain.com`). Each recipient will not see that the email was also sent to the other recipient.
 
@@ -98,9 +98,9 @@ So this is equivalent to making 2 different POST requests to `/send` having the 
     }
     ```
 
-#### POST to /send with an html message
+### POST to /send with an html message
 
-The service allows to send email with an html content and the receivers clients will renderize the html.
+The service allows to send email with an html content and the receivers clients will render the html.
 
 To send an html message you have just to change the `message` field with the `htmlMessage` one.
 
@@ -116,7 +116,7 @@ Following an example of `/send` request with html template (is not a real templa
 }
 ```
 
-#### POST to /send with an attachment
+### POST to /send with an attachment
 
 This service allows to send attachments too.
 

@@ -87,7 +87,7 @@ As [previously said](#How-the-service-works), the _Doctor Service_ just needs a 
 ```
 
 As specified into the schema, the tags property is optional &rarr; a _Doctor Service_ can have all services without tags and it still works on the root path.
-Additionally, it is possible to specify an `options` object in order to furtherly manage how the `/-/check-up` route is called.  
+Additionally, it is possible to specify an `options` object in order to manage further how the `/-/check-up` route is called.  
 The following options can be provided:  
 
 * `prefix`: to specify a prefix to append before `/-/check-up` route. Default is an empty string.

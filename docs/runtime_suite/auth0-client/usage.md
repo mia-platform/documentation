@@ -3,7 +3,7 @@ id: usage
 title: How to use Auth0 client
 sidebar_label: Usage
 ---
-This service exposes different endpoints to handle authentication: `/authorize`, `/oauth/token`, `/logout` and `/userinfo` endpoints. A `/users/me` endpoint is also exposed for backward compatibitity but its use is discouraged.
+This service exposes different endpoints to handle authentication: `/authorize`, `/oauth/token`, `/logout` and `/userinfo` endpoints. A `/users/me` endpoint is also exposed for backward compatibility but its use is discouraged.
 
 Moreover, it handles users through the auth0 users management api.
 
@@ -47,7 +47,7 @@ If all went well, you should get, without the scope **website**:
 }
 ```
 
-Using the scope **websiste**:
+Using the scope **website**:
 
 ```json
 {

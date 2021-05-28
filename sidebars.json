@@ -473,7 +473,7 @@
             {
               "collapsed": true,
               "type": "category",
-              "label": "Microlc Redoc Plugin",
+              "label": "Microlc ReDoc Plugin",
               "items": [
                 {
                   "type": "doc",

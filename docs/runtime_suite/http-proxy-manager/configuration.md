@@ -118,7 +118,7 @@ A proxy can have the following fields:
 In this example, the _Proxy Manager_ is configured to proxy requests to three external services.
 - The first one is located at `external-service.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/external-service` endpoint.
 - The second one is located at `mia-client-credentials.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/mia-service` endpoint. It employs additional fields that are added in the request to retrieve an access token.
-- The thid one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
+- The third one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
 - The latter service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
 
 ```json
@@ -136,7 +136,7 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
     {
       "authentication": "oauth2",
       "clientId": "6739ef20e75817a79c02",
-      "clientSecret": "GBAfweVL7YWtP6gudLIjbRZV_NdW",
+      "clientSecret": "GBAweVL7YWtP6gudLIjbRZV_NdW",
       "tokenIssuerUrl": "http://mia-client-credentials.com/auth/oauth/token",
       "targetBaseUrl": "https://mia-service.com",
       "basePath": "/mia-service",
@@ -150,7 +150,7 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
       "username": "username",
       "password": "password",
       "clientId": "0fbd65b60ca0388f2069",
-      "clientSecret": "ZUotgSDuyesC6VpZM9P2_mDJPTX4",
+      "clientSecret": "ZUogSDuesC6VpZM9P2_mPTX4",
       "tokenIssuerUrl": "http://legacy-service.com/auth/oauth/token",
       "targetBaseUrl": "http://legacy-service.com",
       "basePath": "/legacy-service",
