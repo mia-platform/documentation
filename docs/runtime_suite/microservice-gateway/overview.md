@@ -16,7 +16,7 @@ Hook microservices must meet a precise HTTP interface to be successfully interro
 
 Pre and Post Hooks are reusable and convenient tools that can be used with the console, but in which situation is appropriate to use them?  
 
-* When I want to change the behaviour of core components or the logic of frontend and backend components on which I cannot make changes;
+* When I want to change the behavior of core components or the logic of frontend and backend components on which I cannot make changes;
 * if, due to the convenience of having the functionality available through console, I want to reuse simply and quickly the same logic for more routes;
 * when, in order to make the CMS work with filter logics, ACL has to be attached to different objects;
 * if I want to send notifications in small and limited projects.
