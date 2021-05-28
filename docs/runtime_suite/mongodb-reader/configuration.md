@@ -30,15 +30,15 @@ For each of these files, the service will expose three APIs:
 
 ### Configuration fields
 
-Each proile must be a JavaScript module, exporting an object with the following fields:
+Each profile must be a JavaScript module, exporting an object with the following fields:
 
 * **name**: the string that defines the endpoint (e.g. for the example below the exposed APIs will be of the form `GET /books/:name/json`)
 * **parameters**: an array of objects. Each object defines a query parameter of the API. In particular, it can be defined the name and the type of the parameter and whether it is required or not.
 * **pathParameters**: an object that defines the path parameters.
-* **inputFormatter**: a function that takes two objects as input representing the query and path parameters, respectively. The scope of this function is to format the input before passing it to the `aggragationFunction`.
+* **inputFormatter**: a function that takes two objects as input representing the query and path parameters, respectively. The scope of this function is to format the input before passing it to the `aggregationFunction`.
 * **query**: an object having the following fields:
   * **collectionName**: the name of the collection on which to execute the aggregation.
-  * **aggragationFunction**: a function that takes as input the output of the `inputFormatter` and returns the [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/), i.e. an array of stages.
+  * **aggregationFunction**: a function that takes as input the output of the `inputFormatter` and returns the [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/), i.e. an array of stages.
 * **castInterpolatedPipeline**: This function is deprecated and it has to be left as in the example above unless the deprected JSON file configuration described below is used.
 * **outputFormatter**: a function that takes three parameters as input: one document of the aggregation result, the ouput format (`json`, `jsonl` or `csv`) and the output of the `inputFormatter` function. The scope of this function is to format the output of the aggregation as one prefers.
 

@@ -9,7 +9,7 @@ In the dev portal, `ReDoc` can be used to create the API documentations just set
 
 ## Microservice creation for `ReDoc`
 
-To create an istance of `ReDoc`:
+To create an instance of `ReDoc`:
 
 1. Go to the `Microservices` section;
 2. Create a new microservice using the `Microlc ReDoc Plugin` in the `Dev Portal` category of the marketplace;
