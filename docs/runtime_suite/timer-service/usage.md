@@ -48,7 +48,7 @@ following an example of response:
 
 ```json
 {
-  "expirationId": "1234567abcdefg"
+  "expirationId": "1234567someId"
 }
 ```
 
@@ -223,7 +223,7 @@ The _expirationId_ must be pass into the body of the call, like the following sc
 
 ```json
 {
-  "expirationId": "1234567abcdefg"
+  "expirationId": "1234567someId"
 }
 ```
 
@@ -237,7 +237,7 @@ Following the example of a _curl_ to abort a timer:
 curl --location --request POST 'http://timer-service/abort' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "expirationId": "1234567abcdefg"
+  "expirationId": "1234567someId"
 }'
 ```
 
@@ -252,10 +252,10 @@ A client needs, after 10 minutes, to send the payload
 ```json
 {
   "user": {
-    "name": "Mario",
-    "surname": "Rossi"
+    "name": "John",
+    "surname": "Smith"
   },
-  "_id": "1234567abcdefg",
+  "_id": "1234567someId",
   "orderId": "abc123def456"
 }
 ```
@@ -268,8 +268,8 @@ This can be done by scheduling a timer by calling the POST route `timer-service/
 {
   "payload": {
     "user": {
-      "name": "Mario",
-      "surname": "Rossi"
+      "name": "John",
+      "surname": "Smith"
     },
     "_id": "098abc765def",
     "orderId": "abc123def456"
@@ -316,8 +316,8 @@ Like the example above a client can schedule a timer to send a payload to a REST
 {
   "payload": {
     "user": {
-      "name": "Mario",
-      "surname": "Rossi"
+      "name": "John",
+      "surname": "Smith"
     },
     "_id": "098abc765def",
     "orderId": "abc123def456"
@@ -504,7 +504,7 @@ You can use the following Postman collection to call the _Timer Service_ REST AP
           "header": [],
           "body": {
             "mode": "raw",
-            "raw": "{\n    \"payload\": {\n        \"user\": {\n            \"name\": \"Mario\",\n            \"surname\": \"Rossi\"\n        },\n        \"_id\": \"098abc765def\",\n        \"orderId\": \"abc123def456\"\n    },\n    \"startDate\": \"2020-04-06T08:57:04.650Z\",\n    \"expirationIntervalMs\": 600000,\n    \"applicantService\": \"user-orders\",\n    \"outputMode\": {\n        \"type\": \"rest\",\n        \"method\": \"post\",\n        \"protocol\": \"https\",\n        \"hostname\": \"user-orders:3000\",\n        \"path\": \"/order-expired\"\n    }\n}",
+            "raw": "{\n    \"payload\": {\n        \"user\": {\n            \"name\": \"John\",\n            \"surname\": \"Smith\"\n        },\n        \"_id\": \"098abc765def\",\n        \"orderId\": \"abc123def456\"\n    },\n    \"startDate\": \"2020-04-06T08:57:04.650Z\",\n    \"expirationIntervalMs\": 600000,\n    \"applicantService\": \"user-orders\",\n    \"outputMode\": {\n        \"type\": \"rest\",\n        \"method\": \"post\",\n        \"protocol\": \"https\",\n        \"hostname\": \"user-orders:3000\",\n        \"path\": \"/order-expired\"\n    }\n}",
             "options": {
               "raw": {
                 "language": "json"
@@ -532,7 +532,7 @@ You can use the following Postman collection to call the _Timer Service_ REST AP
           "header": [],
           "body": {
             "mode": "raw",
-            "raw": "{\n  \"expirationId\": \"1234567abcdefg\"\n}",
+            "raw": "{\n  \"expirationId\": \"1234567someId\"\n}",
             "options": {
               "raw": {
                 "language": "json"

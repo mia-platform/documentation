@@ -22,7 +22,7 @@ The environment variables accepted by this service:
 * **HTTP_PORT** (default to `3000`): port where the web server is exposed;
 * **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
 * **DELAY_SHUTDOWN_SECONDS** (default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
-* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud colection containing the client information;
+* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud collection containing the client information;
 * **CLIENT_ID_HASH_SALT** (*required*): static hash salt used to save the client id;
 * **CLIENT_SECRET_HASH_COST** (default to `10`): the cost to generate the hash of the client secret (using bcrypt);
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
@@ -61,7 +61,7 @@ After the creation, you have the private key.
 You should create the key as secret in kubernetes, using:
 
 ```sh
-kubectl -n my-namespace create secret generic prova-secret --from-file="~/private.key"
+kubectl -n my-namespace create secret generic my-secret --from-file="~/private.key"
 ```
 
 #### Configure the service volume
@@ -74,10 +74,10 @@ This is an example to add a secret to a volume:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mypod
+  name: my-pod
 spec:
   containers:
-  - name: mypod
+  - name: my-pod
     image: my-image
     env:
       - name: PRIVATE_RSA_KEY_FILE_PATH
@@ -235,7 +235,7 @@ echo ${PRIVATE_KEY} > /tmp/private.key
 * [JWA](https://tools.ietf.org/html/rfc7518)
 * [JWT](https://tools.ietf.org/html/rfc7519)
 * [OIDC client-credentials](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication)
-* [Explaination of client credentials authentication methods](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4)
+* [Explanation of client credentials authentication methods](https://medium.com/@darutk/oauth-2-0-client-authentication-4b5f929305d4)
 * [JWT profile for oauth2 client authentication](https://tools.ietf.org/html/rfc7523#section-2.2)
 * [Registration of a client](https://tools.ietf.org/html/rfc7591)
 * [Client assertions for `private_key_jwt` auth method](https://tools.ietf.org/html/draft-ietf-oauth-assertions-18)

@@ -25,7 +25,7 @@ Following the environment variables needed by the Service:
 - **POLL_INTERVAL_MS**: the milliseconds to wait before do another poll; use case:
     1. the timer-service wakes
     2. the timer-service asks for pending timers
-    3. the timer-service evaluates all timers to see if there are expirated timers
+    3. the timer-service evaluates all timers to see if there are expired timers
     4. the timer-service sleeps for a duration of *POLL_INTERVAL_MS*
 - **KAFKA_BROKERS** (*optional*): the comma separated kafka brokers list; if missing, the outputMode of type `kafka` will not work and the timer will set in error state
 - **KAFKA_LOG_LEVEL** (*optional*): the log level for kafka
@@ -62,7 +62,7 @@ Following the CRUD structure needed by the timer-service to work:
 - **outputMode**: an *Object* with the data to send the action when the expiration occurs
 - **expirationDate**: the date of the expiration, created by the Service (type *date*)
 - **failureCount**: number for tracking the failure count (used only with **MAX_FAILURE_COUNT**)
-- **expirationStatus**: an *Object* that represetns the status of an expirations and has the following structure:
+- **expirationStatus**: an *Object* that represents the status of an expirations and has the following structure:
 
     ```json
     {
@@ -85,14 +85,14 @@ To configure a _Timer Service_ on the Console follow the instructions:
   - click on _Create a Microservice_
   - click on _Docker Image Name_
 
-        ![alt_image](img/Microservices_Docker_image_name.png)
+      ![alt_image](img/Microservices_Docker_image_name.png)
 
   - set the name and description as you prefer
   - insert the timer Service image name into the _Docker Image Name_ field, or:
 
-        `nexus.mia-platform.eu/helvetia/timer-service:0.1.1`
+      `nexus.mia-platform.eu/helvetia/timer-service:0.1.1`
 
   - click on the _Create_ button
   - add the environment variables by following the [instructions above](#environment-variables); the result should be like the following:
 
-        ![alt_image](img/Microservices_environment_variables.png)
+      ![alt_image](img/Microservices_environment_variables.png)

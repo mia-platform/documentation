@@ -143,7 +143,7 @@
     "docLandingPage": "runtime_suite/kafka2firebase/overview"
   },
   {
-    "name": "Microlc Redoc Plugin",
+    "name": "Microlc ReDoc Plugin",
     "description": "This plugin enables you to embed inside your dev portal the ReDoc page for API's documentation.",
     "category": {
       "id": "devportal",
