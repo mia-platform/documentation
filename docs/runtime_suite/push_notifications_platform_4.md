@@ -16,7 +16,7 @@ This service must be explicitly included in a project in case you want to send p
 
 Apps can register with push notifications by calling the service in POST to the `/ subscription /` path indicating their notification token, in addition to the platform (android or ios) and a list of tags (or topics) indicating types of notifications of which the client wants to be notified. This route will return a `deviceId` which is an identifier of the device that the app will have to save locally in order to update the substitution by changing the tags or to update the token (which may expire) by executing the call to this same route with the deviceId .
 
-If the call is made with authentication, the user's id will be saved along with the device information. `WARNING:` if the call is made without authentication, the user will be disassociated from the device: this operation is equivalent to a `deregistration` of the user, who will therefore not receive any more notifications explicitly addressed to him.
+If the call is made with authentication, the user's id will be saved along with the device information. `WARNING:` if the call is made without authentication, the user will be disassociated from the device: this operation is equivalent to a `unsubscribe` of the user, who will therefore not receive any more notifications explicitly addressed to him.
 
 Example of subscription payload:
 

@@ -80,7 +80,7 @@ An example of the body could be the following:
 ```json
 {
     "data": {
-        "name": "Francesco",
+        "name": "John",
         "address": {
             "city": "Milan",
             "streetName": "Via Carlo Imbonati, 18",
@@ -105,6 +105,6 @@ The resulting interpolation will be:
 
 ```html
 <div align="center">
-    My name is Francesco and I live in Milan.
+    My name is John and I live in Milan.
 </div>
 ```

@@ -34,6 +34,7 @@
       "highcharts",
       "highmaps",
       "hmac",
+      "imbonati",
       "infobox",
       "intellij",
       "isbackoffice",
@@ -44,6 +45,7 @@
       "kubens",
       "kubernetes",
       "locustfile",
+      "makeitapp",
       "mebibyte",
       "mebibytes",
       "medeia",
@@ -54,6 +56,7 @@
       "millicores",
       "millicpu",
       "millicpus",
+      "mkbaas",
       "mkdir",
       "oidc",
       "omnichannel",
@@ -86,7 +89,8 @@
     "sasl",
     "up'em",
     "ymdh",
-    "yyyymmdd"
+    "yyyymmdd",
+    "FKMUVK"
   ],
   "dictionaries": ["softwareTerms", "companies", "misc"],
   // flagWords - list of words to be always considered incorrect
@@ -100,6 +104,9 @@
     "**/*.PNG",
     "**/img/**",
     "**/*.zip",
+    // old files
+    "docs/runtime_suite/sdk_android.md",
+    "docs/runtime_suite/sdk_ios.md",
 
     "./docs/runtime_suite/client-credentials/usage.md"
   ],
