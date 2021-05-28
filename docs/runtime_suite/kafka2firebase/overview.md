@@ -7,8 +7,8 @@ This is a plugin made for converting kafka messages into firebase push. It takes
 
 ```json
 { 
-    "device_tokens" : ["token1", "token2"],         // The list of firbase devices token to which send the push
-    "topics": ["topic1", "topic2"],                 // The list of firebase topics to wich send the push
+    "device_tokens" : ["token1", "token2"],         // The list of firebase devices token to which send the push
+    "topics": ["topic1", "topic2"],                 // The list of firebase topics to which send the push
     "message_id": "messageId",
     "push_notification": {                          // The information of the push
         "title": "title",

@@ -7,7 +7,7 @@ ACL is supported through the standard `acl_rows` header.
 
 ## Configuration
 
-In order to let the profile inject ACL informations you're **required** to insert a custom stage using the `#aclRows#` operator with boolean value `true`.
+In order to let the profile inject ACL information you're **required** to insert a custom stage using the `#aclRows#` operator with boolean value `true`.
 
 Note:
  - if the profile uses the `#aclRows#` operator but the `acl_rows` header is not provided then no `$match` stage is inserted.
