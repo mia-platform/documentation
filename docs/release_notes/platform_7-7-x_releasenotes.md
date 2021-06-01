@@ -5,6 +5,23 @@ sidebar_label: v7.7
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.7.1
+
+_June 1, 2021_
+
+### Bug fix
+
+#### Crud Service environment variables
+
+When porting `crud-service` from core to custom service the MongoDB connection string environment variable used is now `MONGODB_SHORT_URL`, this fixes a breaking change introduced with v7.7.0 were the used variable was set to `MONGODB_URL` instead.
+
+:::note
+If you saved a project with v7.7.0 we strongly suggest you to review the variable used by the `crud-service` to make sure is properly configured.
+:::
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.10.1`.
+
 ## v7.7.0
 
 _May 26, 2021_
