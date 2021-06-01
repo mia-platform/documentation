@@ -596,6 +596,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Swagger Aggregator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/swagger-aggregator/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/swagger-aggregator/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/swagger-aggregator/apis"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Timer Service",
               "items": [
                 {

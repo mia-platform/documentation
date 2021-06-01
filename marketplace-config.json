@@ -260,6 +260,19 @@
     "docLandingPage": "runtime_suite/sql-invoker/configuration_and_usage"
   },
   {
+    "name": "Swagger Aggregator",
+    "description": "Use Mia-Platform core Swagger Aggregator to aggregate the individual swaggers of all the microservices indicated in the configuration file.",
+    "category": {
+      "id": "devportal",
+      "label": "Dev Portal"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/swagger-aggregator_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/swagger-aggregator/overview"
+  },
+  {
     "name": "Timer Service",
     "description": "The Timer Service allows scheduling of timers that perform custom actions upon expiry.",
     "category": {
