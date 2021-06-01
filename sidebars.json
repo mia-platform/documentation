@@ -260,10 +260,6 @@
         },
         {
           "type": "doc",
-          "id": "runtime_suite/swagger-aggregator"
-        },
-        {
-          "type": "doc",
           "id": "runtime_suite/auth-service"
         },
         {

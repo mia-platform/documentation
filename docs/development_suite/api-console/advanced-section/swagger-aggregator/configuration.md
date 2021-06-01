@@ -4,7 +4,7 @@ title: Swagger Aggregator Advanced Configuration
 sidebar_label: Swagger Aggregator
 ---
 
-In the advanced tab of the Console Design section, you can configure the [Swagger Aggregator](../../../../runtime_suite/swagger-aggregator.md) in advanced mode.
+In the advanced tab of the Console Design section, you can configure the [Swagger Aggregator](../../../../runtime_suite/swagger-aggregator/overview) in advanced mode.
 
 The advanced configuration allows managing how the swagger APIs are exposed. Examples of possible configurations are:
 
@@ -36,12 +36,12 @@ Here is the list of the deprecated `.conf` files:
 - description.conf
 - baseSwagger.conf
 - subswaggers.conf
-  :::
+:::
 
 Below are reported the more advanced properties that can be configured at the first level of `swagger-aggregator.json` file and how they can be employed to customize the Swagger Aggregator functionalities.
 
 :::info
-Remember that all the following properties (with the exceptions of `servicesUrlsBefore` and `servicesUrlsAfter`) can also be set through the configuration file, as described [here](../../../../runtime_suite/swagger-aggregator.md).
+Remember that all the following properties (with the exceptions of `servicesUrlsBefore` and `servicesUrlsAfter`) can also be set through the configuration file, as described [here](../../../../runtime_suite/swagger-aggregator/overview).
 :::
 
 ## servicesUrlsBefore and servicesUrlsAfter
