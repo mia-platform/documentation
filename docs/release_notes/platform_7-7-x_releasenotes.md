@@ -61,6 +61,17 @@ The Deploy compare table now displays version changes even for advanced services
 
 In Envs area, Runtime Environments table, every host is now an external link.
 
+#### Pods table
+
+Old column status has been changed into phase and the current column status represents a general overview of the status of a single pod. Columns Memory and CPU have been deleted.
+
+#### Pods filter
+
+A new input select has been added to filter pods based on some fields, such as:
+- Status: ok/warning
+- Phase: completed/running/pending/error
+- Containers: restart
+
 ### Marketplace
 
 Java Hello World Template has been updated to Java lts version.
