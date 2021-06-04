@@ -369,6 +369,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/crud-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/crud-service/performance_overview"
                 }
               ]
             },
@@ -605,6 +609,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/swagger-aggregator/apis"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Temporary Password Generator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/temporary-password-generator/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/temporary-password-generator/how_to_use"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/temporary-password-generator/configuration"
                 }
               ]
             },

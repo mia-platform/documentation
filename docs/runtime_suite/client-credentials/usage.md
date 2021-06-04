@@ -9,7 +9,7 @@ In this section, we show you how to use the `client-credentials` service.
 
 ## Endpoints
 
-### /oauth/token
+### POST /oauth/token
 
 In the login flow, you should call the `/oauth/token` endpoint with method POST.
 
@@ -22,9 +22,9 @@ In the login flow, you should call the `/oauth/token` endpoint with method POST.
 Request must have a body in `x-www-form-urlencoded` containing:
 
 * the `grant_type=client_credentials`
-* the `audience=aud1` (required only if the **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** environment variable is set to `true`)
+* the `audience` (required only if the **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** environment variable is set to `true`)
 
-and a basic authorization header set as `base64(clientId:clientSecret)`.
+and a basic authorization header set as `Basic base64(clientId:clientSecret)`.
 
 The client expected response is in `application/json` and contains:
 
@@ -138,7 +138,7 @@ curl --location \
 ```
 
 
-### /.well-known/jwks.json
+### GET /.well-known/jwks.json
 
 Client credentials service exposes an endpoint `.well-known/jwks.json` with an object with the key `keys`, containing an array of JWK values. Those JWKs could be used to verify the signature of the JWT.
 
@@ -180,7 +180,7 @@ It is important to emphasize that, as stated by [RFC7517](https://tools.ietf.org
 
 > The member names within a JWK Set MUST be unique; JWK Set parsers MUST either reject JWK Sets with duplicate member names or use a JSON parser that returns only the lexically last duplicate member name [...].
 
-### /tokeninfo
+### GET /tokeninfo
 
 Calling this endpoint passing a valid Mia-Platform JWT, it returns 200 with the claims in an object.
 Here it is checked the validity of the JWT, if it is not passed or it is not valid this endpoint returns 401.
@@ -207,18 +207,18 @@ Example response:
 }
 ```
 
-### /register
+### POST /register
 
 The register endpoint has different [auth method](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication). The supported methods are `client_secret_basic` and `private_key_jwt`).
 One client has only one method possible.
 
 The default method (if is not passed during registration) is the `client_secret_basic`.
 
+Once called the endpoint, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
+
 #### Client secret basic
 
 This endpoint generates a new *client id* and *client secret* pair with given *applicationId*. It follows the RFC to [register to a client](https://tools.ietf.org/html/rfc7591).
-
-During the register, it is created the credentials in a specific db and collections, and a client using the given CRUD URL. The *cilent* information are accessible from the CRUD, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
 
 It returns 201 when credential pair and client is correctly generated, 401 otherwise.
 
@@ -241,9 +241,16 @@ Example response:
 }
 ```
 
+::note
+Note that the `client_secret` field will only be available during registration so take care to save it locally.
+::
 #### Private key JWT
 
 It is possible to pass the `token_endpoint_auth_method` parameter in input set to `private_key_jwt`.
+
+:::note
+You can use [this guide](jwt_keys) to generate JWT public and private key suitable for this operation.
+:::
 
 For this auth method, it is created a client. The *client* information are accessible from the CRUD, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
 
@@ -274,11 +281,6 @@ Example response:
     "client_id_issued_at": 1592229239
 }
 ```
-
-:::note
-You can use [this guide](jwt_keys) to generate JWT public and private key suitable for this operation.
-:::
-
 ## Supported Authentication Flow
 
 Below are reported the authentication flows that are supported by Client Credentials service. The flows are sequence diagrams descriptions.

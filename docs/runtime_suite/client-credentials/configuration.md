@@ -15,27 +15,26 @@ To create the collection correctly, import the CRUD fields from this [JSON](#cru
 We suggest you to create a unique index for the `clientId` field (which must not be duplicated).
 
 ## Environment variables
-This service is configurable with env variables.  
-The environment variables accepted by this service:
+This service is configurable with the following environment variables:
 
 * **LOG_LEVEL** (default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 * **HTTP_PORT** (default to `3000`): port where the web server is exposed;
 * **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
 * **DELAY_SHUTDOWN_SECONDS** (default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
-* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud collection containing the client information;
-* **CLIENT_ID_HASH_SALT** (*required*): static hash salt used to save the client id;
+* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud collection containing the client information. Example: `http://crud-service/clients` where `clients` is the name of the collection;
+* **CLIENT_ID_HASH_SALT** (*required*): static hash salt used to save the client id. For example, can be a random string of 256 characters;
 * **CLIENT_SECRET_HASH_COST** (default to `10`): the cost to generate the hash of the client secret (using bcrypt);
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
 * **MONGODB_CREDENTIALS_DATABASE_NAME** (*required*): the mongo db name which will include the `credentials` collection;
 * **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private rsa key;
 * **PRIVATE_KEY_PASSWORD**: password to decrypt the rsa key, if it is encrypted with a password. If it is empty, rsa key is treated as a non protected rsa key;
-* **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT;
+* **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string; 
 * **MIA_JWT_ISSUER** (*required*): string containing the issuer to fill the JWT claims. During the login flow, it is added as *iss*;
 * **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated jwt, in seconds;
 * **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
 * **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** (default to `false`): if audience is required in token request;
 * **ACCEPTED_AUDIENCES**: audience accepted by the service, if included in JWT `aud` claim;
-* **REDIS_HOST** (*required*): redis host with port
+* **REDIS_HOST** (*required*): redis host with port (default Redis port is 6379).
 
 ## RSA Key Management
 
@@ -50,7 +49,8 @@ To generate a new private key, you could run:
 openssl genrsa -out ~/private.key 4096
 ```
 
-The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `PRIVATE_KEY_PASSWORD` environment variable. You could run the following command to generate the key:
+The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `PRIVATE_KEY_PASSWORD` environment variable. 
+You could run the following command to generate the key with password:
 
 ```sh
 openssl genrsa -des3 -out ~/private.key 4096

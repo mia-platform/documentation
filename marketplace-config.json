@@ -273,6 +273,18 @@
     "docLandingPage": "runtime_suite/swagger-aggregator/overview"
   },
   {
+    "name": "Temporary Password Generator",
+    "description": "Generates Temporary-Passwords associated with arbitrary data payload to be later consumed.",
+    "category": {
+      "id": "utility",
+      "label": "Utility"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/temporary-password-generator/overview"
+  },
+  {
     "name": "Timer Service",
     "description": "The Timer Service allows scheduling of timers that perform custom actions upon expiry.",
     "category": {
