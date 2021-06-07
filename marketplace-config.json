@@ -13,6 +13,19 @@
     "docLandingPage": "runtime_suite/acl-service/overview"
   },
   {
+    "name": "API Portal",
+    "description": "Use Mia-Platform core API Portal to expose the swagger documentation of your development services in one unique place.",
+    "category": {
+      "id": "utility",
+      "label": "Utility"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/api-portal_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/api-portal/overview"
+  },
+  {
     "name": "Auth0 Client",
     "description": "Integrate with your Auth0 tenant using Mia-Platform core service Auth0 Client.",
     "category": {

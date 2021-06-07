@@ -315,6 +315,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "API Portal",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-portal/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-portal/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Auth0 Client",
               "items": [
                 {
