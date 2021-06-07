@@ -1,22 +1,24 @@
 ---
 id: api-documentations
-title: 'API Portal: Test & documentation'
-sidebar_label: API Portal
+title: 'Documentation Portal'
+sidebar_label: Documentation Portal
 ---
-## The API Portal
 
 Documentation is a vital part of any Restful API in order to drive consistency and discipline across your API development workflow.
 
-In the **Documentation Sections**, you can find automatically generated and kept in sync documentation, that semantically describes the API in a readable structure text format.
-The documentation let you know exactly how your API will work and behave, before integrating it into your code. It lists all the available REST-ends points and provides all detailed information: description, parameters, and schema.  
+The documentation Portal section in the Developer Console area exposes the Open API documentation of all services and CRUDs that you have defined and exposed. In this way, you will be able to obtain information about the routes exposed by your resources from a single section and to test the correct functioning of each of them.
+
+:::note
+API Portal service is responsible for the generation of the Documentation Portal section of the Console. To learn more about this plugin and how to use it to expose your Open API documentation, visit this [link](../../runtime_suite/api-portal/overview.md)
+:::
 
 You can share API documentation within your company, externally to partners and suppliers.
 
-In order to test the APIs, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag - in our case, we will select the Tag “Plates”.
+In order to test each API, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag.
 
-![](img/listPlates.png)
+For example, if you have created a CRUD with the "Plates" tag, you will be able to select it:
 
-The next sections will show you examples and information per request type: GET, POST, PATCH and DELETE.
+![Tag Selection](img/listPlates.png)
 
 The Console will show you a request example for each request type that you can use to easily test your Api. You just need to copy the request example, paste it in the Json editor and you will be ready to test your Api!
 
@@ -26,39 +28,41 @@ You can [apply custom configurations directly from the Console](../api-console/a
 :::
 
 :::tip
-If you want to hide some endpoints of your API from the API Portal documentation you can do this in the [Management section](../api-console/api-design/endpoints.md#manage-the-visibility-of-your-endpoints) of the endpoint you want to hide
+If you want to hide some endpoints of your API from the API Portal documentation you can do this in the [Management section](../../development_suite/api-console/api-design/endpoints.md#manage-the-visibility-of-your-endpoints) of the endpoint you want to hide.
 :::
+
+In the following section you will see how to interact with the Documentation Portal graphical interface and how to test your exposed routes by sending requests to them.
 
 ## CRUD Documentation
 
-After released a [CRUD](../api-design/../api-console/api-design/crud_advanced.md) you can find the relative APIs documentation in the API Portal.  
+After having exposed and released a [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) you can find the relative APIs documentation in the API Portal.  
 APIs are exposed automatically by the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage), check out the [CRUD Endpoints section](../../runtime_suite/crud-service/overview_and_usage#crud-endpoints) to know all details of endpoints and how to perform CRUD operations.  
 Below you can find some basic examples of CRUD operations you can do with API Portal.
 
-### GET request
+## GET request
 
-#### How to "Get a list of plates"
+### How to "Get a list of plates"
 
-If you want to test the GET end-point, you need to click the row that will open it up.
+If you want to test the GET endpoint, you need to click the row that will expand it.
 
 In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these specific contents will be passed upon the GET request.
 
-![](img/queryParams.png)
+![Query parameters](img/queryParams.png)
 
 You can hide the visibility of the content of an entire section by pushing the button **Collapse**.
 
-![](img/expand.png)
+![Collapse button](img/expand.png)
 
-Then you can reactive it by clicking **Expand**
+Then you can expand it again by clicking **Expand**
 
-By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by deselecting the boxes.
-As you can see below, we deselected creatorId and type, as they don't appear in the list.
+By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unticking the boxes.
+As you can see below, we unticked creatorId and type, as they don't appear in the list.
 
-![](img/object-properties.png)
+![Object Properties](img/object-properties.png)
 
 Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
 
-![](img/secretPlates.png)
+![Secret Authentication](img/secretPlates.png)
 
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
 
@@ -67,23 +71,23 @@ In the second box, you can see the response of the body with the list of the pla
 
 You can see all the Parameters Type: query, path, header, and body.
 
-![](img/GET.png)
+![GET Request](img/GET.png)
 
 In addition, you can also edit it in JSON as shown below.
 
-![](img/editJSON.png)
+![Json Editor](img/editJSON.png)
 
-### POST request
+## POST request
 
-#### How to "Add a new item to the plates collection"
+### How to "Add a new item to the plates collection"
 
-If you want to test the POST end-point, you need to click the row that will open it up. Now you have the ability to test the API request by entering the information that you need.
+In order to test the POST endpoint, you need to click the row that will open it up. Now you have the ability to test the API request by entering the information that you need.
 In our case we added a plate of "onion rings" with its description and its price.
 Then push **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code, a new ID was created and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
-![](img/PostOnion.png)
+![Post Request](img/PostOnion.png)
 
 Visibility. Always remember the status, whether it is private, public, trash or deleted.
 
@@ -92,36 +96,36 @@ Otherwise, you can add a new item to the collection by directly writing the info
 In our example, we successfully added the plate Lasagna, as we can see 200 as OK success status response code.
 Remember to tick all the boxes of the body params you want to add. In the example, you can see in the Json Schema we ticked "name" in the body params.
 
-![](img/postLasagna.png)
+![Post Request of Lasagna dish](img/postLasagna.png)
 
 You can also see the complete Json Schema and all the type variables both for the request and response.
 
-![](img/json.png)
+![Json Schema](img/json.png)
 
-### DELETE request
+## DELETE request
 
-#### How to "Delete a plate from the plates collection"
+### How to "Delete a plate from the plates collection"
 
-If you want to test the DELETE end-point, you need to click the row that will open it up. Now you have the ability to test the API request by putting the ID of the plate that you want to delete and then pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
+If you want to test the DELETE endpoint, you need to click the row that will open it up. Now you have the ability to test the API request by putting the ID of the plate that you want to delete and then pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in.
 
 Below you can see the screenshot of a successfull request to our running API. You can see 204 as No content status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
-![](img/deleteOnion.png)
+![Delete Request](img/deleteOnion.png)
 
-By opening the **Object Properties** you can hide the properties that you don't want to delete just by deselecting the boxes.
+By opening the **Object Properties** you can hide the properties that you don't want to delete just by unticking the boxes.
 
-For instance, we deselected all the properties that we want to keep.
+For instance, we unticked all the properties that we want to keep.
 You can also look for a property in the search box and then push **add**
 
-![](img/properties.png)
+![Hide Properties](img/properties.png)
 
 Visibility. Always remember the status, whether it is private, public, trash or deleted.
 
-### PATCH request
+## PATCH request
 
-#### How to "Update a plate of the collection by ID"
+### How to "Update a plate of the collection by ID"
 
-If you want to test the Patch end-point, you need to click the row that will open it up. Now you have the ability to test the API request by editing the fields you want.
+In order to test the Patch endpoint, you need to click the row that will open it up. Now you have the ability to test the API request by editing the fields you want.
 
 In our case, we want to edit the name of a plate from "Salmon" to "Salmon with veggie". We retrieved the correct ID from the GET request and we entered it in the "path params". Since we want to change the name of the plate, we will tick the operator **$set** and **name**, and we will type the new name: Salmon with veggie.
 
@@ -129,9 +133,9 @@ Then, push **Try it** - if the APIs are protected, you need to authenticate your
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code with the new name. In the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
-![](img/patchPlate.png)
+![Patch Request](img/patchPlate.png)
 
-#### Field Update Operators
+## Field Update Operators
 
 In the following table you can find the modifiers of the Body Params:
 
@@ -144,6 +148,10 @@ In the following table you can find the modifiers of the Body Params:
 | $currentDate  |Sets the value of a field to current date, either as a Date or a Timestamp |
 | $push         |Appends a specified value to an array                                      |
 
-By opening the **Object Properties** you can hide the properties that you don't want to edit just by deselecting the boxes.  
+:::info
+By opening the **Object Properties** you can hide the properties that you don't want to edit just by unticking the boxes.
+:::
 
-Visibility. Always remember the status, whether it is private, public, trash or deleted
+:::tip
+Always remember the status, whether it is private, public, trash or deleted.
+:::

@@ -1098,6 +1098,11 @@
         <priority>0.5</priority>
     </url>
     <url>
+        <loc>https://docs.mia-platform.eu/docs/runtime_suite/api-portal/overview.md</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
         <loc>https://docs.mia-platform.eu/docs/runtime_suite/auth-service</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>

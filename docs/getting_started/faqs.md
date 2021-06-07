@@ -99,7 +99,7 @@ No, you can only use **HTTP**.
 You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a document by making a POST request. Check out the [CRUD Service documentation](../runtime_suite/crud-service/overview_and_usage#state-transitions) for details.
 
 :::tip
-You can visit the [API Portal](../development_suite/api-portal/api-documentations) to see the documentation of your CRUDs APIs.
+You can visit the [Documentation Portal](../development_suite/api-portal/api-documentations) to see the documentation of your CRUDs APIs.
 :::
 
 ## Endpoints

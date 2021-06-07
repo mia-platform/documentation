@@ -95,7 +95,7 @@ Contact your Mia-Platform technical referent to update your pipelines.
 
 #### API Portal with proper log parser
 
-[API Portal](../development_suite/api-portal/api-documentations) is now configured to use proper `mia-nginx` log parser.
+[Documentation Portal](../development_suite/api-portal/api-documentations) is now configured to use proper `mia-nginx` log parser.
 
 #### Backoffice endpoint permission conversion
 
