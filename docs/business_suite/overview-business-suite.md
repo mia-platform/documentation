@@ -22,7 +22,7 @@ pattern.
 
 ### API Portal
 
-Real-time auto-generated [documentation](../development_suite/api-portal/api-documentations.md) of your development services. Test live your APIs, synchronize documentation, client libraries and source code, and get all the information you need in OpenAPI Specification.
+Real-time auto-generated [documentation](../runtime_suite/api-portal/overview.md) of your development services. Test live your APIs, synchronize documentation, client libraries and source code, and get all the information you need in OpenAPI Specification.
 
 ### Headless CMS
 

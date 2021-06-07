@@ -148,7 +148,7 @@ Check out the [API Key section](api_key.md) to know more about the API Keys.
 
 In the **Security Management** section, you can also manage the endpoint visibility in the API Portal.
 
-The `Show in API Portal` flag enabled allows seeing all endpoint routes in the [API Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
+The `Show in API Portal` flag enabled allows seeing all endpoint routes in the [Documentation Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
 
 The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be present in the API Portal and which should not.
 The `inherited` flag enabled (by default) will guarantee that the selected route will inherit the visibility of its base endpoint.

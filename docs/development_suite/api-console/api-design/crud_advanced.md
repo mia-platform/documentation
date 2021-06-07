@@ -140,7 +140,7 @@ The [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) wi
 This is particularly helpful when you want one of your microservices to maintain a specific state and, to do so, you need to persistently store some data. Since this data has the only purpose of describing the state of your microservice, it is preferable to avoid exposing it to the outside world (it can also be confidential data, that you want to keep private).  
 Therefore, our CRUD Service will handle this situation for you, by making your microservices interact with your CRUDs internal routes without the need to define an external endpoint route that will unnecessarily expose your CRUD.
 
-Otherwise, if you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](./endpoints). By doing so, you will be able to view your CRUD API Documentation in Mia-Platform [API Portal](../../api-portal/api-documentations), where you can also interact with your CRUD and test the calls to it.
+Otherwise, if you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](./endpoints). By doing so, you will be able to view your CRUD API Documentation in Mia-Platform [Documentation Portal](../../api-portal/api-documentations), where you can also interact with your CRUD and test the calls to it.
 
 :::info
 To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).

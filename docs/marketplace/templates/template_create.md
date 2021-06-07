@@ -143,4 +143,4 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 The template should be able to expose auto-generated documentation for each endpoint. It should exist a dedicated endpoint where show the API documentation.
 
-In order to properly view API documentation in the [*Api Portal* of the Console](./../../development_suite/api-portal/api-documentations.md), it should be exposed in [OAS3(Swagger) format](https://swagger.io/specification/).
+In order to properly view API documentation in the [*Documentation Portal* of the Console](../../development_suite/api-portal/api-documentations.md), it should be exposed in [OAS3(Swagger) format](https://swagger.io/specification/).

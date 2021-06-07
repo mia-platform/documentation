@@ -223,7 +223,7 @@ Once deployed our endpoints can immediately be tested with the API Portal.
 
 ## Try your API
 
-To try our CRUDs automatically exposed by an API, let's how access to [API Portal](../../development_suite/api-portal/api-documentations.md) to try it and see the auto-generated API documentation.
+To try our CRUDs automatically exposed by an API, let's how access to [Documentation Portal](../../development_suite/api-portal/api-documentations.md) to try it and see the auto-generated API documentation.
 
 Select from navigation bar *Documentation*, then select *Development*. You'll see the list of your CRUDs, each list contains the routes of your API, with a functionality description.
 
@@ -236,7 +236,7 @@ Try to get a list of dishes:
 Don't you see anything? Do not worry! There is no data in our CRUD yet. In the next step, we will create our first service and it will be just dedicated to generating test data.
 
 !!! info
-    You may already share the specs of your APIs with partners that are building the apps. You can export them to a JSON/Yaml file compliant with OpenAPI 3/Swagger format.  Check out the [API Portal documentation](../../development_suite/api-portal/api-documentations.md) to further detail.
+    You may already share the specs of your APIs with partners that are building the apps. You can export them to a JSON/Yaml file compliant with OpenAPI 3/Swagger format.  Check out the [Documentation Portal](../../development_suite/api-portal/api-documentations.md) to further detail.
 
 ### Create services
 

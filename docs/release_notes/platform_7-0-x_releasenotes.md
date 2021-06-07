@@ -30,7 +30,7 @@ A new plugin is available from the Mia-Platform Marketplace, the Payment Gateway
 
 #### API Portal GET with query params
 
-Fixed a bug that was preventing the application of custom query params to GET routes on the [API Portal](../development_suite/api-portal/api-documentations).  
+Fixed a bug that was preventing the application of custom query params to GET routes on the [Documentation Portal](../development_suite/api-portal/api-documentations).  
 
 ### UI improvements
 

@@ -162,7 +162,7 @@ Check out [Kubernetes official documentation](https://kubernetes.io/docs/tasks/c
 
 ## API Documentation
 
-Another important field in the microservice configuration is the _API documentation path_. This is the route called to fetch the automatically generated API Documentation to be shown in the [API Portal](https://docs.mia-platform.eu/docs/development_suite/api-portal/api-documentations). Even in this case, you don't have to write any code, this route is already integrated in the microservice.
+Another important field in the microservice configuration is the _API documentation path_. This is the route called to fetch the automatically generated API Documentation to be shown in the [API Portal](../../runtime_suite/api-portal/overview.md). Even in this case, you don't have to write any code, this route is already integrated in the microservice.
 
 As of now, our microservice doesn't expose any custom route. Later we'll see how to configure documentation for any route.
 
@@ -181,7 +181,7 @@ A pipeline will be triggered by the Console to start the deploy of your project.
 
 ## The API Portal
 
-After the deploy the [API Portal](../../development_suite/api-portal/api-documentations.md) allows us to see the API Documentations for the chosen environments.
+After the deploy the [API Portal](../../runtime_suite/api-portal/overview.md) allows us to see the API Documentations for the chosen environments.
 
 To access it, select the _Docs_ tab in the top menu and select `Development`, as the environment you deployed to:
 
@@ -534,7 +534,7 @@ Finally commit and push changes to master.
 
 Now, [deploy](../../development_suite/deploy/deploy) again the Console project to try the microservice.
 
-After the deploy open the [API Portal](../../development_suite/api-portal/api-documentations.md) and use the _Orders_ and _Customers_ CRUD routes to add some test data.
+After the deploy open the [API Portal](../../runtime_suite/api-portal/overview.md) and use the _Orders_ and _Customers_ CRUD routes to add some test data.
 
 Now you can try the `GET /get-shipping-cost` route:
 
@@ -633,7 +633,7 @@ Now you can commit and push the code to the master branch.
 
 Now, [deploy](../../development_suite/deploy/deploy) the Console project to try the microservice.
 
-After the deploy open the [API Portal](../../development_suite/api-portal/api-documentations.md) and try the `GET /get-shipping-cost` route:
+After the deploy open the [Documentation Portal](https://docs.mia-platform.eu/docs/development_suite/api-portal/api-documentations) and try the `GET /get-shipping-cost` route:
 
 ![API Portal try /get-shipping-cost](img/node-ms-api-portal-final-test.gif)
 
