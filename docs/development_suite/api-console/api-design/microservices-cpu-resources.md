@@ -32,7 +32,7 @@ It is not possible to be more precise than 1m and CPU is a always an absolute qu
 
 In the microservice detail of Mia-Platform Console, **you can only express the CPU Resource value in m**.
 
-You can use interpolated variables to value the CPU resources (e.g. `{{CPU_MIN}}`). The variables cannot contain the unit of measurement.
+You can use interpolated variables to value the CPU resources (e.g. `{{CPU_MIN}}`). The variables should contain only numerical values.
 
 :::note
 The check about that _Limit_ have to be greater than _Request_ won't be done if you use interpolated variables.
