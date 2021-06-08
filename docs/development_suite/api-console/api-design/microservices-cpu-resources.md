@@ -32,6 +32,12 @@ It is not possible to be more precise than 1m and CPU is a always an absolute qu
 
 In the microservice detail of Mia-Platform Console, **you can only express the CPU Resource value in m**.
 
+You can use interpolated variables to value the CPU resources (e.g. `{{CPU_MIN}}`). The variables cannot contain the unit of measurement.
+
+:::note
+The check about that _Limit_ have to be greater than _Request_ won't be done if you use interpolated variables.
+:::
+
 :::info
 To learn more about Memory Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.
 :::
