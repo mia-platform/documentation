@@ -21,7 +21,7 @@ If the maximum number of Memory Resources is not expressed, there could be two s
 
 * A default Memory Resource limit can be assigned to the Container if its relative namespace has a default memory limit.
 
-You can use interpolated variables to value the memory resources (e.g. `{{MEMORY_MIN}}`). The variables cannot contain the unit of measurement.
+You can use interpolated variables to value the memory resources (e.g. `{{MEMORY_MIN}}`). The variables should contain only numerical values.
 
 :::note
 The check about that _Limit_ have to be greater than _Request_ won't be done if you use interpolated variables.
