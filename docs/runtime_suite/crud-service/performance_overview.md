@@ -16,13 +16,11 @@ Results have been obtained through specific tests implementing a series of reque
 Specifically, two APIs have been tested to verify Crud Service resource consumption:
 
 - `GET /`: used to download a set of data, this has been tested in different scenarios:
- - using an empty collection;
- - using a collection filled with relatively small documents (~500B each) and downloading a full page (200 documents)
-
+    - using an empty collection;
+    - using a collection filled with relatively small documents (~500B each) and downloading a full page (200 documents)   
 - `PATCH /:id`: used to upload a query command to the service, this has been tested in different scenarios:
- - updating a small document by uploading a relatively small payload (~500KB)
- - updating a big document by uploading a relatively big payload (~5MB)
-
+    - updating a small document by uploading a relatively small payload (~500KB)
+    - updating a big document by uploading a relatively big payload (~5MB)
 Another scenario has been designed to stress the Crud Service with a relatively common use-case, having a constant (high) rate of small requests and some spikes with bigger requests (~500KB) (at a smaller rate).
 
 # Scenarios
