@@ -70,6 +70,10 @@
             },
             {
               "type": "doc",
+              "id": "development_suite/api-console/api-design/microservice-probes-resources"
+            },
+            {
+              "type": "doc",
               "id": "development_suite/api-console/api-design/templates_conf"
             }
           ]
