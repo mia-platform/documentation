@@ -437,6 +437,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/flow-manager-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/flow-manager-service/model_your_first_flow"
                 }
               ]
             },
