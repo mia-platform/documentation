@@ -31,6 +31,10 @@ In case the Containers ready field has the value `0/1` could be because the pod 
 
 ![list_of_pods](img/list_of_pods.png)
 
+:::info
+For more details, hovering the status icon, and the phase label the user will see a tooltip with more information 
+:::
+
 Within the table there are a series of action that can be performed:
 - It is possible to refresh the table manually or setting an auto-refresh timer with the specific button in the top-right corner to check changes in the pods status or phase.
 - With the `search` input field, and the `Filter by` selection it is possible to filter the list of pods by their name or setting specific values for some columns such as: Status, Phase and TotalPodsRestart.
@@ -38,10 +42,11 @@ Within the table there are a series of action that can be performed:
   
 - The burger icon on the right of each pod row let you decide to go to the specific microservice page inside the console or to restart the individual pod.
 
-:::caution 
+![burger_menu](img/burger_menu.png)
+
+:::caution
 Restarting a pod may cause a downtime of the service if not correctly replicated.
 :::
-![burger_menu](img/burger_menu.png)
 
 - The user may select one or more pods and choose to **restart** all the selected ones. 
   :::caution
