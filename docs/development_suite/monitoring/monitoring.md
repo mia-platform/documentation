@@ -9,7 +9,9 @@ The Monitoring Infrastructure section is the Developer Console area dedicated to
 
 The area is divided by the number of environments existing in the specific project. In the top menu, it is possible to change the environment to be monitored.
 
-Within each environment, you can view all the available pods and their current properties.
+Within each environment you can view, using the sidebar on the left, all the workloads that you can monitor, as pods.
+
+All the available pods and their current properties.
 The labels of the columns in the table are:
 * **Status** : Status representing a general overview of the pod state. Can be:
   * **OK**: the pod has phase completed or running, has all containers ready and has never restarted
@@ -40,9 +42,14 @@ Within the table there are a series of action that can be performed:
 - With the `search` input field, and the `Filter by` selection it is possible to filter the list of pods by their name or setting specific values for some columns such as: Status, Phase and TotalPodsRestart.
 ![filter_pods](img/filter.png)
   
-- The burger icon on the right of each pod row let you decide to go to the specific microservice page inside the console or to restart the individual pod.
+- The option icon on the right of each pod row allows you to:
+  - go to the specific microservice page in the design area of the console, if the pod type is `custom`;
+    ![burger_menu_ms](img/burger_menu_ms.png)
+  - go to the specific cron page in the design area of the console, if the pod type is `cronjob`;
+    ![burger_menu_cron](img/burger_menu_cron.png)
+  - to restart the individual pod, always visible.
+    ![burger_menu_cron](img/burger_menu_restart.png)
 
-![burger_menu](img/burger_menu.png)
 
 :::caution
 Restarting a pod may cause a downtime of the service if not correctly replicated.
