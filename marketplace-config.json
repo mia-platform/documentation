@@ -294,6 +294,7 @@
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/temporary-password-generator_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
     "docLandingPage": "runtime_suite/temporary-password-generator/overview"
   },
