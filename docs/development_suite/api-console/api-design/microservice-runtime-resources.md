@@ -47,6 +47,6 @@ To learn more about probes, please visit the [Kubernetes official API documentat
 
 ### Termination Grace Period
 
-Kubernetes can provide for graceful termination when Pods are no longer needed, by applying by default a Grace Period equal to 30 seconds.
+Kubernetes can provide a graceful termination when Pods are no longer needed, by applying by default a Grace Period equal to 30 seconds.
 
 This parameter can be configured by user into this Runtime card.
