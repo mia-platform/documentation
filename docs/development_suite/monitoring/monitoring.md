@@ -61,15 +61,35 @@ Restarting a pod may cause a downtime of the service if not correctly replicated
   :::
   ![multiselect](img/multiselect.png)
   
-Clicking on a pod name you can view its specific logs. The logs can be filtered, downloaded or deleted. It is possible to update the showed logs by clicking "Refresh Logs".
+Clicking on a pod name you can examine its overview and its specific logs.
+
+### Pod overview
+
+In the overview section you can see a recap of the pod general status.
 
 The user can also choose to **restart** their pod. Clicking "Restart Pod" the POD will be deleted and restarted. To view the new logs, the user will have to wait for the page to reload or to reload the page.
 
 :::caution
 Restarting a pod may cause a downtime of the service if not correctly replicated.
 :::
-![detail_pod](img/detail_pod.png)
 
+![overview_collapsed](img/overview_collapsed.png)
+
+Clicking on `Show container info` will be rendered a table that contains a recap of the containers running in the pod.
+
+![overview_not_collapsed](img/overview_not_collapsed.png)
+
+### Pod logs
+
+In the tab `Logs`, are rendered the logs of a container that is running in the pod.
+
+![pod_logs](img/pod_logs.png)
+
+The logs can be filtered, downloaded, deleted or prettified.
+
+![prettified_logs](img/prettified_logs.png)
+
+It is possible to update the showed logs by clicking "Refresh Logs".
 
 
 :::info
