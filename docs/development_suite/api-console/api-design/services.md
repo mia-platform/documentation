@@ -136,7 +136,7 @@ In this section, you can manage the resources dedicated to your microservice:
 
  ![service-detail-configuration](img/service-detail-configuration.png)
 
-* **Probes**: Se more about probes in this [page](./microservice-probes-resources.md) 
+* **Probes**: Se more about probes in this [page](./microservice-runtime-resources.md) 
 
 ### Environment Variable Configuration
 

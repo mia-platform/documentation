@@ -1,11 +1,11 @@
 ---
-id: microservice-probes-resources
-title: Microservice Probes Resources
-sidebar_label: Define Probes resources
+id: microservice-runtime-resources
+title: Microservice Runtime Resources
+sidebar_label: Define Runtime resources
 ---
-In the Runtime card, you can specify the container Rediness and Liveness probe.
+In the Runtime card, you can configure Readiness and Liveness probes, and the Termination Grace Period.
 
-![runtime-section](img/runtime-section.png)
+![runtime-section](img/Runtime-card.png)
 
 ### Probes
 In this section it is possible configure the following fields:
@@ -44,3 +44,9 @@ For livenessProbe this parameter has a fixed value of 1
 This value controls the minimum consecutive failures for the probe to be considered failed after having succeeded. (Kubernetes default value is 3, minimum value is 1).
 
 To learn more about probes, please visit the [Kubernetes official API documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#probe-v1-core).
+
+### Termination Grace Period
+
+Kubernetes can provide a graceful termination when Pods are no longer needed, by applying by default a Grace Period equal to 30 seconds.
+
+This parameter can be configured by user into this Runtime card.
