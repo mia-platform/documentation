@@ -49,17 +49,22 @@ Within the table there are a series of action that can be performed:
     ![burger_menu_cron](img/burger_menu_cron.png)
   - to restart the individual pod, always visible.
     ![burger_menu_cron](img/burger_menu_restart.png)
-
-
+    
+:::info
+When restarting a pod a modal like the one in figure will be shown to the user.
+:::
+![modal](img/modal.png)
 :::caution
 Restarting a pod may cause a downtime of the service if not correctly replicated.
 :::
 
-- The user may select one or more pods and choose to **restart** all the selected ones. 
+
+- The user may select one or more pods and choose to **restart** or view inside the table all the selected ones. 
   :::caution
     Restarting a pod may cause a downtime of the service if not correctly replicated. 
   :::
   ![multiselect](img/multiselect.png)
+  ![view_selected](img/view_selected.png)
   
 Clicking on a pod name you can examine its overview and its specific logs.
 
