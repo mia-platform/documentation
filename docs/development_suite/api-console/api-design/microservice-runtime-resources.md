@@ -47,6 +47,8 @@ To learn more about probes, please visit the [Kubernetes official API documentat
 
 ### Termination Grace Period
 
-Kubernetes can provide a graceful termination when Pods are no longer needed, by applying by default a Grace Period equal to 30 seconds.
+When a Pod needs to be destroyed Kubernetes allow the definition of a grace period to wait before the Pod gets forcibly killed.
+
+Techically it's the time that Kubernetes waits between sending a `SIG_TERM` and a `SIG_KILL`. Kubernetes default value is 30s.
 
 This parameter can be configured by user into this Runtime card.
