@@ -1,8 +1,10 @@
 ---
-id: usage
-title: How to use Auth0 client
-sidebar_label: Usage
+id: overview_and_usage
+title: Auth0 Client
+sidebar_label: Overview and Usage
 ---
+This service handles authentication and user management using Auth0 as identity provider.
+
 This service exposes different endpoints to handle authentication: `/authorize`, `/oauth/token`, `/logout` and `/userinfo` endpoints. A `/users/me` endpoint is also exposed for backward compatibility but its use is discouraged.
 
 Moreover, it handles users through the auth0 users management api.
