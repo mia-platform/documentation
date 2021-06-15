@@ -36,7 +36,7 @@
     "type": "plugin",
     "imagePath": "docs/runtime_suite/marketPlaceImg/auth0-client_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
-    "docLandingPage": "runtime_suite/auth0-client/configuration"
+    "docLandingPage": "runtime_suite/auth0-client/overview_and_usage"
   },
   {
     "name": "Client Credentials",

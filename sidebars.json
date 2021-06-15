@@ -338,11 +338,11 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-client/configuration"
+                  "id": "runtime_suite/auth0-client/overview_and_usage"
                 },
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-client/usage"
+                  "id": "runtime_suite/auth0-client/configuration"
                 }
               ]
             },

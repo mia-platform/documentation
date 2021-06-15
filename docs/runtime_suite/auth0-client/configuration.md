@@ -1,13 +1,36 @@
 ---
 id: configuration
-title: Auth0 Client
+title: Auth0 Client Configuration
 sidebar_label: Configuration
 ---
-This service handles authentication and user management using auth0 as an identity provider.
+## Environment Variables
+
+The Auth0-Client service accepts the following environment variables:
+
+- __LOG_LEVEL__: defines the logging level of the logger (default: info)
+- __HTTP_PORT__: defines the http port to use (default: 8080)
+- __SERVICE_PREFIX__: defines the service prefix (default: '')
+- __SERVICE_VERSION__: defines the service version
+- __SESSION_DURATION_SECONDS__: defines the session duration in seconds (default: 86400)
+- __SESSION_SCOPE__: defines the scope of the session
+- __REDIS_MODE__: defines the redis mode (normal or sentinel) (default: normal)
+- __REDIS_MASTER_NAME__: defines the redis master name
+- __REDIS_HOSTS__ (__required__): defines the redis hosts
+- __ORIGINAL_PROTOCOL_HEADER__ (__required__): defines the original protocol header
+- __SERVICE_CONFIG_FILE_NAME__ (__required__): defines the service config name
+- __SERVICE_CONFIG_PATH__ (__required__): defines the service config path
+
+The following environment variables are to sync user metadata in a `user` collection on every token create/update:
+
+- __MONGO_DB_URL__: defines the mongoDB url
+- __USERS_DATABASE_NAME__: defines `users` database name
+- __USERS_COLLECTION_NAME__: defines `users` collection name
+- __USERS_PROPERTIES_TO_SAVE__: defines `users` properties to save
+- __DELAY_SHUTDOWN_SECONDS__: defines the delay in seconds before shutting down (default: 10)
 
 ## Configuration
 
-The configuration must follow this schema:
+The Auth0-Client service uses a single config map called `auth0-client-config` and the file, `config.json`, containing the configuration must follow this schema:
 
 ```json
 {
