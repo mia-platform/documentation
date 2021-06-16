@@ -46,6 +46,7 @@
       "kubernetes",
       "locustfile",
       "makeitapp",
+      "mariadb",
       "mebibyte",
       "mebibytes",
       "medeia",
@@ -62,6 +63,7 @@
       "omnichannel",
       "openapi",
       "oplog",
+      "oracledb",
       "osxfuse",
       "pbcopy",
       "pino",
@@ -90,7 +92,24 @@
     "up'em",
     "ymdh",
     "yyyymmdd",
-    "FKMUVK"
+    "FKMUVK",
+    "Drun",
+    "wnameless",
+    "jdbc",
+    "Dgroup",
+    "Dartifact",
+    "ojdbc",
+    "Dpackaging",
+    "Dversion",
+    "Dfile",
+    "Dgenerate",
+    "devel",
+    "otps",
+    "MIIB",
+    "BAQEFA",
+    "Bgkqhki",
+    "INOUT",
+    "testdb"
   ],
   "dictionaries": ["softwareTerms", "companies", "misc"],
   // flagWords - list of words to be always considered incorrect
@@ -108,7 +127,8 @@
     "docs/runtime_suite/sdk_android.md",
     "docs/runtime_suite/sdk_ios.md",
 
-    "./docs/runtime_suite/client-credentials/usage.md"
+    "./docs/runtime_suite/client-credentials/usage.md",
+    "./docs/runtime_suite/sql-db-reader/configuration_and_usage.md"
   ],
   "allowCompoundWords": true
 }

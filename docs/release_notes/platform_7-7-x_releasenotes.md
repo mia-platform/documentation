@@ -31,7 +31,7 @@ Moreover, these endpoints can be used together with the API Portal endpoint to e
 
 #### Configure Readiness and Liveness probes, and Termination Grace Period
 
-Now it is possible to customize `httpGet path`, `initalDelaySeconds`, `periodSeconds`, `timeoutSeconds`, `successThreshold`, `failureThreashold` in new Runtime card into the detail page of a custom microservice.
+Now it is possible to customize `httpGet path`, `initialDelaySeconds`, `periodSeconds`, `timeoutSeconds`, `successThreshold`, `failureThreshold` in new Runtime card into the detail page of a custom microservice.
 Moreover, into new Runtime card, it is also possible to configure in seconds the termination Grace Period.
 
 See more information in our [doc](../development_suite/api-console/api-design/microservice-runtime-resources).
