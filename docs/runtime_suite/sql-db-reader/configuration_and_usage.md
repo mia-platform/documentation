@@ -22,7 +22,7 @@ Every profile config JSON must have following fields:
 
 * `name` : The profile name. It must be equal to profile filename without extension specification.
 * `options`: It's possible to specify some options, see below.
-* `queries`: Queries that are effectively executed from servce to DB. Currently are supported just one query profiles.
+* `queries`: Queries that are effectively executed from service to DB. Currently are supported just one query profiles.
 
 ### Profile requirements
 * profile file must be JSON file
@@ -47,7 +47,7 @@ Each profile json has an options field like this.
   "queries": [{...}]
 }
 ```
-Using this oprtions it's possible to configure service behaviour.
+Using this options it's possible to configure service behavior.
 
 |option|values|default|description|
 |-|-|-|-|
@@ -76,7 +76,7 @@ Standard query configuration includes the following fields
       {"label": "age", "name": "age", "type": "number"},
       {"label": "gender", "name": "gender", "type": "string"},
     ],
-    "where" : "name = giggi",
+    "where" : "name = robert",
     "order" : [{ "column": "age", "direction":"DESC" }]
   }]
 }
@@ -287,7 +287,7 @@ According to Mia-Platform release process *rc* could be:
 * omitted
 
 #### Promote `rc` release
-When your service is ready to production you can promote your rc version invoking the scritp with `promote` option.
+When your service is ready to production you can promote your rc version invoking the script with `promote` option.
 ```
     bash tag.sh promote
 ```
