@@ -246,6 +246,21 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "CMS Site",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/cms-site/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/cms-site/configuration"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Microservice Gateway",
           "items": [
             {
