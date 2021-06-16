@@ -49,6 +49,6 @@ To learn more about probes, please visit the [Kubernetes official API documentat
 
 When a Pod needs to be destroyed Kubernetes allow the definition of a grace period to wait before the Pod gets forcibly killed.
 
-Techically it's the time that Kubernetes waits between sending a `SIG_TERM` and a `SIG_KILL`. Kubernetes default value is 30s.
+Technically it's the time that Kubernetes waits between sending a `SIG_TERM` and a `SIG_KILL`. Kubernetes default value is 30s.
 
 This parameter can be configured by user into this Runtime card.

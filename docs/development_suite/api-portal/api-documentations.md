@@ -55,8 +55,8 @@ You can hide the visibility of the content of an entire section by pushing the b
 
 Then you can expand it again by clicking **Expand**
 
-By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unticking the boxes.
-As you can see below, we unticked creatorId and type, as they don't appear in the list.
+By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unchecking the boxes.
+As you can see below, we uncheck creatorId and type, as they don't appear in the list.
 
 ![Object Properties](img/object-properties.png)
 
@@ -112,9 +112,9 @@ Below you can see the screenshot of a successfull request to our running API. Yo
 
 ![Delete Request](img/deleteOnion.png)
 
-By opening the **Object Properties** you can hide the properties that you don't want to delete just by unticking the boxes.
+By opening the **Object Properties** you can hide the properties that you don't want to delete just by unchecking the boxes.
 
-For instance, we unticked all the properties that we want to keep.
+For instance, we uncheck all the properties that we want to keep.
 You can also look for a property in the search box and then push **add**
 
 ![Hide Properties](img/properties.png)
@@ -149,7 +149,7 @@ In the following table you can find the modifiers of the Body Params:
 | $push         |Appends a specified value to an array                                      |
 
 :::info
-By opening the **Object Properties** you can hide the properties that you don't want to edit just by unticking the boxes.
+By opening the **Object Properties** you can hide the properties that you don't want to edit just by unchecking the boxes.
 :::
 
 :::tip
