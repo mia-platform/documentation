@@ -6,4 +6,4 @@ sidebar_label: Configuration
 
 ## CMS Site configuration
 
-CMS Site plugin does not require any configuration file or any environment variables.
+CMS Site does not require any configuration file or any environment variables.
