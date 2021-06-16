@@ -70,7 +70,7 @@ Clicking on a pod name you can examine its overview and its specific logs.
 
 ### Pod overview
 
-In the overview section you can see a recap of the pod general status.
+In the overview section you can see generic information regaring the desired Pod and a recap of the containers that are part of the Pod itself.
 
 The user can also choose to **restart** their pod. Clicking "Restart Pod" the POD will be deleted and restarted. To view the new logs, the user will have to wait for the page to reload or to reload the page.
 
@@ -78,11 +78,7 @@ The user can also choose to **restart** their pod. Clicking "Restart Pod" the PO
 Restarting a pod may cause a downtime of the service if not correctly replicated.
 :::
 
-![overview_collapsed](img/overview_collapsed.png)
-
-Clicking on `Show container info` will be rendered a table that contains a recap of the containers running in the pod.
-
-![overview_not_collapsed](img/overview_not_collapsed.png)
+![overview_collapsed](img/overview.png)
 
 ### Pod logs
 
