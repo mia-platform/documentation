@@ -36,17 +36,17 @@ Files contained within the `PROFILE_FILES_PATH` have the following format:
     "name": "testdb.TEST_STORED_PROCEDURE_PRESENT",
     "parameters": [
         {
-         "name": "ingresso",
+         "name": "in",
          "dataType": "INTEGER",
          "parameterType": "IN"
         },
         {
-         "name": "ingresso_uscita",
+         "name": "in_out",
          "dataType": "INTEGER",
          "parameterType": "INOUT"
         },
         {
-         "name": "uscita",
+         "name": "out",
          "dataType": "INTEGER",
          "parameterType": "OUT"
         }

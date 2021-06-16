@@ -13,7 +13,7 @@ In order to access the [Documentation Portal](../../development_suite/api-portal
 
 After this, in the _Security Management_ card you should also set the **User Group Permission** to `false`.
 
-Lastly, in the _Routes_ card, you should create a route with `GET` as http verb and `/` as route path. For this newly created route unflag the `inherited` checkbox for the **User Group Permission** and set its value to `true`.
+Lastly, in the _Routes_ card, you should create a route with `GET` as http verb and `/` as route path. For this newly created route uncheck the `inherited` checkbox for the **User Group Permission** and set its value to `true`.
 
 :::note
 If you want to expose the Api Portal on an additional path, you have also to expose the Swagger Aggregator on the correct corresponding path.

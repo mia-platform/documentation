@@ -114,7 +114,7 @@ By now, your configuration file should look like this:
       },
        {
         "id": "orderFailed",
-        "description": "The order has not been completed succesfully",
+        "description": "The order has not been completed successfully",
         "isFinal": true
       }
     ]
@@ -222,7 +222,7 @@ Specify an **input event** and a **target state** for each event. Here's how you
       },
       {
         "id": "orderFailed",
-        "description": "The order has not been completed succesfully",
+        "description": "The order has not been completed successfully",
         "isFinal": true
       }
     ]
@@ -331,7 +331,7 @@ We need to specify a `businessStateId` and a `businessEventId` for each node we 
       },
       {
         "id": "orderFailed",
-        "description": "The order has not been completed succesfully",
+        "description": "The order has not been completed successfully",
         "isFinal": true,
         "businessStateId": 2
       }
@@ -433,7 +433,7 @@ Specify a **label** for each command inside an `outputCommand` field. Here's how
       },
       {
         "id": "orderFailed",
-        "description": "The order has not been completed succesfully",
+        "description": "The order has not been completed successfully",
         "isFinal": true,
         "businessStateId": 2
       }
@@ -530,7 +530,7 @@ The configuration file will look like this:
       },
       {
         "id": "orderFailed",
-        "description": "The order has not been completed succesfully",
+        "description": "The order has not been completed successfully",
         "isFinal": true,
         "businessStateId": 2
       }
