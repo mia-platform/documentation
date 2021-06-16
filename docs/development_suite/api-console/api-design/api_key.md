@@ -23,7 +23,7 @@ In order to create a new API Key, open the dedicated section in the *Design area
 
 ## How to use an API Key
 
-In the **Management section of the endpoint**, for each endpoint, you can specify if protect it with an API key and for which *ClientType* to authorize calls by using the `Only with an API Key` flag and the `User Group Permission` field.
+In the **Management section of the endpoint**, for each endpoint, you can specify if protect it with an API key and for which *ClientType* to authorize calls by using the `API Key required` flag and the `User Group Permission` field.
 
 You can call an endpoint using an API Key passing the value of the key by `secret`/`client-key` header:
 

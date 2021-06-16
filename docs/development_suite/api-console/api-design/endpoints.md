@@ -74,8 +74,8 @@ In the **Security Management** section, you can manage the security and the perm
 
 The security can be managed at three levels:
 
-1. The `Public` flag enabled allows to call endpoint **without the need to be logged in**. If it is disabled and the endpoint is invoked by an **unregistered user**, the request will receive an Unauthorized error.
-2. The `Only with an API Key` flag configures the endpoint to require setting the `secret`/`client-key` header with a valid [API Key](api_key.md). You can also set a `mia_client_key` cookie with the value of the API Key.
+1. The `Authentication required` flag disabled allows to call endpoint **without the need to be logged in**. If it is enabled and the endpoint is invoked by an **unregistered user**, the request will receive an Unauthorized error.
+2. The `API Key required` flag configures the endpoint to require setting the `secret`/`client-key` header with a valid [API Key](api_key.md). You can also set a `mia_client_key` cookie with the value of the API Key.
 :::tip Example of request passing an API Key
 `curl --request GET --url <https://your-url/endpoint> --header 'accept: application/json' --header 'secret: <Api Key value>'`
 :::
@@ -88,7 +88,7 @@ The security can be managed at three levels:
       ```
 
     :::info
-    If you have entered a Client Type the endpoint will be secured by API Key even if the `Only with an API Key` flag is disabled
+    If you have entered a Client Type the endpoint will be secured by API Key even if the `API Key required` flag is disabled
     :::
 
    * `groups.<group name>` or `<group name> in groups` to check the **group of logged user**. So you can limit the access to specified groups.
@@ -121,8 +121,8 @@ The group expression can also be set to `false` (to block all accesses to the AP
 
 For example, create an endpoint with the following security configuration:
 
-* **Public** flag set to `true`.
-* **Only with API Key** flag set to `false`.
+* **Authentication required** flag set to `false`.
+* **API Key required** flag set to `false`.
 * **User Group Permission** field set with the following expression: `groups.foo || clientType=="bar"`.
 
 With this configuration, calls to this endpoint will have a different outcome depending on the credentials the user provides/has. Here is a list of possible outcomes:
@@ -206,15 +206,15 @@ Regarding the http verb, you can choose among the following:
 Once you have created all the routes that you need, you can start configuring them and even decide a different behavior for each one.  
 By selecting one verb in the sidebar of this section it is possible to see a detailed view about the configuration of the selected route.  
 Here, it is possible to set or unset all the flags described in the other sections, but with a deeper granularity. In fact, while in the sections described before you were configuring your endpoint, in this section you are managing one specific route verb of your endpoint.  
-For example, if in the **Security Management** section, you have checked the **Public** flag of a **Microservice** type endpoint with basepath `/test` it means that **all** routes that start with `/test` will be **Public** too.  
-Instead if, in the same endpoint page, you uncheck the **Public** flag in the **Routes** section for the route `/management` with verb `DELETE` you will only change the behavior of that specific route with that specific verb.  
+For example, if in the **Security Management** section, you have unchecked the **Authentication required** flag of a **Microservice** type endpoint with basepath `/test` it means that **all** routes that start with `/test` will have the **Authentication required** flag unchecked too.  
+Instead if, in the same endpoint page, you check the **Authentication required** flag in the **Routes** section for the route `/management` with verb `DELETE` you will only change the behavior of that specific route with that specific verb.  
 Here we list some example routes and their behavior with the configuration explained above:
 
-* GET '/test': **Public** is `true`.
-* GET '/test/management': **Public** is `true`.
-* GET '/test/customers': **Public** is `true`.
-* DELETE '/test/management': **Public** is `false`.
-* DELETE '/test/management/sales': **Public** is `true`.
+* GET '/test': **Authentication required** is `false`.
+* GET '/test/management': **Authentication required** is `false`.
+* GET '/test/customers': **Authentication required** is `false`.
+* DELETE '/test/management': **Authentication required** is `true`.
+* DELETE '/test/management/sales': **Authentication required** is `false`.
 
 This feature is really helpful when you have to define a custom behavior for one of your routes that differs from the default one that you defined at endpoint level.
 
