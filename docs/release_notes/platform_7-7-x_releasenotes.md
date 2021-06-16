@@ -104,6 +104,10 @@ Security in accessing some endpoints has been reviewed and strengthened.
 
 Solved a bug that caused the exposure of microservice routes in the Documentation Portal when the microservice endpoint was configured to not show them.
 
+#### Empty auth0-client config
+
+Fixed a bug that caused a warning when saving a new project with a default empty auth0-client `config.json` configuration.
+
 ### Improvements
 
 #### Logs area
