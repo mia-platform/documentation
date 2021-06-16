@@ -48,9 +48,8 @@ sidebar_label: Enable Auth0
 
 6. To handle users through the **headless cms**, add in `cmsProperties.json` file extensions of `cms backend` service:
 
-   ```json
-   {
-
+```json
+{
   "users": {
     "id": "users",
     "type": "MIACollection",
@@ -536,5 +535,4 @@ sidebar_label: Enable Auth0
     }
   }
 }
-
-   ```
+```

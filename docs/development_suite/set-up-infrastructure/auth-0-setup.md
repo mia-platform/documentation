@@ -9,7 +9,7 @@ Once you have created your project and want to enable user management on your He
 
 Before reading this guide, make sure you have the following conditions:
 
-* in your project you must have auth0-client as an active services;
+* in your project you must have `auth0-client` as an active service;
 * you must have access to Auth0 to be able to configure it;
 * you need to create a new tenant on Auth0 with your client's name.
 
