@@ -38,7 +38,7 @@ See more information in our [doc](../development_suite/api-console/api-design/mi
 
 #### Real Time Updater as a custom service
 
-[Real Time Updaters](../fast_data/overview#real-time-updater) in charge of handling the projections are now visible in the Microservices area. You can edit their environment variables and replicas without passing through the Advanced section.
+[Real Time Updaters](../fast_data/real_time_updater/overview) in charge of handling the projections are now visible in the Microservices area. You can edit their environment variables and replicas without passing through the Advanced section.
 
 The following custom settings from Advanced file `fast-data` will be automatically inherited by the service and any change made from Advanced will not affect the service anymore:
 

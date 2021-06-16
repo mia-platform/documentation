@@ -27,7 +27,7 @@ You can implement it however you want.
 
 ### Real-Time Updater
 
-The Real-Time Updater component consumes Kafka messages and is in charge of keeping the **projections collections** up to date with the systems. For each System you create, a new real-time updater is automatically created (please note that they are not visible in the `Microservice` area).
+The Real-Time Updater component consumes Kafka messages and is in charge of keeping the **projections collections** up to date with the systems. For each System you create, a new real-time updater is automatically created (please note that they are visible in the `Microservice` area only after you have saved the configuration).
 
 Each source system table that contains data linked to a single view will have a projection collection. These collections contain the [standardized](sv_concepts#define-canonical-formats) values of the fields of the related system table. This set of collections will be used from the Single View Creator to update the single view collections.  
 In order to know which single view needs to be updated, the Single View Creator periodically reads a collection named `fast-data-projections-changes` which contains all the info it needs. To gather these data we need to define one strategy for each projection, because when the projection is affected by a change we need to calculate which single views are impacted. This is made possible by the `strategies`.
@@ -35,6 +35,10 @@ In order to know which single view needs to be updated, the Single View Creator 
 For instance if we have a table A that when modified impacts the tables B and C, when receiving a change on table A we need to calculate also the impacted rows on table B and table C and all the single views that depend on them.
 
 ![real-time updater schema](img/fastdata-realtimeupdater-schema-detail.png)
+
+:::note
+You cannot delete directly the Real-Time Updater service, you need to delete the System instead. The service will be removed after you have saved.
+:::
 
 ### Single View Creator
 
