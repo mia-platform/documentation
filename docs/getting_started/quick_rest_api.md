@@ -94,8 +94,8 @@ In the *Details* section you can set a **Default State**. If you select *PUBLIC*
 
 In the *Management* section you can manage the security at the endpoint level.
 
-If the route is **public**, you do not need to be logged in to be able to call it. If it is not public and is called by an unregistered user, it returns 401.
-If the **Only with an API key** flag is checked to be able to call the endpoint, you need to add the Secret header with the correct API Key that you can set in **API Key** item on the left menu.
+If the **Authentication required** flag is unchecked you do not need to be logged in to be able to call it. Instead, if the flag is set, and an unregistered user calls it, it will return an Unauthorized error.
+If the **API Key required** flag is checked, to be able to call the endpoint you need to add the Secret header with the correct API Key that you can set in **API Key** item on the left menu.
 
 **User group permission**: It is a logical expression to determine which groups have permission to call a given route. It can also be set to 0 (none) or to 1 (all). If the expression is true, then the user can access the route.
 
