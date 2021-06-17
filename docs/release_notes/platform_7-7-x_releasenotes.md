@@ -5,6 +5,24 @@ sidebar_label: v7.7
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.7.4
+
+_June 17, 2021_
+
+### Bug fix
+
+#### Saving after deleting a file in a configmap
+
+Fixed a bug that caused a warning `Unable to find all configuration for service: MICROSERVICE_NAME` after deleting a file in a configmap.
+
+#### Measure units in pod detail
+
+The correct measure units for CPU and Memory in pod details are displayed.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.11.5`.
+
 ## v7.7.3
 
 _June 16, 2021_
