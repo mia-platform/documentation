@@ -34,6 +34,17 @@ When a state transition finishes, the `flow-manager` state might issue a comman
 If the state has no _thunder icon_, it means that no command is triggered.
 :::
 
+#### Business States
+
+When working on a Flow Manager service you might desire to collapse many states under a single Business State that identifies the business logic that many single steps of the saga represent. When using custom businessStates a different color is applied to each state to help the user clearly visualize states that share the same Business State.
+
+
+<div style={{textAlign: 'center'}}>
+
+![Two states with triggered command](img/flow-manager/full-flow-business-states.png)
+
+</div>
+
 ### Events
 
 An event is represented by the small card with an _arrow icon_ on its left, all events are displayed below the state where they may cause a state transition.
