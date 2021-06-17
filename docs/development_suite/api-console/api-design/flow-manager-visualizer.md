@@ -60,8 +60,15 @@ From the displayed example, imagine the `flow-manager` service current state for
 - `DECRYPTED` event will lead us to the `authState`;
 - `TIMEOUT` event will lead us to another state (e.g. a specific state where a timeout error is handled).
 
-Moreover, in order to simplify the flow visualization, those events that lead to the same state are aggregated together, and by clicking on 'view more', it is possible to expand the view and visualize all of them.
+In order to simplify the flow visualization, the events that lead to the same state are aggregated together by default and clicking on 'view more', it is possible to expand the view and visualize all of them.
 
+![Collapsed event with view more](img/flow-manager/event-view-more.gif)
+
+## Collapse/Expand Mode
+
+The default visual setting about the aggregated events and the closed channel panels of the states can be easily switched on/off using the button "Collapse/Expand All", also in highlight mode.
+
+![Change Expand/Collapse mode](img/flow-manager/expand-collapse.gif)
 
 
 ## Highlights
@@ -81,3 +88,13 @@ User can reset all the highlights that have been progressively turned on by clic
 ![Highlight disable](img/flow-manager/highlight.gif)
 
 </div>
+
+## Button Panel
+
+![fullscreenOn](img/flow-manager/buttons/fullscreenOn.png) ![fullscreenOff](img/flow-manager/buttons/fullscreenOff.png) Activate/Deactivate Fullscreen Mode 
+
+![legend](img/flow-manager/buttons/legend.png) Open the legend
+
+![expand](img/flow-manager/buttons/expand.png) ![collapse](img/flow-manager/buttons/collapse.png) Switch in expand/collapse mode 
+
+![highlightOn](img/flow-manager/buttons/highlightOn.png) ![highlightOff](img/flow-manager/buttons/highlightOff.png) Activate/Deactivate Highlight Mode
