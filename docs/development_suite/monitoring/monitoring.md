@@ -43,17 +43,18 @@ Within the table there are a series of action that can be performed:
 ![filter_pods](img/filter.png)
   
 - The option icon on the right of each pod row allows you to:
-  - go to the specific microservice page in the design area of the console, if the pod type is `custom`;
-    ![burger_menu_ms](img/burger_menu_ms.png)
-  - go to the specific cron page in the design area of the console, if the pod type is `cronjob`;
-    ![burger_menu_cron](img/burger_menu_cron.png)
+  - go to the specific configuration page in the design area of the console, if the pod type is `custom` or `cronjob`;
+    ![burger_menu_ms](img/burger_menu_config.png)
+  - go to the logs of a container, always visible;
+  - go to the previous logs of a container, always visible;
   - to restart the individual pod, always visible.
-    ![burger_menu_cron](img/burger_menu_restart.png)
+    ![burger_menu_cron](img/burger_menu_logs.png)
     
 :::info
-When restarting a pod a modal like the one in figure will be shown to the user.
+When restarting a pod a modal like the one in figure will be shown to the user giving a feedback of which pods are going to be restarted and the result of the restart itself.
 :::
 ![modal](img/modal.png)
+![modal_restarted](img/modal_restarted.png)
 :::caution
 Restarting a pod may cause a downtime of the service if not correctly replicated.
 :::
