@@ -288,6 +288,21 @@
         {
           "type": "doc",
           "id": "runtime_suite/session-manager"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Export Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/export-service/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/export-service/configuration"
+            }
+          ]
         }
       ]
     },
