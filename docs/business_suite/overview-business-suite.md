@@ -28,6 +28,10 @@ Real-time auto-generated [documentation](../runtime_suite/api-portal/overview.md
 
 A practical and intuitive interface to Create, Read, Update and Delete content on APIs, independently from the front-ends. Control different types of Users, Customize CMS and dashboards for your business and deliver a real Omnichannel Customer Experience.
 
+### CMS Site
+
+A microservice providing a web interface to help users directly interact with the CMS. More information about it can be found [here](../runtime_suite/cms-site/overview.md).
+
 ### Analytics
 
 Take decisions leveraging the power of your data. Set your KPIs and monitor your performances in real time with beautiful dashboards.
