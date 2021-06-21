@@ -12,3 +12,7 @@ It is possible to organize the content in *categories*, which improves navigatio
 ### Custom Frontends
 
 With the CMS Site it is possible to include custom frontends to display some desired content all in one place. A popular choice of custom frontends is [data visualization](../../business_suite/data-visualization).
+
+## Configuration
+
+CMS Site does not require any configuration file or any environment variables.

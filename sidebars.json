@@ -251,10 +251,6 @@
             {
               "type": "doc",
               "id": "runtime_suite/cms-site/overview"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/cms-site/configuration"
             }
           ]
         },
