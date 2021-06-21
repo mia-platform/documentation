@@ -5,6 +5,20 @@ sidebar_label: v7.7
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.7.5
+
+_June 21, 2021_
+
+### Bug fix
+
+#### ConfigMap file creation in advanced services
+
+Fixed a bug preventing users to save their configuration after adding a file to a configMap in an advanced service.
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.11.7`.
+
 ## v7.7.4
 
 _June 17, 2021_
