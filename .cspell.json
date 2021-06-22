@@ -79,7 +79,9 @@
       "userid",
       "userinfo",
       "userproperties",
-      "yavi"
+      "yavi",
+      "miactl",
+      "miaplatformctl"
   ],
   "ignoreWords": [
     "algs",
@@ -110,7 +112,8 @@
     "BAQEFA",
     "Bgkqhki",
     "INOUT",
-    "testdb"
+    "testdb",
+    "fpath"
   ],
   "dictionaries": ["softwareTerms", "companies", "misc"],
   // flagWords - list of words to be always considered incorrect
