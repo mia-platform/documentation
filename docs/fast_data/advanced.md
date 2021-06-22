@@ -43,7 +43,7 @@ You need to add the following index fields:
 - *name* `type`, *order* `ASCENDENT`
 - *name* `identifier`, *order* `ASCENDENT`
 
-After that, you need to set your collection as the one to be used by the Real-Time Updater. To do that, go to the `Advanced` section of the `Design` area in Console, open `fast-data` from menù and open the `projections.json` file.
+After that, you need to set your collection as the one to be used by the Real-Time Updater. To do that, go to the `Advanced` section of the `Design` area in Console, open `fast-data` from menu and open the `projections.json` file.
 Here, you should write a configuration object:
 
 ```json
