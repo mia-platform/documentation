@@ -46,7 +46,7 @@ Within the table there are a series of action that can be performed:
   - go to the specific configuration page in the design area of the console, if the pod type is `custom` or `cronjob`;
     ![burger_menu_ms](img/burger_menu_config.png)
   - go to the logs of a container, always visible;
-  - go to the previous logs of a container, always visible;
+  - go to the previous logs of a container, visible only if the pod has ever restarted;
   - to restart the individual pod, always visible.
     ![burger_menu_cron](img/burger_menu_logs.png)
     
