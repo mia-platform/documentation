@@ -12,23 +12,22 @@ To contribute to the Mia-Platform docs:
       - `new` if you are working on a new page or section related to features already in production.  
       - `project` if you are writing the documentation of a project before or during the development.  
       - `remove` if you are deleting information.  
-      
+
     - **task (optional)**: the ID of the task you are working on, if existing.
 
     - **topic**: a short description of what you are documenting.
 
-    Example: `new/MD-333-authentication-section`    
+    Example: `new/MD-333-authentication-section`
 
     Additionally, branches named `release-note/vX.Y.Z` are dedicated to the documentation of the `Mia-Platform` incoming updates.
 
     > :warning: **It's strictly important to follow branch name conventions**
 
-3. Share your knowledge!
+3. Share your knowledge following the [style guidelines](./styleguide.md)!
 
 4. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
 
 5. Submit a merge request (name it according to the rule: `Activity (task): topic`), then post the MR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
-  
 
 ## Repository structure
 
