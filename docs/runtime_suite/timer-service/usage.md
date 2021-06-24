@@ -5,7 +5,7 @@ sidebar_label: Usage
 ---
 The _Timer Service_ is very easy to use.
 
-It provides _REST APIs_ to interact with him, or:
+It provides _REST APIs_ to interact with it, or:
 
 - **/schedule** a new expiration event (a timer)
 
@@ -281,7 +281,8 @@ This can be done by scheduling a timer by calling the POST route `timer-service/
     "type": "rest",
     "method": "post",
     "protocol": "https",
-    "hostname": "user-orders:3000",
+    "hostname": "user-orders",
+    "port": 3000,
     "path": "/order-expired"
   }
 }
@@ -329,7 +330,8 @@ Like the example above a client can schedule a timer to send a payload to a REST
     "type": "rest",
     "method": "post",
     "protocol": "https",
-    "hostname": "user-orders:3000",
+    "hostname": "user-orders",
+    "port": 3000,
     "path": "/order-expired"
   }
 }
@@ -504,7 +506,7 @@ You can use the following Postman collection to call the _Timer Service_ REST AP
           "header": [],
           "body": {
             "mode": "raw",
-            "raw": "{\n    \"payload\": {\n        \"user\": {\n            \"name\": \"John\",\n            \"surname\": \"Smith\"\n        },\n        \"_id\": \"098abc765def\",\n        \"orderId\": \"abc123def456\"\n    },\n    \"startDate\": \"2020-04-06T08:57:04.650Z\",\n    \"expirationIntervalMs\": 600000,\n    \"applicantService\": \"user-orders\",\n    \"outputMode\": {\n        \"type\": \"rest\",\n        \"method\": \"post\",\n        \"protocol\": \"https\",\n        \"hostname\": \"user-orders:3000\",\n        \"path\": \"/order-expired\"\n    }\n}",
+            "raw": "{\n    \"payload\": {\n        \"user\": {\n            \"name\": \"John\",\n            \"surname\": \"Smith\"\n        },\n        \"_id\": \"098abc765def\",\n        \"orderId\": \"abc123def456\"\n    },\n    \"startDate\": \"2020-04-06T08:57:04.650Z\",\n    \"expirationIntervalMs\": 600000,\n    \"applicantService\": \"user-orders\",\n    \"outputMode\": {\n        \"type\": \"rest\",\n        \"method\": \"post\",\n        \"protocol\": \"https\",\n        \"hostname\": \"user-orders\",\n        \"port\": 3000,\n        \"path\": \"/order-expired\"\n    }\n}",
             "options": {
               "raw": {
                 "language": "json"

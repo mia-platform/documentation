@@ -27,83 +27,102 @@ One of *PATH_PREFIX* and *PROJECT_HOSTNAME* is required.
 The storage service configuration must follow this json schema: 
 
 ```json
-/*
- * Copyright © 2018-present Mia s.r.l.
- * All rights reserved
- */
-
-'use strict'
-
-module.exports = {
-  oneOf: [
-    {
+{
+  type: 'object',
+  required: ['type', 'options'],
+  additionalProperties: false,
+  properties: {
+    type: {
+      type: 'string',
+      enum: ['mongodb']
+    },
+    cache: {
       type: 'object',
-      required: ['type', 'options'],
+      description: 'Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.',
+      properties: {
+        cacheControlMaxAge: {
+          type: 'number',
+          description: 'The number of seconds that should be applied as max-age in the cache-control header'
+        }
+      }
+    },
+    options: {
+      type: 'object',
+      required: ['url', 'bucketName'],
       additionalProperties: false,
       properties: {
-        type: {
-          type: 'string',
-          enum: ['mongodb'],
-        },
-        options: {
-          type: 'object',
-          required: ['url', 'bucketName'],
-          additionalProperties: false,
-          properties: {
-            url: { type: 'string' },
-            bucketName: { type: 'string' },
-          },
-        },
-      },
+        url: { type: 'string' },
+        bucketName: { type: 'string' }
+      }
+    }
+  }
+},
+{
+  type: 'object',
+  required: ['type', 'options'],
+  additionalProperties: false,
+  properties: {
+    type: {
+      type: 'string',
+      enum: ['s3']
     },
-    {
+    cache: {
       type: 'object',
-      required: ['type', 'options'],
+      description: 'Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.',
+      properties: {
+        cacheControlMaxAge: {
+          type: 'number',
+          description: 'The number of seconds that should be applied as max-age in the cache-control header'
+        }
+      }
+    },
+    options: {
+      type: 'object',
+      required: ['key', 'secret', 'bucketName'],
       additionalProperties: false,
       properties: {
-        type: {
+        key: { type: 'string' },
+        secret: { type: 'string' },
+        bucketName: { type: 'string' },
+        region: {
           type: 'string',
-          enum: ['s3'],
+          default: 'eu-west-1'
         },
-        options: {
-          type: 'object',
-          required: ['key', 'secret', 'bucketName'],
-          additionalProperties: false,
-          properties: {
-            key: { type: 'string' },
-            secret: { type: 'string' },
-            bucketName: { type: 'string' },
-            region: {
-              type: 'string',
-              default: 'eu-west-1',
-            },
-            endpoint: { type: 'string' },
-            s3ForcePathStyle: { type: 'boolean' },
-            signatureVersion: { type: 'string' },
-          },
-        },
-      },
+        endpoint: { type: 'string' },
+        s3ForcePathStyle: { type: 'boolean' },
+        signatureVersion: { type: 'string' }
+      }
+    }
+  }
+},
+{
+  type: 'object',
+  required: ['type', 'options'],
+  additionalProperties: false,
+  properties: {
+    type: {
+      type: 'string',
+      enum: ['googleStorage']
     },
-    {
+    cache: {
       type: 'object',
-      required: ['type', 'options'],
+      description: 'Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.',
+      properties: {
+        cacheControlMaxAge: {
+          type: 'number',
+          description: 'The number of seconds that should be applied as max-age in the cache-control header'
+        }
+      }
+    },
+    options: {
+      type: 'object',
+      required: ['bucketName'],
       additionalProperties: false,
       properties: {
-        type: {
-          type: 'string',
-          enum: ['googleStorage'],
-        },
-        options: {
-          type: 'object',
-          required: ['bucketName'],
-          additionalProperties: false,
-          properties: {
-            bucketName: { type: 'string' },
-          },
-        },
-      },
-    },
-  ],
+        bucketName: { type: 'string' }
+      }
+    }
+  }
 }
 ```
 
@@ -189,6 +208,12 @@ This file looks like
 
 Once obtained this file, you should not commit `private_key_id` and `private_key`.
 The `private-key` is a certificate with newline code (`\n`). In order to interpolate with in deploy stage of gitlab ci, it should be saved replacing `\n` with `\\\n`.
+
+### Cache configuration
+
+If the used bucket does not provide any caching mechanism, the Files Service can provide it. To make use of it you can
+add the `cache` property to the configuration file. If you set the `cacheControlMaxAge` property then a `cache-control`
+header will be set in the response of each file with the `max-age` attributed defined with the provided number of seconds.
 
 ### Caster file
 
