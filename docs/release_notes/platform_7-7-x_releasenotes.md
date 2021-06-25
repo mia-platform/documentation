@@ -5,6 +5,20 @@ sidebar_label: v7.7
 image: "img/release-note-link-preview.png"
 ---
 
+## v7.7.6
+
+_June 25, 2021_
+
+### Bug Fix
+
+#### Default probes for real time updater
+
+After the creation of a [System of Record](../fast_data/create_projection#create-a-system-of-records), at commit the associated Real Time Updater is created with the correct default values for initial delay and period of the Readiness and Liveness [probes](../development_suite/api-console/api-design/microservice-runtime-resources).
+
+### How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.12.1`.
+
 ## v7.7.5
 
 _June 21, 2021_
