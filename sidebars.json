@@ -732,6 +732,10 @@
             },
             {
               "type": "doc",
+              "id": "business_suite/microlc/core_plugins"
+            },
+            {
+              "type": "doc",
               "id": "business_suite/microlc/setup"
             }
           ]
