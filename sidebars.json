@@ -255,25 +255,6 @@
           ]
         },
         {
-          "collapsed": true,
-          "type": "category",
-          "label": "Microservice Gateway",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/microservice-gateway/overview"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/microservice-gateway/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/microservice-gateway/performance"
-            }
-          ]
-        },
-        {
           "type": "doc",
           "id": "runtime_suite/auth-service"
         },
@@ -527,6 +508,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/microlc-redoc-plugin/overview"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Microservice Gateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microservice-gateway/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microservice-gateway/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microservice-gateway/performance_overview"
                 }
               ]
             },

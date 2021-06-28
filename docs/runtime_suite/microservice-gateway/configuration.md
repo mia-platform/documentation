@@ -3,6 +3,19 @@ id: configuration
 title: Microservice Gateway configuration
 sidebar_label: Configuration
 ---
+This service can be added to your project by visiting Mia-Platform Marketplace and creating a new microservice from the Microservice Gateway plugin.
+
+:::info
+The Microservice Gateway supports custom CA certs. If you want to learn more about these certificates and how to configure them in your Microservice Gateway visit [this page](../../development_suite/api-console/api-design/services#provide-a-ca-certificate-to-a-custom-service)
+:::
+
+## Environment variables
+
+- CONFIGURATION_PATH (__required__): defines the path of the configuration file
+- TRUSTED_PROXIES: defines a list of trusted proxies ips
+- DISABLE_STRICT_CONTENT_TYPE_CHECK: disable the strict content type check (default true)
+
+## Configuration
 
 The configuration must adhere to the following schema:
 
