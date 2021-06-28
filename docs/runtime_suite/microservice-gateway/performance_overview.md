@@ -1,9 +1,8 @@
 ---
-id: performance
+id: performance_overview
 title: Microservice Gateway performance
 sidebar_label: Performance overview
 ---
-
 ### `PRE` and `POST` hooks
 
 It is not convenient to use them to define and model business flows and to manage logics with high performances.

@@ -169,6 +169,19 @@
     "docLandingPage": "runtime_suite/microlc-redoc-plugin/overview"
   },
   {
+    "name": "Microservice Gateway",
+    "description": "The Microservice Gateway provides the ability to specify HTTP hooks to be invoked before and after each request",
+    "category": {
+      "id": "stream",
+      "label": "Data Stream"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/microservice-gateway_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/microservice-gateway/overview"
+  },
+  {
     "name": "Mongo2Kafka",
     "description": "Stream your MongoDB changes to Kafka",
     "category": {

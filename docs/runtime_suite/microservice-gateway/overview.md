@@ -10,7 +10,11 @@ The Microservice Gateway takes care of making calls to these hook services speci
 
 Hook microservices must meet a precise HTTP interface to be successfully interrogated by the Microservice Gateway.
 
-![microservive-gateway](../img/mg.PNG)
+![microservive-gateway](./img/mg.png)
+
+:::note
+At the moment, it is not possible to add a second Microservice Gateway from the Marketplace if it is already present in your branch.
+:::
 
 ### `PRE` and `POST` Hooks
 
@@ -23,8 +27,7 @@ Pre and Post Hooks are reusable and convenient tools that can be used with the c
 
 Moreover, to standardize responses, conversion mapping and ACL can be used as standard architectures.
 
-If you want to understand how to set them on the Console, visit the [create decorators section](../../development_suite/api-console/api-design/decorators.md), while 
-for suggestions about their performance, check the [performance overview section](performance_overview.md#pre-and-post-hooks).
+If you want to understand how to set them on the Console, visit the [create decorators section](../../development_suite/api-console/api-design/decorators.md), while for suggestions about their performance, check the [performance overview section](./performance_overview.md#pre-and-post-hooks).
 
 ### Service logging
 
