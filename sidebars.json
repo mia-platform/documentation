@@ -1019,6 +1019,17 @@
       "label": "Versions",
       "items": [
         {
+          "type": "category",
+          "label": "v7.8",
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "release_notes/RN_v7-8/v7.8.0"
+            }
+          ]
+        },
+        {
           "type": "doc",
           "id": "release_notes/v7.7.x"
         },
