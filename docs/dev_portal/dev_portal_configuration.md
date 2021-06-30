@@ -70,7 +70,7 @@ To deploy docusaurus, you can use the plugin `Microlc Docusaurus Template` avail
 2. Create a new microservice using the `Microlc Docusaurus Template` in the `Dev Portal` category of the marketplace;
    ![Docusaurus Template](img/docusaurus_adapter_marketplace.png)
 3. Configure the microservice with a custom name and description;
-4. Complete the creation to deploy an instance of the adapter.
+4. Complete the creation to deploy an instance of the template.
 
 ### 6. Docusaurus endpoint configuration
 
