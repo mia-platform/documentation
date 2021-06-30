@@ -366,6 +366,11 @@ We need to specify a `businessStateId` and a `businessEventId` for each node we 
 }
 ```
 
+The result should appear like in the image below:
+
+![businessStates](img/flow-manager-business-states.png)
+
+
 #### Configure commands
 
 Once we have identified every possible state and change of state describing our process, we can define which **commands** can be actuated to execute external services or other parts of our application. 
