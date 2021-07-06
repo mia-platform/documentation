@@ -268,19 +268,20 @@ Remember that all the files in `tests` or `test` folder and files with filename 
 For example, in this folder:
 
 ```txt
-configurations/
-    |-- fast-data-files
-        |-- package.json
-        |-- strategies/
-              |-- my-system/
-                    |-- myFn1.js
-                    |-- myFn2.js
-                    |-- myFn1.test.js
-                    |-- tests/
-                          |-- myFn2.js
+|-- fast-data-files
+    |-- package.json
+    |-- strategies/
+          |-- my-system/
+                |-- myFn1.js
+                |-- myFn2.js
+                |-- myFn1.test.js
+                |-- tests/
+                      |-- myFn2.js
 ```
 
 the file included in Real Time Updater service will be `myFn1.js` and `myFn2.js`.
+
+The folder `fast-data-files` must be created at the root level of the configuration repository of your project.
 
 To enable the continuous integration, you could start a pipeline checking for changes inside the `fast-data-files` folder and triggers test, lint and others useful scripts.
 
