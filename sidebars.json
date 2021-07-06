@@ -728,6 +728,10 @@
             },
             {
               "type": "doc",
+              "id": "business_suite/microlc/general_configuration"
+            },
+            {
+              "type": "doc",
               "id": "business_suite/microlc/plugin_configuration"
             },
             {

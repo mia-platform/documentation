@@ -117,7 +117,7 @@ branding of the application.
 - _required_: `false`;
 - _description_: the location on the page in which the menu is located;
 - _default_: `sideBar`;
-- _accepted values_: [`sideBar`, `topBar`].
+- _accepted values_: [`sideBar`, `topBar`, `fixedSideBar`].
 
 ## Plugin parameters
 
