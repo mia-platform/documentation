@@ -137,7 +137,7 @@ Enable the flag `inherited` to use the displayed default expression or disable t
 ![endpoint_security](img/qs-configure-endpoint-api-key.png)
 
 :::tip
-If you figure out that there is some problem in how you configured the security of your endpoints, go to [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of [Authorization Service](../../../runtime_suite/authorization-service/how_to_use.md). Here you can see the logs about authorization operations, included eventually group expression errors.
+If you figure out that there is some problem in how you configured the security of your endpoints, go to [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of [Authorization Service](../../../runtime_suite/authorization-service/usage.md). Here you can see the logs about authorization operations, included eventually group expression errors.
 :::
 
 :::tip Api Key

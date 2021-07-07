@@ -48,11 +48,11 @@ For every received request, it will redirect its headers to the Authorization se
 
 ### Authorization Service
 
-[Authorization Service](../../runtime_suite/authorization-service/how_to_use) is in charge of verifying whether user groups and permissions are enough for each specific request. This service receives all the request headers received by the API Gateway and will proxy a subset of them to the Authentication Manager.
+[Authorization Service](../../runtime_suite/authorization-service/usage.md) is in charge of verifying whether user groups and permissions are enough for each specific request. This service receives all the request headers received by the API Gateway and will proxy a subset of them to the Authentication Manager.
 The Authentication Manager should then return a response body containing user id (it is required, the field of the id is configurable), other user properties, groups and/or permissions. The Authorization Service will examine this information and it will proxy the result of this check to the API Gateway through a specific set of headers.
 
 :::info
-For more information about how you can configure the Authorization Service to call a custom Authorization Manager and how to choose the headers that should be proxied to it, visit this [link](../../runtime_suite/authorization-service/how_to_use)
+For more information about how you can configure the Authorization Service to call a custom Authorization Manager and how to choose the headers that should be proxied to it, visit this [link](../../runtime_suite/authorization-service/usage.md)
 :::
 
 ### Authentication Manager

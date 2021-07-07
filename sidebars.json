@@ -265,10 +265,6 @@
           "items": [
             {
               "type": "doc",
-              "id": "runtime_suite/authorization-service/how_to_use"
-            },
-            {
-              "type": "doc",
               "id": "runtime_suite/authorization-service/configuration"
             }
           ]
@@ -350,6 +346,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/auth0-client/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Authorization Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authorization-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authorization-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authorization-service/usage"
                 }
               ]
             },
