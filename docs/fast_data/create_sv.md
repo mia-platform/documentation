@@ -135,9 +135,9 @@ In the [Marketplace](../marketplace/overview_marketplace), you can find a templa
 
 ## Strategies
 
-When the `Single View Creator` will be configured, it will look at the changes stored in the **projections changes collection**. In order to know which specific Single View needs to be updated, based on the projections records just modified by the importer, the Single View Creator will look at the projection change `identifier`.
+When the `Single View Creator` will be configured, it will look at the changes stored in the **projections changes collection**. In order to know which specific Single View needs to be updated, based on the projections records just modified by the importer, the Single View Creator will look at the projection change `identifier` field.
 
-In order to do so, **strategies** need to be implemented. These strategies are basically the way to retrieve the unique identifiers of the single view that needs to be updated or created as consequence of the changes on the projection. The output of the strategies will be used by the `Real-Time Updater` to record a change in the proper `projection-changes` collection for each identifier.  
+In order to do so, **strategies** need to be implemented. These strategies are basically the way to retrieve the unique identifiers of the single view that needs to be updated or created as consequence of the changes on the projection. The output of the strategies will be used by the `Real-Time Updater` to record a change in the proper `projection-changes` collection for each identifier. Later on, the `Single View Creator` will receive the `identifier` object to find the correct single view to update.
 
 ### Write your Strategies
 
