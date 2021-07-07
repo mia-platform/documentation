@@ -39,6 +39,19 @@
     "docLandingPage": "runtime_suite/auth0-client/overview_and_usage"
   },
   {
+    "name": "Authorization Service",
+    "description": "Use this service to authorize routes to request certain resources, leveraging OpenID Connect and simple user-defined configurations",
+    "category": {
+      "id": "auth",
+      "label": "Authentication & Authorization"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/authorization-service_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/authorization-service/overview"
+  },
+  {
     "name": "Client Credentials",
     "description": "Use this plugin to expose API to perform OAuth2 compliant client credential flows with third party providers.",
     "category": {

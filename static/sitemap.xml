@@ -1123,7 +1123,7 @@
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://docs.mia-platform.eu/docs/runtime_suite/authorization-service/how_to_use</loc>
+        <loc>https://docs.mia-platform.eu/docs/runtime_suite/authorization-service/usage.md</loc>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
