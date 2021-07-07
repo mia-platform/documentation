@@ -70,7 +70,7 @@ For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal
 
 ## Manage the security of your endpoints
 
-In the **Security Management** section, you can manage the security and the permissions at the endpoint level.
+In the **Security Management** section, you can manage the security and the permissions at the endpoint level. All of the following functionalities require the [authorization service](../../../runtime_suite/authorization-service/usage.md) and are based on its [configuration](../../../runtime_suite/authorization-service/configuration.md).
 
 The security can be managed at three levels:
 
