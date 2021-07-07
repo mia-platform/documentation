@@ -6,14 +6,14 @@ sidebar_label: General configuration
 
 `microlc` provides an API that can be used by your plugins to retrieve its dynamic configuration expressed in `JSON` format.
 
-All these configurations must be stored in the same path, defined by the `CONFIGURATIONS_PATH` environment variable.
+All these configurations must be stored in the same path, defined by the `PLUGINS_CONFIGURATIONS_PATH` environment variable.
 
 To retrieve them, you can perform a GET request to `/api/v1/microlc/configuration/:configurationName`, where `configurationName`
-is the name of the `JSON` file that is stored in the path `${CONFIGURATIONS_PATH}/${configurationName}.json`.
+is the name of the `JSON` file that is stored in the path `${PLUGINS_CONFIGURATIONS_PATH}/${configurationName}.json`.
 
 :::info
 For example, if you:
-- set `CONFIGURATIONS_PATH` as `/microlc-be`;
+- set `PLUGINS_CONFIGURATIONS_PATH` as `/microlc-be`;
 - create a file in `/microlc-be/backoffice.json`.
 
 You can then retrieve its content with the GET request `/api/v1/microlc/configuration/backoffice`.
