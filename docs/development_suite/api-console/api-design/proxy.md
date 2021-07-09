@@ -51,6 +51,11 @@ In order to create a new external proxy, open the `Proxies` in the *Design area*
 
 ![cross proxy creation](img/how_to_create_cross_proxy.gif)
 
+:::info
+The creation of a cross projects proxy can be generated as a K8S Service. To enable the beta feature, you just have to set to `true` the `crossProjectProxyExternalService` flag in the `enabledFeaturesPreview` of your project. 
+If you are not allowed to do that, please contact your Mia-Platform technical referent.
+:::
+
 :::caution
 When you call an [external proxy](#create-a-new-external-proxy) any cookie/client-key are removed to avoid security issues. Instead, when you call a [cross projects proxy](#create-a-new-cross-projects-proxy) you will keep them.
 :::
