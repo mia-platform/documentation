@@ -6,7 +6,7 @@ sidebar_label: Visualize your projects
 
 ## What is Mia-Craft
 
-Mia-Craft is a visualization tool accessible from the Design section of the console by clicking on the tab Visualize.
+Mia-Craft is a visualization tool accessible from the dedicated section of the Design area of the Console.
 The aim of Mia-Craft is to help the user to obtain a graphical overview of the project architecture starting from his project's configuration and also to replicate the conceptual flow adopted during the design of the project’s configuration via the functionalities explained in the next section.
 
 From the project configuration, Mia-Craft creates the starting visualization where the microservices are shown without connections between them except for the connection between the Client and the API Gateway (if present) and the connection between the CMS Site and the API Gateway (if both of them present in the configuration file). An example is in the following picture.
