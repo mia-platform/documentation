@@ -1073,6 +1073,10 @@
     },
     {
       "type": "doc",
+      "id": "info/bug_policy"
+    },
+    {
+      "type": "doc",
       "id": "release_notes/support-policy"
     }
   ],
