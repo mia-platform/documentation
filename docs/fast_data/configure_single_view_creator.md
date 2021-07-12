@@ -96,7 +96,7 @@ This documentation refers to the `@mia-platform-internal/single-view-creator-lib
 
 The core of your work on this service are the files inside the `src` folder.
 
-**singleViewKey.js**: It takes as input the identifier of the projection change and returns the key object used to select the document of the Single View collection that needs to be updated.
+**singleViewKey.js**: It takes as input the identifier of the projection change and returns the key object used to select the document of the Single View collection that needs to be updated. This key corresponds to the query object fed to mongodb, therefore you can return any legal mongo query.
 
 In the example below, we expect to have the field `myId` as primary key of the Single View collection.
 
@@ -117,8 +117,8 @@ module.exports = function singleViewKeyGenerator(logger, projectionChangeIdentif
 
 **pipeline.js**: It takes as input a MongoDB instance and returns a function. This function takes as input the projection change identifier and returns an array.
 
-If it's empty, than it will be executed a delete on the single view identified by the singleViewKeyGenerator result.
-If it's not empty, than it will be executed an upsert on the single view identified by the singleViewKeyGenerator result.
+If it's empty, a delete operation will be executed on the single view identified by the singleViewKeyGenerator result.
+If it's not empty, an upsert operation will be executed on the single view identified by the singleViewKeyGenerator result.
 
 :::note
 If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
