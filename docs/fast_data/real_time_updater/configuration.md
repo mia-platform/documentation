@@ -12,6 +12,7 @@ The Real-Time Updater needs some environment variables and some configurations f
 - MONGODB_URL (__required__):  defines the mongodb url to contact  
 - PROJECTIONS_DATABASE_NAME (__required__): defines the name of the projections database  
 - PROJECTIONS_CHANGES_COLLECTION_NAME (__required__): defines the name of the projections changes collection  
+- PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is **true**,
 - LC39_HTTP_PORT (__required__): defines the lc39 http port
 - STRATEGIES_MAX_EXEC_TIME_MS (__required__): defines the maximum time for which a strategy is executed
 - KAFKA_BROKERS (__required__): defines the kafka brokers
