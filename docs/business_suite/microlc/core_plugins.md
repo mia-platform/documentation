@@ -34,22 +34,33 @@ the plugin **always** injects an attribute called `eventBus`: an [RxJS's Subject
 #### tag
 - _type_: string;
 - _required_: `false`;
-- _description_: tag of the custom element to render. **Is mandatory only for type `element`**.
+- _description_: tag of the custom element to render.  
+  **Is mandatory only for type `element`**.
 
 #### url
 - _type_: string;
 - _required_: `false`;
-- _description_: URL of  the entry point used to register and boot the custom element. **Is considered only for type `element`**.
+- _description_: URL of  the entry point used to register and boot the custom element.  
+  **Is considered only for type `element`**.
 
 #### config
 - _type_: object;
 - _required_: `false`;
-- _description_: attribute injection for the custom element. **Is considered only for type `element`**.
+- _description_: attribute injection for the custom element.  
+  **Is considered only for type `element`**.
 
 #### style
 - _type_: object;
 - _required_: `false`;
-- _description_: CSS style to inject to the DOM element. **Is considered only for type `element`**.
+- _description_: CSS style to inject to the DOM element.  
+  **Is considered only for type `element`**.
+
+#### busDiscriminator
+- _type_: string;
+- _required_: `false`;
+- _description_: Event bus discriminator, used to create a dedicated communication channel.  
+  By default, is injected the general communication channel.  
+  **Is considered only for type `element`**.
 
 #### content
 - _type_: object;
