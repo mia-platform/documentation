@@ -21,6 +21,10 @@ The deletion is not allowed until you have at least one Projection inside the Sy
 
 When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information about the updated document.
 
+:::caution
+The default Projection Changes collection is automatically managed by the Console and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/configuration#custom-projection-changes-collection).
+:::
+
 One Projections Changes collection is created for each System of Records as default.
 
 This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view.
