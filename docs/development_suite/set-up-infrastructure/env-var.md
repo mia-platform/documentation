@@ -18,7 +18,7 @@ Some specific examples of common scenarios when you should consider using enviro
 
 # Manage your Variables
 
-Thanks to our Console in the SetUp Infrastructure area it's possible to manage your Environment Variables.
+Thanks to our Console in the Envs area it is possible to manage your Environment Variables.
 
 ## How to differentiate your variable from one environment to another
 
@@ -35,7 +35,7 @@ Prefixes can be of two types:
 * **differentiated** according to the environment
 
 The variables differentiated by environment instead have a different prefix based on the environment.
-the prefixes are as follows:
+The prefixes are as follows:
 
 * Test environment: `DEV_`
 * Preprod environment: `PREPROD_`
@@ -47,8 +47,8 @@ Remember to add a prefix to your variable in the creation phase.
 
 ## Create a Variable
 
-When you start with a new project you will find variables already configured.
-to add a new variable press the button at the bottom of the table **"create a new variable"** and fill in the form:
+When you start a new project you will find variables already configured.
+To add a new variable press the **"Add new environment variable"** button at the top-right of the table and fill in the form:
 
 * the **key** is mandatory and identifies your variable. Remember **to use the prefix** to manage the differentiation between environment.
 * the **value** is the value you want to attribute to your variable, the one that will be interpolated.
