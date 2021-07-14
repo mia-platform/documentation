@@ -42,3 +42,12 @@ In this mode, the response could be:
 ## Strict mode disabled
 
 In this mode, `authorization-service` always responds **200** with `mia-allowed` set to 0 if the user does not have permission to access the resource or 1 if they have the permission.
+
+## Authorization headers
+
+It is possible to set the environment variable `AUTHORIZATION_HEADERS_TO_PROXY` as a comma separated list of headers which could contain the authorization token used by the user service called by the `USERINFO_URL` and `BACKOFFICE_USERINFO_URL`.
+
+This env variable is not required, and if it is not set the user service is called for every incoming request.
+If this env var is set, it brings an enhancement in performance for all APIs called without an authorization header since it avoids calling the user service: user is set as empty.
+
+The responses of the authorization service are the same as before, when the get user api responds with *401*.

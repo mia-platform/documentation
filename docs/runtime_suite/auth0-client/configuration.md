@@ -226,3 +226,140 @@ This feature is disabled by default, but you could activate it by adding all the
 * `USERS_DATABASE_NAME` [**optional**]: mongodb database name where you want to save user metadata;
 * `USERS_COLLECTION_NAME` [**optional**]: mongodb collection name where you want to save user metadata;
 * `USERS_PROPERTIES_TO_SAVE` [**optional**]: comma separated list of properties to maintain in sync.
+
+## How to add a login page to a front-end service
+
+You may want to add a login page to protect your endpoints from unknown users: for example you may need to restrict the access to the [API Portal](../api-portal/overview).   
+The first thing you need to do is to enable the *Authentication Required* [security setting](../../development_suite/api-console/api-design/endpoints#manage-the-security-of-your-endpoints) to the endpoint you want to protect.    
+Now you have to specify how to handle the 401 status. You have to redirect the user to the login page of auth0. 
+
+Go to the Design area, Advanced section, and then select `api-gateway`. Put the code below in the `server-extension.conf`.
+
+```
+error_page 401 = @error401;
+
+location @error401 {
+  include /etc/nginx/customization.d/header-debug.conf;
+
+  if ($type = "text/html") {
+    return 302 '$original_request_scheme://$original_request_host/web-login?redirect=$original_request_uri$is_args$args';
+  }
+
+  default_type $type;
+  return 401 $content_401;
+}
+```
+
+Now you have to handle the routing of the request to the auth0-client and oauth-login-site endpoints, that are currently handled only on the backoffice.
+
+`maps-proxyName.before.map`
+
+```
+# Authentication
+## Redirect to OAuth login site to proceed with login on frontend upstream.
+"~^(secreted|unsecreted)-(0|1)-GET-/authorize" "auth0-client";
+"~^(secreted|unsecreted)-(0|1)-GET-/logout" "auth0-client";
+"~^(secreted|unsecreted)-(0|1)-POST-/oauth/token" "auth0-client";
+"~^(secreted|unsecreted)-(0|1)-GET-/web-login" "oauth-login-site";
+"~^(secreted|unsecreted)-(0|1)-GET-/web-login/callback" "oauth-login-site";
+```
+
+Put the following code into `auth.json` file of the authorization-service in order to open the routes declared above: 
+
+```
+{
+  "/web-login": {
+    "GET": {
+      "authorization": {
+        "expression": "true",
+        "public": true
+      },
+      "backofficeAuthorization": {
+        "expression": "true",
+        "public": true
+      }
+    }
+  },
+  "/users": {
+    "ALL": {
+      "authorization": {
+        "expression": "true",
+        "public": true
+      },
+      "backofficeAuthorization": {
+        "expression": "true",
+        "public": true
+      }
+    }
+  },
+  "/login-site": {
+    "GET": {
+      "authorization": {
+        "expression": "true",
+        "public": true
+      }
+    }
+  },
+  "/authorize": {
+    "GET": {
+      "authorization": {
+        "expression": "true",
+        "public": true
+      },
+      "backofficeAuthorization": {
+        "expression": "true",
+        "public": true
+      }
+    }
+  },
+  "/oauth/token": {
+    "POST": {
+      "authorization": {
+        "expression": "true",
+        "public": true
+      },
+      "backofficeAuthorization": {
+        "expression": "true",
+        "public": true
+      }
+    }
+  }
+}
+```
+
+Finally, you need to configure auth0-client to be able to use it correctly:
+
+```
+{
+    "clients": {
+        "frontend": {
+            "auth0Url": "YOUR_AUTH0_URL",
+            "clientId": "YOUR_AUTH0_CLIENT_ID",
+            "clientSecret": "YOUR_AUTH0_CLIENT_SECRET",
+            "redirectUrl": "YOUR_AUTH0_FRONTEND_URL",
+            "scopes": [
+                "offline_access",
+                "profile",
+                "email",
+                "website"
+            ],
+            "audience": ""
+        }
+    },
+    "defaultClient": "frontend",
+    "managementClient": {
+        "auth0Url": "YOUR_AUTH0_URL",
+        "clientId": "YOUR_AUTH0_CLIENT_ID",
+        "clientSecret": "YOUR_AUTH0_CLIENT_SECRET"
+    },
+    "customClaimsNamespaces": [
+        "https://mia-platform.eu/app_metadata",
+        "https://mia-platform.eu/user_metadata"
+    ]
+}
+
+```
+
+Note that, if you already use auth0-client to handle cms login, you may have the `cms` client already configured. In that case, you just need to add the `frontend` client and `defaultClient` to the configuration already present.
+
+For logging out, you just need to call `GET /logout`.
