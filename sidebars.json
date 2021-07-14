@@ -950,6 +950,10 @@
             {
               "type": "doc",
               "id": "fast_data/real_time_updater/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "fast_data/real_time_updater/release_note"
             }
           ]
         },
