@@ -5,6 +5,9 @@ sidebar_label: Release Note
 ---
 
 Here below you can read the release note of the Real-Time Updater service. Only the versions upper than 3.0.0 are available because the lowers versions are not compatible with the Console. 
+## 3.1.1 (2021-07-15)
+
+A bug that prevented users to disable projections changes generation has been fixed. Now, if you set the environment variable `PROJECTIONS_CHANGES_ENABLED` to false, projections changes will not be generated when a projection is updated.
 
 ## 3.1.0 (2021-06-24)
 
