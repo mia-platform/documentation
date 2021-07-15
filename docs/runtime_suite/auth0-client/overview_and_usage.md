@@ -5,7 +5,7 @@ sidebar_label: Overview and Usage
 ---
 This service handles authentication and user management using Auth0 as identity provider.
 
-This service exposes different endpoints to handle authentication: `/authorize`, `/oauth/token`, `/logout` and `/userinfo` endpoints. A `/users/me` endpoint is also exposed for backward compatibility but its use is discouraged.
+This service exposes different endpoints to handle authentication: `/authorize`, `/oauth/token`, `/refreshtoken`, `/logout` and `/userinfo` endpoints. A `/users/me` endpoint is also exposed for backward compatibility but its use is discouraged.
 
 Moreover, it handles users through the auth0 users management api.
 
@@ -20,8 +20,8 @@ In Tenant Setting, at **API Authorization Settings** you set a Default Directory
 After everything is set, you can check it by using the following curl:
 
 ```bash
-curl --location
-    -X POST 'https://MY_PROJECT_URL/oauth/token' \
+curl --location \
+    -X POST 'https://YOUR_PROJECT_URL/oauth/token' \
     --header 'secret: YOUR_SECRET' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'grant_type=your_grand_type' \
@@ -41,11 +41,10 @@ If all went well, you should get, without the scope **website**:
 
 ```json
 {
-    "access_token": "your_access_token",
-    "id_token": "your_id_token",
-    "scope": "your_scope",
-    "expires_in": "your_setting_expire_time",
-    "token_type": "Bearer"
+  "refreshToken": "your_refresh_token",
+  "accessToken": "your_access_token",
+  "idToken": "your_id_token",
+  "expireAt": "2021-07-16T08:28:24.568365226Z"
 }
 ```
 
@@ -55,6 +54,41 @@ Using the scope **website**:
 {
     "cookie_sid": "your_cookie_sid"
 }
+```
+
+When the token expires refresh token could be used to get a new access token:
+
+```bash
+curl --location \
+    -X POST 'https://YOUR_PROJECT_URL/oauth/refreshtoken' \
+    --header 'secret: YOUR_SECRET' \
+    --header 'Content-type: application/json' \
+    --header 'authorization: Bearer your_access_token' \
+    -d '{ "refresh_token": "your_refresh_token" }'
+```
+
+:::note
+Note for the project configuration: the endpoint path depends on how the oauth0-client is exposed on the api-gateway, the exposed path by oauth0-client is `/refreshtoken`.
+:::
+
+The response contains a new access token and new refresh token.
+
+```json
+{
+  "refreshToken": "your_new_refresh_token",
+  "accessToken": "your_new_access_token",
+  "idToken":"your_id_token",
+  "expireAt":"2021-07-16T09:53:16.653155743Z"
+}
+```
+
+In the following an example of how to call an authenticated API using the token:
+
+```bash
+curl --location \
+    'https://YOUR_PROJECT_URL/YOUR_RESOURCE_PATH/' \
+    --header 'secret: YOUR_SECRET' \
+    --header 'authorization: Bearer YOUR_ACCESS_TOKEN'
 ```
 
 ## How to configure multiple environment
