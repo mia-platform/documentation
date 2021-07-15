@@ -61,7 +61,7 @@ By using the MongoDB unified topology connection pattern, Files Service and Mong
 
 #### Single View Creator Plugin and Template update
 
-The [Single View Creator](runtime_suite/single-view-creator/configuration) plugin and template have been updated to bring you many logs improvements.  
+The [Single View Creator](../../runtime_suite/single-view-creator/configuration) plugin and template have been updated to bring you many logs improvements.  
 The new version of the plugin is `2.0.0`, which has a breaking change because the docker-image has been changed into `nexus.mia-platform.eu/fast-data/single-view-creator-plugin`.
 
 #### Added Crud Service support to projection on nested object
