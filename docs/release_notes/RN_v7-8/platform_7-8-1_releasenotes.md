@@ -5,7 +5,7 @@ sidebar_label: v7.8.1
 image: "img/release-note-link-preview.png"
 ---
 
-_July 14, 2021_
+_July 15, 2021_
 
 ### New Features
 
@@ -112,4 +112,4 @@ Moreover, table rows are now expandable and will show more information, like the
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.12.4`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.12.5`.
