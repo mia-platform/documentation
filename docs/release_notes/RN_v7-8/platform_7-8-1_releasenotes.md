@@ -112,4 +112,4 @@ Moreover, table rows are now expandable and will show more information, like the
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.12.5`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 3.12.6`.
