@@ -17,12 +17,12 @@ All the icons shown correspond to a specific type of microservice except for the
 
 | Icon      | Description |
 | :-----------: | ----------- |
-| <img src="img/client-icon.png" alt="client-icon" width="100"/>|Client|
-| <img src="img/apigateway-icon.PNG" alt="apigateway-icon" width="180"/>|[API Gateway](../../../runtime_suite/api-gateway/overview.md)|
-| <img src="img/service-icon.png" alt="service-icon" width="100"/> | Microservices which type is “core” |
-| <img src="img/custom-service-icon.png" alt="custom-service-icon" width="100"/>| Microservices which type is “custom”|
-| <img src="img/crud-icon.png" alt="crud-icon" width="100"/>| [CRUD](crud_advanced.md)|
-| <img src="img/cms-site-icon.png" alt="cms-site-icon" width="100"/> | [CMS Site](../../../business_suite/guide_cms.md)|
+| ![client-icon](img/client-icon.png) |Client|
+| ![apigateway-icon](img/apigateway-icon.PNG) |[API Gateway](../../../runtime_suite/api-gateway/overview.md)|
+| ![service-icon](img/service-icon.png) | Microservices which type is “core” |
+| ![custom-service-icon](img/custom-service-icon.png) | Microservices which type is “custom”|
+| ![crud-icon](img/crud-icon.png) | [CRUD](crud_advanced.md)|
+| ![cms-site-icon](img/cms-site-icon.png) | [CMS Site](../../../business_suite/guide_cms.md)|
 
 
 ## Main functionalities
@@ -75,10 +75,10 @@ There are four typologies of external services available: Kafka, MongoDB, Redis 
 
 | Icon      | Description |
 | :-----------: | ----------- |
-| <img src="img/kafka-icon.png" alt="kafka-icon" width="100"/> |Kafka|
-| <img src="img/mongodb-icon.png" alt="mongodb-icon" width="100"/> | Mongo DB |
-| <img src="img/redis-icon.png" alt="redis-icon" width="100"/> |  Redis|
-| <img src="img/custom-external-service-icon.png" alt="custom-external-service-icon" width="100"/> | Custom external service|
+| ![kafka-icon](img/kafka-icon.png) |Kafka|
+| ![mongodb-icon](img/mongodb-icon.png)| Mongo DB |
+| ![redis-icon](img/redis-icon.png)|  Redis|
+| ![custom-external-service-icon](img/custom-external-service-icon.png) | Custom external service|
 
 The external services can be added as it can be seen in the following representation.
 
