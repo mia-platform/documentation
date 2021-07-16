@@ -55,7 +55,7 @@ Following the steps for the creation of an endpoint:
 
 Finally it's time to save our configuration, so:
 
-1. On the top, click on `Commit & Generate` button
+1. In the main navbar, on the top, click on `Commit & Generate` button
 2. Insert a commit title
 3. Insert a commit message
 
