@@ -1045,6 +1045,10 @@
           "items": [
             {
               "type": "doc",
+              "id": "release_notes/RN_v7-8/v7.8.2"
+            },
+            {
+              "type": "doc",
               "id": "release_notes/RN_v7-8/v7.8.1"
             },
             {
