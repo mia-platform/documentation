@@ -5,29 +5,39 @@ sidebar_label: Release your configurations
 ---
 ## Introduction  
 
-Deploy is the section of the console that allows developers to deploy configurations of a specific project on different runtime environments. It can also be used to visualize the history of previous releases on that project.
+Deploy is the Console Area that allows developers to deploy configurations of a specific project on different runtime environments. It can also be used to visualize the history of previous releases on that project.
 
-This section allows to follow in a simple and effective way a **Continuous Deployment** approach, integrating automated tests and releasing new code versions without damaging the existing project.
+This section allows you to follow in a simple and effective way a **Continuous Deployment** approach, integrating automated tests and releasing new code versions without damaging the existing project.
 
-The Deploy section is divided into two areas: **Deploy** and **History**.
-When a user enters the Deploy section, he is automatically led to Deploy area.
+The Deploy Area is divided into two Sections: **Deploy** and **History**.
+When a user enters the Deploy Area, they are automatically led to Deploy Section.
 
-## Deploy Area
+## Deploy Section
 
 ![Deploy](img/Deploy.gif)
 
-In this area, you can select in which runtime environment you want to release your project configurations and which branch to deploy.
-You will be also able to start the deployment process from this section.
+In this Section, you can select in which runtime environment you want to release your project configurations and which branch to deploy.
+You will also be able to start the deployment process from this section.
 
-Let's see in detail how it works
+Let us see in detail how it works.
 
-### Select runtime environment  
+### Latest deployed version
 
-The first card will let you choose the runtime environment in which you want to release your configuration. 
+The first card will let you choose the runtime environment in which you want to release your configuration.
 
 ![Environment](img/deploy-select-env.png)
 
 Once you have selected your target runtime environment, you will be able to see all the details regarding the last release in that runtime environment.
+
+The information you will see in this card are:
+
+* **Runtime Environment**: the runtime environment of the displayed deployment (as a reminder of the selected runtime environment)
+* **Branch**: the branch used for the latest deployment, together with a link to the last commit at deploy time
+* **Completed at**: time of completion
+* **Made by**: author of the deployment
+* **Type**: `Smart Deploy` or `Deploy All`, based on the settings used in the last deployment
+* **Duration**: how much time was needed for the last deployment to finish
+* **Pipeline**: link to the deployment pipeline
 
 ### Select branch  
 
@@ -40,7 +50,6 @@ Once the branch is selected the console will show:
 * A link to the Gitlab page showing the code comparison between the branch you want to release and the one that has been previously released in that runtime environment.
 * The last 10 commits on the selected branch (this information will help you check if you are releasing a correct configuration).
 
-
 ### Deploy details
 
 Once you have selected the branch and the runtime environment, the deploy page will load a card containing additional deployment details.
@@ -51,9 +60,9 @@ This card will let you decide the deployment strategy, **smart deploy** or **dep
 In this section you will be able to access the following information:
 
 * The complete list of micro-services to be released
-* The deploy outcome 
+* The deploy outcome
 * The running version
-* The version you are going to release 
+* The version you are going to release
 
 :::info
 Please note that using an environment variable to define the version will cause the inability to trace the correct version number.
@@ -79,22 +88,22 @@ At this point, once you have verified the information, you can deploy your confi
 
 ### Smart Deploy
 
-By toggling the appropriate switch you can activate/deactivate the **Smart Deploy** functionality. 
+By toggling the appropriate switch you can activate/deactivate the **Smart Deploy** functionality.
 
 ![Smart Toggle Button](img/smart-toggle-button.png)
 
-This functionality will let you release your microservices in a smart way, since only the updated services will be deployed through the console. 
+This functionality will let you release your microservices in a smart way, since only the updated services will be deployed through the console.
 
 **Smart Deploy** leverages Kubernetes deployment strategies to ensure that only necessary Pods are recreated. During each deploy updated pods get replicated to prevent disservice, however, on big projects, this might avoid huge resource consumption spikes or longer deployment times.
 
 :::warning
-This feature can be activated only in projects using **mlp**, the Mia-Platform official command line deployment tool. 
+This feature can be activated only in projects using **mlp**, the Mia-Platform official command line deployment tool.
 :::
 
-A service is considered to be eligible for a new deployment on certain circumstances: when you update the pod specification from the console, when you update the value of a pod dependency (such as a config map key) and so on. 
+A service is considered to be eligible for a new deployment on certain circumstances: when you update the pod specification from the console, when you update the value of a pod dependency (such as a config map key) and so on.
 
 :::warning
-It is important to **save** the configuration at least one time after the feature smart deploy has been activated. This operation will help avoid inconsistent behaviors when deploying your services. 
+It is important to **save** the configuration at least one time after the feature smart deploy has been activated. This operation will help avoid inconsistent behaviors when deploying your services.
 :::
 
 :::info
@@ -104,7 +113,7 @@ In order to avoid unnecessary deployments, services created using an **advanced 
 When deploying for the first time using this feature, some services might not be able to collect all the necessary information to show the effective deployment strategy adopted. However, service that do not show actual differences on the cluster will not be deployed.
 
 :::warning
-It is highly recommended not to do actions such as modifying a version, an env var, a configmap directly on the cluster, otherwise the checksum that is generated at the deployment does not work correctly and consequently the information reported in the Deploy details table will be misleading. 
+It is highly recommended not to do actions such as modifying a version, an env var, a configmap directly on the cluster, otherwise the checksum that is generated at the deployment does not work correctly and consequently the information reported in the Deploy details table will be misleading.
 :::
 
 #### Deploy All
@@ -144,7 +153,7 @@ If a microservice has interpolated environment variables and one of them is modi
 
 ![Semantic Versioning](img/smart-deploy-checkbox.png)
 
-By checking the dedicated checkbox you can force the deployment of microservices that do not follow semantic versioning. 
+By checking the dedicated checkbox you can force the deployment of microservices that do not follow semantic versioning.
 
 :::info
 If you are not following sematic versioning, for example using `image:latest` or `image:branchName`, you can force the deployment by using the dedicated checkbox.
@@ -152,7 +161,7 @@ If you are not following sematic versioning, for example using `image:latest` or
 
 :::warning
 It is not recommended to activate the checkbox in a production runtime environment, because if some of your services by mistake have a pre-release or latest version tag they will be redeployed.
-::: 
+:::
 
 ## History
 
