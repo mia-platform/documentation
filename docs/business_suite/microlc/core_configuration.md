@@ -192,7 +192,7 @@ The information regarding the plugins to embed in the application are contained 
 ### category
 - _type_: string;
 - _required_: `false`;
-- _description_: sub-menu category in which insert the plugin;
+- _description_: sub-menu category in which the plugin should be inserted;
 
 ### content
 - _type_: array;
