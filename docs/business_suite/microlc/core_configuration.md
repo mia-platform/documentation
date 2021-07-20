@@ -197,7 +197,7 @@ The information regarding the plugins to embed in the application are contained 
 ### content
 - _type_: array;
 - _required_: `false`;
-- _description_: array of plugin to insert in sub-menu. This property makes the structure recursive;
+- _description_: array of plugins to insert in sub-menu. This property makes the structure recursive;
 
 #### url
 
