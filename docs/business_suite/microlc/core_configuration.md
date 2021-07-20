@@ -189,6 +189,16 @@ The information regarding the plugins to embed in the application are contained 
 - _required_: `true` for `integrationMode` of type `href`;
 - _description_: contains the details about the href integration.
 
+### category
+- _type_: string;
+- _required_: `false`;
+- _description_: sub-menu category in which insert the plugin;
+
+### content
+- _type_: array;
+- _required_: `false`;
+- _description_: array of plugin to insert in sub-menu. This property makes the structure recursive;
+
 #### url
 
 - _type_: string;
