@@ -16,8 +16,8 @@ can be used to compose the UI of your page, with the precondition that each piec
 The layout can be composed using rows and columns: it will be adaptive thanks to the `flex` layout.
 
 :::caution
-In addition to the [attributes that you can configure](./core_plugins.md#config) for each `custom-element`, 
-the plugin **always** injects an attribute called `eventBus`: an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components.
+In addition to the [properties that you can configure](./core_plugins.md#config) for each `custom-element`, 
+the plugin **always** injects a property called `eventBus`: an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components.
 :::
 
 ### elementsConfiguration
@@ -46,7 +46,7 @@ the plugin **always** injects an attribute called `eventBus`: an [RxJS's Subject
 #### config
 - _type_: object;
 - _required_: `false`;
-- _description_: attribute injection for the custom element.  
+- _description_: property injection for the custom element.  
   **Is considered only for type `element`**.
 
 #### style
@@ -79,7 +79,7 @@ the plugin **always** injects an attribute called `eventBus`: an [RxJS's Subject
       "tag": "button",
       "url": "https://your-host.com/your/component/entry.js",
       "config": {
-        "attribute-a": "value-a"
+        "property-a": "value-a"
       }
     }]
   }]
