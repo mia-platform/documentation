@@ -162,8 +162,8 @@ The information regarding the plugins to embed in the application are contained 
 
 - _type_: string;
 - _enum_: `href`, `qiankun`, `iframe`;
-- _required_: `true`;
-- _description_: the way in which the plugin is integrated in `microlc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
+- _required_: `false`;
+- _description_: the way in which the plugin will be integrated in `microlc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
 
 ### pluginRoute
 
