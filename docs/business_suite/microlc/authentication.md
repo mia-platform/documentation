@@ -18,21 +18,21 @@ and where the user information are provided.
 - *type*: boolean
 - *required*: `false`
 - *default*: `false`
-- *description*: defines if the authentication process is expected.
+- *description*: defines if the authentication process is expected.  
   This property can be used to avoid the authentication process or to make a public instance of `microlc`.
 
 ### userInfoUrl
 
 - *type*: string
 - *required*: `false`
-- *description*: defines which endpoint expose the user information.
+- *description*: defines which endpoint expose the user information: it will be called using the `GET` method.  
   If authentication is not expected, this should not be provided, otherwise is mandatory.
 
 ### userLogoutUrl
 
 - *type*: string
 - *required*: `false`
-- *description*: defines which endpoint expose the user logout.
+- *description*: defines which endpoint expose the user logout: it will be called using the `GET` method.  
   If authentication is not expected, this should not be provided, otherwise is mandatory.
 
 
