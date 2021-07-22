@@ -119,6 +119,12 @@ branding of the application.
 - _default_: `sideBar`;
 - _accepted values_: [`sideBar`, `topBar`, `fixedSideBar`].
 
+### enableDarkMode
+- _type_: boolean;
+- _required_: `false`;
+- _description_: indicate if your app supports the dark mode;
+- _default_: `false`;
+
 ## Plugin parameters
 
 The information regarding the plugins to embed in the application are contained in these object.
