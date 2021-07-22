@@ -115,7 +115,7 @@ branding of the application.
 
 - _type_: string;
 - _required_: `false`;
-- _description_: the location on the page in which the menu is located;
+- _description_: the location on the page in which the menu will be rendered;
 - _default_: `sideBar`;
 - _accepted values_: [`sideBar`, `topBar`, `fixedSideBar`].
 
