@@ -32,7 +32,7 @@ and where the user information are provided.
 
 - *type*: string
 - *required*: `false`
-- *description*: defines which endpoint expose the user logout: it will be called using the `GET` method.  
+- *description*: defines the page that will handle the user logout.  
   If authentication is not expected, this should not be provided, otherwise is mandatory.
 
 
@@ -42,7 +42,7 @@ and where the user information are provided.
 {
     "isAuthNecessary": true,
     "userInfoUrl": "https://example.com/your/authentication/api",
-    "userLogoutUrl": "https://example.com/your/logout/api"
+    "userLogoutUrl": "https://example.com/your/logout/page"
 }
 ```
 
