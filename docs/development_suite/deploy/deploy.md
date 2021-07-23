@@ -16,18 +16,15 @@ When a user enters the Deploy Area, they are automatically led to Deploy Section
 
 ![Deploy](img/Deploy.gif)
 
-In this Section, you can select in which runtime environment you want to release your project configurations and which branch to deploy.
-You will also be able to start the deployment process from this section.
+This section is tied to a specific environment, which can be changed using the dropdown menu on the right side of the topbar. Once you have selected in which runtime environment you want to release your project configurations and which branch to deploy, you will be able to start the deployment process.
 
 Let us see in detail how it works.
 
 ### Latest deployed version
 
-The first card will let you choose the runtime environment in which you want to release your configuration.
+The first card will let you see a recap of the latest deployed version on the selected runtime environment.
 
 ![Environment](img/deploy-select-env.png)
-
-Once you have selected your target runtime environment, you will be able to see all the details regarding the last release in that runtime environment.
 
 The information you will see in this card are:
 
