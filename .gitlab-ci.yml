@@ -33,7 +33,7 @@ deploy-next:
     project: "clients/mia-platform/platform-documentation/configurations"
   only:
     refs:
-      - master
+      - august-release
 
 deploy:
   stage: deploy
