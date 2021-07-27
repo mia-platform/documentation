@@ -407,6 +407,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/crud-service/performance_overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/crud-service/release_note"
                 }
               ]
             },
