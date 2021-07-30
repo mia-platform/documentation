@@ -27,6 +27,7 @@ The Real-Time Updater needs some environment variables and some configurations f
 - CAST_FUNCTIONS_FOLDER: defines the path to the cast-functions folder
 - MAP_TABLE_FOLDER: defines the path to the map table folder
 - STRATEGIES_FOLDER: defines the path to the strategies folder
+- KAFKA_SASL_MECHANISM: defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`. The default value is `plain`.
 
 ## Custom Projection Changes Collection
 
