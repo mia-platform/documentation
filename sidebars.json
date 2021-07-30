@@ -235,21 +235,6 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "API Gateway",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/api-gateway/overview"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/api-gateway/configuration"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
           "label": "CMS Site",
           "items": [
             {
@@ -301,6 +286,21 @@
           "type": "category",
           "label": "Plugins List",
           "items": [
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "API Gateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway/configuration"
+                }
+              ]
+            },
             {
               "collapsed": true,
               "type": "category",
