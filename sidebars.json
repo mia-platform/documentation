@@ -781,7 +781,18 @@
         }
       ]
     },
-    "marketplace/examples/mia_examples"
+    "marketplace/examples/mia_examples",
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "Applications",
+      "items": [
+        {
+          "type": "doc",
+          "id": "marketplace/applications/mia_applications"
+        }
+      ]
+    }
   ],
   "libraries": [
     {
