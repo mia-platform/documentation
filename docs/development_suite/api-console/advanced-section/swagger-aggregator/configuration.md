@@ -4,7 +4,7 @@ title: Swagger Aggregator Advanced Configuration
 sidebar_label: Swagger Aggregator
 ---
 
-In the advanced tab of the Console Design section, you can configure the [Swagger Aggregator](../../../../runtime_suite/swagger-aggregator/overview) in advanced mode.
+In the Advanced section of the Design Area you can configure the [Swagger Aggregator](../../../../runtime_suite/swagger-aggregator/overview).
 
 The advanced configuration allows managing how the swagger APIs are exposed. Examples of possible configurations are:
 
