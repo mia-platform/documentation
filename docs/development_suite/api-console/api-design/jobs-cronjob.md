@@ -50,5 +50,8 @@ You can delete a CronJob with the delete button at the bottom of the page. To co
  ![cronjob-delete](img/cronjobs-delete.png)
 
 :::warning
-By eliminating a CronJob on Console, you are deleting the image on the Console, but not the Pods on Kubernetes and the configuration on Git provider. This implies that, if you delete the Pods on Kubernetes, but not the Git configuration, you will find again your CronJob at the next deploy.
+If:
+- you are deleting a Cronjob using the `autocreate` feature and
+- you use  mlp, the Mia-Platform official command line deployment tool, to deploy it
+You also need delete the existing Pods on Kubernetes.
 :::
