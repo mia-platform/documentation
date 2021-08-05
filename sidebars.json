@@ -790,6 +790,10 @@
         {
           "type": "doc",
           "id": "marketplace/applications/mia_applications"
+        },
+        {
+          "type": "doc",
+          "id": "marketplace/applications/dev_portal_application"
         }
       ]
     }
