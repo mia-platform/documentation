@@ -1097,6 +1097,10 @@
     },
     {
       "type": "doc",
+      "id": "release_notes/roadmap"
+    },
+    {
+      "type": "doc",
       "id": "info/version_policy"
     },
     {
