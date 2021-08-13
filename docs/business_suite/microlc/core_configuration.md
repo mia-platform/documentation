@@ -362,6 +362,17 @@ The information regarding the plugins to embed in the application are contained 
         "sameWindow": false
       }
     }
+  ],
+  "internalPlugins": [
+    {
+      "id": "plugin-3",
+      "aclExpression": "groups.admin || groups.superadmin",
+      "order": 0,
+      "integrationMode": "qiankun",
+      "pluginRoute": "/myAwesomePlugin3",
+      "pluginUrl": "https://plugin-url.com",
+      "props": {}
+    }
   ]
 }
 ```
