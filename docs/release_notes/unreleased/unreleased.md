@@ -116,6 +116,10 @@ Fixed bugs that caused the incorrect configuration of Api Gateway and Authorizat
 - were set as `false` in the `enabled services` property of the project after their conversion to custom services, or
 - were added from the Marketplace in an empty project
 
+#### Swagger Aggregator and Api Portal routes
+
+The routes ??? have been added to the Swagger Aggregator and Api Portal endpoints that were lacking them in order to correctly generate the Authorization Service configurations, in case the service was present in the branch.
+
 ### Breaking changes
 
 #### lc39 bump to v5.0.0
