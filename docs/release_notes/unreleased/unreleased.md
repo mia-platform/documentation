@@ -109,7 +109,10 @@ TODO: Also with rtu version
 
 ### Breaking Changes 
 
+#### lc39 bump to v5.0.0
 
+In lc39 is added the support to OpenAPI 3 (set as default). For further information how to change this default and continue to expose Swagger 2, read the lc39 documentation.
+Added some other small fixes.
 
 ### Improvements
 
