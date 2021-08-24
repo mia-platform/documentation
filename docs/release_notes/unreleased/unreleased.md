@@ -84,30 +84,39 @@ It is possible to set the environment variable `AUTHORIZATION_HEADERS_TO_PROXY` 
 This env variable is not required, and if it is not set the user service is called for every incoming request.
 If this env var is set, it brings an enhancement in performance for all APIs called without an authorization header since it avoids calling the user service: user is set as empty.
 
-For more info, visit the [Authorization service documentation](https://docs.mia-platform.eu/docs/runtime_suite/authorization-service/configuration)
+For more info, visit the [Authorization service documentation](../../runtime_suite/authorization-service/configuration)
 
 ### Bug Fix
 
-#### Real-Time Updater with projections changes generation disabled
+#### Real-Time Updater v3.1.2
 
-A bug that prevented users to disable projections changes generation has been fixed. Now, if you set the environment variable `PROJECTIONS_CHANGES_ENABLED` to false, projections changes will not be generated when a projection is updated.
+Two new versions of the [Real Time Updater](../../fast_data/real_time_updater/overview) have been released:
+- `v3.1.1`: a bug that prevented users to disable projections changes generation has been fixed. Now, if you set the environment variable `PROJECTIONS_CHANGES_ENABLED` to false, projections changes will not be generated when a projection is updated.
+- `v3.1.2`:  
+    - a bug that caused delete operations to be discarded if no value was found on the database has been fixed. 
+    - added support for delta messages in the same bulk operations set
 
-This fix is available with the version `3.1.1` of the Real-Time Updater. New systems will create Real-Time Updater services at this version. Real-Time Updater services already created need to be updated by hand in the dedicated detail page of the service.
+New Systems of Record created with the Console will use Real-Time Updater services at `v3.1.2`. 
 
-https://makeitapp.atlassian.net/browse/RJSC-159
-
-When adding a new Real Time Updater to your configuration, it will be created with the new v3.1.2 version by default.
-
-This patch fixes a misconfiguration that prevented the correct set of boolean environment variables to the service. 
-An improvement of the logs has also been made.
+:::caution
+Real-Time Updater services already created need to be updated by hand in the dedicated detail page of the service.
+:::
 
 #### Correct Deploy Outcome when interpolated variable changes version
 
-In Deploy Area, Deploy details card, a bug that caused the Deploy Outcome to be incorrectly set to "No Update" was fixed. The bug happened when the docker image was dependant on an interpolated variable.
+In Deploy Area, Deploy details card, a bug that caused the Deploy Outcome to be incorrectly set to "No Update" has been fixed. The bug happened when the docker image name was dependant on a Public Variable.
 
-TODO: Also with rtu version
+#### Real Time Updater version at Deploy
 
-### Breaking Changes 
+In Deploy Area, Deploy details card, a bug that caused the `new version` of a real time updater to be incorrect has been fixed. 
+
+#### Ex Core Services configuration
+
+Fixed bugs that caused the incorrect configuration of Api Gateway and Authorization Service in case the Authorization Service, Microservice Gateway, Swagger Aggregator and Api Portal:
+- were set as `false` in the `enabled services` property of the project after their conversion to custom services, or
+- were added from the Marketplace in an empty project
+
+### Breaking changes
 
 #### lc39 bump to v5.0.0
 
@@ -120,10 +129,9 @@ Added some other small fixes.
 
 The validation of Runtime Mount Path for configmaps and secrets is now more permissive. It is now possible to specify paths with dots `.` and other special characters.
 
-#### Core services are not chosen during project creation
+#### Services choice at project creation
 
-https://makeitapp.atlassian.net/browse/RJSC-160
-https://makeitapp.atlassian.net/browse/RJSC-161 
+Core services are not chosen during project creation anymore. The ones that have been released as custom services can be added from the Marketplace, while the remaing ones can be activated by setting them to `true` in the `Enabled Services` property of the project through the Console CMS.
 
 ### How to update your Console
 
