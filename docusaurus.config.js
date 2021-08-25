@@ -95,6 +95,11 @@ const config = {
             "(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))",
         },
         {
+          href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21',
+          position: 'left',
+          label: 'Support',
+        },
+        {
           type: "docsVersionDropdown",
           position: "right",
         },
@@ -160,6 +165,11 @@ const config = {
               label: "Blog",
               href: "https://blog.mia-platform.eu/en",
             },
+            {
+              label: "Privacy Policy",
+              href:
+                "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+            },
           ],
         },
         {
@@ -197,10 +207,6 @@ const config = {
               to: "/docs/guidelines/git_vademecum",
             },
             {
-              label: "Getting Started",
-              to: "/docs/overview/mia_platform_overview",
-            },
-            {
               label: "Library",
               href: "https://resources.mia-platform.eu/en/library",
             },
@@ -215,12 +221,19 @@ const config = {
           ],
         },
         {
-          title: "Privacy",
+          title: "Education & Support",
           items: [
             {
-              label: "Privacy Policy",
-              href:
-                "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+              label: 'Support',
+              href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
+            },
+            {
+              label: 'FAQ',
+              to: '/docs/getting_started/faqs'
+            },
+            {
+              label: "Getting Started",
+              to: "/docs/overview/mia_platform_overview",
             },
           ],
         },

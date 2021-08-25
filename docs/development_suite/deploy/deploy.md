@@ -14,17 +14,16 @@ When a user enters the Deploy Area, they are automatically led to Deploy Section
 
 ## Deploy Section
 
-![Deploy](img/Deploy.gif)
+![Deploy](./img/deploy_section.PNG)
 
 This section is tied to a specific environment, which can be changed using the dropdown menu on the right side of the topbar. Once you have selected in which runtime environment you want to release your project configurations and which branch to deploy, you will be able to start the deployment process.
 
-Let us see in detail how it works.
+With the relative dropdown menu in the top-right position of the topbar, it is possible to select the runtime environment in which you want to deploy your project.
+
 
 ### Latest deployed version
 
-The first card will let you see a recap of the latest deployed version on the selected runtime environment.
-
-![Environment](img/deploy-select-env.png)
+Once selected a runtime environment in the main topbar, you will be able to see all the details regarding the last release in that runtime environment.
 
 The information you will see in this card are:
 
@@ -164,7 +163,7 @@ It is not recommended to activate the checkbox in a production runtime environme
 
 The History Page is the second area of the Deploy section. In this tab it will be possible to visualize all the released deploy.
 
-![History](img/deploy-history.png)
+![History](img/history.PNG)
 
 In the History table the user will be able to visualize the following information:
 

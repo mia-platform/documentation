@@ -53,6 +53,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "development_suite/api-console/api-design/design-overview"
+        },
+        {
+          "type": "doc",
           "id": "development_suite/api-console/api-design/crud_advanced"
         },
         {
@@ -1109,6 +1113,10 @@
           "id": "release_notes/v7.0.x"
         }
       ]
+    },
+    {
+      "type": "doc",
+      "id": "release_notes/roadmap"
     },
     {
       "type": "doc",
