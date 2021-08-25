@@ -46,6 +46,7 @@ Access to the API Portal documentation no longer occurs through the main menu, b
     - You can see the last time changes have been saved at the mouseover
     - The circle icon shows you if there are any unsaved changes
     - Use the Commit&Generate button to save your work
+
 More information can be found in the Design [documentation](../../development_suite/api-console/api-design/overview.md)
 
 ![branch-commit-and-generate-in-main-topbar](../img/branch-commit-and-generate-in-main-topbar.png)
