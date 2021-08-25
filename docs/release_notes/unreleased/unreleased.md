@@ -19,7 +19,7 @@ In the Marketplace, it is now available the Dev Portal Application, our first ap
 
 ![Application Creation](../img/application.gif)
 
-For more info, visit "LINK APPLICATION IN DOCS".
+For more info, visit the Application [documentation](../../marketplace/applications/mia_applications.md).
 
 #### A New way to navigate the Console
 
