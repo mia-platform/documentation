@@ -31,6 +31,15 @@ See the [theming parameters](#theming-parameters) section for details.
 Each element of this array is an object correspondent to a plugin. The structure of the object is detailed in the
 [plugin parameters](#plugin-parameters) section.
 
+### internalPlugins
+
+- _type_: array;
+- _required_: `false`;
+- _description_: the list of the plugins that will be registered, but will not appear on the menu. It contains information on how to integrate the plugins in `microlc`.
+
+Each element of this array is an object correspondent to an internal plugin. The structure of the object is detailed in the
+[internal plugin parameters](#internal-plugin-parameters) section.
+
 ### analytics
 
 - _type_: object;
@@ -189,12 +198,6 @@ The information regarding the plugins to embed in the application are contained 
 - _required_: `false`;
 - _description_: contains the properties injected during the boostrap of a plugin rendered with `qiankun`.
 
-### externalLink
-
-- _type_: object;
-- _required_: `true` for `integrationMode` of type `href`;
-- _description_: contains the details about the href integration.
-
 ### category
 - _type_: string;
 - _required_: `false`;
@@ -204,6 +207,79 @@ The information regarding the plugins to embed in the application are contained 
 - _type_: array;
 - _required_: `false`;
 - _description_: array of plugins to insert in sub-menu. This property makes the structure recursive;
+
+### externalLink
+
+- _type_: object;
+- _required_: `true` for `integrationMode` of type `href`;
+- _description_: contains the details about the href integration.
+
+#### url
+
+- _type_: string;
+- _required_: `true`;
+- _description_: the url of the external application.
+
+#### sameWindow
+
+- _type_: boolean;
+- _required_: `true`;
+- _description_: states if the link should be opened in a new window;
+- _default_: `false`
+
+## Internal plugin parameters
+
+The information regarding the plugins to embed in the application are contained in these object.
+
+### id
+
+- _type_: string;
+- _required_: `true`;
+- _description_: the unique identifier of the plugin.
+
+### aclExpression
+
+- _type_: string;
+- _required_: `false`;
+- _description_: expression to evaluate the users that can access the plugin (i.e. `groups.admin && groups.ceo`).
+
+### order
+
+- _type_: integer;
+- _required_: `false`;
+- _description_: the position in the side menu;
+- _default_: `0`.
+
+### integrationMode
+
+- _type_: string;
+- _enum_: `href`, `qiankun`, `iframe`;
+- _required_: `false`;
+- _description_: the way in which the plugin will be integrated in `microlc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
+
+### pluginRoute
+
+- _type_: string;
+- _required_: `true` for `integrationMode` of type `qiankun` or `iframe`;
+- _description_: the path of the main application on which the plugin is rendered.
+
+### pluginUrl
+
+- _type_: string;
+- _required_: `true` for `integrationMode` of type `qiankun` or `iframe`;
+- _description_: the entry point of the plugin (i.e., where the plugin is deployed).
+
+### props
+
+- _type_: object;
+- _required_: `false`;
+- _description_: contains the properties injected during the boostrap of a plugin rendered with `qiankun`.
+
+### externalLink
+
+- _type_: object;
+- _required_: `true` for `integrationMode` of type `href`;
+- _description_: contains the details about the href integration.
 
 #### url
 
@@ -285,6 +361,17 @@ The information regarding the plugins to embed in the application are contained 
         "url": "https://external-site.com",
         "sameWindow": false
       }
+    }
+  ],
+  "internalPlugins": [
+    {
+      "id": "plugin-3",
+      "aclExpression": "groups.admin || groups.superadmin",
+      "order": 0,
+      "integrationMode": "qiankun",
+      "pluginRoute": "/myAwesomePlugin3",
+      "pluginUrl": "https://plugin-url.com",
+      "props": {}
     }
   ]
 }

@@ -135,7 +135,7 @@ The validation of Runtime Mount Path for configmaps and secrets is now more perm
 
 #### Services choice at project creation
 
-Core services are not chosen during project creation anymore. The ones that have been released as custom services can be added from the Marketplace, while the remaing ones can be activated by setting them to `true` in the `Enabled Services` property of the project through the Console CMS.
+Core services are not chosen during project creation anymore. The ones that have been released as custom services can be added from the Marketplace, while the remaining ones can be activated by setting them to `true` in the `Enabled Services` property of the project through the Console CMS.
 
 ### How to update your Console
 

@@ -116,7 +116,7 @@ For more details see the [Docusaurus documentation](https://docusaurus.io/docs/e
 
 ## What files I have to edit
 
-### To changes documentaton pages
+### To changes documentation pages
 
 As seen previously, the documentation is versioned, so exist N-1 doc root folders in addition to the root folder.
 
@@ -126,7 +126,7 @@ Usually, you should modify only the current version ( `/docs` folder).If the cha
 
 `docusaurus.config.js` it's the unique configuration file. It's used to set plugins, and other basic and advanced settings.
 
-This file define the main top menu:
+This file defines the main top menu:
 
 ```js
     navbar: {
