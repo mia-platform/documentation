@@ -26,7 +26,7 @@ For more info, visit the Application [documentation](../../marketplace/applicati
 The user experience of navigation within the Console has been improved, gaining a greater workspace area. Some features have been introduced and some other modified:
 
 - **The main menu** that allows to navigate among Areas now is in a dedicated popover that can be opened through the apposite icon in the top left corner of the Topbar.
-The user could also choose a bunch of shortcuts to navigate to favorite Areas that would be displayed in the Topbar. Read the [Console presentation](../../development_suite/overview-dev-suite) for more details.
+The user could also choose a bunch of shortcuts to navigate to favorite Areas that would be displayed in the Topbar. Read the [Console presentation](../../development_suite/overview-dev-suite#sections-navigation) for more details.
 
 ![new-topbar-with-favorites](../img/new-topbar-with-favorites.png)
 
