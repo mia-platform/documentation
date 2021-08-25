@@ -5,7 +5,7 @@ sidebar_label: v7.9.0
 image: "img/release-note-link-preview.png"
 ---
 
-_September 26, 2021_
+_August 26, 2021_
 
 ### New Features
 
