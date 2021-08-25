@@ -108,7 +108,7 @@ In Deploy Area, Deploy details card, a bug that caused the Deploy Outcome to be 
 
 In Deploy Area, Deploy details card, a bug that caused the `new version` of a real time updater to be incorrect has been fixed. 
 
-#### Ex Core Services configuration
+#### API Gateway and Authorization Service configuration
 
 Fixed bugs that caused the incorrect configuration of Api Gateway and Authorization Service in case the Authorization Service, Microservice Gateway, Swagger Aggregator and Api Portal:
 - were set as `false` in the `enabled services` property of the project after their conversion to custom services, or
