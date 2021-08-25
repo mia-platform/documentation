@@ -31,7 +31,7 @@ The user could also choose a bunch of shortcuts to navigate to favorite Areas th
 ![new-topbar-with-favorites](../img/new-topbar-with-favorites.png)
 
 :::caution
-Access to the API Portal documentation no longer occurs through the main menu, but through the relative table in the Envs section of the console. Remember that it is possible to manually customize the various links to be displayed in the table for each different runtime environment, [directly through the CMS](../../development_suite/set-up-infrastructure/runtime-environments).
+Access to the API Portal documentation no longer occurs through the main menu, but through the relative table in the Envs section of the console. Remember that it is possible to manually customize the various links to be displayed in the table for each different runtime environment, [directly through the CMS](../../development_suite/set-up-infrastructure/runtime-environments#managing-runtime-environments).
 :::
 
 ![runtime-environment-table](../img/envs_section.PNG)
