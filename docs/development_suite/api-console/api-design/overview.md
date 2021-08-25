@@ -31,7 +31,7 @@ Furthermore, at the mouseover on the branch name, you can see a tooltip displayi
 
 ### How to load a branch
 
-In order to switch to another branch, the option is made simple and intuitive by the appropriate area in the main topbar of the console: by clicking on it, you can select the new branch to be loaded or, alternatively, at the bottom of the respective drop-down menu you can create a new branch.
+In order to switch to another branch, you just need to click on its name to open the Load area. There you can select the new branch to be loaded or, alternatively, at the bottom of the respective drop-down menu you can create a new one.
 
 ![Load Branch](./img/branch_exp.png)
 
