@@ -116,7 +116,7 @@ Fixed bugs that caused the incorrect configuration of Api Gateway and Authorizat
 
 #### Swagger Aggregator and Api Portal routes
 
-The routes ??? have been added to the Swagger Aggregator and Api Portal endpoints that were lacking them in order to correctly generate the Authorization Service configurations, in case the service was present in the branch.
+The routes `GET/api/swagger/` and `GET/` have been added to the `/documentations/api-portal` endpoint of the Api Portal, and the route `GET/` has been added to the `/documentations/swagger` endpoint of the Swagger Aggregator, in case they were lacking them. This has been done in order to correctly generate the Authorization Service configurations, in case the service was present in the branch.
 
 ### Breaking changes
 
