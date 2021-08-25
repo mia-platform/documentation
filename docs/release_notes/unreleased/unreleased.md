@@ -37,11 +37,9 @@ Access to the API Portal documentation no longer occurs through the main menu, b
 ![runtime-environment-table](../img/envs_section.PNG)
 
 
-- **The choice of the runtime environment** has been standardized and it is possible to select it from the dropdown menu in the right corner of the topbar in the sections Deploy, Dashboards, Runtime and Debug.
+- **The choice of the runtime environment** has been standardized and it is possible to select it from the dropdown menu in the right corner of the topbar in the sections Deploy, Dashboards, Runtime and Debug. Also, **the "Select Runtime Environment" card** has been renamed in "Latest deployed version", and its appearance has been slightly changed.
 
 ![runtime-environment-dropdown](../img/runtime-env-dropdown.jpg)
-
-- **The "Select Runtime Environment" card** has been renamed in "Latest deployed version", and its appearance has been slightly changed. Now you can use the top right dropdown to select the Runtime Environment in which you want to deploy your branch.
 
 - **The branch management** of the Design area is now accessible in the right corner of the topbar. 
     - Click on the branch name to load or create a new one,
