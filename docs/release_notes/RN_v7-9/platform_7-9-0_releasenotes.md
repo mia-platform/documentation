@@ -1,11 +1,11 @@
 ---
-id: vX.X.X
-title: Version X.X.X Release Notes
-sidebar_label: vX.X.X
+id: v7.9.0
+title: Version 7.9.0 Release Notes
+sidebar_label: v7.9.0
 image: "img/release-note-link-preview.png"
 ---
 
-_Month day, year_
+_September 26, 2021_
 
 ### New Features
 
