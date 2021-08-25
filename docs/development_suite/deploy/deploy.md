@@ -20,6 +20,7 @@ This section is tied to a specific environment, which can be changed using the d
 
 With the relative dropdown menu in the top-right position of the topbar, it is possible to select the runtime environment in which you want to deploy your project.
 
+![Environment](img/deploy-select-env.png)
 
 ### Latest deployed version
 
