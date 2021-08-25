@@ -1063,6 +1063,17 @@
       "items": [
         {
           "type": "category",
+          "label": "v7.9",
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "release_notes/RN_v7-9/v7.9.0"
+            }
+          ]
+        },
+        {
+          "type": "category",
           "label": "v7.8",
           "collapsed": true,
           "items": [
