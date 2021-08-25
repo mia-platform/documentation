@@ -18,6 +18,7 @@ variables:
 build-latest:
   only:
     - master
+    - august-release
     - tags
 
 build-site:
