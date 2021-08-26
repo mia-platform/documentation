@@ -138,4 +138,4 @@ Core services are not chosen during project creation anymore. The ones that have
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 4.3.2`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 4.4.1`.
