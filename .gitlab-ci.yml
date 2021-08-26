@@ -18,7 +18,6 @@ variables:
 build-latest:
   only:
     - master
-    - august-release
     - tags
 
 build-site:
@@ -34,7 +33,7 @@ deploy-next:
     project: "clients/mia-platform/platform-documentation/configurations"
   only:
     refs:
-      - august-release
+      - master
 
 deploy:
   stage: deploy
