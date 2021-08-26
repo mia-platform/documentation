@@ -42,72 +42,62 @@ const config = {
           to: "docs/overview/mia_platform_overview",
           label: "Getting Started",
           position: "left",
-          activeBaseRegex:
-            "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)",
+          activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
         },
         {
-          label: "Core Platform",
+          label: "Products",
           position: "left",
-          activeBaseRegex:
-            "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|runtime_suite)",
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|runtime_suite|business_suite|fast_data|dev_portal)",
           to: "docs/development_suite/overview-dev-suite",
           items: [
             {
               label: "Console",
               to: "docs/development_suite/overview-dev-suite",
-              activeBaseRegex: "(docs|docs/\\d.x)/development_suite",
+              activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
             },
             {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
-              activeBaseRegex:
-                "(docs|docs/\\d.x)/(marketplace|runtime_suite|development_suite/api-console/api-design/custom_microservice_get_started)",
+              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite|development_suite/api-console/api-design/custom_microservice_get_started)"
+            },
+            {
+              to: "docs/fast_data/overview",
+              label: "Fast Data",
+              activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
+            },
+            {
+              to: "docs/business_suite/overview-business-suite",
+              label: "CMS & Analytics",
+              activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
+            },
+            {
+              to: "docs/dev_portal/overview",
+              label: "Dev Portal",
+              activeBaseRegex: "(docs|docs/\\d.x)/dev_portal"
             },
             {
               to: "docs/libraries/overview_service_libraries",
-              label: "Libraries",
+              label: "Libraries"
             },
-          ],
-        },
-        {
-          to: "docs/fast_data/overview",
-          label: "Fast Data",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/fast_data",
-        },
-        {
-          to: "docs/business_suite/overview-business-suite",
-          label: "CMS & Analytics",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/business_suite",
-        },
-        {
-          to: "docs/dev_portal/overview",
-          label: "Dev portal",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/dev_portal",
+          ]
         },
         {
           label: "Release notes",
           position: "left",
           to: "docs/release_notes/release_notes",
-          activeBaseRegex:
-            "(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))",
+          activeBaseRegex: "(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))"
         },
         {
-          href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21',
-          position: 'left',
-          label: 'Support',
+          href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
+          position: "left",
+          label: "Support"
         },
         {
           type: "docsVersionDropdown",
           position: "right",
-        },
-        {
-          href: "https://www.mia-platform.eu/en/",
-          label: "Mia-Platform site",
-          position: "right",
-        },
+          dropdownItemsBefore: [],
+          dropdownItemsAfter: []
+        }
       ],
     },
     footer: {
