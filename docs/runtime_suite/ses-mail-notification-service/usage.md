@@ -134,8 +134,13 @@ curl --location --request POST 'mail-service/send' \
 
 Following an example of form data in node:
 
+:::tip
+As form data is part of JavaScript Web API, to use it under node you should install a library like [form-data](https://www.npmjs.com/package/form-data).
+:::
+
 ```javascript
 const fs = require('fs')
+const FormData = require('form-data')
 
 const formData = new FormData()
 formData.append('from', 'alice@domain.com')
