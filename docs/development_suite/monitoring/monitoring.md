@@ -7,7 +7,7 @@ sidebar_label: Monitor your applications
 
 The Monitoring Infrastructure section is the Developer Console area dedicated to the control and monitoring of its infrastructure.
 
-The area is divided by the number of environments existing in the specific project. In the top menu, it is possible to change the environment to be monitored.
+The area is divided by the number of environments existing in the specific project. In the top right dropdown, it is possible to change the environment to be monitored.
 
 Within each environment you can view, using the sidebar on the left, all the workloads that you can monitor, as pods.
 

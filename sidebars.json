@@ -53,6 +53,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "development_suite/api-console/api-design/design-overview"
+        },
+        {
+          "type": "doc",
           "id": "development_suite/api-console/api-design/crud_advanced"
         },
         {
@@ -235,21 +239,6 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "API Gateway",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/api-gateway/overview"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/api-gateway/configuration"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
           "label": "CMS Site",
           "items": [
             {
@@ -301,6 +290,21 @@
           "type": "category",
           "label": "Plugins List",
           "items": [
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "API Gateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway/configuration"
+                }
+              ]
+            },
             {
               "collapsed": true,
               "type": "category",
@@ -781,7 +785,22 @@
         }
       ]
     },
-    "marketplace/examples/mia_examples"
+    "marketplace/examples/mia_examples",
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "Applications",
+      "items": [
+        {
+          "type": "doc",
+          "id": "marketplace/applications/mia_applications"
+        },
+        {
+          "type": "doc",
+          "id": "marketplace/applications/dev_portal_application"
+        }
+      ]
+    }
   ],
   "libraries": [
     {
@@ -1042,6 +1061,17 @@
       "type": "category",
       "label": "Versions",
       "items": [
+        {
+          "type": "category",
+          "label": "v7.9",
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "release_notes/RN_v7-9/v7.9.0"
+            }
+          ]
+        },
         {
           "type": "category",
           "label": "v7.8",

@@ -116,7 +116,7 @@ We have therefore created our Rest API.
 
 We just have to save and release in an environment. The steps to follow are the following:
 
-1. Click *Commit & Generate* that you can find on the top of the screen.
+1. Click *Commit & Generate* that you can find in the right corner of the main navbar, on the top of the screen.
 2. Then access the [Deploy area](../development_suite/deploy/deploy.md) and choose an environment to release.
 
 To populate the collection or to start testing the API you can either directly go to the [Documentation Portal](../development_suite/api-portal/api-documentations.md) and test your API with the Swagger.

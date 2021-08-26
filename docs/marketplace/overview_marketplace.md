@@ -9,7 +9,7 @@ The Mia-Platform Marketplace contains several code resources to develop your mic
 
 You can access the Mia-Platform Marketplace from the *Design area* of *Console*, when you are [creating a new microservice](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
 
-You will see a set of [Plugins](../runtime_suite/mia-platform-plugins.md), [Examples](./examples/mia_examples.md) and [Templates](./templates/mia_templates.md), powered and supported by Mia-Platform, you can choose from to easily set-up a microservice with predefined and tested functionality.
+You will see a set of [Plugins](../runtime_suite/mia-platform-plugins.md), [Examples](./examples/mia_examples.md), [Templates](./templates/mia_templates.md) and [Applications](./applications/mia_applications.md) powered and supported by Mia-Platform, you can choose from to easily set-up a single microservice or a bundle of microservices with predefined and tested functionalities.
 
 You can go deeper into the code of templates and examples visiting the [Mia-Platform Marketplace Github page](https://github.com/mia-platform-marketplace).
 
@@ -27,7 +27,9 @@ Check out the [Examples section](./examples/mia_examples.md) for further informa
 * **Docker Image Name**: an existing Docker image of a Microservice.  
 Check out the [Create services section](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) for further information.
 
-You can search for Microservices, filtering by Plugins, Templates and/or Examples.
+* **Application**: a bundle of resources including Plugins, Templates and Examples.
+
+You can search for Microservices, filtering by type: Plugins, Templates, Examples and/or Applications.
 
 Otherwise, you can search for them by category.
 
