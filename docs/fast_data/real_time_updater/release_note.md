@@ -5,6 +5,13 @@ sidebar_label: Release Note
 ---
 
 Here below you can read the release note of the Real-Time Updater service. Only the versions upper than 3.0.0 are available because the lowers versions are not compatible with the Console. 
+
+## 3.1.2 (2021-07-21)
+
+A bug that caused delete operations to be discarded if no value was found on the database has been fixed.
+
+Added support for delta messages in the same bulk operations set
+
 ## 3.1.1 (2021-07-15)
 
 A bug that prevented users to disable projections changes generation has been fixed. Now, if you set the environment variable `PROJECTIONS_CHANGES_ENABLED` to false, projections changes will not be generated when a projection is updated.
