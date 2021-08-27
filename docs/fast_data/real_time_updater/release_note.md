@@ -10,7 +10,7 @@ Here below you can read the release note of the Real-Time Updater service. Only 
 
 A bug that caused delete operations to be discarded if no value was found on the database has been fixed.
 
-Added support for delta messages in the same bulk operations set
+Added support for delta messages in the same bulk operations set.
 
 ## 3.1.1 (2021-07-15)
 
