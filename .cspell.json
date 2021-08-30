@@ -115,7 +115,9 @@
     "Bgkqhki",
     "INOUT",
     "testdb",
-    "fpath"
+    "fpath",
+    "PAAS",
+    "paas"
   ],
   "dictionaries": ["softwareTerms", "companies", "misc"],
   // flagWords - list of words to be always considered incorrect

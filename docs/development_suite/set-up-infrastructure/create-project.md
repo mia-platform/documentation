@@ -151,16 +151,40 @@ The object should have the following properties:
 
 If you already have a template, you can [skip this section](#how-to-create-a-project-archive).
 
-The template is a repository which contains some project's specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and starts all the similar projects with the same configuration. So, it is a base on which to create your project.
+The template is a repository which contains some project specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and starts all the similar projects with the same configuration. So, it is a base on which to create your project.
 
 :::info
 The fields set by the template can be changed during project creation.
 :::
 
+There are two ways of adding services to a template:
+
+* Using an `api-console-config` which specifies the services that will be included in the projects created with that template, together with other details e.g. environment variables. This requires you to add an `api-console-config.json` file in the root directory of the project.
+* Using `enabledServices` which only specifies whether a certain service is enabled or not, without the possibility of defining any other detail.
+
+:::caution
+The `enabledServices` can only be used for core services (i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`), while it is not working for services used from the Console that have been migrated to custom services (migrated services are now plugins, you can find them in the [marketplace](../../marketplace/overview_marketplace.md)). The only exception to this rule is that if your template uses api-console-config version 0.39 or lower, or do not use it at all, `enabledServices` will work for migrated services as well.
+:::
+
+The structure of the `api-console-config.json` is as follows:
+
+```json
+{
+  "endpoints": {...},
+  "decorators": {...},
+  "services": {...},
+  "configmaps": {...},
+  "version": "...",
+  "platformVersion": "..."
+}
+```
+
+If you create the `api-console-config.json` from an existing one, please remember to delete all of the fields that do not match the structure above, since they will be created correctly by the console after save and deploy actions (one of the two, depending on the field).
+
 How to compile the template:
 
 * `name` (*required*): name of the template to display;
-* `templateId` (*required*): the human-readable id of the template (e.g. mia-platform-multitenant-template). It must adhere to this regex: (^[a-z]+[a-z0-9-]*$);
+* `templateId` (*required*): the human-readable id of the template (e.g. mia-platform-multitenant-template). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$);`
 * `description`: the description of the template;
 * `archiveUrl`: URL to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you have to create a custom template, click [here](#how-to-create-a-project-archive) to see how.
 * `staticSecret`: some project could use the same static secret for a set of projects (especially used with architecture with multiple `api-gateway` entrypoints). Keys are optional. This is an object, for example:
@@ -194,7 +218,8 @@ How to compile the template:
         "oauth-login-site": true
       }
     ```
-* `deploy`: an object that identifies some deploy related configurations. 
+
+* `deploy`: an object that identifies some deploy related configurations.
 
   ```json
     {
@@ -202,8 +227,9 @@ How to compile the template:
       "useMiaPrefixEnvs": false
     }
   ```
-    - **runnerTool**: Set it to `mlp` if the project use it as command line deployment tool. It's required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled. 
-    - **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
+
+  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled.
+  * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
 
 :::note
 If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `MIA_` prefix by hand. This is not made automatically by the Console.
@@ -215,9 +241,9 @@ The project archive is interpolated using [mustache.js](https://github.com/janl/
 
 *mustache.js* is a web template system, which allows you to generate custom templates by replacing all the general information, present in the web template, with your product or organization information.
 
-You could create project template to avoid copy/paste in every new project the same base configuration.
+You could create a project template to avoid copy/paste in every new project having the same base configuration.
 
-At Mia-Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a tenant that uses this template, create this type of project will be a very simple process.
+At Mia-Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a tenant that uses this template, creating this type of project will be a very simple process.
 
 You can interpolate the template with some project data. With *mustache.js*, we could iterate through an array, so we can have some configuration iterated for all the environments.
 The values you could use during template interpolation are:
@@ -285,7 +311,7 @@ Once you have the tenant and the template correctly configured, you are able to 
 
 ![new-project-cards-headers](img/new-project-cards-headers.png)
 
-The project creation is divided in 5 different steps:
+The project creation is divided in 4 different steps:
 
 ### Step 1: **General**
 
@@ -308,6 +334,10 @@ In this step, it is indicated the location of your new project and you have to c
 * **Visibility** (*required*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
 
 * **Template** (*required*): you have to select, from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
+
+:::tip
+If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [the bottom of this page](#setup-paas-templates).
+:::
 
    ![create-project2](img/create-project2.png)
 
@@ -341,13 +371,7 @@ When the production environment is defined for a project a preview of its **Kube
 * CPU usage
 * RAM usage
 
-### Step 4: **Services**
-
-In this step, you are selecting which services are going to be provided to your new project. The list of the services available is conformed with the Mia-Platform license that you have purchased.
-
-![create-project4](img/create-project4.png)
-
-### Step 5: **Configure API Key**
+### Step 4: **Configure API Key**
 
 In this step, you are required to set up Client's accesses to your APIs:
 
@@ -509,3 +533,15 @@ Proxy url supports `http`, `https` and basic auth inside proxy url. For example,
 ### Final Step: **Activate CRUD**
 
 To activate the CRUD for your project, you can contact your Mia-Platform's responsible for creating a connection with MongoDB.
+
+## Setup PaaS templates
+
+If you are using the PaaS console, the following templates are available:
+
+* `Mia-Platform Multitenant with Traefik`: which contains all the services used by the Console (i.e. `crud-service`, `api-portal`, `swagger-aggregator`, `microservice-gateway`, `authorization-service`, `api-gateway`, `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`) with a correct configuration
+* `Mia-Platform Multitenant Without CMS`: which contains all services except the CMS-related ones, i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`
+
+A project created with these templates is almost ready to use, but some configuration is required for all its parts to work correctly.
+
+1. For the crud-service to be deployed and work correctly, you need a value for the environment variable `MONGODB_URL`. When the project is first created, its value is an empty string. To fix that, go to Envs Area, Environment Variables table, and either change its value, or delete it if you want to inherit this value. This needs to be done for all the environments you are interested in.
+2. For auth0-client service to be deployed and work correctly, you need to setup various environment variables, as specified in its configuration. You can find the configuration in the Design Area, Advanced Section, auth0-client option, config.js file. More on the configuration of the auth0-client [here](../../runtime_suite/auth0-client/configuration).
