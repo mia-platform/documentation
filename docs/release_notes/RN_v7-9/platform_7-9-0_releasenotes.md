@@ -21,6 +21,10 @@ In the Marketplace, it is now available the Dev Portal Application, our first ap
 
 For more info, visit the Application [documentation](../../marketplace/applications/mia_applications.md).
 
+:::info
+Applications are available if activated when updating Mia-Platform Console. For On Premise installations, please contact your technical referent to enable the page.
+:::
+
 #### A New way to navigate the Console
 
 The user experience of navigation within the Console has been improved, gaining a greater workspace area. Some features have been introduced and some other modified:
@@ -135,6 +139,21 @@ The validation of Runtime Mount Path for configmaps and secrets is now more perm
 #### Services choice at project creation
 
 Core services are not chosen during project creation anymore. The ones that have been released as custom services can be added from the Marketplace, while the remaining ones can be activated by setting them to `true` in the `Enabled Services` property of the project through the Console CMS.
+
+:::tip
+If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them [here](../../development_suite/set-up-infrastructure/create-project#setup-paas-templates).
+:::
+
+:::caution
+From now on, it is not possible to create Templates using the `enabledServices` property to define the presence of core services that have been migrated to custom services (i.e. crud-service, api-portal, swagger-aggregator, microservice-gateway, authorization-service, api-gateway). You will need to have them in the `api-console-config.json` file at version 0.40 or higher. Existing templates using `enabledServices` are still supported, no matter the services set to true, if they use `api-console-config.json` with the version `0.39` or lower or do not have the file in the repository. Read the Template creation [documentation](../../development_suite/set-up-infrastructure/create-project#create-a-template) for additional information.
+:::
+
+### Marketplace
+
+#### Helidon Hello World Example
+
+It is available a new Hello World example in Helidon that returns a hello message from the DevOps Console.
+Checkout [Helidon Hello World Example](https://github.com/mia-platform-marketplace/Helidon-Hello-World-Example) in the Mia-Platform PaaS marketplace.
 
 ### How to update your Console
 

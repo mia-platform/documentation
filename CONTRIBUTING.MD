@@ -116,7 +116,7 @@ For more details see the [Docusaurus documentation](https://docusaurus.io/docs/e
 
 ## What files I have to edit
 
-### To changes documentation pages
+### To change documentation pages
 
 As seen previously, the documentation is versioned, so exist N-1 doc root folders in addition to the root folder.
 
