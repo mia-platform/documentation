@@ -89,6 +89,13 @@ If this env var is set, it brings an enhancement in performance for all APIs cal
 
 For more info, visit the [Authorization service documentation](../../runtime_suite/authorization-service/configuration)
 
+#### Support page
+
+The documentation site offers now a [Support page](https://makeitapp.atlassian.net/servicedesk/customer/portal/21) to open tickets for:
+- Incidents
+- Ideas and Improvements
+- Accounts management
+
 ### Bug Fix
 
 #### Real-Time Updater v3.1.2
