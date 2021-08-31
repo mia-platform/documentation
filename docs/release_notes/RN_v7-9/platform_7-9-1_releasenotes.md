@@ -19,4 +19,4 @@ Fixed a bug that prevented the branch icon of the Design section to signal a cha
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 4.4.3`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 4.4.4`.
