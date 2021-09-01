@@ -15,7 +15,8 @@ Request `body` has to contain the following parameters:
 
 - `subject`: string
 
-- `sender` (or _from_ for [multipart email](#attachments)): string representing an email address
+- `sender` (or `from` for [multipart email](#attachments)): string representing an email address
+  - Only one between `sender` and `from` is admitted, otherwise the request is rejected
 
 Optionally you can include:
 

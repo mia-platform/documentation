@@ -20,6 +20,7 @@
       "ddos",
       "dependabot",
       "dind",
+      "dnsmasq",
       "fastify",
       "fortio",
       "gcloud",
@@ -41,6 +42,7 @@
       "intellij",
       "isbackoffice",
       "jsonl",
+      "jwks",
       "ktor",
       "kubectl",
       "kubelet",
@@ -89,6 +91,7 @@
   ],
   "ignoreWords": [
     "algs",
+    "clcr",
     "cms",
     "ddthh",
     "isauthnecessary",
@@ -137,8 +140,10 @@
     "docs/runtime_suite/sdk_android.md",
     "docs/runtime_suite/sdk_ios.md",
 
-    "./docs/runtime_suite/client-credentials/usage.md",
     "./docs/runtime_suite/sql-db-reader/configuration_and_usage.md"
   ],
-  "allowCompoundWords": true
+  "allowCompoundWords": true,
+  "ignoreRegExpList": [
+    "\".*\": \".*\""
+  ]
 }

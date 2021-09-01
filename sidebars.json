@@ -297,6 +297,17 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "ACL Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/acl-service/overview"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "API Gateway",
               "items": [
                 {
@@ -306,17 +317,6 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/api-gateway/configuration"
-                }
-              ]
-            },
-            {
-              "collapsed": true,
-              "type": "category",
-              "label": "ACL Service",
-              "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/acl-service/overview"
                 }
               ]
             },
@@ -402,7 +402,7 @@
             {
               "collapsed": true,
               "type": "category",
-              "label": "Crud Service",
+              "label": "CRUD Service",
               "items": [
                 {
                   "type": "doc",
@@ -476,6 +476,26 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/flow-manager-service/performance_overview"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Form Service Backend",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-backend/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-backend/configuration"
+                },
+                {
+                  "type": "category",
+                  "label": "docs_files_to_download",
+                  "items": []
                 }
               ]
             },
