@@ -4,7 +4,7 @@
     "description": "This service provides REST API that can be configured to manage request ACL",
     "category": {
       "id": "auth",
-      "label": "Authentication & Authorization"
+      "label": "Core Plugins - Authentication & Authorization"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -13,11 +13,24 @@
     "docLandingPage": "runtime_suite/acl-service/overview"
   },
   {
+    "name": "API Gateway",
+    "description": "Use this service to route requests to the correct service and verify the need of authentication",
+    "category": {
+      "id": "orchestrators",
+      "label": "Core Plugins - Orchestrators"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/api-gateway_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/api-gateway/overview"
+  },
+  {
     "name": "API Portal",
     "description": "Use Mia-Platform core API Portal to expose the swagger documentation of your development services in one unique place.",
     "category": {
-      "id": "utility",
-      "label": "Utility"
+      "id": "devportal",
+      "label": "Core Plugins - Dev Portal"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -30,7 +43,7 @@
     "description": "Integrate with your Auth0 tenant using Mia-Platform core service Auth0 Client.",
     "category": {
       "id": "auth",
-      "label": "Authentication & Authorization"
+      "label": "Core Plugins - Authentication & Authorization"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -43,7 +56,7 @@
     "description": "Use this service to authorize routes to request certain resources, leveraging OpenID Connect and simple user-defined configurations",
     "category": {
       "id": "auth",
-      "label": "Authentication & Authorization"
+      "label": "Core Plugins - Authentication & Authorization"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -56,7 +69,7 @@
     "description": "Use this plugin to expose API to perform OAuth2 compliant client credential flows with third party providers.",
     "category": {
       "id": "auth",
-      "label": "Authentication & Authorization"
+      "label": "Core Plugins - Authentication & Authorization"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -68,8 +81,8 @@
     "name": "Cron Scheduler",
     "description": "This service can be configured in order to execute custom scripts with crontab-like configuration.",
     "category": {
-      "id": "utility",
-      "label": "Utility"
+      "id": "orchestrators",
+      "label": "Core Plugins - Orchestrators"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -78,11 +91,11 @@
     "docLandingPage": "runtime_suite/cron-scheduler/overview"
   },
   {
-    "name": "Crud Service",
+    "name": "CRUD Service",
     "description": "Use Mia-Platform core Crud Service to manage different instances of the service.",
     "category": {
       "id": "database",
-      "label": "Database"
+      "label": "Core Plugins - Database Management"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -95,7 +108,7 @@
     "description": "This plugin reports status of the running microservices in your project.",
     "category": {
       "id": "monitoring",
-      "label": "Monitoring"
+      "label": "Add-ons - Monitoring"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -107,8 +120,8 @@
     "name": "Files Service",
     "description": "Upload, download and handle your files using MongoDB, S3 or Google Storage.",
     "category": {
-      "id": "database",
-      "label": "Database"
+      "id": "files",
+      "label": "Core Plugins - Files Management"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -120,8 +133,8 @@
     "name": "Flow Manager Service",
     "description": "The Flow Manager is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named Saga Pattern",
     "category": {
-      "id": "stream",
-      "label": "Data Stream"
+      "id": "orchestrators",
+      "label": "Core Plugins - Orchestrators"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -130,11 +143,24 @@
     "docLandingPage": "runtime_suite/flow-manager-service/overview"
   },
   {
+    "name": "Form Service Backend",
+    "description": "This is a backend for frontend to be used for building and managing forms.",
+    "category": {
+      "id": "frontendbuilder",
+      "label": "Add-on - Frontend Builders"
+    },
+    "supportedBy": "Mia-Care",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/form-service-backend_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
+    "docLandingPage": "runtime_suite/form-service-backend/overview"
+  },
+  {
     "name": "Function Service",
     "description": "This service allows to map functions to endpoints to be executed without creating a fully-fledged dedicated microservice.",
     "category": {
-      "id": "utility",
-      "label": "Utility"
+      "id": "serverless",
+      "label": "Core Plugins - Serverless"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -146,8 +172,8 @@
     "name": "HTTP Proxy Manager",
     "description": "A simple yet blazing fast proxy service that can be used to centralize request proxying.",
     "category": {
-      "id": "utility",
-      "label": "Utility"
+      "id": "addonsecurity",
+      "label": "Add-ons - Security"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -160,7 +186,7 @@
     "description": "Use this is plugin to convert kafka messages into Firebase push notification.",
     "category": {
       "id": "stream",
-      "label": "Data Stream"
+      "label": "Add-ons - Data Stream"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -173,7 +199,7 @@
     "description": "This plugin enables you to embed inside your dev portal the ReDoc page for API's documentation.",
     "category": {
       "id": "devportal",
-      "label": "Dev Portal"
+      "label": "Core Plugins - Dev Portal"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -186,7 +212,7 @@
     "description": "The Microservice Gateway provides the ability to specify HTTP hooks to be invoked before and after each request",
     "category": {
       "id": "stream",
-      "label": "Data Stream"
+      "label": "Add-ons - Data Stream"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -199,7 +225,7 @@
     "description": "Stream your MongoDB changes to Kafka",
     "category": {
       "id": "stream",
-      "label": "Data Stream"
+      "label": "Add-ons - Data Stream"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -212,7 +238,7 @@
     "description": "Provide MongoDB aggregation pipelines as REST API.",
     "category": {
       "id": "database",
-      "label": "Database"
+      "label": "Core Plugins - Database Management"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -224,8 +250,8 @@
     "name": "Payment Gateway Manager",
     "description": "Payment Gateway Manager helps you connect your services with different payment gateways in an easy fashion",
     "category": {
-      "id": "business",
-      "label": "Business Intelligence"
+      "id": "payments",
+      "label": "Add-ons - Payments"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -238,7 +264,7 @@
     "description": "This microservice offers some useful features for easily and safely handling the push notifications data.",
     "category": {
       "id": "notification",
-      "label": "Notification"
+      "label": "Core Plugins - Notifications"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -251,7 +277,7 @@
     "description": "Send custom email using an Amazon SES.",
     "category": {
       "id": "notification",
-      "label": "Notification"
+      "label": "Core Plugins - Notifications"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -264,7 +290,7 @@
     "description": "This is the best plugin to use for creating a Single View Creator for your Fast Data",
     "category": {
       "id": "fast-data",
-      "label": "Fast Data"
+      "label": "Add-ons - Fast Data"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -277,7 +303,7 @@
     "description": "Provide SQL queries as REST API.",
     "category": {
       "id": "database",
-      "label": "Database"
+      "label": "Core Plugins - Database Management"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -290,7 +316,7 @@
     "description": "Provide a REST API interface to execute SQL Stored Procedures",
     "category": {
       "id": "database",
-      "label": "Database"
+      "label": "Core Plugins - Database Management"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -303,7 +329,7 @@
     "description": "Use Mia-Platform core Swagger Aggregator to aggregate the individual swaggers of all the microservices indicated in the configuration file.",
     "category": {
       "id": "devportal",
-      "label": "Dev Portal"
+      "label": "Core Plugins - Dev Portal"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -315,8 +341,8 @@
     "name": "Temporary Password Generator",
     "description": "Generates Temporary-Passwords associated with arbitrary data payload to be later consumed.",
     "category": {
-      "id": "utility",
-      "label": "Utility"
+      "id": "addonsecurity",
+      "label": "Add-ons - Security"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",
@@ -328,8 +354,8 @@
     "name": "Timer Service",
     "description": "The Timer Service allows scheduling of timers that perform custom actions upon expiry.",
     "category": {
-      "id": "utility",
-      "label": "Utility"
+      "id": "orchestrators",
+      "label": "Core Plugins - Orchestrators"
     },
     "supportedBy": "Mia-Platform",
     "type": "plugin",

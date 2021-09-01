@@ -42,7 +42,7 @@ The returned **access token** is structured as follows:
   A token without the `kid` field is considered invalid.
   :::
 
-- the **payload** containinig the following claims:
+- the **payload** containing the following claims:
 
     * **iss**: the issuer of the token. Passed from env variable `ISSUER_CLAIMS`;
     * **sub**: the subject requesting the token. It is set to the `clientId`;

@@ -610,6 +610,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 - $nearSphere
 - $regex
 - $elemMatch and $options
+- $text
 
 > **Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
 
@@ -658,7 +659,34 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-The result will be sorted from the nearest from the farthest.
+The result will be sorted from the nearest to the farthest.
+
+#### Text Search Queries
+
+On CRUD service it's possible to filter text fields which match a search filter using MongoDB Text Search Queries.
+The query string is parsed and single words are used to query the Text index. A match is evaluated when the text value of an indexed field is considered to be the same word according to language rules. Indeed, it might be essential to set the `$language` option (English is the default language).
+See [$text](https://docs.mongodb.com/manual/reference/operator/query/text/) documentation to go in detail.
+
+To enable this feature you need to create a Text index on Console. At most one Text index can exist, but it can cover multiple fields. Only strings and arrays of strings can be indexed by a Text index.
+
+For example to search a plate with a `name` matching the word "FRIED" (by default the `$caseSensitive` is set to `false`), after creating a Text index on the field `name`, you can use this $text MongoDB query. 
+
+```json
+{ "$text":
+    { "$search": "FRIED", "$caseSensitive": true }
+}
+```
+
+to get the list of plates just encode the query and use _q.
+
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_q=%7B%20%22%24text%22%3A%7B%20%22%24search%22%3A%20%22FRIED%22%2C%20%22%24caseSensitive%22%3A%20true%20%7D%7D' \
+  --header 'accept: application/json' \
+  --header 'client-key: client-key'
+```
+
+The result will be sorted by text relevance score, contrary to MongoDB $text query which returns no order by default.
 
 ### Update
 
