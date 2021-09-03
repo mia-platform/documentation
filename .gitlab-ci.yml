@@ -21,7 +21,6 @@ build-latest:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
 build-site:
-  build-latest:
   rules:
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_BRANCH
