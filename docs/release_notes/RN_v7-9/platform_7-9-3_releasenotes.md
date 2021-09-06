@@ -17,7 +17,7 @@ Fixed "failureThreshold" field on api schema, that caused "null" value returned 
 
 Lookup filter query is now correctly parsed. It is now possible to perform lookup queries in the CMS by setting the lookup query filter in the  `CMS` console section.
 
-### Service conversion from advanced
+#### Service conversion from advanced
 
 The `ports` property of the `service.yml` file is now correctly set when converting an advanced service to a simple one. Therefore, it is now possible to deploy a project with success after having converted a service from advanced.
 
