@@ -967,7 +967,7 @@
     {
       "collapsed": false,
       "type": "category",
-      "label": "Design Fast Data",
+      "label": "Design",
       "items": [
         {
           "type": "doc",
@@ -1007,6 +1007,29 @@
         {
           "type": "doc",
           "id": "fast_data/advanced"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "type": "category",
+      "label": "Monitoring",
+      "items": [
+        {
+          "type": "doc",
+          "id": "fast_data/monitoring/overview"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/monitoring/dashboards/consumer_groups"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/monitoring/dashboards/projection_changes"
+        },
+        {
+          "type": "doc",
+          "id": "fast_data/monitoring/dashboards/single_views"
         }
       ]
     }

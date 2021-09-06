@@ -136,6 +136,7 @@
     "**/*.PNG",
     "**/img/**",
     "**/*.zip",
+    "**/*.json",
     // old files
     "docs/runtime_suite/sdk_android.md",
     "docs/runtime_suite/sdk_ios.md",
