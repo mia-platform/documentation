@@ -1115,6 +1115,10 @@
           "items": [
             {
               "type": "doc",
+              "id": "release_notes/RN_v7-9/v7.9.3"
+            },
+            {
+              "type": "doc",
               "id": "release_notes/RN_v7-9/v7.9.2"
             },
             {
