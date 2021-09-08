@@ -27,7 +27,7 @@ The API Gateway works with an additional service, called _Dnsmasq_, which functi
 The service exposes two different ports for allowing differentiation between application and backoffice routing.
 The application one will be exposed on port 8080, and the backoffice on port 8081: then through the DNS it will allow to have different urls for the two servers.
 
-![API Gateway](img/gateway.png)
+![API Gateway](img/gateway.PNG)
 
 ## Edge Router
 
