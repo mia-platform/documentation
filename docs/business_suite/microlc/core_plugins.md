@@ -17,7 +17,9 @@ The layout can be composed using rows and columns: it will be adaptive thanks to
 
 :::caution
 In addition to the [properties that you can configure](./core_plugins.md#config) for each `custom-element`, 
-the plugin **always** injects a property called `eventBus`: an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components.
+the plugin **always** injects two properties called `eventBus` and `currentUser`: 
+`eventBus` is an [RxJS's Subject](https://rxjs.dev/guide/subject) used as communication channel between components,
+`currentUser` is an object which may represent the session currently authenticated user.
 :::
 
 ### elementsConfiguration
