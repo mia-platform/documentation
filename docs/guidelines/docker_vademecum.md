@@ -29,7 +29,7 @@ Follow the following steps:
 ## Basic Commands - Life Cycle
 
 * `docker create` creates a container but does not start it.
-* `rename docker` allows you to rename the container.
+* `docker rename` allows you to rename the container.
 * `docker run` creates and starts a container in one operation.
 * `docker rm` deletes a container.
 * `docker update` updates the resource limits of a container.
