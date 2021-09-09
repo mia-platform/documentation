@@ -32,7 +32,7 @@ retrieved by the launcher at runtime. The choice of consuming this configuration
 application theme through different configurations.
 
 :::info
-The **fe-container** is also available as [Docker image](https://hub.docker.com/r/miaplatform/micro-lc).
+The **fe-container** is also available as [Docker image](https://hub.docker.com/r/miaplatform/microlc).
 :::
 
 It follows a list of the features offered and handled by the **fe-container**.

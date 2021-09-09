@@ -65,7 +65,7 @@ branding of the application.
 - _type_: string;
 - _required_: `false`;
 - _description_: the string that will be displayed on the browser tab;
-- _default_: `Micro-lc`.
+- _default_: `Microlc`.
 
 #### favicon
 
