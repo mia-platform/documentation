@@ -30,7 +30,7 @@ Have all the documentation in one place allows you to find everything quickly, t
 
 ## The Mia way
 
-Mia built the dev portal using [`microlc`](https://github.com/mia-platform/microlc): its open source product to easily deploy web application using the micro-frontends technology.
+Mia built the dev portal using [`micro-lc`](https://github.com/mia-platform/micro-lc): its open source product to easily deploy web application using the micro-frontends technology.
 
 Dev portal encloses in a single-page application, the following tools:
 

@@ -4,7 +4,7 @@ title: General configuration
 sidebar_label: General configuration
 ---
 
-`microlc` provides an API that can be used by your plugins to retrieve its dynamic configuration expressed in `JSON` format.
+`micro-lc` provides an API that can be used by your plugins to retrieve its dynamic configuration expressed in `JSON` format.
 
 All these configurations must be stored in the same path, defined by the `PLUGINS_CONFIGURATIONS_PATH` environment variable.
 

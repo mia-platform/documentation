@@ -4,7 +4,7 @@ title: Core configuration
 sidebar_label: Core configuration
 ---
 
-To compose the application, `microlc` needs to consume a configuration at runtime. When loaded, the
+To compose the application, `micro-lc` needs to consume a configuration at runtime. When loaded, the
 [fe-container](overview.md#front-end-container) performs a GET request to `/api/v1/microlc/configuration` expecting in
 response the configuration in JSON format. This endpoint is always called, even in parallel if necessary.
 
@@ -26,7 +26,7 @@ See the [theming parameters](#theming-parameters) section for details.
 
 - _type_: array;
 - _required_: `true`;
-- _description_: the list of the plugins to render. It contains information on how to integrate the plugins in `microlc`.
+- _description_: the list of the plugins to render. It contains information on how to integrate the plugins in `micro-lc`.
 
 Each element of this array is an object correspondent to a plugin. The structure of the object is detailed in the
 [plugin parameters](#plugin-parameters) section.
@@ -35,7 +35,7 @@ Each element of this array is an object correspondent to a plugin. The structure
 
 - _type_: array;
 - _required_: `false`;
-- _description_: the list of the plugins that will be registered, but will not appear on the menu. It contains information on how to integrate the plugins in `microlc`.
+- _description_: the list of the plugins that will be registered, but will not appear on the menu. It contains information on how to integrate the plugins in `micro-lc`.
 
 Each element of this array is an object correspondent to an internal plugin. The structure of the object is detailed in the
 [internal plugin parameters](#internal-plugin-parameters) section.
@@ -65,7 +65,7 @@ branding of the application.
 - _type_: string;
 - _required_: `false`;
 - _description_: the string that will be displayed on the browser tab;
-- _default_: `Microlc`.
+- _default_: `Micro-lc`.
 
 #### favicon
 
@@ -178,7 +178,7 @@ The information regarding the plugins to embed in the application are contained 
 - _type_: string;
 - _enum_: `href`, `qiankun`, `iframe`;
 - _required_: `false`;
-- _description_: the way in which the plugin will be integrated in `microlc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
+- _description_: the way in which the plugin will be integrated in `micro-lc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
 
 ### pluginRoute
 
@@ -255,7 +255,7 @@ The information regarding the plugins to embed in the application are contained 
 - _type_: string;
 - _enum_: `href`, `qiankun`, `iframe`;
 - _required_: `false`;
-- _description_: the way in which the plugin will be integrated in `microlc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
+- _description_: the way in which the plugin will be integrated in `micro-lc`, see [Plugin configuration](plugin_configuration.md) section for mode details.
 
 ### pluginRoute
 

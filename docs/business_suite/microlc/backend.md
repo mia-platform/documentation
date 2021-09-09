@@ -6,7 +6,7 @@ sidebar_label: Back-end
 
 The **be-config** expose the endpoints used to configure the **fe-container**:
 - the `/authentication` endpoint which receives `GET` requests and responds with the **user configuration** in `JSON` format;
-- the `/configuration` endpoint which receives `GET` requests and responds with the **`microlc` configuration** in `JSON` format.
+- the `/configuration` endpoint which receives `GET` requests and responds with the **`micro-lc` configuration** in `JSON` format.
 
 Both are written in `Node.js` and `Fastify` with the support of [Mia service Node.js library](https://github.com/mia-platform/custom-plugin-lib).
 

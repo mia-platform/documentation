@@ -10,9 +10,9 @@ If you don't know where to place them, we suggest reading [Core configuration](c
 
 ## href plugin
 
-In order to work with `microlc`, an `href` plugin doesn't require any kind of adjustment.
+In order to work with `micro-lc`, an `href` plugin doesn't require any kind of adjustment.
 
-This is the simplest plugin that `microlc` support: it allows you to redirect the user to another page,
+This is the simplest plugin that `micro-lc` support: it allows you to redirect the user to another page,
 using the same window or a different one, using the [sameWindow](core_configuration.md#samewindow) property.
 
 
@@ -28,9 +28,9 @@ For security reasons, we suggest configuring `X-Frame-Options` with `ALLOW-FROM`
 
 This kind of plugin allows you to include a website **without changing its implementation**,
 but also has some limitations:
-- an `iframe` **can't** access the `css variables` provided by `microlc`;
-- an `iframe` **doesn't** support the properties injected by `microlc`;
-- inside an `iframe` **isn't** possible to control the `microlc` navigation flow.
+- an `iframe` **can't** access the `css variables` provided by `micro-lc`;
+- an `iframe` **doesn't** support the properties injected by `micro-lc`;
+- inside an `iframe` **isn't** possible to control the `micro-lc` navigation flow.
 
 If you own the website to integrate, we advise you to use a [`Qiankun plugin`](#qiankun-plugin).
 
@@ -39,7 +39,7 @@ If you own the website to integrate, we advise you to use a [`Qiankun plugin`](#
 To integrate this kind of plugins we rely on the [`qiankun`](https://qiankun.umijs.org/) solution,
 that requires most attention on the developer side.
 
-To integrate a `qiankun` plugin with `microlc`, you must adapt your web application following the steps described 
+To integrate a `qiankun` plugin with `micro-lc`, you must adapt your web application following the steps described 
 [here](https://github.com/umijs/qiankun/blob/master/docs/guide/tutorial.md#micro-app): 
 the right procedure depends on the framework used to build the website.
 
@@ -57,7 +57,7 @@ For security reasons, we discourage the use of a wildcard.
 Each `qiankun` plugin is able to *communicate* with other `qiankun` plugins and to *navigate* to `qiankun` or `iframe` plugins just using
 the standard `window.history.push` functionality: the parameters between plugins can be shared using the `window.location.search`.
 
-An implementation example is available on [GitHub](https://github.com/mia-platform/microlc/blob/main/example/src/App.jsx#L24),
+An implementation example is available on [GitHub](https://github.com/mia-platform/micro-lc/blob/main/example/src/App.jsx#L24),
 as you can see:
 ```js
 let searchParams = new URLSearchParams(window.location.search);
