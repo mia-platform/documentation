@@ -9,14 +9,14 @@ content-driven websites extremely quickly.
 
 In the dev portal, `Docusaurus` is used to create the documentation writing just [markdown](https://guides.github.com/features/mastering-markdown/) files.
 
-## Integration into microlc
+## Integration into micro-lc
 
-As Docusaurus hide its root component, we first need an `adapter` that expose the `microlc`'s required lifecycle methods:
-its purpose is to correctly include `Docusaurus` inside `microlc`.
+As Docusaurus hide its root component, we first need an `adapter` that expose the `micro-lc`'s required lifecycle methods:
+its purpose is to correctly include `Docusaurus` inside `micro-lc`.
 
 ## Docusaurus adapter
 
-The `adapter` come as `microlc` plugin, whose configuration structure can be found in the
+The `adapter` come as `micro-lc` plugin, whose configuration structure can be found in the
 [dedicated section](../business_suite/microlc/core_configuration.md#plugins).
 
 ### Adapter configuration

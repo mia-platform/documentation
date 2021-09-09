@@ -4,7 +4,7 @@ title: Setup
 sidebar_label: Setup
 ---
 
-It is possible to integrate `microlc` inside the Mia-Platform Console with almost zero configurations.
+It is possible to integrate `micro-lc` inside the Mia-Platform Console with almost zero configurations.
 
 ## Integration requirements
 
@@ -15,7 +15,7 @@ Following the requirements to integrate this functionality:
 
 ## Integration steps
 
-Following steps must be made on Console and will deploy a `microlc` configured instance.
+Following steps must be made on Console and will deploy a `micro-lc` configured instance.
 
 ### 1. Microservice creation for `fe-container`
  
@@ -79,7 +79,7 @@ After that, the situation should be similar to the following:
 
 ## Result
 
-At the end of this, you should have a complete instance of `microlc` up and running, 
+At the end of this, you should have a complete instance of `micro-lc` up and running, 
 exposed at the `Base path` provided for the [fe-container](setup.md#3-endpoint-configuration-for-fe-container)
 (e.g. `https://your-host.com/microlc`). 
 

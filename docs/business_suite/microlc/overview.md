@@ -4,31 +4,31 @@ title: Micro Launch Complex
 sidebar_label: Overview
 ---
 
-`microlc` is the Mia-Platform solution for building flexible, multi-tenant front-end applications following the
+`micro-lc` is the Mia-Platform solution for building flexible, multi-tenant front-end applications following the
 [Micro Frontend](https://micro-frontends.org/) architecture.
 
-`microlc` consists of a core interface that loads, embeds, and orchestrates **plugins** (your individual frontend
+`micro-lc` consists of a core interface that loads, embeds, and orchestrates **plugins** (your individual frontend
 applications) at runtime, while providing configuration options and useful out-of-the-box features.
 
-The project is open source, and it can be found on [GitHub](https://github.com/mia-platform/microlc). Although the
-core components are written in Typescript and React, microlc is **technology-agnostic**, which means that it integrates
+The project is open source, and it can be found on [GitHub](https://github.com/mia-platform/micro-lc). Although the
+core components are written in Typescript and React, micro-lc is **technology-agnostic**, which means that it integrates
 seamlessly with your favorite toolkit, being it Angular, React, Vue, or anything else you like: even vanilla JavaScript!
 
 ## Architecture
 
 ![Architecture](../img/microlc_architecture.png)
 
-`microlc` is composed by three main blocks: **fe-container**, **be-config** and a varying number
+`micro-lc` is composed by three main blocks: **fe-container**, **be-config** and a varying number
 of **plugins**.
 
 ## Front-end container
 
-The front-end core of `microlc` is the **fe-container**: a lightweight launcher written in `React` and `Typescript` which is
+The front-end core of `micro-lc` is the **fe-container**: a lightweight launcher written in `React` and `Typescript` which is
 responsible for rendering the plugins and for providing a set of core functionalities to the application.
 
 These functionalities are for the most part configurable through a [core configuration](core_configuration.md)
 retrieved by the launcher at runtime. The choice of consuming this configuration at runtime makes the fe-container
-**multi tenant**: multiple tenants can use the same instance of microlc controlling the rendered plugins and the
+**multi tenant**: multiple tenants can use the same instance of micro-lc controlling the rendered plugins and the
 application theme through different configurations.
 
 :::info
@@ -48,12 +48,12 @@ plugins.
 
 :::tip
 The plugins can implement their own sub-navigation with an eventual dedicated side menu.  
-This will not graphically or logically interfere with `microlc`, which will integrate seamlessly the plugin routing in the main one.
+This will not graphically or logically interfere with `micro-lc`, which will integrate seamlessly the plugin routing in the main one.
 :::
 
 ### User management
 
-`microlc` doesn't provide any authentication system, but it can be plugged in using the procedure described in the [Authentication section](./authentication.md).
+`micro-lc` doesn't provide any authentication system, but it can be plugged in using the procedure described in the [Authentication section](./authentication.md).
 
 ### Plugin management
 
@@ -86,7 +86,7 @@ respectively named `--microlc-primary-color` and `--microlc-primary-color-tint-8
 
 ### Dark mode
 
-In `microlc` is available the **dark mode**, where the colors are changed to darker tints.
+In `micro-lc` is available the **dark mode**, where the colors are changed to darker tints.
 The dark mode is managed using the [`css variables`](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 previously introduced.
 It is possible to configure a secondary icon link for the dark theme inside the field `url_dark_image` of the logo object
@@ -110,6 +110,6 @@ The **plugins** are the `micro-fronted` that actually composes the end applicati
 Each plugin is an **independent**, **self-contained** entity which can be written **in any framework**:
 plugins can have their own dedicated back-end, and they can be extended or configured at will at runtime.
 
-`microlc` offers different ways to integrate plugins, as outlined [in this section](plugin_configuration.md).  
+`micro-lc` offers different ways to integrate plugins, as outlined [in this section](plugin_configuration.md).  
 Plugins can communicate with each other, or navigate to each other manipulating the history of the application:
 see [Plugins communication](plugin_configuration.md#plugin-communication) section for a more detailed explanation.

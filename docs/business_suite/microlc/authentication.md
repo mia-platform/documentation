@@ -19,7 +19,7 @@ and where the user information are provided.
 - *required*: `false`
 - *default*: `false`
 - *description*: defines if the authentication process is expected.  
-  This property can be used to avoid the authentication process or to make a public instance of `microlc`.
+  This property can be used to avoid the authentication process or to make a public instance of `micro-lc`.
 
 ### userInfoUrl
 
@@ -77,5 +77,5 @@ which must receive them in a header whose name can be customized in **be-config*
 The only supported separator for the profiles injected in header is the comma `,` (i.e. `admin,developer,owner`).
 
 :::warning
-`microlc` doesn't inject any header: they must be provided using external services.
+`micro-lc` doesn't inject any header: they must be provided using external services.
 :::

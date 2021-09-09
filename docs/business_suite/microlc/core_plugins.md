@@ -4,7 +4,7 @@ title: Core plugins
 sidebar_label: Core plugins
 ---
 
-To extend the potential of `microlc`, Mia-Platform created some [configurable](./core_configuration.md#props) plugins called `core plugins`.
+To extend the potential of `micro-lc`, Mia-Platform created some [configurable](./core_configuration.md#props) plugins called `core plugins`.
 
 These plugins are open source and can be deployed using the console with low effort.
 

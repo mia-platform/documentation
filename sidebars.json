@@ -748,7 +748,7 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "Micro LC",
+          "label": "micro-lc",
           "items": [
             {
               "type": "doc",
