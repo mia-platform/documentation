@@ -532,6 +532,17 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "JWT Token Validator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/jwt-token-validator/overview_and_usage"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Kafka2Firebase",
               "items": [
                 {

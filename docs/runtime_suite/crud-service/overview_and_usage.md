@@ -11,7 +11,7 @@ Mia-Platform Console takes advantage of the CRUD Service to let you configure CR
 At the moment, you can have only one Crud Service in your branch at a time.
 :::
 
-It's possible to configure CRUD Service with more that one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
+It's possible to configure CRUD Service with more than one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
 
 ## Introduction
 
@@ -120,10 +120,10 @@ Only the following transitions are allowed in the publish workflow.
 
 | Source/Destination | PUBLIC  |  DRAFT | TRASH  | DELETED  |
 |--------------------|---------|--------|--------|----------|
-| PUBLIC             |    -    |   OK   |   OK   |  -       |
-| DRAFT              |  OK     |   -    |   OK   |  -       |
-| TRASH              |  OK     | OK     |   -    |   OK     |
-| DELETED            |   -     |   -    |   OK   |   -      |
+| PUBLIC             |    -    |   OK   |   OK   |   -      |
+| DRAFT              |   OK    |   -    |   OK   |   -      |
+| TRASH              |    -    |   OK   |   -    |   OK     |
+| DELETED            |    -    |   -    |   OK   |   -      |
 
 To transit the STATE of an item of a CRUD you need to POST it
 
@@ -558,7 +558,46 @@ Returns an array of documents with only the properties requested.
 ]
 ```
 
-> **Note**: the selection of inner object fields is not supported.
+As an alternative to `_p`, in v4.3.0 a new query parameter `_rawp` has been added to let the user express the projection of the fields as a raw MongoDB projection in JSON.
+
+This allows an improved expressibility and let the user get advantage of some MongoDB features not included in the `_p`, such as excluding fields by setting them to `0` in the projection, or using the MongoDB aggregation operators.
+
+Here follow some examples of its usage:
+
+- Simple projection of some fields
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_rawp={"someField":1,"someOtherField":1}' \
+  --header 'accept: application/json' \
+  --header 'client-key: client-key'
+```
+
+- Exclude some fields
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_rawp={"excludedField":0,"someOtherExcludedField":0}' \
+  --header 'accept: application/json' \
+  --header 'client-key: client-key'
+```
+
+- Use a `$filter` operator to get only the objects with `someSubfield = someValue` of an array `someArray`:
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_rawp={"result":{"$filter":{"input":"$someArray","as":"item","cond":{"$$item.someSubfield":"someValue"}}}}' \
+  --header 'accept: application/json' \
+  --header 'client-key: client-key'
+```
+
+The list of currently supported MongoDB aggregation operators is the following:
+
+- `$filter`
+- `$in`
+- `$reduce`
+- `$concatArrays`
+- `$cond`
+
+> **Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
+
 
 #### Combine all together
 
