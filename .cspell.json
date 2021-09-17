@@ -89,7 +89,8 @@
       "yavi",
       "miactl",
       "miaplatformctl",
-      "formio"
+      "formio",
+      "expressibility"
   ],
   "ignoreWords": [
     "algs",

@@ -182,6 +182,19 @@
     "docLandingPage": "runtime_suite/http-proxy-manager/overview"
   },
   {
+    "name": "JWT Token Validator",
+    "description": "The JWT Token Validator service allows verifying if a given JWT token is valid.",
+    "category": {
+      "id": "auth",
+      "label": "Core Plugins - Authentication & Authorization"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/jwt-token-validator_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/jwt-token-validator/overview_and_usage"
+  },
+  {
     "name": "Kafka2Firebase",
     "description": "Use this is plugin to convert kafka messages into Firebase push notification.",
     "category": {
