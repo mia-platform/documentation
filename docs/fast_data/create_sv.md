@@ -97,7 +97,7 @@ The type fields supported are the same of the collection you can create in the [
 
 You need to create a **Single View Creator** to update or delete a Single View when a Projection Changes is created. This happens every time a Projection has been modified.
 
-A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to onc System of Records through Projection Changes.
+A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Records through Projection Changes.
 
 ```shell
 system_1
