@@ -62,7 +62,7 @@ where `projectId`, `environmentId` and `projectionName` are filled with, respect
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the a service responsible for creating the collection on MongoDB.
+A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the service responsible for creating the collection on MongoDB.
 
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 
