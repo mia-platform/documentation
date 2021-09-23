@@ -5,14 +5,14 @@ sidebar_label: Protect Data
 ---
 ## How can you protect data using the console?
 
-The design section allows your organization to ensure sensible data are securely organised and stored through two main functionalities:
+The design section ensures sensitive data are organised, protected, and securely stored through two functionalities:
 
 * **Sensitivity**
 * **Client side Encryption**
 
 These two features allow you to specify the level of confidentiality you want to attribute to personal data and the way these data are encrypted when stored. 
 
-To manage protection, Mia-Platform's Console offers two dedicated fields in every collection of your project.
+To manage data protection, Mia-Platform's Console offers two dedicated fields in every collection of your project.
 
 ![gdpr](img/gdpr.png)
 
@@ -32,11 +32,11 @@ The following are the categories in which data can be classified according to se
 
 * **Public**: information intended for public use. This type of data are not protected by intellectual property laws such as copyright, trademark, or patent laws. *(e.g. public website content or marketing materials)*
 
-* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals. *(e.g. emails, media, and documents with no sensible data)*
+* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals. *(e.g. emails, media, and documents with no sensitive data)*
 
-* **Secret**: information intendend for restriced use, i.e. only certain members of your organization should be able to access and modify this type of data. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals. *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, employee records)*
+* **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify this type of data. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals. *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, employee records)*
 
-* **Top Secret**: information intended for mission critical use, such as supporting strategic business processes. If destroyed or compromised, this type of data can have a catastrophic impact on your organization or its individuals. *(e.g. privileged credentials, customer personal data, credit card numbers or other financial account numbers, FISMA or health protected information, social security numbers, intellectual property)*
+* **Top Secret**: information intended for mission-critical use, such as supporting strategic business processes. If destroyed or compromised, this type of data can have a catastrophic impact on your organization or its individuals. *(e.g. privileged credentials, customer personal data, credit card numbers or other financial account numbers, FISMA or health protected information, social security numbers, intellectual property)*
 
 ### Select a sensitivity level
 
@@ -50,10 +50,10 @@ You can set a sensitivity level from every collection table in the design sectio
 
 Displaying a sensitivity label leads to a compact and visually appealing representation of the data security level. 
 
-However, for certain types of information it might be useful to specify a more detailed set of characteristics or additional security policies that should be applied to that information.
+However, for certain types of information, it might be useful to specify a more detailed set of characteristics or additional security policies that should be applied to that information.
 
 
-Open the drawer by clicking the edit icon and move to GDPR description field. Here you will be able to describe more accruately security-related information regarding your data.
+Open the drawer by clicking the edit icon and move to the GDPR description field. Here you will be able to describe more accurately security-related information regarding your data.
 
 ![gdpr description](img/gdpr-description.gif)
 
