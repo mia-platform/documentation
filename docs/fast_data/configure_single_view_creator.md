@@ -53,7 +53,7 @@ const resolvedOnStop = singleViewCreator.startCustom({
   validator,
   singleViewKeyGetter: singleViewKey,
   upsertSingleView: upsertSV(),
-  deleteSingleView: fullDeleteSV(),
+  deleteSingleView: deleteSV(),
 })
 ```
 
@@ -64,10 +64,10 @@ const resolvedOnStop = singleViewCreator.startCustom({
 - `upsertSingleView` is the function that updates or inserts the Single View to the Single Views collection on Mongo
 - `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo
 
-`upsertSV` and `fullDeleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view.
+`upsertSV` and `deleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view.
 
 :::note
-The `fullDeleteSV` function makes a *real delete* of the document on MongoDb. So, unlike the **projections** deletion, it does *not* make a virtual delete.
+The `deleteSV` function makes a *real delete* of the document on MongoDb. So, unlike the **projections** deletion, it does *not* make a virtual delete.
 :::
 
 The Single View creator needs to be stopped when the process is stopping. To do that, we use the `onClose` hook:
@@ -91,7 +91,7 @@ For further information contact your Mia Platform referent
 :::
 
 :::note
-This documentation refers to the `@mia-platform-internal/single-view-creator-lib` ^8.0.2.
+This documentation refers to the `@mia-platform-internal/single-view-creator-lib` ^9.x.x.
 :::
 
 The core of your work on this service are the files inside the `src` folder.
@@ -197,7 +197,7 @@ function singleViewValidator(logger, singleView) {
 
 ### Customize Upsert and Delete functions
 
-If you want, you can replace both `upsertSV` and `fullDeleteSV` with your own custom functions to perform those operations.
+If you want, you can replace both `upsertSV` and `deleteSV` with your own custom functions to perform those operations.
 
 These functions represents the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
 
