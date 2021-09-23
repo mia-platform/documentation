@@ -6,7 +6,7 @@ sidebar_label: Configure Single View Creator
 
 ## Microservice initialization
 
-Each Single View needs a dedicated Microservice. This service will listen on the **Projections changes** that affect the Single view and consequently update its data. This service is the `Single View Creator`.
+Each Single View needs a dedicated Microservice. This service will listen on the **Projections changes** that affect the Single View and consequently updates its data. This service is the `Single View Creator`.
 
 To start configuring your own Single View Creator, you can begin from the *Single View Creator Template*.
 
@@ -20,7 +20,7 @@ If you are searching for a ready-to-use plugin that only requires some configura
 
 The service starts in `index.js` file.
 First of all, the template uses the [Custom Plugin Lib](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/plugin_baas_4) to instantiate a service.
-Inside its callback, the `single-view-creator-lib`  is initialized to deal with the complexity of the Fast-data components.
+Inside its callback, the `single-view-creator-lib`  is initialized to deal with the complexity of the Fast Data components.
 
 ```js
 const singleViewCreator = getSingleViewCreator(log, config, customMetrics)
@@ -31,7 +31,7 @@ service.decorate('patient', singleViewCreator.k8sPatient)
 
 Where `config` is an object whose fields represent the [Microservice environment variables](../development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
-Some environment variable will be pre-compiled when you create the service from template, other will be not but will have a placeholder as value. Replace it with the correct value.
+Some environment variables will be pre-compiled when you create the service from template, others won't, but they will still have a placeholder as value. Replace it with the correct value.
 
 Here some tips:
 
@@ -59,9 +59,9 @@ const resolvedOnStop = singleViewCreator.startCustom({
 
 - `strategy` is the function that performs the aggregation over the projections
 - `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
-- `validator` is the validation function which determines if the Single View is valid (and so inserted or updated to Mongo) or not (and so deleted)
+- `validator` is the validation function which determines if the Single View is valid (and thus inserted or updated in Mongo) or not (and thus deleted)
 - `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the single view document on mongo to update or delete
-- `upsertSingleView` is the function that update or insert the Single View to the Single Views collection on Mongo
+- `upsertSingleView` is the function that updates or inserts the Single View to the Single Views collection on Mongo
 - `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo
 
 `upsertSV` and `fullDeleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view.
@@ -77,7 +77,7 @@ service.addHook('onClose', async() => {
   log.fatal({ type: 'END' }, 'Single View Creator is stopping...')
   await singleViewCreator.stop()
 
-  // this is a promised resolved when the infinite loop which processes the single views ends.
+  // this is a promise resolved when the infinite loop which processes the single views ends.
   // Here we wait for the resolving of the promise. You don't need to call it.
   await resolvedOnStop
   log.fatal({ type: 'END' }, 'Single View Creator stopped')
@@ -117,8 +117,8 @@ module.exports = function singleViewKeyGenerator(logger, projectionChangeIdentif
 
 **pipeline.js**: It takes as input a MongoDB instance and returns a function. This function takes as input the projection change identifier and returns an array.
 
-If it's empty, a delete operation will be executed on the single view identified by the singleViewKeyGenerator result.
-If it's not empty, an upsert operation will be executed on the single view identified by the singleViewKeyGenerator result.
+If it is empty, a delete operation will be executed on the single view identified by the `singleViewKeyGenerator` result.
+If it is not empty, an upsert operation will be executed on the single view identified by the `singleViewKeyGenerator` result.
 
 :::note
 If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
@@ -153,7 +153,7 @@ module.exports = (mongoDb) => {
 }
 ```
 
-**mapper.js**: It's a function that takes as argument the first element (if defined) of the result of the pipeline, and returns an object containing the value updated for the single view. The object returned should match the schema of the single view.
+**mapper.js**: It is a function that takes as argument the first element (if defined) of the result of the pipeline, and returns an object containing the value updated for the single view. The object returned should match the schema of the single view.
 
 ```js
 module.exports = (logger, singleViewData) => {
@@ -166,11 +166,11 @@ module.exports = (logger, singleViewData) => {
 }
 ```
 
-Inside the mapper it can be applied a renaming and repositioning of the fields.
+Inside the mapper a renaming and repositioning of the fields can be applied.
 
 :::note
 We suggest to implement inside the mapper all the aggregation logic that can be reused for all the clients that will read the Single Views, they should be as generic as possible.
-It's good to have some calculation and aggregation logic inside Single View Creator as far as it is reusable.
+It is a good practice to have some calculation and aggregation logic inside Single View Creator as far as it is reusable.
 If you have to apply some custom logic try to do it inside and API Adapter specific for the client.
 :::
 
@@ -182,7 +182,7 @@ The validation of a Single View determines what to do with the current update. I
 
 For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be updated or inserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
 
-By default, in this template we set as validator a function that returns always true. So we accept all kind of single views, but, if you need it, you can replace that function with your own custom validator.
+By default, in this template we set as validator a function that returns always true. So we accept all kinds of single views, but, if you need it, you can replace that function with your own custom validator.
 
 The input fields of the validation function are the logger and the Single View, while the output is a boolean containing the result of the validation.
 
@@ -204,7 +204,7 @@ These functions represents the last step of the creation (or deletion) of a Sing
 In case the validation is succeeded, the upsert function will be called with the following arguments:
 
 - `logger` is the logger
-- `singleViewCollection`is the the Mongo collection object
+- `singleViewCollection` is the the Mongo collection object
 - `singleView` is the result of the mapping operation
 - `singleViewKey` is the Single View key
 
