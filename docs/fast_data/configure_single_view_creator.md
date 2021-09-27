@@ -270,7 +270,7 @@ async function deleteSingleViewFunction(
 
 ### Error handling
 
-When generating a Single View, every error that occours is saved in MongoDb, with a format that satisfies the schema requirements of the crud service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
+When generating a Single View, every error that occurs is saved in MongoDb, with a format that satisfies the schema requirements of the crud service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
 
 - `_id`: a unique identifier of the record, automatically generated
 - `portfolioOrigin`: a value concerning the origin of the error, defaults to `UNKNOWN_PORTFOLIO_ORIGIN`
