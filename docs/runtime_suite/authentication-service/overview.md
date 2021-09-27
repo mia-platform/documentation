@@ -9,4 +9,4 @@ The _Authentication Service_ is a core service and it is responsible to provide 
 
 Follow the pages below for more about the _Authentication Service_:
 
-- [_Authentication_service_ configuration](configuration.md)
+- [_Authentication service_ configuration](configuration.md)
