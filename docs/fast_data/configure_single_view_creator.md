@@ -267,3 +267,20 @@ async function deleteSingleViewFunction(
   }
 }
 ```
+
+### Error handling
+
+When generating a Single View, every error that occours is saved in MongoDb, with a format that satisfies the schema requirements of the crud service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
+
+- `_id`: a unique identifier of the record, automatically generated
+- `portfolioOrigin`: a value concerning the origin of the error, defaults to `UNKNOWN_PORTFOLIO_ORIGIN`
+- `type`: the Single View type
+- `identifier`: id of the projection changes
+- `errorType`: the error details
+- `createdAt`: time of creation
+- `creatorId`: set to `single-view-creator`
+- `__STATE__`: set to `PUBLIC`
+- `updaterId`: set to `single-view-creator`
+- `updatedAt`: time of creation
+
+It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../../docs/development_suite/api-console/api-design/crud_advanced.md#indexes).
