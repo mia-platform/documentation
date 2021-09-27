@@ -353,6 +353,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Authentication Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authentication-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authentication-service/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Authorization Service",
               "items": [
                 {

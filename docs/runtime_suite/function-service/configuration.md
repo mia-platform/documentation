@@ -74,6 +74,8 @@ Libraries already included as dependencies:
 
 * lodash
 * fs
+* split2
+* mississippi
 
 :::warning
 Warning! You have to create the function file from the Console, not from the project repository.
