@@ -90,7 +90,8 @@
       "miactl",
       "miaplatformctl",
       "formio",
-      "expressibility"
+      "expressibility",
+      "Additionals"
   ],
   "ignoreWords": [
     "algs",
