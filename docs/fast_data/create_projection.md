@@ -75,7 +75,7 @@ In the card `Fields` in projection, you can add new fields.
 Once you click the `Create field` button, a form is prompted where you should insert the following fields (all fields are required):
 
 * `Name`: name of the projection field;
-* `Type`: one of `String`, `Number`, `Boolean`, `Date`, `Object` or `Array of object`
+* `Type`: one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint`
 * `Cast function`: it shows the possible [Cast Function](cast_functions) to select for the specified data type;
 * `Required`: set the field as required, default to false;
 * `Nullable`: declare field as nullable, default to false.
