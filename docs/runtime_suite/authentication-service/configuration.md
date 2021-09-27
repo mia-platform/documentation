@@ -9,23 +9,23 @@ The _Authentication Service_ needs some environment variables, and a configurati
 
 The environment variables needed by the service are:
 
-- **LogLevel**
-- **HTTPPort**
-- **ServicePrefix**
-- **ServiceVersion**
-- **DelayShutdownSeconds**
-- **RedisHost**
-- **ConfigFilePath**
-- **ConfigFileName**
-- **UsersCrudBaseURL**
-- **MiaJWTTokenSignKey**
-- **MiaJWTTokenDurationSec**
-- **MiaRefreshTokenDurationSec**
-- **ProviderTokenPassPhrase**
-- **ExpireDeltaProviderTokenSec**
-- **OriginalProtocolHeader**
-- **AdditionalsCAFolder**
-- **AdditionalHeadersToProxy**
+- **LOG_LEVEL**
+- **HTTP_PORT**
+- **SERVICE_PREFIX**
+- **SERVICE_VERSION**
+- **DELAY_SHUTDOWN_SECONDS**
+- **REDIS_HOST**
+- **CONFIG_FILE_PATH**
+- **CONFIG_FILE_NAME**
+- **USERS_CRUD_BASE_URL**
+- **MIA_JWT_TOKEN_SIGN_KEY**
+- **MIA_JWT_TOKEN_VALID_DURATION_SEC**
+- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC**
+- **PROVIDER_TOKEN_PASS_PHRASE**
+- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC**
+- **ORIGINAL_PROTOCOL_HEADER**
+- **ADDITIONALS_CA_FOLDER**
+- **ADDITIONAL_HEADERS_TO_PROXY**
 
 ## Configurations file
 
