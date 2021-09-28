@@ -21,7 +21,7 @@ These two features allow you to specify:
 
 ### Where do I find these functionalities?
 
-To manage data protection, Mia-Platform's Console offers two dedicated columns for every collection existing in your project.
+To manage data protection, Mia-Platform's Console offers two dedicated columns for every collection populating your project.
 
 ![gdpr](img/gdpr.png)
 
@@ -68,5 +68,50 @@ Open the drawer by clicking the edit icon and move to the GDPR description field
 
 ![gdpr description](img/gdpr-description.gif)
 
+<br/>
+
 ## Client-side Encryption
 
+By enabling client-side encryption, you can encode a specific portion of your data to become hidden or inaccessible to unauthorized users once stored on your database.
+
+:::note
+Encryption helps you protect private information by means of an **encryption key**, an unpredictable and unique string of bits created explicitly for encrypting and decrypting data.
+:::
+
+You can have further details regarding different encryption key generation techniques in the [dedicated section](./../../../runtime_suite/crud-service/encryption_configuration#configuration).
+
+
+There are several ways in which encryption algorithms can be designed to protect your data. In general, they need to ensure that a given input value always encrypts to a different output value each time the algorithm is executed.
+
+Mia-Platform's Console allows you to choose between two different encryption strategies:
+
+![client-side-encryption](img/client-side-encryption.png)
+
+
+* **Randomized**: This encryption algorithm provides the strongest guarantees of data confidentiality, but it also prevents support for any read operations which must operate on the encrypted field to evaluate the query.
+
+* **Deterministic (searchable)** This encryption algorithm provides greater support for reading operations, however encrypted data with low cardinality are susceptible to frequency analysis recovery.
+
+:::info
+For sensitive fields that are not used in reading operations, Randomized Encryption can offer improved protection from frequency analysis recovery.
+:::
+
+### Select an encryption strategy
+
+You can set an encryption strategy from every collection table in the design section.
+
+**Each collection field** can be associated with a different encryption strategy. Open the drawer by clicking the edit icon and search for the data protection section:
+
+* Check *Enable client-side encryption* to enable the randomized version of the encryption algorithm
+
+* Check also *Allow search on encrypted data* to enable the deterministic version of the encryption algorithm
+
+![client side encryption](img/client-side-encryption.gif)
+
+For further details regarding client-side encryption, check out the complete [encryption configuration](./../../../runtime_suite/crud-service/encryption_configuration).
+
+:::caution
+It's only advisable to encrypt newly created collection fields.
+
+Changes in the encryption configuration **will not modify any existing record** populating your collection. If you decide to enable encryption on already populated fields, please verify to have already manually migrated your data correctly.
+:::
