@@ -10,7 +10,8 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "lint": "eslint --ext js ."
+    "lint": "eslint --ext js .",
+    "spellcheck": "npx cspell './docs/**'"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.69",
