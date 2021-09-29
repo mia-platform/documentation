@@ -81,16 +81,16 @@ Encryption helps you protect private information by means of an **encryption key
 You can have further details regarding different encryption key generation techniques in the [dedicated section](./../../../runtime_suite/crud-service/encryption_configuration#configuration).
 
 
-There are several ways in which encryption algorithms can be designed to protect your data. In general, they need to ensure that a given input value always encrypts to a different output value each time the algorithm is executed.
+There are several ways in which encryption algorithms can be designed to protect your data. Different implementations may provide different levels of protection or other types of capabilities, such as the searchability of encrypted data.
 
 Mia-Platform's Console allows you to choose between two different encryption strategies:
 
 ![client-side-encryption](img/client-side-encryption.png)
 
 
-* **Randomized**: This encryption algorithm provides the strongest guarantees of data confidentiality, but it also prevents support for any read operations which must operate on the encrypted field to evaluate the query.
+* **Randomized**: This strategy ensures a given input value always encrypts to a different output value each time the encryption algorithm is executed. It provides the strongest guarantees of data confidentiality, but it also prevents support for any read operations which must operate on the encrypted field to evaluate the query.
 
-* **Deterministic (searchable)** This encryption algorithm provides greater support for reading operations, however encrypted data with low cardinality are susceptible to frequency analysis recovery.
+* **Deterministic (searchable)** This strategy ensures a given input value always encrypts to the same output value each time the encryption algorithm is executed. It provides greater support for reading operations, however encrypted data with low cardinality are susceptible to frequency analysis recovery.
 
 :::info
 For sensitive fields that are not used in reading operations, Randomized Encryption can offer improved protection from frequency analysis recovery.
