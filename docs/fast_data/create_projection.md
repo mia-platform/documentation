@@ -181,7 +181,7 @@ Where `THE_FORMAT` is the format of your Kafka Messages and can be one of the fo
 It's the default one.
 
 The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
-The `key` of the Kafka message has to be a stringified object containing the primary key of the projection.
+The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
 The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 The `offset` is the offset of the kafka message.
 
