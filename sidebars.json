@@ -429,6 +429,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/crud-service/encryption_configuration"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/crud-service/performance_overview"
                 },
                 {
