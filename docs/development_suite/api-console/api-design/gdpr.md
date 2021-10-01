@@ -47,7 +47,7 @@ The following are the categories in which data can be classified according to se
 
 * **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals. *(e.g. emails, media, and documents with no sensitive data)*;
 
-* **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify it. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals. *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, and employee records)*
+* **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify it. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals. *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, and employee records)*;
 
 * **Top Secret**: information intended for mission-critical use, such as supporting strategic business processes. If destroyed or compromised, this type of data can have a catastrophic impact on your organization or its individuals. *(e.g. privileged credentials, customer personal data, credit card, and financial account numbers, health protected information, social security numbers, and intellectual property)*
 
