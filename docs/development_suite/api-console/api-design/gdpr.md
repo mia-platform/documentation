@@ -106,7 +106,7 @@ You can set an encryption strategy from every collection table in the design sec
 
 * Check *Enable client-side encryption* to enable the randomized version of the encryption algorithm
 
-* Check also *Allow search on encrypted data* to enable the deterministic version of the encryption algorithm
+* Check also *Allow search on encrypted data* to enable the deterministic version of the encryption algorithm.
 
 ![client side encryption](img/client-side-encryption.gif)
 
