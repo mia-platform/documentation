@@ -19,7 +19,6 @@ The Dashboard contains the following panels, first depicted in sample screenshot
 ![single views dashboard - part 1](../../img/dashboards/single_view_creator_1.png)
 ![single views dashboard - part 2](../../img/dashboards/single_view_creator_2.png)
 
-
 | Panel Name                         | Descritpion                                                                                                                                                          |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Avg Processing Rate [SV/s]         | Average number of projection changes that are processed per second to generate Single Views (in the current time-frame)                                              |

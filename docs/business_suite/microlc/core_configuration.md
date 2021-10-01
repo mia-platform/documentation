@@ -22,6 +22,14 @@ characteristics of the plugins to render.
 
 See the [theming parameters](#theming-parameters) section for details.
 
+### shared
+
+- _type_: object;
+- _required_: `false`;
+- _description_: contains shared properties to be injected into plugin elements. This property can be used to share HTTP headers/cookies and/or other amenities with underlying plugins.
+
+See [shared parameters](#shared-parameters) section for details.
+
 ### plugins
 
 - _type_: array;
@@ -133,6 +141,16 @@ branding of the application.
 - _required_: `false`;
 - _description_: indicate if your app supports the dark mode;
 - _default_: `false`;
+
+## Shared parameters
+
+This bit of the configuration object enables the injection of common properties shared by plugins
+
+### props
+
+- _type_: object;
+- _required_: `false`;
+- _description_: contains an object with properties to inject on plugin components
 
 ## Plugin parameters
 

@@ -52,6 +52,19 @@
     "docLandingPage": "runtime_suite/auth0-client/overview_and_usage"
   },
   {
+    "name": "Authentication Service",
+    "description": "Use Mia-Platform core Authentication Service to provide OAuth2 compliant user authentication API.",
+    "category": {
+      "id": "auth",
+      "label": "Core Plugins - Authentication & Authorization"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/authentication-service_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/authentication-service/overview"
+  },
+  {
     "name": "Authorization Service",
     "description": "Use this service to authorize routes to request certain resources, leveraging OpenID Connect and simple user-defined configurations",
     "category": {

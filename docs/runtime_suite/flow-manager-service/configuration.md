@@ -46,7 +46,9 @@ The channel properties are the following (the **bold** are the required ones, th
 - **id**: the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
 - **type**: the type of the channel, must be *kafka*
 - **configurations**: all other kafka configurations:
-  - **brokers**: a list of strings that represent the kafka brokers
+  - **brokers**:
+    - a list of strings that represent the kafka brokers, or:
+    - a string with the comma separated list of brokers
   - *inputTopics*: a list of strings that contains the topics to subscribe to consume messages; **NB.** this property is **required** if the property *outputTopics* is missing
   - *outputTopics*: a list of strings that contains the topics to send messages; **NB.** this property is **required** if the property *inputTopics* is missing
   - *consumerGroup*: the consumer group id, will be used by the *Kafka Consumer* to consume messages; **NB.** this property is **required** if there's the *inputTopics* one
@@ -59,7 +61,7 @@ The *Flow Manager* behavior will be the following:
 
 Following some examples with explanation.
 
-#### Kafka - consumer only - ssl auth
+#### Kafka - consumer only - ssl auth - brokers as list
 
 ```json
 {
@@ -67,7 +69,8 @@ Following some examples with explanation.
   "type": "kafka",
   "configurations": {
     "brokers": [
-      "http://myKafkaConsumer:9092"
+      "http://myKafkaNode1:9092",
+      "http://myKafkaNode2:9092",
     ],
     "inputTopics": [
       "topic-to-subscribe"
@@ -85,16 +88,14 @@ Following some examples with explanation.
 }
 ```
 
-#### Kafka - producer only - no auth
+#### Kafka - producer only - no auth - brokers as string
 
 ```json
 {
   "id": "myKafkaProducer",
   "type": "kafka",
   "configurations": {
-    "brokers": [
-      "http://myKafkaProducer:9092"
-    ],
+    "brokers": "http://myKafkaNode1:9092,http://myKafkaNode2:9092",
     "outputTopics": [
       "topic-to-publish-on"
     ]

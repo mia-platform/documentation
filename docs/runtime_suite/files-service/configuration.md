@@ -16,6 +16,7 @@ In addition, after each upload it saves the file's information using the [CRUD S
 * **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location
 * **PATH_PREFIX**: Use a relative path as file location prefix. Incompatible with *PROJECT_HOSTNAME*
 * **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the Mia-Platform headers)
+* **FILE_TYPE_INCLUDE_LIST** (from `v2.3.0`): comma separated list of file extensions (without the dot) to be accepted for upload. If you do not set the variable, the service will accept all uploaded file types
 * **TRUSTED_PROXIES** (*required*): the string containing the trusted proxies values
 * **ADDITIONAL_FUNCTION_CASTER_FILE_PATH**: the path of the file that exports the function to cast.
 * **GOOGLE_APPLICATION_CREDENTIALS**: the path to access to the google storage credentials. This is *required* for GoogleStorage type.
