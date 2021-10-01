@@ -90,7 +90,7 @@ Mia-Platform's Console allows you to choose between two different encryption str
 ![client-side-encryption](img/client-side-encryption.png)
 
 
-* **Randomized**: This strategy ensures a given input value always encrypts to a different output value each time the encryption algorithm is executed. It provides the strongest guarantees of data confidentiality, but it also prevents support for any read operations which must operate on the encrypted field to evaluate the query.
+* **Randomized**: This strategy ensures a given input value always encrypts to a different output value each time the encryption algorithm is executed. It provides the strongest guarantees of data confidentiality, but it also prevents support for any read operations which must operate on the encrypted field to evaluate the query;
 
 * **Deterministic (searchable)** This strategy ensures a given input value always encrypts to the same output value each time the encryption algorithm is executed. It provides greater support for reading operations, however encrypted data with low cardinality are susceptible to frequency analysis recovery.
 
