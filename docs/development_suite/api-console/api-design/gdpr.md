@@ -21,7 +21,7 @@ These two features allow you to specify:
 
 ### Where do I find these functionalities?
 
-To manage data protection, Mia-Platform's Console offers two dedicated columns for every collection populating your project.
+To manage data protection, Mia-Platform's Console offers two dedicated columns for every collection populating your project: Sensitivity and Client-side Encryption
 
 ![gdpr](img/gdpr.png)
 
