@@ -113,5 +113,6 @@ For further details regarding client-side encryption, check out the complete [en
 :::caution
 It's only advisable to encrypt newly created collection fields.
 
-Changes in the encryption configuration **will not modify any existing record** populating your collection. If you decide to enable encryption on already populated fields, please verify to have already manually migrated your data correctly.
+Changes in the encryption configuration **will not modify any existing record** populating your collection.  
+If you decide to enable encryption on already populated fields, please verify to have already manually migrated your data correctly.
 :::
