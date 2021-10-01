@@ -100,7 +100,7 @@ For sensitive fields that are not used in reading operations, Randomized Encrypt
 
 You can set an encryption strategy from every collection table in the design section.
 
-**Each collection field** can be associated with a different encryption strategy. Open the drawer by clicking the edit icon and search for the data protection section:
+**Each collection field** can be associated with a different encryption strategy, you only have to open the drawer by clicking the edit icon and search for the data protection section:
 
 * Check *Enable client-side encryption* to enable the randomized version of the encryption algorithm
 
