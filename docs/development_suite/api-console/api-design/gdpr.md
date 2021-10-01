@@ -16,7 +16,7 @@ The design section ensures sensitive data are organized and protected through tw
 * **Client-side Encryption**
 
 These two features allow you to specify:
-* the level of confidentiality data are associated to 
+* the level of confidentiality data are associated to;
 * the way data are encrypted when stored
 
 ### Where do I find these functionalities?
