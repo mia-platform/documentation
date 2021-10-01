@@ -121,6 +121,10 @@
         {
           "type": "doc",
           "id": "development_suite/api-console/api-design/miacraft"
+        },
+        {
+          "type": "doc",
+          "id": "development_suite/api-console/api-design/gdpr"
         }
       ]
     },
