@@ -12,7 +12,7 @@ GDPR requires organizations to protect the data of their consumers and to guaran
 
 The design section ensures sensitive data are organized and protected through two functionalities:
 
-* **Sensitivity**
+* **Sensitivity**;
 * **Client-side Encryption**
 
 These two features allow you to specify:
