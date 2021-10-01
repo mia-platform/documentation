@@ -41,15 +41,15 @@ The following are the categories in which data can be classified according to se
 
 ![sensitivity](img/sensitivity.png)
 
-* **Unclassified**: information for which a sensitivity level has not been set yet. 
+* **Unclassified**: information for which a sensitivity level has not been set yet;
 
-* **Public**: information intended for public use. This type of data is not protected by intellectual property laws such as copyright, trademark, or patent laws. *(e.g. public website content or marketing materials)*
+* **Public**: information intended for public use. This type of data is not protected by intellectual property laws such as copyright, trademark, or patent laws *(e.g. public website content or marketing materials)*;
 
-* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals. *(e.g. emails, media, and documents with no sensitive data)*;
+* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals *(e.g. emails, media, and documents with no sensitive data)*;
 
-* **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify it. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals. *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, and employee records)*;
+* **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify it. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, and employee records)*;
 
-* **Top Secret**: information intended for mission-critical use, such as supporting strategic business processes. If destroyed or compromised, this type of data can have a catastrophic impact on your organization or its individuals. *(e.g. privileged credentials, customer personal data, credit card, and financial account numbers, health protected information, social security numbers, and intellectual property)*;
+* **Top Secret**: information intended for mission-critical use, such as supporting strategic business processes. If destroyed or compromised, this type of data can have a catastrophic impact on your organization or its individuals. *(e.g. privileged credentials, customer personal data, credit card, and financial account numbers, health protected information, social security numbers, and intellectual property)*.
 
 ### Select a sensitivity level
 
