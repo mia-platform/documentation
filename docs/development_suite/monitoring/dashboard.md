@@ -4,71 +4,34 @@ title:  Display Dashboards
 sidebar_label: Display Dashboards
 ---
 
-# Overview 
+## Overview
 
-The Dashboard section of Mia-Platform Console allows you to keep the tools you use to monitor your project close to its configuration. In this section, which is accessible from the main menu, you can visualize as IFrames the dashboards you created with your monitoring tools (such as Grafana, Kibana, etc.). 
+The Dashboard Area of Mia-Platform Console allows you to keep the tools you use to monitor your project close to its configuration. In this section, which is accessible from the main menu, you can visualize as IFrames the dashboards you created with your monitoring tools (such as Grafana, Kibana, etc.).
 
-# How to integrate a Dashboard
+## Managing Dashboards
 
-To integrate a dashboard page on developer console you must access your Console CMS.
+From the Dashboard Area, you can add, edit, and delete dashboards. Each environment has its own dashboards, since you usually want to monitor a specific environment. Changes to dashboards in one environment will not affect dashboards in the other environments.
 
-Once inside the CMS, select `Projects` from the sidebar, then search your project from the top search bar, select it and a side menu should expand.
+All of the following instructions are intended for the Dashboard Area.
 
-On that menu look for the Environments configuration value which must satisfy the following JSON schema:
+![dashboard overview](img/dashboards/overview_dashboard.png)
 
-```json
-"environments": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "label": { "type": "string" },
-          "value": { "type": "string" },
-          "hostname": { "type": "string" },
-          "isProduction": {
-            "type": "boolean",
-            "default": false
-          },
-          "cluster": {
-            "type": "object",
-            "properties": {
-              "hostname": { "type": "string" },
-              "port": { "type": "number" },
-              "namespace": { "type": "string" }
-            },
-            "required": ["hostname"]
-          },
-          "dashboards": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": { "type": "string" },
-                "label": { "type": "string" },
-                "url": { "type": "string" }
-              },
-              "required": ["id", "label", "url"]
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    }
-```
+### Add a Dashboard
 
-Then edit the dashboards array by adding a new dashboard object on the environments in which you want to add it.
+In the side menu, using the 'Create a dashboard' button, it is possible to add an existing dashboard to the selected environment. To do so, the required fields are:
 
-The object should be as follows:
+* A `Name`, which defines the dashboard label that will be displayed in the user interface;
+* An `Url`, that will be used to render the dashboard IFrame.
 
-```json
-{
-  "id": "unique-dashboard-identifier",
-  "label": "Dashboard Label",
-  "url": "https://dashboard-url"
-}
-```
+![create dashboard](img/dashboards/create_dashboard.png)
 
-The url must point to a valid dashboard page that is already configured to show all the metrics or statistics of interest.
+### Edit a Dashboard
 
-Finally `Save` your project configuration and your changes should be visible on developer console.
+When a dashboard is selected, you can use the edit button (represented by a pencil icon) placed in the right side of the header to edit a dashboard in the selected environment. To do so, the required fields are:
+
+* A `label`, which defines the dashboard name that will be displayed in the user interface;
+* An `url`, that will be used to render the dashboard IFrame.
+
+### Delete a Dashboard
+
+When a dashboard is selected, you can use the delete button (represented by a trash bin icon) placed in the right side of the header to remove a dashboard from the selected environment. When clicking on the delete button, a confirmation dialog will open, and after inserting the label of the dashboard, you can remove effectively remove it.
