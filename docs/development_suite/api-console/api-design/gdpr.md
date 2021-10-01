@@ -45,7 +45,7 @@ The following are the categories in which data can be classified according to se
 
 * **Public**: information intended for public use. This type of data is not protected by intellectual property laws such as copyright, trademark, or patent laws. *(e.g. public website content or marketing materials)*
 
-* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals. *(e.g. emails, media, and documents with no sensitive data)*
+* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals. *(e.g. emails, media, and documents with no sensitive data)*;
 
 * **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify it. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals. *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, and employee records)*
 
