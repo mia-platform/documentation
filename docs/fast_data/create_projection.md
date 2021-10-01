@@ -75,7 +75,7 @@ In the card `Fields` in projection, you can add new fields.
 Once you click the `Create field` button, a form is prompted where you should insert the following fields (all fields are required):
 
 * `Name`: name of the projection field;
-* `Type`: one of `String`, `Number`, `Boolean`, `Date`, `Object` or `Array of object`
+* `Type`: one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint`
 * `Cast function`: it shows the possible [Cast Function](cast_functions) to select for the specified data type;
 * `Required`: set the field as required, default to false;
 * `Nullable`: declare field as nullable, default to false.
@@ -181,7 +181,7 @@ Where `THE_FORMAT` is the format of your Kafka Messages and can be one of the fo
 It's the default one.
 
 The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
-The `key` of the Kafka message has to be a stringified object containing the primary key of the projection.
+The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
 The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 The `offset` is the offset of the kafka message.
 

@@ -90,7 +90,10 @@
       "miactl",
       "miaplatformctl",
       "formio",
-      "expressibility"
+      "expressibility",
+      "Additionals",
+      "CSFLE",
+      "urandom"
   ],
   "ignoreWords": [
     "algs",

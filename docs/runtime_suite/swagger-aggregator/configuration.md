@@ -98,7 +98,7 @@ There are two ways to provide a description:
 
 - using the field `description`: requires a simple string;
 - using the field `descriptionMarkdownFilePath`: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
-  :::
+:::
 
 The `baseSwagger` object contains the first-level configurations of the final merged swagger. Besides all the fields defined by either [OpenApi 2.0](https://swagger.io/specification/v2/) or [OpenApi 3.0](https://swagger.io/specification/) specifications, this object can contain a `prefix` field that will be prepended to the paths of all the routes in the final merged swagger.
 

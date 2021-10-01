@@ -357,6 +357,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Authentication Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authentication-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authentication-service/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Authorization Service",
               "items": [
                 {
@@ -415,6 +430,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/crud-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/crud-service/encryption_configuration"
                 },
                 {
                   "type": "doc",
