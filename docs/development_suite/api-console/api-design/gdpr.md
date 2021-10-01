@@ -17,7 +17,7 @@ The design section ensures sensitive data are organized and protected through tw
 
 These two features allow you to specify:
 * the level of confidentiality data are associated to;
-* the way data are encrypted when stored
+* the way data are encrypted when stored.
 
 ### Where do I find these functionalities?
 
