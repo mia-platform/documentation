@@ -55,7 +55,7 @@ The following are the categories in which data can be classified according to se
 
 You can set a sensitivity level from every collection table in the design section. 
 
-**Each collection field** can be associated with a different sensitivity level. Open the drawer by clicking the edit icon and select the desired sensitivity level.
+**Each collection field** can be associated with a different sensitivity level: open the drawer by clicking the edit icon and select the desired sensitivity level.
 
 ![add sensitivity](img/add-sensitivity.gif)
 
