@@ -3,21 +3,37 @@ id: create-project
 title:  Create a Project
 sidebar_label: Create a Project
 ---
-In this page, you can find the guidelines about project creation.
 
 The project creation allows you to configure a project, which lifecycle could be wholly managed and developed through Console areas.
 
-The first three sections of this guide allow you to have the prerequisites to create a project. The last section explains in detail how to create a project. In particular, to create a project, you need to have already set up your Console and have already configured these two features:
+## How to set up Console
 
+The first section of this guide allows you to have the prerequisites needed to create a project.
+In particular, to create a project, you need to have already set up your Console and have already configured these three features:
+* **Provider**: This will be used by the Console to correctly retrieve the third party service providers needed by your projects (e.g. the Git repository provider)
 * **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its tenant.
-
 * **Template**: Repository with libraries and pre-filled configurations. Each tenant could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project.
 
- If you have already configured these two features, you can directly [skip to the last section](#how-to-create-a-project-on-devops-console).
+If you have already configured these features, you can directly [skip to the last section](#project-creation).
 
- The power of project creation is based on the easiness and quickness of use: indeed, once Tenant and Template are configured, you can create a project in your Console with a minimum number of actions.
+## CRUDs
 
-## Create a Tenant
+You can find more info about how to create a CRUD visiting the [CRUD documentation](../api-console/api-design/crud_advanced.md)
+
+### Create a Provider
+
+If you already have the provider you need in your CRUD, you can [skip this section](#create-a-tenant).
+
+This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
+This collection includes the following fields:
+
+* `providerId` (*required*): A unique human readable identifier (ex: "my-git-provider" or "my-pipeline-provider");
+* `type` (*required*): the name of provider. Current supported providers are:
+  * Git providers: `gitlab`, `github`;
+* `baseUrl` (*required*): the provider base url used to persist configurations;
+* `apiBaseUrl` (*required*): the provider base url that core service used to call providers (example: gitlab.com/api or https://api.github.com/);
+
+### Create a Tenant
 
 If you already have a tenant, you can [skip this section](#create-a-template).
 
@@ -27,7 +43,7 @@ The tenant is the upper level of the projects. It allows to create a project con
 The fields in the tenant cannot be changed during project creation steps (if not specified otherwise).
 :::
 
-More in detail, to compile the tenant, you have to use the following guide:
+The fields necessary for this collection are:
 
 * `name` (*required*): the name of the tenant to display in selection list;
 * `tenantId` (*required*): the human-readable id of the tenant (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
@@ -118,6 +134,7 @@ More in detail, to compile the tenant, you have to use the following guide:
   When a project is merged with its tenant information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on Console] for further details.
 
 * `repository` (*required*): object that specifies the information about the repository where have to be created the projects of this tenant. The object must have the following properties:
+  * **providerId** (*required*): `providerId` existing into the providers crud. It is used to get information about the provider to use. This id is important because it affects many requests used by the developer Console
   * **basePath**: base path where will be created the project. The user needs to have permission for creating projects on this path.
   * **visibility**: visibility that will have the project.
 
@@ -147,11 +164,14 @@ The object should have the following properties:
 `<your-service-name>`, `<your-group-name>`, `<your-repo-name>`, are field values that you will decide during the [creation of a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template). Some of these values must be defined in order to receive a suggestion for the Docker image name (depending on the suggestion **type**).
 :::
 
-## Create a template
+### Create a Template
 
 If you already have a template, you can [skip this section](#how-to-create-a-project-archive).
 
-The template is a repository which contains some project specific information. Once you choose a tenant, you could choose a template. The template allows you to pre-fill active services in your project and starts all the similar projects with the same configuration. So, it is a base on which to create your project.
+A template is a repository which contains some project specific information. 
+Once you choose a tenant, you can choose a template. 
+The template allows you to pre-fill active services in your project and starts all the similar projects with the same configuration. 
+So, it is a base on which to create your project.
 
 :::info
 The fields set by the template can be changed during project creation.
@@ -166,7 +186,7 @@ There are two ways of adding services to a template:
 The `enabledServices` can only be used for core services (i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`), while it is not working for services used from the Console that have been migrated to custom services (migrated services are now plugins, you can find them in the [marketplace](../../marketplace/overview_marketplace.md)). The only exception to this rule is that if your template uses api-console-config version 0.39 or lower, or do not use it at all, `enabledServices` will work for migrated services as well.
 :::
 
-The structure of the `api-console-config.json` is as follows:
+The base structure of the `api-console-config.json` is as follows:
 
 ```json
 {
@@ -179,7 +199,7 @@ The structure of the `api-console-config.json` is as follows:
 }
 ```
 
-If you create the `api-console-config.json` from an existing one, please remember to delete all of the fields that do not match the structure above, since they will be created correctly by the console after save and deploy actions (one of the two, depending on the field).
+If you create the `api-console-config.json` from an existing one, please remember to delete all the fields that do not match the structure above, since they will be created correctly by the console after save and deploy actions (one of the two, depending on the field).
 
 How to compile the template:
 
@@ -305,61 +325,44 @@ For other possibilities, please check [mustache.js](https://github.com/janl/must
 You may want to write a file or a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolated for every environment.
 The interpolation data in those files are the environments fields at the first level (as in `mustache.js` sections), with the project as a key for every environment.
 
-## How to create a project on Console
+## Project creation
 
-Once you have the tenant and the template correctly configured, you are able to create a new project with the button `Create project` in the Home area of Console.
+Once you have a provider, tenant and a template correctly configured, you are able to create a new project using the `Create project` button in the Home area of Console.
 
 ![new-project-cards-headers](img/new-project-cards-headers.png)
 
-The project creation is divided in 4 different steps:
+The project creation is divided in different steps:
 
-### Step 1: **General**
-
+### Step 1 **General**
 In this step, you are required to insert the general information about your new project:
-
-* **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
-
-* **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of Console.
-
-* **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of Console.
-
+   * **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
+   * **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of Console.
+   * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of Console.
+  
 ![create-project1](img/create-project1.png)
 
-### Step 2: **Repository**
-
+### Step 2 **Repository**
 In this step, it is indicated the location of your new project and you have to choose its Template:
-
-* **Git repo path** (*required*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
-
-* **Visibility** (*required*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
-
-* **Template** (*required*): you have to select, from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
+   * **Git repo path** (*required*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
+   * **Visibility** (*required*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
+   * **Template** (*required*): you have to select, from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
 
 :::tip
 If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [the bottom of this page](#setup-paas-templates).
 :::
 
-   ![create-project2](img/create-project2.png)
+![create-project2](img/create-project2.png)
 
-### Step 3: **Environments**
-
+### Step 3 **Environments**
 In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
-
-* **Environment name** (*required*, field not editable): the name given to your environment.
-
-* **Environment ID** (*required*, field not editable): the human-readable ID set to your environment.
-
-* **Description** (*required*, field not editable): this is the description of the environment.
-
-* **Hosts** (*required*, field not editable): the hosts which exposes the documentation and the APIs.
-
-* **Backoffice Host** (*required*, field not editable): the host which exposes CMS and backoffice APIs.
-
-* **Cluster Host** (*required*, field not editable): this is the IP of the Kubernetes cluster where the project will be deployed.
-
-* **Is production?** (*required*, field not editable): defines if the environment is a production environment or not.
-
-* **Namespace** (*required*, field not editable): this is the namespace of kubernetes.
+   * **Environment name** (*required*, field not editable): the name given to your environment.
+   * **Environment ID** (*required*, field not editable): the human-readable ID set to your environment.
+   * **Description** (*required*, field not editable): this is the description of the environment.
+   * **Hosts** (*required*, field not editable): the hosts which expose the documentation and the APIs.
+   * **Backoffice Host** (*required*, field not editable): the host which exposes CMS and backoffice APIs.
+   * **Cluster Host** (*required*, field not editable): this is the IP of the Kubernetes cluster where the project will be deployed.
+   * **Is production** (*required*, field not editable): defines if the environment is a production environment or not.
+   * **Namespace** (*required*, field not editable): this is the namespace of kubernetes.
 
 ![create-project3](img/create-project3.png)
 
@@ -371,20 +374,15 @@ When the production environment is defined for a project a preview of its **Kube
 * CPU usage
 * RAM usage
 
-### Step 4: **Configure API Key**
-
+### Step 4 **Configure API Key**
 In this step, you are required to set up Client's accesses to your APIs:
-
-* **API Key** (*required*): this is the API Key. It can be generated randomly.
-
-* **Client Type** (*required*): ID of the client that wants to access to your APIs.
-
-* **Description** (*optional*): this is the description of the API Key.
+   * **API Key** (*required*): this is the API Key. It can be generated randomly.
+   * **Client Type** (*required*): ID of the client that wants to access to your APIs.
+   * **Description** (*optional*): this is the description of the API Key.
 
 ![create-project5](img/create-project5.png)
 
-At the end of the process, your project will be created on GitLab, inside the selected repository, and will be visible in the Home section of your Console.
-
+At the end of the process, your project will be created on your Git provider, and will be visible in the Home section of your Console.
 Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
 * Some variables are pre-filled from project or tenant information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
@@ -395,9 +393,9 @@ These environment variables are saved on GitLab.
 
 At the end of project creation, you have to commit and deploy your new project to finish the process effectively.
 
-## Step 6. **Customize the project with additional information (Optional)**
+## Customize the project with additional information (Optional)
 
-In order to improve the governance of your projects, you may want to add additional details such as :
+In order to improve the governance of your projects, you may want to add additional details such as:
 
 * `technologies`: the list of technologies used in the project codebase
 * `projectOwner` and `teamContact`: the name and contact of the project owner
@@ -414,7 +412,8 @@ The `layerId` must be equal to one of the layers names inside the `logicalScopeL
 
 ### CMS Configurations
 
-All the above properties can be defined via CMS after a project has been created, because they only provide extra information that will be eventually rendered in the Console Home Page.
+All the above properties can be defined via CMS after a project has been created, 
+because they only provide extra information that will be eventually rendered in the Console Home Page.
 
 Let's say we have created a project as follows:
 
@@ -423,7 +422,7 @@ Let's say we have created a project as follows:
     "_id": "ObjectId(...)",
     "name": "frontend gateway",
     "projectId": "frontend-gateway",
-    "configurationGitPath": "git-congif-path",
+    "configurationGitPath": "git-config-path",
     "repositoryUrl": "http://example.repository/git-config-path",
     "tenantId": "mia-platform"
 }
@@ -431,7 +430,7 @@ Let's say we have created a project as follows:
 
 To configure all the extra details to a project, just add the `info`, `layerId`/`logicalScopeLayers`, and the `color` properties via the CMS Interface.
 
-### Project extra Information (info)
+### Project Information
 
 To add extra info about `projectOwner`, `teamContact` and `technologies` for a single project, simply edit the *Information* field:
 
@@ -446,19 +445,19 @@ To add extra info about `projectOwner`, `teamContact` and `technologies` for a s
 }
 ```
 
-#### Project Custom Color (color)
+### Custom Color
 
 To edit the custom `color` associated to a project, just change the value in the *Project Color* field:
 
 ![color-project-cms](img/color-project-cms.png)
 
-#### Project Layer Identifier (layerId)
+### Layer Identifier (layerId)
 
 If the project has a `tenantId` that includes a definition for its `logicalScopeLayers`, then the *Layer Identifier* field can be defined by simply specifying a layer name that exists in the related `logicalScopeLayers`:
 
 ![layerId-project-cms](img/layerId-project-cms.png)
 
-#### Project Logical scope layer (logicalScopeLayers)
+### Logical scope layer (logicalScopeLayers)
 
 Alternatively to the above step, if the project isn't under a `tenantId`, then a `logicalScopeLayers` can be defined directly by editing the *Logical Scope Layer* field:
 
@@ -466,7 +465,7 @@ Alternatively to the above step, if the project isn't under a `tenantId`, then a
 
 At the end of the configuration, on the backend side, the project will have the following data structure:
 
-#### Sample of project data structure with tenantId
+### Sample of project data structure with tenantId
 
 ```json
 {
@@ -486,7 +485,7 @@ At the end of the configuration, on the backend side, the project will have the 
   }
 ```
 
-#### Sample of project data structure without tenantId
+### Sample of project data structure without tenantId
 
 ```json
 {
@@ -509,7 +508,7 @@ When loading the Console Home Page, the project `Frontend Gateway` will be rende
 
 ![new-cards-detail](img/new-cards-detail.png)
 
-## Step 7. **Customize your cluster**
+### Customize your cluster
 
 It is possible to add a proxy configuration in cluster configuration in environments.
 A configuration example:
@@ -534,7 +533,7 @@ Proxy url supports `http`, `https` and basic auth inside proxy url. For example,
 
 To activate the CRUD for your project, you can contact your Mia-Platform's responsible for creating a connection with MongoDB.
 
-## Setup PaaS templates
+### Setup PaaS templates
 
 If you are using the PaaS console, the following templates are available:
 
