@@ -29,7 +29,7 @@ In this section, you will understand how to correctly configure collections in o
 
 ## Sensitivity
 
-Setting a sensitivity level is an effective way to **classify your data**. 
+Setting a sensitivity level is an effective way to **classify your data**.     
 
 Data can be classified in many different ways, organizing information into fixed categories with specific attributes. Data classification can help you stay compliant with the GDPR by allowing you to properly organize your data and implement security controls to detect anomalies.
 
@@ -37,19 +37,19 @@ Data can be classified in many different ways, organizing information into fixed
 Classifying data helps you understand the value of your data, determine whether data are at risk, and implement controls to mitigate those risks.
 :::
 
-The following are the categories in which data can be classified according to sensitivity levels:
+Below you can find the categories in which data can be classified, but please remember that the actual data-sensitivity level association strictly depends on the operating context in which you operate:
 
 ![sensitivity](img/sensitivity.png)
 
-* **Unclassified**: information for which a sensitivity level has not been set yet;
+* **Unclassified**: default classification of the data for which no value has been set;
 
-* **Public**: information intended for public use. This type of data is not protected by intellectual property laws such as copyright, trademark, or patent laws *(e.g. public website content or marketing materials)*;
+* **Public**: non-sensitive information based on the operating context, which is not subject to any non-disclosure agreement. Anyone inside and outside the organization can have access to this data without any privacy damage of any kind *(e.g. for a company, the name of an employee)*;
 
-* **Confidential**: information intended for internal use only. If destroyed or compromised, this type of data can have a limited impact on your organization or its individuals *(e.g. emails, media, and documents with no sensitive data)*;
+* **Confidential**: information intended for internal use only. This information is sensitive and must not be shared or distributed externally: any compromise of the data can have a limited impact on your organization or its individuals *(e.g. for an e-commerce, the name of a customer)*;
 
-* **Secret**: information intended for restricted use, i.e. only certain members of your organization should be able to access and modify it. If destroyed or compromised, this type of data can have a medium impact on your organization or its individuals *(e.g. internal correspondence including confidential data, Supplier contracts, IT service management information, and employee records)*;
+* **Secret**: information intended for restricted and limited use, i.e. only certain members inside the organization should be able to access and modify it. This data must remain strictly internal and can be viewed and handled in clear only by a small group of people inside the organization: any compromise of the data can have a medium impact on your organization or its individuals *(e.g. for a medical organization, the diagnosis of a patient)*;
 
-* **Top Secret**: information intended for mission-critical use, such as supporting strategic business processes. If destroyed or compromised, this type of data can have a catastrophic impact on your organization or its individuals. *(e.g. privileged credentials, customer personal data, credit card, and financial account numbers, health protected information, social security numbers, and intellectual property)*.
+* **Top Secret**: information intended for mission-critical use, i.e. nobody inside the organization should be able to access and modify it. This data must be inaccessible to anyone including the system admin, any compromise of the data can have a catastrophic impact on your organization or its individuals.
 
 ### Select a sensitivity level
 
