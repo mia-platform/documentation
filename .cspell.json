@@ -128,7 +128,8 @@
     "testdb",
     "fpath",
     "PAAS",
-    "paas"
+    "paas",
+    "CSFLE"
   ],
   "dictionaries": ["softwareTerms", "companies", "misc"],
   // flagWords - list of words to be always considered incorrect

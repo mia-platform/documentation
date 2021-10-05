@@ -27,6 +27,7 @@ Mia-Platform guarantees **security patches** for the two preceding versions to t
 
 Release | Release Date |  End of Life Date
 -------| -------|-------
+v.8| October 2021 | -
 v.7| February 2021 | -
 v.6| September 2020 | -
 v.5| January 2020| -

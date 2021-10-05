@@ -1200,7 +1200,7 @@
   "releaseNotes": [
     {
       "type": "doc",
-      "id": "release_notes/mia-platform-v7"
+      "id": "release_notes/mia-platform-v8"
     },
     {
       "type": "doc",
@@ -1213,81 +1213,14 @@
       "items": [
         {
           "type": "category",
-          "label": "v7.9",
+          "label": "v8.0",
           "collapsed": true,
           "items": [
             {
               "type": "doc",
-              "id": "release_notes/RN_v7-9/v7.9.4"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-9/v7.9.3"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-9/v7.9.2"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-9/v7.9.1"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-9/v7.9.0"
+              "id": "release_notes/RN_v8-0/v8.0.0"
             }
           ]
-        },
-        {
-          "type": "category",
-          "label": "v7.8",
-          "collapsed": true,
-          "items": [
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-8/v7.8.2"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-8/v7.8.1"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v7-8/v7.8.0"
-            }
-          ]
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.7.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.6.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.5.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.4.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.3.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.2.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.1.x"
-        },
-        {
-          "type": "doc",
-          "id": "release_notes/v7.0.x"
         }
       ]
     },

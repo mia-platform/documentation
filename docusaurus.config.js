@@ -243,8 +243,12 @@ const config = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "7.x (Current)",
+              label: "8.x (Current)",
               path: "",
+            },
+            "7.x.x": {
+              label: "7.9.x",
+              path: "7.x",
             },
             "6.x.x": {
               label: "6.5.x",
