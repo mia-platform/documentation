@@ -4,7 +4,7 @@ import Layout from "@theme/Layout";
 import Logo from "../components/Logo";
 import Hexagons from "../components/Hexagons";
 import Feature from "../components/Feature";
-// import VersionBanner from "../components/VersionBanner";
+import VersionBanner from "../components/VersionBanner";
 import HowToBox from "../components/HowToBox";
 
 import SearchBar from "@theme/SearchBar";
@@ -51,8 +51,8 @@ const secondRowFeatures = [
       {
         icon: "video",
         target: "_blank",
-        href: "https://vimeo.com/510307523",
-        label: "Mia-Platform v7.0 new features",
+        href: "https://vimeo.com/616716487",
+        label: "Mia-Platform v8.0 new features",
       },
     ],
   },
@@ -134,9 +134,9 @@ function Home() {
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
-              {/* <div className="row">
-              <VersionBanner link="/docs/release_notes/mia-platform-v7" majorVersion="1" subTitle="Click to know more about how Mia-Platform is growing and where it is going!"  title="Mia-Platform v7.0 is now Available!" />
-              </div> */}
+              {<div className="row">
+              <VersionBanner link="/docs/release_notes/mia-platform-v8" majorVersion="2" subTitle="Click to know more about how Mia-Platform is growing and where it is going!"  title="Mia-Platform v8.0 is now Available!" />
+              </div>}
               <div className="row">
                 {features.map((props, idx) => (
                   <Feature key={idx} {...props} />
