@@ -950,6 +950,75 @@
     {
       "collapsed": false,
       "type": "category",
+      "label": "Backoffice",
+      "items": [
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/overview"
+        },
+        {
+          "collapsed": false,
+          "type": "category",
+          "label": "Back-Kit",
+          "items": [
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/back-kit/overview"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/back-kit/layout"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/back-kit/concepts"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Components",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/buttons"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/clients"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/data-manipulation"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/data-querying"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/data-visualization"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/misc"
+                },
+                {
+                  "type": "doc",
+                  "id": "business_suite/backoffice/back-kit/components/typography"
+                }
+              ]
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/back-kit/events/events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "type": "category",
       "label": "Analytics",
       "items": [
         {
