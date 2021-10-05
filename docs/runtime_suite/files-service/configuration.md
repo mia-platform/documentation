@@ -210,6 +210,7 @@ This file looks like
 Once obtained this file, you should not commit `private_key_id` and `private_key`.
 The `private-key` is a certificate with newline code (`\n`). In order to interpolate with in deploy stage of gitlab ci, it should be saved replacing `\n` with `\\\n`.
 
+
 ### Cache configuration
 
 If the used bucket does not provide any caching mechanism, the Files Service can provide it. To make use of it you can
