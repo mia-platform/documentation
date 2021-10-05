@@ -29,7 +29,7 @@ In this section, you will understand how to correctly configure collections in o
 
 ## Sensitivity
 
-Setting a sensitivity level is an effective way to **classify your data**. 
+Setting a sensitivity level is an effective way to **classify your data**.     
 
 Data can be classified in many different ways, organizing information into fixed categories with specific attributes. Data classification can help you stay compliant with the GDPR by allowing you to properly organize your data and implement security controls to detect anomalies.
 
