@@ -43,7 +43,7 @@ Below you can find the categories in which data can be classified, but please re
 
 * **Unclassified**: default classification for each data in which no value has been set;
 
-* **Public**: non-sensitive information based on the operating context and not subject to any non-disclosure agreement. Anyone inside and outside the organization can have access to this data without any privacy damage of any kind *(e.g. for a company, the name of an employee)*;
+* **Public**: non-sensitive information based on the operating context, which is not subject to any non-disclosure agreement. Anyone inside and outside the organization can have access to this data without any privacy damage of any kind *(e.g. for a company, the name of an employee)*;
 
 * **Confidential**: information intended for internal use only. This information is sensitive and must not be shared or distributed externally, any compromise of the data can have a limited impact on your organization or its individuals *(e.g. for an e-commerce, the name of a customer)*;
 
