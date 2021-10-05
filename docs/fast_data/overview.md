@@ -25,6 +25,10 @@ In this section, you can have an overview of the components and the processes of
 You need to implement a service able to send to Kafka any change in your original sources of data happens. From now on, we will call the sources **Systems of Records**.  
 You can implement it however you want.
 
+:::caution
+Logics behind the messages elaboration are based on their key, hence changing it may cause the data to be mishandled. 
+:::
+
 ### Real-Time Updater
 
 The Real-Time Updater component consumes Kafka messages and is in charge of keeping the **projections collections** up to date with the systems. For each System you create, a new real-time updater is automatically created (please note that they are visible in the `Microservice` area only after you have saved the configuration).
