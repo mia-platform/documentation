@@ -41,7 +41,7 @@ Below you can find the categories in which data can be classified, but please re
 
 ![sensitivity](img/sensitivity.png)
 
-* **Unclassified**: default classification for each data in which no value has been set;
+* **Unclassified**: default classification of the data for which no value has been set;
 
 * **Public**: non-sensitive information based on the operating context, which is not subject to any non-disclosure agreement. Anyone inside and outside the organization can have access to this data without any privacy damage of any kind *(e.g. for a company, the name of an employee)*;
 
