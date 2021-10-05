@@ -47,7 +47,7 @@ Below you can find the categories in which data can be classified, but please re
 
 * **Confidential**: information intended for internal use only. This information is sensitive and must not be shared or distributed externally, any compromise of the data can have a limited impact on your organization or its individuals *(e.g. for an e-commerce, the name of a customer)*;
 
-* **Secret**: information intended for restricted and limited use, i.e. only certain members inside the organization should be able to access and modify it. This data must remain strictly internal and can be viewed and handled in clear only by a small group of people inside the organization, any compromise of the data can have a medium impact on your organization or its individuals *(e.g. for a medical organization, the diagnosis of a patient)*;
+* **Secret**: information intended for restricted and limited use, i.e. only certain members inside the organization should be able to access and modify it. This data must remain strictly internal and can be viewed and handled in clear only by a small group of people inside the organization: any compromise of the data can have a medium impact on your organization or its individuals *(e.g. for a medical organization, the diagnosis of a patient)*;
 
 * **Top Secret**: information intended for mission-critical use, i.e. nobody inside the organization should be able to access and modify it. This data must be inaccessible to anyone including the system admin, any compromise of the data can have a catastrophic impact on your organization or its individuals.
 
