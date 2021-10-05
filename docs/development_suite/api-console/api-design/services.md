@@ -65,6 +65,14 @@ Once the service is created on your Git provider, you will not be able to delete
 :::
 
 :::info
+When creating your microservice, the Console also generates a CI file (e.g. `.gitlab-ci.yml`) along side the service files.
+This file is used to instruct your pipeline provider for continuous integration and continuous deployment.
+
+You can set up the CI file by yourself or use instead Mia-Platform pipeline templates.
+In order to use the templates provided by Mia-Platform you can contact your referent to configure the pipeline templates within your Console installation.
+:::
+
+:::info
 At this [link](../../../development_suite/api-console/api-design/custom_microservice_get_started/) you can find a more detailed guide and overview about how to create new service starting from Templates.
 :::
 
