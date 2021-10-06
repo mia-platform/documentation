@@ -41,7 +41,7 @@ A bug that caused a crash when emptying the content of the Schema Editor has bee
 
 #### Commit after advanced section file commit
 
-Has been fixed a bug that prevented subsequent commits after committing a file modification in the advanced section.
+A bug that prevented subsequent commits after committing a file modification in the advanced section has been fixed.
 
 ### Marketplace Updates
 
