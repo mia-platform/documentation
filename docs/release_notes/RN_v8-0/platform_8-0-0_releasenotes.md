@@ -23,7 +23,11 @@ Four new types are now available for projection fields and cast functions, the n
 
 #### Added default cast function `defaultIdentity`
 
-A new default cast function `defaultIdentity` is available, it can be applied to every field type in projections, and it is the deafult cast function for each new projection field.
+A new default cast function `defaultIdentity` is available, it can be applied to every field type in projections, and it is the default cast function for each new projection field.
+
+#### New Mia-backoffice
+
+The new [Mia-Platform Headless CMS](../../business_suite/backoffice/overview.md) is now available. 
 
 ### Bug Fix
 
