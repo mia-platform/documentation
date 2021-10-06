@@ -37,7 +37,7 @@ Data can be classified in many different ways, organizing information into fixed
 Classifying data helps you understand the value of your data, determine whether data are at risk, and implement controls to mitigate those risks.
 :::
 
-Below you can find the categories in which data can be classified, but please remember that the actual data-sensitivity level association strictly depends on the operating context in which you operate:
+Below you can find the categories in which data can be classified according to the standards of classification of NATO and European Union, but please remember that the actual data-sensitivity level association strictly depends on the operating context in which you operate:
 
 ![sensitivity](img/sensitivity.png)
 
