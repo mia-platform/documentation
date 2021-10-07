@@ -208,6 +208,10 @@ module.exports = (logger, databaseName) => async (aDocument) => {
 
 ```
 
+:::caution
+If your CDC sends just the changes of the record instead of the whole record, the document you receive as argument in the strategy function is the same as the one sent by the CDC, indeed they are just the changes.
+:::
+
 In a more complex situation we could not have all the information in the incoming document, so we would need to fetch more documents to get all fields.
 
 In this second scenario the input document could be:
