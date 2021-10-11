@@ -1,7 +1,7 @@
 ---
 id: microservices-cpu-resources
 title:  Service CPU Resources
-sidebar_label: Define CPU Resources
+sidebar_label: Define CPU resources
 ---
 In the field CPU Resources, you have to specify:
 

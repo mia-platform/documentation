@@ -256,6 +256,21 @@ How to compile the template:
 If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `MIA_` prefix by hand. This is not made automatically by the Console.
 :::
 
+* `monitoring`: an object that describes the monitoring tools supported by the project.
+
+  ```json
+  {
+    "systems": [
+      {
+        "type": "prometheus-operator"
+      }
+    ]
+  }
+  ```
+
+  * **type**: so far, only one type of monitoring system is supported: `prometheus-operator`.
+  In case `type` is set to `prometheus-operator`, you will be able to configure the creation of the `service monitor` for your microservices. More information about this feature [here](../api-console/api-design/microservice-monitoring.md).
+
 ## How to create a project archive
 
 The project archive is interpolated using [mustache.js](https://github.com/janl/mustache.js) as template system, using `%` as tags instead of default `{{` or `}}`.
