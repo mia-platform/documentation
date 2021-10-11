@@ -133,18 +133,25 @@ In this section, you can manage the resources dedicated to your microservice:
   A static replicas value can not be interpolated by an environment variable
   :::
 
-* **Log Parser** (*required*): You can select which parser will handle your microservice logs.   
+* **Log Parser** (*required*): You can select which parser will handle your microservice logs.  
   Currently, you can parse log in the following ways:
   * *mia-json*: it parses json logs based on the documented format
   * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-Platform (website and api-gateway)
   * *mia-plain*: it collects logs but it does not parse them
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
+:::info
   See more about the log parsers on the [guidelines](../../../getting_started/monitoring-dashboard/dev_ops_guide/log)
+:::
+
+* **Args**: You can specify the arguments for the [command](https://kubernetes.io/docs/tasks/inject-data-application/_print/#define-a-command-and-arguments-when-you-create-a-pod) of your microservice container.  
+Each argument should be on a new line and by default no arguments are specified.
 
  ![service-detail-configuration](img/service-detail-configuration.png)
 
-* **Probes**: Se more about probes in this [page](./microservice-runtime-resources.md) 
+ :::info
+ If you are searching for information about microservice's probes and other runtime options you should visit [this page](./microservice-runtime-resources.md).
+ :::
 
 ### Environment Variable Configuration
 
@@ -240,7 +247,7 @@ If your projects uses `mlp`, the Mia-Platform cli deploy tool, you can configure
 
 To release custom secrets with mlp, add these lines to the mlp.yaml file:
 
-```
+```yaml
 secrets:
   - name: "client-credential-private-key"
     when: "always"
