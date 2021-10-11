@@ -82,6 +82,10 @@
             },
             {
               "type": "doc",
+              "id": "development_suite/api-console/api-design/microservice-monitoring"
+            },
+            {
+              "type": "doc",
               "id": "development_suite/api-console/api-design/templates_conf"
             }
           ]
