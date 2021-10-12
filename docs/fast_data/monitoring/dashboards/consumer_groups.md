@@ -8,9 +8,8 @@ This Dashboard is mainly concerned with Kafka-related concepts, and a Kafka Expo
 
 Click <a download target="_blank" href="/docs_files_to_download/consumer-groups.json">**here**</a> to download the dashboard.
 
-### Kafka Exporter Service
-
-This service is responsible for exporting information about Kafka topics, messages, and consumer groups. It is based on [an open-source project](https://github.com/danielqsj/kafka_exporter), so we make use of the Docker image, and then add the relevant configmaps to set it up correctly.
+For a fast and complete configuration of all necessary monitoring services, you should use Mia Platform [Fast Data Monitoring Application](../overview.md#fast-data-monitoring-application).  
+One of the services that will be generated using Fast Data Monitoring application is the Kafka Exporter. This service will be automatically configured to export information about Kafka topics, messages and consumer groups.
 
 ## Panels
 

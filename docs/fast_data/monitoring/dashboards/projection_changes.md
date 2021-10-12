@@ -8,9 +8,8 @@ This Dashboard is mainly concerned with Projection-Changes related concepts, and
 
 Click <a download target="_blank" href="/docs_files_to_download/projections-changes.json">**here**</a> to download the dashboard.
 
-### Mongodb Query Exporter Service
-
-This service is responsible for exporting information about Mongodb concerning how many  Projection Changes are in a `NEW` state. It is based on [an open-source project](https://github.com/raffis/mongodb-query-exporter), so we make use of the Docker image, and then add the relevant configmaps to set it up correctly.
+For a fast and complete configuration of all necessary monitoring services, you should use Mia Platform [Fast Data Monitoring Application](../overview.md#fast-data-monitoring-application).  
+One of the services that will be generated using Fast Data Monitoring application is the MongoDB Query Exporter. This service will be automatically configured to export information about MongoDB concerning how many Projection Changes are in a `NEW` state.
 
 ## Panels
 
