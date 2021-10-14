@@ -185,6 +185,69 @@ Therefore, for each variable, you have to define:
 
  You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var/) of Mia-Platform Docs.
 
+### Labels Configuration
+
+In this section, you can manage, add and delete the labels associated to your microservice.
+
+The labels are only of type *Plain Text*.
+
+For each label, you have to define:
+
+* **Key** (*required*)
+
+* **Value** (*required*)
+
+* **Description**
+
+![add-new-label](img/add-new-label.png)
+
+#### Default labels
+
+By default, we set for you these labels for each service that you are going to save:
+![default-labels](img/default-labels.png)
+
+:::caution
+These labels are inserted when you create a new microservice. For the existing one they will be inserted with the next save.  
+If you try to overwrite these labels, its original value will be restored on the next save.
+:::
+
+:::note
+The labels that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
+:::
+
+### Annotations Configuration
+
+In this section, you can manage, add and delete the annotations associated to your microservice.
+
+The annotations are only of type *Plain Text*.
+
+For each annotation, you have to define:
+
+* **Key** (*required*)
+
+* **Value** (*required*)
+
+* **Description**
+
+![add-new-annotation](img/add-new-annotation.png)
+
+#### Default annotations
+
+By default, we set for you these annotations for each service that you are going to save, **only if you don't use MLP**:
+![default-annotations](img/default-annotations.png)
+
+**If you use MLP**, the default annotations are:
+![default-annotations](img/default-annotations-mlp.png)
+
+:::caution
+These annotations are inserted when you create a new microservice. For the existing one they will be inserted with the next save.
+If you try to overwrite these annotations, its original value will be restored on the next save.
+:::
+
+:::note
+The annotations that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
+:::
+
 ### Custom Configuration
 
 In this section, you can add custom configurations to your microservice without the need of using the advanced service configuration. This feature can be useful in different occasions, either when your microservice requires a specific functionality or to have access to particular kubernetes files.
