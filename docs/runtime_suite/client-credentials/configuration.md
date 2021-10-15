@@ -28,13 +28,16 @@ This service is configurable with the following environment variables:
 * **MONGODB_CREDENTIALS_DATABASE_NAME** (*required*): the mongo db name which will include the `credentials` collection;
 * **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private rsa key;
 * **PRIVATE_KEY_PASSWORD**: password to decrypt the rsa key, if it is encrypted with a password. If it is empty, rsa key is treated as a non protected rsa key;
-* **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string; 
+* **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string;
 * **MIA_JWT_ISSUER** (*required*): string containing the issuer to fill the JWT claims. During the login flow, it is added as *iss*;
 * **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated jwt, in seconds;
 * **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
 * **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** (default to `false`): if audience is required in token request;
 * **ACCEPTED_AUDIENCES**: audience accepted by the service, if included in JWT `aud` claim;
-* **REDIS_HOST** (*required*): redis host with port (default Redis port is 6379).
+* **OPENID_CONFIG_PATH**: string representing the path to the file contaning the OpenId Connect Configuration.
+* **REDIS_HOSTS** (*required*): redis host with port (default Redis port is 6379);
+* **REDIS_MODE**: defines the redis mode (`normal` or `sentinel`) (default: `normal`);
+* **REDIS_MASTER_NAME**: defines the redis master name (required when using `sentinel` mode);
 
 ## RSA Key Management
 
@@ -49,7 +52,7 @@ To generate a new private key, you could run:
 openssl genrsa -out ~/private.key 4096
 ```
 
-The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `PRIVATE_KEY_PASSWORD` environment variable. 
+The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `PRIVATE_KEY_PASSWORD` environment variable.
 You could run the following command to generate the key with password:
 
 ```sh
@@ -112,6 +115,53 @@ If you use GitLab as CI tool, you could set the `private.key` file in the `befor
 ```sh
 echo ${PRIVATE_KEY} > /tmp/private.key
 ```
+
+## OpenId Configuration
+
+To expose correctly the OpenId discovery endpoint you should provide the configuration using a config map. This file must contain the exact JSON that the will be sent as response.
+
+```yml
+apiVersion: v1
+data:
+  config.json: '{ "issuer": "https://www.valid.url", ... }'
+kind: ConfigMap
+metadata:
+  name: client-credentials
+```
+Now you have to load the config map inside a volume and mount that volume, as follows:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-pod
+    image: my-image
+    env:
+      - name: OPENID_CONFIG_PATH
+        value: /openid/config.json
+    volumeMounts:
+    - name: openid-config-volume
+      mountPath: "/openid"
+      readOnly: true
+  volumes:
+  - name: openid-config-volume
+    configMap:
+      name: openid-config
+```
+_Note: the custom configuration **MUST** contain at least every required field._
+
+_**Required** fields:_
+- _issuer_
+- _token_endpoint_
+- _jwks_uri_
+- _response_types_supported_
+- _subject_types_supported_
+- _id_token_signing_alg_values_supported_
+
+Reference: [OpenId Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
 
 ## CRUD fields JSON
 

@@ -39,6 +39,19 @@
     "docLandingPage": "runtime_suite/api-portal/overview"
   },
   {
+    "name": "Appointment Manager",
+    "description": "Organize appointments, handling crud operations while sending messages and reminders.",
+    "category": {
+      "id": "insurance",
+      "label": "Add-ons - Healthcare"
+    },
+    "supportedBy": "Mia-Care",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/appointment-manager_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
+    "docLandingPage": "runtime_suite/appointment-manager/overview"
+  },
+  {
     "name": "Auth0 Client",
     "description": "Integrate with your Auth0 tenant using Mia-Platform core service Auth0 Client.",
     "category": {
@@ -159,8 +172,8 @@
     "name": "Form Service Backend",
     "description": "This is a backend for frontend to be used for building and managing forms.",
     "category": {
-      "id": "frontendbuilder",
-      "label": "Add-on - Frontend Builders"
+      "id": "insurance",
+      "label": "Add-ons - Healthcare"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
@@ -219,6 +232,19 @@
     "imagePath": "docs/runtime_suite/marketPlaceImg/kafka2firebase_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
     "docLandingPage": "runtime_suite/kafka2firebase/overview"
+  },
+  {
+    "name": "Messaging Service",
+    "description": "Send messages to your users through various channels",
+    "category": {
+      "id": "insurance",
+      "label": "Add-ons - Healthcare"
+    },
+    "supportedBy": "Mia-Care",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/messaging-service_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
+    "docLandingPage": "runtime_suite/messaging-service/overview"
   },
   {
     "name": "Microlc ReDoc Plugin",
@@ -286,6 +312,19 @@
     "docLandingPage": "runtime_suite/payment-gateway-manager/overview"
   },
   {
+    "name": "Proxy Google FHIR",
+    "description": "Proxy service to interact with Google FHIR APIs through a service account authentication",
+    "category": {
+      "id": "insurance",
+      "label": "Add-ons - Healthcare"
+    },
+    "supportedBy": "Mia-Care",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/proxy-google-fhir_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
+    "docLandingPage": "runtime_suite/proxy-google-fhir/overview"
+  },
+  {
     "name": "Push Notification Manager",
     "description": "This microservice offers some useful features for easily and safely handling the push notifications data.",
     "category": {
@@ -323,6 +362,19 @@
     "imagePath": "docs/runtime_suite/marketPlaceImg/single-view-creator_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
     "docLandingPage": "runtime_suite/single-view-creator/configuration"
+  },
+  {
+    "name": "SMS Service",
+    "description": "Send SMS through Twilio API",
+    "category": {
+      "id": "insurance",
+      "label": "Add-ons - Healthcare"
+    },
+    "supportedBy": "Mia-Care",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/sms-service_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
+    "docLandingPage": "runtime_suite/sms-service/configuration"
   },
   {
     "name": "SQL DB Reader",
