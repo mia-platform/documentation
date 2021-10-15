@@ -7,31 +7,46 @@ The `JWT Token Validator` service allows verifying if a given JWT token is valid
 
 ## Usage
 
-The service exposes the `GET - /verify` endpoint to validate a JWT token.
-The JWT token on the call is passed in the header `Authorization: Bearer <JWT token>`
+The service exposes the `GET-/verify` endpoint that validates a JWT token.
+The JWT token is passed to the endpoint inside the header `Authorization: Bearer <JWT token>`
 
 The endpoint will return:
-an error in case the token is malformed or is not valid,
-the payload of the JWT, if valid.
+
+- if the JWT is valid, its payload,
+- an error indicating that the JWT is malformed or is not valid, and why.
 
 ## Configuration
 
-To correctly work, the service needs a `configMap` configuration. 
-The configuration is `json` with a **jwtConfig** field which is an array of objects.
+The service needs to be configured using the Mia-Platform Console.
+The environment variables needed are:
+
+- **JWKS_ENCRYPTION_KEYS_PATH**: path to the file containing all the information required to decrypt the JWE.
+- **ISSUER_CONFIGURATION_PATH**: the runtime mount path of the `ConfigMap` containing the configuration file of the service (e.g. `./configs`).
+- **ISSUER_CONFIGURATION_FILENAME**: the file name of the configuration (e.g. `./issuer-config`). It must be a `json` file. 
+Note: remove the file format in the environment variable as the service will append `.json` at the end.
+
+As described above, the service requires a `ConfigMap` configuration. 
+The configuration is a `json` object with a **jwtConfig** field which is an array of objects.
 Each object has the following fields:
-**JWKSSignatureEndpoint**: the endpoint that returns a list of JWKS used to validate the signature of a JWT token.
-**requiredClaims**: list of required claims.
-**issuer**: issuer of the JWT
-**audience**: a string or an array of strings that lists the audience. 
+
+- **JWKSSignatureEndpoint**: the endpoint supplied by the issuer that contains the public keys information in JWKS format. They are needed to validate the signature of the JWT token. 
+- **requiredClaims**: list of required claims (e.g. `aud,iss`). It could be an empty string.
+If a claim is not required, its validation will return true if the value is valid or is unset. 
+These are the claims validated by the service: `exp`, `iat`, `nbf`, `aud`, `iss`. 
+- **issuer**: the issuer of the JWT
+- **audience**: a string or an array of strings that lists all the audiences. In case the JWT token inside its `aud` claim has different values from the ones defined in this field, it won't be valid. 
+The `aud` claim identifies the recipients that the JWT is intended for. This means that the service tells that it's identifying itself with the defined value. 
+
+Given the example below, the service is identifying itself with a *dih* value for a JWT coming from the issuer *issuer-one*. Supposing that the JWT has an `aud` value that does not appear in the audience list, the JWT will be rejected as it is not meant for the service.
  
-Following an example of the configuration:
+Following is an example of the configuration:
 ```json
 {
   "jwtConfig": [
     {
       "JWKSSignatureEndpoint": "https://endpoint-issuer/.well-known/jwks.json",
-      "requiredClaims": "",
-      "issuer": "issuer",
+      "requiredClaims": "aud,iss",
+      "issuer": "issuer-one",
       "audience": "dih"
     },
     {
@@ -39,16 +54,13 @@ Following an example of the configuration:
       "requiredClaims": "",
       "issuer": "issuer-two",
       "audience": [
-		"dih"
-	]
+        "dih",
+        "another_audience"
+      ]
     }
   ]
 }
 ```
 
-The service also needs to have the following environment variables set:
-`JWKS_ENCRYPTION_KEYS_PATH`: path to a `json` file that contains the JWKS used to decrypt a JWE token.
-`ISSUER_CONFIGURATION_PATH`: path to the configuration (e.g. `/configs`).
-`ISSUER_CONFIGURATION_FILENAME`: filename of the configuration, without the file extension (e.g. `./issuer-config`).
-
+With this configuration, you can support as many issuers as you need for JWT tokens.
 At the moment, it's only possible to support JWE supplied by a single issuer.

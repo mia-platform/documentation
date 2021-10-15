@@ -346,6 +346,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Appointment Manager",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/appointment-manager/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/appointment-manager/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/appointment-manager/usage"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Auth0 Client",
               "items": [
                 {
@@ -585,6 +604,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Messaging Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/messaging-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/messaging-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/messaging-service/usage"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Microlc ReDoc Plugin",
               "items": [
                 {
@@ -664,6 +702,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Proxy Google FHIR",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/proxy-google-fhir/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/proxy-google-fhir/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Push Notification Manager",
               "items": [
                 {
@@ -699,6 +752,21 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/single-view-creator/configuration"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "SMS Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/sms-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/sms-service/usage"
                 }
               ]
             },

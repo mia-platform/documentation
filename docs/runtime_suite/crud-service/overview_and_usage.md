@@ -689,6 +689,10 @@ When the index is created you can use $nearSphere. For example to search a plate
 }
 ```
 
+:::caution
+This query is not supported on count API due to MongoDB restrictions.
+:::
+
 to get the list of plates just encode the query and use _q.
 
 ```bash
