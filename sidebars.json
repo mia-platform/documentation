@@ -928,6 +928,10 @@
         {
           "type": "doc",
           "id": "marketplace/applications/dev_portal_application"
+        },
+        {
+          "type": "doc",
+          "id": "marketplace/applications/backoffice_application"
         }
       ]
     }
