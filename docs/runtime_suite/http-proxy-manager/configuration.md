@@ -89,6 +89,12 @@ The configuration must follow this schema:
           },
           "additionalAuthFields": {
             "type": "object"
+          },
+          "headersToProxy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
@@ -112,6 +118,7 @@ A proxy can have the following fields:
   -  [*password*](https://oauth.net/2/grant-types/password/)
 - **authType**: the method used to stuff the client credentials in the request when asking for a new access token. This is required only for the Client Credential Grant flow. At the moment, the service only supports the *client_secret_basic* type.
 - **additionalAuthFields**: an object containing additional fields to be used in the authentication request. These fields are added in the request body performed to acquire the access token. Both object keys and values must be of type string.
+- **headersToProxy**: a list of headers that must be forwarded when calling the external service. The default behavior, triggered when this field is not provided, is to forward all the headers of original request. In case the list is empty, no header from original request is proxied.
 
 ## Configuration example
 
@@ -119,7 +126,8 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
 - The first one is located at `external-service.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/external-service` endpoint.
 - The second one is located at `mia-client-credentials.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/mia-service` endpoint. It employs additional fields that are added in the request to retrieve an access token.
 - The third one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
-- The latter service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
+- The forth service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
+- The latter service is located at `another-service.com`, requires no authentication, can be reached with a call to the `/another-service` endpoint and only selected headers are forwarded to it.
 
 ```json
 {
@@ -159,6 +167,14 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
     {
       "targetBaseUrl": "http://other-service.com",
       "basePath": "/other-service"
+    },
+    {
+      "targetBaseUrl": "http://another-service.com",
+      "basePath": "/another-service",
+      "headersToProxy": [
+        "Accept",
+        "Content-Type"
+      ]
     }
   ]
 }
