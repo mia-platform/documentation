@@ -181,9 +181,16 @@ Therefore, for each variable, you have to define:
 
 * **Description**
 
+It is also possible to import multiple **Plain Text** variables from a `.env` file by using the dedicated button.  
+A variable definition in the `.env` file has to be contained in a single line and must follow one of the formats below:
+
+* Basic: `ENV_VAR_KEY=env_var_value`
+* Single Quoted: `ENV_VAR_KEY='env_var_value'`
+* Double Quoted: `ENV_VAR_KEY="env_var\nvalue"`, where the string `"\n"` is converted to a newline character
+
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
- You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var/) of Mia-Platform Docs.
+You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var/) of Mia-Platform Docs.
 
 ### Labels Configuration
 
