@@ -1289,16 +1289,23 @@
       "items": [
         {
           "type": "category",
+          "label": "v8.1",
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "release_notes/RN_v8-1/v8.1.0"
+            }
+          ]
+        },
+        {
+          "type": "category",
           "label": "v8.0",
           "collapsed": true,
           "items": [
             {
               "type": "doc",
               "id": "release_notes/RN_v8-0/v8.0.0"
-            },
-            {
-              "type": "doc",
-              "id": "release_notes/RN_v8-0/v8.1.0"
             }
           ]
         }
