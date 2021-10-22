@@ -100,6 +100,7 @@ The following services have been added into Marketplace:
 * Backoffice application, [see more](https://docs.mia-platform.eu/docs/business_suite/backoffice/overview)
 * Back Kit plugin, [see more](https://docs.mia-platform.eu/docs/business_suite/backoffice/back-kit/overview)
 * Microlc Element composer plugin, [see more](https://docs.mia-platform.eu/docs/business_suite/microlc/core_plugins#microlc-element-composer)
+* Fast Data monitoring plugins and Application, [see more](https://docs.mia-platform.eu/docs/fast_data/monitoring/overview)
 
 ### How to update your Console
 
