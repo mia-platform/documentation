@@ -13,13 +13,21 @@ _Month day, year_
 
 ### Bug Fix
 
-#### Files Service 2.3.1
 
-Mitigation of Cross-site Scripting and Cross-site Request Forgery attacks on download of html files
 
 ### Breaking Changes 
 
+#### Client Credentials 3.0.0
 
+The support to Redis Sentinel has been added, so you can provide multiple comma-separated redis hosts.
+Consequently, the `REDIS_HOST` env has been changed in `REDIS_HOSTS`. 
+Moreover, library dependencies have been updated.
+
+### Marketplace Updates
+
+#### Files Service 2.3.1
+
+Mitigation of Cross-site Scripting and Cross-site Request Forgery attacks on download of html files
 
 ### Improvements
 
