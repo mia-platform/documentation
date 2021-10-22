@@ -29,6 +29,12 @@ Moreover, library dependencies have been updated.
 
 Mitigation of Cross-site Scripting and Cross-site Request Forgery attacks on download of html files
 
+### New marketplace microservices
+
+#### Scratch Template 
+
+An empty template fully customizable by the user has been added into Marketplace, for more info visit this [page](https://github.com/mia-platform-marketplace/scratch-template)
+
 ### Improvements
 
 
