@@ -104,4 +104,4 @@ The following services have been added into Marketplace:
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.4.0`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.4.1`.
