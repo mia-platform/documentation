@@ -43,6 +43,10 @@ Here some tips:
 - `KAFKA_BA_TOPIC`: topic where to send the `before-after`, which is the single view document before and after a change
 - `SEND_BA_TO_KAFKA`: true if you want to send to Kafka the `before-after` information about the update changes of the single view
 - `KAFKA_SVC_EVENTS_TOPIC`: topic used to queue Single View Creator state changes (e.g. single view creation)
+- `UPSERT_STRATEGIES`: (v3.1.0 or higher of the template) If it is set to "replace", the whole Single View document will be replaced with the new one. If it is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept. Default is "replace".
+
+If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS_LIST*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
+
 
 Now, we start the single-view-creator:
 
@@ -52,7 +56,7 @@ const resolvedOnStop = singleViewCreator.startCustom({
   mapper,
   validator,
   singleViewKeyGetter: singleViewKey,
-  upsertSingleView: upsertSV(),
+  upsertSingleView: upsertFnSv(),
   deleteSingleView: deleteSV(),
 })
 ```
@@ -61,14 +65,20 @@ const resolvedOnStop = singleViewCreator.startCustom({
 - `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
 - `validator` is the validation function which determines if the Single View is valid (and thus inserted or updated in Mongo) or not (and thus deleted)
 - `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the single view document on mongo to update or delete
-- `upsertSingleView` is the function that updates or inserts the Single View to the Single Views collection on Mongo
-- `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo
-
-`upsertSV` and `deleteSV` are two utility functions that the library exports that handle the upsert and the delete of the single view.
+- `upsertFnSv` is the function that updates or inserts the Single View to the Single Views collection on Mongo
+- `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo. It's used the `deleteSV` exported by the library.
 
 :::note
 The `deleteSV` function makes a *real delete* of the document on MongoDb. So, unlike the **projections** deletion, it does *not* make a virtual delete.
 :::
+
+The value of `upsertFnSv` is based on the `UPSERT_STRATEGIES` environment variable. If its value is *update*, then the *updateOrInsertSV* function exported by the library is used, otherwise the function *replaceOrInsertSV* is used instead. The default upsert strategy is *replace*. 
+
+:::note
+In the versions of the template prior to the `v3.1.0`, the UPSERT_STRATEGIES was missing and it was used an alias function (*upsertSV*) of the *replaceOrInsertSV*.
+:::
+
+
 
 The Single View creator needs to be stopped when the process is stopping. To do that, we use the `onClose` hook:
 
@@ -197,7 +207,7 @@ function singleViewValidator(logger, singleView) {
 
 ### Customize Upsert and Delete functions
 
-If you want, you can replace both `upsertSV` and `deleteSV` with your own custom functions to perform those operations.
+If you want, you can replace both upsert and delete functions with your own custom functions to perform those operations.
 
 These functions represents the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
 
