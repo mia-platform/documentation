@@ -9,11 +9,15 @@ _Month day, year_
 
 ### New Features
 
+#### Pod filters as url query string
 
+In the Monitoring Area, when a filter is selected, it is added to the url as a query string. Thanks to this, you can now share links of monitoring that keep the selected filters.
 
 ### Bug Fix
 
+#### Environment based on url in Monitoring Area
 
+Fixed a bug that would cause the Monitoring Area to ignore the environment possibly specified in the url. When you navigate to the Monitoring Area using a link that contains the environment in its path, the correct environment will be displayed.
 
 ### Breaking Changes 
 
