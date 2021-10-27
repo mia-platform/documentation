@@ -41,7 +41,9 @@ An empty template fully customizable by the user has been added into Marketplace
 
 ### Improvements
 
+#### Flow Manager Client Node.js library 1.0.0
 
+To improve Flow Manager integration we have published a brand new library on our GitHub organization public repositories. Checkout  [flow-manager-client](https://github.com/mia-platform/flow-manager-client). Using it is as simple as: `npm i @mia-platform/flow-manager-client`
 
 ### How to update your Console
 
