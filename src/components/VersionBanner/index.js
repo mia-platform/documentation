@@ -2,14 +2,15 @@ import React,{useState,useEffect,} from "react";
 import clsx from "clsx";
 import PropTypes from 'prop-types'
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import useWindowSize, {windowSizes} from "@theme/hooks/useWindowSize";
+import useWindowSize from "@theme/hooks/useWindowSize";
 
 import styles from "./styles.module.css";
+import {desktop} from "../../lib/constants";
 
 const STORAGE_VERSION_BANNER_DISMISS_KEY = 'custom.versionBanner{{majorVersion}}.dismiss';
 
 const getContent=(isDesktop,title,subtitle) => {
-  return ( 
+  return (
     <>
       {isDesktop &&
       <div className={styles.imgBox}>
@@ -37,9 +38,9 @@ function VersionBanner(props) {
   const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
-    setIsDesktop(windowSize === windowSizes.desktop);
+    setIsDesktop(windowSize === desktop);
   }, [windowSize]);
-  
+
   if(!shown)
    return null;
 
@@ -52,7 +53,7 @@ function VersionBanner(props) {
       }
       <div className={styles.closeBtnBox}>
         <div
-          className={styles.closeBtn}           
+          className={styles.closeBtn}
           onClick={() => {
             localStorage.setItem(dismissKey, 'true')
             setShown(false)
@@ -67,7 +68,7 @@ function VersionBanner(props) {
 
 VersionBanner.propTypes = {
   link: PropTypes.string,
-  // It's must be a string like 8,7,6... 
+  // It's must be a string like 8,7,6...
   majorVersion: PropTypes.string,
   subTitle:PropTypes.string,
   title:PropTypes.string,

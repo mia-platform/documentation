@@ -1,16 +1,18 @@
 import React, {Fragment, useState, useEffect} from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
+
 import Logo from "../components/Logo";
 import Hexagons from "../components/Hexagons";
 import Feature from "../components/Feature";
 import VersionBanner from "../components/VersionBanner";
 import HowToBox from "../components/HowToBox";
+import {desktop} from "../lib/constants";
 
 import SearchBar from "@theme/SearchBar";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useWindowSize, {windowSizes} from "@theme/hooks/useWindowSize";
+import useWindowSize from "@theme/hooks/useWindowSize";
 
 import styles from "./styles.module.css";
 
@@ -105,7 +107,7 @@ function Home() {
   const windowSize = useWindowSize();
 
   useEffect(() => {
-    setHexagonsShown(windowSize === windowSizes.desktop);
+    setHexagonsShown(windowSize === desktop);
   }, [windowSize]);
 
   return (
