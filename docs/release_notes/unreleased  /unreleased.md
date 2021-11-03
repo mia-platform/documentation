@@ -1,17 +1,21 @@
 ---
-id: vX.X.X
-title: Version X.X.X Release Notes
-sidebar_label: vX.X.X
+id: v8.2.0
+title: Version 8.2.0 Release Notes
+sidebar_label: v8.2.0
 image: "img/release-note-link-preview.png"
 ---
 
-_Month day, year_
+_November 5, 2021_
 
 ### New Features
 
 #### Pod filters as url query string
 
 In the Monitoring Area, when a filter is selected, it is added to the url as a query string. Thanks to this, you can now share links of monitoring that keep the selected filters.
+
+#### Support in Launcher
+
+Added support icon in Console Launcher that redirects to [Mia-Platform support](https://makeitapp.atlassian.net/servicedesk/customer/portal/21).
 
 ### Bug Fix
 
@@ -63,4 +67,4 @@ To improve Flow Manager integration we have published a brand new library on our
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.5.X`.
