@@ -22,6 +22,7 @@
       "dependabot",
       "dind",
       "dnsmasq",
+      "etag",
       "fastify",
       "fhir",
       "fortio",
@@ -131,7 +132,8 @@
     "fpath",
     "PAAS",
     "paas",
-    "CSFLE"
+    "CSFLE",
+    "Nzgw"
   ],
   "dictionaries": ["softwareTerms", "companies", "misc"],
   // flagWords - list of words to be always considered incorrect
