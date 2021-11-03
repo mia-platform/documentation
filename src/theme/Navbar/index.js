@@ -12,11 +12,13 @@ import useThemeContext from '@theme/hooks/useThemeContext';
 import {useThemeConfig} from '@docusaurus/theme-common';
 import useHideableNavbar from '@theme/hooks/useHideableNavbar';
 import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useWindowSize, {windowSizes} from '@theme/hooks/useWindowSize';
+import useWindowSize from '@theme/hooks/useWindowSize';
 import NavbarItem from '@theme/NavbarItem';
 import Logo from '@theme/Logo';
-import styles from './styles.module.css'; // retrocompatible with v1
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+
+import styles from './styles.module.css'; // retrocompatible with v1
+import {desktop} from "../../lib/constants";
 
 const DefaultNavItemPosition = 'right'; // If split links by left/right
 // if position is unspecified, fallback to right (as v1)
@@ -70,12 +72,12 @@ function Navbar() {
   );
   const windowSize = useWindowSize();
   useEffect(() => {
-    if (windowSize === windowSizes.desktop) {
+    if (windowSize === desktop) {
       setSidebarShown(false);
     }
   }, [windowSize]);
   const {leftItems, rightItems} = splitNavItemsByPosition(items);
-  
+
   return (
     <nav
       className={clsx('navbar', 'navbar--fixed-top', {

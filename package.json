@@ -14,9 +14,9 @@
     "spellcheck": "npx cspell './docs/**'"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.69",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-alpha.69",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.69",
+    "@docusaurus/core": "^2.0.0-beta.8",
+    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.8",
+    "@docusaurus/preset-classic": "^2.0.0-beta.8",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
     "cspell": "^5.4.1",
