@@ -17,6 +17,15 @@ In the Monitoring Area, when a filter is selected, it is added to the url as a q
 
 Added support icon in Console Launcher that redirects to [Mia-Platform support](https://makeitapp.atlassian.net/servicedesk/customer/portal/21).
 
+#### New Project Homepage
+
+The project Homepage has been redesigned in order to give more information about the status of your project. 
+
+You can now see all your environments and check how are the pods of your services. 
+You can also have a quick access to the areas of your Project. Just one click and you can access the deploy area of the environment you want to release. 
+
+You don't have to navigate all around the Console to access your project links. They are right there in the Homepage now: Project Documentation, CMS, Application, Dashboards. All of them, just one click away.
+
 ### Bug Fix
 
 #### Fixed save in the Visualize area
