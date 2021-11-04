@@ -41,9 +41,11 @@ By now, when you generate projection fields from a data sample, the identity cas
 
 #### Client Credentials 3.0.0
 
-The support to Redis Sentinel has been added, so you can provide multiple comma-separated redis hosts.
-Consequently, the `REDIS_HOST` env has been changed in `REDIS_HOSTS`. 
-Moreover, library dependencies have been updated.
+The support to Redis Sentinel has been added, so you can now provide multiple comma-separated list of redis hosts;
+for this reason, the `REDIS_HOST` env var has been removed to be substituted with `REDIS_HOSTS`. 
+
+We have also added two new environment variables: `REDIS_MODE` and `REDIS_MASTER_NAME` env, for further information check out the [plugin documentation](https://docs.mia-platform.eu/docs/runtime_suite/client-credentials/configuration)
+
 
 #### Files Service 2.3.1
 
