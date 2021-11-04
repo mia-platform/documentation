@@ -85,4 +85,4 @@ To improve Flow Manager integration we have published a brand new library on our
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.4.5`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.4.6`.
