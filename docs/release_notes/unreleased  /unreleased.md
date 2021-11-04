@@ -19,10 +19,16 @@ Added support icon in Console Launcher that redirects to [Mia-Platform support](
 
 #### New Project Homepage
 
-The project Homepage has been redesigned in order to give more information about the status of your project. 
+The project Homepage has been redesigned in order to give more information about the status of your project.  
 
-You can now see all your environments and check how are the pods of your services. 
-You can also have quick access to the areas of your Project. Just one click and you can access the deploy area of the environment you want to release. 
+You can now see all your environments and check how are the pods of your services.  
+The *KPIs* you may need is already there:
+- **Pods status**: how many pods are healthy
+- **CPU and RAM**: *Usage vs Request* and *Usage vs Limit*
+
+A warning will be displayed to notify you if some service request or limit is missing, or if some pods in unhealthy.
+ 
+You can also have quick access to the areas of your Project. Just one click and you can access the deploy area of the environment you want to release.  
 
 You don't have to navigate all around the Console to access your project links. They are right there on the Homepage now: Project Documentation, CMS, Application, Dashboards. All of them, just one click away.
 
