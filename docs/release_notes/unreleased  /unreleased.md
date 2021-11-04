@@ -73,6 +73,10 @@ Mitigation of Cross-site Scripting and Cross-site Request Forgery attacks on dow
 
 Added new UPSERT_STRATEGY environment variable to be able to define whether replace or update the document when a new update of a single view occurs.
 
+### Authorization Service 2.2.0
+
+Added OPTIONS method to supported methods. It is possible to add it in the configuration, or it is automatically handled with the `ALL` method keyword.
+
 ### New marketplace microservices
 
 #### Scratch Template 
