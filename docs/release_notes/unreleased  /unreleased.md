@@ -19,6 +19,9 @@ Added support icon in Console Launcher that redirects to [Mia-Platform support](
 
 ### Bug Fix
 
+#### Fixed save in the Visualize area
+
+Fixed a bug that prevented saving in other areas of the console after saving in the Visualize area
 #### Environment based on url in Monitoring Area
 
 Fixed a bug that would cause the Monitoring Area to ignore the environment possibly specified in the url. When you navigate to the Monitoring Area using a link that contains the environment in its path, the correct environment will be displayed.
