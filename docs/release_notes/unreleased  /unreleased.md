@@ -32,6 +32,11 @@ You can also have quick access to the areas of your Project. Just one click and 
 
 You don't have to navigate all around the Console to access your project links. They are right there on the Homepage now: Project Documentation, CMS, Application, Dashboards. All of them, just one click away.
 
+#### Encryption of the default fields of a collection
+
+It is now possible to enable encryption for the default fields *creatorid* and *updaterid* of a collection. 
+Furthermore, for all the default fields it's also possible to attribute the degree of sensitivity of the data and to provide the description of its purpose in terms of GDPR.
+
 ### Bug Fix
 
 #### Fixed save in the Visualize area
