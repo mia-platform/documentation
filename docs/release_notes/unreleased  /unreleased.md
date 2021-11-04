@@ -69,7 +69,6 @@ for this reason, the `REDIS_HOST` env var has been removed to be substituted wit
 
 We have also added two new environment variables: `REDIS_MODE` and `REDIS_MASTER_NAME` env, for further information check out the [plugin documentation](https://docs.mia-platform.eu/docs/runtime_suite/client-credentials/configuration)
 
-
 #### Files Service 2.3.1
 
 Mitigation of Cross-site Scripting and Cross-site Request Forgery attacks on download of html files.
@@ -94,4 +93,4 @@ To improve Flow Manager integration we have published a brand new library on our
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.4.6`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.4.7`.
