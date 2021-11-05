@@ -29,6 +29,10 @@ It returns a JSON response containing:
   In this case, the order of the parameters used for the upload request is important: the param `file` must be the last one or the other CRUD properties will not be valued.
   :::
 
-* **Download**: `GET /download/:file` to download the files that were previously uploaded. Add the *download=1* query parameter to download the file as an attachment.
+  :::info
+  This API supports only one file per request. If the request contains more files, then only the first will be uploaded.
+  :::
+
+* **Download**: `GET /download/:file` to download the file that was previously uploaded. Add the *download=1* query parameter to download the file as an attachment.
 
 * **Delete**: `DELETE /:file` to delete a file that was previously uploaded
