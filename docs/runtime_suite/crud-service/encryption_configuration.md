@@ -22,14 +22,24 @@ CSFLE must not be used to store passwords.
 The keys and the data are stored in different collections and can even be stored in different databases: only with access to the correct encryption keys it's possible to decrypt and read the protected data.  
 
 For some data types (`Number`, `String`, `Date` and `ObjectId`) it is also possible to guarantee their searchability even if encrypted.
+
 :::caution
-Deleting an encryption key renders all data encrypted using that key permanently unreadable, as it won't be possible to decrypt them anymore.
+Not all MongoDB operators are supported for encrypted fields.
+Take a look to the [official documentation](https://docs.mongodb.com/manual/reference/security-client-side-query-aggregation-support/#supported-query-operators) for more details.
 :::
 
+## Keys relations
+The Key Management Service (KMS) is the system responsible to manage the **master key**, a specific key used to generate the **data encryption key**.
+The **data encryption key** is stored in a dedicated collection of the MongoDB instance and is used to perform the encryption and decryption of the data.
+
+There is one **data encryption key** for each collection that has at least on encrypted field.
+:::caution
+Deleting an encryption key renders all data inside a collection encrypted using that key permanently unreadable, as it won't be possible to decrypt them anymore.
+:::
 
 ## Configuration
 In order to guarantee a correct data encryption, it is necessary to configure a Key Management Service.
-Currently, we support two Key Management Service (KMS): `Local` and `[Google Cloud Key Management](https://cloud.google.com/security-key-management)` (available from Google Cloud Platform).
+Currently, we support two different KMS: `Local` and `[Google Cloud Key Management](https://cloud.google.com/security-key-management)` (available from Google Cloud Platform).
 
 To configure the CRUD Service in order to enable CSFLE it is necessary to add some environment variables to the configuration.
 To add the environment variables, please refer to [the dedicated section](../../development_suite/set-up-infrastructure/env-var.md).

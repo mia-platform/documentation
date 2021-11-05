@@ -9,6 +9,37 @@ Find out more about how to design and manage the full lifecycle of your DevOps V
 
 ![Console overview](img/dev-ops-console-overview.png)
 
+## Homepage
+
+The Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console, such as [Design](./api-console/api-design/overview.md), [Deploy](./deploy/deploy.md), [Runtime](./monitoring/monitoring.md) and [Dashboards](./monitoring/dashboard.md).
+
+The Homepage is structured in different cards which represent the different environments of your project. For each card, the user can see: the time of the last deployment, the Pods Status, the Usage vs Requests, and the Usage vs Limits of both CPU and RAM resources.  
+The purpose of the Homepage is to give an easy overview of the availability of the infrastructure and a “one click” experience to navigate through project sections.  
+In the following paragraphs we will describe in detail the information provided by every environment card in the Homepage of your project.
+
+![Mia-Platform Homepage](img/homepage.png)
+
+### Pods status
+
+Pods status shows how many pods related to the project environment are ready. A warning notification will appear if there is at least one pod not ready or restarted. This warning notification links to the list of warning pods in the Runtime Area.  
+
+### CPU and RAM
+
+CPU and RAM show infographics about two main KPIs: Usage vs Requests and Usage vs Limits, measured in millicores in the case of CPU and mebibytes in the case of RAM.  
+Usage vs Requests shows the percentage of used CPU compared to the requested one. The percentage value can be above 100%, meaning that you are currently using more of the requested CPU.  
+Usage vs Limits, shows the actual usage of CPU and RAM compared to the limits set for your microservices. The graph color will become yellow to warn you that the usage has exceeded the 75% of the limits you have set, meaning that you have almost reached the maximum amount that you want to be allocated for that resource. If no threshold has been set for all your microservices, the graphs will display NA (Not Available).  
+At the bottom of the graphs, it is possible to see the current usage, which represents the usage of CPU or RAM when you loaded the homepage.
+
+### Project links and Dashboards
+
+On the right side of the card you can find useful links that can be configured to redirect you to your project Documentation, CMS and Application.
+
+:::info
+To learn how to configure your project links, visit [this page](./set-up-infrastructure/runtime-environments#links-configuration).
+:::
+
+In the Dashboards section you can find the names of all the dashboards created in your project, by clicking on one of them you will be redirected to the corresponding dashboard in the Dashboards Area.
+
 ## Console Sections
 
 Mia-Platform Console is divided in many different sections that help you manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your runtime applications.

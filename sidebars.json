@@ -522,6 +522,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/flow-manager-service/performance_overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/flow-manager-service/flow_manager_client"
                 }
               ]
             },

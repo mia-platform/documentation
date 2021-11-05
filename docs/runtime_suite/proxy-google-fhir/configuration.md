@@ -54,7 +54,7 @@ The credential must follow this schema:
   }
 }
 ```
-
+In order to use the `$purge` operator, it's required to add the role `Healthcare FHIR Store Administrator` to the service account through the Google Cloud Console (IAM & Admin).
 ### FHIR store URL
 This URL should match the following format
 ```html
