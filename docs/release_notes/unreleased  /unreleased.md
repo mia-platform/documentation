@@ -34,7 +34,7 @@ You don't have to navigate all around the Console to access your project links. 
 
 #### Encryption of the default fields of a collection
 
-It is now possible to enable encryption for the default fields *creatorid* and *updaterid* of a collection. 
+It is now possible to enable encryption for the default fields *creatorId* and *updaterId* of a collection. 
 Furthermore, for all the default fields it's also possible to attribute the degree of sensitivity of the data and to provide the description of its purpose in terms of GDPR.
 
 ### Bug Fix
