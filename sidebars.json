@@ -310,6 +310,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/acl-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/acl-service/changelog"
                 }
               ]
             },
@@ -325,6 +329,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/api-gateway/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway/changelog"
                 }
               ]
             },
@@ -340,6 +348,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/api-portal/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-portal/changelog"
                 }
               ]
             },
@@ -359,6 +371,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/appointment-manager/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/appointment-manager/changelog"
                 }
               ]
             },
@@ -374,6 +390,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/auth0-client/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-client/changelog"
                 }
               ]
             },
@@ -389,6 +409,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/authentication-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authentication-service/changelog"
                 }
               ]
             },
@@ -408,6 +432,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/authorization-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/authorization-service/changelog"
                 }
               ]
             },
@@ -427,6 +455,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/client-credentials/jwt_keys"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/client-credentials/changelog"
                 }
               ]
             },
@@ -465,6 +497,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/crud-service/release_note"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/crud-service/changelog"
                 }
               ]
             },
@@ -480,6 +516,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/doctor-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/doctor-service/changelog"
                 }
               ]
             },
@@ -495,6 +535,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/files-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/files-service/changelog"
                 }
               ]
             },
@@ -526,6 +570,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/flow-manager-service/flow_manager_client"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/flow-manager-service/changelog"
                 }
               ]
             },
@@ -543,6 +591,10 @@
                   "id": "runtime_suite/form-service-backend/configuration"
                 },
                 {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-backend/changelog"
+                },
+                {
                   "type": "category",
                   "label": "docs_files_to_download",
                   "items": []
@@ -557,6 +609,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/function-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/function-service/changelog"
                 }
               ]
             },
@@ -576,6 +632,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/http-proxy-manager/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/http-proxy-manager/changelog"
                 }
               ]
             },
@@ -587,6 +647,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/jwt-token-validator/overview_and_usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/jwt-token-validator/changelog"
                 }
               ]
             },
@@ -621,6 +685,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/messaging-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/messaging-service/changelog"
                 }
               ]
             },
@@ -651,6 +719,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/microservice-gateway/performance_overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/microservice-gateway/changelog"
                 }
               ]
             },
@@ -662,6 +734,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/mongo2kafka/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mongo2kafka/changelog"
                 }
               ]
             },
@@ -681,6 +757,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/mongodb-reader/acl"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mongodb-reader/changelog"
                 }
               ]
             },
@@ -700,6 +780,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/changelog"
                 }
               ]
             },
@@ -715,6 +799,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/proxy-google-fhir/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/proxy-google-fhir/changelog"
                 }
               ]
             },
@@ -730,6 +818,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/push-notification-manager/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/push-notification-manager/changelog"
                 }
               ]
             },
@@ -745,6 +837,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/ses-mail-notification-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/ses-mail-notification-service/changelog"
                 }
               ]
             },
@@ -756,6 +852,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/single-view-creator/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/single-view-creator/changelog"
                 }
               ]
             },
@@ -771,6 +871,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/sms-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/sms-service/changelog"
                 }
               ]
             },
@@ -782,6 +886,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/sql-db-reader/configuration_and_usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/sql-db-reader/changelog"
                 }
               ]
             },
@@ -812,6 +920,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/swagger-aggregator/apis"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/swagger-aggregator/changelog"
                 }
               ]
             },
@@ -831,6 +943,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/temporary-password-generator/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/temporary-password-generator/changelog"
                 }
               ]
             },
@@ -850,6 +966,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/timer-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/timer-service/changelog"
                 }
               ]
             }
