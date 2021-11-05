@@ -1293,6 +1293,17 @@
       "items": [
         {
           "type": "category",
+          "label": "v8.2",
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "release_notes/RN_v8-2/v8.2.0"
+            }
+          ]
+        },
+        {
+          "type": "category",
           "label": "v8.1",
           "collapsed": true,
           "items": [
