@@ -52,7 +52,7 @@ The configuration is saved in the `auth.json` file, which is generated from the 
 }
 ```
 
-In this configuration, we expect that all the methods are written in uppercase. You can also insert the keyword `ALL` that automatically handles the main methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE` and `HEAD`.
+In this configuration, we expect that all the methods are written in uppercase. You can also insert the keyword `ALL` that automatically handles the main methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD` and `OPTIONS`.
 
 In this configuration authorization is separated between backoffice and frontend request. The header to match this condition is set by the env variable `BACKOFFICE_HEADER_KEY`.
 

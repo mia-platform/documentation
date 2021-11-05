@@ -70,10 +70,19 @@ CRUD by default comes with a set of common properties that simplify the data man
 - **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
 - **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.  
 
-The only editable field among the default ones is `_id` where you can change the property `type` and choose between:
+:::note
+The only two default fields that it is possible to encrypt are **updaterId ** and **creatorId **. 
+:::
 
-- `ObjectId` (default value): corresponds to [MongoDB objectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) that is the unique key to identify a document.
-- `String`: id of type string that follows UUID v4 format.
+Furthermore, you can edit the default fields in a limited way, in particular:
+- `_id`: you can change the description, the GDPR sensitivity, the GDPR description and the `type`. For the `type`, you can choose between:
+  - `ObjectId` (default value): corresponds to [MongoDB ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) that is the unique key to identify a document.
+  - `String`: id of type string that follows UUID v4 format.
+- `creatorId`: you can change the description, the encryption settings, the GDPR sensitivity and the GDPR description.
+- `createdAt`: you can change the description, the GDPR sensitivity and the GDPR description.
+- `updaterId`: you can change the description, the encryption settings, the GDPR sensitivity and the GDPR description.
+- `updatedAt`: you can change the description, the GDPR sensitivity and the GDPR description.
+- `__STATE__`: you can change the description, the GDPR sensitivity and the GDPR description.
 
 #### Example of a Collection with only predefined Properties
 
@@ -664,9 +673,7 @@ curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  
 returns
 
 ```json
-{
-  "count": 3
-}
+3
 ```
 
 > **Note**: filters can be applied to the count. By default only PUBLIC documents are counted.

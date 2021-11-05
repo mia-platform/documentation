@@ -40,6 +40,7 @@ If you want to write your own code for your Single View Creator service we sugge
   * **SEND_BA_TO_KAFKA**: true if you want to send to Kafka the 'before-after' information about the update changes of the single view
   * **KAFKA_SASL_USERNAME**
   * **KAFKA_SASL_PASSWORD**
+  * **UPSERT_STRATEGY**: If it's set to "replace", the whole Single view document will be replaced with the new one. If it's set to "update", the existing one will be update with the new one but field not present in the new one will be kept. Default is "replace".
 
 ## Configuration file
 
