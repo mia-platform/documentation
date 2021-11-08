@@ -9,11 +9,11 @@ _Month day, year_
 
 ### New Features
 
+#### Dashboards categories
 
+It is now possible to group dashboards in user defined categories
 
 ### Bug Fix
-
-
 
 ### Breaking Changes 
 
