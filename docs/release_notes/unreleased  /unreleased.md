@@ -11,7 +11,11 @@ _Month day, year_
 
 #### Dashboards categories
 
-It is now possible to group dashboards in user defined categories
+It is now possible to group dashboards in user defined categories.
+
+#### Pin environment card
+
+On the projects homepage it is possible to pin on top one environment card at a time.
 
 ### Bug Fix
 
