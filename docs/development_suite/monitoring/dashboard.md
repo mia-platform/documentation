@@ -21,7 +21,8 @@ All of the following instructions are intended for the Dashboard Area.
 In the side menu, using the 'Create a dashboard' button, it is possible to add an existing dashboard to the selected environment. To do so, the required fields are:
 
 * A `Name`, which defines the dashboard label that will be displayed in the user interface;
-* An `Url`, that will be used to render the dashboard IFrame.
+* An `Url`, that will be used to render the dashboard IFrame;
+* An optional `Category` name, used to group dashboards, if already existing the dashboard will be inserted in the specified category, otherwise a new category will be created.
 
 ![create dashboard](img/dashboards/create_dashboard.png)
 
@@ -30,7 +31,10 @@ In the side menu, using the 'Create a dashboard' button, it is possible to add a
 When a dashboard is selected, you can use the edit button (represented by a pencil icon) placed in the right side of the header to edit a dashboard in the selected environment. To do so, the required fields are:
 
 * A `label`, which defines the dashboard name that will be displayed in the user interface;
-* An `url`, that will be used to render the dashboard IFrame.
+* An `url`, that will be used to render the dashboard IFrame;
+* An optional `Category` name, used to group dashboards, if already existing the dashboard will be inserted in the specified category, otherwise a new category will be created.
+
+![edit dashboard](img/dashboards/edit_dashboard.png)
 
 ### Delete a Dashboard
 
