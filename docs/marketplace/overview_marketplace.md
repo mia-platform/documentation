@@ -36,3 +36,21 @@ Otherwise, you can search for them by category.
 The results of your search will appear **organized by category**.
 
 ![new-examples](./../development_suite/api-console/api-design/img/Marketplace-categories.PNG)
+
+## Marketplace component lifecycle
+
+Each Marketplace component has a predetermined **development lifecycle**.
+
+![lifecycle-stages](./img/component-lifecycle-final.png)
+
+These are the expected stages along the component lifecycle:
+
+* **Coming soon**: the aim of this label is to inform Marketplace user of the existence of a new component whose implementation has just started (these components are not usable)
+
+* **Preview**: first usable release, there may be bugs and they may be subject to undocumented breaking changes
+
+* **Beta**: the implementation is completed and there cannot be any undocumented breaking changes however there could still be bugs, hence it must be used carefully
+
+* **Stable**: the implementation is stable (bug free). Consequently, this stage represents the component period before its official release documented in release note
+
+

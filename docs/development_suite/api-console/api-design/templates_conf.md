@@ -454,13 +454,9 @@ A link is an object shaped as follows:
 - `targetSection` _string_ (required): the name of the registered microfrontend where the link should land (e.g.: `flow-manager`);
 - `enableIf` _string_: the name of a feature toggle to be used to optionally display the link. 
 
-#### Coming Soon property
+#### Notify about the existence of a new component into the Marketplace
 
-From CMS, when enable at true, the final user won't be able to install the item in its project, however documentation is still visible.
-
-#### Coming Soon property
-
-From CMS, this flag enables item aggregation on marketplaces where the marketplace features aggregated documentation
+From CMS, user can define the proper Release Stage of the component, that will appear visible to users, marked with one among the available labels of a Marketplace component lifecycle. For more information, give a look to our [lifecycle stages](./../../../marketplace/overview_marketplace.md).
 
 ```
 
