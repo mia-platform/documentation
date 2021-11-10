@@ -7,6 +7,8 @@ image: "img/release-note-link-preview.png"
 
 _Month day, year_
 
+### Breaking Changes 
+
 ### New Features
 
 #### Dashboards categories
@@ -19,7 +21,11 @@ On the projects homepage it is possible to pin on top one environment card at a 
 
 ### Bug Fix
 
-### Breaking Changes 
+### Marketplace Updates
+
+#### Auth0 Client v3.2.2
+
+Implemented API to serve OpenAPI 3 documentation on `/documentation/json`.
 
 ### Improvements
 
