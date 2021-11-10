@@ -30,6 +30,10 @@ Usage vs Requests shows the percentage of used CPU compared to the requested one
 Usage vs Limits, shows the actual usage of CPU and RAM compared to the limits set for your microservices. The graph color will become yellow to warn you that the usage has exceeded the 75% of the limits you have set, meaning that you have almost reached the maximum amount that you want to be allocated for that resource. If no threshold has been set for all your microservices, the graphs will display NA (Not Available).  
 At the bottom of the graphs, it is possible to see the current usage, which represents the usage of CPU or RAM when you loaded the homepage.
 
+:::info
+Limit and Request are calculated as the sum of all the containers limits and requests of each pod respectively. For this reason, [HPA](./api-console/api-design/replicas#what-needs-the-replicas-for) changes are taken into account.
+:::
+
 ### Project links and Dashboards
 
 On the right side of the card you can find useful links that can be configured to redirect you to your project Documentation, CMS and Application.
