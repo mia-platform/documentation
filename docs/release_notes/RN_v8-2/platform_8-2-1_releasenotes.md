@@ -29,4 +29,4 @@ This update is available on the Marketplace component, but it is not available o
 
 ### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.5.1`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.5.2`.
