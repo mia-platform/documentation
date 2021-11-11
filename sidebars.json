@@ -1418,6 +1418,10 @@
           "items": [
             {
               "type": "doc",
+              "id": "release_notes/RN_v8-2/v8.2.1"
+            },
+            {
+              "type": "doc",
               "id": "release_notes/RN_v8-2/v8.2.0"
             }
           ]
