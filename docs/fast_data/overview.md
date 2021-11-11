@@ -54,4 +54,4 @@ The Single View Creator component creates and updates a specific single view.
 
 ![single view creator schema](img/fastdata-svc-schema-detail.png)
 
-First, the Single View Creator **aggregates** data of projections, then it **maps** these values to an object with the correct single view fields. Finally, updates the single view collection.
+First, the Single View Creator **aggregates** data of projections, then it **maps** these values to an object with the correct single view fields. Finally, it updates the single view collection.
