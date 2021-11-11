@@ -19,6 +19,10 @@ It is now possible to group dashboards in user defined categories.
 
 On the projects homepage it is possible to pin on top one environment card at a time.
 
+#### Primary Key Index Automation
+
+In Design Area, Projections Section, it is now possible to automatically generate and update a primary key index. The option is turned off by default on existing Projections, while it will be enabled on all Projections created from now on.
+
 ### Bug Fix
 
 ### Marketplace Updates
