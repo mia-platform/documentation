@@ -157,7 +157,7 @@ The exposed API is not required for Fast Data to work. It is an optional behavio
 
 ### Kafka messages format
 
-Once you have created a System, you need to select the format of the Kafka messages sent from the system.  
+Once you have created a System, you need to select the format of the Kafka messages sent from the system.
 To do that, you must correctly configure the Kafka Message Adapter. Go to the `Advanced` section of the `Design` area in Console, open `fast-data` from menu and open the `projections.json` file.
 
 Here, you should write a configuration object as follows:
@@ -175,6 +175,11 @@ Here, you should write a configuration object as follows:
 ```
 
 Where `THE_FORMAT` is the format of your Kafka Messages and can be one of the following: `basic`, `golden-gate`, `custom`.
+
+Another option that you should be aware of when thinking about the format of your Kafka messages, is the the "upsert on insert" one. By default, the real-time-updater will perform upsert operations for inserts, but you can optionally decide to perform inserts that will fail if the document already exists, instead of updating it.
+For the latter, your messages need to carry information about the operation type, so that it is possible for the adapter to distinguish between insert and update operations.
+
+For more information about this feature, read the [real-time-updater documentation](./real_time_updater/overview.md).
 
 #### Basic
 
@@ -210,13 +215,13 @@ The `offset` is the offset of the kafka message.
 The `key` can have any valid Kafka `key` value.  
 The `value` of the Kafka message instead needs to have the following fields:
 
-* `op_type` identifies the type of operation (`I` if insert , `U` if update, `D` if delete).
-* `after` it's the data values after the operation execution (`null` or not set if it's a delete)
-* `before` it's the data values before the operation execution (`null` or not set if it's an insert)
+* `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
+* `after`: the data values after the operation execution (`null` or not set if it's a delete)
+* `before`: the data values before the operation execution (`null` or not set if it's an insert)
 
 Example of `value` for an insert operation:
 
-```
+```JSON
 {
   'table': 'MY_TABLE',
   'op_type': 'I',
@@ -246,6 +251,7 @@ This adapter is a function that accepts as arguments the kafka message and the l
 * **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
 * **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
 * **value**: the data values of the projection, or null
+* **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
 
 If the `value` is null, the operation is supposed to be a delete.
 The `keyObject` **cannot** be null.
@@ -274,6 +280,7 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys) {
     key: keyAsBuffer, // type Buffer
     timestamp: timestampAsString, // type string
     offset: offsetAsString, // type string
+    operation: operationAsString // type string
   } = kafkaMessage
 
   // your adapting logic
@@ -283,6 +290,7 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys) {
     value: valueToReturn, // type object (null or object)
     timestampDate: new Date(parseInt(timestampAsString)), // type Date
     offset: parseInt(offsetAsString), // type number
+    operation: operationToReturn, // type string (either I, U, or D)
   }
 }
 ```

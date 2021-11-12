@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 The Real-Time Updater service consumes [kafka messages](https://kafka.apache.org/intro#intro_concepts_and_terms) in order to keep the fast data projection collections up to date with the connected system.
 
-A Real-Time Updater service is automatically created when you create a new System. 
+A Real-Time Updater service is automatically created when you create a new System.
 After the new configuration has been saved, this service is visible as one of your services in the `Microservices` section.
 
 ## Projection Update
@@ -21,3 +21,8 @@ When a projection is updated, it changes a collection, called with the value of 
 ## Projection Deletion
 
 When the Real-Time Updater deletes a document, it actually makes a **virtual delete** instead of a real document deletion. (the __STATE__ field is set to **DELETED**)
+
+## Upsert on Insert
+
+When performing Insert operations, you can choose between two modes: upsert or insert. The former overwrites any previous value matching with the primary keys of the new document, the latter fails to insert documents that already exist, causing the service to stop.
+You can configure this behavior using the environment variable USE_UPSERT_ON_INSERT.
