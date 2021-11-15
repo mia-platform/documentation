@@ -5,7 +5,7 @@ sidebar_label: v8.2.1
 image: "img/release-note-link-preview.png"
 ---
 
-_November 11, 2021_
+_November 15, 2021_
 
 ### Bug Fix
 
@@ -26,6 +26,16 @@ Some dependencies have also been updated.
 Implemented API to serve OpenAPI 3 documentation on `/documentation/json'.
 
 This update is available on the Marketplace component, but it is not available on the one managed by the Console.
+
+### Breaking Change
+
+:::info
+
+#### API Gateway
+
+With the v4.2.0 of the API Gateway, the X-Forwarded-For header has caused a breaking change when integrating the service with the IP Geolocation service, as the header has started supporting a list of IPs instead of a single IP.
+The resolution of this breaking change will be provided in the next Console release.
+:::
 
 ### How to update your Console
 
