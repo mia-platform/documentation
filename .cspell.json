@@ -103,7 +103,9 @@
       "expressibility",
       "Additionals",
       "CSFLE",
-      "urandom"
+      "urandom",
+      "upsert",
+      "upserts"
   ],
   "ignoreWords": [
     "algs",
