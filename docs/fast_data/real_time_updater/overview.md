@@ -22,7 +22,12 @@ When a projection is updated, it changes a collection, called with the value of 
 
 When the Real-Time Updater deletes a document, it actually makes a **virtual delete** instead of a real document deletion. (the __STATE__ field is set to **DELETED**)
 
-## Upsert on Insert
+## Upsert
 
-When performing Insert operations, you can choose between two modes: upsert or insert. The former overwrites any previous value matching with the primary keys of the new document, the latter fails to insert documents that already exist, causing the service to stop.
-You can configure this behavior using the environment variable USE_UPSERT_ON_INSERT.
+When performing Insert and Update operations, you can choose if you want to perform both operations as upserts, or differentiate between the two.
+
+- For the Insert operation, upsert set to true means that it overwrites any previous value matching with the primary keys of the new document, false means it fails to insert documents that already exist, causing the service to stop.
+
+- For the Update operation, upsert set to true means that if the document is not present it will be created with the new values, false means it fails when trying to update non-existing documents, causing the service to stop.
+
+You can configure this behavior using the environment variable USE_UPSERT.

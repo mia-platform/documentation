@@ -28,7 +28,7 @@ The Real-Time Updater needs some environment variables and some configurations f
 - MAP_TABLE_FOLDER: defines the path to the map table folder
 - STRATEGIES_FOLDER: defines the path to the strategies folder
 - KAFKA_SASL_MECHANISM: defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`. The default value is `plain`
-- USE_UPSERT_ON_INSERT: defines whether to use upsert on insert or not. Defaults to true. When this is set to false, virtual delete is turned off
+- USE_UPSERT: defines whether to use upsert or not when performing insert and update operations. Defaults to true
 - KAFKA_MESSAGE_ADAPTER: defines which Kafka message adapter to use. Its value can be one of the following: `basic`, `golden-gate`, `custom`.
 
 ## Custom Projection Changes Collection
