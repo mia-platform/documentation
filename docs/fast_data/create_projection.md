@@ -158,23 +158,7 @@ The exposed API is not required for Fast Data to work. It is an optional behavio
 ### Kafka messages format
 
 Once you have created a System, you need to select the format of the Kafka messages sent from the system.
-To do that, you must correctly configure the Kafka Message Adapter. Go to the `Advanced` section of the `Design` area in Console, open `fast-data` from menu and open the `projections.json` file.
-
-Here, you should write a configuration object as follows:
-
-```json
-{
-  "systems": {
-    "SYSTEM ID": {
-      "kafka": {
-          "messageAdapter": "THE_FORMAT"
-      }
-    }
-  }
-}
-```
-
-Where `THE_FORMAT` is the format of your Kafka Messages and can be one of the following: `basic`, `golden-gate`, `custom`.
+To do that, you must correctly configure the Kafka Message Adapter, changing the value of the KAFKA_MESSAGE_ADAPTER environment variable, which should be one of the following: `basic`, `golden-gate`, `custom`.
 
 Another option that you should be aware of when thinking about the format of your Kafka messages, is the the "upsert on insert" one. By default, the real-time-updater will perform upsert operations for inserts, but you can optionally decide to perform inserts that will fail if the document already exists, instead of updating it.
 For the latter, your messages need to carry information about the operation type, so that it is possible for the adapter to distinguish between insert and update operations.
