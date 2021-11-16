@@ -55,3 +55,7 @@ The Single View Creator component creates and updates a specific single view.
 ![single view creator schema](img/fastdata-svc-schema-detail.png)
 
 First, the Single View Creator **aggregates** data of projections, then it **maps** these values to an object with the correct single view fields. Finally, it updates the single view collection.
+
+### GDPR
+
+Fast Data services may logs the primary keys of your projections, single views and keys of the Kafka Messages. Please, be sure that they are not sensible information in order to be in accordance with GDPR policies. Otherwise, you need to set topic retentions conformed to the rules and inform the Mia-Platform referent to set logs retention according to that. 
