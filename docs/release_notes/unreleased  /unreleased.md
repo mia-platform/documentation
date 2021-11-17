@@ -29,6 +29,10 @@ On the projects homepage it is possible to pin on top one environment card at a 
 
 ### Bug Fix
 
+#### Malformed link urls in homepage
+
+Fixed bug that caused to have multiple `/` characters in link urls of project homepage.
+
 ### Marketplace Updates
 
 #### Auth0 Client v3.2.2
