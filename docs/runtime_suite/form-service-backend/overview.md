@@ -29,12 +29,27 @@ The right side of the image above also shows the created form that can be displa
 The service works with two components, the **Form Service Frontend** and the **Form Service Backend**. To configure and deploy them check [this guide](configuration).
 
 The frontend service exposes the following APIs:
-- Form Builder:
-  - `GET /builder/create-form`: it allows the creation of a new form template;
-  - `GET /builder/{id}`: it shows one form template by ID and let you update it.
-- Form Visualizer:
-  - `GET /visualizer/fill-form/{id}`: it allows the end user to submit data on a new form, selected by form template ID;
-  - `GET /visualizer/{id}`: returns submitted data for specified form ID.
+
+#### Form Builder
+- `GET /builder/create-form`: it allows the creation of a new form template;
+- `GET /builder/{id}`: it shows one form template by ID and let you update it.
+
+:::info
+
+The `baseUrl` property equal to the URL's origin is injected in the form builder and form visualizer options (`from Form Service Frontend v1.1.0`). This enables the usage of relative URLs in the [formio select component](https://help.form.io/userguide/forms/form-components#select) using `URL` as *Data Source Type* (useful to define the data source according to the deployed environment).
+
+:::
+  
+#### Form Visualizer
+- `GET /visualizer/fill-form/{id}`: it allows the end user to submit data on a new form, selected by form template ID;
+- `GET /visualizer/{id}`: returns the submitted data for the specified form ID;
+- `GET /visualizer/print-form/{id}`: (`from Form Service Frontend v1.1.0`) returns a printable version of submitted data for a form ID (submit button is removed from Forms and Wizards are displayed as Forms).
+
+:::info
+
+The `/visualizer/fill-form/` and `/visualizer/{id}` routes (`from Form Service Frontend v1.1.0`) accept the `onSubmitRedirect` query parameter which is used to redirect a user to a specific URL after a new form submission or after an update. 
+
+:::
 
 :::info
 
