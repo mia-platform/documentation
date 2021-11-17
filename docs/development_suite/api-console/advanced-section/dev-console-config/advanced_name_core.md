@@ -4,10 +4,14 @@ title:  Advanced Section
 sidebar_label: Change the name of Core Services
 ---
 In the advanced section of the API Console it is possible to extend some features of the Mia-Platform components.
-In this section you will find all the information to give more power to your platform
+In this section you will find all the information to give more power to your platform.
 
 :::info
-To change all the advanced settings, you have to access to the Console and go to the Advanced Section from the menu in the main sidebar of the Design Area.
+To change all the advanced settings, you have to access to the Console and go to the Advanced Section from the menu in the left sidebar of the Design Area.
+:::
+
+:::caution
+Advanced area is accessible if you have loaded your project in API Console both from a branch or from a tag. If you have loaded it from a tag, it will be in read-only mode and you will not be able to save any edit to advanced files.
 :::
 
 ## How to change the name of core services
