@@ -39,6 +39,12 @@ Fixed bug that caused to have multiple `/` characters in link urls of project ho
 
 Implemented API to serve OpenAPI 3 documentation on `/documentation/json`.
 
+#### Timer Service v2.1.0
+
+Route _**/expirations**_ → REST outputMode updated:
+- GET and DELETE methods added to the allowed HTTP methods
+- payload now is not mandatory anymore and it's default value is `{}`
+
 ### Improvements
 
 ### How to update your Console
