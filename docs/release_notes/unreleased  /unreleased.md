@@ -15,13 +15,17 @@ _Month day, year_
 
 It is now possible to group dashboards in user defined categories.
 
-#### Pin environment card
-
-On the projects homepage it is possible to pin on top one environment card at a time.
-
 #### Primary Key Index Automation
 
 In Design Area, Projections Section, it is now possible to automatically generate and update a primary key index. The option is turned off by default on existing Projections, while it will be enabled on all Projections created from now on.
+
+#### Configuration from tag
+
+In addition to loading branches, it is now possible to load your project tags in Console. It is also possible to create a new branch from a chosen tag.
+
+#### Pin environment card
+
+On the projects homepage it is possible to pin on top one environment card at a time.
 
 ### Bug Fix
 
