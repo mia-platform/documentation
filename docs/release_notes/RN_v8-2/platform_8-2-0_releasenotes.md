@@ -9,17 +9,9 @@ _November 5, 2021_
 
 ### New Features
 
-#### Pod filters as url query string
-
-In the Monitoring Area, when a filter is selected, it is added to the url as a query string. Thanks to this, you can now share links of monitoring that keep the selected filters.
-
-#### Support in Launcher
-
-Added support icon in Console Launcher that redirects to [Mia-Platform support](https://makeitapp.atlassian.net/servicedesk/customer/portal/21).
-
 #### New Project Homepage
 
-The project Homepage has been redesigned in order to give more information about the status of your project.  
+The [project Homepage](../../development_suite/overview-dev-suite.md) has been redesigned in order to give more information about the status of your project.  
 
 You can now see all your environments and check how are the pods of your services.  
 The *KPIs* you may need is already there:
@@ -32,6 +24,14 @@ A warning will be displayed to notify you if some service request or limit is mi
 You can also have quick access to the areas of your Project. Just one click and you can access the deploy area of the environment you want to release.  
 
 You don't have to navigate all around the Console to access your project links. They are right there on the Homepage now: Project Documentation, CMS, Application, Dashboards. All of them, just one click away.
+
+#### Pod filters as url query string
+
+In the Monitoring Area, when a filter is selected, it is added to the url as a query string. Thanks to this, you can now share links of monitoring that keep the selected filters.
+
+#### Support in Launcher
+
+Added support icon in Console Launcher that redirects to [Mia-Platform support](https://makeitapp.atlassian.net/servicedesk/customer/portal/21).
 
 #### Encryption of the default fields of a collection
 
@@ -63,6 +63,12 @@ The [Cross Project Proxy](../../development_suite/api-console/api-design/proxies
 By now, when you generate projection fields from a data sample, the identity cast function is used as default. This prevents unwanted casting, keeping the value as is.
 
 ### Marketplace Updates
+
+#### CRUD Service 5.0.1
+
+A bug has been resolved to prevent an uncontrolled amount of warning due to a framework functionality misuse. The bug wasn't causing any kind of denial of service.
+
+Some dependencies have also been updated.
 
 #### Client Credentials 3.0.0
 

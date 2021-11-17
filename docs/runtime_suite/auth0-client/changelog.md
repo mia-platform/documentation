@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 3.2.2 - 10-11-2021
+
+### Added
+
+- Exposed OpenAPI 3 documentation API
+
 ## 3.2.1 - 12-07-2021
 
 ### Changed
