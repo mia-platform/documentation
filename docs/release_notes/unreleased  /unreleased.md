@@ -47,6 +47,11 @@ Route _**/expirations**_ → REST outputMode updated:
 
 ### Improvements
 
+### Real Time Updater 3.3.1
+
+Added new `USE_UPSERT` environment variable to specify whether or not to perform upsert when inserting and updating documents. The default behavior is to perform upsert on insert, keeping backwards compatibility.
+Note that, when `USE_UPSERT` is set to `false`, the virtual delete functionality is disabled.
+
 ### How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
