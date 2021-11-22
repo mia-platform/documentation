@@ -45,6 +45,10 @@ Route _**/expirations**_ → REST outputMode updated:
 - GET and DELETE methods added to the allowed HTTP methods
 - payload now is not mandatory anymore and it's default value is `{}`
 
+#### Api-Gateway v5.0.0
+
+Now `X-Forwarded-For` header supports a list of IP address
+
 ### Improvements
 
 ### Real Time Updater 3.3.1
