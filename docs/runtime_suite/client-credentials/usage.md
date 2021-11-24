@@ -243,7 +243,7 @@ Example response:
 
 ::note
 Note that the `client_secret` field will only be available during registration so take care to save it locally.
-::
+:::
 #### Private key JWT
 
 It is possible to pass the `token_endpoint_auth_method` parameter in input set to `private_key_jwt`.
