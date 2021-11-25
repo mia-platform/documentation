@@ -469,6 +469,9 @@ Moreover, you can filter on the properties of the collection that is providing y
   }
   ```
 
+:::caution
+Filters are not supported when visualizing two or more series.
+:::
 ### Actions Configuration
 
 It is possible to add one or more link button in order to perform a GET action targeting a specific url. To set up the actions, you should define an array with the following properties:
