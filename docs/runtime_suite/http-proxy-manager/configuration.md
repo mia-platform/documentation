@@ -14,8 +14,12 @@ The service needs the following environment variable:
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 - **HTTP_PORT** (optional, default to `8080`): port where the web server is exposed;
 - **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
+- **ALLOW_PROXY_OPTIMIZER** (optional, default to `false`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is stronly suggested to configure the token validation endpoint in your proxy configuration
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
 
+:::caution
+**ALLOW_PROXY_OPTIMIZER** will be dismissed with the next major release. The not optimized proxy functionality and the retry feature is deprecated and will be dismissed too.
+:::
 ## Configuration
 
 This service requires a configuration file that provides all the different details regarding the external services to be proxied.
@@ -69,6 +73,9 @@ The configuration must follow this schema:
           "tokenIssuerUrl": {
             "type": "string"
           },
+          "tokenIssuerValidationUrl": {
+            "type": "string"
+          },
           "targetBaseUrl": {
             "type": "string",
             "pattern": "^(https?:\/\/)"
@@ -113,12 +120,17 @@ A proxy can have the following fields:
 - **clientId**: the client identifier used in case of OAuth2 authentication.
 - **clientSecret**: the client secret used in case of OAuth2 authentication.
 - **tokenIssuerUrl**: the authorization server url that has to be called to obtain an access token.
+- **tokenIssuerValidationUrl**: the authorization server url that has to be called to validate an access token.
 - **grantType**: the type of procedure used to retrieve an access token. At the moment, the service supports the following OAuth2 Grant Types:
   -  [*client_credentials*](https://oauth.net/2/grant-types/client-credentials/)
   -  [*password*](https://oauth.net/2/grant-types/password/)
 - **authType**: the method used to stuff the client credentials in the request when asking for a new access token. This is required only for the Client Credential Grant flow. At the moment, the service only supports the *client_secret_basic* type.
 - **additionalAuthFields**: an object containing additional fields to be used in the authentication request. These fields are added in the request body performed to acquire the access token. Both object keys and values must be of type string.
 - **headersToProxy**: a list of headers that must be forwarded when calling the external service. The default behavior, triggered when this field is not provided, is to forward all the headers of original request. In case the list is empty, no header from original request is proxied.
+
+:::caution
+**tokenIssuerValidationUrl** and **tokenIssuerUrl** will be dismissed with the next major release.
+:::
 
 ## Configuration example
 
@@ -146,6 +158,7 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
       "clientId": "6739ef20e75817a79c02",
       "clientSecret": "GBAweVL7YWtP6gudLIjbRZV_NdW",
       "tokenIssuerUrl": "http://mia-client-credentials.com/auth/oauth/token",
+      "tokenIssuerValidationPath": "/token-info",
       "targetBaseUrl": "https://mia-service.com",
       "basePath": "/mia-service",
       "grantType": "client_credentials",

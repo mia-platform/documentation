@@ -241,7 +241,7 @@ Example response:
 }
 ```
 
-::note
+:::note
 Note that the `client_secret` field will only be available during registration so take care to save it locally.
 :::
 #### Private key JWT

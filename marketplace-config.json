@@ -42,8 +42,8 @@
     "name": "Appointment Manager",
     "description": "Organize appointments, handling crud operations while sending messages and reminders.",
     "category": {
-      "id": "insurance",
-      "label": "Add-ons - Insurance"
+      "id": "healthcare",
+      "label": "Add-ons - Healthcare"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
@@ -172,8 +172,8 @@
     "name": "Form Service Backend",
     "description": "This is a backend for frontend to be used for building and managing forms.",
     "category": {
-      "id": "frontendbuilder",
-      "label": "Add-ons - Frontend Builders"
+      "id": "healthcare",
+      "label": "Add-ons - Healthcare"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
@@ -237,8 +237,8 @@
     "name": "Messaging Service",
     "description": "Send messages to your users through various channels",
     "category": {
-      "id": "insurance",
-      "label": "Add-ons - Insurance"
+      "id": "healthcare",
+      "label": "Add-ons - Healthcare"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
@@ -315,8 +315,8 @@
     "name": "Proxy Google FHIR",
     "description": "Proxy service to interact with Google FHIR APIs through a service account authentication",
     "category": {
-      "id": "insurance",
-      "label": "Add-ons - Insurance"
+      "id": "healthcare",
+      "label": "Add-ons - Healthcare"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
@@ -367,8 +367,8 @@
     "name": "SMS Service",
     "description": "Send SMS through Twilio API",
     "category": {
-      "id": "insurance",
-      "label": "Add-ons - Insurance"
+      "id": "utility",
+      "label": "Add-ons - Utilities"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
