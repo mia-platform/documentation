@@ -105,7 +105,9 @@
       "CSFLE",
       "urandom",
       "upsert",
-      "upserts"
+      "upserts",
+      "kustomize",
+      "kustomization"
   ],
   "ignoreWords": [
     "algs",

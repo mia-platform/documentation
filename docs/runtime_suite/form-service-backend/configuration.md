@@ -140,6 +140,17 @@ The mandatory properties of this CRUD are:
 - **formDataId**, of type *string*, the ID of the submitted form data;
 - **formSchemaId**, of type *string*, the ID of the form schema saved in the `formSchemasCrud` endpoint.
 
+In addition (`from Form Service Backend v1.1.1`), you can add the following optional property:
+- **options**, of type *object*, to save an additional `JSON` of options to further customize the visualization of a submitted form in the Form Visualizer. The available options can be found in the [form.io documentation](https://help.form.io/developers/form-renderer#form-renderer-options).
+
+The options can be updated for example updated with a [POST decorator](../../development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) after the submission of a new form.
+
+:::caution
+
+The **Form Service Backend** `PUT /visualizer/forms/:id` endpoint will reply with an error while attempting an update of a submitted form with `"readOnly": true` property in the *Form Schema map* options.
+
+:::
+
 #### Form Metadata parameters
 This config section specifies the optional metadata of the Forms created with the Form Builder. An array of *form field* objects must be defined with the following properties:
 - **name**, the name of the field;
@@ -445,9 +456,10 @@ In order to use the Form Service Frontend integrated with microlc, the [core con
 
 :::caution
 
-`formio.js` use Font Awesome which loads related `css` using relative urls. In order to display all the `formio.js` icons in the Form Service Frontend integrated as a microlc plugin, you need to create an endpoint to your Form Service Frontend microservice (with base path equal to `MICRO_LC_ENDPOINT/static/media`) with the following base path rewrite `/static/media` to expose the required resources.
+`formio.js` use Font Awesome which loads related `css` using relative urls. In order to display all the `formio.js` icons in the Form Service Frontend integrated as a microlc plugin, you need to create an endpoint to your Form Service Frontend microservice (with base path equal to `MICRO_LC_ENDPOINT/static/media`) with the following base path rewrite `/static/media` to expose the required resources. 
+This endpoint (`from Form Service Frontend v1.1.0`) must be `MICRO_LC_ENDPOINT/form-service-frontend-fonts`, remember to use "Base Path Rewrite"  `/form-service-frontend-fonts` in the console.
 
-Note also that with `/` as microlc endpoint, the required endpoint must be `/static/media`.
+Note also that with `/` as microlc endpoint, the required endpoint must be `/static/media` and `from Form Service Frontend v1.1.0` must be `/form-service-frontend-fonts`.
 
 :::
 
@@ -510,7 +522,7 @@ For a Form Visualizer frontend integrated in the Headless CMS with a `cmsmenu` e
 
 :::info
 
-The *queryStringKeys* in the previous examples match exactly the Form Service Frontend query parameters accepted for specific routes. The `/builder` route accept the form template ID as `id` query parameter, the `/visualizer/fill-form` routes accept the form template ID sd `formSchemaId` query parameter and the `/visualizer` route accept the submitted form ID as `formDataId`.
+The *queryStringKeys* in the previous examples must match exactly the Form Service Frontend query parameters accepted for specific routes. The `/builder` route accepts the form template ID as `id` query parameter, the `/visualizer/fill-form` routes accepts the form template ID as `formSchemaId` query parameter and the `/visualizer` route accepts the submitted form ID as `formDataId`.
 
 :::
 

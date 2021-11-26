@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] 2021-11-05
+
+### Added
+
+- 
+  - return options object from formSchemaMapCrud if any in the response of `GET|PUT /visualizer/forms/{id}` endpoints
+  - prevent a submitted form update if options object from formSchemaMapCrud contains readOnly property equal to `true`
+
+### Fixed
+
+- fixing issue on form validation (validation now skips `customConditional` elements)
+
 ## [1.1.0] 2021-06-28
 
 ### Added

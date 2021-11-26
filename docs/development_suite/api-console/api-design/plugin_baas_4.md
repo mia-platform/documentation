@@ -52,7 +52,7 @@ To start developing with `Mia Service Node.js Library` the variables need to be 
 * USERID_HEADER_KEY = miauserid
 * USER_PROPERTIES_HEADER_KEY = miauserproperties
 * GROUPS_HEADER_KEY = miausergroups
-* CLIENTTYPE_HEADER_KEY = miaclienttype
+* CLIENTTYPE_HEADER_KEY = client-type
 * BACKOFFICE_HEADER_KEY = isbackoffice
 * MICROSERVICE_GATEWAY_SERVICE_NAME = Microservice-gateway
 

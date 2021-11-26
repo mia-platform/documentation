@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.1.1 - 23-11-2021
+
+### Fixed
+- The crudStorage list function now sorts the expirations by expirationDate
+
+## 2.1.0 - 17-11-2021
+
 ### Added
 - **GET** and **DELETE** methods added to REST _outputMode_
 - **GET** method ignores the request body, if any

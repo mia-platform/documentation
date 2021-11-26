@@ -100,12 +100,14 @@ There are two ways to provide a description:
 - using the field `descriptionMarkdownFilePath`: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
 :::
 
-The `baseSwagger` object contains the first-level configurations of the final merged swagger. Besides all the fields defined by either [OpenApi 2.0](https://swagger.io/specification/v2/) or [OpenApi 3.0](https://swagger.io/specification/) specifications, this object can contain a `prefix` field that will be prepended to the paths of all the routes in the final merged swagger.
+The `baseSwagger` object contains the first-level configurations of the final merged swagger. Besides all the fields defined by either [OpenApi 2.0](https://swagger.io/specification/v2/) or [OpenApi 3.0](https://swagger.io/specification/) specifications.
+
+A `prefix` property can be specified in the root of the configuration object. Its value will be prepended to the paths of all the routes in the final merged swagger.
 
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
 
 - **_URL_**: by specifying `url` as `type` property the swagger-aggregator will download the microservice swagger from the provided `url` property. For this service type, the required properties will be `type`, `url`, and `prefix`.
-- **_File_**: by specifying `file` as `type` property the swagger-aggregator will take the microservice swagger configurations from the provided `path` property. For this service type, the required properties will be `type`, `path`, and `prefix`.
+- **_File_**: by specifying `file` as `type` property the swagger-aggregator will take the microservice swagger configurations from the provided `path` property. For this service type, the required properties will be `type`, `path`, and `prefix`. The file must be mounted in the `swagger-aggregator` service using a custom config-map.
 
 In both of them, the user must specify a `prefix` that will be placed before the url or the file path. Any string that begins with `/` is accepted.
 

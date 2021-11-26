@@ -134,6 +134,17 @@ An `_id` index is created by default and it is not deletable.
 
 Both custom fields and metadata can be used as fields for indexes.
 
+#### Primary Key Index Automation
+
+An automation on the primary key index is available in the console. If enabled, the automation will update a primary key index, starting either from an index of your choice, or a newly generated one named `primary_key_index`.
+
+:::info
+A primary key index is an index made up of all the projection fields that are marked as primary keys, and no other field.
+:::
+
+From the Console, you can change your preferences about primary key index automation by selecting a different index to be marked as primary key index, and by turning the functionality on or off.
+When the automation is on, the index will be updated only after you change the fields of the projection.
+
 :::caution
 In order for the Real Time Updater to correctly update its projections two actions are necessary:
 

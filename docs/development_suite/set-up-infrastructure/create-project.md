@@ -245,12 +245,18 @@ How to compile the template:
   ```json
     {
       "runnerTool": "mlp",
+      "projectStructure": "default",
       "useMiaPrefixEnvs": false
     }
   ```
 
   * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled.
   * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
+  * **projectStructure**: Set it to `kustomize` if you want to use Kustomize to manage you microservices configurations. More info in [this section](#kustomize-your-configuration), otherwise use `default` to keep the usual configuration setup.
+
+:::caution
+If you set `projectStructure` to `kustomize` your project configuration structure needs to be changed accordingly. 
+:::
 
 :::note
 If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `MIA_` prefix by hand. This is not made automatically by the Console.
@@ -420,6 +426,90 @@ Once your project has been created, you will be redirected on the Setup Infrastr
 These environment variables are saved on GitLab.
 
 At the end of project creation, you have to commit and deploy your new project to finish the process effectively.
+
+## Kustomize your configuration
+
+Optionally you can use [Kustomize](https://kustomize.io/) as project level configuration manager, this feature allows you to modify the default configuration of your microservices on a per environment basis in a simple declarative way with pure YAML. Learn how to enable this feature [here](#create-a-template).
+
+By enabling this feature you have to manually change the project configuration structure from this one:
+
+```
+.
+├── configuration
+│   ├── %resourceName%.yaml
+│   └── %envId%
+|       └── %resourceName%.yaml
+└── variables
+    └── %envId%.env
+```
+
+To this one:
+
+```
+.
+├── configuration
+│   ├── kustomization.yaml
+│   └── %resourceName%.yaml
+└── overlays
+    └── %envId%
+        ├── kustomization.yaml
+        ├── %envId%.env
+        ├── %resourceName%.yaml        
+        └── %patchName%.patch.yaml
+```
+
+You have to move all of your environment folders to a new first level directory called `overlays`, then move the `.env` variables files from `variables` to the respective environment folder in the new location and also remember to add `kustomization.yaml` files.
+
+With Kustomize you can specify `overlays` to overwrite the default configuration of your microservices for a specific deployment environment, in order to do this you have to manually modify the project configuration by editing the following files inside the folder of the chosen environment (`./overlays/%envId%/`):
+* `kustomization.yaml` contains the directives that define the resulting configuration for services deployed in the selected environment `%envId%`, here you specify which new resources have to be added and which base resource have to be patched. For more info see [here](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#kustomize-feature-list).
+* `%resourceName%.yaml` (put your actual resource name instead of `%resourceName%`) files containing the new resources to be added to your base configuration.
+* `%patchName%.patch.yaml` (put your actual patch name instead of `%patchName%`) files containing possibly partial modifications to your base project configuration.
+
+### A simple use case
+
+To show you how Kustomize can be helpful let's analyze a simple use case where we have a project and we want to change the number of static replicas only for the production environment. 
+
+In our setting we have this very simple base configuration:
+
+```yaml
+# file: ./configuration/helloworld.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: hello-world:latest
+```
+
+The base configuration sets the number of replicas to 1, now let's define an overlay for the production environment that changes the number of replicas from 1 to 2.
+
+Add the following files:
+
+```yaml
+# file: ./overlays/production/helloworld.patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas: 2
+```
+
+```yaml
+# file: ./overlays/production/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../../configuration
+patches:
+  - path: helloworld.patch.yaml
+```
+
+In this way when the production environment will be deployed there will be 2 static replicas of the `hello-world` service.
 
 ## Customize the project with additional information (Optional)
 
