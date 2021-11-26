@@ -104,6 +104,8 @@
       "Additionals",
       "CSFLE",
       "urandom",
+      "upsert",
+      "upserts",
       "kustomize",
       "kustomization"
   ],
