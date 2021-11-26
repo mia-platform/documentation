@@ -103,7 +103,9 @@
       "expressibility",
       "Additionals",
       "CSFLE",
-      "urandom"
+      "urandom",
+      "kustomize",
+      "kustomization"
   ],
   "ignoreWords": [
     "algs",
