@@ -107,7 +107,7 @@ A `prefix` property can be specified in the root of the configuration object. It
 The `services` array contains the URLs and files list from which retrieve the swaggers of every microservice; in details, there are two ways to retrieve a microservice swagger:
 
 - **_URL_**: by specifying `url` as `type` property the swagger-aggregator will download the microservice swagger from the provided `url` property. For this service type, the required properties will be `type`, `url`, and `prefix`.
-- **_File_**: by specifying `file` as `type` property the swagger-aggregator will take the microservice swagger configurations from the provided `path` property. For this service type, the required properties will be `type`, `path`, and `prefix`.
+- **_File_**: by specifying `file` as `type` property the swagger-aggregator will take the microservice swagger configurations from the provided `path` property. For this service type, the required properties will be `type`, `path`, and `prefix`. The file must be mounted in the `swagger-aggregator` service using a custom config-map.
 
 In both of them, the user must specify a `prefix` that will be placed before the url or the file path. Any string that begins with `/` is accepted.
 

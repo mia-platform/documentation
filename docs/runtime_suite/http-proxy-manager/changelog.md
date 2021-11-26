@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.3.0 - 25-11-2021
+
 ### Changed
 
 - debug logs added to improve the troubleshooting experience
 - the service now support optimized proxy without saving request body in memory, this feature is controlled by `ALLOW_PROXY_OPTIMIZER` environment variables and does not perform any retry upon request failures
-- fix proxy manager optimized with rewrite req host
+- fix proxy manager optimized with rewrite req host and x-forwarded-for header
 
 ## 1.2.0 - 18-10-2021
 
