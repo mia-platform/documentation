@@ -33,6 +33,10 @@ On the projects homepage it is possible to pin on top one environment card at a 
 
 Fixed bug that caused to have multiple `/` characters in link urls of project homepage.
 
+#### Public Variables with ending slash character
+
+Fixed a bug that caused the loss of all public variables if one of them contained a `/` character at the ending.
+
 ### Marketplace Updates
 
 #### Auth0 Client v3.2.2
