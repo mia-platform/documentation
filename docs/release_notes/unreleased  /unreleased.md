@@ -62,7 +62,8 @@ Now the service supports an optimized proxy methods configurable by enviroment v
 ### Real Time Updater 3.5.1
 
 Added new `USE_UPSERT` environment variable to specify whether or not to perform upsert when inserting and updating documents. The default behavior is to perform upsert on insert, keeping backwards compatibility.
-Note that, when `USE_UPSERT` is set to `false`, the virtual delete functionality is disabled.
+Note that, when `USE_UPSERT` is set to `false`, the virtual delete functionality is disabled.   
+Added new environment variable KAFKA_CONSUMER_MAX_WAIT_TIME to define the maximum wait time for the Kafka Consumer for new data in batch. Default is 500ms.
 
 ### How to update your Console
 
