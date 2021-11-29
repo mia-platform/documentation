@@ -39,7 +39,6 @@ Fixed a bug that caused the loss of all public variables if one of them containe
 
 ### Marketplace Updates
 
-
 #### Timer Service v2.1.0
 
 Route _**/expirations**_ → REST outputMode updated:
