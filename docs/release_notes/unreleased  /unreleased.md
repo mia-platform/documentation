@@ -53,9 +53,13 @@ Now `X-Forwarded-For` header supports a list of IP address
 
 Now the service supports an optimized proxy methods configurable by enviroment variable without saving anything in memory
 
-#### Ip-geolocation-service v2.0.2
+#### IP Geolocation Service v2.0.2
 
 The service supports a list of ip in the X-Forwarded-For header
+
+#### Auth0 Client
+
+With version v3.2.2 Auth0 Client now provides its OpenAPI Specification through the `/documentation/json` API.
 
 ### Improvements
 
