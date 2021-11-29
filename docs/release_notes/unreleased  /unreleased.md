@@ -59,7 +59,7 @@ Now the service supports an optimized proxy methods configurable by enviroment v
 
 ### Improvements
 
-### Real Time Updater 3.3.1
+### Real Time Updater 3.5.1
 
 Added new `USE_UPSERT` environment variable to specify whether or not to perform upsert when inserting and updating documents. The default behavior is to perform upsert on insert, keeping backwards compatibility.
 Note that, when `USE_UPSERT` is set to `false`, the virtual delete functionality is disabled.
