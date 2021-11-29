@@ -39,9 +39,6 @@ Fixed a bug that caused the loss of all public variables if one of them containe
 
 ### Marketplace Updates
 
-#### Auth0 Client v3.2.2
-
-Implemented API to serve OpenAPI 3 documentation on `/documentation/json`.
 
 #### Timer Service v2.1.0
 
