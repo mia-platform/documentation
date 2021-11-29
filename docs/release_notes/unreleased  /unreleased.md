@@ -54,6 +54,10 @@ Now `X-Forwarded-For` header supports a list of IP address
 
 Now the service supports an optimized proxy methods configurable by enviroment variable without saving anything in memory
 
+#### Ip-geolocation-service v2.0.2
+
+The service supports a list of ip in the X-Forwarded-For header
+
 ### Improvements
 
 ### Real Time Updater 3.5.1
