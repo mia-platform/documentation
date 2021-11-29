@@ -49,6 +49,10 @@ Route _**/expirations**_ → REST outputMode updated:
 
 Now `X-Forwarded-For` header supports a list of IP address
 
+#### Proxy Manager v1.3.0
+
+Now the service supports an optimized proxy methods configurable by enviroment variable without saving anything in memory
+
 ### Improvements
 
 ### Real Time Updater 3.3.1
