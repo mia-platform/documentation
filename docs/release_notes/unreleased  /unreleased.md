@@ -17,8 +17,8 @@ In addition to loading branches, it is now possible to load your project tags in
 
 #### Shortcut to easily navigate among Console projects and sections
 
-Users can easily switch among Console sections or can choose among different projects thanks to a simple shortcut: `⌘ K`. 
-![](../../img/shortcut.jpg) (aggiungere la dodc all'homepage)
+Users can easily switch among Console sections or can choose among different projects thanks to a simple shortcut: `⌘ K` (alternatively, `ctrl+K`). 
+![](./../img/shortcut.jpg) (aggiungere la dodc all'homepage)
 
 #### Dashboards categories
 
