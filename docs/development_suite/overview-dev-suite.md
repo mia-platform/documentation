@@ -52,7 +52,7 @@ On the right side of the card you can find useful links that can be configured t
 To learn how to configure your project links, visit [this page](./set-up-infrastructure/runtime-environments#links-configuration).
 :::
 
-In the Dashboards section you can find the names of the first dashboards created in your project, by clicking on one of them you will be redirected to the corresponding dashboard in the Dashboards Area or click on "View all" to see all of them. 
+In the Dashboards section you can find the names of the first dashboards created in your project, by clicking on one of them you will be redirected to the corresponding dashboard in the Dashboards Area or click on "View all" to see all of them.
 
 ## Console Sections
 
@@ -92,6 +92,18 @@ All the aforementioned sections can be reached using Mia-Platform Console homepa
 If you wish, you can add up to 6 sections to your Favorites sections, you just need to click con the associated star. That will make them always accessible from the top navbar. You can remove a section from the favorites ones by clicking again on its star.
 
 ![Favorites](img/favorites.gif)
+
+Another option to easily switch among Console sections or to select a specific project is to use the `command + k` interface that can be opened using the menu in the right side of the topbar.
+
+![command k interface](img/interface.gif)
+
+:::info
+This interface can also be opened using the `⌘ + K` (alternatively, `ctrl + K`) keyboard shortcut.
+:::
+
+Once opened the interface, you can also type `>` and a selection of useful commands will be displayed.
+
+![interface commands](img/interface_commands.png)
 
 ## Platform Governance
 
