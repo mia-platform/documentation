@@ -15,19 +15,15 @@ _December 1, 2021_
 
 In addition to loading branches, it is now possible to load your project tags in Console. It is also possible to create a new branch from a chosen tag.
 
-(questo vedere se c'è la doc)
-
 #### Shortcut to easily navigate among Console projects and sections
 
 Users can easily switch among Console sections or can choose among different projects thanks to a simple shortcut: `⌘ + K` (alternatively, `ctrl + K`).
 
-![Navigation shortcut](./../img/shortcut.jpg) (aggiungere la doc all'homepage)
+![Navigation shortcut](./../img/shortcut.jpg)
 
 #### Dashboards categories
 
-It is now possible to group dashboards in user defined categories.
-
-(vedere se c'è la doc su come funzionano e mettere il link)
+It is now possible to group dashboards in user defined [categories](../../development_suite/monitoring/dashboard#add-a-dashboard).
 
 ### Improvements
 
