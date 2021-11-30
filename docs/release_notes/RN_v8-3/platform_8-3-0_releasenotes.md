@@ -52,6 +52,27 @@ Fixed a bug that caused the loss of all public variables if one of them containe
 
 ## Fast Data
 
+### Real Time Updater
+
+The Real Time Updater service has been updated to v3.5.1.
+
+#### Upsert your projection or handle whether it is an insert or an update separately
+
+Added new `USE_UPSERT` environment variable to specify whether or not to perform upsert when inserting and updating documents. The default behavior is to perform upsert on insert, keeping backwards compatibility.
+Note that, when `USE_UPSERT` is set to `false`, the virtual delete functionality is disabled.  
+
+#### Set the maximum wait time for new data for the Real Time Updater Kafka consumer
+
+A new environment variable KAFKA_CONSUMER_MAX_WAIT_TIME is now available to define the maximum wait time for the Kafka Consumer for new data in batch. Default is 500ms.
+
+#### Track which is the topic that triggered the changes
+
+Projections and projection changes have now new fields which contain the information about the Kafka Topic that triggered the change. [Read more.](../../fast_data/real_time_updater/configuration#tracking-the-changes) 
+
+#### Projection changes to Kafka
+
+You can configure the Real Time Updater to send the projection changes to a Kafka topic as well. [Click here](../../fast_data/real_time_updater/configuration#kafka-projection-changes-configuration) to know how to do that.
+
 ### New Feature
 
 #### Primary Key Index Automation
@@ -90,12 +111,6 @@ The service supports a list of ip in the X-Forwarded-For header
 #### Auth0 Client v3.2.2
 
 Auth0 Client now provides its OpenAPI Specification through the `/documentation/json` API.
-
-#### Real Time Updater v3.5.1
-
-Added new `USE_UPSERT` environment variable to specify whether or not to perform upsert when inserting and updating documents. The default behavior is to perform upsert on insert, keeping backwards compatibility.
-Note that, when `USE_UPSERT` is set to `false`, the virtual delete functionality is disabled.  
-Added new environment variable KAFKA_CONSUMER_MAX_WAIT_TIME to define the maximum wait time for the Kafka Consumer for new data in batch. Default is 500ms.
 
 ## How to update your Console
 
