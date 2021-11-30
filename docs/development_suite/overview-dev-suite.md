@@ -11,9 +11,19 @@ Find out more about how to design and manage the full lifecycle of your DevOps V
 
 ## Homepage
 
-The Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console, such as [Design](./api-console/api-design/overview.md), [Deploy](./deploy/deploy.md), [Runtime](./monitoring/monitoring.md) and [Dashboards](./monitoring/dashboard.md).
+The Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console, such as:
+* [Design](./api-console/api-design/overview.md)
+* [Deploy](./deploy/deploy.md)
+* [Runtime](./monitoring/monitoring.md)
+* [Dashboards](./monitoring/dashboard.md)
+* [Marketplace](../marketplace/overview_marketplace.md)
+* [Environments & Private Variables](../development_suite/set-up-infrastructure/runtime-environments.md)
 
-The Homepage is structured in different cards which represent the different environments of your project. For each card, the user can see: the time of the last deployment, the Pods Status, the Usage vs Requests, and the Usage vs Limits of both CPU and RAM resources.  
+The Homepage is structured in different cards which represent the different environments of your project. One card at a time can be pinned to top using the button at the left of the environment name. For each card, the user can see: 
+* the time of the last deployment
+* the Pods Status
+* the Usage vs Requests and the Usage vs Limits of both CPU and RAM resources.
+By clicking on the refresh button, in the upper right part of the page, the user can setup a time interval to fetch updated statistics for the project pods or trigger a manual update using the button to the right.
 The purpose of the Homepage is to give an easy overview of the availability of the infrastructure and a “one click” experience to navigate through project sections.  
 In the following paragraphs we will describe in detail the information provided by every environment card in the Homepage of your project.
 
@@ -42,7 +52,7 @@ On the right side of the card you can find useful links that can be configured t
 To learn how to configure your project links, visit [this page](./set-up-infrastructure/runtime-environments#links-configuration).
 :::
 
-In the Dashboards section you can find the names of all the dashboards created in your project, by clicking on one of them you will be redirected to the corresponding dashboard in the Dashboards Area.
+In the Dashboards section you can find the names of the first dashboards created in your project, by clicking on one of them you will be redirected to the corresponding dashboard in the Dashboards Area or click on "View all" to see all of them. 
 
 ## Console Sections
 
