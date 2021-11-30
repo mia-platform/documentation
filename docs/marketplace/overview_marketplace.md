@@ -45,12 +45,12 @@ Each Marketplace component has a predetermined **development lifecycle**.
 
 These are the expected stages along the component lifecycle:
 
-* **Coming soon**: the aim of this label is to inform Marketplace user of the existence of a new component whose implementation has just started (these components are not usable)
+* **Coming soon**: this label aims to inform Marketplace users about the existence of a new component whose implementation has just started (these components are not usable)
 
 * **Preview**: first usable release, there may be bugs and they may be subject to undocumented breaking changes
 
 * **Beta**: the implementation is completed and there cannot be any undocumented breaking changes however there could still be bugs, hence it must be used carefully
 
-* **Stable**: the implementation is stable (bug free). Consequently, this stage represents the component period before its official release documented in release note
+* **Stable**: the implementation is stable (bug free). Consequently, this stage represents the component period before its official release documented in the release note
 
 

@@ -82,6 +82,7 @@
       "pbcopy",
       "pino",
       "pkcs",
+      "pointofsale",
       "qiankun",
       "rapidoc",
       "rawp",
@@ -103,7 +104,11 @@
       "expressibility",
       "Additionals",
       "CSFLE",
-      "urandom"
+      "urandom",
+      "upsert",
+      "upserts",
+      "kustomize",
+      "kustomization"
   ],
   "ignoreWords": [
     "algs",

@@ -19,7 +19,6 @@ The Real-Time Updater needs some environment variables and some configurations f
 - KAFKA_GROUP_ID (__required__): defines the kafka group id
 - KAFKA_SASL_USERNAME (__required__): defines the kafka sasl username
 - KAFKA_SASL_PASSWORD (__required__): defines the kafka sasl password
-- KAFKA_MESSAGE_ADAPTER (__required__):  defines the kafka message adapter
 - LIVENESS_INTERVAL_MS (__required__) defines the liveness interval in milliseconds
 - INVARIANT_TOPIC_MAP (__required__): defines an object that maps the topic to the projection
 - KAFKA_USE_LATEST_DEQUEUE_STRATEGY:  defines latest dequeue strategy or not
@@ -27,7 +26,12 @@ The Real-Time Updater needs some environment variables and some configurations f
 - CAST_FUNCTIONS_FOLDER: defines the path to the cast-functions folder
 - MAP_TABLE_FOLDER: defines the path to the map table folder
 - STRATEGIES_FOLDER: defines the path to the strategies folder
-- KAFKA_SASL_MECHANISM: defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`. The default value is `plain`.
+- KAFKA_SASL_MECHANISM: defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`. The default value is `plain`
+- USE_UPSERT: defines whether to use upsert or not when performing insert and update operations. Defaults to true
+- KAFKA_MESSAGE_ADAPTER: defines which Kafka message adapter to use. Its value can be one of the following: `basic`, `golden-gate`, `custom`.
+- KAFKA_PROJECTION_CHANGES_FOLDER: path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).
+- GENERATE_KAFKA_PROJECTION_CHANGES: defines whether the projection changes have to be send to Kafka too or not. Default is `false`(v3.4.0 or above).
+- KAFKA_CONSUMER_MAX_WAIT_TIME: defines the maximum waiting time of Kafka Consumer for new data in batch. Default is 500 ms.
 
 ## Custom Projection Changes Collection
 
@@ -112,4 +116,121 @@ An example:
 }
 ```
 
+### Kafka Projection Changes configuration
 
+This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.   
+You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic kafka you set.
+
+
+:::info:::
+This feature is available from the version v3.4.0 or above of the service
+:::
+
+The mountPath used for these configuration is defined by the environment variable KAFKA_PROJECTION_CHANGES_FOLDER.  
+This configuration have to contain a file `kafkaProjectionChanges.json` as the one below:
+
+```json
+{
+    "MY_PROJECTION": {
+        "projectionChanges": {
+            "MY_SINGLE_VIEW": {
+                "topic": "MY_TOPIC",
+            }
+        }
+    }
+}
+```
+
+where:
+- `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
+- `MY_SINGLE_VIEW` is the single view that have to be updated
+- `MY_TOPIC` is the topic where the projection change need to be sent
+
+Example:
+```json
+{
+    "registry-json": {
+        "projectionChanges": {
+            "sv_pointofsale": {
+                "topic": "my-project.development.sv-pointofsale-pc-json",
+            }
+        }
+    }
+}
+```
+
+When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
+
+
+### Tracking the changes
+
+From the **v3.2.0** of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.
+
+In particular, the following information are saved:
+
+#### Projection changes
+
+Into each element of the `changes` array of the projection change document are inserted the information about the message that triggered the projection change
+
+- topic: is the topic from which the Kafka message has been consumed
+- partition: is partition from which the Kafka message has been consumed
+- offset: is the offset of the message
+- key: is the key of the Kafka message
+- timestamp: is the timestamp of the message
+
+Example:
+
+```json
+{
+    "type": "sv_pointofsale",
+    "identifier": {
+        "ID_USER": "123",
+    },
+    "changes": [{
+        "state": "NEW",
+        "topic": "my-topic.development.foobar-json",
+        "partition": 0,
+        "timestamp": "2021-11-19T16:22:07.031Z",
+        "offset": "14",
+        "key": {
+            "ID_USER": "123",
+        },
+    }],
+}
+```
+
+#### Projection
+
+Into the projection is saved information about the last Kafka message that updated the projection. 
+These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields. 
+
+The information saved are:
+- topic: is the topic from which the Kafka message has been consumed
+- partition: is partition from which the Kafka message has been consumed
+- offset: is the offset of the message
+- key: is the key of the Kafka message
+- timestamp: is the timestamp of the message
+
+Example:
+
+```json
+{
+    "ID_USER": "123",
+    "ADDRESS": "address_1",
+    "SURNAME": "ROSSI",
+    "TAX_CODE": "tax_code",
+    "__STATE__": "PUBLIC",
+    "createdAt":  "2021-10-19T13:39:47.589Z",
+    "timestamp": "2021-11-19T16:22:07.031Z",
+    "updatedAt": "2021-11-19T16:22:07.052Z",
+    "__internal__kafkaInfo": {
+        "topic": "my-topic.development.foobar-json",
+        "partition": 0,
+        "timestamp": "2021-11-19T16:22:07.031Z",
+        "offset": "14",
+        "key": {
+            "ID_USER": "123",
+        },
+    }
+}
+```

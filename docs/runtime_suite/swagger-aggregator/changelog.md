@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.4.2 - 19-11-2021
+
+### Fixed
+- Fixed schema.component array values duplication using combineMerge algorithm.
+
 ## 3.4.1 - 12-07-2021
 
 ### Updated
