@@ -7,30 +7,27 @@ image: "img/release-note-link-preview.png"
 
 _Month day, year_
 
-### Breaking Changes 
+## Console
 
-### New Features
+### New Feature
 
 #### Configuration from tag
 
-In addition to loading branches, it is now possible to load your project tags in Console. It is also possible to create a new branch from a chosen tag.
-
-#### Primary Key Index Automation
-
-In Design Area, Projections Section, it is now possible to automatically generate and update a primary key index. The option is turned off by default on existing Projections, while it will be enabled on all Projections created from now on.
+In addition to loading branches, it is now possible to load your project tags in Console. It is also possible to create a new branch from a chosen tag. (quesdto vedere se c'è la doc)
 
 #### Shortcut to easily navigate among Console projects and sections
 
 Users can easily switch among Console sections or can choose among different projects thanks to a simple shortcut: `⌘ K`. 
-![](img/shortcut.jpg)
+![](../../img/shortcut.jpg) (aggiungere la dodc all'homepage)
 
 #### Dashboards categories
 
-It is now possible to group dashboards in user defined categories.
+It is now possible to group dashboards in user defined categories. (vedere se c'è la doc su come funzionano e mettere il link)
 
-#### Pin environment card
+#### Pin environment card + Aggiungere refresh rate, link al marketplace a agli envs, view all dashboard
 
-On the projects homepage it is possible to pin on top one environment card at a time.
+On the projects homepage it is possible to pin on top one environment card at a time. (aggiungere alla doc dell'homepage)
+
 
 ### Bug Fix
 
@@ -42,7 +39,24 @@ Fixed bug that caused to have multiple `/` characters in link urls of project ho
 
 Fixed a bug that caused the loss of all public variables if one of them contained a `/` character at the ending.
 
-### Marketplace Updates
+#### API Gateway fix 
+
+
+## Fast Data
+
+### New Feature
+ 
+#### Primary Key Index Automation
+
+In Design Area, Projections Section, it is now possible to automatically generate and update a primary key index. The option is turned off by default on existing Projections, while it will be enabled on all Projections created from now on. (vedere se è stata scritta la doc)
+
+#### RTU su Kafka
+#### track id 
+####max waite time
+
+### Bug Fix
+
+## Marketplace 
 
 #### Timer Service v2.1.0
 
