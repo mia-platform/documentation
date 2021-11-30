@@ -64,12 +64,6 @@ By now, when you generate projection fields from a data sample, the identity cas
 
 ### Marketplace Updates
 
-#### CRUD Service 5.0.1
-
-A bug has been resolved to prevent an uncontrolled amount of warning due to a framework functionality misuse. The bug wasn't causing any kind of denial of service.
-
-Some dependencies have also been updated.
-
 #### Client Credentials 3.0.0
 
 The support to Redis Sentinel has been added, so you can now provide multiple comma-separated list of redis hosts;
@@ -81,11 +75,11 @@ We have also added two new environment variables: `REDIS_MODE` and `REDIS_MASTER
 
 Mitigation of Cross-site Scripting and Cross-site Request Forgery attacks on download of html files.
 
-### Single View Creator Plugin & Template 3.1.0
+#### Single View Creator Plugin & Template 3.1.0
 
 Added new UPSERT_STRATEGY environment variable to be able to define whether replace or update the document when a new update of a single view occurs.
 
-### Authorization Service 2.2.0
+#### Authorization Service 2.2.0
 
 Added OPTIONS method to supported methods. It is possible to add it in the configuration, or it is automatically handled with the `ALL` method keyword.
 
