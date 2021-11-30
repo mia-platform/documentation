@@ -19,6 +19,11 @@ In addition to loading branches, it is now possible to load your project tags in
 
 In Design Area, Projections Section, it is now possible to automatically generate and update a primary key index. The option is turned off by default on existing Projections, while it will be enabled on all Projections created from now on.
 
+#### Shortcut to easily navigate among Console projects and sections
+
+Users can easily switch among Console sections or can choose among different projects thanks to a simple shortcut: `⌘ K`. 
+![](img/shortcut.jpg)
+
 #### Dashboards categories
 
 It is now possible to group dashboards in user defined categories.
