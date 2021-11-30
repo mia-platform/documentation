@@ -21,7 +21,7 @@ In addition to loading branches, it is now possible to load your project tags in
 
 Users can easily switch among Console sections or can choose among different projects thanks to a simple shortcut: `⌘ + K` (alternatively, `ctrl + K`).
 
-![Kbar interface](./../img/shortcut.jpg) (aggiungere la doc all'homepage)
+![Navigation shortcut](./../img/shortcut.jpg) (aggiungere la doc all'homepage)
 
 #### Dashboards categories
 
@@ -29,7 +29,9 @@ It is now possible to group dashboards in user defined categories.
 
 (vedere se c'è la doc su come funzionano e mettere il link)
 
-#### Project Homepage Improvements
+### Improvements
+
+#### Project Homepage
 
 The project homepage has been improved with the following new features:
 
@@ -67,7 +69,7 @@ A new environment variable KAFKA_CONSUMER_MAX_WAIT_TIME is now available to defi
 
 #### Track which is the topic that triggered the changes
 
-Projections and projection changes have now new fields which contain the information about the Kafka Topic that triggered the change. [Read more.](../../fast_data/real_time_updater/configuration#tracking-the-changes) 
+Projections and projection changes have now new fields which contain the information about the Kafka Topic that triggered the change. [Read more](../../fast_data/real_time_updater/configuration#tracking-the-changes).
 
 #### Projection changes to Kafka
 
@@ -79,15 +81,9 @@ You can configure the Real Time Updater to send the projection changes to a Kafk
 
 In Design Area, Projections Section, it is now possible to automatically generate and update a primary key index. The option is turned off by default on existing Projections, while it will be enabled on all Projections created from now on.
 
-#### RTU su Kafka
-
-#### track id
-
-#### max wait time
-
-### Bug Fix
-
 ## Marketplace
+
+### Improvements
 
 #### Timer Service v2.1.0
 
