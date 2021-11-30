@@ -56,7 +56,7 @@ Now `X-Forwarded-For` header supports a list of IP address
 
 #### Proxy Manager v1.3.0
 
-Now the service supports an optimized proxy methods configurable by enviroment variable without saving anything in memory
+Now the service supports an optimized proxy methods configurable by environment variable without saving anything in memory
 
 #### IP Geolocation Service v2.0.2
 
