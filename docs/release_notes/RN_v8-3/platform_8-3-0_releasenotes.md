@@ -90,15 +90,15 @@ Route _**/expirations**_ → REST outputMode updated:
 
 #### Api-Gateway v5.0.0
 
-Now `X-Forwarded-For` header supports a list of IP address
+Now `X-Forwarded-For` header supports a list of IP address.
 
 #### Proxy Manager v1.3.0
 
-Now the service supports an optimized proxy methods configurable by environment variable without saving anything in memory
+Now the service supports an optimized proxy methods configurable by environment variable without saving anything in memory.
 
 #### IP Geolocation Service v2.0.2
 
-The service supports a list of ip in the X-Forwarded-For header
+The service supports a list of IPs in the X-Forwarded-For header.
 
 #### Auth0 Client v3.2.2
 
