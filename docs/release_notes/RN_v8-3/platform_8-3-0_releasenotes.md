@@ -108,4 +108,4 @@ Auth0 Client now provides its OpenAPI Specification through the `/documentation/
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.5.4`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.6.2`.
