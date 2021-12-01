@@ -46,7 +46,9 @@ Fixed bug that caused to have multiple `/` characters in link urls of project ho
 
 Fixed a bug that caused the loss of all public variables if one of them contained a `/` character at the ending.
 
-#### API Gateway fix
+#### API Gateway ports deletion
+
+Fixed a bug that caused the loss of the API Gateway ports configuration when updating its probes.
 
 ## Fast Data
 
