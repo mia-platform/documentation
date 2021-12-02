@@ -12,6 +12,7 @@ Find out more about how to design and manage the full lifecycle of your DevOps V
 ## Homepage
 
 The Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console, such as:
+
 * [Design](./api-console/api-design/overview.md)
 * [Deploy](./deploy/deploy.md)
 * [Runtime](./monitoring/monitoring.md)
@@ -19,10 +20,12 @@ The Homepage allows users to quickly access the relevant information of each pro
 * [Marketplace](../marketplace/overview_marketplace.md)
 * [Environments & Private Variables](../development_suite/set-up-infrastructure/runtime-environments.md)
 
-The Homepage is structured in different cards which represent the different environments of your project. One card at a time can be pinned to top using the button at the left of the environment name. For each card, the user can see: 
+The Homepage is structured in different cards which represent the different environments of your project. One card at a time can be pinned to top using the button at the left of the environment name. For each card, the user can see:
+
 * the time of the last deployment
 * the Pods Status
 * the Usage vs Requests and the Usage vs Limits of both CPU and RAM resources.
+
 By clicking on the refresh button, in the upper right part of the page, the user can setup a time interval to fetch updated statistics for the project pods or trigger a manual update using the button to the right.
 The purpose of the Homepage is to give an easy overview of the availability of the infrastructure and a “one click” experience to navigate through project sections.  
 In the following paragraphs we will describe in detail the information provided by every environment card in the Homepage of your project.
@@ -104,6 +107,22 @@ This interface can also be opened using the `⌘ + K` (alternatively, `ctrl + K`
 Once opened the interface, you can also type `>` and a selection of useful commands will be displayed.
 
 ![interface commands](img/interface_commands.png)
+
+#### Basic Homepage
+
+If you prefer, there is the option of visualizing a basic homepage, which just displays the different Console Areas. This is visualization is great for console newcomers who will benefit from always having all the Console Areas displayed at once.
+The basic homepage is shown in the image below.
+
+![basic homepage](img/basic_homepage.png)
+
+The basic homepage is always available at the path `YOUR_CONSOLE_URL/projects/YOUR_PROJECT_ID/basicHomepage`, but it can also be set as the **default** home using the `command + k` interface, with the command `Switch to Basic Homepage`.
+
+![switch to basic homepage command](img/switch_to_basic_homepage_command.png)
+
+Doing this, you are going to affect the project standard home not only for you, but for every other user too.
+To **undo** this action and set back the metrics homepage as the default home for everyone, a new command will be available: `Switch to Metrics Homepage`.
+
+![switch to metrics homepage command](img/switch_to_metrics_homepage_command.png)
 
 ## Platform Governance
 
