@@ -10,6 +10,7 @@ sidebar_label: Enable Auth0
     * login-site
     * session-manager
     * auth-service
+    * user-service
 
     and enable:
 
