@@ -65,6 +65,18 @@ It is important to outline that it is possible to define an `order` property, no
           "baseUrl": "https://api.github",
           "scope": ["custom_scope_github"]
         },
+        "okta": {
+          "order": 30,
+          "type": "okta",
+          "label": "Login with Okta",
+          "clientId": "the-idp-client-id",
+          "clientSecret": "the-idp-client-secret",
+          "authUrl": "${baseUrl}/v1/authorize",
+          "tokenUrl": "${baseUrl}/v1/token",
+          "userInfoUrl": "${baseUrl}/v1/userinfo",
+          "baseUrl": "${baseUrl}",
+          "scope": ["your_scope"]
+        }
       },
       "redirectUrl": "https://test.com/redirect",
       "realm": "realm1",

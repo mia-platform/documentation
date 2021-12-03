@@ -172,8 +172,8 @@
     "name": "Form Service Backend",
     "description": "This is a backend for frontend to be used for building and managing forms.",
     "category": {
-      "id": "healthcare",
-      "label": "Add-ons - Healthcare"
+      "id": "frontendbuilder",
+      "label": "Add-ons - Frontend Builders"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",
@@ -364,11 +364,24 @@
     "docLandingPage": "runtime_suite/single-view-creator/configuration"
   },
   {
+    "name": "Single View Creator - Low Code",
+    "description": "Create your Single Views leveraging the power of configuration files instead of writing all the code on your own!",
+    "category": {
+      "id": "fast-data",
+      "label": "Add-ons - Fast Data"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/single-view-creator---low-code_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/single-view-creator---low-code/configuration"
+  },
+  {
     "name": "SMS Service",
     "description": "Send SMS through Twilio API",
     "category": {
-      "id": "utility",
-      "label": "Add-ons - Utilities"
+      "id": "healthcare",
+      "label": "Add-ons - Healthcare"
     },
     "supportedBy": "Mia-Care",
     "type": "plugin",

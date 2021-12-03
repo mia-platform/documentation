@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+- Fixed unmount behavior for Qiankun
+- Page title can be configured using props
+
 ## 1.14.0 - 2021-11-09
 
 ### Added
