@@ -3,6 +3,10 @@ id: user-service
 title:  User Service
 sidebar_label: User Service
 ---
+:::caution
+This service can be considered as deprecated in those projects that adopt Auth0 as an identity provider.
+:::
+
 User Service is responsible for managing Users on the Platform.
 Allows login, registration and request of real information to a user.
 
