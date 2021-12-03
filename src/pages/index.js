@@ -137,7 +137,7 @@ function Home() {
           <section className={styles.features}>
             <div className="container">
               {<div className="row">
-              <VersionBanner link="/docs/release_notes/mia-platform-v8" majorVersion="2" subTitle="Click to know more about how Mia-Platform is growing and where it is going!"  title="Mia-Platform v8.0 is now Available!" />
+              <VersionBanner link="/docs/release_notes/mia-platform-v8" majorVersion="2" subTitle="Click to know more about how Mia-Platform is growing and where it is going!"  title="Mia-Platform v8 is now Available!" />
               </div>}
               <div className="row">
                 {features.map((props, idx) => (
