@@ -108,7 +108,8 @@
       "upsert",
       "upserts",
       "kustomize",
-      "kustomization"
+      "kustomization",
+      "unmount"
   ],
   "ignoreWords": [
     "algs",

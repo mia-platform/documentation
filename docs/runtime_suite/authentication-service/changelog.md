@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- inserted okta provider authorization
+
 ## 2.3.0 - 17-09-2021
 
 ### Added

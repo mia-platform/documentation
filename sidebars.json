@@ -862,6 +862,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Single View Creator - Low Code",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/single-view-creator---low-code/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/single-view-creator---low-code/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "SMS Service",
               "items": [
                 {
