@@ -7,6 +7,9 @@ sidebar_label: Overview
 `micro-lc` is the Mia-Platform solution for building flexible, multi-tenant front-end applications following the
 [Micro Frontend](https://micro-frontends.org/) architecture.
 
+An introduction about micro frontend and how micro-lc works:
+[![micro-lc introduction video](https://img.youtube.com/vi/QumadjC2krU/0.jpg)](https://www.youtube.com/watch?v=QumadjC2krU)
+
 `micro-lc` consists of a core interface that loads, embeds, and orchestrates **plugins** (your individual frontend
 applications) at runtime, while providing configuration options and useful out-of-the-box features.
 
