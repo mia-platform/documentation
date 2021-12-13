@@ -17,6 +17,11 @@ The Major number identifies the Version.
 
 The current version of the Platform is visible in the API Console.
 
+Moreover, inside the Console it is possible to find tags which describe the feature lifecycle. They are used to point out the stage of a new feature and they are:
+
+* **Preview**: first usable feature release, there may be bugs and they may be subject to undocumented breaking changes
+* **Beta**: the feature implementation is completed and there cannot be any undocumented breaking changes however there could still be bugs, hence it must be used carefully
+
 ## Version Supported
 
 Below are listed all the Major versions of Mia-Platform released.
