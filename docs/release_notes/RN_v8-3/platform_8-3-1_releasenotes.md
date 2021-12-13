@@ -9,6 +9,12 @@ _December 13, 2021_
 
 ## Console
 
+### Security fix
+
+#### Fix for log4j vulnerabilities
+
+Updated export-service to 1.0.2 to fix vulnerabilities linked to log4j version <2.15.0.
+
 ### Bug Fix
 
 #### Inneffective smart deploy for new services
