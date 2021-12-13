@@ -1433,11 +1433,11 @@
           "items": [
             {
               "type": "doc",
-              "id": "release_notes/RN_v8-3/v8.3.0"
+              "id": "release_notes/RN_v8-3/v8.3.1"
             },
             {
               "type": "doc",
-              "id": "release_notes/RN_v8-3/v8.3.1"
+              "id": "release_notes/RN_v8-3/v8.3.0"
             }
           ]
         },
