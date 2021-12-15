@@ -93,25 +93,25 @@ Search for the following files and paste the content below:
 
 - **maps-proxyUrl.before.map**
 ```json
-// micro-lc dev portal
+# micro-lc dev portal
 "~^\w+-/dev-portal/.+/api/v1/microlc(?<path>[/\?].*|$)$" "/v1/microlc$path";
 
-// micro-lc backoffice
+# micro-lc backoffice
 "~^\w+-/back-office/.+/api/v1/microlc(?<path>[/\?].*|$)$" "/v1/microlc$path";
 
-// micro-lc user info
+# micro-lc user info
 "~^\w+-/.+/userinfo(?<path>[/\?].*|$)$" "/userinfo$path";
 ```
 
 - **maps-proxyName.before.map**
 ```json
-// micro-lc dev portal
+# micro-lc dev portal
 "~^(secreted|unsecreted)-1-GET-/dev-portal/.*/api/v1/microlc/.*" "dev-portal-micro-lc-backend";
 
-// micro-lc backoffice
+# micro-lc backoffice
 "~^(secreted|unsecreted)-1-GET-/back-office/.*/api/v1/microlc/.*" "backoffice-micro-lc-backend";
 
-// micro-lc user info
+# micro-lc user info
 "~^(secreted|unsecreted)-1-\w+-/.*/userinfo([/\?].*|$)$" "auth0-client";
 ```
 
