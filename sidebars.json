@@ -1499,6 +1499,17 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-4/v8.4.0",
+              "type": "doc"
+            }
+          ],
+          "label": "v8.4",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
               "id": "release_notes/RN_v8-3/v8.3.1",
               "type": "doc"
             },
