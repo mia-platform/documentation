@@ -104,6 +104,7 @@
       "expressibility",
       "Additionals",
       "CSFLE",
+      "REGO",
       "urandom",
       "upsert",
       "upserts",
@@ -149,7 +150,11 @@
     "Nzgw",
     "TTFHW"
   ],
-  "dictionaries": ["softwareTerms", "companies", "misc"],
+  "dictionaries": [
+    "softwareTerms",
+    "companies",
+    "misc"
+  ],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
@@ -165,7 +170,6 @@
     // old files
     "docs/runtime_suite/sdk_android.md",
     "docs/runtime_suite/sdk_ios.md",
-
     "./docs/runtime_suite/sql-db-reader/configuration_and_usage.md"
   ],
   "allowCompoundWords": true,
