@@ -247,7 +247,7 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "RBAC",
+          "label": "Configure RBAC",
           "items": [
             {
               "id": "development_suite/api-console/api-design/rbac",
