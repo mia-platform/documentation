@@ -85,7 +85,9 @@ While normally the RBAC sidecar will self-configure itself by consuming the API 
 The RBAC Service is the core service that is responsible for handling permissions evaluations; it is thought to run alongside your application container (as a sidecar), to intercept traffic directed to your service and to reject unwanted/unauthorized API invocation.
 
 <div style={{textAlign: 'center'}}>
-<img src="img/sidecar.png" width="700" />
+
+![sidecar](img/sidecar.png)
+
 </div>
 
 In order to know which API should be exposed RBAC sidecar will try to fetch from the application services an OpenAPI 3 compliant specification. At this point RBAC Service will expose all your application service APIs and after performing user permission authorization decide whether the API invocation should be forwarded to the application service.
