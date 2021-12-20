@@ -24,6 +24,10 @@ Run to the Console Marketplace and try it now!
 
 It is possible to switch between [Basic Homepage](../../development_suite/overview-dev-suite#basic-homepage) and [Metrics Homepage](../../development_suite/overview-dev-suite#homepage) using `command + k` interface.
 
+#### Default branch selection
+
+When opening the Design Area, the branch selection modal will show the default branch that you can set up in the CMS of your project with the property `defaultBranch`. If not set in the CMS, it will retrieve the default branch from the provider of your project.
+
 ### Bug Fix
 
 #### Correct project homepage visualization
