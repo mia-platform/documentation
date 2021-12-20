@@ -20,19 +20,19 @@ This version brings with it interesting new features: a new modern Marketplace t
 
 Run to the Console Marketplace and try it now!
 
-#### Homepage
+#### Homepage switch
 
 It is possible to switch between [Basic Homepage](../../development_suite/overview-dev-suite#basic-homepage) and [Metrics Homepage](../../development_suite/overview-dev-suite#homepage) using `command + k` interface.
 
-![Switch to Basic Homepage](../../development_suite/img/switch_to_basic_homepage_command.png)
-
-![Switch to Metrics Homepage](../../development_suite/img/switch_to_metrics_homepage_command.png)
-
 ### Bug Fix
 
-#### Homepage
+#### Correct project homepage visualization
 
 Fixed a bug that caused the homepage to show for a few seconds the information of a previously opened project when a new project is selected.  
+
+#### Multiple configmaps files elimination
+
+Fixed a bug that did not allow the elimination of files belonging to different configmaps.
 
 ### Marketplace updates
 
@@ -58,4 +58,4 @@ This version fixes a bug in user search query generation when a connection is sp
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.6.4`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.6.6`.
