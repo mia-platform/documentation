@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 2.1.0 - 2021-12-02
+
 ### Updated
 
 - Custom Plugin Lib v4.2.0, featuring fastify v3 and new schema format validation

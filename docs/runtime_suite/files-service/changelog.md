@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- Improve files service documentations
+
+## 2.3.2 - 03-12-2021
+
+### Fixed
+
+- upload multipart `content-disposition` is now accepted even when `filename` property is missing. This fixes a breaking change introduced with `v2.3.0`.
+
 ## 2.3.1 - 2021-10-21
 
 ### Updated

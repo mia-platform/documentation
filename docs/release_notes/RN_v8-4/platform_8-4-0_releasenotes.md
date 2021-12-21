@@ -16,7 +16,11 @@ _December 21, 2021_
 ![dev-portal-application](../../dev_portal/img/dev_portal_application.png)
 
 The [new version 1.2 of the Dev Portal](../../dev_portal/overview.md) application has been released!  
-This version brings with it interesting new features: a new modern Marketplace to document and organize your APIs and Events;  a new concrete content management system built with Mia Backoffice; a system for managing requests integrated into the marketplace and many other features!
+This version brings with it interesting new features:
+
+- a new modern Marketplace to document and organize your APIs and Events.
+- a new concrete content management system built with Mia Backoffice.
+- a system for managing requests integrated into the marketplace.
 
 Run to the Console Marketplace and try it now!
 

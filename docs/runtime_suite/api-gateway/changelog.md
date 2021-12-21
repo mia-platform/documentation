@@ -10,11 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+
+- set `X-Forwarded-Proto` to use `original_request_scheme` variable to use the correct scheme
+- set `Scheme` to use `original_request_scheme` variable to use the correct scheme
+
+## 5.0.0 2021-12-01
+
 ### Changed
 
 - `X-Forwarded-For` header now supports a list of IP address
 
-## 4.2.0 2021-09-21
+## 4.2.0 2021-09-21
 
 ## Added
 

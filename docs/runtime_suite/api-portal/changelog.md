@@ -10,9 +10,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.14.4 - 2021-12-20
+### Fixed
+- Upgrade api-explorer version to 6.6.9
+
+## 1.14.3 - 2021-12-15
+
+### Fixed
+- Upgrade api-explorer version to 6.6.8
+
+## 1.14.2 - 2021-12-10
+
+### Fixed
+- Upgrade api-explorer version to 6.6.6
+
+## 1.14.1 - 2021-12-03
+
 ### Fixed
 - Fixed unmount behavior for Qiankun
 - Page title can be configured using props
+- Upgrade api-explorer version to 6.6.5
 
 ## 1.14.0 - 2021-11-09
 

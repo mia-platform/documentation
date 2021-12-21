@@ -54,6 +54,11 @@ The reminders will be set only if the `MESSAGING_SERVICE_NAME` and the `TIMER_SE
 If the new appointment's `startDate` is in the past, no reminders will be set.
 :::
 
+:::note
+If the `reminderThresholdMs` field in the configuration is set, and the new appointment is created in a date below the 
+threshold, no reminders will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
+:::
+
 ### Body
 
 The body of this request has the same interface of a CRUD service `POST /` request.
@@ -141,6 +146,11 @@ If the appointment's `startDate` is in the past after the update (even if it alr
 
 However, if the appointment's `startDate` is not in the past after the update (even if it was before), any applicable reminder
 will be set.
+:::
+
+:::note
+If the `reminderThresholdMs` field in the configuration is set, and the appointment date is below the threshold, 
+no reminders will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
 :::
 
 :::tip

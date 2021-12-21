@@ -98,6 +98,11 @@ You can abort all the set reminders for an appointment by _unsetting_ the `remin
 [update request](usage.md#patch-appointmentsid).
 :::
 
+:::tip
+You can avoid sending reminders for appointments created/updated below a given threshold by setting the `reminderThresholdMs` 
+field in the configuration file (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
+:::
+
 As for messages, the service uses its [configuration](configuration.md#service-configuration) to know which users
 categories should receive reminders.
 
