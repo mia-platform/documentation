@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.1.2 - 17-12-2021
+
+### Fixed
+
+- REST output mode validation schema now accept also `get` and `delete` HTTP methods,
+  so that events triggers can now be created with those methods.
+
 ## 2.1.1 - 23-11-2021
 
 ### Fixed

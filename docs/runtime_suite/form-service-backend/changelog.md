@@ -10,6 +10,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] 2021-12-15
+
+### Changed
+
+- update ACL controls relying only on manual and automatic assignments
+
+## [1.2.0] 2021-12-09
+
+### Fixed
+
+- remove payload log in `POST` an `PUT` endpoints
+
+### Changed
+
+- `PUT /visualizer/schemas/:id` updated to handle `$set` and `$unset` body
+
+### Added 
+
+- inject configurable or default client type if missing in the request's headers in all handlers
+- new endpoint`GET /visualizer/assignments/:id/schema-id` 
+- `GET /visualizer/schemas/:id` updated to handle isPrivate and isEditable
+- `PUT /visualizer/schemas/:id` updated to handle isPrivate and isEditable
+- `POST /visualizer/forms` updated to handle isPrivate and previous submission checks
+- `GET /visualizer/schemas/:id` updated to handle isPrivate and groups
+- introducing isPrivate, isEditable and user groups properties
+
 ## [1.1.1] 2021-11-05
 
 ### Added
@@ -31,4 +57,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] 2021-06-10
 
 ### Added
+
 - Initial form service backend implementation. Added APIs to manage form schemas and form submissions.

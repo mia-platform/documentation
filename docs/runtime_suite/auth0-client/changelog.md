@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 3.2.3 - 15-12-2021
+
+### Fixed
+
+- Added parentheses to surround the query filter conditions before concatenating connection filter in AND in Lucene query
+
 ## 3.2.2 - 10-11-2021
 
 ### Added

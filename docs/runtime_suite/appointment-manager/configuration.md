@@ -65,7 +65,8 @@ It follows an example of a valid configuration:
       "reminder": "template_id"
     }
   },
-  "channels": ["email", "push", "sms"]
+  "channels": ["email", "push", "sms"],
+  "reminderThresholdMs": 86400000
 }
 ```
 
@@ -109,3 +110,18 @@ A correct configuration may be
   "channels": ["email", "push"]
 }
 ```
+
+#### reminderThresholdMs
+
+This field defines a time threshold (in milliseconds) under which reminders are not sent.
+For instance, if you don't want any reminders sent if the created appointment is set to happen below the next 24 hours, 
+you can define a threshold of `86400000` ms as follows:
+
+```json
+{
+  "reminderThresholdMs": 86400000
+}
+```
+
+This behavior also applies in case of appointment update.
+Please also note that if the threshold is not defined, reminders are always sent.
