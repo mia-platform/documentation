@@ -52,7 +52,7 @@ Inside the General Details tab you can change the RBAC sidecar service version a
 
 ### Permissions Tab
 
-In the **Permissions** tab can write your own permission policies that will be used by RBAC service needs to evaluate when receiving a new request. 
+In the **Permissions** tab can write your own permission policies that will be used by RBAC service needs to evaluate when receiving a new request.  
 
 You will find a read-only that shows your current permissions; if you want to modify them or create new ones you can click on the button `Edit permissions` button that will open a modal with two different editor.
 
@@ -71,7 +71,7 @@ You can find more information about [writing your own permissions here](./rbac_p
 If, for any reason, the service you wish to apply RBAC to does not expose any API documentation, or you don't have access to the codebase in order to implement
 your own documentation API you can always provide a manual routes configuration to the RBAC sidecar.
 
-In order to do so you can go to the Manual Routes configuration tab in the RBAC section and define your own routes by selecting the _Add New_ button. 
+In order to do so you can go to the Manual Routes configuration tab in the RBAC section and define your own routes by selecting the _Add New_ button.  
 In the creation form you will be asked for a microservice name (to be chosen among the ones that you have selected RBAC sidecar injection enabled for), then you'll have to provide a verb and a path that identify the API invocation and at last the Allowed Permission that should be required for that API.
 
 :::caution
@@ -97,16 +97,11 @@ Below a sequence diagram that describes the main flow between a clients and the 
 <Mermaid chart={`sequenceDiagram
 title: RBAC sequence diagram for policy evaluation
 participant client
-participant hierarchy_service
 participant rbac_service
 participant custom_service
 participant db
 client ->> rbac_service: [subject, api_path]
 activate rbac_service
-rbac_service ->> hierarchy_service: hierarchy filters
-activate hierarchy_service
-hierarchy_service ->> rbac_service : resources path list
-deactivate hierarchy_service
 rbac_service ->> db: get user permissions for resources
 activate db
 db ->> rbac_service: user permissions from bindings
@@ -123,17 +118,11 @@ deactivate rbac_service
 end`}/>
 
 
-:::warning
-The hierarchy service shown in the sequence diagram is an optional custom service that represents the resources hierarchy of your application domain. If not provided the RBAC service will still be able to handle different resources but there could be no implicit grant based on resources hierarchy.
-
-Hierarchy service integration has not been implemented yet!
-:::
-
 ### RBAC Storage
 
 RBAC is configured by design to load Roles and Bindings from MongoDB, in order to properly configure MongoDB connection string and collection names head to the **General Settings** tab
 change the values in the RBAC Storage card. These values are set by default to `{{MONGODB_URL}}`, `rbac-bindings` and `rbac-roles`; feel free to change the names to better suite your
-naming conventions and standards. 
+naming conventions and standards.  
 
 :::info
 You have to provide the collection names you whish to use in your project, when you save the configuration the new collections will be created and will be visible in the **MongoDB CRUD** section.
@@ -144,7 +133,6 @@ If you whish to change the collection names in a second occasion you **must** ma
 :::
 
 #### RBAC Data Models
-
 
 As previously said Roles and Bindings collections are created when saving your configuration according to the ones specified in the [General Settings](#general-settings-tab), the collection data models are described here.
 
@@ -177,7 +165,6 @@ The collection fields are:
 ##### Bindings
 
 A Binding represents an association between a set of Subjects (or groups), a set of Roles and (optionally) a Resource.
-
 
 :::note
 A _Subject_ may represent a user or another application; its identifier is retrieved by the RBAC Service from the Mia-Platform standard header `miauserid`
