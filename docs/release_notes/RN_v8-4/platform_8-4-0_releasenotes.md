@@ -66,4 +66,4 @@ This version fixes a bug in user search query generation when a connection is sp
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.6.6`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.6.7`.
