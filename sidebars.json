@@ -1437,49 +1437,6 @@
           ],
           "label": "Plugins List",
           "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "business_suite/microlc/overview",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/authentication",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/analytics",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/backend",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/core_configuration",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/general_configuration",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/plugin_configuration",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/core_plugins",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/microlc/setup",
-              "type": "doc"
-            }
-          ],
-          "label": "micro-lc",
-          "type": "category"
         }
       ],
       "label": "Plugins",

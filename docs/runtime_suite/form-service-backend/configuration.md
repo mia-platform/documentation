@@ -427,13 +427,13 @@ If you want to use the default value of the *formSchemaMapCrud* you need to expo
 
 ## Integration with microlc and Headless CMS
 
-Once configured the endpoints of the Form Service, you can use it as a microlc plugin following this [guide](../../business_suite/microlc/plugin_configuration) or as a CMS custom frontend following this [guide](../../business_suite/custom-frontends-integration-CMS).
+Once configured the endpoints of the Form Service, you can use it as a microlc plugin following this [guide](https://microlc.io/documentation/docs/micro-lc/plugin_configuration) or as a CMS custom frontend following this [guide](../../business_suite/custom-frontends-integration-CMS).
 
 Knowing the frontend endpoints described in the [overview](overview#how-it-works) can be useful during the configuration process.
 
 **Integration with microlc**
 
-In order to use the Form Service Frontend integrated with microlc, the [core configuration plugin parameters documentation](../../business_suite/microlc/core_configuration#plugin-parameters) should also be consulted. As an example, with a frontend service endpoint equal to `/form-service` and a `qiankun` plugin integration `qiankun`, developers can add a Form Builder plugin using this example microlc `plugins` configuration:
+In order to use the Form Service Frontend integrated with microlc, the [core configuration plugin parameters documentation](https://microlc.io/documentation/docs/micro-lc/core_configuration#plugin-parameters) should also be consulted. As an example, with a frontend service endpoint equal to `/form-service` and a `qiankun` plugin integration `qiankun`, developers can add a Form Builder plugin using this example microlc `plugins` configuration:
 
 ```json
 {
