@@ -421,6 +421,10 @@
         {
           "id": "dev_portal/authentication_configuration",
           "type": "doc"
+        },
+        {
+          "id": "dev_portal/notification_configuration",
+          "type": "doc"
         }
       ],
       "label": "Creation & Configuration",
@@ -1506,10 +1510,6 @@
       "items": [
         {
           "id": "marketplace/applications/mia_applications",
-          "type": "doc"
-        },
-        {
-          "id": "marketplace/applications/dev_portal_application",
           "type": "doc"
         },
         {

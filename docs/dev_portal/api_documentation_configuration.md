@@ -21,7 +21,7 @@ The API documentation can be configured in two possible ways:
 By default, the Dev Portal application configures the API documentation in **view mode**.
 :::
 
-If you wish to change this behavior, you can modify the `configuration.json` file of the `dev-portal-micro-lc-backend` microservice in the design section of the console. 
+If you wish to change this behavior, you can modify the `configuration.json` file of the `dev-portal-micro-lc-backend` microservice in the design area of the console. 
 
 You should be able to find the API documentation plugin configuration:
 

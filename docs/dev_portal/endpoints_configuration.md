@@ -8,78 +8,87 @@ In this paragraph, we will describe the endpoints that must be configured to cor
 
 We divided the configuration into macro areas: all these actions must be done in the `Endpoints` section of the console.
 
+:::info
+For each endpoint:
+1. Create a new endpoint as specified in the **Endpoint** column;
+2. Point this URL to the microservice specified in the **Microservice** column;
+3. Use the **Rewrite Base Path** specified.
+:::
+
 ## General configuration
 
-### Microlc frontend
+Configure the endpoint exposing the aggregated frontend plugins:
 
-1. Create a new endpoint called `/`;
-2. Point this URL to the microservice that exposes the `aggregated-dev-portal-frontends`;
-3. Use `/` as _Rewrite Base Path_.
+<table style={{textAlign:'left'}}>
+  <tr>
+    <th width='30%'>Endpoint</th><th width='30%'>Microservice</th><th width='20%'>Rewrite Base Path</th>
+  </tr>
+  <tr>
+    <td>/</td><td>aggregated-dev-portal-frontends</td><td>/</td>
+  </tr>
+</table>
 
 ## Backoffice configuration
 
-### Backoffice backend
+Expose the APIs necessary for the creation of the backoffice section:
 
-1. Create a new endpoint called `/back-office/api`;
-2. Point this URL to the microservice that exposes the `backoffice-micro-lc-backend`;
-3. Use `/` as _Rewrite Base Path_.
-
-### Files Service
-
-1. Create a new endpoint called `/files`;
-2. Point this URL to the microservice that exposes the `files-service`;
-3. Use `/` as _Rewrite Base Path_.
+<table style={{textAlign:'left'}}>
+  <tr>
+    <th width='30%'>Endpoint</th><th width='30%'>Microservice</th><th width='20%'>Rewrite Base Path</th>
+  </tr>
+  <tr>
+    <td>/back-office/api</td><td>backoffice-micro-lc-backend</td><td>/</td>
+  </tr>
+  <tr>
+    <td>/files</td><td>files-service</td><td>/</td>
+  </tr>
+</table>
 
 ## Dev portal configuration
 
-### Dev portal backend
+Expose the APIs necessary for the creation of the dev portal section:
 
-1. Create a new endpoint called `/dev-portal/api`;
-2. Point this URL to the microservice that exposes the `dev-portal-micro-lc-backend`;
-3. Use `/` as _Rewrite Base Path_.
-
-### Marketplace backend
-
-1. Create a new endpoint called `/bff`;
-2. Point this URL to the microservice that exposes the `dev-portal-marketplace-backend`;
-3. Use `/` as _Rewrite Base Path_.
-
-### Docusaurus template
-
-1. Create a new endpoint called `/docusaurus`;
-2. Point this URL to the microservice that exposes the `dev-portal-micro-lc-docusaurus`;
-3. Use `/` as _Rewrite Base Path_.
-
-### Docusaurus assets
-
-1. Create a new endpoint called `/documentation/assets`;
-2. Point this URL to the microservice that exposes the `dev-portal-micro-lc-docusaurus`;
-3. Use `/assets` as _Rewrite Base Path_.
-
-### Dev Portal assets
-
-1. Create a new endpoint called `/dev-portal/documentation/assets`;
-2. Point this URL to the microservice that exposes the `dev-portal-micro-lc-docusaurus`;
-3. Use `/assets` as _Rewrite Base Path_.
-
-### Api documentation
-
-1. Create a new endpoint called `/dev-portal/api-portal/api`;
-2. Point this URL to the microservice that exposes the `swagger-aggregator`;
-3. Use `/assets` as _Rewrite Base Path_.
+<table style={{textAlign:'left'}}>
+  <tr>
+    <th width='30%'>Endpoint</th><th width='30%'>Microservice</th><th width='20%'>Rewrite Base Path</th>
+  </tr>
+  <tr>
+    <td>/dev-portal/api</td><td>dev-portal-micro-lc-backend</td><td>/</td>
+  </tr>
+  <tr>
+    <td>/bff</td><td>dev-portal-marketplace-backend</td><td>/</td>
+  </tr>
+  <tr>
+    <td>/docusaurus</td><td>dev-portal-micro-lc-docusaurus</td><td>/</td>
+  </tr>
+  <tr>
+    <td>/documentation/assets</td><td>dev-portal-micro-lc-docusaurus</td><td>/assets</td>
+  </tr>
+  <tr>
+    <td>/dev-portal/documentation/assets</td><td>dev-portal-micro-lc-docusaurus</td><td>/assets</td>
+  </tr>
+  <tr>
+    <td>/dev-portal/api-portal/api</td><td>swagger aggregator</td><td>/</td>
+  </tr>
+</table>
 
 ## CRUD configuration
 
 Expose the following CRUD endpoints, in order to make the marketplace elements configurable on the backoffice:
-- `/components`
-- `/categories`
-- `/requests`
-- `/icons`
+
+<table style={{textAlign:'left'}}>
+  <tr>
+    <th width='26%'>Endpoint</th><th width='26%'>CRUD Collection</th>
+  </tr>
+  <tr><td>/components</td><td>components</td></tr>
+  <tr><td>/categories</td><td>categories</td></tr>
+  <tr><td>/requests</td><td>requests</td></tr>
+  <tr><td>/icons</td><td>icons</td></tr>
+</table>
 
 For each endpoint:
 1. Create a new endpoint called as specified;
 2. Point this URL to the CRUD with the corresponding name;
-3. Use `/` as _Rewrite Base Path_.
 
 ## Advanced configuration
 

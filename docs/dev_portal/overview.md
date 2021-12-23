@@ -1,7 +1,7 @@
 ---
 id: overview
-title: Overview
-sidebar_label: Overview
+title: Dev Portal Overview
+sidebar_label: Dev Portal Overview
 ---
 
 ## Introduction
