@@ -32,10 +32,10 @@ Here you are going to create an instance of the `Dev Portal application`.
 
 1. Go to the `Microservices` section, and open the detail of the microservice initially named `dev-portal-micro-lc-backend`;
    
-2. In the `ConfigMap` section, edit the [theming](../business_suite/microlc/core_configuration.md#theming) section of the file `configuration.json`, to customize the portal with your logos;
+2. In the `ConfigMap` section, edit the [theming](https://microlc.io/documentation/docs/micro-lc/core_configuration.md#theming) section of the file `configuration.json`, to customize the portal with your logos;
    
    :::caution
-   The remaining configurations are already set for the `Dev Portal`: to know more about their purpose, please consult the [`Core Configuration`](../business_suite/microlc/core_configuration.md) section of `micro-lc`. 
+   The remaining configurations are already set for the `Dev Portal`: to know more about their purpose, please consult the [`Core Configuration`](https://microlc.io/documentation/docs/micro-lc/core_configuration.md) section of `micro-lc`. 
    :::
 
 ### 2. Configure `api-portal`

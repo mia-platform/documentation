@@ -10,7 +10,7 @@ It has two different frontends: the **Form Builder** and the **Form Visualizer**
 
 - The Form Visualizer allows one to display forms created with the form builder. By using the form visualizer it is possible to fill forms and submit their data to a configurable endpoint.
 
-The Form Service as a [microlc plugin](../../business_suite/microlc/overview#plugins) can be used with microlc itself, but it can also be integrated with the Mia Platform Headless CMS as an [iframe plugin](../../business_suite/microlc/plugin_configuration#iframe-plugin).
+The Form Service as a [microlc plugin](https://microlc.io/documentation/docs/micro-lc/overview#plugins) can be used with microlc itself, but it can also be integrated with the Mia Platform Headless CMS as an [iframe plugin](https://microlc.io/documentation/docs/micro-lc/plugin_configuration#iframe-plugin).
 
 The output of the Form Builder is a JSON configuration of the form that later can be rendered with [formio.js renderer](https://github.com/formio/formio.js/wiki/Form-Renderer) or with the Form Visualizer.
 
