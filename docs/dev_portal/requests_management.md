@@ -42,7 +42,7 @@ In particular, a new request will be characterized by the following properties:
 
 When you select a received request, you will be able to see, along with all the request information, a **Manage Permissions** link.
 
-This link, which can be configured from the design section of the console, aims at speeding up the [API token generation](./api_token_generation.md) process. Its role is to redirect the user managing the requests to the page where he/she will be able to give users access privileges for a certain component.  
+This link, which can be configured from the design area of the console, aims at speeding up the [API token generation](./api_token_generation.md) process. Its role is to redirect the user managing the requests to the page where he/she will be able to give users access privileges for a certain component.  
 
 ![manage permissions](./img/manage_permissions.png)
 
@@ -50,7 +50,7 @@ This link, which can be configured from the design section of the console, aims 
 The Manage Permissions link helps the user manage the requests moving to the **API token generation page** faster.
 :::
 
-In order to edit this link, move to the design section of the console and go to `backoffice-micro-lc-backend` microservice.
+In order to edit this link, move to the design area of the console and go to `backoffice-micro-lc-backend` microservice.
 Move to the `requests.json` file and search for the `managePermissions` field inside the `dataSchema`.
 
 The default field configuration should look like this:

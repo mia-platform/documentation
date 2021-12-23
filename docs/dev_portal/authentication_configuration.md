@@ -4,7 +4,7 @@ title: Authentication Configuration
 sidebar_label: Authentication Configuration
 ---
 
-The Dev Portal can be protected by unauthorized users by configuring an authentication process. From the design section of the console, you can apply specific configurations to integrate different authentication providers. 
+The Dev Portal can be protected by unauthorized users by configuring an authentication process. From the design area of the console, you can apply specific configurations to integrate different authentication providers. 
 
 In this guide, we show how to configure the Dev Portal with [Auth0](https://auth0.com/).
 
@@ -12,7 +12,7 @@ In this guide, we show how to configure the Dev Portal with [Auth0](https://auth
 
 The first thing you want to do is to enable authentication on the Dev Portal entrypoints you want to protect. This step will inform the [Api Gateway](../runtime_suite/api-gateway/overview.md) to redirect any request to an authentication process.
 
-Move to the design section of the console, go to the endpoints page, and select a Dev Portal entrypoint you want to protect. By default, the main entrypoint selected when creating a new Dev Portal Application will be the `/` endpoint.
+Move to the design area of the console, go to the endpoints page, and select a Dev Portal entrypoint you want to protect. By default, the main entrypoint selected when creating a new Dev Portal Application will be the `/` endpoint.
 
 Move to the **Security Management** card and check the `Authentication Required` checkbox.
 
@@ -26,7 +26,7 @@ In general, authentication should be enabled for any endpoint giving the user ac
 
 Once you have enabled the authentication on the Dev Portal entrypoints, you need to properly configure the Api Gateway to correctly reroute your requests to an authentication process.
 
-From the design section of the console go to **Advanced** and select the `api-gateway` microservice.
+From the design area of the console go to **Advanced** and select the `api-gateway` microservice.
 
 :::info
 This will be the only step requiring an advanced configuration.

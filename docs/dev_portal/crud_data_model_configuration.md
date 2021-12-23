@@ -9,13 +9,48 @@ This section describes the data model with its related collections used by the M
 Currently, there are four collections: components, categories, requests, icons.
 
 :::info
-In order to facilitate the experience, we suggest importing the fields from the following **JSON files**:
-
-- <a download target="_blank" href="/docs_files_to_download/dev-portal/components.json">Components</a> 
-- <a download target="_blank" href="/docs_files_to_download/dev-portal/categories.json">Categories</a> 
-- <a download target="_blank" href="/docs_files_to_download/dev-portal/requests.json">Requests</a>
-- <a download target="_blank" href="/docs_files_to_download/dev-portal/icons.json">Icons</a> 
+In order to facilitate the experience, we suggest importing the fields from the following **JSON files**.
 :::
+
+<table style={{textAlign:'left'}}>
+  <tr>
+    <th width='30%'>Name</th>
+    <th width='30%'>Internal Endpoint</th>
+    <th width='10%' style={{textAlign:'center'}}>JSON File</th>
+  </tr>
+  <tr>
+    <td>components</td><td>/components</td>
+    <td style={{textAlign:'center'}}>
+      <a download target="_blank" href="/docs_files_to_download/dev-portal/components.json">
+        <img src="./img/download.svg" width="10" height="10"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>categories</td><td>/categories</td>
+    <td style={{textAlign:'center'}}>
+      <a download target="_blank" href="/docs_files_to_download/dev-portal/categories.json">
+        <img src="./img/download.svg" width="10" height="10"/>
+      </a>
+    </td>
+  </tr>
+    <tr>
+    <td>requests</td><td>/requests</td>
+    <td style={{textAlign:'center'}}>
+      <a download target="_blank" href="/docs_files_to_download/dev-portal/requests.json">
+        <img src="./img/download.svg" width="10" height="10"/>
+      </a>
+    </td>
+  </tr>
+    <tr>
+    <td>icons</td><td>/icons</td>
+    <td style={{textAlign:'center'}}>
+      <a download target="_blank" href="/docs_files_to_download/dev-portal/icons.json">
+        <img src="./img/download.svg" width="10" height="10"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Components
 This collection is used to store the components that will be displayed in the marketplace.
