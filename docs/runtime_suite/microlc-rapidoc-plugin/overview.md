@@ -31,7 +31,7 @@ After that, the situation should be similar to the following:
 
 ## RapiDoc configuration
 
-Like all the plugins of `micro-lc` you should refer to the [core configuration section](../../business_suite/microlc/core_configuration.md#plugins)
+Like all the plugins of `micro-lc` you should refer to the [core configuration section](https://microlc.io/documentation/docs/micro-lc/core_configuration#plugins)
 for the setup and to correctly configure RapiDoc you **must** set one `props`:
 
 - _openApiSpecUrl_ : the url to your `Swagger` or `OpenApi` specification in `json` format.
