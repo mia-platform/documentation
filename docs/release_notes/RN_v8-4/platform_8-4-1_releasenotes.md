@@ -24,6 +24,13 @@ A bug that caused the missing of some Single View strategies, although set in th
 ### Improvements
 
 
+## Marketplace
+
+### Marketplace updates
+
+#### Authentication v2.4.0
+
+Added new Redis environment variables `REDIS_USERNAME` and `REDIS_PASSWORD`. Now Redis connection can receive username and password
 
 ## How to update your Console
 
