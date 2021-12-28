@@ -9,7 +9,6 @@ _December 28, 2021_
 
 ## Console
 
-#### Added link to runtime Area in Homepage
 ### Bug Fix
 
 #### Missing Single View strategies
