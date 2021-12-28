@@ -15,7 +15,9 @@ _December 28, 2021_
 
 ### Bug Fix
 
+#### Missing Single View strategies
 
+A bug that caused the missing of some Single View strategies, although set in the configuration, has been fixed.
 
 ### Improvements
 
