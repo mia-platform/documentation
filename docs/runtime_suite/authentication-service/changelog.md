@@ -10,8 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 2.4.0 - 23-12-2021
+
 ### Added
 - inserted okta provider authorization
+- Redis connection can receive username and password 
 
 ## 2.3.0 - 17-09-2021
 
