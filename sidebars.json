@@ -1518,6 +1518,10 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-4/v8.4.1",
+              "type": "doc"
+            },
+            {
               "id": "release_notes/RN_v8-4/v8.4.0",
               "type": "doc"
             }
