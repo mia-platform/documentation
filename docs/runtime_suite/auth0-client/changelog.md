@@ -62,7 +62,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Password grant type provides now openid scope by default 
+- Password grant type provides now openid scope by default
 
 ### Updated
 
@@ -72,77 +72,85 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 3.0.1 - 08-10-2020
 
 ### Changed
-  * changed auth0helpers to retrieve a token by reading a `json` response
-  * config.schema.json to accept also `defaultConnection`
-  * modified getIDToken error message into `access token is empty`
-  * returning 403 instead of 500 in the case of failed password credentials token
+
+- changed auth0helpers to retrieve a token by reading a `json` response
+- config.schema.json to accept also `defaultConnection`
+- modified getIDToken error message into `access token is empty`
+- returning 403 instead of 500 in the case of failed password credentials token
 
 ## 3.0.0 - 06-10-2020
 
 **BREAKING CHANGE**
+
 - Updated glogger v2.0.3 which brings new logging format, possibly breaking for log processing stack
 
 ## 2.3.0 - 03-04-2020
 
 ### Added
-  * implemented initial `connection` support for all currently supported Auth0 routes. Note that this change is not breaking: if clients configuration is not modified to support specific connection then the APIs will work as before.
+
+- implemented initial `connection` support for all currently supported Auth0 routes. Note that this change is not breaking: if clients configuration is not modified to support specific connection then the APIs will work as before.
   Changed routes are the following:
-    - `GET /authorize`: will select connection based on request, using first available connection if none is provided;
-    - `POST /oauth/token`: in a similar fashion to `/authorize` will use selected connection if supported otherwise defaults to the first available if none is provided.
-    - `GET /users`: will filter request connections based on ManagementClient supported connection, if none is provided all supported connections are used;
-    - `POST /user/:userId`: will use default connection from ManagementClient if no connection is provided, otherwise will use the one provided (if supported)
-    
+  - `GET /authorize`: will select connection based on request, using first available connection if none is provided;
+  - `POST /oauth/token`: in a similar fashion to `/authorize` will use selected connection if supported otherwise defaults to the first available if none is provided.
+  - `GET /users`: will filter request connections based on ManagementClient supported connection, if none is provided all supported connections are used;
+  - `POST /user/:userId`: will use default connection from ManagementClient if no connection is provided, otherwise will use the one provided (if supported)
+
 ## 2.2.1 - 24-02-2020
 
 ## Added
-  * handle graceful shutdown, configurable with new environment variable `DELAY_SHUTDOWN_SECONDS`
+
+- handle graceful shutdown, configurable with new environment variable `DELAY_SHUTDOWN_SECONDS`
 
 ## 2.2.0
 
 ### Added
 
-  * handle grant_type `password` on `/oauth/token` endpoint;
+- handle grant_type `password` on `/oauth/token` endpoint;
 
 ### Fixed
 
-  * userinfo, logout and refresh base their flows on Authorization or Cookie headers, ignoring website scope.
+- userinfo, logout and refresh base their flows on Authorization or Cookie headers, ignoring website scope.
 
 ### Updated
- 
-  * Added in the README file a specification for `X-Forwarded-Host` and `Host` header usage, specified also configuration usage for the `website` scope to get a session cookie instead of an Access Token.
+
+- Added in the README file a specification for `X-Forwarded-Host` and `Host` header usage, specified also configuration usage for the `website` scope to get a session cookie instead of an Access Token.
 
 ## 2.0.0 - 08-01-2020
 
 ### BREAKING CHANGE
 
-  * changed required env variable `REDIS_HOST` to `REDIS_HOSTS`;
-  * changed configuration file structure;
-  * added scope website to obtain a session cookie, otherwise oidc token are returned;
+- changed required env variable `REDIS_HOST` to `REDIS_HOSTS`;
+- changed configuration file structure;
+- added scope website to obtain a session cookie, otherwise oidc token are returned;
 
 ### Added
-  * supported redis sentinel and multiple redis hosts;
+
+- supported redis sentinel and multiple redis hosts;
 
 ### Fixed
-  * do not set `Max-Age` for `sid` cookie deletion;
-  * use [configlib](https://github.com/mia-platform/configlib) library instead of helpers package into service. This fixes the configuration file to be case sensitive;
+
+- do not set `Max-Age` for `sid` cookie deletion;
+- use [configlib](https://github.com/mia-platform/configlib) library instead of helpers package into service. This fixes the configuration file to be case sensitive;
 
 ### Refactor
-  * use [glogger](https://github.com/mia-platform/glogger) instead of logger package into service.
+
+- use [glogger](https://github.com/mia-platform/glogger) instead of logger package into service.
 
 ## 1.0.0 - 02-12-2019
 
 ### Added
- * handling all `app_metadata` query strings on `GET /users` API. Note that groups filtering has been moved beneath the `app_metadata` scope, and is no more handled has a standalone query string;
- * forwarding some query string when translating Auth0 Get users API params;
- * implemented change password API;
- * implemented user list retrieval API;
- * implemented user delete API;
- * implemented users update API;
- * implemented a mux middleware for client configuration selection and context injection and users creation API;
- * implemented redirectUri query string for provisioning of a redirect uri at the end of the /oauth/token flow;
- * implemented refresh API;
- * implemented session deletion from redis on logout;
- * implemented refresh token flow and integrated it into userinfo flow;
- * implemented token management with redis caching;
- * basic endpoints for login, logout and user info gathering: `/authorize`, `/oauth/token`, `/logout`, `/userinfo`, `/users/me`;
- * clients configuration file definition and dynamic client selection in request handlers.
+
+- handling all `app_metadata` query strings on `GET /users` API. Note that groups filtering has been moved beneath the `app_metadata` scope, and is no more handled has a standalone query string;
+- forwarding some query string when translating Auth0 Get users API params;
+- implemented change password API;
+- implemented user list retrieval API;
+- implemented user delete API;
+- implemented users update API;
+- implemented a mux middleware for client configuration selection and context injection and users creation API;
+- implemented redirectUri query string for provisioning of a redirect uri at the end of the /oauth/token flow;
+- implemented refresh API;
+- implemented session deletion from redis on logout;
+- implemented refresh token flow and integrated it into userinfo flow;
+- implemented token management with redis caching;
+- basic endpoints for login, logout and user info gathering: `/authorize`, `/oauth/token`, `/logout`, `/userinfo`, `/users/me`;
+- clients configuration file definition and dynamic client selection in request handlers.

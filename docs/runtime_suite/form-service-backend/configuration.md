@@ -111,7 +111,7 @@ This part of the configuration object allows the customization of the Form Build
 - *type*: string;
 - *required*: `false`;
 - *description*: the primary color that is applied to the Form Builder items and buttons, accepted values are 3, 6, or 8 digits Hex and [CSS color keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#color_keywords);
-- *default*: the microlc primaryColor if the Form Builder is used as microlc plugin, otherwise the formio.js stylesheet is used.
+- *default*: the micro-lc primaryColor if the Form Builder is used as micro-lc plugin, otherwise the formio.js stylesheet is used.
 
 Here an example of a *theming* object to add in Form Builder configuration `JSON`:
 
@@ -425,15 +425,15 @@ The required properties (specified in the [form schema map CRUD endpoint paramet
 
 If you want to use the default value of the *formSchemaMapCrud* you need to expose this CRUD with the `/form-schema-map` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
-## Integration with microlc and Headless CMS
+## Integration with micro-lc and Headless CMS
 
-Once configured the endpoints of the Form Service, you can use it as a microlc plugin following this [guide](../../business_suite/microlc/plugin_configuration) or as a CMS custom frontend following this [guide](../../business_suite/custom-frontends-integration-CMS).
+Once configured the endpoints of the Form Service, you can use it as a micro-lc plugin following this [guide](https://microlc.io/documentation/docs/micro-lc/plugin_configuration) or as a CMS custom frontend following this [guide](../../business_suite/custom-frontends-integration-CMS).
 
 Knowing the frontend endpoints described in the [overview](overview#how-it-works) can be useful during the configuration process.
 
-**Integration with microlc**
+**Integration with micro-lc**
 
-In order to use the Form Service Frontend integrated with microlc, the [core configuration plugin parameters documentation](../../business_suite/microlc/core_configuration#plugin-parameters) should also be consulted. As an example, with a frontend service endpoint equal to `/form-service` and a `qiankun` plugin integration `qiankun`, developers can add a Form Builder plugin using this example microlc `plugins` configuration:
+In order to use the Form Service Frontend integrated with micro-lc, the [core configuration plugin parameters documentation](https://microlc.io/documentation/docs/micro-lc/core_configuration#plugin-parameters) should also be consulted. As an example, with a frontend service endpoint equal to `/form-service` and a `qiankun` plugin integration `qiankun`, developers can add a Form Builder plugin using this example micro-lc `plugins` configuration:
 
 ```json
 {
@@ -456,10 +456,10 @@ In order to use the Form Service Frontend integrated with microlc, the [core con
 
 :::caution
 
-`formio.js` use Font Awesome which loads related `css` using relative urls. In order to display all the `formio.js` icons in the Form Service Frontend integrated as a microlc plugin, you need to create an endpoint to your Form Service Frontend microservice (with base path equal to `MICRO_LC_ENDPOINT/static/media`) with the following base path rewrite `/static/media` to expose the required resources. 
+`formio.js` use Font Awesome which loads related `css` using relative urls. In order to display all the `formio.js` icons in the Form Service Frontend integrated as a micro-lc plugin, you need to create an endpoint to your Form Service Frontend microservice (with base path equal to `MICRO_LC_ENDPOINT/static/media`) with the following base path rewrite `/static/media` to expose the required resources. 
 This endpoint (`from Form Service Frontend v1.1.0`) must be `MICRO_LC_ENDPOINT/form-service-frontend-fonts`, remember to use "Base Path Rewrite"  `/form-service-frontend-fonts` in the console.
 
-Note also that with `/` as microlc endpoint, the required endpoint must be `/static/media` and `from Form Service Frontend v1.1.0` must be `/form-service-frontend-fonts`.
+Note also that with `/` as micro-lc endpoint, the required endpoint must be `/static/media` and `from Form Service Frontend v1.1.0` must be `/form-service-frontend-fonts`.
 
 :::
 
@@ -528,7 +528,7 @@ The *queryStringKeys* in the previous examples must match exactly the Form Servi
 
 ## Advanced Configuration
 
-Depending on the Form Service chosen integration (microlc or CMS) further configurations are needed in the Advanced section of the console. The config files to edit are in the `api-gateway` section. The following examples assumes that microservices names and endpoints are the one used in the previous sections of this document.
+Depending on the Form Service chosen integration (micro-lc or CMS) further configurations are needed in the Advanced section of the console. The config files to edit are in the `api-gateway` section. The following examples assumes that microservices names and endpoints are the one used in the previous sections of this document.
 
 A standalone use of the Form Service requires editing the following files to ensure correct API calls from the frontend to the backend service:
 - `maps-proxyUrl.before.map`:
@@ -540,7 +540,7 @@ A standalone use of the Form Service requires editing the following files to ens
 	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/form-service/api/v1/forms/" "form-service-backend";
 	```
 
-A microlc use of the Form Service requires editing the following files to ensure correct API calls from the frontend to the backend service:
+A micro-lc use of the Form Service requires editing the following files to ensure correct API calls from the frontend to the backend service:
 - `maps-proxyUrl.before.map`:
 	```shell
 	"~^(GET|POST|PUT)-/builder/api/v1/forms(?<path>/.*|$)$" "$path";
@@ -554,7 +554,7 @@ A microlc use of the Form Service requires editing the following files to ensure
 	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/visualizer/api/v1/forms/" "form-service-backend";
 	```
 
-The previous example refers to `/` microlc endpoint, a different endpoint requires adjustments.
+The previous example refers to `/` micro-lc endpoint, a different endpoint requires adjustments.
 
 A CMS integration of the Form Service require editing the following files to allow correct API calls from the frontend to the backend service (first line) and to allow correct visualization of the frontend from the CMS (second line):
 - `maps-proxyBackofficeUrl.before.map`:
