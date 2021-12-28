@@ -10,7 +10,7 @@ It has two different frontends: the **Form Builder** and the **Form Visualizer**
 
 - The Form Visualizer allows one to display forms created with the form builder. By using the form visualizer it is possible to fill forms and submit their data to a configurable endpoint.
 
-The Form Service as a [microlc plugin](https://microlc.io/documentation/docs/micro-lc/overview#plugins) can be used with microlc itself, but it can also be integrated with the Mia Platform Headless CMS as an [iframe plugin](https://microlc.io/documentation/docs/micro-lc/plugin_configuration#iframe-plugin).
+The Form Service as a [micro-lc plugin](https://microlc.io/documentation/docs/micro-lc/overview#plugin-management) can be used with micro-lc itself, but it can also be integrated with the Mia Platform Headless CMS as an [iframe plugin](https://microlc.io/documentation/docs/micro-lc/plugin_configuration#iframe-plugin).
 
 The output of the Form Builder is a JSON configuration of the form that later can be rendered with [formio.js renderer](https://github.com/formio/formio.js/wiki/Form-Renderer) or with the Form Visualizer.
 
@@ -53,7 +53,7 @@ The `/visualizer/fill-form/` and `/visualizer/{id}` routes (`from Form Service F
 
 :::info
 
-The frontend service endpoints are as described before when the Form Service Frontend is used in microlc. When the frontend is used standalone or integrated with the Mia-Platform Headless CMS the base path is `/#/`. With a frontend service endpoint equal to `/form-service`, the path to create a new custom form is `/form-service/#/builder/create-form`.
+The frontend service endpoints are as described before when the Form Service Frontend is used in micro-lc. When the frontend is used standalone or integrated with the Mia-Platform Headless CMS the base path is `/#/`. With a frontend service endpoint equal to `/form-service`, the path to create a new custom form is `/form-service/#/builder/create-form`.
 
 :::
 
@@ -69,7 +69,7 @@ The backend service exposes the following APIs:
   - ` GET /visualizer/forms/{id}`: it returns a submitted form by ID, enabling the review of data provided by the end user;
   - ` PUT /visualizer/forms/{id}`: it updates a submitted form by ID.
 
-These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in microlc or Headless CMS).
+These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS).
 
 ## Further details
 

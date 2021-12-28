@@ -15,6 +15,8 @@ The environment variables needed by the service are:
 - **SERVICE_VERSION**
 - **DELAY_SHUTDOWN_SECONDS**
 - **REDIS_HOST**
+- **REDIS_USERNAME**
+- **REDIS_PASSWORD**
 - **CONFIG_FILE_PATH**
 - **CONFIG_FILE_NAME**
 - **USERS_CRUD_BASE_URL**
