@@ -11,7 +11,9 @@ _December 28, 2021_
 
 ### New Features
 
+#### Added link to runtime Area in Homepage
 
+Clicking on the number of pods in the pod status metric of one of the homepage environment cards in the project homepage will redirect to the corresponding environment Runtime Area.
 
 ### Bug Fix
 
