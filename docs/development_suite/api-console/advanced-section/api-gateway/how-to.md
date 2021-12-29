@@ -239,3 +239,49 @@ The variables are:
 - `$host` : in this order of precedence, host name from the request line, or host name from the *Host* request header field, or the server name matching a request
 - `$proxy_add_x_forwarded_for` : the *X-Forwarded-For* client request header field with the `$remote_addr` variable appended to it, separated by a comma
 - `$http_upgrade` : the *upgrade* client request header
+
+## How to manage authorization in a multi gateway architecture
+
+Sometimes projects can get big and, for this reason, it's better do segregate different macro features inside different projects, each one with its own set of resources. 
+
+In these cases it may be useful to have a single "gateway project" that handles requests coming from API consumers and dispatches them to the right `api-gateway` of other projects (let's call these "functional projects"). This configuration eases the API management, as all the endpoints that are exposed, for example, on the internet, are configured in a single project: the gateway project.
+
+Another advantage of such a configuration is that the authorization process can be centralized at the gateway level, freeing all the sub projects from the burden of managing client authentication and authorization.
+
+In [this section](../../../set-up-infrastructure/authorization-flow.md) we described how the authorization flow works for a single project. In few words, in order to activate the authorization flow for a project you need to install the **Authorization Service**.  
+The Authorization Service is the service that resolves if the caller is authorized to invoke a certain endpoint and defines a set of _platform headers_ to inform the rest of the architecture about the authorization of the client.
+
+For instance, the Authorization Service sets these headers in the response that it returns to the API Gateway:
+
+- `Mia-Allowed`
+- `Mia-Groups`
+- `Mia-Userid`
+
+These headers are attached to the response that the API Gateway receives from the Authorization Service, and contain information about the logged user/client.
+
+If authorization passes, the Api Gateway proxies the request to the designated client. In the context of a multi gateway architecture, where the first API Gateway is part of the gateway project, the client that will receive the request is the API Gateway of another project.
+
+Normally, an API Gateway expects the incoming request to be from a client, not another API Gateway, and it doesn't consider incoming platform headers, as the client would be able to self-authorize or impersonate another user.
+
+For this reason, if you want all the auth information passing through the second API Gateway, without having to setup another Authorization Service at the functional project level, you must inform the API Gateway, at the functional project level, about the legitimacy of the incoming platform headers.
+
+In order to do so, an advanced configuration of the API Gateway is required. Here are described the steps to set such an advanced configuration:
+
+1. Open the Console and go the Design section of the functional project of interest.
+2. Go to the Advanced mode
+3. Open the advanced configuration file named `auth-usage.conf` under the section `api-gateway`, and write this piece of configuration
+
+```
+set $mia_userid $http_miauserid;
+set $mia_groups $http_miagroups;
+set $mia_allowed "1";
+set $mia_userproperties $http_miauserproperties;
+```
+
+4. Save and deploy
+
+:::caution
+It's worth underlying the importance of the line `set $mia_allowed "1";`, which causes the API Gateway to implicitly authorize all the incoming calls.  
+This could be quite of a problem if the API Gateway is directly exposed to the clients (through the Internet or an internal network).  
+For this reason, in a multi-gateway architecture, it is important to ensure that all the authorization phase, if necessary, is resolved at the gateway project level.
+:::
