@@ -200,7 +200,7 @@ Let's get back on the IDE and open `test/index.test.js` file and replace the "In
 
 ```js
 t.test('GET /hello', (t) => {
-  t.test('Correct message', async (t) => {
+  t.test('Correct message', async(t) => {
     const response = await fastify.inject({
       method: 'GET',
       url: '/hello',
