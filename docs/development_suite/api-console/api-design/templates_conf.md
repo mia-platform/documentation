@@ -446,7 +446,7 @@ When creating a service from marketplace a link to the original component id can
 
 #### Configure Console Links
 
-A service created from marketplace can feature custom links to other console pages, managed by different microfrontend plugins; to configure them on newly created services setup new objects in the `links` property for each template or plugin you whish.
+A service created from marketplace can feature custom links to other console pages, managed by different microfrontend plugins; to configure them on newly created services setup new objects in the `links` property for each template or plugin you wish.
 
 A link is an object shaped as follows:
 

@@ -8,8 +8,8 @@ sidebar_label: RBAC API Configuration
 
 If your service exposes the OpenAPI 3 Specification of its APIs all you have to do when enabling RBAC is:
 
- 1. make sure the API Documentation Path has been specified for your service in the [Microservice section](../../../development_suite/api-console/api-design/services);
- 1. define in your code the `x-permission` custom attribute
+ 1. make sure the API Documentation Path has been specified for your service in the [Microservice section](../../../development_suite/api-console/api-design/services#microservice);
+ 2. define in your code the `x-permission` custom attribute
 
 
 The RBAC service will configure itself on boot by contacting your application service, fetching its OpenAPI documentation.
@@ -21,7 +21,7 @@ The `x-permission` attribute is shaped as an object with the following propertie
  - `allow`: the name of the permission policy that should be executed upon the API invocation.
 
 
-For example, if you want the `greetings.read` permission policy to be evaluated when invoking the `GET /hello` API your custom service must define its API documentation as follows: 
+For example, if you want the `project.read` permission policy to be evaluated when invoking the `GET /hello` API your custom service must define its API documentation as follows: 
 
 ```json
 {
