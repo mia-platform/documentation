@@ -14,7 +14,7 @@ The environment variables of this service are the following:
 
 * `MONGODB_URL`: it is required. It is the [connection string](https://docs.mongodb.com/manual/reference/connection-string/) for MongoDB. Note that when an API performs heavy read operation on MongoDB, sometimes can be useful to modify the [read preferences](https://docs.mongodb.com/manual/core/read-preference/). This must be specified in the [connection string](https://docs.mongodb.com/manual/reference/connection-string/#read-preference-options).
 * `ENABLE_PROFILER`: it is not required. If set to `true`, the service will log (at info level) the timing info for the first and the last record returned by the cursor.
-* `PROFILE_DIR`: path to the profiles directory, can be any path were you whish to mount configuration files.
+* `PROFILE_DIR`: path to the profiles directory, can be any path were you wish to mount configuration files.
 
 Other required environment variables are the one required by [Mia-Platform Node.js Service Library](https://github.com/mia-platform/custom-plugin-lib/#environment-variables-configuration).
 
