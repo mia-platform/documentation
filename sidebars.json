@@ -1494,6 +1494,17 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-5/v8.5.0",
+              "type": "doc"
+            }
+          ],
+          "label": "v8.5",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
               "id": "release_notes/RN_v8-4/v8.4.1",
               "type": "doc"
             },
