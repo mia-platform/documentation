@@ -300,6 +300,16 @@ Custom services configuration now supports ConfigMaps larger than __1MB__ (this 
 
  ![service-add-file-new](img/Add_file_-_subpath_configmap.png)
 
+#### Shared ConfigMaps
+
+In the same project, different microservices could need to use the same ConfigMap (i.g. ER schema in a Fast Data project). Therefore, it is possible to use the ConfigMaps which already exist inside the project. To do that, you have to create a new ConfigMap for a microservice, selecting from the dropdown the name of the desired ConfigMap you want to use.
+In this way, you link the microservice to a ConfigMap shared by other microservices. 
+
+![Shared configmaps](img/sharedconfig.png)
+
+Digital projects are often in evolution, and for this reason, the user could need to modify his microservices, even the shared ConfigMaps. 
+This process is easy because if a shared ConfigMaps is modified the changes will affect also the other microservices. With the same freedom, it is possible to delete a shared ConfigMaps from a microservice if you need to develop a new custom configuration. In this case, the elimination will not affect all the microservices but only the edited one.
+
 #### Secrets
 
 You can use this type of configuration in order to mount Kubernetes Secrets to your microservice.
