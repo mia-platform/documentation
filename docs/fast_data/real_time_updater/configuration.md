@@ -32,6 +32,7 @@ The Real-Time Updater needs some environment variables and some configurations f
 - KAFKA_PROJECTION_CHANGES_FOLDER: path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).
 - GENERATE_KAFKA_PROJECTION_CHANGES: defines whether the projection changes have to be send to Kafka too or not. Default is `false`(v3.4.0 or above).
 - KAFKA_CONSUMER_MAX_WAIT_TIME: defines the maximum waiting time of Kafka Consumer for new data in batch. Default is 500 ms.
+- COMMIT_MESSAGE_LOGGING_INTERVAL: specify the interval in *ms* of logging the info that messages have been committed. Default is 3000.
 
 ## Custom Projection Changes Collection
 
@@ -118,16 +119,24 @@ An example:
 
 ### Kafka Projection Changes configuration
 
+Projection changes are saved on mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
+
 This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.   
 You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic kafka you set.
 
 
-:::info:::
+:::info
 This feature is available from the version v3.4.0 or above of the service
 :::
 
-The mountPath used for these configuration is defined by the environment variable KAFKA_PROJECTION_CHANGES_FOLDER.  
-This configuration have to contain a file `kafkaProjectionChanges.json` as the one below:
+
+To do that, you need to set two environment variables:
+
+- `KAFKA_PROJECTION_CHANGES_FOLDER`: path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).
+- `GENERATE_KAFKA_PROJECTION_CHANGES`: defines whether the projection changes have to be sent to Kafka too or not. Default is `false`(v3.4.0 or above).
+
+You have to create a *configuration* with the same path as the one defined by the environment variable `KAFKA_PROJECTION_CHANGES_FOLDER`.
+Then, you have to create a configuration file `kafkaProjectionChanges.json` inside that configuration. The configuration is a json file like the following one:
 
 ```json
 {
@@ -153,6 +162,13 @@ Example:
         "projectionChanges": {
             "sv_pointofsale": {
                 "topic": "my-project.development.sv-pointofsale-pc-json",
+            }
+        }
+    },
+    "another-projection": {
+        "projectionChanges": {
+            "sv_customer": {
+                "topic": "my-project.development.sv-customer-pc-json"
             }
         }
     }
@@ -234,3 +250,24 @@ Example:
     }
 }
 ```
+
+### Prevent projection to be overwritten
+
+During a rebalancing or a massive initial load with multiple replicas of the real time updater, a batch of old messages that have not been committed yet could be read by the real time updater. In fact, Kafka ensures that messages are received, in order, at least once.
+
+To prevent that old messages that have already updated the projection, overwrite the projection again, you can set the environment variable `FORCE_CHECK_ON_OFFSET` to `true`.   
+
+This setting is **strongly** recommended when you have both insert/update and delete operations.
+
+:::caution
+In future versions of the Real-Time Updater this feature will be turned on as default, with no chance of turning off. 
+At the moment, you can keep it turned off just to be able to adapt your services in case they need some fix.
+:::
+
+### Kafka group rebalancing behavior
+
+If a Kafka group rebalancing happens after that a projection has already been updated, projection changes will be generated anyway and the Real Time updater will still try to commit though.
+
+:::note
+This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, th service would stop without generating any projection change.
+:::
