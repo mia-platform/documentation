@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Kafka2Rest
+title: Kafka2Firebase
 sidebar_label: Overview
 ---
 This is a plugin made for converting kafka messages into firebase push. It takes as input a kafka message composed as following:

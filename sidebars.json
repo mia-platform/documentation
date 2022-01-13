@@ -699,21 +699,6 @@
         {
           "id": "runtime_suite/session-manager",
           "type": "doc"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "runtime_suite/export-service/overview",
-              "type": "doc"
-            },
-            {
-              "id": "runtime_suite/export-service/configuration",
-              "type": "doc"
-            }
-          ],
-          "label": "Export Service",
-          "type": "category"
         }
       ],
       "label": "Core Services",
@@ -953,6 +938,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Export Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/export-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/export-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/export-service/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Files Service",
               "items": [
                 {
@@ -1019,12 +1023,39 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/form-service-backend/form_assignments_configuration"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/form-service-backend/changelog"
                 },
                 {
                   "type": "category",
                   "label": "docs_files_to_download",
                   "items": []
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Form Service Frontend",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-frontend/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-frontend/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-frontend/form_assignments"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-frontend/changelog"
                 }
               ]
             },

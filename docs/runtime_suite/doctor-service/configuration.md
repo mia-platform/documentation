@@ -112,7 +112,7 @@ In the following example we will set just one tag, the core tag, just for core s
 
 ```
 
-This way, for `swagger-aggregator` service, doctor-service will call the `/-/check-up` route at `https://auth-service:8888/api/v2/-/check-up`.  
+This way, for `swagger-aggregator` service, doctor-service will call the `/-/check-up` route at `https://swagger-aggregator/-/check-up`, instead for `v1-adapter` service, doctor-service will call the `/-/check-up` route at `https://v1-adapter:8888/api/v2/-/check-up`.  
 
 In this way, we should have the following routes:
 
