@@ -1,12 +1,12 @@
 ---
 id: rbac_policies
-title: Write RBAC Permissions
-sidebar_label: RBAC Permissions
+title: Write RBAC Policies
+sidebar_label: RBAC Policies
 ---
 
-# Write RBAC Permission
+# Write RBAC Policies
 
-RBAC Permission is expressed by OpenPolicy Agent policies, for this reason they must be written using the **Rego language**.
+RBAC Policies is expressed by OpenPolicy Agent policies, for this reason they must be written using the **Rego language**.
 
 You can find all the details about it in the following links:
 
@@ -69,7 +69,7 @@ If `headerKey` doesn't exist the output returned is an empty string.
 
 ## Policy examples
 
-The following examples show how to write a policy on the permission **api_key**, that checks if the request contains the header **x-api-key**.
+The following examples show how to write a policy named **api_key**, that checks if the request contains the header **x-api-key**.
 In the first example it uses the headers key of input.request as a map, whereas in the second example it uses the build-in function.
 
 ```rego
@@ -91,13 +91,9 @@ api_key {
 }
 ```
 
-:::info
-You may want to use a `.` character when defining your **allow** `x-permission` to specify a namespace for your permissions (i.e. `dishes.read`, `dishes.write`); however since the `.` character is not supported by Rego as policy name it will be automatically replaced with an `_` by the RBAC Service.
-:::
+# Write RBAC Policies Tests
 
-# Write RBAC Permission Tests
-
-The Permission policy testing framework also leverages Open Policy Agent technology and so, in order to write valid tests, you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
+The policies testing framework also leverages Open Policy Agent technology and so, in order to write valid tests, you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
 
 An example of test written for the previous policy example can be:
 
@@ -114,8 +110,8 @@ test_api_key_not_allowed {
 ```
 
 :::caution
-If any of your tests do not pass you won't be able to save your permissions changes! You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
+If any of your tests do not pass you won't be able to save your policies changes! You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
 
-It's still possible to save your permissions if you have no test implemented, however this is **NOT RECOMMENDED**!
+It's still possible to save your policies if you have no test implemented, however this is **NOT RECOMMENDED**!
 :::
 <br/>

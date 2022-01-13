@@ -18,10 +18,9 @@ The RBAC service will configure itself on boot by contacting your application se
 
 The `x-permission` attribute is shaped as an object with the following properties:
 
- - `allow`: the name of the permission policy that should be executed upon the API invocation.
+ - `allow`: the name of the Rego policy that should be executed upon the API invocation.
 
-
-For example, if you want the `project.read` permission policy to be evaluated when invoking the `GET /hello` API your custom service must define its API documentation as follows: 
+For example, if you want the `project_read` policy to be evaluated when invoking the `GET /hello` API your custom service must define its API documentation as follows: 
 
 ```json
 {
@@ -29,7 +28,7 @@ For example, if you want the `project.read` permission policy to be evaluated wh
         "/hello": {
             "get": {
                 "x-permission": {
-                    "allow": "project.read",
+                    "allow": "project_read",
                 }
             }
         }
@@ -37,7 +36,7 @@ For example, if you want the `project.read` permission policy to be evaluated wh
 }
 ```
 
-The `project.read` permission will be mapped to the `project_read` policy you'll have to [write in the permission tab](./rbac_policies).
+This way, the `project_read` policy that you have written in the [Policies tab](./rbac_policies) will be evaluated.
 
 :::caution
 If your service does not expose such API or you want to configure it manually, you can always use [manual routes configuration](./rbac#manual-routes-tab).
