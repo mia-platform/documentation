@@ -32,7 +32,7 @@ The new RBAC section is still in an early development stage under the `preview` 
 
 It is now possible to configure the Dev Portal so that when a new access request for a component is requested, the manager is automatically notified via e-mail.
 
-#### Shared configmap
+#### Shared ConfigMaps
 
 It is possible to configure a microservice using a Configmap which already exists inside the project. You can find [here](../../development_suite/api-console/api-design/services#shared-configmaps) more details.
 
