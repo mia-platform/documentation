@@ -143,6 +143,19 @@
     "docLandingPage": "runtime_suite/doctor-service/configuration"
   },
   {
+    "name": "Export Service",
+    "description": "\"This service helps you manage Excel, CSV or JSON export from other services using jsonl.",
+    "category": {
+      "id": "database",
+      "label": "Core Plugins - Database Management"
+    },
+    "supportedBy": "Mia-Platform",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/export-service_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-platform_image.png",
+    "docLandingPage": "runtime_suite/export-service/overview"
+  },
+  {
     "name": "Files Service",
     "description": "Upload, download and handle your files using MongoDB, S3 or Google Storage.",
     "category": {
@@ -180,6 +193,19 @@
     "imagePath": "docs/runtime_suite/marketPlaceImg/form-service-backend_image.png",
     "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
     "docLandingPage": "runtime_suite/form-service-backend/overview"
+  },
+  {
+    "name": "Form Service Frontend",
+    "description": "Build and manage custom forms.",
+    "category": {
+      "id": "frontendbuilder",
+      "label": "Add-ons - Frontend Builders"
+    },
+    "supportedBy": "Mia-Care",
+    "type": "plugin",
+    "imagePath": "docs/runtime_suite/marketPlaceImg/form-service-frontend_image.png",
+    "supportedByImagePath": "docs/runtime_suite/marketPlaceImg/supported_by_mia-care_image.png",
+    "docLandingPage": "runtime_suite/form-service-frontend/overview"
   },
   {
     "name": "Function Service",

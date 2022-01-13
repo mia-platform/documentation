@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added 
+- added anchors to explorer routes.
+
+### Fixed
+- Upgrade api-explorer version to 6.6.10
+
 ## 1.14.4 - 2021-12-20
 ### Fixed
 - Upgrade api-explorer version to 6.6.9

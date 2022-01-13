@@ -1,12 +1,11 @@
 ---
-id: configuration
-title: Export Service
-sidebar_label: Configuration
+id: usage
+title: Usage
+sidebar_label: Usage
 ---
+The service exports data following the configuration that is provided in the body of the POST Request.
 
-The configuration of the service is provided in the body of the POST Request.
-
-The parameters are:
+The body parameters are:
 * **url** [required]: the url of the input data source. This must respond with a `jsonl` response.
 * **proxyHeaders** [optional] : list of headers you want to proxy to the external data source.
 * **exportType** [required]: the output format.
