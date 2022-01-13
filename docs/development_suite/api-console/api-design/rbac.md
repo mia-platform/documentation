@@ -29,8 +29,8 @@ Inside the Design area a new section is available to manage RBAC configurations.
 
 - [**Overview**](#overview-tab): in this tab you can enable and configure the [RBAC sidecar](#rbac-service) for each service of your project;
 - [**General Settings**](#general-settings-tab): in this tab you can control shared settings between all of your RBAC instances in the project (such as the version of the RBAC service or the [storage configuration](#rbac-storage))
-- [**Permissions**](#permissions-tab): in this tab you can write and test your own permission policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/);
-- [**Manual Routes**](#manual-routes-tab): in this tab you can manually configure the permissions required by your service APIs (useful when your service does not expose an OpenAPI Specification)-
+- [**Policies**](#policies-tab): in this tab you can write and test your own policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/);
+- [**Manual Routes**](#manual-routes-tab): in this tab you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification)-
 
 ### Overview tab
 
@@ -43,20 +43,20 @@ To enable RBAC sidecar injection for a specific service you have to use the **En
 
 #### API Permission definition
 
-Once you have enabled RBAC on one of your services, what you want to do is defining which permission is required by your service APIs; if your service
+Once you have enabled RBAC on one of your services, what you want to do is defining which policy is required by your service APIs; if your service
 exposes OpenAPI 3 Specification you can use the **custom attribute** `x-permission` [described here](./rbac_api_configuration), otherwise if your service does not expose its API documentation and you don't plan to add it you can use the [Manual Routes configuration tab](#manual-routes-tab)
 
 ### General Settings Tab
 
 Inside the General Settings tab you can change the RBAC sidecar service version and configure [RBAC Storage](#rbac-storage) information.
 
-### Permissions Tab
+### Policies Tab
 
-In the **Permissions** tab can write your own permission policies that will be used by RBAC service to evaluate the incoming requests.  
+In the **Policies** tab can write your own policies that will be used by RBAC service to evaluate the incoming requests.  
 
-You will find a read-only that shows your current permissions; if you want to modify them or create new ones you can click on the button `Edit permissions` button that will open a modal with two different editors.
+You will find a read-only that shows your current policies; if you want to modify them or create new ones you can click on the button `Edit policies` button that will open a modal with two different editors.
 
-In the leftmost one you may write your permissions using the *Rego* language (more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/)). The rightmost instead let you write tests for your permissions.
+In the leftmost one you may write your policies using the *Rego* language (more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/)). The rightmost instead lets you write tests for your policies.
 
 Once you had written your policies you can test them using the **Test** button.
 
@@ -64,7 +64,7 @@ Once you had written your policies you can test them using the **Test** button.
 We strongly suggest you to test your policies, you may notice that if you have written some tests you won't be able to save your changes until your tests are passed.
 :::
 
-You can find more information about [writing your own permissions here](./rbac_policies).
+You can find more information about [writing your own policies here](./rbac_policies).
 
 ### Manual Routes Tab
 
@@ -72,7 +72,7 @@ If, for any reason, the service you wish to apply RBAC to does not expose any AP
 your own documentation API you can always provide a manual routes configuration to the RBAC sidecar.
 
 In order to do so you can go to the Manual Routes configuration tab in the RBAC section and define your own routes by selecting the `Add New` button.  
-In the creation form you will be asked for a microservice name (to be chosen among the ones that you have selected RBAC sidecar injection enabled for), then you'll have to provide a verb and a path that identify the API invocation and at last the `Allow Permission` that should be required for that API.
+In the creation form you will be asked for a microservice name (to be chosen among the ones that you have selected RBAC sidecar injection enabled for), then you'll have to provide a verb and a path that identify the API invocation and at last the `Allow Policy` that should be required for that API.
 
 :::caution
 While normally the RBAC sidecar will self-configure itself by consuming the API documentation of its target service, when you add a new manual route to the RBAC configuration for a microservice, that self-configuration functionality gets disabled, thus you're required to register all the routes that your service exposes.
@@ -82,7 +82,7 @@ While normally the RBAC sidecar will self-configure itself by consuming the API 
 
 ### RBAC Service
 
-The RBAC Service is the core service that is responsible for handling permissions evaluations; it is thought to run alongside your application container (as a sidecar), to intercept traffic directed to your service and to reject unwanted/unauthorized API invocation.
+The RBAC Service is the core service that is responsible for handling policies evaluations; it is thought to run alongside your application container (as a sidecar), to intercept traffic directed to your service and to reject unwanted/unauthorized API invocation.
 
 <div style={{textAlign: 'center'}}>
 
@@ -90,7 +90,7 @@ The RBAC Service is the core service that is responsible for handling permission
 
 </div>
 
-In order to know which API should be exposed RBAC sidecar will try to fetch from the application services an OpenAPI 3 compliant specification. At this point RBAC Service will expose all your application service APIs and after performing user permission authorization decide whether the API invocation should be forwarded to the application service.
+In order to know which API should be exposed RBAC sidecar will try to fetch from the application services an OpenAPI 3 compliant specification. At this point RBAC Service will expose all your application service APIs and after performing policy evaluation decide whether the API invocation should be forwarded to the application service.
 
 Below a sequence diagram that describes the main flow between a client and the final custom service:
 
@@ -102,9 +102,9 @@ participant custom_service
 participant db
 client ->> rbac_service: [subject, api_path]
 activate rbac_service
-rbac_service ->> db: get user permissions for resources
+rbac_service ->> db: get user bindings and roles
 activate db
-db ->> rbac_service: user permissions from bindings
+db ->> rbac_service: user bindings with roles and permissions
 deactivate db
 alt user has not permissions
 rbac_service ->> client: forbidden 403
