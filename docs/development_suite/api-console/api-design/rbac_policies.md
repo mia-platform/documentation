@@ -1,12 +1,12 @@
 ---
 id: rbac_policies
-title: Write RBAC Policies
-sidebar_label: RBAC Policies
+title: Write RBAC Permissions
+sidebar_label: RBAC Permissions
 ---
 
-# Write RBAC Policies
+# Write RBAC Permission
 
-RBAC Policies is expressed by OpenPolicy Agent policies, for this reason they must be written using the **Rego language**.
+RBAC Permission are expressed by OpenPolicy Agent policies, for this reason they must be written using the **Rego language**.
 
 You can find all the details about it in the following links:
 
@@ -14,7 +14,7 @@ You can find all the details about it in the following links:
 - [Rego Reference](https://www.openpolicyagent.org/docs/latest/policy-reference/)
 
 :::caution
-All the policies of our RBAC must be written with the package **policies** (See further [examples below](#policy-examples)).
+All the policies of our rbac must be written with the package **policies** (See further [examples below](#policy-examples)).
 :::
 
 ```rego
@@ -41,6 +41,8 @@ In your policies you can use the rego `input` variable, that is structured as fo
   },
   "user": {
     "properties": Object{
+    "bindings": Object{}, 
+    "roles":  Object{}
       // this object contains the user properties inserted by the
       // authorization service in the request user properties platform header 
     },
@@ -49,6 +51,10 @@ In your policies you can use the rego `input` variable, that is structured as fo
   "clientType": String
 }
 ```
+
+:::info
+  `bindings` and `roles` object contain only data relative to the user that is making the request **if and only if** he his authenticated. Otherwise those two object will be present but empty. For the structure of the two object please refer to the [RBAC data models](./rbac#rbac-storage) section.
+:::
 
 ## get_header Built-in function
 
@@ -69,7 +75,7 @@ If `headerKey` doesn't exist the output returned is an empty string.
 
 ## Policy examples
 
-The following examples show how to write a policy named **api_key**, that checks if the request contains the header **x-api-key**.
+The following examples shows how to write a policy on the permission **api_key**, that checks if the request contains the header **x-api-key**.\
 In the first example it uses the headers key of input.request as a map, whereas in the second example it uses the build-in function.
 
 ```rego
@@ -91,9 +97,13 @@ api_key {
 }
 ```
 
-# Write RBAC Policies Tests
+:::info
+You may want to use a `.` character when defining your **allow** `x-permission` to specify a namespace for your permissions (i.e. `dishes.read`, `dishes.write`); however since the `.` character is not supported by Rego as policy name it will be automatically replaced with an `_` by the RBAC Service.
+:::
 
-The policies testing framework also leverages Open Policy Agent technology and so, in order to write valid tests, you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
+# Write RBAC Permission Tests
+
+The Permission policy testing framework also leverages Open Policy Agent technology and so, n order to write valid tests, you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
 
 An example of test written for the previous policy example can be:
 
@@ -106,12 +116,12 @@ test_api_key_allowed {
 
 test_api_key_not_allowed {
   not api_key with input as {"request": {"headers": {}}}
-}
+}`
 ```
 
 :::caution
-If any of your tests do not pass you won't be able to save your policies changes! You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
+If any of your tests does not pass you won't be able to save your permissions changes! You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
 
-It's still possible to save your policies if you have no test implemented, however this is **NOT RECOMMENDED**!
+It's still possible to save your permissions if you have no test implemented, however this is **NOT RECOMMENDED**!
 :::
 <br/>
