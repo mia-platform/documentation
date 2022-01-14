@@ -52,9 +52,9 @@ Inside the General Settings tab you can change the RBAC sidecar service version 
 
 ### Policies Tab
 
-In the **Policies** tab can write your own policies that will be used by RBAC service to evaluate the incoming requests.  
+In the **Policies** tab you can write your own policies that will be used by RBAC service to evaluate the incoming requests.  
 
-You will find a read-only that shows your current policies; if you want to modify them or create new ones you can click on the button `Edit policies` button that will open a modal with two different editors.
+You will find a read-only section that shows your current policies; if you want to modify them or create new ones you can click on the `Edit policies` button that will open a modal with two different editors.
 
 In the leftmost one you may write your policies using the *Rego* language (more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/)). The rightmost instead lets you write tests for your policies.
 
@@ -152,7 +152,7 @@ The collection fields are:
    {
       "roleId": "roleUniqueIdentifier",
       "name": "TL",
-      "description": "company tech leader ",
+      "description": "company tech leader",
       "permissions": [
          "console.project.view",
          "console.environment.deploy",
