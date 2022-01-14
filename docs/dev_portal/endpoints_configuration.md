@@ -50,7 +50,7 @@ Expose the APIs necessary for the creation of the dev portal section:
 
 <table style={{textAlign:'left'}}>
   <tr>
-    <th width='30%'>Endpoint</th><th width='30%'>Microservice</th><th width='20%'>Rewrite Base Path</th>
+    <th width='40%'>Endpoint</th><th width='30%'>Microservice</th><th width='20%'>Rewrite Base Path</th>
   </tr>
   <tr>
     <td>/dev-portal/api</td><td>dev-portal-micro-lc-backend</td><td>/</td>
@@ -69,6 +69,9 @@ Expose the APIs necessary for the creation of the dev portal section:
   </tr>
   <tr>
     <td>/dev-portal/api-portal/api</td><td>swagger aggregator</td><td>/</td>
+  </tr>
+  <tr>
+    <td>/dev-portal/documentation/search-index.json</td><td>dev-portal-micro-lc-docusaurus</td><td>/search-index.json</td>
   </tr>
 </table>
 
