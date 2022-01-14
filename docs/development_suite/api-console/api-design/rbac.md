@@ -69,14 +69,144 @@ You can find more information about [writing your own policies here](./rbac_poli
 ### Manual Routes Tab
 
 If, for any reason, the service you wish to apply RBAC to does not expose any API documentation, or you don't have access to the codebase in order to implement
-your own documentation API you can always provide a manual routes configuration to the RBAC sidecar.
+your own documentation API, you can always provide a manual routes configuration to the RBAC sidecar.
 
-In order to do so you can go to the Manual Routes configuration tab in the RBAC section and define your own routes by selecting the `Add New` button.  
-In the creation form you will be asked for a microservice name (to be chosen among the ones that you have selected RBAC sidecar injection enabled for), then you'll have to provide a verb and a path that identify the API invocation and at last the `Allow Policy` that should be required for that API.
+In order to do so, you can go to the Manual Routes configuration tab in the RBAC section and define your own routes by selecting the `Add New` button.  
+In the creation form, you will be asked for a microservice name (to be chosen among the ones that you have selected RBAC sidecar injection enabled for), then you'll have to provide a verb and a path that identify the API invocation and at last the `Allow Policy` that should be required for that API.
+
+:::info
+It's possible to add new manual route to register a permission for a group of paths using the wildcard (e.g. "/foo/*") and also to select the method ALL to register the same permission for all http methods of the inserted path, but pay attention to the [routes priority rules](#routes-priority)
+:::
+
+During or after the creation of a manual route, you will also be able to associate to it a **Rows Filter**, described in depth in its dedicated section. 
+
+Please, check out [**RBAC rows filtering**](#rbac-rows-filtering) to understand the definition of a rows filter, how to enable a filter from the Manual Routes configuration tab and how to specify a custom header name.
 
 :::caution
-While normally the RBAC sidecar will self-configure itself by consuming the API documentation of its target service, when you add a new manual route to the RBAC configuration for a microservice, that self-configuration functionality gets disabled, thus you're required to register all the routes that your service exposes.
+While normally the RBAC sidecar will self-configure itself by consuming the API documentation of its target service when you add a new manual route to the RBAC configuration for a microservice, that self-configuration functionality gets disabled, thus you're required to register all the routes that your service exposes.
 :::
+
+### Routes Priority
+
+When there are more manual routes that match a specific URL path, the **priority rules** help to resolve the conflict:
+
+- **Rule1**: If the manual routes paths are different, that more specific wins.
+- **Rule2**: If the manual routes paths are the same, the manual route with the most specific method wins.
+
+```
+EXAMPLE
+
+Defined Manual routes
+- GET  /foo/bar permission1
+- ALL  /foo/*   permission2
+- POST /foo/*   permission3
+- ALL  /*       permission4
+
+Paths to resolve
+- GET /foo/bar   --> permission1 (Rule1)
+- GET /foo/bar/  --> permission2 (Rule2)
+- POST /foo/bar/ --> permission3 (Rule2)
+
+```
+
+### RBAC rows filtering
+
+It may happen that for some of your APIs you need to filter out some results based on the permissions of the requesting user. This is the case in which we talk about rows filtering.  
+The RBAC service allows you to retrieve automatically a query for your DBMS coming from the evaluation of the permissions of a user. This query will be passed as a header to the requested service that should know how to handle it properly.
+
+To let the RBAC service know it has to perform this query generation, you need to go to the **Manual Routes** configuration tab. 
+
+:::info
+When creating a new route or by modifying an existing one, you will be able to select a **Rows Filtering** checkbox that will enable the rows filter.
+:::
+
+Once you successfully enable the rows filter, you will have the possibility to specify a **custom headerName**. 
+
+This field will be used to provide the name of the header that will contain the final query and will be passed to the requested service. If you don't specify any value for headerName, by default it will take the `acl_rows` value.
+
+:::caution
+The rows filtering configured for a manual route, in order to correctly work, needs the definition of a permission evaluation, that has to be written and tested in the properly [Permissions tab](#permissions-tab) of RBAC section.
+:::
+
+#### How to write a query in rego for permission evaluation
+
+Any RBAC policies is provided with the iterable `data.resource[_]`. This structure is used to build up the query. You can use it to perform any kind of comparison between it and anything you want from the input or maybe a costant value.  
+We remind you that the query will be built from the field name of the resource object accessed in the permission.
+
+:::caution
+To build your query remember to use assign in the `data.resources` iterable the same properties you have defined in the data model you need to be queried.
+:::
+
+In the example below, given a valid rows filtering configuration, the `allow` policy requires that the requested resource details can be retrieved by the user and by its manager.
+
+```rego
+   allow {
+      input.method == "GET"
+      resource := data.resource[_]
+      resource.name == input.user
+      resource.description == "this is the user description"
+   }
+
+   allow {
+      input.method == "GET"
+      resource := data.resource[_]
+      resource.manager == input.user
+      resource.name == input.path[1]
+   }
+```
+
+Given as input to the permission evaluator
+
+```json
+[
+   {
+      "input": {
+            "method": "GET",
+            "path": ["resource", "bob"],
+            "user": "alice"
+         }
+   }
+]
+```
+
+We succeed in obtaining the following object representing a mongo query
+
+```json
+[
+   {
+      "$or":[
+         {
+            "$and":[
+               {
+                  "name":{
+                     "$eq":"alice"
+                  }
+               },
+               {
+                  "description":{
+                     "$eq":"this is the user description"
+                  }
+               },
+            ]
+         },
+         {
+            "$and":[
+               {
+                  "manager":{
+                     "$eq":"alice"
+                  }
+               },
+               {
+                  "name":{
+                     "$eq":"bob"
+                  }
+               }
+            ]
+         }
+      ]
+   }
+]
+```
 
 ## Technical details
 
@@ -116,7 +246,6 @@ deactivate custom_service
 rbac_service ->> client : response
 deactivate rbac_service
 end`}/>
-
 
 ### RBAC Storage
 
@@ -201,4 +330,5 @@ In this collection there are stored all the bindings between users or groups of 
    }
 ]
 ```
+
 <br/>
