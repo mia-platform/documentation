@@ -40,14 +40,14 @@ The Export Service can be used in single, stand-alone projects, released alongsi
 This service can be used and installed on any project following this steps:
 
  1. Add a new microservice using the plugin `Export Service` in the marketplace
- 2. Configure its environment variables and resources
- 3. Commit and deploy
+ 2. Verify default environment variables and resources are correctly configured for your needs
+ 3. Save configuration and deploy
 
 ### Multi-projects Tenant
 
 When your tenant is composed of many projects you may want to share a single export-service among different projects; in order to do so you have to:
 
  1. decide which should be the project hosting the export-service
- 2. in that project, add the export-service plugin from the marketplace and configure it propertly
+ 2. in that project, add the export-service plugin from the marketplace and configure it properly
 
 Now that you have created the export-service in one of your projects you can use [cross-project proxies](../../development_suite/api-console/api-design/proxies#create-a-new-cross-projects-proxy) to let other projects, needing export-service capabilities, contact the export-service.
