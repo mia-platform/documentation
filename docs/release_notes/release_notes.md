@@ -4,9 +4,9 @@ title: Mia-Platform release notes
 sidebar_label: Mia-Platform release notes
 image: "img/release-note-link-preview.png"
 ---
-| Release | Release notes                                       |
-| ------- | --------------------------------------------------- |
-| v8.5.x    | [See release notes](RN_v8-5/v8.5.0) |
+| Release | Release notes                       |
+| ------- |-------------------------------------|
+| v8.5.x    | [See release notes](RN_v8-5/v8.5.1) |
 | v8.4.x    | [See release notes](RN_v8-4/v8.4.1) |
 | v8.3.x    | [See release notes](RN_v8-3/v8.3.1) |
 | v8.2.x    | [See release notes](RN_v8-2/v8.2.1) |
