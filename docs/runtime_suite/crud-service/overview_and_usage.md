@@ -68,7 +68,7 @@ CRUD by default comes with a set of common properties that simplify the data man
 - **createdAt**: Date, date and time when the document has been created
 - **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
 - **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
-- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via REST API calls. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.  
+- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
 
 :::note
 The only two default fields that it is possible to encrypt are **updaterId ** and **creatorId **. 
@@ -134,11 +134,15 @@ Only the following transitions are allowed in the publish workflow.
 | TRASH              |    -    |   OK   |   -    |   OK     |
 | DELETED            |    -    |   -    |   OK   |   -      |
 
-To transit the STATE of an item of a CRUD you need to POST it
+To transit the STATE of an item of a CRUD you need to POST it via the following endpoint:
 
 ```json
  POST /[COLLECTION_NAME]/{_id}/state
 ```
+
+:::note
+It is not possible to change the STATE of an item via a PATCH endpoint.
+:::
 
 for example
 
