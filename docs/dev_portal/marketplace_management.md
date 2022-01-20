@@ -69,6 +69,16 @@ In order to display an API or event in the Marketplace section of the Dev Portal
   **DRAFT** entries will not be displayed in the Marketplace section. Please make sure to publish all the entries you want to visualize.
   :::
 
+### Set and Modify a custom description template
+After creating the dev portal using the application, in the microservices section of the project you will be able to see a microservice called `backoffice-micro-lc-backend`: among his ConfigMaps, you will find a file called `marketplace.json`.
+
+The `marketplace.json` file is used to configure the structure of [the Marketplace page.](#the-marketplace-page), and you can edit it in order to have a default template when you are going to create a new marketplace component on the Backoffice.
+
+To change it, you must change the `initialValues.description` field.  
+It can contains a mix of text and HTML tags structure, as shown in the following picture.
+
+![marketplace-template](./img/marketplace-template.png)
+
 ## The Categories Page
 
 In order to subdivide APIs and events into different business logics or classifications, the Marketplace allows the creation of different categories in which components can be clustered.
