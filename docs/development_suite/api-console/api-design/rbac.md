@@ -247,6 +247,12 @@ rbac_service ->> client : response
 deactivate rbac_service
 end`}/>
 
+:::info
+
+**Be careful**: the value of the environment variable `LOG_LEVEL` is set by the Console with the value of the `LOG_LEVEL` environment variable of the service to which the sidecar is attached to.
+
+:::
+
 ### RBAC Storage
 
 RBAC is configured by design to load Roles and Bindings from MongoDB, in order to properly configure MongoDB connection string and collection names head to the **General Settings** tab
