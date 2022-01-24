@@ -25,6 +25,27 @@ build-site:
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_BRANCH
 
+deploy-preview:
+  stage: deploy
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - node_modules
+      - build
+    policy: pull
+  allow_failure: true
+  variables:
+    STATICDEPLOY_API_URL: ${STATICDEPLOY_API_URL}
+    STATICDEPLOY_API_TOKEN: ${STATICDEPLOY_API_TOKEN}
+    BUNDLE_NAME: 'platform-documentation'
+  script:
+    - ./node_modules/.bin/staticdeploy bundle --config ./staticdeploy.config.js
+    - ./node_modules/.bin/staticdeploy deploy --config ./staticdeploy.config.js
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+
 deploy-next:
   stage: deploy
   variables:
