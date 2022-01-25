@@ -4,8 +4,7 @@ title: Appointment Manager
 sidebar_label: Overview
 ---
 The **Appointment Manager** is a microservice responsible for handling the organization of appointments. Leveraging the 
-[CRUD Service](../crud-service/overview_and_usage.md), the [Messaging Service](../messaging-service/overview.md),
-and the [Timer Service](../timer-service/overview.md), it can be used to control appointments creation, update and deletion on a 
+[CRUD Service](../crud-service/overview_and_usage.md), the [Messaging Service](../messaging-service/overview.md), the [Timer Service](../timer-service/overview.md), and the [Teleconsultation Service](../teleconsultation-service-backend/overview.md), it can be used to control appointments creation, update and deletion on a 
 CRUD collection and to automatically send messages and reminders to the users involved. 
 
 The service can be seen as an enriched proxy to the CRUD: it implements the same interfaces of the CRUD Service allowing you

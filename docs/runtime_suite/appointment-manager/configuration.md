@@ -17,6 +17,8 @@ The appointments CRUD needs the following service-specific fields.
 - **reminderMilliseconds** - `number`: amount of time before the appointment when users are notified about it (expressed in milliseconds).
 - **reminderIds** - `array of ObjectId`: list of unique identified of the reminders associated with the appointment.
 - **channels** - `array of string`: list of communication channels used to send messages and reminders. Possible values are **email**, **sms**, and **push**.
+- **isRemote** - `boolean`: specify if an appointment will use the teleconsultation or not.
+- **teleconsultationLink**: `string`: The link to join the teleconsultation.
 
 :::tip
 On top of the aforementioned fields, you can add any field you want to the CRUD. The service will treat them as the CRUD would.
@@ -44,6 +46,8 @@ The Appointment Manager accepts the following environment variables.
 - **TIMER_SERVICE_NAME**: name of the Timer Service. **Required** if you want to set reminders for your appointments.
 - **CRUD_SERVICE_NAME (required)**: name of the CRUD service.
 - **APPOINTMENTS_CRUD_NAME (required)**: name of the CRUD collection containing appointments.
+- **TELECONSULTATION_SERVICE_NAME**: name of the teleconsultation service.
+- **TELECONSULTATION_ENDPOINT_FE**: endpoint associated with the Teleconsultation Service FrontEnd (the root).
 
 ## Service configuration
 
@@ -66,7 +70,8 @@ It follows an example of a valid configuration:
     }
   },
   "channels": ["email", "push", "sms"],
-  "reminderThresholdMs": 86400000
+  "reminderThresholdMs": 86400000,
+  "isTeleconsultationAvailable": true
 }
 ```
 
@@ -125,3 +130,11 @@ you can define a threshold of `86400000` ms as follows:
 
 This behavior also applies in case of appointment update.
 Please also note that if the threshold is not defined, reminders are always sent.
+
+#### isTeleconsultationAvailable
+
+A `boolean` which determines if the teleconsultation service can be used.
+If the value is set to **false**, the user can't use the teleconsultation.
+If the value is set to **true**, the user can choose between teleconsultation or onsite modes.
+
+The default value is **false**.

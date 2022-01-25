@@ -12,7 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Improve files service documentations
+- Added `POST - /bulk` route to upload multiple files.
+
+### Changed
+
+- Updated _minor_ and _patch_ dependencies version,
+- Improved service documentations.
 
 ## 2.3.2 - 03-12-2021
 

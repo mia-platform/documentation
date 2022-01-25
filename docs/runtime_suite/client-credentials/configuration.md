@@ -38,6 +38,7 @@ This service is configurable with the following environment variables:
 * **REDIS_HOSTS** (*required*): redis host with port (default Redis port is 6379);
 * **REDIS_MODE**: defines the redis mode (`normal` or `sentinel`) (default: `normal`);
 * **REDIS_MASTER_NAME**: defines the redis master name (required when using `sentinel` mode);
+* **CLOCK_SKEW_SECONDS**: defines the skew seconds that will be used into the `/token` request to validate the **iat** and **notBefore** claims of the *client_assertion* and reduce client and server clocks misalignment
 
 ## RSA Key Management
 
@@ -228,6 +229,13 @@ Reference: [OpenId Connect Discovery](https://openid.net/specs/openid-connect-di
     "type": "Array_string",
     "required": false,
     "nullable": false
+  },
+  {
+    "name": "allowedCustomClaims",
+    "description": "",
+    "type": "Array_string",
+    "required": false,
+    "nullable": true
   },
   {
     "name": "clientId",
