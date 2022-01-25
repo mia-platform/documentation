@@ -21,9 +21,15 @@ The `x-permission` attribute is shaped as an object with the following propertie
 
 - `allow` **(string, required)**: the name of the Rego policy that should be executed upon the API invocation.
 - `resourceFilter` **(object)**: object representing information on what resource the API is looking for to perform filtering operations:
-  - `rowFilter` **(object, required)**: this object contains all the information needed to perform filtering operation on rows. Read [RBAC rows filtering](../api-design/rbac.md#rbac-rows-filtering) section for more information about it:
+  - `rowFilter` **(object)**: this object contains all the configurations needed to perform filtering operation on rows. Read [RBAC rows filtering](../api-design/rbac.md#rbac-rows-filtering) section for more information about it:
     - `enabled` **(bool)**:  activation value for row filtering
-    - `headerName` **(string)**: identifier of the header sent to the requested service in which the interpolated query will be injected. The default values is `x-rbac-row-filter`
+    - `headerName` **(string)**: identifier of the header sent to the requested service in which the interpolated query will be injected. The default values is `x-rbac-row-filter`.
+  - `columnFilter` **(object)**: this object contains all the configurations needed to perform filtering operation on columns. Read [RBAC column filtering](../api-design/rbac.md#rbac-column-filtering) section for more information about it: 
+    - `onResponse` **(object)**: this object contains the information needed to perform column filtering on the response body provided by the HTTP request:
+      
+      - `policy`:  the name of the Rego policy that should be executed upon the API invocation.
+
+  
 
 For example, if you want the `greetings_read` policy policy to be evaluated when invoking the `GET /hello` API your custom service must define its API documentation as follows:
 
@@ -38,6 +44,11 @@ For example, if you want the `greetings_read` policy policy to be evaluated when
                         "rowFilter": {
                             "enabled": true,
                             "headerName": "x-acl-rows",
+                        },
+                        "columnFilter":{
+                            "onResponse": {
+                                "policy": "filter_column_on_response_example
+                            }
                         }
                     }
                 }
