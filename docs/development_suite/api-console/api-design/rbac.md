@@ -208,6 +208,26 @@ We succeed in obtaining the following object representing a mongo query
 ]
 ```
 
+### RBAC column filtering
+
+For some of your APIs you may need to manipulate data, based on the permissions of the requesting user, before sending it to the final target. This is the case in which we talk about column filtering.  
+Whenever this filtering is performed on the results obtained by a HTTP request, we talk about column filtering on response.
+RBAC service allows you to manipulate the response body directly in a policy.  
+As shown in the [RBAC policies](../api-design/rbac_policies.md#policies-input-data) section, your policies will be provided with the original response body, allowing you to manipulate it.  
+
+:::caution
+Column filtering is applied only if the response Content Type is `application/json`; if any other Content Type is found (based on the `Content-Type` header value), an error will be sent to the caller.
+
+**Be careful**, the written policy must return the new value of the modified object.
+:::
+
+```rego
+filter_column_on_response_example[result] {
+   body := input.request.body
+   result := object.remove(body, ["someField"])
+}
+```
+
 ## Technical details
 
 ### RBAC Service

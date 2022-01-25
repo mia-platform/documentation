@@ -35,9 +35,15 @@ In your policies you can use the rego `input` variable, that is structured as fo
     "headers": Object {
       String: Array[String]
     },
+    "body": Object{},
+    "pathParams": Object{},
+    "queryParams": Object{},
     "query":   Object {
       String: Array[String]
     },
+    "response": {
+      "body": Object{}
+    }
   },
   "user": {
     "properties": Object{
