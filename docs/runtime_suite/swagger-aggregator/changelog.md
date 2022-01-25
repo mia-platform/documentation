@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## 3.4.4 - 20-01-2022
+
 ### Fixed
 
 - Aggregator is now more resilient to promise rejection

@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+## 3.1.0 - 21-01-2022
+
+### Added
+
+- Added possibility to set a clock skew, that will be used in the _/oauth/token_ request to validate the **iat** and **notBefore** timestamps
+
+- Added the **optional** `allowedCustomClaims` property to clients, to allow clients that use the `private_key_jwt` _authentication method_ to add custom claims into the *client_assertion*, that will be added into the JWT claims
+
 ## 3.0.0 - 20-10-2021
 
 **BREAKING CHANGE**

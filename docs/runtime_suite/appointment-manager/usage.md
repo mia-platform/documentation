@@ -25,6 +25,10 @@ effects.
 
 Creates a new appointment in the CRUD collection.
 
+:::note
+In case the chosen mode is remote, a virtual room for the teleconsultation will be created alongside the URL to join the call.
+:::
+
 It may have the following side effects.
 
 #### Sending of messages
@@ -66,6 +70,7 @@ The body of this request has the same interface of a CRUD service `POST /` reque
 :::note
 On top of the CRUD schema, the service adds the following validations:
 - if passed, `reminderMilliseconds` must be greater than 0;
+- if passed, `teleconsultationParticipants` must be an `array of string` containing the Auth0 ids of the participants to the teleconsultation;
 - `reminderIds` cannot be in the body.
 :::
 
@@ -98,7 +103,27 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 Updates the appointment with the specified id.
 
-It may have the following side effects.
+### Teleconsultation
+
+Particular cases:
+
+- If the field **isRemote** is set from `true` to `false`, the virtual room created previously will be deleted alongside its URL to join the call from the CRUD.
+
+- If the field **isRemote** is set from `false` to `true` and the `teleconsultationParticipants` field is provided, a virtual room for the teleconsultation will be created alongside the URL to join the call.
+
+- If the field `teleconsultationParticipants` is provided and the current appointment has already a teleconsultation associated, then the teleconsultation's participants will be updated.
+
+For further info about the `teleconsultationParticipants` fields, see the [Teleconsultation Service doc - participants](../teleconsultation-service-backend/usage.md#participants-required).
+
+:::note
+The teleconsultation virtual room will be accessible since its creation.
+:::
+
+:::warning
+If the Teleconsultation Service is not configured properly on the Console, the teleconsultation's fields for the PATCH inside the $set object won't be shown.
+:::
+
+### Possible side effects.
 
 #### Sending of messages
 
@@ -200,6 +225,10 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 Deletes a single appointment. This endpoint is a direct proxy to the `DELETE /:id` of the CRUD service and has no side
 effects.
 
+:::note
+If the mode changes from remote to onsite, the virtual room created previously will be deleted alongside its URL to join the call from the CRUD.
+:::
+
 ## POST /state
 
 Changes the state of the appointments matching the provided filters.
@@ -207,10 +236,14 @@ Changes the state of the appointments matching the provided filters.
 For the appointments moved from a `PUBLIC` or `DRAFT` state to a `TRASH` state, the route may have the following side effects.
 
 :::warning
-For now, messages and reminders are handled **only** for appointments moving from a `PUBLIC` or `DRAFT` state to a `TRASH` state. 
+For now, messages and reminders are handled **only** for appointments moving from a `PUBLIC` or `DRAFT` state to a `TRASH` state.
 Any other state change will not have side effects.
 
 This may change in the future.
+:::
+
+:::warning
+If the state is changed to `DELETED` and the **teleconsultationLink** is associated with this appointment, the teleconsultation and the virtual room on Bandyer will be deleted.
 :::
 
 #### Sending of messages
