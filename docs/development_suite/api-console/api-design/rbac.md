@@ -130,7 +130,8 @@ The rows filtering configured for a manual route, in order to correctly work, ne
 
 #### How to write a query in rego for permission evaluation
 
-Any RBAC policies is provided with the iterable `data.resource[_]`. This structure is used to build up the query. You can use it to perform any kind of comparison between it and anything you want from the input or maybe a costant value.  
+Any RBAC policies is provided with the iterable `data.resource[_]`. This structure is used to build up the query. 
+You can use it to perform any kind of comparison between it and anything you want from the input or maybe a constant value.  
 We remind you that the query will be built from the field name of the resource object accessed in the permission.
 
 :::caution
@@ -186,7 +187,7 @@ We succeed in obtaining the following object representing a mongo query
                   "description":{
                      "$eq":"this is the user description"
                   }
-               },
+               }
             ]
          },
          {
@@ -352,7 +353,7 @@ In this collection there are stored all the bindings between users or groups of 
       "resource": {
          "id": "project1",
          "type": "project"
-      },
+      }
    }
 ]
 ```
