@@ -109,7 +109,10 @@ You may want to use a `.` character when defining your **allow** `x-permission` 
 
 # Write RBAC Permission Tests
 
-The Permission policy testing framework also leverages Open Policy Agent technology and so, n order to write valid tests, you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
+The Permission policy testing framework also leverages Open Policy Agent technology and so, in order to write valid tests, 
+you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
+
+## Test Simple Policy
 
 An example of test written for the previous policy example can be:
 
@@ -126,8 +129,38 @@ test_api_key_not_allowed {
 ```
 
 :::caution
-If any of your tests does not pass you won't be able to save your permissions changes! You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
+If any of your tests does not pass you won't be able to save your permissions changes! 
+You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
 
 It's still possible to save your permissions if you have no test implemented, however this is **NOT RECOMMENDED**!
 :::
+
+## Test Filters Policy
+
+To test filter policies you will have to mock in addition to the `input` also the `data.resources`
+
+```rego
+filter_projects_example {
+    bindings := input.user.bindings[_]
+    resource := data.resources[_]
+    resource._id == bindings.resource.resourceId
+}
+```
+
+An example of test written for the previous policy example can be:
+```rego
+test_filter_projects_example {
+    filter_projects_example
+        with input as {
+            "user": {
+                "bindings": bindings_mock,
+                "roles": roles_mock
+            }
+        }
+        with data.resources as [
+          {"_id": "resource1"}, 
+          {"_id": "resource2"}
+        ]
+}
+```
 <br/>
