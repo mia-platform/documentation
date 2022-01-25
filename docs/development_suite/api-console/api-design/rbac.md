@@ -156,6 +156,11 @@ In the example below, given a valid rows filtering configuration, the `allow` p
    }
 ```
 
+:::caution
+Policy for row filtering does not support the `default` declaration. E.g. `default allow = true`. Using it will prevent any filter to be generated.
+:::
+
+
 Given as input to the permission evaluator
 
 ```json
