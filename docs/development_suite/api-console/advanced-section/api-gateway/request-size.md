@@ -1,7 +1,7 @@
 ---
 id: request-size
-title:  request-size
-sidebar_label: request-size
+title: Change the maximum size of requests
+sidebar_label: Requests size
 ---
 ## How Controlling Request Sizes
 
