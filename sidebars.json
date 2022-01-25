@@ -338,6 +338,10 @@
             {
               "id": "development_suite/api-console/advanced-section/api-gateway/request-size",
               "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/advanced-section/api-gateway/change-timeout",
+              "type": "doc"
             }
           ],
           "label": "API Gateway",
