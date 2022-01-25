@@ -13,11 +13,12 @@ For all customers who are not hosted on PaaS there are no sub-processors
 
 Follows the list of sub-processors
 
-| THIRD PARTY SERVICE/VENDOR | PURPOSE           | DATA STORAGE COUNTRY | WEBSITE                   |
-|----------------------------|-------------------|----------------|---------------------------|
-| Mongo Atlas                | DataBase provider | Belgium        | <https://www.mongodb.com/>  |
-| Google Cloud               | Data hosting      | Belgium        | <https://cloud.google.com/> |
-| AWS Service                | Data hosting      | Ireland        | <https://aws.amazon.com/>   |
-| Elastic Search             | Log & Monitoring  | Belgium        | <https://www.elastic.co/>   |
-| Confluent                  | Event Streaming   | Europe         | <https://www.confluent.io/> |
-| Auth0                      | Authentication provider| Europe    | <https://auth0.com/>        |
+| THIRD PARTY SERVICE/VENDOR | PURPOSE           | DATA STORAGE COUNTRY | WEBSITE                     |
+|----------------------------|-------------------|----------------------|-----------------------------|
+| Mongo Atlas                | DataBase provider       | Belgium        | <https://www.mongodb.com/>  |
+| Google Cloud               | Data hosting            | Belgium        | <https://cloud.google.com/> |
+| AWS Service                | Data hosting            | Ireland        | <https://aws.amazon.com/>   |
+| Elastic Search             | Log & Monitoring        | Belgium        | <https://www.elastic.co/>   |
+| Confluent                  | Event Streaming         | Europe         | <https://www.confluent.io/> |
+| Auth0                      | Authentication provider | Europe         | <https://auth0.com/>        |
+| Okta                       | Authentication provider | Europe         | <https://www.okta.com>      |
