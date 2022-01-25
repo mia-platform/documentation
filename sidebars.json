@@ -177,6 +177,10 @@
         {
           "id": "development_suite/set-up-infrastructure/env-var",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/ranges-and-quotas",
+          "type": "doc"
         }
       ],
       "label": "Set up infrastructure",
