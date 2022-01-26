@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] 2022-01-25
+
+### Added
+
+- Added automation of aggregation and singleViewKey using json configuration
+
 ## [3.2.0] 2021-11-30
 
 ### Added
