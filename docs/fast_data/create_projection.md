@@ -269,7 +269,7 @@ For instance if you want to create an adapter for the system `my-system` you nee
 The file should export a simple function with the following signature:
 
 ```js
-module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys) {
+module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger) {
   const {
     value: valueAsBuffer, // type Buffer
     key: keyAsBuffer, // type Buffer
