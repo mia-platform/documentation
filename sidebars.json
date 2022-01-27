@@ -1533,6 +1533,17 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-6/v8.6.0",
+              "type": "doc"
+            }
+          ],
+          "label": "v8.6",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
               "id": "release_notes/RN_v8-5/v8.5.1",
               "type": "doc"
             },
