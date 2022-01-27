@@ -119,7 +119,7 @@ This CRUD described in this service [configuration](configuration/#create-requir
 
 This CRUD enables the assignment of a form template to specific users. We recommend to [create a CRUD](../../development_suite/api-console/api-design/crud_advanced) named `form_assignments`.
 
-The required properties (specified in the [form assignments CRUD parameters](#form-assignments-crud-parameters) section) of the CRUD can be imported downloading this <a download target="_blank" href="docs_files_to_download/form_assignments_crud_fields.json">example json file</a>.
+The required properties (specified in the [form assignments CRUD parameters](#form-assignments-crud-parameters) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form_assignments_crud_fields.json">example json file</a>.
 
 You also need to expose a new endpoint `/form-assignments` following [this guide](../../development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formAssignmentsCrud* parameter accordingly. The type of this endpoint is `CRUD`.
 
