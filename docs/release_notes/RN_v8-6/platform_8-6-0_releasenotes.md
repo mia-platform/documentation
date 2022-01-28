@@ -13,7 +13,7 @@ _January 27, 2022_
 
 #### Fast data No code
 
-In this new version of the console we are glad to announce the Fast Data Low Code, a completely new customer experience studied to reduce the development time of your Fast Data project.
+In this new version of the console we are glad to announce the [Fast Data Low Code](../../fast_data/no_code_overview.md), a completely new customer experience studied to reduce the development time of your Fast Data project.
 
 With Fast Data Low Code, the console will support you as it has never done before. The Real Time Updater Low Code and the Single View Creator Low Code could be configured with a few clicks. Moreover, with the v8.6.0 it is possible to write the configuration files such as `erSchema`, `projectionchanges`, `singleviewKey` and `aggregation` in .json format inside the console, significantly reducing the setup complexity.
 Even the strategies could be automatically managed by clicking on the "Low Code" button, allowing the console to do the dirty work for you.  
@@ -32,7 +32,7 @@ The support icon in the Console launcher will now open a menu with multiple link
 
 #### Endpoints Overview
 
-The previous tool *Tenant Overview* has been renamed in *Endpoint Overview*, and now it is possible access to the related section by clicking on the related button in the project page. Moreover, we introduce the filtering on endpoints through the new *Proxed By* feature.  
+The previous tool *Tenant Overview* has been renamed in *Endpoint Overview*, and now it is possible access to the related section by clicking on the related button in the project page. Moreover, we introduce the filtering on endpoints through the new *Proxed By* feature. Click [here](../../development_suite/endpoint-overview/endpoint-overview) for more information. 
 
 ### Bug Fix
 
