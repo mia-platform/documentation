@@ -79,7 +79,158 @@ The Real-Time Updater accepts the following configurations:
 The mount path used for these configurations is: `/home/node/app/configurations/kafkaAdapterFolder`.  
 This folder contains the configurations for your kafka adapters.
 
-#### CAST_FUNCTION configurations
+#### Kafka messages format
+
+In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats. 
+The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real Time Updater.
+
+Once you have created a System, you need to select the format of the Kafka messages sent from the system.
+To do that, you must correctly configure the Kafka Message Adapter, changing the value of the Real Time Updater's KAFKA_MESSAGE_ADAPTER environment variable, which should be one of the following: `basic`, `golden-gate`, `custom`.
+
+Another option that you should be aware of when thinking about the format of your Kafka messages is the "upsert" or "insert".
+By default, the real-time-updater will perform upsert operations, but you can optionally decide to perform inserts that will fail if the document already exists, instead of updating it.
+
+#### Basic
+
+It's the default one.
+
+The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
+The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
+The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
+The `offset` is the offset of the kafka message.
+
+Example of a delete operation
+
+```
+key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
+value: null
+timestamp: '1234556789'
+offset: '100'
+```
+
+Example of an upsert:
+
+```
+key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
+value: `{"NAME": 456}`
+timestamp: '1234556789'
+offset: '100'
+```
+
+#### Golden Gate
+
+The `timestamp` of the Kafka message is a stringified integer greater than zero. This integer has to be a valid timestamp.  
+The `offset` is the offset of the kafka message.
+The `key` can have any valid Kafka `key` value.  
+The `value` of the Kafka message instead needs to have the following fields:
+
+* `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
+* `after`: the data values after the operation execution (`null` or not set if it's a delete)
+* `before`: the data values before the operation execution (`null` or not set if it's an insert)
+
+Example of `value` for an insert operation:
+
+```JSON
+{
+  'table': 'MY_TABLE',
+  'op_type': 'I',
+  'op_ts': '2021-02-19 16:03:27.000000',
+  'current_ts': '2021-02-19T17:03:32.818003',
+  'pos': '00000000650028162190',
+  'after': {
+    'USER_ID': 123,
+    'FISCAL_CODE': 'the-fiscal-code-123',
+    'COINS': 300000000,
+  },
+}
+```
+
+#### Custom
+
+If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages.
+To do that, you need to create a `Custom Kafka Message Adapter`, which is just a javascript function able to convert to Kafka messages as received from the real-time updater to an object with a specific structure.
+
+:::note
+You have to create the adapter function *before* setting `custom` in the advanced file and saving.
+:::
+
+This adapter is a function that accepts as arguments the kafka message and the list of primary keys of the projection, and returns an object with the following properties:
+
+* **offset**: the offset of the kafka message
+* **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
+* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
+* **value**: the data values of the projection, or null
+* **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
+
+If the `value` is null, the operation is supposed to be a delete.
+The `keyObject` **cannot** be null.
+
+In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
+
+Your adapter function file needs to be created below a folder named `fast-data-files`, if your project does not have it, create it.
+In this folder, create a folder named as `kafka-adapters/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console). Inside this folder create your javascript file named `kafkaMessageAdapter.js`.
+
+For instance if you want to create an adapter for the system `my-system` you need to create the following directory tree:
+
+```txt
+/configurations
+    |-- fast-data-files
+        |-- kafka-adapters/
+              |-- my-system/
+                    |-- kafkaMessageAdapter.js
+```
+
+The file should export a simple function with the following signature:
+
+```js
+module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger) {
+  const {
+    value: valueAsBuffer, // type Buffer
+    key: keyAsBuffer, // type Buffer
+    timestamp: timestampAsString, // type string
+    offset: offsetAsString, // type string
+    operation: operationAsString // type string
+  } = kafkaMessage
+
+  // your adapting logic
+
+  return {
+    keyObject: keyToReturn, // type object (NOT nullable)
+    value: valueToReturn, // type object (null or object)
+    timestampDate: new Date(parseInt(timestampAsString)), // type Date
+    offset: parseInt(offsetAsString), // type number
+    operation: operationToReturn, // type string (either I, U, or D)
+  }
+}
+```
+
+The `kafkaMessage` argument is the kafka message as received from the `real-time-updater`.  
+The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are of type *string*.
+
+The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
+
+Once you have created your own custom adapter for the Kafka messages, commit and push to load your code on git.
+Now you need to go on the Console and save in order to generate the configuration for your `Real Time Updater` service that uses the adapter you created.
+
+:::note
+After any changes you make on the `adapter` implementation, you need to save from the Console to update the configuration of the services.
+:::
+
+Now that you have committed and pushed your custom adapter function you can set `custom` in the advanced file and save.
+
+```json
+{
+  "systems": {
+    "SYSTEM ID": {
+      "kafka": {
+          "messageAdapter": "custom"
+      }
+    }
+  }
+}
+```
+
+### CAST_FUNCTION configurations
 
 The mount path used for these configurations is: `/home/node/app/configurations/castFunctionsFolder`.  
 In this folder you have all the generated [Cast Functions](../cast_functions) definitions.
