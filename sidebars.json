@@ -488,13 +488,17 @@
         {
           "id": "fast_data/sv_concepts",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/no_code_overview",
+          "type": "doc"
         }
       ],
       "label": "Overview and concepts",
       "type": "category"
     },
     {
-      "id": "fast_data/set_up_fast_data",
+      "id": "fast_data/setup_fast_data",
       "type": "doc"
     },
     {

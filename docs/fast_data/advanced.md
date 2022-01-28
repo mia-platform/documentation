@@ -56,7 +56,7 @@ Doing this, **all** the Systems of Records services will write changes into the 
 
 ### Kafka configuration
 
-As default all the Systems of Records services will use the same Kafka Group Id, Sasl Username e Password that you have set in the [Envs section](./set_up_fast_data#set-up-environment-variables).  
+As default all the Systems of Records services will use the same Kafka Group Id, Sasl Username e Password that you have set in the [Envs section](./setup_fast_data#set-up-environment-variables).  
 If you need to customize these variables for some Systems of Record, you can do that going to the `Advanced` section of the `Design` area in Console. Open `fast-data` from menu and open the `projections.json` file and write a configuration such as the following:
 
 ```json
