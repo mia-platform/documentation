@@ -14,6 +14,25 @@ Kafka is an event streaming platform used to write messages containing data rece
 To correctly configure your Kafka cluster, you can visit [this site](https://eventsizer.io/).
 :::
 
+## Snappy compression
+
+Snappy is a compression and decompression library whose aim is to offer high speed data flow while still mantaining a reasonable compression ratio. Among the various types of compression supported by Kafka for its messages, there is also Snappy.
+
+The main advantages of Snappy are:
+
+* Fast compression speed (around 250 MB/sec)
+* Moderate CPU usage
+* Stability and robustness to prevent crashing while still mantaining the same bitstream format among different versions
+* Free and open source
+
+> *Note*: For further information about Snappy, check the official [github page](https://github.com/google/snappy) of the library.
+
+Provided that the client's **CDC** (Change Data Capture) supports Snappy compression, the console is already predisposed for it.
+
+:::caution
+Snappy, like every other compression and decompression algorithm, will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications; on the other hand it is well recommended for initial loads which tend to be a lot heavier.
+:::
+
 ## Create topics
 
 You can create a topic using Kafka cli, or if you use the Confluent Cloud you can use the user interface.

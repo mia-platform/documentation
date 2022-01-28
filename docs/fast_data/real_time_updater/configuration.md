@@ -90,6 +90,10 @@ To do that, you must correctly configure the Kafka Message Adapter, changing the
 Another option that you should be aware of when thinking about the format of your Kafka messages is the "upsert" or "insert".
 By default, the real-time-updater will perform upsert operations, but you can optionally decide to perform inserts that will fail if the document already exists, instead of updating it.
 
+:::info
+The console already provides supports for Snappy compressed messages, for further information check [Snappy compression](../setup_fast_data.md#snappy-compression)
+:::
+
 #### Basic
 
 It's the default one.
