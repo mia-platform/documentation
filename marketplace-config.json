@@ -144,7 +144,7 @@
   },
   {
     "name": "Export Service",
-    "description": "\"This service helps you manage Excel, CSV or JSON export from other services using jsonl.",
+    "description": "This service helps you manage Excel, CSV or JSON export from other services using jsonl.",
     "category": {
       "id": "database",
       "label": "Core Plugins - Database Management"
