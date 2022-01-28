@@ -1,5 +1,5 @@
 ---
-id: set_up_fast_data
+id: setup_fast_data
 title: Fast Data Set up
 sidebar_label: Set up
 ---

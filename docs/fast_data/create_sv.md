@@ -299,7 +299,19 @@ In the detail page of the Single View, click on the `Strategies` tab.
 
 Here it's shown a table in which you have to specify the all projections that will be read to get the data that the single view needs (remember that a Single View is an aggregation of data from different projections).
 
-To each listed projections you have to link a file without the extension `.js` which is the entry point of your **strategy function**.
+To link a strategy to your single view, once you entered the `Strategies` tab, you can click on the `Add link to strategy` button, which will let you select:
+
+1. A system and a projection from said system
+2. Whether the strategy type is `low code` or `manual`
+3. The main strategy function file name
+
+You can link a strategy as low code only if the system it belongs to is low code as well. If you choose to link the strategy as low code, instead of its main function file name, the `__automatic__` marker will be used.
+
+:::warning
+Once you have linked some strategies to a Single View Creator in low code mode, if you try to change the Real Time Updater making it manual, you will not be allowed to save.
+:::
+
+If you choose to use manual strategies, each listed manual projection must be linked to a file without the extension `.js` which is the entry point of your **strategy function**.
 
 Example:
 
@@ -315,6 +327,8 @@ configurations/
 Where `myStrategyForProjection1.js` is the file that exports the strategy function and internally it uses some functions imported from the `someFunctions.js` file.
 
 So, you have to set `myStrategyForProjection1` as **main function file** for the projection associated.
+
+In the table, you have the option to turn a manual strategy into a low code strategy. Note that this is only possible if the system the projection belongs to is low code too.
 
 ## How to consume the Single View
 

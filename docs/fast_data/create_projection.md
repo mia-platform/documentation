@@ -10,7 +10,7 @@ To create a projection, you should create a System of Records. This is the data 
 
 To do so, open the **Projections** section in the fast data group of Mia-Platform Console. Then, select the create button.
 
-The creation of a System of Records requires you to insert a system ID, useful to recognize the system.
+The creation of a System of Records requires you to insert a system ID which is useful to recognize the system, and to choose if you want to set the Real Time Updater [manually](./real_time_updater/configuration#manual-configuration) or with [Low Code](./real_time_updater/configuration#low-code-configuration) configuration.
 
 ## Delete a System of Records
 
