@@ -417,7 +417,7 @@ An [API Key](../../development_suite/api-console/api-design/api-key) with the de
 
 In order to perform CRUD operations on the forms created with the Form Service, we recommend to [create a CRUD](../../development_suite/api-console/api-design/crud_advanced) named `form_schemas`.
 
-The required properties (specified in the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-parameter) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form_schemas_crud_fields.json">json file</a>. If any, you need to also add the additional [form metadata parameters](#form-metadata-parameters).
+The required properties (specified in the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-parameter) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schemas_crud_fields.json">json file</a>. If any, you need to also add the additional [form metadata parameters](#form-metadata-parameters).
 
 You also need to expose a new endpoint `/form-schemas` following [this guide](../../development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formSchemasCrud* parameter accordingly.
 The type of this endpoint is `CRUD`.
@@ -426,7 +426,7 @@ The type of this endpoint is `CRUD`.
 
 This CRUD is required and used by the **Form Service Backend** to link form data (submitted by a Form Visualizer user) with forms created with the Form Builder.
 
-The required properties (specified in the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form_schema_map_crud_fields.json">json file</a>.
+The required properties (specified in the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schema_map_crud_fields.json">json file</a>.
 
 If you want to use the default value of the *formSchemaMapCrud* you need to expose this CRUD with the `/form-schema-map` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 

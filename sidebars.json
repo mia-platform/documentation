@@ -1040,11 +1040,6 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/form-service-backend/changelog"
-                },
-                {
-                  "type": "category",
-                  "label": "docs_files_to_download",
-                  "items": []
                 }
               ]
             },
