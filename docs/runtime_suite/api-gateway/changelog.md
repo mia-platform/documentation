@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 5.0.1 2022-01-31
+
 ### Fixed
 
 - set `X-Forwarded-Proto` to use `original_request_scheme` variable to use the correct scheme
