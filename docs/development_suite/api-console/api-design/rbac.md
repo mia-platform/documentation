@@ -78,9 +78,13 @@ In the creation form, you will be asked for a microservice name (to be chosen am
 It's possible to add new manual route to register a permission for a group of paths using the wildcard (e.g. "/foo/*") and also to select the method ALL to register the same permission for all http methods of the inserted path, but pay attention to the [routes priority rules](#routes-priority)
 :::
 
-During or after the creation of a manual route, you will also be able to associate to it a **Rows Filter**, described in depth in its dedicated section. 
+During or after the creation of a manual route, you will also be able to associate to it a **Rows Filter** or a **Response Filter**, described in depth in their dedicated sections:
+- [**RBAC rows filtering**](#rbac-rows-filtering)
+- [**RBAC response filtering**](#rbac-response-filtering)
 
-Please, check out [**RBAC rows filtering**](#rbac-rows-filtering) to understand the definition of a rows filter, how to enable a filter from the Manual Routes configuration tab and how to specify a custom header name.
+To activate the filters, you can use the corresponding switch and then configuring them. In particular:
+- `Row Filtering` uses the `acl_rows` value as **headerName**  by default, but you can set a custom value to replace it.
+- `Response Filtering` requires instead the name of the filter policy used to evaluate the response received by RBAC sidecar. 
 
 :::caution
 While normally the RBAC sidecar will self-configure itself by consuming the API documentation of its target service when you add a new manual route to the RBAC configuration for a microservice, that self-configuration functionality gets disabled, thus you're required to register all the routes that your service exposes.
@@ -114,18 +118,13 @@ Paths to resolve
 It may happen that for some of your APIs you need to filter out some results based on the permissions of the requesting user. This is the case in which we talk about rows filtering.  
 The RBAC service allows you to retrieve automatically a query for your DBMS coming from the evaluation of the permissions of a user. This query will be passed as a header to the requested service that should know how to handle it properly.
 
-To let the RBAC service know it has to perform this query generation, you need to go to the **Manual Routes** configuration tab. 
+To let the RBAC service knows it has to perform this query generation, you need to configure it in the [api configuration](./rbac_api_configuration#x-permission-attribute) or go to [**Manual Routes** tab](#manual-routes-tab). 
 
-:::info
-When creating a new route or by modifying an existing one, you will be able to select a **Rows Filtering** checkbox that will enable the rows filter.
-:::
 
-Once you successfully enable the rows filter, you will have the possibility to specify a **custom headerName**. 
-
-This field will be used to provide the name of the header that will contain the final query and will be passed to the requested service. If you don't specify any value for headerName, by default it will take the `acl_rows` value.
+The `headerName field` will be used to provide the name of the header that will contain the final query and will be passed to the requested service. If you don't specify any value for headerName, by default it will take the `acl_rows` value.
 
 :::caution
-The rows filtering configured for a manual route, in order to correctly work, needs the definition of a permission evaluation, that has to be written and tested in the properly [Permissions tab](#permissions-tab) of RBAC section.
+The rows filtering, in order to correctly work, needs the definition of a permission evaluation, that has to be written and tested in the properly [Policies tab](#policies-tab) of RBAC section.
 :::
 
 #### How to write a query in rego for permission evaluation
@@ -220,6 +219,8 @@ For some of your APIs you may need to manipulate data, based on the permissions 
 Whenever this filtering is performed on the results obtained by a HTTP request, we talk about response filtering on response.
 RBAC service allows you to manipulate the response body directly in a policy.  
 As shown in the [RBAC policies](../api-design/rbac_policies.md#policies-input-data) section, your policies will be provided with the original response body, allowing you to manipulate it.  
+
+After the policy is written, you need to register it in the [api configuration](./rbac_api_configuration#x-permission-attribute) or in the [**Manual Routes** section](#manual-routes-tab). 
 
 :::caution
 Response filtering is applied only if the response Content Type is `application/json`; if any other Content Type is found (based on the `Content-Type` header value), an error will be sent to the caller.
