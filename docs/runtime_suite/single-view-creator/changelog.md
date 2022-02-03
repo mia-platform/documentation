@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.1] 2022-02-01
+
+### Fixed
+
+- do not use dependency resolved of previous iteration for mapping in a config
+
+### Updated
+
+- fast-data-automation-lib@1.0.1
+
 ## [3.3.0] 2022-01-25
 
 ### Added
