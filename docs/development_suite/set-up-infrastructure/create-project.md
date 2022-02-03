@@ -415,9 +415,18 @@ Once your project has been created, you will be redirected on the Setup Infrastr
 
 * Some variables are pre-filled from project or tenant information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
 
-* All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled like *MONGODB_SHORT_URL*, *MONGODB_URL*and*REDIS_HOSTS*.
+* All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*.
 
 These environment variables are saved on GitLab.
+
+The Console automatically tries to create the namespace for each environment in project, if creation is successfull it also sets the following labels in the namespace:
+
+Label|Value
+-|-
+`mia-platform.eu/company`|`tenantId`
+`mia-platform.eu/environment`|`envId`
+`mia-platform.eu/project`|`projectId`
+
 
 At the end of project creation, you have to commit and deploy your new project to finish the process effectively.
 
@@ -542,7 +551,7 @@ A configuration example:
 
 ```json
 {
-  "environments": [
+  "environments": [
     {
       "cluster": {
         "proxy": {
