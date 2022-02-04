@@ -1,6 +1,6 @@
 ---
 id: create-project
-title:  Create a Project
+title: Create a Project
 sidebar_label: Create a Project
 ---
 
