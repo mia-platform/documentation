@@ -400,6 +400,17 @@
     {
       "id": "development_suite/endpoint-overview/endpoint-overview",
       "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "development_suite/set-up-infrastructure/providers-management",
+          "type": "doc"
+        }
+      ],
+      "label": "On-Premise Configurations",
+      "type": "category"
     }
   ],
   "devPortal": [
