@@ -549,7 +549,7 @@
           ],
           "label": "Real-Time Updater",
           "type": "category"
-        },
+        }
       ],
       "label": "Design",
       "type": "category"
