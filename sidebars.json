@@ -550,10 +550,6 @@
           "label": "Real-Time Updater",
           "type": "category"
         },
-        {
-          "id": "fast_data/advanced",
-          "type": "doc"
-        }
       ],
       "label": "Design",
       "type": "category"
