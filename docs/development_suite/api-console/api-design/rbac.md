@@ -141,14 +141,14 @@ In the example below, given a valid rows filtering configuration, the `allow` p
 
 ```rego
    allow {
-      input.method == "GET"
+      input.request.method == "GET"
       resource := data.resources[_]
       resource.name == input.user
       resource.description == "this is the user description"
    }
 
    allow {
-      input.method == "GET"
+      input.request.method == "GET"
       resource := data.resources[_]
       resource.manager == input.user
       resource.name == input.path[1]
