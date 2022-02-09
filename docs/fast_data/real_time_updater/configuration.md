@@ -661,6 +661,33 @@ Here `pr_reviews` is connected to :
 - `pr_registry` through: `{“ID_USER”: “ID_USER”}` which represents the field of the  collection `pr_registry`.
 - `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_review`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_reviews` respectively.
 
+It is possible to define a constant value in order to validate the condition, for example:
+
+```json
+"pr_dishes": {
+  "outgoing": {
+    "pr_orders_dishes": {
+      "conditions": {
+        "dish_to_order_dish": {
+          "condition": {
+            "ID_DISH": "__string__[testID]"
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
+The types of constants that are supported are: 
+
+- `__string__[]` which considers the value as a string.
+- `__integer__[]` which considers the value as an integer.
+- `__boolean__[]` which considers the value as a boolean.
+- `__constant__[]` which considers the value as a string (deprecated).
+
 :::warning
 If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B-> A
 :::
