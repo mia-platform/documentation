@@ -506,24 +506,43 @@ Here you can see a visual representation of the ER schema.
 
 ### Configuration Files
 
-There are two main configuration files that you need to provide to the Plugin:
+There are three main configuration files that you need to provide to the Plugin:
 
-1. ErSchema
-2. Configuration
+1. Configuration
+2. ErSchema
+3. Aggregation
 
 When you add the Microservice from the Marketplace, the configMaps and the relative files will be already created, and you only need to insert the content.
 
+#### Configuration
+
+The configuration contains the `singleViewKey.json` file. The input of this configuration is the projection changes identifier and the output is the query to be applied on the Single View. 
+
+To use the configuration, a mapping between the identifier field and the single view field is needed.
+An example:
+
+```json
+{
+  "version": "1.0.0",
+   "config": {"sv_id": "ID_USER"}
+}
+```
+where:
+
+- `sv_id` is the name of the single view's key 
+- `ID_USER` is the field's name inside the identifier
+
 #### ER Schema
 
-The Entity-Relation Schema defines the relation between the documents of the System of Records, by means of directed links from one document to another, that can have one or more conditions. An example of a correct ER is presented next:
+The Entity-Relation Schema defines the relation between the collections of the System of Records, by means of directed links from one collection to another, that can have one or more conditions. An example of a correct ER is presented next:
 
 ```json
 {
   "version": "N.N.N",
   "config": {
-    "SOURCE_DOCUMENT": {
+    "SOURCE_COLLECTION": {
       "outgoing": {
-        "DESTINATION_DOCUMENT": {
+        "DESTINATION_COLLECTION": {
           "conditions": {
             "CONDITION_NAME": {
               "condition": {
@@ -606,7 +625,7 @@ Some more complex condition is showcased next:
 ...
 ```
 
-#### Configuration
+#### Aggregation
 
 Once you have the ER schema set up, you are ready to describe how to build your single view.
 
