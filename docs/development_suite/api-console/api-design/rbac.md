@@ -129,7 +129,7 @@ The rows filtering, in order to correctly work, needs the definition of a permis
 
 #### How to write a query in rego for permission evaluation
 
-Any RBAC policies is provided with the iterable `data.resource[_]`. This structure is used to build up the query. 
+Any RBAC policies is provided with the iterable `data.resources[_]`. This structure is used to build up the query. 
 You can use it to perform any kind of comparison between it and anything you want from the input or maybe a constant value.  
 We remind you that the query will be built from the field name of the resource object accessed in the permission.
 
@@ -142,14 +142,14 @@ In the example below, given a valid rows filtering configuration, the `allow` p
 ```rego
    allow {
       input.method == "GET"
-      resource := data.resource[_]
+      resource := data.resources[_]
       resource.name == input.user
       resource.description == "this is the user description"
    }
 
    allow {
       input.method == "GET"
-      resource := data.resource[_]
+      resource := data.resources[_]
       resource.manager == input.user
       resource.name == input.path[1]
    }
