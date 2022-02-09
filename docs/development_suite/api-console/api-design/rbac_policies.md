@@ -104,6 +104,18 @@ rider := find_one("riders", { "riderId": riderId })
 rider.available == true
 ```
 
+### find_many
+
+The `find_many` built-in function can be used to fetch multiple data from a MongoDB collection, it accepts the collection name and a custom query and returns the documents that match the query using the `Find` MongoDB API.
+
+Example usage to fetch a rider from the `riders` collection by using the rider identifier provided in the request path parameters:
+
+```rego
+riders := find_many("riders", { "available": true })
+rider := riders[_]
+rider.riderId == input.request.pathParams.riderId
+```
+
 ## Policy examples
 
 The following examples shows how to write a policy on the permission **api_key**, that checks if the request contains the header **x-api-key**.\
