@@ -601,6 +601,33 @@ This means the `pr_reviews` projection is connected to:
 * `pr_registry` through the `rev_to_reg` condition, which means the documents are linked if the registry `ID_USER` field is the same as the reviews `ID_USER` field;
 * `pr_dishes` through the `rev_to_dish` condition, which means the documents are linked if the dish `id_dish` field is the same as the reviews `ID_DISH` field;
 
+It is possible to define a constant value in order to validate the condition, for example:
+
+```json
+"pr_dishes": {
+  "outgoing": {
+    "pr_orders_dishes": {
+      "conditions": {
+        "dish_to_order_dish": {
+          "condition": {
+            "ID_DISH": "__string__[testID]"
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
+The types of constants that are supported are: 
+
+- `__string__[]` which considers the value as a string.
+- `__integer__[]` which considers the value as an integer.
+- `__boolean__[]` which considers the value as a boolean.
+- `__constant__[]` which considers the value as a string (deprecated).
+
 Some more complex condition is showcased next:
 
 ```json
