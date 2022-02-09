@@ -29,11 +29,8 @@ One Projections Changes collection is created for each System of Records as defa
 
 This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view.
 
-You can choose to use a collection you have already created in the CRUD section through advanced configuration. To do that, [read here](./advanced#projections-changes).
-
 :::note
-When you delete a System of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.  
-This will not happen if you have chosen to use your own custom Projections Changes collection through the [advanced](./advanced) section.
+When you delete a System of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.
 :::
 
 ## Create a Projection
