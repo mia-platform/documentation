@@ -162,7 +162,7 @@ test_api_key_allowed {
 
 test_api_key_not_allowed {
   not api_key with input as {"request": {"headers": {}}}
-}`
+}
 ```
 
 :::caution
