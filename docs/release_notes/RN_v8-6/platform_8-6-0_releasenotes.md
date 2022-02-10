@@ -32,7 +32,7 @@ The support icon in the Console launcher will now open a menu with multiple link
 
 #### Endpoints Overview
 
-The previous tool *Tenant Overview* has been renamed in *Endpoint Overview*, and now it is possible access to the related section by clicking on the related button in the project page. Moreover, we introduce the filtering on endpoints through the new *Proxed By* feature. Click [here](../../development_suite/endpoint-overview/endpoint-overview) for more information. 
+The previous tool *Tenant Overview* has been renamed in *Endpoint Overview*, and now it is possible access to the related section by clicking on the related button in the project page. Moreover, we introduce the filtering on endpoints through the new *Proxied By* feature. Click [here](../../development_suite/endpoint-overview/endpoint-overview) for more information. 
 
 ### Bug Fix
 

@@ -16,7 +16,7 @@ Endpoint Overview collects data on the project configuration and creates a table
 * *Project owner*: Project owner name.
 * *Endpoint/API*: Endpoint name.
 * *Show in API Portal*: A label that shows if the endpoint appears in the API portal.
-* *Proxed By*: A label that shows if the endpoint is proxed by another endpoint.
+* *Proxied By*: A label that shows if the endpoint is proxied by another endpoint.
 * *API Key*: A label that shows if the endpoint is protected by an API-key.
 * *Public*: A label that shows if the endpoint is public (the API is accessible even if the user is not logged in).
 * *User Group Permission*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
@@ -59,6 +59,6 @@ The Endpoint Overview results can be filtered by the project names and the attri
 
 ![Proxy filter](img/proxy-filter.png)  
 
-In the following example, the Endpoint Overview result is filtered to display only the endpoints into *Tenant Overview Test* project having both *PRE Decorator* and *Authentication* set to *false* and *User Group Permission* features set to *true* which are *Proxed By* the proxy *Cross Project Test*.  
+In the following example, the Endpoint Overview result is filtered to display only the endpoints into *Tenant Overview Test* project having both *PRE Decorator* and *Authentication* set to *false* and *User Group Permission* features set to *true* which are *Proxied By* the proxy *Cross Project Test*.  
 
 ![Filter](img/filter.png)  
