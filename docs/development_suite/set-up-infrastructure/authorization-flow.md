@@ -76,3 +76,27 @@ It is a trusted entity that creates, stores and manages user's digital identity 
 This can be any service (either created from Mia-Platform [Marketplace](../../marketplace/overview_marketplace) templates or by your own) that will handle the user requests received by the API Gateway.
 Once a request reaches the custom service, the user performing the request has already been authenticated and authorized successfully.
 Its purpose is to receive the request, perform some custom application logic and produce a response that will be sent back to the client through the API Gateway.
+
+## Authorization with RBAC
+
+Role Based Access Control (RBAC) is an authorization mechanism integrated in Console that provides more advanced and efficient authorization logics, guaranteeing security and governance benefits in managing your project.
+
+In addition to the above-mentioned services that are involved in an authentication and authorization flow, 
+Mia-Platform provides another service, the RBAC Service. 
+
+RBAC Service is the core service responsible for handling advanced authorization mechanisms through the 
+[evaluation of policies](../api-console/api-design/rbac_policies) written in Rego, 
+the [OPA](https://www.openpolicyagent.org/docs/latest/) language.
+
+In order to prevent single point of failures in your project architecture, RBAC policies are evaluated with a decentralized strategy by different RBAC service instances that are distributed within your project.  
+Each service that you have enabled RBAC for is, in fact, accompanied by a dedicated RBAC Service instance.
+
+RBAC service intercepts the traffic directed to your service and implements the authorization 
+logics by evaluating your policies to perform decisions or actions, such as:
+
+* authorization enforcement on request attributes (such as: request path, headers, query parameters, path parameters, client type, etc) and all the user properties provided by the Authorization Service in the `miauserproperties` and `miausergroups` platform headers. [See more information here](../api-console/api-design/rbac_policies#policies-input-data)
+* query generation for data [filtering on request](../api-console/api-design/rbac#rbac-rows-filtering).
+* [response body filtering](../api-console/api-design/rbac#rbac-response-filtering) to remove or change data returned by your services.
+
+To know more about how managing and implementing RBAC functionalities, 
+visit the [RBAC documentation page](../api-console/api-design/rbac).
