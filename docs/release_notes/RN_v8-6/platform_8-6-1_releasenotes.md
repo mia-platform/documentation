@@ -23,11 +23,11 @@ For more information, visit RBAC configuration [documentation](../../development
 
 #### Showing custom routes on API Portal
 
-In the API portal It has been corrected a bug that prevent the possibility to include only specific routes of an endpoint. Disable the 'Show in API portal' checkbox for the endpoint and make sure to enable it for the specific route you want: in this way only the route you specified will appear.
+A bug in the API Portal, which prevented the possibility to include only specific routes of an endpoint, has been corrected. Disable the 'Show in API portal' checkbox for the endpoint and make sure to enable it for the specific route you want: in this way only the route you specified will appear.
 
 #### Import of a schema with an encrypted custom field
 
-It has been corrected a bug that prevent the possibility to import a collection from JSON with the default fields encrypted.
+A bug, which prevented the possibility to import a collection from JSON with the default fields encrypted, has been corrected.
 
 #### Endpoints Overview
 
