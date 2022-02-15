@@ -1539,6 +1539,9 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-6/v8.6.2",
+              "type": "doc"
+            },{
               "id": "release_notes/RN_v8-6/v8.6.1",
               "type": "doc"
             },
