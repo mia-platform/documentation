@@ -26,10 +26,6 @@ const tagManagerArgs = {
   gtmId: "GTM-WTGCJM6",
 };
 
-const tagManagerCookiesArgs = {
-  gtmId: "GTM-PKKZ6XT",
-};
-
 function Layout(props) {
   const {children, noFooter, wrapperClassName} = props;
 
@@ -39,13 +35,6 @@ function Layout(props) {
     if (!isProd) return;
     TagManager.initialize(tagManagerArgs);
   };
-
-  const initCookiesTagManager = () => {
-    if (!isProd) return;
-    TagManager.initialize(tagManagerCookiesArgs);
-  };
-
-  initCookiesTagManager();
 
   const authorizedCookie = Cookies.get(cookieBannerConf.cookie);
 
