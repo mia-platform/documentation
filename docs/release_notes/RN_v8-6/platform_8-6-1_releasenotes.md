@@ -7,6 +7,10 @@ image: "img/release-note-link-preview.png"
 
 _February 14, 2022_
 
+:::danger
+This version is affected by a security vulnerability, update to [v8.6.2](./v8.6.2).
+:::
+
 ### New Features
 
 #### RBAC Manual Routes support also the response filtering
