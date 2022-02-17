@@ -154,7 +154,8 @@
     "noreply",
     "rossi",
     "rgba",
-    "ghcr"
+    "ghcr",
+    "uncastable"
   ],
   "dictionaries": [
     "softwareTerms",

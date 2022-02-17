@@ -572,6 +572,10 @@
         {
           "id": "fast_data/monitoring/dashboards/single_views",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/monitoring/dashboards/unmapped_fields",
+          "type": "doc"
         }
       ],
       "label": "Monitoring",
