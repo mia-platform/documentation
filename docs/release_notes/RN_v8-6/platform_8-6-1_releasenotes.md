@@ -49,7 +49,8 @@ A bug that caused the selected environment to be reset when entering the Metrics
 The Mia-Platform Launchpad deploy tool, `mlp`, source code is now generally available open source [on GitHub](https://github.com/mia-platform/mlp).
 kubernetes supported versions are now increased to cover versions between 1.19 and 1.22.
 
-To install, use the new docker image `ghcr.io/mia-platform/mlp` in your pipelines. This changes are totally backward compatible.
+To install, use the new docker image `ghcr.io/mia-platform/mlp` in your pipelines. 
+These changes are totally backward compatible, except only for the removal of `kubectl` from the Docker image of `mlp`. If you are using `kubectl` in the project pipeline you have to install it by yourself.
 
 ### Improvements
 
