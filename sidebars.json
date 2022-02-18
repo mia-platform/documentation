@@ -1659,5 +1659,25 @@
       "id": "release_notes/support-policy",
       "type": "doc"
     }
+  ],
+  "tools": [
+    {
+      "collapsed": false,
+      "items": [
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "tools/overview_service_tools",
+              "type": "doc"
+            }
+          ],
+          "label": "Microservices",
+          "type": "category"
+        }  
+      ],
+      "label": "Tools",
+      "type": "category"
+    }
   ]
 }

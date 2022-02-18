@@ -47,7 +47,7 @@ const config = {
         {
           label: "Products",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|runtime_suite|business_suite|fast_data|dev_portal)",
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
           to: "docs/development_suite/overview-dev-suite",
           items: [
             {
@@ -78,6 +78,10 @@ const config = {
             {
               to: "docs/libraries/overview_service_libraries",
               label: "Libraries"
+            },
+            {
+              to: "docs/tools/overview_service_tools",
+              label: "Tools"
             },
           ]
         },
