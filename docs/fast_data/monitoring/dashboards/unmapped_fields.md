@@ -4,29 +4,14 @@ title: Unmapped Fields
 sidebar_label: Unmapped Fields
 ---
 
-This dashboard will help you to monitoring unmapped fields. With unmapped fields we mean field which is in a Kafka message, but it is not mapped on a projection.
+This dashboard will help you to monitor unmapped fields. With unmapped field we mean a field which is in a Kafka message, but it is not mapped on a projection.
 
 This situation could happen for two main reasons:
 
 - Inside the console, the field was not registered
 - The [Cast Function](../../cast_functions.md) launches an error
 
-The messages details of both cases are better described inside the CMS, in which you can find the following information:
 
-#### Unknown field
-
-- **Type**: `UNKNOWN_FIELD`
-- **fieldNameInProjection**: field name
-- **valueInProjection**: value of the unmapped field
-  
-#### Uncastable field
-
-- **Type**: `UNCASTABLE_FIELD`
-- **error**: Cast function's error
-- **fieldNameInProjection**: field name
-- **valueInProjection**: value of the unmapped field
-
-In both cases with this dashboard some metrics about the two reasons for unmapped fields are shown.
 
 In order to use this dashboard, the following configuration steps are needed:
 
@@ -103,7 +88,7 @@ Where:
   - **timestamp**: the message timestamp
   - **key**: message's key
 
-An example of MongoDB Query Exporter:
+The configmap for MongoDB Query Exporter:
 
 ```yml
 version: 2.0
@@ -172,7 +157,7 @@ metrics:
 
 ## Setting Alarms
 
-An alarms system could be useful to tempestively recover these kind of errors. The alarms system is developed in to detect new unmapped field.
+An alarms system could be useful to tempestively recover these kind of errors. The alarms system is developed to detect new unmapped fields.
 To define it you need to add inside the configurations folder of your project repository he following file:
 
 `fast-data.prometheusrule.yaml`
