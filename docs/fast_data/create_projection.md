@@ -151,6 +151,64 @@ In order for the Real Time Updater to correctly update its projections two actio
 In this way, the Real Time Updater updates the projection document with the correct primary key value instead of creating a new document.
 :::
 
+### Import multiple projections from a DDL file
+
+Most DBMSes have some way of exporting the database schema, producing a DDL file that contains a sequence of statements like `CREATE_TABLE`, `ALTER_TABLE`, and `CREATE_INDEX`. With this kind of file, the Console can create multiple projections for a given System of Records, which creates a set of projections with the following information:
+
+* All the fields (both custom and default); the custom fields can only have type `number` or `string`. All the numeric types will be converted to `number`, every other SQL type will be converted to `string`.
+* All the indexes specified in the DDL, plus a primary key index that will be automatically generated if not already present.
+
+#### Importing - step 1
+
+To start importing projections from a DDL, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, on the top right corner you will find an import button, which will open a Modal that will guide you through the import process.
+
+On the first page, you will need to provide two information:
+
+##### Topic pattern
+
+The topic pattern is a template string that will be interpolated for each combination of environment and projection to generate the topic prefixes. The syntax used is the same of the intuitive [javascript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), with the following variables:
+
+* projectId
+* projectionId
+* envId
+
+The default value for ths input is the same as the default used by the Console, which is `${projectId}.${envId}.${projectionId}-json`.
+
+##### Kafka adapter format
+
+Either `Basic`, `Golden Gate`, or `Custom`.
+
+![Topic pattern and Kafka adapter format modal page](img/importDDL/topic_pattern_and_kafka_adapter_format_modal_page.png)
+
+#### Importing - step 2
+
+The second page lets you upload the DDL file, and provides information about the supported SQL dialects, which are:
+
+* MySQL / MariaDB
+* MSSQL
+* Oracle
+* PostgreSQL
+* SQLite
+
+:::caution
+Keep in mind that `supported` means you will be able to generate projections correctly, but the fields types will only be either `number` or `string`.
+:::
+
+![Upload file modal page](img/importDDL/upload_file_modal_page.png)
+
+#### Importing - step 3
+
+In the last step you will be presented with a recap of what you are about to import. A tree view of projections will be displayed, each projection having fields and indexes as children. For fields, only the names of the custom fields will be displayed, and for the indexes only the name of the indexes.
+This page will also warn you about possible problems in the configuration, so read the warnings carefully and remember to take action when needed (e.g. missing primary key).
+
+When you click continue, the console will generate the new configuration for the System, which you can explore the result of the import directly from the console. If you are happy with the result as it is, you can directly commit, and it will be saved in the configuration, otherwise you can freely edit the generated projections as you normally do, and then commit.
+
+:::warning
+If your system already has some projections, those will be completely deleted when importing the new ones. If this is the case, you will be promped with a warning.
+:::
+
+![Tree view modal page](img/importDDL/tree_view_modal_page.png)
+
 ### Expose projections through API
 
 You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real Time Updater service).
