@@ -26,6 +26,7 @@ These fields will be automatically filled during the upload of files.
 * **CRUD_URL** (*required*): the crud url, comprehensive of the files collection name chosen during the CRUD collection creation (e.g. http://crud-service/files/ where files is the CRUD collection name).
 * **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location.
 * **PATH_PREFIX**: Use a relative path as file location prefix. Incompatible with *PROJECT_HOSTNAME*.
+* **SERVICE_PREFIX**: the prefix used for the path of the service endpoints.
 * **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the Mia-Platform headers).
 * **FILE_TYPE_INCLUDE_LIST** (from `v2.3.0`): comma separated list of file extensions (without the dot) to be accepted for upload. If you do not set the variable, the service will accept all uploaded file types.
 * **TRUSTED_PROXIES** (*required*): the string containing the trusted proxies values.
@@ -219,10 +220,9 @@ This file looks like
 ```
 
 Once obtained this file, you should not commit `private_key_id` and `private_key`.
-The `private-key` is a certificate with newline code (`\n`). In order to interpolate with in deploy stage of gitlab ci, it should be saved replacing `\n` with `\\\n`.
+The `private-key` is a certificate with newline code (<code>\n</code>). In order to interpolate with in deploy stage of gitlab ci, it should be saved replacing <code>\n</code> with <code>\\\n</code>.
 
-
-### Cache configuration
+### Cache configuration
 
 If the used bucket does not provide any caching mechanism, the Files Service can provide it. To make use of it you can
 add the `cache` property to the configuration file. If you set the `cacheControlMaxAge` property then a `cache-control`

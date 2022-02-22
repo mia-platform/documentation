@@ -10,6 +10,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- tap@15.1.6
+- node:14.19.0-alpine
+
+## [3.4.0] 2022-02-10
+
+### Updated
+
+- fast-data-automation-lib@1.1.0
+
+### Added
+
+- support to __string__, __integer__, __boolean__
+
 ## [3.3.1] 2022-02-01
 
 ### Fixed
