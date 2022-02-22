@@ -197,6 +197,10 @@ const config = {
           title: "Developer Resources",
           items: [
             {
+              label: "Status Page",
+              href: "https://status.console.cloud.mia-platform.eu"
+            },
+            {
               label: "Guidelines",
               to: "/docs/guidelines/git_vademecum",
             },
