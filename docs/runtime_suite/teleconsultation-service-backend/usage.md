@@ -27,7 +27,7 @@ For further details about Bandyer Client Side, check [this link](https://github.
 
 The following sections explain the details about the endpoints exposed from the **Teleconsultation Service Backend**.
 
-This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](https://docs.mia-platform.eu/docs/runtime_suite/auth0-client/overview_and_usage).
+This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](../../runtime_suite/auth0-client/overview_and_usage).
 
 In Bandyer there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.

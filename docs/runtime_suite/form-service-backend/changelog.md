@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional
 - update documentation links to download example .json files to fix link not opening in a new browser tab
 
 ## [1.2.1] 2021-12-15

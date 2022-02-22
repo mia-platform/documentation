@@ -11,16 +11,6 @@ The service can be seen as an enriched proxy to the CRUD: it implements the same
 to perform a set of operations on a CRUD collection as you normally would with the CRUD Service itself. On top of that it
 can be configured to handle messages and reminders functionalities.
 
-## Sending messages
-
-Whenever you create, update or delete an appointment, you may want to send a specific message to the users involved in the
-event. 
-
-:::caution
-In order to send messages you will need to deploy an instance of the [Messaging Service](../messaging-service/overview.md) 
-and to correctly configure the [environment variables](configuration.md#environment-variables).
-:::
-
 The service assumes that the users involved in an appointment are contained in one or more attributes of the appointment
 itself. For example, an appointment related to a medical visit may have the following structure:
 
@@ -35,10 +25,38 @@ itself. For example, an appointment related to a medical visit may have the foll
 In this example, the users involved in the appointment are categorized in _doctor_ and _patients_ and contained in two different
 attributes.
 
-The service gives you complete freedom in deciding to which category of users you want to send messages for each appointment
+The service gives you complete freedom in deciding to which category of users you want to add to a teleconsultation, or to send messages for each appointment
 lifecycle phase (creation, update or deletion).
 
 To do so, you can leverage the `users` property of the [service configuration](configuration.md#service-configuration).
+Here you can specify the category of users you want to use, along with their properties for the messaging service.
+
+Using the previous example, the configuration file for the service involving one doctor and a list of patients will be:
+
+```json
+{
+  "users": {
+    "doctor": {...},
+    "patients": {...}
+  }
+}
+```
+
+:::note
+These categories can contain additional properties that are useful only when using the messaging service, and can be left blank otherwise
+:::
+
+## Sending messages
+
+Whenever you create, update or delete an appointment, you may want to send a specific message to the users involved in the
+event. 
+
+:::caution
+In order to send messages you will need to deploy an instance of the [Messaging Service](../messaging-service/overview.md) 
+and to correctly configure the [environment variables](configuration.md#environment-variables).
+:::
+
+Users are defined in the `users` property of the [service configuration](configuration.md#service-configuration)
 This property is a map having as key the category of users you want to send messages to and as value another map linking
 a message template id (see [Messaging Service](../messaging-service/overview.md) documentation for more information) to
 each appointment lifecycle phase.

@@ -1505,6 +1505,31 @@
         {
           "id": "marketplace/templates/template_create",
           "type": "doc"
+        },
+        {
+          "type": "category",
+          "label": "Templates List",
+          "items": [
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Node.js Template",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/node.js-template/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/node.js-template/walkthrough"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/node.js-template/changelog"
+                }
+              ]
+            }
+          ]
         }
       ],
       "label": "Templates",
@@ -1545,7 +1570,8 @@
             {
               "id": "release_notes/RN_v8-6/v8.6.2",
               "type": "doc"
-            },{
+            },
+            {
               "id": "release_notes/RN_v8-6/v8.6.1",
               "type": "doc"
             },
@@ -1674,7 +1700,7 @@
           ],
           "label": "Microservices",
           "type": "category"
-        }  
+        }
       ],
       "label": "Tools",
       "type": "category"

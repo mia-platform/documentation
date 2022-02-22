@@ -157,7 +157,6 @@ curl --location \
   --data-urlencode 'token_endpoint_auth_method=private_key_jwt'
 ```
 
-
 ### GET /.well-known/jwks.json
 
 Client credentials service exposes an endpoint `.well-known/jwks.json` with an object with the key `keys`, containing an array of JWK values. Those JWKs could be used to verify the signature of the JWT.
@@ -301,6 +300,64 @@ Example response:
     "client_id_issued_at": 1592229239
 }
 ```
+
+## Client management endpoints
+
+Some of the endpoints exposed by the service are meant to manage clients. These endpoints allow the caller to perform operations such as:
+
+- Create a new client and set all of its properties, like permissions and audiences. The register endpoint doesn't allow the caller to set the new client permissions or audience because it is meant to allow external applications to create a new client without the privilege of setting its permissions or audience.
+
+### POST /clients
+
+This endpoint allows the caller to create a new client with certain authorization properties and with a certain state.
+Contrary to the `/register` endpoint, the `/clients` endpoint isn't meant to be public, since it allows the creation of a new client with certain authorization properties.
+Indeed, the `/clients` endpoint is designed to satisfy all the use cases where a client must be created automatically by some internal service.
+
+The `POST /clients` endpoint is very similar to the `POST /register` endpoint, as it accepts all the client information that are currently accepted by the latter, with the addition of the following client parameters:
+
+- `permissions`: a list of permission identifiers which the client holds.
+- `audience`: a list of audience identifiers which the client can communicate with.
+- `__STATE__`: the initial CRUD state of the client being created.
+
+:::caution
+Since this endpoint allows the caller to create a client with some permissions and audiences of interest, it should be used by internal services only and should not be made publicly available.
+:::
+
+An example of invocation of the `POST /clients` is the following one:
+
+```shell
+curl --location --request POST 'http://client-credentials/clients' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"client_name": "<client name>",
+	"token_endpoint_auth_method": "private_key_jwt",
+	"public_key": {
+		<public key in JWK infos>
+	},
+  "permissions": ["permission-1", "permission-2"],
+  "audience": ["audience-1", "audience-2", "audience-3"],
+  "__STATE__": "DRAFT"
+}'
+```
+
+The result of the `POST /clients` endpoint is the same as the one returned by the `POST /register` endpoint.
+
+An example of response, when a private key client is created, is the following:
+
+```json
+{
+  "client_id": "KQxcpHfuAqgAOJictCygckXuUwXSZqyz",
+  "client_id_issued_at": 1643640599
+}
+```
+
+### Update clients settings
+
+At the moment there's no endpoint exposed by the `client-credentials` service to update a client settings, like `permissions` or `audience`.
+Such an endpoint would be a simple proxy to the `PATCH /clients` endpoint of the `crud-service` that stores clients information in the first place.
+For this reason, in order to the update a client settings, is recommended to use the `PATCH /clients` endpoint exposed by the `crud-service` that must be deployed together with the `client-credentials` service.
+The `crud-service` documentation is available [here](../../runtime_suite/crud-service/overview_and_usage).
+
 ## Supported Authentication Flow
 
 Below are reported the authentication flows that are supported by Client Credentials service. The flows are sequence diagrams descriptions.

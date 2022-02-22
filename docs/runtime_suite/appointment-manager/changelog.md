@@ -10,9 +10,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] 2022-02-11
+
+### Fixed
+
+- Fixed no teleconsultation link in messages issue
+
+## [1.1.1] 2022-02-09
+
+### Fixed
+
+- Removed field `teleconsultationParticipants` when creating the teleconsultation, now it retrieves the users from the category defined in the configMap
+-  Removed field `teleconsultationParticipants` when updating the teleconsultation, now it retrieves the users from the category defined in the configMap
+
 ## [1.1.0] 2022-01-18
 
-#### Changed
+### Changed
 
 - Integrate Teleconsultation Service to the PATCH endpoint
 - Integrate Teleconsultation Service to the POST endpoint to change the state of an appointment

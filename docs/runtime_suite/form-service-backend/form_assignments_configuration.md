@@ -23,6 +23,12 @@ See the [form assignments CRUD parameters](#form-assignments-crud-parameters) se
 
 See the [user groups parameters](#user-groups-parameters) section for further details.
 
+:::info
+
+Leaving the Form Service Configurations without the `formAssignmentsCrud` property turns off the **Form assignments** feature. This also ensures backwards compatibility with previous configurations.
+
+:::
+
 ### Form assignments CRUD parameters
 
 This section defines the details of the CRUD responsible for storing the reletionship between a form template customized with the Form Builder and the users that will submit data.

@@ -18,7 +18,7 @@ The appointments CRUD needs the following service-specific fields.
 - **reminderIds** - `array of ObjectId`: list of unique identified of the reminders associated with the appointment.
 - **channels** - `array of string`: list of communication channels used to send messages and reminders. Possible values are **email**, **sms**, and **push**.
 - **isRemote** - `boolean`: specify if an appointment will use the teleconsultation or not.
-- **teleconsultationLink**: `string`: The link to join the teleconsultation.
+- **linkTeleconsultation**: `string`: The link to join the teleconsultation.
 
 :::tip
 On top of the aforementioned fields, you can add any field you want to the CRUD. The service will treat them as the CRUD would.

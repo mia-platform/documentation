@@ -63,6 +63,27 @@ If the `reminderThresholdMs` field in the configuration is set, and the new appo
 threshold, no reminders will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
 :::
 
+#### Creation of a telecomunication room
+
+If the environmental variables for the telecomunication service are set, the `isTeleconsultationAvailable` property of the configuration file is `true`, and the field `isRemote` is set to `true`, then a virtual room for the teleconsultation will be created alongside the URL to join the call.
+
+:::note
+For this to happen, the users auth0 ids have to be passed in the body.
+The users that can be passed are defined in `users` property of the [service configuration](configuration.md#service-configuration).
+
+The telecomunication service require at least 2 users for creating the room, otherwise will return an error
+
+The values for this fields can be either `string` or `arrayOfString`, for instance:
+
+```json
+{
+  "doctor": "doctorAuth0Id",
+  "patients": ["patient1Auth0Id", "patient2Auth0Id"]
+}
+```
+
+:::
+
 ### Body
 
 The body of this request has the same interface of a CRUD service `POST /` request.
@@ -70,7 +91,6 @@ The body of this request has the same interface of a CRUD service `POST /` reque
 :::note
 On top of the CRUD schema, the service adds the following validations:
 - if passed, `reminderMilliseconds` must be greater than 0;
-- if passed, `teleconsultationParticipants` must be an `array of string` containing the Auth0 ids of the participants to the teleconsultation;
 - `reminderIds` cannot be in the body.
 :::
 
@@ -109,11 +129,11 @@ Particular cases:
 
 - If the field **isRemote** is set from `true` to `false`, the virtual room created previously will be deleted alongside its URL to join the call from the CRUD.
 
-- If the field **isRemote** is set from `false` to `true` and the `teleconsultationParticipants` field is provided, a virtual room for the teleconsultation will be created alongside the URL to join the call.
+- If the field **isRemote** is set from `false` to `true`  a virtual room for the teleconsultation will be created alongside the URL to join the call. The teleconsultation service requires at least 2 users, so either they are already present in the appointment, or they must have passed alongside with the request
 
-- If the field `teleconsultationParticipants` is provided and the current appointment has already a teleconsultation associated, then the teleconsultation's participants will be updated.
+- If there are fields mapped by the `users` property of the [service configuration](configuration.md#service-configuration) and the current appointment has already a teleconsultation associated, then the teleconsultation's participants will be updated.
 
-For further info about the `teleconsultationParticipants` fields, see the [Teleconsultation Service doc - participants](../teleconsultation-service-backend/usage.md#participants-required).
+For further info about what to set as the users value, see the [Teleconsultation Service doc - participants](../teleconsultation-service-backend/usage.md#participants-required).
 
 :::note
 The teleconsultation virtual room will be accessible since its creation.
@@ -243,7 +263,7 @@ This may change in the future.
 :::
 
 :::warning
-If the state is changed to `DELETED` and the **teleconsultationLink** is associated with this appointment, the teleconsultation and the virtual room on Bandyer will be deleted.
+If the state is changed to `DELETED` and the **linkTeleconsultation** is associated with this appointment, the teleconsultation and the virtual room on Bandyer will be deleted.
 :::
 
 #### Sending of messages
