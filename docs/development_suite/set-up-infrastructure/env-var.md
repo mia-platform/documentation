@@ -24,25 +24,25 @@ Thanks to our Console in the Envs area it is possible to manage your Environment
 
 Mia-Platform uses the **prefix** concept to manage the differentiation between variables.
 
-Each variable is in fact associated with a prefix indicating the environment in which the variable is to be interpolated.
+Each variable can be associated with a prefix indicating the environment in which the variable is to be interpolated.
 
 How do prefixes work?
 
 Prefixes can be of two types:
 
-* **global** for all the platform, that is valid in any environment. The global prefix is `​​MIA_`
+* **Global prefix**: Mia Platform uses `​​MIA_` as global prefix. However, it is possible to avoid the prefix and by default, the environment variable will be treated as global.
 
-* **differentiated** according to the environment
+* **Differentiated**: according to the environment
 
-The variables differentiated by environment instead have a different prefix based on the environment.
-The prefixes are as follows:
+When a project is created it is associated to a specific Tenant.
+As described in the [Tenant section](create-project#create-a-tenant) a project associated to a specific tenant will inherit the environment information. For this reason, a differentiated environment variable must have the prefix associated to the `ID` of the specific environment. 
+It is possible to find it in the table of the Envs area.
 
-* Test environment: `DEV_`
-* Preprod environment: `PREPROD_`
-* Production environment: `PROD_`
+![envs-table](img/runtime-table-envs.png)
+
 
 :::warning
-Remember to add a prefix to your variable in the creation phase.
+Remember! It is fundamental to define a prefix if you want to associate a variable to a particular environment, otherwise the variable will be considered global.
 :::
 
 ## Create a Variable
@@ -57,11 +57,13 @@ To add a new variable press the **"Add new environment variable"** button at the
 When a **value** contains some `$` characters it is required to escape it by adding another `$` just before the original ones, otherwise the variable will be truncated just before the dollar sign.
 
 #### Example
-- **Desired value** to interpolate: `var$var$var`.  
-- **Actual value** to write: `var$$var$$var`.
+
+* **Desired value** to interpolate: `var$var$var`.  
+
+* **Actual value** to write: `var$$var$$var`.
 :::
 
-![](img/create-env-var.png)
+![create env var](img/create-env-var.png)
 
 ## Edit a Variable
 
@@ -70,11 +72,9 @@ Once you press the vsi button a modal will open.
 The key is an unchangeable value.
 Once the value has been changed, you just have to press the save button.
 
-![](img/edit-env-var.png)
-
 ## Delete a Variable
 
 To delete a variable, press the **delete** button corresponding to the desired variable. A modal will open.
 To cancel the variable you will be asked to enter the name of the key. The **name of the key must be identical** otherwise you will not be able to delete it.
 
-![](img/delete-env-var.png)
+![delete env var](img/delete-env-var.png)
