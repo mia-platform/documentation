@@ -107,9 +107,9 @@ In the **text color** field you can instead choose the color of the text. You ca
 
 ![CMS notifications example](img/notifications.PNG)
 
-**Permanently Delete**: activating this check choose to delete an element from the database. Appears when you want to delete an item in Trash.
+**Enable Delete**: activating this check, you enable the permanent deletion of items from the database. A CMS user will be able to perform the permanent deletion navigating in the "Trash" section and clicking on the "Delete" button.
 
-**Enable Block**: activating this check choose to block a page. In this way CMS will not be able to create new elements.
+**Enable Block**: activating this check, choose to block a page. In this way CMS will not be able to create new elements.
 
 **Enable Hide**: by activating this check, choose to hide a page.
 
