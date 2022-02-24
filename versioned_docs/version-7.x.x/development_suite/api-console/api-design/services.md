@@ -122,7 +122,7 @@ In this section, you can manage the resources dedicated to your microservice:
 
 * **CPU Resources**: You have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
 
-* **Static replicas** (*required*): You have to specify the number of replicas of your microservice.  
+* **Static replicas**: You have to specify the number of replicas of your microservice.  
   When a new microservice is created its default value is *1*.
 
   It is possible to have two different behaviors when a microservice has a [hpa](./replicas) configured.
@@ -130,7 +130,7 @@ In this section, you can manage the resources dedicated to your microservice:
   * *static replicas equals 0*: the *static replicas* has priority and so no microservice will be deployed.
 
   :::note
-  A static replicas value can not be interpolated by an environment variable
+  A static replicas value can be interpolated by an environment variable
   :::
 
 * **Log Parser** (*required*): You can select which parser will handle your microservice logs.   
