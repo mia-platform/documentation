@@ -691,6 +691,101 @@
       ],
       "label": "Libraries",
       "type": "category"
+    },
+    {
+      "type": "category",
+      "label": "Libraries List",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Custom Plugin Lib",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/apidoc"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/customservice"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/decorators"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/httpclient"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/logging"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/routes"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/testing"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/custom-plugin-lib/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Flow Manager Client",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/flow-manager-client/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/flow-manager-client/setup"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/flow-manager-client/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "lc39",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/lc39/cli-flags"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/lc39/development-affordance"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/lc39/logging"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/lc39/main-entrypoint"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/lc39/service-options"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_libraries/lc39/changelog"
+            }
+          ]
+        }
+      ]
     }
   ],
   "marketplace": [
@@ -1708,6 +1803,70 @@
       ],
       "label": "Tools",
       "type": "category"
+    },
+    {
+      "type": "category",
+      "label": "Tools List",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "miactl",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/setup"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "mlp",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/deploy"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/generate"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/hydrate"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/interpolate"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/options"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/setup"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/changelog"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
