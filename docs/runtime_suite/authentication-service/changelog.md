@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- added user settings URL parameter
+
 ## 2.4.0 - 23-12-2021
 
 ### Added

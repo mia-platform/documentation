@@ -112,7 +112,9 @@
       "upserts",
       "kustomize",
       "kustomization",
-      "unmount"
+      "unmount",
+      "affordance",
+      "affordances"
   ],
   "ignoreWords": [
     "algs",
@@ -155,7 +157,12 @@
     "rossi",
     "rgba",
     "ghcr",
-    "uncastable"
+    "uncastable",
+    "stabilimento",
+    "mymsg",
+    "kubeconfig",
+    "pippo",
+    "bitnami"
   ],
   "dictionaries": [
     "softwareTerms",

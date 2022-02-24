@@ -18,14 +18,18 @@ The *PGM* interfaces aim to be Payment Provider agnostic.
 In this way an eventual Payment Provider's change does not involve huge modifications for the services leveraging the *PGM*.
 
 * Payment Request: `POST /{provider}/{payment-method}/pay`
+* Payment with Authorization Confirmation Request: `POST /{provider}/{payment-method}/confirm`
 * Refund Request: `POST /{provider}/{payment-method}/refund`
 * M2M Callback Transaction Status Verification: `GET /{provider}/callback`
 * On-Demand Transaction Status Verification: `GET /{provider}/check`
+* Get status of a Transaction: `GET /{provider}/status?shopTransactionID={shopTransactionID}`
 
 ## Supported Providers and Payment Methods
 | Provider\Payment Method | credit-cards | applepay | googlepay | pay-pal | satispay |
 |-------------------------|--------------|----------|-----------|---------|----------|
-| gestpay (Axerve)        | ✓            | ✓        | ✓         |         |          |
+| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |
+| satispay                |              |          |           |         | ✓        |
+| unicredit               | ✓            |          |           |         |          |
 
 ## Notes
 

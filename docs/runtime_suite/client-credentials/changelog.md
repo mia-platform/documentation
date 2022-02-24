@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 3.2.0 - 24-02-2022
+
 ### Added
 
 - New endpoint `POST - /clients` that allows to create a new client with certain authorization properties and with a certain state.
