@@ -225,7 +225,15 @@ After the policy is written, you need to register it in the [api configuration](
 :::caution
 Response filtering is applied only if the response Content Type is `application/json`; if any other Content Type is found (based on the `Content-Type` header value), an error will be sent to the caller.
 
-**Be careful**, the written policy must return the new value of the modified object.
+**Be careful**, the written policy must respect the syntax 
+
+```rego
+policy_name[return_value]{
+   somePolicyContent==true
+}
+```
+
+and must return the new value of the modified data.
 :::
 
 ```rego
