@@ -176,7 +176,7 @@ The default value for ths input is the same as the default used by the Console, 
 
 ##### Kafka adapter format
 
-Either `Basic`, `Golden Gate`, or `Custom`.
+Either `Basic`, `Golden Gate`, or `Custom`. [Click here](real_time_updater/configuration.md/#kafka-messages-format) for more detail about the Kafka adapter formats.
 
 ![Topic pattern and Kafka adapter format modal page](img/importDDL/topic_pattern_and_kafka_adapter_format_modal_page.png)
 

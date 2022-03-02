@@ -17,7 +17,7 @@ The Real-Time Updater could be configured in two different ways:
 - MONGODB_URL (__required__):  defines the mongodb url to contact  
 - PROJECTIONS_DATABASE_NAME (__required__): defines the name of the projections database  
 - PROJECTIONS_CHANGES_COLLECTION_NAME (__required__): defines the name of the projections changes collection  
-- PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is **true**,
+- PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is __true__,
 - LC39_HTTP_PORT (__required__): defines the lc39 http port
 - STRATEGIES_MAX_EXEC_TIME_MS (__required__): defines the maximum time for which a strategy is executed
 - KAFKA_BROKERS (__required__): defines the kafka brokers
@@ -81,7 +81,7 @@ This folder contains the configurations for your kafka adapters.
 
 #### Kafka messages format
 
-In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats. 
+In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real Time Updater.
 
 Once you have created a System, you need to select the format of the Kafka messages sent from the system.
@@ -100,7 +100,7 @@ It's the default one.
 
 The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
 The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
-The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
+The `value` is __null__ if it's a *delete* operation, otherwise it contains the data of the projection.
 The `offset` is the offset of the kafka message.
 
 Example of a delete operation
@@ -128,9 +128,9 @@ The `offset` is the offset of the kafka message.
 The `key` can have any valid Kafka `key` value.  
 The `value` of the Kafka message instead needs to have the following fields:
 
-* `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
-* `after`: the data values after the operation execution (`null` or not set if it's a delete)
-* `before`: the data values before the operation execution (`null` or not set if it's an insert)
+- `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
+- `after`: the data values after the operation execution (`null` or not set if it's a delete)
+- `before`: the data values before the operation execution (`null` or not set if it's an insert)
 
 Example of `value` for an insert operation:
 
@@ -160,14 +160,14 @@ You have to create the adapter function *before* setting `custom` in the advance
 
 This adapter is a function that accepts as arguments the kafka message and the list of primary keys of the projection, and returns an object with the following properties:
 
-* **offset**: the offset of the kafka message
-* **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
-* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
-* **value**: the data values of the projection, or null
-* **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
+- __offset__: the offset of the kafka message
+- __timestampDate__: an instance of `Date` of the timestamp of the kafka message.
+- __keyObject__: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
+- __value__: the data values of the projection, or null
+- __operation__: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
 
 If the `value` is null, the operation is supposed to be a delete.
-The `keyObject` **cannot** be null.
+The `keyObject` __cannot__ be null.
 
 In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
@@ -281,14 +281,12 @@ An example:
 
 Projection changes are saved on mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
 
-This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.   
+This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.
 You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic kafka you set.
-
 
 :::info
 This feature is available from the version v3.4.0 or above of the service
 :::
-
 
 To do that, you need to set two environment variables:
 
@@ -311,11 +309,13 @@ Then, you have to create a configuration file `kafkaProjectionChanges.json` insi
 ```
 
 where:
+
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
 - `MY_TOPIC` is the topic where the projection change need to be sent
 
 Example:
+
 ```json
 {
     "registry-json": {
@@ -337,10 +337,9 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
 
-
 ### Tracking the changes
 
-From the **v3.2.0** of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.
+From the __v3.2.0__ of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.
 
 In particular, the following information are saved:
 
@@ -377,10 +376,11 @@ Example:
 
 #### Projection
 
-Into the projection is saved information about the last Kafka message that updated the projection. 
-These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields. 
+Into the projection is saved information about the last Kafka message that updated the projection.
+These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields.
 
 The information saved are:
+
 - topic: is the topic from which the Kafka message has been consumed
 - partition: is partition from which the Kafka message has been consumed
 - offset: is the offset of the message
@@ -415,12 +415,12 @@ Example:
 
 During a rebalancing or a massive initial load with multiple replicas of the real time updater, a batch of old messages that have not been committed yet could be read by the real time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
-To prevent that old messages that have already updated the projection, overwrite the projection again, you can set the environment variable `FORCE_CHECK_ON_OFFSET` to `true`.   
+To prevent that old messages that have already updated the projection, overwrite the projection again, you can set the environment variable `FORCE_CHECK_ON_OFFSET` to `true`.
 
-This setting is **strongly** recommended when you have both insert/update and delete operations.
+This setting is __strongly__ recommended when you have both insert/update and delete operations.
 
 :::caution
-In future versions of the Real-Time Updater this feature will be turned on as default, with no chance of turning off. 
+In future versions of the Real-Time Updater this feature will be turned on as default, with no chance of turning off.
 At the moment, you can keep it turned off just to be able to adapt your services in case they need some fix.
 :::
 
@@ -432,7 +432,6 @@ If a Kafka group rebalancing happens after that a projection has already been up
 This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, th service would stop without generating any projection change.
 :::
 
-
 ## Low Code Configuration
 
 Here, low-code specific configuration will be described. All of the previous documentation regarding generic real time updater features are still valid and applicable.
@@ -442,6 +441,14 @@ Low Code Real Time Updater is available since version `4.2.0`
 ### Environment variables
 
 If the System of Records has been created using the automatic configuration, the Real-Time updater has all the environments variables already prepared.
+
+:::info
+You can quickly convert a System of Record from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up you Fast Data Low Code project properly.
+:::
+
+:::warning
+When you create a new configmap, remember to use the same Mount Path of your environment variables `STRATEGIES_FOLDER`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_FOLDER`
+:::
 
 ### Projection Changes Collection
 
@@ -656,10 +663,10 @@ Look at this example:
 }
 ```
 
-Here `pr_reviews` is connected to :
+Here `pr_order_dishes` is connected to :
 
-- `pr_registry` through: `{“ID_USER”: “ID_USER”}` which represents the field of the  collection `pr_registry`.
-- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_review`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_reviews` respectively.
+- `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which represents the field of the collection `pr_orders`.
+- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_order_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_order_dishes` respectively.
 
 It is possible to define a constant value in order to validate the condition, for example:
 
@@ -681,7 +688,7 @@ It is possible to define a constant value in order to validate the condition, fo
 ```
 
 In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
-The types of constants that are supported are: 
+The types of constants that are supported are:
 
 - `__string__[]` which considers the value as a string.
 - `__integer__[]` which considers the value as an integer.
@@ -689,16 +696,17 @@ The types of constants that are supported are:
 - `__constant__[]` which considers the value as a string (deprecated).
 
 :::warning
-If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B-> A
+If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B __and__ B-> A
 :::
 
 #### Custom path of strategies
 
 If you need to handle by hand a specific strategies you have two choice:
+
 - you write your own strategy function. In this case you have to write the whole strategy by your own
 - you can let the Low Code to handle the initial path of the strategy, and then make it execute your own custom function to handle it from here on out
 
-To do that you have to specify in the `projectionChanges.json` that the **identifier** will be handled "from file", which is your custom file that exports your custom function. The syntax is **__fromFile__[myCustomFunction]**.
+To do that you have to specify in the `projectionChanges.json` that the __identifier__ will be handled "from file", which is your custom file that exports your custom function. The syntax is **__fromFile__[myCustomFunction]**.
 
 Let's see it in the configuration file below:
 
@@ -724,7 +732,7 @@ Let's see it in the configuration file below:
 }
 ```
 
-What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic. 
+What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
 The custom function have to match the following signature:
 
 ```js
