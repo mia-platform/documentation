@@ -63,13 +63,15 @@ metadata:
   name: default-resource-quota
 spec:
   hard:
-    requests:
-      cpu: "1"
-      memory: 1Gi
-    limits:
-      cpu: "3"
-      memory: 2Gi
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "3"
+    limits.memory: 2Gi
 ```
+
+:::warning
+`requests.cpu`, `requests.memory`, `limits.cpu`, and `limits.memory` are string fields and must be defined accordingly. Further details can be found in the [Kubernetes official documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#compute-resource-quota).
+:::
 
 The default `ResourceQuota` configuration file is illustrated above. Although they are still the result of analysis over existing environments, in this case the default values are **very strict** and may not be suitable for your namespace.
 The reason behind this choice is to **encourage tuning the values** according to the environment needs.
