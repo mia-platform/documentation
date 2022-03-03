@@ -4,8 +4,9 @@ title: Files Service
 sidebar_label: Configuration
 ---
 This microservice allows you to upload and download files to a third-party service.
-**Google Cloud Storage**, **MongoDB** and **Amazon s3** are currently supported.
-Consequently, it needs to know a MongoDB in which to save the files, a valid Amazon s3 bucket configuration or a Google Storage credentials.
+**Google Cloud Storage**, **[MongoDB GridFS](https://docs.mongodb.com/manual/core/gridfs/)** and **Amazon s3** are currently supported.
+
+Consequently, it needs to know either a MongoDB GridFS bucket configuration, a valid Amazon s3 bucket configuration or a Google Storage credentials.
 
 In addition, after each upload it saves the file's information using the [CRUD Service](../crud-service/configuration.md) on a configurable mongoDB collection (usually files).
 
@@ -24,7 +25,7 @@ These fields will be automatically filled during the upload of files.
 
 * **CONFIG_FILE_PATH** (*required*): the path of the configuration file to configure connection with the online bucket for the supported services.
 * **CRUD_URL** (*required*): the crud url, comprehensive of the files collection name chosen during the CRUD collection creation (e.g. http://crud-service/files/ where files is the CRUD collection name).
-* **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location.
+* **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location. Incompatible with *PATH_PREFIX*.
 * **PATH_PREFIX**: Use a relative path as file location prefix. Incompatible with *PROJECT_HOSTNAME*.
 * **SERVICE_PREFIX**: the prefix used for the path of the service endpoints.
 * **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the Mia-Platform headers).
@@ -33,7 +34,7 @@ These fields will be automatically filled during the upload of files.
 * **ADDITIONAL_FUNCTION_CASTER_FILE_PATH**: the path of the file that exports the function to cast.
 * **GOOGLE_APPLICATION_CREDENTIALS**: the path to access to the google storage credentials. This is *required* for GoogleStorage type.
 
-One of *PATH_PREFIX* and *PROJECT_HOSTNAME* is required.
+Either one of *PATH_PREFIX* and *PROJECT_HOSTNAME* is required.
 
 ## Configuration file
 
@@ -138,8 +139,9 @@ The storage service configuration must follow this json schema:
   }
 }
 ```
+### MongoDB GridFS configuration file
 
-### MongoDB configuration file
+You need to specify the database URL and the name of the GridFS bucket where the files will be stored. If the bucket doesn't exist, the files service will create it as soon as it is needed.
 
 ```json
 {

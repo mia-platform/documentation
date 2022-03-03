@@ -3,8 +3,9 @@ id: usage
 title: Usage
 sidebar_label: Usage
 ---
-This service exposes three routes, one for the upload, one for the download and one for the delete
-(these can be prefixed by passing the --prefix option at startup):
+This service exposes several APIs, useful to upload, delete or download the files, described in details in the next paragraphs.
+
+The routes can be prefixed by passing the --prefix option at startup.
 
 ### **Upload**: `POST /` 
 With a multipart request containing the file to upload. The file will be stored on the configured backend, and the file information will be stored on MongoDB.
@@ -54,7 +55,7 @@ Continuing the example above, once the file is stored, the respective document i
 ``` 
 
 During the upload, you can specify other properties but they will be ignored.
-If you like, using the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`.
+If you like, using the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`
 you can specify a caster function to add other properties to CRUD.
 
 :::caution
@@ -62,7 +63,7 @@ At the moment, the file part must be the last one of the multipart. Any other pa
 :::
 
 :::info
-This API supports only one file per request. If the request contains more files, then only the first will be uploaded. Consider using `POST /bulk` to upload multiple files at once.
+This API supports only one file per request. If the request contains more files, then only the first one will be uploaded. Consider using `POST /bulk` to upload multiple files at once.
 :::
 
 #### Response

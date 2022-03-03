@@ -51,3 +51,19 @@ This env variable is not required, and if it is not set the user service is call
 If this env var is set, it brings an enhancement in performance for all APIs called without an authorization header since it avoids calling the user service: user is set as empty.
 
 The responses of the authorization service are the same as before, when the get user api responds with *401*.
+
+## Trust Mia-Platform User Headers
+
+In this mode, the Authorization Service will not try to authenticate the incoming request by calling the external `/userinfo` endpoint, but it will gather the information by resolving the request headers containing the user data.
+
+This is intended for the Authorization Services used by the API Gateway of the Projects exposed through an Edge Gateway, that is responsible to authenticate the request and to gather the authenticated entity's data.
+
+Such data will be contained in some headers, specified by the environment variables `USERID_HEADER_KEY`, `GROUPS_HEADER_KEY` and `USER_PROPERTIES_HEADER_KEY`.
+
+This mode can be enabled by setting the environment variable `TRUST_MIA_USER_HEADERS` to `true`.
+
+:::warning
+Be careful when setting this variable to true and enabling this mode. Use this feature only if you understand the implications of this mode.
+
+If the Authorization Service is used by a gateway publicly exposed to internet, please **do not** use this mode since it would expose all the services on serious security threats.
+:::
