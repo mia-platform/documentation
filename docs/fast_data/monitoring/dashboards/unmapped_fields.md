@@ -6,6 +6,10 @@ sidebar_label: Unmapped Fields
 
 This dashboard will help you to monitor unmapped fields. With unmapped field we mean a field which is in a Kafka message, but it is not mapped on a projection.
 
+:::info
+This feature is available since Realtime Updater v4.4.0
+:::
+
 This situation could happen for two main reasons:
 
 - Inside the console, the field was not registered
