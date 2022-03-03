@@ -23,10 +23,6 @@ The creation of multiple Projections in a System can be a tedious and error pron
 
 Two precious new features have been introduced in the Runtime area: from today, in the Pod details, you can find the Pod Events and the Pod Describe (as JSON).
 
-#### Events of the namespace
-
-A new section has been introduced in the Runtime area that shows all the events of the namespace in a practical and intuitive way.
-
 #### Microservices replicas now accept environment variable interpolation
 
 In Microservices section, it is now possible to set the Static replicas field by interpolating an environment variable using `{{VAR}}` syntax.
