@@ -605,6 +605,10 @@
         {
           "id": "tutorial/requests_limits/requests_limits_tutorial",
           "type": "doc"
+        },
+        {
+          "id": "tutorial/rbac/rbac_tutorial",
+          "type": "doc"
         }
       ],
       "label": "Tutorial",
