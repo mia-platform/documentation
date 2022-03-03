@@ -1,7 +1,7 @@
 ---
-id: customservice
+id: custom_service
 title: Custom Service
-sidebar_label: CustomService
+sidebar_label: Custom service
 ---
 A Custom Microservice is a service that receives HTTP requests, whose cycle of use and deploy is managed by the platform. A Custom Microservice  encapsulates ad-hoc business logics that can be developed by any user of the platform. To know how manage your services in the DevOps Console see the [documentation](../../development_suite/api-console/api-design/services)
 

@@ -114,7 +114,9 @@
       "kustomization",
       "unmount",
       "affordance",
-      "affordances"
+      "affordances",
+      "struct",
+      "eval"
   ],
   "ignoreWords": [
     "algs",

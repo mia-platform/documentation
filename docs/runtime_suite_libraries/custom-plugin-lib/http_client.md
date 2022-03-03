@@ -1,7 +1,7 @@
 ---
-id: httpclient
+id: http_client
 title: Call the other services on the Platform project
-sidebar_label: HTTPClient
+sidebar_label: Http client
 ---
 You can call any service or any endpoint defined on the Platform project, obtaining and using a proxy object.
 

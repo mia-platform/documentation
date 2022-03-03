@@ -711,7 +711,7 @@
             },
             {
               "type": "doc",
-              "id": "runtime_suite_libraries/custom-plugin-lib/customservice"
+              "id": "runtime_suite_libraries/custom-plugin-lib/custom_service"
             },
             {
               "type": "doc",
@@ -719,7 +719,7 @@
             },
             {
               "type": "doc",
-              "id": "runtime_suite_libraries/custom-plugin-lib/httpclient"
+              "id": "runtime_suite_libraries/custom-plugin-lib/http_client"
             },
             {
               "type": "doc",
@@ -1408,6 +1408,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/push-notification-manager/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "RBAC service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/configurations"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/changelog"
                 }
               ]
             },
