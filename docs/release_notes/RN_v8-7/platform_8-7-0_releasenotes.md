@@ -79,6 +79,13 @@ The new RBAC service plugin has been added in the marketplace in preview for all
 - micro-lc-rapidoc: v0.1.1
 - microlc-redoc: v0.1.1
 
+### Single View Creator v3.4.2
+
+Single View Creator plugin and template have been updated to v3.4.2. This version fixes a bug that could cause a Projection changes to not be processed anymore if the Single View Creator crashed while the procressing.    
+
+This fix is also available for Single View Creator template updating the library @mia-platform-internal/single-view-creator-lib to ^9.6.3
+
+
 ## Backoffice
 
 ### New features
