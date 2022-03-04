@@ -24,3 +24,7 @@ body {
 .main-wrapper {
   flex: 1 0 auto;
 }
+
+.docusaurus-mt-lg {
+  margin-top: 3rem;
+}
