@@ -211,10 +211,10 @@ function singleViewValidator(logger, singleView) {
 
 It is possible to specify a custom validator function inside the configuration folder (`src`).
 
-The file must be named `customValidator.js` and must export a function that will take as arguments the same as the default validator explained above.
+The file must be named `validator.js` and must export a function that will take as arguments the same as the default validator explained above.
 
 ```js
-module.exports = function customValidator(logger, singleView) {
+module.exports = function validator(logger, singleView) {
   ... custom validation logic on singleView
 
   // returns a boolean
