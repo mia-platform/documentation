@@ -38,6 +38,7 @@ The Real-Time Updater could be configured in two different ways:
 - GENERATE_KAFKA_PROJECTION_CHANGES: defines whether the projection changes have to be send to Kafka too or not. Default is `false`(v3.4.0 or above).
 - KAFKA_CONSUMER_MAX_WAIT_TIME: defines the maximum waiting time of Kafka Consumer for new data in batch. Default is 500 ms.
 - COMMIT_MESSAGE_LOGGING_INTERVAL: specify the interval in *ms* of logging the info that messages have been committed. Default is 3000.
+- FORCE_CHECK_ON_OFFSET: Force check that incoming message has offset greater or equal than the one of the projection to update. Default is true.
 
 ### Custom Projection Changes Collection
 
@@ -415,13 +416,12 @@ Example:
 
 During a rebalancing or a massive initial load with multiple replicas of the real time updater, a batch of old messages that have not been committed yet could be read by the real time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
-To prevent that old messages that have already updated the projection, overwrite the projection again, you can set the environment variable `FORCE_CHECK_ON_OFFSET` to `true`.   
+To prevent that old messages that have already updated the projection, overwrite the projection again, the environment variable `FORCE_CHECK_ON_OFFSET` is set by default to `true`.
 
 This setting is **strongly** recommended when you have both insert/update and delete operations.
 
 :::caution
-In future versions of the Real-Time Updater this feature will be turned on as default, with no chance of turning off. 
-At the moment, you can keep it turned off just to be able to adapt your services in case they need some fix.
+At the moment this variable is set to `true` by default, but you can turn it off in order to adapt your services in case they need some fix.
 :::
 
 ### Kafka group rebalancing behavior
