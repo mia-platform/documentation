@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fix
+
+- Fixed fallback path registration on setupRoutes
+
+## 0.8.0 - 08/03/2022
+
+### Added
+
+ - Added `/grant/bindings/resource/{resourceType}` api to handle the grant of a user role on a single resource
+ - Added `/revoke/bindings/resource/{resourceType}` api to handle the revoke of a user role on a set resources
+
 ## 0.7.0 - 02/03/2022
 
 ### Fixed
