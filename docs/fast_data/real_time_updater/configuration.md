@@ -17,7 +17,7 @@ The Real-Time Updater could be configured in two different ways:
 - MONGODB_URL (__required__):  defines the mongodb url to contact  
 - PROJECTIONS_DATABASE_NAME (__required__): defines the name of the projections database  
 - PROJECTIONS_CHANGES_COLLECTION_NAME (__required__): defines the name of the projections changes collection  
-- PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is __true__,
+- PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is **true**,
 - LC39_HTTP_PORT (__required__): defines the lc39 http port
 - STRATEGIES_MAX_EXEC_TIME_MS (__required__): defines the maximum time for which a strategy is executed
 - KAFKA_BROKERS (__required__): defines the kafka brokers
@@ -100,7 +100,7 @@ It's the default one.
 
 The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
 The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
-The `value` is __null__ if it's a *delete* operation, otherwise it contains the data of the projection.
+The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 The `offset` is the offset of the kafka message.
 
 Example of a delete operation
@@ -128,9 +128,9 @@ The `offset` is the offset of the kafka message.
 The `key` can have any valid Kafka `key` value.  
 The `value` of the Kafka message instead needs to have the following fields:
 
-- `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
-- `after`: the data values after the operation execution (`null` or not set if it's a delete)
-- `before`: the data values before the operation execution (`null` or not set if it's an insert)
+* `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
+* `after`: the data values after the operation execution (`null` or not set if it's a delete)
+* `before`: the data values before the operation execution (`null` or not set if it's an insert)
 
 Example of `value` for an insert operation:
 
@@ -160,14 +160,14 @@ You have to create the adapter function *before* setting `custom` in the advance
 
 This adapter is a function that accepts as arguments the kafka message and the list of primary keys of the projection, and returns an object with the following properties:
 
-- __offset__: the offset of the kafka message
-- __timestampDate__: an instance of `Date` of the timestamp of the kafka message.
-- __keyObject__: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
-- __value__: the data values of the projection, or null
-- __operation__: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
+* **offset**: the offset of the kafka message
+* **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
+* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
+* **value**: the data values of the projection, or null
+* **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
 
 If the `value` is null, the operation is supposed to be a delete.
-The `keyObject` __cannot__ be null.
+The `keyObject` **cannot** be null.
 
 In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
@@ -339,7 +339,7 @@ When a message about `registry-json` happens, the projection changes will be sav
 
 ### Tracking the changes
 
-From the __v3.2.0__ of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.
+From the **v3.2.0** of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.
 
 In particular, the following information are saved:
 
@@ -417,7 +417,7 @@ During a rebalancing or a massive initial load with multiple replicas of the rea
 
 To prevent that old messages that have already updated the projection, overwrite the projection again, you can set the environment variable `FORCE_CHECK_ON_OFFSET` to `true`.
 
-This setting is __strongly__ recommended when you have both insert/update and delete operations.
+This setting is **strongly** recommended when you have both insert/update and delete operations.
 
 :::caution
 In future versions of the Real-Time Updater this feature will be turned on as default, with no chance of turning off.
