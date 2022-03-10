@@ -663,7 +663,7 @@ Look at this example:
 }
 ```
 
-Here `pr_order_dishes` is connected to :
+Here `pr_orders_dishes` is connected to :
 
 - `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which represents the field of the collection `pr_orders`.
 - `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_order_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_order_dishes` respectively.
