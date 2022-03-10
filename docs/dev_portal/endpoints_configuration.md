@@ -85,6 +85,7 @@ Expose the following CRUD endpoints, in order to make the marketplace elements c
   </tr>
   <tr><td>/components</td><td>components</td></tr>
   <tr><td>/categories</td><td>categories</td></tr>
+  <tr><td>/tags</td><td>tags</td></tr>
   <tr><td>/requests</td><td>requests</td></tr>
   <tr><td>/icons</td><td>icons</td></tr>
 </table>
@@ -158,4 +159,4 @@ Please ignore any red feedback that may appear when pasting this content within 
 
 At the end of this configuration, the situation should look like this:
 
-![Final endpoints result](img/final-endpoints-result.png)
+![Final endpoints result](img/endpoints_configured.png)

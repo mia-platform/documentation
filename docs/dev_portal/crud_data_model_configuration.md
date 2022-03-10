@@ -35,6 +35,14 @@ In order to facilitate the experience, we suggest importing the fields from the 
     </td>
   </tr>
     <tr>
+    <td>tags</td><td>/tags</td>
+    <td style={{textAlign:'center'}}>
+      <a download target="_blank" href="/docs_files_to_download/dev-portal/tags.json">
+        <img src="./img/download.svg" width="10" height="10"/>
+      </a>
+    </td>
+  </tr>
+  <tr>
     <td>requests</td><td>/requests</td>
     <td style={{textAlign:'center'}}>
       <a download target="_blank" href="/docs_files_to_download/dev-portal/requests.json">
@@ -42,7 +50,7 @@ In order to facilitate the experience, we suggest importing the fields from the 
       </a>
     </td>
   </tr>
-    <tr>
+  <tr>
     <td>icons</td><td>/icons</td>
     <td style={{textAlign:'center'}}>
       <a download target="_blank" href="/docs_files_to_download/dev-portal/icons.json">
@@ -58,9 +66,10 @@ This collection is used to store the components that will be displayed in the ma
 Excluding the default properties of the CRUD (_id, creatorId, createdAt, updaterId, updatedAt, __STATE__), the defined fields are:
 - ***title***: the title of the component;
 - ***icon***: the Object that contains the file icon definition. For more detail, refer to the [icons section](#icons);
-- ***description***: the description of the component, that will be displayed in the component detail;
-- ***category***: the category to which the component belongs;
 - ***type***: the type of the component (API, Event...);
+- ***category***: the category to which the component belongs;
+- ***tags***: the tags to which the component is associated to;
+- ***description***: the description of the component, that will be displayed in the component detail;
 - ***linkApiPortal***: the URL used to redirect the user to the API portal;
 - ***linkDocumentation***: the URL used to redirect the documentation portal;
 - ***supporterName***: name of the entity that supports the component;
@@ -72,6 +81,13 @@ This collection is used to save the name and description of the categories that 
 Excluding the default properties of the CRUD (_id, creatorId, createdAt, updaterId, updatedAt, __STATE__), the defined fields are:
 - ***name***: Contains the name of the category;
 - ***description***: Contains the description of the category.
+
+## Tags
+This collection is used to save the name and description of the tags that can be used to enrich your components inside the Marketplace.
+
+Excluding the default properties of the CRUD (_id, creatorId, createdAt, updaterId, updatedAt, __STATE__), the defined fields are:
+- ***name***: Contains the name of the tag;
+- ***description***: Contains the description of the tag.
 
 ## Requests
 This collection is used to save the access requests to your components, made from the components marketplace.

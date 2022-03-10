@@ -38,8 +38,14 @@ Here you are going to create an instance of the `Dev Portal application`.
    The remaining configurations are already set for the `Dev Portal`: to know more about their purpose, please consult the [`Core Configuration`](https://microlc.io/documentation/docs/micro-lc/core_configuration.md) section of `micro-lc`. 
    :::
 
-### 2. Configure `api-portal`
+### 3. Configure  `backoffice-micro-lc-backend`
 
+1. Go to the `Public Variables` section, and click `Add Variable`;
+   
+2. Name the variable `BACKOFFICE_WEB_COMPONENTS_VERSION` and set `0.10.4` value for all your project environments.
+   
+
+### 4. Configure `api-portal`
 
 1. Go to the `Microservices` section, and open the `api-portal` microservice;
    
@@ -50,4 +56,4 @@ Here you are going to create an instance of the `Dev Portal application`.
 
 At the end of these steps, the situation should be similar to the following:
 
-![Microservices configured](./img/dev_portal_microservices_configured.png)
+![Microservices configured](./img/microservices_configured.png)
