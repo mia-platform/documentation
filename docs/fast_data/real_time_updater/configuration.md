@@ -696,7 +696,7 @@ The types of constants that are supported are:
 - `__constant__[]` which considers the value as a string (deprecated).
 
 :::warning
-If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B __and__ B-> A
+If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B-> A
 :::
 
 #### Custom path of strategies
