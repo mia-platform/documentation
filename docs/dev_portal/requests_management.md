@@ -36,7 +36,9 @@ In particular, a new request will be characterized by the following properties:
 
 - **Description**: an additional description field to include further details regarding the request;
   
-- **Public Key**: the RSA public key of the user that is requesting the access.
+- **Public Key**: the RSA public key of the user that is requesting the access;
+
+- **Insertion Date**: the date and time of the creation of the request.
 
 ### Edit Permissions Management Link
 
