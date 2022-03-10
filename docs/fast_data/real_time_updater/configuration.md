@@ -665,7 +665,7 @@ Look at this example:
 
 Here `pr_orders_dishes` is connected to :
 
-- `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which represents the field of the collection `pr_orders`.
+- `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which means both `pr_orders_dished` and `pr_orders` have `ID_ORDER` as a field of the collection, and they are matched in case the value is the same in both documents.
 - `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_orders_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_orders_dishes` respectively.
 
 It is possible to define a constant value in order to validate the condition, for example:
