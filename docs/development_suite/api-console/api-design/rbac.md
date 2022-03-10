@@ -365,8 +365,8 @@ In this collection there are stored all the bindings between users or groups of 
          "TLRoleId"
       ],
       "resource": {
-         "id": "project1",
-         "type": "project"
+         "resourceId": "project1",
+         "resourceType": "project"
       }
    }
 ]

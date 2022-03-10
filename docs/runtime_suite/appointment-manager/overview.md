@@ -3,13 +3,14 @@ id: overview
 title: Appointment Manager
 sidebar_label: Overview
 ---
-The **Appointment Manager** is a microservice responsible for handling the organization of appointments. Leveraging the 
-[CRUD Service](../crud-service/overview_and_usage.md), the [Messaging Service](../messaging-service/overview.md), the [Timer Service](../timer-service/overview.md), and the [Teleconsultation Service](../teleconsultation-service-backend/overview.md), it can be used to control appointments creation, update and deletion on a 
-CRUD collection and to automatically send messages and reminders to the users involved. 
+The **Appointment Manager** is a microservice responsible for handling the organization of availabilities and appointments. Leveraging
+the [CRUD Service](../crud-service/overview_and_usage.md), the [Messaging Service](../messaging-service/overview.md),  the
+[Timer Service](../timer-service/overview.md), and the [Teleconsultation Service](../teleconsultation-service-backend/overview.md), it can be used to control availabilities and appointments creation, update and deletion
+on their respective CRUD collections and to automatically send messages and reminders to the users involved. 
 
 The service can be seen as an enriched proxy to the CRUD: it implements the same interfaces of the CRUD Service allowing you
-to perform a set of operations on a CRUD collection as you normally would with the CRUD Service itself. On top of that it
-can be configured to handle messages and reminders functionalities.
+to perform a set of operations on a CRUD collection as you normally would with the CRUD Service itself. On top of that it can be
+configured to handle messages and reminders functionalities.
 
 The service assumes that the users involved in an appointment are contained in one or more attributes of the appointment
 itself. For example, an appointment related to a medical visit may have the following structure:
@@ -88,11 +89,12 @@ id.
 
 When the appointment is *updated*, only the patients involved will receive a message using the dedicated template id.
 
-When the appointment is *deleted*, only the patients involved will receive a message using the dedicated template id.
+When the appointment is *deleted*, both the doctor and the patients involved will receive a message using the dedicated template
+id.
 
 For more details on how messages are sent in each phase of the lifecycle, see the [usage section](usage.md).
 
-### Setting reminders
+## Setting reminders
 
 When you create a new appointment, the service may set a reminder to send a message to the involved users a certain
 amount of time before the appointment date.
@@ -159,3 +161,21 @@ When the appointment is *updated*, if the date of the appointment or the reminde
 the reminders scheduled for the patients will be rescheduled.
 
 When the appointment is *deleted*, the reminders scheduled for the patients will be aborted.
+
+## Availabilities
+
+The Appointment Manager can also manage availabilities, in order to allow booking an appointment only if a time slot is available.
+
+An availability can be represented as a sort of matrix,
+where the matrix rows represent different time slots, and the columns represents simultaneous slots.
+
+For instance, an availability from 9:00 am to 10:30 with 30 minutes slot duration and 2 simultaneous slots can be represented as follows:
+
+| start date |  slotId  |  slotId  |
+| ---------- | -------- | -------- |
+| 9:00       |  slot_1  |  slot_2  |
+| 9:30       |  slot_3  |  slot_4  |
+| 10:00      |  slot_5  |  slot_6  |
+
+A user who wants to book an appointment in a given slot must first lock the slot, and then book the appointment by 
+passing the reference of the locked slot.

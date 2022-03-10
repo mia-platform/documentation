@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.3.0 - 28-02-2022
+
+### Added
+
+- support for trusting mia headers mode, which allows to trust the mia user headers (miauserid, miausergroups, miauserproperties) instead of resolving the user by calling the userinfo URL
+
+### Changed
+
+- `USERINFO_URL` is not Required anymore
+
 ## 2.2.0 - 4-11-2021
 
 ### Added

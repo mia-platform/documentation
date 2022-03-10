@@ -10,15 +10,30 @@ All previous configurations are automatically managed by the Console. However, t
 
 The extensions are the following:
 
-* [card](#configure-the-card)
-* [notifications](#configure-notifications)
-* [highlight rows](#configure-the-highlights)
-* [conditional visibility of a property](#set-conditional-visibility-to-a-property)
-* [access control on groups (ACL on groups)](#access-control-on-groups)
-* [navigation between collection with link](#navigation-between-collection-with-link)
-* [confirmation message for each action](#confirmation-message-for-each-action)
-* [hide the search bar](#hide-the-search-bar)
-* [gallery](#configure-the-gallery)
+- [CMS extensions](#cms-extensions)
+- [CMS configuration files](#cms-configuration-files)
+- [General CMS configuration](#general-cms-configuration)
+  - [Example](#example)
+- [Configure pages](#configure-pages)
+  - [cmsProperties](#cmsproperties)
+  - [properties](#properties)
+- [Configure extensions](#configure-extensions)
+  - [Configure the Card Layout](#configure-the-card-layout)
+    - [Example](#example-1)
+    - [Final example](#final-example)
+  - [Configure notifications](#configure-notifications)
+    - [Example](#example-2)
+  - [Configure the highlights](#configure-the-highlights)
+    - [Example](#example-3)
+  - [Set conditional visibility of a property](#set-conditional-visibility-of-a-property)
+    - [Example](#example-4)
+  - [Access control on groups](#access-control-on-groups)
+    - [Example](#example-5)
+  - [Navigation between collection with link](#navigation-between-collection-with-link)
+  - [Confirmation message for each action](#confirmation-message-for-each-action)
+  - [Hide the search bar](#hide-the-search-bar)
+  - [Configure the Gallery](#configure-the-gallery)
+- [Configuration full example](#configuration-full-example)
 
 ## CMS configuration files
 
@@ -103,6 +118,7 @@ key | example value | Comment
 `highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
 `confirmBeforeEdit` | "" | if true, enable double check before save
 `imageLinkBaseUrl` | "" | a custom URL used to replace the base URL
+`filesCollection` | "files" | the collection that will be used to save the related files of your collection (**default**: "files")
 
 So the final JSON file will look like
 
@@ -124,7 +140,8 @@ So the final JSON file will look like
       "icon": "book",
       "order": 0,
       "confirmBeforeEdit": true,
-      "imageLinkBaseUrl": "https://example.com",   
+      "imageLinkBaseUrl": "https://example.com",
+      "filesCollection": "files2"   
     }
   } 
 }

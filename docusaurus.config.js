@@ -10,6 +10,9 @@ const config = {
   organizationName: "Mia-Platform", // Usually your GitHub org/user name.
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ['rego'],
+    },
     image: "img/documentation-link-preview.png",
     algolia: {
       placeholder: "Search for terms, features and more...",

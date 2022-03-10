@@ -10,10 +10,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.2] 2022-02-25
+
+### Fixed
+
+- process again Projection Changes left IN_PROGRESS due to a prior Single View Creator crash while processing fixed
+
+### Added
+
+- SINGLE_VIEWS_MAX_PROCESSING_MINUTES environment variable
+
+### Updated
+
+- @mia-platform-internal/single-view-creator-lib @^9.6.3
+
+## [3.4.1] 2022-02-25
+
+### Fixed
+
+- process again Projection Changes left IN_PROGRESS due to a prior Single View Creator crash while processing
+
 ### Updated
 
 - tap@15.1.6
 - node:14.19.0-alpine
+- @mia-platform-internal/single-view-creator-lib @^9.6.3
+- @mia-platform-internal/fast-data-automation-lib @^1.1.1
 
 ## [3.4.0] 2022-02-10
 

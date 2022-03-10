@@ -605,6 +605,10 @@
         {
           "id": "tutorial/requests_limits/requests_limits_tutorial",
           "type": "doc"
+        },
+        {
+          "id": "tutorial/rbac/rbac_tutorial",
+          "type": "doc"
         }
       ],
       "label": "Tutorial",
@@ -707,7 +711,7 @@
             },
             {
               "type": "doc",
-              "id": "runtime_suite_libraries/custom-plugin-lib/customservice"
+              "id": "runtime_suite_libraries/custom-plugin-lib/custom_service"
             },
             {
               "type": "doc",
@@ -715,7 +719,7 @@
             },
             {
               "type": "doc",
-              "id": "runtime_suite_libraries/custom-plugin-lib/httpclient"
+              "id": "runtime_suite_libraries/custom-plugin-lib/http_client"
             },
             {
               "type": "doc",
@@ -1410,6 +1414,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "RBAC service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/configurations"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "SES Mail Notification Service",
               "items": [
                 {
@@ -1659,6 +1682,17 @@
     {
       "collapsed": false,
       "items": [
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "release_notes/RN_v8-7/v8.7.0",
+              "type": "doc"
+            }
+          ],
+          "label": "v8.7",
+          "type": "category"
+        },
         {
           "collapsed": true,
           "items": [

@@ -45,7 +45,9 @@ Here some tips:
 - `KAFKA_BA_TOPIC`: topic where to send the `before-after`, which is the single view document before and after a change
 - `SEND_BA_TO_KAFKA`: true if you want to send to Kafka the `before-after` information about the update changes of the single view
 - `KAFKA_SVC_EVENTS_TOPIC`: topic used to queue Single View Creator state changes (e.g. single view creation)
-- `UPSERT_STRATEGIES`: (v3.1.0 or higher of the template) If it is set to "replace", the whole Single View document will be replaced with the new one. If it is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept. Default is "replace".
+- `UPSERT_STRATEGIES`: (v3.1.0 or higher of the template) If it is set to "replace", the whole Single View document will be replaced with the new one. If it 
+is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept. Default is "replace".
+- `SINGLE_VIEWS_MAX_PROCESSING_MINUTES`: (v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS_LIST*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
 

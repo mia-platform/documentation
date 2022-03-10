@@ -35,23 +35,20 @@ In your policies you can use the rego `input` variable, that is structured as fo
     "headers": Object {
       String: Array[String]
     },
-    "body": Object{},
     "pathParams": Object{},
-    "queryParams": Object{},
     "query":   Object {
       String: Array[String]
     },
-    "response": {
-      "body": Object{}
-    }
+  },
+  "response": {
+    "body": Object{}
   },
   "user": {
-    "properties": Object{
-    "bindings": Object{}, 
-    "roles":  Object{}
-      // this object contains the user properties inserted by the
-      // authorization service in the request user properties platform header 
-    },
+    "properties": Object{},
+    "bindings": Array[Object{}], 
+    "roles":  Array[Object{}],
+    // this object contains the user properties inserted by the
+    // authorization service in the request user properties platform header 
     "groups": Array[String],
   },
   "clientType": String
