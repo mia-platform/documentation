@@ -706,7 +706,7 @@ If you need to handle by hand a specific strategies you have two choice:
 - you write your own strategy function. In this case you have to write the whole strategy by your own
 - you can let the Low Code to handle the initial path of the strategy, and then make it execute your own custom function to handle it from here on out
 
-To do that you have to specify in the `projectionChanges.json` that the __identifier__ will be handled "from file", which is your custom file that exports your custom function. The syntax is **__fromFile__[myCustomFunction]**.
+To do that you have to specify in the `projectionChanges.json` that the **identifier** will be handled "from file", which is your custom file that exports your custom function. The syntax is **__fromFile__[myCustomFunction]**.
 
 Let's see it in the configuration file below:
 
