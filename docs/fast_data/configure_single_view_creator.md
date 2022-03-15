@@ -222,6 +222,10 @@ module.exports = function validator(logger, singleView) {
 }
 ```
 
+:::warning
+When the update of an existing Single View is triggered and the validation has a negative outcome, the Single View won't be updated and instead it will be deleted.
+:::
+
 ### Customize Upsert and Delete functions
 
 If you want, you can replace both upsert and delete functions with your own custom functions to perform those operations.
