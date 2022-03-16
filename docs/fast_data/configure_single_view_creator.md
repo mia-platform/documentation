@@ -209,6 +209,23 @@ function singleViewValidator(logger, singleView) {
 }
 ```
 
+Since version v3.5.0, it is possible to specify a custom validator function inside the configuration folder (`CONFIGURATION_FOLDER`).
+
+The file must be named `validator.js` and must export a function that will take as arguments the same as the default validator explained above.
+
+```js
+module.exports = function validator(logger, singleView) {
+  ... custom validation logic on singleView
+
+  // returns a boolean
+  return customValidationResult
+}
+```
+
+:::warning
+When the update of an existing Single View is triggered and the validation has a negative outcome, the Single View won't be updated and instead it will be deleted.
+:::
+
 ### Customize Upsert and Delete functions
 
 If you want, you can replace both upsert and delete functions with your own custom functions to perform those operations.
