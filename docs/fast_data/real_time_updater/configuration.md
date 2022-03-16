@@ -4,7 +4,7 @@ title: Real-Time Updater Configurations
 sidebar_label: Configuration
 ---
 
-The Real-Time Updater could be configured in two different ways:
+The Real-Time Updater can be configured in two different ways:
 
 - Manual configuration: recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
 - Low Code configuration: recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.
@@ -153,7 +153,7 @@ Example of `value` for an insert operation:
 #### Custom
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages.
-To do that, you need to create a `Custom Kafka Message Adapter`, which is just a javascript function able to convert to Kafka messages as received from the real-time updater to an object with a specific structure.
+To do that, you need to create a `Custom Kafka Message Adapter`, which is just a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure.
 
 :::note
 You have to create the adapter function *before* setting `custom` in the advanced file and saving.
@@ -531,15 +531,15 @@ At the end of the configuration be sure to register the projection in the Strate
 
 ### Configuration files
 
-For Automatic Real-Time Updater `kafka_adapter`, `map_table` and `cast_function` are configured by Mia-Platform console. However, it is fundamental defining the `erSchema.json` to describe the strategies path.
+For the Automatic Real-Time Updater the `kafka_adapter`, `map_table` and `cast_function` variables are configured by the Mia-Platform console. However, it is fundamental to define the `erSchema.json` to describe the strategies path.
 
 #### ER schema configuration
 
-When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to default configmaps of low code real time updaters you will have all of them sharing the same Er schema.
+When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema.
 
-The `erSchema.json` defines the relationship between tables and projections.
+The `erSchema.json` configmap defines the relationship between tables and projections.
 
-This is an example:
+Here you can find an example:
 
 ![visual representation of the ER schema](../img/food_delivery_ER_schema.png)
 
@@ -687,7 +687,7 @@ It is possible to define a constant value in order to validate the condition, fo
 
 ```
 
-In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
+In this case the condition will always be verified if the value of `ID_DISH` is equal to `“testID“`.
 The types of constants that are supported are:
 
 - `__string__[]` which considers the value as a string.
@@ -696,15 +696,15 @@ The types of constants that are supported are:
 - `__constant__[]` which considers the value as a string (deprecated).
 
 :::warning
-If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B-> A
+If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B -> A
 :::
 
 #### Custom path of strategies
 
-If you need to handle by hand a specific strategies you have two choice:
+If you need to manually handle specific strategies you have two choices:
 
-- you write your own strategy function. In this case you have to write the whole strategy by your own
-- you can let the Low Code to handle the initial path of the strategy, and then make it execute your own custom function to handle it from here on out
+- you can write your own strategy function. In this case you have to write the whole strategy on your own
+- you can let the Low Code handle the initial path of the strategy, and then make it execute your own custom function to handle it from there
 
 To do that you have to specify in the `projectionChanges.json` that the **identifier** will be handled "from file", which is your custom file that exports your custom function. The syntax is **__fromFile__[myCustomFunction]**.
 
@@ -740,9 +740,9 @@ The custom function have to match the following signature:
 async function myCustomFunction (logger, mongodbInstance, document)
 ```
 
-The returning value of the function have to be an array of object representing the identifiers of the strategy.
+The value returned by the function has to be an array of objects representing the identifiers of the strategy.
 
-Let's see an example of custom function:
+Let's see an example of a custom function:
 
 ```js
 
