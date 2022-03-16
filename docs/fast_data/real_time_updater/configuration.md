@@ -82,7 +82,7 @@ This folder contains the configurations for your kafka adapters.
 
 #### Kafka messages format
 
-In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats. 
+In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real Time Updater.
 
 Once you have created a System, you need to select the format of the Kafka messages sent from the system.
@@ -282,14 +282,12 @@ An example:
 
 Projection changes are saved on mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
 
-This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.   
+This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.
 You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic kafka you set.
-
 
 :::info
 This feature is available from the version v3.4.0 or above of the service
 :::
-
 
 To do that, you need to set two environment variables:
 
@@ -312,11 +310,13 @@ Then, you have to create a configuration file `kafkaProjectionChanges.json` insi
 ```
 
 where:
+
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
 - `MY_TOPIC` is the topic where the projection change need to be sent
 
 Example:
+
 ```json
 {
     "registry-json": {
@@ -337,7 +337,6 @@ Example:
 ```
 
 When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
-
 
 ### Tracking the changes
 
@@ -378,10 +377,11 @@ Example:
 
 #### Projection
 
-Into the projection is saved information about the last Kafka message that updated the projection. 
-These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields. 
+Into the projection is saved information about the last Kafka message that updated the projection.
+These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields.
 
 The information saved are:
+
 - topic: is the topic from which the Kafka message has been consumed
 - partition: is partition from which the Kafka message has been consumed
 - offset: is the offset of the message
@@ -432,7 +432,6 @@ If a Kafka group rebalancing happens after that a projection has already been up
 This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, th service would stop without generating any projection change.
 :::
 
-
 ## Low Code Configuration
 
 Here, low-code specific configuration will be described. All of the previous documentation regarding generic real time updater features are still valid and applicable.
@@ -442,6 +441,14 @@ Low Code Real Time Updater is available since version `4.2.0`
 ### Environment variables
 
 If the System of Records has been created using the automatic configuration, the Real-Time updater has all the environments variables already prepared.
+
+:::info
+You can quickly convert a System of Record from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up you Fast Data Low Code project properly.
+:::
+
+:::warning
+When you create a new configmap, remember to use the same Mount Path of your environment variables `STRATEGIES_FOLDER`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_FOLDER`
+:::
 
 ### Projection Changes Collection
 
@@ -656,10 +663,10 @@ Look at this example:
 }
 ```
 
-Here `pr_reviews` is connected to :
+Here `pr_orders_dishes` is connected to :
 
-- `pr_registry` through: `{“ID_USER”: “ID_USER”}` which represents the field of the  collection `pr_registry`.
-- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_review`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_reviews` respectively.
+- `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which means both `pr_orders_dished` and `pr_orders` have `ID_ORDER` as a field of the collection, and they are matched in case the value is the same in both documents.
+- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_orders_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_orders_dishes` respectively.
 
 It is possible to define a constant value in order to validate the condition, for example:
 
@@ -681,7 +688,7 @@ It is possible to define a constant value in order to validate the condition, fo
 ```
 
 In this case the condition will always be verified if the value of `ID_DISH` is equal to `“testID“`.
-The types of constants that are supported are: 
+The types of constants that are supported are:
 
 - `__string__[]` which considers the value as a string.
 - `__integer__[]` which considers the value as an integer.
@@ -695,6 +702,7 @@ If table A is connected to table B in the ER Schema you have to describe the rel
 #### Custom path of strategies
 
 If you need to manually handle specific strategies you have two choices:
+
 - you can write your own strategy function. In this case you have to write the whole strategy on your own
 - you can let the Low Code handle the initial path of the strategy, and then make it execute your own custom function to handle it from there
 
@@ -724,7 +732,7 @@ Let's see it in the configuration file below:
 }
 ```
 
-What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic. 
+What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
 The custom function have to match the following signature:
 
 ```js
