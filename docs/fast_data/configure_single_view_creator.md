@@ -51,7 +51,6 @@ is set to "update", the existing one will be updated with the new one, but field
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS_LIST*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
 
-
 Now, we start the single-view-creator:
 
 ```js
@@ -76,13 +75,11 @@ const resolvedOnStop = singleViewCreator.startCustom({
 The `deleteSV` function makes a *real delete* of the document on MongoDb. So, unlike the **projections** deletion, it does *not* make a virtual delete.
 :::
 
-The value of `upsertFnSv` is based on the `UPSERT_STRATEGIES` environment variable. If its value is *update*, then the *updateOrInsertSV* function exported by the library is used, otherwise the function *replaceOrInsertSV* is used instead. The default upsert strategy is *replace*. 
+The value of `upsertFnSv` is based on the `UPSERT_STRATEGIES` environment variable. If its value is *update*, then the *updateOrInsertSV* function exported by the library is used, otherwise the function *replaceOrInsertSV* is used instead. The default upsert strategy is *replace*.
 
 :::note
 In the versions of the template prior to the `v3.1.0`, the UPSERT_STRATEGIES was missing and it was used an alias function (*upsertSV*) of the *replaceOrInsertSV*.
 :::
-
-
 
 The Single View creator needs to be stopped when the process is stopping. To do that, we use the `onClose` hook:
 
@@ -316,8 +313,6 @@ When generating a Single View, every error that occurs is saved in MongoDb, with
 
 It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../../docs/development_suite/api-console/api-design/crud_advanced.md#indexes).
 
-
-
 ## Single View Creator - Low Code Plugin
 
 This plugin is a specialized version of the Single View Creator plugin that you can find at this [link](../runtime_suite/single-view-creator/configuration), they are both based on the same dockerImage. The main difference is that the Low Code Plugin is already configured to be used with JSON configurations instead of javascript code.
@@ -546,6 +541,7 @@ An example:
    "config": {"sv_id": "ID_USER"}
 }
 ```
+
 where:
 
 - `sv_id` is the name of the single view's key 
@@ -640,12 +636,16 @@ It is possible to define a constant value in order to validate the condition, fo
 ```
 
 In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
-The types of constants that are supported are: 
+The types of constants that are supported are:
 
-- `__string__[]` which considers the value as a string.
-- `__integer__[]` which considers the value as an integer.
-- `__boolean__[]` which considers the value as a boolean.
-- `__constant__[]` which considers the value as a string (deprecated).
+* `__string__[]` which considers the value as a string.
+* `__integer__[]` which considers the value as an integer.
+* `__boolean__[]` which considers the value as a boolean.
+* `__constant__[]` which considers the value as a string (deprecated).
+
+:::caution
+Remember that `__constant__[]` is deprecated, and it will be removed in future versions. Use `__string__[]` instead.
+:::
 
 Some more complex condition is showcased next:
 
@@ -724,6 +724,7 @@ Where value can be one of:
 
 * **projection field**: when it is a field taken from a projection listed in the dependency, expressed with dot notation `"newField": "DOCUMENT_NAME.field"`
 * **configuration**: when a field is an object corresponding to a resolved config dependency, expressed with the dependency name `"newField": "CONFIG_NAME"`
+* **constant**: when using the constant syntax already seen in the ER diagram, e.g. `__string__[hello]`, `__integer__[42]`, `__boolean__[true]`
 * **function result**: when using a custom function to compute the value of the single view field, expressed with this syntax: `"fromFileField": "__fromFile__[fileName]"`
 
 For functions, the specified file must be added in a configmap with the correct name, and must contain a default exported function, which will be used to compute the value of the field.
@@ -762,16 +763,320 @@ If the dependency you require is a projection, the value returned will be the do
 
 If the dependencies has not been resolved, for example due to a reference which failed because of a missing document, the value will be falsy in case of projections and an empty array in case of config.
 
-
 :::warning
 You are supposed to access the dependenciesMap **only** in read-only mode.
 Write access to the dependenciesMap are **not** officially supported and could be removed at any time.
 :::
 
-
 ##### Join Dependency
 
 When you want to map a single view field to an array of value as usual happens in 1:N relations, you can use a config dependency with a `joinDependency` field. This means when the config will be calculated, the `joinDependency` will be computed first, retrieving a list of all the matching documents, then for each of those elements the configuration mapping will be applied, resulting in an array of elements, each having the same layout as the one specified in the config mapping.
+
+##### Advanced options
+
+Basic options are simple and meant for streamlined use cases, however, sometimes the need for more complex logic in the creation of the single view arises, and in those scenarios you can take advantage of our advanced options, starting from Aggregation configuration version `1.1.0` and Single View Creator service version `v3.6.0`
+We introduce these options by showing the use case they solve.
+
+###### Using the same Projection as a Dependency multiple times under different conditions
+
+When listing dependencies, it is mandatory that each dependency has a different name, as its name is used to identify it. When it comes to config, this is not a problem, as you can name a config dependency as you wish, but it is different when we need to deal with projections.
+
+For example, how would we describe a single view of users that need to have their partner as a field? For this case we must have two references:
+
+- a reference to the **users** that is based on their identifier to get the core of the single view 
+- a reference to a **user**, that is based on some condition linked to the marriage
+
+For this example, we will consider the following ER Schema
+
+```json
+{
+   "version":"1.0.0",
+   "config":{
+      "PEOPLE":{
+         "outgoing":{
+            "MARRIAGE":{
+               "conditions":{
+                  "PEOPLE_TO_MARRIAGE":{
+                     "condition":{
+                        "a":"id"
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "MARRIAGE":{
+         "outgoing":{
+            "PEOPLE":{
+               "conditions":{
+                  "MARRIAGE_a_TO_PEOPLE":{
+                     "condition":{
+                        "id":"a"
+                     }
+                  },
+                  "MARRIAGE_b_TO_PEOPLE":{
+                     "condition":{
+                        "id":"b"
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+```
+
+If we tried to solve the problem without advanced options, we would write a **wrong** configuration like the following:
+
+:::warning
+The configuration below is incorrect, and presented only to clearly show the need and flexibility of aliases. Do not use this kind of configuration.
+:::
+
+```json
+{
+   "version":"1.1.0",
+   "config":{
+      "SV_CONFIG":{
+         "dependencies":{
+            "PEOPLE":{
+               "type":"projection",
+               "on":"_identifier"
+            },
+            "MARRIAGE":{
+               "type":"projection",
+               "on":"PEOPLE_TO_MARRIAGE"
+            },
+            "PEOPLE":{
+               "type":"projection",
+               "on":"MARRIAGE_b_TO_PEOPLE"
+            }
+         },
+         "mapping":{
+            "name":"PEOPLE.name",
+            "marriedWith":"PEOPLE.name"
+         }
+      }
+   }
+}
+```
+
+This is incorrect, because there is ambiguity about which `PEOPLE` dependency to use in the mapping.
+
+You can solve this problem using the `aliasOf` option, which allows using a different name for a dependency of type `projection`. When using `aliasOf: 'PROJECTION_NAME'`, the named dependency is linked to that projection.
+
+Now that the `aliasOf` option is clear, we can have a look at the following configuration, which solves the problem in the example:
+
+```json
+{
+   "version":"1.1.0",
+   "config":{
+      "SV_CONFIG":{
+         "dependencies":{
+            "PEOPLE":{
+               "type":"projection",
+               "on":"_identifier"
+            },
+            "MARRIAGE":{
+               "type":"projection",
+               "on":"PEOPLE_TO_MARRIAGE"
+            },
+            "PARTNER":{
+               "type":"projection",
+               "aliasOf":"PEOPLE",
+               "on":"MARRIAGE_b_TO_PEOPLE"
+            }
+         },
+         "mapping":{
+            "name":"PEOPLE.name",
+            "marriedWith":"PARTNER.name"
+         }
+      }
+   }
+}
+```
+
+As you can see, we used the same projection two times, under different conditions: the first time we matched the record based on its identifier (`PEOPLE` dependency, without alias), the second time we matched the record based on the `MARRIAGE_b_TO_PEOPLE` condition (`PARTNER` dependency, with alias).
+
+You can reference a dependency under alias also in another dependency, with the `useAlias` option. Since `CHILD_TO_MOTHER` refers to the ER-Schema, which uses only the projections name and not the dependencies name, you need to use `useAlias` to specify which is the specific dependency that refers to the projection of the relation you want to use.
+If we needed to use the `PARTNER` dependency as a base for another dependency (for example, if we are looking for the mother in law), a valid configuration would be:
+
+```json
+...
+"PARTNER":{
+  "type":"projection",
+  "aliasOf":"PEOPLE",
+  "on":"MARRIAGE_b_TO_PEOPLE"
+},
+"MOTHER_IN_LAW":{
+  "type":"projection",
+  "useAlias":"PARTNER",
+  "on":"CHILD_TO_MOTHER",
+  "aliasOf":"PEOPLE"
+}
+...
+```
+
+Note that we used `aliasOf` inside the `MOTHER_IN_LAW` dependency as well because we wanted to keep on using the same base projection, but it is not mandatory, as long as you are using another projection that is not declared elsewhere in the dependencies.
+
+###### Changing the query that finds the Projection based on their identifier
+
+Sometimes, when writing a dependency of a projection that is matched on its `_identifier`, we find that the identifier has more fields than we want, or has fields with different names, which makes the automatic query mapping result in no documents found.
+In this scenario, you can employ the `identifierQueryMapping` option, which provides a new query mapping for the identifier of a projection, allowing you to have a custom way of matching documents based on their identifier.
+
+In particular, there are two main cases when this could come in handy:
+
+1. renaming fields for querying
+2. reducing the number of fields to query on
+
+:::info
+Most of the time you will not face these scenarios, and most likely that will only happen if you use some advanced configuration.
+:::
+
+Renaming fields can be required when you want to achieve a high level of decoupling, so you avoid using the document identifier key, but instead you use a more explicit name, for example instead of `"id"` you might want to use `"my_single_view_id"`, because this clearly shows what this `"id"` refers to.
+An identifier with that logic would be:
+
+```json
+{
+  "my_single_view_id": "12345"
+}
+```
+
+This would not match a document without a field named `my_single_view_id`. In that case, you could map that in the aggregation config in the following way:
+
+```json
+...
+"PROJECTION_NAME": {
+  "on": "_identifier",
+  "identifierQueryMapping": {
+    "id": "_identifier.my_single_view_id"
+  }
+}
+...
+```
+
+Reducing the number of fields to query on will help you if you have a custom function for the generation of the projections changes, which also includes additional fields. For example, if you need to generate a single view in a different way based on a flag in the identifier. An identifier could have a value like the following:
+
+```json
+{
+  "the_id": "12345",
+  "special": "true"
+}
+```
+
+The `"special"` field is not part of the single document we want to find, but it is used elsewhere in the single view creation. To avoid having queries that do not find any element, we can map the identifier like that:
+
+```json
+...
+"PROJECTION_NAME": {
+  "on": "_identifier",
+  "identifierQueryMapping": {
+    "the_id": "_identifier.the_id"
+  }
+}
+...
+```
+
+:::caution
+Remember that for `identifierQueryMapping` to be used, you still need to explicitly set the `on` field of the dependency to `_identifier`, otherwise it will not be considered valid.
+:::
+
+###### Using conditional expressions on dependencies definitions and mappings
+
+Dependencies are a way to gather data that will be used in the mapping section, creating the single view, and as single views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a single view.
+
+If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
+
+We have a System of Records that consists of multiple projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` single view which has the information coming from its job projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
+A naive solution could be just putting both projections as dependencies and using both of them in the mapping. This would cause the single view to have two different `firegither` and `doctor` fields, one of them undefined, which is clearly not ideal.
+
+Thanks to the `_select` option, we can create a `JOB` dependency, which will use the `DOCTOR` *or* `FIREFIGHTER` projection based on the value of another field, as shown below:
+
+```json
+{
+   "version":"1.1.0",
+   "config":{
+      "SV_CONFIG":{
+         "dependencies":{
+            "USER":{
+               "type":"projection",
+               "on":"_identifier"
+            },
+            "JOB_DESCRIPTION":{
+               "type":"projection",
+               "_select":{
+                  "options":[
+                     {
+                        "when":{
+                           "==":[
+                              "USER.job",
+                              "__string__[doctor]"
+                           ]
+                        },
+                        "value":{
+                           "aliasOf":"DOCTOR",
+                           "on":"USER_to_DOCTOR"
+                        }
+                     },
+                     {
+                        "when":{
+                           "==":[
+                              "USER.job",
+                              "__string__[firefighter]"
+                           ]
+                        },
+                        "value":{
+                           "aliasOf":"FIREFIGHTER",
+                           "on":"User_to_FIREFIGHTER"
+                        }
+                     }
+                  ],
+                  "default":{
+                     "aliasOf":"DOCTOR",
+                     "on":"USER_to_DOCTOR"
+                  }
+               }
+            }
+         },
+         "mapping":{
+            "name":"USER.name",
+            "job":{
+               "type":"JOB_DESCRIPTION.type",
+               "role":"JOB_DESCRIPTION.role"
+            }
+         }
+      }
+   }
+}
+```
+
+As you can see, the `_select` option has a long set of rules, which we are going to break down here.
+
+The `_select` is a way of providing one of many different configurations for a specific dependency, based on some conditions.
+Each possible configuration is an object in the `options` array. If none of the `options` has a matching condition, the value in the `default` field is used.
+Each option has two fields:
+
+1. `when`: the condition that must be matched in order to use the `value`;
+2. `value`: the configuration that will be used for this dependency if the `when` condition is met.
+
+The `when` field is an object with an operator (available operators: `==`, `!=`, `>`, `<`, `>=`, `<=`) as a field key, and its relative field value is an array of operands.
+For example, using the equality operator, we can write this condition:
+
+```json
+"when":{
+  "==":[
+    "USER.job",
+    "__string__[firefighter]"
+  ]
+}
+```
+
+Here, the first operand is a variable which takes its value from `USER.job`, while the second operand is a constant string: `"doctor"`. This simply means that this condition will match when the `job` field of the `USER` dependency is equal to `"doctor"`.
+This pattern is repeated for all other operators, as they are binary as well.
+
+The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
+
+For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object  with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
 
 #### Example
 
