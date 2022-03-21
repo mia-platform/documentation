@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.5.1] 2022-03-17
+
+### Changed
+
+- updated MongoDb npm driver to version `4.4.1`
+
+## [3.5.0] 2022-03-11
+
+### Added
+
+- added the possibility of inserting inside the CONFIGURATION_FOLDER a custom validator function for single views
+
 ## [3.4.2] 2022-02-25
 
 ### Fixed

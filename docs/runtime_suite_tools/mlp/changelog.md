@@ -10,10 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2022-03-17
+
+### Changed
+
+- update to go 1.17
+
+### Added
+
+- ignore patches already in kustomization.yaml
+- match as patch patch.ya?ml
+
 ### Fixes
 
-- match as patch patch.ya?ml
-- ignore patches already in kustomization.yaml
+- smart deploy don't force deploy pods on first update
 
 ## [1.0.3] - 2022-02-07
 
@@ -103,8 +113,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release 🎉🎉🎉
 
-[Unreleased]: https://github.com/mia-platform/mlp/-/compare/v1.0.3...HEAD
-[1.0.3]: https://github.com/mia-platform/mlp/-/compare/v1.0.2...v1.0.3
-[1.0.2]: https://github.com/mia-platform/mlp/-/compare/v1.0.1...v1.0.2
-[1.0.1]: https://github.com/mia-platform/mlp/-/compare/v1.0.0...v1.0.1
-[1.0.0]: https://github.com/mia-platform/mlp/-/compare/v1.0.0
+[Unreleased]: https://github.com/mia-platform/mlp/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/mia-platform/mlp/compare/v1.0.3...v1.1.0
+[1.0.3]: https://github.com/mia-platform/mlp/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/mia-platform/mlp/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/mia-platform/mlp/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/mia-platform/mlp/compare/v1.0.0
