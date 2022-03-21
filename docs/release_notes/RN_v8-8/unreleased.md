@@ -25,6 +25,10 @@ _March x, 2022_
 
 ## Marketplace
 
+### RBAC Service v0.8.2
+
+A new version of RBAC Service is available featuring some small bug fixes.
+
 ## Backoffice
 
 ### New features
