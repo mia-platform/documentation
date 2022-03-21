@@ -26,7 +26,7 @@ To configure the **Form Service Backend** service with the Console, follow these
    - insert the configuration *Name*;
    - specify the *Runtime Mount Path* (e.g. `/home/node/app/form-service`).
 3. Add a new `JSON` file specifying its *Name* (e.g. `config.json`). The file content is the Form Service Configuration `JSON` and details about it can be found in the [Form Service Configuration section](#form-service-configuration).
-4. Update the environment variable `FORM_SERVICE_CONFIG_PATH` with the full path of the file created in the previous step.
+4. Update the environment variable `FORM_SERVICE_CONFIG_PATH` with the full path of the file created in the previous step (e.g. `/home/node/app/form-service/config.json`).
 
 ### Form Service Configuration
 
@@ -124,7 +124,15 @@ This parameter is the CRUD endpoint used in the **Form Service Backend** to perf
 The mandatory properties of the CRUD are:
 - **name**, of type *string*;
 - **formSubmitUrl**, of type *string*, which specifies the url that will be used for Form submission;
-- **formSchema**, of type *object*, which is the property where the configured Form `JSON` will be saved.
+- **formSchema**, of type *object*, which is the property where the configured Form `JSON` will be saved;
+- **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved.
+
+:::note
+The `formVisualizerOptions` property allows the definition of Form.io options related to the form schema,
+for instance, translation options. These options are then used by the Form Visualizer.
+
+This feature is available from Form Service Backend v1.2.2.
+:::
 
 In addition, you have to also add to your CRUD properties for the additional Form metadata, defined in [form metadata parameters](#form-metadata-parameters) section.
 
@@ -150,7 +158,8 @@ The **Form Service Backend** `PUT /visualizer/forms/:id` endpoint will reply wit
 #### Form Metadata parameters
 This config section specifies the optional metadata of the Forms created with the Form Builder. An array of *form field* objects must be defined with the following properties:
 - **name**, the name of the field;
-- **type**, right now the only supported one is *string*.
+- **type**, right now the only supported one is *string*;
+- **label**, the label you want to show for this field.
 
 Here an example of an additional *category* field:
 
@@ -158,7 +167,8 @@ Here an example of an additional *category* field:
   "formMetadata": [
     {
       "name": "category",
-      "type": "string"
+      "type": "string",
+	  "label": "Category"
     }
   ]
 ```

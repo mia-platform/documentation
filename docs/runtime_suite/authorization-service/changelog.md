@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- support Envoy calling style by handling all paths starting with `/auth`
+
+### Fixed
+
+- fixed sub path matching when uri in `Original-Request-Uri` contains query string parameters
+
 ## 2.3.0 - 28-02-2022
 
 ### Added

@@ -10,8 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- provide templating options to the Form Visualizer
+- documentation for the Form Visualizer options
+
 ### Fixed
 
+- fixed support for external submit URLs and submit URLs with explicit port
 - backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional
 - update documentation links to download example .json files to fix link not opening in a new browser tab
 
