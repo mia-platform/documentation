@@ -29,6 +29,10 @@ _March x, 2022_
 
 A new version of RBAC Service is available featuring some small bug fixes.
 
+### CRUD Service v5.1.0
+
+A new version of CRUD Service is available featuring support for MongoDB Views definitions
+
 ## Backoffice
 
 ### New features
