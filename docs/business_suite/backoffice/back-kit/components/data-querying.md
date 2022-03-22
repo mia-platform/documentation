@@ -14,33 +14,37 @@ This is the filter drawer
 <bk-filter-drawer></bk-filter-drawer>
 ```
 
+![filter-drawer](../img/components/bk-filter-drawer.png)
+
 ### Properties & Attributes
 
 | property | attribute | type | optional | required | default | description |
 |----------|-----------|------|----------|----------|---------|-------------|
 |`dataSchema`| - |DataSchema| - | - | - | - |
+|`liveSearchItemsLimit`|`live-search-items-limit`|number| - | - |10|max items to fetch on regex live search|
+|`liveSearchTimeout`|`live-search-timeout`|number| - | - |5000|live-search timeout|
 |`width`|`width`|string| - | - | - |width occupied by the component|
 
 ### Listens to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-drawer](../events/events.md#using-drawer)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
-|[filter](../events/events.md#filter)|claims the drawer, closing concurrent ones, to enter a new filter| - | - |
-|[lookup-data](../events/events.md#lookup-data)|if lookup-data is to be expected in the dataSchema puts the drawer in loading until the lookup-data has been retrieved| - | - |
-|[change-filter](../events/events.md#change-filter)|enters filter edit mode| - | - |
+|[using-form-container](../events/events.md#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
+|[filter](../events/events.md#filter)|claims the drawer, closing concurrent ones, to enter a new filter|[using-form-container](../events/events.md#using-form-container)| - |
+|[change-filter](../events/events.md#change-filter)|enters filter edit mode|[using-form-container](../events/events.md#using-form-container)| - |
 |[lookup-data](../events/events.md#lookup-data)|receives lookup data| - | - |
+|[loading-data](../events/events.md#loading-data)|sets the component to loading state| - | - |
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[using-drawer](../events/events.md#using-drawer)|notifies the drawer is used by this component|
+|[using-form-container](../events/events.md#using-form-container)|notifies the drawer is used by this component|
 |[add-filter](../events/events.md#add-filter)|when done filling the form, notices deployment of a new filter|
 
 ### Bootstrap
 
-None
+This component does not use bootstrap.
 
 ## Filters Manager
 
@@ -72,7 +76,7 @@ Manages the display, application, and modification of filters.
 ### Bootstrap
 
 - This component parses the URL for `filters` parameter.
-- This component emits a [change-query](../events/events.md#change-query) event if `filters` is found in the URL.
+- This component emits a `change-query` event if `filters` is found in the URL.
 
 ## Pagination
 
@@ -83,6 +87,8 @@ dataset while interacting with dynamic filters
 ```html
 <bk-pagination></bk-pagination>
 ```
+
+![pagination](../img/components/bk-pagination.png)
 
 ### Properties & Attributes
 
@@ -97,17 +103,20 @@ dataset while interacting with dynamic filters
 |-------|--------|-------|----------|
 |[loading-data](../events/events.md#loading-data)|sets internal loading state| - | - |
 |[count-data](../events/events.md#count-data)|adjusts footer counter to currently viewed dataset| - | - |
+|[nested-navigation-state/push](../events/events.md#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step. Emits nested-navigation-state/display with slice of data to display|[nested-navigation-state/display](../events/events.md#nested-navigation-state---display)| - |
+|[nested-navigation-state/back](../events/events.md#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps. Emits nested-navigation-state/display with slice of data to display|[nested-navigation-state/display](../events/events.md#nested-navigation-state---display)| - |
 
 ### Emits
 
 | event | description |
 |-------|-------------|
 |[change-query](../events/events.md#change-query)|requires data filtered according with the current pagination|
+|[nested-navigation-state/display](../events/events.md#nested-navigation-state---display)|emits nested-navigation-state/display with slice of data to display|
 
 ### Bootstrap
 
 - This component parses `pageSize` and `pageNumber` URL parameters.
-- This component emits a [change-query](../events/events.md#change-query) event to notify current pagination.
+- This component emits a `change-query` event to notify current pagination.
 
 ## Search Bar
 
@@ -117,11 +126,13 @@ Allows data filtering by matching a text string
 <bk-search-bar></bk-search-bar>
 ```
 
+![search-bar](../img/components/bk-search-bar.png)
+
 ### Properties & Attributes
 
 | property | attribute | type | optional | required | default | description |
 |----------|-----------|------|----------|----------|---------|-------------|
-|`placeholder`| - |string \| { [x: string]: string; }| - | - | - |placeholder of the search bar input|
+|`placeholder`| - |string \\| { [x: string]: string; }| - | - | - |placeholder of the search bar input|
 |`searchDebounce`|`search-debounce`|number| - | - |0|time to wait before performing an automatic search|
 
 ### Listens to
@@ -129,6 +140,8 @@ Allows data filtering by matching a text string
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[loading-data](../events/events.md#loading-data)|sets internal loading state| - | - |
+|[nested-navigation-state/back](../events/events.md#nested-navigation-state---back)|keeps track of navigation steps| - | - |
+|[nested-navigation-state/push](../events/events.md#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
 
@@ -138,15 +151,17 @@ Allows data filtering by matching a text string
 
 ### Bootstrap
 
-None
+This component does not use bootstrap.
 
 ## Tabs
 
-provides a fixed set of filters rendered as tabs, possibly on top of a [bk-table](data-visualization.md#table)
+provides a fixed set of filters rendered as tabs, possibly on top of a bk-table
 
 ```html
 <bk-tabs></bk-tabs>
 ```
+
+![tabs](../img/components/bk-tabs.png)
 
 ### Properties & Attributes
 
@@ -167,10 +182,12 @@ provides a fixed set of filters rendered as tabs, possibly on top of a [bk-table
 > }
 > ```
 
-
 ### Listens to
 
-This component listens to no event.
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[nested-navigation-state/push](../events/events.md#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events/events.md#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
 ### Emits
 
@@ -181,5 +198,4 @@ This component listens to no event.
 ### Bootstrap
 
 - This component parses `characteristic` URL parameter.
-- This component emits a [change-query](../events/events.md#change-query) event to notify current focused tab and filter.
-
+- This component emits a `change-query` event to notify current focused tab and filter.

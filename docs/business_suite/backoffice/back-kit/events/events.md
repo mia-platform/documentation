@@ -4,7 +4,54 @@ title: Events
 sidebar_level: Events
 ---
 
+# Back-Kit Events
 
+`Events` are data structures sent into a communication channel to enable `event-driven` component behavior.
+They extend an `any` object and they come as
+
+```typescript
+type Event<P, M> = {
+  label: string
+  payload: P
+  meta?: M
+}
+```
+
+where `label` is a unique string identifying the event such as `"create-data"` or `"delete-file"`, `payload` contains transactional data and `meta` other data with extra information like what action triggered this event, a transaction ID if there's any and so on.
+
+To create a new `event` within `src/events` there's a `factory` method which is a generic function that takes the `P` and `M` types with the `label`
+
+```typescript
+function factory<P = {}, M = {}> (label: string) {
+  ...
+}
+```
+
+This function generates a function with hybrid prototype that contains:
+
+1. an **event generator**
+2. a **predicate** `.is(` to check  whether an event was made with the current generator
+3. a **label** which returns the generator and its spawned events label
+
+for instance
+
+```typescript
+const addNew = factory<Record<string, never>>('add-new')
+
+const addNewEvent = addNew({})
+
+expect(addNew.is(addNewEvent)).toBeTruthy()
+expect(addNew.label).toStrictlyEqual('add-new')
+```
+
+There's also the concept of a `register` which automatically adds event is on factory call the constant
+
+``` typescript
+const REGISTERED = true
+```
+
+is provided. In that case, `src/events/eventRegister.ts` exports an `eventBuilderRegister` map that contains only
+registered event generators. It has an `.add(` method which is `idempotent` on a factory with the same label already contained in the register.
 
 An `eventBus` conforming event is an object like
 
@@ -41,15 +88,13 @@ For instance an `upload-file` event looks like:
 }
 ```
 
-Back-kit registers the following events
-
+Following is the list of available events, ordered alphabetically with respect to their `label`.
 
 ## A
 
 ### Add Filter
 
 delivers data to add a new filter
-
 
 - Label: `add-filter`
 - Payload:
@@ -68,6 +113,7 @@ delivers data to add a new filter
     | "includeAll"
     | "includeExactly"
     | "notIncludeAny"
+    | "between"
   property: string
   value: string | number | boolean | any[]
   applied?: boolean
@@ -79,7 +125,6 @@ delivers data to add a new filter
 
 notifies adding a new item
 
-
 - Label: `add-new`
 - Payload:
 
@@ -89,14 +134,26 @@ notifies adding a new item
 }
 ```
 
+## B
 
+### Nested Navigation State - Back
+
+goes back an arbitrary number of levels of nesting
+
+- Label: `back-state`
+- Payload:
+
+```typescript
+{
+  steps?: number
+}
+```
 
 ## C
 
 ### Change Filter
 
 delivers data on an edited filter
-
 
 - Label: `change-filter`
 - Payload:
@@ -115,6 +172,7 @@ delivers data on an edited filter
     | "includeAll"
     | "includeExactly"
     | "notIncludeAny"
+    | "between"
   property: string
   value: string | number | boolean | any[]
   applied?: boolean
@@ -125,7 +183,6 @@ delivers data on an edited filter
 ### Change Query
 
 requires a modification of the currently viewed dataset (filtering, sorting, paging)
-
 
 - Label: `change-query`
 - Payload:
@@ -165,7 +222,6 @@ requires a modification of the currently viewed dataset (filtering, sorting, pag
 
 sends count and pagination of current dataset
 
-
 - Label: `count-data`
 - Payload:
 
@@ -181,7 +237,6 @@ sends count and pagination of current dataset
 
 notifies the request for creation of a new item and carries its value
 
-
 - Label: `create-data`
 - Payload:
 
@@ -191,14 +246,35 @@ notifies the request for creation of a new item and carries its value
 }
 ```
 
+### Create Data With File
 
+create data that have one or more files within their properties,
+ the current file property is set into meta
+
+- Label: `create-data-with-file`
+- Payload:
+
+```typescript
+{
+  data: {
+    [key: string]: any
+  }
+}
+```
+
+- Meta:
+
+```typescript
+{
+  property: string
+}
+```
 
 ## D
 
 ### Delete Data
 
 notifies the request for deletion of an item
-
 
 - Label: `delete-data`
 - Payload:
@@ -212,7 +288,6 @@ notifies the request for deletion of an item
 ### Delete File
 
 notifies that a given file, identified by its unique id, must be deleted
-
 
 - Label: `delete-file`
 - Payload:
@@ -235,7 +310,6 @@ notifies that a given file, identified by its unique id, must be deleted
 
 notifies that a given file was deleted, carries a transaction ID to rollback
 
-
 - Label: `deleted-file`
 - Payload:
 
@@ -257,7 +331,6 @@ notifies that a given file was deleted, carries a transaction ID to rollback
 
 carries a dataset
 
-
 - Label: `display-data`
 - Payload:
 
@@ -267,11 +340,25 @@ carries a dataset
 }
 ```
 
+### Nested Navigation State - Display
+
+displays data or a slice of data
+
+- Label: `display-state`
+- Payload:
+
+```typescript
+Array<{
+  data: Record<string, any>[]
+  from?: number
+  to?: number
+}>
+```
+
 ### Download File
 
 notifies that a given file must be downloaded. Payload could be either the file identifier or a structure that contains it.
 In the latter case, the object property to find the file must be set into the meta. It carries transaction ID to rollback
-
 
 - Label: `download-file`
 - Payload:
@@ -296,7 +383,6 @@ In the latter case, the object property to find the file must be set into the me
 
 notifies that a given file was downloaded, carries a transaction ID to rollback
 
-
 - Label: `downloaded-file`
 - Payload:
 
@@ -318,7 +404,6 @@ notifies that a given file was downloaded, carries a transaction ID to rollback
 
 notifies the request for duplication of an item and carries its value
 
-
 - Label: `duplicate-data`
 - Payload:
 
@@ -328,14 +413,11 @@ notifies the request for duplication of an item and carries its value
 }
 ```
 
-
-
 ## E
 
 ### Error
 
 notifies a generic error event
-
 
 - Label: `error`
 - Payload:
@@ -354,14 +436,22 @@ notifies a generic error event
 }
 ```
 
+### Export Data
 
+raised when the export button is clicked
+
+- Label: `export-data`
+- Payload:
+
+```typescript
+{}
+```
 
 ## S
 
 ### Success
 
 notifies a successful action
-
 
 - Label: `success`
 - Payload:
@@ -382,7 +472,6 @@ notifies a successful action
 
 notifies that a single datum has been selected from a dataset
 
-
 - Label: `selected-data`
 - Payload:
 
@@ -398,7 +487,6 @@ notifies that a single datum has been selected from a dataset
 
 notifies data selection in a dataset
 
-
 - Label: `selected-data-bulk`
 - Payload:
 
@@ -410,14 +498,11 @@ notifies data selection in a dataset
 }
 ```
 
-
-
 ## F
 
 ### Filter
 
 notifies opening of UI component that handles form creation
-
 
 - Label: `filter`
 - Payload:
@@ -426,14 +511,11 @@ notifies opening of UI component that handles form creation
 {}
 ```
 
-
-
 ## L
 
 ### Link File To Record
 
 sends file upload data
-
 
 - Label: `link-file-to-record`
 - Payload:
@@ -458,7 +540,6 @@ sends file upload data
 
 notifies whether dataset is loading or not. It also advices that a dataset may be inbound
 
-
 - Label: `loading-data`
 - Payload:
 
@@ -472,7 +553,6 @@ notifies whether dataset is loading or not. It also advices that a dataset may b
 
 carries lookup data information and dataset
 
-
 - Label: `lookup-data`
 - Payload:
 
@@ -482,7 +562,49 @@ carries lookup data information and dataset
 }
 ```
 
+### Lookup Live Found
 
+fired when options for a Select form input are found
+
+- Label: `lookup-live-found`
+- Payload:
+
+```typescript
+{
+  [key: string]: any[]
+}
+```
+
+### Lookup Live Searching
+
+fired upon searching on a Select form input
+
+- Label: `lookup-live-searching`
+- Payload:
+
+```typescript
+{
+  property: string
+  input: string
+}
+```
+
+## P
+
+### Nested Navigation State - Push
+
+adds a new level of nesting
+
+- Label: `push-state`
+- Payload:
+
+```typescript
+{
+  data: Record<string, any>[]
+  origin: Record<string, any>
+  selectedKey?: string
+}
+```
 
 ## R
 
@@ -490,8 +612,7 @@ carries lookup data information and dataset
 
 Signals that a certain action requires confirmation to be performed
 
-
-- Label: `require-confirm-payload`
+- Label: `require-confirm`
 - Payload:
 
 ```typescript
@@ -505,14 +626,11 @@ Signals that a certain action requires confirmation to be performed
 }
 ```
 
-
-
 ## U
 
 ### Update Data
 
 notifies the request for creation of a new item and carries its value
-
 
 - Label: `update-data`
 - Payload:
@@ -535,7 +653,6 @@ notifies the request for creation of a new item and carries its value
 
 update data that have one or more files within their properties, the current file property is set into meta
 
-
 - Label: `update-data-with-file`
 - Payload:
 
@@ -557,8 +674,7 @@ update data that have one or more files within their properties, the current fil
 
 ### Update State Bulk
 
-updates multiple data state (__STATE__ or _st) in a dataset
-
+updates multiple data state (`__STATE__` or `_st`) in a dataset
 
 - Label: `update-state-bulk`
 - Payload:
@@ -574,18 +690,18 @@ updates multiple data state (__STATE__ or _st) in a dataset
 
 requests the upload of a file and carries its data. [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
 
-
 - Label: `upload-file`
 - Payload:
 
 ```typescript
-
+{
+  file: File
+}
 ```
 
 ### Uploaded File
 
 returns file upload metadata, typically when storing on an external service like [files-service](https://docs.mia-platform.eu/docs/runtime_suite/files-service/configuration)
-
 
 - Label: `uploaded-file`
 - Payload:
@@ -600,12 +716,11 @@ returns file upload metadata, typically when storing on an external service like
 }
 ```
 
-### Using Drawer
+### Using Form Container
 
-notifies that a drawer with given ID is currently in use
+notifies that a form container with given ID is currently in use
 
-
-- Label: `using-drawer`
+- Label: `using-form-container`
 - Payload:
 
 ```typescript
@@ -613,8 +728,3 @@ notifies that a drawer with given ID is currently in use
   id: string
 }
 ```
-
-
-
-
-
