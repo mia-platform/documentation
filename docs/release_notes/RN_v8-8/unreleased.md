@@ -25,6 +25,10 @@ _March x, 2022_
 
 ## Marketplace
 
+### Flow Manager v2.4.0
+
+The Flow Manager service will now notify kafka connection errors via its status routes, so if you need the service to restart when Kafka connection fails, make sure you have configured them correctly.
+
 ### Dev Portal Application Update 
 
 With this update the dev portal application is enriched with many new features and improvements:
