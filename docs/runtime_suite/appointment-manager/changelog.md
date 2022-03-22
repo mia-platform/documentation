@@ -10,6 +10,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] 2022-03-21
+
+### BREAKING CHANGES
+
+This version forces you to specify the base path for the teleconsultation link as an environmental variable.  
+Thus, the new variable must be specified if the teleconsultation is active
+
+This version adds the `/` at the end of `/appointments`, `/availabilities` and `/slots` `GET` and `POST` routes,
+in order to keep them similar to the CRUD Service routes (for compatibility reasons with the Backoffice).
+Thus, services calling this version of the Appointment Manager must be updated to the new routes.
+
+### Fixed
+
+- Fix teleconsultation link base path taken from environmental variable
+- Missing slash added to the endpoints
+
 ## [1.2.0] 2022-03-04
 
 ### BREAKING CHANGES

@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 5.1.0 - 2022-03-21
+
+### Added
+
+- supports MongoDB views
+
 ## 5.0.2 - 2022-02-25
 
 ### Updated

@@ -15,9 +15,9 @@ you like. For simplicity’s sake, in the following page it is assumed that you 
 
 # Appointments
 
-## GET /appointments
+## GET /appointments/
 
-Returns the list of appointments. This endpoint is a direct proxy to the `GET /appointments` of the CRUD service and has no side
+Returns the list of appointments. This endpoint is a direct proxy to the `GET /appointments/` of the CRUD service and has no side
 effects.
 
 ## GET /appointments/count
@@ -25,7 +25,7 @@ effects.
 Returns the number of appointments. This endpoint is a direct proxy to the `GET /appointments/count` of the CRUD service and has no side
 effects.
 
-## POST /appointments
+## POST /appointments/
 
 Creates a new appointment in the respective CRUD collection.
 
@@ -370,7 +370,7 @@ The following endpoints are exposed **only if** the `AVAILABILITY_CRUD_NAME` [en
 is defined.
 :::
 
-## GET /availabilities
+## GET /availabilities/
 
 Returns the list of availabilities, by enriching the availabilities from the CRUD collection with:
 - the additional properties contained in the slots CRUD collection;
@@ -378,7 +378,7 @@ Returns the list of availabilities, by enriching the availabilities from the CRU
 
 This endpoint has no side effects.
 
-## POST /availabilities
+## POST /availabilities/
 
 Creates a new availability (in the respective CRUD collection), computing the related slots and inserting them in the 
 slots collection.
@@ -529,7 +529,7 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 Returns the number of availabilities.
 This endpoint is a direct proxy to the `GET /availabilities/count` of the CRUD service and has no side effects.
 
-## GET /slots
+## GET /slots/
 
-Returns the list of slots. This endpoint is a direct proxy to the `GET /slots` of the CRUD service and has no side
+Returns the list of slots. This endpoint is a direct proxy to the `GET /slots/` of the CRUD service and has no side
 effects.
