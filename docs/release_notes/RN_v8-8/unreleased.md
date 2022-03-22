@@ -16,8 +16,15 @@ _March x, 2022_
 
 ### New features
 
+#### Improved navigation in the Runtime area
+
+The status filter applied to the pod table is now maintained while navigating through the details of individual pods.
 
 ### Bug Fix
+
+#### Improved stability of console pages
+
+A bug that caused the appearance of an endless-spinner at the scroll of some pages in the console has been fixed.
 
 ### Breaking Changes
 
@@ -47,6 +54,10 @@ A new version of RBAC Service is available featuring some small bug fixes.
 ### CRUD Service v5.1.0
 
 A new version of CRUD Service is available featuring support for MongoDB Views definitions
+
+### CMS Site v9.14.4
+
+In the microservice configurations can now be defined the filesCollection property to choose the collection that will be used to store uploaded files. Default value is files.
 
 ## Backoffice
 
