@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.6.0] 2022-03-21
+
+### Added
+
+- @mia-platform-internal/fast-data-automation-lib": "^1.2.0
+- logical expression and conditions in aggregation
+- validate aggregation schema against a JSON Schema
+
 ## [3.5.1] 2022-03-17
 
 ### Changed

@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `basePath` base route name when form-service is not exposed under `/` path
+# 1.2.1
+
+### Added
+- enabled custom options to the formVisualizer
+
 ## 1.2.0
 
 ### Changed

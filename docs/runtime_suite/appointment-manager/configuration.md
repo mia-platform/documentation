@@ -81,8 +81,9 @@ The Appointment Manager accepts the following environment variables.
 - **SLOTS_CRUD_NAME**: name of the CRUD collection containing slots.  
 - **MESSAGING_SERVICE_NAME**: name of the Messaging Service. **Required** if you want to send messages or set reminders for your appointments.
 - **TIMER_SERVICE_NAME**: name of the Timer Service. **Required** if you want to set reminders for your appointments.
-- **TELECONSULTATION_SERVICE_NAME**: name of the teleconsultation service.
-- **TELECONSULTATION_ENDPOINT_FE**: endpoint associated with the Teleconsultation Service FrontEnd (the root).
+- **TELECONSULTATION_SERVICE_NAME**: name of the teleconsultation service. **Required** if you want to create teleconsultations.
+- **TELECONSULTATION_ENDPOINT_FE**: endpoint associated with the Teleconsultation Service FrontEnd (the root). **Required** if you want to create teleconsultations.
+- **TELECONSULTATION_BASE_PATH**: custom base path for the teleconsultation URL. **Required** if you want to create teleconsultations.
 
 ## Service configuration
 
