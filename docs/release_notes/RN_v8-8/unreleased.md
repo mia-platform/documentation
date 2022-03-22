@@ -11,6 +11,26 @@ _March x, 2022_
 
 ### New Features
 
+#### MongoDB v5 support
+
+Since Single View Creator v3.5.1 and Realtime Updater v5.0.2 is officially supported MongoDB v5
+
+#### Configure Kafka timeout and interval on Realtime Updater
+
+Since v5.2.0 Kafka connection and session timeout, and Heartbeat interval can now be configured on [Realtime Updater](/docs/fast_data/real_time_updater/configuration#environment-variables)
+
+#### Prevent projection overwrite by old message is not enabled by default
+
+Since v5.0.2 the env FORCE_CHECK_ON_OFFSET to prevent projection to be overwritten by old message is now enabled by default.
+
+#### Enrichment of Aggregation Low Code with Expression Logic features
+
+Since v3.6.0 of Single View Creator Low Code, aggregation schema v1.1.0 supports now expression logic to make conditional behaviour on aggregation and dependency to use.    
+Aggregation schema is not validated against a JSON Schema to ensure static correctness.
+
+#### Test aggregation Low Code
+
+Your aggregation schema can now be tested thanks to a Repository Template on [Github](https://github.com/mia-platform/fast-data-low-code-test-template)
 
 ## Console
 

@@ -38,6 +38,9 @@ The Real-Time Updater could be configured in two different ways:
 - GENERATE_KAFKA_PROJECTION_CHANGES: defines whether the projection changes have to be send to Kafka too or not. Default is `false`(v3.4.0 or above).
 - KAFKA_CONSUMER_MAX_WAIT_TIME: defines the maximum waiting time of Kafka Consumer for new data in batch. Default is 500 ms.
 - COMMIT_MESSAGE_LOGGING_INTERVAL: specify the interval in *ms* of logging the info that messages have been committed. Default is 3000.
+- KAFKA_CONNECTION_TIMEOUT_MS: Time in milliseconds to wait for a successful connection. Default 10000
+- KAFKA_SESSION_TIMEOUT_MS: Timeout in milliseconds used to detect failures. Default 30000
+- KAFKA_HEARTBEAT_INTERVAL_MS: The expected time in milliseconds between heartbeats to the consumer coordinator. Default 3000
 
 ### Custom Projection Changes Collection
 
