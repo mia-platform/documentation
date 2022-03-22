@@ -14,11 +14,13 @@ renders a header title
 <bk-title></bk-title>
 ```
 
+![title](../img/components/bk-title.png)
+
 ### Properties & Attributes
 
 | property | attribute | type | optional | required | default | description |
 |----------|-----------|------|----------|----------|---------|-------------|
-|`content`| - |string \| { [x: string]: string; }| - | - | - |title localized content|
+|`content`| - |string \\| { [x: string]: string; }| - | - | - |title localized content|
 
 ### Listens to
 
@@ -30,5 +32,4 @@ This component emits no event.
 
 ### Bootstrap
 
-None
-
+This component does not use bootstrap.

@@ -164,7 +164,8 @@
     "mymsg",
     "kubeconfig",
     "pippo",
-    "bitnami"
+    "bitnami",
+    "ndjson"
   ],
   "dictionaries": [
     "softwareTerms",
