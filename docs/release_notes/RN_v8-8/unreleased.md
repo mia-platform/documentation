@@ -38,7 +38,7 @@ With this update the dev portal application is enriched with many new features a
 - New configuration of the modal and drawer components! From now on, thanks to a confirmation modal, users editing content in the backoffice section are warned before losing their changes and protected from accidental mistakes;
 - The Backoffice now offers the possibility to adopt a template for the Marketplace detail pages! It is now possible to use a predefined structure to fasten the creation of any components page. A default template is already included in the Dev Portal application, but it can be also modified as needed;
 - The Marketplace now offers a new table of content! When opening the detail page of an API, the content created with the editor from the backoffice will automatically generate a navigable directory tree on the side of the page. Each option will be clickable, so you will not need to scroll all the way to a specific section anymore;
-- The style of the topbar has been improved, modern and more linear.
+- The style of the topbar has been improved, in a modern and more linear way.
 
 ### RBAC Service v0.8.2
 
