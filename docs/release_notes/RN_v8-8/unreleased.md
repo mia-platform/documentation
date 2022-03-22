@@ -25,6 +25,17 @@ _March x, 2022_
 
 ## Marketplace
 
+### Dev Portal Application Update 
+
+With this update the dev portal application is enriched with many new features and improvements:
+
+- The concept of Tag has been introduced in the Marketplace. It is now possible to assign more tags to each marketplace component, and at the same time the visualization of the cards has been improved;
+- The consultation of your functional documentation is smarter! It is now possible to search very quickly pages or single paragraphs through the use of the search input in the documentation section;
+- New configuration of the modal and drawer components! From now on, thanks to a confirmation modal, users editing content in the backoffice section are warned before losing their changes and protected from accidental mistakes;
+- The Backoffice now offers the possibility to adopt a template for the Marketplace detail pages! It is now possible to use a predefined structure to fasten the creation of any components page. A default template is already included in the Dev Portal application, but it can be also modified as needed;
+- The Marketplace now offers a new table of content! When opening the detail page of an API, the content created with the editor from the backoffice will automatically generate a navigable directory tree on the side of the page. Each option will be clickable, so you will not need to scroll all the way to a specific section anymore;
+- The style of the topbar has been improved, modern and more linear.
+
 ### RBAC Service v0.8.2
 
 A new version of RBAC Service is available featuring some small bug fixes.
