@@ -28,6 +28,7 @@ The **Form Service Frontend** retrive the configuration needed from the the **Fo
 The frontend service exposes the following routes:
 
 ### Form Builder
+
 - `GET /builder/create-form`: it allows the creation of a new form template;
 - `GET /builder/{id}`: it shows one form template by ID and let you update it.
 
@@ -38,6 +39,7 @@ The `baseUrl` property equal to the URL's origin is injected in the form builder
 :::
   
 ### Form Visualizer
+
 - `GET /visualizer/fill-form/{id}`: it allows the end user to submit data on a new form, selected by form template ID;
 - `GET /visualizer/{id}`: returns the submitted data for the specified form ID;
 - `GET /visualizer/print-form/{id}`: (`from version 1.1.0`) returns a printable version of submitted data for a form ID (submit button is removed from Forms and Wizards are displayed as Forms);
@@ -45,7 +47,7 @@ The `baseUrl` property equal to the URL's origin is injected in the form builder
 
 :::info
 
-The `/visualizer/fill-form/` and `/visualizer/{id}` routes (`from version 1.1.0`) accept the `onSubmitRedirect` query parameter which is used to redirect a user to a specific URL after a new form submission or after an update. 
+The `/visualizer/fill-form/` and `/visualizer/{id}` routes (`from version 1.1.0`) accept the `onSubmitRedirect` query parameter which is used to redirect a user to a specific URL after a new form submission or after an update.
 
 :::
 
@@ -57,6 +59,6 @@ The frontend service endpoints are as described before when the Form Service Fro
 
 ## Further details
 
-Follow the pages below to know more about the _Form Service Frontend_:
+Follow the pages below to know more about the *Form Service Frontend*:
 
-- [_Form Service Frontend_ configuration](configuration)
+- [*Form Service Frontend* configuration](configuration)

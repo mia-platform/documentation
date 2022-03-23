@@ -1169,6 +1169,14 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/form-service-backend/submit_urls"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-backend/form_visualizer_styling_configuration"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/form-service-backend/changelog"
                 }
               ]
@@ -1189,6 +1197,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/form-service-frontend/form_assignments"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-frontend/form_visualizer_styling"
                 },
                 {
                   "type": "doc",

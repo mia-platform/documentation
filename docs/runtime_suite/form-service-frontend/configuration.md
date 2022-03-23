@@ -22,14 +22,14 @@ Once configured the endpoints of the Form Service, you can use it as a micro-lc 
 
 Knowing the frontend endpoints described in the [overview](overview#how-it-works) can be useful during the configuration process.
 
-**Integration with micro-lc**
+### Integration with micro-lc
 
 In order to use the Form Service Frontend integrated with micro-lc, the [core configuration plugin parameters documentation](https://microlc.io/documentation/docs/micro-lc/core_configuration#plugin-parameters) should also be consulted. As an example, with a frontend service endpoint equal to `/form-service` and a `qiankun` plugin integration `qiankun`, developers can add a Form Builder plugin using this example micro-lc `plugins` configuration:
 
 ```json
 {
   ...
-	"plugins": [
+ "plugins": [
     {
       "id": "form-builder",
       "label": "Form Builder",
@@ -40,25 +40,25 @@ In order to use the Form Service Frontend integrated with micro-lc, the [core co
       "pluginUrl": "/form-service/",
       "props": {}
     }
-	]
-	...
+ ]
+ ...
 }
 ```
 
 :::caution
 
-`formio.js` use Font Awesome which loads related `css` using relative urls. In order to display all the `formio.js` icons in the Form Service Frontend integrated as a micro-lc plugin, you need to create an endpoint to your Form Service Frontend microservice (with base path equal to `MICRO_LC_ENDPOINT/static/media`) with the following base path rewrite `/static/media` to expose the required resources. 
+`formio.js` use Font Awesome which loads related `css` using relative urls. In order to display all the `formio.js` icons in the Form Service Frontend integrated as a micro-lc plugin, you need to create an endpoint to your Form Service Frontend microservice (with base path equal to `MICRO_LC_ENDPOINT/static/media`) with the following base path rewrite `/static/media` to expose the required resources.
 This endpoint (`from version 1.1.0`) must be `MICRO_LC_ENDPOINT/form-service-frontend-fonts`, remember to use "Base Path Rewrite"  `/form-service-frontend-fonts` in the console.
 
 Note also that with `/` as micro-lc endpoint, the required endpoint must be `/static/media` and `from version 1.1.0` must be `/form-service-frontend-fonts`.
 
 :::
 
-**Headless CMS**
+### Headless CMS
 
 To use the Form Builder and the Form Visualizer in the Headless CMS the `cmsmenu` CRUD entries for the two frontend must have specific link values. Considering the usual example of the `/form-service` endpoint for the Form Service Frontend, the link for the Form Builder must be `/form-service/#/builder` and the link for the Form Visualizer must be `/form-service/#/visualizer/fill-form`.
 
-In addition, the `form_schemas` CRUD and *submit urls* CRUDs must be added as [CMS pages](../../business_suite/cms_configuration/config_cms#how-to-create-a-page) in order to access the configured form templates and submitted forms data. 
+In addition, the `form_schemas` CRUD and *submit urls* CRUDs must be added as [CMS pages](../../business_suite/cms_configuration/config_cms#how-to-create-a-page) in order to access the configured form templates and submitted forms data.
 
 Finally, to edit a form template, visualize the resulting form and access the submitted forms data, [links](../../business_suite/cms_configuration/conf_cms#navigation-between-collection-with-link) to the previously integrated frontends must me added.
 
@@ -66,26 +66,26 @@ With a Form Builder frontend added with a `cmsmenu` entry named `Form Builder` a
 
 ```json
 {
-	...
-	"form-schemas": {
-		"properties": {
-			"_id": {
-				"cmsLinks": [
-					{
-						"targetType":"service",
-						"serviceIdTarget": "FormBuilder",
-						"queryStringKey":"id"
-					},
-					{
-						"targetType":"service",
-						"serviceIdTarget": "FormVisualizer",
-						"queryStringKey":"formSchemaId"
-					}
-				]
-			}
-		}
-	}
-	...
+ ...
+ "form-schemas": {
+  "properties": {
+   "_id": {
+    "cmsLinks": [
+     {
+      "targetType":"service",
+      "serviceIdTarget": "FormBuilder",
+      "queryStringKey":"id"
+     },
+     {
+      "targetType":"service",
+      "serviceIdTarget": "FormVisualizer",
+      "queryStringKey":"formSchemaId"
+     }
+    ]
+   }
+  }
+ }
+ ...
 }
 ```
 
@@ -93,21 +93,21 @@ For a Form Visualizer frontend integrated in the Headless CMS with a `cmsmenu` e
 
 ```json
 {
-	...
-	"forms": {
-		"properties": {
-			"_id": {
-				"cmsLinks": [
-					{
-						"targetType":"service",
-						"serviceIdTarget": "FormVisualizer",
-						"queryStringKey":"formDataId"
-					}
-				]
-			}
-		}
-	}
-	...
+ ...
+ "forms": {
+  "properties": {
+   "_id": {
+    "cmsLinks": [
+     {
+      "targetType":"service",
+      "serviceIdTarget": "FormVisualizer",
+      "queryStringKey":"formDataId"
+     }
+    ]
+   }
+  }
+ }
+ ...
 }
 ```
 
@@ -122,41 +122,53 @@ The *queryStringKeys* in the previous examples must match exactly the Form Servi
 Depending on the Form Service chosen integration (micro-lc or CMS) further configurations are needed in the Advanced section of the console. The config files to edit are in the `api-gateway` section. The following examples assumes that microservices names and endpoints are the one used in the previous sections of this document.
 
 A standalone use of the Form Service requires editing the following files to ensure correct API calls from the frontend to the backend service:
+
 - `maps-proxyUrl.before.map`:
-	```shell
-	"~^(GET|POST|PUT)-/form-service/api/v1/forms(?<path>/.*|$)$" "$path";
-	```
+
+ ```shell
+ "~^(GET|POST|PUT)-/form-service/api/v1/forms(?<path>/.*|$)$" "$path";
+ ```
+
 - `maps-proxyName.before.map`:
-	```shell
-	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/form-service/api/v1/forms/" "form-service-backend";
-	```
+
+ ```shell
+ "~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/form-service/api/v1/forms/" "form-service-backend";
+ ```
 
 A micro-lc use of the Form Service requires editing the following files to ensure correct API calls from the frontend to the backend service:
+
 - `maps-proxyUrl.before.map`:
-	```shell
-	"~^(GET|POST|PUT)-/builder/api/v1/forms(?<path>/.*|$)$" "$path";
-	"~^(GET|POST|PUT)-/visualizer/fill-form/api/v1/forms(?<path>/.*|$)$" "$path";
-	"~^(GET|POST|PUT)-/visualizer/api/v1/forms(?<path>/.*|$)$" "$path";
-	```
+
+ ```shell
+ "~^(GET|POST|PUT)-/builder/api/v1/forms(?<path>/.*|$)$" "$path";
+ "~^(GET|POST|PUT)-/visualizer/fill-form/api/v1/forms(?<path>/.*|$)$" "$path";
+ "~^(GET|POST|PUT)-/visualizer/api/v1/forms(?<path>/.*|$)$" "$path";
+ ```
+
 - `maps-proxyName.before.map`:
-	```shell
-	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/builder/api/v1/forms/" "form-service-backend";
-	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/visualizer/fill-form/api/v1/forms/" "form-service-backend";
-	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/visualizer/api/v1/forms/" "form-service-backend";
-	```
+
+ ```shell
+ "~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/builder/api/v1/forms/" "form-service-backend";
+ "~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/visualizer/fill-form/api/v1/forms/" "form-service-backend";
+ "~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/visualizer/api/v1/forms/" "form-service-backend";
+ ```
 
 The previous example refers to `/` micro-lc endpoint, a different endpoint requires adjustments.
 
 A CMS integration of the Form Service require editing the following files to allow correct API calls from the frontend to the backend service (first line) and to allow correct visualization of the frontend from the CMS (second line):
+
 - `maps-proxyBackofficeUrl.before.map`:
-	```shell
-	"~^(GET|POST|PUT)-/form-service/api/v1/forms(?<path>/.*|$)$" "$path";
-	"~^(GET)-/form-service(?<path>.*|$)$" "$path";
-	```
+
+ ```shell
+ "~^(GET|POST|PUT)-/form-service/api/v1/forms(?<path>/.*|$)$" "$path";
+ "~^(GET)-/form-service(?<path>.*|$)$" "$path";
+ ```
+
 - `maps-proxyBackofficeName.before.map`:
-	```shell
-	"~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/form-service/api/v1/forms" "form-service-backend";
-	"~^(secreted|unsecreted)-(0|1)-GET-/form-service" "form-service-frontend";
-	```
+
+ ```shell
+ "~^(secreted|unsecreted)-(0|1)-(GET|POST|PUT)-/form-service/api/v1/forms" "form-service-backend";
+ "~^(secreted|unsecreted)-(0|1)-GET-/form-service" "form-service-frontend";
+ ```
 
 Further details about the API Gateway and how can be further configured based on your needs can be found [here](../../development_suite/api-console/advanced-section/api-gateway/how-to)

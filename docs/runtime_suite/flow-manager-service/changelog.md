@@ -10,9 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 2.4.0 - 22-03-2021
+
 ### Changed
 
-- probes route now dependant on Kafka connection status in order to restart the pod if connection with Kafka drops
+- probes route now dependent on Kafka connection status in order to restart the pod if connection with Kafka drops
 
 ## 2.3.1 - 15-03-2021
 

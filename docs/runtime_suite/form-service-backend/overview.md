@@ -12,17 +12,19 @@ The **Form Service Backend** works with the **Form Service Frontend** that provi
 The backend service exposes the following APIs:
 
 ### Form Builder
-- ` GET /builder/config`: it returns the configuration needed to show the Form Builder visualizer;
-- ` POST /builder/schemas`: it allows saving the created form;
-- ` GET /builder/schemas/{id}`: it returns one form by ID;
-- ` PUT /builder/schemas/{id}`: it updates one form by ID.
+
+- `GET /builder/config`: it returns the configuration needed to show the Form Builder visualizer;
+- `POST /builder/schemas`: it allows saving the created form;
+- `GET /builder/schemas/{id}`: it returns one form by ID;
+- `PUT /builder/schemas/{id}`: it updates one form by ID.
 
 ### Form Visualizer
-- ` GET /visualizer/schemas/{id}`: it returns a configured form that will be shown in the Form Visualizer;
-- ` POST /visualizer/forms`: it saves the submitted data of a user that filled a form shown in the Form Visualizer;
-- ` GET /visualizer/forms/{id}`: it returns a submitted form by ID, enabling the review of data provided by the end user;
-- ` PUT /visualizer/forms/{id}`: it updates a submitted form by ID;
-- ` GET /visualizer/assignments/{assignmentId}/schema-id`: (`from version 1.2.0`) it returns a form ID given a [form assignment](form_assignments_configuration) ID.
+
+- `GET /visualizer/schemas/{id}`: it returns a configured form that will be shown in the Form Visualizer;
+- `POST /visualizer/forms`: it saves the submitted data of a user that filled a form shown in the Form Visualizer;
+- `GET /visualizer/forms/{id}`: it returns a submitted form by ID, enabling the review of data provided by the end user;
+- `PUT /visualizer/forms/{id}`: it updates a submitted form by ID;
+- `GET /visualizer/assignments/{assignmentId}/schema-id`: (`from version 1.2.0`) it returns a form ID given a [form assignment](form_assignments_configuration) ID.
 
 These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS). Discover more about the frontend integration [here](../form-service-frontend/configuration#integration-with-micro-lc-and-headless-cms).
 

@@ -9,18 +9,18 @@ If you want to use the [Form assignments](../form-service-frontend/form_assignme
 
 The [Form Service Configuration](configuration) JSON object now has additional properties.
 
-**1. formAssignmentsCrud**
-- *type*: object;
-- *required*: `false`;
-- *description*: contains details about the CRUD that is used to store the form template and the users assigned to it.
+- **1. formAssignmentsCrud**
+  - *type*: object;
+  - *required*: `false`;
+  - *description*: contains details about the CRUD that is used to store the form template and the users assigned to it.
 
 See the [form assignments CRUD parameters](#form-assignments-crud-parameters) section to know more about how the **Form assignments** works and how can be configured.
 
-**2. userGroups**
-- *type*: array of objects;
-- *required*: `false`;
-- *description*: the user groups that can be chosen in `Submitted forms viewers` field of the Form Builder.
-
+- **2. userGroups**
+  - *type*: array of objects;
+  - *required*: `false`;
+  - *description*: the user groups that can be chosen in `Submitted forms viewers` field of the Form Builder.
+  
 See the [user groups parameters](#user-groups-parameters) section for further details.
 
 :::info
@@ -35,31 +35,31 @@ This section defines the details of the CRUD responsible for storing the reletio
 
 The properties of the `formAssignmentsCrud` object are the following:
 
-**name**
-- *type*: string;
-- *required*: `true`;
-- *description*: the name of the form assignments CRUD endpoint (i.e. `/form-assignments`).
+- **name**
+  - *type*: string;
+  - *required*: `true`;
+  - *description*: the name of the form assignments CRUD endpoint (i.e. `/form-assignments`).
 
-**formIdPropName**
-- *type*: string;
-- *required*: `true`;
-- *description*: the name of the property that stores the ID of the form template for a form assignment (i.e. `formTemplateId` or `formSchemaId`).
+- **formIdPropName**
+  - *type*: string;
+  - *required*: `true`;
+  - *description*: the name of the property that stores the ID of the form template for a form assignment (i.e. `formTemplateId` or `formSchemaId`).
 
-**manualAssignmentsPropName**
-- *type*: string;
-- *required*: `true`;
-- *description*: the name of the property that stores user IDs array. The form defined in the `formIdPropName` is assigned to the users contained in this array. These users will be able to submit data with the `/visualizer/fill-assignment/{assignmentId}` route of the [Form Service Frontend](../form-service-frontend/overview).
+- **manualAssignmentsPropName**
+  - *type*: string;
+  - *required*: `true`;
+  - *description*: the name of the property that stores user IDs array. The form defined in the `formIdPropName` is assigned to the users contained in this array. These users will be able to submit data with the `/visualizer/fill-assignment/{assignmentId}` route of the [Form Service Frontend](../form-service-frontend/overview).
 
 :::info
 
-The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to update this array and assign a form template to specific users. 
+The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to update this array and assign a form template to specific users.
 
 :::
 
-**automaticAssignmentsPropName**
-- *type*: string;
-- *required*: `false`;
-- *description*: the name of the property that store an additional user IDs array. The users contained in this array will also be able to submit data for a specific assignment.
+- **automaticAssignmentsPropName**
+  - *type*: string;
+  - *required*: `false`;
+  - *description*: the name of the property that store an additional user IDs array. The users contained in this array will also be able to submit data for a specific assignment.
 
 :::info
 
@@ -67,7 +67,7 @@ This array is designed to store IDs computed from another assignment property. F
 
 :::
 
-Here an example: 
+Here an example:
 
 ```json
   "formAssignmentsCrud": {
@@ -80,7 +80,7 @@ Here an example:
 
 ### User groups parameters
 
-This config object specifies the different user groups that your application supports (for example `admins`, `accountant` and `users`), and enables a user to configure a form template allowing only specific user groups to view submitted data. 
+This config object specifies the different user groups that your application supports (for example `admins`, `accountant` and `users`), and enables a user to configure a form template allowing only specific user groups to view submitted data.
 
 An array of *user groups* objects must be defined with the following properties:
 
@@ -104,7 +104,7 @@ Here an example:
 
 :::caution
 
-The Form Service doesn't provide any authentication or authorization system nor user management systems. Further information can be found [here](../../development_suite/set-up-infrastructure/authorization-flow). 
+The Form Service doesn't provide any authentication or authorization system nor user management systems. Further information can be found [here](../../development_suite/set-up-infrastructure/authorization-flow).
 
 :::
 
@@ -114,14 +114,15 @@ To see how user groups are rendered in the Form Builder UI check the [Form Servi
 
 To support the **Form Assignments** you need to update the **form_schemas** CRUD and create a new one named for example **form_assignments** to link a form template to specific users.
 
-**form_schemas**
+### form_schemas
 
 This CRUD described in this service [configuration](configuration/#create-required-cruds) must be updated with additional properties:
+
 - **isEditable**, of type *boolean*, which defines if a form submission can be updated by the user who submitted it in the first place;
 - **isPrivate**, of type *boolean*, which specifies if a form template can be displayed to every user, or instead it needs to be assigned to enable the form access;
 - **enabledUserGroups**, of type *array of string*, which stores the user groups than will have 'view only' access of the submitted data.
 
-**form_assignments**
+### form_assignments
 
 This CRUD enables the assignment of a form template to specific users. We recommend to [create a CRUD](../../development_suite/api-console/api-design/crud_advanced) named `form_assignments`.
 
@@ -132,6 +133,7 @@ You also need to expose a new endpoint `/form-assignments` following [this guide
 ## Form assignments ACL
 
 The **Form Visualizer** endpoints described in the [service overview](overview) have been updated to enforce the following ACLs:
+
 - a user can access a private (`isPrivate` is true) form template only when assigned or has a group contained in the **form_schemas** *enabledUserGroups* array;
 - a user can update form submission only if the form template is editable (`isEditable` is true).
 
