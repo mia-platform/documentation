@@ -10,60 +10,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] 2022-03-22
+
 ### Added
 
-- provide templating options to the Form Visualizer
-- documentation for the Form Visualizer options
+- Form visualizer styling support updating `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes to return style assets associated to a form template.
+
+## [1.2.2] 2022-03-22
+
+### Added
+
+- Provide templating options to the Form Visualizer
+- Documentation for the Form Visualizer options
 
 ### Fixed
 
-- fixed support for external submit URLs and submit URLs with explicit port
-- backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional
-- update documentation links to download example .json files to fix link not opening in a new browser tab
+- Fixed support for external submit URLs and submit URLs with explicit port
+- Backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional
+- Update documentation links to download example .json files to fix link not opening in a new browser tab
+- Improved documentation by adding the description of the *submit URLs*
 
 ## [1.2.1] 2021-12-15
 
 ### Changed
 
-- update ACL controls relying only on manual and automatic assignments
+- Update ACL controls relying only on manual and automatic assignments.
 
 ## [1.2.0] 2021-12-09
 
 ### Fixed
 
-- remove payload log in `POST` an `PUT` endpoints
+- Remove payload log in `POST` an `PUT` endpoints.
 
 ### Changed
 
-- `PUT /visualizer/schemas/:id` updated to handle `$set` and `$unset` body
+- `PUT /visualizer/schemas/:id` updated to handle `$set` and `$unset` body.
 
-### Added 
+### Added
 
-- inject configurable or default client type if missing in the request's headers in all handlers
-- new endpoint`GET /visualizer/assignments/:id/schema-id` 
-- `GET /visualizer/schemas/:id` updated to handle isPrivate and isEditable
-- `PUT /visualizer/schemas/:id` updated to handle isPrivate and isEditable
-- `POST /visualizer/forms` updated to handle isPrivate and previous submission checks
-- `GET /visualizer/schemas/:id` updated to handle isPrivate and groups
-- introducing isPrivate, isEditable and user groups properties
+- Inject configurable or default client type if missing in the request's headers in all handlers.
+- New endpoint`GET /visualizer/assignments/:id/schema-id`.
+- `GET /visualizer/schemas/:id` updated to handle isPrivate and isEditable.
+- `PUT /visualizer/schemas/:id` updated to handle isPrivate and isEditable.
+- `POST /visualizer/forms` updated to handle isPrivate and previous submission checks.
+- `GET /visualizer/schemas/:id` updated to handle isPrivate and groups.
+- Introducing isPrivate, isEditable and user groups properties.
 
 ## [1.1.1] 2021-11-05
 
 ### Added
 
-- 
-  - return options object from formSchemaMapCrud if any in the response of `GET|PUT /visualizer/forms/{id}` endpoints
-  - prevent a submitted form update if options object from formSchemaMapCrud contains readOnly property equal to `true`
+- Return options object from formSchemaMapCrud if any in the response of `GET|PUT /visualizer/forms/{id}` endpoints.
+- Prevent a submitted form update if options object from formSchemaMapCrud contains readOnly property equal to `true`.
 
 ### Fixed
 
-- fixing issue on form validation (validation now skips `customConditional` elements)
+- Fixing issue on form validation (validation now skips `customConditional` elements).
 
 ## [1.1.0] 2021-06-28
 
 ### Added
 
-- form data validation in the backend through the use of the Validator of the 'formio' project. Form validation is enabled for visualizer POST and PUT operations.
+- Form data validation in the backend through the use of the Validator of the 'formio' project. Form validation is enabled for visualizer POST and PUT operations.
 
 ## [1.0.0] 2021-06-10
 

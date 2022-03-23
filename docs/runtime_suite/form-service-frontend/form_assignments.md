@@ -11,7 +11,7 @@ A form template customized with the **Form Builder** can be marked as private (t
 
 :::caution
 
-Only one submission is allowed for a private form template assigned to a specific user. If you want to allow multiple submission for a given template leave the `Private form` field unchecked. 
+Only one submission is allowed for a private form template assigned to a specific user. If you want to allow multiple submission for a given template leave the `Private form` field unchecked.
 
 :::
 
@@ -33,4 +33,4 @@ Leaving the `Submitted forms viewers` field empty will prevent any kind of user 
 
 :::
 
-**Form assignments** require **Form Service Backend** version `1.2.0` (or above). For more information about it's configuration and how to assign a form template to specific users read the [_Form assignments_ configuration](../form-service-backend/form_assignments_configuration).
+**Form assignments** require **Form Service Backend** version `1.2.0` (or above). For more information about it's configuration and how to assign a form template to specific users read the [*Form assignments* configuration](../form-service-backend/form_assignments_configuration).
