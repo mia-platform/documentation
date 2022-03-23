@@ -55,7 +55,9 @@ On Dashboard area, user can choose if a dashboard has to be opened on a new tab 
 It is possible to edit tag labels for all Endpoints types.
 
 >>>>> TENANT OVERVIEW SPOSTATO
+
 >>>>> PROJECT SETTINGS
+
 >>>>> TOLTO IL LAST DEPLOY DALLA OVERVIEW DI PROGETTO
 
 ### Bug Fix
