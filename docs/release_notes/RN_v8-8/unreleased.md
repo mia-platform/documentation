@@ -11,11 +11,11 @@ _March x, 2022_
 
 ### New Features
 
-#### MongoDB v5 support
+#### Fast Data now supports MongoDB v5
 
 Since Single View Creator v3.5.1 and Realtime Updater v5.0.2 is officially supported MongoDB v5
->>>>>[DA DETTAGLIARE - Fast Data supporta Mongo 5] Se utilizzi il SVC, aggiornare driver Mongoa a 4.4.1.
-Vedi la lista di tutti i ms che supportano Mongo 5 qui sotto [link]
+In Single View Creator v3.5.1 adoption, remind to update MongoDB driver to v4.4.1.
+Even other Marketplace components have been updated to support MongoDB v5, [see here](#Mia-Platform-Marketplace-now-supports-MongoDB-v5) the list of these services.
 
 #### Configure Kafka timeout and interval on Realtime Updater
 
@@ -34,8 +34,9 @@ Aggregation schema is not validated against a JSON Schema to ensure static corre
 
 Your aggregation schema can now be tested thanks to a Repository Template on [Github](https://github.com/mia-platform/fast-data-low-code-test-template)
 
->>>>>>>Visualizzo lo stato di una projection o di un sistema
-Descrizione: le projection che presentano un warning sono le prime mostrate nella tabella delle projection
+#### The state of systems and projections are shown
+Now, users can visualize the state of a projection or a system.
+Moreover, projections that show a warning state are listed at on top to be more visible for user.
 
 ## Console
 
@@ -47,9 +48,15 @@ The status filter applied to the pod table is now maintained while navigating th
 
 #### Dashboards can be opened on a new dedicated tab 
 
-On Dashboard area, user can choose if a dashboard has to be opened on a new tab instead of in iframe mode.
+On Dashboard area, user can choose if a dashboard has to be opened on a new tab instead of iframe mode.
 
->>>>>>>>>Posso modificare i tag per tutte le tipologie di endpoint
+#### Endpoints labels of tag are editable
+
+It is possible to edit tag labels for all Endpoints types.
+
+>>>>> TENANT OVERVIEW SPOSTATO
+>>>>> PROJECT SETTINGS
+>>>>> TOLTO IL LAST DEPLOY DALLA OVERVIEW DI PROGETTO
 
 ### Bug Fix
 
@@ -61,13 +68,35 @@ A bug that caused the appearance of an endless-spinner at the scroll of some pag
 
 ### Improvements
 
->>>>>>>>Migliorato il tempo di caricamento dell'Overview di progetto
+#### Improvement in Overview page loading performances
 
->>>>>>>>>Cercare gli endpoint scrivendo il nome del microservizio
+THe loading time of the project Overview has been shortened and optimized.
+
+#### Endpoints are searchable by inserting the microservice name 
+
+From the Endpoints sidebar, user can search the endpoint by inserting the name of the microservice related to that endpoint.
 
 ## Marketplace
 
->>>>>>>> LISTA SERVIZI CHE SUPPORTANO MONGO 5
+### Mia-Platform Marketplace now supports MongoDB v5
+
+Here below, the list of services that have been updated for MongoDB v5 support:
+
+| Services | Type | Version | MongoDB v5 support verified  |
+|----------|------|---------|---------------------------|
+|`v1-adapter`| core | - | ✅ |
+|`auth0-client`| core | - | ✅ |
+|`cms-backend`| core | - | ✅ |
+|`mongodb-reader`| core | - | ✅ |
+|`flow-manager`| core | - | ✅ |
+|`mongo2kafka`| core | - | ✅ |
+|`files-service`| plugin | - | ✅ |
+|`Node.js-Custom-Plugin-Mongo-Example`| example | - | ✅ |
+|`Single View Creator Plugin`| plugin | - | ✅ |
+|`Single View Creator Template`| template | - | ✅ |
+|`RealTime Updater`| plugin | - | ✅ |
+|`MongoDB Query Exporter`| plugin | - | ✅ |
+
 
 ### Flow Manager v2.4.0
 
