@@ -14,6 +14,8 @@ _March x, 2022_
 #### MongoDB v5 support
 
 Since Single View Creator v3.5.1 and Realtime Updater v5.0.2 is officially supported MongoDB v5
+>>>>>[DA DETTAGLIARE - Fast Data supporta Mongo 5] Se utilizzi il SVC, aggiornare driver Mongoa a 4.4.1.
+Vedi la lista di tutti i ms che supportano Mongo 5 qui sotto [link]
 
 #### Configure Kafka timeout and interval on Realtime Updater
 
@@ -32,6 +34,9 @@ Aggregation schema is not validated against a JSON Schema to ensure static corre
 
 Your aggregation schema can now be tested thanks to a Repository Template on [Github](https://github.com/mia-platform/fast-data-low-code-test-template)
 
+>>>>>>>Visualizzo lo stato di una projection o di un sistema
+Descrizione: le projection che presentano un warning sono le prime mostrate nella tabella delle projection
+
 ## Console
 
 ### New features
@@ -39,6 +44,12 @@ Your aggregation schema can now be tested thanks to a Repository Template on [Gi
 #### Improved navigation in the Runtime area
 
 The status filter applied to the pod table is now maintained while navigating through the details of individual pods.
+
+#### Dashboards can be opened on a new dedicated tab 
+
+On Dashboard area, user can choose if a dashboard has to be opened on a new tab instead of in iframe mode.
+
+>>>>>>>>>Posso modificare i tag per tutte le tipologie di endpoint
 
 ### Bug Fix
 
@@ -50,7 +61,13 @@ A bug that caused the appearance of an endless-spinner at the scroll of some pag
 
 ### Improvements
 
+>>>>>>>>Migliorato il tempo di caricamento dell'Overview di progetto
+
+>>>>>>>>>Cercare gli endpoint scrivendo il nome del microservizio
+
 ## Marketplace
+
+>>>>>>>> LISTA SERVIZI CHE SUPPORTANO MONGO 5
 
 ### Flow Manager v2.4.0
 
@@ -78,6 +95,9 @@ A new version of CRUD Service is available featuring support for MongoDB Views d
 ### CMS Site v9.14.4
 
 In the microservice configurations can now be defined the filesCollection property to choose the collection that will be used to store uploaded files. Default value is files.
+
+>>>>>>>>>>Mongo DB Query Exporter supporta Mongo 5
+!! VEDI SOPRA, mettiamo lista
 
 ## Backoffice
 
