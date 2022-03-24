@@ -6,6 +6,7 @@ image: "img/release-note-link-preview.png"
 ---
 | Release | Release notes                       |
 | ------- |-------------------------------------|
+| v8.8.x    | [See release notes](RN_v8-8/v8.8.0) |
 | v8.7.x    | [See release notes](RN_v8-7/v8.7.0) |
 | v8.6.x    | [See release notes](RN_v8-6/v8.6.3) |
 | v8.5.x    | [See release notes](RN_v8-5/v8.5.1) |
