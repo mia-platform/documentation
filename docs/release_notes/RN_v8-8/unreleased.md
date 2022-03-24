@@ -13,8 +13,10 @@ _March x, 2022_
 
 #### Fast Data services now support MongoDB v5
 
-Since Single View Creator v3.5.1 and Realtime Updater v5.0.2 is officially supported MongoDB v5
+Since Single View Creator v3.5.1 and Realtime Updater v5.0.2 is officially supported MongoDB v5.
+
 In Single View Creator v3.5.1 adoption, remind to update MongoDB driver to v4.4.1.
+
 Moreover, even MongoDB Query Exporter v1.0.0 belonging to Fast Data Monitoring Application now supports MongoDB v5.
 
 #### Configure Kafka timeout and interval on Realtime Updater
@@ -54,7 +56,7 @@ On Dashboard area, user can choose if a dashboard has to be opened on a new tab 
 
 It is possible to edit tag labels for all Endpoints types.
 
-#### Envs Area is changed in Project SETTINGS
+#### Envs Area is changed in Project Settings
 
 From the project Overview, user can access to the Envs area by clicking on the Project Settings button.
 
@@ -72,7 +74,7 @@ A bug that caused the appearance of an endless-spinner at the scroll of some pag
 
 ### Improvements
 
-#### Improvement in Overview page loading performances
+#### Overview page loading performances improvements
 
 THe loading time of the project Overview has been shortened and optimized.
 
