@@ -29,7 +29,7 @@ Since v5.0.2 the env FORCE_CHECK_ON_OFFSET to prevent projection to be overwritt
 
 #### Enrichment of Aggregation Low Code with Expression Logic features
 
-Since v3.6.0 of Single View Creator Low Code, aggregation schema v1.1.0 supports now expression logic to make conditional behaviour on aggregation and dependency to use.    
+Since v3.6.0 of Single View Creator Low Code, aggregation schema v1.1.0 supports now expression logic to make conditional behavior on aggregation and dependency to use.
 Aggregation schema is not validated against a JSON Schema to ensure static correctness.
 
 #### Test aggregation Low Code
