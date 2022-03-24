@@ -80,6 +80,14 @@ THe loading time of the project Overview has been shortened and optimized.
 
 From the Endpoints sidebar, user can search the endpoint by inserting the name of the microservice related to that endpoint.
 
+#### Tenant Overview
+
+- Coloured icons have been changed with new more explanative ones
+
+- Both Back button and tenant name have been removed from card header
+
+- Columns tooltips have been removed 
+
 ## Marketplace
 
 ### Flow Manager v2.4.0
