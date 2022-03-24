@@ -11,11 +11,11 @@ _March x, 2022_
 
 ### New Features
 
-#### Fast Data now supports MongoDB v5
+#### Fast Data services now support MongoDB v5
 
 Since Single View Creator v3.5.1 and Realtime Updater v5.0.2 is officially supported MongoDB v5
 In Single View Creator v3.5.1 adoption, remind to update MongoDB driver to v4.4.1.
-Even other Marketplace components have been updated to support MongoDB v5, [see here](#Mia-Platform-Marketplace-now-supports-MongoDB-v5) the list of these services.
+Moreover, even MongoDB Query Exporter v1.0.0 belonging to Fast Data Monitoring Application now supports MongoDB v5.
 
 #### Configure Kafka timeout and interval on Realtime Updater
 
@@ -54,11 +54,13 @@ On Dashboard area, user can choose if a dashboard has to be opened on a new tab 
 
 It is possible to edit tag labels for all Endpoints types.
 
->>>>> TENANT OVERVIEW SPOSTATO
+#### Envs Area is changed in Project SETTINGS
 
->>>>> PROJECT SETTINGS
+From the project Overview, user can access to the Envs area by clicking on the Project Settings button.
 
->>>>> TOLTO IL LAST DEPLOY DALLA OVERVIEW DI PROGETTO
+#### Projects Overview does not show more the Last Deploy for each environment card
+
+To performance reasons, the Last Deploy info is no more visible from the Environment cards in project Overview, but it is still visible on the Deploy area of the project.
 
 ### Bug Fix
 
@@ -79,26 +81,6 @@ THe loading time of the project Overview has been shortened and optimized.
 From the Endpoints sidebar, user can search the endpoint by inserting the name of the microservice related to that endpoint.
 
 ## Marketplace
-
-### Mia-Platform Marketplace now supports MongoDB v5
-
-Here below, the list of services that have been updated for MongoDB v5 support:
-
-| Services | Type | Version | MongoDB v5 support verified  |
-|----------|------|---------|---------------------------|
-|`v1-adapter`| core | - | ✅ |
-|`auth0-client`| core | - | ✅ |
-|`cms-backend`| core | - | ✅ |
-|`mongodb-reader`| core | - | ✅ |
-|`flow-manager`| core | - | ✅ |
-|`mongo2kafka`| core | - | ✅ |
-|`files-service`| plugin | - | ✅ |
-|`Node.js-Custom-Plugin-Mongo-Example`| example | - | ✅ |
-|`Single View Creator Plugin`| plugin | - | ✅ |
-|`Single View Creator Template`| template | - | ✅ |
-|`RealTime Updater`| plugin | - | ✅ |
-|`MongoDB Query Exporter`| plugin | - | ✅ |
-
 
 ### Flow Manager v2.4.0
 
@@ -126,9 +108,6 @@ A new version of CRUD Service is available featuring support for MongoDB Views d
 ### CMS Site v9.14.4
 
 In the microservice configurations can now be defined the filesCollection property to choose the collection that will be used to store uploaded files. Default value is files.
-
->>>>>>>>>>Mongo DB Query Exporter supporta Mongo 5
-!! VEDI SOPRA, mettiamo lista
 
 ## Backoffice v0.10.5
 
