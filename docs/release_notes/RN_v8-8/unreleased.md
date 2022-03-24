@@ -82,6 +82,25 @@ From the Endpoints sidebar, user can search the endpoint by inserting the name o
 
 ## Marketplace
 
+### Mia-Platform Marketplace now supports MongoDB v5
+
+Here below, the list of services that have been updated for MongoDB v5 support:
+
+| Services | Type | Version | MongoDB v5 support verified  |
+|----------|------|---------|---------------------------|
+|`v1-adapter`| core | - | ✅ |
+|`auth0-client`| core | - | ✅ |
+|`cms-backend`| core | - | ✅ |
+|`mongodb-reader`| core | - | ✅ |
+|`flow-manager`| core | - | ✅ |
+|`mongo2kafka`| core | - | ✅ |
+|`files-service`| plugin | - | ✅ |
+|`Node.js-Custom-Plugin-Mongo-Example`| example | - | ✅ |
+|`Single View Creator Plugin`| plugin | - | ✅ |
+|`Single View Creator Template`| template | - | ✅ |
+|`RealTime Updater`| plugin | - | ✅ |
+|`MongoDB Query Exporter`| plugin | - | ✅ |
+
 ### Flow Manager v2.4.0
 
 The Flow Manager service will now notify kafka connection errors via its status routes, so if you need the service to restart when Kafka connection fails, make sure you have configured them correctly.
