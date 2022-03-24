@@ -130,11 +130,31 @@ In the microservice configurations can now be defined the filesCollection proper
 >>>>>>>>>>Mongo DB Query Exporter supporta Mongo 5
 !! VEDI SOPRA, mettiamo lista
 
-## Backoffice
+## Backoffice v0.10.5
 
 ### New features
 
+#### Nested objects
+
+It is now possible to navigate and edit nested objects in `bk-table` component. For further details, refer to [the documentation](https://git.tools.mia-platform.eu/platform/backoffice/headless-cms/-/blob/master/packages/bk-web-components/docs/layout.md#nested-dataschemas).
+
+#### Localized text
+
+It is now possible to specify a format `localized-text` for `object`s in the `dataSchema` that renders the object according with the browser language. For more information, refer to [the documentation](https://git.tools.mia-platform.eu/platform/backoffice/headless-cms/-/blob/master/packages/bk-web-components/docs/layout.md#data-schema).
+
+#### Export
+
+It is now possible to perform native browser file download aliasing the export service using `nativeDownload` on `bk-export`. For further details, refer to [the documentation](https://git.tools.mia-platform.eu/platform/backoffice/headless-cms/-/blob/master/packages/lit-bk-web-components/docs/components/clients.md#bk-export).
+
 ### Improvements
+
+#### Dynamic links
+
+It is now possible to specify dynamic links for the `href` field in link addons using data from the current form inside `handle-bars`. Refer to [the documentation](https://git.tools.mia-platform.eu/platform/backoffice/headless-cms/-/blob/master/packages/bk-web-components/docs/concepts.md#links) for more information on filters.
+
+#### Between filter
+
+It is now possible to specify a `between` operator for date fields in filters. Refer to [the documentation](https://git.tools.mia-platform.eu/platform/backoffice/headless-cms/-/blob/master/packages/bk-web-components/docs/concepts.md#filters) for more information on filters.
 
 ### Bug Fix
 
