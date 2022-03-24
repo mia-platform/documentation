@@ -513,10 +513,6 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/sv_concepts",
-          "type": "doc"
-        },
-        {
           "id": "fast_data/no_code_overview",
           "type": "doc"
         }
@@ -544,10 +540,27 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configure_single_view_creator",
-          "type": "doc"
+          "label": "Single View Creator",
+          "type": "category",
+          "collapsed": false,
+          "items": [
+            {
+              "id": "fast_data/single_view_creator/overview",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/single_view_creator/low-code-configuration",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/single_view_creator/manual-configuration",
+              "type": "doc"
+            }
+          ]
         },
         {
+          "label": "Real-Time Updater",
+          "type": "category",
           "collapsed": false,
           "items": [
             {
@@ -555,16 +568,14 @@
               "type": "doc"
             },
             {
-              "id": "fast_data/real_time_updater/configuration",
+              "id": "fast_data/real_time_updater/low-code-configuration",
               "type": "doc"
             },
             {
-              "id": "fast_data/real_time_updater/release_note",
+              "id": "fast_data/real_time_updater/manual-configuration",
               "type": "doc"
             }
-          ],
-          "label": "Real-Time Updater",
-          "type": "category"
+          ]
         }
       ],
       "label": "Design",

@@ -77,7 +77,7 @@ Also, has introduced the support for the [Client Side Field Level Encryption (**
 
 #### Single View Creator Service v3.0.2
 
-[Single View Creator](../../fast_data/configure_single_view_creator) Template and Plugin have been update to use `v3.0.2` of the Single View Creator Service, which offers the possibility to have CRUD fields in single view error documents.
+[Single View Creator](../../fast_data/single_view_creator/overview.md) Template and Plugin have been update to use `v3.0.2` of the Single View Creator Service, which offers the possibility to have CRUD fields in single view error documents.
 
 #### Swagger Aggregator v3.4.1
 

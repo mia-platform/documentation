@@ -20,7 +20,7 @@ When a projection is updated, it changes a collection, called with the value of 
 
 ## Projection Deletion
 
-When the Real-Time Updater deletes a document, it actually makes a **virtual delete** instead of a real document deletion. (the __STATE__ field is set to **DELETED**)
+When the Real-Time Updater deletes a document, it actually makes a **virtual delete** instead of a real document deletion. (the `__STATE__` field is set to `DELETED`)
 
 ## Upsert
 
@@ -31,3 +31,10 @@ When performing Insert and Update operations, you can choose if you want to perf
 - For the Update operation, upsert set to true means that if the document is not present it will be created with the new values, false means it fails when trying to update non-existing documents, causing the service to stop.
 
 You can configure this behavior using the environment variable USE_UPSERT.
+
+### Real Time Updater Configuration modes
+
+The Real-Time Updater can be configured in two different ways:
+
+- Manual configuration: recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
+- Low Code configuration: recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.

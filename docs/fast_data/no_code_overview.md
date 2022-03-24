@@ -31,7 +31,7 @@ The Fast Data Low Code experience has the same prerequisite as traditional Fast 
 
 ### Creating a System of Record (No Code)
 
-While you are creating your system of record, the console will allow you to choose between [Low Code](./real_time_updater/configuration#low-code-configuration) or [Manual](./real_time_updater/configuration#manual-configuration) configuration. By clicking on Low Code the Real Time Updater Low Code will be created and you will be able to proceed to the configuration of your microservice.
+While you are creating your system of record, the console will allow you to choose between [Low Code](./real_time_updater/low-code-configuration) or [Manual](./real_time_updater/manual-configuration) configuration. By clicking on Low Code the Real Time Updater Low Code will be created and you will be able to proceed to the configuration of your microservice.
 
 ![systemcreation](./img/systemcreation.png)
 
@@ -39,14 +39,14 @@ While you are creating your system of record, the console will allow you to choo
 
 The Real Time Updater Low Code needs some configurations:
 
-- [erSchema.json](./real_time_updater/configuration#er-schema-configuration) configuration: useful to define the interconnection between projections
-- The [projectionchangeschema.json](./real_time_updater/configuration#projection-changes-collection): useful to the system to know which single view needs to be updated
+- [erSchema.json](./real_time_updater/low-code-configuration#er-schema-configuration) configuration: useful to define the interconnection between projections
+- The [projectionchangeschema.json](./real_time_updater/low-code-configuration#projection-changes-collection): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](./configure_single_view_creator#single-view-creator---low-code-plugin).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](./single_view_creator/low_code_configuration.md).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some configmaps:
 

@@ -10,7 +10,7 @@ To create a projection, you should create a System of Records. This is the data 
 
 To do so, open the **Projections** section in the fast data group of Mia-Platform Console. Then, select the create button.
 
-The creation of a System of Records requires you to insert a system ID which is useful to recognize the system, and to choose if you want to set the Real Time Updater [manually](./real_time_updater/configuration#manual-configuration) or with [Low Code](./real_time_updater/configuration#low-code-configuration) configuration.
+The creation of a System of Records requires you to insert a system ID which is useful to recognize the system, and to choose if you want to set the Real Time Updater [manually](./real_time_updater/manual-configuration) or with [Low Code](./real_time_updater/low-code-configuration) configuration.
 
 ## Delete a System of Records
 
@@ -22,7 +22,7 @@ The deletion is not allowed until you have at least one Projection inside the Sy
 When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information about the updated document.
 
 :::caution
-The default Projection Changes collection is automatically managed by the Console and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/configuration#custom-projection-changes-collection).
+The default Projection Changes collection is automatically managed by the Console and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/manual-configuration#custom-projection-changes-collection).
 :::
 
 One Projections Changes collection is created for each System of Records as default.
@@ -176,7 +176,7 @@ The default value for ths input is the same as the default used by the Console, 
 
 ##### Kafka adapter format
 
-Either `Basic`, `Golden Gate`, or `Custom`. [Click here](real_time_updater/configuration.md/#kafka-messages-format) for more detail about the Kafka adapter formats.
+Either `Basic`, `Golden Gate`, or `Custom`. [Click here](real_time_updater/manual-configuration#kafka-messages-format) for more detail about the Kafka adapter formats.
 
 ![Topic pattern and Kafka adapter format modal page](img/importDDL/topic_pattern_and_kafka_adapter_format_modal_page.png)
 
@@ -216,8 +216,6 @@ You can expose a projection on a CMS page to help you review the data inside the
 :::info
 The exposed API is not required for Fast Data to work. It is an optional behavior in case you need access to the data without directly accessing it from the database.
 :::
-
-
 
 ## Technical limitation
 
