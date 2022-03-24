@@ -70,8 +70,6 @@ To performance reasons, the Last Deploy info is no more visible from the Environ
 
 A bug that caused the appearance of an endless-spinner at the scroll of some pages in the console has been fixed.
 
-### Breaking Changes
-
 ### Improvements
 
 #### Overview page loading performances improvements
@@ -83,25 +81,6 @@ THe loading time of the project Overview has been shortened and optimized.
 From the Endpoints sidebar, user can search the endpoint by inserting the name of the microservice related to that endpoint.
 
 ## Marketplace
-
-### Mia-Platform Marketplace now supports MongoDB v5
-
-Here below, the list of services that have been updated for MongoDB v5 support:
-
-| Services | Type | Version | MongoDB v5 support verified  |
-|----------|------|---------|---------------------------|
-|`v1-adapter`| core | - | ✅ |
-|`auth0-client`| core | - | ✅ |
-|`cms-backend`| core | - | ✅ |
-|`mongodb-reader`| core | - | ✅ |
-|`flow-manager`| core | - | ✅ |
-|`mongo2kafka`| core | - | ✅ |
-|`files-service`| plugin | - | ✅ |
-|`Node.js-Custom-Plugin-Mongo-Example`| example | - | ✅ |
-|`Single View Creator Plugin`| plugin | - | ✅ |
-|`Single View Creator Template`| template | - | ✅ |
-|`RealTime Updater`| plugin | - | ✅ |
-|`MongoDB Query Exporter`| plugin | - | ✅ |
 
 ### Flow Manager v2.4.0
 
