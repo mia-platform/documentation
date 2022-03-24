@@ -23,7 +23,7 @@ The `x-permission` attribute is shaped as an object with the following propertie
 - `resourceFilter` **(object)**: object representing information on what resource the API is looking for to perform filtering operations:
   - `rowFilter` **(object)**: this object contains all the configurations needed to perform filtering operation on rows. Read [RBAC rows filtering](../api-design/rbac.md#rbac-rows-filtering) section for more information about it:
     - `enabled` **(bool)**:  activation value for row filtering
-    - `headerName` **(string)**: identifier of the header sent to the requested service in which the interpolated query will be injected. The default values is `x-rbac-row-filter`.
+    - `headerName` **(string)**: identifier of the header sent to the requested service in which the interpolated query will be injected. The default values is `acl_rows`.
 - `responseFilter` **(object)**: this object contains all the configurations needed to perform filtering operation on response. Read [RBAC response filtering](../api-design/rbac.md#rbac-response-filtering) section for more information about it: 
   - `policy`: the name of the Rego policy that should be executed upon the API invocation.
 

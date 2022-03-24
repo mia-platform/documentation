@@ -67,11 +67,11 @@ A new environment variable KAFKA_CONSUMER_MAX_WAIT_TIME is now available to defi
 
 #### Track which is the topic that triggered the changes
 
-Projections and projection changes have now new fields which contain the information about the Kafka Topic that triggered the change. [Read more](../../fast_data/real_time_updater/configuration#tracking-the-changes).
+Projections and projection changes have now new fields which contain the information about the Kafka Topic that triggered the change. [Read more](../../fast_data/real_time_updater/manual-configuration#tracking-the-changes).
 
 #### Projection changes to Kafka
 
-You can configure the Real Time Updater to send the projection changes to a Kafka topic as well. [Click here](../../fast_data/real_time_updater/configuration#kafka-projection-changes-configuration) to know how to do that.
+You can configure the Real Time Updater to send the projection changes to a Kafka topic as well. [Click here](../../fast_data/real_time_updater/manual-configuration#kafka-projection-changes-configuration) to know how to do that.
 
 ### New Feature
 

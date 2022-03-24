@@ -10,6 +10,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] 2022-03-21
+
+### BREAKING CHANGES
+
+This version forces you to specify the base path for the teleconsultation link as an environmental variable.  
+Thus, the new variable must be specified if the teleconsultation is active
+
+This version adds the `/` at the end of `/appointments`, `/availabilities` and `/slots` `GET` and `POST` routes,
+in order to keep them similar to the CRUD Service routes (for compatibility reasons with the Backoffice).
+Thus, services calling this version of the Appointment Manager must be updated to the new routes.
+
+### Fixed
+
+- Fix teleconsultation link base path taken from environmental variable
+- Missing slash added to the endpoints
+
+## [1.2.0] 2022-03-04
+
+### BREAKING CHANGES
+
+This version renames the `/` routes to `/appointments`, in order to distinguish them from the `/availabilities` ones.
+Thus, services calling this version of the Appointment Manager must be updated to the new routes.
+
+### Fixed
+
+- Fix teleconsultation link not created during POST if isRemote != true
+
+### Added
+
+Availability concept and endpoints
+
+- Preventing slot properties modifications in PATCH /appointments/:id
+- Removing unused env var
+- Minor improvements on doc and schemas
+- GET /slots endpoint
+- Return slot in GET /availabilities
+- Slots marked as AVAILABLE when appointment is deleted or its status changes to DELETED
+- POST /appointment updated with slot
+- PATCH /availabilities/:id
+- GET /availabilities/count
+- DELETE /availabilities/:id endpoint
+- POST /availabilities/state
+- PATCH /slots/lock/:id endpoint
+- GET Availability updated to comply with new availabilities
+- Updated POST /availabilities with slot concept
+- Minor improvements on availabilities implementation
+- Adding new availabilities documentation with slot concept
+- Addition of booking functionality
+- Added possibility to change availability state
+- Added lock functionality
+
 ## [1.1.2] 2022-02-11
 
 ### Fixed
@@ -34,8 +85,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.1] 2021-12-14
 
-- : headers forwarding via ADDITIONAL_HEADERS_TO_PROXY
-- : preventing sending the reminders if the appointment is happening in less than a given threshold
+- Headers forwarding via ADDITIONAL_HEADERS_TO_PROXY
+- Preventing sending the reminders if the appointment is happening in less than a given threshold
 
 ## [1.0.0] 2021-10-08
 

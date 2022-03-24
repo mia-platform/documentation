@@ -50,6 +50,10 @@
               "type": "doc"
             },
             {
+              "id": "business_suite/backoffice/back-kit/data-flow",
+              "type": "doc"
+            },
+            {
               "id": "business_suite/backoffice/back-kit/layout",
               "type": "doc"
             },
@@ -60,6 +64,10 @@
             {
               "collapsed": true,
               "items": [
+                {
+                  "id": "business_suite/backoffice/back-kit/components/adapters",
+                  "type": "doc"
+                },
                 {
                   "id": "business_suite/backoffice/back-kit/components/buttons",
                   "type": "doc"
@@ -94,6 +102,14 @@
             },
             {
               "id": "business_suite/backoffice/back-kit/events/events",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/backoffice/back-kit/plugin",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/backoffice/back-kit/application",
               "type": "doc"
             }
           ],
@@ -497,10 +513,6 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/sv_concepts",
-          "type": "doc"
-        },
-        {
           "id": "fast_data/no_code_overview",
           "type": "doc"
         }
@@ -528,10 +540,27 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configure_single_view_creator",
-          "type": "doc"
+          "label": "Single View Creator",
+          "type": "category",
+          "collapsed": false,
+          "items": [
+            {
+              "id": "fast_data/single_view_creator/overview",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/single_view_creator/low-code-configuration",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/single_view_creator/manual-configuration",
+              "type": "doc"
+            }
+          ]
         },
         {
+          "label": "Real-Time Updater",
+          "type": "category",
           "collapsed": false,
           "items": [
             {
@@ -539,16 +568,14 @@
               "type": "doc"
             },
             {
-              "id": "fast_data/real_time_updater/configuration",
+              "id": "fast_data/real_time_updater/low-code-configuration",
               "type": "doc"
             },
             {
-              "id": "fast_data/real_time_updater/release_note",
+              "id": "fast_data/real_time_updater/manual-configuration",
               "type": "doc"
             }
-          ],
-          "label": "Real-Time Updater",
-          "type": "category"
+          ]
         }
       ],
       "label": "Design",
@@ -1026,6 +1053,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/crud-service/mongodb_views_generation"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/crud-service/performance_overview"
                 },
                 {
@@ -1149,6 +1180,14 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/form-service-backend/submit_urls"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-backend/form_visualizer_styling_configuration"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/form-service-backend/changelog"
                 }
               ]
@@ -1169,6 +1208,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/form-service-frontend/form_assignments"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/form-service-frontend/form_visualizer_styling"
                 },
                 {
                   "type": "doc",

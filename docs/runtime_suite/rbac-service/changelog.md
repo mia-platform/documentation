@@ -10,6 +10,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.8.2 - 21/03/2022
+
+### Fixed
+
+- Prevent status routes to run into the OPA Middleware 
+
+## 0.8.1 - 14/03/2022
+
+### Update
+
+- glogger v2.1.3 that implements `http.Flusher` interface, useful to fix flushing behavior in reverse proxy for streaming APIs
+
+### Fixed
+
+- set reverse proxy flush interval to -1 to fix issues with streaming APIs passing through the container
+- Fixed fallback path registration
+
+## 0.8.0 - 08/03/2022
+
+### Added
+
+ - Added `/grant/bindings/resource/{resourceType}` api to handle the grant of a user role on a single resource
+ - Added `/revoke/bindings/resource/{resourceType}` api to handle the revoke of a user role on a set resources
+
 ## 0.7.0 - 02/03/2022
 
 ### Fixed

@@ -10,13 +10,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 2.4.0 - 22-03-2021
+
+### Changed
+
+- probes route now dependent on Kafka connection status in order to restart the pod if connection with Kafka drops
+
+## 2.3.1 - 15-03-2021
+
+### Added
+
+- New prometheus metric `flow_manager_saga_states_total` to track the number of times sagas pass through a machine state
+
 ### Updated
 
-- custom plugin lib v4.1.1
+- custom plugin lib v4.3.2
 
 ## 2.3.0 - 22-09-2021
 
 ### Changed
+
 - [Issue 25](https://git.tools.mia-platform.eu/platform/core/flow-manager/-/issues/25): now the kafka brokers into the service configurations can be one of the following:
   - a list of strings that represent the kafka brokers
   - a string with the comma separated value brokers
@@ -67,11 +80,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
- - concept of Business Events
+- concept of Business Events
 
 ### Updated
 
 **BREAKING CHANGE**
+
 - updated custom-plugin-lib dependency to 2.0.2. The update in breaking since it's bringing up lc39 v3.x with the newer logging format.
 - updated flow history format
 
@@ -79,9 +93,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
- - support for REST trigger
- - flow history
+- support for REST trigger
+- flow history
 
 ## 1.0.0 - 17-07-2020
 
- - First import
+- First import

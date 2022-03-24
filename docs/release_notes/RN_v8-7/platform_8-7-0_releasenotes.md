@@ -120,4 +120,4 @@ Solved problem that prevented filter form from resolving lookups that were selec
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.11.14`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.11.15`.

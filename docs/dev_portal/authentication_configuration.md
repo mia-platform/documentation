@@ -96,6 +96,22 @@ Move back to the microservices section and check the existence of **authorizatio
 This configuration will lead the authorization service to verify all the routes involved in the authorization process.
 :::
 
+### Environment Variables
+
+Now, go to the environment variables section and make sure they are compiled as follows:
+
+- **HTTP_PORT**: 3000;
+- **CONFIGURATION_PATH**: /configs;
+- **CONFIGURATION_FILE_NAME**: auth;
+- **BACKOFFICE_HEADER_KEY**: isbackoffice;
+- **USERINFO_URL**: http://auth0-client/userinfo;
+- **CUSTOM_USER_ID_KEY**: sub;
+- **HEADERS_TO_PROXY**: x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host;
+- **AUTHORIZATION_STRICT_MODE_ENABLED**: true;
+- **CLIENT_TYPE_HEADER_KEY**: client-type;
+- **CUSTOM_PERMISSIONS_KEY**: permissions;
+- **AUTHORIZATION_HEADERS_TO_PROXY**: cookie,authorization.
+
 To have further details regarding the Authorization Service configuration please refer to the official [documentation](../runtime_suite/authorization-service/configuration.md).
 
 
@@ -108,6 +124,9 @@ Again, check the existence of **auth0-client** among your microservices. If it d
 Move to the environment variables section, where you will find a series of variables populated with the following format `CHANGE_WITH_YOUR_VALUE`. 
 Make sure at least these variables are defined (Redis variables can be directly set as specified here):
 
+- **HTTP_PORT**: 3000;
+- **SERVICE_CONFIG_FILE_NAME**: config;
+- **SERVICE_CONFIG_PATH**: /configs;
 - **REDIS_HOSTS**: redis.default.svc.cluster.local;
 - **REDIS_MODE**: normal;
 - **MONGODB_URL**: the url of your MongoDB database.
