@@ -108,6 +108,13 @@ Furthermore, with this version, API routes are now saved in the url. In this way
 
 Functional modification to allow a correct visualization of the APIs in the API Portal even if the service of a specific API does not respond or has an invalid definition.
 
+### Tools updates
+
+### mlp 1.1.0
+
+`mlp` now can be used to build kustomize projects with the `kustomize` and `hydrate` subcommands. The `hydrate` command will ignore patch files already present inside the `kustomization.yaml` file for allowing complex target rules for multiple matching.  
+Fixed an issue that will force a new deploy for some deployments even if `smartdeploy` is selected.
+
 ## How to update your Console
 
 For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.10.0`.

@@ -1733,6 +1733,17 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-8/v8.8.0",
+              "type": "doc"
+            }
+          ],
+          "label": "v8.8",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
               "id": "release_notes/RN_v8-7/v8.7.0",
               "type": "doc"
             }

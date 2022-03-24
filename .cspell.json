@@ -117,7 +117,8 @@
       "affordance",
       "affordances",
       "struct",
-      "eval"
+      "eval",
+      "explanative"
   ],
   "ignoreWords": [
     "algs",
