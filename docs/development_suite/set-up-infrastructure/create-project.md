@@ -245,12 +245,18 @@ How to compile the template:
   ```json
     {
       "runnerTool": "mlp",
+      "projectStructure": "default",
       "useMiaPrefixEnvs": false
     }
   ```
 
   * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled.
   * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
+  * **projectStructure**: Set it to `kustomize` if you want to use Kustomize to manage your microservices configurations. More info in [this section](./kustomize.md), otherwise use `default` or leave it blank to keep the usual configuration setup.
+
+:::caution
+If you set `projectStructure` to `kustomize` your project configuration structure needs to be changed accordingly.
+:::
 
 :::note
 If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `MIA_` prefix by hand. This is not made automatically by the Console.

@@ -175,6 +175,10 @@
           "type": "doc"
         },
         {
+          "type": "doc",
+          "id": "development_suite/set-up-infrastructure/kustomize"
+        },
+        {
           "id": "development_suite/Console levels and permits management",
           "type": "doc"
         },
