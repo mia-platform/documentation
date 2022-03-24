@@ -6,7 +6,7 @@ sidebar_label: Single View
 
 ## How Single View works
 
-A Single View is a collection formed by an aggregation of data from different collections (e.g. restaurants, dishes, reviews, etc). If you want to know more about what Single Views are and how they are used, visit the [Single View Concepts](../fast_data/sv_concepts) page.
+A Single View is a collection formed by an aggregation of data from different collections (e.g. restaurants, dishes, reviews, etc). If you want to know more about what Single Views are and how they are used, visit the [Single View Concepts](../fast_data/overview#why-single-view) section.
 
 For example, suppose to have the following projections:
 
@@ -127,10 +127,7 @@ These links are for documentation purposes only. You can use them to track which
 :::
 
 :::info
-In the [Marketplace](../marketplace/overview_marketplace), you can find a template and a plugin that can help you in configuring all the **Single View Creator** services that you need. In particular:
-
-- **Single View Creator**: this is a ready-to-use plugin that requires you to provide a configuration with three files in it. For more information about this plugin visit this [link](../runtime_suite/single-view-creator/configuration).
-- **Single View Creator Template**: it is a template that allows you to write your own single view creator service while providing you many utility functions. To know more about it, please go [here](configure_single_view_creator).
+In the [Marketplace](../marketplace/overview_marketplace), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](./single_view_creator/overview.md).
 :::
 
 ## Strategies

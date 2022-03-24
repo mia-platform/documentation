@@ -1,31 +1,24 @@
 ---
-id: configuration
-title: Real-Time Updater Configurations
-sidebar_label: Configuration
+id: manual-configuration
+title: Real-Time Updater Manual configuration
+sidebar_label: Manual configuration
 ---
 
-The Real-Time Updater can be configured in two different ways:
+## Environment variables
 
-- Manual configuration: recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
-- Low Code configuration: recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.
-
-## Manual configuration
-
-### Environment variables
-
-- LOG_LEVEL (__required__): defines the level of the logger  
-- MONGODB_URL (__required__):  defines the mongodb url to contact  
-- PROJECTIONS_DATABASE_NAME (__required__): defines the name of the projections database  
-- PROJECTIONS_CHANGES_COLLECTION_NAME (__required__): defines the name of the projections changes collection  
+- LOG_LEVEL (**required**): defines the level of the logger  
+- MONGODB_URL (**required**):  defines the mongodb url to contact  
+- PROJECTIONS_DATABASE_NAME (**required**): defines the name of the projections database  
+- PROJECTIONS_CHANGES_COLLECTION_NAME (**required**): defines the name of the projections changes collection  
 - PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is **true**,
-- LC39_HTTP_PORT (__required__): defines the lc39 http port
-- STRATEGIES_MAX_EXEC_TIME_MS (__required__): defines the maximum time for which a strategy is executed
-- KAFKA_BROKERS (__required__): defines the kafka brokers
-- KAFKA_GROUP_ID (__required__): defines the kafka group id
-- KAFKA_SASL_USERNAME (__required__): defines the kafka sasl username
-- KAFKA_SASL_PASSWORD (__required__): defines the kafka sasl password
-- LIVENESS_INTERVAL_MS (__required__) defines the liveness interval in milliseconds
-- INVARIANT_TOPIC_MAP (__required__): defines an object that maps the topic to the projection
+- LC39_HTTP_PORT (**required**): defines the lc39 http port
+- STRATEGIES_MAX_EXEC_TIME_MS (**required**): defines the maximum time for which a strategy is executed
+- KAFKA_BROKERS (**required**): defines the kafka brokers
+- KAFKA_GROUP_ID (**required**): defines the kafka group id
+- KAFKA_SASL_USERNAME (**required**): defines the kafka sasl username
+- KAFKA_SASL_PASSWORD (**required**): defines the kafka sasl password
+- LIVENESS_INTERVAL_MS (**required**) defines the liveness interval in milliseconds
+- INVARIANT_TOPIC_MAP (**required**): defines an object that maps the topic to the projection
 - KAFKA_USE_LATEST_DEQUEUE_STRATEGY:  defines latest dequeue strategy or not
 - KAFKA_ADAPTER_FOLDER: defines the path to the kafka adapter folder
 - CAST_FUNCTIONS_FOLDER: defines the path to the cast-functions folder
@@ -40,7 +33,7 @@ The Real-Time Updater can be configured in two different ways:
 - COMMIT_MESSAGE_LOGGING_INTERVAL: specify the interval in *ms* of logging the info that messages have been committed. Default is 3000.
 - FORCE_CHECK_ON_OFFSET: Force check that incoming message has offset greater or equal than the one of the projection to update. Default is true.
 
-### Custom Projection Changes Collection
+## Custom Projection Changes Collection
 
 You can choose to use a collection you have already created in the CRUD section.  
 
@@ -71,16 +64,16 @@ You need to add the following index fields:
 
 After that, you need to set your collection as the one to be used by the Real-Time Updater. To do so, set the name of the collection you want to use as value of the `PROJECTIONS_CHANGES_COLLECTION_NAME` environment variable of the service.
 
-### Configuration files
+## Configuration files
 
 The Real-Time Updater accepts the following configurations:
 
-#### KAFKA_ADAPTER configurations
+### KAFKA_ADAPTER configurations
 
 The mount path used for these configurations is: `/home/node/app/configurations/kafkaAdapterFolder`.  
 This folder contains the configurations for your kafka adapters.
 
-#### Kafka messages format
+### Kafka messages format
 
 In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real Time Updater.
@@ -95,7 +88,7 @@ By default, the real-time-updater will perform upsert operations, but you can op
 The console already provides supports for Snappy compressed messages, for further information check [Snappy compression](../setup_fast_data.md#snappy-compression)
 :::
 
-#### Basic
+### Basic
 
 It's the default one.
 
@@ -106,7 +99,7 @@ The `offset` is the offset of the kafka message.
 
 Example of a delete operation
 
-```
+```text
 key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
 value: null
 timestamp: '1234556789'
@@ -115,23 +108,23 @@ offset: '100'
 
 Example of an upsert:
 
-```
+```text
 key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
 value: `{"NAME": 456}`
 timestamp: '1234556789'
 offset: '100'
 ```
 
-#### Golden Gate
+### Golden Gate
 
 The `timestamp` of the Kafka message is a stringified integer greater than zero. This integer has to be a valid timestamp.  
 The `offset` is the offset of the kafka message.
 The `key` can have any valid Kafka `key` value.  
 The `value` of the Kafka message instead needs to have the following fields:
 
-* `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
-* `after`: the data values after the operation execution (`null` or not set if it's a delete)
-* `before`: the data values before the operation execution (`null` or not set if it's an insert)
+- `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
+- `after`: the data values after the operation execution (`null` or not set if it's a delete)
+- `before`: the data values before the operation execution (`null` or not set if it's an insert)
 
 Example of `value` for an insert operation:
 
@@ -150,7 +143,7 @@ Example of `value` for an insert operation:
 }
 ```
 
-#### Custom
+### Custom
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages.
 To do that, you need to create a `Custom Kafka Message Adapter`, which is just a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure.
@@ -161,11 +154,11 @@ You have to create the adapter function *before* setting `custom` in the advance
 
 This adapter is a function that accepts as arguments the kafka message and the list of primary keys of the projection, and returns an object with the following properties:
 
-* **offset**: the offset of the kafka message
-* **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
-* **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
-* **value**: the data values of the projection, or null
-* **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
+- **offset**: the offset of the kafka message
+- **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
+- **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
+- **value**: the data values of the projection, or null
+- **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
 
 If the `value` is null, the operation is supposed to be a delete.
 The `keyObject` **cannot** be null.
@@ -235,17 +228,17 @@ Now that you have committed and pushed your custom adapter function you can set 
 }
 ```
 
-### CAST_FUNCTION configurations
+## CAST_FUNCTION configurations
 
 The mount path used for these configurations is: `/home/node/app/configurations/castFunctionsFolder`.  
 In this folder you have all the generated [Cast Functions](../cast_functions) definitions.
 
-#### STRATEGIES configuration
+### STRATEGIES configuration
 
 The default mount path used for these configuration is: `/home/node/app/configurations/strategies`.  
 In this folder you have all the generated [Strategies](../single_view#strategies) which you have defined in your gitlab project inside the `fast-data-files/strategies` directory.
 
-#### MAP_TABLE configurations
+### MAP_TABLE configurations
 
 The mount path used for these configurations is: `/home/node/app/configurations/mapTableFolder`.  
 Two mappings will be placed in this folder: one between cast functions and fields and another one between strategies and projections.
@@ -278,7 +271,7 @@ An example:
 }
 ```
 
-### Kafka Projection Changes configuration
+## Kafka Projection Changes configuration
 
 Projection changes are saved on mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
 
@@ -338,13 +331,13 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
 
-### Tracking the changes
+## Tracking the changes
 
 From the **v3.2.0** of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.
 
 In particular, the following information are saved:
 
-#### Projection changes
+### Projection changes
 
 Into each element of the `changes` array of the projection change document are inserted the information about the message that triggered the projection change
 
@@ -375,7 +368,7 @@ Example:
 }
 ```
 
-#### Projection
+### Projection
 
 Into the projection is saved information about the last Kafka message that updated the projection.
 These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields.
@@ -412,7 +405,7 @@ Example:
 }
 ```
 
-### Prevent projection to be overwritten
+## Prevent projection to be overwritten
 
 During a rebalancing or a massive initial load with multiple replicas of the real time updater, a batch of old messages that have not been committed yet could be read by the real time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
@@ -424,350 +417,10 @@ This setting is **strongly** recommended when you have both insert/update and de
 At the moment this variable is set to `true` by default, but you can turn it off in order to adapt your services in case they need some fix.
 :::
 
-### Kafka group rebalancing behavior
+## Kafka group rebalancing behavior
 
 If a Kafka group rebalancing happens after that a projection has already been updated, projection changes will be generated anyway and the Real Time updater will still try to commit though.
 
 :::note
 This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, th service would stop without generating any projection change.
 :::
-
-## Low Code Configuration
-
-Here, low-code specific configuration will be described. All of the previous documentation regarding generic real time updater features are still valid and applicable.
-
-Low Code Real Time Updater is available since version `4.2.0`
-
-### Environment variables
-
-If the System of Records has been created using the automatic configuration, the Real-Time updater has all the environments variables already prepared.
-
-:::info
-You can quickly convert a System of Record from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up you Fast Data Low Code project properly.
-:::
-
-:::warning
-When you create a new configmap, remember to use the same Mount Path of your environment variables `STRATEGIES_FOLDER`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_FOLDER`
-:::
-
-### Projection Changes Collection
-
-Differently from the Manual Configuration, the projection changes configurations are described with a json file aimed to reduce the developing effort.
-
-A single view example:
-
-```json
-{
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487",
-    "taxCode": "tax_code",
-    "name": "MARIO",
-    "surname": "ROSSI",
-    "email": "email_mario",
-    "address": "address_1",
-    "telephone": "phone_number_1000",
-    "allergens": [{
-        "id": "eggs",
-        "comments": "this is another comment change",
-        "description": "it works!!! OK"
-    }]
-    "__STATE__": "PUBLIC"
-}
-
-```
-
-The data of this single view comes from 3 projections:
-
-- `pr_registry`: which contains users personal data
-- `pr_allergens`: which contains allergens details
-- `pr_allergens_registry`: that is the table which describes the relationship between users and allergens
-
-Given that `idCustomer` and `ID_USER` are the same, the single view is focused on the user. For this reason if an allergen is updated, it will be necessary to identify all the users affected by this change in order to revise the single view.
-
-Therefore, we know that if `pr_allergens` changes, the path to update the single view is: `pr_allergens` -> `pr_allergens_registry` -> `pr_registry`.
-
-This configuration is described with the `projectionChangesSchema.json`:
-
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "sv_customers": {
-      "paths": [
-        {
-          "path": [ "pr_allergens", "pr_allergens_registry", "pr_registry"],
-          "identifier": {
-            "ID_USER": "ID_USER"
-          }
-        }
-      ]
-    }
-  }
-}
-```
-
-The `version` field holds the current configuration version, which determines the syntax and semantics of the rest of the configuration. For version `1.0.0` these are the fields and their meaning, all inside the `config` field:
-
-- `sv_customers`: it is the single view name
-- `paths`: it is the path list that can update the single view
-- `path`: it is the single path
-- `identifier`: it defines the projection changes identifier, where `ID_USER` is the name of the field which contains the primary key in the collection `pr_registry`.
-
-:::info
-Given the `pr_allergens` → `pr_allergens_registry` → `pr_registry` path, both paths `pr_allergen_registry` → `pr_registry` and `pr_registry` are sub-paths of the first one. You can avoid the definition of the sub-paths because they will be automatically recognized.
-:::
-
-:::warning
-If [automatic aggregation](../create_sv.md#link-projections-to-the-single-view) is used, the reference object key (in this case `ID_USER`) is required to have the same name as the projection changes identifier, which is the starting point of the aggregation.
-Otherwise, if the automatic aggregation is not used, it is possible naming the key as preferred coherently with the `singleViewKey.js` and `mapper.js` file in the [Single View Creator](./../configure_single_view_creator).
-It is possible to write the `projectionChangesSchema.json` in ConfigMaps&Secret area of the [Automatic Single view Plugin](../configure_single_view_creator.md#configuration-files).
-:::
-
-At the end of the configuration be sure to register the projection in the Strategies page of your single view:
-
-- Go to single view page
-- Click on Strategies
-- Add the projection with the newly defined strategies if they do not already exist
-- Click on the checkbox for the automatic strategies management
-
-### Configuration files
-
-For the Automatic Real-Time Updater the `kafka_adapter`, `map_table` and `cast_function` variables are configured by the Mia-Platform console. However, it is fundamental to define the `erSchema.json` to describe the strategies path.
-
-#### ER schema configuration
-
-When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema.
-
-The `erSchema.json` configmap defines the relationship between tables and projections.
-
-Here you can find an example:
-
-![visual representation of the ER schema](../img/food_delivery_ER_schema.png)
-
-The relationships shown in the graph are described by a file called `erSchema.json` which has the following jsonSchema:
-
-```json
-{
-  "type": "object",
-  "additionalProperties": false,
-  "properties": {
-    "version": {
-      "type": "string"
-    },
-    "config": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "outgoing": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "conditions": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                      "condition": {
-                        "type": "object",
-                        "additionalProperties": true
-                      },
-                      "oneToMany": {
-                        "type": "boolean"
-                      }
-                    },
-                    "required": [
-                      "condition"
-                    ]
-                  }
-                }
-              },
-              "required": [
-                "conditions"
-              ]
-            }
-          }
-        },
-        "required": [
-          "outgoing"
-        ]
-      }
-    }
-  },
-  "required": [
-    "version",
-    "config"
-  ]
-}
-```
-
-Look at this example:
-
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "pr_dishes": {
-      "outgoing": {
-        "pr_orders_dishes": {
-          "conditions": {
-            "dish_to_order_dish": {
-              "condition": {
-                "ID_DISH": "id_dish"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_orders_dishes": {
-      "outgoing": {
-        "pr_orders": {
-          "conditions": {
-            "order_dish_to_order": {
-              "condition": {
-                "ID_ORDER": "ID_ORDER"
-              }
-            }
-          }
-        },
-        "pr_dishes": {
-          "conditions": {
-            "order_dish_to_dish": {
-              "condition": {
-                "id_dish": "ID_DISH"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_orders": {
-      "outgoing": {
-        "pr_orders_dishes": {
-          "conditions": {
-            "order_to_order_dish": {
-              "condition": {
-                "ID_ORDER": "ID_ORDER"
-              },
-              "oneToMany": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-Here `pr_orders_dishes` is connected to :
-
-- `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which means both `pr_orders_dished` and `pr_orders` have `ID_ORDER` as a field of the collection, and they are matched in case the value is the same in both documents.
-- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_orders_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_orders_dishes` respectively.
-
-It is possible to define a constant value in order to validate the condition, for example:
-
-```json
-"pr_dishes": {
-  "outgoing": {
-    "pr_orders_dishes": {
-      "conditions": {
-        "dish_to_order_dish": {
-          "condition": {
-            "ID_DISH": "__string__[testID]"
-          }
-        }
-      }
-    }
-  }
-}
-
-```
-
-In this case the condition will always be verified if the value of `ID_DISH` is equal to `“testID“`.
-The types of constants that are supported are:
-
-- `__string__[]` which considers the value as a string.
-- `__integer__[]` which considers the value as an integer.
-- `__boolean__[]` which considers the value as a boolean.
-- `__constant__[]` which considers the value as a string (deprecated).
-
-:::warning
-If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B -> A
-:::
-
-#### Custom path of strategies
-
-If you need to manually handle specific strategies you have two choices:
-
-- you can write your own strategy function. In this case you have to write the whole strategy on your own
-- you can let the Low Code handle the initial path of the strategy, and then make it execute your own custom function to handle it from there
-
-To do that you have to specify in the `projectionChanges.json` that the **identifier** will be handled "from file", which is your custom file that exports your custom function. The syntax is **__fromFile__[myCustomFunction]**.
-
-Let's see it in the configuration file below:
-
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "sv_users": {
-      "paths": [
-        {
-          "path": [ "pr_products", "pr_companies", "pr_registry"],
-          "identifier": {
-            "ID_USER": "ID_USER"
-          }
-        },
-        {
-          "path": [ "pr_selling", "pr_clients"],
-          "identifier": "__fromFile__[myCustomFunction]"
-        }
-      ]
-    }
-  }
-}
-```
-
-What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
-The custom function have to match the following signature:
-
-```js
-
-async function myCustomFunction (logger, mongodbInstance, document)
-```
-
-The value returned by the function has to be an array of objects representing the identifiers of the strategy.
-
-Let's see an example of a custom function:
-
-```js
-
-async function someCustomLogin (value) {
-  // some custom logic
-}
-
-module.exports = async function myCustomFunction (logger, mongodbInstance, document) {
-  const query = {
-    $or: [
-      {
-        F_C: document.FISCAL_CODE,
-        IS_OK: document.AUTHORIZED
-      },
-      {
-        F_C: document.FISCAL_CODE,
-        WAITING_LIST: true
-      }
-    ]
-  }
-  const documentFound = await mongodbInstance.collection('users').findOne(query)
-  const response = await someCustomLogin(documentFound)
-  return [{
-    name: documentFound.NAME,
-    idUser: documentFound.ID_USER
-  }]
-}
-```

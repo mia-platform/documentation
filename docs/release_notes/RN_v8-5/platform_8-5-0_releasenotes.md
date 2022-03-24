@@ -67,14 +67,14 @@ All input form items that provide suggestions will filter them as the user types
 
 #### Real Time Updater v4.0.0
 
-Real Time Updater has been updated to the major version v4.0.0, which breaking change on the behavior when a Kafka group rebalancing happens. [Read more here](../../fast_data/real_time_updater/configuration#kafka-group-rebalancing-behavior).
+Real Time Updater has been updated to the major version v4.0.0, which breaking change on the behavior when a Kafka group rebalancing happens. [Read more here](../../fast_data/real_time_updater/manual-configuration#kafka-group-rebalancing-behavior).
 
 Two more environment variables were added:
 
 - FORCE_CHECK_ON_OFFSET environment variable to specify whether to check message offset is greater than the one saved on the projection or not.
 - COMMIT_MESSAGE_LOGGING_INTERVAL to specify the interval of logging for committed messages
 
-[Read more here](../../fast_data/real_time_updater/configuration##prevent-projection-to-be-overwritten).
+[Read more here](../../fast_data/real_time_updater/manual-configuration#prevent-projection-to-be-overwritten).
 
 ## How to update your Console
 

@@ -52,7 +52,7 @@ These APIs are read only, because they should be edited only by the [Real-Time U
 
 ### Fast Data Single View
 
-This endpoint type is used to read data of the [Fast Data Single View](../../../fast_data/sv_concepts).  
+This endpoint type is used to read data of the [Fast Data Single View](../../../fast_data/overview#why-single-view).  
 These APIs are read only, because they should be edited only by the [Single View Creator](../../../fast_data/single_view#create-the-single-view-creator-service).
 
 ## About Rewrite Base Path
