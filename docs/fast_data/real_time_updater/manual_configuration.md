@@ -359,10 +359,13 @@ The message produced adheres to the following schema:
         "projection",
         "operationType",
         "operationTimestamp",
-        "projection",
         "primaryKeys"
     ],
     "properties": {
+        "projection": {
+            "type": "string",
+            "description": "The name of the projection"
+        },
         "operationType": {
             "type": "string",
             "description": "The type of operation performed on the collection",
