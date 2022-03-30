@@ -27,6 +27,12 @@ _RELEASE_DATE_
 
 ### Security update for the following microservices
 
+#### Crud Service
+
+Fixed a bug that caused null values in _q query filter to not being handled correctly for GET endpoints
+
+Also, support for $first project operator in _rawp query param has been added.
+
 ## Backoffice
 
 ### New features
