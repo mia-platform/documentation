@@ -69,9 +69,9 @@ Restarting a Pod may cause a downtime of the service if not correctly replicated
   
 Clicking on a Pod name you can examine its overview and its specific logs.
 
-<!-- Clicking on the `View logs` button you can examine the logs of the selected pods.
+Clicking on the `View logs` button you can examine the logs of the selected pods.
 
-![multi_pods_logs](img/multi_pods_logs.png) -->
+![multi_pods_logs](img/multi_pods_logs.png)
 
 ### Pod overview
 
