@@ -27,7 +27,7 @@ _RELEASE_DATE_
 
 ### Security update for the following microservices
 
-#### Crud Service
+#### Crud Service v5.2.1
 
 Fixed a bug that caused null values in _q query filter to not being handled correctly for GET endpoints
 
