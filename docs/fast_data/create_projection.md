@@ -27,7 +27,7 @@ The default Projection Changes collection is automatically managed by the Consol
 
 One Projections Changes collection is created for each System of Records as default.
 
-This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view.
+This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view. Since version 3.7.2, the Single View Creator reads the Projections Changes sorted in an ascending order of creation.
 
 :::note
 When you delete a System of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.

@@ -11,7 +11,8 @@
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "lint": "eslint --ext js .",
-    "spellcheck": "npx cspell './docs/**'"
+    "spellcheck": "npx cspell './docs/**'",
+    "release-note": "node ./new-release-note.js"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.8",
