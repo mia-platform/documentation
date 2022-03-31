@@ -71,6 +71,12 @@ Clicking on a Pod name you can examine its overview and its specific logs.
 
 Clicking on the `View logs` button you can examine the logs of the selected pods.
 
+:::note
+
+You can select at most five containers.
+
+:::
+
 ![multi_pods_logs](img/multi_pods_logs.png)
 
 ### Pod overview
