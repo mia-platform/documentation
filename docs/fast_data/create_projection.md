@@ -52,10 +52,11 @@ Here, you can modify the default name of the topics per environment.
 The topics names are pre-compiled with our suggested name:
 
 ```txt
-projectId.environmentId.projectionName-json
+tenantId.environmentId.systemId.projectionName.ingestion
 ```
 
-where `projectId`, `environmentId` and `projectionName` are filled with, respectively, the id of the console project, the id of the associated environment and the name of the projection.
+where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled with, respectively, the id of the tenant of the project, the id of the associated environment, the id of the system which owns the projection and the name of the projection.
+For more information about the naming convention used for the topics, [click here](./setup_fast_data.md#ingestion-topic-from-cdc-to-mongo)
 
 ### Projection metadata
 
@@ -168,11 +169,13 @@ On the first page, you will need to provide two information:
 
 The topic pattern is a template string that will be interpolated for each combination of environment and projection to generate the topic prefixes. The syntax used is the same of the intuitive [javascript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), with the following variables:
 
+* tenantId
 * projectId
+* systemId
 * projectionId
 * envId
 
-The default value for ths input is the same as the default used by the Console, which is `${projectId}.${envId}.${projectionId}-json`.
+The default value for ths input is the same as the default used by the Console, which is `${tenantId}.${envId}.${systemId}.${projectionId}.ingestion`.
 
 ##### Kafka adapter format
 

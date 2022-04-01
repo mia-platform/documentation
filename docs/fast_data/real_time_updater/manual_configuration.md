@@ -311,7 +311,7 @@ where:
 
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
-- `MY_TOPIC` is the topic where the projection change need to be sent
+- `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](../setup_fast_data.md#topic-for-svc-trigger))
 
 Example:
 
@@ -320,21 +320,21 @@ Example:
     "registry-json": {
         "projectionChanges": {
             "sv_pointofsale": {
-                "topic": "my-project.development.sv-pointofsale-pc-json",
+                "topic": "my-tenant.development.my-database.sv-pointofsale.sv-trigger",
             }
         }
     },
     "another-projection": {
         "projectionChanges": {
             "sv_customer": {
-                "topic": "my-project.development.sv-customer-pc-json"
+                "topic": "my-tenant.development.my-database.sv-customer.sv-trigger"
             }
         }
     }
 }
 ```
 
-When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
+When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.sv-trigger` as well.
 
 ## Kafka projection updates configuration
 
@@ -471,7 +471,7 @@ Example:
     },
     "changes": [{
         "state": "NEW",
-        "topic": "my-topic.development.foobar-json",
+        "topic": "my-topic.development.my-system.my-projection.ingestion",
         "partition": 0,
         "timestamp": "2021-11-19T16:22:07.031Z",
         "offset": "14",
@@ -508,7 +508,7 @@ Example:
     "timestamp": "2021-11-19T16:22:07.031Z",
     "updatedAt": "2021-11-19T16:22:07.052Z",
     "__internal__kafkaInfo": {
-        "topic": "my-topic.development.foobar-json",
+        "topic": "my-topic.development.my-system.my-projection.ingestion",
         "partition": 0,
         "timestamp": "2021-11-19T16:22:07.031Z",
         "offset": "14",

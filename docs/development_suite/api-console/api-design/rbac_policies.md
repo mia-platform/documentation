@@ -25,7 +25,8 @@ package policies
 
 ## Policies input data
 
-In your policies you can use the rego `input` variable, that is structured as follows:
+In your policies you can use the rego `input` variable. This variable contains all the user information as well as the information of the request and the eventual response if configured.
+Its structure is as follows:
 
 ```json
 {
@@ -39,6 +40,7 @@ In your policies you can use the rego `input` variable, that is structured as fo
     "query":   Object {
       String: Array[String]
     },
+    "body": Object{},
   },
   "response": {
     "body": Object{}
@@ -54,6 +56,9 @@ In your policies you can use the rego `input` variable, that is structured as fo
   "clientType": String
 }
 ```
+:::info
+  The request body is available only for requests with method: `POST` `PATCH` `PUT` `DELETE` with `application/json` Content Type. The response body instead is set only if properly configured  in the `X-permssion` object.
+:::
 
 :::info
 `bindings` and `roles` object contain only data relative to the user that is making the request **if and only if** is authenticated. Otherwise those two object will be present but empty. For the structure of the two object please refer to the [RBAC data models](./rbac#rbac-storage) section.

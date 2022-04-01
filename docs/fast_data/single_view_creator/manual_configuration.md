@@ -237,7 +237,7 @@ For both functions, the output is composed of an object containing two fields:
 - `old` which contains the old Single View
 - `new` which contains the new Single View
 
-These values will be the respectively the `before` and `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator.
+These values will be the respectively the `before` and `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator. The naming convention for this topic can be found [here](../setup_fast_data.md#topic-for-verified-update-of-the-sv).
 
 ```js
 async function upsertSingleViewFunction(
