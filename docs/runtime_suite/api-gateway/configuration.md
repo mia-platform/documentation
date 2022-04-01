@@ -23,5 +23,5 @@ The API Gateway service needs four configuration directories to work:
     all the locations statement and header definitions and must proxy pass all the unhandled path to the frontend.
 
 :::info
-Learn more from the [Advanced configuration](../../development_suite/api-console/advanced-section/api-gateway/how-to.md) and the [request-size] (../development_suite/api-console/advanced-section/api-gateway/request-size) section to custom configurations.
+Learn more from the [Advanced configuration](../../development_suite/api-console/advanced-section/api-gateway/how-to.md) and the [request-size](../development_suite/api-console/advanced-section/api-gateway/request-size) section to custom configurations.
 :::
