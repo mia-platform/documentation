@@ -33,6 +33,47 @@ Provided that the client's **CDC** (Change Data Capture) supports Snappy compres
 Snappy, like every other compression and decompression algorithm, will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications; on the other hand it is well recommended for initial loads which tend to be a lot heavier.
 :::
 
+## Topic naming convention
+
+In order to work properly, the Fast Data infrastructure will need multiple Kafka topics, hence following a naming convention is useful.
+The following is the naming convention we recommend in order to work with the Fast Data and its tools properly.
+
+### Ingestion topic from CDC to Mongo
+
+**producer**: the system producing its own events
+
+`<tenant>.<environment>.<source-system>.<projection>.ingestion`
+
+An example:
+
+```sh
+test-tenant.PROD.system-name.test-projection.ingestion
+```
+
+### Topic for Single View Creator trigger
+
+**producer**: Real Time Updater
+
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger
+```
+
+### Topic for verified update of the Single View
+
+**producer**: Single View Creator
+
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-sv.sv-update
+```
+
 ## Create topics
 
 You can create a topic using Kafka cli, or if you use the Confluent Cloud you can use the user interface.
@@ -54,7 +95,7 @@ If you don't have a cluster, create one following this [documentation](https://d
 On the left menu, click on `Topics` and `Add a topic` button. Insert the topic name and the number of partitions required. Here you could create with defaults or customize topic settings.
 
 :::info
-We suggest to use a topic name like `project.environment.projection-json`
+We suggest to use a topic name like `tenant.environment.system.projection.ingestion`
 :::
 
 > *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/cloud/current/client-apps/topics/manage.html#create-a-topic)
@@ -87,7 +128,7 @@ First, you should [install the Confluent Cli](https://docs.confluent.io/ccloud-c
 Once installed, to create a new topic (with some custom config) run:
 
 ```sh
-ccloud kafka topic create --partitions 3 --cluster CLUSTER_ID --config cleanup.policy=compact --config retention.ms=2592000000 'project.environment.projection-json';
+ccloud kafka topic create --partitions 3 --cluster CLUSTER_ID --config cleanup.policy=compact --config retention.ms=2592000000 'tenant.environment.system.projection.ingestion';
 ```
 
 You should create a service account if you have not already [following this guide](#create-service-account)
@@ -95,8 +136,8 @@ You should create a service account if you have not already [following this guid
 After the creation of the topic, you can associate the ACL to a service account:
 
 ```sh
-ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation WRITE --topic 'project.environment.projection-json' --cluster CLUSTER_ID;
-ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation READ --topic 'project.environment.projection-json' --cluster CLUSTER_ID;
+ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation WRITE --topic 'tenant.environment.system.projection.ingestion' --cluster CLUSTER_ID;
+ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation READ --topic 'tenant.environment.system.projection.ingestion' --cluster CLUSTER_ID;
 ```
 
 ## Set up a Kafka consumer
