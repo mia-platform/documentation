@@ -24,8 +24,7 @@ const tagManagerArgs = {
 };
 
 function initTagManager() {
-  const isProd = process.env.NODE_ENV === "production";
-  if (!isProd) {
+  if (process.env.NODE_ENV !== "production") {
     return;
   }
 
@@ -35,10 +34,7 @@ function initTagManager() {
 function Layout(props) {
   const {children, noFooter, wrapperClassName} = props;
 
-  useEffect(() => {
-    initTagManager();
-  })
-
+  useEffect(() => { initTagManager() })
   useKeyboardNavigation();
   return (
     <LayoutProviders>
