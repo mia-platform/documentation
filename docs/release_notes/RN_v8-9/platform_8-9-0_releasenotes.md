@@ -25,6 +25,17 @@ _RELEASE_DATE_
 
 ### New Marketplace components
 
+### React App Template
+
+Update Template to new version of React and migrate testing suite from enzyme to react testing library.
+
+[Visit template repository to this link](https://github.com/mia-platform-marketplace/React-App-Template)
+
+### Typescript React App Template
+
+Added new marketplace component to handle React based webpage with TypeScript from the DevOps Console
+
+[Visit template repository to this link](https://github.com/mia-platform-marketplace/Typescript-React-App-Template)
 ### Security update for the following microservices
 
 #### Crud Service v5.2.1
