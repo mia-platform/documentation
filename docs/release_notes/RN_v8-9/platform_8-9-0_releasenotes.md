@@ -15,6 +15,10 @@ _RELEASE_DATE_
 
 ### New features
 
+#### Logs of multiple pods
+
+The Runtime area has been enriched! It is now possible to monitor the logs of multiple pods at the same time, for a maximum of 5 selected containers.
+
 ### Bug Fix
 
 ### Breaking Changes
@@ -49,6 +53,10 @@ Also, support for $first project operator in _rawp query param has been added.
 Single View Creator plugin and template have been updated to v3.7.2. This version fixes a bug that could cause a Projection changes to not be processed due to starvation. Projection changes are now read in order of creation, thus granting they will eventually be read.
 
 This fix is also available for Single View Creator template updating the library @mia-platform-internal/single-view-creator-lib to ^9.7.1.
+
+### API Portal v1.16.0
+
+The API Portal has a new cleaner look! Request and response tabs have been redesigned to include their own example and now it possible to switch between codes and content-types.
 
 ## Backoffice
 
