@@ -336,7 +336,7 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.sv-trigger` as well.
 
-## Kafka projection updates configuration
+## Kafka Projection Updates configuration
 
 Whenever the real-time updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
 
@@ -392,7 +392,7 @@ The message produced adheres to the following schema:
         },
         "after": {
             "type": "object",
-            "description": 
+            "description": "The projection document as found on the database after the execution of the operation. `null` after a `DELETE`."
         },
         "__internal__kafkaInfo": {
             "type": "object",
@@ -408,7 +408,7 @@ A virtual delete always results in an `UPDATE`, because the document still exist
 :::
 
 :::warning
-For performance reasons, the projection state `before` of the projection is not returned after an update operation, because a costly `find` operation would be necessary to retrieve such information from the database. The only exception is an UPDATE that follows a virtual delete: in this case the `before` is returned entirely.
+For performance reasons, the projection state `before` of the projection is not returned after an update operation, because a costly `find` operation would be necessary to retrieve such information from the database. The only exception is an UPDATE resulting from a virtual delete: in this case the `before` is returned entirely.
 
 For the same reason, the fields `createdAt` and `documentId` of the projections are returned only after an upsert inserting a new document or after a virtual delete.
 :::
@@ -442,7 +442,7 @@ For example:
 }
 ```
 
-When the real time updater writes to Mongo in reaction to a CDC update, a message is sent to the related topic. For example, if a new projection is saved to the `registry-json`, an `INSERT` message is generated to the topic `registry-json.update`
+When the real time updater writes to Mongo in reaction to a CDC update, a message is sent to the related topic. For example, if a new projection is saved to the `registry-json`, an `INSERT` message is generated to the topic `registry-json.update`. The key of the resulting Kafka message will be the stringified JSON of the projection key value.
 
 
 ## Tracking the changes
