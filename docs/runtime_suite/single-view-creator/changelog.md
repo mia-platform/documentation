@@ -10,6 +10,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.0] 2022-04-06
+
+### Updated
+
+- @mia-platform-internal/single-view-creator-lib @^9.8.0
+
+### Added
+
+- Added option to read projection changes from kafka instead of mongo. The newly introduced variables are: PROJECTIONS_CHANGES_SOURCE, KAFKA_CONSUMER_GROUP_ID, KAFKA_PROJECTION_CHANGES_TOPICS.
+
+## [3.7.2] 2022-03-29
+
+### Updated
+
+- @mia-platform-internal/single-view-creator-lib @^9.7.0
+
+## [3.7.1] 2022-03-28
+
+### Updated
+
+- @mia-platform-internal/fast-data-automation-lib ^1.3.0
+
+## [3.7.0] 2022-03-28
+
+### Updated
+
+- @mia-platform-internal/single-view-creator-lib @^9.7.0
+
+### Added
+
+- Added `projectionToSvTime` prometheus metric to track the time spent between the projection kafka production to the SV generation.
+
+
 ## [3.6.0] 2022-03-21
 
 ### Added
@@ -22,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- updated MongoDB npm driver to version `4.4.1`
+- updated MongoDb npm driver to version `4.4.1`
 
 ## [3.5.0] 2022-03-11
 

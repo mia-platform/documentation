@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 5.2.1 - 2022-03-30
+
+### Fixed
+
+- null values in `_q` query filter are correctly handled for GET endpoints
+
+## 5.2.0 - 2022-03-29
+
+### Added
+
+- support for `$first` project operator in `_rawp` query param
+
 ## 5.1.0 - 2022-03-21
 
 ### Added

@@ -3,10 +3,11 @@ id: overview
 title: Appointment Manager
 sidebar_label: Overview
 ---
-The **Appointment Manager** is a microservice responsible for handling the organization of availabilities and appointments. Leveraging
-the [CRUD Service](../crud-service/overview_and_usage.md), the [Messaging Service](../messaging-service/overview.md),  the
-[Timer Service](../timer-service/overview.md), and the [Teleconsultation Service](../teleconsultation-service-backend/overview.md), it can be used to control availabilities and appointments creation, update and deletion
-on their respective CRUD collections and to automatically send messages and reminders to the users involved. 
+The **Appointment Manager** is a microservice responsible for handling the organization of availabilities and appointments.
+Leveraging the [CRUD Service](../crud-service/overview_and_usage.md), the [Messaging Service](../messaging-service/overview.md),
+the [Timer Service](../timer-service/overview.md), and the [Teleconsultation Service](../teleconsultation-service-backend/overview.md),
+it can be used to control availabilities and appointments creation, update and deletion
+on their respective CRUD collections and to automatically send messages and reminders to the users involved.
 
 The service can be seen as an enriched proxy to the CRUD: it implements the same interfaces of the CRUD Service allowing you
 to perform a set of operations on a CRUD collection as you normally would with the CRUD Service itself. On top of that it can be
@@ -179,3 +180,19 @@ For instance, an availability from 9:00 am to 10:30 with 30 minutes slot duratio
 
 A user who wants to book an appointment in a given slot must first lock the slot, and then book the appointment by 
 passing the reference of the locked slot.
+
+### Recurrent availabilities
+
+Availabilities can also be created in the form of recurring events, in order to allow replicating the same availability
+without inserting it multiple times.
+When an availability is set as recurrent, the appointment manager create different availabilities entries in the CRUD
+according to the recurrence parameters.
+
+For instance, if an availability is set to be repeated each first day of the week for four weeks,
+four different availabilities are created in the availability collection.
+
+An UUID is added to all the availabilities that belongs to the same recurrence, in order to maintain the relation
+between them.
+
+Availabilities that belongs to the same recurrence share the same additional properties inside each single slot,
+and the same number of slots. The start and end date are instead computed according to the recurrence parameters.

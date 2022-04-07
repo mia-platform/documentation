@@ -90,6 +90,8 @@ The Messaging Service accepts the following environment variables.
 
 - **SMS_SERVICE_NAME**: name of the SMS Service. Required if you want to send SMS.
 
+- **FILE_SERVICE_NAME**: name of the File Service. Required if you want to send emails with attachments.
+
 - **KAFKA_2_FIREBASE_SERVICE_NAME**: name of the Kafka2Firebase Service. Required if you want to send push notifications.
 
 - **KAFKA_CLIENT_ID**: required if you want to send push notifications.

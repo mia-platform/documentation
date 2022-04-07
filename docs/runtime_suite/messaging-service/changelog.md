@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] 2022-03-29
+
+- Fix to POST /send for emails with attachments
+
 ## [1.0.0] 2021-10-08
 
 - First release
