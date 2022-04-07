@@ -7,6 +7,7 @@
   "words": [
       "axerve",
       "Boundarye",
+      "Brotli",
       "BYOI",
       "ccloud",
       "clusterization",
@@ -121,7 +122,10 @@
       "explanative"
   ],
   "ignoreWords": [
+    "authz",
     "algs",
+    "authn",
+    "grpc",
     "clcr",
     "cms",
     "ddthh",
