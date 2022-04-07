@@ -6,7 +6,7 @@ sidebar_label: Single View
 
 ## How Single View works
 
-A Single View is a collection formed by an aggregation of data from different collections (e.g. restaurants, dishes, reviews, etc). If you want to know more about what Single Views are and how they are used, visit the [Single View Concepts](../fast_data/overview#why-single-view) section.
+A Single View is a collection formed by an aggregation of data from different collections (e.g. restaurants, dishes, reviews, etc.). If you want to know more about what Single Views are and how they are used, visit the [Single View Concepts](../fast_data/overview#why-single-view) section.
 
 For example, suppose to have the following projections:
 
@@ -58,7 +58,7 @@ dishes:
 
 ![Fast Data Single View Projections link](img/fastdata-single-view-projection-diagram.png)
 
-As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occur (e.g.: the name of a dish changes, or a new reviews is written, or some dishes are removed) the single view interested in these changes has to be regenerated.
+As shown in the image above, the single view gets his information from the projections, so that when some changes in the projection occur (e.g.: the name of a dish changes, or a new review is written, or some dishes are removed) the single view interested in these changes has to be regenerated.
 
 In our case, let's assume that a new review is added to the projection REVIEWS with the following data:
 
@@ -69,11 +69,11 @@ STARS: 2
 DISH_ID: 'dish-2'
 ```
 
-we need to update the single view with `restaurantId` equals to the restaurant that owns the dishes with `ID` equals to `dish-2`.
+We need to update the single view with `restaurantId` equals to the restaurant that owns the dishes with `ID` equals to `dish-2`.
 
 In order to maintain the consistency between Single View data and the content of the projections, the Single Views need to be linked to the projections they aggregate, so that when some documents of the projections are updated, the single view containing that information can be updated accordingly.  
 
-So, it must be defined a function for each projection associated with the single view. These functions are called `strategies` and are used to know which specific single view document must be updated as a consequence of the update of a projection document. To know how to create a strategies [read here](./single_view#strategies)
+So, it must be defined a function for each projection associated with the single view. These functions are called `strategies` and are used to know which specific single view document must be updated as a consequence of the update of a projection document. To know how to create a strategy [read here](./single_view#strategies)
 
 ## Create the Single View
 
@@ -140,7 +140,7 @@ In order to do so, **strategies** need to be implemented. These strategies are b
 
 The strategy functions can be created in the repository of the project configuration.
 
-In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
+In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
 Strategies files need to be created below a folder named `fast-data-files`, if your project does not have it, create it.
 In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Record.
@@ -220,7 +220,7 @@ const {
 }
 ```
 
-We don't have `field_b`, so we need to fetch the table that contains `field_b` and we will do it using `field_c` as the conjunction element for the first look up and finally `field_d` to get the correct element that contains the desired `field_b`
+We don't have `field_b`, so we need to fetch the table that contains `field_b`, and we will do it using `field_c` as the conjunction element for the first look up and finally `field_d` to get the correct element that contains the desired `field_b`
 
 ```js
 module.exports = (logger, databaseName) => async(aDocument, mongoClient) =>  => {
@@ -321,7 +321,7 @@ configurations/
                     |-- someFunctions.js
 ```
 
-Where `myStrategyForProjection1.js` is the file that exports the strategy function and internally it uses some functions imported from the `someFunctions.js` file.
+Where `myStrategyForProjection1.js` is the file that exports the strategy function, and internally it uses some functions imported from the `someFunctions.js` file.
 
 So, you have to set `myStrategyForProjection1` as **main function file** for the projection associated.
 

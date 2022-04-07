@@ -895,4 +895,4 @@ At this point, we have two documents: eggs, and fish. For each of those document
 
 ## Environment variables
 
-After you have finished writing your configuration files, the Single View Creator is almost ready to be used, but first you need to assign a value to the environment variables. You can find information about them [here](../../runtime_suite/single-view-creator/configuration), as they the simple Single View Creator Plugin is based on the same dockerImage of the Low Code one.
+After you have finished writing your configuration files, the Single View Creator is almost ready to be used, but first you need to assign a value to the environment variables. You can find information about them [here](../../runtime_suite/single-view-creator/configuration), as the simple Single View Creator Plugin is based on the same docker image of the Low Code one.

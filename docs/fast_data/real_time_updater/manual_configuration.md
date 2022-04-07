@@ -7,28 +7,28 @@ sidebar_label: Manual configuration
 ## Environment variables
 
 - LOG_LEVEL (**required**): defines the level of the logger  
-- MONGODB_URL (**required**):  defines the mongodb url to contact  
-- PROJECTIONS_DATABASE_NAME (**required**): defines the name of the projections database  
+- MONGODB_URL (**required**): defines the mongodb URL to contact  
+- PROJECTIONS_DATABASE_NAME (**required**): defines the name of the projections' database  
 - PROJECTIONS_CHANGES_COLLECTION_NAME (**required**): defines the name of the projections changes collection  
 - PROJECTIONS_CHANGES_ENABLED: defines whether you want to generate projections changes, default is **true**,
-- LC39_HTTP_PORT (**required**): defines the lc39 http port
+- LC39_HTTP_PORT (**required**): defines the lc39 HTTP port
 - STRATEGIES_MAX_EXEC_TIME_MS (**required**): defines the maximum time for which a strategy is executed
-- KAFKA_BROKERS (**required**): defines the kafka brokers
-- KAFKA_GROUP_ID (**required**): defines the kafka group id
-- KAFKA_SASL_USERNAME (**required**): defines the kafka sasl username
-- KAFKA_SASL_PASSWORD (**required**): defines the kafka sasl password
+- KAFKA_BROKERS (**required**): defines the Kafka brokers
+- KAFKA_GROUP_ID (**required**): defines the Kafka group id
+- KAFKA_SASL_USERNAME (**required**): defines the Kafka SASL username
+- KAFKA_SASL_PASSWORD (**required**): defines the Kafka SASL password
 - LIVENESS_INTERVAL_MS (**required**) defines the liveness interval in milliseconds
 - INVARIANT_TOPIC_MAP (**required**): defines an object that maps the topic to the projection
-- KAFKA_USE_LATEST_DEQUEUE_STRATEGY:  defines latest dequeue strategy or not
-- KAFKA_ADAPTER_FOLDER: defines the path to the kafka adapter folder
+- KAFKA_USE_LATEST_DEQUEUE_STRATEGY: defines latest dequeue strategy or not
+- KAFKA_ADAPTER_FOLDER: defines the path to the Kafka adapter folder
 - CAST_FUNCTIONS_FOLDER: defines the path to the cast-functions folder
 - MAP_TABLE_FOLDER: defines the path to the map table folder
-- STRATEGIES_FOLDER: defines the path to the strategies folder
+- STRATEGIES_FOLDER: defines the path to the strategies' folder
 - KAFKA_SASL_MECHANISM: defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`. The default value is `plain`
 - USE_UPSERT: defines whether to use upsert or not when performing insert and update operations. Defaults to true
 - KAFKA_MESSAGE_ADAPTER: defines which Kafka message adapter to use. Its value can be one of the following: `basic`, `golden-gate`, `custom`.
 - KAFKA_PROJECTION_CHANGES_FOLDER: path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).
-- GENERATE_KAFKA_PROJECTION_CHANGES: defines whether the projection changes have to be send to Kafka too or not. Default is `false`(v3.4.0 or above).
+- GENERATE_KAFKA_PROJECTION_CHANGES: defines whether the projection changes have to be sent to Kafka too or not. Default is `false`(v3.4.0 or above).
 - KAFKA_CONSUMER_MAX_WAIT_TIME: defines the maximum waiting time of Kafka Consumer for new data in batch. Default is 500 ms.
 - COMMIT_MESSAGE_LOGGING_INTERVAL: specify the interval in *ms* of logging the info that messages have been committed. Default is 3000.
 - KAFKA_CONNECTION_TIMEOUT_MS: Time in milliseconds to wait for a successful connection. Default 10000
@@ -74,7 +74,7 @@ The Real-Time Updater accepts the following configurations:
 ### KAFKA_ADAPTER configurations
 
 The mount path used for these configurations is: `/home/node/app/configurations/kafkaAdapterFolder`.  
-This folder contains the configurations for your kafka adapters.
+This folder contains the configurations for your Kafka adapters.
 
 ### Kafka messages format
 
@@ -98,7 +98,7 @@ It's the default one.
 The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
 The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
 The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
-The `offset` is the offset of the kafka message.
+The `offset` is the offset of the Kafka message.
 
 Example of a delete operation
 
@@ -121,12 +121,12 @@ offset: '100'
 ### Golden Gate
 
 The `timestamp` of the Kafka message is a stringified integer greater than zero. This integer has to be a valid timestamp.  
-The `offset` is the offset of the kafka message.
+The `offset` is the offset of the Kafka message.
 The `key` can have any valid Kafka `key` value.  
 The `value` of the Kafka message instead needs to have the following fields:
 
-- `op_type`: the type of operation (`I` for insert , `U` for update, `D` for delete).
-- `after`: the data values after the operation execution (`null` or not set if it's a delete)
+- `op_type`: the type of operation (`I` for insert, `U` for update, `D` for delete).
+- `after`: the data values after the operation execution (`null` or not set if it's a delete operation)
 - `before`: the data values before the operation execution (`null` or not set if it's an insert)
 
 Example of `value` for an insert operation:
@@ -155,18 +155,18 @@ To do that, you need to create a `Custom Kafka Message Adapter`, which is just a
 You have to create the adapter function *before* setting `custom` in the advanced file and saving.
 :::
 
-This adapter is a function that accepts as arguments the kafka message and the list of primary keys of the projection, and returns an object with the following properties:
+This adapter is a function that accepts as arguments the Kafka message and the list of primary keys of the projection, and returns an object with the following properties:
 
-- **offset**: the offset of the kafka message
-- **timestampDate**: an instance of `Date` of the timestamp of the kafka message.
+- **offset**: the offset of the Kafka message
+- **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
 - **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
 - **value**: the data values of the projection, or null
 - **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
 
-If the `value` is null, the operation is supposed to be a delete.
+If the `value` is null, the operation is supposed to be a delete operation.
 The `keyObject` **cannot** be null.
 
-In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon in the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
+In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
 Your adapter function file needs to be created below a folder named `fast-data-files`, if your project does not have it, create it.
 In this folder, create a folder named as `kafka-adapters/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console). Inside this folder create your javascript file named `kafkaMessageAdapter.js`.
@@ -205,7 +205,7 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger)
 }
 ```
 
-The `kafkaMessage` argument is the kafka message as received from the `real-time-updater`.  
+The `kafkaMessage` argument is the Kafka message as received from the `real-time-updater`.  
 The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are of type *string*.
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
@@ -238,8 +238,8 @@ In this folder you have all the generated [Cast Functions](../cast_functions) de
 
 ### STRATEGIES configuration
 
-The default mount path used for these configuration is: `/home/node/app/configurations/strategies`.  
-In this folder you have all the generated [Strategies](../single_view#strategies) which you have defined in your gitlab project inside the `fast-data-files/strategies` directory.
+The default mount path used for this configuration is: `/home/node/app/configurations/strategies`.
+In this folder you have all the generated [Strategies](../single_view#strategies) which you have defined in your GitLab project inside the `fast-data-files/strategies` directory.
 
 ### MAP_TABLE configurations
 
@@ -276,10 +276,10 @@ An example:
 
 ## Kafka Projection Changes configuration
 
-Projection changes are saved on mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
+Projection changes are saved on Mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
 
-This feature enables you to send the projection changes to a topic kafka you want to. This is useful if you want to have an history of the projection changes thanks to the Kafka retention of messages.
-You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic kafka you set.
+This feature enables you to send the projection changes to a topic Kafka you want to. This is useful if you want to have a history of the projection changes thanks to the Kafka retention of messages.
+You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic Kafka you set.
 
 :::info
 This feature is available from the version v3.4.0 or above of the service
@@ -332,7 +332,7 @@ Example:
 }
 ```
 
-When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
+When a message about `registry-json` happens, the projection changes will be saved on Mongo, and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
 
 ## Tracking the changes
 
@@ -374,7 +374,7 @@ Example:
 ### Projection
 
 Into the projection is saved information about the last Kafka message that updated the projection.
-These information are saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields.
+This information is saved inside a field named `__internal__kafkaInfo` in order to prevent collision with others projection fields.
 
 The information saved are:
 
@@ -425,5 +425,5 @@ At the moment this variable is set to `true` by default, but you can turn it off
 If a Kafka group rebalancing happens after that a projection has already been updated, projection changes will be generated anyway and the Real Time updater will still try to commit though.
 
 :::note
-This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, th service would stop without generating any projection change.
+This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, the service would stop without generating any projection change.
 :::

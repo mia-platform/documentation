@@ -19,7 +19,7 @@ On this page, you can find an overview of which are the steps involved in a No C
 
 ## What are Low Code and No Code?
 
-With No Code we refer to the console capability to reduce the development effort using the graphic interface and automations, allowing both experienced and inexperienced users to manage a Fast Data project. Thanks to No Code you can focus on creating your Fast Data architecture while the console will support you in all the development phases, creating for you microservices and configurations.
+With No Code we refer to the console capability to reduce the development effort using the graphic interface and automations, allowing both experienced and inexperienced users to manage a Fast Data project. Thanks to No Code you can focus on creating your Fast Data architecture while the console will support you in all the development phases, creating for your microservices and configurations.
 
 With Low code, we mean that instead of writing javascript code to generate the strategies, projection changes and single views, you will only need to write `json` files that declaratively specify how you want your Fast Data System to be.
 If you have used Fast Data before, you know that manually configuring everything can be a time-consuming end error-prone, repetitive activity. Thanks to our experience in the field, we have developed the functionality to interpret simple and human-readable `json` configurations that express most of the configurations (if not all) you will ever need.
@@ -31,7 +31,7 @@ The Fast Data Low Code experience has the same prerequisite as traditional Fast 
 
 ### Creating a System of Record (No Code)
 
-While you are creating your system of record, the console will allow you to choose between [Low Code](./real_time_updater/low-code-configuration) or [Manual](./real_time_updater/manual-configuration) configuration. By clicking on Low Code the Real Time Updater Low Code will be created and you will be able to proceed to the configuration of your microservice.
+While you are creating your system of record, the console will allow you to choose between [Low Code](./real_time_updater/low-code-configuration) or [Manual](./real_time_updater/manual-configuration) configuration. By clicking on Low Code the Real Time Updater Low Code will be created, and you will be able to proceed to the configuration of your microservice.
 
 ![systemcreation](./img/systemcreation.png)
 
@@ -58,4 +58,4 @@ Also, in this case, it is needed to configure some configmaps:
 
 #### Linking Strategies (No Code)
 
-The Fast Data No Code experience ends with the possibility to link a [strategy](./single_view#link-projections-to-the-single-view) to your single view. To do that, you need to go in the strategies section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.
+The Fast Data No Code experience ends with the possibility to link a [strategy](./single_view#link-projections-to-the-single-view) to your single view. To do that, you need to go in the `strategies` section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.
