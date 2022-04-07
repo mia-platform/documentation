@@ -50,6 +50,8 @@ The availabilities collection needs the following service-specific fields.
 - **endDate (required)** - `date`: availability's ending date (expressed in format **ISO 8601**).
 - **slotIds (required)** - `Array of Strings`: array of slots ids related to the availability.
 - **slotDuration (required)** - `number`: the duration of the slot (in minutes) related to the availability.
+- **recurrenceUuid**: `string`: The UUID that identifies the recurrence (if the availability is part of a set of
+  recurrent availabilities).
 
 ## Slots CRUD collection
 

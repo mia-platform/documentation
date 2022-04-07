@@ -115,28 +115,13 @@ The Teleconsultation Service Configuration is a JSON object with 5 root properti
 -   _required_:  `true`;
 -   _description_: can assumes two values: _sandbox_ or _production_. Specify the Bandyer environment's you want to use.
 
-**3. mode**
-
--   _type_: string;
--   _required_:  `true`;
--   _description_: can assumes two values: _embed_ or _window_. Specify the mode you want to display the UI widget in the Teleconsultation Service Frontend.
-
-:::note
-The **embed** mode limits the tools which can be used during a call (only *chat*, *screen_sharing*, *file_upload*).
-Both **embed** and **window** mode supports only calls one-to-one.
-:::
-
-:::warning
-Only `window` mode is currently supported. So even if the configuration JSON will continue to accept both `embed` and `window` values as **mode** parameter, `window` will be the only one used.
-:::
-
-**4. theme**
+**3. theme**
 
 -   _type_: object;
 -   _required_:  `false`;
--   _description_: define the theme of (_light_ and _dark_ mode), of the widget used for the call.
+-   _description_: define the theme of (_light_ and _dark_ mode), of the teleconsultation UI used for the call.
 
-**5. companyLogo**
+**4. companyLogo**
 
 -   _type_: object;
 -   _required_:  `false`;
@@ -268,7 +253,7 @@ The following specification is valid for both *light* and *dark*:
 
 - *type*: object;
 - *required*: `false`;
-- *description*: contains two fields _primaryColor_ and _accentColor_ used to customize the UI widget colors during the call.
+- *description*: contains two fields _primaryColor_ and _accentColor_ used to customize the teleconsultation UI colors during the call.
 
 ##### 5.1 CompanyLogo parameters
 Contains a field **url** which contains the URL of the company's logo.

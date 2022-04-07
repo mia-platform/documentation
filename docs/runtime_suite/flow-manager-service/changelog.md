@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 2.4.1 - 07-04-2021
+
+### Added
+
+- Added `incoming_message_label` to the `flow_manager_saga_states_total` metrics.
+
+### Changed
+
+- Now a crash event in the consumer sets the healthiness of the pod to false.
+
 ## 2.4.0 - 22-03-2021
 
 ### Changed

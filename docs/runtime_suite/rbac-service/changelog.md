@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.8.3 - 29/03/2022
+
+### Added
+
+- Added method delete to insert body request in rego input
+
 ## 0.8.2 - 21/03/2022
 
 ### Fixed

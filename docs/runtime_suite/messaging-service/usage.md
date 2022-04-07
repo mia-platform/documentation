@@ -36,7 +36,7 @@ notifications. Required if `templateId` is not defined. It will be ignored if `t
 
 - **data** - `object`: data used for [messages interpolation](./overview.md#messages-interpolation).
  
-- **emailAttachments** - `array of strings`: list of path to files that should be sent as mail attachments.
+- **emailAttachments** - `array of strings`: list of filenames that should be sent as mail attachments. The filename must be the same as that used in the file service to download it. It is possible to send attachments no larger than 15 MB. If no File Service is declared in the environment variables an error will be thrown.
 
 :::tip
 If you use a template in which some attachments are listed, they will be merged with the attachments specified in the 

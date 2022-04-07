@@ -13,7 +13,7 @@ This page will host the call of a specific room.
 
 The parameter **idTeleconsultation**, is the CRUD *_id* field of a specific teleconsultation.
 
-Once the user will access the page, the _idTeleconsultation_ will be used to connect the user to a specific Room. If the user is one of the participants of the Room, then the cal will start, otherwise an error will be shown.
+Once the user will access the page, the _idTeleconsultation_ will be used to connect the user to a specific Room. If the user is one of the participants of the Room, then the call will start, otherwise an error will be shown.
 
 In order to start the call, the Front End side needs to instantiate a Bandyer Client Object. The needed data is provided by the API call: `GET /teleconsultation/:teleconsultationId`.
 
@@ -82,7 +82,7 @@ curl -X POST "https://my_project_url/teleconsultation" \
 #### Response
 
 In case a teleconsultation is successfully created, a status code of 201 will be returned alongside an object with a field **roomId**, which contains the **_id** field of the teleconsultation on the CRUD just created.
-The **roomId** will be used from the **Teleconsultation Service Frontend**, in order to request all the data from the **Teleconsultation Service Backend** to initialize the UI widget and start the call. In reality the **roomId**, is the CRUD _id field of that teleconsultation.
+The **roomId** will be used from the **Teleconsultation Service Frontend**, in order to request all the data from the **Teleconsultation Service Backend** to initialize the teleconsultation UI (using iFrame) and start the call. In reality the **roomId**, is the CRUD _id field of that teleconsultation.
 
 Example Response:
 ```

@@ -10,6 +10,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] 2022-04-07
+
+### Changed
+
+- Return more than 200 appointments with the GET /appointments
+- All the Appointment Manager API under the same tag
+- Minor doc change in recurrent availabilities limits
+- Return more than 200 availabilities with the GET /availabilities
+
+### Fixed
+
+- Fixed check in PATCH /availabilities
+- Removing additional properties in queries toward the availabilities collection
+- Removing empty $and and $q in query cleaning
+- Added check to avoid teleconsultation creation failure in case of misconfiguration
+- Added check to prevent date modification in appointments created from slots
+- Fixed error related to the `_l` parameter
+
+### Added
+
+Recurrent availabilities
+
+- DELETE /availabilities endpoint added
+- POST /availabilities/state modified to handle recurrent availabilities
+- GET /availabilities updated to handle recurrent availabilities
+- POST /availabilities modified to handle recurrent availabilities
+
 ## [1.2.1] 2022-03-21
 
 ### BREAKING CHANGES

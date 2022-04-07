@@ -17,8 +17,11 @@ you like. For simplicity’s sake, in the following page it is assumed that you 
 
 ## GET /appointments/
 
-Returns the list of appointments. This endpoint is a direct proxy to the `GET /appointments/` of the CRUD service and has no side
-effects.
+Returns the list of appointments. This endpoint is a direct proxy to the `GET /appointments/export` of the CRUD service.
+
+:::warning
+Since this endpoint implements an export, be aware that it may return all the results if no query parameters are provided.
+:::
 
 ## GET /appointments/count
 
@@ -392,7 +395,18 @@ The body of this request accepts the following fields.
 - **simultaneousSlotsNumber** - `number`: the number of simultaneous slots (slots in the same time) to be allocated.
   If not specified, a single simultaneous slot is created by default.
 
+In case the aim is to create a recurrent availability, the following fields are required in addition to the previous ones.
+- **each** - `string` : : it can be `day`, `week` or `month`.
+- **on** - array of `number` : days of the week (0-6, where 0 is 'sunday'); required if recurrent each week.
+- **untilDate** - `string`: recurrence ending date (expressed in format **ISO 8601**);
+  note that in this case 'until' is exclusive, thus this date is never included in the recurrence.
+
 Additional fields can also be added to the body, depending on the underlying CRUD.
+
+:::note
+If the day chosen with the `on` property is different from the day specified in `startDate`, the latter is updated
+to the first available date computed with the `on` property.
+:::
 
 :::note
 The number of time slots is computed by the following formula: `(endDate - startDate) / slotDuration`.
@@ -414,10 +428,25 @@ If the total number of slots to be created is higher than this value, slots are 
 This may change in the future.
 :::
 
+:::warning
+Recurrent availabilities are limited at two years in the future.
+Thus, the maximum `untilDate` value is two years from now.
+
+This may change in the future.
+:::
+
+:::warning
+The maximum number of recurrent availabilities is 200.
+If more than 200 recurrent availabilities are computed before the insertion, an error is returned.
+
+This may change in the future.
+:::
+
 ### Response
 
 If the availability is successfully created, you will receive a response with a 200 status code and the `_id` of the newly
 created availability in the payload.
+If the availability is recurrent, the `recurrenceUuid` is returned as payload in place of the `_id`.
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `POST /availability/` request.
 
@@ -482,13 +511,14 @@ If the resource can not be locked, you will receive a Forbidden error message.
 ## DELETE /availabilities/:id
 
 Delete a single availability and all the related slots.
-This endpoint combines calls to the `DELETE /availabilities/:id` and `DELETE /slots/:id` of the CRUD service.
+This endpoint combines calls to the `DELETE /availabilities/:id` and `DELETE /slots/` of the CRUD service.
+It first deletes all the slots, and then deletes the availability.
 
 :::warning
 If some users already locked slots in the given availability (and the locks are not expired), 
 this endpoint will return an error.
 
-This behavior is due to prevent issues with operations performed between the lock and the appointment booking 
+This behavior is due to prevent issues with operations performed between the lock and the appointment booking
 (e.g. payments).
 :::
 
@@ -499,9 +529,71 @@ If you also need to remove such slots, you must first remove the linked appointm
 At this point, the slots can be deleted (since they will be marked as available).
 :::
 
+## DELETE /availabilities
+
+Delete all the availabilities (and their related slots) that match the given query parameters.
+This endpoint first deletes all the slots, and then deletes all the availabilities.
+
+:::note
+In order to delete all the availabilities created with the same recurrence, you can pass the recurrence UUID as a query parameter.
+:::
+
+:::note
+In order to delete only the availabilities that occur in the future, you can provide `future=true` as additional
+query parameter.
+This will allow to delete all the availabilities with a `startDate` higher than the current date.
+
+In order to delete only the availabilities that occur after a specific date, you can use a MongoDB query with the `_q`
+CRUD parameter.
+:::
+
+This endpoint combines calls to the `DELETE /availabilities/` and `DELETE /slots/` of the CRUD service,
+and may have the following side effects.
+
+:::warning
+This endpoint can only handle max 200 deletions.
+
+This may change in the future.
+:::
+
+:::warning
+It is not possible to use additional properties as query parameters.
+
+This may change in the future.
+:::
+
+:::warning
+If no query parameters are passed, this endpoint will do nothing an return `0` in the payload,
+in order to prevent the deletion of all the availabilities.
+:::
+
+:::warning
+If some users already locked or booked one or more slots in one of the given availability,
+the availability is not deleted (note that in case of locks, the locks must not be expired).
+
+This behavior is due to prevent issues with operations performed between the lock and the appointment booking
+(e.g. payments).
+:::
+
+:::warning
+If some slots are locked or booked during the slots deletion operation, the availability is not deleted
+(note that in case of locks, the locks must not be expired).
+All the deleted slots ids are removed from the availability, while the booked/locked one remain.
+:::
+
+### Response
+
+If the availabilities are successfully deleted, you will receive a response with a 200 status code,
+and the number of deleted availabilities in the payload.
+
+In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `DELETE /availabilities` request.
+
 ## POST /availabilities/state
 
-Changes the state of the availabilities (and the related slots) matching the provided filters.
+Changes the state of the availabilities (and the related slots) matching the provided filters
+(similarly to the `POST <collection>/state` endpoint of the CRUD).
+It also allows changing the states of availabilities that match a given recurrence UUID.
+
 This endpoint combines calls to the `POST /availabilities/state` and `POST /slots/state` of the CRUD service,
 and may have the following side effects.
 
@@ -515,12 +607,19 @@ This behavior is due to prevent issues with operations performed between the loc
 
 ### Body
 
-The body of this request has the same interface of a CRUD service `POST /availabilities/state` request.
+The body of this request has the same interface of a CRUD service `POST /availabilities/state` request,
+if used with the filters.
+As an alternative, the filter may also only contain the property defining the recurrence UUID,
+if the aim is to change the state of all the availabilities created with the same recurrence identifier.
 
 ### Response
 
-If the availability's state is successfully updated, you will receive a response with a 200 status code,
+If the availabilities states are successfully updated, you will receive a response with a 200 status code,
 and the number of updated availabilities in the payload.
+
+:::note
+The number of updated availabilities is returned also when the recurrence UUID is used in the filter.
+:::
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `POST /availabilities/state` request.
 

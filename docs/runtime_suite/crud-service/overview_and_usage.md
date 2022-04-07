@@ -63,14 +63,12 @@ All properties can be indexed to speed up the data retrieval. The indexes config
 
 CRUD by default comes with a set of common properties that simplify the data management:
 
-| Property        | Type   | Description                                                                                                                                                                                                                                                                               |
-|-----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **_id**         | string | unique 24-character-long hexadecimal String that identifies a document in the collection                                                                                                                                                                                                  |
-| **creatorId**   | String | id of the user who created the document                                                                                                                                                                                                                                                   |
-| **createdAt**   | Date   | date and time when the document has been created                                                                                                                                                                                                                                          |
-| **updaterId**   | String | id of the user who last updated the document; this information is overwritten every time the document is updated                                                                                                                                                                          |
-| **updatedAt**   | Date   | date and time when the document has been updated; this information is overwritten every time the document is updated                                                                                                                                                                      |
-| **`__STATE__`** | String | is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not. |
+- **_id**: unique 24 character length hexadecimal String that identifies a document in the collection
+- **creatorId**: String, id of the user who created the document
+- **createdAt**: Date, date and time when the document has been created
+- **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
+- **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
+- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
 
 :::note
 The only two default fields that it is possible to encrypt are **updaterId ** and **creatorId **. 
@@ -421,7 +419,7 @@ curl -X GET https://your-url/v2/plates/ \
 
 > Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
 
-In response of this request you will get a JSON array that contains all the documents of the collection. Documents in the array are sorted by date, oldest first. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must to set STATE to DRAFT.
+In response of this request you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must to set STATE to DRAFT.
 
 ```json
 [
@@ -610,6 +608,7 @@ The list of currently supported MongoDB aggregation operators is the following:
 - `$reduce`
 - `$concatArrays`
 - `$cond`
+- `$first`
 
 > **Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
 
