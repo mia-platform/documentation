@@ -68,4 +68,4 @@ The API Portal has a new cleaner look! Request and response tabs have been redes
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version x.x.x`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.13.4`.
