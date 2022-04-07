@@ -368,6 +368,21 @@
           "type": "category"
         },
         {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/extensions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
+              "type": "doc"
+            }
+          ],
+          "label": "Envoy API Gateway",
+          "type": "category"
+        },
+        {
           "id": "development_suite/api-console/advanced-section/swagger-aggregator/configuration",
           "type": "doc"
         },
@@ -1089,6 +1104,21 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/doctor-service/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Envoy API Gateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway-envoy/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway-envoy/filters"
                 }
               ]
             },
