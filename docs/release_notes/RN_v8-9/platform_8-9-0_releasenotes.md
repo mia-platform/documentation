@@ -11,6 +11,34 @@ _RELEASE_DATE_
 
 ### New Features
 
+#### Additional Kafka settings for Real Time Updater
+
+The following environment variables were added to configure the Real Time Updater Kafka timeouts:
+
+- KAFKA_CONNECTION_TIMEOUT_MS
+- KAFKA_SESSION_TIMEOUT_MS
+- KAFKA_HEARTBEAT_INTERVAL_MS
+
+### Bug Fixes
+
+#### Strategies elimination
+
+Fixed a bug that prevented strategies from being correctly deleted.
+
+#### DDL importing special fields incorrectly
+
+Fixed a bug that caused fields whose keys are SQL keywords to have an empty name instead.
+
+#### Configmaps not correctly read
+
+Fixed a bug that caused low code custom functions in `PROJECTION_CHANGES_SCHEMA_FOLDER` to not be read.
+
+### Improvements
+
+#### Kafka topics naming convention
+
+Ingestion topics now follow the schema `<tenant-id>.<env-id>.<system-id>.<projection-id>.ingestion`. More on topic convention can be read [here](../../fast_data/setup_fast_data.md#topic-naming-convention).
+
 ## Console
 
 ### New features
