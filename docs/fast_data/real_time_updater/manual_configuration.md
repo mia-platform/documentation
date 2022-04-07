@@ -35,6 +35,8 @@ sidebar_label: Manual configuration
 - KAFKA_SESSION_TIMEOUT_MS: Timeout in milliseconds used to detect failures. Default 30000
 - KAFKA_HEARTBEAT_INTERVAL_MS: The expected time in milliseconds between heartbeats to the consumer coordinator. Default 3000
 - FORCE_CHECK_ON_OFFSET: Force check that incoming message has offset greater or equal than the one of the projection to update. Default is true.
+- KAFKA_PROJECTION_UPDATES_FOLDER: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).
+- GENERATE_KAFKA_PROJECTION_UPDATES: defines wether the realtime updater should send a message of update every time it writes the projection to Mongo. Default is `false`
 
 ## Custom Projection Changes Collection
 
@@ -309,7 +311,7 @@ where:
 
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
-- `MY_TOPIC` is the topic where the projection change need to be sent
+- `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](../setup_fast_data.md#topic-for-svc-trigger))
 
 Example:
 
@@ -318,21 +320,130 @@ Example:
     "registry-json": {
         "projectionChanges": {
             "sv_pointofsale": {
-                "topic": "my-project.development.sv-pointofsale-pc-json",
+                "topic": "my-tenant.development.my-database.sv-pointofsale.sv-trigger",
             }
         }
     },
     "another-projection": {
         "projectionChanges": {
             "sv_customer": {
-                "topic": "my-project.development.sv-customer-pc-json"
+                "topic": "my-tenant.development.my-database.sv-customer.sv-trigger"
             }
         }
     }
 }
 ```
 
-When a message about `registry-json` happens, the projection changes will be saved on Mongo, and it will be sent to the Kafka topic `my-project.development.sv-pointofsale-pc-json` as well.
+When a message about `registry-json` happens, the projection changes will be saved on mongo and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.sv-trigger` as well.
+
+## Kafka Projection Updates configuration
+
+Whenever the real-time updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
+
+:::info
+This feature has been introduced since version v3.5.0 of the real time updater
+:::
+
+To activate this feature you need to set the following environment variables:
+- KAFKA_PROJECTION_UPDATES_FOLDER: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
+- GENERATE_KAFKA_PROJECTION_UPDATES: defines whether the real-time updater should send a message of update every time it writes the projection to Mongo. Default is `false`
+
+### Message schema
+
+The message produced adheres to the following schema:
+
+```json
+{
+    "type": "object",
+    "required": [
+        "projection",
+        "operationType",
+        "operationTimestamp",
+        "primaryKeys"
+    ],
+    "properties": {
+        "projection": {
+            "type": "string",
+            "description": "The name of the projection"
+        },
+        "operationType": {
+            "type": "string",
+            "description": "The type of operation performed on the collection",
+            "enum": ["INSERT", "UPDATE", "DELETE"]
+        },
+        "operationTimestamp": {
+            "type": "date",
+            "description": "The timestamp at the operation execution"
+        }
+        "primaryKeys": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The primary keys of the projection"
+        },
+        "documentId": {
+            "type": "_id_",
+            "description": "The _id of the Mongo document"
+        }
+        "before": {
+            "type": "object",
+            "description": "The projection document as found on the database before the execution of the operation. `null` after an `INSERT`, `undefined` when not available."
+        },
+        "after": {
+            "type": "object",
+            "description": "The projection document as found on the database after the execution of the operation. `null` after a `DELETE`."
+        },
+        "__internal__kafkaInfo": {
+            "type": "object",
+            "description": "The __internal__kafkaInfo field of the document, if available."
+        }
+    }
+}
+```
+
+:::info
+The `operationType` describes the *raw* operation executed on Mongo, and can be different from the input operation type; for example an input UPSERT operation either results in a `UPDATE` message, or an `INSERT` message, depending on the existence of the document before the operation.  
+A virtual delete always results in an `UPDATE`, because the document still exists on Mongo after the execution with `__STATE__: "DELETED"`, while an input *real delete* always results in a `DELETE`.
+:::
+
+:::warning
+For performance reasons, the projection state `before` of the projection is not returned after an update operation, because a costly `find` operation would be necessary to retrieve such information from the database. The only exception is an UPDATE resulting from a virtual delete: in this case the `before` is returned entirely.
+
+For the same reason, the fields `createdAt` and `documentId` of the projections are returned only after an upsert inserting a new document or after a virtual delete.
+:::
+
+### Configuration
+
+You need to create a configuration with the same path as the one you set in `KAFKA_PROJECTION_UPDATES_FOLDER`. Then, you have to create a configuration file `kafkaProjectionUpdates.json` inside that configuration. The json configuration should look like this one:
+```json
+{
+    "MY_PROJECTION": {
+        "updatesTopic": "MY_UPDATES_TOPIC"
+    }
+}
+```
+where
+- `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
+- `MY_UPDATES_TOPIC` is the topic where the updates message will be sent to.
+
+Notice that you need to set a topic for each projection in the system. Different projection can share the same topic.
+
+For example:
+
+```json
+{
+    "registry-json": {
+        "updatesTopic": "registry-json.update"
+    },
+    "another-projection": {
+        "updatesTopic": "another-projection.update"
+    }
+}
+```
+
+When the real time updater writes to Mongo in reaction to a CDC update, a message is sent to the related topic. For example, if a new projection is saved to the `registry-json`, an `INSERT` message is generated to the topic `registry-json.update`. The key of the resulting Kafka message will be the stringified JSON of the projection key value.
+
 
 ## Tracking the changes
 
@@ -360,7 +471,7 @@ Example:
     },
     "changes": [{
         "state": "NEW",
-        "topic": "my-topic.development.foobar-json",
+        "topic": "my-topic.development.my-system.my-projection.ingestion",
         "partition": 0,
         "timestamp": "2021-11-19T16:22:07.031Z",
         "offset": "14",
@@ -397,7 +508,7 @@ Example:
     "timestamp": "2021-11-19T16:22:07.031Z",
     "updatedAt": "2021-11-19T16:22:07.052Z",
     "__internal__kafkaInfo": {
-        "topic": "my-topic.development.foobar-json",
+        "topic": "my-topic.development.my-system.my-projection.ingestion",
         "partition": 0,
         "timestamp": "2021-11-19T16:22:07.031Z",
         "offset": "14",
