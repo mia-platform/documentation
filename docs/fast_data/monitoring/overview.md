@@ -4,9 +4,9 @@ title: Overview
 sidebar_label: Overview
 ---
 
-A great way of monitoring Fast Data is using Dashboards, which can give you immediate feedback on various aspects of system health. We provide some already configured [Grafana Dashboards](https://grafana.com/grafana/dashboards) to quickly setup a monitoring stack that grants both Dashboards and Alerts.
+A great way of monitoring Fast Data is using Dashboards, which can give you immediate feedback on various aspects of system health. We provide some already configured [Grafana Dashboards](https://grafana.com/grafana/dashboards) to quickly set up a monitoring stack that grants both Dashboards and Alerts.
 
-To  do so, there are a couple of steps you need to follow.
+To do so, there are a couple of steps you need to follow.
 
 ## Console Setup
 
@@ -16,7 +16,7 @@ Each Dashboard has a dedicated service for metrics export, and those services ca
 
 ## Fast Data Monitoring Application
 
-You can create and configure all necessary monitoring services in just few clicks. To do so, visit Mia Platform Marketplace and search for `Fast Data Monitoring` Application. By using this application, you generate two completely configured microservices  that will allow you to export all the necessary metrics for your dashboards.  
+You can create and configure all necessary monitoring services in just few clicks. To do so, visit Mia Platform Marketplace and search for `Fast Data Monitoring` Application. By using this application, you generate two completely configured microservices that will allow you to export all the necessary metrics for your dashboards.
 The two services that will be generated with this application use the docker images of the following open source projects:
 
 * [Kafka Exporter](https://github.com/danielqsj/kafka_exporter)

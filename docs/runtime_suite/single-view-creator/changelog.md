@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- updated MongoDb npm driver to version `4.4.1`
+- updated MongoDB npm driver to version `4.4.1`
 
 ## [3.5.0] 2022-03-11
 

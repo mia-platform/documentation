@@ -4,7 +4,7 @@ title: Real-Time Updater Low Code configuration
 sidebar_label: Low Code configuration
 ---
 
-Here, low-code specific configuration will be described. All of the documentation regarding generic real time updater features in the manual configuration are still valid and applicable.
+Here, low-code specific configuration will be described. All the documentation regarding generic real time updater features in the manual configuration are still valid and applicable.
 
 Low Code Real Time Updater is available since version `4.2.0`
 
@@ -92,7 +92,7 @@ Otherwise, if the automatic aggregation is not used, it is possible naming the k
 It is possible to write the `projectionChangesSchema.json` in ConfigMaps&Secret area of the [Automatic Single view Plugin](../single_view_creator/low_code_configuration.md).
 :::
 
-At the end of the configuration be sure to register the projection in the Strategies page of your single view:
+At the end of the configuration be sure to register the projection in the Strategies' page of your single view:
 
 - Go to single view page
 - Click on Strategies
@@ -101,7 +101,7 @@ At the end of the configuration be sure to register the projection in the Strate
 
 ## Configuration files
 
-For the Automatic Real-Time Updater the `kafka_adapter`, `map_table` and `cast_function` variables are configured by the Mia-Platform console. However, it is fundamental to define the `erSchema.json` to describe the strategies path.
+For the Automatic Real-Time Updater the `kafka_adapter`, `map_table` and `cast_function` variables are configured by the Mia-Platform console. However, it is fundamental to define the `erSchema.json` to describe the strategies' path.
 
 ### ER schema configuration
 
@@ -236,7 +236,7 @@ Look at this example:
 Here `pr_orders_dishes` is connected to :
 
 - `pr_orders` through: `{“ID_ORDER”: “ID_ORDER”}` which means both `pr_orders_dished` and `pr_orders` have `ID_ORDER` as a field of the collection, and they are matched in case the value is the same in both documents.
-- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the the field of the collection `pr_orders_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_orders_dishes` respectively.
+- `pr_dishes` through: `{“id_dish”: “ID_DISH”}` which represents the field of the collection `pr_orders_dishes`, where `Id_dish` and `ID_DISH` are fields of `pr_dishes` and `pr_orders_dishes` respectively.
 
 It is possible to define a constant value in order to validate the condition, for example:
 
@@ -303,7 +303,7 @@ Let's see it in the configuration file below:
 ```
 
 What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
-The custom function have to match the following signature:
+The custom function has to match the following signature:
 
 ```js
 

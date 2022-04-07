@@ -6,11 +6,11 @@ sidebar_label: Cast Functions
 
 ## What is a cast function and why I need it?
 
-Different kinds of table could store data in many different ways.
-You could have a numeric value stored as a string that was supposed to be an integer, or you could also have a date field stored in different formats in different tables but you would like to have date fields all in the same format (for example you receive a date with the format `YYYYMMDD` and you want to cast it to ISO format).
+Different kinds of table could store data in many ways.
+You could have a numeric value stored as a string that was supposed to be an integer, or you could also have a date field stored in different formats in different tables, but you would like to have date fields all in the same format (for example you receive a date with the format `YYYYMMDD` and you want to cast it to ISO format).
 
 Cast functions are meant to solve all these problems giving you full control over the format that data are going to have in your projections.
-Cast functions are simple JavaScript functions that receive the value coming from the Kafka topics and return the value in the format you need for you projection fields.
+Cast functions are simple JavaScript functions that receive the value coming from the Kafka topics and return the value in the format you need for your projection fields.
 
 This enables you to define the output format and type of the imported fields.
 
@@ -37,7 +37,7 @@ Be aware of that if your fields are not `nullable`, in these cases you should de
 
 To define your own custom cast functions click on the *Create* button above the `Custom cast functions` table. This will open a drawer where you can define the property of your own cast function.
 
-- **Name**: is the the name of your cast function. It cannot contain spaces or special characters.
+- **Name**: is the name of your cast function. It cannot contain spaces or special characters.
 - **Returned Type**: is the type of the value returned by the cast function.
 - **Expression**: is the javascript implementation of the cast function. It needs to be an exported function as default.
 
@@ -69,7 +69,7 @@ What happens when the Console changes the default cast function?
 
 Let’s analyze each case:
 
-### The implementation of a default cast Function is changed, but the name castFunctionId is unchanged
+### The implementation of a default cast Function is changed, but the name `castFunctionId` is unchanged
 
 In this case, nothing will change in your configuration. You will continue to use the same implementation you had before.
 
@@ -79,11 +79,11 @@ In this case, the new cast function will be added to your configuration.
 
 ![Fast Data new default castFunction](img/fastdata-new-default-castfunction.png)
 
-If a new default cast function is added on the Console, it will be available in the Cast Function section when you visit the Design area (even if it is not yet stored on your git provider in your fastdata-config.json). When you save the configuration it will be stored in the configuration file.
+If a new default cast function is added on the Console, it will be available in the Cast Function section when you visit the Design area (even if it is not yet stored on your git provider in your `fastdata-config.json`). When you save the configuration it will be stored in the configuration file.
 
 ### A default cast function is deleted
 
-In this case, although a default cast function has been deleted from which Console generates, it will still be available in your configuration (e.g.:  Console remove “defaultCastUnitTimestampToISOString”).
+In this case, although a default cast function has been deleted from which Console generates, it will still be available in your configuration (e.g.: Console removes `defaultCastUnitTimestampToISOString`).
 Let's see an example:
 
 - Default cast functions as seen in *your* project
@@ -94,16 +94,16 @@ Let's see an example:
 
 ![Fast Data without deleted default castFunction](img/fastdata-delete-castfunction-without-deleted.png)
 
-As you can see, in your project you are still able to use all the default cast functions, although *defaultCastUnitTimestampToISOString*, in our example, is no longer supported.
+As you can see, in your project you are still able to use all the default cast functions, although `defaultCastUnitTimestampToISOString`, in our example, is no longer supported.
 If you create a new project, this default cast function will not be provided instead.
 
 ## Technical limitation
 
 In your custom cast functions you can import only the node modules present in the following list:
 
-* [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
-* [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
-* [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
+- [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
+- [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
+- [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
 
 :::caution
 It is used the node version 12.

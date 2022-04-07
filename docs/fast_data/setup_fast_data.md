@@ -16,13 +16,13 @@ To correctly configure your Kafka cluster, you can visit [this site](https://eve
 
 ## Snappy compression
 
-Snappy is a compression and decompression library whose aim is to offer high speed data flow while still mantaining a reasonable compression ratio. Among the various types of compression supported by Kafka for its messages, there is also Snappy.
+Snappy is a compression and decompression library whose aim is to offer high speed data flow while still maintaining a reasonable compression ratio. Among the various types of compression supported by Kafka for its messages, there is also Snappy.
 
 The main advantages of Snappy are:
 
 * Fast compression speed (around 250 MB/sec)
 * Moderate CPU usage
-* Stability and robustness to prevent crashing while still mantaining the same bitstream format among different versions
+* Stability and robustness to prevent crashing while still maintaining the same bitstream format among different versions
 * Free and open source
 
 > *Note*: For further information about Snappy, check the official [github page](https://github.com/google/snappy) of the library.
@@ -35,7 +35,7 @@ Snappy, like every other compression and decompression algorithm, will always in
 
 ## Create topics
 
-You can create a topic using Kafka cli, or if you use the Confluent Cloud you can use the user interface.
+You can create a topic using Kafka CLI, or if you use the Confluent Cloud you can use the user interface.
 
 ### Confluent cloud
 
@@ -54,7 +54,7 @@ If you don't have a cluster, create one following this [documentation](https://d
 On the left menu, click on `Topics` and `Add a topic` button. Insert the topic name and the number of partitions required. Here you could create with defaults or customize topic settings.
 
 :::info
-We suggest to use a topic name like `project.environment.projection-json`
+We suggest using a topic name like `project.environment.projection-json`
 :::
 
 > *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/cloud/current/client-apps/topics/manage.html#create-a-topic)
@@ -78,11 +78,11 @@ Once created the service account, you can set from user interface:
 * *topic name*: new or existent one.
 * *pattern type*: literal or prefixed. If you want to declare an ACL for each topic you should use **literal**.
 * *operation*: for each topic, you should set **READ** and **WRITE** operation.
-* *permission*: could be ALLOW or DENY. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
+* *permission*: could be `ALLOW` or `DENY`. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
 
 #### Use Confluent Cloud CLI
 
-First, you should [install the Confluent Cli](https://docs.confluent.io/ccloud-cli/current/install.html).
+First, you should [install the Confluent CLI](https://docs.confluent.io/ccloud-cli/current/install.html).
 
 Once installed, to create a new topic (with some custom config) run:
 
@@ -113,11 +113,11 @@ To set up the ACL for the consumer group, from the Confluent Cloud UI you should
 * *consumer group ID*: write consumer group ID configured in environment variables
 * *pattern type*: literal or prefixed. If you want to declare an ACL for each topic you should use `literal`;
 * *operation*: You should set the **READ** operation;
-* *permission*: could be ALLOW or DENY. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
+* *permission*: could be `ALLOW` or `DENY`. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
 
 ### Consumer group ACL from Confluent CLI
 
-If you set `my-consumer-group.development` as consumer group id, you can configure from cli:
+If you set `my-consumer-group.development` as consumer group id, you can configure from CLI:
 
 ```sh
 ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation READ --consumer-group "my-consumer-group.development" --cluster CLUSTER_ID;
@@ -141,5 +141,4 @@ Here is the list:
 * **FAST_DATA_PROJECTIONS_DATABASE_NAME**: name of the db where projections are saved
 * **KAFKA_BROKERS**: the host of your Kafka cluster (with the port)
 
-* **MONGODB_URL**: the url to mongo db. It is the same used, for example, for crud service
-
+* **MONGODB_URL**: the URL to Mongo db. It is the same used, for example, for crud service
