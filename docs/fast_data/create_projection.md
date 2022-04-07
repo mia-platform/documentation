@@ -14,7 +14,7 @@ The creation of a System of Records requires you to insert a system ID which is 
 
 ## Delete a System of Records
 
-To delete a System of Records, you have to click the Delete button at the bottom-right corner of the System of Records detail page.  
+To delete a System of Records, you have to click the Delete button in the bottom-right corner of the System of Records detail page.  
 The deletion is not allowed until you have at least one Projection inside the System, hence you need to delete all the projections in a System before being able to delete it.  
 
 ## Projections Changes
@@ -22,7 +22,7 @@ The deletion is not allowed until you have at least one Projection inside the Sy
 When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information about the updated document.
 
 :::caution
-The default Projection Changes collection is automatically managed by the Console and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/manual-configuration#custom-projection-changes-collection).
+The default Projection Changes collection is automatically managed by the Console, and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/manual-configuration#custom-projection-changes-collection).
 :::
 
 One Projections Changes collection is created for each System of Records as default.
@@ -106,7 +106,7 @@ Example json
 ]
 ```
 
-Example csv
+Example CSV
 
 ```csv
 field1,field2,field3
@@ -128,7 +128,7 @@ You cannot import fields with the same name as one of the metadata fields.
 In the card `Indexes`, you can add indexes to the collection. To learn more about crud indexes, [click here](../runtime_suite/crud-service/overview_and_usage#indexes).
 However, differently from Indexes that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
-An `_id` index is created by default and it is not deletable.
+An `_id` index is created by default, and it is not deletable.
 
 Both custom fields and metadata can be used as fields for indexes.
 
@@ -161,7 +161,7 @@ Most DBMSes have some way of exporting the database schema, producing a DDL file
 
 #### Importing - step 1
 
-To start importing projections from a DDL, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, on the top right corner you will find an import button, which will open a Modal that will guide you through the import process.
+To start importing projections from a DDL, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process.
 
 On the first page, you will need to provide two information:
 

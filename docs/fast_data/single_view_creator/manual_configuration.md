@@ -11,8 +11,8 @@ In this page, we discuss how to configure the Template. You can find more inform
 ### Initialize the service
 
 The service starts in `index.js` file.
-First of all, the template uses the [Custom Plugin Lib](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/plugin_baas_4) to instantiate a service.
-Inside its callback, the `single-view-creator-lib`  is initialized to deal with the complexity of the Fast Data components.
+First, the template uses the [Custom Plugin Lib](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/plugin_baas_4) to instantiate a service.
+Inside its callback, the `single-view-creator-lib` is initialized to deal with the complexity of the Fast Data components.
 
 ```js
 const singleViewCreator = getSingleViewCreator(log, config, customMetrics)
@@ -25,11 +25,11 @@ Where `config` is an object whose fields represent the [Microservice environment
 
 Some environment variables will be pre-compiled when you create the service from template, others won't, but they will still have a placeholder as value. Replace it with the correct value.
 
-Here some tips:
+Here are some tips:
 
 - `TYPE`: should be the name of the single view which your single view creator is responsible for
 - `SINGLE_VIEWS_COLLECTION`: should be the name of the single view which your single view creator is responsible for
-- `PROJECTIONS_CHANGES_COLLECTION`: if you have set a custom projection change collection name from advanced, then set its name. Otherwise it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for.
+- `PROJECTIONS_CHANGES_COLLECTION`: if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for.
 - `SINGLE_VIEWS_PORTFOLIO_ORIGIN`: should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`
 - `SINGLE_VIEWS_ERRORS_COLLECTION`: it is the name of a MongoDB Crud you want to use as collection for single view errors.
 - `KAFKA_BA_TOPIC`: topic where to send the `before-after`, which is the single view document before and after a change
@@ -57,18 +57,18 @@ const resolvedOnStop = singleViewCreator.startCustom({
 - `strategy` is the function that performs the aggregation over the projections
 - `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
 - `validator` is the validation function which determines if the Single View is valid (and thus inserted or updated in Mongo) or not (and thus deleted)
-- `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the single view document on mongo to update or delete
+- `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the single view document on Mongo to update or delete
 - `upsertFnSv` is the function that updates or inserts the Single View to the Single Views collection on Mongo
 - `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo. It's used the `deleteSV` exported by the library.
 
 :::note
-The `deleteSV` function makes a *real delete* of the document on MongoDb. So, unlike the **projections** deletion, it does *not* make a virtual delete.
+The `deleteSV` function makes a *real delete* of the document on MongoDB. So, unlike the **projections** deletion, it does *not* make a virtual delete.
 :::
 
 The value of `upsertFnSv` is based on the `UPSERT_STRATEGIES` environment variable. If its value is *update*, then the *updateOrInsertSV* function exported by the library is used, otherwise the function *replaceOrInsertSV* is used instead. The default upsert strategy is *replace*.
 
 :::note
-In the versions of the template prior to the `v3.1.0`, the UPSERT_STRATEGIES was missing and it was used an alias function (*upsertSV*) of the *replaceOrInsertSV*.
+In the versions of the template prior to the `v3.1.0`, the UPSERT_STRATEGIES was missing, and it was used an alias function (*upsertSV*) of the *replaceOrInsertSV*.
 :::
 
 The Single View creator needs to be stopped when the process is stopping. To do that, we use the `onClose` hook:
@@ -97,7 +97,7 @@ This documentation refers to the `@mia-platform-internal/single-view-creator-lib
 
 The core of your work on this service are the files inside the `src` folder.
 
-**singleViewKey.js**: It takes as input the identifier of the projection change and returns the key object used to select the document of the Single View collection that needs to be updated. This key corresponds to the query object fed to mongodb, therefore you can return any legal mongo query.
+**singleViewKey.js**: It takes as input the identifier of the projection change and returns the key object used to select the document of the Single View collection that needs to be updated. This key corresponds to the query object fed to mongodb, therefore you can return any legal Mongo query.
 
 In the example below, we expect to have the field `myId` as primary key of the Single View collection.
 
@@ -170,7 +170,7 @@ module.exports = (logger, singleViewData) => {
 Inside the mapper a renaming and repositioning of the fields can be applied.
 
 :::note
-We suggest to implement inside the mapper all the aggregation logic that can be reused for all the clients that will read the Single Views, they should be as generic as possible.
+We suggest implementing inside the mapper all the aggregation logic that can be reused for all the clients that will read the Single Views, they should be as generic as possible.
 It is a good practice to have some calculation and aggregation logic inside Single View Creator as far as it is reusable.
 If you have to apply some custom logic try to do it inside and API Adapter specific for the client.
 :::
@@ -179,7 +179,7 @@ If you have to apply some custom logic try to do it inside and API Adapter speci
 
 The `startCustom` function accepts a function in the configuration object called `validator`, which is the validation function.
 
-The validation of a Single View determines what to do with the current update. If the single  view is determined as "non-valid", the delete function will be called. Otherwise, if the result of the validation is positive, it will be updated or inserted in the Single Views collection, through the upsert function. Delete function and upsert function will be explained in the next paragraph.
+The validation of a Single View determines what to do with the current update. If the single view is determined as "non-valid", the delete function will be called. Otherwise, if the result of the validation is positive, it will be updated or inserted in the Single Views collection, through the upsert function. Delete function and upsert function will be explained in the next paragraph.
 
 For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be updated or inserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
 
@@ -210,19 +210,19 @@ module.exports = function validator(logger, singleView) {
 ```
 
 :::warning
-When the update of an existing Single View is triggered and the validation has a negative outcome, the Single View won't be updated and instead it will be deleted.
+When the update of an existing Single View is triggered and the validation has a negative outcome, the Single View won't be updated, and instead it will be deleted.
 :::
 
 ### Customize Upsert and Delete functions
 
 If you want, you can replace both upsert and delete functions with your own custom functions to perform those operations.
 
-These functions represents the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
+These functions represent the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
 
 In case the validation is succeeded, the upsert function will be called with the following arguments:
 
 - `logger` is the logger
-- `singleViewCollection` is the the Mongo collection object
+- `singleViewCollection` is the Mongo collection object
 - `singleView` is the result of the mapping operation
 - `singleViewKey` is the Single View key
 
@@ -230,14 +230,14 @@ On the other hand, if the validation has a negative result, the delete function 
 
 In both cases, some operation should be done on `singleViewCollection` in order to modify the Single View with the current `singleViewKey`, with the idea of "merging" the current result with the one already present in the database.
 
-For example, we have a Customer Single View with a list of products the customer bought from different e-commerce and we receive an update for a new object on a specific shop, in that case we don't want to replace the list of bought products with the last one arrived but we want to push the product in the list in order to have the complete history of purchases.
+For example, we have a Customer Single View with a list of products the customer bought from different e-commerce, and we receive an update for a new object on a specific shop, in that case we don't want to replace the list of bought products with the last one arrived, but we want to push the product in the list in order to have the complete history of purchases.
 
 For both functions, the output is composed of an object containing two fields:
 
 - `old` which contains the old Single View
 - `new` which contains the new Single View
 
-These values will be the respectively the `before` and `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator. The naming convention for this topic can be found [here](../setup_fast_data.md#topic-for-verified-update-of-the-sv).
+These values will respectively be the `before` and the `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator. The naming convention for this topic can be found [here](../setup_fast_data.md#topic-for-verified-update-of-the-sv).
 
 ```js
 async function upsertSingleViewFunction(
@@ -288,7 +288,7 @@ async function deleteSingleViewFunction(
 
 ### Error handling
 
-When generating a Single View, every error that occurs is saved in MongoDb, with a format that satisfies the schema requirements of the crud service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
+When generating a Single View, every error that occurs is saved in MongoDB, with a format that satisfies the schema requirements of the crud service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
 
 - `_id`: a unique identifier of the record, automatically generated
 - `portfolioOrigin`: a value concerning the origin of the error, defaults to `UNKNOWN_PORTFOLIO_ORIGIN`
@@ -301,4 +301,4 @@ When generating a Single View, every error that occurs is saved in MongoDb, with
 - `updaterId`: set to `single-view-creator`
 - `updatedAt`: time of creation
 
-It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../../../docs/development_suite/api-console/api-design/crud_advanced.md#indexes).
+It is highly recommended using a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../../../docs/development_suite/api-console/api-design/crud_advanced.md#indexes).

@@ -27,7 +27,6 @@ _RELEASE_DATE_
 
 ### Security update for the following microservices
 
-
 ## Backoffice
 
 ### New features
