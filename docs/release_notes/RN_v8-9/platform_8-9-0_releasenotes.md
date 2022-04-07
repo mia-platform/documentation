@@ -5,7 +5,7 @@ sidebar_label: v8.9.0
 image: "img/release-note-link-preview.png"
 ---
 
-_RELEASE_DATE_
+_April 7, 2022_
 
 ## Fast Data
 
