@@ -1110,6 +1110,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Envoy API Gateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway-envoy/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/api-gateway-envoy/filters"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Export Service",
               "items": [
                 {
