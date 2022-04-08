@@ -1763,6 +1763,10 @@
           "collapsed": true,
           "items": [
             {
+              "id": "release_notes/RN_v8-9/v8.9.1",
+              "type": "doc"
+            },
+            {
               "id": "release_notes/RN_v8-9/v8.9.0",
               "type": "doc"
             }
