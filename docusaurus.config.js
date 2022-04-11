@@ -61,7 +61,7 @@ const config = {
             {
               to: "docs/marketplace/overview_marketplace",
               label: "Marketplace",
-              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite|development_suite/api-console/api-design/custom_microservice_get_started)"
+              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started)"
             },
             {
               to: "docs/fast_data/overview",
@@ -84,7 +84,8 @@ const config = {
             },
             {
               to: "docs/tools/overview_service_tools",
-              label: "Tools"
+              label: "Tools",
+              activeBaseRegex: "(docs|docs/\\d.x)/(tools|runtime_suite_tools)"
             },
           ]
         },
