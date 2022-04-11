@@ -73,7 +73,7 @@ We need to update the single view with `restaurantId` equals to the restaurant t
 
 In order to maintain the consistency between Single View data and the content of the projections, the Single Views need to be linked to the projections they aggregate, so that when some documents of the projections are updated, the single view containing that information can be updated accordingly.  
 
-So, it must be defined a function for each projection associated with the single view. These functions are called `strategies` and are used to know which specific single view document must be updated as a consequence of the update of a projection document. To know how to create a strategy [read here](./single_view#strategies)
+So, it must be defined a function for each projection associated with the single view. These functions are called `strategies` and are used to know which specific single view document must be updated as a consequence of the update of a projection document. To know how to create a strategy [read here](#strategies)
 
 ## Create the Single View
 
@@ -286,7 +286,7 @@ The folder `fast-data-files` must be created at the root level of the configurat
 
 To enable the continuous integration, you could start a pipeline checking for changes inside the `fast-data-files` folder and triggers test, lint and others useful scripts.
 
-To know the technical limitation you have in these files, [read here](./single_view#technical-limitation)
+To know the technical limitation you have in these files, [read here](#technical-limitation)
 
 ### Link projections to the Single View
 
@@ -309,6 +309,8 @@ Once you have linked some strategies to a Single View Creator in low code mode, 
 :::
 
 If you choose to use manual strategies, each listed manual projection must be linked to a file without the extension `.js` which is the entry point of your **strategy function**.
+
+Notice that the strategy file must be placed directly inside the directory with the name of the system of records, placing it inside a subfolder of this directory is not supported.
 
 Example:
 
