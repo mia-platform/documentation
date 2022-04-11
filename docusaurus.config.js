@@ -69,8 +69,8 @@ const config = {
               activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
             },
             {
-              to: "docs/business_suite/overview-business-suite",
-              label: "CMS & Analytics",
+              to: "docs/business_suite/backoffice/overview",
+              label: "Backoffice",
               activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
             },
             {

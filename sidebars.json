@@ -1,41 +1,6 @@
 {
   "cms": [
     {
-      "id": "business_suite/overview-business-suite",
-      "type": "doc"
-    },
-    {
-      "collapsed": false,
-      "items": [
-        {
-          "id": "business_suite/guide_cms",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/cms_configuration/config_cms",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/cms_configuration/conf_cms",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/colorare_il_cms",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/update_cms",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/custom-frontends-integration-CMS",
-          "type": "doc"
-        }
-      ],
-      "label": "CMS",
-      "type": "category"
-    },
-    {
       "collapsed": false,
       "items": [
         {
@@ -125,33 +90,75 @@
       "type": "category"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "items": [
         {
-          "id": "business_suite/cms_configuration/config_analytics",
+          "id": "business_suite/overview-business-suite",
           "type": "doc"
         },
         {
-          "id": "business_suite/conf_analytics",
-          "type": "doc"
-        }
-      ],
-      "label": "Analytics",
-      "type": "category"
-    },
-    {
-      "collapsed": false,
-      "items": [
-        {
-          "id": "business_suite/data-visualization",
-          "type": "doc"
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/guide_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/cms_configuration/config_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/cms_configuration/conf_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/colorare_il_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/update_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/custom-frontends-integration-CMS",
+              "type": "doc"
+            }
+          ],
+          "label": "CMS",
+          "type": "category"
         },
         {
-          "id": "business_suite/timeline",
-          "type": "doc"
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/cms_configuration/config_analytics",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/conf_analytics",
+              "type": "doc"
+            }
+          ],
+          "label": "Analytics",
+          "type": "category"
+        },
+        {
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/data-visualization",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/timeline",
+              "type": "doc"
+            }
+          ],
+          "label": "Data visualization",
+          "type": "category"
         }
       ],
-      "label": "Data visualization",
+      "label": "Previous tools",
       "type": "category"
     }
   ],
