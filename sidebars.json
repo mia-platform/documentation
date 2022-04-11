@@ -43,6 +43,10 @@
           "type": "doc"
         },
         {
+          "id": "business_suite/backoffice/use",
+          "type": "doc"
+        },
+        {
           "collapsed": false,
           "items": [
             {
