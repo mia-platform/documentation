@@ -1760,6 +1760,10 @@
   ],
   "releaseNotes": [
     {
+      "id": "release_notes/mia-platform-v9-preview",
+      "type": "doc"
+    },
+    {
       "id": "release_notes/mia-platform-v8",
       "type": "doc"
     },
