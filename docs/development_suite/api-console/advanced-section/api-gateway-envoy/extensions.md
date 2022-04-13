@@ -282,6 +282,22 @@ LUA scripts can be used to log request and response data, for debugging purposes
 - **Headers**, with `request_handle:headers():get("header-name")`
 - The **body**, with `request_handle:body()`
 
+#### Importing a library
+
+Sometimes it could be useful to import external LUA libraries or refactor existing scripts into dedicated files. This could be done using the LUA scripts extension in combination with [configmaps](../../api-design/services#configmaps). For example, let's assume we have a file called `my-library.lua` that exports a function called `myLibFunction` and we want to apply this function to incoming requests. This could be done through the following steps:
+
+1. Create a configmap for the API Gateway service and mount it in an arbitrary path, in this example, we have chosen `/etc/lua/lib`
+2. Add your script file `my-library.lua` to the configmap you just created
+3. Let's hook this library to the gateway using the scripts extension, to do it add the following snippet to the corresponding file `on-request-scripts.yaml` in the advanced section
+```yaml
+- listener_name: frontend
+  body: |-
+    local myLib = require('/etc/lua/lib/my-library')
+    myLib.myLibFunction(request_handle)
+```
+
+In this way, `myLibFunction` will be invoked on every incoming request on the `frontend` listener.
+
 ### HTTP filters
 
 **Envoy docs:** [HTTP filters list](https://www.envoyproxy.io/docs/envoy/v1.21.0/api-v3/config/filter/http/http)
