@@ -48,7 +48,7 @@ If you already have an existing project and want to switch to Envoy, you will ju
 The existing extensions for the previous API Gateway cannot be automatically migrated, thus they have to be migrated manually.
 :::
 
-<!-- ### Extensions migration from NGINX
+### Extensions migration from NGINX
 
 If you are moving from our [API Gateway based on NGINX](../api-gateway/overview) you should also migrate existing extensions in order to reproduce the same behavior with Envoy. Depending on the extension, this migration can be more or less complicated. In the following sections we will illustrate the migration process for the most commonly used NGINX extensions.
 
@@ -59,28 +59,159 @@ With NGINX API Gateway additional endpoints can be defined using multiple [maps]
 - `maps-proxyUrl.*.map` for path rewrite
 - `maps-proxyName.*.map` for upstream definition
 
-Together, these maps, contain the complete definition of the additional endpoints. In order to add those endpoints to Envoy we can use the [endpoints extension](../../development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#endpoints). For example, assuming we have the following maps:
+Together, these maps, contain the complete definition of the additional endpoints. In order to add those endpoints to Envoy we can use the [endpoints extension](../../development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#endpoints). 
+
+For example, assuming we have the following maps:
 
 ```
 # File: maps-proxyUrl.before.map
 
-"~^(secreted|unsecreted)-1-GET-/app_dataentry" "cms-site";
-"~^(secreted|unsecreted)-1-GET-/users/me" "authentication-service";
-"~^(GET|POST|PUT|PATCH|DELETE)-/v2/api/projects(?<path>[/\?].*|$)$" "/api/projects$path";
+map $original_request_method-$original_request_uri$is_args$args $proxy_url {
+  default $original_request_uri$is_args$args;
+
+  "~^GET-/prefix" "/api/prefix";
+  "~^(GET|POST)-/exact" "/api/exact";
+  "~^\w+-/regex/(?<param0>[^\/]+)/endpoint$" "/api/$param0/regex";
+
+}
 ```
 
 ```
 # File: maps-proxyName.before.map
 
-"~^(secreted|unsecreted)-1-GET-/app_dataentry" "cms-site";
-"~^(secreted|unsecreted)-1-GET-/users/me" "authentication-service";
-"~^(GET|POST|PUT|PATCH|DELETE)-/v2/api/projects(?<path>[/\?].*|$)$" "/api/projects$path";
+map $secret_resolution-$is_allowed-$original_request_method-$original_request_uri $proxy_name {
+  default "not_found";
+
+
+  "~^secreted-1-GET-/prefix" "prefix-service";
+  "~^(secreted|unsecreted)-1-GET-/exact$" "exact-service";
+  "~^(secreted|unsecreted)-1-\w+-/regex/(?<param0>[^\/]+)/endpoint$" "regex-service";
+
+}
 ```
 
 They can be translated to:
 
 ```yaml
 # File: endpoints.yaml
+- listener_name: frontend
+  match:
+    headers:
+      - name: ':method'
+        string_match:
+          safe_regex:
+            google_re2: {}
+            regex: ^(GET)$
+    prefix: /prefix
+  route:
+    prefix_rewrite: /api/prefix
+    cluster: prefix-service
+  typed_per_filter_config:
+    envoy.filters.http.rbac:
+      '@type': >-
+        type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
+      rbac:
+        rules:
+          action: ALLOW
+          policies:
+            unsecreted:
+              permissions:
+                - metadata:
+                    filter: mia.metadata
+                    path:
+                      - key: secret_resolution
+                    value:
+                      string_match:
+                        safe_regex:
+                          google_re2: {}
+                          regex: ^(secreted)$
+              principals:
+                - any: true
+- listener_name: frontend
+  match:
+    headers:
+      - name: ':method'
+        string_match:
+          safe_regex:
+            google_re2: {}
+            regex: ^(GET|POST)$
+    path: /exact
+  route:
+    prefix_rewrite: /api/exact
+    cluster: exact-service
+  typed_per_filter_config:
+    envoy.filters.http.rbac:
+      '@type': >-
+        type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
+      rbac:
+        rules:
+          action: ALLOW
+          policies:
+            unsecreted:
+              permissions:
+                - metadata:
+                    filter: mia.metadata
+                    path:
+                      - key: secret_resolution
+                    value:
+                      string_match:
+                        safe_regex:
+                          google_re2: {}
+                          regex: ^(secreted|unsecreted)$
+              principals:
+                - any: true
+- listener_name: frontend
+  match:
+    safe_regex:
+      google_re2: {}
+      regex: /regex/([^/]+)/endpoint$
+  route:
+    regex_rewrite:
+      pattern:
+        google_re2: {}
+        regex: /regex/([^/]+)/endpoint$
+      substitution: /api/\\1/regex
+    cluster: regex-service
+  typed_per_filter_config:
+    envoy.filters.http.rbac:
+      '@type': >-
+        type.googleapis.com/envoy.extensions.filters.http.rbac.v3.RBACPerRoute
+      rbac:
+        rules:
+          action: ALLOW
+          policies:
+            unsecreted:
+              permissions:
+                - metadata:
+                    filter: mia.metadata
+                    path:
+                      - key: secret_resolution
+                    value:
+                      string_match:
+                        safe_regex:
+                          google_re2: {}
+                          regex: ^(secreted|unsecreted)$
+              principals:
+                - any: true                                
 ```
 
-The match translation can be done in many ways, we recommend to use: `path` for exact matches, `prefix` for prefixes and `safe_regex` for everything else. -->
+The match translation can be done in many ways, we recommend to use: `path` for exact matches, `prefix` for prefixes and `safe_regex` for everything else.
+
+In addition you should also add the clusters definitions for the new endpoints, please refer to [cluster extension](../../development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#clusters) section for more details.
+
+:::caution
+Pay careful attention to the use of trailing slashes in the route’s match prefix value. Stripping a prefix from a path requires multiple Routes to handle all cases. For example, rewriting `/prefix` to `/` and `/prefix/etc` to `/etc` cannot be done in a single Route, as shown by the below config entries:
+
+```yaml
+- match:
+    prefix: "/prefix/"
+  route:
+    prefix_rewrite: "/"
+- match:
+    prefix: "/prefix"
+  route:
+    prefix_rewrite: "/"
+```
+
+Having above entries in the config, requests to `/prefix` will be stripped to `/`, while requests to `/prefix/etc` will be stripped to `/etc`.
+:::
