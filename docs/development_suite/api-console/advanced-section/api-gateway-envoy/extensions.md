@@ -139,16 +139,16 @@ For instance, the following snippet adds two custom headers (`custom-authz-heade
 - listener_name: frontend
   name: envoy.filters.http.ext_authz
   typed_config:
-  '@type': 'type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz'
-  transport_api_version: V3
-  http_service:
+    '@type': 'type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz'
+    transport_api_version: V3
+    http_service:
       server_uri:
-      uri: http://authorization-service
-      cluster: authorization-service
-      timeout: 10s
-      path_prefix: /auth
+        uri: http://authorization-service
+        cluster: authorization-service
+        timeout: 10s
+        path_prefix: /auth
       authorization_request:
-      headers_to_add:
+        headers_to_add:
         - key: X-Forwarded-Host
           value: '%REQ(HOST)%'
         - key: Scheme
@@ -173,23 +173,15 @@ For instance, the following snippet adds two custom headers (`custom-authz-heade
           value: 'value-1'
         - key: custom-authz-header-2
           value: 'value-2'
-      authorization_response:
-      allowed_upstream_headers:
-          patterns:
-          - exact: mia-userid
-          - exact: mia-groups
-          - exact: mia-allowed
-          - exact: mia-userproperties
-          - exact: client-type
-          - exact: isbackoffice
-      dynamic_metadata_from_headers:
-          patterns:
-          - exact: mia-userid
-          - exact: mia-groups
-          - exact: mia-allowed
-          - exact: mia-userproperties
-  failure_mode_allow: false
-  include_peer_certificate: true
+        authorization_response:
+          dynamic_metadata_from_headers:
+            patterns:
+            - exact: mia-userid
+            - exact: mia-groups
+            - exact: mia-allowed
+            - exact: mia-userproperties
+    failure_mode_allow: false
+    include_peer_certificate: true
 ```
 
 :::info
