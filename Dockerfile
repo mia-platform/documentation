@@ -1,4 +1,4 @@
-FROM nexus.mia-platform.eu/core/static-files:3.2.4 as build
+FROM nexus.mia-platform.eu/core/static-files:3.2.6 as build
 
 USER root
 
@@ -12,7 +12,7 @@ RUN echo "mia-platform-docs: $COMMIT_SHA" >> ./commit.sha
 
 ################################################################################à
 
-FROM nexus.mia-platform.eu/core/static-files:3.2.4
+FROM nexus.mia-platform.eu/core/static-files:3.2.6
 
 LABEL maintainer="Mia Platform Core Team<core@mia-platform.eu>" \
   name="Documentation" \
