@@ -150,14 +150,6 @@ Lastly, you need to overwrite the **authorizer filter** to add the headers conta
           - key: miauserproperties
             value: '%DYNAMIC_METADATA(["mia.metadata","mia_userproperties"])%'
       authorization_response:
-        allowed_upstream_headers:
-          patterns:
-          - exact: mia-userid
-          - exact: mia-groups
-          - exact: mia-allowed
-          - exact: mia-userproperties
-          - exact: client-type
-          - exact: isbackoffice
         dynamic_metadata_from_headers:
           patterns:
           - exact: mia-userid
