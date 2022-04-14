@@ -47,7 +47,6 @@ Within the table there are a series of action that can be performed:
     ![burger_menu_ms](img/burger_menu_config.png)
   - go to the logs of a container, always visible;
   - go to the previous logs of a container, visible **only if the Pod has ever restarted**;
-    ![burger_menu_ms](img/logs_previous.png)  
 - to restart the individual Pod, always visible.
     
 :::info
@@ -131,5 +130,24 @@ Using the dedicated buttons, the Pod describe can be:
 In the tab `Events`, you can find the events of the selected Pod sorted in a table.
 
 ![events](img/events.png)
+
+Using the dedicated button, the events can be refreshed.
+
+### Namespace describe
+
+In the `Namespace` section, under the `Describe` tab, you can find the describe of the current Namespace in JSON format.
+
+![describe](img/describe_namespace.png)
+
+Using the dedicated buttons, the Namespace describe can be:
+-  copied to clipboard;
+-  expanded in the viewer;
+-  downloaded as JSON file
+
+### Namespace events
+
+In the `Namespace` section, under the `Events` tab, you can find the events of the current Namespace sorted in a table.
+
+![events](img/namespace_events.png)
 
 Using the dedicated button, the events can be refreshed.
