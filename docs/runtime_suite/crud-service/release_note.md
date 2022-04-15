@@ -3,7 +3,7 @@ id: release_note
 title: Release Note
 sidebar_label: Release Note
 ---
-Here below you can read the release note of the Crud Service. Only the versions upper than 3.2.0 are available. Lower versions are not recommended. 
+Here below you can read the release note of the CRUD Service. Only the versions upper than 3.2.0 are available. Lower versions are not recommended. 
 
 ## 4.1.0 (2021-07-06)
 

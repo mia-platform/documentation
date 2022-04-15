@@ -8,7 +8,7 @@ CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose
 Mia-Platform Console takes advantage of the CRUD Service to let you configure CRUDs through a dedicated UI, the [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) section.
 
 :::note
-At the moment, you can have only one Crud Service in your branch at a time.
+At the moment, you can have only one CRUD Service in your branch at a time.
 :::
 
 It's possible to configure CRUD Service with more than one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.

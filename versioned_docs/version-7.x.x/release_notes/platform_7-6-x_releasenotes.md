@@ -95,7 +95,7 @@ It's been increased the CPU request to `40m` and limit to `200m` of the [Real-Ti
 
 #### Missing service placeholder for MongoDB CRUD section
 
-If the [Crud Service](../runtime_suite/crud-service/overview_and_usage) is not enabled as a core service in the project, the [MongoDB CRUD](development_suite/api-console/api-design/crud_advanced) section displays a placeholder to signal the need for the service configuration.
+If the [CRUD Service](../runtime_suite/crud-service/overview_and_usage) is not enabled as a core service in the project, the [MongoDB CRUD](development_suite/api-console/api-design/crud_advanced) section displays a placeholder to signal the need for the service configuration.
 
 ### Marketplace
 

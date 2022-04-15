@@ -52,7 +52,7 @@ Mia Platform boost their security and authentication system with 2new microservi
 
     ![](img/delete-routes.png)
 
-**Crud Area**
+**CRUD Area**
 
 * Field type of *_id* in CRUD can be edited  
 * Allow [TTL Indexes](https://docs.mongodb.com/manual/core/index-ttl/)

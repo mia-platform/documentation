@@ -52,7 +52,7 @@ We are working as quickly as possible to make these features available without b
   
 * **Design - CRUD**
   
-    Restyling of add new crud section with card layout
+    Restyling of add new CRUD section with card layout
   
 * **Design - Microservices**
   

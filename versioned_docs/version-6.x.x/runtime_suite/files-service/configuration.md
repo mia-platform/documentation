@@ -190,7 +190,7 @@ The `private-key` is a certificate with newline code (`\n`). In order to interpo
 
 ### Caster file
 
-An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to crud collection.
+An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to CRUD collection.
 
 ```js
 'use strict'

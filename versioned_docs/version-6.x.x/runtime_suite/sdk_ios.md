@@ -694,7 +694,7 @@ let crud = CRUD(basePath: "<YourProjectBasePath>", secret: "<YourProjectSecret>"
 Instantiate the CRUD in a class that is always reachable by the other classes of the app. So there isn't the necessity to instantiate it each time you need to operate with the CRUD.
 :::
 
-Through the crud instance is possible to access all the CRUD methods (GET,POST,PATCH and DELETE). For example, to perform a GET request to a collection called "**Author**", it is possible to proceed as follow:
+Through the CRUD instance is possible to access all the CRUD methods (GET,POST,PATCH and DELETE). For example, to perform a GET request to a collection called "**Author**", it is possible to proceed as follow:
 
 ```
 crud.get(collection: "author", queryBuilder: nil)

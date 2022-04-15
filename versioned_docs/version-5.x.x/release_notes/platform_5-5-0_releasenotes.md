@@ -37,7 +37,7 @@ sidebar_label: v5.5
   In the detail of each CRUD, the creation of an index with more than one field does **not comprimise anymore CRUD configuration**.
 
 * **CMS**
-  The 'export' functionality allows you to **download all the records**: there is no more a limit to the number of records to download. Moreover, Crud service has been **updated to version 2.1.4**.
+  The 'export' functionality allows you to **download all the records**: there is no more a limit to the number of records to download. Moreover, CRUD service has been **updated to version 2.1.4**.
 
 ### How to update your DevOps Console
 
@@ -150,5 +150,5 @@ Fixed in v5.5.2
 * **Design - CRUD/Microservices/Pre&Post**
    During the typing of a description of a Collection, Microservice or Decorator, an error appears when a "space" is typed. The **description validators are removed**.
 
-* **Design - Crud/Proxies/Endpoints**
+* **Design - CRUD/Proxies/Endpoints**
    When the user wants to see the field's and type's detail, they seem to be disabled. **Border, cursor, color and background** of the input element are changed.

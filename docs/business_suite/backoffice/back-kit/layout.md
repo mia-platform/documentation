@@ -608,7 +608,7 @@ Back-Kit provides the following classes of components:
   - [Table](components/data-visualization.md#table)
   - [Breadcrumbs](components/data-visualization.md#breadcrumbs)
 - [Clients](components/clients.md):
-  - [Crud Client](components/clients.md#crud-client)
+  - [CRUD Client](components/clients.md#crud-client)
   - [Lookup Client](components/clients.md#lookup-client)
   - [File Client](components/clients.md#file-client)
   - [File Manager](components/clients.md#file-manager)

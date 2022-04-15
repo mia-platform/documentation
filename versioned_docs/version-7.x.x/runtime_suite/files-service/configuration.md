@@ -219,7 +219,7 @@ header will be set in the response of each file with the `max-age` attributed de
 
 ### Caster file
 
-An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to crud collection.
+An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to CRUD collection.
 
 ```js
 'use strict'

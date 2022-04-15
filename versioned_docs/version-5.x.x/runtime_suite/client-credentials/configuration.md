@@ -14,7 +14,7 @@ The environment variables accepted by this service:
 * **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
 * **SERVICE_VERSION**: version of the service;
 * **DELAY_SHUTDOWN_SECONDS** (defaults to `10` second): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
-* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud colection containing the client information;
+* **CRUD_CLIENT_BASE_URL** (*required*): base url to the CRUD colection containing the client information;
 * **CLIENT_ID_HASH_SALT** (*required*): static hash salt used to save the client id;
 * **CLIENT_SECRET_HASH_COST** (defaults to `10`): the cost to generate the hash of the client secret (using bcrypt);
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;

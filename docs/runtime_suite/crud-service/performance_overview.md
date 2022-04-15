@@ -3,17 +3,17 @@ id: performance_overview
 title: Requests and limits
 sidebar_label: Performance Overview
 ---
-Here are listed different requests and limits configurations that should be applied to the CPU and memory of Crud Service in order to reach optimal performances on different scenarios.
+Here are listed different requests and limits configurations that should be applied to the CPU and memory of CRUD Service in order to reach optimal performances on different scenarios.
 
 :::note
-Following these guidelines allows you to bring Crud Service to an optimal state where:
+Following these guidelines allows you to bring CRUD Service to an optimal state where:
 
 - performances are not restricted by K8s CPU throttling policies
 - the minimum amount of resources are used on the cluster.
 :::
 
-Results have been obtained through specific tests implementing a series of requests to the Crud Service.
-Specifically, two APIs have been tested to verify Crud Service resource consumption:
+Results have been obtained through specific tests implementing a series of requests to the CRUD Service.
+Specifically, two APIs have been tested to verify CRUD Service resource consumption:
 
 - `GET /`: used to download a set of data, this has been tested in different scenarios:
  - using an empty collection;
@@ -23,11 +23,11 @@ Specifically, two APIs have been tested to verify Crud Service resource consumpt
  - updating a small document by uploading a relatively small payload (~500KB)
  - updating a big document by uploading a relatively big payload (~5MB)
 
-Another scenario has been designed to stress the Crud Service with a relatively common use-case, having a constant (high) rate of small requests and some spikes with bigger requests (~500KB) (at a smaller rate).
+Another scenario has been designed to stress the CRUD Service with a relatively common use-case, having a constant (high) rate of small requests and some spikes with bigger requests (~500KB) (at a smaller rate).
 
 # Scenarios
 
-Each scenario includes multiple categories of users and **the number of requests per second** the Crud Service can serve for that userbase. 
+Each scenario includes multiple categories of users and **the number of requests per second** the CRUD Service can serve for that userbase. 
 
 :::caution note
 In order to scale to even higher number of users, we suggest **increasing the number of replicas** and treat each replica as one of the identified user categories.
@@ -94,7 +94,7 @@ This scenario has been designed to measure the service behavior when the API req
 
 The reason for this scenario is that passing through the API Gateway may cause a CPU overhead due the connections being reopened everytime, thus leading to higher resource requirements.
 
-If you plan to avoid exposing the Crud Service directly from the API Gateway this scenario can be ignored.
+If you plan to avoid exposing the CRUD Service directly from the API Gateway this scenario can be ignored.
 
 | Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
 |:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|

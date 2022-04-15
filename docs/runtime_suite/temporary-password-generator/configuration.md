@@ -9,7 +9,7 @@ The service needs the following environment variable:
 
 - **PEM_PRIVATE_KEY_PATH** (required): the path to a PEM encoded private key used to sign JWT tokens.
 - **OTP_HMAC_KEY** (required): A 32 bytes random string that will be used to hash the generated codes before being stored on CRUD.
-- **OTP_CRUD_NAME** (optional, default to `otps`): Name of the crud used to store the issued codes.
+- **OTP_CRUD_NAME** (optional, default to `otps`): Name of the CRUD used to store the issued codes.
 - **CRUD_HOST** (optional, default to `crud-service`): the host of the crud-service.
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal.
 - **HTTP_PORT** (optional, default to `3000`): port where the web server is exposed.

@@ -32,7 +32,7 @@ Following the environment variables needed by the service:
 - **KAFKA_SASL_MECHANISM** (*optional*): the SASL mechanism of kafka
 - **KAFKA_SASL_USERNAME** (*optional*): the username for the kafka authentication
 - **KAFKA_SASL_PASSWORD** (*optional*): the password for the kafka authentication
-- **MAX_FAILURE_COUNT** (*optional*): if set, tracks on crud the failure count and implement the max retry logic
+- **MAX_FAILURE_COUNT** (*optional*): if set, tracks on CRUD the failure count and implement the max retry logic
 
 If the kafka brokers don't have authentication you can simply just pass the **KAFKA_BROKERS** environment variable.
 The authentication properties created are compliance to [kafkaJs](https://kafka.js.org/).

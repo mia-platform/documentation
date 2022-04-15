@@ -13,7 +13,7 @@ A CRUD is a service that allows you to interact with persistently stored data an
 * **Delete**
 
 These functions combined define the acronym **CRUD** and are described in detail [here](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).  
-In this section, you will understand how to configure your first [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) collections through user interface by creating and managing one or more CRUDs without worrying about setting up any database on your own.
+In this section, you will understand how to configure your first [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md) collections through user interface by creating and managing one or more CRUDs without worrying about setting up any database on your own.
 
 :::caution
 If the MongoDB CRUD section in your project is disabled because the `crud-service` had not been added during project creation, you can autonomously add it to your branch by creating it from the Marketplace. Visit its [documentation](../../../runtime_suite/crud-service/configuration.md) to learn how to do so.
@@ -26,7 +26,7 @@ To manage your CRUDs, Mia-Platform's Console offers a specific section, **MongoD
 In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
 * **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake_case` as naming convention). In our case, we will name the collection “books”;
-* **Internal endpoint**: this is the first endpoint that will be exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md). The console will prefill it but you can change it according to your preference.
+* **Internal endpoint**: this is the first endpoint that will be exposed by the [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md). The console will prefill it but you can change it according to your preference.
 
 ![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.PNG)
 
@@ -136,7 +136,7 @@ You can also create nested CRUDs by importing a JSON file, check this [section](
 
 ### CRUD Service exposed routes
 
-The [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.  
+The [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.  
 This is particularly helpful when you want one of your microservices to maintain a specific state and, to do so, you need to persistently store some data. Since this data has the only purpose of describing the state of your microservice, it is preferable to avoid exposing it to the outside world (it can also be confidential data, that you want to keep private).  
 Therefore, our CRUD Service will handle this situation for you, by making your microservices interact with your CRUDs internal routes without the need to define an external endpoint route that will unnecessarily expose your CRUD.
 
@@ -166,7 +166,7 @@ You can always change the default state of an existing route by simply clicking 
 
 ![default_state](img/default_state.png)
 
-You can delete a route but you must always leave at least one endpoint exposed by the [Crud Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither the services in your project.
+You can delete a route but you must always leave at least one endpoint exposed by the [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither the services in your project.
 
 ### How to create the fields of your CRUD by importing a JSON
 

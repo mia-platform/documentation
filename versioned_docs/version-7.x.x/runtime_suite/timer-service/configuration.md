@@ -20,7 +20,7 @@ The timer-service allows to do operations on timers just using REST APIs, but ca
 
 Following the environment variables needed by the Service:
 
-- **CRUD_SERVICE_NAME**: the name of the crud Service (usually `crud-Service`)
+- **CRUD_SERVICE_NAME**: the name of the CRUD Service (usually `crud-Service`)
 - **CRUD_PATH**: the path to call on the CRUD (e.g. `/expirations`)
 - **POLL_INTERVAL_MS**: the milliseconds to wait before do another poll; use case:
     1. the timer-service wakes

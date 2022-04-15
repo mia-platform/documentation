@@ -13,7 +13,7 @@ Starting with version `4.4.0`, the `crud-service` has introduced the support for
 Be careful, CSFLE is a Mongo Enterprise feature, and requires at least MongoDB version 4.2.
 :::
 
-With CSFLE, the Crud Service can encrypt fields in documents before transmitting the data to Mongo: this allows to store on database already encrypted data and can be used to obfuscate sensible data.
+With CSFLE, the CRUD Service can encrypt fields in documents before transmitting the data to Mongo: this allows to store on database already encrypted data and can be used to obfuscate sensible data.
 
 :::caution
 CSFLE must not be used to store passwords.
@@ -64,7 +64,7 @@ Here is an example of the KMS service account json configuration content:
 And here is an example of the KMS endpoint:
 `projects/{project_id}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{keyName}`
 
-With these configurations at hand, you can now configure the environment variables for the Crud Service:
+With these configurations at hand, you can now configure the environment variables for the CRUD Service:
 
 * **KMS_PROVIDER** (*enum: `gcp`*): the Key Management Service will be hosted by Google Cloud Platform.
 * **KMS_GCP_EMAIL**: service account e-mail of the KMS.  

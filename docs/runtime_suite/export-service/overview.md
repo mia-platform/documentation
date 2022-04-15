@@ -26,7 +26,7 @@ The service exposes the API `/export` and its configuration is provided in the b
 A use case would be to export a report containing the aggregation result which is needed in a particular file format like `xlsx`.
 
 First thing is needed a route that returns a `jsonl` with the data to export.
-The Crud Service `/export` API or the [MongoDB Reader](../mongodb-reader/configuration) can both be useful to this need. 
+The CRUD Service `/export` API or the [MongoDB Reader](../mongodb-reader/configuration) can both be useful to this need. 
 Once the jsonl endpoint is available add the `url` in the [configuration](#configuration) of the Export Service. 
 
 In case you want to export a file with a button in the [Headless CMS](../../business_suite/guide_cms) take note that it is only possible to make GET Requests, so you need a custom adapter service that transforms the POST Request to the Export Service and exposes a GET route returning the exported file.
