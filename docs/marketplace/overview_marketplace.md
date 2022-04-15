@@ -53,4 +53,3 @@ These are the expected stages along the component lifecycle:
 
 * **Stable**: the implementation is stable (bug free). Consequently, this stage represents the component period before its official release documented in the release note
 
-
