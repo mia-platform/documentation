@@ -3,7 +3,8 @@ id: overview
 title: Payment Gateway Manager
 sidebar_label: Overview
 ---
-The **Payment Gateway Manager (PGM)** is a microservice responsible to encapsule the payment processing logic across different Payment Providers.
+The **Payment Gateway Manager (PGM)** is a microservice responsible to encapsulate the payment processing logic across
+different Payment Providers.
 
 The payment processing logic includes:
 * **Request a payment** on a payment provider
@@ -15,7 +16,8 @@ The payment processing logic includes:
     
 ## Interfaces
 The *PGM* interfaces aim to be Payment Provider agnostic.
-In this way an eventual Payment Provider's change does not involve huge modifications for the services leveraging the *PGM*.
+This way an eventual Payment Provider's change does not involve huge modifications for the services leveraging the *PGM*.
+Some providers may require additional fields, in which case they will be wrapped in a single, optional object field.
 
 * Payment Request: `POST /{provider}/{payment-method}/pay`
 * Payment with Authorization Confirmation Request: `POST /{provider}/{payment-method}/confirm`
@@ -25,11 +27,22 @@ In this way an eventual Payment Provider's change does not involve huge modifica
 * Get status of a Transaction: `GET /{provider}/status?shopTransactionID={shopTransactionID}`
 
 ## Supported Providers and Payment Methods
-| Provider\Payment Method | credit-cards | applepay | googlepay | pay-pal | satispay |
-|-------------------------|--------------|----------|-----------|---------|----------|
-| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |
-| satispay                |              |          |           |         | ✓        |
-| unicredit               | ✓            |          |           |         |          |
+| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay |
+|-------------------------|--------------|----------|-----------|---------|----------|----------|
+| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |
+| satispay                |              |          |           |         | ✓        |          |
+| unicredit               | ✓            |          |           |         |          |          |
+| braintree               |              |          |           | ✓       |          |          |
+| scalapay                |              |          |           |         |          | ✓        |
+
+## Utility APIs
+When possible, the PGM will expose utility APIs for some providers. These APIs abstract contour operations to the 
+developer and allow focusing on the payment process itself, rather than setup processes. The BrainTree helper suite is 
+a clear example of this concept.
+
+## Documentation
+You can view the Swagger compatible OpenAPI documentation by calling the `/documentation` endpoint. You should also use 
+it as the documentation endpoint in the microservice configuration to view it under the API Portal.
 
 ## Notes
 

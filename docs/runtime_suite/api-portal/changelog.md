@@ -10,12 +10,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.16.2 - 2022-04-15
+
 ### Updated
+
+- Upgrade api-explorer version to 6.7.5
+
+## 1.16.1 - 2022-04-08
+
+### Updated
+
 - Upgrade api-explorer version to 6.7.1
 
 ## 1.16.0 - 2022-03-30
 
 ### Updated
+
 - Upgrade api-explorer version to 6.7.0
 
 ## 1.15.1 - 2022-02-15

@@ -14,6 +14,8 @@ Use the one you prefer depending on your OS
 
 First of all you have to create a private key in PEM format.
 
+You can use one of the following methods to create it.
+
 ### openssl
 
 Use the following command:
@@ -39,7 +41,7 @@ You should have in your current directory the `private.key` file containing your
 
 ## Public Key Generation
 
-First of all you have to create a private key in PEM format.
+Now, you have to create one public key from the already generated private key. Use the same tool used in the step before.
 
 ### openssl
 
@@ -71,3 +73,5 @@ Configure it like this:
 - Algorithm: RS256
 - Key ID: choose yours
 - PEM encoded key: your public key (`cat public.key | pbcopy`)
+
+Now you have the JWK necessary to register your client using the private key JWT.

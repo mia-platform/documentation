@@ -53,6 +53,20 @@ The `/visualizer/fill-form/` and `/visualizer/{id}` routes (`from version 1.1.0`
 
 :::info
 
+The `/visualizer/fill-form/` route (`from version 1.4.0`) allows to pre-compile the inputs of the considered form. The values for the inputs to be pre-compiled must be passed as query parameters.
+
+Example:
+```
+GET /visualizer/fill-form?formSchemaId=1234&key1=value1&key2=value2
+```
+In the above examples, the inputs with name `key1` and `key2` will be pre-compiled with values `value1` and `value2`, respectively.
+
+If an input name present as a query parameter is not present in the form schema, that query parameter will be ignored.
+
+:::
+
+:::info
+
 The frontend service endpoints are as described before when the Form Service Frontend is used in micro-lc. When the frontend is used standalone or integrated with the Mia-Platform Headless CMS the base path is `/#/`. With a frontend service endpoint equal to `/form-service`, the path to create a new custom form is `/form-service/#/builder/create-form`.
 
 :::
