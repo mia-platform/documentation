@@ -1,12 +1,12 @@
 ---
 id: mongo_compatibility_matrix
-title: Mongo Compatibility Matrix
-sidebar_label: Mongo Compatibility Matrix
+title: MongoDB Compatibility Matrix
+sidebar_label: MongoDB Compatibility Matrix
 ---
 In this page, the Marketplace components compatibility matrix for MongoDB support has been listed.
 
 <table>
-    <tr><td>mongo</td><td></td><td>4.0</td><td>4.2</td><td>4.4</td><td>5.0</td></tr>
+    <tr><td>MongoDB</td><td></td><td>4.0</td><td>4.2</td><td>4.4</td><td>5.0</td></tr>
     <tr><td rowspan="2">CRUD Service</td><td>v5.0.0</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v3.1.1</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
     <tr><td rowspan="2">Real Time Updater</td><td>v5.0.2</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
