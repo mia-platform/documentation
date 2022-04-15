@@ -3,7 +3,7 @@ id: logging
 title: Logging
 sidebar_label: Logging
 ---
-The library generates logs following [Mia-Platform logging guidelines](../../development_suite/monitoring/monitoring#pod-logs).
+The library generates logs following [Mia-Platform logging guidelines](../../development_suite/monitoring/monitoring_pods#pod-logs).
 
 For a json schema example check [test log schema file](https://github.com/mia-platform/lc39/blob/master/tests/log.schema.json)
 

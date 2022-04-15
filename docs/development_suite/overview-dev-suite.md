@@ -15,7 +15,7 @@ The Homepage allows users to quickly access the relevant information of each pro
 
 * [Design](./api-console/api-design/overview.md)
 * [Deploy](./deploy/deploy.md)
-* [Runtime](./monitoring/monitoring.md)
+* [Runtime](./monitoring/monitoring_pods.md)
 * [Dashboards](./monitoring/dashboard.md)
 * [Marketplace](../marketplace/overview_marketplace.md)
 * [Environments & Private Variables](../development_suite/set-up-infrastructure/runtime-environments.md)
@@ -80,7 +80,7 @@ Create your dashboards collecting data across the entire DevOps lifecycle to gai
 
 ### Runtime
 
-[Monitor](../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
+[Monitor](../development_suite/monitoring/monitoring_pods/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
 
 ### Debug
 
