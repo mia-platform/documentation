@@ -1,5 +1,5 @@
 ---
-id: monitoring_pods
+id: monitoring
 title:  Monitor your Pods
 sidebar_label: Monitor your Pods
 ---
