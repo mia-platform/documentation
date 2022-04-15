@@ -14,11 +14,11 @@ In this page, the Marketplace components compatibility matrix for MongoDB suppor
     <tr><td rowspan="2">Single View Creator</td><td>v3.5.1</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v3.0.0</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
     <tr><td rowspan="2">Auth0 Client</td><td>v3.0.0</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
-    <tr><td>v2.3.1</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+    <tr><td>v2.3.1</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
     <tr><td rowspan="2">MongoDB Reader</td><td>v2.1.0</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v2.0.2</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-    <tr><td rowspan="2">Flow Manager</td><td>v2.3.0</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
-    <tr><td>v2.2.0</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
+    <tr><td rowspan="2">Flow Manager</td><td>v2.3.0</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td>v2.2.0</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
     <tr><td rowspan="2">Mongo2Kafka</td><td>v1.1.2</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v1.1.1</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
     <tr><td rowspan="2">Files Service</td><td>v2.3.2</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
