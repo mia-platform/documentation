@@ -424,7 +424,11 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/monitoring/monitoring",
+          "id": "development_suite/monitoring/monitoring_pods",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/monitoring/monitoring_namespace",
           "type": "doc"
         },
         {
@@ -436,7 +440,7 @@
           "type": "doc"
         }
       ],
-      "label": "Log & monitor your Pods",
+      "label": "Log & monitor your application",
       "type": "category"
     },
     {
