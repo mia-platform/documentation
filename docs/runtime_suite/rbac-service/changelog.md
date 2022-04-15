@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.0.0 - 15/04/2022
+
+### Added
+
+- print statement available with `LOG_LEVEL="trace"`
+
 ## 0.8.3 - 29/03/2022
 
 ### Added

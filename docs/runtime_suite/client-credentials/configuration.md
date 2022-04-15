@@ -5,33 +5,35 @@ sidebar_label: Configuration
 ---
 The credentials service allow to expose API to perform OAuth2 compliant client credential flows with third party providers.
 
-In this section, we show you how to use the `client-credentials` service.
+In this section, we show you how to configure the `client-credentials` service step by step.
 
 ## Client collection on CRUD
 
 This service uses a crud-service collection to handle clients.
-To create the collection correctly, import the CRUD fields from this [JSON](#crud-fields-json).
+
+Create a CRUD collections in the MongoDB CRUD section of the Console with a name (we call the collection `clients`), save a file with the collection fields in this [JSON](#crud-fields-json) and import the CRUD fields from this.
 
 We suggest you to create a unique index for the `clientId` field (which must not be duplicated).
 
 ## Environment variables
+
 This service is configurable with the following environment variables:
 
 * **LOG_LEVEL** (default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 * **HTTP_PORT** (default to `3000`): port where the web server is exposed;
 * **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
 * **DELAY_SHUTDOWN_SECONDS** (default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
-* **CRUD_CLIENT_BASE_URL** (*required*): base url to the CRUD collection containing the client information. Example: `http://crud-service/clients` where `clients` is the name of the collection;
+* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud collection containing the client information. Example: `http://crud-service/clients` where `clients` is the internal endpoint exposed for the `clients` collection created in the previous step;
 * **CLIENT_ID_HASH_SALT** (*required*): static hash salt used to save the client id. For example, can be a random string of 256 characters;
 * **CLIENT_SECRET_HASH_COST** (default to `10`): the cost to generate the hash of the client secret (using bcrypt);
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
+* **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
 * **MONGODB_CREDENTIALS_DATABASE_NAME** (*required*): the mongo db name which will include the `credentials` collection;
-* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private rsa key;
+* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private rsa key. [Click here](#rsa-key-management) to see how to create it;
 * **PRIVATE_KEY_PASSWORD**: password to decrypt the rsa key, if it is encrypted with a password. If it is empty, rsa key is treated as a non protected rsa key;
 * **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string;
 * **MIA_JWT_ISSUER** (*required*): string containing the issuer to fill the JWT claims. During the login flow, it is added as *iss*;
-* **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated jwt, in seconds;
-* **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
+* **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated JWT, in seconds;
 * **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** (default to `false`): if audience is required in token request;
 * **ACCEPTED_AUDIENCES**: audience accepted by the service, if included in JWT `aud` claim;
 * **OPENID_CONFIG_PATH**: string representing the path to the file contaning the OpenId Connect Configuration.
@@ -42,10 +44,11 @@ This service is configurable with the following environment variables:
 
 ## RSA Key Management
 
-#### Creation
+### Creation
 
-This service accept a **private RSA key** to sign the generated jwt.
-NIST recommends 2048-bit keys for RSA. An RSA key length of 3072 bits should be used if security is required beyond 2030.
+This service accept a **private RSA key** to sign the generated JWT.
+NIST recommends at least 2048-bit keys for RSA. An RSA key length of at least 3072 bits should be used if security is required beyond 2030.
+In this guide, we will use a key of 4096 bits.
 
 To generate a new private key, you could run:
 
@@ -62,13 +65,31 @@ openssl genrsa -des3 -out ~/private.key 4096
 
 After the creation, you have the private key.
 
-You should create the key as secret in kubernetes, using:
+### Deploy key in the Kubernetes cluster
 
-```sh
-kubectl -n my-namespace create secret generic my-secret --from-file="~/private.key"
+#### Configure the service volume from Console
+
+In the Console, on the `client-credentials` service, add a new configuration of type secret named `client-credential-private-key` and set the mount path at `/configs`.  
+Once this is done, set the environment variable `PRIVATE_RSA_KEY_FILE_PATH` value to `/configs/private.key` to configure it correctly.
+
+#### Deploy with mlp
+
+If you use [*mlp*](../../runtime_suite_tools/mlp/overview), the Mia-Platform deploy cli, to release custom secrets add these lines to the `mlp.yaml` file in your project:
+
+```yaml
+secrets:
+  - name: "client-credential-private-key"
+    when: "always"
+    data:
+      - from: "literal"
+        key: "private.key"
+        value: "{{PRIVATE_KEY}}"
 ```
 
-#### Configure the service volume
+If you use GitLab as CI tool, set the environment variable `PRIVATE_KEY` with the value of the private key (copy the value using `pbcopy < private.key`).
+
+
+#### Configure the service volume manually
 
 You should set the key as volume from secret in the `client-credentials` service.
 
@@ -98,26 +119,15 @@ spec:
 
 With this configuration the created pod will be mounted with the secret generated from file `private.key`; the mount path inside the container will be `/configs/private.key`. Make sure your configuration is correct by checking that this is the value you have set for `PRIVATE_RSA_KEY_FILE_PATH` environment variable.
 
-#### Use with mlp
+#### Deploy directly in namespace
 
-If you use *mlp*, the Mia-Platform deploy cli, to release custom secrets add these lines to the `mlp.yaml` file in your project:
-
-```yaml
-secrets:
-  - name: "client-credential-private-key"
-    when: "always"
-    data:
-      - from: "file"
-        file: "/tmp/private.key"
-```
-
-If you use GitLab as CI tool, you could set the `private.key` file in the `before_script` section:
+You should create the key as secret in kubernetes, using:
 
 ```sh
-echo ${PRIVATE_KEY} > /tmp/private.key
+kubectl -n my-namespace create secret generic my-secret --from-file="~/private.key"
 ```
 
-## OpenId Configuration
+## OpenID Configuration
 
 To expose correctly the OpenId discovery endpoint you should provide the configuration using a config map. This file must contain the exact JSON that the will be sent as response.
 
@@ -165,6 +175,8 @@ _**Required** fields:_
 Reference: [OpenId Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
 
 ## CRUD fields JSON
+
+Save a file with this JSON and import it as fields in the MongoDB CRUD section of the Console.
 
 ```json
 [{

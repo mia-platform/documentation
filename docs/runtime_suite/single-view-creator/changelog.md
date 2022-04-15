@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.1] 2022-04-11
+
+### Updated
+
+- @mia-platform-internal/single-view-creator-lib @^9.8.1
+
+### Fixed
+
+- parsing of timestamp when using Projection Changes read from kafka
+
 ## [3.8.0] 2022-04-06
 
 ### Updated

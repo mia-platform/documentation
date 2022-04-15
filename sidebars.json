@@ -1139,11 +1139,11 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/api-gateway-envoy/overview"
+                  "id": "runtime_suite/envoy-api-gateway/overview"
                 },
                 {
                   "type": "doc",
-                  "id": "runtime_suite/api-gateway-envoy/filters"
+                  "id": "runtime_suite/envoy-api-gateway/filters"
                 }
               ]
             },
@@ -1467,6 +1467,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/braintree"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/configuration"
                 },
                 {
@@ -1525,6 +1529,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/rbac-service/configurations"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rbac-service/cheat_sheet"
                 },
                 {
                   "type": "doc",
@@ -2004,19 +2012,11 @@
           "items": [
             {
               "type": "doc",
-              "id": "runtime_suite_tools/mlp/deploy"
+              "id": "runtime_suite_tools/mlp/overview"
             },
             {
               "type": "doc",
-              "id": "runtime_suite_tools/mlp/generate"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/mlp/hydrate"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/mlp/interpolate"
+              "id": "runtime_suite_tools/mlp/setup"
             },
             {
               "type": "doc",
@@ -2024,11 +2024,19 @@
             },
             {
               "type": "doc",
-              "id": "runtime_suite_tools/mlp/overview"
+              "id": "runtime_suite_tools/mlp/interpolate"
             },
             {
               "type": "doc",
-              "id": "runtime_suite_tools/mlp/setup"
+              "id": "runtime_suite_tools/mlp/generate"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/deploy"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/mlp/hydrate"
             },
             {
               "type": "doc",

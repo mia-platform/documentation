@@ -10,7 +10,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2.4.1 - 07-04-2021
+## 2.4.2 - 12-04-2022
+
+### SECURITY FIX
+
+- removed Kafka credential exposition from configuration endpoints
+
+### Deprecated
+
+- `/configuration` endpoint has been deprecated
+
+### Added
+
+- `/machine-definition` endpoint
+
+### Fixed
+
+- unexpected producer registration when using REST communication protocol
+
+## 2.4.1 - 07-04-2022
 
 ### Added
 
@@ -20,13 +38,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Now a crash event in the consumer sets the healthiness of the pod to false.
 
-## 2.4.0 - 22-03-2021
+## 2.4.0 - 22-03-2022
 
 ### Changed
 
 - probes route now dependent on Kafka connection status in order to restart the pod if connection with Kafka drops
 
-## 2.3.1 - 15-03-2021
+## 2.3.1 - 15-03-2022
 
 ### Added
 

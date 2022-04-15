@@ -3,21 +3,21 @@ id: setup
 title: Setup
 sidebar_label: Setup
 ---
-### Using Brew
+## Using Brew
 
-```
+```sh
 brew install mia-platform/tap/mlp
 ```
 
 ## Using Docker
 
-```
+```sh
 docker run -it --rm ghcr.io/mia-platform/mlp
 ```
 
 ### Using Go
 
-```
+```sh
 go get -u github.com/mia-platform/mlp
 ```
 
