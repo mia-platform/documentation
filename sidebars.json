@@ -861,6 +861,16 @@
     {
       "items": [
         {
+          "id": "marketplace/compatibility_matrices/mongo_compatibility_matrix",
+          "type": "doc"
+        }
+      ],
+      "label": "Compatibility matrices",
+      "type": "category"
+    },
+    {
+      "items": [
+        {
           "collapsed": true,
           "items": [
             {
