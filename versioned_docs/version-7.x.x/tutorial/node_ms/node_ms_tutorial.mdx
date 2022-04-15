@@ -36,7 +36,7 @@ First of all open your project, and create the following [MongoDB CRUD](../../de
 
 :::tip
 You can accelerate the field creation process by [importing them from JSON](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
-In order to do this download <a download target="_blank" href="/docs_files_to_download/orders.json"> orders crud JSON</a> and <a download target="_blank" href="/docs_files_to_download/customers.json"> customers crud JSON</a>.
+In order to do this download <a download target="_blank" href="/docs_files_to_download/orders.json"> orders CRUD JSON</a> and <a download target="_blank" href="/docs_files_to_download/customers.json"> customers CRUD JSON</a>.
 :::
 
 | **Field name**          | **Type** |
@@ -448,7 +448,7 @@ const NEW_CUSTOMER_SHIPPING_COST = 5000
 // Get query params
 const { orderId } = req.query
 
-// Get proxy to interact with the Crud Service
+// Get proxy to interact with the CRUD Service
 const proxy = req.getDirectServiceProxy('crud-service', { protocol: 'http' })
 
 const allowedStatusCodes = [200]
@@ -496,7 +496,7 @@ With the `getDirectServiceProxy` method we have got a proxy for a platform servi
 
 `allowedStatusCodes` options allows to define which status codes of the response are accepted. If the response status code is not contained in this array, the promise will be rejected.
 
-:::info Crud Service
+:::info CRUD Service
 To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../runtime_suite/crud-service/overview_and_usage#crud-endpoints)
 :::
 

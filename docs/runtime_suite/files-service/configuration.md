@@ -24,7 +24,7 @@ These fields will be automatically filled during the upload of files.
 ## Environment variables
 
 * **CONFIG_FILE_PATH** (*required*): the path of the configuration file to configure connection with the online bucket for the supported services.
-* **CRUD_URL** (*required*): the crud url, comprehensive of the files collection name chosen during the CRUD collection creation (e.g. http://crud-service/files/ where files is the CRUD collection name).
+* **CRUD_URL** (*required*): the CRUD url, comprehensive of the files collection name chosen during the CRUD collection creation (e.g. http://crud-service/files/ where files is the CRUD collection name).
 * **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location. Incompatible with *PATH_PREFIX*.
 * **PATH_PREFIX**: Use a relative path as file location prefix. Incompatible with *PROJECT_HOSTNAME*.
 * **SERVICE_PREFIX**: the prefix used for the path of the service endpoints.
@@ -232,7 +232,7 @@ header will be set in the response of each file with the `max-age` attributed de
 
 ### Caster file
 
-An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to crud collection.
+An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to CRUD collection.
 
 ```js
 'use strict'

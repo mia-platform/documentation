@@ -6,7 +6,7 @@ sidebar_label: Configuration
 ## Environment variables
 
 * **CONFIG_FILE_PATH** (*required*): the path of the configuration file to configure connection with the online bucket for the supported services
-* **CRUD_URL** (*required*): the crud url, comprehensive of the files collection name
+* **CRUD_URL** (*required*): the CRUD url, comprehensive of the files collection name
 * **PROJECT_HOSTNAME**: the hostname that will be saved in the database as the root of the file location
 * **PATH_PREFIX**: Use a relative path as file location prefix. Incompatible with *PROJECT_HOSTNAME*
 * **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the mia headers)
@@ -81,7 +81,7 @@ The `private-key` is a certificate with newline code (`\n`). In order to interpo
 
 ### Caster file
 
-An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to crud collection.
+An example for a custom caster file. This file add (if present in the post parameters) the *tags*, *authorId* and *ownerId* params to CRUD collection.
 
 ```js
 'use strict'

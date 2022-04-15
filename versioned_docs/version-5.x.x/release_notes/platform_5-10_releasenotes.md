@@ -48,7 +48,7 @@ A new button is available in the CMS that allows you to clone selected items.
 
 ### Improvements
 
-* **Design Crud** - **You can now add an index with a name longer than 32 characters**
+* **Design CRUD** - **You can now add an index with a name longer than 32 characters**
 You can now enter index names longer than 32 characters. The previously existing limit has been removed.
 
 * **Design Endpoints** - **The custom endpoint tag specifies the service they point to**

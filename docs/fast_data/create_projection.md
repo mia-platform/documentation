@@ -60,7 +60,7 @@ For more information about the naming convention used for the topics, [click her
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `Crud Service`, which is the service responsible for creating the collection on MongoDB.
+A projection has the [predefined collection properties](../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
 
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 
@@ -86,7 +86,7 @@ Setting the Primary Keys does **not** create automatically the unique indexes. Y
 :::
 
 :::caution
-When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `Crud Service`) is set to `DELETED`.
+When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `CRUD Service`) is set to `DELETED`.
 :::
 
 #### Generate projection fields from data sample
@@ -125,7 +125,7 @@ You cannot import fields with the same name as one of the metadata fields.
 
 ### Indexes
 
-In the card `Indexes`, you can add indexes to the collection. To learn more about crud indexes, [click here](../runtime_suite/crud-service/overview_and_usage#indexes).
+In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](../runtime_suite/crud-service/overview_and_usage#indexes).
 However, differently from Indexes that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
 An `_id` index is created by default, and it is not deletable.

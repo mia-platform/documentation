@@ -21,7 +21,7 @@ The service exposes the API `http://export-service/export` and its configuration
 A use case would be to export a report containing the aggregation result which is needed in a particular file format like `xlsx`.
 
 First thing is needed a route that returns a `jsonl` with the data to export.
-The Crud Service `/export` API or the [MongoDB Reader](../mongodb-reader/configuration) can both be useful to this need. 
+The CRUD Service `/export` API or the [MongoDB Reader](../mongodb-reader/configuration) can both be useful to this need. 
 Once the jsonl endpoint is available add the `url` in the [configuration](#configuration) of the Export Service. 
 
 :::caution

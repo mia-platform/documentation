@@ -37,7 +37,7 @@ For more information on how to configure the Authorization Service correctly vis
 
 #### Authentication service new env variable
 
-Added environment variable `ADDITIONAL_HEADERS_TO_PROXY` to `authentication service` to set additional header to proxy when crud service is called.
+Added environment variable `ADDITIONAL_HEADERS_TO_PROXY` to `authentication service` to set additional header to proxy when CRUD service is called.
 
 #### Retry system during deploy
 
@@ -67,7 +67,7 @@ The new version of the plugin is `2.0.0`, which has a breaking change because th
 #### Added Crud Service support to projection on nested object
 
 The projection regex pattern on request JSON-Schema has been removed in order to allow the projection with _p query parameter on nested fields.   
-The new version of the Crud Service is 4.1.0.
+The new version of the CRUD Service is 4.1.0.
 
 ### Preview Features
 

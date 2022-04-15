@@ -168,7 +168,7 @@ ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation RE
 
 ## Add a CRUD Service to your project
 
-Projections and single views created in the Console are handled by the [Crud Service](../runtime_suite/crud-service/overview_and_usage.md). Therefore, if your project does not already have a [Crud Service](../runtime_suite/crud-service/overview_and_usage.md) you should add one. Follow [this link](../runtime_suite/crud-service/configuration.md) to learn how to correctly create and configure your CRUD Service.
+Projections and single views created in the Console are handled by the [CRUD Service](../runtime_suite/crud-service/overview_and_usage.md). Therefore, if your project does not already have a [CRUD Service](../runtime_suite/crud-service/overview_and_usage.md) you should add one. Follow [this link](../runtime_suite/crud-service/configuration.md) to learn how to correctly create and configure your CRUD Service.
 
 ## Set up environment variables
 
@@ -182,4 +182,4 @@ Here is the list:
 * **FAST_DATA_PROJECTIONS_DATABASE_NAME**: name of the db where projections are saved
 * **KAFKA_BROKERS**: the host of your Kafka cluster (with the port)
 
-* **MONGODB_URL**: the URL to Mongo db. It is the same used, for example, for crud service
+* **MONGODB_URL**: the URL to Mongo db. It is the same used, for example, for CRUD service

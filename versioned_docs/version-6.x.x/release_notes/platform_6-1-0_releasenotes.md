@@ -79,7 +79,7 @@ Contact your Mia-Platform technical representative for more information.
 
 #### Requests traceability
 
-The Crud service and Microservice Gateway now insert into logs the correct requestId that improves traceability of requests coming from CMS.
+The CRUD service and Microservice Gateway now insert into logs the correct requestId that improves traceability of requests coming from CMS.
 
 #### Auth0-Client login fix
 

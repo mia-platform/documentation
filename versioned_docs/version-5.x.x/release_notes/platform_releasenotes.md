@@ -478,7 +478,7 @@ Dependencies
 
 Added:
 
-* Following the update of the crud to v1.2.0 a limit of possible choices was introduced in a lookup of 200 instead of the previous 500
+* Following the update of the CRUD to v1.2.0 a limit of possible choices was introduced in a lookup of 200 instead of the previous 500
 
 * Handle the abscence of makeitapp-baas-secret-cookie
 
@@ -600,7 +600,7 @@ Fixed:
 
 * In the delete area I see the correct text to insert
 
-* Disable the ability to change the name of a crud property
+* Disable the ability to change the name of a CRUD property
 
 * possibility to insert the . in the name of an index
 
@@ -890,7 +890,7 @@ Added:
 
 Update:
 
-* now interfaceType in cms section are conditioned by crud property type
+* now interfaceType in cms section are conditioned by CRUD property type
 
 * migrate route section in endpoint to new layout with antd
 

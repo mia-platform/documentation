@@ -21,7 +21,7 @@ This service is configurable with the following environment variables:
 * **HTTP_PORT** (default to `3000`): port where the web server is exposed;
 * **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
 * **DELAY_SHUTDOWN_SECONDS** (default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the dns rotation;
-* **CRUD_CLIENT_BASE_URL** (*required*): base url to the crud collection containing the client information. Example: `http://crud-service/clients` where `clients` is the name of the collection;
+* **CRUD_CLIENT_BASE_URL** (*required*): base url to the CRUD collection containing the client information. Example: `http://crud-service/clients` where `clients` is the name of the collection;
 * **CLIENT_ID_HASH_SALT** (*required*): static hash salt used to save the client id. For example, can be a random string of 256 characters;
 * **CLIENT_SECRET_HASH_COST** (default to `10`): the cost to generate the hash of the client secret (using bcrypt);
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;

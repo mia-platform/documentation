@@ -3,7 +3,7 @@ id: configuration
 title: CRUD Service Configuration
 sidebar_label: Configuration
 ---
-This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **Crud Service** plugin.
+This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **CRUD Service** plugin.
 
 ## Configure a CRUD Service to use MongoDB CRUD section
 
@@ -15,7 +15,7 @@ The CRUD Service supports custom CA certs. If you want to learn more about these
 
 ### ConfigMap
 
-The Crud Service default configmap is mounted in `/home/node/app/collections`. You can freely choose its name during the service creation.
+The CRUD Service default configmap is mounted in `/home/node/app/collections`. You can freely choose its name during the service creation.
 
 Furthermore, the ConfigMap is not editable, as it is fundamental for the MongoDB CRUD section to work: it is not possible to add files, edit the mountPath or delete it.
 

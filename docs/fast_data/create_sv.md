@@ -257,7 +257,7 @@ module.exports = (logger, databaseName) => async(aDocument, mongoClient) =>  => 
 ```
 
 :::caution
-When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `Crud Service`) is set to `DELETED`.
+When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `CRUD Service`) is set to `DELETED`.
 :::
 
 #### How can I write tests?

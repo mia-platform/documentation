@@ -31,7 +31,7 @@ Here are some tips:
 - `SINGLE_VIEWS_COLLECTION`: should be the name of the single view which your single view creator is responsible for
 - `PROJECTIONS_CHANGES_COLLECTION`: if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for.
 - `SINGLE_VIEWS_PORTFOLIO_ORIGIN`: should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`
-- `SINGLE_VIEWS_ERRORS_COLLECTION`: it is the name of a MongoDB Crud you want to use as collection for single view errors.
+- `SINGLE_VIEWS_ERRORS_COLLECTION`: it is the name of a MongoDB CRUD you want to use as collection for single view errors.
 - `KAFKA_BA_TOPIC`: topic where to send the `before-after`, which is the single view document before and after a change
 - `SEND_BA_TO_KAFKA`: true if you want to send to Kafka the `before-after` information about the update changes of the single view
 - `KAFKA_SVC_EVENTS_TOPIC`: topic used to queue Single View Creator state changes (e.g. single view creation)
@@ -288,7 +288,7 @@ async function deleteSingleViewFunction(
 
 ### Error handling
 
-When generating a Single View, every error that occurs is saved in MongoDB, with a format that satisfies the schema requirements of the crud service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
+When generating a Single View, every error that occurs is saved in MongoDB, with a format that satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
 
 - `_id`: a unique identifier of the record, automatically generated
 - `portfolioOrigin`: a value concerning the origin of the error, defaults to `UNKNOWN_PORTFOLIO_ORIGIN`

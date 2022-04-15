@@ -108,7 +108,7 @@ ccloud kafka acl create --allow --service-account SERVICE_ACCOUNT --operation RE
 
 ## Add a CRUD Service to your project
 
-Projections and single views created in the Console are handled by the [Crud Service](../runtime_suite/crud-service/overview_and_usage.md). Therefore, if your project does not already have a [Crud Service](../runtime_suite/crud-service/overview_and_usage.md) you should add one. Follow [this link](../runtime_suite/crud-service/configuration.md) to learn how to correctly create and configure your CRUD Service.
+Projections and single views created in the Console are handled by the [CRUD Service](../runtime_suite/crud-service/overview_and_usage.md). Therefore, if your project does not already have a [CRUD Service](../runtime_suite/crud-service/overview_and_usage.md) you should add one. Follow [this link](../runtime_suite/crud-service/configuration.md) to learn how to correctly create and configure your CRUD Service.
 
 ## Set up environment variables
 
@@ -123,7 +123,7 @@ Here is the list:
 * **KAFKA_BROKERS**: the host of your Kafka cluster (with the port)
 * **KAFKA_SASL_USERNAME**: username to log in to Kafka cluster
 * **KAFKA_SASL_PASSWORD**: password to log in to Kafka cluster
-* **MONGODB_URL**: the url to mongo db. It is the same used, for example, for crud service
+* **MONGODB_URL**: the url to mongo db. It is the same used, for example, for CRUD service
 
 If you need to customize **KAFKA_SASL_USERNAME** and **KAFKA_SASL_PASSWORD** for some Systems of Record, [click here](./advanced#kafka-configuration).
 

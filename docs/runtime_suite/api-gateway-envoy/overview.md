@@ -37,7 +37,7 @@ Currently, we support Envoy `1.21.0`.
 
 If you want to create a new project with Envoy as API Gateway, you have two possibilities:
 
-- Use the **Template with Envoy**, which provides a set of basic services (e.g. authorizer, crud service, microservice gateway, etc) together with a default working configuration of the Envoy API Gateway.
+- Use the **Template with Envoy**, which provides a set of basic services (e.g. authorizer, CRUD service, microservice gateway, etc) together with a default working configuration of the Envoy API Gateway.
 - Create a new blank project and add the Envoy API Gateway from the Marketplace. The backend will build the configuration from scratch as you add new services to your project.
 
 ### Replacing your current API Gateway with Envoy

@@ -18,7 +18,7 @@ The developer can decide which basepath is associated to an endpoint by applying
 
 * **Deploy - History**: refresh button added for update the list of your deploy
 
-* **Design - Crud**: restyling of crud section with new card layout
+* **Design - CRUD**: restyling of crud section with new card layout
 
 * **Session Manager (v4.5.0)**: expose `GET /sessions/me` for retrieving session info
 

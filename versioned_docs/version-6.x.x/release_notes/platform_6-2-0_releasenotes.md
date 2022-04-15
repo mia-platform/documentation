@@ -70,7 +70,7 @@ The v9.12.2 of CMS is now available, this version brings the following features:
 
 #### Examples in the Marketplace
 
-The following examples are now working and you can use them in console: *DotNet Template*, *Node Call Crud* and *Go Call Crud*.
+The following examples are now working and you can use them in console: *DotNet Template*, *Node Call CRUD* and *Go Call CRUD*.
 
 #### Java Microservices
 

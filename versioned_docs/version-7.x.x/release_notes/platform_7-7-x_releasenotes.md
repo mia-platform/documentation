@@ -134,7 +134,7 @@ Furthermore, the logs section of each pod is now inserted into a tab container.
 
 ### Bug fix
 
-#### Import crud fields from file
+#### Import CRUD fields from file
 
 The import of CRUD fields from a json file now works as intended. The "Import fields from file" button can be found in Design area, CRUD section, Fields card.
 
@@ -283,7 +283,7 @@ Configurations defined through the [Advanced](../development_suite/api-console/a
 If the MongoDB CRUD section in your project is disabled because the `crud-service` had not been added during project creation, you can now autonomously add it to your branch by creating it from the Marketplace.
 
 :::note
-Only a single instance of `Crud Service` can exist for each branch. If `Crud Service` is already present among custom services, the marketplace will not show the `Crud Service` plugin.
+Only a single instance of `CRUD Service` can exist for each branch. If `CRUD Service` is already present among custom services, the marketplace will not show the `CRUD Service` plugin.
 :::
 
 #### Multiline Public Variables
