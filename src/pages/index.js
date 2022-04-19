@@ -53,7 +53,7 @@ const secondRowFeatures = [
       {
         icon: "video",
         target: "_blank",
-        href: "https://vimeo.com/616716487",
+        href: "https://vimeo.com/616716487", // TODO: INSERT CORRECT VIDEO LINK!
         label: "Mia-Platform v8.0 new features",
       },
     ],

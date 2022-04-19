@@ -1786,165 +1786,19 @@
       "type": "doc"
     },
     {
-      "id": "release_notes/mia-platform-v8",
-      "type": "doc"
-    },
-    {
       "id": "release_notes/release_notes",
       "type": "doc"
     },
     {
+      "label": "Versions",
+      "type": "category",
       "collapsed": false,
       "items": [
         {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-9/v8.9.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-9/v8.9.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.9",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-8/v8.8.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-8/v8.8.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.8",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-7/v8.7.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.7",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-6/v8.6.3",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-6/v8.6.2",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-6/v8.6.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-6/v8.6.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.6",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-5/v8.5.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-5/v8.5.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.5",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-4/v8.4.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-4/v8.4.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.4",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-3/v8.3.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-3/v8.3.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.3",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-2/v8.2.1",
-              "type": "doc"
-            },
-            {
-              "id": "release_notes/RN_v8-2/v8.2.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.2",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-1/v8.1.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.1",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "release_notes/RN_v8-0/v8.0.0",
-              "type": "doc"
-            }
-          ],
-          "label": "v8.0",
-          "type": "category"
+          "id": "release_notes/RN_v9-0/v9.0.0",
+          "type": "doc"
         }
-      ],
-      "label": "Versions",
-      "type": "category"
+      ]
     },
     {
       "id": "release_notes/roadmap",

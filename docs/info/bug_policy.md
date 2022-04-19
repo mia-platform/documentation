@@ -75,7 +75,7 @@ To get access to bug fixes you will need to upgrade to a release that contains t
 
 To make understanding our bug fix policy easier, here's some definitions.
 
-**Platform release (4.0):**
+**Platform release (9.0):**
 
 * Any significant Mia-Platform new functionalities release and for any backwards incompatible.
 
@@ -87,11 +87,11 @@ To make understanding our bug fix policy easier, here's some definitions.
 
 * Mia-Platform provides a warranty that critical security patch will be issued for any version up or equal to n-2, where n is last issued major version
 
-**Feature release (4.6):**
+**Feature release (9.1.0):**
 
 * Minor version is issued in connection to any functional improvement.
 
-**Bug fix release (4.6.2):**
+**Bug fix release (9.0.1):**
 
 * Can contain bug fixes, stability and performance improvements. Depending on the nature of the bug fixes they may introduce minor changes to existing features, but do not include new features or high risk changes, so can be adopted quickly
 
