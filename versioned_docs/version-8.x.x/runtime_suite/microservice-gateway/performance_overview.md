@@ -1,0 +1,130 @@
+---
+id: performance_overview
+title: Microservice Gateway performance
+sidebar_label: Performance overview
+---
+### `PRE` and `POST` hooks
+
+It is not convenient to use them to define and model business flows and to manage logics with high performances.
+
+:::caution
+If you are having performance problems with `PRE` and `POST` Hooks, it can be due to:
+
+* slowness of cache management;
+* debugging difficulties.
+
+:::
+
+### Requests and limits
+
+Here are listed different **requests** and **limits** configurations that should be applied to the CPU and memory of Microservice Gateway in order to reach optimal performances on different scenarios. 
+
+:::note
+Following these guidelines allows you to bring Microservice Gateway to an optimal state where: 
+- performances are not restricted by K8s CPU throttling policies 
+- the minimum amount of resources are used on the cluster. 
+:::
+
+<br />
+
+Results have been obtained through specific tests implementing a series of requests to the Microservice Gateway.
+
+Specifically, four endpoints have been identified for the tests:
+
+- an endpoint with a pre decorator 
+- an endpoint with 5 pre decorators 
+- an endpoint forced through the Microservice Gateway by an apposite flag reachable from the design section
+- an endpoint with a post decorator
+
+These endpoints have been used to stress the Microservice Gateway with requests and monitor its performances.
+
+Factors such as the amount of data involved or the way used to comunicate with the Microservice Gateway may have a strong impact on performances, creating the need of finding specific requests and limits levels for different situations. For these reasons, We reported results coming from **different scenarios**, and we recommend applying the configuration that is more appropriate to your case. 
+
+Each scenario includes multiple categories of users and **the number of requests per second** the Microservice Gateway can serve for that userbase. 
+
+:::caution note
+In order to scale to even higher number of users, we suggest **increasing the number of replicas** and treat each replica as one of the identified user categories.
+:::
+
+<br />
+
+#### Passing by API Gateway
+
+When accessing the Microservice Gateway using the Console, requests are normally redirected through API Gateway. This service helps correctly rerouting requests and keeping only necessary connection, optimizing the usage of cluster resources. 
+
+Here we list requests and limits levels that should be applied for a standard use of Microservice Gateway:
+
+| Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
+|:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|
+|   50  |          50         |       70     |     250    |         50      |      300      |
+|  100  |         100         |      120     |     400    |         50      |      300      |
+|  250  |         250         |      230     |     800    |         50      |      300      |
+|  500  |        ~500         |      380     |    1200    |         50      |      300      |
+
+<br />
+
+#### Only Microservice Gateway
+
+If you need to directly access to the Microservice Gateway, you should consider a small loss of optimization that was provided by API Gateway. 
+
+The following are the limits and requests that should be applied to Microservice Gateway in this scenario:
+
+| Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
+|:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|
+|   50  |          50         |      150     |     700    |         50      |      300      |
+|  100  |         100         |      260     |    1000    |         50      |      300      |
+|  250  |         250         |      560     |    2000    |         50      |      300      |
+|  500  |        ~500         |     1000     |    3500    |         50      |      300      |
+
+For more than 250 users request levels start to reach the core, so we advise scaling horizontally, increasing replicas to lower the load on a single instance of the service.
+
+<br />
+
+#### Using Large Configmaps
+
+When complex configurations including **elevated numbers of endpoints and routes** are required, the Microservice Gateway will mount a very large configmap. This factor can have some influence on the required setup for the service, hence we need to consider higher levels of requests and limits for the Microservice Gateway. 
+
+:::note
+In our tests, we considered the hypothesis of having a configmap of **500 kilobytes** (that basically corresponds to having **more than a thousand routes** set for your service). 
+:::
+
+In this scenario, CPU throttling may arise much earlier than normal. We recommend keeping high levels of limits and **verify the presence of throttling** when applying these values:
+
+| Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
+|:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|
+|   50  |         50          |      150     |    1000    |         60      |      300      |
+|  100  |        100          |      300     |    2000    |         80      |      400      |
+|  250  |       ~250          |      560     |    3000    |         80      |      400      |
+|  500  |       ~500          |     1000     |    4000    |         90      |      400      |
+
+Even in this case, we recommend to opt for an horizontal scaling when considering more than 250 users, since the request levels start to be close to a single core.
+
+<br />
+
+#### Using Large Payloads
+
+When we start to increase the size of the payload sent with requests, things start to complicate and we should be aware of the limitations characterizing the Microservice Gateway. In those circumstances, CPU usage drastically increase and CPU throttling may arise much earlier than a standard configuration.    
+
+:::note
+In our tests, we considered having a payload of **1 Megabyte** for each request.
+:::
+
+In this scenario, CPU requests are over the single core even for 50 users. 
+When considering more users, we recommend switching to multiple replicas and lowering the number of users for each instance of the service.  
+
+##### Only Microservice Gateway
+
+| Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
+|:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|
+|   50  |         40          |      1200    |    4000    |        160      |      500      |
+
+
+##### Passing through API Gateway
+
+In this scenarios, passing through the API Gateway may help in lowering memory requests and levels:
+
+| Users | Requests Per Second | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
+|:-----:|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|
+|   50  |         40          |     1300     |    4000    |         50      |      300      |
+
+<br />

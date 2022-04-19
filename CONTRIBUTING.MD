@@ -60,7 +60,7 @@ Each tagged version has a dedicated folder:
 
 - `versioned_docs/version-<number version>`
 
-**The current  version mustn't be tagged**, you have to do though insert all versions in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+**The current  version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
 
 Eg.
 
@@ -77,9 +77,9 @@ Eg.
               label: '<Current version' (Current)',
               path: '',
             },
-            '5.x.x': {
-              label: '5.10.x',
-              path: '5.x',
+            '8.x.x': {
+              label: '8.9.x',
+              path: '8.x',
             },
           },
         },

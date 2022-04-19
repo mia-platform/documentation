@@ -255,20 +255,16 @@ const config = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "8.x (Current)",
+              label: "9.x (Current)",
               path: "",
+            },
+            "8.x.x": {
+              label: "8.9.x",
+              path: "8.x",
             },
             "7.x.x": {
               label: "7.9.x",
               path: "7.x",
-            },
-            "6.x.x": {
-              label: "6.5.x",
-              path: "6.x",
-            },
-            "5.x.x": {
-              label: "5.10.x",
-              path: "5.x",
             },
           },
         },
