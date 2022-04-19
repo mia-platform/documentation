@@ -18,6 +18,7 @@ Advanced extensions are divided by their scopes and can be edited in their corre
 - `listeners.yaml`
 - `on-request-scripts.yaml`
 - `on-response-scripts.yaml`
+- `patches.yaml`
 
 ## Available extensions
 
@@ -312,3 +313,19 @@ When defining orders, keep in mind that the `envoy.filters.http.router` must be 
 :::caution
 Be careful when you add LUA filters using this extension, they will lack the default secret validation. Please refer to [this section](#lua-scripts) if you want secret validation alongside custom LUA scripts.
 :::
+
+### Patching arbitrary listeners' properties
+
+This extension allows users to patch properties of a listener by specifying the path of the property to be modified. 
+
+A path is a dot-separated list of properties. A path lookup is performed by recursively selecting the property starting from the whole listener configuration and advancing when a match occurs. If the specified path is not in the object's tree, a corresponding object will be generated.
+
+The extension expects a YAML encoded list of objects. Every object contains a property named `listener_name` that selects the target listener. The other keys in the object are interpreted as paths and their corresponding values will be put in the target listener's path. A `null` value expresses the intention to delete the target property from the listener.
+
+For example, the following patch will set the request timeout to `'30s'` on the `frontend` listener and will delete the `access_log` property:
+
+```yaml
+- listener_name: LISTENER
+ 'filter_chains.0.filters.0.typed_config.stream_idle_timeout': '30s'
+ 'filter_chains.0.filters.0.typed_config.access_log': null
+``` 
