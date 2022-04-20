@@ -7,6 +7,7 @@ image: "img/release-note-link-preview.png"
 
 _April 28, 2022_
 
+
 ## Fast Data
 
 ### New Features
