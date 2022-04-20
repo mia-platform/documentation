@@ -52,7 +52,7 @@ If you are using GitLab and don't see any option in *Git repository owner*, it m
 
 * **Git Repository Name** (*required*): name of the git repository of the service
 
-* **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "tenant/service-name:tag"). It will be filled with the docker host during the service generation
+* **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "company/service-name:tag"). It will be filled with the docker host during the service generation
 
 ![service-example](img/service-example.png)
 

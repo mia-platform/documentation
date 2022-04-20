@@ -7,7 +7,7 @@ Runtime environments are the computer systems in which your applications are dep
 
 You can deploy the same codebase to different runtime environments, obtaining different behaviors based on some environment configuration, like [environment variables](./env-var). Another notable change is the actual hardware of which the runtime environment comprises of, which is usually more performant for production environments.
 
-The Console handles environments in a project-specific manner. When creating a new project, it inherits the runtime environments from the tenant it belongs to. After creating the project, it is possible to edit those for the specific project. Each runtime environment runs on its kubernetes cluster namespace, and its properties can be modified by means of the CMS only.
+The Console handles environments in a project-specific manner. When creating a new project, it inherits the runtime environments from the company it belongs to. After creating the project, it is possible to edit those for the specific project. Each runtime environment runs on its kubernetes cluster namespace, and its properties can be modified by means of the CMS only.
 
 It is possible to have an overview of the project runtime environments in the Envs area, which contains a Runtime Environments card displaying a table with a row for each environment, as shown in the picture below.
 

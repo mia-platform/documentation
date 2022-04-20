@@ -12,8 +12,8 @@ The first section of this guide allows you to have the prerequisites needed to c
 In particular, to create a project, you need to have already set up your Console and have already configured these three features:
 
 * **Provider**: This will be used by the Console to correctly retrieve the third party service providers needed by your projects (e.g. the Git repository provider)
-* **Tenant**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its tenant.
-* **Template**: Repository with libraries and pre-filled configurations. Each tenant could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project.
+* **Company**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its company.
+* **Template**: Repository with libraries and pre-filled configurations. Each company could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project.
 
 If you have already configured these features, you can directly [skip to the last section](#project-creation).
 
@@ -23,7 +23,7 @@ You can find more info about how to create a CRUD visiting the [CRUD documentati
 
 ### Create a Provider
 
-If you already have the provider you need in your CRUD, you can [skip this section](#create-a-tenant).
+If you already have the provider you need in your CRUD, you can [skip this section](#create-a-company).
 
 This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
 This collection includes the following fields:
@@ -34,25 +34,25 @@ This collection includes the following fields:
 * `baseUrl` (*required*): the provider base url used to persist configurations;
 * `apiBaseUrl` (*required*): the provider base url that core service used to call providers (example: gitlab.com/api or api.github.com/);
 
-### Create a Tenant
+### Create a Company
 
-If you already have a tenant, you can [skip this section](#create-a-template).
+If you already have a company, you can [skip this section](#create-a-template).
 
-The tenant is the upper level of the projects. It allows to create a project configured inside an already existent infrastructure, which information are repeated for all the projects: *environments*, *cluster information*, *CI/CD integration*.
+The company is the upper level of the projects. It allows to create a project configured inside an already existent infrastructure, which information are repeated for all the projects: *environments*, *cluster information*, *CI/CD integration*.
 
 :::info
-The fields in the tenant cannot be changed during project creation steps (if not specified otherwise).
+The fields in the company cannot be changed during project creation steps (if not specified otherwise).
 :::
 
 The fields necessary for this collection are:
 
-* `name` (*required*): the name of the tenant to display in selection list;
-* `tenantId` (*required*): the human-readable id of the tenant (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
-* `description`: the description of the tenant;
+* `name` (*required*): the name of the company to display in selection list;
+* `tenantId` (*required*): the human-readable id of the company (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
+* `description`: the description of the company;
 * `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps;
 * `cmsImageName`: cms docker image to interpolate in template archive. It should also contain the cms tag to use (if `cms-site` service is disabled in project creation, it will not be used).
 * `coreLegacyImageName`: baas core docker image to interpolate in template archive. It should also contain the cms tag to use (if `baas-legacy` service is disabled in project creation, it will not be used).
-* `environments` (*required*): an array of objects containing the definition of the environments for the tenant. The content of these arrays will be interpolated to replace `%projectId%` by inserting `projectId` field in project creation. Each object should contain, for example:
+* `environments` (*required*): an array of objects containing the definition of the environments for the company. The content of these arrays will be interpolated to replace `%projectId%` by inserting `projectId` field in project creation. Each object should contain, for example:
 
     ```js
       {
@@ -81,6 +81,9 @@ The fields necessary for this collection are:
       }
     ```
 
+  :::caution
+  The terms _tenant_ and _tenantId_ refer to the actual Company new terms. The tentant term is deprecated and will be removed in the future
+  :::
   :::warning
   Do not set in cluster.kubeContextVariables object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
   :::
@@ -117,9 +120,9 @@ The fields necessary for this collection are:
         }
       ```
 
-      this configuration is saved only in tenant, and should be retrieved at runtime in project fetching from tenant info. So if your tenant has all the environment variables of the projects set in the parent group, this setting could be changed for all the projects at the same time.
+      this configuration is saved only in company, and should be retrieved at runtime in project fetching from company info. So if your company has all the environment variables of the projects set in the parent group, this setting could be changed for all the projects at the same time.
 
-* `pipelines` (*required*): the CI/CD pipelines used by the tenant. It is an object, for example:
+* `pipelines` (*required*): the CI/CD pipelines used by the company. It is an object, for example:
 
     ```json
       {
@@ -127,14 +130,14 @@ The fields necessary for this collection are:
       }
     ```
 
-* `availableNamespaces`: namespaces accessible internally from your project, using `cross-projects` endpoint. It is useful when your tenant is made up of several projects that communicate with each other. The content of this array will be interpolated to replace `%projectId%` with `projectId` field in project creation.
+* `availableNamespaces`: namespaces accessible internally from your project, using `cross-projects` endpoint. It is useful when your company is made up of several projects that communicate with each other. The content of this array will be interpolated to replace `%projectId%` with `projectId` field in project creation.
 
-* `logicalScopeLayers`: an array of objects identifying the set of logical layers available in the current tenant. Each object is shaped as follows:
+* `logicalScopeLayers`: an array of objects identifying the set of logical layers available in the current company. Each object is shaped as follows:
   * **name** : identifies the name of the logical layer
   * **order** : identifies the numerical order of the layer in order to display it according to the sorting defined by the user.
-  When a project is merged with its tenant information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on Console] for further details.
+  When a project is merged with its company information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on Console] for further details.
 
-* `repository` (*required*): object that specifies the information about the repository where have to be created the projects of this tenant. The object must have the following properties:
+* `repository` (*required*): object that specifies the information about the repository where have to be created the projects of this company. The object must have the following properties:
   * **providerId** (*required*): `providerId` existing into the providers crud. It is used to get information about the provider to use. This id is important because it affects many requests used by the developer Console
   * **basePath**: base path where will be created the project. The user needs to have permission for creating projects on this path.
   * **visibility**: visibility that will have the project.
@@ -150,7 +153,7 @@ e.g.:
 * /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
 :::
 
-* `dockerImageNameSuggestion`: object that defines the docker image name suggestion that will be passed to every project created in your tenant. This suggestion will appear when you [create a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template) in the `Docker Image Name` field.  
+* `dockerImageNameSuggestion`: object that defines the docker image name suggestion that will be passed to every project created in your company. This suggestion will appear when you [create a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template) in the `Docker Image Name` field.  
 The object should have the following properties:
 
   * **type** (*required*): string that defines the type of suggestion, currently three types exist:
@@ -170,7 +173,7 @@ The object should have the following properties:
 If you already have a template, you can [skip this section](#how-to-create-a-project-archive).
 
 A template is a repository which contains some project specific information.
-Once you choose a tenant, you can choose a template.
+Once you choose a company, you can choose a template.
 The template allows you to pre-fill active services in your project and starts all the similar projects with the same configuration.
 So, it is a base on which to create your project.
 
@@ -285,7 +288,7 @@ The project archive is interpolated using [mustache.js](https://github.com/janl/
 
 You could create a project template to avoid copy/paste in every new project having the same base configuration.
 
-At Mia-Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a tenant that uses this template, creating this type of project will be a very simple process.
+At Mia-Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a company that uses this template, creating this type of project will be a very simple process.
 
 You can interpolate the template with some project data. With *mustache.js*, we could iterate through an array, so we can have some configuration iterated for all the environments.
 The values you could use during template interpolation are:
@@ -305,7 +308,7 @@ Inside environments, you could access to:
 * hosts (an array of object, with `host` and `isBackoffice` fields)
 
 :::warning
-Do not set in tenant in cluster.kubeContextVariables object the value to access to the cluster, but only the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
+Do not set in company in cluster.kubeContextVariables object the value to access to the cluster, but only the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
 :::
 
 An example of template for the `.gitlab-ci.yml` file:
@@ -319,8 +322,8 @@ include:
 
 %#tenant.cmsImageName%
 variables:
-  MIA_CMS_IMAGE_NAME: "%tenant.cmsImageName%"
-%/tenant.cmsImageName%
+  MIA_CMS_IMAGE_NAME: "%company.cmsImageName%"
+%/company.cmsImageName%
 %#project.environments%
 
 %envId%:
@@ -339,7 +342,7 @@ variables:
 %/project.environments%
 ```
 
-In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the tenant.
+In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the company.
 
 All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, where `n` is the number of environments. So, inside the environment, you could use the environment specific fields.
 For other possibilities, please check [mustache.js](https://github.com/janl/mustache.js) documentation.
@@ -349,7 +352,7 @@ The interpolation data in those files are the environments fields at the first l
 
 ## Project creation
 
-Once you have a provider, tenant and a template correctly configured, you are able to create a new project using the `Create project` button in the Home area of Console.
+Once you have a provider, company and a template correctly configured, you are able to create a new project using the `Create project` button in the Home area of Console.
 
 ![new-project-cards-headers](img/new-project-cards-headers.png)
 
@@ -359,7 +362,7 @@ The project creation is divided in different steps:
 
 In this step, you are required to insert the general information about your new project:
 
-* **Tenant** (*required*): you have to select, from a list of pre-configured Tenants, your Tenant, which enables you to keep the same configuration for different projects.
+* **Company** (*required*): you have to select, from a list of pre-configured Companies, your Company, which enables you to keep the same configuration for different projects.
 * **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of Console.
 * **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of Console.
   
@@ -369,9 +372,9 @@ In this step, you are required to insert the general information about your new 
 
 In this step, it is indicated the location of your new project and you have to choose its Template:
 
-* **Git Provider** : this field represents the provider id used by your chosen tenant.
+* **Git Provider** : this field represents the provider id used by your chosen company.
 
-* **Git repo path** (*required*, field not editable): this is the path, calculated from project name and tenant, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
+* **Git repo path** (*required*, field not editable): this is the path, calculated from project name and company, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
 
 * **Visibility** (*required*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
 
@@ -385,7 +388,7 @@ If you are using the PaaS Mia-Platform Console, two main templates are available
 
 ### Step 3 **Environments**
 
-In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Tenant and, so, are already configured and not editable:
+In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Company and, so, are already configured and not editable:
 
 * **Environment name** (*required*, field not editable): the name given to your environment.
 * **Environment ID** (*required*, field not editable): the human-readable ID set to your environment.
@@ -419,7 +422,7 @@ In this step, you are required to set up Client's accesses to your APIs:
 At the end of the process, your project will be created on your Git provider, and will be visible in the Home section of your Console.
 Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
-* Some variables are pre-filled from project or tenant information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
+* Some variables are pre-filled from project or company information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
 
 * All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*.
 
@@ -445,7 +448,7 @@ In order to improve the governance of your projects, you may want to add additio
 * `color`: a custom color that can be used as an additional categorization, especially if a label has been already defined (e.g you may decide within your organization that all projects flagged with a *gateway* are associated with the same color).
 
 * `layerId`: a label which identifies a logical layer and can help to categorize projects in custom groups (e.g: *gateway* or *data-lake* are some samples of logical layer names that can be applied to a project).
-The `layerId` must be equal to one of the layers names inside the `logicalScopeLayers` property of the related **tenant** object . When the layer is found in the tenant, then the project model is enriched with the `logicalScopeLayers` property according to the values found.
+The `layerId` must be equal to one of the layers names inside the `logicalScopeLayers` property of the related **tenant** object . When the layer is found in the company, then the project model is enriched with the `logicalScopeLayers` property according to the values found.
 
 * `logicalScopeLayers`: an array of objects shaped as follows:
   * **name** : identifies the name of the logical layer

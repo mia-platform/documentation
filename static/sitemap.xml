@@ -1091,7 +1091,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.mia-platform.eu/docs/development_suite/console%20levels%20and%20permits%20management</loc>
+    <loc>https://docs.mia-platform.eu/docs/development_suite/console-levels-and-permission-management</loc>
     <lastmod>2021-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1709,7 +1709,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.mia-platform.eu/docs/7.x/development_suite/tenant-overview/tenant-overview</loc>
+    <loc>https://docs.mia-platform.eu/docs/7.x/development_suite/tenant-overview/company-overview</loc>
     <lastmod>2021-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
