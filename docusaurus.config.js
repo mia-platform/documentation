@@ -90,6 +90,12 @@ const config = {
           ]
         },
         {
+          to: "docs/paas/paas_overview",
+          label: "PaaS",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(monitoring|paas)"
+        },
+        {
           label: "Release notes",
           position: "left",
           to: "docs/release_notes/release_notes",
