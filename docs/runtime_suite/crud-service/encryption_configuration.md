@@ -29,10 +29,12 @@ Take a look to the [official documentation](https://docs.mongodb.com/manual/refe
 :::
 
 ## Keys relations
-The Key Management Service (KMS) is the system responsible to manage the **master key**, a specific key used to generate the **data encryption key**.
-The **data encryption key** is stored in a dedicated collection of the MongoDB instance and is used to perform the encryption and decryption of the data.
 
-There is one **data encryption key** for each collection that has at least on encrypted field.
+The keys used by the CSFLE feature are of two types:
+
+- **data encryption key**: used to encrypt and decrypt the values of the fields marked for encryption. Each collection that contains documents with encrypted fields uses its specific data encryption key. Each data encryption key is stored inside a dedicated collection of the MongoDB instance.
+- **master key**: data encryption keys are not stored as plaintext on MongoDB, but rather encrypted. The master key is used to encrypt and decrypt the data encryption keys. The Key Management Service (KMS) is the system responsible to manage the master key.
+
 :::caution
 Deleting an encryption key renders all data inside a collection encrypted using that key permanently unreadable, as it won't be possible to decrypt them anymore.
 :::
@@ -111,7 +113,7 @@ In order to configure the encryption using the Local KMS it's necessary to add t
 :::
 
 * **KMS_PROVIDER** (*enum: `local`*): the key is managed using a local master key.
-* **LOCAL_MASTER_KEY_PATH**: Path in which is stored the master key, on the console you **must** mount it as `ConfigMap`. To generate it, please read [the following guide](#local-master-key-generation).
+* **LOCAL_MASTER_KEY_PATH**: Path where the master key is stored. This path **must be mounted** as `ConfigMap` on the console. To generate it, please read [the following guide](#local-master-key-generation).
 * **KEY_VAULT_NAMESPACE**: where the key used for the collection encryption will be stored. **The required format is `{databaseName}.{collectionName}`**.
 
 :::warning
@@ -160,14 +162,14 @@ If you decide to enable or disable the encryption from already existing field, y
 We suggest activating the encryption only for new fields.
 
 ## Nested objects
-Is possible to encrypt not only plain field, but also objects and its content;
+Besides plain fields, it is also possible to encrypt objects and their content;
 however, doing this we have some limitations:
 
 - objects are encryptable but not searchable while encrypted
-- to encrypt an object, all its properties must **not** be encrypted
+- to encrypt an object, all of its properties must **not** be encrypted
 
 ### Activate object encryption
-In order to activate the object encryption, you **must** insert the `encryption` object in your JSON schema, at same level of the `properties` or `type` key.
+In order to activate object encryption, you **must** insert the `encryption` object in your JSON schema, at same level of the `properties` or `type` key.
 
 For example, if you have the following schema:
 
@@ -187,7 +189,7 @@ And you want to activate the encryption for the **entire object** (that is **not
 "encryption": {"enabled": true, "searchable": false}
 ```
 
-So your final schema will be:
+So your final schema would be:
 
 ```json
 {
@@ -201,14 +203,14 @@ So your final schema will be:
 }
 ```
 
-While if you want to activate the encryption only for the property `testProperty`, and **make it searchable**, you **must** add:
+Instead, if you want to activate encryption only for the property `testProperty`, and **make it searchable**, you **must** add:
 ```json
 "encryption": {"enabled": true, "searchable": true}
 ```
 
 inside the property definition.
 
-So your final schema will be:
+So your final schema would be:
 
 ```json
 {

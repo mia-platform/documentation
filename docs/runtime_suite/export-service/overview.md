@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 :::danger
 
-**This service won't be available as multitenant service and will be migrated in the marketplace on 17/03/2022.<br/>
+**This service won't be available as multi-tenant service and will be migrated in the marketplace on 17/03/2022.<br/>
 After the migration it will be possible to install this microservice in the own project in order to use it.**
 
 :::
@@ -43,9 +43,9 @@ This service can be used and installed on any project following this steps:
  2. Verify default environment variables and resources are correctly configured for your needs
  3. Save configuration and deploy
 
-### Multi-projects Company
+### Multi-projects Tenant
 
-When your company is composed of many projects you may want to share a single export-service among different projects; in order to do so you have to:
+When your tenant is composed of many projects you may want to share a single export-service among different projects; in order to do so you have to:
 
  1. decide which should be the project hosting the export-service
  2. in that project, add the export-service plugin from the marketplace and configure it properly
