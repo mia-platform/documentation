@@ -172,7 +172,11 @@
     "kubeconfig",
     "pippo",
     "bitnami",
-    "ndjson"
+    "ndjson",
+    "TSDB",
+    "inodes",
+    "NodeClockNotSynchronising",
+    "KubeletPlegDurationHigh"
   ],
   "dictionaries": [
     "softwareTerms",
