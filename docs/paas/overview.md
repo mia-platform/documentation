@@ -32,3 +32,11 @@ Mia-Platform PaaS includes all the following services:
 * Backup and disaster recovery
 * Regular penetration and performance tests 
 * GDPR compliance
+
+### Upgrades  
+
+Mia-Platform PaaS (Platform as a Service) solution helps the teams to focus on their core business while the whole infrastructure and hosting is totally managed by Mia-Platform. Infrastructure and software upgrades are therefore managed by our internal team.  
+
+Maintenance windows for upgrades are regularly scheduled every 3 months with at least 2 weeks notice to all the customers. Extraordinary unscheduled maintenance with shorter notice can happen in case of emergency security fixes of the infrastructure.  
+
+Our software and infrastructure updates include: GitLab, MongoDB, Kubernetes, Kafka, ElasticSearch, Grafana, Nexus.
