@@ -332,6 +332,10 @@
         {
           "id": "development_suite/deploy/configuration",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/deploy/pipeline-configuration",
+          "type": "doc"
         }
       ],
       "label": "Deploy what you have created",
