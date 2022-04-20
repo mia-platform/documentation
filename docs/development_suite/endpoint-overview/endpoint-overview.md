@@ -5,11 +5,14 @@ sidebar_label: Endpoint Overview
 ---
 ## What is the Endpoint Overview
 
-The Endpoint Overview is a visualization tool accessible from the Tenant Section through the button next to tenant name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/overview/endpoints`.  
+The Endpoint Overview is a visualization tool accessible from the Company Section through the button next to company name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/overview/endpoints`.  
+:::caution
+In the url, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tentant term is deprecated and will be removed soon
+:::
 
 ![Endpoints Overview BUtton](img/endpoints-overview-button.png)  
 
-The Endpoint Overview provides the user with a graphical cross-project overview of the configuration of all the selected tenant's projects. The graphical overview has a particular focus on the security configuration of the projects' endpoints.  
+The Endpoint Overview provides the user with a graphical cross-project overview of the configuration of all the selected Company projects. The graphical overview has a particular focus on the security configuration of the Projects endpoints.  
 
 Endpoint Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Project*: Project name.
@@ -26,7 +29,7 @@ An example is in the following picture.
 
 ![Graphical features](img/graphical-features.png)  
 
-Through this tool, the government entity of the tenant can have a graphical overview of the global configuration and the security of all the projects and endpoints.
+Through this tool, the government entity of the company can have a graphical overview of the global configuration and the security of all the projects and endpoints.
 
 ## Main functionalities
 

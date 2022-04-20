@@ -15,7 +15,8 @@ This feature is still in an early development stage and may be subject to small 
 ## What is RBAC
 
 Role Based Access Control (RBAC) is an authorization mechanism built on top of user Roles useful to decouple actions that user can perform (generally known as _permissions_) and their higher-level Role inside an information system.
-RBAC allows you to define your custom permissions, group them by Roles and then assign those Roles to your users (or even groups of users).
+RBAC allows you to define your custom permissions, group them by [Roles](#roles) and then assign those Roles to your users (or even groups of users).
+Therefore, enabling RBAC in Console allows you to empower the level of your [Console permission management](../../../development_suite/console-levels-and-permission-management).
 
 Taking aside the security implications that adopting RBAC provides to your solution, one of the most important benefits (in comparison to a simplest ACL mechanism) is the governance capabilities it provides to your system administrators when dealing with what users using your platform may or may not be allowed to do.
 
@@ -27,10 +28,10 @@ In this page you can find further details on how RBAC works and how to properly 
 
 Inside the Design area a new section is available to manage RBAC configurations. This new section will present four different tabs:
 
-- [**Overview**](#overview-tab): in this tab you can enable and configure the [RBAC sidecar](#rbac-service) for each service of your project;
-- [**General Settings**](#general-settings-tab): in this tab you can control shared settings between all of your RBAC instances in the project (such as the version of the RBAC service or the [storage configuration](#rbac-storage))
-- [**Policies**](#policies-tab): in this tab you can write and test your own policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/);
-- [**Manual Routes**](#manual-routes-tab): in this tab you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification)-
+- [**Overview**](#overview-tab): in this tab, you can enable and configure the [RBAC sidecar](#rbac-service) for each service of your project;
+- [**General Settings**](#general-settings-tab): in this tab, you can control shared settings between all of your RBAC instances in the project (such as the version of the RBAC service or the [storage configuration](#rbac-storage));
+- [**Policies**](#policies-tab): in this tab, you can write and test your own policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/);
+- [**Manual Routes**](#manual-routes-tab): in this tab, you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification).
 
 ### Overview tab
 

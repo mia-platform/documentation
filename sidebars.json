@@ -190,7 +190,7 @@
           "id": "development_suite/set-up-infrastructure/kustomize"
         },
         {
-          "id": "development_suite/Console levels and permits management",
+          "id": "development_suite/console-levels-and-permission-management",
           "type": "doc"
         },
         {
@@ -216,6 +216,10 @@
       ],
       "label": "Set up infrastructure",
       "type": "category"
+    },
+    {
+      "id": "development_suite/api-console/user-management",
+      "type": "doc"
     },
     {
       "collapsed": true,
