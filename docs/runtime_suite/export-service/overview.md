@@ -3,13 +3,6 @@ id: overview
 title: Export Service
 sidebar_label: Overview
 ---
-:::danger
-
-**This service won't be available as multi-tenant service and will be migrated in the marketplace on 17/03/2022.<br/>
-After the migration it will be possible to install this microservice in the own project in order to use it.**
-
-:::
-
 Export Service is a service that exposes an API that allows to export the given input data source in different formats.
 The input data source to be exported format must be a [JSON line](https://jsonlines.org/).
 

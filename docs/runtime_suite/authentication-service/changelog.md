@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- Microsoft authentication
+
 ## 2.5.0 - 21-03-2022
 
 ### Added
