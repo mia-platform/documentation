@@ -467,6 +467,17 @@
       ],
       "label": "On-Premise Configurations",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "development_suite/user-profile/profile-picture",
+          "type": "doc"
+        }
+      ],
+      "label": "User profile",
+      "type": "category"
     }
   ],
   "devPortal": [
