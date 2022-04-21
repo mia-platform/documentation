@@ -195,3 +195,14 @@ spec:
                 value: '{{HTTP_PORT}}'
           restartPolicy: Never
 ```
+
+## How to enable my project to use Public Variables
+
+If you are using the Mia-Platform PaaS, then your project is already enabled to use it.
+
+If you have an On-Premise installation instead, some checks here below described may be needed.
+
+### You are using a mirror of the Mia-Platform Pipelines
+
+In this case, the Public Variables feature should be already enabled since the pipelines are up to date with the Mia-Platform ones.  
+
