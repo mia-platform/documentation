@@ -1,165 +1,163 @@
 {
   "cms": [
     {
-      "collapsed": false,
+      "collapsed": true,
+      "type": "category",
+      "label": "Backoffice",
       "items": [
         {
-          "id": "business_suite/backoffice/overview",
-          "type": "doc"
+          "type": "doc",
+          "id": "business_suite/backoffice/overview"
         },
         {
-          "id": "business_suite/backoffice/use",
-          "type": "doc"
+          "type": "doc",
+          "id": "business_suite/backoffice/data_flow"
         },
         {
-          "collapsed": false,
+          "type": "doc",
+          "id": "business_suite/backoffice/page_layout"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/core_concepts"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/plugin_example"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/application"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/plugin_navigation"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/changelog"
+        },
+        {
+          "type": "category",
+          "label": "Components",
           "items": [
             {
-              "id": "business_suite/backoffice/back-kit/overview",
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/adapters"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/buttons"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/clients"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_manipulation"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_querying"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_visualization"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/misc"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/typography"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Events",
+          "items": [
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Events/events"
+            }
+          ]
+        },
+        {
+          "label": "Previous tools",
+          "type": "category",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "business_suite/overview-business-suite",
               "type": "doc"
             },
             {
-              "id": "business_suite/backoffice/back-kit/data-flow",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/backoffice/back-kit/layout",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/backoffice/back-kit/concepts",
-              "type": "doc"
-            },
-            {
-              "collapsed": true,
+              "collapsed": false,
               "items": [
                 {
-                  "id": "business_suite/backoffice/back-kit/components/adapters",
+                  "id": "business_suite/guide_cms",
                   "type": "doc"
                 },
                 {
-                  "id": "business_suite/backoffice/back-kit/components/buttons",
+                  "id": "business_suite/cms_configuration/config_cms",
                   "type": "doc"
                 },
                 {
-                  "id": "business_suite/backoffice/back-kit/components/clients",
+                  "id": "business_suite/cms_configuration/conf_cms",
                   "type": "doc"
                 },
                 {
-                  "id": "business_suite/backoffice/back-kit/components/data-manipulation",
+                  "id": "business_suite/colorare_il_cms",
                   "type": "doc"
                 },
                 {
-                  "id": "business_suite/backoffice/back-kit/components/data-querying",
+                  "id": "business_suite/update_cms",
                   "type": "doc"
                 },
                 {
-                  "id": "business_suite/backoffice/back-kit/components/data-visualization",
-                  "type": "doc"
-                },
-                {
-                  "id": "business_suite/backoffice/back-kit/components/misc",
-                  "type": "doc"
-                },
-                {
-                  "id": "business_suite/backoffice/back-kit/components/typography",
+                  "id": "business_suite/custom-frontends-integration-CMS",
                   "type": "doc"
                 }
               ],
-              "label": "Components",
+              "label": "CMS",
               "type": "category"
             },
             {
-              "id": "business_suite/backoffice/back-kit/events/events",
-              "type": "doc"
+              "collapsed": false,
+              "items": [
+                {
+                  "id": "business_suite/cms_configuration/config_analytics",
+                  "type": "doc"
+                },
+                {
+                  "id": "business_suite/conf_analytics",
+                  "type": "doc"
+                }
+              ],
+              "label": "Analytics",
+              "type": "category"
             },
             {
-              "id": "business_suite/backoffice/back-kit/plugin",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/backoffice/back-kit/application",
-              "type": "doc"
+              "collapsed": false,
+              "items": [
+                {
+                  "id": "business_suite/data-visualization",
+                  "type": "doc"
+                },
+                {
+                  "id": "business_suite/timeline",
+                  "type": "doc"
+                }
+              ],
+              "label": "Data visualization",
+              "type": "category"
             }
-          ],
-          "label": "Back-Kit",
-          "type": "category"
+          ]
         }
-      ],
-      "label": "Mia-Backoffice",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "business_suite/overview-business-suite",
-          "type": "doc"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/guide_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/cms_configuration/config_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/cms_configuration/conf_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/colorare_il_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/update_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/custom-frontends-integration-CMS",
-              "type": "doc"
-            }
-          ],
-          "label": "CMS",
-          "type": "category"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/cms_configuration/config_analytics",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/conf_analytics",
-              "type": "doc"
-            }
-          ],
-          "label": "Analytics",
-          "type": "category"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/data-visualization",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/timeline",
-              "type": "doc"
-            }
-          ],
-          "label": "Data visualization",
-          "type": "category"
-        }
-      ],
-      "label": "Previous tools",
-      "type": "category"
+      ]
     }
   ],
   "devOpsConsole": [

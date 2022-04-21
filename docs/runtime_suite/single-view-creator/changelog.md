@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- \_\_string\_\_ constant now supports any characters
+
+### Updated
+
+- @mia-platform-internal/fast-data-automation-lib ^1.3.2
+
 ## [3.8.1] 2022-04-11
 
 ### Updated
