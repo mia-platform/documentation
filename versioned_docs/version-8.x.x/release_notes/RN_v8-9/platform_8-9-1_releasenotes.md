@@ -5,7 +5,15 @@ sidebar_label: v8.9.1
 image: "img/release-note-link-preview.png"
 ---
 
-_April 8, 2022_
+_April 20, 2022_
+
+## Console
+
+### Bug Fix
+
+#### Misleading error page on project creation
+
+A bug causing a misleading error page after project creation has been fixed
 
 ## Marketplace
 
@@ -17,4 +25,4 @@ The Envoy Go/gRPC Rate Limit Service provides generic rate limit support for the
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.13.7`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 5.13.10`.
