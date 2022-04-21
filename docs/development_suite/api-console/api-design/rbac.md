@@ -6,12 +6,6 @@ sidebar_label: RBAC Overview
 
 import Mermaid from "./../../../../src/components/Mermaid";
 
-:::caution
-Release stage: **Preview**
-
-This feature is still in an early development stage and may be subject to small bugs or breaking changes.
-:::
-
 ## What is RBAC
 
 Role Based Access Control (RBAC) is an authorization mechanism built on top of user Roles useful to decouple actions that user can perform (generally known as _permissions_) and their higher-level Role inside an information system.
