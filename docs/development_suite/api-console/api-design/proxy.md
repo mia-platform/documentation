@@ -11,9 +11,16 @@ A proxy allows you to contact endpoints outside your cluster or call a microserv
 For example, with proxies you can centralize control over external API usage by defining a unique point (the proxy) and call it by the microservices that need it, without spreading the same configuration across them.
 Moreover being able to expose proxies on the same project domain, you'll be able to access external APIs from the outside of the cluster (for instance, from web applications) without having to deal with CORS or Content-Security Policy issues.
 
-## Create a new External Proxy
+## Create a Proxy
 
-An external proxy allows you to contact endpoints outside your cluster.  
+You can create a proxy selecting one of the available proxy inside the marketplace, or you can create a custom proxy by yourself.
+There are two types of proxy: External and Cross Project.
+
+An External Proxy allows you to contact endpoints outside your cluster.
+A Cross Projects proxy allows you to call a microservice in another namespace of the cluster.
+
+### Type External 
+
 In order to create a new external proxy, open the `Proxies` section in the *Design area*, select `Create new proxy` and choose `External` as `Type`. Then enter the following information:
 
 * **Name** (*required*): the name of the proxy
@@ -38,9 +45,7 @@ If the proxy host is unreachable you can see error logs in the API Gateway servi
 
 ![external proxy creation](img/how_to_create_external_proxy.gif)
 
-## Create a new Cross Projects Proxy
-
-A cross projects proxy allows you to call a microservice in another namespace of the cluster.
+### Type Cross Projects
 
 In order to create a new external proxy, open the `Proxies` in the *Design area*, select `Create new proxy` and choose `Cross Projects` as `Type`. Then enter the following information:
 
