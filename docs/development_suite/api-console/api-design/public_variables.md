@@ -206,3 +206,6 @@ If you have an On-Premise installation instead, some checks here below described
 
 In this case, the Public Variables feature should be already enabled since the pipelines are up to date with the Mia-Platform ones.  
 
+### You are using your own custom Pipelines
+
+In this case, please look at the documentation [here](docs/development_suite/deploy/pipeline-configuration) to know how to read public variables.
