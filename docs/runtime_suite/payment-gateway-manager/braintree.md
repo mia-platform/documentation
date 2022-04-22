@@ -30,8 +30,9 @@ BrainTree requires an additional object for the `/pay` request body, named `brai
 For more information, please read BrainTree's [documentation](https://developer.paypal.com/braintree/docs/guides/paypal/overview),
 paying particular attention to the Vault, Checkout and Checkout with Vault sections.
 
-:::warning Checkout + Vault is only supported on JS frontends; iOS and Android apps must perform Vaulting and Checkout 
-separately :::
+:::warning 
+Checkout + Vault is only supported on JS frontends; iOS and Android apps must perform Vaulting and Checkout separately. 
+:::
 
 ## Using our utility APIs
 
