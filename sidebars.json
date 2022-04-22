@@ -1807,6 +1807,10 @@
       "type": "doc"
     },
     {
+      "id": "paas/security/security_measures",
+      "type": "doc"
+    },
+    {
       "id": "monitoring/paas_alerting_rules",
       "type": "doc"
     }
