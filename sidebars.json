@@ -463,6 +463,10 @@
       "collapsed": true,
       "items": [
         {
+          "id": "self_hosted/self_hosted_requirements",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/set-up-infrastructure/providers-management",
           "type": "doc"
         }
