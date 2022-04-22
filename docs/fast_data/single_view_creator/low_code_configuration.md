@@ -893,6 +893,79 @@ After that, it will need to resolve the `ALLERGENS` dependency. To do that, it w
 It will then get all the `allergens_registry` entries matching the condition (which is the one with `ID_USER` equal to `1`, the id of the single view to update).
 At this point, we have two documents: eggs, and fish. For each of those documents, the mapping will be applied, and the resulting single view will have its `allergens` field mapped to an array containing those two values.
 
+### Read from multiple database
+
+In order to read data from multiple database you need to leverage on custom function from the mapping configuration.  
+First of all you need to create a configMap and we suggest to create at least two files: one for the database connection and the others for the custom functions.  
+
+The connection file could be like the following:
+
+```javascript
+// secondDB.js
+const { MongoClient } = require('mongodb');
+
+const url = '{{MONGODB_URL_2}}';
+const client = new MongoClient(url);
+
+let connected = false
+
+module.exports = async function (){
+    if (!connected) {
+        await client.connect();
+        connected = true
+    }
+    return client
+}
+```
+
+The above code uses the database driver and exports a function to retrive the connected client.  
+This module works like a singleton, indeed the client is created once and the state, e.g. the `connected` variable, lives for the entire duration of the nodejs process (remember that `require` a module is always evaluated once by nodejs).  
+Because this is a configMap, the `{{MONGODB_URL_2}}` will be interpolated at deploy time. Remember to set it up in the environment variables section.
+
+
+Then in a custom function file you can retrive the connected client and use it for reading data:
+
+```javascript
+// fieldFromSecondDB.js
+const getClient = require('./secondDB.js')
+
+module.exports = async function (logger, clientMongo, dependenciesMap){
+    const client = await getClient()
+    return client.db().collection('collection').findOne();
+}
+```
+
+Finally you can use the custom function in the mapping configuration:
+
+```json
+{
+   "version":"1.1.0",
+   "config":{
+      "SV_CONFIG":{
+         "dependencies":{
+            "PEOPLE":{
+               "type":"projection",
+               "on":"_identifier"
+            },
+            "MARRIAGE":{
+               "type":"projection",
+               "on":"PEOPLE_TO_MARRIAGE"
+            },
+            "PEOPLE":{
+               "type":"projection",
+               "on":"MARRIAGE_b_TO_PEOPLE"
+            }
+         },
+         "mapping":{
+            "name":"PEOPLE.name",
+            "marriedWith":"PEOPLE.name",
+            "fieldFromSecondDB":"__fromFile__[fieldFromSecondDB]"
+         }
+      }
+   }
+}
+```
+
 ## Environment variables
 
 After you have finished writing your configuration files, the Single View Creator is almost ready to be used, but first you need to assign a value to the environment variables. You can find information about them [here](../../runtime_suite/single-view-creator/configuration), as the simple Single View Creator Plugin is based on the same docker image of the Low Code one.
