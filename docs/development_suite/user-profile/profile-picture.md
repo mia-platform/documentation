@@ -20,7 +20,7 @@ Okta does not manage any profile picture.
 
 To make up for this lack, [Gravatar](https://gravatar.com/) is used as fallback: register to this service in order to set up a profile picture while using Okta provider.
 
-Follow this step: 
+Follow these steps: 
 
 * Create an account on Gravatar
 * Set a gravatar on your email 
