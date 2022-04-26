@@ -167,6 +167,8 @@ The object should have the following properties:
 `<your-service-name>`, `<your-group-name>`, `<your-repo-name>`, are field values that you will decide during the [creation of a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template). Some of these values must be defined in order to receive a suggestion for the Docker image name (depending on the suggestion **type**).
 :::
 
+#### Add the first Company user
+
 After your company has been created you have to add the first user to it, regardless it may be yourself or another user in the Platform, head over to the CMS page and choose the *Bindings* menu item (only a restricted set of users have access to this section, ask your Console Administrator if you need access to it).
 
 In the *Bindings* section select the Create new button and fill in the form, type a custom *Binding ID* (make sure it is unique in the whole collection, something like `{tenantId}-{desiredRole}` should be enough), select the proper Role (generally at this point you'll be adding the first *Company Owner*) and make sure you select the correct user as Subject. Finally you'll have to assign the correct resource by filling it with an object as follows:
