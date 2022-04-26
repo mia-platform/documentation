@@ -5,15 +5,7 @@ sidebar_label: Enable Auth0
 ---
 ## How to enable Auth0 as an identity provider in your project
 
-1. In the project in mongodb, disable the unused service:
-    * baas-legacy
-    * login-site
-    * session-manager
-    * auth-service
-    * user-service
-
-    and enable:
-
+1. Make sure to have the following services between the `enabledServices` of your project:
     * auth0-client
     * oauth-login-site
 

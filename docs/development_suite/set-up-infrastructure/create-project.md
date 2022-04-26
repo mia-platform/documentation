@@ -51,7 +51,6 @@ The fields necessary for this collection are:
 * `description`: the description of the company;
 * `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps;
 * `cmsImageName`: cms docker image to interpolate in template archive. It should also contain the cms tag to use (if `cms-site` service is disabled in project creation, it will not be used).
-* `coreLegacyImageName`: baas core docker image to interpolate in template archive. It should also contain the cms tag to use (if `baas-legacy` service is disabled in project creation, it will not be used).
 * `environments` (*required*): an array of objects containing the definition of the environments for the company. The content of these arrays will be interpolated to replace `%projectId%` by inserting `projectId` field in project creation. Each object should contain, for example:
 
     ```js
@@ -240,7 +239,6 @@ How to compile the template:
         "crud-service": true,
         "session-manager": false,
         "auth-service": false,
-        "baas-legacy": false,
         "cms-site": true,
         "cms-backend": true,
         "v1-adapter": true,

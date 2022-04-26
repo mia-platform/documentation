@@ -64,7 +64,6 @@ To create an endpoint:
 
         * **CRUD**: hook your endpoint directly to one of your CRUD.
         * **Microservice**: hook your endpoint to a service with logics entirely created by you.
-        * **Mia-Platform BaaS**: hook your endpoint to some specific Mia-Platform services.
         * **External proxy** _Deprecated_: hook your endpoint to a proxy linked to a service outside of your cluster.
         * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
         * **Fast Data Projection**: hook your endpoint to the service which expose the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.

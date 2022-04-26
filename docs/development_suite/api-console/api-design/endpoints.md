@@ -16,7 +16,6 @@ An endpoint can be of different types:
 * **Microservice**: hook your endpoint to a service with logics entirely created by you.
 * **External proxy**: hook your endpoint to a proxy linked to a service outside of your cluster.
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.
-* **Mia-Platform BaaS** _Deprecated_: hook your endpoint to some specific Mia-Platform services.
 * **Fast Data Projection**: hook your endpoint to the service which expose the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
 * **Fast Data Single View**: hook your endpoint to the service which expose the Fast Data Single View. This type is visible only if Fast Data is enabled in the Console.
 
