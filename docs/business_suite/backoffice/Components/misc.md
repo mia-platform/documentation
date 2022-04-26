@@ -89,6 +89,7 @@ displays toast notifications about events happening on the EventBus according to
 > | content | [localizedText](../Core_concepts#localization-and-i18n) | any | localized text to be used as notification content |
 > | type    | string | `success`, `error`, `info`, `warning` | enum of possible notification styling (i.e. icons, color...) |
 
+
 ### Listens to
 
 | event | action | emits | on error |

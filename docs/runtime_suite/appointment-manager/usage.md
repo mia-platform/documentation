@@ -32,6 +32,10 @@ effects.
 
 Creates a new appointment in the respective CRUD collection.
 
+:::note 
+Please note that the date fields are saved in ISO 8601 format, so its up to the user to convert them in UTC from it's local time before using them in the Appointment Manager.
+:::
+
 :::note
 In case the chosen mode is remote, a virtual room for the teleconsultation will be created alongside the URL to join the call.
 :::
@@ -201,6 +205,12 @@ If the appointment's `startDate` is in the past after the update (even if it alr
 
 However, if the appointment's `startDate` is not in the past after the update (even if it was before), any applicable message
 will be sent.
+:::
+
+:::note
+For now, when the field **isRemote** is changed, no message will be sent.
+
+This may change in the future.
 :::
 
 #### Setting of reminders
@@ -399,7 +409,7 @@ In case the aim is to create a recurrent availability, the following fields are 
 - **each** - `string` : : it can be `day`, `week` or `month`.
 - **on** - array of `number` : days of the week (0-6, where 0 is 'sunday'); required if recurrent each week.
 - **untilDate** - `string`: recurrence ending date (expressed in format **ISO 8601**);
-  note that in this case 'until' is exclusive, thus this date is never included in the recurrence.
+  note that if the time specified is prior to the time of `startDate`, the day expressed in `untilDate` is excluded, otherwise it will be included in the recurrence.
 
 Additional fields can also be added to the body, depending on the underlying CRUD.
 

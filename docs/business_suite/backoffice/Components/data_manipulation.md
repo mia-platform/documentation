@@ -15,14 +15,10 @@ sidebar_label: Data Manipulation
   "type": "element",
   "tag": "bk-confirmation-modal"
 },
-```
-
-:::
 
 ## File Picker Drawer
 
 drawer containing a drag-and-drop area to handle file uploads/downloads
-
 ```html
 <bk-file-picker-drawer></bk-file-picker-drawer>
 ```
@@ -35,6 +31,7 @@ drawer containing a drag-and-drop area to handle file uploads/downloads
 |`visible`|`visible`|boolean| - | - |false|drawer open or closed state|
 |`width`|`width`|number| - | - |500|width occupied by the component|
 
+
 ### Listens to
 
 | event | action | emits | on error |
@@ -44,6 +41,7 @@ drawer containing a drag-and-drop area to handle file uploads/downloads
 |[link-file-to-record](../Events/Events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
 |[change-query](../Events/Events#change-query)|filtering on pagination query changes, it closes the display to return to the table view| - | - |
 
+
 ### Emits
 
 | event | description |
@@ -52,47 +50,16 @@ drawer containing a drag-and-drop area to handle file uploads/downloads
 |[update-data-with-file](../Events/Events#update-data-with-file)|updates data by uploading a new file and patching the dataset with its storage location metadata|
 |[update-data](../Events/Events#update-data)|unlinks file on file delete|
 
-### Bootstrap
-
-None
-
-## Footer
-
-element counter set as page footer and callToActions buttons acting on a selected dataset subset
-![footer](../img/bk-footer.png)
-
-```html
-<bk-footer></bk-footer>
-```
-
-### Properties & Attributes
-
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`disableStateChange`|`disable-state-change`|boolean| - | - |false|toggles state change facilities|
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[count-data](../Events/Events#count-data)|adjusts footer counter to currently viewed dataset| - | - |
-|[selected-data-bulk](../Events/Events#selected-data-bulk)|prepares callToAction on a given dataset subset| - | - |
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-
-### Emits
-
-This component emits no event.
 
 ### Bootstrap
 
 None
+
+
 
 ## Form Card
 
 Card containing a Form to edit or create items described by the `dataSchema`, once data is submitted for creation or update, the card is put in loading state
-
 ```html
 <bk-form-card></bk-form-card>
 ```
@@ -116,7 +83,6 @@ specific format in both a text-area and read-only table|
 |`liveSearchTimeout`|`live-search-timeout`|number| - | - |5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean| - | - |false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit|
 |`requireConfirm`| - |boolean \\| ({ cancelText?: any; content?: any; okText?: any; onCancel?: () => void; onOk?: () => void; title?: any; })| - | - | - | - |
-
 - `BkFormDrawerLocale` is an object with the following shape
 >
 > ```json
@@ -143,7 +109,6 @@ specific format in both a text-area and read-only table|
 > | `unsavedChangesContent` | [localizedText](../Core_concepts#localization-and-i18n) | any |  Confirmation modal content |
 >
 > #### DrawerLabels
-
 > is an object with the following representation
 >
 > ```json
@@ -156,11 +121,13 @@ specific format in both a text-area and read-only table|
 > | `title` | [localizedText](../Core_concepts#localization-and-i18n) | any | title label to be applied in the heading of the modal |
 > | `ctaLabel` | [localizedText](../Core_concepts#localization-and-i18n) | any | call to action label to be applied at the `submit` button at the bottom of the modal |
 
+
 ### Listens to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[display-data](../Events/Events#display-data)|trigger the initial data of the form| - | - |
+
 
 ### Emits
 
@@ -172,15 +139,17 @@ specific format in both a text-area and read-only table|
 |[create-data-with-file](../Events/Events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
 |[error](../Events/Events#error)|contains http error messages when something goes wrong|
 
+
 ### Bootstrap
 
 None
+
+
 
 ## Form Drawer
 
 Drawer containing a Form to edit or create items described by the `dataSchema`, once data is submitted for creation or update, drawer is put in loading state
 ![form-drawer](../img/bk-form-drawer.png)
-
 ```html
 <bk-form-drawer></bk-form-drawer>
 ```
@@ -203,7 +172,6 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 |`readonlyOnView`|`readonly-on-view`|boolean| - | - |false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit|
 |`requireConfirm`| - |boolean \\| ({ cancelText?: any; content?: any; okText?: any; onCancel?: () => void; onOk?: () => void; title?: any; })| - | - | - | - |
 |`width`|`width`|number| - | - |500|with of the drawer in pixels|
-
 - `BkFormDrawerLocale` is an object with the following shape
 >
 > ```json
@@ -230,7 +198,6 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 > | `unsavedChangesContent` | [localizedText](../Core_concepts#localization-and-i18n) | any |  Confirmation modal content |
 >
 > #### DrawerLabels
-
 > is an object with the following representation
 >
 > ```json
@@ -242,7 +209,6 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 > |----------|------|---------|-------------|
 > | `title` | [localizedText](../Core_concepts#localization-and-i18n) | any | title label to be applied in the heading of the drawer |
 > | `ctaLabel` | [localizedText](../Core_concepts#localization-and-i18n) | any | call to action label to be applied at the `submit` button at the bottom of the drawer |
-
 - `DataActions['actions']` is an array of
 >
 > ```json
@@ -267,15 +233,14 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 > | `hiddenOnInsert` | 'boolean' | `true` or `false` | Mark the action as hidden in the create drawer |
 > | `hiddenOnSelect` | 'boolean' | `true` or `false` | Mark the action as hidden in the update drawer |
 > | `closeOnClick` | 'boolean' | `true` or `false` | Close the drawer after the action correctly executed, defaults to false |
-
 > #### requireConfirm object
-
 > | property | type | values | description |
 > |----------|------|--------|-------------|
 > | `cancelText` | [localizedText](../Core_concepts#localization-and-i18n) | any | Cancel button label |
 > | `content` | [localizedText](../Core_concepts#localization-and-i18n) | any | Text content of the modal |
 > | `okText` | [localizedText](../Core_concepts#localization-and-i18n) | any | Confirm button label |
 > | `title` | [localizedText](../Core_concepts#localization-and-i18n) | any | Title of the modal |
+
 
 ### Listens to
 
@@ -290,6 +255,7 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 |[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
 |[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
+
 ### Emits
 
 | event | description |
@@ -302,15 +268,17 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 |[error](../Events/Events#error)|contains http error messages when something goes wrong|
 |[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|notifies to add a step in the navigation path|
 
+
 ### Bootstrap
 
 None
+
+
 
 ## Form Modal
 
 Modal containing a Form to edit or create items described by the `dataSchema`, once data is submitted for creation or update, modal is put in loading state
 ![form-modal](../img/bk-form-modal.png)
-
 ```html
 <bk-form-modal></bk-form-modal>
 ```
@@ -335,7 +303,6 @@ specific format in both a text-area and read-only table|
 |`readonlyOnView`|`readonly-on-view`|boolean| - | - |false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit|
 |`requireConfirm`| - |boolean \\| ({ cancelText?: any; content?: any; okText?: any; onCancel?: () => void; onOk?: () => void; title?: any; })| - | - | - | - |
 |`width`|`width`|string| - | - |'90vw'|with of the modal|
-
 - `BkFormDrawerLocale` is an object with the following shape
 >
 > ```json
@@ -362,7 +329,6 @@ specific format in both a text-area and read-only table|
 > | `unsavedChangesContent` | [localizedText](../Core_concepts#localization-and-i18n) | any |  Confirmation modal content |
 >
 > #### DrawerLabels
-
 > is an object with the following representation
 >
 > ```json
@@ -374,6 +340,7 @@ specific format in both a text-area and read-only table|
 > |----------|------|---------|-------------|
 > | `title` | [localizedText](../Core_concepts#localization-and-i18n) | any | title label to be applied in the heading of the modal |
 > | `ctaLabel` | [localizedText](../Core_concepts#localization-and-i18n) | any | call to action label to be applied at the `submit` button at the bottom of the modal |
+
 
 ### Listens to
 
@@ -388,6 +355,7 @@ specific format in both a text-area and read-only table|
 |[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
 |[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
+
 ### Emits
 
 | event | description |
@@ -401,6 +369,44 @@ specific format in both a text-area and read-only table|
 |[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|notifies to add a step in the navigation path|
 |[error](../Events/Events#error)|contains http error messages when something goes wrong|
 |[success](../Events/Events#success)|notifies a successful http request|
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-footer
+
+element counter set as page footer and callToActions buttons acting on a selected dataset subset
+![footer](../img/bk-footer.png)
+```html
+<bk-footer></bk-footer>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`disableStateChange`|`disable-state-change`|boolean|false|toggles state change facilities |
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
+|[count-data](../Events/Events#count-data)|adjusts footer counter to currently viewed dataset| - | - |
+|[selected-data-bulk](../Events/Events#selected-data-bulk)|prepares callToAction on a given dataset subset| - | - |
+|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+
+
+### Emits
+
+This component emits no event.
+
 
 ### Bootstrap
 

@@ -19,7 +19,9 @@ where `label` is a unique string identifying the event such as `"create-data"` o
 To create a new `event` within `src/events` there's a `factory` method which is a generic function that takes the `P` and `M` types with the `label`
 
 ```typescript
-function factory<P = {}, M = {}> (label: string) {
+export function factory<P extends Payload = Payload, M extends Meta = Meta> (
+  label: string, options: FactoryOptions = {}
+): Factory<P, M> {
   ...
 }
 ```
@@ -85,11 +87,13 @@ For instance an `upload-file` event looks like:
 }
 ```
 
+
 ## A
 
 ### Add Filter
 
 delivers data to add a new filter
+
 
 - Label: `add-filter`
 - Payload:
@@ -119,6 +123,7 @@ delivers data to add a new filter
 
 notifies adding a new item
 
+
 - Label: `add-new`
 - Payload:
 
@@ -128,11 +133,28 @@ notifies adding a new item
 }
 ```
 
+### Add New External
+
+notifies adding a new item on an external collection
+
+
+- Label: `add-new-external`
+- Payload:
+
+```typescript
+{
+  [key: string]: any
+}
+```
+
+
+
 ## B
 
 ### Nested Navigation State - Go Back
 
 goes back an arbitrary number of levels of nesting
+
 
 - Label: `back-state`
 - Payload:
@@ -143,11 +165,14 @@ goes back an arbitrary number of levels of nesting
 }
 ```
 
+
+
 ## C
 
 ### Change Filter
 
 delivers data on an edited filter
+
 
 - Label: `change-filter`
 - Payload:
@@ -176,6 +201,7 @@ delivers data on an edited filter
 ### Change Query
 
 requires a modification of the currently viewed dataset (filtering, sorting, paging)
+
 
 - Label: `change-query`
 - Payload:
@@ -215,6 +241,7 @@ requires a modification of the currently viewed dataset (filtering, sorting, pag
 
 sends count and pagination of current dataset
 
+
 - Label: `count-data`
 - Payload:
 
@@ -230,6 +257,7 @@ sends count and pagination of current dataset
 
 notifies the request for creation of a new item and carries its value
 
+
 - Label: `create-data`
 - Payload:
 
@@ -243,6 +271,7 @@ notifies the request for creation of a new item and carries its value
 
 create data that have one or more files within their properties,
  the current file property is set into meta
+
 
 - Label: `create-data-with-file`
 - Payload:
@@ -263,11 +292,14 @@ create data that have one or more files within their properties,
 }
 ```
 
+
+
 ## D
 
 ### Delete Data
 
 notifies the request for deletion of an item
+
 
 - Label: `delete-data`
 - Payload:
@@ -281,6 +313,7 @@ notifies the request for deletion of an item
 ### Delete File
 
 notifies that a given file, identified by its unique id, must be deleted
+
 
 - Label: `delete-file`
 - Payload:
@@ -303,6 +336,7 @@ notifies that a given file, identified by its unique id, must be deleted
 
 notifies that a given file was deleted, carries a transaction ID to rollback
 
+
 - Label: `deleted-file`
 - Payload:
 
@@ -324,6 +358,7 @@ notifies that a given file was deleted, carries a transaction ID to rollback
 
 carries a dataset
 
+
 - Label: `display-data`
 - Payload:
 
@@ -337,6 +372,7 @@ carries a dataset
 
 displays data or a slice of data
 
+
 - Label: `display-state`
 - Payload:
 
@@ -348,12 +384,22 @@ Array<{
 }>
 ```
 
+- Meta:
+
+```typescript
+{
+  keys?: string[]
+}
+```
+
 ### Download File
 
 notifies that a given file must be downloaded.
  Payload could be either the file identifier or a structure that contains it.
  In the latter case, the object property to find the file must be set into the meta.
- It carries transaction ID to rollback
+ It carries transaction ID to rollback.
+ Allows to request in-browser view of the file.
+
 
 - Label: `download-file`
 - Payload:
@@ -371,12 +417,14 @@ notifies that a given file must be downloaded.
 {
   transactionId?: string
   property?: string
+  showInViewer?: boolean | "skip-checks"
 }
 ```
 
 ### Downloaded File
 
 notifies that a given file was downloaded, carries a transaction ID to rollback
+
 
 - Label: `downloaded-file`
 - Payload:
@@ -399,6 +447,7 @@ notifies that a given file was downloaded, carries a transaction ID to rollback
 
 notifies the request for duplication of an item and carries its value
 
+
 - Label: `duplicate-data`
 - Payload:
 
@@ -408,11 +457,14 @@ notifies the request for duplication of an item and carries its value
 }
 ```
 
+
+
 ## E
 
 ### Error
 
 notifies a generic error event
+
 
 - Label: `error`
 - Payload:
@@ -435,6 +487,7 @@ notifies a generic error event
 
 raised when the export button is clicked
 
+
 - Label: `export-data`
 - Payload:
 
@@ -442,11 +495,14 @@ raised when the export button is clicked
 {}
 ```
 
+
+
 ## F
 
 ### Filter
 
 notifies opening of UI component that handles form creation
+
 
 - Label: `filter`
 - Payload:
@@ -455,11 +511,14 @@ notifies opening of UI component that handles form creation
 {}
 ```
 
+
+
 ## L
 
 ### Link File To Record
 
 sends file upload data
+
 
 - Label: `link-file-to-record`
 - Payload:
@@ -485,6 +544,7 @@ sends file upload data
 notifies whether dataset is loading or not.
  It also advices that a dataset may be inbound
 
+
 - Label: `loading-data`
 - Payload:
 
@@ -498,6 +558,7 @@ notifies whether dataset is loading or not.
 
 carries lookup data information and dataset
 
+
 - Label: `lookup-data`
 - Payload:
 
@@ -507,9 +568,18 @@ carries lookup data information and dataset
 }
 ```
 
+- Meta:
+
+```typescript
+{
+  dataOrigin?: string
+}
+```
+
 ### Lookup Live Found
 
 fired when options for a Select form input are found
+
 
 - Label: `lookup-live-found`
 - Payload:
@@ -524,6 +594,7 @@ fired when options for a Select form input are found
 
 fired upon searching on a Select form input
 
+
 - Label: `lookup-live-searching`
 - Payload:
 
@@ -534,11 +605,27 @@ fired upon searching on a Select form input
 }
 ```
 
+- Meta:
+
+```typescript
+{
+  limit: number
+  input: {
+    [key: string]: any[]
+  }
+  currentValues?: any[]
+  keys?: string[]
+}
+```
+
+
+
 ## P
 
 ### Nested Navigation State - Push
 
 adds a new level of nesting
+
 
 - Label: `push-state`
 - Payload:
@@ -551,11 +638,14 @@ adds a new level of nesting
 }
 ```
 
+
+
 ## R
 
 ### Require Confirm
 
 Signals that a certain action requires confirmation to be performed
+
 
 - Label: `require-confirm`
 - Payload:
@@ -571,11 +661,14 @@ Signals that a certain action requires confirmation to be performed
 }
 ```
 
+
+
 ## S
 
 ### Search Lookups
 
 notifies that all lookups having `excludeFromSearch` set to false should be searched against a value
+
 
 - Label: `search-lookups`
 - Payload:
@@ -598,6 +691,7 @@ notifies that all lookups having `excludeFromSearch` set to false should be sear
 
 fired when values from a text search for lookups are found
 
+
 - Label: `search-lookups-found`
 - Payload:
 
@@ -619,6 +713,7 @@ fired when values from a text search for lookups are found
 
 notifies that a single datum has been selected from a dataset
 
+
 - Label: `selected-data`
 - Payload:
 
@@ -633,6 +728,7 @@ notifies that a single datum has been selected from a dataset
 ### Select Data Bulk
 
 notifies data selection in a dataset
+
 
 - Label: `selected-data-bulk`
 - Payload:
@@ -649,6 +745,7 @@ notifies data selection in a dataset
 
 notifies the request for starting/updating the visualization of a PDF file
 
+
 - Label: `show-in-viewer`
 - Payload:
 
@@ -662,6 +759,7 @@ notifies the request for starting/updating the visualization of a PDF file
 ### Success
 
 notifies a successful action
+
 
 - Label: `success`
 - Payload:
@@ -678,11 +776,14 @@ notifies a successful action
 }
 ```
 
+
+
 ## U
 
 ### Update Data
 
 notifies the request for creation of a new item and carries its value
+
 
 - Label: `update-data`
 - Payload:
@@ -706,6 +807,7 @@ notifies the request for creation of a new item and carries its value
 update data that have one or more files within their properties,
 the current file property is set into meta
 
+
 - Label: `update-data-with-file`
 - Payload:
 
@@ -727,7 +829,8 @@ the current file property is set into meta
 
 ### Update State Bulk
 
-updates multiple data state (**STATE** or _st) in a dataset
+updates multiple data state (__STATE__ or _st) in a dataset
+
 
 - Label: `update-state-bulk`
 - Payload:
@@ -743,6 +846,7 @@ updates multiple data state (**STATE** or _st) in a dataset
 
 requests the upload of a file and carries its data. `File`
 
+
 - Label: `upload-file`
 - Payload:
 
@@ -753,6 +857,7 @@ requests the upload of a file and carries its data. `File`
 ### Uploaded File
 
 returns file upload metadata, typically when storing on an external service like `files-service`
+
 
 - Label: `uploaded-file`
 - Payload:
@@ -770,6 +875,7 @@ returns file upload metadata, typically when storing on an external service like
 ### Using Form Container
 
 notifies that a form container with given ID is currently in use
+
 
 - Label: `using-form-container`
 - Payload:
