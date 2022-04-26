@@ -76,7 +76,6 @@ Check and see the version of the CMS you want to build
          MONGODB_URL: "${PREPROD_MONGODB_URL}"
          REDIS_URL: "${PREPROD_REDIS_URL}"
 
-         CORE_LEGACY_IMAGE_NAME: "nexus.mia-platform.eu/demo/baas-legacy:0.2.0"
          MONGODB_LEGACY_URL: "${PREPROD_MONGODB_LEGACY_URL}"
          REDIS_LEGACY_URL: "${PREPROD_REDIS_LEGACY_URL}"
 
@@ -98,7 +97,6 @@ Check and see the version of the CMS you want to build
          MONGODB_URL: "${PREPROD_MONGODB_URL}"
          REDIS_URL: "${PREPROD_REDIS_URL}"
 
-         CORE_LEGACY_IMAGE_NAME: "nexus.mia-platform.eu/demo/baas-legacy:0.2.0"
          MONGODB_LEGACY_URL: "${PREPROD_MONGODB_LEGACY_URL}"
          REDIS_LEGACY_URL: "${PREPROD_REDIS_LEGACY_URL}"
 
@@ -121,7 +119,6 @@ Check and see the version of the CMS you want to build
          REDIS_URL: "${CLOUD_REDIS_URL}"
 
          CMS_IMAGE_NAME: "nexus.mia-platform.eu/gls-ego/cms-site:7.0.0"
-         CORE_LEGACY_IMAGE_NAME: "nexus.mia-platform.eu/demo/baas-legacy:0.2.0"
          MONGODB_LEGACY_URL: "${CLOUD_MONGODB_LEGACY_URL}"
          REDIS_LEGACY_URL: "${CLOUD_REDIS_LEGACY_URL}"
 

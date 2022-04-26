@@ -744,14 +744,6 @@
               "type": "doc"
             },
             {
-              "id": "runtime_suite/sdk_ios",
-              "type": "doc"
-            },
-            {
-              "id": "runtime_suite/sdk_android",
-              "type": "doc"
-            },
-            {
               "id": "libraries/create-new-library",
               "type": "doc"
             }
