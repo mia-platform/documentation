@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 5.2.2 - 2022-04-22
+
+### Fixed
+
+- resolved a regression introduced in version 5.1.0. Now all of the endpoints of a collection are correctly exposed.
+
 ## 5.2.1 - 2022-03-30
 
 ### Fixed
@@ -22,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - support for `$first` project operator in `_rawp` query param
 
-## 5.1.0 - 2022-03-21
+## 5.1.0 - 2022-03-21 [Found regression in this version on date 2022-04-22]
 
 ### Added
 

@@ -9,6 +9,7 @@ sidebar_label: Buttons
 
 Buttons are scoped by their signature event and often start event-driven processing notifying the `eventBus` about user actions.
 
+
 ## bk-add-filter-button
 
 Notifies other components that a filter needs to be created. Such event could be collected by a `bk-filter-drawer`.
@@ -21,10 +22,13 @@ Notifies other components that a filter needs to be created. Such event could be
 
 ### Properties & Attributes
 
+
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 
+
 ### Listens to
+
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -33,6 +37,7 @@ Notifies other components that a filter needs to be created. Such event could be
 |[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
+
 
 | event | description |
 |-------|-------------|
@@ -54,12 +59,14 @@ this button creates a new item
 
 ### Properties & Attributes
 
+
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`browseOnButtonClick`| - |ClickPayload|{}|when provided with a valid schema, overrides the button JavaScript `onclick` listener handler allowing an `href` linking|
 |`initialValues`| - |Payload|{}|arguments to pass upon click |
 
 ### Listens to
+
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -68,6 +75,7 @@ this button creates a new item
 |[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
+
 
 | event | description |
 |-------|-------------|
@@ -141,6 +149,50 @@ Using a library (like loadhash) to recursively spread the object's properties.
 
 ## Actions
 
+All the parameters inside `clickConfig` can be dynamically interpolated into the WebComponent properties throw handlebars. With this syntax it is possible to access information about the current user or the URL of the page. Specifically, there are 3 objects available: 
+- `currentUser`, contains information about the current user, for example name and email.
+- `pathnameParams`, contains information about the pathname of the current page. It contains the property `params` with the keys specified in the `urlMask` and the property `path` with the full path.
+```json
+{
+  "params": {...},
+  "path": "/currentPath"
+}
+```
+- `searchParams`, contains information about the URL query parameters. It contains the property `params` with the keys specified in the `urlMask` and the property `path` with the full query parameters string.
+```json
+{
+  "params": {...},
+  "path": "?query1=value1"
+}
+```
+
+The two objects `pathnameParams` and `searchParams` can be accessed by specifing the `urlMask` property of the `bk-button` component. With no `urlMask` specified (or without a match between URL and `urlMask`), they will be empty. 
+
+Example of configuration:
+```json
+{
+  "type": "element",
+  "tag": "bk-generic-button",
+  "properties": {
+    "content": "Example button",
+    "urlMask": "\\?pageNumber=:myPageNumber",
+    "stopPropagationOnClick": true,
+    "clickConfig": {
+      "type": "event",
+      "actionConfig": {
+        "label": "add-new",
+        "payload": {"pageNumber": "{{searchParams.params.myPageNumber}}"}
+      }
+    }
+  }
+}
+```
+In this configuration the property `urlMask` is specified to get the value of the first query parameter `pageNumber` and is saved in the `myPageNumber` key of the `searchParams.params` object. The example configuration will create a button that on click action will emit a `add-new` event with the information about the current page number in the payload.
+
+:::warning
+This behavior is not available for buttons embedded within components that already dynamically interpolate data, such as tables.
+:::
+
 ### File Upload
 
 By setting `clickConfig` type to `file-upload`, on click the button perform and automatic file upload post. When clicking, browser opens its
@@ -176,7 +228,7 @@ This config can be extended by using the `config` key enclosed by `actionConfig`
 }
 ```
 
-in case an event should be piped when upload is successful, `actionConfig` contains a key `returnEvent` which
+in case an event should be piped when upload is successful, `actionConfig` contains a key `returnEvent` which 
 takes either a `string`, an `array` of `string`s, an `Event` or an `array` of `Event`s that will follow `success` event into the pipeline.
 For instance if a plugin reload is required after successful upload one could pipe a [change-query](../Events/Events#change-query)
 
@@ -192,7 +244,9 @@ For instance if a plugin reload is required after successful upload one could pi
 }
 ```
 
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -206,9 +260,12 @@ For instance if a plugin reload is required after successful upload one could pi
 |`loading`|`loading`|boolean|false|button loading property |
 |`loadingOnAction`|`loading-on-action`|boolean|false|configures the button to be loading while action is in progress |
 |`navigationStrategy`| - |undefined \\| "disable" \| "hide"| - |determines the button behavior upon navigating nested objects. Allowed values are 'disable' and 'hide'. By default, the button does not react to navigation events. |
+|`pathnameParams`| - |Record<string, string>|{}|property to inject the object-like source from URL pathname |
+|`searchParams`| - |Record<string, string>|{}|property to inject the object-like source from URL search params |
 |`shape`|`shape`|string|'round'|button shape property |
 |`stopPropagationOnClick`|`stop-propagation-on-click`|boolean|true|configures the onClick to disable propagation when action is fired |
 |`type`|`type`|string|'primary'|button type property |
+|`urlMask`|`url-mask`|string|''|url mask to apply to the current path to extract dynamic parameters |
 |`clickConfig`| - |undefined \\| ClickConfig| - |schema describing how to configure onCLick event |
 
 ### Listens to
@@ -216,6 +273,7 @@ For instance if a plugin reload is required after successful upload one could pi
 This component listens to no event.
 
 ### Emits
+
 
 | event | description |
 |-------|-------------|
@@ -239,10 +297,13 @@ allows to go back one step in the navigation path. It is not visible at the top 
 
 ### Properties & Attributes
 
+
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 
+
 ### Listens to
+
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -250,6 +311,7 @@ allows to go back one step in the navigation path. It is not visible at the top 
 |[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
 ### Emits
+
 
 | event | description |
 |-------|-------------|
@@ -271,16 +333,20 @@ Allows refreshing some resource
 
 ### Properties & Attributes
 
+
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 
+
 ### Listens to
+
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
 
 ### Emits
+
 
 | event | description |
 |-------|-------------|

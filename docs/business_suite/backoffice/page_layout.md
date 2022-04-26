@@ -180,6 +180,10 @@ When `type` is set to `string`, the extra key `dateOptions` is available and hol
 customization of date visualization format. Back-Kit components handles dates and timestamps using `dayjs`
 library and its `parsing/formatting syntax`.
 
+:::note 
+Please note that the date fields are saved in ISO 8601 format, so it's up to the user to convert them in UTC from its local time before using them in the Appointment Manager.
+:::
+
 When `type` is set to `object` and format is `localized-text`, table expects a localized object and will render the closest language key,
 i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
 
@@ -218,6 +222,10 @@ Visualization options concern any web component that is going to render a given 
 |`hiddenLabel`|  `boolean` | whether the label of the property is shown within the header of the table component |
 |`sortable`|  `boolean` | whether the property can be sorted within the header of the table component |
 |`iconMap`| `object` | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
+|`template`| `LocalizedText` | template of how to visualize the object |
+|`joinDelimiter`| `string` | delimiter to visualize multi-lookups as a single string |
+|`tag`| `string` | tag to use when embedding a custom component |
+|`properties`| `Record<string, any>` | properties for the embedded custom component |
 
 | `iconMap` option | values | description |
 |--------|---------|-------------|
@@ -246,10 +254,17 @@ actions. Extra options to be specified for user interaction with the dataset sho
 
 |options | default | description |
 |--------|---------|-------------|
-|`disabled`| `undefined`| |
+|`disabled`| `undefined`| whether the property is disabled within the form component |
 |`hidden`| `undefined` | whether the property is shown within the form component |
-|`placeholder`|`undefined`| |
+|`placeholder`|`undefined`| placeholder for the component |
 |`readOnly`|`undefined`| whether the property can be edited |
+|`hiddenOnUpdate`|`undefined`| whether the property is shown within the form component on update |
+|`hiddenOnInsert`|`undefined`| whether the property is shown within the form component on insert |
+|`readOnlyOnUpdate`|`undefined`| whether the property can be edited on update |
+|`readOnlyOnInsert`|`undefined`| whether the property can be edited on insert |
+|`disabledOnUpdate`|`undefined`| whether the property is disabled within the form component on update |
+|`disabledOnInsert`|`undefined`| whether the property is disabled within the form component on update |
+|`showFileInViewer`|`undefined`| whether clicking the file property requests to open the file in browser |
 
 ### Lookups
 
