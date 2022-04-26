@@ -169,7 +169,7 @@ The object should have the following properties:
 
 After your company has been created you have to add the first user to it, regardless it may be yourself or another user in the Platform, head over to the CMS page and choose the *Bindings* menu item (only a restricted set of users have access to this section, ask your Console Administrator if you need access to it).
 
-In the *Bindings* section select the Create new button and fill in the form, type a custom *Binding ID* (make sure it is unique in the whole collection), select the proper Role (generally at this point you'll be adding the first *Company Owner*) and make sure you select the correct user as Subject. Finally you'll have to assign the correct resource by filling it with an object as follows:
+In the *Bindings* section select the Create new button and fill in the form, type a custom *Binding ID* (make sure it is unique in the whole collection, something like `{tenantId}-{desiredRole}` should be enough), select the proper Role (generally at this point you'll be adding the first *Company Owner*) and make sure you select the correct user as Subject. Finally you'll have to assign the correct resource by filling it with an object as follows:
 
 ```json
 {
