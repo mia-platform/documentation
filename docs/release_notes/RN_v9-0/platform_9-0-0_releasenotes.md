@@ -45,9 +45,8 @@ Public Variables sections, previously released under a feature toggle on On-Prem
 
 A bug of the tooltip on hover which displays information about the maximum number of selectable containers for the multilog feature has been fixed.
 
-## Fast Data
 
-### New features
+## Fast Data
 
 ### Single View Creator Plugin & LowCode for On-Premise
 
@@ -68,9 +67,6 @@ A regression introduced in version v5.1.0 has been resolved. Now all of the endp
 
 With this new version a bug of the service that caused problems with multi part forms has beed fixed.
 
-### New Marketplace components
-
-### Security update for the following microservices
 
 ## Backoffice v1.0.0
 
