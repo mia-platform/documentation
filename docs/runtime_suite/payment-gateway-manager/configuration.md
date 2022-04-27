@@ -7,8 +7,8 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 
 ## Generic Environment Variables
 * **LOG_LEVEL**
-* **HTTP_LOG_LEVEL** (required): `basic`, `body`, `headers` or `none`; logs additional info about http requests
-    made towards external systems
+* **HTTP_LOG_LEVEL**: `basic`, `body`, `headers` or `none`; logs additional info about http requests
+    made towards external systems, defaults to `none`
 * **HTTP_PORT**
 * **ENABLED_PROVIDERS** (required): comma separated list of payment providers enabled at runtime
 * **PAYMENT_CALLBACK_URL** (required): URL used to notify other services about a payment transaction result

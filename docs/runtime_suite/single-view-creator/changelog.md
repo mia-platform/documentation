@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.9.0] 2022-04-26
+
 ### Fixed
 
 - \_\_string\_\_ constant now supports any characters
@@ -17,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - @mia-platform-internal/fast-data-automation-lib ^1.3.2
+
+### Added
+
+- add CA cert support. Env var for path definition: `CA_CERT_PATH`.
 
 ## [3.8.1] 2022-04-11
 

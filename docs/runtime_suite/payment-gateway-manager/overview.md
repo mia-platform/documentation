@@ -41,8 +41,9 @@ developer and allow focusing on the payment process itself, rather than setup pr
 a clear example of this concept.
 
 ## Documentation
-You can view the Swagger compatible OpenAPI documentation by calling the `/documentation` endpoint. You should also use 
-it as the documentation endpoint in the microservice configuration to view it under the API Portal.
+You can view the Swagger compatible OpenAPI documentation by calling the `/documentation` endpoint. 
+You can also use `/documentation/openapi.json` as the documentation endpoint in the microservice configuration to add it
+to the API Portal.
 
 ## Notes
 
