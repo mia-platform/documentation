@@ -88,6 +88,21 @@
       ]
     },
     {
+      "label": "Data Visualization",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "business_suite/data-visualization",
+          "type": "doc"
+        },
+        {
+          "id": "business_suite/timeline",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "label": "Previous tools",
       "type": "category",
       "collapsed": true,
@@ -122,6 +137,10 @@
             {
               "id": "business_suite/custom-frontends-integration-CMS",
               "type": "doc"
+            },
+            {
+              "id": "business_suite/video-pills",
+              "type": "doc"
             }
           ],
           "label": "CMS",
@@ -140,21 +159,6 @@
             }
           ],
           "label": "Analytics",
-          "type": "category"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/data-visualization",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/timeline",
-              "type": "doc"
-            }
-          ],
-          "label": "Data visualization",
           "type": "category"
         }
       ]
