@@ -27,6 +27,10 @@ User management has been integrated into the Console and allows to assign users 
 User management is available only on users with enough privileges (Company Owners and Project Administrators) and can be done in two new sections that have been added within each Company and each Project.
 In these sections it will be possible to add users, modify permissions and have a look on the users who have access to your Project and their capabilities.
 
+#### Create proxy from marketplace
+
+It is now possible to create proxies from the Marketplace; more proxies will be added soon.
+
 #### Search Public Variables
 
 In the Public Variables section you can now search for Public Variable name in the table.
@@ -71,11 +75,6 @@ With this new version a bug of the service that caused problems with multi part 
 ## Backoffice v1.0.0
 
 ### New features
-
-#### Create proxy from marketplace
-
-It is now possible to create proxies from the Marketplace. 
-New proxies will be added soon.
 
 #### Analytics in iFrame
 
