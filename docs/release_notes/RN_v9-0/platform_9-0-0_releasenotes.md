@@ -7,35 +7,98 @@ image: "img/release-note-link-preview.png"
 
 _April 28, 2022_
 
-
-## Fast Data
-
-### New Features
-
 ## Console
 
 ### New features
 
+#### Mia-Platform PaaS Console with unique login
+
+Mia-Platform Console PaaS now is connected with the unique Mia-Platform login with SSO. 
+Now, with the same credential, user has access to all the resources connected to your project: Console, Kubernetes, Gitlab, Kibana, Grafana and much more!
+
+#### Renaming Tenant into Company
+
+From Console v9, the commonly known Tenant has been renamed to Company.
+
+#### User management and Roles assignment
+
+User management has been integrated into the Console and allows to assign users an entire set of roles. Each role aims at regulating a series of capabilities, providing or not access to Console features thanks to specific permissions (i.e. access to projects/companies/environments, repository creation, deploy triggering, etc.). To know more about these permissions and how to assign roles to Console users [check out the user management documentation](../../development_suite/api-console/user-management).
+
+User management is available only on users with enough privileges (Company Owners and Project Administrators) and can be done in two new sections that have been added within each Company and each Project.
+In these sections it will be possible to add users, modify permissions and have a look on the users who have access to your Project and their capabilities.
+
+#### Search Public Variables
+
+In the Public Variables section you can now search for Public Variable name in the table.
+
+#### Cross Project Proxy through Kubernetes Service enabled on all projects
+
+Cross Project Proxy through Kubernetes Service, introduced as a preview feature in the v7.8.1, are now stable and released officially. Cross Project Proxy through nginx has been removed and automatically converted to the new one. 
+
+#### Public Variables enabled on all Console installations
+
+Public Variables sections, previously released under a feature toggle on On-Premise installations, is now enabled permanently. 
+
 ### Bug Fix
 
-### Breaking Changes
+#### Multilog feature in Runtime Area
 
-### Improvements
+A bug of the tooltip on hover which displays information about the maximum number of selectable containers for the multilog feature has been fixed.
+
+## Fast Data
+
+### New features
+
+### Single View Creator Plugin & LowCode for On-Premise
+
+Single View Creator Plugin and Single View Creator LowCode are now available out-of-the-box also for On-Premise installations.
+
+### Bug Fix
+
+- LowCode: \_\_string\_\_ constant now accepts any character and no more only lower-case characters. This fix is available since v5.3.3 of Real-Time Updater.
+
 
 ## Marketplace
+
+### CRUD Service v5.2.2
+
+A regression introduced in version v5.1.0 has been resolved. Now all of the endpoints of a collection are correctly exposed.
+
+### API Portal v1.16.2
+
+With this new version a bug of the service that caused problems with multi part forms has beed fixed.
 
 ### New Marketplace components
 
 ### Security update for the following microservices
 
-## Backoffice
+## Backoffice v1.0.0
 
 ### New features
 
+#### Create proxy from marketplace
+
+It is now possible to create proxies from the Marketplace. 
+New proxies will be added soon.
+
+#### Analytics in iFrame
+
+It is now possible to integrate analytics in the back office, using iFrames.
+
+#### PDF visualization in browser
+
+It is now possible to open and visualize PDF files in browser, without the need of downloading.
+
 ### Improvements
 
-### Bug Fix
+#### Objects visualization
+
+It is now possible to choose, from configuration, how to visualize objects. You can set a label that will be shown in the table.
+
+#### Lookups in nested objects
+
+Now lookups are supported in nested objects.
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version x.x.x`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 6.0.0`.
