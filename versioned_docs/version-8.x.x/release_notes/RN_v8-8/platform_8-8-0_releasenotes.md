@@ -113,6 +113,11 @@ A new version of RBAC Service is available featuring some small bug fixes.
 
 A new version of CRUD Service is available featuring support for MongoDB Views definitions
 
+:::danger
+A regression has been introduced which causes the fact that if a collection/single-view/projection has more than one internal endpoint, the crud-service only exposes one.
+To avoid this bug, it is suggested to direcly update CRUD service to v5.2.2.
+:::
+
 ### CMS Site v9.14.4
 
 In the microservice configurations can now be defined the filesCollection property to choose the collection that will be used to store uploaded files. Default value is files.
