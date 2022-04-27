@@ -1797,20 +1797,6 @@
       "type": "category"
     }
   ],
-  "paas": [
-    {
-      "id": "paas/paas_overview",
-      "type": "doc"
-    },
-    {
-      "id": "paas/security/security_measures",
-      "type": "doc"
-    },
-    {
-      "id": "monitoring/paas_alerting_rules",
-      "type": "doc"
-    }
-  ],
   "releaseNotes": [
     {
       "id": "release_notes/mia-platform-v9-preview",
