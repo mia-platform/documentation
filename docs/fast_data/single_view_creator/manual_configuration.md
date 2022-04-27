@@ -38,6 +38,7 @@ Here are some tips:
 - `UPSERT_STRATEGIES`: (v3.1.0 or higher of the template) If it is set to "replace", the whole Single View document will be replaced with the new one. If it 
 is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept. Default is "replace".
 - `SINGLE_VIEWS_MAX_PROCESSING_MINUTES`: (v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS
+- `CA_CERT_PATH`: the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS_LIST*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
 
@@ -302,3 +303,7 @@ When generating a Single View, every error that occurs is saved in MongoDB, with
 - `updatedAt`: time of creation
 
 It is highly recommended using a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../../../docs/development_suite/api-console/api-design/crud_advanced.md#indexes).
+
+### CA certs
+
+Since service version `3.9.0`, you can set your CA certs by providing a path to the certification file in the environment variable `CA_CERT_PATH`.

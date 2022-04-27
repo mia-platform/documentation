@@ -36,7 +36,8 @@ sidebar_label: Manual configuration
 - KAFKA_HEARTBEAT_INTERVAL_MS: The expected time in milliseconds between heartbeats to the consumer coordinator. Default 3000
 - FORCE_CHECK_ON_OFFSET: Force check that incoming message has offset greater or equal than the one of the projection to update. Default is true.
 - KAFKA_PROJECTION_UPDATES_FOLDER: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).
-- GENERATE_KAFKA_PROJECTION_UPDATES: defines wether the realtime updater should send a message of update every time it writes the projection to Mongo. Default is `false`
+- GENERATE_KAFKA_PROJECTION_UPDATES: defines whether the realtime updater should send a message of update every time it writes the projection to Mongo. Default is `false`
+- CA_CERT_PATH: the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`
 
 ## Custom Projection Changes Collection
 
@@ -647,3 +648,7 @@ If a Kafka group rebalancing happens after that a projection has already been up
 :::note
 This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, the service would stop without generating any projection change.
 :::
+
+### CA certs
+
+Since service version `5.4.0`, you can set your CA certs by providing a path to the certification file in the environment variable `CA_CERT_PATH`.
