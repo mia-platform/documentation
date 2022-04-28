@@ -61,7 +61,7 @@ In the Dashboards section you can find the names of the first dashboards created
 
 Mia-Platform Console is divided in many different sections that help you manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your runtime applications.
 
-### Environments
+### Project Settings
 
 Get started with your project in a few clicks: configure Kubernetes clusters, set up your [runtime environments](./set-up-infrastructure/runtime-environments) and manage all their [environment variables](./set-up-infrastructure/env-var).
 
