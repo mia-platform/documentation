@@ -14,7 +14,7 @@ _April 28, 2022_
 #### Mia-Platform PaaS Console with unique login
 
 Mia-Platform Console PaaS now is connected with the unique Mia-Platform login with SSO. 
-Now, with the same credential, user has access to all the resources connected to your project: Console, Kubernetes, Gitlab, Kibana, Grafana and much more!
+Now, with the same credential, users have access to all the resources connected to your project: Console, Kubernetes, Gitlab, Kibana, Grafana and much more!
 
 #### Renaming Tenant into Company
 
@@ -25,9 +25,11 @@ From Console v9, the commonly known Tenant has been renamed to Company.
 User management has been integrated into the Console and allows to assign users an entire set of roles. Each role aims at regulating a series of capabilities, providing or not access to Console features thanks to specific permissions (i.e. access to projects/companies/environments, repository creation, deploy triggering, etc.). To know more about these permissions and how to assign roles to Console users [check out the user management documentation](../../development_suite/api-console/user-management).
 
 User management is available only on users with enough privileges (Company Owners and Project Administrators) and can be done in two new sections that have been added within each Company and each Project.
-In these sections it will be possible to add users, modify permissions and have a look on the users who have access to your Project and their capabilities.
+In these sections it will be possible to add users, modify permissions and have a look at the users who have access to your Project and their capabilities.
 
-#### Create proxy from marketplace
+![](../../development_suite/img/user-management/company_admin_portal.png)
+
+#### Create proxy from Marketplace
 
 It is now possible to create proxies from the Marketplace; more proxies will be added soon.
 
@@ -37,11 +39,11 @@ In the Public Variables section you can now search for Public Variable name in t
 
 #### Cross Project Proxy through Kubernetes Service enabled on all projects
 
-Cross Project Proxy through Kubernetes Service, introduced as a preview feature in the v7.8.1, are now stable and released officially. Cross Project Proxy through nginx has been removed and automatically converted to the new one. 
+Cross Project Proxy through Kubernetes Service, introduced as a preview feature in the v7.8.1, are now stable and released officially. Cross Project Proxy through Nginx has been removed and automatically converted to the new one. 
 
 #### Public Variables enabled on all Console installations
 
-Public Variables sections, previously released under a feature toggle on On-Premise installations, is now enabled permanently. 
+Public Variables section, previously released under a feature toggle on On-Premise installations, is now enabled permanently. 
 
 ### Bug Fix
 
@@ -69,7 +71,7 @@ A regression introduced in version v5.1.0 has been resolved. Now all of the endp
 
 ### API Portal v1.16.2
 
-With this new version a bug of the service that caused problems with multi part forms has beed fixed.
+With this new version, a bug of the service that caused problems with multi part forms has been fixed.
 
 
 ## Backoffice v1.0.0
@@ -82,7 +84,7 @@ It is now possible to integrate analytics in the back office, using iFrames.
 
 #### PDF visualization in browser
 
-It is now possible to open and visualize PDF files in browser, without the need of downloading.
+It is now possible to open and visualize PDF files in browser, without the need of downloading them.
 
 ### Improvements
 

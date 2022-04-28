@@ -34,7 +34,7 @@ const features = [
     icon: "learn",
     toUrl: "/docs/getting_started/video_pills/video_pills",
     description: `Read our tutorials, follow walkthroughs and learn how to decouple your
-        IT systems from your channels and develop modern cloud‑native
+        IT systems from your channels and develop modern cloud-native
         applications.`,
   },
 ];
@@ -53,8 +53,8 @@ const secondRowFeatures = [
       {
         icon: "video",
         target: "_blank",
-        href: "https://vimeo.com/616716487", // TODO: INSERT CORRECT VIDEO LINK!
-        label: "Mia-Platform v8.0 new features",
+        href: "https://vimeo.com/701267202/741af815e5",
+        label: "Discover Mia-Platform v9.0 🎉",
       },
     ],
   },
@@ -137,7 +137,12 @@ function Home() {
           <section className={styles.features}>
             <div className="container">
               {<div className="row">
-              <VersionBanner link="/docs/release_notes/mia-platform-v9-preview" majorVersion="3" subTitle="Click to know more about how Mia-Platform is growing and where it is going!"  title="Mia-Platform v9 is Coming Soon!" />
+              <VersionBanner 
+                link="/docs/release_notes/mia-platform-v9-preview" 
+                majorVersion="3"
+                subTitle="Click to know more about how Mia-Platform is growing and where it is going!"
+                title="Mia-Platform v9 is Generally Available!"
+              />
               </div>}
               <div className="row">
                 {features.map((props, idx) => (
