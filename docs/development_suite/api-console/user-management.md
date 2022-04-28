@@ -23,8 +23,7 @@ Only users with enough privileges will be granted the access to the users admini
 
 A user with enough administrative permission on a specific Company will be able to view the existing users in the company, add new user to it and change the existing users role.
 
-<!-- TODO: SCREENSHOT OF COMPANY USERS MANAGEMENT SECTION -->
-
+![](../img/user-management/company_admin_portal.png)
 
 :::caution
 Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself; always pay attention when assigning roles to the users in order to prevent providing undesired access to resources!
@@ -64,7 +63,7 @@ the company, all their previously existing roles will be lost and cannot be reco
 
 A user with enough administrative permission on a specific Project will be able to view all the existing users in the Company and assign them the desired role on the specific Project (and, optionally on each existing Runtime Environment).
 
-<!-- TODO: SCREENSHOT OF PROJECT USERS MANAGEMENT SECTION -->
+![](../img/user-management/project_admin_portal.png)
 
 :::note
 As stated above each user existing in the Company will be shown for the Project users administration portal, this does not mean that all the user has access to the project since this depends on the role they are assigned on the Company and how the permission are inherited.
