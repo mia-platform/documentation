@@ -631,6 +631,21 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "label": "Single View Trigger",
+          "type": "category",
+          "collapsed": false,
+          "items": [
+            {
+              "id": "fast_data/single_view_trigger/overview",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/single_view_trigger/configuration",
+              "type": "doc"
+            }
+          ]
         }
       ],
       "label": "Design",
