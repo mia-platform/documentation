@@ -50,9 +50,21 @@ An example:
 test-tenant.PROD.system-name.test-projection.ingestion
 ```
 
+### Topic for verified projection update
+
+**producer** Real Time Updater
+
+`<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-collection.pr-update
+```
+
 ### Topic for Single View Creator trigger
 
-**producer**: Real Time Updater
+**producer**: Single View Trigger
 
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
 
