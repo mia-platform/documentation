@@ -39,6 +39,7 @@ Here are some tips:
 is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept. Default is "replace".
 - `SINGLE_VIEWS_MAX_PROCESSING_MINUTES`: (v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS
 - `CA_CERT_PATH`: the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`
+- `KAFKA_SASL_MECHANISM`: The Kafka SASL mechanism to be used. Can be one of the following: "plain", "PLAIN", "scram-sha-256", "SCRAM-SHA-256", "scram-sha-512", "SCRAM-SHA-512"
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS_LIST*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
 
