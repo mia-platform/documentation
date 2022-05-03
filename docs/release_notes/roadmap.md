@@ -4,37 +4,49 @@ title: Roadmap
 sidebar_label: Roadmap
 ---
 
-This page details the project public roadmap. This is the result obtained with our strategic vision and the collaboration of partners and stakeholders needs.
+This page details the platform public roadmap. This is the result obtained with our strategic vision and the collaboration of partners and stakeholders needs.
 
 The goal of the roadmap is:
-* Keep people working on the product aligned on upcoming releases,
-* Planning contributions and support,
-* Planning the project adoption,
-* Avoiding duplication of work,
-* Influence the Roadmap.
+
+* keep people working on the product aligned on upcoming releases;
+* planning contributions and support;
+* planning the project adoption;
+* avoiding duplication of work;
+* influence the Roadmap.
 
 ## Future Work 
 
 What is described below comprehends the next features that will be released in the product in the following months.
 The following list is not exhaustive, the product is constantly evolving and every week we release new features.
-On this page we keep you aligned on the most important issues. 
+On this page we keep you aligned on the most important issues
 
-* **NextGen Backoffice**: the new backoffice will allow you to configure increasingly complex content management pages to respond to new business needs. It will also have a new, more modern and intuitive look & feel.
+* **Mia-Platform Cloud**
+    * self service project creation
+    * create dynamically Runtime Environments
 
-* **Permission Management**: from the Console you will be able to manage users and groups. And for each of them you will also be able to associate roles and responsibilities.
+* **Integration Features**:
+    * support for Azure DevOps as git and pipeline provider
+    * support Bitbucket as git provider
+    * support Jenkins as pipeline provider
+    * support the configuration of Envoy proxy from Console
+    * support Vault secret manager to store environment variables from the Console
 
-* **Organization and Unit Area**: to have more and more control of your organization, licenses, costs and active users on your projects, we are creating new control sections.
+* **Project Governance**: from the Console, visualize license information and assign resources to projects in Company
 
-* **Full BYOI**: our goal is to allow you to connect all your infrastructure tools to the Mia-Platform Console: repositories, k8s clusters, monitoring tools and registry.
+* **Fast Data**:
+    * improve support for testing
+    * add a Control Plane to better support developer control and interaction with running Fast Data services
 
-* **Developer Portal**: it will be possible to set up your own Developer Portal where you can view the documentation and services created within your platform and allow external developers to get keys to use your api. 
-
-![](img/roadmap.png)
+* **Back-office**:
+    * support no-code configuration from the Console
+    * add charts support
 
 ## How to influence the roadmap
+
 The roadmap is constantly evolving to quickly respond to market needs.
-A roadmap is only useful if it captures real needs. If you have success stories, feedback, or ideas, we want to hear from you! Schedule a meeting with us. We are happy to hear from you. 
+A roadmap is only useful if it captures real needs. If you have success stories, feedback, or ideas, we want to hear from you! Schedule a meeting with us. We are happy to hear from you, propose your idea [here](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/78/create/253). 
 
 ## Roadmap evolution
+
 Will this roadmap change?
 Roadmap are always evolving and ours is no different; you can expect to see this updated roughly every month.
