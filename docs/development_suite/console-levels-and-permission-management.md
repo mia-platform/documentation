@@ -25,9 +25,9 @@ Users can perform a set of predetermined actions along Console levels in accorda
 
 * `Company Owner`: A Company Owner has the ability to manage Company users and has full administrative capabilities on all the Projects (and Runtime Environments) within the Company
 * `Project Administrator`: A Project Administrator is able to manage users and the whole Project it is assigned to, thus being able to perform any actions on all the Runtime Environments of the Project, too
-* `Maintainer`: A Maintainer can edit the Project configuration and all of its Runtime Environments
-* `Developer`: A Developer can edit the Project configuration and modify only the specific Runtime Environments it is bound to
-* `Reporter`: A Reporter can view Project configurations and Runtime Environments
+* `Maintainer`: A Maintainer can edit Project configuration and Runtime Environments
+* `Developer`: A Developer can edit the Project configuration and can view Runtime Environments
+* `Reporter`: A Reporter can view Project configuration and Runtime Environments
 * `Guest`: A Guest has restricted access on data and can only view basic information of resources it is assigned to
 
 The following table describes the capabilities and how they are mapped on the default Roles.
@@ -39,24 +39,24 @@ The following table describes the capabilities and how they are mapped on the de
 | View all Projects in this Company                                          | `console.company.project.view`                         |        | ✅        | ✅       | ✅         | ✅ | ✅  |
 | View Project basic information                                             | `console.project.view`                                 |✅      | ✅        | ✅       | ✅         | ✅ |     |
 | View all the Environments in all the Projects of this Company              | `console.company.project.environment.view`             |        | ✅        | ✅       | ✅         | ✅ | ✅  |
-| View all Environments of this Project                                      | `console.project.environment.view`                     |        | ✅        |          | ✅         | ✅ |     |
-| View this Environment of the Project                                       | `console.environment.view`                             |        |           |          |            |    |     |
+| View all Environments of this Project                                      | `console.project.environment.view`                     |        | ✅        |✅          | ✅         | ✅ |     |
+| View this Environment of the Project                                       | `console.environment.view`                             |        | ✅           |          | ✅            |    |     |
 | Create a service repository for all the Projects of this company           | `console.company.project.service.repository.create`    |        |           | ✅       | ✅          | ✅ | ✅|
 | Create a service repository for this Project                               | `console.project.service.repository.create`            |        |           | ✅       | ✅          | ✅ | |
-| Commit changes on all the Project configurations of this Company           | `console.company.project.configuration.update`         |        |           | ✅       |            | ✅ | ✅|
+| Commit changes on all the Project configurations of this Company           | `console.company.project.configuration.update`         |        |           | ✅       | ✅         | ✅ | ✅|
 | Commit changes on Project configuration                                    | `console.project.configuration.update`                 |        |           | ✅       | ✅          | ✅ | |
 | Edit project information                                                   | `console.project.details.update`                       |        |           |          |            |  ✅   |✅|
 | Manage secreted environment variables for all the Projects of this Company | `console.company.project.secreted_variables.manage`    |        |           |          |            | ✅ | ✅|
 | Manage secreted environment variables                                      | `console.project.secreted_variables.manage`            |        |           |          |            | ✅ | |
 | Trigger deploy on all the Environments of all the Projects of this Company | `console.company.project.environment.deploy.trigger`   |        |           |          | ✅         | ✅ |✅ |
 | Trigger deploy on any Environment of this Project                          | `console.project.environment.deploy.trigger`           |        |           |          | ✅         | ✅ | |
-| Trigger deploy on this specific Environment                                | `console.environment.deploy.trigger`                   |        |           | ✅       |            | | |
+| Trigger deploy on this specific Environment                                | `console.environment.deploy.trigger`                   |        |           |         | ✅           | | |
 | Restart pods on all the Environments of all the Projects of this Company   | `console.company.project.environment.k8s.pod.delete`   |        |           |          | ✅         | ✅ |✅ |
 | Restart pods on any project Environment                                    | `console.project.environment.k8s.pod.delete`           |        |           |          | ✅         | ✅ | |
-| Restart pods on this specific Environment                                  | `console.environment.k8s.pod.delete`                   |        |           | ✅       |            | | |
+| Restart pods on this specific Environment                                  | `console.environment.k8s.pod.delete`                   |        |           |         | ✅            | | |
 | Manage dashboards on all the Project of this Company                       | `console.company.project.environment.dashboard.manage` |        |           |          | ✅         | ✅ |✅ |
 | Manage dashboards on any Project Environment                               | `console.project.environment.dashboard.manage`         |        |           |          | ✅         | ✅ | |
-| Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |           | ✅       |            | | |
+| Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |           |         | ✅             | | |
 | Manage users of this Company                                               | `console.company.users.manage`                         |        |           |          |            | | ✅|
 | Edit company information                                                   | `console.company.details.update`                       |        |           |          |            |     |✅|
 | Edit project information of all the Projects of this Company               | `console.company.project.details.update`                       |        |           |          |            |  ✅   |✅|
@@ -77,7 +77,7 @@ What you might want could be a similar Role Binding organization:
 * The _Project Manager_ and the _Technical Leader_ may want to have full access to the Project so they can be assigned the _Project Administrator_ Role on the Project resource
 * The _Designers_ should be able to access the project but they cannot perform any editing action on them, so they can be assigned the _Reporter_ Role on the Project resource
 * The _Senior Developers_ can be assigned the _Maintainer_ Role on the Project
-* The _Junior Developers_ can be assigned the _Developer_ Role on the Project resource and then can be assigned the same _Developer_ Role only on the Staging environment
+* The _Junior Developers_ can be assigned the _Developer_ Role on the Project resource and then can be assigned the _Maintainer_ Role only on the Staging environment
 
 #### Assigning Roles on Resources
 
