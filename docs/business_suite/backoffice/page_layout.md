@@ -180,7 +180,7 @@ When `type` is set to `string`, the extra key `dateOptions` is available and hol
 customization of date visualization format. Back-Kit components handles dates and timestamps using `dayjs`
 library and its `parsing/formatting syntax`.
 
-:::note 
+:::note
 Please note that the date fields are saved in ISO 8601 format, so it's up to the user to convert them in UTC from its local time before using them in the Appointment Manager.
 :::
 
@@ -231,6 +231,46 @@ Visualization options concern any web component that is going to render a given 
 |--------|---------|-------------|
 | `shape` | `square`, `roundedSquare` | shape of the icon |
 | `color` | hex color | icon color |
+
+#### Notes
+
+Example of mounting a custom component in the table using the `properties` key in visualizationOptions:
+
+```json
+"name": {
+  ...
+  "visualizationOptions": {
+    "tag": "bk-button",
+    "properties": {
+      "content": "{{args.[0]}}",
+      "disabled": {
+        "template": "{{args.[1].status}}",
+        "configMap": {
+          "Removed": true,
+          "$default": false
+        }
+      },
+      "clickConfig": {
+        "type": "push",
+        "actionConfig": {
+          "url": "/bo-orders-list",
+          "state": {
+            "__BK_INIT": [
+              {
+                "label": "add-new",
+                "payload": {"riderId": "{{rawObject args.[1]._id}}"}
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row. If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
+If is also possible to provide a (template, configMap) pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
 
 ### Form Options
 

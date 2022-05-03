@@ -10,6 +10,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.4.0 - 29-04-2022
+
+### Added
+
+- logic to refresh a token if its ExpiresAt date is set and the ExpiresAt date is earlier than current moment
+
+### Fixed
+
+- added a _modify response_ logic to reverse proxy, so that when an HTTP 401 error is encountered
+ cached access token is removed. This allow to clean up token cache upon token expiration
+ when parameter `TokenIssuerValidationUrl` is not set
+
+### Changed
+
+- updated service dependencies
+
 ## 1.3.0 - 25-11-2021
 
 ### Changed

@@ -166,6 +166,7 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 |`dataCustomActions`| - |DrawerDataActionConfig[]| - | - |[]|list of actions to render per row|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../Page_layout#data-schema) describing the fields of the collection to filter|
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean| - | - |false|boolean to enable footer call-to-action even if no field within the form has been touched|
+|`getContainer`|`get-container`|string|true| - | - | - |
 |`headers`| - |{ [x: string]: string; }| - | - | - | - |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number| - | - |10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number| - | - |5000|live-search timeout|
@@ -296,6 +297,7 @@ specific format in both a text-area and read-only table|
 |`customMessageOnAbsentLookup`| - |string \\| { [x: string]: string; }|true| - | - |override lookup value in case lookup is not resolved due to lack of data|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../Page_layout#data-schema) describing the fields of the collection to filter|
 |`extraEndpoint`|`extra-endpoint`|string|true| - | - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint|
+|`getContainer`|`get-container`|string|true| - | - | - |
 |`headers`| - |{ [x: string]: string; }| - | - | - | - |
 |`height`|`height`|string| - | - |'60vh'|height of the modal|
 |`liveSearchItemsLimit`|`live-search-items-limit`|number| - | - |10|max items to fetch on regex live search|

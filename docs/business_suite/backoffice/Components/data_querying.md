@@ -82,54 +82,6 @@ Manages the display, application, and modification of filters.
 
 
 
-## Tabs
-
-provides a fixed set of filters rendered as tabs, possibly on top of a bk-table
-![tabs](../img/bk-tabs.png)
-```html
-<bk-tabs></bk-tabs>
-```
-
-### Properties & Attributes
-
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`tabs`| - |Tab[]| - | - |[]|array with tabs configuration|
-- `Tab` is given by the following schema
-> ```json
-> {
->   "title": {
->     "type": ["string", "object"]
->   },
->   "filters": {
->     "type": "array",
->   }
-> }
-> ```
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-
-
-### Emits
-
-| event | description |
-|-------|-------------|
-|[change-query](../Events/Events#change-query)|requests filtering on dataset|
-
-
-### Bootstrap
-
-- This component parses `characteristic` URL parameter.
-- This component emits a `change-query` event to notify current focused tab and filter.
-
-
-
 ## bk-pagination
 
 displays pagination navigation tools to query pages of a dataset.
@@ -213,6 +165,41 @@ Searching lookup fields could be computationally heavy. The number of searchable
 |-------|-------------|
 |[change-query](../Events/Events#change-query)|requires data filtered according with the typed input|
 |[search-lookups](../Events/Events#search-lookups)| - |
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-tabs
+
+provides a fixed set of filters rendered as tabs, possibly on top of a bk-table ![tabs](../img/bk-tabs.png)
+```html
+<bk-tabs></bk-tabs>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`tabs`| - |Tab[]|[]|array with tabs configuration. For configuration ease, Tabs will be provided as an array by the user and remapped on startup to better fit the react component|
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+
+
+### Emits
+
+| event | description |
+|-------|-------------|
+|[change-query](../Events/Events#change-query)|requests filtering on dataset|
 
 
 ### Bootstrap
