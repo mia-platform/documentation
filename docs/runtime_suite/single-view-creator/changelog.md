@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- @mia-platform-internal/single-view-creator-lib @^10.0.0
+
 ## [3.9.0] 2022-04-26
 
 ### Fixed

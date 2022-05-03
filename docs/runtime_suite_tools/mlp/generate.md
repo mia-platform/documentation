@@ -13,7 +13,7 @@ Flags:
 The configuration file supports environment variable interpolation following the regular expression `{{[A-Z0-9_]+}}`. The interpolation works in the same way described in the [interpolate](./interpolate.md) command.
 The file has a `secrets` section where `tls`,`docker`,`data` are mutually exclusive and a `config-maps` section where the only section supported is `data`. The file has the following schema:
 
-```
+```yaml
 secrets:
   - name: "foo"
     when: "always|once"

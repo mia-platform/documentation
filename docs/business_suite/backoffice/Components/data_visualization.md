@@ -60,7 +60,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 |----------|-----------|------|----------|----------|---------|-------------|
 |`allowNavigation`|`allow-navigation`|boolean| - | - |true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
 |`browseOnRowSelect`| - |{ href?: string; target?: string; query?: LinkQueryParams; }| - | - | - |if set, a click on a row will navigate you to another location|
-|`customActions`| - |{ tag: string; properties: Record<string, any>; }[]| - | - | - |Custom component, rendered in the action column|
+|`customActions`| - |{ tag: string; properties: Record<string, any>; }[]| - | - | - |list of custom components, rendered in the action column|
 |`customMessageOnAbsentLookup`| - |string \\| { [x: string]: string; }|true| - | - |override lookup value in case lookup is not resolved due to lack of data|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../Page_layout#data-schema) describing the fields of the collection to display|
 |`disableRowClick`|`disable-row-click`|boolean| - | - |false|when `true`, a click on a row does not trigger an event|
@@ -72,7 +72,49 @@ Displays a dataset in rows and columns according to a given `data schema`.
 |`loadingOnStart`|`loading-on-start`|boolean| - | - |true| - |
 |`maxLines`|`max-lines`|number| - | - | - |force lines that will be displayed together|
 |`navigationRowActions`| - |{ kind: "cta" \\| "icons"; actions: NavigationDataAction[]; }| - | - |DEFATULT_NAV_ACTIONS|actions in nested objects.|
+|`openFileInViewerRegex`| - |string[]|true| - | - |list of regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer.|
 |`rowActions`| - |DataActions| - | - | - |list of actions to render per row|
+- `customActions` is a list such as:
+>
+> ```json
+> {
+>   "customActions": [{
+>     "tag": "bk-button",
+>     "properties": {
+>       "content": "Cancel order",
+>       "disabled": {
+>         "template": "{{args.[1].orderStatus}}",
+>         "configMap": {
+>           "Delivered": true,
+>           "Cancelled": true,
+>           "$default": false
+>         }
+>       },
+>       "clickConfig": {
+>         "type": "http",
+>         "actionConfig": {
+>           "url": "the/url",
+>           "method": "POST",
+>           "body": "{{rawObject args.[1]}}"
+>         }
+>       }
+>     }
+>   }]
+> }
+> ```
+> | property | type | values | description |
+> |-----------------------|------|---------|-------------|
+> | `tag` | `string` | any | custom component to mount |
+> | `properties` | `{[key: string]: any}` | any | properties injected into the component |
+>
+> #### Notes
+>
+> Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row.
+> If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
+>
+>
+> If is also possible to provide a <template, configMap> pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key
+> (or `$default`, if the template does not match any configMap key).
 - `NavigationDataActions` is an object such as
 >
 > ```json
@@ -693,11 +735,14 @@ None
 
 ## bk-pdf-viewer
 
-allows to visualize PDF files directly in the browser.
+allows to visualize files in the browser.
 ```html
 <bk-pdf-viewer></bk-pdf-viewer>
 ```
 ![pdf-viewer](../img/bk-pdf-viewer.png)
+:::note
+it is recommend to limit the usage of this component to the visualization of PDF files.
+:::
 
 ### Properties & Attributes
 
