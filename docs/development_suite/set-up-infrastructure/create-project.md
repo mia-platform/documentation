@@ -295,6 +295,10 @@ If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `
 
 The project archive is interpolated using [mustache.js](https://github.com/janl/mustache.js) as template system, using `%` as tags instead of default `{{` or `}}`.
 
+:::note
+In order to use the `%` character inside your project archive you can escape it by prefixing the character with an additional `%`. For example the string `%%something` will be rendered as `%something` when the project archive will be interpolated.
+:::
+
 *mustache.js* is a web template system, which allows you to generate custom templates by replacing all the general information, present in the web template, with your product or organization information.
 
 You could create a project template to avoid copy/paste in every new project having the same base configuration.
