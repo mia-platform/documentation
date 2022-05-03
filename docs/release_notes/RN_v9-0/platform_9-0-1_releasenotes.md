@@ -5,7 +5,7 @@ sidebar_label: v9.0.1
 image: "img/release-note-link-preview.png"
 ---
 
-_RELEASE_DATE_
+_May 03, 2022_
 
 ## Console
 
