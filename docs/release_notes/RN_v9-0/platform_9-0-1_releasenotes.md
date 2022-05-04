@@ -24,8 +24,14 @@ The Developer role does not give any capabilities if assigned to an environment 
 
 ### Bug Fix
 
+#### Advanced microservice not displaying content correctly
+
 Fixed a bug preventing to see the content of the section in full width when working on an advanced microservice.
+
+#### Wrong behavior on endpoint deletion
+
+Fixed a bug that did not allow the user to delete an endpoint in a project with at least one application.
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 6.0.1`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 6.0.2`.
