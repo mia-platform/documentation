@@ -710,6 +710,10 @@
         {
           "id": "tutorial/rbac/rbac_tutorial",
           "type": "doc"
+        },
+        {
+          "id": "tutorial/fast_data/fast_data_low_code_tutorial",
+          "type": "doc"
         }
       ],
       "label": "Tutorial",
