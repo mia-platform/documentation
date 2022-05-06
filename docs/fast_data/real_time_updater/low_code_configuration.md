@@ -187,7 +187,7 @@ The types of constants that are supported are:
 - `__constant__[]` which considers the value as a string (deprecated).
 
 :::warning
-If table A is connected to table B in the ER Schema you have to describe the relationship between A -> B **and** B -> A
+If table A is connected to table B in the ER Schema you have to describe the relationship between A → B **and** B → A
 :::
 
 ### Projection Changes Schema
@@ -223,7 +223,7 @@ The data of this single view comes from 3 projections:
 
 Given that `idCustomer` and `ID_USER` are the same, the single view is focused on the user. For this reason if an allergen is updated, it will be necessary to identify all the users affected by this change in order to revise the single view.
 
-Therefore, we know that if `pr_allergens` changes, the path to update the single view is: `pr_allergens` -> `pr_allergens_registry` -> `pr_registry`.
+Therefore, we know that if `pr_allergens` changes, the path to update the single view is: `pr_allergens` → `pr_allergens_registry` → `pr_registry`.
 
 This configuration is described with the `projectionChangesSchema.json`:
 
@@ -273,8 +273,8 @@ At the end of the configuration be sure to register the projection in the Strate
 
 If you need to manually handle specific strategies you have two choices:
 
-- you can write your own strategy function. In this case you have to write the whole strategy on your own
-- you can let the Low Code handle the initial path of the strategy, and then make it execute your own custom function to handle it from there
+- You can write your own strategy function. In this case you have to write the whole strategy on your own
+- You can let the Low Code handle the initial path of the strategy, and then make it execute your own custom function to handle it from there
 
 To do that you have to specify in the `projectionChangesSchema.json` that the **identifier** will be handled "from file", which is your custom file that exports your custom function. The syntax is `__fromFile__[myCustomFunction]`.
 
@@ -302,7 +302,7 @@ Let's see it in the configuration file below:
 }
 ```
 
-What will happen when the second path will be cross is that the path pr_selling -> pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
+What will happen when the second path will be cross is that the path pr_selling → pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
 The custom function has to match the following signature:
 
 ```js

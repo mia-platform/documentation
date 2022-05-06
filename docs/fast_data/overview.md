@@ -6,7 +6,7 @@ sidebar_label: Mia-Platform Fast Data
 
 Keep all your **Data organized and available in real time, 24/7**.
 
-![fast data overview](img/fastdata-overview.png)
+![Fast Data overview](img/fastdata-overview.png)
 
 Collect data from any existing system and organize it according to your business needs. Build a single point of truth to keep your data flow consistent and updated in real-time 24/7.
 
@@ -42,7 +42,7 @@ In order to know which single view needs to be updated, the Single View Creator 
 
 For instance if we have a table `A` that when modified impacts the tables `B` and `C`, when receiving a change on table `A` we need to calculate also the impacted rows on table B and table C and all the single views that depend on them.
 
-![real-time updater schema](img/fastdata-realtimeupdater-schema-detail.png)
+![Real-Time Updater schema](img/fastdata-realtimeupdater-schema-detail.png)
 
 :::note
 You cannot delete directly the Real-Time Updater service, you need to delete the System instead. The service will be removed after you have saved.
@@ -52,7 +52,7 @@ You cannot delete directly the Real-Time Updater service, you need to delete the
 
 The Single View Creator component creates and updates a specific single view.
 
-![single view creator schema](img/fastdata-svc-schema-detail.png)
+![Single View Creator schema](img/fastdata-svc-schema-detail.png)
 
 First, the Single View Creator **aggregates** data of projections, then it **maps** these values to an object with the correct single view fields. Finally, it updates the single view collection.
 
@@ -62,7 +62,7 @@ First, the Single View Creator **aggregates** data of projections, then it **map
 To really become a data-driven company and offer a modern user experience all of your business data must be **updated and available 24/7 for all digital touchpoints**.
 
 The first technical problem to overcome in order to be able to be such a company is the **data fragmentation** and the complexity of its management.
-Year after year, vital company data have been isolated and stranded in "watertight compartments". For example, the **customer data**, required for customer support and sales processes, can be placed in many different disconnected locations.
+Year after year, vital company data have been isolated and stranded in "watertight compartments". For example, the **customer data**, required for customer support and sales processes, can be placed in many disconnected locations.
 
 A **single view** addresses this problem aggregating all business entity relevant data, standardizing formats, into a single structure that can be easily **queried by your APIs**. For example, you can create a customer single view extracting data from different front office and back office applications, aggregate and serve them to everyone: from sales and marketing, to call centers and technical support.
 

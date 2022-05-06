@@ -79,7 +79,7 @@ The collection must have the following fields:
 Where:
 
 - **Type**: could be `UNCASTABLE_FIELD` or `UNKNOWN_FIELD`
-- **lastError**: it is the last casting error recorded. It exist only if type is equal to `UNCASTABLE_FIELD`. Moreover, the error contains, two more information:
+- **lastError**: it is the last casting error recorded. It exists only if type is equal to `UNCASTABLE_FIELD`. Moreover, the error contains, two more information:
   - **value**: The value of the field which causes the error
   - **message**: The error message
 - **projection**: The name of the field's projection
@@ -159,7 +159,7 @@ metrics:
 
 ## Setting Alarms
 
-An alarms system could be useful to tempestively recover these kind of errors. The alarms system is developed to detect new unmapped fields.
+An alarms system could be useful to tempestively recover these kinds of errors. The alarm system is developed to detect new unmapped fields.
 To define it you need to add inside the configurations folder of your project repository the following file:
 
 `fast-data.prometheusrule.yaml`

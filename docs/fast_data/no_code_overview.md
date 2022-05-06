@@ -21,7 +21,7 @@ On this page, you can find an overview of which are the steps involved in a No C
 
 With No Code we refer to the console capability to reduce the development effort using the graphic interface and automations, allowing both experienced and inexperienced users to manage a Fast Data project. Thanks to No Code you can focus on creating your Fast Data architecture while the console will support you in all the development phases, creating for your microservices and configurations.
 
-With Low code, we mean that instead of writing javascript code to generate the strategies, projection changes and single views, you will only need to write `json` files that declaratively specify how you want your Fast Data System to be.
+With Low code, we mean that instead of writing JavaScript code to generate the strategies, projection changes and single views, you will only need to write `json` files that declaratively specify how you want your Fast Data System to be.
 If you have used Fast Data before, you know that manually configuring everything can be a time-consuming end error-prone, repetitive activity. Thanks to our experience in the field, we have developed the functionality to interpret simple and human-readable `json` configurations that express most of the configurations (if not all) you will ever need.
 In case the automation is not expressive enough for your use case, you can always write custom functions to close the gap, and this is why it is a "Low Code" instead of "No Code" configuration, but most of the time you will be cruising in "No Code" heaven.
 
@@ -40,7 +40,7 @@ While you are creating your system of record, the console will allow you to choo
 The Real Time Updater Low Code needs some configurations:
 
 - [erSchema.json](./real_time_updater/low-code-configuration#er-schema-configuration) configuration: useful to define the interconnection between projections
-- The [projectionchangeschema.json](./real_time_updater/low-code-configuration#projection-changes-collection): useful to the system to know which single view needs to be updated
+- The [projectionChangeSchema.json](./real_time_updater/low-code-configuration#projection-changes-collection): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
 
@@ -48,9 +48,9 @@ In both cases, it is possible to write your file inside the console and if neede
 
 The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](./single_view_creator/low_code_configuration.md).
 You can create it from our Marketplace.
-Also, in this case, it is needed to configure some configmaps:
+Also, in this case, it is needed to configure some Config Maps:
 
-- singleviewkey.json: it is fundamental to generate the query that will be applied on the single view
+- singleViewKey.json: it is fundamental to generate the query that will be applied on the single view
 - erSchema.json: it needs to be the same Real Time Updater Low Code's erSchema.json of the System of Records
 - aggregation.json: useful to define the aggregation and generate the single view's fields
 
