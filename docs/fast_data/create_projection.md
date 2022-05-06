@@ -25,9 +25,9 @@ When a projection is updated, the Real-Time Updater changes a collection called,
 The default Projection Changes collection is automatically managed by the Console, and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/manual-configuration#custom-projection-changes-collection).
 :::
 
-One Projections Changes collection is created for each System of Records as default.
+One `Projections Changes` collection is created for each System of Records as default.
 
-This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view. Since version 3.7.2, the Single View Creator reads the Projections Changes sorted in an ascending order of creation.
+This collection will be used by the Single View Creator to know which single view needs an update. It is the connection between projections and single view. Since version 3.7.2, the Single View Creator reads the Projections Changes sorted in ascending order of creation.
 
 :::note
 When you delete a System of Records, the *Projections Changes* collection linked to it will be deleted as well, because it is no more useful.

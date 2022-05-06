@@ -25,7 +25,7 @@ The main advantages of Snappy are:
 * Stability and robustness to prevent crashing while still maintaining the same bitstream format among different versions
 * Free and open source
 
-> *Note*: For further information about Snappy, check the official [github page](https://github.com/google/snappy) of the library.
+> *Note*: For further information about Snappy, check the official [GitHub page](https://github.com/google/snappy) of the library.
 
 Provided that the client's **CDC** (Change Data Capture) supports Snappy compression, the console is already predisposed for it.
 
@@ -38,7 +38,7 @@ Snappy, like every other compression and decompression algorithm, will always in
 In order to work properly, the Fast Data infrastructure will need multiple Kafka topics, hence following a naming convention is useful.
 The following is the naming convention we recommend in order to work with the Fast Data and its tools properly.
 
-### Ingestion topic from CDC to Mongo
+### Ingestion topic from CDC to MongoDB
 
 **producer**: the system producing its own events
 
@@ -107,7 +107,7 @@ If you don't have a cluster, create one following this [documentation](https://d
 On the left menu, click on `Topics` and `Add a topic` button. Insert the topic name and the number of partitions required. Here you could create with defaults or customize topic settings.
 
 :::info
-We suggest to use a topic name like `tenant.environment.system.projection.ingestion`
+We suggest using a topic name like `tenant.environment.system.projection.ingestion`
 :::
 
 > *Note*: if this documentation seems outdated, follow the [official one](https://docs.confluent.io/cloud/current/client-apps/topics/manage.html#create-a-topic)
@@ -194,4 +194,4 @@ Here is the list:
 * **FAST_DATA_PROJECTIONS_DATABASE_NAME**: name of the db where projections are saved
 * **KAFKA_BROKERS**: the host of your Kafka cluster (with the port)
 
-* **MONGODB_URL**: the URL to Mongo db. It is the same used, for example, for CRUD service
+* **MONGODB_URL**: the URL to MongoDB. It is the same used, for example, for CRUD service
