@@ -71,9 +71,14 @@ Action:
 To change the value just enter the following string and choose the value you want to set:
 
 ```
-location /example {
+location ~ "^/example" {
   client_max_body_size 1m;
+
+  proxy_pass http://$proxy_name$proxy_url;
 }
 ```
 
-In this case you change the req size only for the /example location
+In this case you change the req size for all the locations starting with /example path.
+:::info
+Since the `proxy_pass` variable is not inherited inside the location block, you must define it again. In case of a change in `proxy_name` or `proxy_url` variables names this configuration will not work.
+:::
