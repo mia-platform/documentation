@@ -398,6 +398,10 @@
             {
               "id": "development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
               "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/websockets",
+              "type": "doc"
             }
           ],
           "label": "Envoy API Gateway",
