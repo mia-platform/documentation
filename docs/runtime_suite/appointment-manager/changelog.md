@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] 2022-05-04
+
+- Fixed bug related to the limit of 200 appointments/availabilities in GET.
+
 ## [1.3.1] 2022-04-22
 
 ### Fixed

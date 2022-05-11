@@ -41,18 +41,18 @@ Each *channel type* must be one of the supported types. Following the supported 
 
 This *channel* type allows the service to connect to a kafka server and consume/produce messages on it.
 
-The channel properties are the following (the **bold** are the required ones, the *italic* are the optional ones):
+The channel properties are the following:
 
-- **id**: the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
-- **type**: the type of the channel, must be *kafka*
-- **configurations**: all other kafka configurations:
-  - **brokers**:
+- **id** (required): the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
+- **type** (required): the type of the channel, must be *kafka*
+- **configurations** (required): all other kafka configurations:
+  - **brokers** (required):
     - a list of strings that represent the kafka brokers, or:
     - a string with the comma separated list of brokers
-  - *inputTopics*: a list of strings that contains the topics to subscribe to consume messages; **NB.** this property is **required** if the property *outputTopics* is missing
-  - *outputTopics*: a list of strings that contains the topics to send messages; **NB.** this property is **required** if the property *inputTopics* is missing
-  - *consumerGroup*: the consumer group id, will be used by the *Kafka Consumer* to consume messages; **NB.** this property is **required** if there's the *inputTopics* one
-  - *authenticationProperties*: a *JSON Object* with the kafka authentication properties. [**It must be KafkaJs compliant**](https://kafka.js.org/docs/configuration#ssl)
+  - **inputTopics**: a list of strings that contains the topics to subscribe to consume messages; **NB.** this property is **required** if the property *outputTopics* is missing
+  - **outputTopics**: a list of strings that contains the topics to send messages; **NB.** this property is **required** if the property *inputTopics* is missing
+  - **consumerGroup**: the consumer group id, will be used by the *Kafka Consumer* to consume messages; **NB.** this property is **required** if there's the *inputTopics* one
+  - **authenticationProperties**: a *JSON Object* with the kafka authentication properties. [**It must be KafkaJs compliant**](https://kafka.js.org/docs/configuration#ssl)
 
 The *Flow Manager* behavior will be the following:
 
@@ -158,17 +158,17 @@ The *Flow Manager* receives events via Kafka messages using the _Saga id_ as key
 
 This *channel* type allows the service to exchange commands and events with external services through REST API.
 
-The channel properties are the following (the **bold** are the required ones, the *italic* are the optional ones):
+The channel properties are the following:
 
-- **id**: the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
-- **type**: the type of the channel, must be *rest*
-- **configurations**: all other rest configurations:
-  - **protocol**: the protocol to be used for; it **must be one of the allowed values** --> [*http*, *https*]
-  - **endpoint**: the *endpoint* of the service, without the final slash (*/*)
-  - **method**: the *method* to use to send the command; it **must be one of the allowed values** --> [*POST*, *PUT*, *PATCH*]
-  - *path*: the *path* to interact with the service (the default one is the *root*, the simple slash */*)
-  - *headers*: the headers to use
-  - *port*: the port to use
+- **id** (required): the *id* of the channel, will be used in the *Machine Definitions* to choose the channel to use for messages
+- **type** (required): the type of the channel, must be *rest*
+- **configurations** (required): all other rest configurations:
+  - **protocol** (required): the protocol to be used for; it **must be one of the allowed values** --> [*http*, *https*]
+  - **endpoint** (required): the *endpoint* of the service, without the final slash (*/*)
+  - **method** (required): the *method* to use to send the command; it **must be one of the allowed values** --> [*POST*, *PUT*, *PATCH*]
+  - **path**: the *path* to interact with the service (the default one is the *root*, the simple slash */*)
+  - **headers**: the *headers* to use
+  - **port**: the *port* to use
 
 The *Flow Manager* behavior will be the following:
 
@@ -241,10 +241,12 @@ The *persistency manager type* must be one of the supported types. Following the
 
 - [**rest**](#rest-persistency-manager): will use the REST API to interact with an external persistency manager service
 - [**mongo**](#mongo-persistency-manager): will directly connect to a MongoDB instance to interact with the persistency manager collection.
+- [**crud**](#crud-persistency-manager): will use CRUD Service REST API to persist saga information.
 
 The main use cases of the two methods are:
 - `rest`: allows to decouple flow manager from the underlying data store and enables post-processing of metadata before saving them persistently.
 - `mongo`: avoids the creation of a custom service, coupling the flow manager with a specific database to save data directly.
+- `crud`: avoids the creation of a custom service, coupling the flow manager with the CRUD service to save data.
 
 The **persistencyManagement** section must contain a JSON object with the configurations. See the following sections for the details by type.
 
@@ -254,16 +256,16 @@ For more about the *Persistency Manager* look the [**dedicated documentation**](
 
 The *REST* persistency manager uses the REST protocol to contact the service for read and insert/update the sagas.
 
-Following the properties for this type (the **bold** are the required ones, the *italic* are the optional ones):
+Following the properties for this type:
 
-- **type**: the type of the persistency manager, it must be **rest**
-- **configurations**: the other configurations of the manager
-  - **protocol**: the protocol to be used for; it **must be one of the allowed values** --> [*http*, *https*]
-  - **endpoint**: the *endpoint* of the service, without the final slash (*/*)
-  - **method**: the *method* to use to **upsert** the saga (same endpoint/path for insert and upsert)
-  - *path*: the *path* to interact with the service (the default one is the *root*, the simple slash */*)
-  - *headers*: the headers to use
-  - *port*: the port to use
+- **type** (required): the type of the persistency manager, it must be **rest**
+- **configurations** (required): the other configurations of the manager
+  - **protocol** (required): the protocol to be used for; it **must be one of the allowed values** --> [*http*, *https*]
+  - **endpoint** (required): the *endpoint* of the service, without the final slash (*/*)
+  - **method** (required): the *method* to use to **upsert** the saga (same endpoint/path for insert and upsert)
+  - **path**: the *path* to interact with the service (the default one is the *root*, the simple slash */*)
+  - **headers**: the *headers* to use
+  - **port**: the *port* to use
 
 **NB.** the interactions between the *Flow Manager* and the *Persistency Manager* are the following:
 
@@ -391,35 +393,107 @@ and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
   `collection(my-collection)`
   `findOne(EXAMPLE_123456_SAGA)`
 
+### CRUD Persistency Manager
+
+The CRUD persistency manager connects to a CRUD service instance for reading and inserting/updating the saga information.
+
+To configure the CRUD Persitency Manager use the following properties:
+
+- **type** (required): the type of the persistency manager, it must be **crud**
+- **configurations** (required): an object containing the other configurations of the manager
+  - **protocol**: the protocol to be used fo (it **must be one of** *http* or *https*, it **defaults** to *http*)  
+  - **host**: the *host* of the CRUD service (it **defaults** to *crud-service*)
+  - **collectionName** (required): the collection in which the sagas will be stored
+  - **headers**: the *headers* to use
+  - **port**: the *port* to use (it **defaults** to *80*)
+
+Furthermore, you need to create a CRUD collection named *collectionName* from the console using this <a download target="_blank" href="/docs_files_to_download/flow-manager-service/saga-collection.json">schema</a>
+
+Remember to create a unique index for the collection on the `sagaId` field and to set the default state for new documents to `PUBLIC`.
+
+**NB.** the interactions between the *Flow Manager* and the *Persistency Manager* are the following:
+
+- **insert/update**: the *Flow Manager* calls the route
+
+  `POST - {{protocol}}://{{host}}:{{port}}/{{collectionName}}/upsert-one?sagaId={{sagaId}}`
+
+  with the following body:
+
+  ```json
+  {
+    "$set": {
+      "sagaId": "The generated saga identification code",
+      "latestEvent": "The last event received by the manager",
+      "history": "The updated history of the saga",
+      "currentState": "The state of the saga (took from the *Finite state machine* configurations)",
+      "associatedEntityId": "The ID of the entity associated to the saga (e.g. the ID of a food delivery order, or of a policy and so on)",
+      "isFinal": "Boolean that indicates if the new state is a final state (DEPRECATED)",
+      "businessStateId": "The ID of the business state (explained later)",
+      "businessStateDescription": "The description of the business state (explained later)",
+      "metadata": "The metadata of the saga, a JSON Object with all the business stuffs related to the saga, that are unknown to the Flow Manager"
+    }
+  }
+  ```
+
+- **get**: the *Flow Manager* calls the route
+
+  `GET - {{protocol}}://{{host}}:{{port}}/{{collectionName}}/?sagaid={{sagaId}}`
+
+##### CRUD Persistency Manager use case
+
+With the following configurations:
+
+```json
+{
+  "type": "crud",
+  "configurations": {
+    "protocol": "http",
+    "host": "my-crud-service",
+    "port": 80,
+    "collectionName": "my-collection"
+  }
+}
+```
+
+and with the sagaId **EXAMPLE_123456_SAGA**, the operations will be:
+
+- **insert/update**:
+
+  `POST - http://my-crud-service:80/collectionName/upsert-one?sagaId=EXAMPLE_123456_SAGA`
+
+- **get**:
+
+  `GET - http://my-crud-service:80/?sagaId=EXAMPLE_123456_SAGA`
+
 ## Machine Definition
 
 This is the core section of the *Flow Manager* configurations, because it contains the *Final State Machine* definition.
 
-Following the *Machine Definition* configurations (the **bold** are the required ones, the *italic* are the optional ones):
+Following the *Machine Definition* configurations:
 
-- **initialState**: the saga starting point state; when a new saga is created, the state will be the initial state
-- **creationEvent**: the event who triggers the saga creation, is just a placeholder to be passed to the *Persistency Manager* on the saga creation (it can be useful if the *Persistency Manager* stores a history of the saga's events)
-- **states**: an array that contains the list of the states of the *Finite state machine* ([explained below](#states-of-the-machine))
-- **businessStates**: an array that contains the list of the states that matters for business ([explained below](#business-states-of-the-machine))
-- *businessEvents*: an array that contains the list of the events that matter for business ([explained below](#business-events-of-the-machine))
+- **initialState** (required): the saga starting point state; when a new saga is created, the state will be the initial state
+- **creationEvent** (required): the event who triggers the saga creation, is just a placeholder to be passed to the *Persistency Manager* on the saga creation (it can be useful if the *Persistency Manager* stores a history of the saga's events)
+- **states** (required): an array that contains the list of the states of the *Finite state machine* ([explained below](#states-of-the-machine))
+- **businessStates** (required): an array that contains the list of the states that matters for business ([explained below](#business-states-of-the-machine))
+- **businessEvents**: an array that contains the list of the events that matter for business ([explained below](#business-events-of-the-machine))
 
 ### States of the machine
 
 The states of the machine are used by the *Flow Manager* to know how to move forward the saga through the flow.
 
-Each state must have the following configurations (the **bold** are the required ones, the *italic* are the optional ones):
+Each state must have the following configurations:
 
-- **id**: a string that contains the ID of the state (usually is a camel case human readable string that tells what the state represents)
-- *description*: the state description
-- **isFinal**: a boolean that indicates if the state is a final one
-- **businessStateId**: the ID of the [business state](#business-states-of-the-machine) (**NB.** must exist in the *businessStates* list)
-- *outputCommand*: a JSON Object that contains the details of the command to send in output when the saga lands on the state (it is not mandatory since a state may not need to send any command):
-  - **channel**: the ID of the *channel* used to send the command (**NB.** must exist into the *communicationProtocols* configurations)
-  - **label**: the label of the command (usually is a imperative sentence, e.g. *updateTheRequest*)
-- *outgoingTransitions*: a list of JSON Objects that contain the details of events available to be received on the current state (if a unexpected event is received, the *Flow Manager* will log an error and ignore it; it is mandatory because a state may not point to other states (e.g. a final one)):
-  - **inputEvent**: a string with the event that will trigger the transition from the current state
-  - **targetState**: the ID of the state to land on (**NB.** must exist a state with this ID)
-  - *businessEventId*: the ID of the [business event](#business-events-of-the-machine) (**NB.** must exist in the *businessEvents* list)
+- **id** (required): a string that contains the ID of the state (usually is a camel case human readable string that tells what the state represents)
+- **description**: the state description
+- **isFinal** (required): a boolean that indicates if the state is a final one
+- **businessStateId** (required): the ID of the [business state](#business-states-of-the-machine) (**NB.** must exist in the *businessStates* list)
+- **outputCommand**: a JSON Object that contains the details of the command to send in output when the saga lands on the state (it is not mandatory since a state may not need to send any command):
+  - **channel** (required): the ID of the *channel* used to send the command (**NB.** must exist into the *communicationProtocols* configurations)
+  - **label** (required): the label of the command (usually is a imperative sentence, e.g. *updateTheRequest*)
+- **outgoingTransitions**: a list of JSON Objects that contain the details of events available to be received on the current state (if a unexpected event is received, the *Flow Manager* will log an error and ignore it; it is mandatory because a state may not point to other states (e.g. a final one)):
+  - **inputEvent** (required): a string with the event that will trigger the transition from the current state
+  - **targetState** (required): the ID of the state to land on (**NB.** must exist a state with this ID)
+  - **businessEventId**: the ID of the [business event](#business-events-of-the-machine) (**NB.** must exist in the *businessEvents* list)
 
 ### Business states of the machine
 
@@ -427,10 +501,10 @@ The business states of the machine are a superset of the machine that represents
 
 Each business state can contain one or more states of the machine (defined above).
 
-Following the configurations of the business states (the **bold** are the required ones, the *italic* are the optional ones):
+Following the configurations of the business states:
 
-- **id**: the ID of the business state (is usually a integer code)
-- *description*: a full description of the business state
+- **id** (required): the ID of the business state (is usually a integer code)
+- **description**: a full description of the business state
 
 **NB.** the id and the description of the business state will be stored by the *Persistency Manager*.
 
@@ -440,10 +514,10 @@ The business events of the machine are a superset of the machine that represents
 
 Each business event can be associated with one or more outgoingTransitions of the machine (defined above).
 
-Following the configurations of the business states (the **bold** are the required ones, the *italic* are the optional ones):
+Following the configurations of the business states:
 
-- **id**: the ID of the business event (is usually a integer code)
-- *description*: a full description of the business event
+- **id** (required): the ID of the business event (is usually a integer code)
+- **description**: a full description of the business event
 
 ## Configuration example
 

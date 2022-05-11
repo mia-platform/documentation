@@ -91,13 +91,20 @@ The default configuration is the following:
 }
 ```
 
-To configure the  **Teleconsultation Service Backend** service with the Console, follow these steps:
+Update the `JSON` configuration file in the ConfigMaps section according to your needs.
 
-1.  Update the `JSON` configuration file in the ConfigMaps section according to your needs.
-2.  Update the environment variable  `TELECONSULTATION_SERVICE_CONFIG_PATH`  with the full path of the file created in the previous step.
-3.  Create the environment variable `BANDYER_API_SECRET_KEY` which contain the API Secret Key to use in order to communicate with Bandyer's APIs.
-4.  Create the environment variable `TELECONSULTATIONS_CRUD_NAME` which contains the endpoint of the CRUD with all the teleconsultations.
-5.  Create the environment variable `USER_ID_MAP_CRUD_NAME` which contains the endpoint of the CRUD with all the user_ids (e.g. auth0Id, bandyerId), for each user.
+### Environment Variables
+
+The Teleconsultation Service Backend accepts the following environment variables.
+
+- **BANDYER_API_SECRET_KEY (required)**: API Secret Key to use in order to communicate with Bandyer's APIs.
+- **BANDYER_BASE_URL (required)**: name of the bandyer API endpoint.
+- **TELECONSULTATION_SERVICE_CONFIG_PATH**: full path of the updated file defined in the [previous section](#environment-variables).
+- **TELECONSULTATIONS_CRUD_NAME**: name of the endpoint of the CRUD with all the teleconsultations.
+- **USER_ID_MAP_CRUD_NAME**: name of the endpoint of the CRUD with all the user_ids (e.g. auth0Id, bandyerId), for each user.
+- **AUTH_SERVICE**: name of the authentication service.
+- **DEFAULT_CLIENT_TYPE**: name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.
+- **UNLIMITED_TELECONSULTATION**: if true the teleconsultation duration is infinite. 
 
 ### Teleconsultation Service Configuration
 

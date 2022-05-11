@@ -13,7 +13,8 @@ The payment processing logic includes:
     - **M2M Callback**: handling of payment transactions' M2M callbacks from a payment provider
     - **On-Demand**: on-demand transaction status check on the payment provider
     - Both may end in a **result notification push** towards an external service
-    
+* **Manage a transaction session** on a payment provider (e.g. to perform 3D-Secure authentication) 
+
 ## Interfaces
 The *PGM* interfaces aim to be Payment Provider agnostic.
 This way an eventual Payment Provider's change does not involve huge modifications for the services leveraging the *PGM*.
@@ -25,16 +26,21 @@ Some providers may require additional fields, in which case they will be wrapped
 * M2M Callback Transaction Status Verification: `GET /{provider}/callback`
 * On-Demand Transaction Status Verification: `GET /{provider}/check`
 * Get status of a Transaction: `GET /{provider}/status?shopTransactionID={shopTransactionID}`
+* Open a Session `POST /{provider}/session/open`
+* Settle a session transaction: `POST /{provider}/session/confirm`
+* Void a session transaction: `POST /{provider}/session/void`
+* Refund (totally or partially) a session transaction: `POST /{provider}/session/refund` 
+* Check the status of the session: `POST /{provider}/session/check`
 
 ## Supported Providers and Payment Methods
-| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay |
-|-------------------------|--------------|----------|-----------|---------|----------|----------|
-| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |
-| satispay                |              |          |           |         | ✓        |          |
-| unicredit               | ✓            |          |           |         |          |          |
-| braintree               |              |          |           | ✓       |          |          |
-| scalapay                |              |          |           |         |          | ✓        |
-
+| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | 
+|-------------------------|--------------|----------|-----------|---------|----------|----------|------------|
+| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |            |
+| satispay                |              |          |           |         | ✓        |          |            |
+| unicredit               | ✓            |          |           |         |          |          |            |
+| braintree               |              |          |           | ✓       |          |          |            |
+| scalapay                |              |          |           |         |          | ✓        |            |
+| safecharge              |              |          |           |         |          |          | ✓          |
 ## Utility APIs
 When possible, the PGM will expose utility APIs for some providers. These APIs abstract contour operations to the 
 developer and allow focusing on the payment process itself, rather than setup processes. The BrainTree helper suite is 
@@ -48,5 +54,5 @@ to the API Portal.
 ## Notes
 
 :::warning
-At the moment the currency used for payments is not configurable and is set to be Euros by default
+At the moment the currency used for payments is not configurable and is set to be Euros by default, except for session operations.
 :::

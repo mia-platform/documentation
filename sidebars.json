@@ -1750,6 +1750,29 @@
                   "id": "runtime_suite/timer-service/changelog"
                 }
               ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "User Manager Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/user-manager-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/user-manager-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/user-manager-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/user-manager-service/changelog"
+                }
+              ]
             }
           ],
           "label": "Plugins List",
@@ -1814,6 +1837,47 @@
         {
           "id": "marketplace/applications/backoffice_application",
           "type": "doc"
+        },
+        {
+          "type": "category",
+          "label": "Applications List",
+          "items": [
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Salesforce Streaming API Connector",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/connector_in_depth"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/dlq_in_depth"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/how_to_use"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/monitoring"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/salesforce-streaming-api-connector/changelog"
+                }
+              ]
+            }
+          ]
         }
       ],
       "label": "Applications",

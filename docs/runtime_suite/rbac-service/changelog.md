@@ -10,6 +10,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.2.0 - 09/05/2022
+
+### Added
+
+- policy name in evaluation log result
+
+## 1.1.1 - 04/05/2022
+
+### Fixed
+
+- fixed unwanted behavior to handle path paramenter with slash escaped character `%2F`
+
+## 1.1.0 - 03/05/2022
+
+### Added
+
+- if the option `permissionsOnResourceMapEnabled` is set at true in the XPermission inside the input provided to the opa evaluator will be present a new object `PermissionsOnResourceMap`containing set of key/value pairs in which the key is composed as `permissionId:resourceType:resourceId` and the value is always set to `true`
+
 ## 1.0.1 - 22/04/2022
 
 ### Fixed

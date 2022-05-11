@@ -30,7 +30,7 @@ The following guide will help you to get familiar with the APIs of the CRUD Serv
 
 ![API Portal](img/crud-api-portal.png)
 
-> Remember: the API Portal visualize all API configured and exposed by CRUD.
+Remember: the API Portal visualize all API configured and exposed by CRUD.
 
 ### Conventions
 
@@ -117,7 +117,7 @@ curl --request GET \
 - **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
 - **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
 
-> **Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
+**Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
 
 By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in Console/Design/Endpoints section.
 
@@ -256,7 +256,7 @@ APIs configured with Mia-Platform can be consumed with any technology that suppo
 
 In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
 
->*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using Console.
+*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using Console.
 
 Let's see how to perform C-R-U-D operations.
 
@@ -325,13 +325,13 @@ curl --request POST \
 
 in response you will obtain the document if already exist or a new document if is not present. The document will reflect all the updates you specified.
 
->**note**: if you don't specify the query string the first document of the collection is updated.
+**note**: if you don't specify the query string the first document of the collection is updated.
 
 If instead of ```$set``` you use ```$setOnInsert``` values are set only if the document don't exist.
 
 With upsert-one you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. It follows the details.
 
->**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that this operation is not atomic.
+**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that this operation is not atomic.
 
 ##### Unset an item value
 
@@ -417,7 +417,7 @@ curl -X GET https://your-url/v2/plates/ \
 -H  "client-key: client-key"
 ```
 
-> Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
+Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
 
 In response of this request you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must to set STATE to DRAFT.
 
@@ -458,7 +458,7 @@ In response of this request you will get a JSON array that contains all the docu
 ]
 ```
 
-> **Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
+**Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
 
 #### Get a single document by _id
 
@@ -502,11 +502,11 @@ In response to this request you get a JSON Object like the following.
 }
 ```
 
-> **Note**: the query will return only PUBLIC documents. To retrieve a DRAFT document add to query string ```&_st=DRAFT```
+**Note**: the query will return only PUBLIC documents. To retrieve a DRAFT document add to query string ```&_st=DRAFT```
 
 #### Sort
 
-It is possible to sort the list of documents returned by a GET passing to the query string the **_s_** parameter. The value of the parameter is
+It is possible to sort the list of documents returned by a GET passing to the query string the **_s** parameter. The value of the parameter is
 
 ```bash
 [-|empty]<property name>
@@ -521,7 +521,24 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-> For sorting with more than one property use _q
+Sorting for multiple values is made possible by passing multiple times the **_s** query parameter with the desired property or by passing a comma separated list of values to the **_s** as done in the examples below.
+
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_s=name&_s=surname' \
+  --header 'accept: application/json' \
+  --header 'client-key: client-key'
+```
+
+It's possible to sort nested values, too.
+
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_s=name,registry.surname' \
+  --header 'accept: application/json' \
+  --header 'client-key: client-key'
+```
+
 
 #### Paginate
 
@@ -610,7 +627,7 @@ The list of currently supported MongoDB aggregation operators is the following:
 - `$cond`
 - `$first`
 
-> **Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
+**Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
 
 
 #### Combine all together
@@ -665,7 +682,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 - $elemMatch and $options
 - $text
 
-> **Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
+**Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
 
 #### Count
 
@@ -681,7 +698,7 @@ returns
 3
 ```
 
-> **Note**: filters can be applied to the count. By default only PUBLIC documents are counted.
+**Note**: filters can be applied to the count. By default only PUBLIC documents are counted.
 
 #### Geospatial Queries
 
@@ -714,13 +731,17 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-The result will be sorted from the nearest to the farthest.
+The result will be sorted from the nearest to the furthest.
 
 #### Text Search Queries
 
 On CRUD service it's possible to filter text fields which match a search filter using MongoDB Text Search Queries.
 The query string is parsed and single words are used to query the Text index. A match is evaluated when the text value of an indexed field is considered to be the same word according to language rules. Indeed, it might be essential to set the `$language` option (English is the default language).
 See [$text](https://docs.mongodb.com/manual/reference/operator/query/text/) documentation to go in detail.
+
+:::caution
+Text search can't be used when encryption is enabled; for further information check out the official [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/security-client-side-query-aggregation-support/#supported-query-operators).
+:::
 
 To enable this feature you need to create a Text index on Console. At most one Text index can exist, but it can cover multiple fields. Only strings and arrays of strings can be indexed by a Text index.
 
