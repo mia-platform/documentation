@@ -132,6 +132,24 @@ Below is an example of the body of a template:
             ...
           }
         ],
+        "defaultConfigMaps": [
+          {
+            "name": "config-map-1",
+            "mountPath": "/home/node/app/config",
+            "files": [
+              {
+                "name": "config.json",
+                "content": "{\"version\":\"1.0.0\",\"config\":{}}"
+              }
+            ]
+          }
+        ],
+        "defaultSecrets": [
+          {
+            "name": "my-secret",
+            "mountPath": "/home/node/app/secret",
+          }
+        ],
         // if type is example or template archiveUrl is required, while pipelines is optional
         "archiveUrl": "https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz",
         "pipelines": {
@@ -405,6 +423,40 @@ Please note that in the previous example `min` corresponds to the `request` valu
 :::warning
 Measurements units are required. Limitations are expressed in terms of milliCPUs and MebiBytes.
 :::
+
+#### Configure default configmaps and secrets
+
+You can provide default ConfigMaps or Secrets to be mounted inside the container for each of your microservice by adding the properties `defaultConfigMaps` or `defaultSecrets` inside the data model.
+
+To use this feature, you have to fill the `defaultConfigMaps` and `defaultSecrets` in this way:
+
+```json
+{
+  "defaultConfigMaps": [
+    {
+      "name": "config-map-1",
+      "mountPath": "/home/node/app/config",
+      "files": [
+        {
+          "name": "config.json",
+          "content": "{\"version\":\"1.0.0\",\"config\":{}}"
+        }
+      ]
+    }
+  ],
+}
+```
+
+```json
+{
+ "defaultSecrets": [
+    {
+      "name": "my-secret",
+      "mountPath": "/home/node/app/secret",
+    }
+  ]
+}
+```
 
 #### Configure default probes
 
