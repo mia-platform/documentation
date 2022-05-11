@@ -62,7 +62,7 @@ Payments that use Braintree as gateway don't need to call the /check endpoint in
 ## 2) M2M Callback Transaction Verification
 
 When the transaction result is known by the `generic-provider`, the latter may notify the `Payment Gateway Manager` 
-through the `HTTP GET` on `http://payment-gateway-manager/generic-provider/callback`.
+through the `HTTP GET` or `HTTP POST` on `http://payment-gateway-manager/generic-provider/callback`.
 
 This call will contain information allowing to identify the transaction.
 
@@ -165,3 +165,16 @@ This API has been implemented to give sync access to a transaction status, e.g. 
 :::
 
 ::: warning This endpoint is only available for `satispay` and `scalapay` providers at the moment. :::
+
+
+## 7) Manage a Transaction Session
+You can ask a payment provider to establish a new transaction session in order to perform various operations, such as Pre-Authentication, invalidation or refund of a payment. In this way, the PGM can work as a **validator** (secure actor, possibly endowed with a secret) of the communication between the user and the payment provider.
+A new session can be established by an `HTTP POST` request on the `http://payment-gateway-manager/generic-provider/session/open` API.
+
+The PGM is responsible for contacting the payment provider, which will return a **sessionToken** to be used in the next operations.
+
+As soon as a session is established, you can perform the following operations on the transaction you are going to perform:
+* confirm a transaction: `HTTP POST` request on the `http://payment-gateway-manager/generic-provider/session/confirm` API
+* void a transaction: `HTTP POST` request on the `http://payment-gateway-manager/generic-provider/session/void` API
+* refund (totally or partially) a transaction: `HTTP POST` request on the `http://payment-gateway-manager/generic-provider/session/refund` API
+* check the status of a transaction: `HTTP POST` request on the `http://payment-gateway-manager/generic-provider/session/check` API, specifying the related sessionToken in the body of the request

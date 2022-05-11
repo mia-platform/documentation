@@ -56,3 +56,9 @@ user after completing a payment via the Satispay mobile app
 * **SCALAPAY_API_KEY** (required)
 * **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction.
 * **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction.
+
+## SafeCharge Specific Environment Variables
+* **SAFECHARGE_MERCHANT_ID** (required): Merchant identification code.
+* **SAFECHARGE_MERCHANT_SITE_ID** (required): Merchant site identification code.
+* **SAFECHARGE_MERCHANT_SECRET_KEY** (required): Merchant secret for validating the communication.
+* **SAFECHARGE_URL** (required): Base URL of the SafeCharge provider.

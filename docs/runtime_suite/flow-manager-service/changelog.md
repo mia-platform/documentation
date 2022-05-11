@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 2.5.0 - 03-05-2022
+
+### Added
+
+- crud persistency management configuration used to persist saga information through CRUD service.
+
 ## 2.4.2 - 12-04-2022
 
 ### SECURITY FIX
