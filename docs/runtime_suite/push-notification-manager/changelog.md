@@ -8,14 +8,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### Updated
-
-- custom-plugin-lib: v2.0.4
-
-- Updated gitlab-ci.yml mongo dependency, from this version mongo 4.4 support is guaranteed.
-
 ## 2.0.0 - 2020-10-05
 
 **BREAKING CHANGE**

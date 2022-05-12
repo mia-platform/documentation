@@ -10,19 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## Unreleased
-
-### Added
-
-- `Table` accepts (template, configMap) pairs in custom components properties.
-- `Table` accepts `onCellClickBuilder`, building `onClick` callback for cells.
-- property `customActions` in `bk-table` accepts (`template`, `configMap`) pairs for values depending on table row.
-- `bk-table` accepts `openFileInViewerRegex`, determining which file cells are clickable, opening the file inside the native viewer of the browser.
-- new `bk-layout-container` component allows to render multiple configurations within the same plugin.
-- `bk-tabs` migrated to lit components.
-- `bk-tabs` can pipe custom events to the `EventBus`.
-
-
 ## [1.0.0] - 2022-04-22
 
 ### Added
