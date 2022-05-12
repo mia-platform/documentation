@@ -8,21 +8,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### BREAKING CHANGE
-
-- `single view before-after` message `kafkaInfo` field changed into `__internal__kafkaInfo` to align it to others events
-
-### Changed
-
-- `single view event` messages now have `__internal__kafkaInfo` field
-
-### Updated
-
-- `@mia-platform-internal/fast-data-automation-lib` "^1.4.1
-- `@mia-platform-internal/single-view-creator-lib` "^11.0.0
-
 ## [3.10.0] 2022-05-04
 
 ### Updated
