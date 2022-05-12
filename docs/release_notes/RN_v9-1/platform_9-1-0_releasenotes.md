@@ -14,16 +14,12 @@ _May 12, 2022_
 #### Single View Trigger v1.0.0
 
 The [Single View Trigger](../../fast_data/single_view_trigger/overview.md) is now available in Beta on the Marketplace.
-The service consumes Kafka messages produced by the RealTime Updater from the topic of the [Projection Updates](/docs/fast_data/real_time_updater/manual-configuration#kafka-projection-updates-configuration-1), and it runs the appropriate strategies to generates projection changes either on Mongo or Kafka.   
+The service consumes Kafka messages produced by the RealTime Updater from the topic of the [Projection Updates](/docs/fast_data/real_time_updater/manual-configuration#kafka-projection-updates-configuration-1), and it runs the appropriate strategies to generate projection changes either on Mongo or Kafka.   
 This service is supposed to be used together with a Real Time Updater with Projection Changes generation turned off.
 
 #### Automatic Projection Changes collection creation in Console
 
-When the user commits, for each system of the Console project, a Projection Changes collection is generated and visible within the MongoDB CRUD section. Moreover, the Real-Time Updater variables are adjusted to point towards the new automatically generated collection. By deleting a system and committing, the relative automatic generated collection will be deleted too.
-
-#### Empty spaces in the field name of a projection
-
-Users can insert empty spaces in the field name of a projection.
+When the user commits, for each system of the Console project, a Projection Changes collection is generated and visible within the MongoDB CRUD section. Moreover, the Real-Time Updater variables are adjusted to point towards the new automatically generated collection. By deleting a system and committing, the relative automatic generated collection will be deleted too. For further details regarding automatic projections changes, check out the specific [documentation](../../fast_data/create_projection#projections-changes).
 
 #### The 'null' condition applicable in ER schema
 
@@ -45,7 +41,7 @@ Now, it is possible to give a link on a specific tab in the RBAC section. By ope
 
 ### Bug Fix
 
-- Fixed a bug in RBAC section regarding the Manual Route tab that was affecting any save operation when there was a filter applied to the table.
+- Fixed a bug in the RBAC section regarding the Manual Route tab that was affecting any save operation when there was a filter applied to the table.
 
 - Editor full-screen button color has been fixed with a more visible one.
 
@@ -53,7 +49,7 @@ Now, it is possible to give a link on a specific tab in the RBAC section. By ope
 
 - Inside the Deploy section, in the deploy history table, it is possible to see only the deployments relative to the currently selected environment, if and only if the user can have access to that environment.
 
-- Fixed a bug preventing a normal cards visualization during the switch to the advanced section for a microservice.
+- Fixed a bug preventing a normal card visualization during the switch to the advanced section for a microservice.
 
 ## Marketplace
 
