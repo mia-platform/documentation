@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Updated
+
+- lc39 to v6.0.0
+
 ### Fixed
 
 -  Throw error on findAll stream error event
