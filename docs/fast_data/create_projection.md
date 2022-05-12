@@ -19,11 +19,9 @@ The deletion is not allowed until you have at least one Projection inside the Sy
 
 ## Projections Changes
 
-When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information about the updated document.
+When a projection is updated, the Real-Time Updater changes a collection called, by default, `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the name of the System of Records which the Real-Time Updater belongs to. It inserts into it the information about the updated document. 
 
-:::caution
-The default Projection Changes collection is automatically managed by the Console, and it does not support the utilization of custom indexes. If you need to take advantage of them to speed up your queries, you need to use a [custom projection changes collection](./real_time_updater/manual-configuration#custom-projection-changes-collection).
-:::
+This collection will be automatically created in the `MongoDB CRUD` section of the Console when you save the configuration after a System of Records creation, allowing the utilization of custom indexes. One Projection Changes collection per System of Records is created.
 
 One `Projections Changes` collection is created for each System of Records as default.
 
