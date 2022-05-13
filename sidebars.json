@@ -490,6 +490,10 @@
       ],
       "label": "User profile",
       "type": "category"
+    },
+    {
+      "id": "development_suite/license-metrics/license-metrics",
+      "type": "doc"
     }
   ],
   "devPortal": [
