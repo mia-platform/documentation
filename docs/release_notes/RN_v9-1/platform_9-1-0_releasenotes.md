@@ -23,13 +23,13 @@ When the user commits, for each system of the Console project, a Projection Chan
 
 #### The 'null' condition applicable in ER schema
 
-It is possible to configure the ER schema by using the 'null' condition.
+It is possible to configure the `aggregation.json` by using the 'null' condition inside conditional expressions. For further details check out the specific [documentation](../../fast_data/single_view_creator/low_code_configuration.md#null-value-inside-conditional-expression).
 
 ### Breaking Changes
 
 #### Naming convention on kafkaInfo field
 
-On topics SV.update and before-after, the `kafkaInfo` field is identified with `__internal__kafkaInfo`.
+On topics before-after, the `kafkaInfo` field is identified with `__internal__kafkaInfo`, while on topic SV.update, where it was missing, it has been added. Provided that this field is mainly for debugging purpose and it's highly discouraged to have business logic relying on it, any existing one must be adjusted to the new format of the messages.
 
 ## Console
 
