@@ -424,17 +424,9 @@ When the production environment is defined for a project a preview of its **Kube
 * CPU usage
 * RAM usage
 
-### Step 4 **Configure API Key**
+### End of creation process
 
-In this step, you are required to set up Client's accesses to your APIs:
-
-* **API Key** (*required*): this is the API Key. It can be generated randomly.
-* **Client Type** (*required*): ID of the client that wants to access to your APIs.
-* **Description** (*optional*): this is the description of the API Key.
-
-![create-project5](img/create-project5.png)
-
-At the end of the process, your project will be created on your Git provider, and will be visible in the Home section of your Console.
+Your project will be created on your Git provider, and will be visible in the Home section of your Console.
 Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
 
 * Some variables are pre-filled from project or company information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
