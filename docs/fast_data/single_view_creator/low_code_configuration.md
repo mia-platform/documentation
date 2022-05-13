@@ -767,6 +767,31 @@ The `value` field is an object with exactly the same structure as a regular depe
 
 For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object  with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
 
+##### Null value inside conditional expression
+
+From version `3.10.0` of the Single View Creator, logic expressions now accept `null` as a value:
+
+```json
+...
+"withNull": {
+  "_select": {
+    "options": [
+      {
+        "when": {
+          "==": [
+            "JOB.age",
+            null
+          ]
+        },
+        "value": "__string__[unknown]"
+      }
+    ],
+    "default": "__string__[foobar]"
+  }
+}
+...
+```
+
 ### Example
 
 Let's take a look at a simplified version of the `sv_customer` configuration in the `food-delivery` use case:
