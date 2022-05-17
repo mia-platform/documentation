@@ -29,7 +29,9 @@ It is possible to configure the `aggregation.json` by using the 'null' condition
 
 #### Naming convention on kafkaInfo field
 
-On topics before-after, the `kafkaInfo` field is identified with `__internal__kafkaInfo`, while on topic SV.update, where it was missing, it has been added. Provided that this field is mainly for debugging purpose and it's highly discouraged to have business logic relying on it, any existing one must be adjusted to the new format of the messages.
+Starting from version `4.0.0` of the Single-View-Creator, on topics before-after, the `kafkaInfo` field is identified with `__internal__kafkaInfo`, while on topic SV.update, where it was missing, it has been added. Provided that this field is mainly for debugging purpose and it's highly discouraged to have business logic relying on it, any existing one must be adjusted to the new format of the messages.
+
+For on-premise, this version of the Single-View-Creator will be available in the marketplace from the next release.
 
 ## Console
 
