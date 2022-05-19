@@ -83,7 +83,7 @@ To make understanding our bug fix policy easier, here's some definitions.
 
 * Product Update option grant the right to access a new major version for free
 
-* Without Product Update right client is required to purchase a new licence for upgrading to a new major version
+* Without Product Update right client is required to purchase a new license for upgrading to a new major version
 
 * Mia-Platform provides a warranty that critical security patch will be issued for any version up or equal to n-2, where n is last issued major version
 

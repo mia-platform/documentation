@@ -8,6 +8,10 @@ test:
     - yarn lint
     - ./node_modules/.bin/cspell "./docs/**"
 
+
+default:
+  image: node:14.19.1-alpine
+
 variables:
   IMAGE_NAME: core/documentation-site
 
