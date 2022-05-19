@@ -179,7 +179,11 @@
     "inodes",
     "NodeClockNotSynchronising",
     "KubeletPlegDurationHigh",
-    "sforce"
+    "sforce",
+    "telecons",
+    "teleconsultation",
+    "teleconsultations",
+    "telepresence"
   ],
   "dictionaries": [
     "softwareTerms",

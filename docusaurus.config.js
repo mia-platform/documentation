@@ -6,6 +6,7 @@ const config = {
   url: "https://docs.mia-platform.eu",
   baseUrl: "/",
   onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: 'throw',
   favicon: "img/favicon.ico",
   organizationName: "Mia-Platform", // Usually your GitHub org/user name.
   projectName: "Mia-Platform", // Usually your repo name.
@@ -35,14 +36,16 @@ const config = {
       },
     },
     navbar: {
+      hideOnScroll: false,
       title: "Mia-Platform Docs",
       logo: {
         alt: "Mia_Platform logo",
-        src: "img/logo.png",
+        src: "img/logo.png"
       },
       items: [
         {
-          to: "docs/overview/mia_platform_overview",
+          type: 'doc',
+          docId: "overview/mia_platform_overview",
           label: "Getting Started",
           position: "left",
           activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
@@ -51,49 +54,57 @@ const config = {
           label: "Products",
           position: "left",
           activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
-          to: "docs/development_suite/overview-dev-suite",
+          type: "dropdown",
           items: [
             {
+              type: 'doc',
+              docId: "development_suite/overview-dev-suite",
               label: "Console",
-              to: "docs/development_suite/overview-dev-suite",
               activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
             },
             {
-              to: "docs/marketplace/overview_marketplace",
+              type: 'doc',
+              docId: "marketplace/overview_marketplace",
               label: "Marketplace",
               activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started)"
             },
             {
-              to: "docs/fast_data/overview",
+              type: 'doc',
+              docId: "fast_data/overview",
               label: "Fast Data",
               activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
             },
             {
-              to: "docs/business_suite/backoffice/overview",
+              type: 'doc',
+              docId: "business_suite/backoffice/overview",
               label: "Backoffice",
               activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
             },
             {
-              to: "docs/dev_portal/overview",
+              type: 'doc',
+              docId: "dev_portal/overview",
               label: "Dev Portal",
               activeBaseRegex: "(docs|docs/\\d.x)/dev_portal"
             },
             {
-              to: "docs/libraries/overview_service_libraries",
+              type: 'doc',
+              docId: "libraries/overview_service_libraries",
               label: "Libraries"
             },
             {
-              to: "docs/tools/overview_service_tools",
+              type: 'doc',
+              docId: "tools/overview_service_tools",
               label: "Tools",
               activeBaseRegex: "(docs|docs/\\d.x)/(tools|runtime_suite_tools)"
             },
           ]
         },
         {
+          type: 'doc',
+          docId: "release_notes/release_notes",
           label: "Release notes",
           position: "left",
-          to: "docs/release_notes/release_notes",
-          activeBaseRegex: "(docs|docs/\\d.x)/(release_notes|info/(version_policy|migrate_from_v4_to_v5|support-policy))"
+          activeBaseRegex: "(docs|docs/\\d.x)/(release_notes|info/(version_policy|bug_policy|support-policy))"
         },
         {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
@@ -243,9 +254,6 @@ const config = {
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
     },
   },
-  customFields: {
-    versionPathRegex: "docs\\/\\d+\\.x",
-  },
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -274,6 +282,10 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
+        },
+        gtag: {
+          trackingID: 'GTM-PKKZ6XT',
+          anonymizeIP: true,
         },
       },
     ],

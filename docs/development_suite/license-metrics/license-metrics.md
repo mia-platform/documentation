@@ -4,7 +4,7 @@ title: License Audit Logs
 sidebar_label: Monitor the license
 ---
 
-For correctly track the correct usage of resources allowed by the Mia-Platform Console Licence, the installation
+For correctly track the correct usage of resources allowed by the Mia-Platform Console License, the installation
 setup a cronjob that will track a series of metrics that are needed to be inspected upon request by Mia s.r.l.
 
 For allowing the scripts to work correctly and keep the audit inspection to the shortest time possible there are some
