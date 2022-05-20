@@ -28,6 +28,25 @@ The following software and hardware recommendations are for installing Mia-Platf
    </thead>
    <tbody>
       <tr>
+         <td rowspan="3"><strong>Auth Provider</strong></td>
+         <td>Okta</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td>GitLab</td>
+         <td>> 14.x</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td>GitHub</td>
+         <td>> 3.x</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
          <td rowspan="2"><strong>Git provider</strong></td>
          <td>GitLab</td>
          <td>&gt; 14.x</td>
@@ -80,13 +99,26 @@ The following software and hardware recommendations are for installing Mia-Platf
         <td>N/A</td>
         <td>N/A</td>
         <td>N/A</td>
-       </tr>
-       <tr>
+      </tr>
+      <tr>
         <td>MongoDB</td>
         <td>N/A</td>
         <td>N/A</td>
         <td>N/A</td>
-       </tr>
+      </tr>
+      <tr>
+         <td rowspan="2"><strong>Key Management Service</strong></td>
+         <td>Google Cloud Platform</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td>Local Key</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
    </tbody>
 </table>
 
@@ -97,9 +129,11 @@ The following is an example architecture for the installation of the Mia-Platfor
 
 | **Tool**                  | **Version** | **Nodes**      | **CPU** | **RAM** | **Storage** |
 |---------------------------|-------------|----------------|---------|---------|-------------|
+| Okta                      | N/A         | N/A            | N/A     | N/A     | N/A         |
 | GitLab                    | 14          | 1              | 8 core  | 32 GB   | 200 GB      |
 | GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
 | MongoDB                   | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
 | Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    | N/A         |
 | Google Container Registry | N/A         | N/A            | N/A     | N/A     | N/A         |
-| Google Cloud Storage       | N/A         | N/A            | N/A     | N/A     | N/A         |
+| Google Cloud Storage      | N/A         | N/A            | N/A     | N/A     | N/A         |
+| Google Cloud Platform KMS | N/A         | N/A            | N/A     | N/A     | N/A         |
