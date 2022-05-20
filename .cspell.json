@@ -121,7 +121,12 @@
       "eval",
       "explanative",
       "parallelization",
-      "UNDELETE"
+      "UNDELETE",
+      "telecons",
+      "teleconsultation",
+      "teleconsultations",
+      "telepresence",
+      "syscall"
   ],
   "ignoreWords": [
     "authz",
@@ -179,11 +184,7 @@
     "inodes",
     "NodeClockNotSynchronising",
     "KubeletPlegDurationHigh",
-    "sforce",
-    "telecons",
-    "teleconsultation",
-    "teleconsultations",
-    "telepresence"
+    "sforce"
   ],
   "dictionaries": [
     "softwareTerms",
