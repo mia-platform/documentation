@@ -323,6 +323,10 @@
         {
           "id": "development_suite/api-console/api-design/gdpr",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/api-console/api-design/security",
+          "type": "doc"
         }
       ],
       "label": "Design your projects",

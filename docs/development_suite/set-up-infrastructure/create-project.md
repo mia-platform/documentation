@@ -604,3 +604,20 @@ A project created with these templates is almost ready to use, but some configur
 
 1. For the crud-service to be deployed and work correctly, you need a value for the environment variable `MONGODB_URL`. When the project is first created, its value is an empty string. To fix that, go to Envs Area, Environment Variables table, and either change its value, or delete it if you want to inherit this value. This needs to be done for all the environments you are interested in.
 2. For auth0-client service to be deployed and work correctly, you need to setup various environment variables, as specified in its configuration. You can find the configuration in the Design Area, Advanced Section, auth0-client option, config.js file. More on the configuration of the auth0-client [here](../../runtime_suite/auth0-client/configuration).
+
+### Configure Security Features
+
+From the CMS page it is possible to employ a set of security features in order to harden the configuration of your project.
+
+Those features are all set to `true` by default and can be switched off for testing or to account for compatibility issues by managing the properties of the `securityFeatures` key.
+
+```json
+{
+  seccompProfile: { type: 'boolean' },
+  appArmor: { type: 'boolean' },
+  hostProperties: { type: 'boolean' },
+  privilegedPod: { type: 'boolean' }
+}
+```
+
+Head over to the [security features documentation](../api-console/api-design/security) to better understand which capabilities are implemented.
