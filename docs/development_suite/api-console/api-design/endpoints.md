@@ -13,6 +13,7 @@ This page will delve into the endpoint types and configuration and will describe
 An endpoint can be of different types:
 
 * **CRUD**: hook your endpoint directly to one of your CRUDs.
+* **MongoDB View**: hook your endpoint directly to one of your Mongo Views.
 * **Microservice**: hook your endpoint to a service with logics entirely created by you.
 * **External proxy**: hook your endpoint to a proxy linked to a service outside of your cluster.
 * **Cross Projects proxy**:  hook your endpoint to a proxy linked to another project contained in your cluster.

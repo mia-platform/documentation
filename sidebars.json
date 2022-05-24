@@ -235,6 +235,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/api-console/api-design/mongo_views",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "items": [
             {
