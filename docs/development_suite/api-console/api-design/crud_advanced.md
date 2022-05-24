@@ -34,6 +34,8 @@ Once you have entered all required fields, press the **Create** button on the ri
 
 As soon as you push **Create**, a new page ("books" in our example) is created and you can enter a short and optional description of your collection: default description will be “Collection of books”.
 
+### Fields
+
 In the section **Fields**, you can enter the properties of your collection.
 By default, there are fields that can not be changed, such as: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `_STATE_`.  
 These fields are internally required; you can use them to perform queries or to create [indexes](./crud_advanced#indexes).  
