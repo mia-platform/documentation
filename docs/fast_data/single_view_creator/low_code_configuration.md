@@ -792,6 +792,44 @@ From version `3.10.0` of the Single View Creator, logic expressions now accept `
 ...
 ```
 
+##### Set resolution order of dependencies
+
+From version `4.1.0` of the Single-View-Creator, the resolution order of dependencies can be set with the field `dependencyOrder` inside the aggregation file:
+
+```json
+{
+  "version": "1.1.0",
+  "config": {
+    "SV_CONFIG": {
+      "dependencies": {
+        "PEOPLE": {
+          "type": "projection",
+          "on": "_identifier"
+        },
+        "PARTNER": {
+          "type": "projection",
+          "aliasOf": "PEOPLE",
+          "on": "MARRIAGE_b_TO_PEOPLE"
+        },
+        "MARRIAGE": {
+          "type": "projection",
+          "on": "PEOPLE_TO_MARRIAGE"
+        },
+        "CHILDREN_CONF": {
+          "type": "config"
+        }
+      },
+      "dependencyOrder": ["PEOPLE", "MARRIAGE", "PARTNER", "CHILDREN_CONF"],
+      "mapping": {
+        "name": "PEOPLE.name",
+        "marriedWith": "PARTNER.name",
+        "children": "CHILDREN_CONF"
+      }
+    }
+  }
+}
+```
+
 ### Example
 
 Let's take a look at a simplified version of the `sv_customer` configuration in the `food-delivery` use case:
