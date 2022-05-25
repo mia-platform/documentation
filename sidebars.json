@@ -509,14 +509,6 @@
           "type": "doc"
         },
         {
-          "id": "dev_portal/crud_data_model_configuration",
-          "type": "doc"
-        },
-        {
-          "id": "dev_portal/endpoints_configuration",
-          "type": "doc"
-        },
-        {
           "id": "dev_portal/api_documentation_configuration",
           "type": "doc"
         },
