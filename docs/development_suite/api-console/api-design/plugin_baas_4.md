@@ -9,26 +9,26 @@ This library is available on [GitHub](https://github.com/mia-platform/custom-plu
 
 In addition to standard components (e.g., CRUD), you can create your own microservices that encapsulate ad-hoc logics that are autonomously developed and integrated. Your microservice receives HTTP requests, its cycle of use and deploy is managed by the platform.  
 
-A microservice encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created [Mia Service Node.js Library](https://github.com/mia-platform/custom-plugin-lib), a library in **node.js**, based on the [fastify](https://fastify.io) library. Using `Mia Service Node.js Library` it is possible to create your own microservice by implementing the following steps:
+A microservice encapsulates ad-hoc business logics that can be developed by any user of the platform and potentially in any programming language. However, to facilitate its adoption and use, Mia-Platform team has created the [Mia Service Node.js Library](https://github.com/mia-platform/custom-plugin-lib), a library in **node.js**, based on [fastify](https://fastify.io). Using `Mia Service Node.js Library` it is possible to create your own microservice by following these steps:
 
-* [HTTP Routes handler](#routes)
-* [changing the behavior according to the client that is making the request, whether the user is logged in and its belonging groups](#user-and-client-identification)
-* [requests to other services of the platform](#endpoint-queries-and-platform-services)
-* [PRE and POST decorators](#pre-and-post-decorators)
+* [Implement HTTP routes handlers](#routes)
+* [Handling different clients and users with different roles](#user-and-client-identification)
+* [Sending requests to other services on the platform](#endpoint-queries-and-platform-services)
+* [Implementing PRE and POST decorators](#pre-and-post-decorators)
 
-In the remaining part of this guide it will be described how to develop, test and deploy your microservice in Node.js withing the platform ecosystem using the `Mia Service Node.js Library` library.
+The remaining part of this guide will describe how to develop, test and deploy your microservice in Node.js to the platform ecosystem using the `Mia Service Node.js Library` library.
 
 ## Installation and Bootstrap
 
 ### Install from Marketplace template
 
-From the service area it is possible to add a new service starting from the node template that is already set up and configured to use the `Mia Service Node.js Library`.
+From the microservices area it is possible to add a new service starting from the Node.js template that is already set up and configured to use the `Mia Service Node.js Library`.
 
-Check out the [Marketplace Documentation](./../../../marketplace/overview_marketplace.md) for further information
+Check out the [Marketplace Documentation](./../../../marketplace/overview_marketplace.md) for further information on how to install and bootstrap a service from a Marketplace template.
 
-### Manual install in a new repository
+### Manual installation on a new repository
 
-To start developing it is necessary to have installed `node.js` on your laptop and to initialize a node project with the following commands:
+To start developing your custom service, first make sure to have Node.js installed on your local machine. Then, initialize a Node project with the following commands:
 
 ```bash
 mkdir my-custom-plugin
@@ -36,33 +36,32 @@ cd my-custom-plugin
 npm init -y
 ```
 
-Open the `package.json` file and modify the `name`, `description` fields accordingly.
-The `version` field at the beginning is best valued at`0.0.1`.
+Open the `package.json` file and modify the `name`, `description` fields according to your needs.
+We suggest setting the value of the `version` field to `0.0.1` to get started.
 
-`Mia Service Node.js Library` can be installed with`npm`, along with its `fastify-cli` dependency, necessary for booting
-and the execution of the microservice
+`Mia Service Node.js Library` can be installed with`npm`, along with its `fastify-cli` dependency, necessary for bootstrapping and executing the microservice.
 
 ```bash
 npm i --save @mia-platform/custom-plugin-lib
 ```
 
 The library can be used to instantiate an HTTP server.
-To start developing with `Mia Service Node.js Library` the variables need to be available to the `nodejs` process environment:
+To start developing with `Mia Service Node.js Library` the variables need to be available to the Node.js process environment:
 
-* USERID_HEADER_KEY = miauserid
-* USER_PROPERTIES_HEADER_KEY = miauserproperties
-* GROUPS_HEADER_KEY = miausergroups
-* CLIENTTYPE_HEADER_KEY = client-type
-* BACKOFFICE_HEADER_KEY = isbackoffice
-* MICROSERVICE_GATEWAY_SERVICE_NAME = Microservice-gateway
+* `USERID_HEADER_KEY` = miauserid
+* `USER_PROPERTIES_HEADER_KEY` = miauserproperties
+* `GROUPS_HEADER_KEY` = miausergroups
+* `CLIENTTYPE_HEADER_KEY` = client-type
+* `BACKOFFICE_HEADER_KEY` = isbackoffice
+* `MICROSERVICE_GATEWAY_SERVICE_NAME` = Microservice-gateway
 
-Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the network name (or IP address) at which `microservice-gateway` is accessible and is used during [internal communication with other services](#endpoint-queries-and-platform-services) in your project namespace. The implication is that `MICROSERVICE_GATEWAY_SERVICE_NAME` makes it possible to configure your local microservice to query a specific microservice inside your Mia-Platform project. For example
+Among these variables, the most interesting is `MICROSERVICE_GATEWAY_SERVICE_NAME`, which contains the host name (or IP address) pointing to the `microservice-gateway` and is used for  [internal communication with other services](#endpoint-queries-and-platform-services) in your project namespace. This implies that `MICROSERVICE_GATEWAY_SERVICE_NAME` allows the user to configure their microservice to call a specific microservice inside their Mia-Platform project. For example
 
 ```Bash
 MICROSERVICE_GATEWAY_SERVICE_NAME = "microservice-gateway"
 ```
 
-To instantiate the HTTP server you can paste the following piece of code in the service entrypoint (typically the `index.js` file).
+To instantiate the HTTP server you can paste the following snippet to the service entrypoint (typically the `index.js` file).
 
 ```js
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
@@ -86,14 +85,15 @@ To start the microservice, simply edit the `package.json` file in this way
 "scripts": {
   // ...  
   "start": "fastify start src/index.js",
+  //...
 ```
 
-execute `npm start` and open a browser at the url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), to get an answer.
+You can now run the command `npm start` and open a browser at the url [`http://localhost:3000/status/alive`](http://localhost:3000/status/alive), to get a response.
 
 ## Factory exposed by Mia Service Node.js Library
 
-`Mia Service Node.js Library` exports a function which creates the infrastructure ready to accept the definition
-of routes and decorators. This code extract exemplifies its use.
+`Mia Service Node.js Library` exports a function which creates the infrastructure to accept the definition
+of routes and decorators. This code snippet illustrates its use.
 
 ```js
 const customPlugin = require('@mia-platform/custom-plugin-lib')()
@@ -101,23 +101,23 @@ const customPlugin = require('@mia-platform/custom-plugin-lib')()
 module.exports = customPlugin(function(service) { })
 ```
 
-The argument of the `customPlugin` function is a **declaration function** whose argument is an object that allows
+The argument passed to the `customPlugin` function is a **declaration function** which accepts as argument an object that allows the user
 to define routes and decorators.
 
 ## Routes
 
-`Mia Service Node.js Library` allows to define the behavior of the microservice in response to an HTTP request, in a declarative style.
-For this purpose, the `addRawCustomPlugin` function is used as shown in the first argument of the declaration function.
+`Mia Service Node.js Library` allows to define the behavior of the microservice in response to HTTP requests, in a declarative style.
+For this purpose, the `addRawCustomPlugin` method is used as shown below:
 
 ```js
 service.addRawCustomPlugin(httpVerb, path, handler, schema)
 ```
 
-whose arguments are, in order
+The `addRawCustomPlugin` method accepts the following parameters:
 
 * `httpVerb` - the HTTP verb of the request (e.g.,`GET`)
 * `path` - the route path (e.g.,`/status /alive`)
-* [`handler`](#handlers) - function that contains the actual behavior. It must respect the same interface defined in the
+* [`handler`](#handlers) - function that handles the incoming request. It must respect the same interface defined in the
 documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
 * [`schema`](#route-diagram-and-documentation) - definition of the request and response data schema.
 The format is the one accepted by [fastify](https://www.fastify.io/docs/latest/Validation-and-Serialization)
@@ -154,19 +154,18 @@ module.exports = customPlugin(async function(service) {
 
 A `handler` is a function that respects the handler interface of [fastify](https://www.fastify.io/docs/latest/Routes/) and
 accepts a [Request](https://www.fastify.io/docs/latest/Request/) and a [Reply](https://www.fastify.io/docs/latest/Reply/).
-In addition to the fastify Request interface, `Mia Service Node.js Library` decorates the Request instance with information related to the Platform as
-the `id` user currently logged in, its groups, the type of client that performed the HTTP request and if the request comes from the CMS.
-Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services released on the Platform.
+In addition to the fastify Request interface, `Mia Service Node.js Library` decorates the Request instance with information related to the Platform. This information includes the `id` of the user currently logged in, its groups, the type of client that performed the HTTP request and specifies whether the request comes from the CMS.
+Furthermore, the Request instance is also decorated with methods that allow HTTP requests to be made to other services deployed on the Platform.
 
 ### User and Client Identification
 
-The instance of `Request` (the first argument of a handler) is decorated with functions
+The instance of `Request` (the first argument of a handler) is decorated with the following functions:
 
-* `getUserId` - exposes the user's id, if logged in or, *null*
-* `getUserProperties` - exposes the user's properties of the logged user or *null*
-* `getGroups` - exposes an array containing strings that identify the groups to which the logged in user belongs
-* `getClientType` - exposes the type of client that performed the HTTP request
-* `isFromBackOffice` - exposes a boolean to discriminate whether the HTTP request from the CMS
+* `getUserId` - returns the user's id if logged in or `null` if not
+* `getUserProperties` - returns the properties of the logged user if logged in, otherwise returns `null`
+* `getGroups` - returns an array containing strings that identify the groups to which the logged in user belongs
+* `getClientType` - returns the type of client that performed the HTTP request
+* `isFromBackOffice` - returns a boolean indicating whether the HTTP request comes from the CMS
 
 #### Example
 
@@ -179,7 +178,7 @@ async function helloHandler(request, reply) {
 
 ### Context
 
-Inside the handler scope it's possible to access fastify instance using `this`.
+Inside the handler scope it's possible to access the service fastify instance using `this`.
 
 #### Example
 
@@ -195,23 +194,23 @@ async function helloHandler(request, reply) {
     // `this` references the fastify context
     this.decoratedService // access custom fastify decoration
     this.config["LOG_LEVEL"] // access configured environment variable
-})
+}
 ```
 
 ## Endpoint queries and Platform services
 
-Both from the `Request` (the first argument of a handler) or the `Service` (the first argument of the declaration function) it is possible to obtain a proxy object to invoke other endpoints or services running in the Platform project. For example, if you need to connect to a CRUD, you have to use a Proxy towards the `crud-service`. These proxies are already configured to automatically transmit Platform headers.
+Both from the `Request` (the first argument of a handler) and from the `Service` (the first argument of the declaration function) it is possible to obtain a proxy object to call other endpoints or services running in the Platform project. For example, if you need to connect to a CRUD, you have to use a Proxy towards the `crud-service`. These proxies are already configured to automatically include all necessary platform specific headers.
 
 There are two types of proxies, returned by two distinct functions:
 
 * `getServiceProxy(options)` - proxy passing through `microservice-gateway`
 * `getDirectServiceProxy(serviceName, options)` - direct proxy to the service
 
-The fundamental difference between the two proxies is that the first one activates all the logics that are registered in `microservice-gateway`,
+The fundamental difference between the two proxies is that the first one triggers all the logics that are registered in `microservice-gateway`,
 while the second does not. For example, if a resource exposed by the CRUD service is protected by ACL, this protection will come
 bypassed using the direct proxy.
 
-For the direct proxy it is necessary to specify the `serviceName` of the service to be queried. The port cannot be specified in the `serviceName` but must be passed in the `port` field of the `options`. In the case of `getServiceProxy`, you should not specify the name of the service as it is implicitly that of the `microservice-gateway`.
+For the direct proxy it is necessary to specify the `serviceName` of the service to be queried. The port cannot be specified in the `serviceName` but must be passed in the `port` field of the `options` parameter. In the case of `getServiceProxy`, you should not specify the name of the service as it is implicitly that of the `microservice-gateway`.
 The `options` parameter is an object with the following optional fields:
 
 * `port` - an integer that identifies the port of the service to be queried
@@ -232,7 +231,7 @@ The values of these variables will specify the key of the four mia-headers.
 
 In addition, other headers of the original request can also be forwarded to the named service. To do this it is necessary to define an additional environment variable, `ADDITIONAL_HEADERS_TO_PROXY`, whose value must be a string containing the keys of the headers to be forwarded separated by a comma.
 
-Both proxies expose the functions
+Both proxies expose the following methods:
 
 * `get(path, querystring, options)`
 * `post(path, body, querystring, options)`
@@ -240,13 +239,13 @@ Both proxies expose the functions
 * `patch(path, body, querystring, options)`
 * `delete(path, body, querystring, options)`
 
-The topics to be passed to these functions are:
+The parameters of these methods are:
 
 * `path` - a string that identifies the route to which you want to send the request
 * `body` - optional, the body of the request which can be:
-  * a JSON object
-  * a [Buffer](https://nodejs.org/api/buffer.html#)
-  * one [Stream](https://nodejs.org/api/stream.html)
+  * A JSON object
+  * A [Buffer](https://nodejs.org/api/buffer.html#)
+  * A [Stream](https://nodejs.org/api/stream.html)
 * `querystring` - optional, an object that represents the querystring
 * `options` - optional, an object that admits all the`options` listed above for the `getServiceProxy` and`getDirectServiceProxy` methods (which will eventually be overwritten), plus the following fields:
   * `returnAs` - a string that identifies the format in which you want to receive the response. It can be `JSON`,`BUFFER` or `STREAM`. Default `JSON`.
