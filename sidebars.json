@@ -1903,6 +1903,10 @@
       "collapsed": false,
       "items": [
         {
+          "id": "release_notes/RN_v9-2/v9.2.0",
+          "type": "doc"
+        },
+        {
           "id": "release_notes/RN_v9-1/v9.1.0",
           "type": "doc"
         },
