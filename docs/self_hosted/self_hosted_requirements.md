@@ -28,7 +28,7 @@ The following software and hardware recommendations are for installing Mia-Platf
    </thead>
    <tbody>
       <tr>
-         <td rowspan="3"><strong>Auth Provider</strong></td>
+         <td rowspan="4"><strong>Auth Provider</strong></td>
          <td>Okta</td>
          <td>N/A</td>
          <td>N/A</td>
@@ -43,6 +43,12 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td>GitHub</td>
          <td>> 3.x</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td>Microsoft</td>
+         <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
       </tr>
