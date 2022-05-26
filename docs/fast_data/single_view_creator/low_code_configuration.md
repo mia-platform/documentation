@@ -809,7 +809,7 @@ From version `4.1.0` of the Single-View-Creator, the resolution order of depende
         "PARTNER": {
           "type": "projection",
           "aliasOf": "PEOPLE",
-          "on": "MARRIAGE_b_TO_PEOPLE"
+          "on": "MARRIAGE_TO_PEOPLE"
         },
         "MARRIAGE": {
           "type": "projection",
@@ -826,9 +826,23 @@ From version `4.1.0` of the Single-View-Creator, the resolution order of depende
         "children": "CHILDREN_CONF"
       }
     }
+  },
+  "CHILDREN_CONF": {
+    ...
   }
 }
 ```
+
+The aggregation above will be performed in the following order:
+
+1) Find the projection in the `PEOPLE` collection on MongoDB using `identifier` got from the Projection Change as query.
+2) Find the projection in the `MARRIAGE` collection on MongoDB using the condition defined in the ER Schema as `PEOPLE_TO_MARRIAGE`
+3) Find the projection in the `PEOPLE` (which is the collection to be used in the dependency `PARTNER`) using the condition defined in the ER Schema as `MARRIAGE_TO_PEOPLE` 
+4) Calculate the aggregation defined in the `CHILDREN_CONF` config
+
+*Why should I care about the order resolution of the dependencies?*
+
+The order resolution is important for the correctness of the aggregation since each step of the aggregation may use documents of the previous steps. Hence, if the order of the dependencies resolution is not correct, the single view resulting from the aggregation will probably be wrong.
 
 ### Example
 
