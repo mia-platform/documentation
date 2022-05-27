@@ -78,7 +78,7 @@ In case of success, the response is a JSON with the following fields.
 
 ### **Upload many**: `POST /bulk` 
 With a `multipart/form-data` request containing all the files to upload and the respective metadata. 
-All the files will be stored on the configured backend, and the files information will be stored the configured CRUD.
+All the files will be stored on the configured backend, and the files information will be stored on the configured CRUD.
 The order of the files inside the multipart is not important and files can have the same `filename` field. <br/>
 The upload of multiple files is handled as an **atomic operation**, meaning that either all files are stored correctly or none of them are.
 
@@ -143,9 +143,9 @@ Continuing the example above, once the file is stored, the respective document i
   //Basic file data
   "_id" : "61c32e38e67eb6fc92ed50b9",
   "name" : "my-file-1.pdf",
-  "file" : "078b04fa-6935-4686-ac5c-75f6b1ff5401.txt",
+  "file" : "078b04fa-6935-4686-ac5c-75f6b1ff5401.pdf",
   "size" : 768,
-  "location" : "/v2/files/download/078b04fa-6935-4686-ac5c-75f6b1ff5401.txt",
+  "location" : "/v2/files/download/078b04fa-6935-4686-ac5c-75f6b1ff5401.pdf",
   "__STATE__" : "PUBLIC",
   "creatorId" : "public",
   "updaterId" : "public",
@@ -177,9 +177,9 @@ Continuing the last example of upload, in the case of success, the service answe
   {
     "_id": "61c338e6e67eb6fc92ed50ba",
     "name": "my-file-1.pdf",
-    "file": "02aa2106-661d-4fcc-9299-c72884ad0f28.txt",
+    "file": "02aa2106-661d-4fcc-9299-c72884ad0f28.pdf",
     "size": 768,
-    "location": "/v2/files/download/02aa2106-661d-4fcc-9299-c72884ad0f28.txt",
+    "location": "/v2/files/download/02aa2106-661d-4fcc-9299-c72884ad0f28.pdf",
     "anAdditionalProperty": "a_string_value",
     "anotherAdditionalProperty": 34.12
   } 
@@ -189,7 +189,16 @@ Continuing the last example of upload, in the case of success, the service answe
 Consider consulting the Open API definition of the service to get more information about the service responses.
 
 ### **Download**: `GET /download/:file` 
-To download the file that was previously uploaded. Add the *download=1* query parameter to download the file as an attachment.
+To download a single file that was previously uploaded, specifying its `file` field. Add the *download=1* query parameter to download the file as an attachment.
+
+### **Download many**: `GET /download`
+To download a ZIP archive containing all the files specified in the query parameters.
+
+#### Query parameters
+- `files` **required**: array of strings (or single string) specifying the `file` field of the desired files to download
+
+#### Response
+At the moment the download of multiple files is handled as an atomic operation, meaning that the API returns either all requested files in a (streamed) ZIP archive or an error.
 
 ### **Delete**: `DELETE /:file` 
 To delete a file that was previously uploaded.

@@ -16,3 +16,27 @@ To make the command work, also the following flags described in [options](./opti
 
 - `--namespace`: to specify the namespace in which the resources are deployed
 - The set of flags required to connect to the Kubernetes cluster
+
+## Resources application order
+
+By default resources to be deployed are applied in a [default order](https://github.com/mia-platform/mlp/blob/main/pkg/resourceutil/sort.go) based on their `Kind`. It can be overridden by annotating the target resource with `mia-platform.eu/apply-before-kinds`.  
+This annotation takes a comma-separated list of kinds for which the resource must be applied before. If some of the specified kinds is not managed in the default order listing they are ignored. Any resource having this annotation falls outside the kind-based sorting logic and therefore cannot be applied after other resources having in their `mia-platform.eu/apply-before-kinds` annotation its kind.
+Below there is an example of a resource that must be applied before `Pod`s and `Deployment`s:
+``` yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+  annotations:
+    mia-platform.eu/apply-before-kinds: Pod, Deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: busybox
+          image: busybox 
+          command:
+            - sleep
+          args:
+            - 30s
+```

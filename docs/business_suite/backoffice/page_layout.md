@@ -687,7 +687,7 @@ A [bk-breadcrumbs](Components/Data_Visualization#breadcrumbs) component should a
 `bk-add-new-button` is disabled when `bk-table` renders non-undefined objects. In case of undefined objects, it will be possible to add one element.
 :::
 
-In case of [display-data](Events/Events#display-data) events or [change-query](Events/Events#change-query) events with empty payload, the `bk-breadcrumbs` component tries to restore the navigation path with the new data. In case of failure, the page navigates back to the top level of the data schema.
+In case of [display-data](Events#display-data) events or [change-query](Events#change-query) events with empty payload, the `bk-breadcrumbs` component tries to restore the navigation path with the new data. In case of failure, the page navigates back to the top level of the data schema.
 
 :::info
 All `change-query` events with non-empty payload cause to navigate back to the top level of the data schema, excpet for the features of [bk-pagination](Components/Data_Querying#pagination) and `bk-table`'s column sorting, which are still available.
@@ -735,4 +735,4 @@ following configuration:
 ```
 
 After a standard bootstrap time, the page will send a `GET` requests for `_id`'s on the `customers` collection, a `GET`
-requests for dataset count, and will emit a [display-data](Events/Events#display-data) event. This ends the page bootstrap.
+requests for dataset count, and will emit a [display-data](Events#display-data) event. This ends the page bootstrap.

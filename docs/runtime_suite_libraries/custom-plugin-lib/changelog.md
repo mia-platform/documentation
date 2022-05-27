@@ -7,6 +7,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v5.0.0 - 2022-05-13
+
+### BREAKING CHANGES
+
+- upgrade lc39 to v6
+- drop Node support <14
+
+### Added
+
+- add an http client method to replace deprecated `getServiceProxy` and `getDirectServiceProxy` (see all the features in the http client docs).
+  Main breaking changes from the already existent `getServiceProxy` and `getDirectServiceProxy`:
+  - streams respond with an object with headers, payload and statusCode. The payload has the stream interface
+  - `allowedStatusCodes` array of status codes is replaced by the function `validateStatus` (which accept by default 2xx)
+  - `agent` to configure the proxy is renamed to `proxy` and it is now an object
+  - `port` and `protocol` are now accepted only in url and baseUrl
+- expose `getHeadersToProxy` function to calculate headers to proxy
+
+### Deprecation
+
+- deprecate `getServiceProxy` and `getDirectServiceProxy` function. Please, substitute it with the `getHttpClient` function.
+
+### Fixes
+
+- fix Mia header propagation (resolved [#161](https://github.com/mia-platform/custom-plugin-lib/issues/161))
+
+### Changes
+
+- upgrade dependencies
+
 ## v4.3.2 - 2022-02-15
 
 ### Fixes

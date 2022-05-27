@@ -18,7 +18,7 @@ You can add a decorator with these methods:
 
 whose arguments are, in order:
 
-* `path` - the route path (e.g.,` /status /alive`).
+* `path` - the route path (e.g.,`/status /alive`).
 * `handler`- function that contains the actual behavior. It must respect the same interface defined in the
 documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#routes-config).
 
@@ -50,7 +50,7 @@ The first parameter of the handler function is [Request](https://www.fastify.io/
 * `getOriginalRequestHeaders()` - returns the headers of the original request.
 * `getOriginalRequestQuery()` - returns the querystring of the original request.
 * `getOriginalRequestBody()` - returns the body of the original request.
-* `changeOriginalRequest()`- returns a builder object with following methods: 
+* `changeOriginalRequest()`- returns a builder object with following methods:
   * `setBody(newBody)` - modify the body of the original request.
   * `setHeaders(newHeaders)` - modify the headers of the original request.
   * `setQuery(newPath)` - modify the querystring of the original request.
@@ -104,7 +104,7 @@ Related to the original response:
 * `getOriginalResponseBody()` - returns the body of the original response.
 * `getOriginalResponseHeaders()` - returns the headers of the original response.
 * `getOriginalResponseStatusCode()` - returns the status code of the original response.
-* `changeOriginalResponse()`- returns a builder object with following methods: 
+* `changeOriginalResponse()`- returns a builder object with following methods:
   * `setBody(newBody)` - modify the body of the original response.
   * `setHeaders(newHeaders)` - modifies the headers of the original response.
   * `setStatusCode(newCode)` - changes the status code of the original response.

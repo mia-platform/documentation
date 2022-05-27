@@ -25,19 +25,19 @@ This is the filter drawer
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-form-container](../Events/Events#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
-|[filter](../Events/Events#filter)|claims the drawer, closing concurrent ones, to enter a new filter|[using-form-container](../Events/Events#using-form-container)| - |
-|[change-filter](../Events/Events#change-filter)|enters filter edit mode|[using-form-container](../Events/Events#using-form-container)| - |
-|[lookup-data](../Events/Events#lookup-data)|receives lookup data| - | - |
-|[loading-data](../Events/Events#loading-data)|sets the component to loading state| - | - |
+|[using-form-container](../Events#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
+|[filter](../Events#filter)|claims the drawer, closing concurrent ones, to enter a new filter|[using-form-container](../Events#using-form-container)| - |
+|[change-filter](../Events#change-filter)|enters filter edit mode|[using-form-container](../Events#using-form-container)| - |
+|[lookup-data](../Events#lookup-data)|receives lookup data| - | - |
+|[loading-data](../Events#loading-data)|sets the component to loading state| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[using-form-container](../Events/Events#using-form-container)|notifies the drawer is used by this component|
-|[add-filter](../Events/Events#add-filter)|when done filling the form, notices deployment of a new filter|
+|[using-form-container](../Events#using-form-container)|notifies the drawer is used by this component|
+|[add-filter](../Events#add-filter)|when done filling the form, notices deployment of a new filter|
 
 
 ### Bootstrap
@@ -64,15 +64,15 @@ Manages the display, application, and modification of filters.
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[add-filter](../Events/Events#add-filter)|applies a new filter|[change-query](../Events/Events#change-query)| - |
+|[add-filter](../Events#add-filter)|applies a new filter|[change-query](../Events#change-query)| - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requires data filtering|
-|[change-filter](../Events/Events#change-filter)|triggers the modification of an existing filter|
+|[change-query](../Events#change-query)|requires data filtering|
+|[change-filter](../Events#change-filter)|triggers the modification of an existing filter|
 
 
 ### Bootstrap
@@ -92,32 +92,32 @@ dataset while interacting with dynamic filters
 ```
 ![pagination](../img/bk-pagination.png)
 <!-- The property `buttonsOnly` can be utilized to edit the visualization of the component. If `buttonsOnly` is true, only buttons allowing to go to the 'next' and 'previous' page, as well as a page size menu, will be displayed.
-By default, this modality is only enabled if the pagination reads a negative total from the [count-data](../Events/Events#count-data) event, which corresponds to the value 'on-negative-total' of `buttonsOnly`. Other possible values are true and false, which respectively always and never enable the reduced modality. -->
+By default, this modality is only enabled if the pagination reads a negative total from the [count-data](../Events#count-data) event, which corresponds to the value 'on-negative-total' of `buttonsOnly`. Other possible values are true and false, which respectively always and never enable the reduced modality. -->
 
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`pageSize`|`page-size`|number|...|number of data items per page|
-|`pageSizeOptions`| - |number[]|...|available page sizes|
+|`pageSize`|`page-size`|number|DEFAULT_PAGE_SIZE|number of data items per page|
+|`pageSizeOptions`| - |number[]|DEFAULT_PAGE_OPTIONS|available page sizes|
 
 
 ### Listens to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[count-data](../Events/Events#count-data)|adjusts footer counter to currently viewed dataset| - | - |
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step. Emits nested-navigation-state/display with slice of data to display|[nested-navigation-state/display](../Events/Events#nested-navigation-state---display)| - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps. Emits nested-navigation-state/display with slice of data to display|[nested-navigation-state/display](../Events/Events#nested-navigation-state---display)| - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[count-data](../Events#count-data)|adjusts footer counter to currently viewed dataset| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step. Emits nested-navigation-state/display with slice of data to display|[nested-navigation-state/display](../Events#nested-navigation-state---display)| - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps. Emits nested-navigation-state/display with slice of data to display|[nested-navigation-state/display](../Events#nested-navigation-state---display)| - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requires data filtered according with the current pagination|
-|[nested-navigation-state/display](../Events/Events#nested-navigation-state---display)|emits nested-navigation-state/display with slice of data to display|
+|[change-query](../Events#change-query)|requires data filtered according with the current pagination|
+|[nested-navigation-state/display](../Events#nested-navigation-state---display)|emits nested-navigation-state/display with slice of data to display|
 
 
 ### Bootstrap
@@ -153,18 +153,18 @@ Searching lookup fields could be computationally heavy. The number of searchable
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
-|[search-lookups-found](../Events/Events#search-lookups-found)|includes lookup values searched against text search|[change-query](../Events/Events#change-query)| - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
+|[search-lookups-found](../Events#search-lookups-found)|includes lookup values searched against text search|[change-query](../Events#change-query)| - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requires data filtered according with the typed input|
-|[search-lookups](../Events/Events#search-lookups)| - |
+|[change-query](../Events#change-query)|requires data filtered according with the typed input|
+|[search-lookups](../Events#search-lookups)| - |
 
 
 ### Bootstrap
@@ -191,15 +191,15 @@ provides a fixed set of filters rendered as tabs, possibly on top of a bk-table 
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requests filtering on dataset|
+|[change-query](../Events#change-query)|requests filtering on dataset|
 
 
 ### Bootstrap

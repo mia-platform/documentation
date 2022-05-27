@@ -432,13 +432,6 @@ can handle three appointments at the same time.
 :::
 
 :::warning
-The maximum number of slots allowed in an availability is 200.
-If the total number of slots to be created is higher than this value, slots are not created and an error is returned.
-
-This may change in the future.
-:::
-
-:::warning
 Recurrent availabilities are limited at two years in the future.
 Thus, the maximum `untilDate` value is two years from now.
 

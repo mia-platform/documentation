@@ -25,18 +25,18 @@ Renders a calendar to manage appointments.
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[display-data](../Events/Events#display-data)|receives data to display| - | - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[display-data](../Events#display-data)|receives data to display| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requires data that fall ion the currently visualized month|
-|[add-new](../Events/Events#add-new)|triggers the creation of a new event with the selected `start` and `end`|
-|[selected-data](../Events/Events#selected-data)|notifies about the click on an event|
-|[update-data](../Events/Events#update-data)|triggers the update of the `start` and `end` of an event|
+|[change-query](../Events#change-query)|requires data that fall ion the currently visualized month|
+|[add-new](../Events#add-new)|triggers the creation of a new event with the selected `start` and `end`|
+|[selected-data](../Events#selected-data)|notifies about the click on an event|
+|[update-data](../Events#update-data)|triggers the update of the `start` and `end` of an event|
 
 
 ### Bootstrap
@@ -59,8 +59,9 @@ Displays a dataset in rows and columns according to a given `data schema`.
 | property | attribute | type | optional | required | default | description |
 |----------|-----------|------|----------|----------|---------|-------------|
 |`allowNavigation`|`allow-navigation`|boolean| - | - |true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
-|`browseOnRowSelect`| - |{ href?: string; target?: string; query?: LinkQueryParams; }| - | - | - |if set, a click on a row will navigate you to another location|
-|`customActions`| - |{ tag: string; properties: Record<string, any>; }[]| - | - | - |list of custom components, rendered in the action column|
+|`browseOnRowSelect`| - |ClickPayload & { navigationType?: "replace" \\| "push" \| "href"; }| - | - | - |if set, a click on a row will navigate you to another location
+*|
+|`customActions`| - |{ tag: string; properties: Record\<string, any\>; }[]| - | - | - |list of custom components, rendered in the action column|
 |`customMessageOnAbsentLookup`| - |string \\| { [x: string]: string; }|true| - | - |override lookup value in case lookup is not resolved due to lack of data|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../Page_layout#data-schema) describing the fields of the collection to display|
 |`disableRowClick`|`disable-row-click`|boolean| - | - |false|when `true`, a click on a row does not trigger an event|
@@ -74,6 +75,34 @@ Displays a dataset in rows and columns according to a given `data schema`.
 |`navigationRowActions`| - |{ kind: "cta" \\| "icons"; actions: NavigationDataAction[]; }| - | - |DEFATULT_NAV_ACTIONS|actions in nested objects.|
 |`openFileInViewerRegex`| - |string[]|true| - | - |list of regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer.|
 |`rowActions`| - |DataActions| - | - | - |list of actions to render per row|
+- `browseOnRowSelect` accepts an object such as
+>
+> ```json
+> {
+>    "href": "destination/url",
+>    "target": "_self",
+>    "query": {
+>      "id": "{{data._id}}"
+>    },
+>    "navigationType": "push"
+> }
+> ```
+>
+> | property | type | values | description |
+> |-----------------------|------|---------|-------------|
+> | `href` | string | any | link reference. Only relative links are accepted. |
+> | `target` | string | any | where to open the href. Defaults to "_self" |
+> | `query` | Record\<string, any\> | any | query parameters |
+> | `navigationType` | string | `push`, `replace`, `href` | method used for navigation if target is "_self" |
+>
+> ### navigation types
+> `navigationType` values map to navigation methods as follows:
+> | value | method |
+> | ----- | ------ |
+> | `push` | window.history.push |
+> | `replace` | window.history.replace |
+> | `href` | window.location.replace |
+>
 - `customActions` is a list such as:
 >
 > ```json
@@ -104,8 +133,8 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > ```
 > | property | type | values | description |
 > |-----------------------|------|---------|-------------|
-> | `tag` | `string` | any | custom component to mount |
-> | `properties` | `{[key: string]: any}` | any | properties injected into the component |
+> | `tag` | string | any | custom component to mount |
+> | `properties` | {[key: string]: any} | any | properties injected into the component |
 >
 > #### Notes
 >
@@ -130,7 +159,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 >
 > | property | type | values | description |
 > |-----------------------|------|---------|-------------|
-> | `kind` | `string` | `cta`, `icons` | whether to display the action in form of text or icon. |
+> | `kind` | string | `cta`, `icons` | whether to display the action in form of text or icon. |
 > | `actions` | array of actions | any | describes the behavior of each. |
 >
 > #### action object
@@ -168,11 +197,11 @@ Displays a dataset in rows and columns according to a given `data schema`.
 >
 > | property | type | values | description |
 > |-----------------------|------|---------|-------------|
-> | `kind`              | `string` | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
-> | `content` | `string` | any | when `event` it must be the label of a [registered event](../Events/Events), otherwise the `POST` request destination href |
-> | `label` | `string`| any | a label to render with the row action button |
-> | `icon` | `string` | any | `Fontawesome fas or far icon` |
-> | `meta` | `object` | any | the event `meta` when `kind` is `event` |
+> | `kind` | `string` | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
+> | `content` | string | any | when `event` it must be the label of a [registered event](../Events), otherwise the `POST` request destination href |
+> | `label` | string| any | a label to render with the row action button |
+> | `icon` | string | any | `Fontawesome fas or far icon` |
+> | `meta` | object | any | the event `meta` when `kind` is `event` |
 > | `requireConfirm` | `object` or 'boolean' | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
 >
 > #### requireConfirm object
@@ -188,23 +217,23 @@ Displays a dataset in rows and columns according to a given `data schema`.
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[lookup-data](../Events/Events#lookup-data)|receives lookup data| - | - |
-|[display-data](../Events/Events#display-data)|receives data to display|[selected-data-bulk](../Events/Events#selected-data-bulk)| - |
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[nested-navigation-state/display](../Events/Events#nested-navigation-state---display)|updates internal representation of the data to display in navigation| - | - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[lookup-data](../Events#lookup-data)|receives lookup data| - | - |
+|[display-data](../Events#display-data)|receives data to display|[selected-data-bulk](../Events#selected-data-bulk)| - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/display](../Events#nested-navigation-state---display)|updates internal representation of the data to display in navigation| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requires data sorting according with the sorted property|
-|[selected-data](../Events/Events#selected-data)|notifies about the click on a row|
-|[selected-data-bulk](../Events/Events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|notifies to add a step in the navigation path|
-|[nested-navigation-state/display](../Events/Events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
+|[change-query](../Events#change-query)|requires data sorting according with the sorted property|
+|[selected-data](../Events#selected-data)|notifies about the click on a row|
+|[selected-data-bulk](../Events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|notifies to add a step in the navigation path|
+|[nested-navigation-state/display](../Events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
 |Configurable custom events|any event configured in the `rowActions` property|
 
 
@@ -235,17 +264,17 @@ represents current navigation path and allows to go back at any navigation level
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[change-query](../Events/Events#change-query)|triggers page refresh and goes back to 0-level, unless empty payload| - | - |
-|[display-data](../Events/Events#display-data)|triggers page refresh and tries to recreate navigation path with new data. If fails, goes back to 0-level| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[change-query](../Events#change-query)|triggers page refresh and goes back to 0-level, unless empty payload| - | - |
+|[display-data](../Events#display-data)|triggers page refresh and tries to recreate navigation path with new data. If fails, goes back to 0-level| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|notifies to go back the specified number of steps in the navigation path|
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|notifies to go back the specified number of steps in the navigation path|
 
 
 ### Bootstrap
@@ -406,6 +435,42 @@ A card can also be composed by text-only content:
   }
 }
 ```
+Footer supports dynamic configurations via handlebars notation. The content of the card can be utilized inside handlebars via the keyword 'data'. For instance:
+```json
+{
+  "role": "info",
+  "cardSchema": {
+    ...
+    "footer": {
+      "subtitle": "{{data.name}}"
+    }
+  }
+}
+```
+will display a card having as footer sub-title the value of the field 'name' of the displayed data.
+It is possible to replace handlebars with an object instead of a string value using the keyword `rawObject`:
+```json
+{
+  "role": "info",
+  "cardSchema": {
+    ...
+    "footer": {
+      "buttons": {
+        "tag": "bk-button",
+        "content": "Details",
+        "clickConfig": {
+          "type": "event",
+          "actionConfig": {
+            "label": "selected-data",
+            "payload": "{{rawObject data}}"
+          }
+        }
+      }
+    }
+  }
+}
+```
+This footer will have a button that emits a `selected-data` event with payload the card content as an object.
 ### Main
 Main is the core part of the card and the most widely customizable section. It roughly accepts configuration for 3 different modes (all of which can be combined at will in a single card).
 1. `object`-mode
@@ -570,12 +635,12 @@ In the example configuration below we have a card that declares an array of URL,
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`arraySource`| - |Record<string, Record<string, string \\| TaggableCustom>[]>|{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
+|`arraySource`| - |Record\<string, Record\<string, string \\| TaggableCustom\>[]\>|{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
 |`cardSchema`| - |CardSchema|{}|schema that describes the card layout, role and type/style |
 |`containerStyle`| - |CSSProperties| - |React-like CSS properties to decorate card container |
 |`customMessageOnAbsentDatum`| - |LocalizedText| - |when datum reaches the card but it doesn't have value but some was expected, the displayed string can be overridden with a custom message |
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |when using a CRUD-client-like source, it helps displaying a custom message on lookup that couldn't be resolved |
-|`objectSource`| - |Record<string, string \\| TaggableCustom>|{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
+|`objectSource`| - |Record\<string, string \\| TaggableCustom\>|{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
 |`role`| - |CardRoles|'default'|card role to select color schema |
 
 
@@ -583,8 +648,8 @@ In the example configuration below we have a card that declares an array of URL,
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[display-data](../Events/Events#display-data)|displays the first item of the payload according to the card main dataSchema| - | - |
-|[lookup-data](../Events/Events#lookup-data)|updates data with resolved lookups| - | - |
+|[display-data](../Events#display-data)|displays the first item of the payload according to the card main dataSchema| - | - |
+|[lookup-data](../Events#lookup-data)|updates data with resolved lookups| - | - |
 
 
 ### Emits
@@ -638,7 +703,7 @@ You can specify the `color` field with an Hex color code. If the specified color
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`value`| - |LocalizedText|{}|status value. |
-|`valueMap`| - |Record<string, any>|{}|map of possible values. |
+|`valueMap`| - |Record\<string, any\>|{}|map of possible values. |
 
 
 ### Listens to
@@ -694,45 +759,6 @@ None
 
 
 
-## bk-list
-
-represents a list of elements to be visualized.
-```html
-<bk-list></bk-list>
-```
-This list is represented as a table with a unique column.
-The column to display is chosen through the `datasourceKey`, which should match with one of the entry in the `dataSchema`.
-The data to display are the one sent through the `display-data` event.
-The event `loading-data` is used to show a spinner in the middle of the list.
-
-### Properties & Attributes
-
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |data schema describing the fields of the collection to display |
-|`datasourceKey`|`datasource-key`|string|''|the object key that will be used to pick the data to show. |
-|`maxLines`|`max-lines`|number|4|force lines that will be displayed together |
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|`display-data`|retrieved data to display| - | - |
-|`loading-data`|choose when to show the list spinner| - | - |
-
-
-### Emits
-
-This component emits no event.
-
-
-### Bootstrap
-
-None
-
-
-
 ## bk-pdf-viewer
 
 allows to visualize files in the browser.
@@ -754,7 +780,7 @@ it is recommend to limit the usage of this component to the visualization of PDF
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[show-in-viewer](../Events/Events#show-in-viewer)|opens PDF in brawser| - | - |
+|[show-in-viewer](../Events#show-in-viewer)|opens PDF in brawser| - | - |
 
 
 ### Emits

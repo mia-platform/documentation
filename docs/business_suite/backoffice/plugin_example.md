@@ -1060,7 +1060,7 @@ Upon loading, the [bk-crud-client](Components/Clients#crud-client) component
 }
 ```
 
-performs an HTTP request for fetching data. If the call is successful, the component organizes the data according to the provided `schema`, and emits a [display-data](Events/Events#display-data) event with such data in payload.
+performs an HTTP request for fetching data. If the call is successful, the component organizes the data according to the provided `schema`, and emits a [display-data](Events#display-data) event with such data in payload.
 
 The [bk-crud-lookup-client](Components/Clients#lookup-client) component
 
@@ -1077,7 +1077,7 @@ The [bk-crud-lookup-client](Components/Clients#lookup-client) component
 }
 ```
 
-listens to `display-data`. In conjunction with the data from the payload, it analyzes the `schema`, and particularly fields that have [lookupOptions](Page_layout#lookups), and performs HTTP requests for fetching references to third collections, thus managing to solve lookups and multilookups. Then, the component emits a [lookup-data](Events/Events#lookup-data) event, containing the lookup data in payload.
+listens to `display-data`. In conjunction with the data from the payload, it analyzes the `schema`, and particularly fields that have [lookupOptions](Page_layout#lookups), and performs HTTP requests for fetching references to third collections, thus managing to solve lookups and multilookups. Then, the component emits a [lookup-data](Events#lookup-data) event, containing the lookup data in payload.
 
 The [bk-table](Components/Data_Visualization#table) component
 
@@ -1111,7 +1111,7 @@ listens to both the `display-data` and the `lookup-data` events, and renders the
 will not be included in the table columns, as its `visualizationOptions` have `hidden` set to true.
 
 The user can directly interact with web components in various ways, which may trigger the emition of events and eventually result in HTTP calls, allowing CRUD operations on the data stored in backend.
-In the case of `bk-table`, for instance, clicking on a row of the rendered table triggers a [selected-data](Events/Events#selected-data) event, with data from the selected row in payload. The [bk-form-drawer](Components/Data_Manipulation#form-drawer) component
+In the case of `bk-table`, for instance, clicking on a row of the rendered table triggers a [selected-data](Events#selected-data) event, with data from the selected row in payload. The [bk-form-drawer](Components/Data_Manipulation#form-drawer) component
 
 ```json
 {
@@ -1131,7 +1131,7 @@ listens to `selected-data` and displays the payload as a form inside a drawer. `
 
 Combining the events of `bk-table` and `bk-form-drawer`, the user can display part of the data in `bk-table` inside a `bk-form-drawer` component, without any need for imperative calls between the two.
 
-Unless specified differently in configuration, the user is able to edit the fields in the form in `bk-form-drawer` and save the changes. This triggers an [update-data](Events/Events#update-data) event, with the updated values in payload, which is listened to by `bk-crud-client`. At this point the `bk-crud-client` converts the event into a HTTP request to update the data on backend-side and makes the call. Depending on the received response, either a [success](Events/Events#success) or an [error](Events/Events#error) event is emitted.
+Unless specified differently in configuration, the user is able to edit the fields in the form in `bk-form-drawer` and save the changes. This triggers an [update-data](Events#update-data) event, with the updated values in payload, which is listened to by `bk-crud-client`. At this point the `bk-crud-client` converts the event into a HTTP request to update the data on backend-side and makes the call. Depending on the received response, either a [success](Events#success) or an [error](Events#error) event is emitted.
 
 These two events are listened to by the [bk-notifications](Components/Misc#notifications) component
 

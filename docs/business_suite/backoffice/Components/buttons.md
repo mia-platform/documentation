@@ -32,16 +32,16 @@ Notifies other components that a filter needs to be created. Such event could be
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[filter](../Events/Events#filter)|notifies the request for creating a filter|
+|[filter](../Events#filter)|notifies the request for creating a filter|
 
 ### Bootstrap
 
@@ -70,16 +70,16 @@ this button creates a new item
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[add-new](../Events/Events#add-new)|notifies the request for creating a new item|
+|[add-new](../Events#add-new)|notifies the request for creating a new item|
 
 ### Bootstrap
 
@@ -230,7 +230,7 @@ This config can be extended by using the `config` key enclosed by `actionConfig`
 
 in case an event should be piped when upload is successful, `actionConfig` contains a key `returnEvent` which 
 takes either a `string`, an `array` of `string`s, an `Event` or an `array` of `Event`s that will follow `success` event into the pipeline.
-For instance if a plugin reload is required after successful upload one could pipe a [change-query](../Events/Events#change-query)
+For instance if a plugin reload is required after successful upload one could pipe a [change-query](../Events#change-query)
 
 ```json
 {
@@ -260,8 +260,9 @@ For instance if a plugin reload is required after successful upload one could pi
 |`loading`|`loading`|boolean|false|button loading property |
 |`loadingOnAction`|`loading-on-action`|boolean|false|configures the button to be loading while action is in progress |
 |`navigationStrategy`| - |undefined \\| "disable" \| "hide"| - |determines the button behavior upon navigating nested objects. Allowed values are 'disable' and 'hide'. By default, the button does not react to navigation events. |
-|`pathnameParams`| - |Record<string, string>|{}|property to inject the object-like source from URL pathname |
-|`searchParams`| - |Record<string, string>|{}|property to inject the object-like source from URL search params |
+|`onClickCallback`| - |MouseEventHandler\<HTMLElement\>| - |extra callback to be performed upon click. This property is to be set programmatically only. |
+|`pathnameParams`| - |Record\<string, string\>|{}|property to inject the object-like source from URL pathname |
+|`searchParams`| - |Record\<string, string\>|{}|property to inject the object-like source from URL search params |
 |`shape`|`shape`|string|'round'|button shape property |
 |`stopPropagationOnClick`|`stop-propagation-on-click`|boolean|true|configures the onClick to disable propagation when action is fired |
 |`type`|`type`|string|'primary'|button type property |
@@ -278,8 +279,8 @@ This component listens to no event.
 | event | description |
 |-------|-------------|
 |`configurable-label`|generic event configurable through the event type configuration|
-|[error](../Events/Events#error)|contains error messages for an http event|
-|[success](../Events/Events#success)|notifies a successful http request|
+|[error](../Events#error)|contains error messages for an http event|
+|[success](../Events#success)|notifies a successful http request|
 
 ### Bootstrap
 
@@ -307,15 +308,15 @@ allows to go back one step in the navigation path. It is not visible at the top 
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[nested-navigation-state/push](../Events/Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[nested-navigation-state/back](../Events/Events#nested-navigation-state---back)|notifies to go back one step in the navigation path|
+|[nested-navigation-state/back](../Events#nested-navigation-state---back)|notifies to go back one step in the navigation path|
 
 ### Bootstrap
 
@@ -343,14 +344,14 @@ Allows refreshing some resource
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events/Events#loading-data)|sets internal loading state| - | - |
+|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events/Events#change-query)|requires refresh without modifying current `CRUD` query by attaching an empty payload|
+|[change-query](../Events#change-query)|requires refresh without modifying current `CRUD` query by attaching an empty payload|
 
 ### Bootstrap
 

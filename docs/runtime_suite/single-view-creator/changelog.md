@@ -8,6 +8,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.0] 2022-05-26
+
+### Added
+
+- Added the possibility to specify a custom function as updateSV and deleteSV through the environments variable UPSERT_STRATEGY and DELETE_STRATEGY
+
+## [4.1.1] 2022-05-25
+
+### Fixed
+
+- removed sorting of reading PC from MongoDB for performance reasons
+
+## [4.1.0] 2022-05-23
+
+### Updated
+
+- `@mia-platform-internal/fast-data-automation-lib` ^1.5.0
+
+### Added
+
+- added `dependencyOrder` field for aggregation schema to specify the order of solving of dependencies
+
+## [4.0.0] 2022-05-17
+
+### BREAKING CHANGE
+
+- `single view before-after` message `kafkaInfo` field changed into `__internal__kafkaInfo` to align it to others events
+
+### Changed
+
+- `single view event` messages now have `__internal__kafkaInfo` field
+
+### Updated
+
+- `@mia-platform-internal/fast-data-automation-lib` "^1.4.1
+- `@mia-platform-internal/single-view-creator-lib` "^11.0.0
+
 ## [3.10.0] 2022-05-04
 
 ### Updated
