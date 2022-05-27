@@ -13,9 +13,9 @@ To better account for the differences between container management systems and c
 * **hostProperties**
 * **seccompProfile**
 
-These functions properties can be configured through the **securityFeatures** object in the **CMS** area at Tenant and Project level.
+These functions properties can be configured through the **securityFeatures** object in the **CMS** area at Company and Project level.
 
-If the security features are not configured for the projects, the respective attributes are collected at tenant level. 
+If the security features are not configured for the projects, the respective attributes are collected at company level. 
 
 By default the security features objects sets all of its attributes to `true`.
 
