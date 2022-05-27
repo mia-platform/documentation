@@ -7,12 +7,72 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+### Removed
 
+- removed math.round from timestampFunction
+
+## v6.0.0 - 2022-05-04
+
+### BREAKING CHANGES
+
+- dropped support to node v10.x, v12.x
+- upgrade dependencies
+  - metrics: upgrade fastify-metrics to v8 (from v7) and prom-client to v14 (from v13).
+  - env vars: upgrade dotenv to v16 (from v8) and dotenv-expand to v8 (from v5).
+  - expose API docs: fastify-swagger to @fastify/swagger v6 (from v4)
+  - changed `transformSchemaForSwagger` function interface (input and output params) to be equal to the transform interface exposed by `@fastify/swagger`.
+
+  Before:
+
+  ```js
+    module.exports.transformSchemaForSwagger = (schema) => {
+      const {
+        querystring,
+        ...rest
+      }
+      const converted = {...rest}
+      if (querystring) {
+        converted.querystring = convertQuerystringSchema(querystring)
+      }
+      return converted
+    }
+  ```
+
+  After:
+
+  ```js
+    module.exports.transformSchemaForSwagger = ({schema, url}) => {
+      const {
+        querystring,
+        ...rest
+      }
+      const converted = {...rest}
+      if (querystring) {
+        converted.querystring = convertQuerystringSchema(querystring)
+      }
+      return {
+        schema: converted,
+        url
+      }
+    }
+  ```
+
+### Changed
+
+- change fastify-sensible --> @fastify/sensible
+
+### Test
+
+- Add CI workflow to support node v16 and v18
 
 ### Fixes
 
 - Fixed typos and changed docs links inside `docs` directory
+- fix log schema
+
+### Updates
+
+- update dev dependencies
 
 ## v5.1.0 - 2022-02-15
 

@@ -70,21 +70,21 @@ resolves lookups from a given data schema onto a given source
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[display-data](../Events/Events#display-data)|validates and resolves the lookup data|[success](../Events/Events#success), [lookup-data](../Events/Events#lookup-data)| - |
-|[nested-navigation-state/display](../Events/Events#nested-navigation-state---display)|validates and resolves the lookup data upon navigating into a nested object|[success](../Events/Events#success), [lookup-data](../Events/Events#lookup-data)| - |
-|[lookup-live-searching](../Events/Events#lookup-live-searching)|fetches lookup options|[lookup-live-found](../Events/Events#lookup-live-found)|[error](../Events/Events#error)|
-|[search-lookups](../Events/Events#search-lookups)|fetches values from multiple lookups|[search-lookups-found](../Events/Events#search-lookups-found)|[error](../Events/Events#error)|
+|[display-data](../Events#display-data)|validates and resolves the lookup data|[success](../Events#success), [lookup-data](../Events#lookup-data)| - |
+|[nested-navigation-state/display](../Events#nested-navigation-state---display)|validates and resolves the lookup data upon navigating into a nested object|[success](../Events#success), [lookup-data](../Events#lookup-data)| - |
+|[lookup-live-searching](../Events#lookup-live-searching)|fetches lookup options|[lookup-live-found](../Events#lookup-live-found)|[error](../Events#error)|
+|[search-lookups](../Events#search-lookups)|fetches values from multiple lookups|[search-lookups-found](../Events#search-lookups-found)|[error](../Events#error)|
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[lookup-data](../Events/Events#lookup-data)|contains lookup data|
-|[lookup-live-found](../Events/Events#lookup-live-found)|notifies successful fetching of lookup options|
-|[search-lookups-found](../Events/Events#search-lookups-found)|notifies successful fetching of lookups values|
-|[success](../Events/Events#success)|notifies a successful lookup request|
-|[error](../Events/Events#error)|contains http error messages when something goes wrong|
+|[lookup-data](../Events#lookup-data)|contains lookup data|
+|[lookup-live-found](../Events#lookup-live-found)|notifies successful fetching of lookup options|
+|[search-lookups-found](../Events#search-lookups-found)|notifies successful fetching of lookups values|
+|[success](../Events#success)|notifies a successful lookup request|
+|[error](../Events#error)|contains http error messages when something goes wrong|
 
 
 ### Bootstrap
@@ -113,16 +113,16 @@ manages http requests towards an instance of `Mia Files Service` to upload/downl
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[upload-file](../Events/Events#upload-file)|sends a `POST` request to upload a file|[uploaded-file](../Events/Events#uploaded-file)|[error](../Events/Events#error)|
-|[download-file](../Events/Events#download-file)|sends a `GET` request to download/visualize a file|[downloaded-file](../Events/Events#downloaded-file)|[error](../Events/Events#error)|
-|[delete-file](../Events/Events#delete-file)|sends a `DELETE` request to remova a file from storage|[deleted-file](../Events/Events#deleted-file)|[error](../Events/Events#error)|
+|[upload-file](../Events#upload-file)|sends a `POST` request to upload a file|[uploaded-file](../Events#uploaded-file)|[error](../Events#error)|
+|[download-file](../Events#download-file)|sends a `GET` request to download/visualize a file|[downloaded-file](../Events#downloaded-file)|[error](../Events#error)|
+|[delete-file](../Events#delete-file)|sends a `DELETE` request to remova a file from storage|[deleted-file](../Events#deleted-file)|[error](../Events#error)|
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[show-in-viewer](../Events/Events#show-in-viewer)|requests to visualizes a PDF inside a viewer|
+|[show-in-viewer](../Events#show-in-viewer)|requests to visualizes a PDF inside a viewer|
 
 
 ### Bootstrap
@@ -150,23 +150,23 @@ This component has no properties.
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|(../Events/Events#http-success)|terminate a successful registered transaction| - | - |
-|[update-data-with-file](../Events/Events#update-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events/Events#upload-file)| - |
-|[create-data-with-file](../Events/Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events/Events#upload-file)| - |
-|[create-data-with-file](../Events/Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events/Events#upload-file)| - |
-|[uploaded-file](../Events/Events#uploaded-file)|continues an `update-data-with-file` transaction by patching the `crud` collection with the `upload-file` metadata|[update-data](../Events/Events#update-data)| - |
-|[error](../Events/Events#error)|interrupts a registered transaction due to an occurred `error` event carrying a `meta`. If the file was stored but the collection wasn't successfully patched, then the file is deleted|[delete-file](../Events/Events#delete-file)| - |
+|(../Events#http-success)|terminate a successful registered transaction| - | - |
+|[update-data-with-file](../Events#update-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
+|[create-data-with-file](../Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
+|[create-data-with-file](../Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
+|[uploaded-file](../Events#uploaded-file)|continues an `update-data-with-file` transaction by patching the `crud` collection with the `upload-file` metadata|[update-data](../Events#update-data)| - |
+|[error](../Events#error)|interrupts a registered transaction due to an occurred `error` event carrying a `meta`. If the file was stored but the collection wasn't successfully patched, then the file is deleted|[delete-file](../Events#delete-file)| - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[upload-file](../Events/Events#upload-file)|contains file and metadata to be stored|
-|[update-data](../Events/Events#update-data)|after storage, contains reference metadata used to patch a collection containing reference to such file|
-|[create-data](../Events/Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
-|[create-data](../Events/Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
-|[delete-file](../Events/Events#delete-file)|contains file metadata to trigger file deletion|
+|[upload-file](../Events#upload-file)|contains file and metadata to be stored|
+|[update-data](../Events#update-data)|after storage, contains reference metadata used to patch a collection containing reference to such file|
+|[create-data](../Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
+|[create-data](../Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
+|[delete-file](../Events#delete-file)|contains file metadata to trigger file deletion|
 
 
 ### Bootstrap
@@ -190,10 +190,10 @@ This web component is designed to handle `CRUD` operations towards `Mia-Platform
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`bootstrapTimeout`|`bootstrap-timeout`|number|...|value in ms before default bootstrap starts and no `change-query` was received |
+|`bootstrapTimeout`|`bootstrap-timeout`|number|TIMEOUT|value in ms before default bootstrap starts and no `change-query` was received |
 |`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../Page_layout#data-schema) describing which field to retrieve from CRUD collection |
 |`enableDefinitiveDelete`|`enable-definitive-delete`|boolean|false|when `true`, http DELETE cannot be rolled back |
-|`initialEvent`| - |ChangeQueryPayload|...|in case of no `change-query` received, an initial event with this payload will be thrown |
+|`initialEvent`| - |ChangeQueryPayload|INITIAL_EVENT|in case of no `change-query` received, an initial event with this payload will be thrown |
 |`keepStateWhileDuplicating`|`keep-state-while-duplicating`|boolean|false|if `true` duplicate will keep the original record __STATE__ |
 
 
@@ -201,21 +201,21 @@ This web component is designed to handle `CRUD` operations towards `Mia-Platform
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[create-data](../Events/Events#create-data)|sends a `POST` to the `CRUD` service base path|[success](../Events/Events#success)|[error](../Events/Events#error)|
-|[update-data](../Events/Events#update-data)|sends a `PATCH` to the `CRUD` service base path|[success](../Events/Events#success)|[error](../Events/Events#error)|
-|[delete-data](../Events/Events#delete-data)|sends a `PATCH` to the `CRUD` service base path on `state` endpoint, if `enableDefinitiveDelete` is `true` it sends a `DELETE`|[success](../Events/Events#success)|[error](../Events/Events#error)|
-|[change-query](../Events/Events#change-query)|sends `GET`s with endpoints `/` and `/count` to the `CRUD` service base path|[success](../Events/Events#success), [count-data](../Events/Events#count-data), [display-data](../Events/Events#display-data), [selected-data-bulk](../Events/Events#selected-data-bulk)|[error](../Events/Events#error)|
+|[create-data](../Events#create-data)|sends a `POST` to the `CRUD` service base path|[success](../Events#success)|[error](../Events#error)|
+|[update-data](../Events#update-data)|sends a `PATCH` to the `CRUD` service base path|[success](../Events#success)|[error](../Events#error)|
+|[delete-data](../Events#delete-data)|sends a `PATCH` to the `CRUD` service base path on `state` endpoint, if `enableDefinitiveDelete` is `true` it sends a `DELETE`|[success](../Events#success)|[error](../Events#error)|
+|[change-query](../Events#change-query)|sends `GET`s with endpoints `/` and `/count` to the `CRUD` service base path|[success](../Events#success), [count-data](../Events#count-data), [display-data](../Events#display-data), [selected-data-bulk](../Events#selected-data-bulk)|[error](../Events#error)|
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[loading-data](../Events/Events#loading-data)|raise awareness of incoming data|
-|[display-data](../Events/Events#display-data)|contains data organized according with `crud-client`'s `schema` property|
-|[count-data](../Events/Events#count-data)|sends a `PATCH` to the `CRUD` service base path on `state` endpoint, if `enableDefinitiveDelete` is `true` it sends a `DELETE`contains the `total` amount of document retrieved and the collection pagination offset|
-|[error](../Events/Events#error)|contains http error messages when something goes wrong|
-|[success](../Events/Events#success)|notifies a successful http request|
+|[loading-data](../Events#loading-data)|raise awareness of incoming data|
+|[display-data](../Events#display-data)|contains data organized according with `crud-client`'s `schema` property|
+|[count-data](../Events#count-data)|sends a `PATCH` to the `CRUD` service base path on `state` endpoint, if `enableDefinitiveDelete` is `true` it sends a `DELETE`contains the `total` amount of document retrieved and the collection pagination offset|
+|[error](../Events#error)|contains http error messages when something goes wrong|
+|[success](../Events#success)|notifies a successful http request|
 
 
 ### Bootstrap
@@ -238,9 +238,9 @@ crud-service export webcomponent
 It works as `ndjson` fetcher as well as native file downloader which uses browser download native API.
 If export must be performed on a [CRUD-service] resource, an export route is available at `<collection-name>/export` and supports 
 mongoDB queries as per CRUD-service specifications, along with `__STATE__` filtering.
-`bk-export` listens to any filtering done on the plugin is mounted in by accessing any [change-query](../Events/Events#change-query) event 
+`bk-export` listens to any filtering done on the plugin is mounted in by accessing any [change-query](../Events#change-query) event 
 and by keeping an internal representation of all applied filter.
-`bk-export` listens also to an [export-data](../Events/Events#export-data) which triggers a http GET request.
+`bk-export` listens also to an [export-data](../Events#export-data) which triggers a http GET request.
 Export modes are controlled by the boolean prop `nativeDownload`:
 - when `false`, it performs an http GET and parses the content as ndjson
 - when `true`, it delegates to the browser API by creating and clicking an anchor tag with the url specified by the `basePath` property

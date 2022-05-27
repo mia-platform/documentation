@@ -154,7 +154,7 @@ module.exports = async function plugin(fastify) {
   })
 }
 
-module.exports.transformSchemaForSwagger = (schema) => {
+module.exports.transformSchemaForSwagger = ({schema, url}) => {
   const {
     querystring,
     ...rest
@@ -163,9 +163,13 @@ module.exports.transformSchemaForSwagger = (schema) => {
   if (querystring) {
     converted.querystring = convertQuerystringSchema(querystring)
   }
-  return converted
+  return {
+    schema: converted,
+    url
+  }
 }
 ```
+
 This method is called for each route.
 The `schema` parameter is the schema object set to the route.
 `transformSchemaForSwagger` is only called on the first time that `/documentation/json` it's visited.

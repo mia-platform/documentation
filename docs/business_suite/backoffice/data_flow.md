@@ -38,14 +38,14 @@ It is possible, for instance, that a component requires other components to be i
 
 In general, it is recommended to always configure components keeping in mind how they interact with each event, and considering which ones they emit.
 
-Refer to [this list](Events/Events) for an overview of default events.
+Refer to [this list](Events) for an overview of default events.
 For [all components](Components/Buttons), it is specified how each one interacts with different events.
 
-It is possible to specify a scope for events. For instance, the event [push-state](Events/Events#nested-navigation-state-push) has scope `nested-navigation-state`.
+It is possible to specify a scope for events. For instance, the event [push-state](Events#nested-navigation-state-push) has scope `nested-navigation-state`.
 
 ## Example
 
-Multiple events can and should be combined. For instance, the component [bk-add-new-button](Components/Buttons#add-new) emits the event [add-new](Events/Events#add-new), which
+Multiple events can and should be combined. For instance, the component [bk-add-new-button](Components/Buttons#add-new) emits the event [add-new](Events#add-new), which
 
 ```
 notifies the request for creating a new item.
@@ -61,9 +61,9 @@ As a result of this interaction, it will be possible for the user to spawn the `
 
 As per documentation, the `bk-form-drawer` can trigger the following events after listening to the `add-new` event:
 
-- [using-form-container](Events/Events#using-form-container)
-- [create-data-with-file](Events/Events#create-data-with-file)
-- [create-data](Events/Events#create-data)
+- [using-form-container](Events#using-form-container)
+- [create-data-with-file](Events#create-data-with-file)
+- [create-data](Events#create-data)
 
 If, for instance, the `create-data` event is triggered, the client component [bk-crud-client](Components/Clients#crud-client), which listens to it, will execute its own logic. As per documentation, the `bk-crud-client`
 

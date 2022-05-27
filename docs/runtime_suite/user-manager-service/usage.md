@@ -159,6 +159,10 @@ This endpoint updates the user data in both the `user` CRUD collection and the a
 
 :::note
 The `id` used as path parameter in this endpoint is the CRUD `_id` of the desired user.
+
+The user schema is validated against the new `userGroup` if set, otherwise against the actual `userGroup`. If a non-existing `userGroup` is set, the PATCH throws a Bad request.
+
+It's not allowed to change `authUserId` parameter.
 :::
 
 ### Body

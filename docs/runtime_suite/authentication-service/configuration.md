@@ -9,25 +9,40 @@ The _Authentication Service_ needs some environment variables, and a configurati
 
 The environment variables needed by the service are:
 
-- **LOG_LEVEL**
-- **HTTP_PORT**
-- **SERVICE_PREFIX**
-- **SERVICE_VERSION**
-- **DELAY_SHUTDOWN_SECONDS**
-- **REDIS_HOST**
-- **REDIS_USERNAME**
-- **REDIS_PASSWORD**
-- **CONFIG_FILE_PATH**
-- **CONFIG_FILE_NAME**
-- **USERS_CRUD_BASE_URL**
-- **MIA_JWT_TOKEN_SIGN_KEY**
-- **MIA_JWT_TOKEN_VALID_DURATION_SEC**
-- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC**
-- **PROVIDER_TOKEN_PASS_PHRASE**
-- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC**
-- **ORIGINAL_PROTOCOL_HEADER**
-- **ADDITIONALS_CA_FOLDER**
-- **ADDITIONAL_HEADERS_TO_PROXY**
+- **LOG_LEVEL** (default: info): level of the log. It can be trace, debug, info, warn, error, or fatal;
+- **HTTP_PORT** (default: 8080): http port exposed by the service;
+- **SERVICE_PREFIX** (*optional*): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
+- **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
+- **REDIS_HOST** (*required*): the redis host, with the port;
+- **REDIS_USERNAME** (*optional*): the username to auth to redis;
+- **REDIS_PASSWORD** (*optional*): the password to auth to redis;
+- **CONFIG_FILE_PATH** (*required*): the path to the configuration file. Do not include the file name;
+- **CONFIG_FILE_NAME** (*required*): the name to the configuration file. Do not include the full path and the extension;
+- **USERS_CRUD_BASE_URL** (*required*): base url of the internal endpoint of the CRUD service exposing the data of the users;
+- **MIA_JWT_TOKEN_SIGN_KEY** (*required*): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC at least of 512 bytes);
+- **MIA_JWT_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated access token expire;
+- **PROVIDER_TOKEN_PASS_PHRASE** (*required*): a string used to encrypt the JWT (preferred an HMAC at least of 128 bytes);
+- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated refresh token expire;
+- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC** (*optional*): how many seconds before the expiration of refresh token it will be refreshed automatically;
+- **ORIGINAL_PROTOCOL_HEADER** (*required*): header containing the protocol of the original request (http or https);
+- **ADDITIONALS_CA_FOLDER** (*optional*): folder which contains the ca of the OAuth2 identity providers, if it's not public;
+- **ADDITIONAL_HEADERS_TO_PROXY** (*optional*): comma separated list of headers to proxy to the request to CRUD service.
+
+## Users collection
+
+To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the *USERS_CRUD_BASE_URL* environment variable. Remember to set the default state of the endpoint to *PUBLIC*.  
+
+Fields in the CRUD collection must be the following:
+
+| Field Name     | Field Type      | Required   |
+|----------------|:----------------|:-----------|
+| name           | String          |     ❌     |
+| groups         | Array of string |     ❌     |
+| username       | String          |     ❌     |
+| email          | String          |     ❌     |
+| providerId     | String          |     ✅     |
+| providerUserId | String          |     ✅     |
+| realm          | String          |     ✅     |
 
 ## Configurations file
 
@@ -39,6 +54,62 @@ We recommend to mount this configuration file using a Kubernetes Secret due its 
 
 It is important to outline that it is possible to define an `order` property, not required, that will order your providers in the providers API result (e.g. for your login page) from the relative highest value to the lowest. In case the order property is not defined or multiple providers have the same order number, the service will alphabetically order them.
 
+For the service configuration, there is an `apps` field with as key the **appId** with value the app configuration. 
+The app configuration contains:
+
+* **providers** (*required*): an object with key the *providerId* and as value the provider configuration;
+  * **type** (*required*): the type of the provider. Could be `gitlab`, `github`, `okta`, `microsoft`;
+  * **clientId** (*required*): the client ID of the OAuth2 app;
+  * **clientSecret** (*required*): the client secret of the OAuth2 app;
+  * **authUrl** (*required*): url to call the authorize endpoint of the `authorization_code` grant type in the identity provider;
+  * **tokenUrl** (*required*): url to get the token in the identity provider;
+  * **baseUrl** (*required*): base url of the provider;
+  * **scope** (*required*): an array of string of the scope to forward to the indentity provider;
+  * **order** (*optional*): a number which define the order to be returned from the get apps endpoint;
+  * **userSettingsURL** (*optional*): an url to send the user to the user settings page on idp provider;
+* **redirectUrl** (*required*): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
+* **realm**: (*required*)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId*);
+* **defaultGroups** (*required*): an array of strings to add as group to a user on user creation;
+* **defaultRedirectUrlOnSuccessfullLogin** (*optional*): a string to set the default redirect on successfull login;
+* **isWebsiteApp** (*optional*): a boolean, if true set a Cookie *sid* in header.
+
+Here an example of the service configuration:
+
+```json
+{
+  "apps": {
+    "APP_ID": {
+      "providers": {
+        "PROVIDER_ID": {
+          "type": "gitlab|github|okta|microsoft",
+          "clientId": "the-idp-client-id",
+          "clientSecret": "the-idp-client-secret",
+          "authUrl": "auth_url",
+          "tokenUrl": "token_url",
+          "userInfoUrl": "user_info_url",
+          "baseUrl": "base_url",
+          "scope": ["custom_scope"],
+          "order": 10,
+          "userSettingsURL": "settings-url"
+        }
+      },
+      "redirectUrl": "https://test.com/redirect",
+      "realm": "realm1",
+      "isWebsiteApp": true,
+      "defaultGroups": ["users"]
+    }
+  }
+}
+```
+
+## How to configure providers
+
+Below, the different configuration based on provider type.
+
+### GitLab
+
+This is a configuration of a provider to the GitLab identity provider. Sobstitute `{GITLAB_URL}` with the url of your instance (or the public one).
+
 ```json
 {
   "apps": {
@@ -48,43 +119,111 @@ It is important to outline that it is possible to define an `order` property, no
           "type": "gitlab",
           "clientId": "the-idp-client-id",
           "clientSecret": "the-idp-client-secret",
-          "authUrl": "https://gitlab/auth",
-          "tokenUrl": "https://gitlab/token",
-          "userInfoUrl": "https://gitlab/api/v4/user",
-          "baseUrl": "https://gitlab",
+          "authUrl": "https://{GITLAB_URL}/auth",
+          "tokenUrl": "https://{GITLAB_URL}/token",
+          "userInfoUrl": "https://{GITLAB_URL}/api/v4/user",
+          "baseUrl": "https://{GITLAB_URL}",
           "scope": ["custom_scope"],
-          "order": 10
-        },
+          "order": 10,
+          "userSettingsURL": "settings-url"
+        }
+      },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": []
+    }
+  }
+}
+```
+
+### GitHub
+
+This is a configuration of a provider to the GitHub identity provider. Sobstitute `{GITHUB_URL}` with the url of your instance (or the public one).
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
         "github": {
           "order": 20,
           "type": "github",
           "label": "My GitHub",
           "clientId": "the-idp-client-id",
           "clientSecret": "the-idp-client-secret",
-          "authUrl": "https://github/authorize",
-          "tokenUrl": "https://github/oauth/token",
-          "userInfoUrl": "https://api.github/user",
-          "baseUrl": "https://api.github",
-          "scope": ["custom_scope_github"]
+          "authUrl": "https://{GITHUB_URL}/authorize",
+          "tokenUrl": "https://{GITHUB_URL}/oauth/token",
+          "userInfoUrl": "https://{API_GITHUB_URL}/user",
+          "baseUrl": "https://{API_GITHUB_URL}",
+          "scope": ["custom_scope_github"],
+          "userSettingsURL": "settings-url"
         },
+      },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": []
+    }
+  }
+}
+```
+
+### Okta
+
+This is a configuration of a provider to the Okta identity provider. Sobstitute `{OKTA_BASE_URL}` with the url.
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
         "okta": {
           "order": 30,
           "type": "okta",
           "label": "Login with Okta",
           "clientId": "the-idp-client-id",
           "clientSecret": "the-idp-client-secret",
-          "authUrl": "${baseUrl}/v1/authorize",
-          "tokenUrl": "${baseUrl}/v1/token",
-          "userInfoUrl": "${baseUrl}/v1/userinfo",
-          "baseUrl": "${baseUrl}",
-          "scope": ["your_scope"]
+          "authUrl": "{OKTA_BASE_URL}/v1/authorize",
+          "tokenUrl": "{OKTA_BASE_URL}/v1/token",
+          "userInfoUrl": "{OKTA_BASE_URL}/v1/userinfo",
+          "baseUrl": "{OKTA_BASE_URL}",
+          "scope": ["your_scope"],
+          "userSettingsURL": "{OKTA_BASE_URL}/enduser/settings"
         }
       },
-      "redirectUrl": "https://test.com/redirect",
-      "realm": "realm1",
-      "isWebsiteApp": true,
-      "defaultGroups": ["users"]
-    },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": []
+    }
+  }
+}
+```
+
+### Microsoft
+
+This is a configuration of a provider to the Microsoft identity provider.
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
+        "microsoft": {
+          "type": "microsoft",
+          "clientId": "the-idp-client-id",
+          "clientSecret": "the-idp-client-secret",
+          "authUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize",
+          "tokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+          "userInfoUrl": "https://graph.microsoft.com/oidc/userinfo",
+          "baseUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/",
+          "scope": ["openid"],
+          "order": 10,
+          "userSettingsURL": "https://account.microsoft.com/profile/"
+        }
+      },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": []
+    }
   }
 }
 ```

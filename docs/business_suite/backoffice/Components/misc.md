@@ -3,41 +3,6 @@ id: misc
 title: Misc
 sidebar_label: Misc
 ---
-## Confirmation Modal
-
-prompts the user for confirmation on certain critical actions
-![confirmation-modal](../img/bk-confirmation-modal.png)
-```html
-<bk-confirmation-modal></bk-confirmation-modal>
-```
-
-### Properties & Attributes
-
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`rootElementSelectors`|`root-element-selectors`|string| - | - | - |selector to specify where the `confirmationModal` should be appended|
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[require-confirm](../Events/Events#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
-
-
-### Emits
-
-| event | description |
-|-------|-------------|
-|Configurable events| - |
-
-
-### Bootstrap
-
-None
-
-
-
 ## Notifications
 
 displays toast notifications about events happening on the EventBus according to the maps provided as props
@@ -96,8 +61,8 @@ displays toast notifications about events happening on the EventBus according to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[success](../Events/Events#success)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `successEventMap` property| - | - |
-|[error](../Events/Events#error)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `errorEventMap` property| - | - |
+|[success](../Events#success)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `successEventMap` property| - | - |
+|[error](../Events#error)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `errorEventMap` property| - | - |
 |Configurable custom events|displays a notification on any event mapped in the `customEventMap` property| - | - |
 
 
@@ -128,6 +93,170 @@ None
 ### Listens to
 
 This component listens to no event.
+
+
+### Emits
+
+This component emits no event.
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-confirmation-modal
+
+prompts the user for confirmation on certain actions
+```html
+<bk-confirmation-modal></bk-confirmation-modal>
+```
+![confirmation-modal](../img/bk-confirmation-modal.png)
+#### Configure actions
+It is possible to mount custom components as confirmation/cancel buttons in the modal.
+For instance, the following example shows how to request for confirmation before the action of a button is performed.
+#### Example
+The following snippet of configuration shows a "Abort" button which performs a POST request to a give endpoint.
+```json
+{
+  "tag": "bk-button",
+  "properties": {
+    "content": "Abort",
+    "clickConfig": {
+      "type": "http",
+      "actionConfig": {
+        "url": "lambdas/abort",
+        "method": "POST",
+        "config": {
+          "headers": ...
+        },
+        "body": ...
+      }
+    }
+  }
+}
+```
+In order to require confirmation for this action, it is possible to:
+- have the button spawn a Confirmation modal
+- have the "confirm" button of this modal perform the POST request
+as the following snippet shows:
+```json
+{
+  "tag": "bk-button",
+  "properties": {
+    "content": "Abort",
+    "clickConfig": {
+      "type": "event",
+      "actionConfig": {
+        "label": "require-confirm",
+        "payload": {
+          "title": {
+            "en": "Abort order?",
+            "it": "Cancellare ordine?"
+          },
+          "content": {
+            "en": "Are you sure you want to abort this order?",
+            "it": "Sei sicuro di voler cancellare l'ordine?"
+          },
+          "configCancel": {
+            "tag": "bk-button",
+            "properties": {
+              "content": "No",
+              "type": "ghost"
+            }
+          },
+          "configOk": {
+            "tag": "bk-button",
+            "properties": {
+              "content": "Ok",
+              "clickConfig": {
+                "type": "http",
+                "actionConfig": {
+                  "url": "lambdas/abort",
+                  "method": "POST",
+                  "config": {
+                    "headers": ...
+                  },
+                  "body": ...
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+The "Abort" button will now launch a `require-confirm` event. The Confirmation modal listens to it and becomes visible, using its payload to match its state as follows:
+- 'title': the title of the modal
+- 'content': the text content of the modal
+- 'configCancel': a 'tag' / 'properties' pair for the cancel button
+- 'configOk': a 'tag' / 'properties' pair for the confirmation button
+In particlar, the 'configOk' field is used to build the confirmation button. In this case, we build a button that will perform the POST call that was performed directly by the button in the previous configuration.
+Once one of the buttons is clicked, the confirmation modal automatically closes.
+The cancel button does not perform any action: if clicked, the modal will simply close and the endpoint will not be called.
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`height`|`height`|string|'30px'|height of the modal |
+|`width`|`width`|string|'520px'|width of the modal |
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[require-confirm](../Events#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
+
+
+### Emits
+
+| event | description |
+|-------|-------------|
+|Configurable events|on confirm or on cancel, it can forward events that were specified in the payload as the callback for the relative button click|
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-drawer
+
+Generic drawer container for custom content and custom footer
+```html
+<bk-drawer></bk-drawer>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`content`| - |Taggable \\| Taggable[]| - |configurable content of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`dataCustomActions`| - |DataCustomAction[]| - | - |
+|`drawerId`|`drawer-id`|string| - |identifier associated to the drawer |
+|`drawerTitle`| - |LocalizedText| - |title of the drawer |
+|`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the drawer. This property is to be set programmatically only |
+|`footerComponent`| - |null \\| Taggable \| Taggable[]| - |configurable footer of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`loading`|`loading`|boolean|false|whether or not the drawer is loading |
+|`requireConfirm`| - |boolean \\| Pick<RequireConfirmPayload, "title" \| "content" \| "cancelText" \| "okText">|false|whether or not the drawer requires confirmation to close with unsaved data |
+|`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
+|`subTitle`| - |LocalizedText| - |sub-title of the drawer |
+|`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
+|`width`| - |string \\| number| - |width of the drawer |
+|`zIndex`|`z-index`|number| - |zIndex of the drawer |
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[using-form-container](../Events#using-form-container)|notifies a drawer is in use| - | - |
 
 
 ### Emits
@@ -300,7 +429,7 @@ and layout must contain a valid `bk-layout-container` `content` prop key. A `bk-
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |undefined \\| Record<string, LayoutNode> \| Record<string, LayoutNode[]>| - |layouts configuration |
+|`content`| - |undefined \\| Record\<string, LayoutNode\> \| Record\<string, LayoutNode[]\>| - |layouts configuration |
 |`currentLayout`|`current-layout`|string| - |default layout to view on landing |
 
 
@@ -308,7 +437,52 @@ and layout must contain a valid `bk-layout-container` `content` prop key. A `bk-
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[layout/change](../Events/Events#layout---change)|requires the connection of the layout which is referenced in the event payload| - | - |
+|[layout/change](../Events#layout---change)|requires the connection of the layout which is referenced in the event payload| - | - |
+
+
+### Emits
+
+This component emits no event.
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-modal
+
+Generic modal container for custom content and custom footer
+```html
+<bk-modal></bk-modal>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`content`| - |Taggable \\| Taggable[]| - |configurable content of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the modal. This property is to be set programmatically only |
+|`footerComponent`| - |null \\| Taggable \| Taggable[]| - |configurable footer of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`height`|`height`|string| - |height of the modal |
+|`loading`|`loading`|boolean|false|whether or not the modal is loading |
+|`modalId`|`modal-id`|string| - |identifier associated to the modal |
+|`modalTitle`| - |LocalizedText| - |title of the modal |
+|`requireConfirm`| - |boolean \\| Pick<RequireConfirmPayload, "title" \| "content" \| "cancelText" \| "okText">|false|whether or not the modal requires confirmation to close with unsaved data |
+|`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
+|`subTitle`| - |LocalizedText| - |sub-title of the modal |
+|`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
+|`width`|`width`|string| - |width of the modal |
+|`zIndex`|`z-index`|number| - |zIndex of the modal |
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[open-modal](../Events#open-modal)|opens the modal| - | - |
+|[close-modal](../Events#close-modal)|closes the modal| - | - |
 
 
 ### Emits

@@ -97,7 +97,7 @@ configuration parsing. Anyway components mark this property as *immutable* and J
 ### Filters
 
 Back-kit web components refine data queries and data views using filters. Filters can be used to enrich a
-[change-query](Events/Events#change-query) and are building blocks of many tag properties. A filter is made of three
+[change-query](Events#change-query) and are building blocks of many tag properties. A filter is made of three
 required build blocks:
 
 1. `property`: the unique identifier of the property they filter
@@ -105,6 +105,38 @@ required build blocks:
 3. `value`: the value or the regex pattern (where it applies) to filter for
 
 Operators and values vary according to the property type which is set by the [data schema](Page_layout#data-schema).
+If a `DataSchema` should be filtered only according with a subset of available operators, a configuration key it available within
+the field `filtersOptions`. The key `availableOperators` is an array of string which, if defined, enables only explicitly selected operators on the given field.
+Operators can be selected from the following list:
+
+```typescript
+type FilterFormOperator = |
+  'equals' |
+  'doesNotEqual' |
+  'contains' |
+  'startsWith' |
+  'endsWith' |
+  'between' |
+  'before' |
+  'beforeOrEqual' |
+  'on' |
+  'notOn' |
+  'after' |
+  'afterOrEqual' |
+  'is' |
+  'isNot' |
+  'greater' |
+  'greaterOrEqual' |
+  'less' |
+  'lessOrEqual' |
+  'includesAll' |
+  'includesSome' |
+  'includesExactly' |
+  'doesNotInclude' |
+  'hasLengthEqual' |
+  'hasLengthGreaterEqual' |
+  'hasLengthLessEqual'
+```
 
 ## File Management
 

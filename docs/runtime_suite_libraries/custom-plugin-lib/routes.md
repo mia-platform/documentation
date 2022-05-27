@@ -11,8 +11,8 @@ service.addRawCustomPlugin(httpVerb, path, handler, schema)
 
 whose arguments are, in order
 
-* `httpVerb` - the HTTP verb of the request (e.g.,` GET`).
-* `path` - the route path (e.g.,` /status /alive`).
+* `httpVerb` - the HTTP verb of the request (e.g.,`GET`).
+* `path` - the route path (e.g.,`/status /alive`).
 * `handler` - function that contains the actual behavior. It must respect the same interface defined in the
 documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#async-await).
 * `schema` - definition of the request and response data schema.
@@ -52,6 +52,7 @@ module.exports = customService(async function handler(service) {
     * *GROUPS_HEADER_KEY*
     * *CLIENTTYPE_HEADER_KEY*
     * *BACKOFFICE_HEADER_KEY*
+  * `getHeadersToProxy({isMiaHeaderInjected})` - returns the object of the request headers to proxy in API calls, using the extra headers, the mia headers and the headers set with variable `CUSTOM_HEADERS_TO_PROXY`.
 
 * The second parameter is a [Reply instance](https://www.fastify.io/docs/latest/Reply/). Use this object to reply to the request. Its main methods are the following:
   * `headers(object)` - sets the headers of the response.

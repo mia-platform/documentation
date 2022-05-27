@@ -23,6 +23,10 @@
         },
         {
           "type": "doc",
+          "id": "business_suite/backoffice/events"
+        },
+        {
+          "type": "doc",
           "id": "business_suite/backoffice/plugin_example"
         },
         {
@@ -72,16 +76,6 @@
             {
               "type": "doc",
               "id": "business_suite/backoffice/Components/typography"
-            }
-          ]
-        },
-        {
-          "type": "category",
-          "label": "Events",
-          "items": [
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Events/events"
             }
           ]
         }
@@ -1061,6 +1055,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/authentication-service/usage"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/authentication-service/changelog"
                 }
               ]
@@ -1146,10 +1144,6 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/crud-service/performance_overview"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/crud-service/release_note"
                 },
                 {
                   "type": "doc",
@@ -1558,6 +1552,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/push-notification-manager/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Push Notification Sender",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/push-notification-sender/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/push-notification-sender/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/push-notification-sender/changelog"
                 }
               ]
             },
