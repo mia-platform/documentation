@@ -835,10 +835,10 @@ From version `4.1.0` of the Single-View-Creator, the resolution order of depende
 
 The aggregation above will be performed in the following order:
 
-1) Find the projection in the `PEOPLE` collection on MongoDB using `identifier` got from the Projection Change as query.
-2) Find the projection in the `MARRIAGE` collection on MongoDB using the condition defined in the ER Schema as `PEOPLE_TO_MARRIAGE`
-3) Find the projection in the `PEOPLE` (which is the collection to be used in the dependency `PARTNER`) using the condition defined in the ER Schema as `MARRIAGE_TO_PEOPLE` 
-4) Calculate the aggregation defined in the `CHILDREN_CONF` config
+1. Find the projection in the `PEOPLE` collection on MongoDB using `identifier` got from the Projection Change as query.
+1. Find the projection in the `MARRIAGE` collection on MongoDB using the condition defined in the ER Schema as `PEOPLE_TO_MARRIAGE`
+1. Find the projection in the `PEOPLE` (which is the collection to be used in the dependency `PARTNER`) using the condition defined in the ER Schema as `MARRIAGE_TO_PEOPLE` 
+1. Calculate the aggregation defined in the `CHILDREN_CONF` config
 
 *Why should I care about the order resolution of the dependencies?*
 

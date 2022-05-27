@@ -41,8 +41,16 @@ The save process is being thoroughly revised. This version features a new way fo
 More improvements will come in the next versions.
 
 <div style={{display: 'flex', flexDirection: 'row', gap: '8px'}}>
-<div><img alt="old branch selection" src="../img/9.2.0/old-branch-selector.png" /></div>
-<div><img alt="new branch selection" src="../img/9.2.0/new-branch-selector.png" /></div>
+<div>
+
+![old branch selection](../img/9.2.0/old-branch-selector.png)
+
+</div>
+<div>
+
+![new branch selection](../img/9.2.0/new-branch-selector.png)
+
+</div>
 </div>
 
 **Add user from the Project User Portal**
