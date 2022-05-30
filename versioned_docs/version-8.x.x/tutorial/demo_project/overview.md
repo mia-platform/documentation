@@ -211,7 +211,7 @@ Now let's commit and save our work to be ready to deploy.
 
 Now, to test our CRUDs, we have to deploy our project:
 
-1. Go to section [Deploy](../../development_suite/deploy/deploy.md) and click *Create new CRUD*.
+1. Go to section [Deploy](../../development_suite/deploy/deploy) and click *Create new CRUD*.
 2. As environment select *Development*
 3. Select the branch master *Master*. You can see the related last commit.
 4. Click *Deploy*

@@ -2,7 +2,7 @@ import React,{useState,useEffect,} from "react";
 import clsx from "clsx";
 import PropTypes from 'prop-types'
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import useWindowSize from "@theme/hooks/useWindowSize";
+import {useWindowSize} from "@docusaurus/theme-common";
 
 import styles from "./styles.module.css";
 import {desktop} from "../../lib/constants";

@@ -515,12 +515,6 @@
                 {
                   "type": "doc",
                   "id": "version-7.x.x/runtime_suite/form-service-backend/configuration"
-                },
-                {
-                  "collapsed": true,
-                  "type": "category",
-                  "label": "docs_files_to_download",
-                  "items": []
                 }
               ]
             },

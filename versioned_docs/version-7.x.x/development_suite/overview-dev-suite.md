@@ -23,7 +23,7 @@ Develop containerized services in any language with [Templates](../marketplace/t
 
 ### Deploy
 
-Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
+Design and build your [CI/CD pipelines](../development_suite/deploy/deploy): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
 [Release](./deploy/deploy#select-branch) across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
 
 ### Dashboards

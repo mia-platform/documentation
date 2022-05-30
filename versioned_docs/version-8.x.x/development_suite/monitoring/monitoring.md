@@ -2,6 +2,7 @@
 id: monitoring
 title:  Monitor your Pods
 sidebar_label: Monitor your Pods
+slug: "/development_suite/monitoring/monitoring"
 ---
 ## Monitoring Infrastructure
 

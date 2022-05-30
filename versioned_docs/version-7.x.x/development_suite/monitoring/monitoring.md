@@ -2,6 +2,7 @@
 id: monitoring
 title:  Monitor your applications
 sidebar_label: Monitor your applications
+slug: "/development_suite/monitoring/monitoring"
 ---
 ## Monitoring Infrastructure
 

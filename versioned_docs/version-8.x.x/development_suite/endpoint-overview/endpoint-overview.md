@@ -2,6 +2,7 @@
 id: endpoint-overview
 title: Endpoint Overview
 sidebar_label: Endpoint Overview
+slug: "/development_suite/endpoint-overview/endpoint-overview"
 ---
 ## What is the Endpoint Overview
 

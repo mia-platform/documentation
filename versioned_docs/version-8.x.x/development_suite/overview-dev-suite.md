@@ -14,8 +14,8 @@ Find out more about how to design and manage the full lifecycle of your DevOps V
 The Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console, such as:
 
 * [Design](./api-console/api-design/overview.md)
-* [Deploy](./deploy/deploy.md)
-* [Runtime](./monitoring/monitoring.md)
+* [Deploy](./deploy/deploy)
+* [Runtime](./monitoring/monitoring)
 * [Dashboards](./monitoring/dashboard.md)
 * [Marketplace](../marketplace/overview_marketplace.md)
 * [Environments & Private Variables](../development_suite/set-up-infrastructure/runtime-environments.md)
@@ -80,7 +80,7 @@ Create your dashboards collecting data across the entire DevOps lifecycle to gai
 
 ### Runtime
 
-[Monitor](../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
+[Monitor](../development_suite/monitoring/monitoring) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
 
 ### Debug
 

@@ -3,6 +3,7 @@ id: release_notes
 title: Mia-Platform release notes
 sidebar_label: Mia-Platform release notes
 image: "img/release-note-link-preview.png"
+slug: "/release_notes/release_notes"
 ---
 | Release | Release notes                       |
 | ------- |-------------------------------------|

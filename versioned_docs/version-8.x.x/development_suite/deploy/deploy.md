@@ -2,6 +2,7 @@
 id: deploy
 title: Deploy
 sidebar_label: Release your configurations
+slug: "/development_suite/deploy/deploy"
 ---
 ## Introduction  
 
