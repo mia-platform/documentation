@@ -283,4 +283,4 @@ When generating a Single View, every error that occurs is saved in MongoDb, with
 - `updaterId`: set to `single-view-creator`
 - `updatedAt`: time of creation
 
-It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../../docs/development_suite/api-console/api-design/crud_advanced.md#indexes).
+It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](../development_suite/api-console/api-design/crud_advanced.md#indexes).

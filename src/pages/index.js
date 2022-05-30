@@ -12,7 +12,7 @@ import {desktop} from "../lib/constants";
 import SearchBar from "@theme/SearchBar";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useWindowSize from "@theme/hooks/useWindowSize";
+import {useWindowSize} from "@docusaurus/theme-common";
 
 import styles from "./styles.module.css";
 
@@ -137,8 +137,8 @@ function Home() {
           <section className={styles.features}>
             <div className="container">
               {<div className="row">
-              <VersionBanner 
-                link="/docs/release_notes/mia-platform-v9-preview" 
+              <VersionBanner
+                link="/docs/release_notes/mia-platform-v9-preview"
                 majorVersion="3"
                 subTitle="Click to know more about how Mia-Platform is growing and where it is going!"
                 title="Mia-Platform v9 is Generally Available!"

@@ -15,9 +15,9 @@
     "release-note": "node ./new-release-note.js"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.8",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.8",
-    "@docusaurus/preset-classic": "^2.0.0-beta.8",
+    "@docusaurus/core": "2.0.0-beta.21",
+    "@docusaurus/plugin-client-redirects": "2.0.0-beta.21",
+    "@docusaurus/preset-classic": "2.0.0-beta.21",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^1.1.1",
     "cspell": "^5.21.0",

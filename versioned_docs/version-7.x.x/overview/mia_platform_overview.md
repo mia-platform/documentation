@@ -40,4 +40,4 @@ Find out more in the [Headless CMS](./../business_suite/overview-business-suite.
 
 ### More Resources
 
-If you want to know more about Mia-Platform, please visit our [Release Note](../release_notes/release_notes.md) and our [Blog](https://blog.mia-platform.eu/en).
+If you want to know more about Mia-Platform, please visit our [Release Note](../release_notes/release_notes) and our [Blog](https://blog.mia-platform.eu/en).

@@ -25,15 +25,6 @@ const config = {
     colorMode: {
       // "light" | "dark"
       defaultMode: "light",
-
-      switchConfig: {
-        darkIcon: "🌙",
-        darkIconStyle: {},
-        lightIcon: "☀",
-        lightIconStyle: {
-          color: "#ffd557",
-        },
-      },
     },
     navbar: {
       hideOnScroll: false,
@@ -253,11 +244,6 @@ const config = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
     },
-    gtag: {
-      // For docusaurus >=beta.10, set this in preset config (https://github.com/facebook/docusaurus/pull/5832)
-      trackingID: 'GTM-PKKZ6XT',
-      anonymizeIP: true,
-    },
   },
   presets: [
     [
@@ -287,6 +273,10 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
+        },
+        gtag: {
+          trackingID: 'GTM-PKKZ6XT',
+          anonymizeIP: true,
         },
       },
     ],

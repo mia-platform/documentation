@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React, {useState, Children, useEffect} from 'react';
-import useUserPreferencesContext from '@theme/hooks/useUserPreferencesContext';
+import {useUserPreferencesContext} from '@docusaurus/theme-common';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 const keys = {
