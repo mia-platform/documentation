@@ -152,13 +152,7 @@ Example of `value` for an insert operation:
 ### Custom
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages.
-To do that, you need to create a `Custom Kafka Message Adapter`, which is just a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure.
-
-:::note
-You have to create the adapter function *before* setting `custom` in the advanced file and saving.
-:::
-
-This adapter is a function that accepts as arguments the Kafka message and the list of primary keys of the projection, and returns an object with the following properties:
+To do that, you need to create a `Custom Kafka Message Adapter` inside the Kafka Adapters configmap. The adapter is a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure. This function that accepts as arguments the Kafka message and the list of primary keys of the projection, and returns an object with the following properties:
 
 - **offset**: the offset of the Kafka message
 - **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
@@ -166,23 +160,10 @@ This adapter is a function that accepts as arguments the Kafka message and the l
 - **value**: the data values of the projection, or null
 - **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
 
-If the `value` is null, the operation is supposed to be a delete operation.
+If the `value` is null, it is a delete operation.
 The `keyObject` **cannot** be null.
 
-In order to write your custom Kafka message adapter, first clone the configuration repository: click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
-
-Your adapter function file needs to be created below a folder named `fast-data-files`, if your project does not have it, create it.
-In this folder, create a folder named as `kafka-adapters/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console). Inside this folder create your javascript file named `kafkaMessageAdapter.js`.
-
-For instance if you want to create an adapter for the system `my-system` you need to create the following directory tree:
-
-```txt
-/configurations
-    |-- fast-data-files
-        |-- kafka-adapters/
-              |-- my-system/
-                    |-- kafkaMessageAdapter.js
-```
+Inside configmap folder create your javascript file named `kafkaMessageAdapter.js`.
 
 The file should export a simple function with the following signature:
 
@@ -212,27 +193,6 @@ The `kafkaMessage` argument is the Kafka message as received from the `real-time
 The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are of type *string*.
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
-
-Once you have created your own custom adapter for the Kafka messages, commit and push to load your code on git.
-Now you need to go on the Console and save in order to generate the configuration for your `Real Time Updater` service that uses the adapter you created.
-
-:::note
-After any changes you make on the `adapter` implementation, you need to save from the Console to update the configuration of the services.
-:::
-
-Now that you have committed and pushed your custom adapter function you can set `custom` in the advanced file and save.
-
-```json
-{
-  "systems": {
-    "SYSTEM ID": {
-      "kafka": {
-          "messageAdapter": "custom"
-      }
-    }
-  }
-}
-```
 
 ## CAST_FUNCTION configurations
 
