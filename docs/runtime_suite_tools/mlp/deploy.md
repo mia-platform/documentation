@@ -40,3 +40,15 @@ spec:
           args:
             - 30s
 ```
+
+## Await resources completion
+
+During the deploy phase resources are applied sequentially one after the other. `mlp` allows to wait for the completion of a resource using the annotation `mia-platform.eu/await-completion` on the specific resource to be awaited. The annotation value should be a duration string as expected by the [`time.ParseDuration`](https://pkg.go.dev/time#ParseDuration) (e.g. `100ms`, `10s`, `1m`) function that specifies the time to wait for completion before a timeout error is triggered. 
+
+The resources supported by this annotation:
+
+- **Job**: the resource will be applied by `mlp` then the tool will listen to cluster events until the job status becomes `Completed`
+
+## Delete resources before applying them
+
+By annotating a resource with `mia-platform.eu/delete-before-apply`, having arbitrary value, the user can force `mlp` to delete the corresponding resource on the cluster before re-creating it. If the annotated resource is not already present on the cluster no additional operations will occur.

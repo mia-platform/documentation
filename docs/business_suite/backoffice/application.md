@@ -3,6 +3,28 @@ id: application
 title: Application
 sidebar_label: Application
 ---
+## From Mia marketplace
+
+Mia Platform marketplace has a template Backoffice application that can be spawned on any project which already
+contains a API Gateway and a Microservice Gateway.
+
+At configuration time, 4 services will be spawned:
+
+- microlc frontend
+- microlc element composer frontend
+- microlc backend
+- back-kit webcomponent library web server
+
+If absent, a CRUD service, with a single preset collection, will be added to the k8s deploy.
+
+That's enough to get started with the application configuration
+
+## Configuration
+
+To get started on Backoffice configuration on your local machine consider following the `tutorial`.
+This will allow you to spawn a docker-compose equivalent environment on your machine and test configuration edits by simply refreshing your
+browser.
+
 A Back-Kit application that uses a rendering engine such as `microlc-element-composer`, is structured into multiple configuration files:
 
 - an `authentication.json` file
@@ -14,13 +36,8 @@ This is an example of a typical structure for a Back-Kit application:
 ```
  - authentication.json
  - configuration.json
- - orders-list.json
- - users
-   - riders-list.json
-   - customers-list.json
-- menu
-  - ingredients-list.json
-  - dishes-list.json
+ - getting-started.json
+ - my-cms-collection.json
 ```
 
 ### Authentication
@@ -30,15 +47,25 @@ For example:
 
 ```json
 {
+  "isAuthNecessary": false
+}
+```
+
+when the frontend doesn't need to inject/redirect for an authenticated principal, or 
+similarly
+
+```json
+{
   "isAuthNecessary": true,
   "userInfoUrl": "/userinfo",
   "userLogoutUrl": "/logout?redirect=/web-login?redirect=/"
 }
 ```
 
-declares that the user must log in to access the application, and provides endpoints for fetching user information as well as for handling log-outs.
+which declares that the user must log in to access the application, 
+and also should provide endpoints for fetching user information as well as for handling logout routes.
 
-### Configuration
+### Plugin Configuration
 
 `configuration.json` contains high-level information on the structure of the application.
 
