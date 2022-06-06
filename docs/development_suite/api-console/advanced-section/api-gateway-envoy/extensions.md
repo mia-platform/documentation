@@ -80,7 +80,7 @@ Here's an example of a valid cluster configuration:
 
 This extension allows you to add or overwrite endpoints and routes in the `endpoints.yaml` file. Endpoints added with this feature will have priority over the automatically generated ones (assuming they have the same path, prefix, or regex).
 
-The snippet below illustrates an example of a frontend `GET` route towards `my-upstream` with prefix rewrite.
+The snippet below illustrates an example of a frontend `GET` route towards `my-upstream` with prefix rewrite. Remember to set the `timeout` property to `0s` to disable the default request timeout and enforce the global `stream_idle_timeout` ([learn more](timeouts.md)).
 
 ```yaml
 - listener_name: frontend
@@ -93,6 +93,7 @@ The snippet below illustrates an example of a frontend `GET` route towards `my-u
           regex: ^(GET)$
     prefix: /endpoint/route/
   route:
+    timeout: 0s
     prefix_rewrite: /route/
     cluster: my-upstream
 ```
