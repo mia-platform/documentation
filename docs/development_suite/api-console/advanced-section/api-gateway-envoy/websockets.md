@@ -36,6 +36,7 @@ Since WebSockets need the configuration of an additional property in the corresp
   match: 
     path: "/websocket-route"
   route:
+    timeout: 0s
     cluster: websocket-service
     upgrade_configs:
       upgrade_type: websocket
