@@ -273,11 +273,7 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-        },
-        gtag: {
-          trackingID: 'GTM-PKKZ6XT',
-          anonymizeIP: true,
-        },
+        }
       },
     ],
   ],
@@ -287,6 +283,12 @@ const config = {
       {
         fromExtensions: ["html"],
         createRedirects,
+      },
+    ],
+    [
+      "./src/plugins/gtm",
+      {
+        trackingID: 'GTM-PKKZ6XT',
       },
     ],
   ],
