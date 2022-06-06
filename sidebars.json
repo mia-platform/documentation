@@ -1520,6 +1520,29 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "PDF Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/pdf-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/pdf-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/pdf-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/pdf-service/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Proxy Google FHIR",
               "items": [
                 {
