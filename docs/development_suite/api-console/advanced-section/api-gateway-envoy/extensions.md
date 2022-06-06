@@ -326,6 +326,6 @@ For example, the following patch will set the request timeout to `'30s'` on the 
 
 ```yaml
 - listener_name: LISTENER
- 'filter_chains.0.filters.0.typed_config.stream_idle_timeout': '30s'
- 'filter_chains.0.filters.0.typed_config.access_log': null
+  'filter_chains.0.filters.0.typed_config.stream_idle_timeout': '30s'
+  'filter_chains.0.filters.0.typed_config.access_log': null
 ``` 
