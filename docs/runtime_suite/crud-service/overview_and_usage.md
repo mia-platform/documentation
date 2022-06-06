@@ -417,7 +417,9 @@ curl -X GET https://your-url/v2/plates/ \
 -H  "client-key: client-key"
 ```
 
+:::warning
 Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
+:::
 
 In response of this request you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must to set STATE to DRAFT.
 
