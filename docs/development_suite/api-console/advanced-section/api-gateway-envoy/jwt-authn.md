@@ -68,7 +68,7 @@ remote_jwks:
     seconds: 300
 ```
 
-For more details concerning the filter properties, visit [this section](../../../../runtime_suite/api-gateway-envoy/filters.md).
+For more details concerning the filter properties, visit [this section](../../../../runtime_suite/envoy-api-gateway/filters.md).
 
 :::info
 In case you want to use the configuration above, please make sure the variable `JWT_TOKEN_SIGN_KEY_BASE64` exists and contains the correct sign key (or use your own sign key).

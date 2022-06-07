@@ -12,7 +12,8 @@
     "serve": "docusaurus serve",
     "lint": "eslint --ext js .",
     "spellcheck": "npx cspell './docs/**'",
-    "release-note": "node ./new-release-note.js"
+    "release-note": "node ./new-release-note.js",
+    "check-content": "node ./check-content.js"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.21",
@@ -21,6 +22,7 @@
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^1.1.1",
     "cspell": "^5.21.0",
+    "klaw": "^4.0.1",
     "mermaid": "^9.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
