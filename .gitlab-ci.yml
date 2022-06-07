@@ -9,7 +9,8 @@ default:
 test:
   script:
     - yarn lint
-    - ./node_modules/.bin/cspell "./docs/**"
+    - npm run spellcheck
+    - npm run check-content
 
 variables:
   IMAGE_NAME: core/documentation-site
