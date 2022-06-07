@@ -1,5 +1,0 @@
-[
-    {"name":"name","type":"string","required":true,"nullable":false,"description":"the name of the form"},
-    {"name":"formSubmitUrl","type":"string","required":true,"nullable":false,"description":"the URL to call on form submission"},
-    {"name":"formSchema","type":"RawObject","required":true,"nullable":false,"description":"the JSON schema of the form"}
-]

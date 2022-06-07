@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 
 // mode could be warn, debug or throw
-checkSidebar('./docs', './sidebars.json', false, 'throw')
+checkSidebar('./docs', './sidebars.json', '', false, 'throw')
 
 const filesToExcludeFromSidebarCheck = [
   "info/licenses/Apache-2.0",
@@ -22,13 +22,13 @@ const filesToExcludeFromSidebarCheck = [
   "tutorial/demo_project/overview", // TODO:
 ]
 
-const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w.]+)(.*\\n)+---$', 'm')
+const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')
 const checkImg = new RegExp('\\[[^\\]]*\\]\\((?<filename>.*?)(?=\\"|\\))(?<optionalpart>\\".*\\")?\\)', 'mg')
 
-async function checkSidebar(folder, sidebarFilePath, removeImages, mode) {
+async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImages, mode) {
   const absolutePathPrefix = path.join(process.cwd(), folder, '/')
 
-  const sidebarFiles = getSidebarLinkedFiles(sidebarFilePath)
+  const sidebarFiles = getSidebarLinkedFiles(sidebarFilePath, sidebarBasePath)
   const footerFiles = getFooterLinkedFiles()
 
   const images = []
@@ -125,22 +125,22 @@ async function checkSidebar(folder, sidebarFilePath, removeImages, mode) {
   }
 }
 
-function getItems(items) {
+function getItems(items, prefix) {
   let files = {}
   for (let item of items) {
     if (item.items) {
       files = {
         ...files,
-        ...getItems(item.items)
+        ...getItems(item.items, prefix)
       }
     } else {
-      files[item.id] = true
+      files[item.id.replace(prefix, '')] = true
     }
   }
   return files
 }
 
-function getSidebarLinkedFiles(sidebarFilePath) {
+function getSidebarLinkedFiles(sidebarFilePath, prefix = '') {
   const sidebar = require(sidebarFilePath)
   let files = {}
   Object.values(sidebar).forEach(category => {
@@ -152,10 +152,10 @@ function getSidebarLinkedFiles(sidebarFilePath) {
       if (detail.items) {
         files = {
           ...files,
-          ...getItems(detail.items)
+          ...getItems(detail.items, prefix)
         }
       } else if (detail.id) {
-        files[detail.id] = true
+        files[detail.id.replace(prefix, '')] = true
       }
     })
   })
