@@ -7,7 +7,7 @@ slug: "/release_notes/release_notes"
 ---
 | Release | Release notes                       |
 | ------- |-------------------------------------|
-| v9.2.x    | [Read the release notes](RN_v9-2/v9.2.0) |
+| v9.2.x    | [Read the release notes](RN_v9-2/v9.2.1) |
 | v9.1.x    | [Read the release notes](RN_v9-1/v9.1.0) |
 | v9.0.x    | [Read the release notes](RN_v9-0/v9.0.1) |
 
