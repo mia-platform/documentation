@@ -53,7 +53,7 @@ To open the desired branch simply click on it or navigate to it using `Tab` and 
 
 #### API Gateway compatibility with Pod Security Policies on EKS
 
-Nginx API Gateway has been fixed to supports Pod Security Policies when running on EKS
+Nginx API Gateway has been fixed to support Security Context configurations when running on EKS.
 
 #### File service v2.5.0
 
@@ -67,12 +67,12 @@ Added New API to download multiple files, [check out the documentation for furth
 
 ### New features
 
-Forms and modals support geolocation data with maps
+Forms and modals now support geolocation data with maps.
 
 ### Improvements
 
- - Buttons and actions support `danger` mode
- - Buttons can be configured to achieve browser-native file download
+ - Buttons and actions now support `danger` mode;
+ - Buttons can now be configured to achieve browser-native file download.
 
 ## How to update your Console
 
