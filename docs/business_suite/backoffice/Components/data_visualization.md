@@ -59,8 +59,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 | property | attribute | type | optional | required | default | description |
 |----------|-----------|------|----------|----------|---------|-------------|
 |`allowNavigation`|`allow-navigation`|boolean| - | - |true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
-|`browseOnRowSelect`| - |ClickPayload & { navigationType?: "replace" \\| "push" \| "href"; }| - | - | - |if set, a click on a row will navigate you to another location
-*|
+|`browseOnRowSelect`| - |ClickPayload & { navigationType?: "replace" \\| "push" \| "href"; }| - | - | - |if set, a click on a row will navigate you to another location|
 |`customActions`| - |{ tag: string; properties: Record\<string, any\>; }[]| - | - | - |list of custom components, rendered in the action column|
 |`customMessageOnAbsentLookup`| - |string \\| { [x: string]: string; }|true| - | - |override lookup value in case lookup is not resolved due to lack of data|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../Page_layout#data-schema) describing the fields of the collection to display|
@@ -150,6 +149,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > {
 >   "kind": "icons",
 >   "actions": [{
+>     "danger": true,
 >     "requireConfirm": true,
 >     "type": "delete",
 >     "disableInReadonly": true
@@ -166,6 +166,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > | property | type | values | description |
 > |----------|------|--------|-------------|
 > | `requireConfirm` | booelan | any | Whether or not to require confirm. |
+> | `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
 > | `type` | `string` | 'delete', 'detail' | if `delete`, the row is deleted from the nested object (and `update-data` event is emitted). If `detail`, a `selected-data` event is emitted with the data from the row.|
 > | `disableInReadonly` | boolean | any | Whether or not to disable the action for read-only nested objects. |
 >
@@ -186,6 +187,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > {
 >   "actions": [{
 >     "kind": "event",
+>     "danger": "true",
 >     "content": "duplicate-data",
 >     "label": "Duplicate Data",
 >     "icon": "far fa copy",
@@ -198,6 +200,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > | property | type | values | description |
 > |-----------------------|------|---------|-------------|
 > | `kind` | `string` | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
+> | `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
 > | `content` | string | any | when `event` it must be the label of a [registered event](../Events), otherwise the `POST` request destination href |
 > | `label` | string| any | a label to render with the row action button |
 > | `icon` | string | any | `Fontawesome fas or far icon` |
@@ -586,7 +589,7 @@ using this trick we can for instance obtain a gallery of pictures.
 When the `cards` field is specified, it is not possible to view other information on the card.  
 If you have nested cards, you can specify properties of the array type on the outermost card and access the relative elements through handlebars, accessing the `arraySource` object. Nested arrays are not currently supported, it is possible to use only one-level arrays.  
 In the example configuration below we have a card that declares an array of URL, and internal cards that are responsible for displaying the images contained in the array. As shown, the internal cards are able to access the property described in the external card, which is therefore shared among all the internal cards.  
-```
+```json
 {
   "type": "element",
   "tag": "bk-card",

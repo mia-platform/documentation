@@ -164,8 +164,8 @@ specified by `type`.
 | `string` | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, `lookup`, `editor` |
 | `number` | -      |
 | `integer` | - |
-| `object` | `file` | `localized-text`
-| `array`  | `multilookup` |
+| `object` | `file`, `localized-text`, `geopoint`
+| `array`  | `multilookup`, `geopoint` |
 | `boolean` | - |
 | `form-addon` | `link`, `title`, `subtitle` |
 | `null` | - |
@@ -186,6 +186,8 @@ Please note that the date fields are saved in ISO 8601 format, so it's up to the
 
 When `type` is set to `object` and format is `localized-text`, table expects a localized object and will render the closest language key,
 i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
+
+Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
 
 In order to avoid replication of settings within the same configuration, data schema also carries some component-specific
 visualization options and/or might require extra data to be fetched.

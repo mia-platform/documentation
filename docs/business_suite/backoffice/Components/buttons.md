@@ -244,6 +244,38 @@ For instance if a plugin reload is required after successful upload one could pi
 }
 ```
 
+### File Download
+
+By setting `clickConfig` type to `file-download`, on click the button perform a browser native file download.
+For instance a `file-download` configuration con be set as
+
+```json
+{
+  "clickConfig": {
+    "type": "file-download",
+    "actionConfig": {
+      "url": "/v2/image.png"
+    }
+  }
+}
+```
+
+in case an event should be piped when upload is successful, `actionConfig` contains a key `returnEvent` which 
+takes either a `string`, an `array` of `string`s, an `Event` or an `array` of `Event`s that will follow `success` event into the pipeline.
+For instance if a plugin reload is required after successful upload one could pipe a [change-query](../Events#change-query)
+
+```json
+{
+  "clickConfig": {
+    "type": "file-download",
+    "actionConfig": {
+      "url": "/v2/imgage.png",
+      "returnEvent": "change-query"
+    }
+  }
+}
+```
+
 
 ### Properties & Attributes
 
@@ -251,10 +283,10 @@ For instance if a plugin reload is required after successful upload one could pi
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`content`| - |LocalizedText|{}|button content |
+|`danger`|`danger`|boolean| - |danger flag |
 |`disableOnAction`|`disable-on-action`|boolean|false|configures the button to be disabled while action is in progress |
 |`disabled`|`disabled`|boolean|false|button disabled property |
-|`fileFormKey`|`file-form-key`|string|'file'|when `clickConfig` is of `type` `file-upload`, file is set to this key when appending values to the multipart/form-data that is sent
-|
+|`fileFormKey`|`file-form-key`|string|'file'|when `clickConfig` is of `type` `file-upload`, file is set to this key when appending values to the multipart/form-data that is sent |
 |`iconId`|`icon-id`|string| - |defines which icon should be rendered into the button, if this property is not defined or doesn't match any icon no icon will be rendered |
 |`iconPlacement`| - |"default" \\| "left" \| "right"|'default'|defines where icon should be rendered, either left or right defaulting on left |
 |`loading`|`loading`|boolean|false|button loading property |

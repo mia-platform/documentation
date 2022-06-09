@@ -19,7 +19,7 @@ With CSFLE, the CRUD Service can encrypt fields in documents before transmitting
 CSFLE must not be used to store passwords.
 :::
 
-The keys and the data are stored in different collections and can even be stored in different databases: only with access to the correct encryption keys it's possible to decrypt and read the protected data.  
+The keys and the data are stored in different collections and can even be stored in different databases: only with access to the correct encryption keys it's possible to decrypt and read the protected data.
 
 For some data types (`Number`, `String`, `Date` and `ObjectId`) it is also possible to guarantee their searchability even if encrypted.
 
@@ -49,13 +49,13 @@ To add the environment variables, please refer to [the dedicated section](../../
 ### Configure CSFLE with the Google Cloud Platform (GCP)
 
 :::note
-Keep in mind that a KMS provided by GCP has additional costs. 
+Keep in mind that a KMS provided by GCP has additional costs.
 Take a look at the [official documentation](https://cloud.google.com/kms/pricing) to find out the cost and the related billing logic.
 :::
 
-In order to configure the encryption using the Google KMS, you need the 
-[KMS service account json configuration](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) 
-and the [KMS endpoint](https://cloud.google.com/kms/docs/reference/rest#rest-resource:-v1.projects.locations.keyrings.cryptokeys).  
+In order to configure the encryption using the Google KMS, you need the
+[KMS service account json configuration](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
+and the [KMS endpoint](https://cloud.google.com/kms/docs/reference/rest#rest-resource:-v1.projects.locations.keyrings.cryptokeys).
 
 Here is an example of the KMS service account json configuration content:
 ```json
@@ -79,30 +79,30 @@ And here is an example of the KMS endpoint:
 With these configurations at hand, you can now configure the environment variables for the CRUD Service:
 
 * **KMS_PROVIDER** (*enum: `gcp`*): the Key Management Service will be hosted by Google Cloud Platform.
-* **KMS_GCP_EMAIL**: service account e-mail of the KMS.  
+* **KMS_GCP_EMAIL**: service account e-mail of the KMS.
 It corresponds to the `client_email` in the KMS service account json configuration.
-* **KMS_GCP_PROJECT_ID**: GCP project id in which is configured the KMS.  
+* **KMS_GCP_PROJECT_ID**: GCP project id in which is configured the KMS.
 It corresponds to the `project_id` in the KMS service account json configuration
-* **KMS_GCP_LOCATION**: Location in which the KMS is running.  
+* **KMS_GCP_LOCATION**: Location in which the KMS is running.
 It corresponds to the `location` in the KMS endpoint.
 
 Example: if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:location`.
-* **KMS_GCP_KEY_RING**: GCP keyring used by the KMS.  
+* **KMS_GCP_KEY_RING**: GCP keyring used by the KMS.
 It corresponds to the `keyRingName` in the KMS endpoint.
 
 Example: if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:keyRing`.
-* **KMS_GCP_KEY_NAME**: GCP key name.  
+* **KMS_GCP_KEY_NAME**: GCP key name.
 It corresponds to the `keyName` in the KMS endpoint.
 
 Example: if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:cryptoKey`
-* **KMS_GCP_PRIVATE_KEY_PATH**: Path in which is stored the private key, on the console you **must** mount it as `ConfigMap`.  
+* **KMS_GCP_PRIVATE_KEY_PATH**: Path in which is stored the private key, on the console you **must** mount it as `ConfigMap`.
 The content of this private key corresponds to the **formatted** `private_key` in the KMS service account json configuration.
 * **KEY_VAULT_NAMESPACE**: where the key used for the collection encryption will be stored. **The required format is `{databaseName}.{collectionName}`**.
 
 Example: if the database name is `qqq` and the collection name is `www`, you must enter as the value of the variable `qqq.www`.
 
 :::warning
-If in the `KEY_VAULT_NAMESPACE` you choose to store the encryption keys in a different database, be sure to have the rights to create it.
+To ensure that encryption keys are stored correctly, verify that CRUD service has the permissions to create and access the database and collection specified in `KEY_VAULT_NAMESPACE` variable.
 :::
 
 ### Configure CSFLE with Local Key
@@ -117,7 +117,7 @@ In order to configure the encryption using the Local KMS it's necessary to add t
 * **KEY_VAULT_NAMESPACE**: where the key used for the collection encryption will be stored. **The required format is `{databaseName}.{collectionName}`**.
 
 :::warning
-If in the `KEY_VAULT_NAMESPACE` you choose to store the encryption keys in a different database, be sure to have the rights to create it.
+To ensure that encryption keys are stored correctly, verify that CRUD service has the permissions to create and access the database and collection specified in `KEY_VAULT_NAMESPACE` variable.
 :::
 
 #### Local master key generation
@@ -156,10 +156,22 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 96 | head -n 1 > YOUR_KEY_PATH
 ## Migration and change of the configurations
 
 :::note
-If you decide to enable or disable the encryption from already existing field, you must manage manually the encryption or decryption of its values in order to keep your application correctly up and running.
+We recommend activating the encryption only for new fields.
 :::
 
-We suggest activating the encryption only for new fields.
+It is possible to enable or disable the encryption of an already existing field, although this operation requires a manual action on the data. Such action is necessary to keep applications relying on those field correctly up and running.
+This manual action involves both physically update stored data and CRUD configuration.
+
+In order to achieve this goal please follow these instructions:
+
+- extract through CRUD all the records from the collection of concern, so that values are available
+- open in the Console the CRUD section of your project and select the interested CRUD collection
+- export existing CRUD collection configuration (to potentially use it later)
+- delete existing fields that should become encrypted/unencrypted
+- recreate those field enabling or disabling the Client Side Encryption depending on the use case
+(it is possible to import the previously downloaded config to simplify fields creation)
+- commit and deploy the new configuration
+- import through CRUD the records that were previously exported, so that they are store using the correct encryption level
 
 ## Nested objects
 Besides plain fields, it is also possible to encrypt objects and their content;

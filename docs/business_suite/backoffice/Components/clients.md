@@ -94,87 +94,6 @@ resolves lookups from a given data schema onto a given source
 
 
 
-## File Client
-
-manages http requests towards an instance of `Mia Files Service` to upload/download/store files
-```html
-<bk-file-client></bk-file-client>
-```
-
-### Properties & Attributes
-
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`basePath`|`base-path`|string| - | - | - |API endpoint for HTTP calls|
-|`headers`| - |{ [x: string]: string; }| - | - | - | - |
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[upload-file](../Events#upload-file)|sends a `POST` request to upload a file|[uploaded-file](../Events#uploaded-file)|[error](../Events#error)|
-|[download-file](../Events#download-file)|sends a `GET` request to download/visualize a file|[downloaded-file](../Events#downloaded-file)|[error](../Events#error)|
-|[delete-file](../Events#delete-file)|sends a `DELETE` request to remova a file from storage|[deleted-file](../Events#deleted-file)|[error](../Events#error)|
-
-
-### Emits
-
-| event | description |
-|-------|-------------|
-|[show-in-viewer](../Events#show-in-viewer)|requests to visualizes a PDF inside a viewer|
-
-
-### Bootstrap
-
-None
-
-
-
-## File Manager
-
-Manages file upload transactions by holding a unique transaction ID hash map. Since files are often linked to a collection entry but stored on a different service, it might be handy to control file upload through a transaction manager. Two steps are needed to successfully upload a file:
-1. file upload to storage service (handled by [file-client](#file-client))
-2. update CRUD collection (handled by [crud-client](#file-client))
-Events marked as *transaction required* must carry a `meta` property with a registered `transactionId`.
-```html
-<bk-file-manager></bk-file-manager>
-```
-
-### Properties & Attributes
-
-This component has no properties.
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|(../Events#http-success)|terminate a successful registered transaction| - | - |
-|[update-data-with-file](../Events#update-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
-|[create-data-with-file](../Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
-|[create-data-with-file](../Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
-|[uploaded-file](../Events#uploaded-file)|continues an `update-data-with-file` transaction by patching the `crud` collection with the `upload-file` metadata|[update-data](../Events#update-data)| - |
-|[error](../Events#error)|interrupts a registered transaction due to an occurred `error` event carrying a `meta`. If the file was stored but the collection wasn't successfully patched, then the file is deleted|[delete-file](../Events#delete-file)| - |
-
-
-### Emits
-
-| event | description |
-|-------|-------------|
-|[upload-file](../Events#upload-file)|contains file and metadata to be stored|
-|[update-data](../Events#update-data)|after storage, contains reference metadata used to patch a collection containing reference to such file|
-|[create-data](../Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
-|[create-data](../Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
-|[delete-file](../Events#delete-file)|contains file metadata to trigger file deletion|
-
-
-### Bootstrap
-
-None
-
-
-
 ## bk-crud-client
 
 Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
@@ -271,6 +190,91 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 ### Emits
 
 This component emits no event.
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-file-client
+
+manages http requests towards an instance of `Mia Files Service` to upload/download/store files
+```html
+<bk-file-client></bk-file-client>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[upload-file](../Events#upload-file)|sends a `POST` request to upload a file|[uploaded-file](../Events#uploaded-file)|[error](../Events#error)|
+|[download-file](../Events#download-file)|sends a `GET` request to download/visualize a file|[downloaded-file](../Events#downloaded-file)|[error](../Events#error)|
+|[delete-file](../Events#delete-file)|sends a `DELETE` request to remova a file from storage|[deleted-file](../Events#deleted-file)|[error](../Events#error)|
+
+
+### Emits
+
+| event | description |
+|-------|-------------|
+|[uploaded-file](../Events#uploaded-file)|notifies successful file upload|
+|[downloaded-file](../Events#downloaded-file)|notifies successful file download |
+|[deleted-file](../Events#deleted-file)|notifies successful file deletion|
+|[show-in-viewer](../Events#show-in-viewer)|requests to visualizes a PDF inside a viewer|
+|[success](../Events#success)|notifies successful HTTP request|
+|[error](../Events#error)|contains http error messages when something goes wrong|
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-file-manager
+
+Manages file upload transactions by holding a unique transaction ID hash map. Since files are often linked to a collection entry but stored on a different service, it might be handy to control file upload through a transaction manager. Two steps are needed to successfully upload a file:
+1. file upload to storage service (handled by [file-client](#file-client))
+2. update CRUD collection (handled by [crud-client](#file-client))
+Events marked as *transaction required* must carry a `meta` property with a registered `transactionId`.
+```html
+<bk-file-manager></bk-file-manager>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|(../Events#http-success)|terminate a successful registered transaction| - | - |
+|[update-data-with-file](../Events#update-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
+|[create-data-with-file](../Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
+|[create-data-with-file](../Events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../Events#upload-file)| - |
+|[uploaded-file](../Events#uploaded-file)|continues an `update-data-with-file` transaction by patching the `crud` collection with the `upload-file` metadata|[update-data](../Events#update-data)| - |
+|[error](../Events#error)|interrupts a registered transaction due to an occurred `error` event carrying a `meta`. If the file was stored but the collection wasn't successfully patched, then the file is deleted|[delete-file](../Events#delete-file)| - |
+
+
+### Emits
+
+| event | description |
+|-------|-------------|
+|[upload-file](../Events#upload-file)|contains file and metadata to be stored|
+|[update-data](../Events#update-data)|after storage, contains reference metadata used to patch a collection containing reference to such file|
+|[create-data](../Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
+|[create-data](../Events#create-data)|after storage, contains reference metadata used to create an item into collection containing reference to such file|
+|[delete-file](../Events#delete-file)|contains file metadata to trigger file deletion|
 
 
 ### Bootstrap

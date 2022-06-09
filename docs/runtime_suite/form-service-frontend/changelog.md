@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 1.4.0
 
+### Added
+
 - form pre-compilation
 
 ## 1.3.0
