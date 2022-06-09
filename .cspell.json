@@ -126,7 +126,8 @@
       "teleconsultation",
       "teleconsultations",
       "telepresence",
-      "syscall"
+      "syscall",
+      "Francesco"
   ],
   "ignoreWords": [
     "authz",
@@ -184,7 +185,8 @@
     "inodes",
     "NodeClockNotSynchronising",
     "KubeletPlegDurationHigh",
-    "sforce"
+    "sforce",
+    "unencrypted"
   ],
   "dictionaries": [
     "softwareTerms",

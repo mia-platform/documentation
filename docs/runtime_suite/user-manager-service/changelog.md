@@ -8,19 +8,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] 2022-06-08
+
+### Changed
+
+- userGroups and email are no longer required for GET /users
+
+## [1.0.1] 2022-06-06
+
+### Changed
+
+- It's not possible to modify or unset the authUserId in patchById
+- It's not possible to patch an user with an non-existing userGroup. The user schema is now validated against the new user group (if set)
+
 ## [1.0.0] 2022-05-03
 
 ### Added
 
-- - documentation added
+- Documentation added
 
 ### Changed
 
-- - repository transfer
-- - new test structure
-- - error messages improved
-- - ensure backward compatibility
-- - env var used for userinfo properties instead of configuration
+- Repository transfer
+- New test structure
+- Error messages improved
+- Ensure backward compatibility
+- Env var used for userinfo properties instead of configuration
 
 ### BREAKING CHANGES
 
@@ -35,13 +48,13 @@ Additional properties via configuration file are no longer available.
 
 ### Added
 
-- - create users only in crud
+- Create users only in crud
 
 ## [0.7.3] 2022-04-06
 
 ### Changed
 
-- - patched login endpoint, now cookie auth is supported
+- Patched login endpoint, now cookie auth is supported
 
 ## [0.7.2] 2022-03-09
 
@@ -53,39 +66,39 @@ Additional properties via configuration file are no longer available.
 
 ### Fixed
 
-- - fixed auth0 DB name as env var instead of hardcoded
+- Fixed auth0 DB name as env var instead of hardcoded
 
 ## [0.7.0] 2021-12-30
 
 ### Updated
 
-- - added /oauth/token endpoint for authentication
-- - added /refreshtoken endpoint for authentication token refresh
+- Added /oauth/token endpoint for authentication
+- Added /refreshtoken endpoint for authentication token refresh
 
 ### Fixed
 
-- - body validation when patching a user
+- Body validation when patching a user
 
 ## [0.6.1] 2021-11-10
 
 ### Fixed
 
-- - hardcoded `client-type` removed
+- Hardcoded `client-type` removed
 
 ## [0.6.0] 2021-10-21
 
-- - `POST /user/with-id` endpoint added
-- - `/userinfo` endpoint added
+- `POST /user/with-id` endpoint added
+- `/userinfo` endpoint added
 
 ## [0.5.2] 2021-10-13
 
-- - username ambiguities (username used for auth0 nickname and name)
+- Username ambiguities (username used for auth0 nickname and name)
 
 ## [0.5.1] 2021-09-08
 
 ### Fixed
 
-- - user creation inversion (creation in CRUD before Auth Client)
-- - reaching total test coverage on change state function
+- User creation inversion (creation in CRUD before Auth Client)
+- Reaching total test coverage on change state function
 
 ## [0.5.0] 2021-09-03

@@ -42,6 +42,6 @@ The resulting interpolation will be:
 
 ```html
 <div align="center">
-    My name is John and I live in Milan.
+    My name is Francesco and I live in Milan.
 </div>
 ```

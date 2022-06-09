@@ -238,12 +238,13 @@ Generic drawer container for custom content and custom footer
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`content`| - |Taggable \\| Taggable[]| - |configurable content of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
-|`dataCustomActions`| - |DataCustomAction[]| - | - |
+|`dataCustomActions`| - |DataCustomAction[]| - |list of actions|
 |`drawerId`|`drawer-id`|string| - |identifier associated to the drawer |
 |`drawerTitle`| - |LocalizedText| - |title of the drawer |
 |`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the drawer. This property is to be set programmatically only |
 |`footerComponent`| - |null \\| Taggable \| Taggable[]| - |configurable footer of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
 |`loading`|`loading`|boolean|false|whether or not the drawer is loading |
+|`mask`|`mask`|boolean|true|whether to mask or not the drawer|
 |`requireConfirm`| - |boolean \\| Pick<RequireConfirmPayload, "title" \| "content" \| "cancelText" \| "okText">|false|whether or not the drawer requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`subTitle`| - |LocalizedText| - |sub-title of the drawer |

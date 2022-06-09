@@ -71,6 +71,15 @@ The frontend service endpoints are as described before when the Form Service Fro
 
 :::
 
+#### Form data versioning support
+From `version 1.5.0` the Form-Service Frontend supports the versioning of the form data. When calling the `GET /visualizer/{id}` and the `GET /visualizer/print-form/{id}` endpoints is possible to specify the `_v` parameter. This parameter will be passed to the Form-Service Backend that, if configured properly, will retrieve the right version of the requested form data.
+
+:::info
+
+When the `_v` parameter is specified, the form is set to `readOnly` mode. This means that the form inputs cannot be modified and the `submit` button is removed.
+
+:::
+
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:

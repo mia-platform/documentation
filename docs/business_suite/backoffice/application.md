@@ -15,6 +15,18 @@ At configuration time, 4 services will be spawned:
 - microlc backend
 - back-kit webcomponent library web server
 
+:::caution
+
+Be aware of the fact that the following services:
+
+- `API Gateway`
+- `Microservice Gateway`
+
+are not provided by the application. You can simply add them, without extra config,
+from `Mia Marketplace`.
+
+:::
+
 If absent, a CRUD service, with a single preset collection, will be added to the k8s deploy.
 
 That's enough to get started with the application configuration
@@ -33,12 +45,10 @@ A Back-Kit application that uses a rendering engine such as `microlc-element-com
 
 This is an example of a typical structure for a Back-Kit application:
 
-```
- - authentication.json
- - configuration.json
- - getting-started.json
- - my-cms-collection.json
-```
+- authentication.json
+- configuration.json
+- getting-started.json
+- my-cms-collection.json
 
 ### Authentication
 
@@ -51,7 +61,7 @@ For example:
 }
 ```
 
-when the frontend doesn't need to inject/redirect for an authenticated principal, or 
+when the frontend doesn't need to inject/redirect for an authenticated principal, or
 similarly
 
 ```json
@@ -62,7 +72,7 @@ similarly
 }
 ```
 
-which declares that the user must log in to access the application, 
+which declares that the user must log in to access the application,
 and also should provide endpoints for fetching user information as well as for handling logout routes.
 
 ### Plugin Configuration
