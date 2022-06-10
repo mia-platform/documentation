@@ -14,6 +14,7 @@ const redirectPaths = {
   "/docs/runtime_suite/envoy-api-gateway/overview": "/docs/runtime_suite/api-gateway-envoy/overview",
   "/docs/fast_data/overview": "/docs/runtime_suite/event-source-management",
   "/docs/runtime_suite/pdf-service/overview": "/docs/runtime_suite/pdf-service",
+  "/docs/info/version_policy/": "/info/version-policy/"
 };
 
 const createRedirects = (path) => {
