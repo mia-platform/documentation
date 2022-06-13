@@ -9,25 +9,25 @@ You can deploy the same codebase to different runtime environments, obtaining di
 
 The Console handles environments in a project-specific manner. When creating a new project, it inherits the runtime environments from the company it belongs to. After creating the project, it is possible to edit those for the specific project. Each runtime environment runs on its kubernetes cluster namespace, and its properties can be modified by means of the CMS only.
 
-It is possible to have an overview of the project runtime environments in the Envs area, which contains a Runtime Environments card displaying a table with a row for each environment, as shown in the picture below.
+It is possible to have an overview of the project runtime environments in the Settings area, which contains a Runtime Environments card displaying a table with a row for each environment, as shown in the picture below.
 
 ![environments table](img/environments_table.png)
 
 The table displays information in the following columns:
 
-* **ID**: the human-readable ID of the runtime environment
-* **Documentation**: a link to the main documentation deployed in this environment
-* **CMS**: a link to the main CMS deployed in this environment
-* **Application**: a link to the main application deployed in this environment
+* **ID**: the human-readable ID of the runtime environment;
+* **Documentation**: a link to the main documentation deployed in this environment;
+* **CMS**: a link to the main CMS deployed in this environment;
+* **Application**: a link to the main application deployed in this environment.
 
 If you want to have more information about a specific environment, you can expand its row by clicking on the `+` button at the left of the row, which provides the following additional information:
 
-* **Documentation**: a group of links to all the documentations available in this environment
-* **CMS**: a group of links to all of the CMSs available in this environment
-* **Application**: a group of links to all of the applications available in this environment
-* **Cluster namespace**: the namespace of the kubernetes cluster the runtime environment runs on
-* **Cluster hostname**: the hostname of the kubernetes cluster the runtime environment runs on
-* **Description**: a textual description of the runtime environment
+* **Documentation**: a group of links to all the documentations available in this environment;
+* **CMS**: a group of links to all of the CMSs available in this environment;
+* **Application**: a group of links to all of the applications available in this environment;
+* **Cluster namespace**: the namespace of the kubernetes cluster the runtime environment runs on;
+* **Cluster hostname**: the hostname of the kubernetes cluster the runtime environment runs on;
+* **Description**: a textual description of the runtime environment.
 
 Additionally, one could define custom links to be displayed among the additional information provided in the expanded row.
 
