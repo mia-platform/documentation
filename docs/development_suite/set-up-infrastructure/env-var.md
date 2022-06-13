@@ -12,13 +12,13 @@ They externalize all environment specific aspects of your app and keep your app 
 
 Some specific examples of common scenarios when you should consider using environment variables.
 
-* Which HTTP port to listen on  
-* What path and folder your files are located in, that you want to serve  
-* Pointing to a development, staging, test, or production database  
+* Which HTTP port to listen on;
+* What path and folder your files are located in, that you want to serve;
+* Pointing to a development, staging, test, or production database.
 
 # Manage your Variables
 
-Thanks to our Console in the Envs area it is possible to manage your Environment Variables.
+Thanks to our Console in the Settings area it is possible to manage your Environment Variables.
 
 ## How to differentiate your variable from one environment to another
 
@@ -50,7 +50,7 @@ Remember! It is fundamental to define a prefix if you want to associate a variab
 When you start a new project you will find variables already configured.
 To add a new variable press the **"Add new environment variable"** button at the top-right of the table and fill in the form:
 
-* the **key** is mandatory and identifies your variable. Remember **to use the prefix** to manage the differentiation between environment.
+* the **key** is mandatory and identifies your variable. Remember **to use the prefix** to manage the differentiation between environment;
 * the **value** is the value you want to attribute to your variable, the one that will be interpolated.
 
 :::info
@@ -58,7 +58,7 @@ When a **value** contains some `$` characters it is required to escape it by add
 
 #### Example
 
-* **Desired value** to interpolate: `var$var$var`.  
+* **Desired value** to interpolate: `var$var$var`;
 
 * **Actual value** to write: `var$$var$$var`.
 :::
