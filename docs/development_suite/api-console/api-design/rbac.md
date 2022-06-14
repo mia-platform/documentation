@@ -135,19 +135,19 @@ To build your query remember to use assign in the `data.resources` iterable the 
 In the example below, given a valid rows filtering configuration, the `allow` policy requires that the requested resource details can be retrieved by the user and by its manager.
 
 ```rego
-   allow {
-      input.request.method == "GET"
-      resource := data.resources[_]
-      resource.name == input.user
-      resource.description == "this is the user description"
-   }
+allow {
+   input.request.method == "GET"
+   resource := data.resources[_]
+   resource.name == input.user
+   resource.description == "this is the user description"
+}
 
-   allow {
-      input.request.method == "GET"
-      resource := data.resources[_]
-      resource.manager == input.user
-      resource.name == input.path[1]
-   }
+allow {
+   input.request.method == "GET"
+   resource := data.resources[_]
+   resource.manager == input.user
+   resource.name == input.path[1]
+}
 ```
 
 :::caution
