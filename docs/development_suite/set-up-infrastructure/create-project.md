@@ -13,7 +13,7 @@ In particular, to create a project, you need to have already set up your Console
 
 * **Provider**: This will be used by the Console to correctly retrieve the third party service providers needed by your projects (e.g. the Git repository provider)
 * **Company**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its company.
-* **Template**: Repository with libraries and pre-filled configurations. Each company could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project.
+* **Template**: Repository with libraries and pre-filled configurations. Each company could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project. To see an example of Jenkins pipelines definition, see [this](/docs/development_suite/deploy/configuration#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
 
 If you have already configured these features, you can directly [skip to the last section](#project-creation).
 

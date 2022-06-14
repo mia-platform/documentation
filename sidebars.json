@@ -720,6 +720,10 @@
         {
           "id": "tutorial/fast_data/fast_data_low_code_tutorial",
           "type": "doc"
+        },
+        {
+          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
+          "type": "doc"
         }
       ],
       "label": "Tutorial",
