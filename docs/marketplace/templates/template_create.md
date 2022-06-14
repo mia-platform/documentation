@@ -97,11 +97,11 @@ A set of rules that would be appropriate to follow.
 
 ### CI/CD (Continuous Integration and Continuous Deployment)
 
-A working CI pipeline guarantee that your template, before the integration, is tested, with a consistent code style, the whole in an automatically way. Furthermore, you can automatize the build phase.
+A working CI pipeline guarantee that your template, before the integration, is automatically tested and with a consistent code style. Furthermore, you can automatize the build phase.
 
-GitLab provides a dedicated [CI/CD tool](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/), while GitHub leverages  leverages third-party party integrations.
+GitLab provides a dedicated [CI/CD tool](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/), while GitHub leverages leverages third-party party integrations.
 
-To improve safe the security of your template, it's important to keep dependencies updated. In order to do this, you can use tools like  [Dependabot](https://dependabot.com/).
+To improve the security of your template, it's important to keep dependencies updated. In order to do this, you can use tools like  [Dependabot](https://dependabot.com/) or [Renovate bot](https://docs.renovatebot.com/).
 
 ### Pre-commit hook
 
