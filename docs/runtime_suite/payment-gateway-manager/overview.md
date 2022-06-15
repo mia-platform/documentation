@@ -33,14 +33,15 @@ Some providers may require additional fields, in which case they will be wrapped
 * Check the status of the session: `POST /{provider}/session/check`
 
 ## Supported Providers and Payment Methods
-| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | 
-|-------------------------|--------------|----------|-----------|---------|----------|----------|------------|
-| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |            |
-| satispay                |              |          |           |         | ✓        |          |            |
-| unicredit               | ✓            |          |           |         |          |          |            |
-| braintree               |              |          |           | ✓       |          |          |            |
-| scalapay                |              |          |           |         |          | ✓        |            |
-| safecharge              |              |          |           |         |          |          | ✓          |
+| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy |
+|-------------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|
+| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |            |       |
+| satispay                |              |          |           |         | ✓        |          |            |       |
+| unicredit               | ✓            |          |           |         |          |          |            |       |
+| braintree               |              |          |           | ✓       |          |          |            |       |
+| scalapay                |              |          |           |         |          | ✓        |            |       |
+| safecharge              |              |          |           |         |          |          | ✓          |       |
+| soisy                   |              |          |           |         |          |          |            | ✓     |
 ## Utility APIs
 When possible, the PGM will expose utility APIs for some providers. These APIs abstract contour operations to the 
 developer and allow focusing on the payment process itself, rather than setup processes. The BrainTree helper suite is 

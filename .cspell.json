@@ -187,7 +187,8 @@
     "NodeClockNotSynchronising",
     "KubeletPlegDurationHigh",
     "sforce",
-    "unencrypted"
+    "unencrypted",
+    "soisy"
   ],
   "dictionaries": [
     "softwareTerms",
