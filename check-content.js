@@ -103,6 +103,9 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
   const imagesNotLinked = []
   for (const img in images) {
+    if(img.includes('.gitkeep')) {
+      continue
+    }
     if (!images[img].isUsed) {
       imagesNotLinked.push(images[img].file.replace(absolutePathPrefix, ''))
       if (mode === 'warn') {
