@@ -12,7 +12,7 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **HTTP_PORT**
 * **ENABLED_PROVIDERS** (required): comma separated list of payment providers enabled at runtime
 * **PAYMENT_CALLBACK_URL** (required): URL used to notify other services about a payment transaction result
-* **PGM_PUBLIC_URL** (required for satispay and scalapay): URL where this service is exposed 
+* **PGM_PUBLIC_URL** (required for satispay, scalapay and soisy): URL where this service is exposed 
 (e.g. `http://my-domain/payment-gateway-manager`)
 
 ## GestPay (Axerve) Specific Environment Variables
@@ -52,7 +52,7 @@ user after completing a payment via the Satispay mobile app
 
 
 ## Scalapay Specific Environment Variables
-* **SCALAPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Scalapay Sandbox or Production environment.
+* **SCALAPAY_BASE_PATH** (required): Address to Scalapay base path. Scalapay has three different environments, integration, staging and production.
 * **SCALAPAY_API_KEY** (required)
 * **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction.
 * **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction.
@@ -62,3 +62,8 @@ user after completing a payment via the Satispay mobile app
 * **SAFECHARGE_MERCHANT_SITE_ID** (required): Merchant site identification code.
 * **SAFECHARGE_MERCHANT_SECRET_KEY** (required): Merchant secret for validating the communication.
 * **SAFECHARGE_URL** (required): Base URL of the SafeCharge provider.
+
+## Soisy Specific Environment Variables
+* **SOISY_SHOP_ID** (required)
+* **SOISY_PARTNER_KEY** (required): X-Auth-Token header for authentication on Soisy.
+* **SOISY_BASE_URL** (required): Base URL of the Soisy provider.

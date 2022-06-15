@@ -36,7 +36,7 @@ When you insert a document in a crud, if you no specify any `options`, The defau
 ```
 
 ## HTML template
-HTML templates are interpolated using [Handlebars](https://github.com/wycats/handlebars.js/) library. So, the syntax to perform interpolation is the one of the linked library.
+HTML templates are interpolated using [Handlebars](https://github.com/wycats/handlebars.js/) library. So, the syntax to perform interpolation is the one of the linked library. Moreover, PDF Service implements [just-handlerbars-helpers](https://github.com/leapfrogtechnology/just-handlebars-helpers) library, which means that the all the helpers offered by the library can be used in the construction of the HTML Template.
 
 An example of useful template is the following:
 ```html

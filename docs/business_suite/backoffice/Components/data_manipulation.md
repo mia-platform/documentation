@@ -170,6 +170,18 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 
 None
 
+| event | description |
+|-------|-------------|
+|[create-data](../Events#create-data)|sends the inserted data, as well as default or hidden fields for creation to the client, meta includes a unique transactionId|
+|[update-data](../Events#update-data)|sends the edited fields of the item for update, always includes `_id` and `__STATE__` necessary for the CRUD operations, meta includes a unique transactionId|
+|[update-data-with-file](../Events#update-data-with-file)|notifies the file-manager that files have to be uploaded and the collection has to be patched with payload data|
+|[create-data-with-file](../Events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
+|[error](../Events#error)|contains http error messages when something goes wrong|
+
+### Bootstrap
+
+None
+
 ## bk-form-drawer
 
 Drawer containing a Form to edit or create items described by the `dataSchema`, once data is submitted for creation or update, drawer is put in loading state. The component is composed of a generic Drawer component, a generic Form component, thus it listens to and emits all the events that these do.

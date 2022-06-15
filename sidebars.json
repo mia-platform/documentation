@@ -1608,29 +1608,6 @@
             {
               "collapsed": true,
               "type": "category",
-              "label": "RBAC Service",
-              "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/rbac-service/overview"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/rbac-service/configurations"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/rbac-service/cheat_sheet"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/rbac-service/changelog"
-                }
-              ]
-            },
-            {
-              "collapsed": true,
-              "type": "category",
               "label": "SES Mail Notification Service",
               "items": [
                 {
