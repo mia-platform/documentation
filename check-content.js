@@ -18,6 +18,7 @@ const filesToExcludeFromSidebarCheck = [
   "monitoring/paas_alerting_rules",
   "getting_started/monitoring-dashboard/dev_ops_guide/business_continuity",
   "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery",
+  "info/licenses-reports/.gitkeep",
 
   "tutorial/demo_project/overview", // TODO:
 ]
