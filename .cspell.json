@@ -187,6 +187,7 @@
     "NodeClockNotSynchronising",
     "KubeletPlegDurationHigh",
     "sforce",
+    "noindex",
     "unencrypted",
     "soisy"
   ],

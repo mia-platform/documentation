@@ -687,6 +687,56 @@
       ],
       "label": "Monitoring",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/reworked_doc/what_is_fast_data",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/reworked_doc/inputs_and_outputs",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/reworked_doc/the_basics",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/reworked_doc/architecture",
+          "type": "doc"
+        },
+        {
+          "collapsed": false,
+          "items": [
+            {
+              "id": "fast_data/reworked_doc/configuration/overview",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/reworked_doc/configuration/projections",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/reworked_doc/configuration/single_views",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/reworked_doc/configuration/strategies",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/reworked_doc/configuration/cast_functions",
+              "type": "doc"
+            }
+          ],
+          "label": "Configuration",
+          "type": "category"
+        }
+      ],
+      "label": "Reworked Fast Data Docs",
+      "type": "category"
     }
   ],
   "gettingStarted": [
