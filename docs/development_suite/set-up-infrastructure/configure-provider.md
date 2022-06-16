@@ -4,10 +4,15 @@ title: Providers Management
 sidebar_label: Providers Management
 ---
 
-As an on-premise customer you have the ability to configure and use an authentication provider that differs from the git provider (i.e. [Okta](https://www.okta.com/) as authentication provider and [GitLab](https://gitlab.com/) as git provider). 
-In order to do it, you **must** configure a service account.
+As an on-premise customer you have the ability to configure and use an authentication provider that differs from the git provider (i.e. [Okta](https://www.okta.com/) as authentication provider and [GitLab](https://gitlab.com/) as git provider).
 
-In the following sections, you will see how to use the relative APIs to create a new provider and associate the respective token, which will be appropriately encrypted to ensure a high standard of security.
+In order to do it, you **must** create and configure a service account, which will be used to interact with the chosen git provider.
+
+:::info
+As the service account is the only one to interact with the git provider, you will see it as author of some operations like pipelines trigger.
+:::
+
+In the following sections, you will see how to use the relative APIs to create a new provider and associate the respective service account's token, which will be appropriately encrypted to ensure a high standard of security.
 
 ## Providers APIs
 

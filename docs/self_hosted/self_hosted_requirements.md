@@ -29,59 +29,77 @@ The following software and hardware recommendations are for installing Mia-Platf
    <tbody>
       <tr>
          <td rowspan="4"><strong>Auth Provider</strong></td>
-         <td>Okta</td>
+         <td><img src="/img/okta.ico" width="15" height="15"/> Okta</td>
          <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
       </tr>
       <tr>
-         <td>GitLab</td>
+         <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>> 14.x</td>
          <td>N/A</td>
          <td>N/A</td>
       </tr>
       <tr>
-         <td>GitHub</td>
+         <td><img src="/img/github.png" width="15" height="15"/> GitHub</td>
          <td>> 3.x</td>
          <td>N/A</td>
          <td>N/A</td>
       </tr>
       <tr>
-         <td>Microsoft</td>
+         <td><img src="/img/microsoft.ico" width="15" height="15"/> Microsoft</td>
          <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
       </tr>
       <tr>
-         <td rowspan="2"><strong>Git provider</strong></td>
-         <td>GitLab</td>
+         <td rowspan="4"><strong>Git provider</strong></td>
+         <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>&gt; 14.x</td>
-         <td>4 core</td>
+         <td>4 cores</td>
          <td>4 GB</td>
       </tr>
       <tr>
-         <td>GitHub</td>
+         <td><img src="/img/github.png" width="15" height="15"/> GitHub</td>
          <td>&gt; 3.x</td>
-         <td>4 core</td>
+         <td>4 cores</td>
          <td>32 GB</td>
       </tr>
       <tr>
-         <td><strong>CI/CD</strong></td>
-         <td>GitLab CI Runners</td>
+         <td><img src="/img/azure-repos.png" width="15" height="15"/> Azure Repos</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> BitBucket Server</td>
+         <td>&gt; 8.x</td>
+         <td>2 cores</td>
+         <td>3 GB</td>
+      </tr>
+      <tr>
+         <td rowspan="2"><strong>CI/CD</strong></td>
+         <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
          <td>&gt; 14.x</td>
          <td>1 core</td>
          <td>2 GB</td>
       </tr>
       <tr>
+         <td><img src="/img/azure-pipelines.png" width="15" height="15"/> Azure Pipelines</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
          <td><strong>NoSQL database</strong></td>
-         <td>MongoDB</td>
+         <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB</td>
          <td>&gt; 4.2</td>
-         <td>2 core</td>
+         <td>2 cores</td>
          <td>2 GB</td>
       </tr>
       <tr>
          <td><strong>Runtime</strong></td>
-         <td>Kubernetes</td>
+         <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
          <td>&gt; 1.19<br/>&lt;= 1.21</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
@@ -95,7 +113,7 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td rowspan="3"><strong>Object Storage</strong></td>
-         <td>Google Cloud Storage</td>
+         <td><img src="/img/gcs.png" width="15" height="15"/> Google Cloud Storage</td>
          <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
@@ -107,14 +125,14 @@ The following software and hardware recommendations are for installing Mia-Platf
         <td>N/A</td>
       </tr>
       <tr>
-        <td>MongoDB</td>
+        <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB</td>
         <td>N/A</td>
         <td>N/A</td>
         <td>N/A</td>
       </tr>
       <tr>
          <td rowspan="2"><strong>Key Management Service</strong></td>
-         <td>Google Cloud Platform</td>
+         <td><img src="/img/gcp.ico" width="15" height="15"/> Google Cloud Platform</td>
          <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
