@@ -18,6 +18,7 @@ Mia-Platform includes components subject to the terms and conditions of “open 
 | Express.js            | [Apache-2.0](./licenses/apache-2.0.md) |
 | Swagger IO            | [Apache-2.0](./licenses/apache-2.0.md) |
 <!-- START_LICENSE_TEMPLATE -->
+|export-service|[Report](pathname://./licenses-reports/export-service.html)|
 <!-- END_LICENSE_TEMPLATE -->
 
 In the Console animation for creating a successful project: Taras Chenenko Success confetti   vSwaroopBk/ LottieFiles
