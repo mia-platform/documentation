@@ -67,7 +67,7 @@ Therefore, we know that if `pr_allergens` changes, the path to update the single
 
 This configuration is described with the `projectionChangesSchema.json`:
 
-```json
+```json title="projectionChangesSchema.json"
 {
   "version": "1.0.0",
   "config": {
@@ -120,7 +120,7 @@ To do that you have to specify in the `projectionChangesSchema.json` that the **
 
 Let's see it in the configuration file below:
 
-```json
+```json title="projectionChangesSchema.json"
 {
   "version": "1.0.0",
   "config": {
