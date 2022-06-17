@@ -100,7 +100,7 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td><strong>Runtime</strong></td>
          <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
-         <td>&gt; 1.19<br/>&lt;= 1.21</td>
+         <td>&gt; 1.19<br/>&lt;= 1.22</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
       </tr>
