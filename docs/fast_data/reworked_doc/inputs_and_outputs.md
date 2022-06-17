@@ -12,6 +12,8 @@ This page presents all the different inputs and outputs that revolve around the 
 
 Throughout the document we will describe the messages providing a natural language description, an **example**, and for Kafka messages an [AsyncApi](https://www.asyncapi.com/) specification.
 
+In order to work properly, the Fast Data infrastructure will need multiple Kafka topics, hence any time we will discuss a Kafka Topic, a naming convention will be suggested.
+
 ## Data Ingestion
 
 Here, we will discuss the inputs and outputs related to data ingestion.
@@ -156,6 +158,17 @@ channels:
 
 If none of the above formats applies for your use case, you can use your custom format and specify custom adapter that will make the message ready to be processed by the Real Time Updater service.
 
+#### Topic naming convention
+
+**producer**: the system producing its own events
+
+`<tenant>.<environment>.<source-system>.<projection>.ingestion`
+
+An example:
+
+```sh
+test-tenant.PROD.system-name.test-projection.ingestion
+```
 ### Projection
 
 A Projection is an updated and **standardized** copy of the data coming from the System of Records.
@@ -294,6 +307,17 @@ channels:
           required: ['__internal__kafkaInfo', 'key']
 ```
 
+#### Topic naming convention
+
+**producer** Real Time Updater
+
+`<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-collection.pr-update
+```
 ### Projection Change
 
 A `Projection Change` is an event that informs the listener that a Single View should be updated.
@@ -436,6 +460,18 @@ channels:
                   'aggregation'
           then:
             required: ['singleViewIdentifier']
+```
+
+#### Topic naming convention
+
+**producer**: Single View Trigger
+
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger
 ```
 
 ## Aggregation
@@ -794,4 +830,16 @@ channels:
               type: string
               enum: ['NON_EXISTING_SV', 'INSERT_SV', 'DELETE_SV', 'UPDATE_SV']
           required: ['key', 'value', 'opType']
+```
+
+#### Topic naming convention
+
+**producer**: Single View Creator
+
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-sv.sv-update
 ```

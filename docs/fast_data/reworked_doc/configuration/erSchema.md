@@ -18,7 +18,7 @@ The Entity-Relation Schema defines the relation between the collections of the [
 
 An example of a correct ER is presented next:
 
-```json
+```json title="erSchema.json"
 {
   "version": "N.N.N",
   "config": {
@@ -85,7 +85,7 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 <details><summary>food delivery ER schema configuration</summary>
 <p>
 
-```json
+```json title="erSchema.json"
 {
   "version": "1.0.0",
   "config": {
