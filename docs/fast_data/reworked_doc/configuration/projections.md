@@ -219,5 +219,5 @@ In your custom files (e.g. `kafka-adapters`) you can import only the node module
 * [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
 
 :::caution
-It is used the node version 12.
+It is used the node version 14.
 :::

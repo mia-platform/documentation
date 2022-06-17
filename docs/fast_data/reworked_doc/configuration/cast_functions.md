@@ -105,5 +105,5 @@ In your custom cast functions you can import only the node modules present in th
 - [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
 
 :::caution
-It is used the node version 12.
+It is used the node version 14.
 :::
