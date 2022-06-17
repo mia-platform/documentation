@@ -13,7 +13,7 @@ Here below, instead, all the configurations the service accepts are explained.
 ## Environment variables
 
 <table>
-    <tr><td>Name</td><td>Required</td><td>Description</td><td>Default value</td></tr>
+    <tr><th>Name</th><th>Required</th><th>Description</th><th>Default value</th></tr>
     <tr><td>LOG_LEVEL</td><td>true</td><td>defines the level of the logger  </td><td>-</td></tr>
     <tr><td>MONGODB_URL</td><td>true</td><td>defines the mongodb URL to contact  </td><td>-</td></tr>
     <tr><td>PROJECTIONS_DATABASE_NAME</td><td>true</td><td>defines the name of the projections' database  </td><td>-</td></tr>
