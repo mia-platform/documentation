@@ -160,15 +160,8 @@
   ],
   "devOpsConsole": [
     {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/overview-dev-suite",
-          "type": "doc"
-        }
-      ],
-      "label": "Overview",
-      "type": "category"
+      "id": "development_suite/overview-dev-suite",
+      "type": "doc"
     },
     {
       "collapsed": true,
