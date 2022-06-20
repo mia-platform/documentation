@@ -291,6 +291,7 @@ const config = {
         trackingID: 'GTM-PKKZ6XT',
       },
     ],
+    "./src/plugins/image-zoom"
   ],
 };
 
