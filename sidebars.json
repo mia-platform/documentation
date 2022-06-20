@@ -472,6 +472,10 @@
           "type": "doc"
         },
         {
+          "id": "self_hosted/self_hosted_runtime_requirements",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/set-up-infrastructure/providers-management",
           "type": "doc"
         }
