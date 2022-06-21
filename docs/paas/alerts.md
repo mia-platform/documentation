@@ -1,5 +1,5 @@
 ---
-id: paas_alerting_rules
+id: alerting_rules
 title: Alerting rules
 sidebar_label: Alerting rules
 ---

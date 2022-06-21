@@ -92,6 +92,13 @@ const config = {
         },
         {
           type: 'doc',
+          docId: "paas/overview",
+          label: "PaaS",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(monitoring|paas)"
+        },
+        {
+          type: 'doc',
           docId: "release_notes/release_notes",
           label: "Release notes",
           position: "left",
