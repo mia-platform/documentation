@@ -2006,6 +2006,28 @@
       "type": "category"
     }
   ],
+  "paas": [
+    {
+      "id": "paas/overview",
+      "type": "doc"
+    },
+    {
+      "id": "paas/alerting_rules",
+      "type": "doc"
+    },
+    {
+      "id": "paas/security/security_measures",
+      "type": "doc"
+    },
+    {
+      "id": "info/mia_service_level_agreement",
+      "type": "doc"
+    },
+    {
+      "id": "paas/business_continuity",
+      "type": "doc"
+    }
+  ],
   "releaseNotes": [
     {
       "id": "release_notes/mia-platform-v9-preview",
