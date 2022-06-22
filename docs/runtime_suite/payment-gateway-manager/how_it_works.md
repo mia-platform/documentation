@@ -21,6 +21,9 @@ In order to perform a payment we make an `HTTP POST` on `http://payment-gateway-
 }
 ```
 
+If you are using gestpay(Axerve) as your provider, you can pass the optional fields `buyerName` and `buyerEmail` in the body of the `/pay`.
+In this case, the buyer will receive an email from Axerve with the transaction result, such as merchant name, date of the payment, amount, and other info.
+
 If the payment procedure requires an additional step from the user, via web page or mobile app, the payment reply will 
 return `REDIRECT_TO_URL` as `result`. The actual redirect URLs can be found in `redirectToUrl` and `mobileRedirectToUrl`.
 

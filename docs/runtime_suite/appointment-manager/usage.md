@@ -554,12 +554,6 @@ This endpoint combines calls to the `DELETE /availabilities/` and `DELETE /slots
 and may have the following side effects.
 
 :::warning
-This endpoint can only handle max 200 deletions.
-
-This may change in the future.
-:::
-
-:::warning
 It is not possible to use additional properties as query parameters.
 
 This may change in the future.

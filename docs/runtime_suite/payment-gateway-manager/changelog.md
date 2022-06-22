@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.4.0 - 17/06/2022
+### Changed
+- Changed `GestPayService` to accept optional fields `buyerName` and `buyerEmail` during the payment
+
 ## 2.3.0 - 09/06/2022
 ### Added
 - **New payment provider**: Soisy (native implementation).

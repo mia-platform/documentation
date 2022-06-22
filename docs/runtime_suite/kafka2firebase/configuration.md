@@ -10,10 +10,14 @@ google-credential.example.json).
 The environment variables needed are:
 
 * `HTTP_PORT`: the port of the service
-* `SERVICE_VERSION: the service version
+* `SERVICE_VERSION`: the service version
 * `KAFKA_HOST`: the host of kafka
 * `KAFKA_TOPICS`: the list of the kafka topics to which take the messages. They must be separated by comma, ex KAFKA_TOPICS=topi1,topic2
 * `KAFKA_CONSUMER_GROUP_ID`: the name of the group of this project
+* `KAFKA_SECURITY_PROTOCOL`: e.g. SASL_SSL
+* `KAFKA_AUTH_MECHANISM`: authentication mechanism, used only if `KAFKA_USERNAME` and `KAFKA_PASSWORD` have a value (e.g. PLAIN, SCRAM-SHA-256, SCRAM-SHA-512)
+* `KAFKA_USERNAME`
+* `KAFKA_PASSWORD`
 * `AUTO_OFFSET_RESET`: the kafka setting for the reset
 * `HEADERS_TO_PROXY`: the headers you want to send with the hooks. This env can be null, in this case no header will
 be pass with the call. Note that can be null but not empty string, if you don't need headers don't set this variable.
