@@ -130,7 +130,9 @@
       "teleconsultations",
       "telepresence",
       "syscall",
-      "Francesco"
+      "Francesco",
+      "NSUTF",
+      "NSJSON"
   ],
   "ignoreWords": [
     "authz",
@@ -191,7 +193,8 @@
     "sforce",
     "noindex",
     "unencrypted",
-    "soisy"
+    "soisy",
+    "alloc"
   ],
   "dictionaries": [
     "softwareTerms",

@@ -1486,6 +1486,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/kafka2firebase/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/kafka2firebase/changelog"
                 }
               ]
             },
@@ -1611,6 +1615,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/braintree"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/applepay"
                 },
                 {
                   "type": "doc",

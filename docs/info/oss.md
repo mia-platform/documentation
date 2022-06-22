@@ -19,11 +19,8 @@ Mia-Platform includes components subject to the terms and conditions of “open 
 | Swagger IO            | [Apache-2.0](./licenses/apache-2.0.md) |
 
 ## List of 3rd party Libraries Used
-
 | Module | Report link |
 |---|---|
-|export-service|[Report](pathname:///licenses-reports/export-service.html)|
-
 
 ## Licenses
 

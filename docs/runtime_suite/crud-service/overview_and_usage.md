@@ -622,15 +622,14 @@ curl --request GET \
 
 The list of currently supported MongoDB aggregation operators is the following:
 
-- `$filter`
-- `$in`
-- `$reduce`
-- `$concatArrays`
-- `$cond`
-- `$first`
+- Comparison: `$eq`, `$gt`, `$gte`, `$in`, `$lt`, `$lte`, `$ne`, `$nin`,
+- Logical: `$and`, `$not`, `$nor`, `$or`,
+- Evaluation: `$exists`, `$type`, `$cond`, `$regexMatch`, `$mod`,
+- Array: `$filter`, `$reduce`, `$concatArrays`, `$first`, `$map`, `$all`, `$elemMatch`, `$size`,
 
 **Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
 
+Here you can find the official Mongo documentation about the [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-projection) field into the find operator.
 
 #### Combine all together
 
