@@ -125,7 +125,7 @@ function Home() {
                 <p className="hero__subtitle">{siteConfig.tagline}</p>
               </div>
               <div className="searchBarBox home">
-                <SearchBar />
+                <SearchBar avoidKeyboardShortcuts />
               </div>
             </div>
           </header>
