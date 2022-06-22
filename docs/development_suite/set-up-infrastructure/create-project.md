@@ -4,54 +4,79 @@ title: Create a Project
 sidebar_label: Create a Project
 ---
 
-The project creation allows you to configure a project, which lifecycle could be wholly managed and developed through Console areas.
+The project creation process allows you to configure a project, which lifecycle can then be entirely managed and developed through Console areas.
 
 ## How to set up Console
 
-The first section of this guide allows you to have the prerequisites needed to create a project.
-In particular, to create a project, you need to have already set up your Console and have already configured these three features:
+The first section of this guide allows you to gain the prerequisites needed to create a project.
+In particular, to create a project, you need to have already set up your Console and configured these three features:
 
-* **Provider**: This will be used by the Console to correctly retrieve the third party service providers needed by your projects (e.g. the Git repository provider)
-* **Company**: This is the upper level of the projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its company.
-* **Template**: Repository with libraries and pre-filled configurations. Each company could have one or more template. Starting the project from an existent template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project. To see an example of Jenkins pipelines definition, see [this](/docs/development_suite/deploy/configuration#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
+* **Provider**: This will be used by the Console to correctly retrieve the third party service providers needed by your projects;
+* **Company**: This is the upper level of projects. Each created project shares the same information (environments, CI/CD integration and cluster information) of its company;
+* **Template**: Repository with libraries and pre-filled configurations. Each company could have one or more template. By starting a project from an existing template, you can pre-fill active services in your project and start all the similar projects with the same configuration. For example, the template can define the pipelines and the usage (or not usage) of CMS in your project. To see an example of Jenkins pipelines definition, take a look at [this](/docs/development_suite/deploy/configuration#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
 
 If you have already configured these features, you can directly [skip to the last section](#project-creation).
 
 ## CRUDs
 
-You can find more info about how to create a CRUD visiting the [CRUD documentation](../api-console/api-design/crud_advanced.md)
+You can find more info about how to create a CRUD visiting the [CRUD documentation](../api-console/api-design/crud_advanced.md).
 
 ### Create a Provider
 
 If you already have the provider you need in your CRUD, you can [skip this section](#create-a-company).
 
-This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
-This collection includes the following fields:
+You can create a Git provider by setting up a specific document following the procedure described [here](configure-provider.md). This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
+The fields necessary for this collection are:
 
-* `providerId` (*required*): A unique human readable identifier (ex: "my-git-provider" or "my-pipeline-provider");
-* `type` (*required*): the name of provider. Current supported providers are:
-  * Git providers: `gitlab`, `github`;
-* `baseUrl` (*required*): the provider base url used to persist configurations;
-* `apiBaseUrl` (*required*): the provider base url that core service used to call providers (example: gitlab.com/api or api.github.com/);
+* `providerId` (*required*): the human-readable ID of the provider (e.g. "my-git-provider" or "my-pipeline-provider");
+* `type` (*required*): the name of the provider. The currently supported providers are `gitlab`, `github`, `azure-devops`, and `bitbucket`;
+* `baseUrl` (*required*): the provider base URL used to persist configurations;
+* `apiBaseUrl` (*required*): the provider base URL used by core service to call the provider (e.g. gitlab.com/api or api.github.com/).
 
 ### Create a Company
 
 If you already have a company, you can [skip this section](#create-a-template).
 
-The company is the upper level of the projects. It allows to create a project configured inside an already existent infrastructure, which information are repeated for all the projects: *environments*, *cluster information*, *CI/CD integration*.
+You can create a company by setting up a specific document through the appropriate CMS section. The company is the upper level of projects. It allows to create a project configured inside an already existing infrastructure, whose information are the same for all projects within the company: *environments*, *cluster information*, *CI/CD integration*.
 
 :::info
-The fields in the company cannot be changed during project creation steps (if not specified otherwise).
+The information related to the company cannot be changed during the project creation steps (if not specified otherwise).
 :::
 
 The fields necessary for this collection are:
 
-* `name` (*required*): the name of the company to display in selection list;
-* `tenantId` (*required*): the human-readable id of the company (e.g. mia-platform). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
+* `name` (*required*): the name of the company;
+
 * `description`: the description of the company;
-* `defaultTemplateId`: the default template to be used in project creation. This could be changed during the project creation wizard steps;
-* `cmsImageName`: cms docker image to interpolate in template archive. It should also contain the cms tag to use (if `cms-site` service is disabled in project creation, it will not be used).
-* `environments` (*required*): an array of objects containing the definition of the environments for the company. The content of these arrays will be interpolated to replace `%projectId%` by inserting `projectId` field in project creation. Each object should contain, for example:
+
+* `tenantId` (*required*): the human-readable ID of the company (e.g. "mia-platform"). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
+
+* `defaultTemplateId`: the default template to be used in the project creation. This information can be changed in the project creation wizard steps;
+
+* `cmsImageName`: CMS Docker image to interpolate in template archive. It should also contain the CMS tag to use (if `cms-site` service is disabled in the project creation, it will not be used);
+
+* `repository` (*required*): object which specifies the information about the repository where the projects of this company have to be created. The object must have the following properties:
+  * **providerId** (*required*): `providerId` existing into the provider's CRUD. It is used to get information about the provider to use. This ID is important because it affects many requests used by the developer Console;
+  * **basePath**: base path where the project will be created. The user needs to have permission for creating projects on this path;
+  * **visibility**: visibility of the project.
+
+:::caution
+If the Git provider is `github`, the `basePath` have to be an existing organization. If it does not exist, it will not be created.
+
+If the Git provider is `gitlab`, the `basePath` is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
+
+If the Git provider is `azure-devops`, the `basePath` is by default https://dev.azure.com.
+
+If the Git provider is `bitbucket`, the `basePath` is the URL on which the server is exposed.
+
+e.g.
+
+* /groupA/groupB -> if groupB does not exist AND user have permission to create groups in groupA, then groupB will be created.
+* /groupA/groupB -> if groupB does not exist AND user have no permission to create groups in A, then groupB will NOT be created.
+* /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
+:::
+
+* `environments` (*required*): an array of objects containing the definitions of the environments for the company. The content of this arrays will be interpolated to replace `%projectId%` by inserting the `projectId` field in the project creation. Each object should contain, for example:
 
     ```js
       {
@@ -81,17 +106,25 @@ The fields necessary for this collection are:
     ```
 
   :::caution
-  The terms _tenant_ and _tenantId_ refer to the actual Company new terms. The tentant term is deprecated and will be removed in the future
+  The terms _tenant_ and _tenantId_ refer to the actual company new terms. The _tenant_ term is deprecated and will be removed in the future.
   :::
   :::warning
-  Do not set in cluster.kubeContextVariables object the plain values to access to the cluster. Write the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
+  Do not set in the `cluster.kubeContextVariables` object the plain values to access the cluster. Write the variable key name for the specified environment (as shown in the example). The values saved here are not encrypted!
   :::
 
-* `environmentVariables`: an object that describes the configuration to enable the setup infrastructure environment variables section. The only supported type is `gitlab`.
+* `pipelines` (*required*): the CI/CD pipelines used by the company, for example:
+
+    ```json
+      {
+        "type": "gitlab-ci"
+      }
+    ```
+
+* `environmentVariables`: an object which describes the configuration to enable the Variables section in the Project Settings area of the Console. The only supported type is `gitlab`.
 
   There are three ways to configure a project:
 
-  1. **empty**: it is not set as a default in project creation, but should be configured manually after the project creation.
+  1. **empty**: it is not set as default in the project creation, but should be configured manually after the process;
 
   1. **only type configuration**, for example:
 
@@ -101,10 +134,9 @@ The fields necessary for this collection are:
         }
       ```
 
-      The project reads the variables from the first parent group of Configurations project in Gitlab.
+      The project reads the variables from the first parent group of the Configurations project in GitLab.
 
-      So, for example, with a gitlab project to be saved in
-      `/clients/mia-platform/configurations`, the environment variables are written in `clients/mia-platform` group.
+      As an example, with a GitLab project to be saved in `/clients/mia-platform/configurations`, the environment variables are written in the `clients/mia-platform` group;
 
   1. **complete configuration**, for example:
 
@@ -119,59 +151,37 @@ The fields necessary for this collection are:
         }
       ```
 
-      this configuration is saved only in company, and should be retrieved at runtime in project fetching from company info. So if your company has all the environment variables of the projects set in the parent group, this setting could be changed for all the projects at the same time.
-
-* `pipelines` (*required*): the CI/CD pipelines used by the company. It is an object, for example:
-
-    ```json
-      {
-        "type": "gitlab-ci"
-      }
-    ```
-
-* `availableNamespaces`: namespaces accessible internally from your project, using `cross-projects` endpoint. It is useful when your company is made up of several projects that communicate with each other. The content of this array will be interpolated to replace `%projectId%` with `projectId` field in project creation.
+      This configuration is saved only within the company, and should be retrieved at runtime in project fetching from company info. So if your company has all environment variables of the projects set in the parent group, this setting might be changed for all projects at the same time.
 
 * `logicalScopeLayers`: an array of objects identifying the set of logical layers available in the current company. Each object is shaped as follows:
-  * **name** : identifies the name of the logical layer
-  * **order** : identifies the numerical order of the layer in order to display it according to the sorting defined by the user.
+  * **name**: identifies the name of the logical layer;
+  * **order**: identifies the numerical order of the layer, in order to display it according to the sorting defined by the user.
   When a project is merged with its company information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on Console] for further details.
 
-* `repository` (*required*): object that specifies the information about the repository where have to be created the projects of this company. The object must have the following properties:
-  * **providerId** (*required*): `providerId` existing into the providers crud. It is used to get information about the provider to use. This id is important because it affects many requests used by the developer Console
-  * **basePath**: base path where will be created the project. The user needs to have permission for creating projects on this path.
-  * **visibility**: visibility that will have the project.
+* `availableNamespaces`: namespaces internally accessible from your project, using the `cross-projects` endpoint. It is useful when your company is made up of several projects that communicate with each other. The content of this array will be interpolated to replace `%projectId%` with the `projectId` field in the project creation;
 
-:::caution
-If gitProvider is `github`, the `basePath` have to be an existing organization. If it does not exist, it will not be created.
-If gitProvider is `gitlab`, the basePath is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
-
-e.g.:
-
-* /groupA/groupB -> if groupB does not exist AND user have permission to create group in groupA, then it will be created groupB.
-* /groupA/groupB -> if groupB does not exist AND user have no permission to create group in A, then it will NOT be created groupB.
-* /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
-:::
-
-* `dockerImageNameSuggestion`: object that defines the docker image name suggestion that will be passed to every project created in your company. This suggestion will appear when you [create a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template) in the `Docker Image Name` field.  
+* `dockerImageNameSuggestion`: object which defines the Docker image name suggestion that will be passed to every project created in your company. This suggestion will appear in the `Docker Image Name` field when you [create a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template).
 The object should have the following properties:
 
-  * **type** (*required*): string that defines the type of suggestion, currently three types exist:
+  * **type** (*required*): string which defines the type of suggestion. Currently, there exist three types:
 
-    * `PROJECT_ID` (*default*): the suggestion for the Docker image name will be in the following format: `<project-id>/<your-service-name>`. This is the default behavior, even without setting this property the suggestion will follow this format. You must **not** set `prefix` property if you have chosen this type.
-    * `REPOSITORY`: the suggestion for the Docker image name will be in the following format: `<your-group-name>/<your-repo-name>`. You must **not** set `prefix` property if you have chosen this type.
-    * `CONSTANT_PREFIX`: the suggestion for the Docker image name will be in the following format: `<prefix-value>/<your-service-name>`. `prefix` property is required for this type and will replace `prefix-value`.  
+    * `PROJECT_ID` (*default*): the suggestion for the Docker image name will be in the following format: `<project-id>/<your-service-name>`. This is the default behavior, even without setting this property the suggestion will follow this format. You must **not** set the `prefix` property if you have chosen this type;
+    * `REPOSITORY`: the suggestion for the Docker image name will be in the following format: `<your-group-name>/<your-repo-name>`. You must **not** set the `prefix` property if you have chosen this type;
+    * `CONSTANT_PREFIX`: the suggestion for the Docker image name will be in the following format: `<prefix-value>/<your-service-name>`. The `prefix` property is required for this type and will replace `prefix-value`.
 
-  * **prefix**: string that defines the prefix that will appear in the suggestion for the Docker image name. This property must be defined only when **type** property value is `CONSTANT_PREFIX`.  
+  * **prefix**: string that defines the prefix that will appear in the suggestion for the Docker image name. This property must be defined only when **type** property value is set to `CONSTANT_PREFIX`.
 
 :::info
 `<your-service-name>`, `<your-group-name>`, `<your-repo-name>`, are field values that you will decide during the [creation of a microservice](../api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template). Some of these values must be defined in order to receive a suggestion for the Docker image name (depending on the suggestion **type**).
 :::
 
-#### Add the first Company user
+* `enabledSecurityFeatures`: a set of features to enforce the security of the project. For further details, take a look at [the last section](#configure-security-features) of this page.
 
-After your company has been created you have to add the first user to it, regardless it may be yourself or another user in the Platform, head over to the CMS page and choose the *Bindings* menu item (only a restricted set of users have access to this section, ask your Console Administrator if you need access to it).
+#### Add the first Company User
 
-In the *Bindings* section select the Create new button and fill in the form, type a custom *Binding ID* (make sure it is unique in the whole collection, something like `{tenantId}-{desiredRole}` should be enough), select the proper Role (generally at this point you'll be adding the first *Company Owner*) and make sure you select the correct user as Subject. Finally you'll have to assign the correct resource by filling it with an object as follows:
+After your company has been created you have to add the first user to it, who may be yourself or another user in the Platform. Regardless, head over to the CMS page and choose the *Bindings* menu item (only a restricted set of users have access to this section, ask your Console Administrator if you need access to it).
+
+In the *Bindings* section, select the *Create new* button and fill in the form, type a custom *Binding ID* (make sure it is unique in the whole collection, something like `{tenantId}-{desiredRole}` should be enough), select the proper Role (generally at this point you'll be adding the first *Company Owner*) and make sure to select the correct user as Subject. Finally you'll have to assign the correct resource by filling it with an object as follows:
 
 ```json
 {
@@ -186,23 +196,23 @@ If you already have a template, you can [skip this section](#how-to-create-a-pro
 
 A template is a repository which contains some project specific information.
 Once you choose a company, you can choose a template.
-The template allows you to pre-fill active services in your project and starts all the similar projects with the same configuration.
-So, it is a base on which to create your project.
+The template allows you to pre-fill active services in your project and start all the similar projects with the same configuration.
+In short, it constitutes a base on which to create your project.
 
 :::info
-The fields set by the template can be changed during project creation.
+The fields set by the template can be changed in the project creation.
 :::
 
-There are two ways of adding services to a template:
+There are two ways to add services to a template:
 
-* Using an `api-console-config` which specifies the services that will be included in the projects created with that template, together with other details e.g. environment variables. This requires you to add an `api-console-config.json` file in the root directory of the project.
-* Using `enabledServices` which only specifies whether a certain service is enabled or not, without the possibility of defining any other detail.
+* Using an `api-console-config`, which specifies the services that will be included in the projects created with that template, together with other details (e.g. environment variables). This requires you to add an `api-console-config.json` file in the root directory of the project;
+* Using `enabledServices`, which only specifies whether a certain service is enabled or not, without the possibility to define any other detail.
 
 :::caution
-The `enabledServices` can only be used for core services (i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`), while it is not working for services used from the Console that have been migrated to custom services (migrated services are now plugins, you can find them in the [marketplace](../../marketplace/overview_marketplace.md)). The only exception to this rule is that if your template uses api-console-config version 0.39 or lower, or do not use it at all, `enabledServices` will work for migrated services as well.
+The `enabledServices` can only be used for core services (i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client`, and `oauth-login-site`), while it does not work for services used from the Console that have been migrated to custom services (migrated services are now plugins, you can find them in the [marketplace](../../marketplace/overview_marketplace.md)). The only exception to this rule is that if your template uses `api-console-config` version 0.39 or lower, or do not use it at all, `enabledServices` will work for migrated services as well.
 :::
 
-The base structure of the `api-console-config.json` is as follows:
+The base structure of the `api-console-config.json` is the following:
 
 ```json
 {
@@ -215,24 +225,57 @@ The base structure of the `api-console-config.json` is as follows:
 }
 ```
 
-If you create the `api-console-config.json` from an existing one, please remember to delete all the fields that do not match the structure above, since they will be created correctly by the console after save and deploy actions (one of the two, depending on the field).
+If you create the new `api-console-config.json` from an existing one, please remember to delete all fields that do not match the structure above, since they will be automatically generated by the Console after save and deploy actions (one of those, depending on the field).
 
-How to compile the template:
+You can create a Git provider by setting up a specific document through the appropriate CMS section.
+The fields necessary for this collection are:
 
-* `name` (*required*): name of the template to display;
-* `templateId` (*required*): the human-readable id of the template (e.g. mia-platform-multitenant-template). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$);`
+* `name` (*required*): the name of the template;
+
+* `templateId` (*required*): the human-readable ID of the template (e.g. "mia-platform-multitenant-template"). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
+
 * `description`: the description of the template;
-* `archiveUrl`: URL to a gzip of the base project configuration folder. All the contents of this folder will be copied into the target configuration, correctly interpolated. If you have to create a custom template, click [here](#how-to-create-a-project-archive) to see how.
-* `staticSecret`: some project could use the same static secret for a set of projects (especially used with architecture with multiple `api-gateway` entrypoints). Keys are optional. This is an object, for example:
+
+* `archiveUrl`: URL to a gzip of the base project configuration folder. All contents of this folder will be copied into the target configuration, correctly interpolated. If you want to create a custom template, click [here](#how-to-create-a-project-archive) to see how to do it;
+
+* `monitoring`: object which describes the monitoring tools supported by the project. For example:
+
+  ```json
+  {
+    "systems": [
+      {
+        "type": "prometheus-operator"
+      }
+    ]
+  }
+  ```
+
+  * **type**: so far, only one type of monitoring system is supported: `prometheus-operator`.
+  In case `type` is set to `prometheus-operator`, you will be able to configure the creation of the `service monitor` for your microservices. More information about this feature [here](../api-console/api-design/microservice-monitoring.md).
+
+* `deploy`: object which identifies some deploy related configurations. For example:
 
   ```json
     {
-      "secret": "my-secret",
-      "clientType":"cms"
+      "runnerTool": "mlp",
+      "projectStructure": "default",
+      "useMiaPrefixEnvs": false
     }
   ```
 
-* `enabledServices`: an object that contains as key the service handled by the Console and as value a boolean. If the value is true, the service is enabled and the Console will generate the configuration for that service, otherwise it will be skipped by the Console. For example:
+  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled;
+  * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix;
+  * **projectStructure**: Set it to `kustomize` if you want to use Kustomize to manage your microservices configurations. More info in [this section](./kustomize.md), otherwise use `default` or leave it blank to keep the usual configuration setup.
+
+:::caution
+If you set `projectStructure` to `kustomize`, your project configuration structure needs to be changed accordingly.
+:::
+
+:::note
+If you switch `useMiaPrefixEnvs` from `true` to `false`, you have to remove the `MIA_` prefix by hand. This operation is not performed automatically by the Console.
+:::
+
+* `enabledServices`: object which contains as key the service handled by the Console and as value a boolean. If the value is true, the service is enabled and the Console will generate the configuration for that service, otherwise it will be skipped by the Console. For example:
 
     ```json
       {
@@ -254,76 +297,48 @@ How to compile the template:
       }
     ```
 
-* `deploy`: an object that identifies some deploy related configurations.
+* `staticSecret`: some templates could use the same static secret for a set of projects (especially used with architecture with multiple `api-gateway` entry points). Keys are optional. This is an example of object:
 
   ```json
     {
-      "runnerTool": "mlp",
-      "projectStructure": "default",
-      "useMiaPrefixEnvs": false
+      "secret": "my-secret",
+      "clientType":"cms"
     }
   ```
 
-  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](../deploy/deploy.md#smart-deploy) feature enabled.
-  * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](../api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix.
-  * **projectStructure**: Set it to `kustomize` if you want to use Kustomize to manage your microservices configurations. More info in [this section](./kustomize.md), otherwise use `default` or leave it blank to keep the usual configuration setup.
+## How to create a Project Archive
 
-:::caution
-If you set `projectStructure` to `kustomize` your project configuration structure needs to be changed accordingly.
-:::
+The project archive is interpolated using [mustache.js](https://github.com/janl/mustache.js) as template system, using `%` as tag symbol instead of the default `{{` or `}}`.
 
 :::note
-If you switch `useMiaPrefixEnvs` from `true` to `false` you have to remove the `MIA_` prefix by hand. This is not made automatically by the Console.
+In order to use the `%` character inside your project archive you can escape it by prefixing the character with an additional `%`. For example, the string `%%something` will be rendered as `%something` when the project archive will be interpolated.
 :::
 
-* `monitoring`: an object that describes the monitoring tools supported by the project.
-
-  ```json
-  {
-    "systems": [
-      {
-        "type": "prometheus-operator"
-      }
-    ]
-  }
-  ```
-
-  * **type**: so far, only one type of monitoring system is supported: `prometheus-operator`.
-  In case `type` is set to `prometheus-operator`, you will be able to configure the creation of the `service monitor` for your microservices. More information about this feature [here](../api-console/api-design/microservice-monitoring.md).
-
-## How to create a project archive
-
-The project archive is interpolated using [mustache.js](https://github.com/janl/mustache.js) as template system, using `%` as tags instead of default `{{` or `}}`.
-
-:::note
-In order to use the `%` character inside your project archive you can escape it by prefixing the character with an additional `%`. For example the string `%%something` will be rendered as `%something` when the project archive will be interpolated.
-:::
-
-*mustache.js* is a web template system, which allows you to generate custom templates by replacing all the general information, present in the web template, with your product or organization information.
+*mustache.js* is a web template system, which allows you to generate custom templates by replacing all the general information in the web template with your product or organization information.
 
 You could create a project template to avoid copy/paste in every new project having the same base configuration.
 
-At Mia-Platform, for example, we create a template to configure a project to use Auth0, headless CMS, API portal and Traefik configuration. So for a company that uses this template, creating this type of project will be a very simple process.
+At Mia-Platform, for example, we create a template to configure a project to use Auth0, Headless CMS, API Portal, and Traefik configuration. Therefore, for a company that uses this template, creating this type of project will be a very simple process.
 
-You can interpolate the template with some project data. With *mustache.js*, we could iterate through an array, so we can have some configuration iterated for all the environments.
-The values you could use during template interpolation are:
+You can interpolate the template with some project data. With *mustache.js*, you could iterate through an array, in order to have some configuration iterated for every environment.
+The values you can use during template interpolation are:
 
-For the project (you could access using `project.${field}`)
+For the project (accessible using `project.${field}`):
 
-* projectId
-* name
-* configurationGitPath
-* environments
+* `projectId`;
+* `name`;
+* `configurationGitPath`;
+* `environments`.
 
-Inside environments, you could access to:
+Inside environments, you can access to:
 
-* envId
-* envPrefix
-* cluster (an object containing `namespace` and `clusterId` string, `kubeContextVariables` object). Here you find the variables names for the specified environment where you set the cluster variable
-* hosts (an array of object, with `host` and `isBackoffice` fields)
+* `envId`;
+* `envPrefix`;
+* `cluster` (an object containing `namespace` and `clusterId` string, `kubeContextVariables` object). Here you can find the variable names for the specified environment where to set the cluster variable;
+* `hosts` (an array of objects, with `host` and `isBackoffice` fields).
 
 :::warning
-Do not set in company in cluster.kubeContextVariables object the value to access to the cluster, but only the variable key name for the specified environment (as in the example)! The values saved here are not encrypted.
+Do not set in the `cluster.kubeContextVariables` object the value to access the cluster. Write the variable key name for the specified environment (as shown in the example). The values saved here are not encrypted!
 :::
 
 An example of template for the `.gitlab-ci.yml` file:
@@ -357,43 +372,40 @@ variables:
 %/project.environments%
 ```
 
-In this example, we write the variables `MIA_CMS_IMAGE_NAME` only if cmsImageName is set in the company.
+In this example, we write the variable `MIA_CMS_IMAGE_NAME` only if `cmsImageName` is set in the company.
 
-All the section between `%#project.environments%` and `%/project.environments%` will be written for `n` times, where `n` is the number of environments. So, inside the environment, you could use the environment specific fields.
+All sections between `%#project.environments%` and `%/project.environments%` will be written for `n` times, where `n` is the number of environments. So, inside the environment, you can use the environment specific fields.
 For other possibilities, please check [mustache.js](https://github.com/janl/mustache.js) documentation.
 
-You may want to write a file or a folder for every environment. To enable this, you could write the file name (or folder) in template as `%envId%`. This will be interpolated for every environment.
-The interpolation data in those files are the environments fields at the first level (as in `mustache.js` sections), with the project as a key for every environment.
+You may want to write a file or a folder for every environment. To enable that, you can write the file name (or folder) in the template as `%envId%`, and it will be interpolated for every environment.
+The interpolation data in those files includes the environments fields at the first level (as in `mustache.js` sections), with the project as a key for every environment.
 
 ## Project creation
 
-Once you have a provider, company and a template correctly configured, you are able to create a new project using the `Create project` button in the Home area of Console.
+Once you have provider, company, and template correctly configured, you are able to create a new project using the `Create project` button in the Home area of the Console.
 
 ![new-project-cards-headers](img/new-project-cards-headers.png)
 
-The project creation is divided in different steps:
+The project creation is divided in four different steps.
 
-### Step 1 **General**
+### Step 1: **General**
 
 In this step, you are required to insert the general information about your new project:
 
-* **Company** (*required*): you have to select, from a list of pre-configured Companies, your Company, which enables you to keep the same configuration for different projects.
-* **Project Name** (*required*): the name of your project, which will be shown in the project card in the Home section of Console.
-* **Description** (*optional*): this is the description of your new project, which will be shown in the project card in the Home section of Console.
+* **Company** (*required*): you are required to select, from a list of pre-configured companies, your company, which enables you to keep the same configuration for different projects;
+* **Project name** (*required*): the name of your project, which will be shown in the project card in the Home section of the Console;
+* **Description**: the description of your project, which will be shown in the project card in the Home section of the Console.
   
 ![create-project1](img/create-project1.png)
 
-### Step 2 **Repository**
+### Step 2: **Repository**
 
-In this step, it is indicated the location of your new project and you have to choose its Template:
+In this step, it is indicated the location of your new project and you have to choose its template:
 
-* **Git Provider** : this field represents the provider id used by your chosen company.
-
-* **Git repo path** (*required*, field not editable): this is the path, calculated from project name and company, where the configuration will be saved on GitLab. It specifies the location of your project on GitLab.
-
-* **Visibility** (*required*, field not editable): the visibility states the status of your project once it will be saved in Gitlab. If it is `internal`, all the internal users of the Gitlab instance could see the project. If it is `private`, only who has access to the repository can see the project.
-
-* **Template** (*required*): you have to select, from a list of pre-configured Templates, your Template, which enables you to use pre-filled configurations for your project.
+* **Git Provider**: this field represents the provider ID used by your chosen company (e.g. *gitlab*, *github*, *azure-devops*, *bitbucket*);
+* **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git provider. It specifies the location of your project on the Git provider website;
+* **Visibility**: the visibility states the status of your project once it will be saved on the Git provider. If it is `internal`, all the internal users of the Git provider instance can see the project. If it is `private`, only who has access to the repository can see the project;
+* **Template** (*required*): you have to select, from a list of pre-configured templates, your template, which enables you to use pre-filled configurations for your project.
 
 :::tip
 If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [the bottom of this page](#setup-paas-templates).
@@ -401,49 +413,64 @@ If you are using the PaaS Mia-Platform Console, two main templates are available
 
 ![create-project2](img/create-project2.png)
 
-### Step 3 **Environments**
+### Step 3: **Environments**
 
-In this step, an overview of the configuration of your project environments is presented. The following information are retrieved from the selected Company and, so, are already configured and not editable:
+In this step, an overview of the configuration of your project environments is presented. This section is entirely read-only, since the information displayed are retrieved from the selected company and, therefore, they are already configured and not editable:
 
-* **Environment name** (*required*, field not editable): the name given to your environment.
-* **Environment ID** (*required*, field not editable): the human-readable ID set to your environment.
-* **Description** (*required*, field not editable): this is the description of the environment.
-* **Hosts** (*required*, field not editable): the hosts which expose the documentation and the APIs.
-* **Backoffice Host** (*required*, field not editable): the host which exposes CMS and backoffice APIs.
-* **Cluster Host** (*required*, field not editable): this is the IP of the Kubernetes cluster where the project will be deployed.
-* **Is production** (*required*, field not editable): defines if the environment is a production environment or not.
-* **Namespace** (*required*, field not editable): this is the namespace of kubernetes.
+* **Environment name**: the name given to your environment;
+* **Environment ID**: the human-readable ID set to your environment;
+* **Host**: the host which exposes documentation and APIs;
+* **Backoffice Host**: the host which exposes CMS and backoffice APIs;
+* **Cluster Host**: the IP of the Kubernetes cluster where the project will be deployed;
+* **Namespace**: the namespace taken from Kubernetes;
+* **Description**: the description of your environment.
+
+Moreover, a label **Production** is displayed next to the title of the dropdown card in case the corresponding environment is labeled as a production environment.
 
 ![create-project3](img/create-project3.png)
 
+For security reasons, and since after this step the project will be effectively created, when trying to proceed further a confirmation modal is displayed. By clicking on *Create*, the project will be irreversibly generated.
+
+![create-project-modal](img/create-project-modal.png)
+
 #### A note about Project Metrics
 
-When the production environment is defined for a project a preview of its **Kubernetes Metrics** will be rendered inside the related card in the Home Page. These metrics will show the following information:
+When a production environment is defined for a project, a preview of its **Kubernetes Metrics** will be rendered inside the related card in the Home Page. These metrics will show the following information:
 
-* Number of pods up and running
-* CPU usage
-* RAM usage
+* Environment name;
+* Status (healthy, down);
+* Number of pods up and running;
+* CPU usage;
+* RAM usage.
 
-### Step 4 **Configure API Key**
+### Step 4: **Pipeline Management**
 
-In this step, you are required to set up Client's accesses to your APIs:
+In this step, security information concerning cluster credentials are displayed as a table, in which each row corresponds to an environment. As specified above, at this step the project has already been created, and therefore the information shown in this section are not editable:
 
-* **API Key** (*required*): this is the API Key. It can be generated randomly.
-* **Client Type** (*required*): ID of the client that wants to access to your APIs.
-* **Description** (*optional*): this is the description of the API Key.
+* **Environment**: the environment name previously set;
+* **Cluster URL**: the URL of the Kubernetes cluster on which the project is deployed;
+* **Pipeline token**: the security token used to perform deployment operations on the Kubernetes cluster.
 
-![create-project5](img/create-project5.png)
+:::caution
+For security reasons, there is no way to come back to this page or another one displaying those information. Therefore, we highly recommend to download and securely store the credentials shown. For this reason, a download button is provided in the bottom part of the page.
+:::
 
-At the end of the process, your project will be created on your Git provider, and will be visible in the Home section of your Console.
-Once your project has been created, you will be redirected on the Setup Infrastructure area of your new project, where you can see your environments and a list of environment variables:
+![create-project4](img/create-project4.png)
 
-* Some variables are pre-filled from project or company information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED* and *LOG_LEVEL*). Other variables are not pre-filled (like *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*).
+In case of errors generating the cluster credentials, an alert is displayed instead of the table, and it is necessary to confirm that you have understood the situation before continuing.
 
-* All the variables are mandatory, except  CRUD_LIMIT_CONSTRAINT_ENABLED, NOTIFICATIONS_SERVICE_PATH and NOTIFICATIONS_COLLECTION_ROUTES: you have to configure all the variables that are mandatory and not pre-filled like *MONGODB_SHORT_URL*, *MONGODB_URL* and *REDIS_HOSTS*.
+![create-project-error](img/create-project-error.png)
 
-These environment variables are saved on GitLab.
+In any case, at the end of the process, your project will be visible in the Home section of your Console.
 
-The Console automatically tries to create the namespace for each environment in project, if creation is successfull it also sets the following labels in the namespace:
+Once your project has been created, you will be redirected on the Project Settings area of your new project, where you can see your environments and a list of environment variables:
+
+* Some variables are pre-filled from project or company information (like *CMS_IMAGE_NAME*, *CRUD_LIMIT_CONSTRAINT_ENABLED*, and *LOG_LEVEL*). Other variables are not pre-filled (such as *NOTIFICATIONS_COLLECTION_ROUTES* and *NOTIFICATIONS_SERVICE_PATH*);
+* All variables are mandatory, except  *CRUD_LIMIT_CONSTRAINT_ENABLED*, *NOTIFICATIONS_SERVICE_PATH*, and *NOTIFICATIONS_COLLECTION_ROUTES*: you have to manually configure all the variables that are mandatory and not pre-filled like *MONGODB_SHORT_URL*, *MONGODB_URL*, and *REDIS_HOSTS*.
+
+These environment variables are saved on the Git provider.
+
+The Console automatically tries to create the namespace for each environment in the project, and if the creation is successful it also sets the following labels in the namespace:
 
 Label|Value
 -|-
@@ -451,29 +478,26 @@ Label|Value
 `mia-platform.eu/environment`|`envId`
 `mia-platform.eu/project`|`projectId`
 
-
-At the end of project creation, you have to commit and deploy your new project to finish the process effectively.
+After the project creation phase, you have to commit and deploy your new project to effectively conclude the process.
 
 ## Customize the project with additional information (Optional)
 
-In order to improve the governance of your projects, you may want to add additional details such as:
+In order to improve the governance of your project, you may want to add additional details such as:
 
-* `technologies`: the list of technologies used in the project codebase
-* `projectOwner` and `teamContact`: the name and contact of the project owner
-* `color`: a custom color that can be used as an additional categorization, especially if a label has been already defined (e.g you may decide within your organization that all projects flagged with a *gateway* are associated with the same color).
-
-* `layerId`: a label which identifies a logical layer and can help to categorize projects in custom groups (e.g: *gateway* or *data-lake* are some samples of logical layer names that can be applied to a project).
-The `layerId` must be equal to one of the layers names inside the `logicalScopeLayers` property of the related **tenant** object . When the layer is found in the company, then the project model is enriched with the `logicalScopeLayers` property according to the values found.
-
+* `technologies`: the list of technologies used in the project codebase;
+* `projectOwner` and `teamContact`: the name and contact of the project owner;
+* `color`: a custom color that can be used as an additional categorization, especially if a label has been already defined (e.g. you may decide within your organization that all projects flagged with a *gateway* are associated with the same color);
+* `layerId`: a label which identifies a logical layer and can help to categorize projects in custom groups (e.g. *gateway* or *data-lake* are some samples of logical layer names that can be applied to a project);
+The `layerId` must be equal to one of the layer names inside the `logicalScopeLayers` property of the related **tenant** object. When the layer is found within the company, the project model is enriched with the `logicalScopeLayers` property according to the values found;
 * `logicalScopeLayers`: an array of objects shaped as follows:
-  * **name** : identifies the name of the logical layer
-  * **order** : identifies the numerical order of the layer in order to display it according to the sorting defined by the user.
+  * **name**: identifies the name of the logical layer;
+  * **order**: identifies the numerical order of the layer, in order to display it according to the sorting defined by the user.
 
-`layerId` and `logicalScopeLayers` are mutually exclusive, since the first one must be used when a `tenantId` is specified for the project, while the latter not.
+`layerId` and `logicalScopeLayers` are mutually exclusive, since the former must be used when a `tenantId` is specified for the project, while the latter must not.
 
 ### CMS Configurations
 
-All the above properties can be defined via CMS after a project has been created, because they only provide extra information that will be eventually rendered in the Console Home Page.
+All the above properties can be defined via CMS after a project has been created, because they only provide extra information that will be eventually rendered in the Home Page of the Console.
 
 Let's say we have created a project as follows:
 
@@ -492,7 +516,7 @@ To configure all the extra details to a project, just add the `info`, `layerId`/
 
 ### Project Information
 
-To add extra info about `projectOwner`, `teamContact` and `technologies` for a single project, simply edit the *Information* field:
+To add extra info about `projectOwner`, `teamContact`, and `technologies` for a single project, you can simply edit the *Information* field:
 
 ```json
 {
@@ -507,7 +531,7 @@ To add extra info about `projectOwner`, `teamContact` and `technologies` for a s
 
 ### Custom Color
 
-To edit the custom `color` associated to a project, just change the value in the *Project Color* field:
+To edit the custom `color` associated with a project, just change the value in the *Project Color* field:
 
 ![color-project-cms](img/color-project-cms.png)
 
@@ -519,7 +543,7 @@ If the project has a `tenantId` that includes a definition for its `logicalScope
 
 ### Logical scope layer (logicalScopeLayers)
 
-Alternatively to the above step, if the project isn't under a `tenantId`, then a `logicalScopeLayers` can be defined directly by editing the *Logical Scope Layer* field:
+Alternatively to the above step, if the project isn't under a `tenantId`, then `logicalScopeLayers` can be defined directly by editing the *Logical Scope Layer* field:
 
 ![logical-layer-project-cms](img/logical-layer-project-cms.png)
 
@@ -564,7 +588,7 @@ At the end of the configuration, on the backend side, the project will have the 
   }
 ```
 
-When loading the Console Home Page, the project `Frontend Gateway` will be rendered accordingly:
+When loading the Home Page of the Console, the project `Frontend Gateway` will be rendered accordingly:
 
 ![new-cards-detail](img/new-cards-detail.png)
 
@@ -587,7 +611,7 @@ A configuration example:
 }
 ```
 
-Proxy url supports `http`, `https` and basic auth inside proxy url. For example, an url with basic auth would be like `https://username:password@url-to-proxy/`.
+Proxy URL supports `http`, `https`, and basic auth inside proxy URL. For example, an URL with basic auth would be like `https://username:password@url-to-proxy/`.
 
 ### Final Step: **Activate CRUD**
 
@@ -595,21 +619,21 @@ To activate the CRUD for your project, you can contact your Mia-Platform's respo
 
 ### Setup PaaS templates
 
-If you are using the PaaS console, the following templates are available:
+If you are using the PaaS Console, the following templates are available:
 
-* `Mia-Platform Multitenant with Traefik`: which contains all the services used by the Console (i.e. `crud-service`, `api-portal`, `swagger-aggregator`, `microservice-gateway`, `authorization-service`, `api-gateway`, `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`) with a correct configuration
-* `Mia-Platform Multitenant Without CMS`: which contains all services except the CMS-related ones, i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client` and `oauth-login-site`
+* `Mia-Platform Multitenant with Traefik`: it contains all services used by the Console (i.e. `crud-service`, `api-portal`, `swagger-aggregator`, `microservice-gateway`, `authorization-service`, `api-gateway`, `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client`, and `oauth-login-site`) with a correct configuration;
+* `Mia-Platform Multitenant Without CMS`: it contains all services except the CMS-related ones, i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client`, and `oauth-login-site`.
 
-A project created with these templates is almost ready to use, but some configuration is required for all its parts to work correctly.
+A project created with one of these templates is almost ready to use, but some configuration is required for all its services to work correctly:
 
-1. For the crud-service to be deployed and work correctly, you need a value for the environment variable `MONGODB_URL`. When the project is first created, its value is an empty string. To fix that, go to Envs Area, Environment Variables table, and either change its value, or delete it if you want to inherit this value. This needs to be done for all the environments you are interested in.
-2. For auth0-client service to be deployed and work correctly, you need to setup various environment variables, as specified in its configuration. You can find the configuration in the Design Area, Advanced Section, auth0-client option, config.js file. More on the configuration of the auth0-client [here](../../runtime_suite/auth0-client/configuration).
+1. For the `crud-service` to be deployed and work correctly, you need a value for the environment variable `MONGODB_URL`. When the project is first created, its value is an empty string. To fix that, go to Environments section, check out the Environment Variables table, and either change its value, or delete it if you want to inherit this value. This needs to be done for all the environments you are interested in.
+2. For `auth0-client` service to be deployed and work correctly, you need to setup various environment variables, as specified in its configuration. You can find the configuration in the Design Area, Advanced Section, `auth0-client` option, `config.js` file. More on the configuration of the `auth0-client` [here](../../runtime_suite/auth0-client/configuration).
 
 ### Configure Security Features
 
-From the CMS page it is possible to employ a set of security features in order to harden the configuration of your project.
+From the CMS page it is possible to employ a set of security features in order to enrich the configuration of your project.
 
-Those features are all set to `true` by default and can be switched off for testing or to account for compatibility issues by managing the properties of the `securityFeatures` key.
+Those features are all set to `true` by default and can be switched off for testing or to account for compatibility issues, by managing the properties of the `securityFeatures` key.
 
 ```json
 {

@@ -129,7 +129,7 @@ If both rangeDate and customDate are active on a custom stock chart, it can be c
 
 - ***default zoom:*** (number) allows you to decide how much period zoom to start displaying in a custom stock. 0: day, 1: week, 2: month, 3: 3 months, 4: 6 months, 5: year, 6: all
 
-## How to configure the *dashboard* e *analytics*
+## How to configure the *dashboard* and *analytics*
 
 JSON files dashboard and analytics allow to configure the visualization of the graphs in the CMS respectively in the dashboard and in the analytical section within a collection.
 
