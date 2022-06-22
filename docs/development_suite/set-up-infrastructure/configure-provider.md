@@ -4,7 +4,11 @@ title: Providers Management
 sidebar_label: Providers Management
 ---
 
+The Mia-Platform console allows you to interface with the most used git providers on the market. In order to configure a new provider on console you need to call a specific API as documented in the following paragraphs.
+
+:::info
 As an on-premise customer you have the ability to configure and use an authentication provider that differs from the git provider (i.e. [Okta](https://www.okta.com/) as authentication provider and [GitLab](https://gitlab.com/) as git provider).
+:::
 
 In order to do it, you **must** create and configure a service account, which will be used to interact with the chosen git provider.
 
