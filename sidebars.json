@@ -2051,6 +2051,10 @@
       "collapsed": false,
       "items": [
         {
+          "id": "release_notes/RN_v9-3/v9.3.0",
+          "type": "doc"
+        },
+        {
           "id": "release_notes/RN_v9-2/v9.2.1",
           "type": "doc"
         },
