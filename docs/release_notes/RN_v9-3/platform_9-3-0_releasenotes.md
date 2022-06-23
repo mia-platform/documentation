@@ -23,7 +23,7 @@ In the "Settings" area of the console, the Environment management has been divid
 
 #### Save with cmd/ctrl + enter
 
-A useful shortcut has been implemented in the save configuration modal allowing you to save with ctrl+enter (or cmd+enter on MacOS)
+A useful shortcut has been implemented in the save configuration modal allowing you to save with ctrl+enter (or cmd+enter on MacOS).
 
 #### Jenkins Integrations
 
@@ -66,9 +66,6 @@ RBAC service is now open source and we are happy to present you Rönd, find out 
 - Updated the dependencies of Java microservices 
 - Updated the node version of Node.js microservices to v16
 - PDF Service v1.2.0 with `handlebars` template support
-
-
-### Security update for the following microservices
 
 ## Backoffice - 1.0.4
 
