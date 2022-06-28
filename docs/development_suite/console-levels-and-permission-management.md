@@ -59,9 +59,12 @@ The following table describes the capabilities and how they are mapped on the de
 | Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |           |         | ✅             | | |
 | Manage users of this Company                                               | `console.company.users.manage`                         |        |           |          |            | | ✅|
 | Edit company information                                                   | `console.company.details.update`                       |        |           |          |            |     |✅|
-| Edit project information of all the Projects of this Company               | `console.company.project.details.update`                       |        |           |          |            |  ✅   |✅|
+| Edit project information of all the Projects of this Company               | `console.company.project.details.update`               |        |           |          |            |  ✅   |✅|
 | Manage users of all the Projects of this Company                           | `console.company.project.users.manage`                 |        |           |          |            | ✅ | |
 | Manage users for this Project                                              | `console.project.users.manage`                         |        |           |          |            | ✅ | |
+| Delete a Company                                                           | `console.company.delete`                               |        |           |          |            |    | ✅|
+| Delete a single Project                                                    | `console.project.delete`                               |        |           |          |            | | ✅ |
+| Delete all the Projects of a Company                                     | `console.company.project.delete`                       |        |           |          |            | ✅ | ✅ |
 User roles are manageable from CMS by the **Console administrators**, as they are the only one having access to the Console CMS and thus being able to manage the entire Console, including companies, projects, Marketplace.
 
 ### Role binding example
