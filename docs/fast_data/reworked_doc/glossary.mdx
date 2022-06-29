@@ -42,6 +42,7 @@ export const GlossaryTable = ({entries}) => (
   {name: "Real Time Updater", description: "The service responsible for the creation, update and deletion of the Projections", link: "./architecture#real-time-updater-rtu"},
   {name: "Single View Trigger", description: "The service responsible for generating events that trigger the update of Single Views", link: "./architecture#single-view-trigger-svt"},
   {name: "Projection Update", description: "Kafka event that informs the listener that a Projection has been changed", link: "./inputs_and_outputs#projection-update"},
+  {name: "Projection Changes", description: "MongoDB or Kafka event that informs the listener that a Single View needs to be updated", link: "./inputs_and_outputs#projection-change"},
   {name: "Single View Event", description: "Kafka message that informs the listener that a Single View has been successfully updated", link: "./inputs_and_outputs#single-view-event"},
   {name: "Change Data Capture (CDC)", description: "A system that reacts to change of data at some source (in our case the System of Records) by emitting an event", link: "./the_basics#change-data-capture-cdc"},
   {name: "Cast function", description: "A function used to transform the data originally coming from the System of Record before it is saved in the Projection", link: "./the_basics#cast-function"},
