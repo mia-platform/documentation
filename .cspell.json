@@ -196,6 +196,7 @@
     "noindex",
     "unencrypted",
     "soisy",
+    "noindex",
     "alloc"
   ],
   "dictionaries": [

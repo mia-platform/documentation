@@ -30,7 +30,7 @@ The type fields supported are the same of the collection you can create in the [
 
 ## Create the Single View Creator service
 
-You need to create a **Single View Creator** to update or delete a Single View when a `Projection Changes` event occurs. More information about `Projection Changes` [here](../inputs_and_outputs.md#projection-change).
+You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](../inputs_and_outputs.md#projection-change) event occurs.
 
 A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Records through Projection Changes.
 
@@ -51,14 +51,39 @@ system_2                                                                /
 
 ```
 
-To associate the Single View with the service, add a service in the `Single view creator services` card in the Single View detail page. You can attach more than one service to the Single View.
+To associate the Single View with the service, add a service in the `Configurations` tab in the Single View detail page. You can attach more than one service to the Single View.
 
-After you have attached the microservice to the Single View, a link to the microservice will appear. Click on the link to navigate to the detail page of that microservice.
+In this tab you can also edit the main Config Map Configurations of the associated Services, but only if they're `Single View Creator Low Code` Services. 
+
+Nonetheless, you will find in all associated Services a link to the microservice page to edit its details, including the edit and creation of your own Config Map Configurations.
+
+If you have no Single View Creator linked yet, a placeholder will be shown to invite you to link one.
 
 ![Fast Data Single View Microservice](../../img/single-view-detail-microservice.png)
 
+If you already have Single View Creator services already linked, you can link more clicking on the dedicated button.
+
+![Fast Data link Single View Creator](../../img/single-view-detail-add-another-svc.png)
+
 :::info
-In the [Marketplace](../../../marketplace/overview_marketplace), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](../architecture.md#single-view-creator-svc).
+In the [Marketplace](/docs/marketplace/overview_marketplace), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](./single_view_creator/common.md).
+:::
+
+Once a Single View Creator is linked, if it's configured as Low Code, then its [Low Code configuration](./single_view_creator/low_code) files are shown in a dedicated card. Click on the Edit button to edit them.
+
+![Fast Data edit Low Code configuration](../../img/single-view-detail-edit-configuration.png)
+
+Any changes to the Low Code JSON configurations will be validated to ensure that they are syntactically correct. 
+
+:::warning
+These validations are not a substitute of Unit Tests. They validate only that configurations match a JSON schema.     
+We recommend testing configurations with unit tests using the [Fast Data Low Code Test Template](https://github.com/mia-platform/fast-data-low-code-test-template).
+:::
+
+Click on Save to save the configuration, otherwise click on Cancel to discard changes.
+
+:::note
+When you save the Low Code configuration, the related Single View Creator config maps are updated locally with the changes. No automatic commit is going to be made. To persist the changes on Git, like for any other changes on the Console, you need to [Save the branch configuration](/docs/development_suite/api-console/api-design/design-overview#how-to-save-your-configuration). 
 :::
 
 ## Link projections to the Single View
