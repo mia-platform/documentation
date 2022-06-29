@@ -3,51 +3,86 @@ id: overview-dev-suite
 title: Console Overview
 sidebar_label: Console Overview
 ---
-Welcome to the Console Overview page!
+Welcome to the Mia-Platform Console Overview page!
 
-Find out more about how to design and manage the full lifecycle of your DevOps Value Stream.
+![Mia-Platform Console Overview](img/Mia-Platform-console-overview.png)
 
-![Console overview](img/dev-ops-console-overview.png)
+In an omnichannel and evolutionary market, successful enterprises are the ones with the capabilities to operate and innovate like tech companies:
+  * **Speed**: Being able to build and launch new digital products with great speed;
+  * **Evolvability**: Continuously looking at the ongoing market changes as opportunities;
+  * **Scalability**: Being flexible and ready to answer rapidly to demand expansions or contractions;
+  * **Openness**: Being able to integrate with tools, partner channels, platforms and ecosystems.
+  
+Modern companies build their digital products, data and logics through a Digital Platform.  
+The tool to reach this goal is the **Internal Developer Portal** which will help you to industrialize and govern cloud-native development and operations. It allows to:
+  * Design and Expose APIs;
+  * Develop and Orchestrate microservices;
+  * Manage Real-time Data Streams and Event-driven architectures;
+  * Govern and monitor runtime on K8s.
+
+Mia-Platform Console allows you to govern all projects in one place, industrialize & automate DevOps, avoid organizational bottlenecks, self-serve developers, solve cloud complexity and enhance accountability & reliability.
 
 ## Homepage
+There are two different HomePages:
+ * [The Basic HomePage](#basic-homepage) allows you to view the various features offered by the console and navigate them easily by clicking on one of the cards.
+ * [The HomePage Metrics](#metrics-homepage) allows you to view the status of the project, including environments, pods status, and requests / limits of CPU and RAM.
+  
+:::info
+You can switch between the HomePages using the `⌘ + K` (alternatively, `ctrl + K`) keyboard shortcut.
+:::
 
-The Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console, such as:
+### Basic HomePage
 
-* [Design](./api-console/api-design/overview.md)
-* [Deploy](./deploy/deploy.md)
-* [Runtime](./monitoring/monitoring.md)
-* [Dashboards](./monitoring/dashboard.md)
-* [Marketplace](../marketplace/overview_marketplace.md)
-* [Environments & Private Variables](../development_suite/set-up-infrastructure/runtime-environments.md)
+![Mia-Platform Console Basic HomePage](img/Mia-Platform-basic-homepage.png)  
+The Basic Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the console. This visualization is great for console newcomers who will benefit from always having all the Console Areas displayed at once.  
+  
+The cards show the sections:
 
-The Homepage is structured in different cards which represent the different environments of your project. One card at a time can be pinned to top using the button at the left of the environment name. For each card, the user can see:
+* [Environments & Private Variables](#environments--private-variables)
+* [Design](#design)
+* [Deploy](#deploy)
+* [Dashboards](#dashboards)
+* [Runtime](#runtime)
+* [Debug](#debug)
+* [Documentation](#documentation)
+* [Marketplace](#marketplace)
 
-* the time of the last deployment
-* the Pods Status
-* the Usage vs Requests and the Usage vs Limits of both CPU and RAM resources.
+### Metrics HomePage
 
-By clicking on the refresh button, in the upper right part of the page, the user can setup a time interval to fetch updated statistics for the project pods or trigger a manual update using the button to the right.
-The purpose of the Homepage is to give an easy overview of the availability of the infrastructure and a “one click” experience to navigate through project sections.  
-In the following paragraphs we will describe in detail the information provided by every environment card in the Homepage of your project.
+![Mia-Platform Console Metrics HomePage](img/Mia-Platform-metrics-homepage.png)  
+The Metrics Homepage is structured in different cards, and each card represents a different environment of your project. You can pin to top one card at a time using the button at the left of the environment name. For each card, the user can see:
 
-![Mia-Platform Homepage](img/homepage.png)
+* The time of the last deployment;
+* The [Pods Status](#pods-status);
+* The [CPU and RAM](#cpu-and-ram) resources;
+* The navigation to the Deploy, Runtime, and to other [Project links and Dashboards](#project-links-and-dashboards).
 
-### Pods status
+
+Data can be manually or automatically refreshed. The manual refresh updates data on user request, while the automatic refresh allows you to set a time rate for automatically update data.
+- **Manual refresh**: click the refresh button on the top-right corner;
+- **Automatic refresh**: click the dropdown menu on the left of the refresh button and choose the time rate. By default the refresh rate is Off.
+
+
+#### Pods status
 
 Pods status shows how many pods related to the project environment are ready. A warning notification will appear if there is at least one pod not ready or restarted. This warning notification links to the list of warning pods in the Runtime Area.  
 
-### CPU and RAM
+#### CPU and RAM
 
-CPU and RAM show infographics about two main KPIs: Usage vs Requests and Usage vs Limits, measured in millicores in the case of CPU and mebibytes in the case of RAM.  
-Usage vs Requests shows the percentage of used CPU compared to the requested one. The percentage value can be above 100%, meaning that you are currently using more of the requested CPU.  
-Usage vs Limits, shows the actual usage of CPU and RAM compared to the limits set for your microservices. The graph color will become yellow to warn you that the usage has exceeded the 75% of the limits you have set, meaning that you have almost reached the maximum amount that you want to be allocated for that resource. If no threshold has been set for all your microservices, the graphs will display NA (Not Available).  
+CPU and RAM show infographics about main KPIs: 
+  * **Usage vs Requests**: shows the percentage of used resources compared to the requested ones. The percentage value can be above 100%, meaning that you are currently using more resources than are requested.
+  * **Usage vs Limits**: shows the actual usage of resources compared to the limits set for your microservices. The graph color will become yellow to warn you that the usage has exceeded the 75% of the limits you have set. This means that you have almost reached the maximum amount that you want to be allocated for that resource.  
+
+The CPU usage is measured in millicores, the RAM capacity is measured in mebibytes.
+  
+If no threshold has been set for all your microservices, the graphs will display NA (Not Available).  
 At the bottom of the graphs, it is possible to see the current usage, which represents the usage of CPU or RAM when you loaded the homepage.
 
 :::info
 Limit and Request are calculated as the sum of all the containers limits and requests of each pod respectively. For this reason, [HPA](./api-console/api-design/replicas#what-needs-the-replicas-for) changes are taken into account.
 :::
 
-### Project links and Dashboards
+#### Project links and Dashboards
 
 On the right side of the card you can find useful links that can be configured to redirect you to your project Documentation, CMS and Application.
 
@@ -55,40 +90,15 @@ On the right side of the card you can find useful links that can be configured t
 To learn how to configure your project links, visit [this page](./set-up-infrastructure/runtime-environments#links-configuration).
 :::
 
-In the Dashboards section you can find the names of the first dashboards created in your project, by clicking on one of them you will be redirected to the corresponding dashboard in the Dashboards Area or click on "View all" to see all of them.
+In the Dashboards section you can find the names of the first dashboards created in your project. By clicking on one of them, you will be redirected to the corresponding dashboard in the Dashboards Area. You can also click on "View all" to see all of the available dashboards.
 
 ## Console Sections
 
 Mia-Platform Console is divided in many different sections that help you manage the full lifecycle of your digital projects, from the set up of your K8s clusters to APIs and microservices design. Run your CI/CD pipelines, deploy on every kind of environment and monitor the performances of your runtime applications.
 
-### Project Settings
+#### Sections Navigation
 
-Get started with your project in a few clicks: configure Kubernetes clusters, set up your [runtime environments](./set-up-infrastructure/runtime-environments) and manage all their [environment variables](./set-up-infrastructure/env-var).
-
-### Design
-
-Develop containerized services in any language with [Templates](../marketplace/templates/mia_templates), [Examples](../marketplace/examples/mia_examples) or [Plugins](../runtime_suite/mia-platform-plugins). Configure your [CRUDs](./api-console/api-design/crud_advanced), [Endpoints](./api-console/api-design/endpoints), [Fast Data flow](../fast_data/overview) and much more.
-
-### Deploy
-
-Design and build your [CI/CD pipelines](../development_suite/deploy/deploy.md): choose your preferred DevOps tools, put them in the right order and let the Console do the work for you.
-[Release](./deploy/deploy#select-branch) across different environments with rolling, blue/green, and canary releases. Make rollback easy with your GIT files history.
-
-### Dashboards
-
-Create your dashboards collecting data across the entire DevOps lifecycle to gain a complete overview of your application delivery value stream.
-
-### Runtime
-
-[Monitor](../development_suite/monitoring/monitoring/) your pods, health of clusters, storage consumption and communication among services to anticipate problems and bottlenecks.
-
-### Debug
-
-Automate your tests suite to deliver quality software at a sustainable pace. [Debug](./debugging/telepresence) your kubernetes pods locally with your preferred debugging tool.
-
-### Sections Navigation
-
-All the aforementioned sections can be reached using Mia-Platform Console homepage or by using the pop-up menu in the left side of the topbar.
+All the sections can be reached using Mia-Platform Console HomePage or by using the pop-up menu in the left side of the topbar.
 
 ![Launcher Menu](img/launcher-menu.gif)
 
@@ -96,7 +106,7 @@ If you wish, you can add up to 6 sections to your Favorites sections, you just n
 
 ![Favorites](img/favorites.gif)
 
-Another option to easily switch among Console sections or to select a specific project is to use the `command + k` interface that can be opened using the menu in the right side of the topbar.
+Another option to easily switch among Console sections, or to select a specific project, is to use the `⌘ + K` (alternatively, `ctrl + K`) interface. This interface can also be opened using the menu on the right side of the topbar.
 
 ![command k interface](img/interface.gif)
 
@@ -108,27 +118,74 @@ Once opened the interface, you can also type `>` and a selection of useful comma
 
 ![interface commands](img/interface_commands.png)
 
-#### Basic Homepage
 
-If you prefer, there is the option of visualizing a basic homepage, which just displays the different Console Areas. This is visualization is great for console newcomers who will benefit from always having all the Console Areas displayed at once.
-The basic homepage is shown in the image below.
 
-![basic homepage](img/basic_homepage.png)
+### Environments & Private Variables  
+The Environments & Private Variables section contains all the information about the environments on which your applications are deployed and executed. Nowadays, it is common to have multiple runtime environments: for example, you can set an environment for tests and another environment for production. The Console is built with this concept in mind, and thus provides support and tools for you to easily manage multiple runtime environments.
 
-The basic homepage is always available at the path `YOUR_CONSOLE_URL/projects/YOUR_PROJECT_ID/basicHomepage`, but it can also be set as the **default** home using the `command + k` interface, with the command `Switch to Basic Homepage`.
+You can deploy the same codebase to different runtime environments, obtaining different behaviors based on some environment configuration, like environment variables. Another notable change is the actual hardware on which the runtime environment runs, which is usually more performant for production environments.
+  
+[More information about Environments & Private Variables here](../development_suite/set-up-infrastructure/runtime-environments.md)  
+  
+### Design  
+The Design section allows you to modify the configuration and architecture of your project by customizing the use of various resources. From this section you can add, edit and delete resources such as CRUD, Microservices, Endpoints and much more. 
 
-![switch to basic homepage command](img/switch_to_basic_homepage_command.png)
+You will be able to define the limits of each microservice, the variables to be used, define the RBAC rules, and configure any other aspect related to the creation of your digital platform.
+  
+[More information about Design here](./api-console/api-design/overview.md)  
+  
+### Deploy  
+The Deploy section is the Console area that allows developers to deploy configurations of a specific project on different runtime environments. It can also be used to visualize the history of previous releases on that project.
 
-Doing this, you are going to affect the project standard home not only for you, but for every other user too.
-To **undo** this action and set back the metrics homepage as the default home for everyone, a new command will be available: `Switch to Metrics Homepage`.
+This section allows you to follow in a simple and effective way a Continuous Deployment approach, integrating automated tests and releasing new code versions without damaging the existing project.
 
-![switch to metrics homepage command](img/switch_to_metrics_homepage_command.png)
+The Deploy Area is divided into two Sections: Deploy and History. When a user enters the Deploy Area, they are automatically led to Deploy Section.
+  
+[More information about Deploy here](./deploy/deploy.md)  
+  
+### Dashboards  
+The Dashboard section allows you to keep the tools you use to monitor your project close to its configuration. In this section, which is accessible from the main menu, you can visualize the dashboards you created with your monitoring tools (such as Grafana, Kibana, etc.).
 
-## Platform Governance
+From this section, you can add, edit, and delete dashboards. Each environment has its own dashboards, since you usually want to monitor a specific environment. Changes to dashboards in one environment will not affect dashboards in the other environments.
+  
+[More information about Dashboards here](./monitoring/dashboard.md)  
+  
+### Runtime  
+The Runtime section is the Developer Console area dedicated to the control and monitoring of its infrastructure.
 
-Guarantee security, quality, and consistency across projects and teams, both internal and external, with clear policies enforced through code.
+The area has a subsection for each environment existing in the specific project. In the top-right dropdown, it is possible to change the environment to monitor. Within each environment, you can view all the workloads that you can monitor, such as pods, using the sidebar on the left.
 
-One Platform to rule them all: design and manage the full lifecycle of your DevOps Value Stream.
-Git, Jenkins, Docker, Nexus, Kubernetes, Terraform, Prometheus, Kibana and many others: control all your preferred tools from the same Console, define pipelines and common standards, and get a clear and simplified governance of your IT assets for your teams.
+From here you are able to access individual pod logs. If necessary, you can manually select and restart pods.
+  
+[More information about Runtime here](./monitoring/monitoring.md)  
+  
+### Debug  
+The Debug section shows the list of all the microservices developed with the Developer Console.
+At the first level you have the necessary information to understand the health of the service: whether it is active or not, and the memory levels used.
 
-![image alt text](img/valuestream.png)
+The real potential of the debug area is its connection with telepresence. Pressing the "Debug" button will in fact display a string to be pasted on your terminal that simulates the behavior of your microservice in a real context. Telepresence is an open source tool that lets you run a single service locally, while connecting that service to a remote Kubernetes cluster.
+  
+[More information about Debug here](./debugging/telepresence.md)  
+  
+### Documentation  
+The Documentation section is a vital part of any Restful API in order to drive consistency and discipline across your API development workflow.
+
+The Documentation section in the Developer Console area exposes the Open API documentation of all services and CRUDs that you have defined and exposed. In this way, you will be able to obtain information about the routes exposed by your resources from a single section, and to test the correct functioning of each of them. You can share API documentation both internally within your company, and externally to partners and suppliers.  
+  
+To test each API, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag.
+  
+[More information about Documentation here](./api-portal/api-documentations.md)  
+  
+### Marketplace  
+The Marketplace section contains several code resources to develop your microservices. You can also access Mia-Platform Marketplace from the Design area of Console, when you are creating a new microservice.
+
+You will see a set of Plugins, Examples, Templates and Applications that you can choose from to easily set-up a single microservice or a bundle of microservices with predefined and tested functionalities.
+
+You can start from a:
+  * Plugin: a ready-to-use Microservice powered by Mia-Platform or a Certified Partner;
+  * Template: a base repository (open source in the Mia-Platform Marketplace GitHub page) from which you can start to create a new Microservice;
+  * Example: a specific use-case, a ready-to-use model to create your Microservice;
+  * Application: a bundle of resources including Plugins, Templates and Examples, or resources like CRUD, Endpoints, etc;
+  * Docker Image Name: an existing Docker image of a Microservice.
+  
+[More information about Marketplace here](../marketplace/overview_marketplace.md)  
