@@ -604,6 +604,10 @@ channels:
 
 ### Single View Before After
 
+:::note
+This event is deprecated. Please, use the Single View Update event to get these information.
+:::
+
 An additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
 Its fields are:
@@ -831,6 +835,117 @@ channels:
               enum: ['NON_EXISTING_SV', 'INSERT_SV', 'DELETE_SV', 'UPDATE_SV']
           required: ['key', 'value', 'opType']
 ```
+
+### Single View Update
+
+An event which contains both the previous and the current state of the Single View once it has been updated.
+
+Its fields are:
+
+* `key`: the Single View ID
+* `value`:
+  * `operationType`: one of the following
+    * `NON_EXISTING_SV`
+    * `INSERT_SV`
+    * `DELETE_SV`
+    * `UPDATE_SV`
+  * `operationTimestamp`: timestamp of the operation
+  * `documentId`: id of the document taken from after
+  * `primaryKeys`: array containing the Single View ID
+  * `before`: the value of the Single View before the change occurred
+  * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
+  * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
+
+**Message Example**:
+
+<details><summary>Click here to show/hide the long message example</summary>
+<p>
+
+```yaml
+{
+  "operationType": "UPDATE_SV",
+  "operationTimestamp": 1234567,
+  "documentId": null,
+  "primaryKeys": [
+    "COD_FISCALE",
+  ],
+  "before": {
+    "COD_FISCALE": "cod1",
+    "NAME": "Gandalf",
+  },
+  "after": {
+    "COD_FISCALE": "cod1"',
+    "NAME": "Mithrandir",
+  },
+  "__internal__kafkaInfo": {
+    "topic": "original-topic-1",
+    "partition": 0,
+    "timestamp": 1234567,
+    "offset": 0,
+    key: {
+      originalKey1: "123",
+    },
+  },
+}
+```
+
+</p>
+</details>
+
+**AsyncApi specification**:
+
+```yaml
+asyncapi: 2.4.0
+info:
+  title: Single View Update Producer
+  version: '1.0.0'
+channels:
+  SingleViewUpdateChannel:
+    subscribe:
+      message:
+        name: single view Update
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key: {}
+            value:
+              type: object
+              additionalProperties: false
+              properties:
+                operationType:
+                  type: string
+                  enum: ['NON_EXISTING_SV', 'INSERT_SV', 'DELETE_SV', 'UPDATE_SV']
+                operationTimestamp:
+                  type: number
+                documentId:
+                  type: string
+                primaryKeys:
+                  type: array
+                  items:
+                    type: string
+                before:
+                  type: object
+                  additionalProperties: true
+                after:
+                  type: object
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    topic:
+                      type: string
+                    partition:
+                      type: integer
+                    offset:
+                      type: string
+                    key: {}
+                    timestamp:
+                      type: string
+          required: ['key', 'value']
+```
+
 
 #### Topic naming convention
 

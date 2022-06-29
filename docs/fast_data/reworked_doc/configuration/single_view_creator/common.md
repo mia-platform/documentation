@@ -137,6 +137,8 @@ This documentation refers to the `@mia-platform-internal/single-view-creator-lib
 <tr><td>KAFKA_SVC_EVENTS_TOPIC</td><td>false</td><td>topic used to queue Single View Creator state changes (e.g. single view creation)</td><td>DEF_</td></tr>
 <tr><td>SEND_BA_TO_KAFKA</td><td>false</td><td>true if you want to send to Kafka the `before-after` information about the update changes of the single view</td><td>false</td></tr>
 <tr><td>KAFKA_BA_TOPIC</td><td>false</td><td>topic where to send the `before-after`, which is the single view document before and after a change</td><td>-</td></tr>
+<tr><td>SEND_SV_UPDATE_TO_KAFKA</td><td>false</td><td>true if you want to send to Kafka the `sv-update` message about the update changes of the single view</td><td>false</td></tr>
+<tr><td>KAFKA_SV_UPDATE_TOPIC</td><td>false</td><td>topic where to send the `sv-update` message</td><td>-</td></tr>
 <tr><td>UPSERT_STRATEGY</td><td>false</td><td>(v3.1.0 or higher) If it is set to "replace", the whole Single View document will be replaced with the new one. If it is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept.  Otherwise the custom function placed at the path equals to the value of this env will be used.</td><td>replace</td></tr>
 <tr><td>DELETE_STRATEGY</td><td>false</td><td>(v3.1.0 or higher) If it is set to "delete", the whole Single View document will be deleted. Otherwise the custom function placed at the path equals to the value of this env will be used.</td><td>replace</td></tr>
 <tr><td>SINGLE_VIEWS_MAX_PROCESSING_MINUTES</td><td>false</td><td>(v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS</td><td>DEF_</td></tr>
