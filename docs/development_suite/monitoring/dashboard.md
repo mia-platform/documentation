@@ -26,6 +26,10 @@ In the side menu, using the 'Create a dashboard' button, it is possible to add a
 
 ![create dashboard](img/dashboards/create_dashboard.png)
 
+:::note
+Some websites may not support `Iframes`, so you can enable the `External dashboard` checkbox to open the dashboard outsite the Mia-Platform Console
+:::
+
 ### Edit a Dashboard
 
 When a dashboard is selected, you can use the edit button (represented by a pencil icon) placed in the right side of the header to edit a dashboard in the selected environment. To do so, the required fields are:
