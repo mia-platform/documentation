@@ -150,13 +150,13 @@ If you do not want to use Kafka in the Single View Creator, you can just not set
 
 Single View Key is the Single View Creator part in charge of identifying the single view document that needs to be updated as consequence of the event that the service has consumed. 
 
-If you are using Low Code, please visit [here](./low_code.md), otherwise you can go to the [manual documentation](./manual.md)
+If you are using Low Code, please visit [here](./low_code.md#single-view-key), otherwise you can go to the [manual documentation](./manual.md#single-view-key)
 
 ## Aggregation
 
 Aggregation is the Single View Creator part in charge of aggregating data of projections and generating the Single View that is going to be updated. 
 
-If you are using Low Code, please visit [here](./low_code.md), otherwise you can go to the [manual documentation](./manual.md)
+If you are using Low Code, please visit [here](./low_code.md#aggregation), otherwise you can go to the [manual documentation](./manual.md#aggregation)
 
 ## Validator
 
