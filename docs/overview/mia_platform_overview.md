@@ -3,37 +3,24 @@ id: mia_platform_overview
 title: Mia-Platform
 sidebar_label: Mia-Platform Overview
 ---
-Mia‑Platform provides the first end‑to‑end Digital Integration Hub on the market with a full DevOps Lifecycle Management: one unique Console to run Fast Data, Microservices and APIs.
+## What is Mia-Platform?
 
-Here's an overview of Mia-Platform suite:
+Mia‑Platform is the tool you need to turn your Company into a Digital Platform. Mia-Platform is a platform builder: it provides all the capabilities to build and manage modern digital platforms and the tools to empower your Platform Strategy. Mia-Platform is built by developers for developers: its main purpose is streamlining the development cycle of microservices on Kubernetes environments.
 
-![Mia-Platform](img/overview.png)
+![Mia-Platform](img/digitalplatform.png)
 
-### Console
+Mia-Platform takes care of simplifying the cloud complexity, so that you can focus on building your business products instead of wasting time setting up the platform. All the tools you need are gathered together: from the infrastructure, to the microservice orchestration, to managing the software lifecycle. Just choose the tool that fits you best, and let Mia-Platform take care of the rest.
 
-Manage your API, Kubernetes clusters, define environments, set up test automation, design and run your CI/CD pipelines controlling your preferred tools from one unique Console.
+![Mia-Platform](img/pyramid.png)
 
-![Mia-Platform CMS](img/valuestream.png)
+## What Mia-Platform provides you with
 
-Find out more in the [Console section](./../development_suite/overview-dev-suite.md).
+Mia-Platform provides you with two main tools to govern complexity and speed up your development teams:
 
-### Microservices Ecosystem
+- **Mia-Platform Console**: a powerful Internal Developer Portal to govern all projects in one place and to industrialize DevOps;
+- **The Marketplace**: a catalog of ready-to-use components to speed up development and to promote reuse of code and evolvability in the long term.
 
-A set of ready to use microservices to speed up your applications’ development.
-
-Find out more in the [Microservices Ecosystem](./../runtime_suite/mia-platform-plugins.md) section.
-
-### Fast Data Real-time Single view
-
-Aggregate and map your data to create real-time Single Views.
-
-Find out more in the [Fast Data](./../fast_data/overview.md) section.
-
-### Backoffice
-
-A practical and intuitive interface for non-technical people who can easily manage content over APIs and supervise business analytics.
-
-Find out more in the [Backoffice](./../business_suite/backoffice/overview.md) section.
+Find out more about [Mia-Platform Console](/docs/dev_portal/overview.md) and the [Marketplace](/docs/marketplace/overview_marketplace.md).
 
 ### More Resources
 
