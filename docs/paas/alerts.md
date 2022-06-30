@@ -3,40 +3,55 @@ id: alerting_rules
 title: Alerting rules
 sidebar_label: Alerting rules
 ---
-Mia-Platform PaaS Monitoring defines a set of alerting rules by default. Currently you cannot add custom alerting rules.
+Mia-Platform PaaS Monitoring defines a set of alerting rules by default. Currently, you cannot add custom alerting rules.
 
-These rules refer to Kubernetes cluster, Kafka, Prometheus and AlertManager. They can have 3 severity levels: info, warning and critical.
+These rules refer to AlertManager, Kafka, Kubernetes cluster, and Prometheus. Each rule has one the following 3 severity levels:
 
-This is a list with all the alerts, severity and description:  
+1. **Info**: An informative message. No action is required;
+2. **Warning**: Action must be taken to prevent a severe error from occurring in the near future;
+3. **Critical**: A severe error that might cause the loss or corruption of unsaved data. Immediate action must be taken to prevent losing data.
 
+Below there is a list with all the alerts that you may receive. For each alert you will find a brief description and its severity level.
 
-|                 **Alert**                 | **Severity** | **Description** |
-| ------------------------------------- | -------- | ----------- |
-| AlertmanagerClusterCrashlooping                 | Half or more of the Alertmanager instances within the same cluster are crashlooping. Alerts could be notified multiple time unless pods are crashing to fast and no alerts can be sent.                   | critical             |
+## AlertManager
+
+|                 **Alert**                 | **Description** | **Severity** |
+| ------------------------------------- | ----------- | -------- |
+| AlertmanagerClusterCrashlooping                 | Half or more of the Alertmanager instances within the same cluster are crashlooping. Alerts could be notified multiple time unless pods are crashing too fast and no alerts can be sent.                  | critical             |
 | AlertmanagerClusterDown                         | Half or more of the Alertmanager instances within the same cluster are down.                                                                                                                              | critical             |
 | AlertmanagerClusterFailedToSendAlerts           | All Alertmanager instances in a cluster failed to send notifications to a critical integration.                                                                                                           | warning   |
 | AlertmanagerConfigInconsistent                  | The configuration of the instances of the Alertmanager cluster namespace/services are out of sync.                                                                                                        | critical             |
 | AlertmanagerFailedReload                        | Reloading Alertmanager's configuration has failed for namespace/pods.                                                                                                                                     | critical             |
 | AlertmanagerFailedToSendAlerts                  | At least one instance is unable to routed alert to the corresponding integration.                                                                                                                         | warning              |
 | AlertmanagerMembersInconsistent                 | Alertmanager has not found all other members of the cluster.                                                                                                                                              | critical             |
+
+## Kafka
+
+|                 **Alert**                 | **Description** | **Severity** |
+| ------------------------------------- | ----------- | -------- |
+| KafkaNoActiveController                         | There are no active Kafka Controller.                                                                                                                                                                               | critical             |
+| KafkaOfflinePartitions                          | Kafka partitions are offline.                                                                                                                                                                      | critical             |
+| KafkaPartitionOver80                            | Kafka Partition disk usage over 80%.                                                                                                                                                                      | critical             |
+| KafkaUnderReplicatedPartitions                  | Kafka Partitions are under replicated.                                                                                                                                                                       | critical             |
+
+## Kubernetes Cluster
+
+|                 **Alert**                 | **Description** | **Severity** |
+| ------------------------------------- | ----------- | -------- |
 | ConfigReloaderSidecarErrors                     | Errors encountered in a pod while the config-reloader sidecar attempts to sync config in namespace. As a result, configuration for service running in the pod may be stale and cannot be updated anymore. | warning              |
 | CPUThrottlingHigh                     | Kubernetes containers processes experience elevated CPU throttling. | info              |
-| KafkaNoActiveController                         | Kafka No Active Controller                                                                                                                                                                                | critical             |
-| KafkaOfflinePartitions                          | Kafka Offline Partitions                                                                                                                                                                                  | critical             |
-| KafkaPartitionOver80                            | Kafka Partition disk usage over 80%                                                                                                                                                                       | critical             |
-| KafkaUnderReplicatedPartitions                  | Kafka Partitions underreplicated                                                                                                                                                                          | critical             |
 | KubeClientErrors                                | Kubernetes API server client is experiencing errors.                                                                                                                                                      | warning              |
-| KubeContainerWaiting                            | Pod container waiting longer than 1 hour                                                                                                                                                                  | warning              |
+| KubeContainerWaiting                            | Pod container is waiting longer than 1 hour.                                                                                                                                                              | warning              |
 | KubeCPUOvercommit                               | Cluster has overcommitted CPU resource requests.                                                                                                                                                          | warning              |
 | KubeCPUQuotaOvercommit                          | Cluster has overcommitted CPU resource requests.                                                                                                                                                          | warning              |
 | KubeDaemonSetMisScheduled                       | DaemonSet pods are not properly scheduled.                                                                                                                                                                          | warning              |
 | KubeDaemonSetNotScheduled                       | DaemonSet pods are not scheduled.                                                                                                                                                                         | warning              |
 | KubeDaemonSetRolloutStuck                       | DaemonSet rollout is stuck.                                                                                                                                                                               | warning              |
-| KubeDeploymentGenerationMismatch                | Deployment generation mismatch due to possible roll-back                                                                                                                                                  | warning              |
+| KubeDeploymentGenerationMismatch                | Deployment generation mismatch due to possible roll-back.                                                                                                                                                 | warning              |
 | KubeDeploymentReplicasMismatch                  | Deployment has not matched the expected number of replicas.                                                                                                                                               | warning              |
-| KubeHpaMaxedOut                                 | HPA is running at max replicas                                                                                                                                                                            | warning              |
-| KubeHpaReplicasMismatch                         | HPA has not matched descired number of replicas.                                                                                                                                                          | warning              |
-| KubeJobCompletion                               | Job did not complete in time                                                                                                                                                                              | warning              |
+| KubeHpaMaxedOut                                 | HPA is running at max replicas.                                                                                                                                                                           | warning              |
+| KubeHpaReplicasMismatch                         | HPA has not matched desired number of replicas.                                                                                                                                                           | warning              |
+| KubeJobCompletion                               | Job did not complete in time.                                                                                                                                                                             | warning              |
 | KubeJobFailed                                   | Job failed to complete.                                                                                                                                                                                   | warning              |
 | KubeletClientCertificateExpiration              | Kubelet client certificate is about to expire.                                                                                                                                                            | warning   |
 | KubeletClientCertificateRenewalErrors           | Kubelet has failed to renew its client certificate.                                                                                                                                                       | warning              |
@@ -58,7 +73,7 @@ This is a list with all the alerts, severity and description:
 | KubeQuotaExceeded                               | Namespace quota has exceeded the limits.                                                                                                                                                                  | warning              |
 | KubeQuotaAlmostFull                               | Namespace quota is going to be full.                                                                                                                                                                | info              |
 | KubeQuotaFullyUsed                               | Namespace quota is fully used.                                                                                                                                                                 | info              |
-| KubeStatefulSetGenerationMismatch               | StatefulSet generation mismatch due to possible roll-back                                                                                                                                                 | warning              |
+| KubeStatefulSetGenerationMismatch               | StatefulSet generation mismatch due to possible roll-back.                                                                                                                                                | warning              |
 | KubeStatefulSetReplicasMismatch                 | Deployment has not matched the expected number of replicas.                                                                                                                                               | warning              |
 | KubeStatefulSetUpdateNotRolledOut               | StatefulSet update has not been rolled out.                                                                                                                                                               | warning              |
 | KubeStateMetricsListErrors                      | kube-state-metrics is experiencing errors in list operations.                                                                                                                                             | critical             |
@@ -77,10 +92,15 @@ This is a list with all the alerts, severity and description:
 | NodeNetworkInterfaceFlapping                    | Network interface device changing it's up status often on node-exporter namespace/pods.                                                                                                                   | warning              |
 | NodeNetworkReceiveErrs                          | Network interface is reporting many receive errors.                                                                                                                                                       | warning              |
 | NodeNetworkTransmitErrs                         | Network interface is reporting many transmit errors.                                                                                                                                                      | warning              |
-| NodeRAIDDegraded                                | RAID Array is degraded                                                                                                                                                                                    | critical             |
-| NodeRAIDDiskFailure                             | Failed device in RAID array                                                                                                                                                                               | warning              |
+| NodeRAIDDegraded                                | RAID Array is degraded.                                                                                                                                                                                   | critical             |
+| NodeRAIDDiskFailure                             | Failed device in RAID array.                                                                                                                                                                              | warning              |
 | NodeTextFileCollectorScrapeError                | Node Exporter text file collector failed to scrape.                                                                                                                                                       | warning              |
-| PodCrashOOM                                     | Pod Crashing for OOM                                                                                                                                                                                      | critical             |
+| PodCrashOOM                                     | Pod Crashing for OOM.                                                                                                                                                                                     | critical             |
+
+## Prometheus
+
+|                 **Alert**                 | **Description** | **Severity** |
+| ------------------------------------- | ----------- | -------- |
 | PrometheusBadConfig                             | Failed Prometheus configuration reload.                                                                                                                                                                   | critical             |
 | PrometheusDuplicateTimestamps                   | Prometheus is dropping samples with duplicate timestamps.                                                                                                                                                 | warning              |
 | PrometheusErrorSendingAlertsToAnyAlertmanager   | Prometheus encounters more than 3% errors sending alerts to any Alertmanager.                                                                                                                             | critical             |
@@ -91,10 +111,10 @@ This is a list with all the alerts, severity and description:
 | PrometheusNotIngestingSamples                   | Prometheus is not ingesting samples.                                                                                                                                                                      | warning              |
 | PrometheusOperatorListErrors                    | Errors while performing list operations in controller.                                                                                                                                                    | warning              |
 | PrometheusOperatorNodeLookupErrors              | Errors while reconciling Prometheus.                                                                                                                                                                      | warning              |
-| PrometheusOperatorNotReady                      | Prometheus operator not ready                                                                                                                                                                             | warning              |
+| PrometheusOperatorNotReady                      | Prometheus operator is not ready.                                                                                                                                                                         | warning              |
 | PrometheusOperatorReconcileErrors               | Errors while reconciling controller.                                                                                                                                                                      | warning              |
-| PrometheusOperatorRejectedResources             | Resources rejected by Prometheus operator                                                                                                                                                                 | warning              |
-| PrometheusOperatorSyncFailed                    | Last controller reconciliation failed                                                                                                                                                                     | warning              |
+| PrometheusOperatorRejectedResources             | Resources rejected by Prometheus operator.                                                                                                                                                                | warning              |
+| PrometheusOperatorSyncFailed                    | Last controller reconciliation failed.                                                                                                                                                                    | warning              |
 | PrometheusOperatorWatchErrors                   | Errors while performing watch operations in controller.                                                                                                                                                   | warning              |
 | PrometheusOutOfOrderTimestamps                  | Prometheus drops samples with out-of-order timestamps.                                                                                                                                                    | warning              |
 | PrometheusRemoteStorageFailures                 | Prometheus fails to send samples to remote storage.                                                                                                                                                       | warning              |
