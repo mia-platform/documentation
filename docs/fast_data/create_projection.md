@@ -157,6 +157,10 @@ Most DBMSes have some way of exporting the database schema, producing a DDL file
 * All the fields (both custom and default); the custom fields can only have type `number` or `string`. All the numeric types will be converted to `number`, every other SQL type will be converted to `string`.
 * All the indexes specified in the DDL, plus a primary key index that will be automatically generated if not already present.
 
+:::caution
+The maximum size of the DDL file is 20MB
+:::
+
 #### Importing - step 1
 
 To start importing projections from a DDL, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process.
