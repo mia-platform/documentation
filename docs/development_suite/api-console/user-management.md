@@ -31,7 +31,7 @@ Please note that some permissions defined by the Company role may be inherited o
 
 ### Adding a new user
 
-An administrator can add a new user by pressing the _Add user_ button, the user invite process will require for an email and the desired role to be assigned the new user.
+The Company Owner can add a new user by pressing the _Add user_ button, the user invite process will require for an email and the desired role to be assigned the new user.
 
 <!-- TODO: SCREENSHOT OF COMPANY ADD USER MODAL -->
 
