@@ -844,6 +844,12 @@ The aggregation above will be performed in the following order:
 
 The order resolution is important for the correctness of the aggregation since each step of the aggregation may use documents of the previous steps. Hence, if the order of the dependencies resolution is not correct, the single view resulting from the aggregation will probably be wrong.
 
+:::note
+Since version `v5.0.0` of Single View Creator service returning a single view with the field `__STATE__` from the aggregation will update of the Single View to that state (among the others changes).   
+This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `aggregation.json` the single view updated will have the __STATE__ equals to `DRAFT`. 
+Previously, the `__STATE__` you returned was ignored, and the Single View would always have the __STATE__ equals to `PUBLIC`.
+:::
+
 ### Example
 
 Let's take a look at a simplified version of the `sv_customer` configuration in the `food-delivery` use case:
