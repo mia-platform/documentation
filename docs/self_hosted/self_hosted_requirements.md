@@ -28,7 +28,7 @@ The following software and hardware recommendations are for installing Mia-Platf
    </thead>
    <tbody>
       <tr>
-         <td rowspan="4"><strong>Auth Provider</strong></td>
+         <td rowspan="6"><strong>Auth Provider</strong></td>
          <td><img src="/img/okta.ico" width="15" height="15"/> Okta</td>
          <td>N/A</td>
          <td>N/A</td>
@@ -48,6 +48,18 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td><img src="/img/microsoft.ico" width="15" height="15"/> Microsoft</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> BitBucket Server</td>
+         <td>&gt; 8.x</td>
+         <td>2 cores</td>
+         <td>3 GB</td>
+      </tr>
+      <tr>
+         <td><img src="/img/keycloak.ico" width="15" height="15"/> Keycloak</td>
          <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
