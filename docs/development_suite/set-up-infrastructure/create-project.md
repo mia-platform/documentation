@@ -449,6 +449,7 @@ In this step, security information concerning cluster credentials are displayed 
 
 * **Environment**: the environment name previously set;
 * **Cluster URL**: the URL of the Kubernetes cluster on which the project is deployed;
+* **Cluster CA**: the certificate associated with the Kubernetes cluster on which the project is deployed. This field displays a button to open up a modal, in which the information about the certificate are shown, together with a button to copy the certificate in PEM format;
 * **Pipeline token**: the security token used to perform deployment operations on the Kubernetes cluster.
 
 :::caution
