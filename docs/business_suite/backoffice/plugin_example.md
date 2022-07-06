@@ -7,7 +7,7 @@ This is a configuration example for a Back-Kit Web Components single page applic
 
 ## Schema
 
-The purpose of a [data-schema](Page_layout#data-schema) is to tell components how to interpret data correctly, using the availbale configuration options. A `schema` can provide several information on how to interpret the data, but each component only utilizes the information it needs.
+The purpose of a [data-schema](page_layout#data-schema) is to tell components how to interpret data correctly, using the availbale configuration options. A `schema` can provide several information on how to interpret the data, but each component only utilizes the information it needs.
 
 Follows a `schema` example that provides information on two fields, `_id` and `status`.
 
@@ -100,9 +100,9 @@ The first filed is `_id`.
 
 This `schema` contains several information, but not all components use all of this information.
 
-For instance, the `label` of the field is used by components such as [bk-table](Components/Data_Visualization#table) or [bk-form-drawer](Components/Data_Manipulation#form-drawer), if they are included in the single page application and provided with this `schema`, as a print-out text for the field.
+For instance, the `label` of the field is used by components such as [bk-table](Components/data_visualization#table) or [bk-form-drawer](Components/data_manipulation#form-drawer), if they are included in the single page application and provided with this `schema`, as a print-out text for the field.
 
-On the other hand, `filtersOptions` is ignored by `bk-table` component, but used by [bk-filter-drawer](Components/Data_Querying#filter-drawer). In particular, `bk-filter-drawer` knows that it should not allow the user to create [filters](Core_concepts#filters) based on this field.
+On the other hand, `filtersOptions` is ignored by `bk-table` component, but used by [bk-filter-drawer](Components/data_querying#filter-drawer). In particular, `bk-filter-drawer` knows that it should not allow the user to create [filters](core_concepts#filters) based on this field.
 
 The second field is `status`.
 
@@ -152,11 +152,11 @@ The second field is `status`.
 
 This field presents a multi-lingual `label`, specifying one value for italian and one for english. The value displayed for the label depends on the language of the browser. Back-Kit components should all support international labels.
 
-The field is of type `string`, just like `_id`, but it only accepts a defined set of values, specified in `enum`. The `enum` option is utilized by some components, such as [bk-form-drawer](Components/Data_Manipulation#form-drawer) or [bk-filter-drawer](Components/Data_Querying#filter-drawer), so that the field can only be assigned one of the indicated values.
+The field is of type `string`, just like `_id`, but it only accepts a defined set of values, specified in `enum`. The `enum` option is utilized by some components, such as [bk-form-drawer](Components/data_manipulation#form-drawer) or [bk-filter-drawer](Components/data_querying#filter-drawer), so that the field can only be assigned one of the indicated values.
 
-`visualizationOptions` describes a 1-to-1 map that associates the possible values to icons. This option is utilized by components such as [bk-table](Components/Data_Visualization#table) to represent the field in question with icons instead of text.
+`visualizationOptions` describes a 1-to-1 map that associates the possible values to icons. This option is utilized by components such as [bk-table](Components/data_visualization#table) to represent the field in question with icons instead of text.
 
-`excludeFromSearch` informs components such as the [bk-crud-client](Components/Clients#crud-client) to not include this field in queries based on text search.
+`excludeFromSearch` informs components such as the [bk-crud-client](Components/clients#crud-client) to not include this field in queries based on text search.
 
 ## SPA content
 
@@ -357,7 +357,7 @@ The first `column` includes two nodes of type `element`:
 }
 ```
 
-Both `element`s specify as `tag` a Back-Kit web component, [bk-navigation-back-arrow](Components/Buttons#navigation-back-arrow) and [bk-breadcrumbs](Components/Data_Visualization#bk-breadcrumbs) respectively.
+Both `element`s specify as `tag` a Back-Kit web component, [bk-navigation-back-arrow](Components/buttons#navigation-back-arrow) and [bk-breadcrumbs](Components/data_visualization#bk-breadcrumbs) respectively.
 For the latter, extra styling is provided, as well as a property `dataSchema`. It is possible to initialize properties of the web components using the `properties` option.
 In this particular case, the `dataSchema` property is initialized using `JSON-Schema-7` syntax `$ref`, which allows to declare the `dataSchema` only once within the same *json* file. It is recommended to utilize this approach when passing the `schema` to web components, as it allows more concise, easier to debug and understand configurations.
 
@@ -1044,7 +1044,7 @@ should be included in the configuration file, as it triggers the import of the B
 
 Follows a possible stream of data of the plugin resulting from the previous configuration, illustrating some core concepts of how the plugin would work.
 
-Upon loading, the [bk-crud-client](Components/Clients#crud-client) component
+Upon loading, the [bk-crud-client](Components/clients#crud-client) component
 
 ```json
 {
@@ -1060,9 +1060,9 @@ Upon loading, the [bk-crud-client](Components/Clients#crud-client) component
 }
 ```
 
-performs an HTTP request for fetching data. If the call is successful, the component organizes the data according to the provided `schema`, and emits a [display-data](Events#display-data) event with such data in payload.
+performs an HTTP request for fetching data. If the call is successful, the component organizes the data according to the provided `schema`, and emits a [display-data](events#display-data) event with such data in payload.
 
-The [bk-crud-lookup-client](Components/Clients#lookup-client) component
+The [bk-crud-lookup-client](Components/clients#lookup-client) component
 
 ```json
 {
@@ -1077,9 +1077,9 @@ The [bk-crud-lookup-client](Components/Clients#lookup-client) component
 }
 ```
 
-listens to `display-data`. In conjunction with the data from the payload, it analyzes the `schema`, and particularly fields that have [lookupOptions](Page_layout#lookups), and performs HTTP requests for fetching references to third collections, thus managing to solve lookups and multilookups. Then, the component emits a [lookup-data](Events#lookup-data) event, containing the lookup data in payload.
+listens to `display-data`. In conjunction with the data from the payload, it analyzes the `schema`, and particularly fields that have [lookupOptions](page_layout#lookups), and performs HTTP requests for fetching references to third collections, thus managing to solve lookups and multilookups. Then, the component emits a [lookup-data](events#lookup-data) event, containing the lookup data in payload.
 
-The [bk-table](Components/Data_Visualization#table) component
+The [bk-table](Components/data_visualization#table) component
 
 ```json
 {
@@ -1111,7 +1111,7 @@ listens to both the `display-data` and the `lookup-data` events, and renders the
 will not be included in the table columns, as its `visualizationOptions` have `hidden` set to true.
 
 The user can directly interact with web components in various ways, which may trigger the emition of events and eventually result in HTTP calls, allowing CRUD operations on the data stored in backend.
-In the case of `bk-table`, for instance, clicking on a row of the rendered table triggers a [selected-data](Events#selected-data) event, with data from the selected row in payload. The [bk-form-drawer](Components/Data_Manipulation#form-drawer) component
+In the case of `bk-table`, for instance, clicking on a row of the rendered table triggers a [selected-data](events#selected-data) event, with data from the selected row in payload. The [bk-form-drawer](Components/data_manipulation#form-drawer) component
 
 ```json
 {
@@ -1131,9 +1131,9 @@ listens to `selected-data` and displays the payload as a form inside a drawer. `
 
 Combining the events of `bk-table` and `bk-form-drawer`, the user can display part of the data in `bk-table` inside a `bk-form-drawer` component, without any need for imperative calls between the two.
 
-Unless specified differently in configuration, the user is able to edit the fields in the form in `bk-form-drawer` and save the changes. This triggers an [update-data](Events#update-data) event, with the updated values in payload, which is listened to by `bk-crud-client`. At this point the `bk-crud-client` converts the event into a HTTP request to update the data on backend-side and makes the call. Depending on the received response, either a [success](Events#success) or an [error](Events#error) event is emitted.
+Unless specified differently in configuration, the user is able to edit the fields in the form in `bk-form-drawer` and save the changes. This triggers an [update-data](events#update-data) event, with the updated values in payload, which is listened to by `bk-crud-client`. At this point the `bk-crud-client` converts the event into a HTTP request to update the data on backend-side and makes the call. Depending on the received response, either a [success](events#success) or an [error](events#error) event is emitted.
 
-These two events are listened to by the [bk-notifications](Components/Misc#notifications) component
+These two events are listened to by the [bk-notifications](Components/misc#notifications) component
 
 ```json
 {
@@ -1168,7 +1168,7 @@ These two events are listened to by the [bk-notifications](Components/Misc#notif
 
 which notifies the user of the result of the HTTP request.
 
-This example illustrates the [typical flow of data](Data_flow) in a Back-Kit application:
+This example illustrates the [typical flow of data](data_flow) in a Back-Kit application:
 
 - client components perform business logic, handling interactions with backend resources
 - events are the only mean of communication between components. When configuring a SPA, it is crucial to combine components via events

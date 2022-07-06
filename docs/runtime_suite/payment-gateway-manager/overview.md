@@ -16,11 +16,13 @@ The payment processing logic includes:
 * **Manage a transaction session** on a payment provider (e.g. to perform 3D-Secure authentication) 
 
 ## Interfaces
+
 The *PGM* interfaces aim to be Payment Provider agnostic.
 This way an eventual Payment Provider's change does not involve huge modifications for the services leveraging the *PGM*.
 Some providers may require additional fields, in which case they will be wrapped in a single, optional object field.
 
 * Payment Request: `POST /{provider}/{payment-method}/pay`
+* Recurrent Payment Request: `POST /{provider}/{payment-method}/pay/recurrent`
 * Payment with Authorization Confirmation Request: `POST /{provider}/{payment-method}/confirm`
 * Refund Request: `POST /{provider}/{payment-method}/refund`
 * M2M Callback Transaction Status Verification: `GET /{provider}/callback`
@@ -33,6 +35,7 @@ Some providers may require additional fields, in which case they will be wrapped
 * Check the status of the session: `POST /{provider}/session/check`
 
 ## Supported Providers and Payment Methods
+
 | Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy |
 |-------------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|
 | gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |            |       |
@@ -42,6 +45,7 @@ Some providers may require additional fields, in which case they will be wrapped
 | scalapay                |              |          |           |         |          | ✓        |            |       |
 | safecharge              |              |          |           |         |          |          | ✓          |       |
 | soisy                   |              |          |           |         |          |          |            | ✓     |
+
 ## Utility APIs
 When possible, the PGM will expose utility APIs for some providers. These APIs abstract contour operations to the 
 developer and allow focusing on the payment process itself, rather than setup processes. The BrainTree helper suite is 

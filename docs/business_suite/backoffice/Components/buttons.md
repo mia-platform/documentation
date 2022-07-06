@@ -32,16 +32,16 @@ Notifies other components that a filter needs to be created. Such event could be
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[filter](../Events#filter)|notifies the request for creating a filter|
+|[filter](../events#filter)|notifies the request for creating a filter|
 
 ### Bootstrap
 
@@ -70,16 +70,16 @@ this button creates a new item
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|keeps track of navigation steps| - | - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|keeps track of navigation steps| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[add-new](../Events#add-new)|notifies the request for creating a new item|
+|[add-new](../events#add-new)|notifies the request for creating a new item|
 
 ### Bootstrap
 
@@ -125,40 +125,22 @@ In some cases the configurable onClick action can receive args as parameters tha
 - for event the args are added to the eventBus payload
 - for http the args are used as post payload if the config is not provided
 
-## Possible args usage improvement
-
-A good improvement of the use of the parameter args could be defining a priority flag into the configuration of the web component which defines if the args should overwrite the config parameters or not. Then based on this priority parameter would be possible to provide the args in each onClick function and merge these data with the configuration, following pseudocode:
-
-```typescript
-this.onClick = (...args) => {
-    if (args[0].priority === 'ARGS_OVERWRITE_CONFIG') {
-        properties = {
-            ...actualProperties,
-            ...args
-        }
-    } else (args[0].priority === 'ARGS_OVERWRITE_CONFIG') {
-        properties = {
-            ...args,
-            ...actualProperties
-        }
-    }
-}
-```
-
-Using a library (like loadhash) to recursively spread the object's properties.
-
 ## Actions
 
-All the parameters inside `clickConfig` can be dynamically interpolated into the WebComponent properties throw handlebars. With this syntax it is possible to access information about the current user or the URL of the page. Specifically, there are 3 objects available: 
+All the parameters inside `clickConfig` can be dynamically interpolated into the WebComponent properties throw handlebars. With this syntax it is possible to access information about the current user or the URL of the page. Specifically, there are 3 objects available:
+
 - `currentUser`, contains information about the current user, for example name and email.
 - `pathnameParams`, contains information about the pathname of the current page. It contains the property `params` with the keys specified in the `urlMask` and the property `path` with the full path.
+
 ```json
 {
   "params": {...},
   "path": "/currentPath"
 }
 ```
+
 - `searchParams`, contains information about the URL query parameters. It contains the property `params` with the keys specified in the `urlMask` and the property `path` with the full query parameters string.
+
 ```json
 {
   "params": {...},
@@ -169,6 +151,7 @@ All the parameters inside `clickConfig` can be dynamically interpolated into the
 The two objects `pathnameParams` and `searchParams` can be accessed by specifing the `urlMask` property of the `bk-button` component. With no `urlMask` specified (or without a match between URL and `urlMask`), they will be empty. 
 
 Example of configuration:
+
 ```json
 {
   "type": "element",
@@ -187,11 +170,52 @@ Example of configuration:
   }
 }
 ```
+
 In this configuration the property `urlMask` is specified to get the value of the first query parameter `pageNumber` and is saved in the `myPageNumber` key of the `searchParams.params` object. The example configuration will create a button that on click action will emit a `add-new` event with the information about the current page number in the payload.
 
 :::warning
 This behavior is not available for buttons embedded within components that already dynamically interpolate data, such as tables.
 :::
+
+### HTTP Request
+
+There are 3 available configurations available on `clickConfig` with `type` `http`
+
+- `GET`
+- `POST`
+- `DELETE`
+
+`POST` and `DELETE` are allowed to parse a body from configuration beside any other `http-client` configuration
+
+For instance an `http` configuration con be set as
+
+```json
+{
+  "clickconfig": {
+    "type": "http",
+    "actionconfig": {
+      "url": "/v2/users/",
+      "method": "POST",
+      "body": "some body"
+    }
+  }
+}
+```
+
+If the button is mounted on a component which provides context, say a `bk-table`, it is possible to achieve body dynamic construction as per
+
+```json
+{
+  "clickconfig": {
+    "type": "http",
+    "actionconfig": {
+      "url": "/v2/users/",
+      "method": "POST",
+      "body": "{{rawObject args.[1]}}"
+    }
+  }
+}
+```
 
 ### File Upload
 
@@ -230,7 +254,7 @@ This config can be extended by using the `config` key enclosed by `actionConfig`
 
 in case an event should be piped when upload is successful, `actionConfig` contains a key `returnEvent` which 
 takes either a `string`, an `array` of `string`s, an `Event` or an `array` of `Event`s that will follow `success` event into the pipeline.
-For instance if a plugin reload is required after successful upload one could pipe a [change-query](../Events#change-query)
+For instance if a plugin reload is required after successful upload one could pipe a [change-query](../events#change-query)
 
 ```json
 {
@@ -262,7 +286,7 @@ For instance a `file-download` configuration con be set as
 
 in case an event should be piped when upload is successful, `actionConfig` contains a key `returnEvent` which 
 takes either a `string`, an `array` of `string`s, an `Event` or an `array` of `Event`s that will follow `success` event into the pipeline.
-For instance if a plugin reload is required after successful upload one could pipe a [change-query](../Events#change-query)
+For instance if a plugin reload is required after successful upload one could pipe a [change-query](../events#change-query)
 
 ```json
 {
@@ -289,10 +313,11 @@ For instance if a plugin reload is required after successful upload one could pi
 |`fileFormKey`|`file-form-key`|string|'file'|when `clickConfig` is of `type` `file-upload`, file is set to this key when appending values to the multipart/form-data that is sent |
 |`iconId`|`icon-id`|string| - |defines which icon should be rendered into the button, if this property is not defined or doesn't match any icon no icon will be rendered |
 |`iconPlacement`| - |"default" \\| "left" \| "right"|'default'|defines where icon should be rendered, either left or right defaulting on left |
+|`listenToLoadingData`|`listen-to-loading-data`|boolean|false|configures the button to be loading when trigger by a loading-data event |
 |`loading`|`loading`|boolean|false|button loading property |
+|`loadingDebounce`|`loading-debounce`|number|400|min time in milliseconds between loading swaps (when less it doesn't trigger `loading` rendering) |
 |`loadingOnAction`|`loading-on-action`|boolean|false|configures the button to be loading while action is in progress |
 |`navigationStrategy`| - |undefined \\| "disable" \| "hide"| - |determines the button behavior upon navigating nested objects. Allowed values are 'disable' and 'hide'. By default, the button does not react to navigation events. |
-|`onClickCallback`| - |MouseEventHandler\<HTMLElement\>| - |extra callback to be performed upon click. This property is to be set programmatically only. |
 |`pathnameParams`| - |Record\<string, string\>|{}|property to inject the object-like source from URL pathname |
 |`searchParams`| - |Record\<string, string\>|{}|property to inject the object-like source from URL search params |
 |`shape`|`shape`|string|'round'|button shape property |
@@ -311,8 +336,8 @@ This component listens to no event.
 | event | description |
 |-------|-------------|
 |`configurable-label`|generic event configurable through the event type configuration|
-|[error](../Events#error)|contains error messages for an http event|
-|[success](../Events#success)|notifies a successful http request|
+|[error](../events#error)|contains error messages for an http event|
+|[success](../events#success)|notifies a successful http request|
 
 ### Bootstrap
 
@@ -340,15 +365,15 @@ allows to go back one step in the navigation path. It is not visible at the top 
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|notifies to go back one step in the navigation path|
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|notifies to go back one step in the navigation path|
 
 ### Bootstrap
 
@@ -376,14 +401,14 @@ Allows refreshing some resource
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events#change-query)|requires refresh without modifying current `CRUD` query by attaching an empty payload|
+|[change-query](../events#change-query)|requires refresh without modifying current `CRUD` query by attaching an empty payload|
 
 ### Bootstrap
 

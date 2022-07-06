@@ -189,13 +189,17 @@ Continuing the last example of upload, in the case of success, the service answe
 Consider consulting the Open API definition of the service to get more information about the service responses.
 
 ### **Download**: `GET /download/:file` 
-To download a single file that was previously uploaded, specifying its `file` field. Add the *download=1* query parameter to download the file as an attachment.
+To download a single file that was previously uploaded, specifying its `file` field.
+#### Query parameters 
+- `download=1`: to download the file as an attachment.
+- `downloadWithOriginalName=1`: to download the file with its original name.
 
 ### **Download many**: `GET /download`
 To download a ZIP archive containing all the files specified in the query parameters.
 
 #### Query parameters
 - `files` **required**: array of strings (or single string) specifying the `file` field of the desired files to download
+- `downloadWithOriginalName=1`: to download the files with their original names.
 
 #### Response
 At the moment the download of multiple files is handled as an atomic operation, meaning that the API returns either all requested files in a (streamed) ZIP archive or an error.

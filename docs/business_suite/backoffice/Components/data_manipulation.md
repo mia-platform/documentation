@@ -11,7 +11,10 @@ drawer containing a drag-and-drop area to handle file uploads/downloads
 <bk-file-picker-drawer></bk-file-picker-drawer>
 ```
 
+
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -21,18 +24,20 @@ drawer containing a drag-and-drop area to handle file uploads/downloads
 
 ### Listens to
 
+
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-form-container](../Events#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
-|[loading-data](../Events#loading-data)|allows disabling callToAction| - | - |
-|[link-file-to-record](../Events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
+|[using-form-container](../events#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
+|[loading-data](../events#loading-data)|allows disabling callToAction| - | - |
+|[link-file-to-record](../events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
 
 ### Emits
 
+
 | event | description |
 |-------|-------------|
-|[update-data-with-file](../Events#update-data-with-file)|updates data by uploading a new file and patching the dataset with its storage location metadata|
-|[update-data](../Events#update-data)|unlinks file on file delete|
+|[update-data-with-file](../events#update-data-with-file)|updates data by uploading a new file and patching the dataset with its storage location metadata|
+|[update-data](../events#update-data)|unlinks file on file delete|
 
 ### Bootstrap
 
@@ -47,7 +52,10 @@ element counter set as page footer and callToActions buttons acting on a selecte
 <bk-footer></bk-footer>
 ```
 
+
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -55,13 +63,14 @@ element counter set as page footer and callToActions buttons acting on a selecte
 
 ### Listens to
 
+
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
-|[count-data](../Events#count-data)|adjusts footer counter to currently viewed dataset| - | - |
-|[selected-data-bulk](../Events#selected-data-bulk)|prepares callToAction on a given dataset subset| - | - |
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
+|[count-data](../events#count-data)|adjusts footer counter to currently viewed dataset| - | - |
+|[selected-data-bulk](../events#selected-data-bulk)|prepares callToAction on a given dataset subset| - | - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
 
 ### Emits
 
@@ -79,7 +88,10 @@ Generic form to edit or create items described by the `dataSchema`
 <bk-form></bk-form>
 ```
 
+
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -88,41 +100,44 @@ Generic form to edit or create items described by the `dataSchema`
 |`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table |
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../Page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`formId`|`form-id`|string| - |id of the form. This property should only be set programmatically. |
-|`formKindIfDisplayData`| - |"add" \\| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default)
+|`formKindIfDisplayData`| - |"add" \\| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default) 
 |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
-|`onFieldsChange`| - |Function| - | - |
-|`onLoading`| - |Function| - | - |
+|`onFieldsChange`| - |function| - |call-back to call upon changes in the form fields. This property should only be set programmatically. |
+|`onLoading`| - |function| - |call-back to call upon changes in the loading state of the form. This property should only be set programmatically. |
+|`onWizardStepAttempted`| - |function| - |call-back to call upon attempting to perform a step when in wizard mode. This property should only be set programmatically. |
 |`openingEvent`| - |OpeningEvent \\| OpeningEvent[]|[]|what opening event to listen to. If includes 'insert', `add-new` events will be listened to, if includes 'select', `selected-data` events will be listened to. |
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
 
 ### Listens to
 
+
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[add-new](../Events#add-new)|configures the form to create a new element, eventually applying default fields from data schema or data provided in the payload of the event|`create-data-with-file`, `create-data`| - |
-|[add-new-external](../Events#add-new-external)|configures the form to create a new item on an external collection|`success`, `error`| - |
-|[selected-data](../Events#selected-data)|configures the form to edit a selected item, applying filling in its fields from the data provided in the payload of the event|`update-data-with-file`, `update-data`| - |
-|[display-data](../Events#display-data)|trigger the form to start listening for `lookup-data` events| - | - |
-|[lookup-data](../Events#lookup-data)|if follows a `display-data` event, builds the options to display for lookups| - |[error](../Events#error)|
-|[submit-form/request](../Events#submit-form---request)|requests the form to submit its content| - | - |
+|[add-new](../events#add-new)|configures the form to create a new element, eventually applying default fields from data schema or data provided in the payload of the event|`create-data-with-file`, `create-data`| - |
+|[add-new-external](../events#add-new-external)|configures the form to create a new item on an external collection|`success`, `error`| - |
+|[selected-data](../events#selected-data)|configures the form to edit a selected item, applying filling in its fields from the data provided in the payload of the event|`update-data-with-file`, `update-data`| - |
+|[display-data](../events#display-data)|trigger the form to start listening for `lookup-data` events| - | - |
+|[lookup-data](../events#lookup-data)|if follows a `display-data` event, builds the options to display for lookups| - |[error](../events#error)|
+|[submit-form/request](../events#submit-form---request)|requests the form to submit its content| - | - |
 
 ### Emits
 
+
 | event | description |
 |-------|-------------|
-|[create-data](../Events#create-data)|sends the inserted data, as well as default or hidden fields for creation to the client, meta includes a unique transactionId|
-|[update-data](../Events#update-data)|sends the edited fields of the item for update, always includes `_id` and `__STATE__` necessary for the CRUD operations, meta includes a unique transactionId|
-|[update-data-with-file](../Events#update-data-with-file)|notifies the file-manager that files have to be uploaded and the collection has to be patched with payload data|
-|[create-data-with-file](../Events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|notifies to add a step in the navigation path|
-|[submit-form/success](../Events#submit-form---success)|notifies that the form has been submitted|
-|[error](../Events#error)|contains http error messages when something goes wrong|
-|[success](../Events#success)|notifies a successful http request|
+|[create-data](../events#create-data)|sends the inserted data, as well as default or hidden fields for creation to the client, meta includes a unique transactionId|
+|[update-data](../events#update-data)|sends the edited fields of the item for update, always includes `_id` and `__STATE__` necessary for the CRUD operations, meta includes a unique transactionId|
+|[update-data-with-file](../events#update-data-with-file)|notifies the file-manager that files have to be uploaded and the collection has to be patched with payload data|
+|[create-data-with-file](../events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|notifies to add a step in the navigation path|
+|[submit-form/success](../events#submit-form---success)|notifies that the form has been submitted|
+|[error](../events#error)|contains http error messages when something goes wrong|
+|[success](../events#success)|notifies a successful http request|
 
 ### Bootstrap
 
@@ -136,14 +151,17 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 <bk-form-card></bk-form-card>
 ```
 
+
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`customLabels`| - |Partial\<FormCardLocale\>| - |custom localized texts shown as CTA buttons labels|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../Page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`formKind`| - |"add" \\| "edit"|'edit'|data management strategy when setting initial values from displayData: add or edit (default) |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
@@ -152,31 +170,21 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 
 ### Listens to
 
+
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[display-data](../Events#display-data)|trigger the initial data of the form| - | - |
+|[display-data](../events#display-data)|trigger the initial data of the form| - | - |
 
 ### Emits
 
-| event | description |
-|-------|-------------|
-|[create-data](../Events#create-data)|sends the inserted data, as well as default or hidden fields for creation to the client, meta includes a unique transactionId|
-|[update-data](../Events#update-data)|sends the edited fields of the item for update, always includes `_id` and `__STATE__` necessary for the CRUD operations, meta includes a unique transactionId|
-|[update-data-with-file](../Events#update-data-with-file)|notifies the file-manager that files have to be uploaded and the collection has to be patched with payload data|
-|[create-data-with-file](../Events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
-|[error](../Events#error)|contains http error messages when something goes wrong|
-
-### Bootstrap
-
-None
 
 | event | description |
 |-------|-------------|
-|[create-data](../Events#create-data)|sends the inserted data, as well as default or hidden fields for creation to the client, meta includes a unique transactionId|
-|[update-data](../Events#update-data)|sends the edited fields of the item for update, always includes `_id` and `__STATE__` necessary for the CRUD operations, meta includes a unique transactionId|
-|[update-data-with-file](../Events#update-data-with-file)|notifies the file-manager that files have to be uploaded and the collection has to be patched with payload data|
-|[create-data-with-file](../Events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
-|[error](../Events#error)|contains http error messages when something goes wrong|
+|[create-data](../events#create-data)|sends the inserted data, as well as default or hidden fields for creation to the client, meta includes a unique transactionId|
+|[update-data](../events#update-data)|sends the edited fields of the item for update, always includes `_id` and `__STATE__` necessary for the CRUD operations, meta includes a unique transactionId|
+|[update-data-with-file](../events#update-data-with-file)|notifies the file-manager that files have to be uploaded and the collection has to be patched with payload data|
+|[create-data-with-file](../events#create-data-with-file)|notifies the file-manager that files have to be uploaded and a new item in the collection has to be created with payload data|
+|[error](../events#error)|contains http error messages when something goes wrong|
 
 ### Bootstrap
 
@@ -271,17 +279,19 @@ injecting the following context
 
 where `values` is the form state and response contains a JS object which is the content of the `eventBusSuccess` payload linked to the form submission request (either `create-data` or `update-data`)
 
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`customLabels`| - |Partial\<BkFormContainerLocale\>| - |custom localized texts shown as title and CTA button label|
+|`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataCustomActions`| - |DrawerDataActionConfig[]|[]|list of actions to render per row|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../Page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
@@ -292,21 +302,23 @@ where `values` is the form state and response contains a JS object which is the 
 
 ### Listens to
 
+
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[add-new](../Events#add-new)|opens the drawer to create a new item, eventually applying default fields from data schema or data provided in the payload of the event|`create-data-with-file`, `create-data`| - |
-|[selected-data](../Events#selected-data)|opens the drawer to edit a selected item, applying filling in its fields from the data provided in the payload of the event|`update-data-with-file`, `update-data`| - |
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[nested-navigation-state/display](../Events#nested-navigation-state---dispaly)|updates internal representation of the current navigation and closes the drawer| - | - |
-|[submit-form/success](../Events#submit-form---success)| - | - | - |
+|[add-new](../events#add-new)|opens the drawer to create a new item, eventually applying default fields from data schema or data provided in the payload of the event|`create-data-with-file`, `create-data`| - |
+|[selected-data](../events#selected-data)|opens the drawer to edit a selected item, applying filling in its fields from the data provided in the payload of the event|`update-data-with-file`, `update-data`| - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/display](../events#nested-navigation-state---dispaly)|updates internal representation of the current navigation and closes the drawer| - | - |
+|[submit-form/success](../events#submit-form---success)| - | - | - |
 
 ### Emits
 
+
 | event | description |
 |-------|-------------|
-|[require-confirm](../Events#require-confirm)|triggered when trying to close the drawer with unsaved data|
-|[submit-form/request](../Events#submit-form---request)|requests the form to submit its content|
+|[require-confirm](../events#require-confirm)|triggered when trying to close the drawer with unsaved data|
+|[submit-form/request](../events#submit-form---request)|requests the form to submit its content|
 
 ### Bootstrap
 
@@ -425,7 +437,82 @@ injecting the following context
 
 where `values` is the form state and response contains a JS object which is the content of the `eventBusSuccess` payload linked to the form submission request (either `create-data` or `update-data`)
 
+#### Wizard
+
+![wizard-form-modal](../img/wizard-form-modal.png)
+
+It is possible to split data insertion into multiple steps via the `wizard` property.
+
+:::info
+Wizard representation is currently only availabe when inserting new data, not in case of update.
+:::
+
+`wizard` allows values like the following:
+
+- `true`
+- `false`
+- an array of objects like:
+
+```typescript
+{
+  keys: string[],
+  labels: {
+    wizardNext?: LocalizedText
+    wizardPrevious?: LocalizedText
+    wizardAddNew?: LocalizedText
+    wizardSubmit?: LocalizedText
+    stepperTitle?: LocalizedText
+    stepperSubtitle?: LocalizedText
+    accordionHeader?: LocalizedText
+    accordionEmptyComponent?: LocalizedText
+  }
+  asForm?: boolean
+}
+```
+
+Each such element maps to a step of the wizard as follows:
+
+| property | description |
+|----------|-------------|
+| `keys` | fields to display in the step |
+| `labels` | localized labels with the text to show |
+| `asForm` | whether to visualize a single nested object as a form / nested array accordion of forms. Ignored if the step includes more than one field |
+
+If a step meets the following requirements:
+
+- only includes one field
+- the field is of type `object` or `array` and has a property `dataSchema`
+- `asForm` is set to true
+
+Then the field will be displayed as a form in case of an `object` field, or as an accordion of forms in case of an `array` field.
+
+![wizard-form-modal-accordion](../img/wizard-form-modal-accordion.png)
+
+`labels` are mapped to displayed text as follows:
+
+| key | description |
+|----------|-------------|
+| `wizardNext` | Button for going to next step |
+| `wizardPrevious` | Button for going back to previous step |
+| `wizardAddNew` | Button for adding a new element to an array, when displayed as an accordion |
+| `wizardSubmit` | Button for submitting the form in the final step |
+| `stepperTitle` | Title of the stepper component |
+| `stepperSubtitle` | Subtitle of the stepper component |
+| `accordionHeader` | Title of the accordion panel. An incremental is automatically added as panels are added to the accordion |
+| `accordionEmptyComponent` | Text to display when the accordion is empty |
+
+By default, `wizard` is false.
+
+When set to `true`:
+
+- the fields are automatically split so that:
+  - the first group contains all fields that are not nested objects or nested arrays
+  - each of the following steps contains one of the remaining fields, with `asForm` set to true
+- default labels are applied.
+
+
 ### Properties & Attributes
+
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -434,9 +521,9 @@ where `values` is the form state and response contains a JS object which is the 
 |`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table
 |
-|`customLabels`| - |Partial\<BkFormContainerLocale\>| - |custom localized texts shown as title and CTA button label|
+|`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../Page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`height`|`height`|string|'60vh'|height of the modal |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
@@ -445,25 +532,28 @@ where `values` is the form state and response contains a JS object which is the 
 |`requireConfirm`| - |boolean \\| RequireConfirmPayload|false|whether or not the modal should request confirmation before closing if contains unsaved data |
 |`rootElementSelector`|`root-element-selector`|string|'#microlc-element-composer'|root element to append the modal to |
 |`width`|`width`|string|'90vw'|with of the modal |
+|`wizard`| - |boolean \\| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
 
 ### Listens to
 
+
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[add-new](../Events#add-new)|opens the modal to create a new item, eventually applying default fields from data schema or data provided in the payload of the event|`create-data-with-file`, `create-data`| - |
-|[add-new-external](../Events#add-new-external)|opens the modal to create a new item on an external collection, eventually applying default fields from data schema or data provided in the payload of the event|`success`, `error`| - |
-|[selected-data](../Events#selected-data)|opens the modal to edit a selected item, applying filling in its fields from the data provided in the payload of the event|`update-data-with-file`, `update-data`| - |
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[nested-navigation-state/display](../Events#nested-navigation-state---dispaly)|updates internal representation of the current navigation and closes the modal| - | - |
-|[submit-form/success](../Events#submit-form---success)| - | - | - |
+|[add-new](../events#add-new)|opens the modal to create a new item, eventually applying default fields from data schema or data provided in the payload of the event|`create-data-with-file`, `create-data`| - |
+|[add-new-external](../events#add-new-external)|opens the modal to create a new item on an external collection, eventually applying default fields from data schema or data provided in the payload of the event|`success`, `error`| - |
+|[selected-data](../events#selected-data)|opens the modal to edit a selected item, applying filling in its fields from the data provided in the payload of the event|`update-data-with-file`, `update-data`| - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/display](../events#nested-navigation-state---dispaly)|updates internal representation of the current navigation and closes the modal| - | - |
+|[submit-form/success](../events#submit-form---success)| - | - | - |
 
 ### Emits
 
+
 | event | description |
 |-------|-------------|
-|[require-confirm](../Events#require-confirm)|triggered when trying to close the modal with unsaved data|
-|[submit-form/request](../Events#submit-form---request)|requests the form to submit its content|
+|[require-confirm](../events#require-confirm)|triggered when trying to close the modal with unsaved data|
+|[submit-form/request](../events#submit-form---request)|requests the form to submit its content|
 
 ### Bootstrap
 

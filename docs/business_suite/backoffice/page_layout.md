@@ -10,9 +10,9 @@ have at least:
 
 1. a [bootstrap](#bootstrap-aka-initial-state-injection) manager, whenever some sort of initial state needs to be injected
 2. a [data schema](#data-schema), whenever the page has a data source like a database collection/table
-3. a collection of [web components](#components), including the bootstrap manager
+3. a collection of web components, including the bootstrap manager
 
-Back-Kit uses the [crud-client](Components/Clients#crud-client) component as **bootstrap manager of choice**. This is
+Back-Kit uses the [crud-client](Components/clients#crud-client) component as **bootstrap manager of choice**. This is
 fairly standard on a web application that needs a data source and consequent data retrieval pretty much at the beginning
 of its state lifecycle.
 
@@ -39,7 +39,7 @@ Bootstrapping a page entails three main phases:
 1. components read the URL parsing properties related to their initial state. Components then evolves without changing
 properties becoming React-alike `controlled components`
 2. components modify their internal state and, if needed, emit an event
-3. a single component, the bootstrap manager, typically the [crud-client](Components/Clients#crud-client), is then tasked with
+3. a single component, the bootstrap manager, typically the [crud-client](Components/clients#crud-client), is then tasked with
 awaiting events triggered by applying the initial state. Such component must have a debounce time after which it ends bootstrapping
 whether it received bootstrap events.
 
@@ -148,7 +148,7 @@ A property needs specifications about formatting and viewing
 }
 ```
 
-A `label` is either a `string` or a [LocalizedString](Core_concepts#localization-and-i18n) and provides a label for a given property.
+A `label` is either a `string` or a [LocalizedString](core_concepts#localization-and-i18n) and provides a label for a given property.
 
 An `order` is number that allow to customize the order in which items are rendered by data visualization components.
 
@@ -171,7 +171,7 @@ specified by `type`.
 | `null` | - |
 
 The `format` may be picked by components to provide better UI rendering choices on a given `type`.
-[bk-table](Components/Data_Visualization#table) and [bk-form-drawer](Components/Data_Manipulation#form-drawer)
+[bk-table](Components/data_visualization#table) and [bk-form-drawer](Components/data_manipulation#form-drawer)
 use extensively formats.
 
 When `type` is set to `string`, the extra key `enum` is available to specify available text entries.
@@ -271,8 +271,13 @@ Example of mounting a custom component in the table using the `properties` key i
 }
 ```
 
-Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row. If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
-If is also possible to provide a (template, configMap) pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
+Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row, while `{{args.[0]}}` the value of the cell. If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
+
+:::info
+In the example, `{{args.[0]}}` is equivalent to `{{args.[1].name}}`.
+:::
+
+It is also possible to provide a (template, configMap) pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key). In the example, the property `disabled` is set to true in the table rows having field `status` equal to "Removed", false otherwise.
 
 ### Form Options
 
@@ -318,7 +323,7 @@ ingredients, it is referred to as `multilookup`.
 To be able to fetch data to fill up lookup entries a specific set of options must be included into the data schema.
 
 According to the principle that **a web component does one thing**, a web application willing to resolve lookups must
-include a client that takes care of that. Back-Kit provides a [crud-lookup-client](Components/Clients#lookup-client)
+include a client that takes care of that. Back-Kit provides a [crud-lookup-client](Components/clients#lookup-client)
 which will set up fetching routes according to data schema `lookupOptions`.
 
 ```json
@@ -361,7 +366,7 @@ needed are listed in `lookupFields` and rendered as a string delimited by `looku
 | `lookupValue` | the item used to resolve the lookup onto the destination collection and held on the main collection |
 | `lookupFields` | fields to be retrieved on the destination collection |
 | `lookupDelimiter` | a string with a delimiter to join values when multiple `lookupFields` are specified |
-| `lookupQueries` | an array of [filters](Core_concepts#filters) on lookup data + `propertyType` specifying the type of the filtered property |
+| `lookupQueries` | an array of [filters](core_concepts#filters) on lookup data + `propertyType` specifying the type of the filtered property |
 | `lookupAddTrailingSlash` | a boolean which determines whether or not to add a trailing `/` to `lookupDataSource` to generate the url for querying data (`true` if not specified) |
 | `lookupDeps` | an array of [dependencies](#dependent-lookups), used to specify dependencies from other fields of the form |
 
@@ -398,7 +403,7 @@ needed are listed in `lookupFields` and rendered as a string delimited by `looku
 ```
 
 `lookupQueries` allows to specify an array of filters that are applied to the queries for lookup data.
-Each element of `lookupQueries` is composed as a [filter](Core_concepts#filters) plus the key `propertyType`, specifying the type of the property that is being filtered (defaults to "string").
+Each element of `lookupQueries` is composed as a [filter](core_concepts#filters) plus the key `propertyType`, specifying the type of the property that is being filtered (defaults to "string").
 
 | `lookupQueries` properties | description |
 |----------------------------|-------------|
@@ -514,11 +519,11 @@ Updating a field specified in the `dependency` option of a lookup/multilookup tr
 4) if step 2 caused the value to change, these operations are propagated to all fields that depend on the updated lookup/multilookup. In the example above, if updating `minPopulation` causes `provId`'s value to change, these 4 steps will also be performed for `cityId`.
 
 :::info
-The prop `allowAutoDisableDeps` in [bk-from-drawer](Components/Data_Manipulation#form-drawer) and [bk-from-modal](Components/Data_Manipulation#form-modal) allows to control whether or not a dependent lookup/multilookup with no options should be automatically disabled. The field is automatically re-enabled as soon as updating a controlling field causes options to be availbale.
+The prop `allowAutoDisableDeps` in [bk-from-drawer](Components/data_manipulation#form-drawer) and [bk-from-modal](Components/data_manipulation#form-modal) allows to control whether or not a dependent lookup/multilookup with no options should be automatically disabled. The field is automatically re-enabled as soon as updating a controlling field causes options to be availbale.
 :::
 
 :::info
-The prop `allowLiveSearchCache` in [bk-crud-lookup-client](Components/Clients#lookup-client) allows to cache queries performed for fetching new options.
+The prop `allowLiveSearchCache` in [bk-crud-lookup-client](Components/clients#lookup-client) allows to cache queries performed for fetching new options.
 :::
 
 :::info
@@ -585,12 +590,12 @@ external references or href.
 }
 ```
 
-The `formLinks` key takes an array of objects that represents a [Link](Core_concepts#links). The handlebar parser would
+The `formLinks` key takes an array of objects that represents a [Link](core_concepts#links). The handlebar parser would
 interpret properties as data schema properties. Referring to the example above, either `name` or `surname` are `properties`
 of the schema or the parser interprets them as empty strings.
 
 Instructions can be specified as `formOptions` on to whether showing such links into forms components via the `hidden`
-key. The [bk-from-drawer](Components/Data_Manipulation#form-drawer) has also different opening-states, namely
+key. The [bk-from-drawer](Components/data_manipulation#form-drawer) has also different opening-states, namely
 *insert* and *update*, hence specific hidden properties `hiddenOnInsert` and `hiddenOnUpdate` can be specified to properly
 tune link visualization when Back-Kit default form is used.
 
@@ -650,8 +655,8 @@ For fields of type `array` or `object` that do not have a specific format, it is
 }
 ```
 
-By default, in a [bk-table](Components/Data_Visualization#table) component with a nested data schema, it is possible to navigate the rendered table by clicking on any of the cells corresponding to nested objects/arrays. Doing so, the table uses the nested data schema to know how to interpret the data inside the clicked cell, and re-renders the table to display it.
-In the same way, by default, the label of object/array fields inside the form of a [bk-form-drawer](Components/Data_Manipulation#form-drawer) or [bk-form-modal](Components/Data_Manipulation#form-modal) is clickable, if a data schema is specified for them. Doing so has the same effect as clicking on the corresponding cell in the table.
+By default, in a [bk-table](Components/data_visualization#table) component with a nested data schema, it is possible to navigate the rendered table by clicking on any of the cells corresponding to nested objects/arrays. Doing so, the table uses the nested data schema to know how to interpret the data inside the clicked cell, and re-renders the table to display it.
+In the same way, by default, the label of object/array fields inside the form of a [bk-form-drawer](Components/data_manipulation#form-drawer) or [bk-form-modal](Components/data_manipulation#form-modal) is clickable, if a data schema is specified for them. Doing so has the same effect as clicking on the corresponding cell in the table.
 
 For all three of `bk-table`, `bk-form-drawer`, `bk-form-modal`, `bk-form-card`, it is possible to set `allowNavigation` property to false and disables this behavior.
 
@@ -667,7 +672,7 @@ By default, `allowNavigation` is true for all three components.
 
 `bk-table`, `bk-form-drawer` and `bk-form-modal` keep track at all times of all the nested objects/arrays that were entered. This allows editing the currently displayed object/array in three ways (unless declared read-only in configuration):
 
-- via [bk-add-new-button](Components/Buttons#add-new) if inside a nested array
+- via [bk-add-new-button](Components/buttons#add-new) if inside a nested array
 - via `bk-form-drawer` or `bk-form-modal`, selecting a table row
 - via `bk-table`'s delete row action, which is displayed by default during navigation
 
@@ -682,21 +687,21 @@ This is also true for all object and arrays that are nested inside a read only f
 For instance, in the example above, the array `children` is specified to be read only, therefore the array `toys` will also be treated as read only.
 
 :::caution
-A [bk-breadcrumbs](Components/Data_Visualization#breadcrumbs) component should always be included in the single page application when navigation is enabled.
+A [bk-breadcrumbs](Components/data_visualization#breadcrumbs) component should always be included in the single page application when navigation is enabled.
 :::
 
 :::info
 `bk-add-new-button` is disabled when `bk-table` renders non-undefined objects. In case of undefined objects, it will be possible to add one element.
 :::
 
-In case of [display-data](Events#display-data) events or [change-query](Events#change-query) events with empty payload, the `bk-breadcrumbs` component tries to restore the navigation path with the new data. In case of failure, the page navigates back to the top level of the data schema.
+In case of [display-data](events#display-data) events or [change-query](events#change-query) events with empty payload, the `bk-breadcrumbs` component tries to restore the navigation path with the new data. In case of failure, the page navigates back to the top level of the data schema.
 
 :::info
-All `change-query` events with non-empty payload cause to navigate back to the top level of the data schema, excpet for the features of [bk-pagination](Components/Data_Querying#pagination) and `bk-table`'s column sorting, which are still available.
+All `change-query` events with non-empty payload cause to navigate back to the top level of the data schema, excpet for the features of [bk-pagination](Components/data_querying#pagination) and `bk-table`'s column sorting, which are still available.
 :::
 
 :::caution
-During navigation [bk-add-filter-button](Components/Buttons#filter-new) and [search-bar](Components/Data_Querying#search-bar) are disabled, and [bk-tabs](Components/Data_Querying#tabs) are hidden.
+During navigation [bk-add-filter-button](Components/buttons#filter-new) and [search-bar](Components/data_querying#search-bar) are disabled, and [bk-tabs](Components/data_querying#tabs) are hidden.
 :::
 
 ## Single Page Configuration
@@ -737,4 +742,4 @@ following configuration:
 ```
 
 After a standard bootstrap time, the page will send a `GET` requests for `_id`'s on the `customers` collection, a `GET`
-requests for dataset count, and will emit a [display-data](Events#display-data) event. This ends the page bootstrap.
+requests for dataset count, and will emit a [display-data](events#display-data) event. This ends the page bootstrap.

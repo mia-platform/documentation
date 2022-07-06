@@ -28,8 +28,28 @@ The backend service exposes the following APIs:
 
 These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS). Discover more about the frontend integration [here](../form-service-frontend/configuration#integration-with-micro-lc-and-headless-cms).
 
+#### Form data versioning support
+From `version 1.5.0` the Form-Service Backend supports the versioning of the form data, by including the parameter `_v` to the request performed to retrieve form data. The `_v` parameter specifies the version of the form data to be retrieved. If the `ENABLE_VERSIONING` environment variable is set to `true`, the `_v` parameter is forwarded to the service in charge of retrieving the form data.
+
+:::info
+
+Let us suppose that the `submit_url` has been set to `http://microservice/resource`. When the Form-Service Frontend triggers a request `GET /visualizer/forms/{id}?_v=1` to the Form-Service Backend with a non-null `_v` parameter, the Form-Service Backend will trigger a request `GET http://microservice/resource/{id}?_v=1`
+
+:::
+
+In order to obtain form data versioning, the calls to the **Form-Service Frontend** must be done including the `_v` parameter. See [here](../form-service-frontend/overview#form-data-versioning-support) for Form-Service Frontend usage.
+
 ## Further details
 
 Follow the pages below to know more about the _Form Service Backend_:
 
 - [_Form Service Backend_ configuration](configuration)
+
+:::warning
+The **Form Service Backend** does not perform form validation.
+Validation is only performed in the frontend if the **Form Service Frontend** plugin is used.
+
+We recommend building you own form validation in a dedicated backend microservice.
+
+This may change in the future.
+:::

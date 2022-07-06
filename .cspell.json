@@ -135,7 +135,8 @@
       "Rönd",
       "NSUTF",
       "NSJSON",
-      "Iframes"
+      "Iframes",
+      "tini"
   ],
   "ignoreWords": [
     "authz",
@@ -198,7 +199,8 @@
     "unencrypted",
     "soisy",
     "noindex",
-    "alloc"
+    "alloc",
+    "teleconsultationroomid"
   ],
   "dictionaries": [
     "softwareTerms",

@@ -460,7 +460,7 @@ In response of this request you will get a JSON array that contains all the docu
 ]
 ```
 
-**Note**: the maximum number of documents returned are 200. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
+**Note**: the maximum number of documents returned are configurable through the variable *CRUD_MAX_LIMIT*. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
 
 #### Get a single document by _id
 
@@ -548,7 +548,7 @@ By default GET returns a limited number of documents. You can use pagination to 
 
 To paginate you must use the following query parameters:
 
-- **_l**: limits the number of documents returned. Minimum value 1. Maximum value 200. If you pass more that 200, the CRUD Service truncate to 200 the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
+- **_l**: limits the number of documents returned. Minimum value 1. Maximum value can be configured with the environment variable *CRUD_MAX_LIMIT*. If you pass such limit, the CRUD Service truncate to *CRUD_MAX_LIMIT* the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
 - **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
 
 This is an example of request that get *two documents per page* and you ask for the *third page* (skip 4 documents).

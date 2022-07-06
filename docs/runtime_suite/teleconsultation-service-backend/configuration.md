@@ -8,15 +8,10 @@ Both are available in the Marketplace.
 
 ## Teleconsultation Service Frontend Configuration
 
-In order to make accessible the route to the page where the teleconsultation will take place, you need to create an additional **endpoint** to expose that route.
+In order to make the route accessible to the page where the teleconsultation will take place, you need to create an additional **endpoint** to expose that route.
 
 Example:
 1. Custom **endpoint** to expose teleconsultation-service-fe: `/telecons-fe`
-2. Custom **endpoint** to expose route for teleconsultation: `/telecons-fe/teleconsultation`
-
-:::warning
-The service won't work if **both endpoints** are not specified.
-:::
 
 ## Teleconsultation Service Backend Configuration
 
@@ -25,6 +20,12 @@ The service won't work if **both endpoints** are not specified.
 2. Create the `/api/v1/telecons-be` endpoint for the newly created microservice. The endpoint of this microservice must be exactly this one because the Teleconsultation Service Frontend will use this path as prefix for the API calls to the Teleconsultation Service Backend.
 
 The microservice requires the `BANDYER_API_SECRET_KEY` environment variable in order to communicate with the Bandyer RESTful APIs.
+
+The microservice supports two operating modes, having a different handing of user information:
+- if `AUTH_SERVICE` env var is specified, the microservice service will retrieve user information from the service having given hostname.
+- otherwise, user groups and full name must be provided when participants are added to the teleconsultation instance (i.e in the requests to `POST /teleconsultation`, `POST /teleconsultation/:teleconsultationId/participants/data`, `PATCH /teleconsultation/:teleconsultationId`).
+
+### Additional information about the interaction with Auth0 
 
 The keys defined inside the **API Key** section on the console are converted in client-types (e.g. `backoffice`, `cms`, etc.). These client-types are used by Auth0 to understand the application the user is authenticating to and get the user's data needed to make the **Teleconsultation Service** works.
 If no client-type is provided a default value will be used instead.
@@ -36,6 +37,7 @@ In order to retrieve the auth0 user's data, you need to define the `AUTHORIZATIO
 The microservice requires the `ADDITIONAL_HEADERS_TO_PROXY` environment variable with value: `x-forwarded-for,x-request-id,x-forwarded-host,cookie,client-type`, in order to forward the auth0 user's data received to the BE services called inside the microservice.
 :::
 
+### Config map settings 
 The microservice requires the `TELECONSULTATION_SERVICE_CONFIG_PATH`  environment variable to specify the path where the  `JSON` config file is stored.
 If no path is defined a default configuration will be used. 
 The default configuration is the following:
@@ -101,10 +103,11 @@ The Teleconsultation Service Backend accepts the following environment variables
 - **BANDYER_BASE_URL (required)**: name of the bandyer API endpoint.
 - **TELECONSULTATION_SERVICE_CONFIG_PATH**: full path of the updated file defined in the [previous section](#environment-variables).
 - **TELECONSULTATIONS_CRUD_NAME**: name of the endpoint of the CRUD with all the teleconsultations.
-- **USER_ID_MAP_CRUD_NAME**: name of the endpoint of the CRUD with all the user_ids (e.g. auth0Id, bandyerId), for each user.
-- **AUTH_SERVICE**: name of the authentication service.
+- **USER_ID_MAP_CRUD_NAME**: name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.
+- **AUTH_SERVICE**: name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)).
 - **DEFAULT_CLIENT_TYPE**: name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.
 - **UNLIMITED_TELECONSULTATION**: if true the teleconsultation duration is infinite. 
+- **IMMUTABLE_PERIOD_MS**: the duration of the period (in milliseconds) immediately before the teleconsultation `start_date` during which, if all the participants are known, the service will refuse modify requests for the teleconsultation instance.
 
 ### Teleconsultation Service Configuration
 
@@ -133,6 +136,15 @@ The Teleconsultation Service Configuration is a JSON object with 5 root properti
 -   _type_: object;
 -   _required_:  `false`;
 -   _description_: contains a field called _url_, which specify the url where the company logo is stored.
+
+**5. userIdPathInRequest**
+
+-   _type_: array;
+-   _required_:  `false`;
+-   _default_: `[{ "from": "object", "extract": "headers"}, {"from": "object", "extract": "${env.USERID_HEADER_KEY}"}]` (variable interpolation is only for documentation purposes, it is not supported by the service; if needed in configmap, you must use Mia-Platform Console interpolation);
+-   _description_: contains the path where the logged user's external ID is received in the fastify `request` object. It is used by `GET /teleconsultation/:teleconsultationId` request to make access control and return the correct room URL. Each step of the path is described by an object, containing:
+    - a `from` property, describing how to handle the previously obtained item. The allowed values are `object`, `json` and `array`. The first occurrence must always be set to `object`, since we must handle the fastify `request` as a JS object.
+    - an `extract` property, specifying the field to be extracted at the current step
 
 The `JSON` file is structured like the following example:
 ```
@@ -286,9 +298,16 @@ Look the Overview section for more details about Room in Bandyer.
 
 The teleconsultations CRUD needs the following service-specific fields:
 - **bandyerRoomId (required)** - `string`: the id of the Room created on Bandyer for the call;
-- **participants (required)** - `array of object`: the list of participants to the call (userBandyerId and accessLinkURL for every participant);
+- **participantsNumber (required)**: the number of expected participants,
+- **participants** - `array of objects`: the list of participants to the call. For each participant, it contains:
+  - `userBandyerId` (_required_),
+  - `accessLinkURL` (_required_),
+  - `groups` (if and only if mode without Auth0 is used),
+  - `fullName` (if and only if mode without Auth0 is used),
+  - `language` (optional);
 - **teleconsultationState** - `string`: the state of the Room (if it's available ecc.);
-- **duration** - `number`: the max duration of the Room expressed in seconds.
+- **startDate (required)** - `date`: the teleconsultation's startDate.
+- **endDate** - `date`: the teleconsultation's endDate.
 
 ##### participants
 In order to create a teleconsultation, an array of participants needs to be specified.
@@ -313,9 +332,9 @@ The structure of this array is the following:
 The Teleconsultation Service requires a CRUD in order to save the Bandyer user id for each user which have used the teleconsultation service at least one time.
 The collection can have any name you want, as long as you specify the correct name in the USER_MAP_ID_CRUD_NAME environment variable.
 
-The user-id-map CRUD, stores for every user their auth0Id (which is mainly used to authenticate the users), and the relative Bandyer's id.
+The user-id-map CRUD, stores for every user their receivedUserId (which is mainly used to authenticate the users), and the relative Bandyer's id.
 This allows the Teleconsultation Service Backend to communicate with Bandyer (a user needs to be registered on Bandyer in order to use their services).
 
 The teleconsultations CRUD needs the following service-specific fields:
 - **bandyerId (required)** - `string`: the id of the user on Bandyer;
-- **auth0Id (required)** - `string`: the id of the user on Auth0;
+- **receivedUserId (required)** - `string`: the id of the user on Auth0;

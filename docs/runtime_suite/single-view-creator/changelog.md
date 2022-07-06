@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0] 2022-07-01
+
+### BREAKING CHANGES
+
+- When performing insert/update of the Single View, the __STATE__ field of the single view passed is kept if existing; otherwise is set to PUBLIC. So, it is now possible to create a Single View or update one to set it to a state different from PUBLIC.
+
+### Updated
+
+- `@mia-platform-internal/single-view-creator-lib` @12.0.0
+
+## [4.3.0] 2022-06-29
+
+### Added
+
+- Updated SVC lib version to `11.1.1` and added new env vars `KAFKA_SV_UPDATE_TOPIC` and `SEND_SV_UPDATE_TO_KAFKA`
+
 ## [4.2.0] 2022-05-26
 
 ### Added

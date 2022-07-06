@@ -8,6 +8,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] 2022-06-23
+
+### Added
+
+- Form Service Backend now supports the form data versioning, by passing (if configured) the `_v` to the `submit_url` endpoint.
+
+### Changed
+
+- Form validator removal.
+
+### Fixed
+
+- Form Service Backend now does not reply with `500` status code when CRUD POST returns `2xx` response different from `200`.
+
 ## [1.3.0] 2022-03-22
 
 ### Added
@@ -69,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Form data validation in the backend through the use of the Validator of the 'formio' project. Form validation is enabled for visualizer POST and PUT operations.
+- Form data validation in the backend through the use of a Validator. Form validation is enabled for visualizer POST and PUT operations.
 
 ## [1.0.0] 2021-06-10
 

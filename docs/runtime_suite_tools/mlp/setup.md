@@ -58,3 +58,15 @@ script:
 ```
 
 Note that `mlp` suppose that the output directory already exists so it needs to be created before using the command.
+
+### How to use flags
+
+To use options, remember this guidelines:
+
+```sh
+--flag    // boolean flags, or flags with no option default values
+--flag x  // only on flags without a default value
+--flag=x
+```
+
+So, to avoid problems passing options, we recommend to always use the `--flag=x` syntax.
