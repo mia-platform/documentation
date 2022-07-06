@@ -25,18 +25,18 @@ Renders a calendar to manage appointments.
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
-|[display-data](../Events#display-data)|receives data to display| - | - |
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
+|[display-data](../events#display-data)|receives data to display| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events#change-query)|requires data that fall ion the currently visualized month|
-|[add-new](../Events#add-new)|triggers the creation of a new event with the selected `start` and `end`|
-|[selected-data](../Events#selected-data)|notifies about the click on an event|
-|[update-data](../Events#update-data)|triggers the update of the `start` and `end` of an event|
+|[change-query](../events#change-query)|requires data that fall ion the currently visualized month|
+|[add-new](../events#add-new)|triggers the creation of a new event with the selected `start` and `end`|
+|[selected-data](../events#selected-data)|notifies about the click on an event|
+|[update-data](../events#update-data)|triggers the update of the `start` and `end` of an event|
 
 
 ### Bootstrap
@@ -62,7 +62,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 |`browseOnRowSelect`| - |ClickPayload & { navigationType?: "replace" \\| "push" \| "href"; }| - | - | - |if set, a click on a row will navigate you to another location|
 |`customActions`| - |{ tag: string; properties: Record\<string, any\>; }[]| - | - | - |list of custom components, rendered in the action column|
 |`customMessageOnAbsentLookup`| - |string \\| { [x: string]: string; }|true| - | - |override lookup value in case lookup is not resolved due to lack of data|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../Page_layout#data-schema) describing the fields of the collection to display|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../page_layout#data-schema) describing the fields of the collection to display|
 |`disableRowClick`|`disable-row-click`|boolean| - | - |false|when `true`, a click on a row does not trigger an event|
 |`disableRowSelection`|`disable-row-selection`|boolean| - | - |false|when `true`, checkbox in the first column will not be displayed|
 |`disableRowSelectionChange`|`disable-row-selection-change`|boolean| - | - |false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
@@ -201,7 +201,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > |-----------------------|------|---------|-------------|
 > | `kind` | `string` | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
 > | `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
-> | `content` | string | any | when `event` it must be the label of a [registered event](../Events), otherwise the `POST` request destination href |
+> | `content` | string | any | when `event` it must be the label of a [registered event](../events), otherwise the `POST` request destination href |
 > | `label` | string| any | a label to render with the row action button |
 > | `icon` | string | any | `Fontawesome fas or far icon` |
 > | `meta` | object | any | the event `meta` when `kind` is `event` |
@@ -210,33 +210,33 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > #### requireConfirm object
 > | property | type | values | description |
 > |----------|------|--------|-------------|
-> | `cancelText` | [localizedText](../Core_concepts#localization-and-i18n) | any | Cancel button label |
-> | `content` | [localizedText](../Core_concepts#localization-and-i18n) | any | Text content of the modal |
-> | `okText` | [localizedText](../Core_concepts#localization-and-i18n) | any | Confirm button label |
-> | `title` | [localizedText](../Core_concepts#localization-and-i18n) | any | Title of the modal |
+> | `cancelText` | [localizedText](../core_concepts#localization-and-i18n) | any | Cancel button label |
+> | `content` | [localizedText](../core_concepts#localization-and-i18n) | any | Text content of the modal |
+> | `okText` | [localizedText](../core_concepts#localization-and-i18n) | any | Confirm button label |
+> | `title` | [localizedText](../core_concepts#localization-and-i18n) | any | Title of the modal |
 
 
 ### Listens to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[loading-data](../Events#loading-data)|sets internal loading state| - | - |
-|[lookup-data](../Events#lookup-data)|receives lookup data| - | - |
-|[display-data](../Events#display-data)|receives data to display|[selected-data-bulk](../Events#selected-data-bulk)| - |
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[nested-navigation-state/display](../Events#nested-navigation-state---display)|updates internal representation of the data to display in navigation| - | - |
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
+|[lookup-data](../events#lookup-data)|receives lookup data| - | - |
+|[display-data](../events#display-data)|receives data to display|[selected-data-bulk](../events#selected-data-bulk)| - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/display](../events#nested-navigation-state---display)|updates internal representation of the data to display in navigation| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../Events#change-query)|requires data sorting according with the sorted property|
-|[selected-data](../Events#selected-data)|notifies about the click on a row|
-|[selected-data-bulk](../Events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|notifies to add a step in the navigation path|
-|[nested-navigation-state/display](../Events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
+|[change-query](../events#change-query)|requires data sorting according with the sorted property|
+|[selected-data](../events#selected-data)|notifies about the click on a row|
+|[selected-data-bulk](../events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|notifies to add a step in the navigation path|
+|[nested-navigation-state/display](../events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
 |Configurable custom events|any event configured in the `rowActions` property|
 
 
@@ -267,17 +267,17 @@ represents current navigation path and allows to go back at any navigation level
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[nested-navigation-state/push](../Events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[change-query](../Events#change-query)|triggers page refresh and goes back to 0-level, unless empty payload| - | - |
-|[display-data](../Events#display-data)|triggers page refresh and tries to recreate navigation path with new data. If fails, goes back to 0-level| - | - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[change-query](../events#change-query)|triggers page refresh and goes back to 0-level, unless empty payload| - | - |
+|[display-data](../events#display-data)|triggers page refresh and tries to recreate navigation path with new data. If fails, goes back to 0-level| - | - |
 
 
 ### Emits
 
 | event | description |
 |-------|-------------|
-|[nested-navigation-state/back](../Events#nested-navigation-state---back)|notifies to go back the specified number of steps in the navigation path|
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|notifies to go back the specified number of steps in the navigation path|
 
 
 ### Bootstrap
@@ -651,8 +651,8 @@ In the example configuration below we have a card that declares an array of URL,
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[display-data](../Events#display-data)|displays the first item of the payload according to the card main dataSchema| - | - |
-|[lookup-data](../Events#lookup-data)|updates data with resolved lookups| - | - |
+|[display-data](../events#display-data)|displays the first item of the payload according to the card main dataSchema| - | - |
+|[lookup-data](../events#lookup-data)|updates data with resolved lookups| - | - |
 
 
 ### Emits
@@ -783,7 +783,7 @@ it is recommend to limit the usage of this component to the visualization of PDF
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[show-in-viewer](../Events#show-in-viewer)|opens PDF in brawser| - | - |
+|[show-in-viewer](../events#show-in-viewer)|opens PDF in brawser| - | - |
 
 
 ### Emits

@@ -312,7 +312,7 @@ The following image shows the plugin menu resulting from the example:
 
 ### Plugins
 
-Each plugin has its own configuration file, as described in [layout](Page_layout).
+Each plugin has its own configuration file, as described in [layout](page_layout).
 
 Following is an image of a Back-Kit application with an empty plugin:
 
@@ -324,4 +324,4 @@ Once a complete configuration for the plugin is provided, the resulting SPA will
 
 ![Example of SPA with web components](img/plugin_spa.png)
 
-For a full example of a plugin configuration, refer to [plugin](Plugin_example).
+For a full example of a plugin configuration, refer to [plugin](plugin_example).

@@ -27,6 +27,7 @@ However, you will find a link that will redirect you to **MongoDB CRUD** dedicat
 * **COLLECTION_DEFINITION_FOLDER** (*required, default `/home/node/app/collections`*): the path to the folder where all collections are defined;
 * **USER_ID_HEADER_KEY** (*required*): header key used to know which user makes the request. User id is useful to add `creatorId` and `updaterId` field in collection document;
 * **CRUD_LIMIT_CONSTRAINT_ENABLED**: (*default: `true`*): a boolean value to enable the query limit constraint feature. If it is enabled, the max limit of the get list APIs is 200.
+* **CRUD_MAX_LIMIT**: (*default: `200`*): an integer value to configure the maximum limit of objects returned by a MongoDB query.
 * **TRUSTED_PROXIES** (*default: `10.0.0.0/8,172.16.0.0/12,192.168.0.0/16`*): the string containing the trusted proxies values.
 * **HTTP_PORT**: The port exposed by the service.
 * **LOG_LEVEL** (*default: `info`*): level of the log. It could be trace, debug, info, warn, error, fatal.

@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] 2022-06-21
+
+### Breaking changes
+
+- If you want to continue using auth0 dependency, in an existing project, make sure `AUTH_SERVICE` env variable is set (`auth0-client` was set as default value in previous versions).
+- In order to update to this version, you must change your CRUD service's schema (and eventually consequently update existing data in mongo):
+  - _User Id Map_ collection: `auth0Id` must be changed with `receivedUserId`
+  - _Teleconsultations_ collection: `participantsNumber`,  `startDate`, `endDate` must be added
+- `/telecons-fe/teleconsultation` endpoint must be removed from console project
+
+### Added
+
+- Auth0 dependency isn't mandatory anymore. This is a **breaking change**. 
+- Partial participant list can be provided to `POST /teleconsultation` request
+- Added endpoint (`POST /teleconsultation/:id/participants/data`) to add a new participant to an existing teleconsultation 
+
+### Fixed
+
+- Fixed permission handling: if some user doesn't have a group included in the ones defined in the service configuration, an error is returned to the caller.
+
 ## [1.1.2] 2022-05-04
 
 - Added env var UNLIMITED_TELECONSULTATION (if set to true, the timer will not appear during the call)

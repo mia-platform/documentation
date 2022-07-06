@@ -38,20 +38,20 @@ It is possible, for instance, that a component requires other components to be i
 
 In general, it is recommended to always configure components keeping in mind how they interact with each event, and considering which ones they emit.
 
-Refer to [this list](Events) for an overview of default events.
-For [all components](Components/Buttons), it is specified how each one interacts with different events.
+Refer to [this list](events) for an overview of default events.
+For [all components](Components/buttons), it is specified how each one interacts with different events.
 
-It is possible to specify a scope for events. For instance, the event [push-state](Events#nested-navigation-state-push) has scope `nested-navigation-state`.
+It is possible to specify a scope for events. For instance, the event [push-state](events#nested-navigation-state-push) has scope `nested-navigation-state`.
 
 ## Example
 
-Multiple events can and should be combined. For instance, the component [bk-add-new-button](Components/Buttons#add-new) emits the event [add-new](Events#add-new), which
+Multiple events can and should be combined. For instance, the component [bk-add-new-button](Components/buttons#add-new) emits the event [add-new](events#add-new), which
 
 ```
 notifies the request for creating a new item.
 ```
 
-On the other hand, the component [bk-form-drawer](Components/Data_Manipulation#form-drawer) listens to the same event `add-new`. This event
+On the other hand, the component [bk-form-drawer](Components/data_manipulation#form-drawer) listens to the same event `add-new`. This event
 
 ```
 opens the drawer to create a new item, eventually applying default fields from data schema or data provided in the payload of the event.
@@ -61,11 +61,11 @@ As a result of this interaction, it will be possible for the user to spawn the `
 
 As per documentation, the `bk-form-drawer` can trigger the following events after listening to the `add-new` event:
 
-- [using-form-container](Events#using-form-container)
-- [create-data-with-file](Events#create-data-with-file)
-- [create-data](Events#create-data)
+- [using-form-container](events#using-form-container)
+- [create-data-with-file](events#create-data-with-file)
+- [create-data](events#create-data)
 
-If, for instance, the `create-data` event is triggered, the client component [bk-crud-client](Components/Clients#crud-client), which listens to it, will execute its own logic. As per documentation, the `bk-crud-client`
+If, for instance, the `create-data` event is triggered, the client component [bk-crud-client](Components/clients#crud-client), which listens to it, will execute its own logic. As per documentation, the `bk-crud-client`
 
 ```
 sends a `POST` to the `CRUD` service base path

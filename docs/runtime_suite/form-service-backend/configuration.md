@@ -418,3 +418,19 @@ The required properties (specified in the [form schema map CRUD endpoint paramet
 If you want to use the default value of the *formSchemaMapCrud* you need to expose this CRUD with the `/form-schema-map` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
 Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../form-service-frontend/configuration).
+
+## Other configurations
+
+### Form data versioning support
+
+From `version 1.5.0` the Form-Service Backend supports the versioning of the form data, by including the parameter `_v` to the request performed to retrieve form data. The `_v` is an optional query parameter of the `GET /visualizer/forms/{id}` called by the Form-Service Backend.
+
+In order to forward the `_v` to the service in charge of managing the form data, the `ENABLE_VERSIONING` environment variable must be set to `true`. If not specified, the `_v` parameter will not be included in the request performed to retrieve data, since, by default, the `ENABLE_VERSIONING` variable is set to `false`.
+
+:::warning
+
+Since the `crud-service` does not support document versioning, it will not accept the `_v` parameter, leading to a `400 Bad request` error. When the `submit_url` is a `crud-service` endpoint, the `ENABLE_VERSIONING` **cannot** be set to `true`. 
+
+More in general, the `ENABLE_VERSIONING` variable cannot be set to `true` when the `submit_url` refers to endpoints which do not support the versioning of data and/or when the inclusion of an unknown parameter can leads to error replies.
+
+:::

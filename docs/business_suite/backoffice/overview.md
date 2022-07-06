@@ -39,7 +39,7 @@ when conceiving a configuration.
 
 Components expose **properties** (set by the `element-composer` via JS script) and/or **attributes** (as the former but
 accessible also from the HTML document as tag attributes with camelCase syntax re-mapped to hyphen-separated-case), interact
-via **events** (messages from/to the `eventBus`), and instantiate a [bootstrap](Page_layout#bootstrap-aka-initial-state-injection) interface.
+via **events** (messages from/to the `eventBus`), and instantiate a [bootstrap](page_layout#bootstrap-aka-initial-state-injection) interface.
 
 As a rule of thumb, a component:
 

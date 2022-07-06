@@ -220,6 +220,10 @@ returned.
 Note that the auth client properties, coming from the auth client `/userinfo` endpoint, are always returned.
 :::
 
+:::info
+Cookies `sid` and `client-key` must be passed as headers to the `/userinfo`.
+:::
+
 #### Response
 
 In case of success, you will receive a response with a 200 status code and the user properties in the payload.

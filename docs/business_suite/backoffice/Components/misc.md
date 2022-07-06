@@ -3,80 +3,6 @@ id: misc
 title: Misc
 sidebar_label: Misc
 ---
-## Notifications
-
-displays toast notifications about events happening on the EventBus according to the maps provided as props
-![notifications](../img/bk-notifications.png)
-```html
-<bk-notifications></bk-notifications>
-```
-
-### Properties & Attributes
-
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`customEventMap`| - |NotificationsMap| - | - |{}|map containing the labels of any event that should be notified and the related `notificationProps`|
-|`duration`|`duration`|number| - | - | - |lingering time for the notification in seconds|
-|`errorEventMap`| - |NotificationsMap| - | - |{}|map containing the labels of any event that triggered a `error` that should be notified with the related `notificationProps`|
-|`location`| - |"bottomLeft" \\| "bottomRight" \| "topLeft" \| "topRight"| - | - | - |corner location where the notification should be displayed|
-|`rootElementSelectors`|`root-element-selectors`|string| - | - | - |selector to specify where the notification should be appended|
-|`successEventMap`| - |NotificationsMap| - | - |{}|map containing the labels of any event that triggered a `success` that should be notified with the related `notificationProps`|
-- > #### notificationProps
->
-> ```json
-> {
->   "create-data": {
->      "title": {
->        "en": "Data was created correctly!",
->        "it": "Dato creato correttamente!"
->      },
->      "content": {
->        "en": "The data has been created correctly",
->        "it": "I dati sono stati creati correttamente"
->      },
->      "type": "success"
->   },
->   "update-data": {
->      "title": {
->        "en": "Data was updated correctly!",
->        "it": "Dato aggiornato correttamente!"
->      },
->      "content": {
->        "en": "The data has been updated correctly",
->        "it": "I dati sono stati aggiornati correttamente"
->      },
->      "type": "success"
->   }
-> }
-> ```
->
-> | property | type | values | description |
-> |----------|------|--------|-------------|
-> | title   | [localizedText](../Core_concepts#localization-and-i18n) | any | localized text to be used as notification title |
-> | content | [localizedText](../Core_concepts#localization-and-i18n) | any | localized text to be used as notification content |
-> | type    | string | `success`, `error`, `info`, `warning` | enum of possible notification styling (i.e. icons, color...) |
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[success](../Events#success)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `successEventMap` property| - | - |
-|[error](../Events#error)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `errorEventMap` property| - | - |
-|Configurable custom events|displays a notification on any event mapped in the `customEventMap` property| - | - |
-
-
-### Emits
-
-This component emits no event.
-
-
-### Bootstrap
-
-None
-
-
-
 ## Template
 
 ```html
@@ -117,7 +43,7 @@ prompts the user for confirmation on certain actions
 It is possible to mount custom components as confirmation/cancel buttons in the modal.
 For instance, the following example shows how to request for confirmation before the action of a button is performed.
 #### Example
-The following snippet of configuration shows a "Abort" button which performs a POST request to a give endpoint.
+The following snippet of configuration shows an "Abort" button which performs a POST request to a given endpoint.
 ```json
 {
   "tag": "bk-button",
@@ -202,7 +128,7 @@ The cancel button does not perform any action: if clicked, the modal will simply
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`height`|`height`|string|'30px'|height of the modal |
+|`height`|`height`|string|'50px'|height of the modal |
 |`width`|`width`|string|'520px'|width of the modal |
 
 
@@ -210,7 +136,7 @@ The cancel button does not perform any action: if clicked, the modal will simply
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[require-confirm](../Events#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
+|[require-confirm](../events#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
 
 
 ### Emits
@@ -257,7 +183,7 @@ Generic drawer container for custom content and custom footer
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-form-container](../Events#using-form-container)|notifies a drawer is in use| - | - |
+|[using-form-container](../events#using-form-container)|notifies a drawer is in use| - | - |
 
 
 ### Emits
@@ -438,7 +364,7 @@ and layout must contain a valid `bk-layout-container` `content` prop key. A `bk-
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[layout/change](../Events#layout---change)|requires the connection of the layout which is referenced in the event payload| - | - |
+|[layout/change](../events#layout---change)|requires the connection of the layout which is referenced in the event payload| - | - |
 
 
 ### Emits
@@ -465,14 +391,14 @@ Generic modal container for custom content and custom footer
 |----------|-----------|------|---------|-------------|
 |`content`| - |Taggable \\| Taggable[]| - |configurable content of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
 |`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the modal. This property is to be set programmatically only |
-|`footerComponent`| - |null \\| Taggable \| Taggable[]| - |configurable footer of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`footerComponent`| - |null \\| Taggable \| Taggable[] \| Object| - |configurable footer of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
 |`height`|`height`|string| - |height of the modal |
 |`loading`|`loading`|boolean|false|whether or not the modal is loading |
 |`modalId`|`modal-id`|string| - |identifier associated to the modal |
 |`modalTitle`| - |LocalizedText| - |title of the modal |
 |`requireConfirm`| - |boolean \\| Pick<RequireConfirmPayload, "title" \| "content" \| "cancelText" \| "okText">|false|whether or not the modal requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
-|`subTitle`| - |LocalizedText| - |sub-title of the modal |
+|`subTitle`| - |LocalizedText \\| Taggable \| Taggable[]| - |sub-title of the modal |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
 |`width`|`width`|string| - |width of the modal |
 |`zIndex`|`z-index`|number| - |zIndex of the modal |
@@ -482,8 +408,112 @@ Generic modal container for custom content and custom footer
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[open-modal](../Events#open-modal)|opens the modal| - | - |
-|[close-modal](../Events#close-modal)|closes the modal| - | - |
+|[open-modal](../events#open-modal)|opens the modal| - | - |
+|[close-modal](../events#close-modal)|closes the modal| - | - |
+
+
+### Emits
+
+This component emits no event.
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-notifications
+
+displays toast notifications about events happening on the EventBus according to the maps provided as props
+![notifications](../img/bk-notifications.png)
+```html
+<bk-notifications></bk-notifications>
+```
+### Notifications properties
+Properties `successEventMap` and `errorEventMap` map the `triggered-by` field of [success](../events#success) and [error](../events#error) events into notification properties.
+### Triggering notifications from bk-button
+Using the following keys, it is possible to trigger a notification as a result of a HTTP-call triggered by a `bk-button` component:
+| key | operation |
+|-----|-----------|
+| `get-http-generic-button` | GET http call |
+| `post-http-generic-button` | POST http call |
+| `delete-http-generic-button` | DELETE http call |
+| `bk-button-file-upload` | File upload |
+### Example
+```json
+{
+  "create-data": {
+     "title": {
+       "en": "Data was created correctly!",
+       "it": "Dato creato correttamente!"
+     },
+     "content": {
+       "en": "The data has been created correctly",
+       "it": "I dati sono stati creati correttamente"
+     },
+     "type": "success"
+  },
+  "update-data": {
+     "title": {
+       "en": "Data was updated correctly!",
+       "it": "Dato aggiornato correttamente!"
+     },
+     "content": {
+       "en": "The data has been updated correctly",
+       "it": "I dati sono stati aggiornati correttamente"
+     },
+     "type": "success"
+  },
+  "update-data": {
+     "title": {
+       "en": "Data was updated correctly!",
+       "it": "Dato aggiornato correttamente!"
+     },
+     "content": {
+       "en": "The data has been updated correctly",
+       "it": "I dati sono stati aggiornati correttamente"
+     },
+     "type": "success"
+  },
+  "bk-button-file-upload": {
+    "title": {
+       "en": "File was upladed correctly!",
+       "it": "File caricato correttamente!"
+     },
+     "content": {
+       "en": "The file has been uploaded correctly",
+       "it": "Il file è stati caricato correttamente"
+     },
+     "type": "success"
+  }
+}
+```
+| property | type | values | description |
+|----------|------|--------|-------------|
+| title   | [localizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification title |
+| content | [localizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification content |
+| type    | string | `success`, `error`, `info`, `warning` | enum of possible notification styling (i.e. icons, color...) |
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`customEventMap`| - |NotificationsMap|{}|map containing the labels of any event that should be notified and the related `notificationProps` |
+|`duration`|`duration`|number| - |lingering time for the notification in seconds |
+|`errorEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `error` that should be notified with the related `notificationproperties` |
+|`location`| - |NotificationLocation|'topRight'|corner location where the notification should be displayed |
+|`rootElementSelectors`|`root-element-selectors`|string| - |selector to specify where the notification should be appended |
+|`successEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `success` that should be notified with the related `notificationproperties` |
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[success](../events#success)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `successEventMap` property| - | - |
+|[error](../events#error)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `errorEventMap` property| - | - |
+|Configurable custom events|displays a notification on any event mapped in the `customEventMap` property| - | - |
 
 
 ### Emits
