@@ -200,6 +200,7 @@
     "soisy",
     "noindex",
     "alloc",
+    "exfiltrate",
     "teleconsultationroomid"
   ],
   "dictionaries": [
