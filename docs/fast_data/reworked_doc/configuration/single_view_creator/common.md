@@ -161,7 +161,7 @@ Aggregation is the Single View Creator part in charge of aggregating data of pro
 If you are using Low Code, please visit [here](./low_code.md#aggregation), otherwise you can go to the [manual documentation](./manual.md#aggregation)
 
 :::note
-Since version `v5.0.0` of Single View Creator service and INSERT_HERE_LIB_VERSION of the `@mia-platform-internal/single-view-creator-lib` `v12.0.0`, returning a single view with the field `__STATE__` from the aggregation will update of the Single View to that state (among the others changes).   
+Since version `v5.0.0` of Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a single view with the field `__STATE__` from the aggregation will update the Single View to that state (among the others changes).   
 This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `aggregation.json` in LowCode (or in the `pipeline.js` in the Manual), the single view updated will have the __STATE__ equals to `DRAFT`. 
 Previously, the `__STATE__` you returned was ignored, and the Single View would always have the __STATE__ equals to `PUBLIC`.
 :::
