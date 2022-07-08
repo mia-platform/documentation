@@ -47,13 +47,13 @@ After you created an endpoint linked to a microservice you'll be able to edit th
 
 ### Fast Data Projection
 
-This endpoint type is used to read data of the [Fast Data projection](../../../fast_data/create_projection).  
-These APIs are read only, because they should be edited only by the [Real-Time Updater](../../../fast_data/overview#real-time-updater).
+This endpoint type is used to read data of the [Fast Data projection](../../../fast_data/configuration/projections.md).  
+These APIs are read only, because they should be edited only by the [Real-Time Updater](../../../fast_data/architecture.md#real-time-updater-rtu).
 
 ### Fast Data Single View
 
-This endpoint type is used to read data of the [Fast Data Single View](../../../fast_data/overview#why-single-view).  
-These APIs are read only, because they should be edited only by the [Single View Creator](../../../fast_data/single_view#create-the-single-view-creator-service).
+This endpoint type is used to read data of the [Fast Data Single View](../../../fast_data/the_basics.md#single-view-sv).  
+These APIs are read only, because they should be edited only by the [Single View Creator](../../../fast_data/architecture.md#single-view-creator-svc).
 
 ## About Rewrite Base Path
 

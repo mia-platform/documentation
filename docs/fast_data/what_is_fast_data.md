@@ -8,18 +8,13 @@ sidebar_label: What is Fast Data
    <meta name="robots" content="noindex, nofollow" />
 </head>
 
-:::warning
-This new documentation section is still in its early stage. We are restructuring the Fast Data documentation to make it more clear, easy to navigate, and with meaningful examples.
-For a more complete documentation, **refer to the pages outside this sidebar item**.
-:::
-
 In this page you will learn what is *Fast Data*, which **business problems it solves**, what are its main concepts, how it is **different from similar products**, and why you should keep all your **data organized and available** in near real time, **24/7**.
 
 ## Product overview
 
 In this section we will briefly explain what is Fast Data, starting from your fragmented data, and its journey to become an aggregated source of truth that satisfies your business needs.
 
-![Fast Data overview](../img/fastdata-overview.png)
+![Fast Data overview](./img/fastdata-overview.png)
 
 The main goal of Fast Data is to aggregate business data from different sources (that we call **Systems of Records**) into a single MongoDB collection called **Single View**. This collection can be easily queried by your APIs. The aggregation is performed only when changes occur to the source data, making your read operations blazing fast as the data is already there.
 
@@ -67,3 +62,7 @@ With these new tools your company can grow faster than ever, become more connect
 "ETL" systems (Extract, Transform, Load) are not a big news, they have been around for decades and their principles are now a staple in the industry. So what makes Fast Data stand out from the crowd? It is easy to set up thanks to its **low code** functionality, fully customizable injecting actual javascript code as configuration, and part of an **ecosystem** that will grant you all the tools you need to make the most out of your standardized and aggregated data.
 
 Moreover, Fast Data is used in production by many large companies, with millions of events handled every day, so you can be confident it is a reliable solution.
+
+## GDPR
+
+Fast Data services may log the primary keys of your projections, single views and keys of the Kafka Messages. Please, be sure that they are not sensible information in order to be in accordance with GDPR policies. Otherwise, you need to set topic retentions conformed to the rules and inform the Mia-Platform referent to set logs retention according to that.

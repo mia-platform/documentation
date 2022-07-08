@@ -13,7 +13,7 @@ _July, 7th 2022_
 
 #### Strategies Low Code handling of MongoDB queries
 
-A bug has been fixed in how `conditions` in [ER Schema](/docs/fast_data/real_time_updater/low-code-configuration#er-schema-configuration) are converted into MongoDB queries while running strategies. Since the bug might generete still queries valid for MongoDB, even though not logically correct for user intentions, and no error was thrown, we decided to report this fix as a Breaking Change because this fix may bring to different documents to be selected (or not selected) in your Strategies, with different single views to be updated.
+A bug has been fixed in how `conditions` in [ER Schema](/docs/fast_data/configuration/erSchema.md) are converted into MongoDB queries while running strategies. Since the bug might generete still queries valid for MongoDB, even though not logically correct for user intentions, and no error was thrown, we decided to report this fix as a Breaking Change because this fix may bring to different documents to be selected (or not selected) in your Strategies, with different single views to be updated.
 
 The conditions afflicted to the bug were the ones like this:
 
@@ -128,28 +128,28 @@ The fix above is available since `v6.0.0` of Real-Time Updater. This fix has bee
 
 ### Single View configuration Low Code in a dedicated area
 
-Single View page now contains a [dedicated tab](/docs/fast_data/reworked_doc/configuration/single_views#create-the-single-view-creator-service) where you can configure your Low Code aggregation without having to navigate to the Microservice page. The Console will help you to write your configuration thanks to a correctness check of your configuration syntax.
+Single View page now contains a [dedicated tab](/docs/fast_data/configuration/single_views#create-the-single-view-creator-service) where you can configure your Low Code aggregation without having to navigate to the Microservice page. The Console will help you to write your configuration thanks to a correctness check of your configuration syntax.
 Link card of a Single View service to the Single View has been moved into the same page of the one above.
 
 #### Generate Single View with a state different from PUBLIC
 
-Since version `v5.0.0` of Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a single view with the field `__STATE__` from the [aggregation](/docs/fast_data/single_view_creator/low-code-configuration#aggregation) will update the Single View to that state.
+Since version `v5.0.0` of Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a single view with the field `__STATE__` from the [aggregation](/docs/fast_data/configuration/single_view_creator/low_code.md#aggregation) will update the Single View to that state.
 
 #### Generate Single View Update message
 
-Since version `v4.3.0` of Single View Creator service and `v11.1.1` of `@mia-platform-internal/single-view-creator-lib`, when a Single View is updated a [Kafka message](/docs/fast_data/reworked_doc/inputs_and_outputs#single-view-update) is sent to notify that.
+Since version `v4.3.0` of Single View Creator service and `v11.1.1` of `@mia-platform-internal/single-view-creator-lib`, when a Single View is updated a [Kafka message](/docs/fast_data/inputs_and_outputs#single-view-update) is sent to notify that.
 
-[Single View Before After](/docs/fast_data/reworked_doc/inputs_and_outputs#single-view-before-after) message and [Single View Event](/docs/fast_data/reworked_doc/inputs_and_outputs#single-view-event) are deprecated and will be removed in future versions.
+[Single View Before After](/docs/fast_data/inputs_and_outputs#single-view-before-after) message and [Single View Event](/docs/fast_data/inputs_and_outputs#single-view-event) are deprecated and will be removed in future versions.
 
 ### Bug Fix
 
 #### Import Projections from file
 
-Due to security reasons, [import projections from a DDL file](/docs/fast_data/create_projection#import-multiple-projections-from-a-ddl-file) has now a size limit of 20 MB.
+Due to security reasons, [import projections from a DDL file](/docs/fast_data/configuration/projections.md#import-multiple-projections-from-a-ddl-file) has now a size limit of 20 MB.
 
 #### Default Cast function defaultCastToDate
 
-The [default cast function](/docs/fast_data/cast_functions#cast-function-default) `defaultCastToDate` when receiving a `null` value converted it to the `epoch` value. This has been fixed, and now it will be converted to undefined as any other invalid value.
+The [default cast function](/docs/fast_data/configuration/cast_functions.md#default-cast-functions) `defaultCastToDate` when receiving a `null` value converted it to the `epoch` value. This has been fixed, and now it will be converted to undefined as any other invalid value.
 
 ## Console
 

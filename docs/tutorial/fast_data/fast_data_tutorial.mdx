@@ -19,7 +19,7 @@ In particular, you will:
 
 ## Prerequisites  
   
-Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](../../../docs/fast_data/overview), including [Projections](../../../docs/fast_data/create_projection), [Single View](../../../docs/fast_data/single_view), and Kafka (including producers and consumers).
+Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](../../../docs/fast_data/architecture.md), including [Projections](../../../docs/fast_data/configuration/projections.md), [Single View](../../../docs/fast_data/configuration/single_views.md), and Kafka (including producers and consumers).
 For the technical part of this tutorial, an up-and-running Kafka cluster is required.
 
 ## Projections
@@ -130,7 +130,7 @@ Now we need to configure all the parameters of the microservice. Here is an exam
 - **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers 
 - **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
 
-There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Real-Time Updater](../../../docs/fast_data/real_time_updater/manual-configuration).
+There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Real-Time Updater](../../../docs/fast_data/configuration/realtime_updater/common.md).
 
 #### Microservice Variables
 After the basic configuration of the microservice, we need to configure two configMaps: one is the ER Schema, and the other is the Projection Changes Schema.
@@ -467,5 +467,5 @@ Now we have the Projections, the Single View and each configuration ready to be 
 
 ![Expose Single View](img/32-expose-single-view.png)
 
-Now we can Commit & Generate our changes, deploy, and try our [Fast Data](../../../docs/fast_data/overview) sending data from the Kafka Topic, and see the result in the Single View using the endpoints.
+Now we can Commit & Generate our changes, deploy, and try our [Fast Data](../../../docs/fast_data/architecture.md) sending data from the Kafka Topic, and see the result in the Single View using the endpoints.
 

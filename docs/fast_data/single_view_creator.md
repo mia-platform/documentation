@@ -14,7 +14,7 @@ To start configuring your own Single View Creator, you have three options:
 * Start from the *Single View Creator Plugin*
 * Start from the *Single View Creator Template*
 
-The first option uses the Low Code configuration, the second and third options use the manual configuration. More information about the differences between Low Code and manual configurations can be found [here](../no_code_overview.md).
+The first option uses the Low Code configuration, the second and third options use the manual configuration. More information about the differences between Low Code and manual configurations can be found [here](./no_code_overview.md).
 
 ### Single View Creator Configurations
 

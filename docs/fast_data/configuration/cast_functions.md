@@ -1,30 +1,27 @@
 ---
 id: cast_functions
-title: Cast Functions
+title: Cast Functions Configuration
 sidebar_label: Cast Functions
 ---
 
-## What is a cast function and why I need it?
+<head>
+   <meta name="robots" content="noindex, nofollow" />
+</head>
 
-Different kinds of table could store data in many ways.
-You could have a numeric value stored as a string that was supposed to be an integer, or you could also have a date field stored in different formats in different tables, but you would like to have date fields all in the same format (for example you receive a date with the format `YYYYMMDD` and you want to cast it to ISO format).
+In this document we guide you through the configuration of [Cast Functions](../the_basics.md#cast-function) directly in the Console.
 
-Cast functions are meant to solve all these problems giving you full control over the format that data are going to have in your projections.
-Cast functions are simple JavaScript functions that receive the value coming from the Kafka topics and return the value in the format you need for your projection fields.
+## Default Cast Functions
 
-This enables you to define the output format and type of the imported fields.
+The Console provides your project with a set of default cast functions ready to use, so that you can start to create your projection without writing any line of code to cast your data in the correct format.
 
-:::note
-Since JavaScript is untyped, a conversion function needs some care to be implemented correctly
-:::
+To see the implementation of the default cast functions:
 
-Click on the `Cast Functions` voice of the left menu to see all the Cast Functions.
+1. Go to the Design Area
+2. Go to the Cast Function Section
+3. In the `Default cast functions` card, hover the zoom icon
 
-## Cast Function Default
 
-The Console provides your project with a set of default cast functions ready to use, so that you can start to create your projection without writing any line of code to cast your data in the correct format. Hover the zoom icon to see the implementation of the default cast functions.
-
-![Default cast functions implementation](img/fastdata-default-castfunction-zoom.png)
+![Default cast functions implementation](../img/fastdata-default-castfunction-zoom.png)
 
 If you need more control over the casting of your data, you can also create your custom cast functions.
 
@@ -37,9 +34,11 @@ Be aware of that if your fields are not `nullable`, in these cases you should de
 
 To define your own custom cast functions click on the *Create* button above the `Custom cast functions` table. This will open a drawer where you can define the property of your own cast function.
 
-- **Name**: is the name of your cast function. It cannot contain spaces or special characters.
-- **Returned Type**: is the type of the value returned by the cast function.
-- **Expression**: is the javascript implementation of the cast function. It needs to be an exported function as default.
+| Name          | Type        | Required | Description                                                                                         |
+|---------------|-------------|----------|-----------------------------------------------------------------------------------------------------|
+| Name          | String      | True     | Name of the cast function. No spaces or special characters                                          |
+| Returned Type | Select      | True     | The type of the value that has to be returned                                                       |
+| Expression    | JS Function | False    | The javascript implementation of the cast function. It needs to be an exported function as default. |
 
 ### Let's see an example
 
@@ -77,7 +76,7 @@ In this case, nothing will change in your configuration. You will continue to us
 
 In this case, the new cast function will be added to your configuration.
 
-![Fast Data new default castFunction](img/fastdata-new-default-castfunction.png)
+![Fast Data new default castFunction](../img/fastdata-new-default-castfunction.png)
 
 If a new default cast function is added on the Console, it will be available in the Cast Function section when you visit the Design area (even if it is not yet stored on your git provider in your `fastdata-config.json`). When you save the configuration it will be stored in the configuration file.
 
@@ -88,11 +87,11 @@ Let's see an example:
 
 - Default cast functions as seen in *your* project
 
-![Fast Data with deleted default cast function](img/fastdata-delete-castfunction-all.png)
+![Fast Data with deleted default cast function](../img/fastdata-delete-castfunction-all.png)
 
 - Default cast functions generated for *new* projects
 
-![Fast Data without deleted default castFunction](img/fastdata-delete-castfunction-without-deleted.png)
+![Fast Data without deleted default castFunction](../img/fastdata-delete-castfunction-without-deleted.png)
 
 As you can see, in your project you are still able to use all the default cast functions, although `defaultCastUnitTimestampToISOString`, in our example, is no longer supported.
 If you create a new project, this default cast function will not be provided instead.

@@ -1,223 +1,19 @@
 ---
-id: low-code-configuration
+id: low_code
 title: Single View Creator Low Code configuration
-sidebar_label: Low Code configuration
+sidebar_label: Low Code
 ---
-
-This plugin is a specialized version of the Single View Creator plugin that you can find at this [link](../../runtime_suite/single-view-creator/configuration), they are both based on the same dockerImage. The main difference is that the Low Code Plugin is already configured to be used with JSON configurations instead of javascript code.
 
 Low Code Single View Creator is available since version `3.3.0`
 
-Throughout this section, we will make examples based on the `food-delivery` use case, in particular to the `sv_customer` single view. A complete ER schema is presented below, but you should only need the relevant parts presented in the paragraphs where they are mentioned.
-
-<details><summary>food delivery ER schema configuration</summary>
-<p>
-
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "pr_dishes": {
-      "outgoing": {
-        "pr_restaurants": {
-          "conditions": {
-            "dish_to_rest": {
-              "condition": {
-                "id_restaurant": "id_restaurant"
-              }
-            }
-          }
-        },
-        "pr_orders_dishes": {
-          "conditions": {
-            "dish_to_order_dish": {
-              "condition": {
-                "ID_DISH": "id_dish"
-              }
-            }
-          }
-        },
-        "pr_reviews": {
-          "conditions": {
-            "dish_to_rev": {
-              "condition": {
-                "ID_DISH": "id_dish"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_orders_dishes": {
-      "outgoing": {
-        "pr_orders": {
-          "conditions": {
-            "order_dish_to_order": {
-              "condition": {
-                "ID_ORDER": "ID_ORDER"
-              }
-            }
-          }
-        },
-        "pr_dishes": {
-          "conditions": {
-            "order_dish_to_dish": {
-              "condition": {
-                "id_dish": "ID_DISH"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_orders": {
-      "outgoing": {
-        "pr_orders_dishes": {
-          "conditions": {
-            "order_to_order_dish": {
-              "condition": {
-                "ID_ORDER": "ID_ORDER"
-              },
-              "oneToMany": true
-            }
-          }
-        },
-        "pr_registry": {
-          "conditions": {
-            "order_to_reg": {
-              "condition": {
-                "ID_USER": "ID_USER"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_restaurants": {
-      "outgoing": {
-        "pr_dishes": {
-          "conditions": {
-            "res_to_dish": {
-              "condition": {
-                "id_restaurant": "id_restaurant"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_allergens_registry": {
-      "outgoing": {
-        "pr_allergens": {
-          "conditions": {
-            "aller_reg_to_aller": {
-              "condition": {
-                "id_allergen": "ID_ALLERGEN"
-              }
-            },
-          }
-        },
-        "pr_registry": {
-          "conditions": {
-            "aller_reg_to_reg": {
-              "condition": {
-                "ID_USER": "ID_USER"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_allergens": {
-      "outgoing": {
-        "pr_allergens_registry": {
-          "conditions": {
-            "aller_to_aller_reg": {
-              "condition": {
-                "ID_ALLERGEN": "id_allergen"
-              }
-            }
-          }
-        }
-      }
-    },
-    "pr_registry": {
-      "outgoing": {
-        "pr_orders": {
-          "conditions": {
-            "reg_to_order": {
-              "condition": {
-                "ID_USER": "ID_USER"
-              },
-              "oneToMany": true
-            }
-          }
-        },
-        "pr_reviews": {
-          "conditions": {
-            "reg_to_rev": {
-              "condition": {
-                "ID_USER": "ID_USER"
-              },
-              "oneToMany": true
-            }
-          }
-        },
-        "pr_allergens_registry": {
-          "conditions": {
-            "reg_to_aller_reg": {
-              "condition": {
-                "ID_USER": "ID_USER"
-              },
-              "oneToMany": true
-            }
-          }
-        }
-      }
-    },
-    "pr_reviews": {
-      "outgoing": {
-        "pr_registry": {
-          "conditions": {
-            "rev_to_reg": {
-              "condition": {
-                "ID_USER": "ID_USER"
-              }
-            }
-          }
-        },
-        "pr_dishes": {
-          "conditions": {
-            "rev_to_dish": {
-              "condition": {
-                "id_dish": "ID_DISH"
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-</p>
-</details>
+Throughout this section, we will make examples based on the `food-delivery` use case, in particular to the `sv_customer` single view. A complete ER schema in the dedicated [section](../erSchema.md#real-use-case-example).
 
 Here you can see a visual representation of the ER schema.
 
-![visual representation of the ER schema](../img/food_delivery_ER_schema.png)
+![visual representation of the ER schema](../../img/food_delivery_ER_schema.png)
 
-## Configuration Files
 
-There are three main configuration files that you need to provide to the Plugin:
-
-1. Configuration
-2. ErSchema
-3. Aggregation
-
-When you add the Microservice from the Marketplace, the configMaps and the relative files will be already created, and you only need to insert the content.
-
-### Configuration
+## Single View Key
 
 The configuration contains the `singleViewKey.json` file. The input of this configuration is the projection changes identifier and the output is the query to be applied on the Single View. 
 
@@ -236,41 +32,9 @@ where:
 - `sv_id` is the name of the single view's key 
 - `ID_USER` is the field's name inside the identifier
 
-### ER Schema
+## ER Schema
 
-The Entity-Relation Schema defines the relation between the collections of the System of Records, by means of directed links from one collection to another, that can have one or more conditions. An example of a correct ER is presented next:
-
-```json
-{
-  "version": "N.N.N",
-  "config": {
-    "SOURCE_COLLECTION": {
-      "outgoing": {
-        "DESTINATION_COLLECTION": {
-          "conditions": {
-            "CONDITION_NAME": {
-              "condition": {
-                "DESTINATION_FIELD_NAME": "SOURCE_FIELD_NAME"
-              },
-              "oneToMany": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-The `version` field holds the current configuration version, which determines the syntax and semantics of the rest of the configuration. For version `1.0.0` these are the fields and their meaning:
-
-* The config field holds the ER schema itself, as detailed below
-* The source document is one of the documents of the System of Records. The ER schema should have one different field for each document of the System.
-* Each source document has an `outgoing` property that lists all of the destination documents related to the source one.
-* Each destination document has a series of conditions that determine whether two documents should be matched or not.
-* Each condition has a name and checks the destination fields against the source fields or some constants. Conditions can use **mongo operators** too (e.g. `$or`, `$and`, and  `$gt`).
-* The `oneToMany` field of a condition specifies whether the source document can have a relation with only one document (in case of `false`) or with multiple documents (in case of `true`) of the target collection. By default, it is set to false (if the field is completely missing).
-
+For the general rules and guidelines of the ER Schema, check the [dedicated page](../erSchema.md).
 Let us take an example from the `food-delivery` use case.
 
 ```json
@@ -305,37 +69,6 @@ This means the `pr_reviews` projection is connected to:
 * `pr_registry` through the `rev_to_reg` condition, which means the documents are linked if the registry `ID_USER` field is the same as the reviews `ID_USER` field;
 * `pr_dishes` through the `rev_to_dish` condition, which means the documents are linked if the dish `id_dish` field is the same as the reviews `ID_DISH` field;
 
-It is possible to define a constant value in order to validate the condition, for example:
-
-```json
-"pr_dishes": {
-  "outgoing": {
-    "pr_orders_dishes": {
-      "conditions": {
-        "dish_to_order_dish": {
-          "condition": {
-            "ID_DISH": "__string__[testID]"
-          }
-        }
-      }
-    }
-  }
-}
-
-```
-
-In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
-The types of constants that are supported are:
-
-* `__string__[]` which considers the value as a string.
-* `__integer__[]` which considers the value as an integer.
-* `__boolean__[]` which considers the value as a boolean.
-* `__constant__[]` which considers the value as a string (deprecated).
-
-:::caution
-Remember that `__constant__[]` is deprecated, and it will be removed in future versions. Use `__string__[]` instead.
-:::
-
 Some more complex condition is showcased next:
 
 ```json
@@ -360,11 +93,9 @@ Some more complex condition is showcased next:
 ...
 ```
 
-### Aggregation
+## Aggregation
 
-Once you have the ER schema set up, you are ready to describe how to build your single view.
-
-The `configuration` indicates what are the dependencies of the single view and how to map them to its fields.
+This configuration indicates what are the dependencies of the single view and how to map them to its fields.
 
 An example of a minimal configuration is as follows:
 
@@ -389,7 +120,7 @@ An example of a minimal configuration is as follows:
 
 The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View.
 
-#### Dependencies
+### Dependencies
 
 Dependencies have two properties:
 
@@ -401,7 +132,7 @@ If the `on` property of a `projection` dependency is set to another string, then
 
 If the dependency is of type `config` it will not have an `on` field, and instead the whole configuration will be defined in the JSON file, using the same structure as the one in `SV_CONFIG`.
 
-#### Mapping
+### Mapping
 
 Each entry in the mapping has the following syntax:
 
@@ -457,16 +188,16 @@ You are supposed to access the dependenciesMap **only** in read-only mode.
 Write access to the dependenciesMap are **not** officially supported and could be removed at any time.
 :::
 
-#### Join Dependency
+### Join Dependency
 
 When you want to map a single view field to an array of value as usual happens in 1:N relations, you can use a config dependency with a `joinDependency` field. This means when the config will be calculated, the `joinDependency` will be computed first, retrieving a list of all the matching documents, then for each of those elements the configuration mapping will be applied, resulting in an array of elements, each having the same layout as the one specified in the config mapping.
 
-#### Advanced options
+### Advanced options
 
 Basic options are simple and meant for streamlined use cases, however, sometimes the need for more complex logic in the creation of the single view arises, and in those scenarios you can take advantage of our advanced options, starting from Aggregation configuration version `1.1.0` and Single View Creator service version `v3.6.0`
 We introduce these options by showing the use case they solve.
 
-##### Using the same Projection as a Dependency multiple times under different conditions
+#### Using the same Projection as a Dependency multiple times under different conditions
 
 When listing dependencies, it is mandatory that each dependency has a different name, as its name is used to identify it. When it comes to config, this is not a problem, as you can name a config dependency as you wish, but it is different when we need to deal with projections.
 
@@ -608,7 +339,7 @@ If we needed to use the `PARTNER` dependency as a base for another dependency (f
 
 Note that we used `aliasOf` inside the `MOTHER_IN_LAW` dependency as well because we wanted to keep on using the same base projection, but it is not mandatory, as long as you are using another projection that is not declared elsewhere in the dependencies.
 
-##### Changing the query that finds the Projection based on their identifier
+#### Changing the query that finds the Projection based on their identifier
 
 Sometimes, when writing a dependency of a projection that is matched on its `_identifier`, we find that the identifier has more fields than we want, or has fields with different names, which makes the automatic query mapping result in no documents found.
 In this scenario, you can employ the `identifierQueryMapping` option, which provides a new query mapping for the identifier of a projection, allowing you to have a custom way of matching documents based on their identifier.
@@ -670,7 +401,7 @@ The `"special"` field is not part of the single document we want to find, but it
 Remember that for `identifierQueryMapping` to be used, you still need to explicitly set the `on` field of the dependency to `_identifier`, otherwise it will not be considered valid.
 :::
 
-##### Using conditional expressions on dependencies definitions and mappings
+#### Using conditional expressions on dependencies definitions and mappings
 
 Dependencies are a way to gather data that will be used in the mapping section, creating the single view, and as single views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a single view.
 
@@ -767,7 +498,7 @@ The `value` field is an object with exactly the same structure as a regular depe
 
 For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object  with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
 
-##### Null value inside conditional expression
+#### Null value inside conditional expression
 
 From version `3.10.0` of the Single View Creator, logic expressions now accept `null` as a value:
 
@@ -792,7 +523,7 @@ From version `3.10.0` of the Single View Creator, logic expressions now accept `
 ...
 ```
 
-##### Set resolution order of dependencies
+#### Set resolution order of dependencies
 
 From version `4.1.0` of the Single-View-Creator, the resolution order of dependencies can be set with the field `dependencyOrder` inside the aggregation file:
 
@@ -850,7 +581,7 @@ This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `agg
 Previously, the `__STATE__` you returned was ignored, and the Single View would always have the __STATE__ equals to `PUBLIC`.
 :::
 
-### Example
+## Example
 
 Let's take a look at a simplified version of the `sv_customer` configuration in the `food-delivery` use case:
 
@@ -917,7 +648,7 @@ Afterwards, for each of the retrieved entries, the mapping will be performed. Th
 
 To make things more practical, let's say we have this data:
 
-#### pr_registry
+### pr_registry
 
 ```json
 {
@@ -937,7 +668,7 @@ To make things more practical, let's say we have this data:
 ...
 ```
 
-#### pr_allergens_registry
+### pr_allergens_registry
 
 ```json
 {
@@ -953,7 +684,7 @@ To make things more practical, let's say we have this data:
 ...
 ```
 
-#### pr_allergens
+### pr_allergens
 
 ```json
 {
@@ -967,7 +698,7 @@ To make things more practical, let's say we have this data:
 ...
 ```
 
-#### Update logic
+### Update logic
 
 Now, if the eggs description changes, we want the single view to update.
 When the single view creator is notified of the change, it will be provided the `USER_ID` of the user that needs changes, in this case `1`.
@@ -976,7 +707,7 @@ After that, it will need to resolve the `ALLERGENS` dependency. To do that, it w
 It will then get all the `allergens_registry` entries matching the condition (which is the one with `ID_USER` equal to `1`, the id of the single view to update).
 At this point, we have two documents: eggs, and fish. For each of those documents, the mapping will be applied, and the resulting single view will have its `allergens` field mapped to an array containing those two values.
 
-### Read from multiple database on the same server
+## Read from multiple database on the same server
 
 In order to read data from multiple database you need to leverage on custom function from the mapping configuration.  
 Make sure your service user has permission to read data from the other database.  
@@ -1021,7 +752,7 @@ Then you can use the custom function in the mapping configuration:
 }
 ```
 
-### Read from multiple database server
+## Read from multiple database server
 
 In order to read data from multiple database you need to leverage on custom function from the mapping configuration.  
 First of all you need to create a configMap and we suggest to create at least two files: one for the database connection and the others for the custom functions.  
@@ -1093,7 +824,3 @@ Finally you can use the custom function in the mapping configuration:
    }
 }
 ```
-
-## Environment variables
-
-After you have finished writing your configuration files, the Single View Creator is almost ready to be used, but first you need to assign a value to the environment variables. You can find information about them [here](../../runtime_suite/single-view-creator/configuration), as the simple Single View Creator Plugin is based on the same docker image of the Low Code one.

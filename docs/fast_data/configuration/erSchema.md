@@ -277,4 +277,4 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 
 Here you can see a visual representation of the ER schema.
 
-![visual representation of the ER schema](../../img/food_delivery_ER_schema.png)
+![visual representation of the ER schema](../img/food_delivery_ER_schema.png)
