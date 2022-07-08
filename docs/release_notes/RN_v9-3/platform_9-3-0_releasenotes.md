@@ -49,7 +49,7 @@ From this release the console integrates correctly with the APIs exposed by Jenk
 
 ### Documentation
 
-A reworked version of the Fast Data documentation is currently under construction. We are re-shaping the doc to give you more organized and complete information, and you can already have a look at it [here](../../fast_data/reworked_doc/what_is_fast_data).
+A reworked version of the Fast Data documentation is currently under construction. We are re-shaping the doc to give you more organized and complete information, and you can already have a look at it [here](../../fast_data/what_is_fast_data).
 
 In future releases, the old documentation will be removed, and this new section will replace it.
 

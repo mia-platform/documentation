@@ -13,7 +13,7 @@ _June, 9th 2022_
 
 #### Kafka Adapters are no longer configurable from advanced
 
-Any changes to the [Kafka Adapters](../../fast_data/real_time_updater/manual-configuration#kafka_adapter-configurations) must now be made from the Microservices Section of the Design Area, directly in the Kafka Adapters `ConfigMap`.    
+Any changes to the [Kafka Adapters](../../fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) must now be made from the Microservices Section of the Design Area, directly in the Kafka Adapters `ConfigMap`.    
 Any Kafka Adapter custom you have already configured from the Git `fast-data-files` folder will be automatically ported to the related ConfigMap in the Microservice page of the RealTime Updater.
 
 ## Console

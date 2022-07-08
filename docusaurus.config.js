@@ -61,7 +61,7 @@ const config = {
             },
             {
               type: 'doc',
-              docId: "fast_data/overview",
+              docId: "fast_data/what_is_fast_data",
               label: "Fast Data",
               activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
             },

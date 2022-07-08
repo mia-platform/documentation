@@ -17,7 +17,7 @@ In this page, you will find:
 Fast Data is based on a group of services that communicate with each other via events sent on **Kafka** or **MongoDB**, and persisting Projections and Single Views on MongoDB.
 This architectural setup allows for **great horizontal scalability**.
 
-![Fast Data overview](../img/fastdata-overview-new.png)
+![Fast Data overview](img/fastdata-overview-new.png)
 
 ## Services
 
@@ -77,7 +77,7 @@ Fast Data architecture is rather streamlined, with just a couple of pivoting poi
 4. The SVC reads the `Projection Change` message, either polling MongoDB or reacting to the Kafka message. Then, it aggregates the Single View using the new data, and stores it to MongoDB;
    1. The SVC emits a `Single View Event` and/or a `Single View Before After` event, if it is configured to do so.
 
-![Fast data architecture](../img/fastdata-arch-new.png)
+![Fast data architecture](img/fastdata-arch-new.png)
 
 There are no hard constraints, but generally all the services belong to the same Kubernetes namespace, while the MongoDB and Kafka instances can be on managed hosts, on the same cluster, on premise, etc.
 

@@ -96,7 +96,7 @@ The drawer in Manual Route tab inside the RBAC section has been adjusted to impr
 #### Manageability of dependencies resolution order in aggregation schema
 
 From v4.1.0 of Single View Creator, it is possible to specify the resolution order of the dependencies inside the aggregation schema.
-To discover how, check this [example](../../fast_data/single_view_creator/low_code_configuration.md#set-resolution-order-of-dependencies) from the documentation.
+To discover how, check this [example](../../fast_data/configuration/single_view_creator/low_code.md#set-resolution-order-of-dependencies) from the documentation.
 
 #### The field name of projections and single views accepts empty spaces 
 

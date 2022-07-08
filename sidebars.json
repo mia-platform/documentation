@@ -564,94 +564,112 @@
   ],
   "fastData": [
     {
-      "collapsed": false,
-      "items": [
-        {
-          "id": "fast_data/overview",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/no_code_overview",
-          "type": "doc"
-        }
-      ],
-      "label": "Overview and concepts",
-      "type": "category"
+      "id": "fast_data/what_is_fast_data",
+      "type": "doc"
     },
     {
-      "id": "fast_data/setup_fast_data",
+      "id": "fast_data/no_code_overview",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/inputs_and_outputs",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/the_basics",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/architecture",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/realtime_updater",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/single_view_creator",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/single_view_trigger",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/glossary",
       "type": "doc"
     },
     {
       "collapsed": false,
       "items": [
         {
-          "id": "fast_data/create_projection",
+          "id": "fast_data/configuration/overview",
           "type": "doc"
         },
         {
-          "id": "fast_data/cast_functions",
+          "id": "fast_data/configuration/projections",
           "type": "doc"
         },
         {
-          "id": "fast_data/single_view",
+          "id": "fast_data/configuration/single_views",
           "type": "doc"
         },
         {
-          "label": "Single View Creator",
+          "id": "fast_data/configuration/strategies",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/cast_functions",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/erSchema",
+          "type": "doc"
+        },
+        {
           "type": "category",
-          "collapsed": false,
-          "items": [
-            {
-              "id": "fast_data/single_view_creator/overview",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/single_view_creator/low-code-configuration",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/single_view_creator/manual-configuration",
-              "type": "doc"
-            }
-          ]
-        },
-        {
           "label": "Real-Time Updater",
-          "type": "category",
-          "collapsed": false,
+          "collapsed": true,
           "items": [
             {
-              "id": "fast_data/real_time_updater/overview",
+              "id": "fast_data/configuration/realtime_updater/common",
               "type": "doc"
             },
             {
-              "id": "fast_data/real_time_updater/low-code-configuration",
+              "id": "fast_data/configuration/realtime_updater/low_code",
               "type": "doc"
             },
             {
-              "id": "fast_data/real_time_updater/manual-configuration",
+              "id": "fast_data/configuration/realtime_updater/manual",
               "type": "doc"
             }
           ]
         },
         {
-          "label": "Single View Trigger",
           "type": "category",
-          "collapsed": false,
+          "label": "Single View Creator",
+          "collapsed": true,
           "items": [
             {
-              "id": "fast_data/single_view_trigger/overview",
+              "id": "fast_data/configuration/single_view_creator/common",
               "type": "doc"
             },
             {
-              "id": "fast_data/single_view_trigger/configuration",
+              "id": "fast_data/configuration/single_view_creator/low_code",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/single_view_creator/manual",
               "type": "doc"
             }
           ]
-        }
+        },
+        {
+          "id": "fast_data/configuration/single_view_trigger",
+          "type": "doc"
+        }   
       ],
-      "label": "Design",
+      "label": "Configuration",
       "type": "category"
     },
     {
@@ -679,110 +697,6 @@
         }
       ],
       "label": "Monitoring",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "fast_data/reworked_doc/what_is_fast_data",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/reworked_doc/inputs_and_outputs",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/reworked_doc/the_basics",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/reworked_doc/architecture",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/reworked_doc/realtime_updater",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/reworked_doc/single_view_creator",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/reworked_doc/glossary",
-          "type": "doc"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "fast_data/reworked_doc/configuration/overview",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/reworked_doc/configuration/projections",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/reworked_doc/configuration/single_views",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/reworked_doc/configuration/strategies",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/reworked_doc/configuration/cast_functions",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/reworked_doc/configuration/erSchema",
-              "type": "doc"
-            },
-            {
-              "type": "category",
-              "label": "Real-Time Updater",
-              "collapsed": true,
-              "items": [
-                {
-                  "id": "fast_data/reworked_doc/configuration/realtime_updater/common",
-                  "type": "doc"
-                },
-                {
-                  "id": "fast_data/reworked_doc/configuration/realtime_updater/low_code",
-                  "type": "doc"
-                },
-                {
-                  "id": "fast_data/reworked_doc/configuration/realtime_updater/manual",
-                  "type": "doc"
-                }
-              ]
-            },
-            {
-              "type": "category",
-              "label": "Single View Creator",
-              "collapsed": true,
-              "items": [
-                {
-                  "id": "fast_data/reworked_doc/configuration/single_view_creator/common",
-                  "type": "doc"
-                },
-                {
-                  "id": "fast_data/reworked_doc/configuration/single_view_creator/low_code",
-                  "type": "doc"
-                },
-                {
-                  "id": "fast_data/reworked_doc/configuration/single_view_creator/manual",
-                  "type": "doc"
-                }
-              ]
-            }
-          ],
-          "label": "Configuration",
-          "type": "category"
-        }
-      ],
-      "label": "Reworked Fast Data Docs",
       "type": "category"
     }
   ],

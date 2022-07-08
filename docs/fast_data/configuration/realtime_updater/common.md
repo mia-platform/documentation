@@ -376,6 +376,16 @@ Provided that the client's **CDC** (Change Data Capture) supports Snappy compres
 Snappy, like every other compression and decompression algorithm, will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications; on the other hand it is well recommended for initial loads which tend to be a lot heavier.
 :::
 
+#### Create ACL rules
+
+It is possible to create ACL rules, you can set from user interface:
+
+* *type*: set **topic** type.
+* *topic name*: new or existent one.
+* *pattern type*: literal or prefixed. If you want to declare an ACL for each topic you should use **literal**.
+* *operation*: for each topic, you should set **READ** and **WRITE** operation.
+* *permission*: could be `ALLOW` or `DENY`. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
+
 ### Tracking the changes
 
 From the **v3.2.0** of the Real-Time Updater, inside the Projections and Projection Changes additional information about the Kafka message that triggered the Real-Time Updater are saved. This allows you to track the changes made as consequence of a Kafka message.

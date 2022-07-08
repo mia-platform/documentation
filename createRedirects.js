@@ -15,7 +15,20 @@ const redirectPaths = {
   "/docs/fast_data/overview": "/docs/runtime_suite/event-source-management",
   "/docs/runtime_suite/pdf-service/overview": "/docs/runtime_suite/pdf-service",
   "/docs/info/version_policy/": "/info/version-policy/",
-  "/docs/marketplace/add_to_marketplace/contributing_overview/": "/docs/development_suite/api-console/api-design/templates_conf" 
+  "/docs/marketplace/add_to_marketplace/contributing_overview/": "/docs/development_suite/api-console/api-design/templates_conf",
+  "/docs/fast_data/what_is_fast_data": "/docs/fast_data/overview",
+  "/docs/fast_data/architecture": "/docs/fast_data/setup_fast_data",
+  "/docs/fast_data/configuration/projections": "/docs/fast_data/create_projection",
+  "/docs/fast_data/configuration/cast_functions": "/docs/fast_data/cast_functions",
+  "/docs/fast_data/configuration/single_views": "/docs/fast_data/single_view",
+  "/docs/fast_data/single_view_creator": "/docs/fast_data/single_view_creator/overview",
+  "/docs/fast_data/configuration/single_view_creator/low_code": "/docs/fast_data/single_view_creator/low-code-configuration",
+  "/docs/fast_data/configuration/single_view_creator/manual": "/docs/fast_data/single_view_creator/manual-configuration",
+  "/docs/fast_data/realtime_updater": "/docs/fast_data/real_time_updater/overview",
+  "/docs/fast_data/configuration/realtime_updater/low_code": "/docs/fast_data/real_time_updater/low-code-configuration",
+  "/docs/fast_data/configuration/realtime_updater/manual": "/docs/fast_data/real_time_updater/manual-configuration",
+  "/docs/fast_data/single_view_trigger": "/docs/fast_data/single_view_trigger/overview",
+  "/docs/fast_data/configuration/single_view_trigger": "/docs/fast_data/single_view_trigger/configuration"
 };
 
 const createRedirects = (path) => {
