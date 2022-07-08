@@ -13,8 +13,30 @@ _July, 7th 2022_
 
 #### Strategies Low Code handling of MongoDB queries
 
-`Condition` used in Strategies Low Code did not handle correctly MongoDB queries.
+A bug has been fixed in how `conditions` in [ER Schema](/docs/fast_data/real_time_updater/low-code-configuration#er-schema-configuration) are converted into MongoDB queries while running strategies. Since the bug might generete still queries valid for MongoDB, even though not logically correct for user intentions, and no error was thrown, we decided to report this fix as a Breaking Change because this fix may bring to different documents to be selected (or not selected) in your Strategies, with different single views to be updated.
+
+The conditions afflicted to the bug were the ones like this:
+
+```json
+{
+    "$and": [
+        "id": {
+            "$eq": "ID_DISH"
+        },
+        ...
+    ]
+}
 ```
+The value associated to the MongoDB operator was not replaced by the value of the field with that name before being executed on MongoDB.
+
+<details>
+<summary>
+Click me for a deeper explanation of the bug.
+</summary>
+
+`Condition` used in Strategies Low Code did not handle correctly MongoDB queries.
+
+```json
 {
     "$and": [
         { "id": "ID_DISH" },
@@ -24,7 +46,7 @@ _July, 7th 2022_
 ```
 
 The query above was correctly executed as follows (supposing `ID_DISH` equals to `abc123`):
-```
+```json
 {
     "$and": [
         { "id": "abc123" },
@@ -33,9 +55,9 @@ The query above was correctly executed as follows (supposing `ID_DISH` equals to
 }
 ```
 
-but the following query was kept as it is without any substitution of field value:
+but the following query, even though semantically equivalent to the previous one, was kept instead as it is without any substitution of field value:
 
-```
+```json title="id must be equal to the string 'ID_DISH'"
 {
     "$and": [
         "id": {
@@ -48,7 +70,7 @@ but the following query was kept as it is without any substitution of field valu
 
 Since the two queries are semantically the same, now the latter is correctly converted into a query with `abc123` instead of `ID_DISH`:
 
-```
+```json title="id must be equal to the string 'abc123'"
 {
     "$and": [
         "id": {
@@ -58,6 +80,47 @@ Since the two queries are semantically the same, now the latter is correctly con
     ]
 }
 ```
+</details>
+
+
+<details>
+<summary>
+What do I need to do?
+</summary>
+
+**I wanted the behavior I had before the fix**
+
+If you are using queries like the one above, and you do want to perform operation against the raw string and not the value of the field with that name (e.g. you want to check "equals to the string ID_USER"), you can use the cast operator of Low Code:
+
+```json
+{
+    "$and": [
+        "id": {
+            "$eq": "__string__[ID_DISH]"
+        },
+        ...
+    ]
+}
+```
+
+in this way the query performed on MongoDB will actually be:
+
+```json title="the cast string operator allow you to keep the value passed as string and prevent substitution with the field value"
+{
+    "$and": [
+        "id": {
+            "$eq": "ID_DISH"
+        },
+        ...
+    ]
+}
+```
+
+**The new behavior is actually what I already expected to happen**
+
+Perfect! Then just update the Real-Time Updater to `v6.0.0` and enjoy the fix.
+
+</details>
 
 The fix above is available since `v6.0.0` of Real-Time Updater. This fix has been declared as a Breaking Change since project may encounter issues if their strategies include queries like the one above.
 
