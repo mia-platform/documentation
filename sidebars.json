@@ -247,10 +247,6 @@
             {
               "id": "development_suite/api-console/api-design/microservice-monitoring",
               "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/api-design/templates_conf",
-              "type": "doc"
             }
           ],
           "label": "Create Services",
@@ -2043,6 +2039,10 @@
       ],
       "label": "Applications",
       "type": "category"
+    },
+    {
+      "id": "marketplace/add_to_marketplace/contributing_overview",
+      "type": "doc"
     }
   ],
   "paas": [
