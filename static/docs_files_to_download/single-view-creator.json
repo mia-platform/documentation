@@ -19,11 +19,13 @@
     ]
   },
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 146,
-  "iteration": 1630924560019,
+  "id": 37,
+  "iteration": 1656681906029,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "cacheTimeout": null,
@@ -79,7 +81,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "exemplar": true,
@@ -149,7 +151,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "exemplar": true,
@@ -229,7 +231,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "exemplar": true,
@@ -297,7 +299,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "exemplar": true,
@@ -365,7 +367,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "exemplar": true,
@@ -1213,6 +1215,495 @@
         "x": 0,
         "y": 45
       },
+      "id": 30,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_projection_to_single_view_time_bucket{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 2m",
+          "refId": "H"
+        }
+      ],
+      "title": "Projection To Single View Time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 45
+      },
+      "id": 32,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) /  sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_projection_to_single_view_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_projection_to_single_view_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 10,
+          "legendFormat": "> 2m",
+          "refId": "H"
+        }
+      ],
+      "title": "Projection To Single View Time (%)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 53
+      },
+      "id": 31,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "round(sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 2m",
+          "refId": "H"
+        }
+      ],
+      "title": "PC To Single View Time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 53
+      },
+      "id": 33,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "< 150ms",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2s",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 5s",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 15s",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 30s",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 1m",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "< 2m",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "> 2m",
+          "refId": "H"
+        }
+      ],
+      "title": "PC To Single View Time (%)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 61
+      },
       "id": 29,
       "options": {
         "displayMode": "gradient",
@@ -1227,7 +1718,7 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
           "exemplar": true,
@@ -1261,12 +1752,103 @@
           "refId": "D"
         }
       ],
-      "title": "SV Creation Time",
+      "title": "SV Creation Time (count)",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 61
+      },
+      "id": 34,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.2.2",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "interval": "",
+          "legendFormat": "creation time below 150ms",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time between 150ms and 2s",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time between 2s and 5s",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "(sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "creation time above 5s",
+          "refId": "D"
+        }
+      ],
+      "title": "SV Creation Time (%)",
       "type": "bargauge"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 30,
+  "schemaVersion": 31,
   "style": "dark",
   "tags": [
     "fast-data"
@@ -1276,8 +1858,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Prometheus - rocket",
-          "value": "Prometheus - rocket"
+          "text": "Prometheus",
+          "value": "Prometheus"
         },
         "description": null,
         "error": null,
@@ -1296,9 +1878,9 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "noprod",
-          "value": "noprod"
+          "selected": true,
+          "text": "production",
+          "value": "production"
         },
         "datasource": "${datasource}",
         "definition": "label_values(kube_pod_info, k8sCluster)",
@@ -1326,9 +1908,9 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
-          "text": "demo-development",
-          "value": "demo-development"
+          "selected": true,
+          "text": "dih-logistica-production",
+          "value": "dih-logistica-production"
         },
         "datasource": "${datasource}",
         "definition": "label_values(kube_pod_info{k8sCluster=\"$cluster\"}, namespace)",
@@ -1444,6 +2026,6 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Single View Creator  - General Overview",
-  "uid": "SnHk8HMnz",
-  "version": 7
+  "uid": "SnHk8HMnza",
+  "version": 2
 }
