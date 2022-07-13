@@ -11,6 +11,9 @@ This service supports these OAuth2 providers:
 - github
 - microsoft
 - okta
+- bitbucket
+- keycloak
+- generic
 
 ## Further details
 
