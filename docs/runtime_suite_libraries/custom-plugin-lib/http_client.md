@@ -19,6 +19,7 @@ You can get a proxy calling these methods both on `Request`(the first argument o
     * `ca` - set a custom ca to use for the requests
     * `logger` - the Pino logger instance, it is used to log request (headers, payload and url) and response (headers, payload and status code) in trace level and error message if there is an error during the API call. If not passed, no log are printed. Keep in mind that headers, payload and url could contains sensitive information. If it is the case, do not pass the logger instance or use the redact options to hide the sensitive information ([read here](../../runtime_suite_libraries/lc39/service-options) for more information).
     * `isMiaHeaderInjected` - a boolean value that identifies whether Mia's headers should be forwarded in the request. Default `true`.
+    * `httpsAgent` - an instance of `require('https').Agent` that will be used for the requests, only if `cert`, `key` and `ca` are not configured.
 
 Potentially, the `getHttpClient` method allows you to also query services outside the Platform. In this case, however, it is necessary to bear in mind that the platform headers will be automatically forwarded. You can do it by setting the `isMiaHeaderInjected` option value to false.
 
