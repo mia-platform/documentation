@@ -23,101 +23,7 @@ package policies
 ...
 ```
 
-## Policies input data
-
-In your policies you can use the rego `input` variable. This variable contains all the user information as well as the information of the request and the eventual response if configured.
-Its structure is as follows:
-
-```json
-{
-  "request": {
-    "method":  String,
-    "path":    String,
-    "headers": Object {
-      String: Array[String]
-    },
-    "pathParams": Object{},
-    "query":   Object {
-      String: Array[String]
-    },
-    "body": Object{},
-  },
-  "response": {
-    "body": Object{}
-  },
-  "user": {
-    "properties": Object{},
-    "bindings": Array[Object{}], 
-    "roles":  Array[Object{}],
-    // this object contains the user properties inserted by the
-    // authorization service in the request user properties platform header 
-    "groups": Array[String],
-  },
-  "clientType": String
-}
-```
-:::info
-  The request body is available only for requests with method: `POST` `PATCH` `PUT` `DELETE` with `application/json` Content Type. The response body instead is set only if properly configured  in the `X-permssion` object.
-:::
-
-:::info
-`bindings` and `roles` object contain only data relative to the user that is making the request **if and only if** is authenticated. Otherwise those two object will be present but empty. For the structure of the two object please refer to the [RBAC data models](./rbac#rbac-storage) section.
-:::
-
-## Built-in functions
-
-The OPA instance running your policies is provided with a set of built-in utility functions:
-
- * `get_header`
- * `find_one`
-
-### get_header
-
-The `get_header` built-in function can be used to extract headers from the `input.request.headers` map using case-insensitive strings.
-
-The function returns the first value present in the `headers` map at key `headerKey`. 
-If `headerKey` doesn't exist the output returned is an empty string.
-
-Parameters:
- * `headerKey` (`String`): the key of the header to be retrieved;
- * `headers` (`Map[String]Array<String>`): the map of headers to be read (generally it would be `input.request.headers`).
-
-Example usage:
-
-```rego
-output := get_header("x-api-key", input.request.headers)
-```
-
-:::caution
-When you are using the Console RBAC Testing framework to test a policy using the `get_header` function make sure
-that the **headers** keys are written in canonical form (i.e. instead of `x-api-key`, write: `X-Api-Key`).
-:::
-
-
-### find_one 
-
-The `find_one` built-in function can be used to fetch data from a MongoDB collection, it accepts the collection name and a custom query and returns the document that matches the query using the `FindOne` MongoDB API.
-
-Example usage to fetch a rider from the `riders` collection by using the rider identifier provided in the request path parameters:
-
-```rego
-riderId := input.request.pathParams.riderId
-rider := find_one("riders", { "riderId": riderId })
-rider.available == true
-```
-
-### find_many
-
-The `find_many` built-in function can be used to fetch multiple data from a MongoDB collection, it accepts the collection name and a custom query and returns the documents that match the query using the `Find` MongoDB API.
-
-Example usage to fetch a rider from the `riders` collection by using the rider identifier provided in the request path parameters:
-
-```rego
-riders := find_many("riders", { "available": true })
-rider := riders[_]
-rider.riderId == input.request.pathParams.riderId
-```
-
+For more information on how to write a policy please checkout the [official Rönd documentation](https://rond-authz.io/docs/policy-integration)
 ## Policy examples
 
 The following examples shows how to write a policy on the permission **api_key**, that checks if the request contains the header **x-api-key**.\
@@ -145,6 +51,8 @@ api_key {
 :::info
 You may want to use a `.` character when defining your **allow** `x-permission` to specify a namespace for your permissions (i.e. `dishes.read`, `dishes.write`); however since the `.` character is not supported by Rego as policy name it will be automatically replaced with an `_` by the RBAC Service.
 :::
+
+For a more complete cheatsheet please checkout [Rönd documentation](https://rond-authz.io/docs/cheat-sheet) or if you want to have a deep dive into a real example follow the [guided example](https://github.com/rond-authz/example). 
 
 # Write RBAC Policies Tests
 
