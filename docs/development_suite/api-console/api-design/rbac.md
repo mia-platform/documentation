@@ -39,7 +39,7 @@ To enable RBAC sidecar injection for a specific service you have to use the **En
 #### API Permission definition
 
 Once you have enabled RBAC on one of your services, what you want to do is defining which policy is required by your service APIs; if your service
-exposes OpenAPI 3 Specification you can use the **custom attribute** `x-permission` [described here](./rbac_api_configuration), otherwise if your service does not expose its API documentation and you don't plan to add it you can use the [Manual Routes configuration tab](#manual-routes-tab)
+exposes OpenAPI 3 Specification you can use the **custom attribute** `x-permission` [described here](https://rond-authz.io/docs/configuration#configuration-files), otherwise if your service does not expose its API documentation and you don't plan to add it you can use the [Manual Routes configuration tab](#manual-routes-tab)
 
 ### General Settings Tab
 
@@ -47,7 +47,7 @@ Inside the General Settings tab you can change the RBAC sidecar service version 
 
 ### Policies Tab
 
-In the **Policies** tab you can write your own policies that will be used by RBAC service to evaluate the incoming requests.  
+In the **Policies** tab you can write your own policies that will be used by RBAC service to evaluate the incoming requests.
 
 You will find a read-only section that shows your current policies; if you want to modify them or create new ones you can click on the `Edit policies` button that will open a modal with two different editors.
 
@@ -113,7 +113,7 @@ Paths to resolve
 It may happen that for some of your APIs you need to filter out some results based on the permissions of the requesting user. This is the case in which we talk about rows filtering.  
 The RBAC service allows you to retrieve automatically a query for your DBMS coming from the evaluation of the permissions of a user. This query will be passed as a header to the requested service that should know how to handle it properly.
 
-To let the RBAC service knows it has to perform this query generation, you need to configure it in the [api configuration](./rbac_api_configuration#x-permission-attribute) or go to [**Manual Routes** tab](#manual-routes-tab). 
+To let the RBAC service knows it has to perform this query generation, you need to configure it in the [api configuration](https://rond-authz.io/docs/configuration#configuration-files) or go to [**Manual Routes** tab](#manual-routes-tab). 
 
 
 The `headerName field` will be used to provide the name of the header that will contain the final query and will be passed to the requested service. If you don't specify any value for headerName, by default it will take the `acl_rows` value.
@@ -215,7 +215,7 @@ Whenever this filtering is performed on the results obtained by a HTTP request, 
 RBAC service allows you to manipulate the response body directly in a policy.  
 As shown in the [RBAC policies](../api-design/rbac_policies.md#policies-input-data) section, your policies will be provided with the original response body, allowing you to manipulate it.  
 
-After the policy is written, you need to register it in the [api configuration](./rbac_api_configuration#x-permission-attribute) or in the [**Manual Routes** section](#manual-routes-tab). 
+After the policy is written, you need to register it in the [api configuration](https://rond-authz.io/docs/configuration#configuration-files) or in the [**Manual Routes** section](#manual-routes-tab). 
 
 :::caution
 Response filtering is applied only if the response Content Type is `application/json`; if any other Content Type is found (based on the `Content-Type` header value), an error will be sent to the caller.
