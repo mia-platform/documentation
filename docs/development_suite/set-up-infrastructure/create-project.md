@@ -25,7 +25,7 @@ You can find more info about how to create a CRUD visiting the [CRUD documentati
 
 If you already have the provider you need in your CRUD, you can [skip this section](#create-a-company).
 
-You can create a Git provider by setting up a specific document following the procedure described [here](configure-provider.md). This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
+You can create a Git provider by setting up a specific document following the procedure described [here](configure-provider.mdx). This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
 The fields necessary for this collection are:
 
 * `providerId` (*required*): the human-readable ID of the provider (e.g. "my-git-provider" or "my-pipeline-provider");

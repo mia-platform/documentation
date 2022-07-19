@@ -4,6 +4,9 @@ title: Providers Management
 sidebar_label: Providers Management
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The Mia-Platform console allows you to interface with the most used git providers on the market (see [here](../../self_hosted/self_hosted_requirements#software-and-hardware-prerequisites) the supported git providers).  
 In order to configure a new provider on console you need to call a specific API as documented in the following paragraphs.
 
@@ -58,7 +61,10 @@ The credentials data fields are:
   - For type `userPass`: **must** include `userName` and `password` fields;
   - For type `token`: **must** include only `accessToken` field.
 
-Below you can find a complete example of the request to add GitHub provider:
+Below you can find a complete example of the request, divided by provider:
+
+<Tabs>
+  <TabItem value="github" label="GitHub" default>
 
 ```json
 {
@@ -78,25 +84,72 @@ Below you can find a complete example of the request to add GitHub provider:
 }
 ```
 
-Instead, if you need to add a GitLab provider:
+  </TabItem>
+  <TabItem value="gitlab" label="GitLab">
 
 ```json
 {
-    "credentials": {
-        "type": "token",
-        "content": {
-            "accessToken": "my-super-super-super-secret-token"
-        }
-    },
-    "id": "gitlab-id",
-    "label": "My GitLab Label",
-    "type": "gitlab",
-    "urls": {
-        "apiBase": "https://gitlab-test.com/api",
-        "base": "https://gitlab-test.com"
+  "id": "gitlab-id",
+  "label": "My GitLab Label",
+  "type": "gitlab",
+  "urls": {
+    "apiBase": "https://gitlab-test.com/api",
+    "base": "https://gitlab-test.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
     }
+  }
 }
 ```
+
+  </TabItem>
+  <TabItem value="bitbucket-server" label="BitBucket Server">
+
+```json
+{
+  "id": "bitbucket-id",
+  "label": "My BitBucket Server Label",
+  "type": "bitbucket",
+  "urls": {
+    "apiBase": "https://bitbucket-test.com",
+    "base": "https://gitlab-test.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+
+  <TabItem value="azure-devops" label="Azure DevOps">
+
+```json
+{
+  "id": "azure-devops-id",
+  "label": "Azure DevOps",
+  "type": "azure-devops",
+  "urls": {
+    "apiBase": "https://dev.azure.com",
+    "base": "https://dev.azure.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
 
 :::info
 The credentials are stored encrypted in MongoDB.  
