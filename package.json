@@ -16,17 +16,17 @@
     "check-content": "node ./check-content.js"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.21",
-    "@docusaurus/plugin-client-redirects": "2.0.0-beta.21",
-    "@docusaurus/preset-classic": "2.0.0-beta.21",
+    "@docusaurus/core": "2.0.0-rc.1",
+    "@docusaurus/plugin-client-redirects": "2.0.0-rc.1",
+    "@docusaurus/preset-classic": "2.0.0-rc.1",
     "@staticdeploy/cli": "^0.15.5",
-    "clsx": "^1.1.1",
+    "clsx": "^1.2.1",
     "cspell": "^5.21.0",
     "klaw": "^4.0.1",
     "medium-zoom": "^1.0.6",
-    "mermaid": "^9.1.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "mermaid": "^9.1.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "browserslist": {
     "production": [
@@ -41,9 +41,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.17.0",
-    "eslint": "^8.15.0",
-    "eslint-plugin-react": "7.21.5",
+    "@babel/eslint-parser": "^7.18.9",
+    "eslint": "^8.20.0",
+    "eslint-plugin-react": "7.30.1",
     "prop-types": "^15.8.1"
   }
 }
