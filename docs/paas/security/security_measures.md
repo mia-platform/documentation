@@ -24,7 +24,7 @@ The main benefit of using SSO is that users can move quickly, yet still securely
 
 Mia-Platform is currently using Okta Single Sign-On enabled through different protocols and standard such as SAML, LDAP, and OIDC.
 
-###Authorization
+### Authorization
 
 Authorization determines what users can and cannot access, thus it focuses on the question *"can you do that?"*. Usually it is done after successful authentication, and it transmits info through an Access Token. The process of gaining authorization is called *access control*. There are two main methods for managing access control for your systems:
 
