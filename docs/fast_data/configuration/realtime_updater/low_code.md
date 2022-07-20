@@ -142,11 +142,11 @@ Let's see it in the configuration file below:
 }
 ```
 
-What will happen when the second path will be cross is that the path pr_selling → pr_clients will be passed through automatically. Once the real-time updater will have reached the projection pr_clients, it will invoke your function myCustomFunction so that you can make your own custom logic.
-The custom function has to match the following signature:
+When the second path is crossed, the path pr_selling → pr_clients is passed through automatically. Once the Real Time Updater reaches the projection `pr_clients`, it invokes `myCustomFunction`, where you can write your own custom logic.
+The custom function has to be placed in a javascript file inside the same configmap as the `projectionChangesSchema.json` file, which is the one whose mount path is the same as the value of the environment variable called `PROJECTION_CHANGES_SCHEMA_FOLDER`.
+The file must export a function matching the following signature:
 
 ```js
-
 async function myCustomFunction (logger, mongodbInstance, document)
 ```
 
@@ -157,8 +157,7 @@ Let's see an example of a custom function:
 ```js
 
 async function someCustomLogin (value) {
-  // som"id": "fast_data/reworked_doc/configuration/erSchema",
-              "type": "doc"e custom logic
+  // Custom logic here
 }
 
 module.exports = async function myCustomFunction (logger, mongodbInstance, document) {
