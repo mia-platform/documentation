@@ -24,6 +24,14 @@ For the Automatic Real-Time Updater the `kafka_adapter`, `map_table` and `cast_f
 
 ### ER schema configuration
 
+:::warning
+When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
+```
+{ "version": "1.0.0", "config": { } }
+```
+This is an empty configuration: the Real-Time Updater Microservice could be deployed but it will not work. This file must be modified according to the projections associated to this microservice.
+:::  
+
 When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema.
 
 The `erSchema.json` configmap defines the relationship between tables and projections.
@@ -33,6 +41,16 @@ The `erSchema.json` configmap defines the relationship between tables and projec
 ### Projection Changes Schema
 
 Differently from the Manual Configuration, the projection changes configurations are described with a json file aimed to reduce the developing effort.
+
+:::warning
+When a new Real-Time Updater is generated, a base `projectionChangesSchema.json` file is generated with the same content of the `erSchema.json` file. Despite this configuration will not throw any error during the deploy, the file must be customized according to the related projections.
+:::
+
+```
+{ "version": "1.0.0", "config": { } }
+```
+This is an empty configuration: the Real-Time Updater Microservice could be deployed but it will not work. This file must be modified according to the projections associated to this microservice.
+:::
 
 A single view example:
 
