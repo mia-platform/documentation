@@ -3,6 +3,11 @@ id: configuration
 title: Authentication Service Configuration
 sidebar_label: Configuration
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+
 The _Authentication Service_ needs some environment variables, and a configurations file to work.
 
 ## Environment variables
@@ -81,7 +86,7 @@ Here an example of the service configuration:
     "APP_ID": {
       "providers": {
         "PROVIDER_ID": {
-          "type": "gitlab|github|okta|microsoft",
+          "type": "gitlab|github|okta|microsoft|bitbucket|keycloak|generic",
           "clientId": "the-idp-client-id",
           "clientSecret": "the-idp-client-secret",
           "authUrl": "auth_url",
@@ -106,9 +111,11 @@ Here an example of the service configuration:
 
 Below, the different configuration based on provider type.
 
-### GitLab
+<Tabs>
 
-This is a configuration of a provider to the GitLab identity provider. Sobstitute `{GITLAB_URL}` with the url of your instance (or the public one).
+<TabItem value="gitlab" label="GitLab" default>
+
+This is a configuration example for an app using GitLab Identity provider. Sobstitute `{GITLAB_URL}` with the url of your instance (or the public one).
 
 ```json
 {
@@ -136,9 +143,11 @@ This is a configuration of a provider to the GitLab identity provider. Sobstitut
 }
 ```
 
-### GitHub
+</TabItem>
 
-This is a configuration of a provider to the GitHub identity provider. Sobstitute `{GITHUB_URL}` with the url of your instance (or the public one).
+<TabItem value="github" label="GitHub">
+
+This is a configuration example for an app using GitHub Identity provider. Sobstitute `{GITHUB_URL}` with the url of your instance (or the public one).
 
 ```json
 {
@@ -167,9 +176,11 @@ This is a configuration of a provider to the GitHub identity provider. Sobstitut
 }
 ```
 
-### Okta
+</TabItem>
 
-This is a configuration of a provider to the Okta identity provider. Sobstitute `{OKTA_BASE_URL}` with the url.
+<TabItem value="okta" label="Okta">
+
+This is a configuration example for an app using Okta Identity provider. Sobstitute `{OKTA_BASE_URL}` with the url.
 
 ```json
 {
@@ -198,9 +209,11 @@ This is a configuration of a provider to the Okta identity provider. Sobstitute 
 }
 ```
 
-### Microsoft
+</TabItem>
 
-This is a configuration of a provider to the Microsoft identity provider.
+<TabItem value="microsoft" label="Microsoft">
+
+This is a configuration example for an app using Microsoft Identity provider.
 
 ```json
 {
@@ -227,3 +240,109 @@ This is a configuration of a provider to the Microsoft identity provider.
   }
 }
 ```
+
+</TabItem>
+
+<TabItem value="bitbucket" label="BitBucket Server">
+
+This is a configuration example for an app provider using BitBucket Server authentication.
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
+        "bitbucket": {
+          "type": "bitbucket",
+          "clientId": "the-idp-client-id",
+          "clientSecret": "the-idp-client-secret",
+          "authUrl": "https://{KEYCLOAK_URL}/rest/oauth2/latest/authorize",
+          "tokenUrl": "https://{KEYCLOAK_URL}/rest/oauth2/latest/token",
+          "userInfoUrl": "https://{KEYCLOAK_URL}/plugins/servlet/applinks/whoami",
+          "baseUrl": "https://{KEYCLOAK_URL}/rest/oauth2/latest",
+          "scope": ["PUBLIC_REPOS"],
+          "order": 10,
+          "userSettingsURL": "https://{KEYCLOAK_URL}/profile/"
+        }
+      },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": []
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="keycloak" label="Keycloak">
+
+This is a configuration example for an app using Keycloak provider.
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
+        "keycloak": {
+          "type": "keycloak",
+          "clientId": "the-idp-client-id",
+          "clientSecret": "the-idp-client-secret",
+          "authUrl":  "https://{KEYCLOAK_URL}/auth/realms/my-realm/protocol/openid-connect/auth",,
+          "tokenUrl": "https://{KEYCLOAK_URL}/auth/realms/my-realm/protocol/openid-connect/token",
+          "userInfoUrl": "https://{KEYCLOAK_URL}/auth/realms/my-realm/protocol/openid-connect/userinfo",
+          "baseUrl": "https://{KEYCLOAK_URL}/{tenantId}/auth/realms/my-realm/",
+          "scope": ["openid"],
+          "order": 10,
+          "userSettingsURL": "https://{KEYCLOAK_URL}/dashboard"
+        }
+      },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": []
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="generic" label="Generic">
+
+This is a configuration example for an app using the generic OAuth2 authentication provider.
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
+        "generic": {
+          "type": "generic",
+          "clientId": "the-idp-client-id",
+          "clientSecret": "the-idp-client-secret",
+          "authUrl": "YOUR_AUTH_URL",
+          "tokenUrl": "YOUR_TOKEN_URL",
+          "userInfoUrl": "YOUR_USER_INFO_URL",
+          "baseUrl": "YOUR_BASE_URL",
+          "scope": ["YOUR", "SCOPES"],
+          "order": 10,
+          "userSettingsURL": "YOUR_USER_SETTINGS_URL"
+        }
+      },
+      "redirectUrl": "https://test.com/callback",
+      "realm": "my-realm",
+      "defaultGroups": [],
+      "oidcKeys": {
+        "id": "YOUR_ID_KEY",
+        "name": "YOUR_NAME_KEY",
+        "username": "YOUR_USERNAME_KEY",
+        "email": "YOUR_EMAIL_KEY"
+      },
+    }
+  }
+}
+```
+
+</TabItem>
+
+</Tabs>

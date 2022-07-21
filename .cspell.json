@@ -136,7 +136,9 @@
       "NSUTF",
       "NSJSON",
       "Iframes",
-      "tini"
+      "tini",
+      "WHATWG",
+      "JWTs"
   ],
   "ignoreWords": [
     "authz",
@@ -201,7 +203,8 @@
     "noindex",
     "alloc",
     "exfiltrate",
-    "teleconsultationroomid"
+    "teleconsultationroomid",
+    "envfile"
   ],
   "dictionaries": [
     "softwareTerms",
@@ -222,6 +225,8 @@
     "**/*.zip",
     "**/*.json",
     "./docs/info/licenses/**",
+    "**/*.txt",
+    "**/*.svg",
     // old files
     "./docs/runtime_suite/sql-db-reader/configuration_and_usage.md"
   ],
