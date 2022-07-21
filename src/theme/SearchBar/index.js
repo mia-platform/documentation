@@ -6,10 +6,12 @@ import {useHistory} from '@docusaurus/router';
 import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
-import {isRegexpStringMatch, useSearchPage} from '@docusaurus/theme-common';
+import {isRegexpStringMatch} from '@docusaurus/theme-common';
+import {useSearchPage} from '@docusaurus/theme-common/internal';
 import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
 import {useAlgoliaContextualFacetFilters} from '@docusaurus/theme-search-algolia/client';
-import Translate, {translate} from '@docusaurus/Translate';
+import Translate from '@docusaurus/Translate';
+import translations from '@theme/SearchTranslations';
 let DocSearchModal = null;
 function Hit({hit, children}) {
   return <Link to={hit.url}>{children}</Link>;
@@ -17,10 +19,11 @@ function Hit({hit, children}) {
 function ResultsFooter({state, onClose}) {
   const {generateSearchPageLink} = useSearchPage();
   return (
-    <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
+    <Link onClick={onClose} to={generateSearchPageLink(state.query)}>
       <Translate
         id="theme.SearchBar.seeAll"
-        values={{count: state.context.nbHits}}>
+        values={{count: state.context.nbHits}}
+      >
         {'See all {count} results'}
       </Translate>
     </Link>
@@ -34,10 +37,8 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
   const {siteMetadata} = useDocusaurusContext();
   const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
   const configFacetFilters = props.searchParameters?.facetFilters ?? [];
-  const facetFilters = contextualSearch
-    ? // Merge contextual search filters with config filters
-      mergeFacetFilters(contextualSearchFacetFilters, configFacetFilters)
-    : // ... or use config facetFilters
+  const facetFilters = contextualSearch    ? // Merge contextual search filters with config filters
+      mergeFacetFilters(contextualSearchFacetFilters, configFacetFilters)    : // ... or use config facetFilters
       configFacetFilters;
   // We let user override default searchParameters if she wants to
   const searchParameters = {
@@ -137,11 +138,6 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
       searchButtonRef,
     });
   }
-  const translatedSearchLabel = translate({
-    id: 'theme.SearchBar.label',
-    message: 'Search',
-    description: 'The ARIA label and placeholder for search button',
-  });
   return (
     <>
       <Head>
@@ -149,22 +145,19 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
         and allows it to preconnect to the DocSearch cluster. It makes the first
         query faster, especially on mobile. */}
         <link
-          rel="preconnect"
-          href={`https://${props.appId}-dsn.algolia.net`}
           crossOrigin="anonymous"
+          href={`https://${props.appId}-dsn.algolia.net`}
+          rel="preconnect"
         />
       </Head>
 
       <DocSearchButton
-        onTouchStart={importDocSearchModalIfNeeded}
+        onClick={onOpen}
         onFocus={importDocSearchModalIfNeeded}
         onMouseOver={importDocSearchModalIfNeeded}
-        onClick={onOpen}
+        onTouchStart={importDocSearchModalIfNeeded}
         ref={searchButtonRef}
-        translations={{
-          buttonText: translatedSearchLabel,
-          buttonAriaLabel: translatedSearchLabel,
-        }}
+        translations={translations.button}
       />
 
       {isOpen &&
@@ -172,18 +165,20 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
         searchContainer.current &&
         createPortal(
           <DocSearchModal
-            onClose={onClose}
-            initialScrollY={window.scrollY}
-            initialQuery={initialQuery}
-            navigator={navigator}
-            transformItems={transformItems}
             hitComponent={Hit}
+            initialQuery={initialQuery}
+            initialScrollY={window.scrollY}
+            navigator={navigator}
+            onClose={onClose}
+            transformItems={transformItems}
             transformSearchClient={transformSearchClient}
             {...(props.searchPagePath && {
               resultsFooterComponent,
             })}
             {...props}
+            placeholder={translations.placeholder}
             searchParameters={searchParameters}
+            translations={translations.modal}
           />,
           searchContainer.current,
         )}
