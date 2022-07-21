@@ -25,6 +25,7 @@ const filesToExcludeFromSidebarCheck = [
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')
 const checkImg = new RegExp('\\[[^\\]]*\\]\\((?<filename>.*?)(?=\\"|\\))(?<optionalpart>\\".*\\")?\\)', 'mg')
+const checkImgTag = new RegExp('<img src=".+" \\/>')
 
 async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImages, mode) {
   const absolutePathPrefix = path.join(process.cwd(), folder, '/')
@@ -63,13 +64,17 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
     const content = fs.readFileSync(file.path, 'utf8')
     const header = content.match(checkIdRegexp)
-    content.match(checkImg)?.map(img => img.replace(/^\[.*\]\(/, '').replace(/\)$/, '')).forEach(img => {
+    const manageMatchedImage = img => {
       const absolutePath = path.resolve(path.parse(file.path).dir, img)
       images[absolutePath.replace(absolutePathPrefix, '')] = {
         file: absolutePath,
         isUsed: true
       }
-    })
+    }
+    content.match(checkImg)?.map(img => img.replace(/^\[.*\]\(/, '').replace(/\)$/, '')).forEach(manageMatchedImage)
+    content.match(checkImgTag)
+    ?.map(img => img.replace("<img src=\"", "").replace("\" />", "").trim())
+    .forEach(manageMatchedImage)
 
     let filePath = file.path
     if (header && header[2]) {

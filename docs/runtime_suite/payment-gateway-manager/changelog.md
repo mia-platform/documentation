@@ -8,6 +8,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.5.1 - 18/07/2022
+
+### Added
+
+- Added possibility for credit card, Satispay, Scalapay payments to override redirect URLs via /pay request body
+
+## 2.5.0
+
+### Added
+
+- new endpoint `/pay/recurrent` to _gestpay_(Axerve) provider for `credit-cards` and `pay-pal` methods
+to support executing recurrent payments
+
+### Changed
+
+- _gestpay_ /create interface, so that now it includes also details regarding recurring payments
+- _CallbackMessage_ now contains `recurrenceToken` field, which value, if present, can be employed
+to perform subsequent payments with PayPal (without user interaction)
+- upgraded service dependencies
+- updated Dockerfile to build from source code the JAR executed in the image, rather than
+copying the one created within the build pipeline
+- updated build configuration to target Java 17
+
+### Fixed
+
+- PayPal payment type in gestpay provider (it was set to Satispay)
+- reduced building warnings
+- Fixed return fields of the SafeCharge closeTransaction operations. Now they always return the authCode and the 
+  transactionId.
 
 ## 2.4.0 - 17/06/2022
 

@@ -25,7 +25,7 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **SATISPAY_KEY_ID** (required)
 * **SATISPAY_PRIVATE_KEY** (required): private key copied from the `.pem` file, must use single spaces instead of `\n`
 * **SATISPAY_WAITING_SECONDS** (required): `x-satispay-response-wait-time` header described in Satispay's documentation, max value is 60
-* **SATISPAY_AFTER_BUY_WEB_REDIRECT_URL** (required): URL to which the user will be redirected after completing a payment via web page
+* **SATISPAY_AFTER_BUY_WEB_REDIRECT_URL** (required): URL to which the user will be redirected after completing a payment via web page. (Overridable via request body)
 * **SATISPAY_AFTER_BUY_MOBILE_REDIRECT_URL** (required): url-scheme that will be used by iOS/Android to redirect the 
 user after completing a payment via the Satispay mobile app
 
@@ -37,8 +37,8 @@ user after completing a payment via the Satispay mobile app
 * **UNICREDIT_STABILIMENTO** (required): store identification code.
 * **UNICREDIT_USER_ID** (required): username for accessing the payment system.
 * **UNICREDIT_PAYMENT_URL** (required): address of the merchant to which the buyer will be directed.
-* **UNICREDIT_AFTER_BUY_OK_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction.
-* **UNICREDIT_AFTER_BUY_KO_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction.
+* **UNICREDIT_AFTER_BUY_OK_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction. (Overridable via request body)
+* **UNICREDIT_AFTER_BUY_KO_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
 * **UNICREDIT_USE_PRE_AUTHORIZATION** (required): "true" or "false" whether if you want to use pre-authorization for credit card payments or not.
 
 
@@ -54,8 +54,8 @@ user after completing a payment via the Satispay mobile app
 ## Scalapay Specific Environment Variables
 * **SCALAPAY_BASE_PATH** (required): Address to Scalapay base path. Scalapay has three different environments, integration, staging and production.
 * **SCALAPAY_API_KEY** (required)
-* **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction.
-* **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction.
+* **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction. (Overridable via request body)
+* **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
 
 ## SafeCharge Specific Environment Variables
 * **SAFECHARGE_MERCHANT_ID** (required): Merchant identification code.

@@ -9,8 +9,8 @@ This service supports these OAuth2 providers:
 
 - gitlab
 - github
-- microsoft
 - okta
+- microsoft
 - bitbucket
 - keycloak
 - generic
@@ -19,4 +19,4 @@ This service supports these OAuth2 providers:
 
 Follow the pages below for more about the _Authentication Service_:
 
-- [_Authentication service_ configuration](configuration.md)
+- [_Authentication service_ configuration](configuration.mdx)

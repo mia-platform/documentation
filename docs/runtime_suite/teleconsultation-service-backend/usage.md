@@ -28,7 +28,7 @@ In order to start the call, the Front End side needs to instantiate a Bandyer Cl
 For further details about Bandyer Client Side, check [this link](https://github.com/Bandyer/Bandyer-Chat-Widget#create).
 
 <p align="center">
-  <img src="./img/get_teleconsultation_fe.png" />
+  <img src="./assets/get_teleconsultation_fe.png" />
 </p>
 
 ## Teleconsultation Service Backend
@@ -46,7 +46,7 @@ The following sequence diagram show the usage of the service when:
 - Participants data are not a priori known
 - An auth0 dependency is not wanted
 
-![flow_example_1](./img/flow_example_1.svg)
+![flow_example_1](./assets/flow_example_1/image.svg)
 
 ### POST /teleconsultation
 
