@@ -7,7 +7,7 @@ sidebar_label: Manage Users
 Mia-Platform Console allows users to manage other users accesses throughout their company. Letting them full ownership of deciding who has access to what resources and with what role.
 
 :::note
-To find out more about available Roles check out [this documentation page](../console-levels-and-permission-management).
+To find out more about available Roles check out [this documentation page](../console-levels-and-permission-management#users-capabilities-inside-console).
 :::
 
 In particular a user can be assigned a Role on the following resources:

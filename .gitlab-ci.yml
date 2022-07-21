@@ -4,7 +4,7 @@ include:
     ref: master
 
 default:
-  image: node:16.15.0-alpine
+  image: node:16.16.0-alpine
 
 test:
   script:
