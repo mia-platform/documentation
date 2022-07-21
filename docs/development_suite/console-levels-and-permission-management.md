@@ -65,6 +65,10 @@ The following table describes the capabilities and how they are mapped on the de
 | Delete a Company                                                           | `console.company.delete`                               |        |           |          |            |    | ✅|
 | Delete a single Project                                                    | `console.project.delete`                               |        |           |          |            | | ✅ |
 | Delete all the Projects of a Company                                     | `console.company.project.delete`                       |        |           |          |            | ✅ | ✅ |
+| Manage Providers for a Company                                     | `console.company.providers.manage`                       |        |           |          |            |  | ✅ |
+| View Company Providers information                                     | `console.company.providers.manage`                       |   ✅     |      ✅     |   ✅       |      ✅      | ✅ | ✅ |
+
+
 User roles are manageable from CMS by the **Console administrators**, as they are the only one having access to the Console CMS and thus being able to manage the entire Console, including companies, projects, Marketplace.
 
 ### Role binding example
