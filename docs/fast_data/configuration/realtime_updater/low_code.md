@@ -29,7 +29,7 @@ When a new Real-Time Updater is generated, a base `erSchema.json` file is genera
 ```
 { "version": "1.0.0", "config": { } }
 ```
-This is an empty configuration: the Real-Time Updater Microservice could be deployed but it will not work. This file must be modified according to the projections associated to this microservice.
+This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated to this microservice to work properly.
 :::  
 
 When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema.
