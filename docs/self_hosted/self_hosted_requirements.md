@@ -10,7 +10,7 @@ Mia-Platform Console Self Hosted installation implies that the customer has alre
 
 The following picture shows the high-level architecture for a Self-Hosted Mia-Platform Console installation. The communication between the components must be allowed as shown in the architecture.
 
-![Self-Hosted installation architecture](img/self_hosted_architecture.png)
+![Self-Hosted installation architecture](img/self_hosted_architecture_with_mia_nexus.png)
 
 The following software and hardware recommendations are for installing Mia-Platform Console On-Premises.
 
@@ -90,7 +90,7 @@ The following software and hardware recommendations are for installing Mia-Platf
          <td>3 GB</td>
       </tr>
       <tr>
-         <td rowspan="2"><strong>CI/CD</strong></td>
+         <td rowspan="3"><strong>CI/CD</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
          <td>&gt; 14.x</td>
          <td>1 core</td>
@@ -98,6 +98,12 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td><img src="/img/azure-pipelines.png" width="15" height="15"/> Azure Pipelines</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td><img src="/img/jenkins.png" width="15" height="15"/> Jenkins</td>
          <td>N/A</td>
          <td>N/A</td>
          <td>N/A</td>
