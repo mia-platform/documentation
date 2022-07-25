@@ -54,9 +54,9 @@ The following table describes the capabilities and how they are mapped on the de
 | Restart pods on all the Environments of all the Projects of this Company   | `console.company.project.environment.k8s.pod.delete`   |        |           |          | ✅         | ✅ |✅ |
 | Restart pods on any project Environment                                    | `console.project.environment.k8s.pod.delete`           |        |           |          | ✅         | ✅ | |
 | Restart pods on this specific Environment                                  | `console.environment.k8s.pod.delete`                   |        |           |         | ✅            | | |
-| Manage dashboards on all the Project of this Company                       | `console.company.project.environment.dashboard.manage` |        |           |          | ✅         | ✅ |✅ |
-| Manage dashboards on any Project Environment                               | `console.project.environment.dashboard.manage`         |        |           |          | ✅         | ✅ | |
-| Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |           |         | ✅             | | |
+| Manage dashboards on all the Project of this Company                       | `console.company.project.environment.dashboard.manage` |        |           |          |          | ✅ |✅ |
+| Manage dashboards on any Project Environment                               | `console.project.environment.dashboard.manage`         |        |           |          |         | ✅ | |
+| Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |           |          |             | | |
 | Manage users of this Company                                               | `console.company.users.manage`                         |        |           |          |            | | ✅|
 | Edit company information                                                   | `console.company.details.update`                       |        |           |          |            |     |✅|
 | Edit project information of all the Projects of this Company               | `console.company.project.details.update`               |        |           |          |            |  ✅   |✅|
