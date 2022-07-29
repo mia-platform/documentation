@@ -1952,6 +1952,17 @@
     {
       "id": "paas/business_continuity",
       "type": "doc"
+    },
+    {
+      "label": "Tools",
+      "type": "category",
+      "collapsed": false,
+      "items": [
+        {
+          "id": "paas/kube-green",
+          "type": "doc"
+        }
+      ]
     }
   ],
   "releaseNotes": [
