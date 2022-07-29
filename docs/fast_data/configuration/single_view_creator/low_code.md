@@ -152,7 +152,7 @@ For functions, the specified file must be added in a configmap with the correct 
 The following parameters will be passed to each function:
 
 * **logger**: the logger instance used by the service,
-* **db**: the instance of mongoDB used by the service,
+* **clientMongo**: the instance of mongoDB used by the service,
 * **dependenciesMap**: a Map containing all the dependencies already loaded in the service memory.
 
 Let's see an example of custom function.
@@ -493,6 +493,34 @@ For example, using the equality operator, we can write this condition:
 
 Here, the first operand is a variable which takes its value from `USER.job`, while the second operand is a constant string: `"doctor"`. This simply means that this condition will match when the `job` field of the `USER` dependency is equal to `"doctor"`.
 This pattern is repeated for all other operators, as they are binary as well.
+
+As operand, it is possible to use constant values, in the exact same way as seen in the [ER diagram](../erSchema#syntax). If the `aggregator.json` file uses the 1.3.0 version, we can also use functions to return a value that will be evaluated in the condition.
+
+The function works in the same way as explained in the Mapping section, with the only difference that will accept only two parameters: 
+
+* **logger**: the logger instance used by the service,
+* **clientMongo**: the instance of mongoDB used by the service,
+
+``` javascript title="myFunc.js"
+module.exports = async function(logger, clientMongo) {
+   // Your code goes here
+}
+```
+
+``` json
+{
+   "version": "1.3.0",
+   "config": {
+      ...
+      "when":{
+        "==":[
+          "USER.job",
+          "__fromFile__[myFunc]"
+        ]
+      }
+   }
+}
+```
 
 The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
 
