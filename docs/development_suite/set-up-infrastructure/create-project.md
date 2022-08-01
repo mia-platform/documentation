@@ -386,7 +386,7 @@ Once you have provider, company, and template correctly configured, you are able
 
 ![new-project-cards-headers](img/new-project-cards-headers.png)
 
-The project creation is divided in four different steps.
+The project creation is divided in three different steps.
 
 ### Step 1: **General**
 
@@ -433,40 +433,7 @@ For security reasons, and since after this step the project will be effectively 
 
 ![create-project-modal](img/create-project-modal.png)
 
-#### A note about Project Metrics
-
-When a production environment is defined for a project, a preview of its **Kubernetes Metrics** will be rendered inside the related card in the Home Page. These metrics will show the following information:
-
-* Environment name;
-* Status (healthy, down);
-* Number of pods up and running;
-* CPU usage;
-* RAM usage.
-
-### Step 4: **Pipeline Management**
-
-In this step, security information concerning cluster credentials are displayed as a table, in which each row corresponds to an environment. As specified above, at this step the project has already been created, and therefore the information shown in this section are not editable:
-
-* **Environment**: the environment name previously set;
-* **Cluster URL**: the URL of the Kubernetes cluster on which the project is deployed;
-* **Cluster CA**: the certificate associated with the Kubernetes cluster on which the project is deployed. This field displays a button to open up a modal, in which the information about the certificate are shown, together with a button to copy the certificate in PEM format;
-* **Pipeline token**: the security token used to perform deployment operations on the Kubernetes cluster.
-
-:::caution
-For security reasons, there is no way to come back to this page or another one displaying those information. Therefore, we highly recommend to download and securely store the credentials shown. For this reason, a download button is provided in the bottom part of the page.
-:::
-
-![create-project4](img/create-project4.png)
-
-In case of errors generating the cluster credentials, an alert is displayed instead of the table, and it is necessary to confirm that you have understood the issue before continuing.
-
-![create-project-error](img/create-project-error.png)
-
-:::tip
-This situation occurs when the pipeline has not been properly configured, or the deployment permissions are missing. Our suggestion - once the checkbox is checked and the project creation process is finished - is to open the project, save the configuration, try to deploy, and check whether or not the deployment is successful. In case of unsuccessful deployment, contact your administrator asking for the proper pipeline permissions to deploy.
-:::
-
-In any case, at the end of the process, your project will be visible in the Home section of your Console.
+At the end of the process, your project will be visible in the Home section of your Console.
 
 Once your project has been created, you will be redirected on the Project Settings area of your new project, where you can see your environments and a list of environment variables:
 
@@ -484,6 +451,16 @@ Label|Value
 `mia-platform.eu/project`|`projectId`
 
 After the project creation phase, you have to commit and deploy your new project to effectively conclude the process.
+
+#### A note about Project Metrics
+
+When a production environment is defined for a project, a preview of its **Kubernetes Metrics** will be rendered inside the related card in the Home Page. These metrics will show the following information:
+
+* Environment name;
+* Status (healthy, down);
+* Number of pods up and running;
+* CPU usage;
+* RAM usage.
 
 ## Customize the project with additional information (Optional)
 
