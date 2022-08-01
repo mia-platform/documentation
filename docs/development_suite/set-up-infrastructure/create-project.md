@@ -458,9 +458,13 @@ For security reasons, there is no way to come back to this page or another one d
 
 ![create-project4](img/create-project4.png)
 
-In case of errors generating the cluster credentials, an alert is displayed instead of the table, and it is necessary to confirm that you have understood the situation before continuing.
+In case of errors generating the cluster credentials, an alert is displayed instead of the table, and it is necessary to confirm that you have understood the issue before continuing.
 
 ![create-project-error](img/create-project-error.png)
+
+:::tip
+This situation occurs when the pipeline has not been properly configured, or the deployment permissions are missing. Our suggestion - once the checkbox is checked and the project creation process is finished - is to open the project, save the configuration, try to deploy, and check whether or not the deployment is successful. In case of unsuccessful deployment, contact your administrator asking for the proper pipeline permissions to deploy.
+:::
 
 In any case, at the end of the process, your project will be visible in the Home section of your Console.
 
