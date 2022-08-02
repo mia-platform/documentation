@@ -6,25 +6,36 @@ include:
 default:
   image: node:16.16.0-alpine
 
+install-dependencies:
+  interruptible: true
+
+license-check:
+  interruptible: true
+
 test:
+  interruptible: true
   script:
     - yarn lint
     - npm run spellcheck
     - npm run check-content
+  interruptible: true
 
 variables:
   IMAGE_NAME: core/documentation-site
 
 .docker-job:
+  interruptible: true
   dependencies:
     - build-site
 
 build-latest:
+  interruptible: true
   rules:
     - if: $CI_COMMIT_TAG
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
 build-site:
+  interruptible: true
   rules:
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_BRANCH
