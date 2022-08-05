@@ -46,6 +46,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr><td>KAFKA_PROJECTION_UPDATES_FOLDER</td><td>false</td><td>path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).</td><td>-</td></tr>
     <tr><td>GENERATE_KAFKA_PROJECTION_UPDATES</td><td>false</td><td>defines whether the realtime updater should send a message of update every time it writes the projection to Mongo.</td><td>false</td></tr>
     <tr><td>CA_CERT_PATH</td><td>false</td><td>the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`</td><td>-</td></tr>
+    <tr><td>SYSTEM_OF_RECORDS</td><td>true</td><td>the name of the system of records associated to the Real Time Updater</td><td>-</td></tr>
 </table>
 
 ## How data are managed on MongoDB

@@ -14,6 +14,8 @@ Throughout the document we will describe the messages providing a natural langua
 
 In order to work properly, the Fast Data infrastructure will need multiple Kafka topics, hence any time we will discuss a Kafka Topic, a naming convention will be suggested.
 
+For MongoDB based architectures, please check the Mongo paragraph on the entries, while for Kafka based ones, check the message structure and the topic naming convention.
+
 ## Data Ingestion
 
 Here, we will discuss the inputs and outputs related to data ingestion.
@@ -64,7 +66,7 @@ offset: '100'
 asyncapi: 2.4.0
 info:
   title: Basic Data Change Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
   BasicDataChangeChannel:
     publish:
@@ -82,7 +84,7 @@ channels:
               type: string
             offset:
               type: integer
-          required: ['key', 'value', 'timestamp', offset]
+          required: ["key", "value", "timestamp", offset]
 ```
 
 #### Golden Gate
@@ -92,8 +94,8 @@ This format has 3 possible operation types: Insert, Update, Delete. On top of th
 * `key`: the identifier (primary key) of the projection that has been updated
 * `value`: it is an object representing the change that happened, containing the following fields:
   * `op_type`: the type of operation (`I` for insert, `U` for update, `D` for delete).
-  * `before`: the data values after the operation execution (null or not set if it is a delete operation)
-  * `after`: the data values before the operation execution (null or not set if it is an insert operation)
+  * `before`: the data values before the operation execution (null or not set if it is an insert operation)
+  * `after`:the data values after the operation execution (null or not set if it is a delete operation)
 * `timestamp`: the timestamp of the Kafka message, it has to be a stringified integer greater than zero.
 * `offset`: the Kafka offset
 
@@ -123,7 +125,7 @@ offset: '100'
 asyncapi: 2.4.0
 info:
   title: Golden Gate Data Change Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
   GoldenGateDataChangeChannel:
     publish:
@@ -140,7 +142,7 @@ channels:
               properties:
                 op_type:
                   type: string
-                  enum: ['I', 'D', 'U']
+                  enum: ["I", "D", "U"]
                 before:
                   type: object
                   additionalProperties: true
@@ -151,7 +153,7 @@ channels:
               type: string
             offset:
               type: integer
-          required: ['key', 'value', 'timestamp', offset]
+          required: ["key", "value", "timestamp", offset]
 ```
 
 #### Custom
@@ -169,6 +171,7 @@ An example:
 ```sh
 test-tenant.PROD.system-name.test-projection.ingestion
 ```
+
 ### Projection
 
 A Projection is an updated and **standardized** copy of the data coming from the System of Records.
@@ -180,12 +183,12 @@ The fields of each Projection document are the ones defined in the Console. On t
 A `Projection Update` is a Kafka event that informs the listener that a Projection has been changed.
 Its value field contains the following fields:
 
-| Field                 | Required | Description                                                                                                                                                        |
-|-----------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Field                   | Required | Description                                                                                                                                             |
+| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `__internal__kafkaInfo` | Yes      | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
-| `before`                | No       | It contains the value of the Projection before its change.                                                                                                         |
-| `after`                 | No       | It contains the value of the Projection after the operation execution.                                                                                             |
-| `key`                   | Yes      | The key of the Projection that has been updated.                                                                                                                   |
+| `before`                | No       | It contains the value of the Projection before its change.                                                                                              |
+| `after`                 | No       | It contains the value of the Projection after the operation execution.                                                                                  |
+| `key`                   | Yes      | The key of the Projection that has been updated.                                                                                                        |
 
 **Message Example**:
 
@@ -193,76 +196,74 @@ Its value field contains the following fields:
 <p>
 
 ```yaml
-magicByte: 2
-attributes: 0
-timestamp: "1653042356401"
-offset: "98"
 key: '{"ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"}'
-value: '{
-   "operationType":"INSERT",
-   "primaryKeys":[
-      "$or"
-   ],
-   "operationTimestamp":"2022-05-20T10:25:56.401Z",
-   "__internal__kafkaInfo":{
+value: {
+  "operationType":"INSERT",
+  "operationTimestamp": "2022-05-20T10:25:56.401Z",
+  "documentId": null,
+  "projectionName": "pr_registry",
+  "source": "food-delivery",
+  "primaryKeys":[
+    "$or"
+  ],
+  "before":{
+    "_id":"62876cb2adb982a6195d26f9",
+    "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
+    "TAX_CODE":"tax_code",
+    "NAME":"MARIO",
+    "SURNAME":"ROSSI",
+    "EMAIL":"email_mario",
+    "ADDRESS":"address_1",
+    "PHONE":"phone_number_1653042354472",
+    "PROFESSION":"profession 1",
+    "__STATE__":"DELETED",
+    "__internal__counter":466,
+    "__internal__kafkaInfo":{
+      "offset":"466",
+      "partition":0,
+      "timestamp":"2022-05-20T10:25:55.751Z",
+      "topic":"kafka-topic-here",
+      "key":{
+        "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+      }
+    },
+    "timestamp":"2022-05-20T10:25:55.751Z",
+    "updatedAt":"2022-05-20T10:25:55.760Z"
+   },
+  "after":{
+    "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
+    "TAX_CODE":"tax_code",
+    "NAME":"MARIO",
+    "SURNAME":"ROSSI",
+    "EMAIL":"email_mario",
+    "ADDRESS":"address_1",
+    "PHONE":"phone_number_1653042354472_last",
+    "PROFESSION":"profession 1",
+    "timestamp":"2022-05-20T10:25:56.323Z",
+    "updatedAt":"2022-05-20T10:25:56.380Z",
+    "__STATE__":"PUBLIC",
+    "__internal__counter":467,
+    "__internal__kafkaInfo":{
       "offset":"467",
       "partition":0,
       "timestamp":"2022-05-20T10:25:56.323Z",
       "topic":"kafka-topic-here",
       "key":{
-         "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+        "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
       }
-   },
-   "projection":"pr_registry",
-   "before":{
-      "_id":"62876cb2adb982a6195d26f9",
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-      "TAX_CODE":"tax_code",
-      "NAME":"MARIO",
-      "SURNAME":"ROSSI",
-      "EMAIL":"email_mario",
-      "ADDRESS":"address_1",
-      "PHONE":"phone_number_1653042354472",
-      "PROFESSION":"profession 1",
-      "__STATE__":"DELETED",
-      "__internal__counter":466,
-      "__internal__kafkaInfo":{
-         "offset":"466",
-         "partition":0,
-         "timestamp":"2022-05-20T10:25:55.751Z",
-         "topic":"kafka-topic-here",
-         "key":{
-            "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-         }
-      },
-      "timestamp":"2022-05-20T10:25:55.751Z",
-      "updatedAt":"2022-05-20T10:25:55.760Z"
-   },
-   "after":{
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-      "TAX_CODE":"tax_code",
-      "NAME":"MARIO",
-      "SURNAME":"ROSSI",
-      "EMAIL":"email_mario",
-      "ADDRESS":"address_1",
-      "PHONE":"phone_number_1653042354472_last",
-      "PROFESSION":"profession 1",
-      "timestamp":"2022-05-20T10:25:56.323Z",
-      "updatedAt":"2022-05-20T10:25:56.380Z",
-      "__STATE__":"PUBLIC",
-      "__internal__counter":467,
-      "__internal__kafkaInfo":{
-         "offset":"467",
-         "partition":0,
-         "timestamp":"2022-05-20T10:25:56.323Z",
-         "topic":"kafka-topic-here",
-         "key":{
-            "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-         }
-      },
-      "createdAt":"2022-05-20T10:25:56.380Z"
-   }
-}'
+    },
+    "createdAt":"2022-05-20T10:25:56.380Z"
+  }
+  "__internal__kafkaInfo":{
+    "offset":"467",
+    "partition":0,
+    "timestamp":"2022-05-20T10:25:56.323Z",
+    "topic":"kafka-topic-here",
+    "key":{
+      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+    }
+  },
+}
 ```
 
 </p>
@@ -274,37 +275,55 @@ value: '{
 asyncapi: 2.4.0
 info:
   title: Projection Update Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
-  projectionUpdatesChannel:
+  projectionUpdateChannel:
     subscribe:
       message:
-        name: projection update
+        name: Projection Update
         payload:
           type: object
           additionalProperties: false
           properties:
-            __internal__kafkaInfo:
+            key:
+              type: object
+            value:
               type: object
               additionalProperties: false
               properties:
-                topic:
+                operationType:
                   type: string
-                partition:
-                  type: integer
-                offset:
+                  enum: ["INSERT", "UPDATE", "DELETE", "UPSERT"]
+                operationTimestamp:
+                  type: number
+                documentId:
                   type: string
-                key: {}
-                timestamp:
+                projectionName:
                   type: string
-            before:
-              type: object
-              additionalProperties: true
-            after:
-              type: object
-              additionalProperties: true
-            key: {}
-          required: ['__internal__kafkaInfo', 'key']
+                primaryKeys:
+                  type: Array
+                source:
+                  type: string
+                before:
+                  type: object
+                  additionalProperties: true
+                after:
+                  type: object
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    topic:
+                      type: string
+                    partition:
+                      type: integer
+                    offset:
+                      type: string
+                    key: {}
+                    timestamp:
+                      type: string
+          required: ["key", "value"]
 ```
 
 #### Topic naming convention
@@ -318,6 +337,7 @@ An example:
 ```sh
 test-tenant.PROD.restaurants-db.reviews-collection.pr-update
 ```
+
 ### Projection Change
 
 A `Projection Change` is an event that informs the listener that a Single View should be updated.
@@ -388,25 +408,25 @@ value: '{
 
 ```json
 {
-  "_id":"627935df1810010012b0a328",
-  "identifier":{
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  "_id": "627935df1810010012b0a328",
+  "identifier": {
+    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "type":"sv_customers",
-  "changes":[
-      {
-        "state":"NEW",
-        "updatedAt":"2022-05-20T10:25:35.567Z",
-        "offset":"402",
-        "partition":0,
-        "timestamp":"2022-04-28T12:22:12.994Z",
-        "topic":"kafka-topic-here",
-        "key":{
-            "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-        }
+  "type": "sv_customers",
+  "changes": [
+    {
+      "state": "NEW",
+      "updatedAt": "2022-05-20T10:25:35.567Z",
+      "offset": "402",
+      "partition": 0,
+      "timestamp": "2022-04-28T12:22:12.994Z",
+      "topic": "kafka-topic-here",
+      "key": {
+        "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
       }
+    }
   ],
-  "doneAt":"2022-05-20T10:25:35.656Z"
+  "doneAt": "2022-05-20T10:25:35.656Z"
 }
 ```
 
@@ -416,7 +436,7 @@ value: '{
 asyncapi: 2.4.0
 info:
   title: Projection Change Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
   projectionChangesChannel:
     subscribe:
@@ -441,7 +461,7 @@ channels:
                   type: string
             type:
               type: string
-              enum: ['aggregation', 'patch']
+              enum: ["aggregation", "patch"]
             singleViewIdentifier: {}
             change:
               type: object
@@ -452,14 +472,13 @@ channels:
                 data:
                   type: object
                   additionalProperties: true
-          required: ['type', '__internal__kafkaInfo', 'change']
+          required: ["type", "__internal__kafkaInfo", "change"]
           if:
             properties:
               type:
-                const:
-                  'aggregation'
+                const: "aggregation"
           then:
-            required: ['singleViewIdentifier']
+            required: ["singleViewIdentifier"]
 ```
 
 #### Topic naming convention
@@ -502,18 +521,18 @@ Its fields are the default CRUD fields, and:
 
 ```json
 {
-  "_id": {"$oid":"619790cbc17eea00122a0796"},
-  "portfolioOrigin":"users",
-  "type":"sv_customers",
+  "_id": { "$oid": "619790cbc17eea00122a0796" },
+  "portfolioOrigin": "users",
+  "type": "sv_customers",
   "identifier": {
-    "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "errorType":"NO_SV_GENERATED",
-  "createdAt": {"$date":"2021-11-19T11:55:55.337Z"},
-  "creatorId":"single-view-creator",
-  "__STATE__":"PUBLIC",
-  "updaterId":"single-view-creator",
-  "updatedAt": {"$date":"2021-11-19T11:55:55.337Z"}
+  "errorType": "NO_SV_GENERATED",
+  "createdAt": { "$date": "2021-11-19T11:55:55.337Z" },
+  "creatorId": "single-view-creator",
+  "__STATE__": "PUBLIC",
+  "updaterId": "single-view-creator",
+  "updatedAt": { "$date": "2021-11-19T11:55:55.337Z" }
 }
 ```
 
@@ -538,17 +557,19 @@ Its fields are:
 
 ```yaml
 key: { "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" }
-value: {
-  "type": "sv_customers",
-  "portfolioOrigin": "food-delivery",
-  "__internal__kafkaInfo": {
-    "topic": "kafka-topic-here",
-    "partition": 0,
-    "key": "Amatriciana_id",
-    "offset": "466",
-    "timestamp": "1653039238727"
+value:
+  {
+    "type": "sv_customers",
+    "portfolioOrigin": "food-delivery",
+    "__internal__kafkaInfo":
+      {
+        "topic": "kafka-topic-here",
+        "partition": 0,
+        "key": "Amatriciana_id",
+        "offset": "466",
+        "timestamp": "1653039238727",
+      },
   }
-}
 ```
 
 **AsyncApi specification**:
@@ -557,7 +578,7 @@ value: {
 asyncapi: 2.4.0
 info:
   title: Single View Event Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
   SingleViewUpdatesChannel:
     subscribe:
@@ -574,10 +595,15 @@ channels:
               properties:
                 type:
                   type: string
-                  enum: ['event']
+                  enum: ["event"]
                 name:
                   type: string
-                  enum: ['singleViewCreated', 'singleViewUpdated', 'singleViewDeleted']
+                  enum:
+                    [
+                      "singleViewCreated",
+                      "singleViewUpdated",
+                      "singleViewDeleted",
+                    ]
             value:
               type: object
               additionalProperties: false
@@ -599,7 +625,7 @@ channels:
                     key: {}
                     timestamp:
                       type: string
-          required: ['key', 'headers', 'value']
+          required: ["key", "headers", "value"]
 ```
 
 ### Single View Before After
@@ -793,7 +819,7 @@ value: `{
 asyncapi: 2.4.0
 info:
   title: Single View Before After Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
   SingleViewBeforeAfterChannel:
     subscribe:
@@ -832,8 +858,8 @@ channels:
                       type: string
             opType:
               type: string
-              enum: ['NON_EXISTING_SV', 'INSERT_SV', 'DELETE_SV', 'UPDATE_SV']
-          required: ['key', 'value', 'opType']
+              enum: ["NON_EXISTING_SV", "INSERT_SV", "DELETE_SV", "UPDATE_SV"]
+          required: ["key", "value", "opType"]
 ```
 
 ### Single View Update
@@ -844,14 +870,14 @@ Its fields are:
 
 * `key`: the Single View ID
 * `value`:
-  * `operationType`: one of the following
-    * `NON_EXISTING_SV`
-    * `INSERT_SV`
-    * `DELETE_SV`
-    * `UPDATE_SV`
+  * `operationType`: one of
+    * `INSERT`
+    * `UPDATE`
+    * `DELETE`
   * `operationTimestamp`: timestamp of the operation
   * `documentId`: id of the document taken from after
-  * `primaryKeys`: array containing the Single View ID
+  * `singleViewName`: name of the Single View
+  * `source`: the portfolio the Single View was originated from
   * `before`: the value of the Single View before the change occurred
   * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
   * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
@@ -862,31 +888,25 @@ Its fields are:
 <p>
 
 ```yaml
-{
-  "operationType": "UPDATE_SV",
-  "operationTimestamp": 1234567,
-  "documentId": null,
-  "primaryKeys": [
-    "COD_FISCALE",
-  ],
-  "before": {
-    "COD_FISCALE": "cod1",
-    "NAME": "Gandalf",
-  },
-  "after": {
-    "COD_FISCALE": "cod1"',
-    "NAME": "Mithrandir",
-  },
-  "__internal__kafkaInfo": {
-    "topic": "original-topic-1",
-    "partition": 0,
-    "timestamp": 1234567,
-    "offset": 0,
-    key: {
-      originalKey1: "123",
-    },
-  },
-}
+key: { "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" }
+value:
+  {
+    "operationType": "UPDATE",
+    "operationTimestamp": 1234567,
+    "documentId": null,
+    "singleViewName": "sv_customers",
+    "source": "food-delivery",
+    "before": { "COD_FISCALE": "cod1", "NAME": "Gandalf" },
+    "after": { "COD_FISCALE": "cod1", "NAME": "Mithrandir" },
+    "__internal__kafkaInfo":
+      {
+        "topic": "original-topic-1",
+        "partition": 0,
+        "timestamp": 1234567,
+        "offset": 0,
+        "key": { "originalKey1": "123" },
+      },
+  }
 ```
 
 </p>
@@ -898,7 +918,7 @@ Its fields are:
 asyncapi: 2.4.0
 info:
   title: Single View Update Producer
-  version: '1.0.0'
+  version: "1.0.0"
 channels:
   SingleViewUpdateChannel:
     subscribe:
@@ -908,22 +928,23 @@ channels:
           type: object
           additionalProperties: false
           properties:
-            key: {}
+            key:
+              type: object
             value:
               type: object
               additionalProperties: false
               properties:
                 operationType:
                   type: string
-                  enum: ['NON_EXISTING_SV', 'INSERT_SV', 'DELETE_SV', 'UPDATE_SV']
+                  enum: ["INSERT", "UPDATE", "DELETE"]
                 operationTimestamp:
                   type: number
                 documentId:
                   type: string
-                primaryKeys:
-                  type: array
-                  items:
-                    type: string
+                singleViewName:
+                  type: string
+                source:
+                  type: string
                 before:
                   type: object
                   additionalProperties: true
@@ -943,9 +964,8 @@ channels:
                     key: {}
                     timestamp:
                       type: string
-          required: ['key', 'value']
+          required: ["key", "value"]
 ```
-
 
 #### Topic naming convention
 
