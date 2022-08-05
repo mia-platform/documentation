@@ -3,282 +3,227 @@ id: git_vademecum
 title:  GIT Vademecum 
 sidebar_label: GIT Vademecum
 ---
-GIT is a distributed version control system that facilitates Mia-Platform activities. This vademecum summarizes the main GIT commands and guidelines to simplify your work.
+GIT is a distributed version control system that facilitates Mia-Platform activities. This cheat sheet summarizes the main GIT commands and provides some guidelines to simplify your work.
 
 ## Install Git
 
-Start using Git by installing it on your PC
-
-[https://git-scm.com/downloads](https://git-scm.com/downloads)
+Start using Git by installing it on your PC. Visit [GIT official website](https://git-scm.com/downloads) and download the latest GIT version for your OS.
 
 ## Initial configurations
 
-*Configure valid user information for all repositories.*
+Configure valid user information for all repositories.
 
-```bash
+```bash title="Set the username (name.surname) you want to show on your commits."
 git config --global user.name "[name]"
 ```
 
-Set the username (name.surname) you want to show on your commits.
-
-```bash
-git config - global user.email "[email address]"
+```bash title="Set up the business email you want to show on your commits."
+git config --global user.email "[email address]"
 ```
 
-Set up the business email you want to show on your commits.
+You can also set different user information for different repositories. Open the terminal in that directory and run the commands above without the `--global` specification.
 
 ## Recommended configurations
 
-*We recommend a series of configurations that could help you in your work.*
+We recommend a series of configurations that can help you in your work.
 
-```bash
+```bash title="Set fetch.prune as active to keep branches aligned remotely with your local branches."
 git config --global fetch.prune true
 ```
 
-Set fetch.prune as active. It allows you to keep branches aligned remotely with your local branches.
-
-```bash
+```bash title="Set the automatic rebase to the pull. It allows you to avoid unnecessary merge on a branch if more than one person is working on the same branch."
 git config --global pull.rebase true
 ```
 
-Set the automatic rebase to the pull. It allows you to avoid unnecessary merge on a branch if you work in more than one person on the same branch.
-
-```bash
+```bash title="Combined with the previous configuration, autostash allows you to perform a pull even with unscheduled modifications."
 git config --global rebase.autoStash true
 ```
 
-Set the autostash to true in the initial configurations. Combined with the previous configuration, it allows you to perform a pull even with unscheduled modifications.
-
-```bash
+```bash title="Color your GIT for a better view of the history."
 git config --global alias.gr 'log --graph --full-history --all --color --tags --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s %x1b[33m%aN <%ae>%x1b[0m (%aI)"'
 ```
 
-Color your GIT for a better view of the history.
+```bash title="Push local branches to remote repository without having to run --set-upstream origin"
+git config --global --add --bool push.autoSetupRemote true
+```
+
+:::caution
+The `git config --global --add --bool push.autoSetupRemote true` configuration is available only for 2.37.0 (or latest) version of GIT.
+:::
 
 ## Create a repository
 
-*Start with a new repository or download information from an existing URL.*
+Start with a new repository or download information from an existing URL.
 
-```bash
+```bash title="Create a new local repository with its specific name."
 git init [project-name]
 ```
 
-Create a new local repository with its specific name.
-
-```bash
+```bash title="Download a project and its entire chronology from a URL."
 git clone [url]
 ```
 
-Download a project and its entire chronology.
-
 ## Make changes
 
-*Review changes to the code and prepare a commit.*
+Review changes to the code and prepare a commit.
 
-```bash
+```bash title="List all files, new or modified, to be committed."
 git status
 ```
 
-List all files, new or modified, to be committed.
 
-```bash
+```bash title="Shows the differences between the files that were added and not ignored in the staging area."
 git diff
 ```
 
-Shows the differences between the files that were added and not ignored in the staging area.
-
-```bash
+```bash title="Add new files and prepare them for the commit."
 git add [file]
 ```
 
-Add new files and prepare them for the commit.
-
-```bash
+```bash title="Show differences between staged files and last modification."
 git diff --staged
 ```
 
-Show file differences between staging and last modification.
-
-```bash
+```bash title"Remove a file from the staging area, but keep the changes."
 git reset [file]
 ```
 
-Remove a file from the staging area, but keep the changes.
-
-```bash
+```bash title="Add the file to the local repository header."
 git commit -m "[descriptive message]"
 ```
 
-Add the file to the local repository header.
+```bash title="Signoff the commit with your user information. A message is required."
+git commit -s
+```
 
-```bash
+```bash title="Upload all local branches to the remote repository."
 git push
 ```
 
-Upload all local branches to the remote repository.
-
 ## Manage the branch
 
-*Name your commits and join them when you finish.*
+Name your branches and join them when you finish.
 
-```bash
+```bash title="Lists all branches in the current repository."
 git branch
 ```
 
-Lists all branches in the current repository.
-
-```
-    bash $ git branch [branch-name]
+```bash title="Create a new branch."
+git branch -b [branch-name]
 ```
 
-Create a new branch.
-
-```bash
+```bash title="Switch to the specified branch and update the current directory."
 git checkout [branch-name]
 ```
 
-Switch to the specified branch and update the current directory.
-
-```bash
+```bash title="Merge the history of [branch-name] branch into the current one."
 git merge [branch-name]
 ```
 
-Merge the history of the specified branch with the current one.
-
-```bash
+```bash title="Delete the specified branch only if it has been merged to master."
 git branch -d [branch-name]
 ```
 
-Delete the specified branch only if it has been merged to master.
+```bash title="Delete the specified remote branch."
+git push origin -d [branch-name]
+```
 
 ## Make refactoring your files
 
-*Search and remove files from the history.*
+Search and remove files from the history.
 
-```bash
+```bash title="Remove a file from the directory and prepare for permanent deletion."
 git rm [file]
 ```
 
-Remove a file from the directory and prepare for permanent deletion.
-
-```bash
+```bash title="Delete the file from GIT, but keep the local file."
 git rm --cached [file]
 ```
 
-Delete the file from GIT, but keep the local file.
-
 ## Remove your files from the history
 
-*Exclude files and temporary locations.*
+Exclude files and temporary locations.
 
-```bash
-    *.log build /TEMP-*
+```bash title="A text file called .gitignore prevents accidental versioning of files or directories according to a specified pattern."
+*.log build /TEMP-*
 ```
 
-A text file called .gitignore prevents accidental versioning of files or directories according to a specified pattern.
-
-```bash
+```bash title="List all files ignored in this project."
 git ls-files --others --ignored --exclude-standard
 ```
 
-List all files ignored in this project.
-
 ## Save all changes
 
-*Archive and restore incomplete changes. Useful for remotely downloading changes while you are working and you do not want to commit and push again or to change from one branch to another without committing before.*
+Archive and restore incomplete changes. Useful for remotely downloading changes while you are working and you do not want to `commit` and `push` again or to change from one branch to another without committing before.
 
-```bash
+```bash title="Temporarily store all changed files."
 git stash
 ```
 
-Temporarily store all changed files so you can remotely git pull and download changes made by other team members.
-
-```bash
+```bash title="Restore all files placed in stash from the stash archive. In this way you can merge with the changes downloaded remotely with the pull."
 git stash pop
 ```
 
-Restore all files placed in stash from the stash archive. In this way you can merge with the changes downloaded remotely with the pull.
-
-```bash
+```bash title="List the edited files stored in stash."
 git stash list
 ```
 
-Lists the edited files stored in stash.
-
-```bash
+```bash title="Delete files stored in stash."
 git stash drop
 ```
 
-Delete files stored in stash.
-
 ## Review the chronology
 
-*Browse and check the evolution of the files of each project.*
+Browse and check the evolution of the files of each project.
 
-```bash
+```bash title="View the commit history of the current branch."
 git log
 ```
 
-View the commit history of the current branch.
-
-```bash
+```bash title="View the history of a file, including changes."
 git log --follow [file]
 ```
 
-View the history of a file, including changes.
-
-```bash
+```bash title="Show the difference between two branches."
 git diff [first-branch] ... [second-branch]
 ```
 
-Show the difference between two branches.
-
-```bash
+```bash title="Show metadata and changes made for a specific commit."
 git show [commit]
 ```
 
-Show metadata and changes made for a specific commit.
-
 ## Re-commit
 
-*Eliminates errors and alters changes history.*
+Delete errors and alters changes history.
 
-```bash
+```bash title="Delete all commits made after [commit], preserving local changes."
 git reset [commit]
 ```
 
-Cancel all commits made after [commit], preserving local changes.
-
-```
-    bash $ git reset --hard [commit]
+```bash title="Delete all history and changes until the specified commit."
+git reset --hard [commit]
 ```
 
-Delete all history and changes until the specified commit.
+```bash title="Add signoff to an unsigned commit."
+git commit --amend --signoff
+```
 
 ## Synchronize changes
 
-*Connect to a remote URL and get change history.*
+Connect to a remote URL and get change history.
 
-```bash
+```bash title="Download the change history from the remote repository."
 git fetch [remote]
 ```
 
-Download the change history from the remote repository.
-
-```bash
+```bash title="Join the remote branch with the local branch."
 git merge [remote] / [branch]
 ```
 
-Join the remote branch with the local branch.
-
-```bash
+```bash title="Upload all changes to the local branch on the remote repository."
 git push -u [remote] [branch]
 ```
 
-Upload all changes to the local branch on the remote repository.
-
-```bash
+```bash title="Update your local repository with the online repository."
 git pull
 ```
-
-Update your local repository with the online repository.
