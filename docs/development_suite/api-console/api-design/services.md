@@ -149,9 +149,9 @@ Each argument should be on a new line and by default no arguments are specified.
 
  ![service-detail-configuration](img/service-detail-configuration.png)
 
- :::info
+:::info
  If you are searching for information about microservice's probes and other runtime options you should visit [this page](./microservice-runtime-resources.md).
- :::
+:::
 
 ### Environment Variable Configuration
 
