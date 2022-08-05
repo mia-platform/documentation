@@ -3,60 +3,75 @@ id: microservice_vademecum
 title: Microservice Vademecum
 sidebar_label: Microservice Vademecum
 ---
-Microservice applications consist of small, scalable and independently controlled services that communicate with each other through standard protocols and well-defined interfaces.
+Microservice applications consist of small, scalable, and independently controlled services that communicate with each other through standard protocols and well-defined interfaces.
 
-## Allowed languages ​​and available templates ##
+:::info
+You can write your own microservices in any language.
+:::
 
-You can write your own microservice in any language.
+## Required basic routes ##
 
-# Required basic routes #
+Below are listed some required routes that each microservice has to expose.
 
-## Documentation Routes ##
+### Documentation Routes ###
 
 `/documentation/json`
 
-Each microservice must expose the swagger documentation route
+Each microservice must expose the Swagger documentation route. For further information about Swagger, see the [Swagger Aggregator page](../runtime_suite/swagger-aggregator/overview).
 
-## Health routes ##
+### Health routes ###
 
 Each microservice exposes some useful routes to the ecosystem. Through these routes it is in fact possible to have information on the health of the systems, and to carry out debugging checks.
 
-### Liveness route ###
+:::info
+If you are creating a microservice from a template, a plugin or an example, the routes described below will be implemented by default. If you are creating a microservice from scratch, you will have to manually implement these routes.
+:::
+
+#### Liveness route ####
 
 `/-/healthz`
 
-It returns 200 if the application correctly runs. If an unrecoverable internal error occurred, this may return a 503 status code.
-For example, if your application implements a connection pool and a connection goes down, the application should not returns 503 on this route because your connection pool is still alive.
-Instead, if your application has only one connection to the database and this goes down and your application doesn't recover the connection properly, the application should return 503.
+This route returns a 200 status code if the application is correctly running. If an unrecoverable internal error occurred, this may return a 503 status code.
 
-### Readiness route ###
+For example, if your application implements a connection pool and a connection goes down, the application should not return 503 on this route because your connection pool is still alive.
+Instead, the application should return 503 if your application has only one connection to the database that goes down, and your application doesn't recover the connection properly.
+
+#### Readiness route ####
 
 `/-/ready`
 
-This route will identify the container is "able to process new incoming request". During the startup, this route returns 503. After the startup, this route returns 200, if in that time, the pod is able to serve requests.
-In some conditions, the pod can communicate to Kubernetes that it is under pressure and new incoming request may be served with a delay or may not be served at all. In this condition, the readiness route may return 503 even if your pod is up and running.
+This route will identify if the container is "able to process new incoming request". During the startup, this route returns 503. After the startup, this route returns 200, if in that time the pod is able to serve requests.
 
-In this case, Kubernetes avoids sending to the pod new incoming TCP connections. Only once the container returns 200, Kubernetes restores the pod status and inserts it into the pool of the Service allowing new incoming request to reaches the pod.
+In some conditions, the pod can communicate to Kubernetes that it is under pressure, and new incoming requests may be served with a delay or may not be served at all. In this condition, the readiness route may return 503, even if your pod is up and running.  
+When this occurs, Kubernetes avoids sending to the pod new incoming TCP connections. Only once the container returns 200, Kubernetes restores the pod status and inserts it into the pool of the Service, allowing new incoming requests to reach the pod.
 
-### Check-up route
+#### Check-up route ###
 
 `/-/check-up`
 
-This route is not used by Kubernetes but **<u>exclusively</u>** by the [**Doctor service**](../runtime_suite/doctor-service/configuration).
-It's purpose is to check the status of all the dependencies. If your application depends on:
+The purpose of this rout is to check the status of all the microservice dependencies.
 
-- an another microservice, this route should invoke the `/-/healthz` route of that service
-- an external microservice, this route should invoke its status route
-- another dependency like Database or Kafka..., this route should check if the dependency is reachable.
+:::caution
+This route is not used by Kubernetes, but **exclusively** by the [**Doctor service**](../runtime_suite/doctor-service/configuration).
+:::
 
-This route has to return 200 if and only if all pod dependencies are up, 503 otherwise.
+If your application depends on:
 
-**<u>NB.</u>** **Never call the `/-/check-up` route of another service in the check-up handler of a service** &rarr; this avoids to have a loop of `/-/check-up` calls, the only one who can call the `/-/check-up` route is the _Doctor service_.
+- Another microservice, this route should invoke the `/-/healthz` route of that service;
+- An external microservice, this route should invoke its status route;
+- Another dependency like Database or Kafka, this route should check if the dependency is reachable.
 
-#### Kubernetes usage of liveness and readiness
+This route has to return 200 if, and only if, **all pod dependencies** are up. If even a single pod dependency is down, the route returns 503.
 
-Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and remedy such situations.
+:::warning
+**Never call the `/-/check-up` route of another service in the check-up handler of a service**: this avoids having a loop of `/-/check-up` calls.  
+The only service who can call the `/-/check-up` route is the _Doctor service_.
+:::
+
+## Kubernetes' usage of liveness and readiness ##
+
+Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and resolve such situations.
 
 [Kubernetes kubelet](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) uses liveness probes to know when to restart a Container.
 
-Readiness probes are used to know when a Container is ready to start accepting traffic. When a Pod is not ready, it is removed from Service load balancers
+Readiness probes are used to know when a Container is ready to start accepting traffic. When a Pod is not ready, it is removed from Service load balancers.
