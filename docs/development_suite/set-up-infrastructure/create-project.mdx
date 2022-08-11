@@ -4,6 +4,9 @@ title: Create a Project
 sidebar_label: Create a Project
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The project creation process allows you to configure a project, which lifecycle can then be entirely managed and developed through Console areas.
 
 ## How to set up Console
@@ -60,20 +63,46 @@ The fields necessary for this collection are:
   * **basePath**: base path where the project will be created. The user needs to have permission for creating projects on this path;
   * **visibility**: visibility of the project.
 
-:::caution
-If the Git provider is `github`, the `basePath` have to be an existing organization. If it does not exist, it will not be created.
+:::info
+Here some tips on how to correctly configure the `basePath` property, grouped by Git provider:
 
-If the Git provider is `gitlab`, the `basePath` is the basePath of the group where to create the project. If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
+<Tabs>
 
-If the Git provider is `azure-devops`, the `basePath` is by default https://dev.azure.com.
+<TabItem value="gitlab" label="GitLab" default>
 
-If the Git provider is `bitbucket`, the `basePath` is the URL on which the server is exposed.
+The `basePath` is the basePath of the group where to create the project. 
 
-e.g.
+If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
 
-* /groupA/groupB -> if groupB does not exist AND user have permission to create groups in groupA, then groupB will be created.
-* /groupA/groupB -> if groupB does not exist AND user have no permission to create groups in A, then groupB will NOT be created.
+E.g.
+
+* /groupA/groupB -> if groupB does not exist AND user have permission to create groups in groupA, then groupB will be created;
+* /groupA/groupB -> if groupB does not exist AND user have no permission to create groups in A, then groupB will NOT be created;
 * /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
+
+</TabItem>
+
+<TabItem value="github" label="GitHub">
+
+The `basePath` have to be an existing organization. If it does not exist, it will not be created.
+</TabItem>
+
+<TabItem value="azure-devops" label="Azure DevOps">
+
+The `basePath` is the path where your Azure project is reachable: the pattern is `company-name/project-name`.
+
+For example, if you project is reachable at the URL `https://dev.azure.com/mia-platform-devops/Test`, then the `basePath` must be `mia-platform-devops/Test`.
+</TabItem>
+
+<TabItem value="bitbucket" label="BitBucket">
+
+The `basePath` is the path where your BitBucket project is reachable: the pattern is `projects/project-code`.
+
+For example, if you project is reachable at the URL `https://bitbucket.mia-platform.eu/projects/TMBT`, then the `basePath` must be `projects/TMBT`.
+</TabItem>
+
+</Tabs>
+
 :::
 
 * `environments` (*required*): an array of objects containing the definitions of the environments for the company. The content of this arrays will be interpolated to replace `%projectId%` by inserting the `projectId` field in the project creation. Each object should contain, for example:
@@ -126,7 +155,7 @@ e.g.
 
   1. **empty**: it is not set as default in the project creation, but should be configured manually after the process;
 
-  1. **only type configuration**, for example:
+  2. **only type configuration**, for example:
 
       ```json
         {
@@ -138,7 +167,7 @@ e.g.
 
       As an example, with a GitLab project to be saved in `/clients/mia-platform/configurations`, the environment variables are written in the `clients/mia-platform` group;
 
-  1. **complete configuration**, for example:
+  3. **complete configuration**, for example:
 
       ```json
         {
