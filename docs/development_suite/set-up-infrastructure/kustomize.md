@@ -4,7 +4,7 @@ title:  Kustomize your configuration
 sidebar_label: Kustomize your configuration
 ---
 
-Optionally you can use [Kustomize](https://kustomize.io/) as a project-level configuration manager. This feature allows you to modify the default configuration of your microservices on a per-environment basis in a simple declarative way with pure YAML. Learn how to enable this feature [here](./create-project.md#create-a-template).
+Optionally you can use [Kustomize](https://kustomize.io/) as a project-level configuration manager. This feature allows you to modify the default configuration of your microservices on a per-environment basis in a simple declarative way with pure YAML. Learn how to enable this feature [here](./create-project.mdx#create-a-template).
 
 With Kustomize, you can specify `overlays` to overwrite the default configuration of your microservices for a specific environment. To do so, you have to manually modify the project configuration by editing the following files inside the chosen environment folder (`./overlays/%envId%/`):
 

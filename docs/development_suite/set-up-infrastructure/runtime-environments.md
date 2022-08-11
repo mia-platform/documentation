@@ -35,7 +35,7 @@ Additionally, one could define custom links to be displayed among the additional
 
 In this section you will learn how to manage your runtime environments using the CMS. In case you don't have access to it, please contact your Mia Platform referent.
 
-Using the CMS, it is possible to create, update, and delete runtime environments. More about the creation process can be found [here](./create-project.md#step-3-environments), while information about editing from the CMS can be found [here](./create-project.md#step-6-customize-the-project-with-additional-information-optional).
+Using the CMS, it is possible to create, update, and delete runtime environments. More about the creation process can be found [here](./create-project.mdx#step-3-environments), while information about editing from the CMS can be found [here](./create-project.mdx#step-6-customize-the-project-with-additional-information-optional).
 
 In order to edit the information available in the Runtime Environments table (you can edit environment properties, add new links or change the present ones), you need to access your `Project` properties. There, you will find the objects `Environments` and `links`, whose schema is described below. You just need to edit them trough the dedicated drawer or modal and save your changes.
 
