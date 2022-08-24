@@ -882,7 +882,7 @@ updates multiple data state (**STATE** or _st) in a dataset
 
 ### Upload File
 
-requests the upload of a file and carries its data. `File`
+requests the upload of a file and carries its data. [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
 
 - Label: `upload-file`
 - Payload:
@@ -893,7 +893,7 @@ requests the upload of a file and carries its data. `File`
 
 ### Uploaded File
 
-returns file upload metadata, typically when storing on an external service like `files-service`
+returns file upload metadata, typically when storing on an external service like [files-service](../../runtime_suite/files-service/configuration)
 
 - Label: `uploaded-file`
 - Payload:

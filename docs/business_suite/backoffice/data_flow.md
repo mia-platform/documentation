@@ -28,7 +28,7 @@ In order to correctly configure a Back-Kit application, it is important to under
 
 Events are the only mean of communication available to components, no direct/imperative call is performed among components.
 
-Events are emitted/listened to via a **communication channel** such as the `eventBus` (an instance of `rxjs ReplaySubject`).
+Events are emitted/listened to via a **communication channel** such as the `eventBus` (an instance of [rxjs ReplaySubject](https://rxjs.dev/api/index/class/ReplaySubject)).
 
 Components interfacing with a given event, either **listen to** it or **emit** it. In the latter case, it requires the page to be aware, for instance, of a *loading* event, or that is *sending* data, whereas the former is referred to event-driven behavior where the component reacts to something that happened elsewhere.
 

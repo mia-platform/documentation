@@ -37,7 +37,7 @@ components might require bootstrap, but it is not a mandatory feature for compon
 Bootstrapping a page entails three main phases:
 
 1. components read the URL parsing properties related to their initial state. Components then evolves without changing
-properties becoming React-alike `controlled components`
+properties becoming React-alike [controlled components](https://reactjs.org/docs/forms.html#controlled-components)
 2. components modify their internal state and, if needed, emit an event
 3. a single component, the bootstrap manager, typically the [crud-client](Components/clients#crud-client), is then tasked with
 awaiting events triggered by applying the initial state. Such component must have a debounce time after which it ends bootstrapping
@@ -58,7 +58,7 @@ Components **must be aware of an existing data schema** which instructs on what 
 Back-Kit components pass the data schema to components via the tag property `dataSchema`.
 :::
 
-A data schema is thus encoded as a `JSON-schema` with several extensions to keep
+A data schema is thus encoded as a [JSON-schema](https://json-schema.org/specification.html) with several extensions to keep
 track of what rendering components might need.
 
 The outer structure requires a data schema to be an `object`, containing an `object` of `properties` that could in return be
@@ -152,7 +152,7 @@ A `label` is either a `string` or a [LocalizedString](core_concepts#localization
 
 An `order` is number that allow to customize the order in which items are rendered by data visualization components.
 
-A `type` is a `JSON-schema version 7 type`.
+A `type` is a [JSON-schema version 7 type](https://json-schema.org/understanding-json-schema/reference/type.html).
 
 On top of types, extra information can be passed to better understand how a property needs to be shown, i.e. a `string`
 could be a `password` or a `date`, an `object` could be a plain JavaScript `object` or maybe a `file`. To achieve that,
@@ -162,10 +162,10 @@ specified by `type`.
 | type | formats |
 |------|---------|
 | `string` | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, `lookup`, `editor` |
-| `number` | -      |
+| `number` | `date`, `date-time`, `time` , `currency` |
 | `integer` | - |
-| `object` | `file`, `localized-text`, `geopoint`
-| `array`  | `multilookup`, `geopoint` |
+| `object` | `file`, `localized-text`, `geopoint` |
+| `array`  | `file`, `multilookup`, `geopoint` |
 | `boolean` | - |
 | `form-addon` | `link`, `title`, `subtitle` |
 | `null` | - |
@@ -176,9 +176,11 @@ use extensively formats.
 
 When `type` is set to `string`, the extra key `enum` is available to specify available text entries.
 
-When `type` is set to `string`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows
-customization of date visualization format. Back-Kit components handles dates and timestamps using `dayjs`
-library and its `parsing/formatting syntax`.
+When `type` is set to `string` or `number`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows
+customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs](https://day.js.org/)
+library and its [parsing/formatting syntax](https://day.js.org/docs/en/parse/string-format).
+If `type` is `number` the datum is expected to be a `long` epoch time and will be converted onto the client/browser according to its
+timezone.
 
 :::note
 Please note that the date fields are saved in ISO 8601 format, so it's up to the user to convert them in UTC from its local time before using them in the Appointment Manager.
@@ -188,6 +190,32 @@ When `type` is set to `object` and format is `localized-text`, table expects a l
 i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
 
 Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
+
+Fields of format `currency` automatically display formatted numberic values accordingly to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale). `currency` fields allow to specify the key `template` inside `visualizationOptions` and `formatOptions`.
+For instance:
+```json
+"amount": {
+...
+  "type": "number",
+  "format": "curency",
+  "formOptions": {
+    "template": {
+      "en": "$ {{value}}",
+      "it": "{{value}} $"
+    }
+  },
+  "visualizationOptions": {
+    "template": {
+      "en": "$ {{args.[0]}}",
+      "it": "{{args.[0]}} $"
+    }
+  },
+  ...
+}
+```
+:::note
+In visualizationOptions' template, `{{args.[0]}}` corresponds to the value of the table cell.
+:::
 
 In order to avoid replication of settings within the same configuration, data schema also carries some component-specific
 visualization options and/or might require extra data to be fetched.
@@ -224,7 +252,7 @@ Visualization options concern any web component that is going to render a given 
 |`hiddenLabel`|  `boolean` | whether the label of the property is shown within the header of the table component |
 |`sortable`|  `boolean` | whether the property can be sorted within the header of the table component |
 |`iconMap`| `object` | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
-|`template`| `LocalizedText` | template of how to visualize the object |
+|`template`| `LocalizedText` | template of how to visualize the value in the cell |
 |`joinDelimiter`| `string` | delimiter to visualize multi-lookups as a single string |
 |`tag`| `string` | tag to use when embedding a custom component |
 |`properties`| `Record<string, any>` | properties for the embedded custom component |
@@ -312,6 +340,30 @@ actions. Extra options to be specified for user interaction with the dataset sho
 |`disabledOnUpdate`|`undefined`| whether the property is disabled within the form component on update |
 |`disabledOnInsert`|`undefined`| whether the property is disabled within the form component on update |
 |`showFileInViewer`|`undefined`| whether clicking the file property requests to open the file in browser |
+|`template`|`undefined`| template of how to visualize the value in the field |
+
+### Filters Options
+
+Extra options to be specified for querying the dataset should be configured in `filtersOptions`
+
+```json
+{
+  ...
+  "__STATE__": {
+    ...
+    "filtersOptions": {
+      "hidden": false,
+      "availableOperators": ["equal"]
+    }
+}
+```
+
+|options | default | description |
+|--------|---------|-------------|
+|`hidden`| `undefined` | whether the property is shown within the filter-drawer and filters-manager components |
+|`availableOperators`|`undefined`| list of available operators for the field within the filter-drawer component |
+
+[Filters](core_concepts#filters) with `property` equal to a field with `filtersOptions.hidden` set to true can still be added (for instance, via a[add-filter](events#add-filter) event) and effectively query the dataset, but the user will not be able to see to interact with the filter.
 
 ### Lookups
 
@@ -713,7 +765,7 @@ configuration contains two parts
 2. `content`: the intended web page content in terms of HTML tags, either standard HTML5 or custom web components
 
 A minimal configuration that undergoes bootstrap procedure can be achieved, being `/v2/customers` the endpoint of a valid
-`Mia-Platform CRUD Service`, with the
+[Mia-Platform CRUD Service](../../runtime_suite/crud-service/overview_and_usage), with the
 following configuration:
 
 ```json
@@ -743,3 +795,13 @@ following configuration:
 
 After a standard bootstrap time, the page will send a `GET` requests for `_id`'s on the `customers` collection, a `GET`
 requests for dataset count, and will emit a [display-data](events#display-data) event. This ends the page bootstrap.
+
+
+## Styling
+In addiction to the color theme, it is possible to customize the following colors:
+- `--back-kit-box-shadow-color` : box shadow color of form fields such as input or select fields
+- `--back-kit-danger-color` : danger/error main color
+- `--back-kit-danger-color-hover` : danger/error hover color,
+- `--back-kit-danger-color-box-shadow` : box shadow color of form fields such as input or select fields, when they are in danger/error mode
+
+They are configurable in the css :root pseudo class

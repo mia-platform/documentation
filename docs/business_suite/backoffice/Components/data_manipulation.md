@@ -11,13 +11,31 @@ drawer containing a drag-and-drop area to handle file uploads/downloads
 <bk-file-picker-drawer></bk-file-picker-drawer>
 ```
 
+### Configuration for an array of files
 
+To use the `bk-fie-picker-drawer` with an array of file, it is necessary to pass the dataschema as a property in the configuration, otherwise the component will handle only one file at a time.
+
+Example of configuration
+```json
+  ...
+  {
+    "type": "element",
+    "tag": "bk-file-picker-drawer",
+    "properties": {
+      "dataSchema": {
+        "$ref": "dataSchema"
+      }
+    }
+  },
+  ...
+```
 
 ### Properties & Attributes
 
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
 |`mask`|`mask`|boolean|true|whether to mask or not the drawer |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`|`width`|number|500|width occupied by the component |
@@ -100,16 +118,16 @@ Generic form to edit or create items described by the `dataSchema`
 |`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table |
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`formId`|`form-id`|string| - |id of the form. This property should only be set programmatically. |
 |`formKindIfDisplayData`| - |"add" \\| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default) 
 |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
-|`onFieldsChange`| - |function| - |call-back to call upon changes in the form fields. This property should only be set programmatically. |
-|`onLoading`| - |function| - |call-back to call upon changes in the loading state of the form. This property should only be set programmatically. |
-|`onWizardStepAttempted`| - |function| - |call-back to call upon attempting to perform a step when in wizard mode. This property should only be set programmatically. |
+|`onFieldsChange`| - |Function| - | - |
+|`onLoading`| - |Function| - | - |
+|`onWizardStepAttempted`| - |Function| - | - |
 |`openingEvent`| - |OpeningEvent \\| OpeningEvent[]|[]|what opening event to listen to. If includes 'insert', `add-new` events will be listened to, if includes 'select', `selected-data` events will be listened to. |
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
 

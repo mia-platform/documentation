@@ -6,13 +6,6 @@ sidebar_label: Configuration
 In order to configure the **Teleconsultation Service**, you need to deploy two services: the **Teleconsultation Service Backend** and the **Teleconsultation Service Frontend**.
 Both are available in the Marketplace.
 
-## Teleconsultation Service Frontend Configuration
-
-In order to make the route accessible to the page where the teleconsultation will take place, you need to create an additional **endpoint** to expose that route.
-
-Example:
-1. Custom **endpoint** to expose teleconsultation-service-fe: `/telecons-fe`
-
 ## Teleconsultation Service Backend Configuration
 
 1. Create the Teleconsultation Service Backend to serve the APIs needed for the correct functionality of the Teleconsultation Service Frontend. To create the Teleconsultation Service Backend you can search for it in the Console Marketplace. Choose a name for the new service (e.g. teleconsultation-service-be).

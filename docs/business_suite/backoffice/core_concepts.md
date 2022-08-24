@@ -7,7 +7,7 @@ sidebar_label: Core concepts
 
 Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind
 of typography can be easily internationalized by passing a `LocalizedString` object containing specific translations according
-to `ISO 639-1 codes`.
+to [ISO 639-1 codes](https://www.loc.gov/standards/iso639-2/php/code_list.php).
 
 ```json
 {
@@ -29,7 +29,7 @@ Many components allow the user to build *dynamic queries*. Such queries are real
 of situation-specific data, such as, while clicking a button onto a given table row, the event must be intertwined with
 data of that row. In general, dynamic query output compiles to a URL query part.
 
-To achieve dynamic query logic, Back-Kit components use `handlebars syntax`
+To achieve dynamic query logic, Back-Kit components use [handlebars syntax](https://handlebarsjs.com/guide/expressions.html)
 and embed a web component property (often called `query`) to register a handlebar template. By default, a string is parsed
 by the handlebar parser without making any changes to it if no `{{}}`-syntax is present.
 
@@ -69,7 +69,7 @@ A basic external href link rendering in a browser new tab can be implemented as
 Property `href` can either be absolute or relative, `target` can be picked amongst `_blank`, `_self`, `_parent`, `_top`:
 most commonly either an href renders into the same window with `_self` or it opens a new tab with `_blank`.
 
-The `icon` properties allow to attach a `Fontawesome fas or far icon`
+The `icon` properties allow to attach a [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free)
 when the link is rendered by a component which support this interface.
 
 A web component that contains state or data might implement [dynamic queries](#queries). In this case the `href` can be
@@ -111,7 +111,7 @@ Operators can be selected from the following list:
 
 ```typescript
 type FilterFormOperator = |
-  'equals' |
+  'equal' |
   'doesNotEqual' |
   'contains' |
   'startsWith' |

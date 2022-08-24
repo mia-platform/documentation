@@ -19,35 +19,21 @@ The environment variables needed by the service are:
 - **SERVICE_PREFIX** (*optional*): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
 - **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
 - **REDIS_HOST** (*required*): the redis host, with the port;
-- **REDIS_USERNAME** (*optional*): the username to auth to redis;
-- **REDIS_PASSWORD** (*optional*): the password to auth to redis;
+- **REDIS_USERNAME** (*optional*): the username to authenticate to redis;
+- **REDIS_PASSWORD** (*optional*): the password to authenticate to redis;
 - **CONFIG_FILE_PATH** (*required*): the path to the configuration file. Do not include the file name;
-- **CONFIG_FILE_NAME** (*required*): the name to the configuration file. Do not include the full path and the extension;
-- **USERS_CRUD_BASE_URL** (*required*): base url of the internal endpoint of the CRUD service exposing the data of the users;
+- **CONFIG_FILE_NAME** (*required*): the name of the JSON configuration file. Do not include the extension;
+- **USERS_CRUD_BASE_URL** (*required*): base url of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
 - **MIA_JWT_TOKEN_SIGN_KEY** (*required*): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC at least of 512 bytes);
-- **MIA_JWT_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated access token expire;
+- **MIA_JWT_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated access token expires;
 - **PROVIDER_TOKEN_PASS_PHRASE** (*required*): a string used to encrypt the JWT (preferred an HMAC at least of 128 bytes);
-- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated refresh token expire;
-- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC** (*optional*): how many seconds before the expiration of refresh token it will be refreshed automatically;
+- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated refresh token expires;
+- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC** (*optional*): how many seconds before the expiration of refresh token will be refreshed automatically;
 - **ORIGINAL_PROTOCOL_HEADER** (*required*): header containing the protocol of the original request (http or https);
-- **ADDITIONALS_CA_FOLDER** (*optional*): folder which contains the ca of the OAuth2 identity providers, if it's not public;
+- **ADDITIONALS_CA_FOLDER** (*optional*): folder which contains the CA of the OAuth2 identity providers, if it's not public;
 - **ADDITIONAL_HEADERS_TO_PROXY** (*optional*): comma separated list of headers to proxy to the request to CRUD service.
 
-## Users collection
 
-To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the *USERS_CRUD_BASE_URL* environment variable. Remember to set the default state of the endpoint to *PUBLIC*.  
-
-Fields in the CRUD collection must be the following:
-
-| Field Name     | Field Type      | Required   |
-|----------------|:----------------|:-----------|
-| name           | String          |     ❌     |
-| groups         | Array of string |     ❌     |
-| username       | String          |     ❌     |
-| email          | String          |     ❌     |
-| providerId     | String          |     ✅     |
-| providerUserId | String          |     ✅     |
-| realm          | String          |     ✅     |
 
 ## Configurations file
 
@@ -106,6 +92,28 @@ Here an example of the service configuration:
   }
 }
 ```
+
+::info You can retrieve most of the URLs needed for the configuration from the [OpenID Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata) URL, usually exposed by the providers under the `/.well-known/openid-configuration` route. Refer to the provider documentation. ::
+
+## Users collection
+
+To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the *USERS_CRUD_BASE_URL* environment variable. Remember to set the default state of the endpoint to *PUBLIC*.
+
+Fields in the CRUD collection must be the following:
+
+| Field Name     | Field Type      | Required   |
+|----------------|:----------------|:-----------|
+| name           | String          |     ❌     |
+| groups         | Array of string |     ❌     |
+| username       | String          |     ❌     |
+| email          | String          |     ❌     |
+| providerId     | String          |     ✅     |
+| providerUserId | String          |     ✅     |
+| realm          | String          |     ✅     |
+
+The fields `groups`, `providerId`, and `realm` are obtained from the service configuration described above.
+
+The other optional fields are obtained, if available, from the provider's `/userinfo` endpoint.
 
 ## How to configure providers
 
@@ -213,7 +221,7 @@ This is a configuration example for an app using Okta Identity provider. Sobstit
 
 <TabItem value="microsoft" label="Microsoft">
 
-This is a configuration example for an app using Microsoft Identity provider.
+This is a configuration example for an app using a generic Microsoft Identity provider.
 
 ```json
 {
@@ -240,6 +248,59 @@ This is a configuration example for an app using Microsoft Identity provider.
   }
 }
 ```
+
+Here is an example of configuration of [Microsoft's Azure AD B2C](https://docs.microsoft.com/en-us/azure/active-directory-b2c/) identity management service:
+
+```json
+{
+  "apps": {
+    "web": {
+      "providers": {
+        "microsoft": {
+          "type": "microsoft",
+          "clientId": "<application-client-id>",
+          "clientSecret": "<client-secret>",
+          "authUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/oauth2/v2.0/authorize",
+          "tokenUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/oauth2/v2.0/token",
+          "userInfoUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/openid/v2.0/userinfo",
+          "baseUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/oauth2/v2.0/",
+          "scope": [
+            "openid",
+            "offline_access",
+            "<application-client-id>"
+          ]
+        }
+      },
+      "redirectUrl": "https://some-redirect/url",
+      "realm": "my-realm",
+      "defaultGroups": [
+        "some_group"
+      ],
+      "isWebsiteApp": true
+    }
+  }
+}
+```
+Please note that for this provider to work you need to create a custom policy that enables the `/userinfo` endpoint on *Azure portal*. The policy must include at least the sign in capability. Please refer to the [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-b2c/userinfo-endpoint?pivots=b2c-custom-policy) for a detailed explanation on how to setup it. 
+
+You probably also need to modify the `InputClaims` of the Userinfo configuration to map the returned properties names to the ones expected by the authorization service, in order for them to be saved correctly in the [users collection](#users-collection).
+
+To achieve this you have to add the `PartnerClaimType` attribute with the correct name, as shown in the following example:
+
+```xml
+                    <InputClaims>
+                        <InputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
+                        <InputClaim ClaimTypeReferenceId="givenName"/>
+                        <InputClaim ClaimTypeReferenceId="surname"/>
+                        <InputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
+                        <InputClaim ClaimTypeReferenceId="signInNames.emailAddress" PartnerClaimType="email" />
+                    </InputClaims>
+```
+
+Refer [to this section](https://docs.microsoft.com/en-us/azure/active-directory-b2c/userinfo-endpoint?pivots=b2c-custom-policy#provide-optional-claims) of the AD B2C documentation for a thorough explanation on how to do it.
+
+
+Furthermore, you must add the `clientId` in the `scope` array so that the `access_token` is correctly returned, as explained in the [documentation](https://docs.microsoft.com/en-us/azure/active-directory-b2c/access-tokens#openid-connect-scopes).
 
 </TabItem>
 

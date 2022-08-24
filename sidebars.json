@@ -1752,6 +1752,29 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Teleconsultation Service Frontend",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/teleconsultation-service-frontend/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/teleconsultation-service-frontend/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/teleconsultation-service-frontend/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/teleconsultation-service-frontend/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Temporary Password Generator",
               "items": [
                 {
@@ -1982,7 +2005,7 @@
         {
           "id": "release_notes/RN_v9-4/v9.4.3",
           "type": "doc"
-        },    
+        },
         {
           "id": "release_notes/RN_v9-4/v9.4.2",
           "type": "doc"
