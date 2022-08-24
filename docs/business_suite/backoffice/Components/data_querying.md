@@ -3,6 +3,41 @@ id: data_querying
 title: Data Querying
 sidebar_label: Data Querying
 ---
+## bk-export-modal
+
+Modal to allow user configuration of a data export task
+
+```html
+<bk-export-modal></bk-export-modal>
+```
+
+
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|export-data/awaiting-config|prompts modal opening| - | - |
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|export-data/user-config|notifies the bus of user config for next export data task|
+
+### Bootstrap
+
+None
+
 ## bk-filter-drawer
 
 This is the filter drawer
@@ -176,7 +211,7 @@ Searching lookup fields could be computationally heavy. The number of searchable
 | event | description |
 |-------|-------------|
 |[change-query](../events#change-query)|requires data filtered according with the typed input|
-|[search-lookups](../events#search-lookups)| - |
+|[search-lookups](../events#search-lookups)|notifies to search lookups against a text|
 
 ### Bootstrap
 

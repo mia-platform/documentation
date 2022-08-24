@@ -7,7 +7,9 @@ In this section, we show you how to use the `authentication-service`.
 
 ## Login flow
 
-The service handle the `authorization_code` OAuth2 grant type. To login with this flow, follow the following guide.
+The service handle the `authorization_code` OAuth2 grant type.
+
+Here is how to login with this flow.
 
 ### Authorize
 
@@ -26,6 +28,8 @@ Example of redirect URL:
 ```text
 https://platform-dev.test.mia-platform.eu/callback?code={{CODE}}&state={{STATE}}
 ```
+
+In case you are using a web app this request can be made directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
 
 ### Get token
 
@@ -50,3 +54,33 @@ and it will return a JSON object with *accessToken*, *refreshToken* and *expires
 ```
 
 If the `isWebsiteApp` field is set to true in the service configuration, it is returned a cookie header with key *sid*. In this way, it is possible to authorize all the request made by a website, for example.
+
+## Userinfo endpoint
+
+The service exposes a `/userinfo` endpoint, that returns some of the information obtained from the [users collection](configuration.mdx#users-collection)
+You can contact the endpoint in this way:
+```sh
+curl --location --request GET 'https://platform-dev.preprod.mia-platform.eu/authentication/userinfo' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <access_token>'
+```
+The endpoint returns a JSON containing the authenticated user's information, for example:
+```json
+{
+    "userId": "some-user-id",
+    "groups": [
+        "testgroup"
+    ],
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+}
+```
+### Integration with the ***Authorization Service***
+
+The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview.md) to determine whether the requested resource can be accessed by the current user.
+
+You need to set the following variables in the [configuration](../authorization-service/configuration.md) with these values:
+
+- **USERINFO_URL**=`http://authentication-service/userinfo` (NB: change the hostname if it has been named differently)
+- **CUSTOM_USER_ID_KEY**=`userId`
+- **HEADERS_TO_PROXY**=`x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host`

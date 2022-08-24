@@ -502,7 +502,7 @@ Using the following keys, it is possible to trigger a notification as a result o
 |`customEventMap`| - |NotificationsMap|{}|map containing the labels of any event that should be notified and the related `notificationProps` |
 |`duration`|`duration`|number| - |lingering time for the notification in seconds |
 |`errorEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `error` that should be notified with the related `notificationproperties` |
-|`location`| - |NotificationLocation|'topRight'|corner location where the notification should be displayed |
+|`location`| - |"topRight" \\| "topLeft" \| "bottomRight" \| "bottomLeft"|'topRight'|corner location where the notification should be displayed |
 |`rootElementSelectors`|`root-element-selectors`|string| - |selector to specify where the notification should be appended |
 |`successEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `success` that should be notified with the related `notificationproperties` |
 

@@ -10,6 +10,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.7] - 2022-08-03
+
+### Fixed
+
+- `bk-filters-manager` does not display filters with properties having `filtersOptions.hidden` equals to true
+
+
+### Added
+
+- danger colors can be controlled by global CSS variables
+- `bk-table` allows resizable columns using property `resizableColumns`
+- title and content of confirmation modals of `bk-table` row actions can now use the content of the row via Handlebars
+- `bk-file-picker` can be used to update fields of type `array` and format `file`
+- new components `bk-export-client` and `bk-export-modal`
+- Added `Export Service` frontend client to perform collection exports
+- Fixed trailing comma bug in `bk-crud-client` while adding MongoDB query filters in "$and" clauses
+- fields with type `number` support `currency` format
+
+
+## [1.0.6] - 2022-07-20
+
+### Fixed
+
+- fixed border-radius issue on select component in multiselect mode
+- fixed support to filters added at bootstrap time
+
+
+### Added
+
+- box-shadow color can be controlled by global CSS variables
+- new React component `MultipleFileCell`
+- `bk-table` has custom visualization for array of files
+- `bk-table` allows to specify `download` or `view` mode in prop `navigationRowActions`
+- added `appendTrailingSlash` property on `bk-crud-client`
+- Update Files Service interface on `bk-file-client` allowing for download with actual filename in Content-Disposition header field
+- `bk-form` and `bk-file-manager` support file array
+
+
 ## [1.0.5] - 2022-07-06
 
 ### Fixed
@@ -76,9 +114,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - nested objects visualization supports file upload/download
 
 
-### Added
+- `bk-table` has custom visualization for array of files
+- `bk-table` allows to specify `download` or `view` mode in prop `navigationRowActions`
 
-- `bk-table` supports `danger` in `rowActions` and `navigationRowActions`
 
 ## [1.0.1] - 2022-05-12
 

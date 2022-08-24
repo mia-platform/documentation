@@ -74,7 +74,7 @@ Follows a `schema` example that provides information on two fields, `_id` and `s
 ```
 
 :::info
-It is recommended to declare `dataSchema` using `JSON-Schema-7` syntax `$ref`, in order to declare it only once within the same *json* file.
+It is recommended to declare `dataSchema` using [JSON-Schema-7](https://json-schema.org/draft-07/json-schema-release-notes.html) syntax `$ref`, in order to declare it only once within the same *json* file.
 :::
 
 The first filed is `_id`.
@@ -359,7 +359,7 @@ The first `column` includes two nodes of type `element`:
 
 Both `element`s specify as `tag` a Back-Kit web component, [bk-navigation-back-arrow](Components/buttons#navigation-back-arrow) and [bk-breadcrumbs](Components/data_visualization#bk-breadcrumbs) respectively.
 For the latter, extra styling is provided, as well as a property `dataSchema`. It is possible to initialize properties of the web components using the `properties` option.
-In this particular case, the `dataSchema` property is initialized using `JSON-Schema-7` syntax `$ref`, which allows to declare the `dataSchema` only once within the same *json* file. It is recommended to utilize this approach when passing the `schema` to web components, as it allows more concise, easier to debug and understand configurations.
+In this particular case, the `dataSchema` property is initialized using [JSON-Schema-7](https://json-schema.org/draft-07/json-schema-release-notes.html) syntax `$ref`, which allows to declare the `dataSchema` only once within the same *json* file. It is recommended to utilize this approach when passing the `schema` to web components, as it allows more concise, easier to debug and understand configurations.
 
 ## Full configuration
 

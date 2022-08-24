@@ -66,7 +66,7 @@ A good configuration could be (in case `__STATE__` must be tunable by the user a
 Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
 
 :::info
-This web component is designed to handle `CRUD` operations towards `Mia-Platform CRUD Service`.
+This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../../runtime_suite/crud-service/overview_and_usage).
 :::
 
 ```html
@@ -80,6 +80,7 @@ This web component is designed to handle `CRUD` operations towards `Mia-Platform
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
+|`appendTrailingSlash`|`append-trailing-slash`|boolean|true|should append a trailingSlash to URLs |
 |`bootstrapTimeout`|`bootstrap-timeout`|number|TIMEOUT|value in ms before default bootstrap starts and no `change-query` was received |
 |`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
 |`enableDefinitiveDelete`|`enable-definitive-delete`|boolean|false|when `true`, http DELETE cannot be rolled back |
@@ -312,9 +313,109 @@ This component emits no event.
 
 None
 
+## bk-export-client
+
+Frontend client for mia's [Export Service](../../../runtime_suite/export-service/overview)
+
+```html
+<bk-export-client></bk-export-client>
+```
+
+This component implements the `Export Service` interface on top of `fetch` http client on the browser.
+
+It listens the `EventBus` to record the current state of the page:
+
+1. filters and query changes (that modify data shown by the `bk-crud-client`)
+2. counts the currently filtered items
+3. counts and records the user selection on a table
+
+According with `Export Service` it provides 2 modes:
+
+1. CSV
+2. Excel
+
+To open an export transaction it listens to an `export-data` event and return an `export-data/awaiting-config`
+event which carries along the following payload
+
+```typescript
+export type AwaitUserConfig = {
+  total?: number
+  selected?: number
+  columns: Option[]
+}
+```
+
+where `total` is the last count of queried items, `selected` is the count of currently selected items and 
+`columns` are selectable columns from the `DataSchema`
+
+a `Meta` contains the `transactionId` and must be re-cast when options are selected. An `export-data/user-config`
+event must then follow with payload
+
+```typescript
+export type ExportUserConfig = {
+  exportType: 'csv' | 'xlsx'
+  csvSeparator?: 'COMMA' | 'SEMICOLON'
+  filters: 'all' | 'filtered' | 'selected'
+  columns: string[]
+}
+```
+
+Once the config is received, the http client calls the `Export Service` and the download is completed natively by
+a service worker registered within the browser. The UI is not locked.
+
+To allow notifications in case of failure an `error` event is triggered.
+Add to `bk-notifications` the following error trigger
+
+```json
+{
+  ...,
+  "errorEventMap": {
+    "export-data": {
+      "title": "Error",
+      "content": "An error occurred while exporting data"
+    },
+    ...
+  }
+}
+```
+
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`exportInternalUrl`|`export-internal-url`|string| - | - |
+|`primaryKey`|`primary-key`|string|'_id'|primary key to filter selected data when `selected only export` option is enabled
+|
+|`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |
+|`dataSchema`| - |void| - |[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[export-data](../events#export-data)|opens a new export transaction|export-data/awaiting-config| - |
+|export-data/user-config|according to config, triggers an export|[success](../events#success)|[error](../events#error)|
+|[count-data](../events#count-data)|notifies the user on how many items would be exported on `filtered` export option| - | - |
+|[select-data-bulk](../events#select-data-bulk)|keeps track of user selections to prompt `selected` export option configuration| - | - |
+|[change-query](../events#change-query)|stores current collection filtering| - | - |
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|export-data/awaiting-config|registers a transaction and awaits for user configs|
+
+### Bootstrap
+
+None
+
 ## bk-file-client
 
-manages http requests towards an instance of `Mia Files Service` to upload/download/store files
+manages http requests towards an instance of [Mia Files Service](../../../runtime_suite/files-service/configuration) to upload/download/store files
 
 ```html
 <bk-file-client></bk-file-client>
@@ -327,7 +428,9 @@ manages http requests towards an instance of `Mia Files Service` to upload/downl
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-
+|`queryParams`| - |Record\<string, any\>|...|queryParams to be passed to the Files Service. According with documentation, it defaults to {"download": 1, "downloadWithOriginalName": 1}. To remove Content-Disposition with name and use it's
+_id as name, use only "download"
+|
 
 ### Listens to
 
@@ -381,7 +484,7 @@ Events marked as *transaction required* must carry a `meta` property with a regi
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|(../events#http-success)|terminate a successful registered transaction| - | - |
+|[http-success](../events#http-success)|terminate a successful registered transaction| - | - |
 |[update-data-with-file](../events#update-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../events#upload-file)| - |
 |[create-data-with-file](../events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../events#upload-file)| - |
 |[create-data-with-file](../events#create-data-with-file)|initiates an upload file transaction attaching a unique ID and attempting upload file to the storage service|[upload-file](../events#upload-file)| - |

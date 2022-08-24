@@ -62,6 +62,17 @@ To confirm the payment and actually deduct the amount to the user wallet, simply
 Payments that use Braintree as gateway don't need to call the /check endpoint in order to verify the status of the payment processing,
  as their status is automatically confirmed through the Nonce payment method sent by the frontend applications.:::
 
+GestPay has the ability to override the default URLs where the user will be redirected in case of success or failure.  
+For this to work, you have to specify the following optional fields in the /pay request body:
+```
+{
+    "successRedirect": "https://example.com/ok",
+    "failureRedirect": "https://example.com/ko",
+    "serverRedirect": "https://example.com/callback"
+}
+```
+
+
 ## 2) M2M Callback Transaction Verification
 
 When the transaction result is known by the `generic-provider`, the latter may notify the `Payment Gateway Manager` 

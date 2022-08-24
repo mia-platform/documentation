@@ -17,7 +17,7 @@ Renders a calendar to manage appointments.
 |----------|-----------|------|----------|----------|---------|-------------|
 |`additionalCreatePayload`| - |{ [x: string]: any; }| - | - |{}|data that should be passed in the payload of a new event alongside `startDate` and `endDate`|
 |`date`| - |Date| - | - |new Date()|current date of the calendar|
-|`height`|`height`|string| - | - | - |css-height the calendar should occupy in the page as described here: |
+|`height`|`height`|string| - | - | - |css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height]|
 |`view`| - |"agenda" \\| "day" \| "month" \| "week" \| "work_week"| - | - |'month'|current view of the calendar. Possible values are `month`, `week`, or `day`|
 
 
@@ -72,7 +72,8 @@ Displays a dataset in rows and columns according to a given `data schema`.
 |`loadingOnStart`|`loading-on-start`|boolean| - | - |true| - |
 |`maxLines`|`max-lines`|number| - | - | - |force lines that will be displayed together|
 |`navigationRowActions`| - |{ kind: "cta" \\| "icons"; actions: NavigationDataAction[]; }| - | - |DEFATULT_NAV_ACTIONS|actions in nested objects.|
-|`openFileInViewerRegex`| - |string[]|true| - | - |list of regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer.|
+|`openFileInViewerRegex`| - |string \\| string[] \| { [x: string]: "view" \| "download"; }|true| - | - |regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer (default) or is downloaded.|
+|`resizableColumns`|`resizable-columns`|boolean| - | - |false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
 |`rowActions`| - |DataActions| - | - | - |list of actions to render per row|
 - `browseOnRowSelect` accepts an object such as
 >
@@ -203,7 +204,7 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > | `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
 > | `content` | string | any | when `event` it must be the label of a [registered event](../events), otherwise the `POST` request destination href |
 > | `label` | string| any | a label to render with the row action button |
-> | `icon` | string | any | `Fontawesome fas or far icon` |
+> | `icon` | string | any | [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free) |
 > | `meta` | object | any | the event `meta` when `kind` is `event` |
 > | `requireConfirm` | `object` or 'boolean' | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
 >
@@ -211,9 +212,9 @@ Displays a dataset in rows and columns according to a given `data schema`.
 > | property | type | values | description |
 > |----------|------|--------|-------------|
 > | `cancelText` | [localizedText](../core_concepts#localization-and-i18n) | any | Cancel button label |
-> | `content` | [localizedText](../core_concepts#localization-and-i18n) | any | Text content of the modal |
+> | `content` | [localizedText](../core_concepts#localization-and-i18n) | any | Text content of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
 > | `okText` | [localizedText](../core_concepts#localization-and-i18n) | any | Confirm button label |
-> | `title` | [localizedText](../core_concepts#localization-and-i18n) | any | Title of the modal |
+> | `title` | [localizedText](../core_concepts#localization-and-i18n) | any | Title of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
 
 
 ### Listens to
@@ -388,7 +389,7 @@ Title, subtitle and badge can be internationalized using `LocalizedText` which i
 }
 ```
 ::info
-Available icons are ``@ant-design/icons`` or any `fontawesome public solid or regular icon`.
+Available icons are [`@ant-design/icons`](https://ant.design/components/icon) or any [fontawesome public solid or regular icon](https://fontawesome.com/v5/search?m=free&s=solid%2Cregular).
 :::
 :::info
 Icons are dynamically imported to reduce bundle size. So if you don't use you don't download it.

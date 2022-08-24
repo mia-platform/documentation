@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 ![Frontend overview](img/frontend.jpg)
 
-Back-Kit library provides a full set of `W3C Web Components`.
+Back-Kit library provides a full set of [W3C Web Components](https://www.w3.org/TR/components-intro/).
 
 ```html
 <div>
@@ -15,7 +15,7 @@ Back-Kit library provides a full set of `W3C Web Components`.
 ```
 
 Packed within a configuration file, a set of components creates a **layout** that can be plugged in a rendering engine,
-for instance a `composer` such as `microlc-element-composer`.
+for instance a `composer` such as [microlc-element-composer](https://microlc.io/documentation/docs/micro-lc/core_plugins#microlc-element-composer).
 
 At runtime, when a customized configuration is injected, components are enriched with properties.
 
@@ -25,7 +25,7 @@ amongst web components which in return provides isolation for each of them.
 
 :::info
 microlc-element-composer sets properties `currentUser` and `eventBus` on each rendered component, injecting respectively
-the authenticated user, if any, and an instance of a `rxjs ReplaySubject`
+the authenticated user, if any, and an instance of a [rxjs ReplaySubject](https://rxjs.dev/api/index/class/ReplaySubject)
 as communication channel.
 :::
 

@@ -19,11 +19,11 @@ At configuration time, 4 services will be spawned:
 
 Be aware of the fact that the following services:
 
-- `API Gateway`
-- `Microservice Gateway`
+- [API Gateway](../../runtime_suite/envoy-api-gateway/overview)
+- [Microservice Gateway](../../runtime_suite/microservice-gateway/overview)
 
 are not provided by the application. You can simply add them, without extra config,
-from `Mia Marketplace`.
+from [Mia Marketplace](../../marketplace/overview_marketplace).
 
 :::
 
@@ -33,7 +33,7 @@ That's enough to get started with the application configuration
 
 ## Configuration
 
-To get started on Backoffice configuration on your local machine consider following the `tutorial`.
+To get started on Backoffice configuration on your local machine consider following the [tutorial](https://github.com/micro-lc/backoffice-local).
 This will allow you to spawn a docker-compose equivalent environment on your machine and test configuration edits by simply refreshing your
 browser.
 
@@ -260,7 +260,7 @@ The `shared` section of the file
 
 includes information such as HTTP headers, which may propagate cookies or other settings to manage HTTP calls.
 
-Thirdly, the `rightMenu` section allows to specify the content of a right menu. In the example, a `notification center` component is specified.
+Thirdly, the `rightMenu` section allows to specify the content of a right menu. In the example, a [notification center](https://github.com/micro-lc/micro-lc-notification-center) component is specified.
 
 Finally, `plugins`
 
