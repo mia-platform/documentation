@@ -211,6 +211,7 @@ Then, you have to create a configuration file `kafkaProjectionChanges.json` insi
     "MY_PROJECTION": {
         "projectionChanges": {
             "MY_SINGLE_VIEW": {
+                "strategy": "MY_STRATEGY", 
                 "topic": "MY_TOPIC",
             }
         }
@@ -222,6 +223,7 @@ where:
 
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
+- `MY_STRATEGY` is the strategy to be used to get the identifier of the Single View to update. It could be the name of a file or, in case an automatic strategy, the string `__automatic__`.
 - `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](../../inputs_and_outputs.md#topic-for-svc-trigger))
 
 Example:
@@ -231,6 +233,7 @@ Example:
     "registry-json": {
         "projectionChanges": {
             "sv_pointofsale": {
+                "strategy": "__automatic__",
                 "topic": "my-tenant.development.my-database.sv-pointofsale.sv-trigger",
             }
         }
@@ -238,6 +241,7 @@ Example:
     "another-projection": {
         "projectionChanges": {
             "sv_customer": {
+                "strategy": "__fromFile__[myStrategy]",
                 "topic": "my-tenant.development.my-database.sv-customer.sv-trigger"
             }
         }
