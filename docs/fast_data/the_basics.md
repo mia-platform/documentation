@@ -4,10 +4,6 @@ title: The Basics
 sidebar_label: The Basics
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 This page contains information about the main concepts and entities of Fast Data. Before going through other sections be sure to have an overall understanding of the topics presented here.
 
 ## System of Records (SoR)

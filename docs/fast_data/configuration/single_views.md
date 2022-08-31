@@ -4,10 +4,6 @@ title: Single Views Configuration
 sidebar_label: Single Views
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this document we guide you through the configuration of [Single Views](../the_basics.md#single-view-sv) directly in the Console.
 
 ## Create the Single View

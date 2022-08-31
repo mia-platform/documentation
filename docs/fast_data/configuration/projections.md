@@ -4,10 +4,6 @@ title: Projections Configuration
 sidebar_label: Projections
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this document we guide you through the configuration of [Projections](../the_basics.md#projection) directly in the Console.
 
 ## Create a System of Records

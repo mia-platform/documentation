@@ -4,10 +4,6 @@ title: What is Fast Data
 sidebar_label: What is Fast Data
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this page you will learn what is *Fast Data*, which **business problems it solves**, what are its main concepts, how it is **different from similar products**, and why you should keep all your **data organized and available** in near real time, **24/7**.
 
 ## Product overview

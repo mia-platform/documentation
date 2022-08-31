@@ -4,10 +4,6 @@ title: Architecture
 sidebar_label: Architecture
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this page, you will find:
 * An overview of the services and technologies used in a Fast Data system; 
 * A discussion over the architecture.
