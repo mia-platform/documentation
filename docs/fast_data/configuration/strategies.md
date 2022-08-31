@@ -4,10 +4,6 @@ title: Strategies Configuration
 sidebar_label: Strategies
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this document we guide you through the configuration of [Strategies](../the_basics.md#strategies) directly in the Console.
 
 ## Write your strategies

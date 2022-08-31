@@ -4,10 +4,6 @@ title: Cast Functions Configuration
 sidebar_label: Cast Functions
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this document we guide you through the configuration of [Cast Functions](../the_basics.md#cast-function) directly in the Console.
 
 ## Default Cast Functions

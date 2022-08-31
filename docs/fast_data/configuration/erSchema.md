@@ -4,10 +4,6 @@ title: ER Schema Configuration
 sidebar_label: ER Schema
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 In this document we guide you through the configuration of the ER Schema, one of the configuration files required by the [Single View Creator](../architecture.md#single-view-creator-svc), [Real Time Updater](../architecture.md#real-time-updater-rtu) and [Single View Trigger](../architecture.md#single-view-trigger-svt) in a low-code situation.
 
 ## Overview

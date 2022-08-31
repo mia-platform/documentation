@@ -4,10 +4,6 @@ title: Inputs and Outputs
 sidebar_label: Inputs and Outputs
 ---
 
-<head>
-   <meta name="robots" content="noindex, nofollow" />
-</head>
-
 This page presents all the different inputs and outputs that revolve around the Fast Data ecosystem, including both the core user data in Projections and Single Views, and the events concerning errors, successful data generation, and so on.
 
 Throughout the document we will describe the messages providing a natural language description, an **example**, and for Kafka messages an [AsyncApi](https://www.asyncapi.com/) specification.
