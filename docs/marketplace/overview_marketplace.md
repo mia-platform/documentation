@@ -1,55 +1,60 @@
 ---
 id: overview_marketplace
 title: The Marketplace
-sidebar_label: Why take advantage of the Markeplace?
+sidebar_label: Why take advantage of the Marketplace?
 ---
 ## Why always start from scratch
 
-The Mia-Platform Marketplace contains several code resources to develop your microservices with Mia-Platform.
+The Mia-Platform Marketplace contains several code resources which help you develop your architecture faster.
 
-You can access the Mia-Platform Marketplace from the *Design area* of *Console*, when you are [creating a new microservice](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+In the Marketplace, you will be able to choose from a set of components (mostly powered and supported by Mia-Platform) to easily set up a single microservice or a bundle of resources **with predefined and tested functionalities**.
 
-You will see a set of [Plugins](../runtime_suite/mia-platform-plugins.md), [Examples](./examples/mia_examples.md), [Templates](./templates/mia_templates.md) and [Applications](./applications/mia_applications.md) powered and supported by Mia-Platform, you can choose from to easily set-up a single microservice or a bundle of microservices with predefined and tested functionalities.
+Marketplace components you can start from include:
 
-You can go deeper into the code of templates and examples visiting the [Mia-Platform Marketplace Github page](https://github.com/mia-platform-marketplace).
+* **[Plugin](../runtime_suite/mia-platform-plugins.md)**: a ready-to-use Microservice.  
 
-You can start from a:
+* **[Template](./templates/mia_templates.md)**: a base repository from which you can start to create a new Microservice.  
 
-* **Plugin**: a ready-to-use Microservice.  
-Check out the [Plugins section](../runtime_suite/mia-platform-plugins.md) for further information.
+* **[Example](./examples/mia_examples.md)**: a specific use-case, a ready-to-use model to create your Microservice.
 
-* **Template**: a base repository from which you can start to create a new Microservice.  
-Check out the [Templates section](./templates/mia_templates.md) for further information.
+* **[Application](./applications/mia_applications.md)**: a bundle of resources including Plugins, Templates, and Examples, but also Endpoints, Collections, and Public Variables.
 
-* **Example**: a specific use-case, a ready-to-use model to create your microservice.  
-Check out the [Examples section](./examples/mia_examples.md) for further information.
+* **Docker Image Name**: an existing Docker image of a Microservice (check out the [Create a service](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) section for further information).
 
-* **Docker Image Name**: an existing Docker image of a Microservice.  
-Check out the [Create services section](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) for further information.
 
-* **Application**: a bundle of resources including Plugins, Templates and Examples.
+:::info
+You can go deeper into the code of Templates and Examples by visiting the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform-marketplace).
+:::
 
-You can search for Microservices, filtering by type: Plugins, Templates, Examples and/or Applications.
+### Explore the Marketplace
 
-Otherwise, you can search for them by category.
+You can access the Mia-Platform Marketplace from the *Design area* of the *Console*, either when you are [creating a new microservice](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template) or creating a new application.
 
-The results of your search will appear **organized by category**.
+:::note
+In the first case, you will be able to filter by one of the following component types: Plugins, Templates, and Examples. 
 
-![new-examples](./../development_suite/api-console/api-design/img/Marketplace-categories.PNG)
+In the second case, you will only be able to see components of Application type. 
+:::
 
-## Marketplace component lifecycle
+In both cases, you will be able to filter components by **category**, a property reflecting the purpose, the field, or the use-case a component is associated with (e.g. Data visualization). 
 
-Each Marketplace component has a predetermined **development lifecycle**.
+The results of your search will always appear organized by category.
+
+![new-examples](./img/marketplace.png)
+
+## Marketplace components lifecycle
+
+Each Marketplace component has a predetermined **development lifecycle**:
 
 ![lifecycle-stages](./img/component-lifecycle-final.png)
 
-These are the expected stages along the component lifecycle:
+The following are the expected stages along a Marketplace component lifecycle:
 
-* **Coming soon**: this label aims to inform Marketplace users about the existence of a new component whose implementation has just started (these components are not usable)
+* **Coming soon**: implementation has just started, these components cannot be used yet (users can still be informed about the existence of a new component)
 
-* **Preview**: first usable release, there may be bugs and they may be subject to undocumented breaking changes
+* **Preview**: first usable release, components may include bugs and be subject to undocumented breaking changes
 
-* **Beta**: the implementation is completed and there cannot be any undocumented breaking changes however there could still be bugs, hence it must be used carefully
+* **Beta**: implementation is complete, these components won't be subject to any undocumented breaking change but may still include bugs (hence they must be used with caution)
 
-* **Stable**: the implementation is stable (bug free). Consequently, this stage represents the component period before its official release documented in the release note
+* **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.
 

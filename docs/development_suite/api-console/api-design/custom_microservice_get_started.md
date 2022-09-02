@@ -16,7 +16,7 @@ In the Console, follow these steps:
 
  1. Go to `Design section` and click on `Microservices`
  2. Click on `Create a Microservice`:  
-   ![new-examples](./img/Marketplace-categories.PNG)
+   ![new-examples](./img/Marketplace-categories.png)
    You can search for a template, adding `Templates` to types filter. Each template belongs to specific **Category**. You can filter by category using `Filter by categories` filter.
  3. Select a Template and add the Microservice information:
       * **Name of the Microservice** (*required*): this is the internal hostname
