@@ -24,7 +24,7 @@ You can create a Microservice by:
 
 * **uploading a Docker Image Name**: an existing Docker image of a Microservice
 
-![new-examples](./img/Marketplace-categories.PNG)
+![new-examples](./img/Marketplace-categories.png)
 
 You can search for Microservices, filtering by Plugins, Templates and/or Examples.
 
