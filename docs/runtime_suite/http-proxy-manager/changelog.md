@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.5.0 - 1/09/2022
+
+### Added
+
+- Support to [dynamic configuration](https://git.tools.mia-platform.eu/platform/core/proxy-manager/-/issues/4): proxies are fetched from a CRUD collection 
+
 ## 1.4.1 - 31-07-2022
 
 ### Fixed

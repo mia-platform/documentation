@@ -79,7 +79,8 @@ Creates a new user in the `users` CRUD collection and in the chosen authenticati
 
 :::note
 In case the user group has the `authUserCreationDisabled` property set to `true` in the configuration CRUD,
-no user is created in the authentication service (only the CRUD collection element is created).
+no user is created in the authentication service (only the CRUD collection element is created)
+and no roles are assigned to the user (in case Rönd is enabled).
 :::
 
 #### Body
@@ -88,7 +89,8 @@ This request accepts the following 'standard' fields:
 - **username** - `string`: the user username;
 - **email** - `string`: the user email address;
 - **blocked** - `boolean`: to create a 'blocked' user;
-- **userGroup (required)** - `string`: the group to which the user belongs.
+- **userGroup (required)** - `string`: the group to which the user belongs;
+- **roles** - `array`: the roles to be assigned to the user via Rönd.
 
 Additional fields can also be added to the body, depending on the `users` CRUD collection.
 All these additional fields must be defined in the schema stored in the `ums-config` CRUD collection.
@@ -100,6 +102,11 @@ If this operation succeeds the user is also created in the chose authentication 
 with the `authUserId`.
 In case one of these two operations fail, the user creation is backtracked (the entry in the CRUD is removed and the
 user is removed from the authentication service) and and error is returned.
+:::
+
+:::note
+If the environment variable `ROND_ENABLED` is set to true and in the request body is present the array **roles**, 
+a request towards the Rönd service is performed in order to set the roles and permissions.
 :::
 
 #### Response
@@ -120,11 +127,16 @@ Creates a new user in the `users` CRUD collection from an existing user in the c
 This request accepts the following 'standard' fields:
 - **authUserId** - `string`: the user id in the authentication service.
 - **blocked** - `boolean`: to create a 'blocked' user;
-- **userGroup (required)** - `string`: the group to which the user belongs.
+- **userGroup (required)** - `string`: the group to which the user belongs;
+- **roles** - `array`: the roles to be assigned to the user via Rönd.
 
 Similarly to the [POST /users/](#POST-/users/), additional fields can also be added to the body
 and must be defined in the schema stored in the `ums-config` CRUD collection.
 Validation is also performed against such schema.
+
+:::note
+If the environment variable `ROND_ENABLED` is set to true a request towards the Rönd service is performed in order to set the user's roles and permissions.
+:::
 
 #### Response
 
@@ -163,6 +175,14 @@ The `id` used as path parameter in this endpoint is the CRUD `_id` of the desire
 The user schema is validated against the new `userGroup` if set, otherwise against the actual `userGroup`. If a non-existing `userGroup` is set, the PATCH throws a Bad request.
 
 It's not allowed to change `authUserId` parameter.
+:::
+
+:::note
+If the environment variable `ROND_ENABLED` is set to true a request towards the Rönd service is performed in order to update the user's roles and permissions.
+:::
+
+:::warning
+If the roles are successfully revoked but an error happen during the grant procedure, you will end up with an user with no roles. So, if an error occurred, be sure to check that the user have its roles.
 :::
 
 ### Body

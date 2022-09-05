@@ -41,6 +41,16 @@ The configuration collection needs the following service-specific fields.
 - **label (required)** - `string`: label displayed in the Backoffice lookup.
 - **authUserCreationDisabled** - `boolean`: if `true`, it disables the user creation in the authentication service for the given group (the user is only created in the CRUD).
 
+## Rönd Integration
+
+The User Manager Service requires that the Rönd Service is deployed and configured as a `STANDALONE` service.
+It is mandatory to specify the `MONGODB_URL` in order to create the Roles and Bindings collections and to add the array field `roles` when creating the **crudSchema** as specified in the previous paragraph. 
+For more information on how to correctly setup Rönd visit the following [page](https://rond-authz.io/docs/configuration).
+
+:::note
+The integration with Rönd is not mandatory and can be enabled or disabled through the `ROND_ENABLED` environment variable.
+:::
+
 ## Environment variables
 
 The User Manager Service accepts the following environment variables.
@@ -61,6 +71,8 @@ The User Manager Service accepts the following environment variables.
 - **AUTH_CONNECTION (required)**: name of the auth service database (e.g. for Auth0 can be `Username-Password-Authentication`).
 - **USERINFO_ADDITIONAL_PROPERTIES**: a comma separated string, representing the CRUD user properties that must be returned with the
   `/userinfo` endpoint.
+- **ROND_ENABLED**: if `true` allows the UMS to integrate with Rönd. It defaults to `false` if not set.
+- **ROND_SERVICE**: the name of the Rönd service, it defaults to `rond-service` if not set.
 
 The User Manager Service also inherits the custom-plugin-library standard environment variables.
 The `ADDITIONAL_HEADERS_TO_PROXY` environment variable must contain `cookie` in order to make the `/userinfo`
