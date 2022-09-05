@@ -7,26 +7,27 @@ This service proxies http calls to external services.
 
 ## Environment variables
 
-The service needs the following environment variable:
+The service use the following environment variable:
 
-- **CONFIGURATION_PATH** (required): the file path of the service configuration file
-- **CONFIGURATION_FILE_NAME** (required): the filename of the service configuration file (without the extension)
+- **CONFIGURATION_PATH** (required for *static* configuration): the file path of the service configuration file;
+- **CONFIGURATION_FILE_NAME** (required for *static* configuration): the filename of the service configuration file (without the extension);
+- **CONFIGURATION_URL** (required for *dynamic* configuration): the url of the CRUD collection with the service configuration;
+- **PROXY_CACHE_TTL** (optional, default to `0`): the time to live (in seconds) of cached proxy configurations. This is used only with *dynamic* configuration.
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 - **HTTP_PORT** (optional, default to `8080`): port where the web server is exposed;
 - **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
-- **ALLOW_PROXY_OPTIMIZER** (optional, default to `false`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is stronly suggested to configure the token validation endpoint in your proxy configuration
+- **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
 
 :::caution
 **ALLOW_PROXY_OPTIMIZER** will be dismissed with the next major release. The not optimized proxy functionality and the retry feature is deprecated and will be dismissed too.
 :::
-## Configuration
+## Static configuration
 
 This service requires a configuration file that provides all the different details regarding the external services to be proxied.
 The configuration file can be mounted into the service either as a *ConfigMap* or as a *Secret* (for more details, please refer to this [documentation](../../development_suite/api-console/api-design/services#custom-configuration)).
 
 :::caution
-
 In case the former method (*Config Map*) is selected, please use [variables interpolation](../../development_suite/api-console/api-design/services#environment-variable-configuration) for sensitive data, such as:
 
 - username
@@ -35,7 +36,6 @@ In case the former method (*Config Map*) is selected, please use [variables inte
 - clientSecret
 
 This prevents to store those sensitive values as plain text in the project repository.
-
 :::
 
 The configuration must follow this schema:
@@ -131,6 +131,24 @@ A proxy can have the following fields:
 :::caution
 **tokenIssuerValidationUrl** and **tokenIssuerUrl** will be dismissed with the next major release.
 :::
+
+## Dynamic configuration
+
+The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema defined before.
+
+:::caution
+The *dynamic configuration* has the technical limitation of using just the first path component as **basePath**. This limitation comes from the inability to determine the CRUD's search query.
+
+**E.g.**: given a request with path `/one/two/three`, the **basePath** searched on CRUD is `/one`.
+:::
+
+In order to configure correctly the CRUD collection, you can **import the fields from this [file](./crud.fields.json)**. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
+
+### Recommendations
+
+It is recommended to add the following indexes to your CRUD collection:
+- a *unique* index for field **basePath** (to guarantee proxy uniqueness),
+- a search index for fields **basePath** and **__STATE__** (to improve performances).
 
 ## Configuration example
 

@@ -8,6 +8,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] 2022-08-29
+
+### Added
+
+- Created Rönd Client
+- Binding creation when the user is created
+- Binding update when the user roles are updated
+ 
 ## [1.0.3] 2022-06-28
 
 - Updated custom-plugin-library to version 5.0.0. This updating fixes bugs related to client-type and client-key headers.
