@@ -22,6 +22,7 @@
       "configmaps",
       "cqrs",
       "ddos",
+      "decompressor",
       "dependabot",
       "deserialization",
       "dind",
@@ -204,7 +205,8 @@
     "alloc",
     "exfiltrate",
     "teleconsultationroomid",
-    "envfile"
+    "envfile",
+    "repos"
   ],
   "dictionaries": [
     "softwareTerms",

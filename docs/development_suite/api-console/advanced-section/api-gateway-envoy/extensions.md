@@ -302,6 +302,8 @@ HTTP filters sorting is critical, as it changes the order in which the various f
 
 - `envoy.filters.http.local_ratelimit`: 1
 - `envoy.filters.http.ratelimit`: 10
+- `envoy.filters.http.compressor`: 20
+- `envoy.filters.http.decompressor`: 21
 - `default`: 50
 - `envoy.filters.http.rbac`: 60
 - `envoy.filters.http.ext_authz`: 70
