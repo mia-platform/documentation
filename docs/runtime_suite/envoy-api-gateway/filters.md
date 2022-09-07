@@ -21,12 +21,6 @@ Among network filters, a crucial one is undoubtedly the [HTTP connection manager
 
 Envoy provides filters to implement **compression** and **decompression** for requests and responses. By default, our Envoy API Gateway supports this feature and is already set up for working with **[zlib](https://zlib.net/)** (Gzip) and **[Brotli](https://brotli.org/)** libraries.
 
-:::warning
-Compressors and decompressors must be placed in a **specific order** in the filter chain to function properly. In particular, they must be **prioritized** over all the other available filters (except global and local rate limit) to avoid any interaction that may interfere with the compression process. 
-
-Check [this section](../../development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#http-filters) to view the default order of filters in the filter chain.
-:::
-
 ### Rate limit
 
 Envoy offers extensive support for the configuration of both **global** and **local rate limit**.
