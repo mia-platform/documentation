@@ -90,5 +90,10 @@ In order to perform this action, you have to click on the "Merge from another br
 
 This will open a modal where the two different branches are shown; each branch will open up two editors displaying the other branch you have chosen (on the left) and your actual branch (on the right). Subsequently, from this modal, you can manage diffs and then confirm your merge in the same way as described above.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '340px'}}> 
 
 ![Merge from another branch](img/merge-collaboration/merge-from-another-branch.png)
+
+  </div>
+</div>
