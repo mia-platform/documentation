@@ -87,7 +87,7 @@ If you do not want to perform the merging process, you can alternatively decide 
 
 #### Error in the retrieval of the configuration
 
-In this case an error message will be shown in the branch popover and you may need to reload the page or contact your Project Administrator.
+In this case, an error message will be shown in the branch popover and you may need to reload the page or contact your Project Administrator.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
