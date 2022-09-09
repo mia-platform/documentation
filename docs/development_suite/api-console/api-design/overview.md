@@ -6,7 +6,7 @@ sidebar_label: Design Overview
 
 The Design section allows you to modify the configuration and architecture of your project by customizing the use of various resources such as CRUD, Microservices, Endpoints and much more.
 
-![Design Section](./img/design_section_overview.png)
+![Design Area](./img/design-area-overview.png)
 
 Using the sidebar it is possible to navigate between the different sections of the Console, and design your project as you prefer.
 
