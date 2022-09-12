@@ -60,6 +60,16 @@ If you want, you can choose to discard your local changes.
   </div>
 </div>
 
+To see the specific changes you have brought to the configurations, it is possible to click on the link to your local changes that will open a modal as shown in the following image, highlighting them.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '780px'}}> 
+
+![Unsaved local changes modal](./img/branch-status-unsaved-local-changes-modal.png)
+
+  </div>
+</div>
+
 #### A remote commit has been performed
 
 In this case, you have not applied any local changes yet, but someone else has already committed new ones on the same branch.
