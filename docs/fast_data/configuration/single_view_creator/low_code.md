@@ -15,9 +15,8 @@ Here you can see a visual representation of the ER schema.
 
 ## Single View Key
 
-The configuration contains the `singleViewKey.json` file. The input of this configuration is the projection changes identifier and the output is the query to be applied on the Single View. 
+The configuration contains the `singleViewKey.json` file. This file creates a mapping between the Single View primary field, which is its unique id, and the identifier field which is the projection's one. 
 
-To use the configuration, a mapping between the identifier field and the single view field is needed.
 An example:
 
 ```json
@@ -29,7 +28,7 @@ An example:
 
 where:
 
-- `sv_id` is the name of the single view's key 
+- `sv_id` is the name of the Single View's primary key 
 - `ID_USER` is the field's name inside the identifier
 
 ## ER Schema
@@ -735,50 +734,6 @@ After that, it will need to resolve the `ALLERGENS` dependency. To do that, it w
 It will then get all the `allergens_registry` entries matching the condition (which is the one with `ID_USER` equal to `1`, the id of the single view to update).
 At this point, we have two documents: eggs, and fish. For each of those documents, the mapping will be applied, and the resulting single view will have its `allergens` field mapped to an array containing those two values.
 
-## Read from multiple database on the same server
-
-In order to read data from multiple database you need to leverage on custom function from the mapping configuration.  
-Make sure your service user has permission to read data from the other database.  
-
-First of all create a custom function file as configMap where you access to the database you need by selecting it via `.db('database-name')`:
-
-```javascript
-// fieldFromSecondDB.js
-module.exports = async function (logger, clientMongo, dependenciesMap){
-    return clientMongo.db('my-second-db-name').collection('collection').findOne();
-}
-```
-
-Then you can use the custom function in the mapping configuration:
-
-```json
-{
-   "version":"1.1.0",
-   "config":{
-      "SV_CONFIG":{
-         "dependencies":{
-            "PEOPLE":{
-               "type":"projection",
-               "on":"_identifier"
-            },
-            "MARRIAGE":{
-               "type":"projection",
-               "on":"PEOPLE_TO_MARRIAGE"
-            },
-            "PEOPLE":{
-               "type":"projection",
-               "on":"MARRIAGE_b_TO_PEOPLE"
-            }
-         },
-         "mapping":{
-            "name":"PEOPLE.name",
-            "marriedWith":"PEOPLE.name",
-            "fieldFromSecondDB":"__fromFile__[fieldFromSecondDB]"
-         }
-      }
-   }
-}
-```
 
 ## Read from multiple database server
 
@@ -816,7 +771,7 @@ Then in a custom function file you can retrive the connected client and use it f
 // fieldFromSecondDB.js
 const getClient = require('./secondDB.js')
 
-module.exports = async function (logger, clientMongo, dependenciesMap){
+module.exports = async function (logger, db, dependenciesMap){
     const client = await getClient()
     return client.db().collection('collection').findOne();
 }
