@@ -1981,6 +1981,10 @@
       "type": "doc"
     },
     {
+      "id": "paas/K8s_roles_and_permissions",
+      "type": "doc"
+    },
+    {
       "label": "Tools",
       "type": "category",
       "collapsed": false,
