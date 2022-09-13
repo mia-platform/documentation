@@ -2007,6 +2007,10 @@
         {
           "id": "paas/kube-green",
           "type": "doc"
+        },
+        {
+          "id": "paas/cert-manager",
+          "type": "doc"
         }
       ]
     }
