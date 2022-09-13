@@ -139,7 +139,8 @@
       "Iframes",
       "tini",
       "WHATWG",
-      "JWTs"
+      "JWTs",
+      "clusters"
   ],
   "ignoreWords": [
     "authz",
@@ -206,7 +207,11 @@
     "exfiltrate",
     "teleconsultationroomid",
     "envfile",
-    "repos"
+    "repos",
+    "resourcequotas",
+    "statefulsets",
+    "ingressroutetcps",
+    "containo"
   ],
   "dictionaries": [
     "softwareTerms",
