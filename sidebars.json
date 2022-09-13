@@ -195,8 +195,23 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/env-var",
-          "type": "doc"
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-intro",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-vault",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Environment Variables",
+          "type": "category"
         },
         {
           "id": "development_suite/set-up-infrastructure/ranges-and-quotas",

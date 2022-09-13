@@ -12,7 +12,7 @@ In this tutorial we'll see how to create and expose a Node.js Microservice using
 
 In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](../../runtime_suite/api-gateway/overview.md).
 
-Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](../../development_suite/set-up-infrastructure/env-var).
+Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](../../development_suite/set-up-infrastructure/env-var-intro.md).
 Moreover we'll create a **CRUD for storing customers and orders** and develop a Microservice that **calculates the shipping cost for a specific order**. If the order belongs to a new customer the shipping cost is reduced, otherwise, a default cost is applied.
 
 ## Prerequisites
@@ -542,7 +542,7 @@ Now you can try the `GET /get-shipping-cost` route:
 
 ## Environment variable
 
-To conclude, create a new [environment variable](../../development_suite/set-up-infrastructure/env-var) to store the shipping cost for new customers.
+To conclude, create a new [environment variable](../../development_suite/set-up-infrastructure/env-var-intro.md) to store the shipping cost for new customers.
 
 An environment variable is a variable whose value is set outside the microservices. An environment variable is made up of a name/value pair. You can set a different value for each environment (Development, Production, etc.).
 
