@@ -7,8 +7,13 @@ sidebar_label: Providers Management
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Mia-Platform console allows you to interface with the most used git providers on the market (see [here](../../self_hosted/self_hosted_requirements#software-and-hardware-prerequisites) the supported git providers).  
+Console's providers are a mean for storing access information about external services.
+
 In order to configure a new provider on console you need to call a specific API as documented in the following paragraphs.
+
+## Git providers
+
+The Mia-Platform console allows you to interface with the most used git providers on the market (see [here](../../self_hosted/self_hosted_requirements#software-and-hardware-prerequisites) the supported git providers).  
 
 As an on-premise customer you have the ability to configure and use an authentication provider that differs from the git provider (i.e. [Okta](https://www.okta.com/) as authentication provider and [GitLab](https://gitlab.com/) as git provider).
 
@@ -48,7 +53,7 @@ The provider data fields are:
 
 - **id (string)**: it will be used to identify the provider;
 - **label (string)**: an human-readable name for the provider;
-- **type (string)**: the type of provider you are going to insert. Can be `gitlab`, `github`, `bitbucket` or `azure-devops`;
+- **type (string)**: the type of provider you are going to insert. Can be `gitlab`, `github`, `bitbucket`, `azure-devops` or `vault`;
 - **urls (object)**: an object that contains:
   - **apiBase (string)**: the API base url of the provider (without trailing slash);
   - **base (string)**: the base url of the provider (without trailing slash).
@@ -56,12 +61,15 @@ The provider data fields are:
 
 The credentials data fields are:
 
-- **type (string)**: the type of credentials that you are going to insert. accepted values are `token` or `userPass`;
+- **type (string)**: the type of credentials that you are going to insert. accepted values are `token`, `userPass` or `m2m`;
 - **content (object)**: a dynamic object that contains the credentials of the service account.
   - For type `userPass`: **must** include `userName` and `password` fields;
-  - For type `token`: **must** include only `accessToken` field.
+  - For type `token`: **must** include only `accessToken` field;
+  - For type `m2m`: **must** include `accessTokenURL` and `token` fields.
 
-Below you can find a complete example of the request, divided by provider:
+#### Examples
+
+Below you can find a complete example of the request, divided by provider type:
 
 <Tabs>
   <TabItem value="github" label="GitHub" default>
@@ -145,6 +153,25 @@ Below you can find a complete example of the request, divided by provider:
       "accessToken": "my-super-super-super-secret-token"
     }
   }
+}
+```
+
+  </TabItem>
+  <TabItem value="vault" label="Hashicorp Vault">
+
+```json
+{
+  "type": "vault",
+  "urls": {
+    "baseUrl": "https://vault.example.com/",
+    "apiBaseUrl": "https://vault.example.com/"
+  },
+  "credentials": {
+    "type": "m2m",
+    "content": {
+      "token": "vault-jwt-token",
+      "accessTokenURL": "https://vault.example.com/v1/auth/kubenetes/login"
+    }
 }
 ```
 
