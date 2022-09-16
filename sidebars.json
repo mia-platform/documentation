@@ -315,7 +315,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/merge-collaboration",
+          "id": "development_suite/api-console/api-design/merge_collaboration",
           "type": "doc"
         },
         {
@@ -2029,6 +2029,10 @@
       "type": "category",
       "collapsed": false,
       "items": [
+        {
+          "id": "release_notes/RN_v9-5/v9.5.0",
+          "type": "doc"
+        },
         {
           "id": "release_notes/RN_v9-4/v9.4.3",
           "type": "doc"

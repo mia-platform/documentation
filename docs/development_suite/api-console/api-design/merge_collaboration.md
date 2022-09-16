@@ -1,5 +1,5 @@
 ---
-id: merge-collaboration
+id: merge_collaboration
 title:  Collaborate and Merge
 sidebar_label: Collaborate and Merge
 ---
