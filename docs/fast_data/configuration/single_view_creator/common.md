@@ -131,6 +131,7 @@ This documentation refers to the `@mia-platform-internal/single-view-creator-lib
 <tr><td>SINGLE_VIEWS_ERRORS_COLLECTION</td><td>false</td><td>it is the name of a MongoDB CRUD you want to use as collection for single view errors.</td><td>-</td></tr>
 <tr><td>KAFKA_CLIENT_ID</td><td>false</td><td>it is the Kafka client identifier</td><td>-</td></tr>
 <tr><td>KAFKA_BROKERS_LIST</td><td>false</td><td>list of brokers the service needs to connect to</td><td>-</td></tr>
+<tr><td>KAFKA_GROUP_ID</td><td>true</td><td>defines the Kafka group id (it is suggested to use a syntax like <code>{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}</code>)</td><td>-</td></tr>
 <tr><td>KAFKA_SASL_MECHANISM</td><td>false</td><td>The Kafka SASL mechanism to be used. Can be one of the following: "plain", "PLAIN", "scram-sha-256", "SCRAM-SHA-256", "scram-sha-512", "SCRAM-SHA-512"</td><td>plain</td></tr>
 <tr><td>KAFKA_SASL_USERNAME</td><td>false</td><td>username to use for logging into Kafka</td><td>-</td></tr>
 <tr><td>KAFKA_SASL_PASSWORD</td><td>false</td><td>password to use for logging into Kafka</td><td>-</td></tr>
