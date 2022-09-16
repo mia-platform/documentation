@@ -190,7 +190,7 @@ A variable definition in the `.env` file has to be contained in a single line an
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
-You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var-intro.md) of Mia-Platform Docs.
+You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var) of Mia-Platform Docs.
 
 ### Labels Configuration
 
