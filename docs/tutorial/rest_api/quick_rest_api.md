@@ -72,7 +72,7 @@ To create an endpoint:
 Endpoints of type CRUD require also to specify the CRUD Base Path which will be the **internal endpoint** that you previously defined during your new CRUD creation. You can also set an optional description.
 
 :::info
-You can find more information on CRUDs and how to create an endpoint in the [CRUD](../development_suite/api-console/api-design/crud_advanced.md) and [endpoint](../development_suite/api-console/api-design/endpoints.md) documentation.
+You can find more information on CRUDs and how to create an endpoint in the [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and [endpoint](../../development_suite/api-console/api-design/endpoints.md) documentation.
 :::
 
 Your configuration should be like this one:
@@ -87,7 +87,7 @@ At this point we have created our endpoint!
 
 Besides of properties previously set, you can configure permissions and security settings of the endpoint:
 
-In the *Details* section you can set a **Default State**. If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created. If you choose *DRAFT* status, the elements have to [be made public in the CMS](../business_suite/guide_cms.md#new-content-draft-publish) before being published.
+In the *Details* section you can set a **Default State**. If you select *PUBLIC*, the elements in the Collection will be public on the applications as soon as they are created. If you choose *DRAFT* status, the elements have to [be made public in the CMS](../../business_suite/guide_cms.md#new-content-draft-publish) before being published.
 
 ### Manage the security of your endpoints
 
@@ -116,6 +116,6 @@ We have therefore created our Rest API.
 We just have to save and release in an environment. The steps to follow are the following:
 
 1. Click *Commit & Generate* that you can find in the right corner of the main navbar, on the top of the screen.
-2. Then access the [Deploy area](../development_suite/deploy/deploy.md) and choose an environment to release.
+2. Then access the [Deploy area](../../development_suite/deploy/deploy.md) and choose an environment to release.
 
-To populate the collection or to start testing the API you can either directly go to the [Documentation Portal](../development_suite/api-portal/api-documentations.md) and test your API with the Swagger.
+To populate the collection or to start testing the API you can either directly go to the [Documentation Portal](../../development_suite/api-portal/api-documentations.md) and test your API with the Swagger.
