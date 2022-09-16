@@ -46,208 +46,6 @@ Renders a calendar to manage appointments.
 
 
 
-## Table
-
-Displays a dataset in rows and columns according to a given `data schema`.
-![table](../img/bk-table.png)
-```html
-<bk-table></bk-table>
-```
-
-### Properties & Attributes
-
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`allowNavigation`|`allow-navigation`|boolean| - | - |true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
-|`browseOnRowSelect`| - |ClickPayload & { navigationType?: "replace" \\| "push" \| "href"; }| - | - | - |if set, a click on a row will navigate you to another location|
-|`customActions`| - |{ tag: string; properties: Record\<string, any\>; }[]| - | - | - |list of custom components, rendered in the action column|
-|`customMessageOnAbsentLookup`| - |string \\| { [x: string]: string; }|true| - | - |override lookup value in case lookup is not resolved due to lack of data|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - | - | - |[data schema](../page_layout#data-schema) describing the fields of the collection to display|
-|`disableRowClick`|`disable-row-click`|boolean| - | - |false|when `true`, a click on a row does not trigger an event|
-|`disableRowSelection`|`disable-row-selection`|boolean| - | - |false|when `true`, checkbox in the first column will not be displayed|
-|`disableRowSelectionChange`|`disable-row-selection-change`|boolean| - | - |false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
-|`headers`| - |{ [x: string]: string; }| - | - | - | - |
-|`initialSortDirection`| - |any| - | - | - |initial sorting direction to use when component bootstraps|
-|`initialSortProperty`| - |any| - | - | - |Initial property to sort on when component bootstraps|
-|`loadingOnStart`|`loading-on-start`|boolean| - | - |true| - |
-|`maxLines`|`max-lines`|number| - | - | - |force lines that will be displayed together|
-|`navigationRowActions`| - |{ kind: "cta" \\| "icons"; actions: NavigationDataAction[]; }| - | - |DEFATULT_NAV_ACTIONS|actions in nested objects.|
-|`openFileInViewerRegex`| - |string \\| string[] \| { [x: string]: "view" \| "download"; }|true| - | - |regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer (default) or is downloaded.|
-|`resizableColumns`|`resizable-columns`|boolean| - | - |false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
-|`rowActions`| - |DataActions| - | - | - |list of actions to render per row|
-- `browseOnRowSelect` accepts an object such as
->
-> ```json
-> {
->    "href": "destination/url",
->    "target": "_self",
->    "query": {
->      "id": "{{data._id}}"
->    },
->    "navigationType": "push"
-> }
-> ```
->
-> | property | type | values | description |
-> |-----------------------|------|---------|-------------|
-> | `href` | string | any | link reference. Only relative links are accepted. |
-> | `target` | string | any | where to open the href. Defaults to "_self" |
-> | `query` | Record\<string, any\> | any | query parameters |
-> | `navigationType` | string | `push`, `replace`, `href` | method used for navigation if target is "_self" |
->
-> ### navigation types
-> `navigationType` values map to navigation methods as follows:
-> | value | method |
-> | ----- | ------ |
-> | `push` | window.history.push |
-> | `replace` | window.history.replace |
-> | `href` | window.location.replace |
->
-- `customActions` is a list such as:
->
-> ```json
-> {
->   "customActions": [{
->     "tag": "bk-button",
->     "properties": {
->       "content": "Cancel order",
->       "disabled": {
->         "template": "{{args.[1].orderStatus}}",
->         "configMap": {
->           "Delivered": true,
->           "Cancelled": true,
->           "$default": false
->         }
->       },
->       "clickConfig": {
->         "type": "http",
->         "actionConfig": {
->           "url": "the/url",
->           "method": "POST",
->           "body": "{{rawObject args.[1]}}"
->         }
->       }
->     }
->   }]
-> }
-> ```
-> | property | type | values | description |
-> |-----------------------|------|---------|-------------|
-> | `tag` | string | any | custom component to mount |
-> | `properties` | {[key: string]: any} | any | properties injected into the component |
->
-> #### Notes
->
-> Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row.
-> If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
->
->
-> If is also possible to provide a <template, configMap> pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key
-> (or `$default`, if the template does not match any configMap key).
-- `NavigationDataActions` is an object such as
->
-> ```json
-> {
->   "kind": "icons",
->   "actions": [{
->     "danger": true,
->     "requireConfirm": true,
->     "type": "delete",
->     "disableInReadonly": true
->   }]
-> }
-> ```
->
-> | property | type | values | description |
-> |-----------------------|------|---------|-------------|
-> | `kind` | string | `cta`, `icons` | whether to display the action in form of text or icon. |
-> | `actions` | array of actions | any | describes the behavior of each. |
->
-> #### action object
-> | property | type | values | description |
-> |----------|------|--------|-------------|
-> | `requireConfirm` | booelan | any | Whether or not to require confirm. |
-> | `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
-> | `type` | `string` | 'delete', 'detail' | if `delete`, the row is deleted from the nested object (and `update-data` event is emitted). If `detail`, a `selected-data` event is emitted with the data from the row.|
-> | `disableInReadonly` | boolean | any | Whether or not to disable the action for read-only nested objects. |
->
-> By default:
-> ```json
-> {
->   "kind": "icons",
->   "actions": [{
->     "requireConfirm": true,
->     "type": "delete",
->     "disableInReadonly": true
->   }]
-> }
-> ```
-- `DataActions` is an array of
->
-> ```json
-> {
->   "actions": [{
->     "kind": "event",
->     "danger": "true",
->     "content": "duplicate-data",
->     "label": "Duplicate Data",
->     "icon": "far fa copy",
->     "meta": {},
->     "requireConfirm": {}
->   }]
-> }
-> ```
->
-> | property | type | values | description |
-> |-----------------------|------|---------|-------------|
-> | `kind` | `string` | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
-> | `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
-> | `content` | string | any | when `event` it must be the label of a [registered event](../events), otherwise the `POST` request destination href |
-> | `label` | string| any | a label to render with the row action button |
-> | `icon` | string | any | [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free) |
-> | `meta` | object | any | the event `meta` when `kind` is `event` |
-> | `requireConfirm` | `object` or 'boolean' | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
->
-> #### requireConfirm object
-> | property | type | values | description |
-> |----------|------|--------|-------------|
-> | `cancelText` | [localizedText](../core_concepts#localization-and-i18n) | any | Cancel button label |
-> | `content` | [localizedText](../core_concepts#localization-and-i18n) | any | Text content of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
-> | `okText` | [localizedText](../core_concepts#localization-and-i18n) | any | Confirm button label |
-> | `title` | [localizedText](../core_concepts#localization-and-i18n) | any | Title of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
-
-
-### Listens to
-
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[loading-data](../events#loading-data)|sets internal loading state| - | - |
-|[lookup-data](../events#lookup-data)|receives lookup data| - | - |
-|[display-data](../events#display-data)|receives data to display|[selected-data-bulk](../events#selected-data-bulk)| - |
-|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
-|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[nested-navigation-state/display](../events#nested-navigation-state---display)|updates internal representation of the data to display in navigation| - | - |
-
-
-### Emits
-
-| event | description |
-|-------|-------------|
-|[change-query](../events#change-query)|requires data sorting according with the sorted property|
-|[selected-data](../events#selected-data)|notifies about the click on a row|
-|[selected-data-bulk](../events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
-|[nested-navigation-state/push](../events#nested-navigation-state---push)|notifies to add a step in the navigation path|
-|[nested-navigation-state/display](../events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
-|Configurable custom events|any event configured in the `rowActions` property|
-
-
-### Bootstrap
-
-- This component parse URL for `sortDirection` and `sortProperty` parameters.
-- This component emits a `change-query` event if both `sortDirection` and `sortProperty` are found in the URL.
-
-
-
 ## bk-breadcrumbs
 
 represents current navigation path and allows to go back at any navigation level.
@@ -844,6 +642,378 @@ The list of elements to display is passed to the component using the `display-da
 ### Emits
 
 This component emits no event.
+
+
+### Bootstrap
+
+None
+
+
+
+## bk-table
+
+```html
+<bk-table></bk-table>
+```
+![table](../img/bk-table.png)
+Displays a dataset in rows and columns according to a given [data schema](../page_layout#data-schema).
+### Object and Array rendering
+While rendering an array or an object from a compliant `DataSchema` (either `array` or `object` key type), multiple options are available
+#### object
+1. `(unspecified)` when no extra `DataSchema` key is explicitly set the object renders either as `{...}` or `{}` depending on whether there are keys or not.
+2. `dataSchema: <data-schema>` triggers nested visualization of objects
+3. `format: "localized-text"` when object must be interpreted as an `i18n` string. `bk-table` will render the proper language key according with browser settings.
+4. `visualizationOptions: {template: "<template>"}` interpolates an handlebars template using the current cell context. Hence if datum is given by
+```json
+{
+  "key1": "value1",
+  "key2": "value2"
+}
+```
+#### array
+1. `(unspecified)` when no extra `DataSchema` key is explicitly set visualization informs about the number of elements contained within the array.
+2. `dataSchema: <data-schema>` triggers nested visualization of objects
+3. `visualizationOptions: {joinDelimiter: "<join-delimiter>"}` joins array element using the given delimiter as argument of `Array.prototype.join`
+4. `visualizationOptions: {template: "<template>"}` interpolates an handlebars template using the current cell context. Hence if datum is given by
+```json
+["john", "doe"]
+```
+and template is `"{{[0]}} {{[1]}}"` then the table will render `john doe`. `template` has precedence over `joinDelimiter`.
+### Web Component into BkTable
+It is possible to insert a generic WebComponet as cell defining into the dataSchema a property object with type `custom`, and then defining all the WebComponent properties into the field `visualizationOptions`. Following an example:
+```json
+{
+  "$ref": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "type": "custom",
+          "label": "MyWebComponent",
+          "visualizationOptions": {
+            "tag": "my-button",
+            "properties": {
+              "content": "Click Me!"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+In this case, we are creating the WebComponent identified by the tag `my-button` and giving to him all the keys into the object `properties` as attributes.
+This is the same as doing `<my-button content="Click Me!" />`.
+#### Dynamic properties interpolation
+Each cell receives the following parameters when is rendered:  
+* `args`: an array with the cell arguments:
+  - value: containing the value relative to dataSchema.  
+  - record: an object containing the row content.  
+  - index: a number with the cell index into the table.
+* `currentUser`: an object with the logged user's data.  
+* `eventBus`: an object containing the eventBus instance.  
+* `headers`: an object containing the headers.  
+All the above parameters can be dynamically interpolated into the WebComponent properties through [handlebars](https://handlebarsjs.com/).
+Following an example of interpolation.  
+Given the following schema:  
+```json
+"object": {
+  "type": "custom",
+  "label": "MyWebComponent",
+  "visualizationOptions": {
+    "tag": "bk-button",
+    "properties": {
+      "content": "{{currentUser.name}}",
+      "stopPropagationOnClick": false,
+      "clickConfig": {
+        "type": "http",
+        "actionConfig": {
+          "method": "POST",
+          "url": "/path?{{args.[1].id}}={{args.[1]}}",
+          "body": "{{headers}}",
+          "config": {
+            "headers": "{{rawObject headers}}"
+          }
+        }
+      }
+    }
+  }
+}
+```
+And these (simplified) parameters: 
+* **args**: 
+```json
+[
+  "Column Name",
+  {"id": "row-id"},
+  4
+]
+```  
+* **currentUser**: 
+```json
+{
+  "name": "Bob"
+}
+```
+* **headers**: 
+```json
+{
+  "content-type": "application/json"
+}
+```
+The `properties` object is interpolated with render parameters and the output configuration will be:
+```json
+"object": {
+  "type": "custom",
+  "label": "MyWebComponent",
+  "visualizationOptions": {
+    "tag": "bk-button",
+    "properties": {
+      "content": "Bob",
+      "stopPropagationOnClick": false,
+      "clickConfig": {
+        "type": "http",
+        "actionConfig": {
+          "method": "POST",
+          "url": "/path?row-id=4",
+          "body": "[object Object]",
+          "config": {
+            "headers": {
+              "content-type": "application/json"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+By default, the handlebars interpolation cast everything to string, the `rawObject` key references to a custom handlebars supporter that parse the value to interpolate as an object instead of a string. In the above example the body of HTTP call is interpolated as the string "[object Object]" but the headers are interpolated with the real object.
+If is also possible to provide a `template`-`configMap` pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
+For instance, assuming the same example parameters as the previous example, the following configuration:
+```json
+"object": {
+  "type": "custom",
+  "label": "MyWebComponent",
+  "visualizationOptions": {
+    "tag": "bk-button",
+    "properties": {
+      "content": "Abort order",
+      "disabled": {
+        "template": "{{currentUser.name}}",
+        "configMap": {
+          "Bob": true,
+          "Pierre": true,
+          "$default": false
+        }
+      },
+      ...
+    }
+  }
+}
+```
+will be resolved to:
+```json
+"object": {
+  "type": "custom",
+  "label": "MyWebComponent",
+  "visualizationOptions": {
+    "tag": "bk-button",
+    "properties": {
+      "content": "Abort order",
+      "disabled": true,
+      ...
+    }
+  }
+}
+```
+### Actions
+It is possible to include an actions columns in the table, through the properties `rowActions`, `customActions`, `navigationRowActions`. Configurable buttons or generic components will be rendered inside the actions columns.
+#### Configuring actions via `rowActions`
+Accepts an object such as
+```json
+{
+  "kind": "icons",
+  "actions": [
+    {
+      "kind": "event",
+      "danger": "true",
+      "content": "duplicate-data",
+      "label": "Duplicate Data",
+      "icon": "far fa copy",
+      "meta": {},
+      "requireConfirm": {}
+    }
+  ]
+}
+```
+| property | type | values | description |
+|-----------------------|------|---------|-------------|
+| `kind` | string | `icons`, `cta` | how to display the action triggerers |
+| `actions` | array | - | list of available actions |
+##### DataActions
+| property | type | values | description |
+|-----------------------|------|---------|-------------|
+| `kind` | string | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
+| `danger` | boolean | `true`, `false`, `undefined` | set danger mode on action |
+| `content` | string | any | when `event` it must be the label of a [registered event](../events), otherwise the `POST` request destination href |
+| `label` | string| any | a label to render with the row action button |
+| `icon` | string | any | [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free) |
+| `meta` | object | any | the event `meta` when `kind` is `event` |
+| `requireConfirm` | object or boolean | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
+##### requireConfirm object
+| property | type | values | description |
+|----------|------|--------|-------------|
+| `cancelText` | [localizedText](../core_concepts#localization-and-i18n) | any | Cancel button label |
+| `content` | [localizedText](../core_concepts#localization-and-i18n) | any | Text content of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
+| `okText` | [localizedText](../core_concepts#localization-and-i18n) | any | Confirm button label |
+| `title` | [localizedText](../core_concepts#localization-and-i18n) | any | Title of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
+#### Configuring actions via `customActions`
+`customActions` allows to mount generic components inside the table actions column.
+Accepts an array such as
+```json
+{
+  "customActions": [{
+    "tag": "bk-button",
+    "properties": {
+      "content": "Cancel order",
+      "disabled": {
+        "template": "{{args.[1].orderStatus}}",
+        "configMap": {
+          "Delivered": true,
+          "Cancelled": true,
+          "$default": false
+        }
+      },
+      "clickConfig": {
+        "type": "http",
+        "actionConfig": {
+          "url": "the/url",
+          "method": "POST",
+          "body": "{{rawObject args.[1]}}"
+        }
+      }
+    }
+  }]
+}
+```
+Each element of the array is a `tag`-`properties` pair, respectively representing the html tag of the component to mount and its properties.
+| property | type | values | description |
+|-----------------------|------|---------|-------------|
+| `tag` | string | any | custom component to mount |
+| `properties` | {[key: string]: any} | any | properties injected into the component |
+It is often useful mounting [bk-button](./buttons.md#bk-button)s inside the actions columns of the table because of its flexibility.
+`properties` field allows dynamic interpolation through [handlebars](https://handlebarsjs.com/), analogously as in the case of mounting custom components using `visualizationOptions`, explained above.
+#### Configuring actions via `navigationRowActions`
+`customActions` and `rowActions` are removed from the actions columns when the table is rendering [nested data](../page_layout#nested-dataschemas). `navigationRowActions` allows to specify actions specifically available when the table is displaying nested data.
+As of now, table actions for nested data only allow to display the data inside a form or to delete the data inside a table row.
+It accepts an object such as
+```json
+  {
+    "kind": "icons",
+    "actions": [{
+      "danger": true,
+      "requireConfirm": true,
+      "type": "delete",
+      "disableInReadonly": true
+    }]
+  }
+```
+| property | type | values | description |
+|-----------------------|------|---------|-------------|
+| `kind` | string | `cta`, `icons` | whether to display the action in form of text or icon. |
+| `actions` | array of actions | any | describes the behavior of each. |
+##### action object
+| property | type | values | description |
+|----------|------|--------|-------------|
+| `requireConfirm` | booelan | any | Whether or not to require confirm. |
+| `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
+| `type` | `string` | 'delete', 'detail' | if `delete`, the row is deleted from the nested object (and `update-data` event is emitted). If `detail`, a `selected-data` event is emitted with the data from the row.|
+| `disableInReadonly` | boolean | any | Whether or not to disable the action for read-only nested objects. |
+`navigationRowAction` defaults to:
+```json
+  {
+    "kind": "icons",
+    "actions": [{
+      "requireConfirm": true,
+      "type": "delete",
+      "disableInReadonly": true
+    }]
+  }
+```
+which will alllow rows to be deleted when the displayed data is not read-only.
+### Browse on row click
+The property `browseOnRowSelect` allows to navigate to a specified link when a table row is clicked.
+`browseOnRowSelect` accepts an object such as
+```json
+  {
+    "href": "destination/url",
+    "target": "_self",
+    "query": {
+      "id": "{{data._id}}"
+    },
+    "navigationType": "push"
+  }
+```
+| property | type | values | description |
+|-----------------------|------|---------|-------------|
+| `href` | string | any | link reference. Only relative links are accepted. |
+| `target` | string | any | where to open the href. Defaults to "_self" |
+| `query` | {[key: string]: any} | any | query parameters |
+| `navigationType` | string | `push`, `replace`, `href` | method used for navigation if target is "_self" |
+##### navigation types
+`navigationType` values are mapped to navigation methods as follows:
+| value | method |
+| ---------- | ----------------- |
+| `push` | `window.history.push` |
+| `replace` | `window.history.replace` |
+| `href` | `window.location.replace` |
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`allowNavigation`|`allow-navigation`|boolean|true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
+|`browseOnRowSelect`| - |ClickPayload & Object| - |if set, a click on a row will navigate you to another location |
+|`customActions`| - |Object[]| - |list of custom components, rendered in the action column |
+|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to display |
+|`disableRowClick`|`disable-row-click`|boolean|false|when `true`, a click on a row does not trigger an event|
+|`disableRowSelection`|`disable-row-selection`|boolean|false|when `true`, checkbox in the first column will not be displayed|
+|`disableRowSelectionChange`|`disable-row-selection-change`|boolean|false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
+|`initialSortDirection`| - |SortDirection| - |initial sorting direction to use when component bootstraps |
+|`initialSortProperty`|`initial-sort-property`|string| - |Initial property to sort on when component bootstraps |
+|`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
+|`maxLines`|`max-lines`|number| - |force lines that will be displayed together |
+|`navigationRowActions`| - |NavigationDataActions|DEFATULT_NAV_ACTIONS|actions in nested objects.|
+|`openFileInViewerRegex`| - |string \\| string[] \| Record<string, "view" \| "download">| - |regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer (default) or is downloaded. |
+|`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
+|`rowActions`| - |DataActions| - |list of actions to render per row |
+|`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
+|[lookup-data](../events#lookup-data)|receives lookup data| - | - |
+|[display-data](../events#display-data)|receives data to display|[selected-data-bulk](../events#selected-data-bulk)| - |
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
+|[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
+|[nested-navigation-state/display](../events#nested-navigation-state---display)|updates internal representation of the data to display in navigation| - | - |
+
+
+### Emits
+
+| event | description |
+|-------|-------------|
+|[change-query](../events#change-query)|requires data sorting according with the sorted property|
+|[selected-data](../events#selected-data)|notifies about the click on a row|
+|[selected-data-bulk](../events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
+|[nested-navigation-state/push](../events#nested-navigation-state---push)|notifies to add a step in the navigation path|
+|[nested-navigation-state/display](../events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
+|Configurable custom events|any event configured in the `rowActions` property|
 
 
 ### Bootstrap

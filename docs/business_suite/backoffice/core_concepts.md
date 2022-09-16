@@ -113,6 +113,7 @@ Operators can be selected from the following list:
 type FilterFormOperator = |
   'equal' |
   'doesNotEqual' |
+  'exists' |
   'contains' |
   'startsWith' |
   'endsWith' |

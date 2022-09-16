@@ -121,8 +121,7 @@ Generic form to edit or create items described by the `dataSchema`
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`formId`|`form-id`|string| - |id of the form. This property should only be set programmatically. |
-|`formKindIfDisplayData`| - |"add" \\| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default) 
-|
+|`formKindIfDisplayData`| - |"add" \\| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default). |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`onFieldsChange`| - |Function| - | - |
@@ -297,6 +296,51 @@ injecting the following context
 
 where `values` is the form state and response contains a JS object which is the content of the `eventBusSuccess` payload linked to the form submission request (either `create-data` or `update-data`)
 
+### Confirmation dialog on save and on close
+
+It is possible to ask for confirmation on close and/or on save, and also customize the dialog texts.
+
+It can be done using the `requireConfirmation` prop. It accepts three different values and it is defaulted as `false`:
+
+#### 1. Boolean type
+
+It can be set as `true` to open the dialog on close or as `false` otherwise.
+
+#### 2. Object of type RequireConfirmOpts
+
+An object such as:
+```typescript
+{
+  cancelText?: any; // cancel button text
+  okText?: any; // ok button text
+  content?: any; // the content text
+  title?: any; // the title text
+}
+```
+to customize the dialog texts. They can also be localized, passing an object containing the language acronyms key and the text as value, for example:
+
+```json
+{
+  "content": {
+    "it": "Verrà creato un nuovo elemento, procedere?",
+    "en": "A new element will be created, continue?"
+  }
+}
+```
+
+#### 3. Object of type RequireConfirmForm
+
+An object such as:
+```typescript
+{
+  onSave: boolean | RequireConfirmOpts
+  onClose: boolean | RequireConfirmOpts
+}
+```
+which is the only way to enable the confirmation dialog on save.
+
+Both `onSave` and `onClose` must be passed in the configuration and both of them accept a `boolean` or a `RequireConfirmOpts` type with the same rules written above in points 1 and 2 of this section. 
+
 
 ### Properties & Attributes
 
@@ -314,7 +358,7 @@ where `values` is the form state and response contains a JS object which is the 
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \\| RequireConfirmPayload|false|whether or not the drawer should request confirmation before closing if contains unsaved data |
+|`requireConfirm`| - |boolean \\| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`| - |string \\| number|500|with of the drawer |
 
@@ -528,6 +572,51 @@ When set to `true`:
   - each of the following steps contains one of the remaining fields, with `asForm` set to true
 - default labels are applied.
 
+### Confirmation dialog on save and on close
+
+It is possible to ask for confirmation on close and/or on save, and also customize the dialog texts.
+
+It can be done using the `requireConfirmation` prop. It accepts three different values and it is defaulted as `false`:
+
+#### 1. Boolean type
+
+It can be set as `true` to open the dialog on close or as `false` otherwise.
+
+#### 2. Object of type RequireConfirmOpts
+
+An object such as:
+```typescript
+{
+  cancelText?: any; // cancel button text
+  okText?: any; // ok button text
+  content?: any; // the content text
+  title?: any; // the title text
+}
+```
+to customize the dialog texts. They can also be localized, passing an object containing the language acronyms key and the text as value, for example:
+
+```json
+{
+  "content": {
+    "it": "Verrà creato un nuovo elemento, procedere?",
+    "en": "A new element will be created, continue?"
+  }
+}
+```
+
+#### 3. Object of type RequireConfirmForm
+
+An object such as:
+```typescript
+{
+  onSave: boolean | RequireConfirmOpts
+  onClose: boolean | RequireConfirmOpts
+}
+```
+which is the only way to enable the confirmation dialog on save.
+
+Both `onSave` and `onClose` must be passed in the configuration and both of them accept a `boolean` or a `RequireConfirmOpts` type with the same rules written above in points 1 and 2 of this section. 
+
 
 ### Properties & Attributes
 
@@ -547,7 +636,7 @@ When set to `true`:
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \\| RequireConfirmPayload|false|whether or not the modal should request confirmation before closing if contains unsaved data |
+|`requireConfirm`| - |boolean \\| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string|'#microlc-element-composer'|root element to append the modal to |
 |`width`|`width`|string|'90vw'|with of the modal |
 |`wizard`| - |boolean \\| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|

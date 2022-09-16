@@ -191,13 +191,13 @@ i.e. on language `en-US` it will render either `en-US` if available or `en` as a
 
 Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
 
-Fields of format `currency` automatically display formatted numberic values accordingly to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale). `currency` fields allow to specify the key `template` inside `visualizationOptions` and `formatOptions`.
+Fields of format `currency` automatically display formatted numeric values accordingly to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale). `currency` fields allow to specify the key `template` inside [visualizationOptions](#visualization-options) and [formatOptions](#form-options).
 For instance:
 ```json
 "amount": {
 ...
   "type": "number",
-  "format": "curency",
+  "format": "currency",
   "formOptions": {
     "template": {
       "en": "$ {{value}}",

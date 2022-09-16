@@ -85,6 +85,183 @@ this button creates a new item
 
 None
 
+## bk-bulk-actions
+
+This component allows to change the value of a object key in all the selected objects
+
+```html
+<bk-bulk-actions></bk-bulk-actions>
+```
+
+This component allows to change the value of a object key in all the selected objects.
+
+:::info
+It works only with **enum or boolean** data and it appears once one or more items are selected.
+Remember to pass the dataschema in the configuration file.
+:::
+
+### How it works
+
+1. It reads the dataschema to look for the properties that can be changed, so the ones with enum or boolean type.
+2. It listens to `selected-data-bulk` which is often called when one or more rows in a table are selected.
+3. Once one or more rows are selected, it appears in the UI.
+4. Now it is possible to interact with the left side of the component (three dots) and select the property to change the value to.
+5. Once a property is selected, it checks if each selected row has the same value. If it does, it shows the property name with the common value, otherwise it shows the property name with '\*various\*'.
+6. Now it is also possible to interact with the right side of the component and select the value to assign to the property
+7. Once selected the value, a `bulk-update` event is emitted and data are updated.
+
+
+### Configuration
+
+This component is reachable as `bk-bulk-actions`.
+Add the component's configuration wherever you want to display it.
+```json
+  ...
+  {
+    "type": "element",
+    "tag": "bk-bulk-actions",
+    "properties": {
+      "dataSchema": {
+        "$ref": "dataSchema"
+      }
+    }
+  },
+  ...
+```
+
+### Confirmation dialog on selected value
+
+It is possible to ask for confirmation on selected value, and also customize the dialog texts.
+
+It can be done using the `requireConfirmation` prop. It accepts three different values and it is defaulted as `false`:
+
+#### 1. Boolean type
+
+It can be set as `true` to open the dialog on close or as `false` otherwise.
+
+#### 2. Object of type RequireConfirmOpts
+
+An object such as:
+```typescript
+{
+  cancelText?: any; // cancel button text
+  okText?: any; // ok button text
+  content?: any; // the content text
+  title?: any; // the title text
+}
+```
+to customize the dialog texts. They can also be localized, passing an object containing the language acronymous key and the text as value, for example:
+
+```json
+{
+  "content": {
+    "it": "Verrà creato un nuovo elemento, procedere?",
+    "en": "A new element will be created, continue?"
+  }
+}
+```
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`requireConfirm`| - |boolean \\| RequireConfirmOpts|false|whether or not the button should ask for confirmation before updating all the selected data with the chosen value|
+|`dataSchema`| - |undefined \\| ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection |
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[select-data-bulk](../events#select-data-bulk)|keeps track of user selections to prompt `selected` export option configuration| - | - |
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|[bulk-update]|notifies the client to update more items at the same time with a specific value|
+
+### Bootstrap
+
+None
+
+## bk-bulk-delete
+
+this button creates a new item
+
+```html
+<bk-bulk-delete></bk-bulk-delete>
+```
+
+This component allows to delete one or more items at the same time.
+
+
+### How it works
+
+1. A disabled button is displayed.
+2. It listens to `selected-data-bulk` which is often called when one or more rows in a table are selected.
+3. Once one or more rows are selected, it activates.
+4. If the button is clicked, emits a `require-confirm` event to open a dialog to ask for confirmation.
+5. If the action is confirmed, it emits a `delete-data` event to delete all the selected items.
+
+:::warn
+Items in 'PUBLIC' or 'DRAFT' \_\_STATE\_\_, change the state to 'TRASH' while items in 'TRASH' \_\_STATE\_\_ change the state to 'DELETED'.
+:::
+
+
+### Configuration
+
+This component is reachable as `bk-bulk-delete`.
+Add the component's configuration wherever you want to display it.
+```json
+  ...
+  {
+    "type": "element",
+    "tag": "bk-confirmation-modal"
+  },
+  ...
+```
+
+:::warn
+Remember to add the `bk-confirmation-modal` component to the configuration otherwise the `bk-bulk-delete` won't work properly
+```json
+  ...
+  {
+    "type": "element",
+    "tag": "bk-confirmation-modal"
+  },
+  ...
+```
+:::
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[select-data-bulk](../events#select-data-bulk)|keeps track of user selections to prompt `selected` export option configuration| - | - |
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|[require-confirm]|opens a dialog to ask for confirmation|
+|[delete-data]|deletes selected data|
+
+### Bootstrap
+
+None
+
 ## bk-button
 
 A button that is configurable in order to execute a specific action when the onClick event is fired.

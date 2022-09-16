@@ -142,7 +142,7 @@ The *dynamic configuration* has the technical limitation of using just the first
 **E.g.**: given a request with path `/one/two/three`, the **basePath** searched on CRUD is `/one`.
 :::
 
-In order to configure correctly the CRUD collection, you can **import the fields from this [file](./crud.fields.json)**. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
+In order to configure correctly the CRUD collection, you can **import the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
 
 ### Recommendations
 
