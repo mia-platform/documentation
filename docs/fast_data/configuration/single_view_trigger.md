@@ -13,7 +13,7 @@ sidebar_label: Single View Trigger
 - PROJECTIONS_CHANGES_COLLECTION_NAME (**required**): defines the name of the projections changes collection  
 - LC39_HTTP_PORT (**required**): defines the lc39 HTTP port
 - KAFKA_BROKERS (**required**): defines the Kafka brokers
-- KAFKA_GROUP_ID (**required**): defines the Kafka group id
+- KAFKA_GROUP_ID (**required**): defines the Kafka group id (it is suggested to use a syntax like `{tenant}.{environment}.{project-name}.{system}.{single-view-name}.single-view-trigger`)
 - KAFKA_SASL_USERNAME (**required**): defines the Kafka SASL username
 - KAFKA_SASL_PASSWORD (**required**): defines the Kafka SASL password
 - MAP_TABLE_FOLDER (**required**): defines the path to the map table folder

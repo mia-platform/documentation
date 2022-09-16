@@ -22,7 +22,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr><td>LC</td><td>true</td><td>defines the lc39 HTTP port</td><td>-</td></tr>
     <tr><td>STRATEGIES_MAX_EXEC_TIME_MS</td><td>true</td><td>defines the maximum time for which a strategy is executed</td><td>-</td></tr>
     <tr><td>KAFKA_BROKERS</td><td>true</td><td>defines the Kafka brokers</td><td>-</td></tr>
-    <tr><td>KAFKA_GROUP_ID</td><td>true</td><td>defines the Kafka group id</td><td>-</td></tr>
+    <tr><td>KAFKA_GROUP_ID</td><td>true</td><td>defines the Kafka group id (it is suggested to use a syntax like <code>{'{tenant}.{environment}.{projectName}.{system}.real-time-updater'}</code>)</td><td>-</td></tr>
     <tr><td>KAFKA_SASL_USERNAME</td><td>true</td><td>defines the Kafka SASL username</td><td>-</td></tr>
     <tr><td>KAFKA_SASL_PASSWORD</td><td>true</td><td>defines the Kafka SASL password</td><td>-</td></tr>
     <tr><td>LIVENESS_INTERVAL_MS</td><td>true</td><td>defines the liveness interval in milliseconds</td><td>-</td></tr>
