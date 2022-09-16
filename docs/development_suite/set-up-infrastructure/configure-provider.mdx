@@ -32,8 +32,12 @@ In order to create a new provider you must call the respective API using the Con
 
 Two main APIs are exposed:
 
-- POST - `/api/backend/providers`: used to create a new provider;
-- PATCH - `/api/backend/providers/{providerId}`: used to edit an existing provider.
+- POST - `/api/backend/tenants/{tenantId}/providers`: used to create a new provider;
+- PATCH - `/api/backend/tenants/{tenantId}/providers/{providerId}`: used to edit an existing provider.
+
+:::note
+The `tenantId` refers to the identifier of the company you need to associate the provider with.
+:::
 
 :::info
 These APIs are protected and can be used only if you belong to the group `access_token_manager`.
@@ -41,7 +45,7 @@ These APIs are protected and can be used only if you belong to the group `access
 
 ### Provider creation
 
-To create a new provider, you must invoke the API `/api/backend/providers`.
+To create a new provider, you must invoke the API `/api/backend/tenants/{tenantId}/providers`.
 
 Here is the request body form visible in the API Portal:
 
@@ -201,7 +205,7 @@ Navigate through the `Companies` section, select the desired project and change 
 
 ### Provider editing
 
-To edit an existing provider, you must invoke the API `/api/backend/providers/{providerId}`.
+To edit an existing provider, you must invoke the API `/api/backend/tenants/{tenantId}/providers/{providerId}`.
 
 The request of this endpoint is identical to the [previous one](#associate-provider), except that here you have to insert the `providerId` in the endpoint params instead of the request body.
 
@@ -216,7 +220,7 @@ Here is the form visible in the API Portal:
 Now, we insert a provider of type `gitlab`, with id `gitlab-id`:
 
 ```sh
-curl --location --request POST 'https://console-url/api/backend/providers' \
+curl --location --request POST 'https://console-url/api/backend/tenants/my-example-company/providers' \
 --header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-super-super-super-secret-token"}},"id":"gitlab-id","label":"My GitLab Label","type":"gitlab","urls":{"apiBase":"https://gitlab-test.com/api","base":"https://gitlab-test.com"}}'
@@ -227,7 +231,7 @@ curl --location --request POST 'https://console-url/api/backend/providers' \
 To change the credentials for the provider previously added, with the id `gitlab-id`:
 
 ```sh
-curl --location --request POST 'https://console-url/api/backend/providers/gitlab-id' \
+curl --location --request POST 'https://console-url/api/backend/tenants/my-example-company/providers/gitlab-id' \
 --header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-new-super-super-super-secret-token"}}'
