@@ -101,6 +101,7 @@ delivers data to add a new filter
   operator:
     | "equal"
     | "notEqual"
+    | "exists"
     | "greater"
     | "greaterEqual"
     | "less"

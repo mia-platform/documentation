@@ -171,7 +171,7 @@ Generic drawer container for custom content and custom footer
 |`footerComponent`| - |null \\| Taggable \| Taggable[]| - |configurable footer of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
 |`loading`|`loading`|boolean|false|whether or not the drawer is loading |
 |`mask`|`mask`|boolean|true|whether to mask or not the drawer|
-|`requireConfirm`| - |boolean \\| Pick<RequireConfirmPayload, "title" \| "content" \| "cancelText" \| "okText">|false|whether or not the drawer requires confirmation to close with unsaved data |
+|`requireConfirm`| - |boolean \\| RequireConfirmOpts|false|whether or not the drawer requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`subTitle`| - |LocalizedText| - |sub-title of the drawer |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
@@ -396,7 +396,7 @@ Generic modal container for custom content and custom footer
 |`loading`|`loading`|boolean|false|whether or not the modal is loading |
 |`modalId`|`modal-id`|string| - |identifier associated to the modal |
 |`modalTitle`| - |LocalizedText| - |title of the modal |
-|`requireConfirm`| - |boolean \\| Pick<RequireConfirmPayload, "title" \| "content" \| "cancelText" \| "okText">|false|whether or not the modal requires confirmation to close with unsaved data |
+|`requireConfirm`| - |boolean \\| RequireConfirmOpts|false|whether or not the modal requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
 |`subTitle`| - |LocalizedText \\| Taggable \| Taggable[]| - |sub-title of the modal |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |

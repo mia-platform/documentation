@@ -385,7 +385,7 @@ Add to `bk-notifications` the following error trigger
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`exportInternalUrl`|`export-internal-url`|string| - | - |
+|`exportInternalUrl`|`export-internal-url`|string| - |url to be called internally to get `jsonl` formatted data |
 |`primaryKey`|`primary-key`|string|'_id'|primary key to filter selected data when `selected only export` option is enabled
 |
 |`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |

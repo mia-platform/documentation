@@ -10,11 +10,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.9] - 2022-09-14
+
+### Fixed
+
+- fixed export-modal bug on columns selection
+- fixed ampersand visualization bug on table cells
+- equal and not equal filters of properties with format "date" will not take in consideration the whole day
+
+
+### Added
+
+- new React component `BulkActions`
+- new components `bk-bulk-delete` and `bk-bulk-actions`
+- added support to `exists` operator in filters
+
+
+## [1.0.8] - 2022-09-07
+
+### Fixed
+
+- `bk-pdf-viewer` opens under `bk-form-modal`
+- when a time/date/date-time field is marked as readOnly, it doesn't display the correct date format in the form
+- `bk-button` does not emit events after plugin is changed
+
+
+### Added
+
+- confirmation dialog on form submit: `bk-form-drawer`, `bk-form-modal`
+- property `showArrayPopover` in `bk-table` allows displaying a popover on hovering array cells containing the elements of the array
+
+
 ## [1.0.7] - 2022-08-03
 
 ### Fixed
 
 - `bk-filters-manager` does not display filters with properties having `filtersOptions.hidden` equals to true
+- Fixed trailing comma bug in `bk-crud-client` while adding MongoDB query filters in "$and" clauses
 
 
 ### Added
@@ -25,7 +57,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `bk-file-picker` can be used to update fields of type `array` and format `file`
 - new components `bk-export-client` and `bk-export-modal`
 - Added `Export Service` frontend client to perform collection exports
-- Fixed trailing comma bug in `bk-crud-client` while adding MongoDB query filters in "$and" clauses
 - fields with type `number` support `currency` format
 
 

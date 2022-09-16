@@ -97,7 +97,6 @@ Manages the display, application, and modification of filters.
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`bootstrapOnReconnect`|`bootstrap-on-reconnect`|boolean|false|If true should restart from initial configured filters |
 |`dataSchema`| - |ExtendedJSONSchema7Definition|...|dataSchema to be included if some filter must be interpreted as hidden |
 |`filters`| - |Filter[]|[]|List of currently applied [filters](../core_concepts#filters) |
 |`hide`|`hide`|boolean|false|Hides the rendered component |
