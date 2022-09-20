@@ -36,7 +36,7 @@ If you want to **save on the same branch** you must perform the merge; otherwise
 
 Once there is a new available commit from remote, the action popover will display two different options, Merge or Pull, based on whether you have already performed some changes or not in your local configuration.
 
-If no local changes have been made yet, you can click on the Pull action from the action popover that will simply download the updated configuration, in order to allow you to start working on it.
+If no local changes have been made, you can click on the Pull action from the action popover in order to download the updated configuration and start working on it.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
