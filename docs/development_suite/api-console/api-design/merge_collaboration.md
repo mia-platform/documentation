@@ -10,7 +10,7 @@ This is a **BETA** feature and, as such, is currently under **active development
 Always pay close attention to the changes you apply to the configuration files!
 :::
 
-Within the project, different users can concurrently work on the same branch while having visibility if someone else has made changes to the configuration.
+Within the project, different users can concurrently work on the same branch while having visibility on any configuration changes made by other users.
 As a matter of fact, from the Design area, and specifically through the branch action popover, it will be possible to:
 
 - Have visibility if other users have committed new changes to the configuration of the branch you are also working on
