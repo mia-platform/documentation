@@ -16,7 +16,7 @@ As a matter of fact, from the Design area, and specifically through the branch a
 - Have visibility if other users have committed new changes to the configuration of the branch you are also working on
 - Be aligned to the latest changes remotely committed by starting a merge flow that will allow you to identify diffs between compared configurations and to resolve changes/conflicts
 - Align the configurations of two different branches within the same project
-- Have visibility of all the configuration changes made locally before committing them
+- Have visibility on all the configuration changes made locally before committing them
 
 Therefore, in case of a new commit available, the user can decide whether to start a merge configurations process or to save its local changes on a new branch.  
 
