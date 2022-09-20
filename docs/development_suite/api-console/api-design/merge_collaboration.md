@@ -63,7 +63,7 @@ In order to perform the merge, press on the _Merge Configuration_ button: this w
 ![Merge configuration modal](img/merge-collaboration/merge-modal-change-view.png)
 
 From the sidebar on the left, you can navigate through different sections showing different parts of your project configuration.
-The items shown in the sidebar follow the grouping order used within the Design area sidebar (for example, the user can easily identify the Endpoints section on top, then move on to the Workload section - in which there are the microservices configurations - and finally arrive at the MongoDB CRUD section to view its collections).
+The items shown in the sidebar follow the grouping order used within the Design area sidebar (for example, user can easily identify the Endpoints section on top, then move on to the Workload section - in which there are the microservices configurations - and finally arrive at the MongoDB CRUD section to view its collections).
 
 The sections where changes occur are marked with a warning, so that you can review them with ease.
 
