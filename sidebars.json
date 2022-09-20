@@ -508,6 +508,24 @@
     {
       "id": "development_suite/license-metrics/license-metrics",
       "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Use Cases",
+      "link": {
+        "type": "generated-index",
+        "title": "Use Cases",
+        "description": "A list of advanced use cases and how to configure in Console",
+        "keywords": ["use-cases", "guides"],
+        "slug": "development_suite/use-cases"
+      },
+      "items": [
+        {
+          "id": "development_suite/use-cases/grpc",
+          "type": "doc"
+        }
+      ]
     }
   ],
   "devPortal": [

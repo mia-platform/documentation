@@ -17,6 +17,7 @@
       "cmsmenu",
       "cmsmultilookup",
       "cmstheme",
+      "CNCF",
       "cond",
       "configmap",
       "configmaps",
@@ -141,6 +142,7 @@
       "tini",
       "WHATWG",
       "JWTs",
+      "YAGES",
       "clusters"
   ],
   "ignoreWords": [
@@ -209,6 +211,7 @@
     "teleconsultationroomid",
     "envfile",
     "repos",
+    "hsts",
     "resourcequotas",
     "statefulsets",
     "ingressroutetcps",
