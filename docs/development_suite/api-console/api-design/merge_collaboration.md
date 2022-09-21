@@ -87,7 +87,7 @@ When you are satisfied with your merge just press the _Confirm Merge_ button.
 :::caution
 Once the merge is confirmed, the content from the editor on the _right_ is taken as correct configuration and injected into your local configuration.
 
-Please note that **you'll have to approve all changes coming from the remote configuration**, otherwise you may lose some changes.
+Please note that **you will have to approve all the changes coming from the remote configuration**, otherwise you may lose some changes.
 :::
 
 After the merge process is completed with success, press the _Continue Editing_ button in the feedback modal
