@@ -82,7 +82,7 @@ Entering one of them, to resolve a diff, you can:
 
 In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section, the navigation buttons will be disabled.
 
-When you are satisfied with your merge simply press the _Confirm Merge_ button.
+When you are satisfied with your merge just press the _Confirm Merge_ button.
 
 :::caution
 When the merge is confirmed, the content from the editor on the _right_ is taken as correct configuration and injected into your local configuration.
