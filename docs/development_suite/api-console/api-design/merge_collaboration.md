@@ -69,7 +69,7 @@ The sections where changes occur are marked with a warning, so that you can revi
 
 Entering one of them, to resolve a diff, you can:
 - edit the local configuration on the right-hand editor (the left-hand editor is read-only)
-- via the small arrows located between the two editors identifiable by the image above, either apply the one on the left into the editor on the right or approve your local changes by moving them to the editor on left.
+- either apply the remote changes from the left into the editor on the right or approve your local changes by moving them to the editor on left. To apply the specific changes, you have to click on the small arrows located between the two editors (as shown in the image right above). 
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
