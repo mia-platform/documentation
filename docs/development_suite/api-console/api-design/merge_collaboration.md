@@ -18,7 +18,7 @@ As a matter of fact, from the Design area, and specifically through the branch a
 - Align the configurations of two different branches within the same project
 - Have visibility on all the configuration changes made locally before committing them
 
-Therefore, in case of a new commit available, the user can decide whether to start a merge configurations process or to save its local changes on a new branch.  
+Therefore, in case of a new commit available, users can decide whether to start a merge configurations process or to save their local changes on a new branch.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
