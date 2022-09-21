@@ -517,7 +517,10 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": ["use-cases", "guides"],
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -1946,6 +1949,25 @@
           "type": "category",
           "label": "Applications List",
           "items": [
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Auth0",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0/changelog"
+                }
+              ]
+            },
             {
               "collapsed": true,
               "type": "category",
