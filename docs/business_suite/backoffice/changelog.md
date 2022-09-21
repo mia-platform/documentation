@@ -8,35 +8,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.9] - 2022-09-14
-
-### Fixed
-
-- Fixed export-modal bug on columns selection
-- Fixed ampersand visualization bug on table cells
-- Equal and not equal filters of properties with format "date" will not take in consideration the whole day
-
-
-### Added
-
-- New React component `BulkActions`
-- New components `bk-bulk-delete` and `bk-bulk-actions`
-- Added support to `exists` operator in filters
-
-
-## [1.0.8] - 2022-09-07
-
-### Fixed
-
-- `bk-pdf-viewer` opens under `bk-form-modal`
-- When a time/date/date-time field is marked as readOnly, it doesn't display the correct date format in the form
-- `bk-button` does not emit events after plugin is changed
-
-
-### Added
-
-- Confirmation dialog on form submit: `bk-form-drawer`, `bk-form-modal`
-- Property `showArrayPopover` in `bk-table` allows displaying a popover on hovering array cells containing the elements of the array
 
 
 ## [1.0.9] - 2022-09-14
