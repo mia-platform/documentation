@@ -80,7 +80,7 @@ Entering one of them, to resolve a diff, you can:
   </div>
 </div>
 
-In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section the navigation buttons will be disabled.
+In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section, the navigation buttons will be disabled.
 
 When you are satisfied with your merge simply press the _Confirm Merge_ button.
 
