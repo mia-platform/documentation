@@ -32,7 +32,7 @@ The right section will contain the **detail about each already created CRUD** Co
 
 Select **"Create new CRUD"**: here you can choose the CRUD Collection name and the internal endpoint.  
 By default, **the suggested name of the internal endpoint** is the same entered in the collection name. However, it is always possible to choose a custom name by simply editing the internal endpoint field.  
-We can also decide to **import the fields of the collection from a file**, we will see this option later in the tutorial, if you are interested in this part you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection).  
+You can also decide to **import the fields of the collection from a file**. This option will be covered later in the tutorial. If you are interested in this part, you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection).  
 
 In this example **we will call the collection "books"** and we will use the default internal endpoint "/books".
 ![Create new MongoDB CRUD](img/MongoDB-Collection-create.png)
