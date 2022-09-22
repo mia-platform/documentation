@@ -11,7 +11,7 @@ REST APIs **allow clients** (like mobile, web and other applications) **to read,
 
 ## What We’ll Build
 In this tutorial we will create and expose a CRUD collection. More specifically, we will:
- * **create an CRUD** collection;
+ * **create a CRUD** collection;
  * **insert fields** of different formats;
  * **expose the CRUD** collection using an endpoint;
  * **export and import our CRUD** collection;
