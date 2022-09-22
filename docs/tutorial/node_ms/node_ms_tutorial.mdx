@@ -6,122 +6,129 @@ sidebar_label: Create a Node.js Microservice
 
 import VideoBox from './../../../src/components/VideoBox'
 
-In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js template](../../marketplace/templates/mia_templates) from the [Marketplace](../../marketplace/overview_marketplace).
+
+Microservices are used to develop software systems focusing on the creation of modules that respond to a single functionality with well-defined interfaces.
+Development with microservices offers many advantages. Generally they are easy to understand, simple to deploy, quick to reuse and allow you not to bind to a single programming language or framework.
+
+In this tutorial we'll see how to create a [microservice](../../guidelines/microservice_vademecum) in Node.js using a [marketplace](../../marketplace/overview_marketplace) template and customizing it according to our needs.
 
 ## What We’ll Build
+In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js Example](../../marketplace/examples/mia_examples) from the [Marketplace](../../marketplace/overview_marketplace).
 
-In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](../../runtime_suite/api-gateway/overview.md).
-
-Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](../../development_suite/set-up-infrastructure/env-var).
-Moreover we'll create a **CRUD for storing customers and orders** and develop a Microservice that **calculates the shipping cost for a specific order**. If the order belongs to a new customer the shipping cost is reduced, otherwise, a default cost is applied.
+ * Create the microservice from the Marketplace Example
+ * Configure the microservice
+ * Implement the routes
+ * Deploy the microservice
+ * Test the microservice
 
 ## Prerequisites
 
-We’ll assume that you have some familiarity with **JavaScript** and **Node.js**, but you can follow along even if you're coming from a different programming language. All concepts explained following are valid for all languages and frameworks.
+Before starting, make sure you already have a CRUD with public endpoints correctly configured in your environment. For this example, we’ll use the books example; to replicate the case you can use the [Create a Rest API in 5 minutes](../../getting_started/quick_rest_api) guide using the following <a download target="_blank" href="/docs_files_to_download/tutorial/nodejs-microservice-tutorial-schema.json">JSON schema</a>.
 
-Prepare your favorite IDE to interact with Git repositories.
+We’ll assume that you have some familiarity with **Node.js** language.
 
-## Create CRUDs
+Before starting:
+  * You will **create a CRUD called books**, with the data schema explained before.
+  * **Connect the CRUD books to the endpoints** to publicly expose your data.
+  * **Insert into your CRUD some useful data** to do some tests
+  * Check that the system is working properly (with CRUD request via API portal or cURL requests)
 
-First of all open your project, and create the following [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) collections. In order to do this follow these steps:
+## Create the microservice from the Marketplace Template
 
-### Customers CRUD
-
-1. In the [Console](../../development_suite/overview-dev-suite) select your project.
-2. Select _Design section_.
-3. Select the branch _master_.
-4. Go to section [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and click _Create new CRUD_.
-5. Insert the name `customers` and press _Create_.
-6. Now you have to set your collection fields. Scroll to the _Fields_ section and click _Add New_ to create the following fields:
-
-:::tip
-You can accelerate the field creation process by [importing them from JSON](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
-In order to do this download <a download target="_blank" href="/docs_files_to_download/orders.json"> orders crud JSON</a> and <a download target="_blank" href="/docs_files_to_download/customers.json"> customers CRUD JSON</a>.
-:::
-
-| **Field name**          | **Type** |
-| ----------------------- | -------- |
-| **name** (required)     | String   |
-| **lastname** (required) | String   |
-| **newCustomer**         | Boolean  |
-
-### Orders CRUD
-
-Create `orders` CRUD with the following fields:
-
-| **Field name**      | **Type**         |
-| ------------------- | ---------------- |
-| **date** (required) | Date             |
-| **orderItems**      | Array of Objects |
-| **customerId**      | ObjectId         |
-
-:::info
-Check out [this tutorial](../../getting_started/quick_rest_api) and see this short [video](../../getting_started/video_pills/video_pills#how-to-create-a-crud) to learn how to create and expose CRUDs
-:::
-
-![CRUD in Console](img/node-ms-crud.png)
-
-Now you should expose your collection through an Endpoint and create your first API.
-
-1. Go to section [Endpoints](../../development_suite/api-console/api-design/endpoints.md) and click _Create new endpoint_. Then enter the following information:
-
-   - `/customers` as **Base path**.
-   - `CRUD` as **Type**.
-   - Select `customers` as **CRUD**.
-
-2. Click _Create_. You have just created your first API!
-   The detail view shows other configurations that we'll use later. Scroll down to the _Routes_ section to see an overview of the routes of your API.
-
-3. Create a new endpoint with the following information:
-
-   - `/orders` as **Base path**.
-   - `CRUD` as **Type**.
-   - Select `orders` as **CRUD**.
-
-![CRUD in Console](img/node-ms-endpoint.png)
-
-4. To confirm changes just press **Commit & Generate**. We suggest writing a proper title for each commit, in this case, we can type in `Created CRUDs "customer", "orders" and the related endpoints`. We can choose an existing branch or create a new one.
-
-:::caution
-All items in the design area **are not saved** until you click **Commit & Generate**. You can create different entities and then save all the work only at the end.
-Upon configuration save, the Console will generate updates for the Kubernetes configuration files in your project repository.
-:::
-
-:::info
-Check out the [endpoint documentation](../../development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
-:::
-
-## Create the Microservice from the Marketplace Template
-
-:::tip
-Watch this short video to learn how it's easy to create a Node.js Microservice from templates
-:::
-
-<VideoBox videoName={'createNodeMS'} />
-
-A Microservice can be created starting from existing Templates. Starting from a Mia-Platform Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices(such as testing, logging, health routes, etc).
+A Microservice can be created starting from existing Example, Templates and Plugin. Starting from a Mia-Platform Example and Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices(such as testing, logging, health routes, etc).
 
 In the [Marketplace](../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
 
-We'll create a microservice from [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/):
+The first step is to **create the microservice**.
 
-1. Go to section [Microservices section](../../development_suite/api-console/api-design/services.md) and click _Create a Microservice_.
-1. Search the template `Node.js Template`, then select it.
-1. Now enter the following information:
-   - `get-shipping-cost` as **Name**.
-   - Select the suggested option as **Docker Image Name**.
-1. In the detail, go to the _Microservice configuration_ section and set **Memory Request Limit** to `150` and **CPU Limit** to `100`.
+Select **Microservices** from the menu on the left:
+![Microservice in Console](img/Microservice-create-microservice.png)
 
-Now you have to expose the microservice:
+The Microservices screen is composed by four different section.  
+The left section will contain **all the Microservices** created on this project.  
+The right section will contain the **detail about each already created Microservices**.  
 
-1. Go to [Endpoints](../../development_suite/api-console/api-design/endpoints.md) section and click _Create new endpoint_. Then enter the following information:
+Now we can click on **"Create a Microservice"**, in the submenu we select **"From Marketplace"**.
+:::info
+The submenu also shows the possibility of creating a microservice starting from an already existing docker image. We won't see how to do this in this tutorial, but the Console also allows you to use existing microservices.
+:::
+![Microservice create from marketplace](img/Microservice-create-from-marketplace.png)
 
-   - `/shipping-cost-service` as **Base path**.
-   - `Microservice` as **Type**.
-   - Select `get-shipping-cost` as **Microservice**.
+In the **"Create a Microservice"** page we can search for **"Node.js"** and select the example **"Node.js HelloWorld Microservice Example"**.
 
-1. Click _Create_.
-1. Commit the changes
+![Microservice search Node.js from marketplace](img/Microservice-search-node-example.png)
+
+In this tutorial we'll use an example, but you can also create a microservice starting from a template or a Plugin.  
+The difference between the three options is that:  
+ * the **example** a specific use-case, a ready-to-use model to create your Microservice;
+ * the **template** is a base microservice that can be customized to create a new microservice; 
+ * the **plugin** is a ready-to-use microservice that can be plugged into your application. 
+   
+For more information about the differences between the three options, you can read the [Marketplace Overview](../../marketplace/overview_marketplace). 
+
+After selecting the example, you can configure the base information about your microservice:
+![Microservice configuration](img/Microservice-configure-example.png)  
+
+The first thing to do is to **insert a name** for your microservice, this name will be used as internal hostname for your microservice and need to be unique in the project.  
+You can add an description to describe the functionality of your microservice, useful to understand the purpose of the microservice.  
+Here you can also find the information about where the code of the microservice is stored, like the git repository owner and the repository name.  
+Last but not least, you can see the docker image name.  
+
+After that, you can create the microservice by clicking on **"Create"** button, the Console will ask you to confirm the creation of the microservice. 
+The confirmation remember that a new git repository will be created and if you want to revert the changes you can delete the repository manually from the git provider.
+
+After the creation of the microservice it's recommended to save your changes, to do that click on the **"Save"** button on the top right corner of the page.
+
+Now you can see the detail of the microservice and from here you can navigate to the git repository using the **"View Repository"** or copy the clone string to clone the repository locally clicking on the **"Clone"** button.  
+In this page use the button to navigate between the **"Environment Variables"**, the **"Annotations&Labels"** and the **"ConfigMaps&Secrets"** configuration.
+![Microservice clone code and configure microservice](img/Microservice-clone-and-configure.png)
+
+## Configure the microservice
+
+After the microservice creation we need to configure the microservice.  
+Into the microservice screen you can navigate in the different section to configure each setting of the microservice. For each section you can find a description of the purpose of the section and the specific configuration and starting from a template or an example you can find some default configuration already set, change the configuration to fit your needs.  
+
+Now we'll see how expose the microservice using the endpoint.  
+The procedure to configure the endpoint is the same of the CRUD, so you can read the [Create a Rest API in 5 minutes - Configure the Endpoint](../../getting_started/quick_rest_api#configure-the-endpoint) guide to learn how to configure the endpoint, 
+the only difference is that you need to configure the endpoint in the microservice and not in the CRUD, so select **"Microservices"** in the **"Type"** dropdown.
+
+![Microservice configure endpoint](img/Microservice-configure-endpoint.png)  
+
+:::info
+When you expose the microservice using the endpoint, the endpoint will be exposed outside the cluster, that means that the API exposed by your microservice will be accessible from outside the cluster.
+At the same time, to expose the API to the API Portal you need also to configure the """SWAGGER DOC""" in the microservice
+
+ 
+Expose the microservice using the endpoint is the most common way to expose the microservice outside the cluster. 
+
+, but you can also expose the microservice using the **"Ingress"** section.
+:::
+ 
+Now we can save the changes the new configuration clicking on the **"Save"** button on the top right corner of the page.
+                                  
+
+
+## Coding
+
+Now we can start to code the microservice, the code is stored in the git repository that you can access from the microservice screen clicking on the **"View Repository"** button or Clone the repository locally using the **"Clone"** button.  
+After the clone of the repository you can open the project with your favorite IDE.
+
+### Code Structure TODO (check the title)
+
+The code is structured in the following way:
+ * **index.js** is the entry point of the microservice, here we import the routes and the configuration of the microservice
+ * **handlers** folder contains the routes of the microservice, in this example we have only one route that is the **"/hello"** route
+ * **tests** folder contains the test of the microservice, in this example we have only one test that check the **"/hello"** route
+
+This **custom-plugin-lib** is a library that contains a set of functions that can be used to create a microservice in Node.js and it's already included in the package.json of the example more information about the **custom-plugin-lib** can be found in the [Node.js Custom Plugin Lib](../../development_suite/api-console/api-design/plugin_baas_4)
+
+ 
+ 
+
+
+______________  _____________________  ___
+
+## OLD CONTENT
 
 ## The code base
 
