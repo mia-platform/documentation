@@ -31,7 +31,7 @@ The left section will contain **all the CRUD Collections** created on this proje
 The right section will contain the **detail about each already created CRUD** Collection.  
 
 Select **"Create new CRUD"**: here you can choose the CRUD Collection name and the internal endpoint.  
-By default **the system will suggest the name** entered in the collection name as the name for the internal endpoint. However, it is always possible to choose a custom name by simply editing the internal endpoint field.  
+By default, **the suggested name of the internal endpoint** is the same entered in the collection name. However, it is always possible to choose a custom name by simply editing the internal endpoint field.  
 We can also decide to **import the fields of the collection from a file**, we will see this option later in the tutorial, if you are interested in this part you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection).  
 
 In this example **we will call the collection "books"** and we will use the default internal endpoint "/books".
