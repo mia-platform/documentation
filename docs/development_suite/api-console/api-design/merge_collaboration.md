@@ -85,7 +85,7 @@ In every section, navigate from one change to the following/previous one thanks 
 When you are satisfied with your merge just press the _Confirm Merge_ button.
 
 :::caution
-Once the merge is confirmed, the content from the editor on the _right_ is taken as correct configuration and injected into your local configuration.
+Once the merge is confirmed, the content from the editor on the _right_ is taken as the correct configuration and injected into your local configuration.
 
 Please note that **you will have to approve all the changes coming from the remote configuration**, otherwise you may lose some changes.
 :::
