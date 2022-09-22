@@ -11,7 +11,7 @@ _September 16th, 2022_
 
 ### New Features
 
-#### Merging configurations is out!
+#### Merge of configurations is out!
 
 :::info
 This feature is still in BETA, checkout the [official documentation page](/docs/development_suite/api-console/api-design/merge_collaboration) for further information.
@@ -42,25 +42,21 @@ When creating a project, the available templates are filtered on the basis of th
 
 Fixed a bug that was still allowing maintainers to access the edit dashboard UI even though this feature is only available to Project Administrator and Company Owners.
 
-#### Fixed the automatic selection of the last used branch in the Design Section
+#### Fixed the automatic selection of the last used branch in the Design Area
 
-In the case in which the last used branch is no more existing, now user entering Design area can correctly see the selection branch modal to choose another existing branch. Moreover, in the case of a refresh in any other Console area, the last used branch will be correctly loaded when returning to the Design section.
+In the case in which the last used branch is no more existing, now user entering Design area can correctly see the selection branch modal to choose another existing branch. Moreover, in the case of a refresh in any other Console Area, the last used branch will be correctly loaded when returning to the Design section.
 
 #### Fixed the multi-button bug in RBAC section
 
 A bug that recreates useless copies of a button in the RBAC section has been fixed if refresh the browser after the configuration save.
 
-#### Fixed tooltip popup in the user removal modal
-
-Fixed the popup position of the tooltip visible on mouse hover on Company role present in the modal used to remove an user.
-
-#### Fixed graphical bug on the names of services in the save configuration modal
-
-Fixed the truncated names of the services in the warning that appears in the modal of configuration save.
-
 ### Improvements
 
-#### Removed the redirection to Endpoint section after the configuration save
+#### Improved the branch management UI
+
+Now the branch management popover has a revised design that helps users both to better identify the branch configuration status and to allow new useful actions to be performed at the branch level (e.g. starting a merge process, pulling from the last commit).
+
+#### Removed the redirection to Endpoints section after the configuration save
 
 When saving the branch configuration in any section of the Design Area, with the exception for RBAC and Fast Data sections, the browser remains on the same section.
 This behavior will also be applied to these two sections on next Console versions.
@@ -76,10 +72,6 @@ When loading a branch, a new error placeholder will be displayed if the branch c
 #### Improved the validation error message during the endpoint creation
 
 During the creation of an endpoint, the validation error message about the base path field is clearer than the previous regex pattern.
-
-#### Improved the branch management UI
-
-Now the branch management popover has a revised design that helps users both to better identify the branch configuration status and to allow new useful actions to be performed at the branch level (e.g. starting a merge process, pulling from the last commit).
 
 #### Error page for failures in loading project configuration
 
@@ -237,4 +229,4 @@ Fixed trailing comma bug in `bk-crud-client` while adding MongoDB query filters 
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 7.3.0`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.0.8`.
