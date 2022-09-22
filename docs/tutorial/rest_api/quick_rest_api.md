@@ -4,7 +4,7 @@ title: Create a REST API in 5 minutes
 sidebar_label: Create a Rest API in 5 minutes
 ---
 
-A **REST API is an application programming interface** that conforms to the constraints of REST architectural style and allows **for interaction with RESTful web services**.
+A **REST API is an application programming interface** that conforms to the constraints of REST architectural style, and allows **for interactions with RESTful web services**.
 They **allow clients** (like mobile, web and other applications) **to read, write and modify the data** of a system (like servers, databases and other) **hiding the implementation details** from the developer.
 
 **Mia-Platform Console offers a system to create CRUD collections that can be connected to publicly exposed endpoints**, through authentication and authorization system like [RBAC](../../development_suite/api-console/api-design/rbac).
