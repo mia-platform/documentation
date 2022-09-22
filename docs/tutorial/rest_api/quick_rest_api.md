@@ -37,7 +37,7 @@ You can also decide to **import the fields of the collection from a file**. This
 In this example, **we will call the collection "books"** and we will use the default internal endpoint `/books`.
 ![Create new MongoDB CRUD](img/MongoDB-Collection-create.png)
 
-After clicking on **create**, we will have created our CRUD.
+After clicking on **create**, you will have the CRUD created.
 
 ![Default MongoDB CRUD](img/MongoDB-Collection-default.png)
 
