@@ -10,15 +10,15 @@ This is a **BETA** feature and, as such, is currently under **active development
 Always pay close attention to the changes you apply to the configuration files!
 :::
 
-Within the project, different users can concurrently work on the same branch while having visibility on any configuration changes made by other users.
+Within the project, different users can concurrently work on the same branch while having visibility of any configuration changes made by other users.
 As a matter of fact, from the Design area, and specifically through the branch action popover, it will be possible to:
 
 - Have visibility if other users have committed new changes to the configuration of the branch you are also working on
-- Be aligned to the latest changes remotely committed by starting a merge flow that will allow you to identify diffs between compared configurations and to resolve changes/conflicts
+- Be aligned to the latest changes remotely committed by starting a merged flow that will allow you to identify diffs between compared configurations and to resolve changes/conflicts
 - Align the configurations of two different branches within the same project
 - Have visibility on all the configuration changes made locally before committing them
 
-Therefore, in case of a new commit available, users can decide whether to start a merge configurations process or to save their local changes on a new branch.  
+Therefore, in case of a new commit is available, users can decide whether to start a merge configurations process or to save their local changes on a new branch.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
