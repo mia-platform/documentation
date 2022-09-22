@@ -10,7 +10,7 @@ REST APIs **allow clients** (like mobile, web and other applications) **to read,
 **Mia-Platform Console offers a system to create CRUD collections that can be connected to publicly exposed endpoints**, through an authentication and authorization system like [RBAC](../../development_suite/api-console/api-design/rbac).
 
 ## What We’ll Build
-In this tutorial we'll create and expose an CRUD collection, specifically, we'll:
+In this tutorial we will create and expose a CRUD collection. More specifically, we will:
  * **create an CRUD** collection;
  * **insert fields** of different formats;
  * **expose the CRUD** collection using an endpoint;
