@@ -24,26 +24,26 @@ Moreover, to easily perform [**CRUD**](./../development_suite/api-console/api-de
 
 Calling any [**service**](./../development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of microservices. To do this, the developer who will use your library should be able to call a route with some options.
 
-Check out the related [Mia service Node.js library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/HTTPClient.md) for an example.
+Check out the related [Mia service Node.js library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) for an example.
 
 ### Decorators
 
 The library should provide methods to declare and handle the [**Console decorators**](./../development_suite/api-console/api-design/decorators.md).  
 It should include methods for accessing the original HTTP request and response and change them, according to the [following rules](./../development_suite/api-console/api-design/decorators.md).
 
-Check out the [Mia service Node.js library decorators documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/Decorators.md) for an example.
+Check out the [Mia service Node.js library decorators documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/decorators.md) for an example.
 
 ### API documentation
 
 The library should be able to expose auto-generated documentation for each endpoint. It should exist a dedicated endpoint where show the API documentation.
 
-Check out the [Mia service Node.js library API documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/ApiDoc.md) for an example.
+Check out the [Mia service Node.js library API documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/apidoc.md) for an example.
 
 ### Logging
 
 The library should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](../getting_started/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](../development_suite/overview-dev-suite/#log-monitoring) and to use them to create custom dashboards.
 
-Check out the [Mia service Node.js logging documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/Logging.md) for an example.
+Check out the [Mia service Node.js logging documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/logging.md) for an example.
 
 ## Documentation
 
