@@ -30,7 +30,7 @@ The MongoDB CRUD screen is composed by four different section.
 The left section will contain **all the CRUD Collections** created on this project.  
 The right section will contain the **detail about each already created CRUD** Collection.  
 
-Select **"Create new CRUD"**, then we can choose the CRUD Collection name and the internal endpoint.  
+Select **"Create new CRUD"**: here you can choose the CRUD Collection name and the internal endpoint.  
 By default **the system will suggest the name** entered in the collection name as the name for the internal endpoint. However, it is always possible to choose a custom name by simply editing the internal endpoint field.  
 We can also decide to **import the fields of the collection from a file**, we will see this option later in the tutorial, if you are interested in this part you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection).  
 
