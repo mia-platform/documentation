@@ -18,7 +18,7 @@ In this tutorial we will create and expose a CRUD collection. More specifically,
 
 ## Prerequisites
 
-Before starting, we’ll assume that you have some familiarity with **API** and **REST** concepts. More information about API is available [here](../../guidelines/rest_api_vademecum).
+Before starting, we will assume that you have some familiarity with **API** and **REST** concepts. More information about API is available [here](../../guidelines/rest_api_vademecum).
 
 ## Create a new CRUD
 The first step is to **create a new CRUD collection** that contains the books of a library.
