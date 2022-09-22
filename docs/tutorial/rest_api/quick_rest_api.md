@@ -41,7 +41,7 @@ After clicking on **create**, you will have the CRUD created.
 
 ![Default MongoDB CRUD](img/MongoDB-Collection-default.png)
 
-There are already default fields that can not be changed, this is because they are necessary for the proper functioning of the CRUD:
+You will find some **default fields that can not be changed** because they are necessary for the proper functioning of the CRUD:
 
 | Field     | Type     | Required | Description       |
 |-----------|----------|----------|-------------------|
