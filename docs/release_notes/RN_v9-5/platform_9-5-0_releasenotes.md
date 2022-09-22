@@ -5,7 +5,7 @@ sidebar_label: v9.5.0
 image: "img/release-note-link-preview.png"
 ---
 
-_September 16th, 2022_
+_September 22nd, 2022_
 
 ## Console
 
@@ -229,4 +229,4 @@ Fixed trailing comma bug in `bk-crud-client` while adding MongoDB query filters 
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.0.8`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.0.10`.
