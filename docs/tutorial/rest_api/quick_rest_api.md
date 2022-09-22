@@ -7,7 +7,7 @@ sidebar_label: Create a Rest API in 5 minutes
 A **REST API is an application programming interface** that conforms to the constraints of REST architectural style, and allows **for interactions with RESTful web services**.
 REST APIs **allow clients** (like mobile, web and other applications) **to read, write, and edit the data** of a system (like servers, databases, and many others) **hiding the implementation details** of the system itself.
 
-**Mia-Platform Console offers a system to create CRUD collections that can be connected to publicly exposed endpoints**, through authentication and authorization system like [RBAC](../../development_suite/api-console/api-design/rbac).
+**Mia-Platform Console offers a system to create CRUD collections that can be connected to publicly exposed endpoints**, through an authentication and authorization system like [RBAC](../../development_suite/api-console/api-design/rbac).
 
 ## What We’ll Build
 In this tutorial we'll create and expose an CRUD collection, specifically, we'll:
