@@ -63,16 +63,16 @@ You can also export the already created fields in JSON format or import your fie
 ![Add field to the CRUD collection](img/MongoDB-Collection-add-field.png)
 
 In this interface you can add:
- * **Name** (required): the field's name
- * **Description**: the field's description
- * **Type** (required): the field's type, you can use:
-   * String, Number, Boolean, Date, GeoPoint, Object, Array of String, Array of Number, Array of Object or ObjectId
- * **Required**: if the field it's required
- * **Nullable**: if the field it's nullable
- * **Client-side Encryption**: if the field use the client-side encryption
- * **Allow search on encrypted field**: if the encrypted field are searchable
- * **Sensitivity**: the GDPR sensitivity, you can use:
-   * Unclassified, Public, Confidential, Secret, Top Secret
+ * **Name** (required): the name of the field;
+ * **Description**: the description of the field;
+ * **Type** (required): the type of the field. Accepted values are:
+   * String, Number, Boolean, Date, GeoPoint, Object, Array of String, Array of Number, Array of Object, or ObjectId;
+ * **Required**: if the field is required;
+ * **Nullable**: if the field is nullable;
+ * **Client-side Encryption**: if the field use the client-side encryption;
+ * **Allow search on encrypted field**: if the encrypted field is searchable;
+ * **Sensitivity**: the GDPR sensitivity. Accepted values are:
+   * Unclassified, Public, Confidential, Secret, Top Secret;
  * **GDPR Description**: the GDPR description
 
 At bottom you can select **"create Another"** to create another field after creating the one in progress.  
@@ -87,9 +87,9 @@ For this example we will create the following fields:
 | language      | String  | Yes      | false    | language of the book             |
 | title         | String  | Yes      | false    | title of the book                |
 | published     | Boolean | Yes      | false    | the book it's published?         |
-| salesForecast | Number  | No       | false    | in terms of the many copies sold | 
+| salesForecast | Number  | No       | false    | expected number of copies sold | 
 
-After adding this fields you can read the properties in the CRUD page
+After adding this fields, you can read the properties in the CRUD page:
 
 ![Fields to the CRUD collection](img/MongoDB-Collection-all-fields.png)
 
@@ -110,62 +110,62 @@ At this point you will need to **add an endpoint** to your newly created book CR
 ![Create the endpoints](img/MongoDB-Collection-endpoint.png)
 
 The Endpoints screen is composed by four different section.  
-The left section will **contain all the endpoints created on this project**, by default here you could find the public endpoints of the API portal.  
-The right section will **contain the detail** about each already created endpoints.
+The left section will **contain all the endpoints created on this project**. By default, here you could find the public endpoints of the API portal.  
+The right section will **contain the details** about each existing endpoint.
 
 Select **"Create new endpoint"**
 
 ![Create the books endpoints](img/MongoDB-Collection-endpoint-create.png)
 
-The params to create a new endpoint:
- * **Base path**: the endpoint base path
- * **Type**: the type, can be:
+The required parameters to create a new endpoint are the following:
+ * **Base path**: the endpoint base path;
+ * **Type**: the endpoint type. Accepted values are:
    * CRUD, MongoDB View, Microservice, External Proxy, Cross Project Proxy, Fast Data Projection, Fast Data Single View
 
-The following params depend to the type, if you choose CRUD: 
- * **CRUD Base Path**: the CRUD base path, selected from the list
- * **Description**: an optional description of the endpoint
+The following parameters depend on the type of the endpoint. If you choose CRUD, you will have to set these parameters: 
+ * **CRUD Base Path**: the CRUD base path, selected from the list;
+ * **Description**: an optional description of the endpoint.
 
-After the creation, **clicking the /books in the left side you can open the endpoint detail**, including the section:  
+After you will have create the endpoint, **by clicking the `/books` in the left side you can open the endpoint detail**, including the section:  
   
 ![Endpoint Detail](img/MongoDB-Collection-endpoint-detail.png)  
   
- * **Details**: where you can change the description and show the the endpoint in the API Portal
- * **Configure the microservice gateway** to forces the endpoint to pass through the Microservice Gateway
- * **Security Management** where you can enable the authentication and the User Group Permission or the CMS User Permission.
+ * **Details**: here you can change the description and show the the endpoint in the API Portal;
+ * **Configure the microservice gateway**: here you can force the endpoint to pass through the Microservice Gateway;
+ * **Security Management**: here you can enable the authentication and the User Group Permission or the CMS User Permission.
 
 
-By scrolling down instead you can find the Routes detail.  
+By scrolling down the page, you can find the Routes detail.  
 
 ![Endpoint Detail Routes](img/MongoDB-Collection-endpoint-routes.png)  
   
-**Here, for each, route you can choose**:
- * if the **authorization** it's required
- * if the **API Key** it's required
- * if **expose the route to the API Portal**
- * the **User Group Permission**
- * the **CMS User Permission** 
+Here, for each route, you can choose:
+ * if the **authorization** is required;
+ * if the **API Key** is required;
+ * if you want to **expose the route to the API Portal**;
+ * the **User Group Permission**;
+ * the **CMS User Permission**.
 
 
 
-Of course, here **you can delete the endpoint clicking to the Delete button** and confirming inserting the endpoint name.
+Here **you can also delete the endpoint: you will have to click to the Delete button** and confirm your choice by inserting the endpoint name.
 
 ![Endpoint Delete](img/MongoDB-Collection-endpoint-delete.png)
  
 Now you can save the branch and deploy.
 
-From the **API portal you will find all the api specifications** that will allow you to read, write, modify and delete the information on your CRUD collection.
+From the **API portal you will find all the API specifications** that will allow you to read, write, edit, and delete the information on your CRUD collection.
 You can perform some insertions using POST call and then try to read the data using the GET request.
 
 :::caution
-Remember that when reading, the only data returned by the GET API are those whose __STATE__ is PUBLIC.  
-Make sure you create the elements directly like this or make it clear as a value when you POST
+Remember that when reading, the GET API will only return data whose __STATE__ is PUBLIC.  
+Make sure you create the elements directly like this, or make it clear as a value when you make the POST call.
 :::
 
-here an **overview of the API Portal**:
+Here you can find an **overview of the API Portal**:
 ![Endpoint Portal](img/MongoDB-Collection-endpoint-portal.png)
 
-By **expanding a method** we find everything needed to make a call. In this case, for example, the POST call:
+By **expanding a method**, you will find everything you need to make an call. In this case, for example, the POST call:
 ![Endpoint POST Portal](img/MongoDB-Collection-endpoint-portal-post.png)  
   
 ## Export and Import CRUD collection  
@@ -173,7 +173,7 @@ By **expanding a method** we find everything needed to make a call. In this case
 Let's go back to the **CRUD section selecting our CRUD "books"**:
 ![Export the CRUD collection](img/MongoDB-Collection-export.png)
 
-From here it is possible to **export the JSON of the CRUD Collection by clicking on "Export to JSON"**, by doing so, our browser will download a JSON containing the description (schema) of our CRUD.
+From here it is possible to **export the JSON of the CRUD Collection by clicking on "Export to JSON"**: by doing so, your browser will download a JSON containing the description (schema) of our CRUD.
 
 In the example of this tutorial the downloaded object will be:
 ```json
@@ -273,21 +273,21 @@ In the example of this tutorial the downloaded object will be:
 ]
 ```
 
-You can download the JSON schema, we built in this tutorial, using the following <a download target="_blank" href="/docs_files_to_download/tutorial/rest-api-tutorial-schema.json">Link</a>.  
+You can directly download the JSON schema built in this tutorial by using the following <a download target="_blank" href="/docs_files_to_download/tutorial/rest-api-tutorial-schema.json">Link</a>.  
   
-Now, if we wanted to **import our schema** we would just have to create a new CRUD (called for example books2) and at the time of generation import the fields from the JSON schema just downloaded.
+Now, if you want to **import the schema**, you just have to create a new CRUD (called for example books2) and at the time of generation import the fields from the JSON schema just downloaded.
 
 Clicking on **"Imports fields from file"**:
 ![Create the CRUD collection and import schema](img/MongoDB-Collection-create-import.png)
 
-We can **select the file within our local system** and upload it:
+You can **select the file within your local machine** and upload it:
 ![CRUD collection import schema](img/MongoDB-Collection-import.png)
 
-After the short loading it will be possible to **verify that the loaded structure** is correct and consistent before saving by clicking on the "Create" button:
+After the short loading, it will be possible to **verify that the loaded structure** is correct and consistent, before saving by clicking on the "Create" button:
 ![CRUD collection import schema detail](img/MongoDB-Collection-import-detail.png)
 
-At this point **we will have built our CRUD collection** exactly the same (in terms of fields) as the first one and we could decide to modify it (adding or removing fields), change the name or to expose it using another endpoint.  
+At this point, **you will have your CRUD collection** with exactly the same fields of the first one. You can decide to edit the new CRUD collection (adding or removing fields), to change the name, or to expose it using another endpoint.  
 :::info
-remember that two CRUDs or two identical endpoints (with the same path) cannot exist on a project so if you import an existing collection you will have to choose another name and path.
+Remember that **two CRUDs or two identical endpoints (with the same path) cannot exist on the same project**. So, if you import an existing collection, you will have to choose another name and path.
 :::
 ![Other CRUD collection detail](img/MongoDB-Collection-other-crud.png)
