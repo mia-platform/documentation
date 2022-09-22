@@ -14,7 +14,7 @@ In this tutorial we will create and expose a CRUD collection. More specifically,
  * **create a CRUD** collection;
  * **insert fields** of different formats;
  * **expose the CRUD** collection using an endpoint;
- * **export and import our CRUD** collection;
+ * **export and import our CRUD** collection.
 
 ## Prerequisites
 
