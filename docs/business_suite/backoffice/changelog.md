@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.10] - 2022-09-21
+
+### Fixed
+
+- fixed bug format currency
+- readonly object and array fields are correctly displayed in forms
+
+
 ## [1.0.9] - 2022-09-14
 
 ### Fixed
