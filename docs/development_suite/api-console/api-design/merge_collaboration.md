@@ -63,13 +63,13 @@ In order to perform the merge, press on the _Merge Configuration_ button: this w
 ![Merge configuration modal](img/merge-collaboration/merge-modal-change-view.png)
 
 From the sidebar on the left, you can navigate through different sections showing different parts of your project configuration.
-The items shown in the sidebar follow the grouping order used within the Design area sidebar (for example, user can easily identify the Endpoints section on top, then move on to the Workload section - in which there are the microservices configurations - and finally arrive at the MongoDB CRUD section to view its collections).
+The items shown in the sidebar follow the grouping order used within the Design area sidebar (for example, the user can easily identify the Endpoints section on top, then move on to the Workload section - in which there are the microservices configurations - and finally arrive at the MongoDB CRUD section to view its collections).
 
-The sections where changes occur are marked with a warning, so that you can review them with ease.
+The sections where changes occur are marked with a warning so you can review them easily.
 
 Entering one of them, to resolve a diff, you can:
 - edit the local configuration on the right-hand editor (the left-hand editor is read-only)
-- either apply the remote changes from the left into the editor on the right or approve your local changes by moving them to the editor on left. To apply the specific changes, you have to click on the small arrows located between the two editors (as shown in the image right above). 
+- either apply the remote changes from the left into the editor on the right or approve your local changes by moving them to the editor on the left. To apply the specific changes, you have to click on the small arrows located between the two editors (as shown in the image right above). 
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
