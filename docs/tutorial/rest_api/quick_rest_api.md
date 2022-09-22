@@ -53,9 +53,9 @@ You will find some **default fields that can not be changed** because they are n
 | __STATE__ | String   | Yes      | The state         |
 
 There is also other information for each field:
- * **Nullable**: if the field are nullable
- * **Client-side Encryption**: if the field are encrypted client-side
- * **Sensitivity**: The sensitivity of the field based on GDPR category
+ * **Nullable**: if the field is nullable;
+ * **Client-side Encryption**: if the field is client-side encrypted;
+ * **Sensitivity**: the sensitivity of the field based on GDPR category.
 
 At this point **we have to create our DB schema** by creating the properties of our CRUD. **In this section you can add a new property by selecting Add field**. 
 You can also export the already created fields in JSON format or import your fields, we will use this functionality later in the tutorial but, if you are interested in this part you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection)..
