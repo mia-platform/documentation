@@ -36,6 +36,7 @@ The following table describes the capabilities and how they are mapped on the de
 |----------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
 | View Company basic information                                             | `console.company.view`                                 |✅      | ✅        | ✅       | ✅         | ✅  | ✅ |
 | Edit company information                                                   | `console.company.details.update`                       |        |           |          |            |     |✅|
+| Create a Projects inside a Company                                         | `console.company.project.create`                       |        |           |          |            |     | ✅  |
 | View all Projects in this Company                                          | `console.company.project.view`                         |        | ✅        | ✅       | ✅         | ✅ | ✅  |
 | View Project basic information                                             | `console.project.view`                                 |✅      | ✅        | ✅       | ✅         | ✅ |     |
 | View all the Environments in all the Projects of this Company              | `console.company.project.environment.view`             |        | ✅        | ✅       | ✅         | ✅ | ✅  |
