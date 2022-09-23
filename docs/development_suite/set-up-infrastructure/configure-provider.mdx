@@ -9,34 +9,21 @@ import TabItem from '@theme/TabItem';
 
 Console's providers are a mean for storing access information about external services.
 
-In order to configure a new provider on console you need to call a specific API as documented in the following paragraphs.
+In the following sections, you will see how to use the relative APIs to create a new provider and associate the respective service account's token,
+which will be appropriately encrypted to ensure a high standard of security.
 
-## Git providers
-
-The Mia-Platform console allows you to interface with the most used git providers on the market (see [here](../../self_hosted/self_hosted_requirements#software-and-hardware-prerequisites) the supported git providers).  
-
-As an on-premise customer you have the ability to configure and use an authentication provider that differs from the git provider (i.e. [Okta](https://www.okta.com/) as authentication provider and [GitLab](https://gitlab.com/) as git provider).
-
-:::info
-You **must** create and configure a service account, which will be used to interact with the chosen Git provider.  
-As the service account is the only one to interact with the git provider, you will see it as author of some operations like pipelines trigger.
-:::
-
-In the following sections, you will see how to use the relative APIs to create a new provider and associate the respective service account's token, which will be appropriately encrypted to ensure a high standard of security.
+## Providers supported
+The Console's providers supported are: GitLab, GitHub, BitBucket, Azure DevOps, Vault.
+For each of these provider we support a specific method to authenticate the request, described below in [Provider creation](#provider-creation) section.
 
 ## Providers APIs
-
-In order to create a new provider you must call the respective API using the Console API Portal, under the "Providers" tag.  
-
-![Providers tag](./img/providers-tag.png)
-
-Two main APIs are exposed:
-
+The Console currently exposes two APIs:
 - POST - `/api/backend/tenants/{tenantId}/providers`: used to create a new provider;
 - PATCH - `/api/backend/tenants/{tenantId}/providers/{providerId}`: used to edit an existing provider.
 
 :::note
-The `tenantId` refers to the identifier of the company you need to associate the provider with.
+The `tenantId` refers to the identifier of the company you need to associate the provider with.
+The `providerId` refers to the identifier of the provider created earlier.
 :::
 
 :::info
@@ -44,16 +31,20 @@ These APIs are protected and can be used only if you belong to the group `access
 :::
 
 ### Provider creation
+To create a new provider you must call the respective API.
 
-To create a new provider, you must invoke the API `/api/backend/tenants/{tenantId}/providers`.
+```sh
+curl --location --request POST 'https://console-url/api/backend/tenants/my-example-company/providers' \
+--header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-super-super-super-secret-token"}},"id":"gitlab-id","label":"My GitLab Label","type":"gitlab","urls":{"apiBase":"https://gitlab-test.com/api","base":"https://gitlab-test.com"}}'
+```
 
-Here is the request body form visible in the API Portal:
+or you can use the Console API Portal, under the "Providers" tag.
+![Providers tag](./img/providers-tag.png)
 
-![Providers creation body](./img/provider-body.png)
-
-We can divide the body in two categories: provider data and credentials data.
-
-The provider data fields are:
+#### Body schema
+To create a new provider, you must invoke the POST `/api/backend/tenants/{tenantId}/providers` following this body schema:
 
 - **id (string)**: it will be used to identify the provider;
 - **label (string)**: an human-readable name for the provider;
@@ -61,20 +52,34 @@ The provider data fields are:
 - **urls (object)**: an object that contains:
   - **apiBase (string)**: the API base url of the provider (without trailing slash);
   - **base (string)**: the base url of the provider (without trailing slash).
+- **credentials (object)**: an object that contains credential fields.
 
+The **credential** object fields change for each provider:
 
-The credentials data fields are:
+For `GitLab`, `GitHub`, `BitBucket`, `Azure DevOps`, the current credential type supported is **token**. The object will be composed as follows:
+- **credentials (object)** (required):
+  - **type (string)** (required): "token"
+  - **content (object)** (required):
+    - **accessToken (string)** (required)
 
-- **type (string)**: the type of credentials that you are going to insert. accepted values are `token`, `userPass` or `m2m`;
-- **content (object)**: a dynamic object that contains the credentials of the service account.
-  - For type `userPass`: **must** include `userName` and `password` fields;
-  - For type `token`: **must** include only `accessToken` field;
-  - For type `m2m`: **must** include `accessTokenURL` and `token` fields.
+For `Vault` provider the current credentials type supported are **token** and **m2m**. The object will be composed as follows:
+- **credentials (object)** (required):
+  - **type (string)** (required): "token"
+  - **content (object)** (required):
+    - **accessToken (string)** (required)
 
-#### Examples
+* **credentials (object)**(required):
+  * **type (string)** (required): "m2m"
+  * **content (object)** (required):
+    * **token (string)** (required)
+    * **accessTokenURL (string)** (required)
 
-Below you can find a complete example of the request, divided by provider type:
+:::info
+All credentials object data are stored in an encrypted MongoDB collection.
+For more information about MongoDB encryption, take a look at the dedicated [documentation section](../../runtime_suite/crud-service/encryption_configuration).
+:::
 
+#### Examples of request body by the provider:
 <Tabs>
   <TabItem value="github" label="GitHub" default>
 
@@ -176,63 +181,40 @@ Below you can find a complete example of the request, divided by provider type:
       "token": "vault-jwt-token",
       "accessTokenURL": "https://vault.example.com/v1/auth/kubenetes/login"
     }
+  }
 }
 ```
 
   </TabItem>
 </Tabs>
 
-:::info
-The credentials are stored encrypted in MongoDB.  
-For more information, take a look at the dedicated [documentation section](../../runtime_suite/crud-service/encryption_configuration).
-:::
+### Associate provider
+Once your provider has been created, we can link it to the company and the project.
 
-#### Associate provider to a Project
-
-To associate the created provider to your project, you can use the CMS.
-
-Navigate through the `Projects` section, select the desired project and change the `providerId` in the `Repository` section.
-
-![Insert providerId](./img/providers-cms.png)
-
-#### Associate provider to a Company
-
+#### Associate to a Company
 To associate the created provider to your company, you can use the CMS.
-
 Navigate through the `Companies` section, select the desired project and change the `providerId` in the `Repository` section.
 
 ![Insert providerId](./img/provider-company-cms.png)
 
-### Provider editing
+#### Associate to a Project
+To associate the created provider to your project, you can use the CMS.
+Navigate through the `Projects` section, select the desired project and change the `providerId` in the `Repository` section.
 
+![Insert providerId](./img/providers-cms.png)
+
+### Provider editing
 To edit an existing provider, you must invoke the API `/api/backend/tenants/{tenantId}/providers/{providerId}`.
 
-The request of this endpoint is identical to the [previous one](#associate-provider), except that here you have to insert the `providerId` in the endpoint params instead of the request body.
-
-Here is the form visible in the API Portal:
-
-![Provider editing request body](./img/provider-edit-body.png)
-
-### Example code
-
-#### Insert a provider
-
-Now, we insert a provider of type `gitlab`, with id `gitlab-id`:
-
 ```sh
-curl --location --request POST 'https://console-url/api/backend/tenants/my-example-company/providers' \
---header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
---header 'Content-Type: application/json' \
---data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-super-super-super-secret-token"}},"id":"gitlab-id","label":"My GitLab Label","type":"gitlab","urls":{"apiBase":"https://gitlab-test.com/api","base":"https://gitlab-test.com"}}'
-```
-
-#### Edit a provider
-
-To change the credentials for the provider previously added, with the id `gitlab-id`:
-
-```sh
-curl --location --request POST 'https://console-url/api/backend/tenants/my-example-company/providers/gitlab-id' \
+curl --location --request PATCH 'https://console-url/api/backend/tenants/my-example-company/providers/gitlab-id' \
 --header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
 --header 'Content-Type: application/json' \
 --data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-new-super-super-super-secret-token"}}'
 ```
+
+or you can use the PATCH request method in Console API Portal, under the "Providers" tag.
+![Providers tag](./img/providers-tag.png)
+
+The request of this endpoint is identical to the [previous one](#associate-provider),
+except that here you have to insert the `providerId` in the endpoint params instead of the request body.
