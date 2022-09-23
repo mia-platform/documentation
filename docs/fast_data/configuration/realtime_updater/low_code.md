@@ -32,7 +32,7 @@ When a new Real-Time Updater is generated, a base `erSchema.json` file is genera
 This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated to this microservice to work properly.
 :::  
 
-When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema.
+When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema. But if you need a different `er-schema` (e.g. you have created a new real time updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new configmap with its own unique identifier and create a new `erSchema.json` file in it.
 
 The `erSchema.json` configmap defines the relationship between tables and projections.
 
