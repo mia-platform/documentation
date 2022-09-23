@@ -138,6 +138,16 @@ These fields cannot be deleted and only the `_id` field is editable. You cannot 
 
 These fields have no `Cast function` assigned because they are not used for mapping of fields from the received Kafka message. This means that if the Kafka message contains a field with the same name as one of the metadata fields, it is not copied on the Projection.
 
+There are also some of these fields that are used to track the time of creation and update of the projection document. Those are:
+
+* `createdAt`: meaning the timestamp of the creation of the document on the database
+* `updatedAt`: meaning the timestamp of the latest update that the document received
+* `timestamp`: reporting the timestamp of the Kafka message that generated the document.
+
+:::Info
+Every one of these timestamp fields has the format `yyyy-MM-ddTHH:mm:ss.SSS+ZZ:ZZ`
+:::
+
 ## Import multiple projections from a DDL file
 
 Most DBMSes have some way of exporting the database schema, producing a DDL file that contains a sequence of statements like `CREATE_TABLE`, `ALTER_TABLE`, and `CREATE_INDEX`. With this kind of file, the Console can create multiple projections for a given System of Records, which creates a set of projections with the following information:
