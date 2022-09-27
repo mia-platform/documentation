@@ -68,30 +68,6 @@ This means the `pr_reviews` projection is connected to:
 * `pr_registry` through the `rev_to_reg` condition, which means the documents are linked if the registry `ID_USER` field is the same as the reviews `ID_USER` field;
 * `pr_dishes` through the `rev_to_dish` condition, which means the documents are linked if the dish `id_dish` field is the same as the reviews `ID_DISH` field;
 
-Some more complex condition is showcased next:
-
-```json
-...
-"CONSTANT_CONDITION": {
-  "condition": {
-    "DESTINATION_FIELD_NAME": "__constant__[CONSTANT_VALUE]"
-  }
-},
-"MONGO_OPERATOR_CONDITION": {
-  "condition": {
-    "$or": [
-      {
-        "DESTINATION_FIELD_NAME_2": "SOURCE_FIELD_NAME_2"
-      },
-      {
-        "DESTINATION_FIELD_NAME_3": "__constant__[ANOTHER_CONSTANT_VALUE]"
-      }
-    ]
-  }
-}
-...
-```
-
 ## Aggregation
 
 This configuration indicates what are the dependencies of the single view and how to map them to its fields.
