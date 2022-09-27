@@ -6,27 +6,31 @@ sidebar_label: ER Schema
 
 In this document we guide you through the configuration of the ER Schema, one of the configuration files required by the [Single View Creator](../architecture.md#single-view-creator-svc), [Real Time Updater](../architecture.md#real-time-updater-rtu) and [Single View Trigger](../architecture.md#single-view-trigger-svt) in a low-code situation.
 
+:::tip
+If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](../../tutorial/fast_data/fast_data_low_code_tutorial)
+:::
+
 ## Overview
 
-The Entity-Relation Schema defines the relation between the collections of the [System of Records](../the_basics.md#system-of-records-sor), by means of directed links from one collection to another, that can have one or more conditions
+The ER Schema or Entity-Relation Schema defines the relationships between the collections of a [System of Records](../the_basics.md#system-of-records-sor).
 
 ## Syntax
 
-An example of a correct ER is presented next:
+The ER Schema is made of the following fields:
 
 ```json title="erSchema.json"
 {
   "version": "N.N.N",
   "config": {
-    "SOURCE_COLLECTION": {
+    "COLLECTION": {
       "outgoing": {
-        "DESTINATION_COLLECTION": {
+        "RELATED_COLLECTION": {
           "conditions": {
             "CONDITION_NAME": {
+              "oneToMany": true,
               "condition": {
-                "DESTINATION_FIELD_NAME": "SOURCE_FIELD_NAME"
-              },
-              "oneToMany": true
+                "RELATED_COLLECTION_FIELD_NAME": "COLLECTION_FIELD_NAME"
+              }
             }
           }
         }
@@ -36,18 +40,31 @@ An example of a correct ER is presented next:
 }
 ```
 
-The `version` field holds the current configuration version, which determines the syntax and semantics of the rest of the configuration. For version `1.0.0` these are the fields and their meaning:
+* `version`: Current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
+* `config`: The whole ER Schema config
+* `COLLECTION`: Name of a collection of the System of Records. There should be a `COLLECTION` object for each collection of the System of Records.
+* `outgoing`: List of all the related collections.
+* `RELATED_COLLECTION`: Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`.
+* `conditions`: List of conditions that connect the `COLLECTION` and the `RELATED_CONNECTION`.
+* `CONDITION_NAME`: Name of the condition, this is purely for debug purposes and we suggest using the following naming convention: `COLLECTION_to_RELATED_COLLECTION` (eg. dish_to_order_dish)
+* `oneToMany`: Specifies if there will be **more than one** `RELATED_COLLECTION` document related to a `COLLECTION` document. If false we will assume there will be **only one** `RELATED_COLLECTION` document related to another `COLLECTION` document. The default is `false`
+* `condition`: Object literal containing the condition
+* `RELATED_COLLECTION_FIELD_NAME`: A field name of the `RELATED_COLLECTION`
+* `COLLECTION_FIELD_NAME`: A field name of the `COLLECTION`
 
-* The config field holds the ER schema itself, as detailed below
-* The source document is one of the documents of the System of Records. The ER schema should have one different field for each document of the System.
-* Each source document has an `outgoing` property that lists all of the destination documents related to the source one.
-* Each destination document has a series of conditions that determine whether two documents should be matched or not.
-* Each condition has a name and checks the destination fields against the source fields or some constants. Conditions can use **mongo operators** too (e.g. `$or`, `$and`, and  `$gt`).
-* The `oneToMany` field of a condition specifies whether the source document can have a relation with only one document (in case of `false`) or with multiple documents (in case of `true`) of the target collection. By default, it is set to false (if the field is completely missing).
+:::note
+All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
+:::
 
-It is possible to define a constant value in order to validate the condition, for example:
+In the last example the relationship between the entities would be:
 
-```json
+![Entity Relation representation of the following example](../img/collection-to-related.png)
+
+### Constants
+
+It is also possible to define a constant value in order to validate the condition, for example:
+
+```json title="erSchema.json"
 "pr_dishes": {
   "outgoing": {
     "pr_orders_dishes": {
@@ -61,7 +78,6 @@ It is possible to define a constant value in order to validate the condition, fo
     }
   }
 }
-
 ```
 
 In this case the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
@@ -75,6 +91,39 @@ The types of constants that are supported are:
 :::caution
 Remember that `__constant__[]` is deprecated, and it will be removed in future versions. Use `__string__[]` instead.
 :::
+
+### Query and Projection Operators
+
+Conditions can also use MongoDB [Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/), for example:
+
+```json title="erSchema.json"
+{
+  "version": "N.N.N",
+  "config": {
+    "pr_dishes": {
+      "outgoing": {
+        "pr_orders_dishes": {
+          "conditions": {
+            "dish_to_order_dish": {
+              "oneToMany": true,
+              "condition": {
+                "$or": [
+                  {
+                    "ID_DISH": "id_dish"
+                  },
+                  {
+                    "ID_DISH": "__string__[testID]"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 ## Real use case example
 
