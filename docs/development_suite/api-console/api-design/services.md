@@ -279,7 +279,7 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
 Moreover, you can decide to preserve files and directories already existing in the Runtime Mount Path directory, by activating the related checkbox.
 
-![service-add-configuration](img/New_configuration_-_subpath_configmap.png)
+![service-add-configuration](img/create-new-configMap.gif)
 
 For each configuration created, a new card will be visible.
 
@@ -298,7 +298,7 @@ In this way, all the files of the ConfigMap are loaded in the position defined a
 Custom services configuration now supports ConfigMaps larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
 :::
 
- ![service-add-file-new](img/Add_file_-_subpath_configmap.png)
+ ![service-add-file-new](img/example-configMap-detail.png)
 
 #### Shared ConfigMaps
 

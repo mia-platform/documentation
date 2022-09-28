@@ -68,7 +68,7 @@ This route has to return 200 if, and only if, **all pod dependencies** are up. I
 The only service who can call the `/-/check-up` route is the _Doctor service_.
 :::
 
-## Kubernetes' usage of liveness and readiness ##
+## Kubernetes usage of liveness and readiness ##
 
 Many applications running for long periods of time eventually transition to broken states, and cannot recover except by being restarted. Kubernetes provides liveness probes to detect and resolve such situations.
 
