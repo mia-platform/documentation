@@ -48,7 +48,7 @@ To create a new provider, you must invoke the POST `/api/backend/tenants/{tenant
 
 - **id (string)**: it will be used to identify the provider;
 - **label (string)**: an human-readable name for the provider;
-- **type (string)**: the type of provider you are going to insert. Can be `gitlab`, `github`, `bitbucket`, `azure-devops` or `vault`;
+- **type (string)**: the type of provider you are going to insert. Can be `gitlab`, `github`, `bitbucket`, `azure-devops`, `vault`, or `jenkins`;
 - **urls (object)**: an object that contains:
   - **apiBase (string)**: the API base url of the provider (without trailing slash);
   - **base (string)**: the base url of the provider (without trailing slash).
@@ -56,13 +56,13 @@ To create a new provider, you must invoke the POST `/api/backend/tenants/{tenant
 
 The **credential** object fields change for each provider:
 
-For `GitLab`, `GitHub`, `BitBucket`, `Azure DevOps`, the current credential type supported is **token**. The object will be composed as follows:
+For `GitLab`, `GitHub`, `BitBucket`, `Azure DevOps`, the currently supported credential type is **token**. The object will be composed as follows:
 - **credentials (object)** (required):
   - **type (string)** (required): "token"
   - **content (object)** (required):
     - **accessToken (string)** (required)
 
-For `Vault` provider the current credentials type supported are **token** and **m2m**. The object will be composed as follows:
+For `Vault` provider, the currently supported credential types are **token** and **m2m**. The object will be composed as follows:
 - **credentials (object)** (required):
   - **type (string)** (required): "token"
   - **content (object)** (required):
@@ -72,6 +72,19 @@ For `Vault` provider the current credentials type supported are **token** and **
   * **type (string)** (required): "m2m"
   * **content (object)** (required):
     * **token (string)** (required)
+    * **accessTokenURL (string)** (required)
+
+For `Jenkins` provider, the currently supported credential types are **token** and **OAuth2** (Client Credentials). The object will be composed as follows:
+- **credentials (object)** (required):
+  - **type (string)** (required): "token"
+  - **content (object)** (required):
+    - **accessToken (string)** (required)
+
+* **credentials (object)**(required):
+  * **type (string)** (required): "client_credentials"
+  * **content (object)** (required):
+    * **clientId (string)** (required)
+    * **clientSecret (string)** (required)
     * **accessTokenURL (string)** (required)
 
 :::info
@@ -180,6 +193,27 @@ For more information about MongoDB encryption, take a look at the dedicated [doc
     "content": {
       "token": "vault-jwt-token",
       "accessTokenURL": "https://vault.example.com/v1/auth/kubenetes/login"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="jenkins" label="Jenkins OAuth 2.0">
+
+```json
+{
+  "type": "jenkins",
+  "urls": {
+    "baseUrl": "https://jenkins.example.com/",
+    "apiBaseUrl": "https://jenkins.example.com/"
+  },
+  "credentials": {
+    "type": "client_credentials",
+    "content": {
+      "clientId": "id",
+      "clientSecret": "secret",
+      "accessTokenURL": "https://jenkins.example.com/oauth2/login"
     }
   }
 }
