@@ -734,6 +734,17 @@
       ],
       "label": "Monitoring",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/troubleshooting/rtu_keeps_restarting_rebalancing",
+          "type": "doc"
+        }
+      ],
+      "label": "Troubleshooting",
+      "type": "category"
     }
   ],
   "gettingStarted": [
