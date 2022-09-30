@@ -215,7 +215,8 @@
     "resourcequotas",
     "statefulsets",
     "ingressroutetcps",
-    "containo"
+    "containo",
+    "kafkajs"
   ],
   "dictionaries": [
     "softwareTerms",
