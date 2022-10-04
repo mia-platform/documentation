@@ -6,6 +6,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "prebuild": "npm run build-redirects",
     "build": "USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -13,7 +14,9 @@
     "lint": "eslint --ext js .",
     "spellcheck": "npx cspell './docs/**'",
     "release-note": "node ./new-release-note.js",
-    "check-content": "node ./check-content.js"
+    "check-content": "node ./check-content.js",
+    "build-redirects": "node ./scripts/build-permanent-redirects.js",
+    "check-redirects": "node ./scripts/check-permanent-redirects.js"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.1",
