@@ -156,4 +156,4 @@ custom icons can be specified in `bk-table` row actions in nested fields
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.0.20`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.0.21`.
