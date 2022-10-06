@@ -33,7 +33,7 @@ Where `config` is an object whose fields represent the [Microservice environment
 
 Some environment variables will be pre-compiled when you create the service from template, others won't, but they will still have a placeholder as value. Replace it with the correct value.
 
-Here some tips:
+Here are some tips:
 
 - `TYPE`: should be the name of the single view which your single view creator is responsible for
 - `SINGLE_VIEWS_COLLECTION`: should be the name of the single view which your single view creator is responsible for

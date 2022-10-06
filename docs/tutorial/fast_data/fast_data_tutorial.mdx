@@ -332,7 +332,7 @@ Now we need to configure all the parameters of the microservice, here an example
 - **SINGLE_VIEWS_COLLECTION**: should be the name of the single view which your single view creator is responsible for
 - **SINGLE_VIEWS_ERRORS_COLLECTION**: it is the name of a MongoDB CRUD you want to use as collection to the single view errors.
 - **SINGLE_VIEWS_PORTFOLIO_ORIGIN**: should be equals to the SYSTEM_ID you have set in PROJECTIONS_CHANGES_COLLECTION
-- **KAFKA_BROKERS_LIST**: the list of the kafka brokers that will be used to send the data to the Projections
+- **KAFKA_BROKERS**: the comma separated list of the kafka brokers that will be used to send the data to the Projections
 - **KAFKA_SVC_EVENTS_TOPIC**: topic used to queue Single View Creator state changes (e.g. single view creation)
 - **SEND_BA_TO_KAFKA**: true if you want to send to Kafka the before-after information about the update changes of the single view
 - **KAFKA_GROUP_ID**: the group id that will be used to consume the data from the source systems
