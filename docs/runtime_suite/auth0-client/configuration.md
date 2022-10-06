@@ -203,7 +203,8 @@ The endpoints that support connections are the following:
 - `POST /oauth/token`: in a similar fashion to `/authorize` will use provided connection if supported otherwise it uses the default configured.
 - `GET /users`: will filter connections in original request based on _ManagementClient_ supported connection, if none is provided all supported connections are used by default;
 - `POST /user/:userId`: will use default connection from _ManagementClient_ if no connection is provided, otherwise will use the one provided (if supported).
-
+- `GET /users/active`: will return a list of the active users at the time the call is made.
+- 
 ## Supported redis modes
 
 This service handles the session saving into redis either the session id or the access token.

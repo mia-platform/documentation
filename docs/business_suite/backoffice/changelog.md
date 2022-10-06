@@ -10,6 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.11] - 2022-10-05
+
+### Fixed
+
+- `bk-form-drawer` sends events created by `dataCustomActions` with the correct payload
+- `bk-form-modal` with set `extraEndpoint` correctly opens wizard mode
+
+
+### Added
+
+- `ignoreCase` field is available in `filtersOptions`, controlling whether equality filters should be evaluated ignoring case
+
+
 ## [1.0.10] - 2022-09-21
 
 ### Fixed

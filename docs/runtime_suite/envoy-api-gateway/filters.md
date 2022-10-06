@@ -62,7 +62,7 @@ On the other hand, the Lua script in the second step is in charge of **resolving
 
 ### JWT authentication
 
-Envoy supports **JWT authentication**, which can be combined with our **[Authorization Service](../authorization-service/usage.md#trust-mia-platform-user-headers)** using the trusted user headers mode.
+Envoy supports **JWT authentication**, which can be combined with our **[Authorization Service**](../authorization-service/usage.md#trust-mia-platform-user-headers)** using the trusted user headers mode.
 
 The **[JWT authentication HTTP filter](https://www.envoyproxy.io/docs/envoy/v1.21.0/configuration/http/http_filters/jwt_authn_filter#config-http-filters-jwt-authn)** performs all the necessary operations to decode and extract the JWT payload.
 

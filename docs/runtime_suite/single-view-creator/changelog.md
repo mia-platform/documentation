@@ -8,21 +8,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.0] 2022-09-27
+### Added
+- added support for the new svTriggerHandlerCustomConfig configuration, added interpretation of the new configuration so as to pass the patch operation to the library to execute.
+
+## [5.2.1] 2022-09-27
+
+### Added
+
+- updated `@mia-platform-internal/single-view-creator-lib` @14.2.1 and introduced virtual delete as delete operation option
+
 ## [5.2.0] 2022-09-14
-
-### Added 
-- `mia_metadata_custom_metrics` exposed prometheus client
-
-## [5.2.0-rc1] 2022-09-14
 
 ### BREAKING CHANGE
 
 - 
 - the properties _before_ and _after_ in sv-update messages are empty by default (to include them, the environment variable `ADD_BEFORE_AFTER_CONTENT` must be included and set to _true_)
 
+### Added 
+- `mia_metadata_custom_metrics` exposed prometheus client
+
 ### Changed
 
 - Changed env vars KAFKA_CONSUMER_GROUP_ID and KAFKA_BROKERS_LIST to KAFKA_GROUP_ID and KAFKA_BROKERS to match the RTU env vars' name
+
 - `PROJECTIONS_CHANGES_COLLECTION` env var is not required anymore
 
 ### Updated
