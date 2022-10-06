@@ -2146,6 +2146,10 @@
       "collapsed": false,
       "items": [
         {
+          "id": "release_notes/RN_v9-5/v9.5.2",
+          "type": "doc"
+        },
+        {
           "id": "release_notes/RN_v9-5/v9.5.1",
           "type": "doc"
         },
