@@ -97,9 +97,15 @@ Open the file **auth.json** and write the following configuration:
 }
 ```
 
-## Auth0 Tenant
+## Auth0
+
+### Tenant
 
 Configure your Auth0 tenant following the [dedicated documentation](../../development_suite/set-up-infrastructure/auth-0-setup).
+
+### Auth0 Client
+
+Set a value for the `SESSION_SCOPE` variable of the `auth0-client` in order to complete its configuration.
 
 ## Public Variables
 
@@ -110,13 +116,14 @@ Set the value for the following public variables
 
 ## Environment Variables
 
-Set the value for the following environment variables, used in the Auth0 client configuration file:
+Set the value for the following environment variables, used by the Auth0 client service:
 
 - `AUTH0_APPLICATION_URL`: url to the Auth0 application (defined in the Auth0 tenant)
 - `AUTH0_CLIENT_ID`: client ID for the Auth0 application used (defined in the Auth0 tenant)
 - `AUTH0_CLIENT_SECRET`: client secret for the Auth0 application used (defined in the Auth0 tenant)
 - `AUTH0_MANAGEMENT_CLIENT_ID`: client id for the Auth0 machine to machine application used (defined in the Auth0 tenant)
 - `AUTH0_MANAGEMENT_CLIENT_SECRET`: client secret for the Auth0 machine to machine application used (defined in the Auth0 tenant)
+- `REDIS_HOSTS`: comma separated list of redis hosts
 
 ## Microservices
 

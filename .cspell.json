@@ -143,7 +143,9 @@
       "WHATWG",
       "JWTs",
       "YAGES",
-      "clusters"
+      "clusters",
+      "DSTU",
+      "CNAME"
   ],
   "ignoreWords": [
     "authz",

@@ -362,6 +362,7 @@ Extra options to be specified for querying the dataset should be configured in `
 |--------|---------|-------------|
 |`hidden`| `undefined` | whether the property is shown within the filter-drawer and filters-manager components |
 |`availableOperators`|`undefined`| list of available operators for the field within the filter-drawer component |
+|`ignoreCase`|`false`| controls whether or not equality should be evaluated ignore case. Only applies to string fields |
 
 [Filters](core_concepts#filters) with `property` equal to a field with `filtersOptions.hidden` set to true can still be added (for instance, via a[add-filter](events#add-filter) event) and effectively query the dataset, but the user will not be able to see to interact with the filter.
 
@@ -372,11 +373,34 @@ a single recipe from a list of recipes. When looking up to other collection a `l
 instead of the placeholder in the main collection. Whenever a property looks up for an array of values, like dishes with
 ingredients, it is referred to as `multilookup`.
 
-To be able to fetch data to fill up lookup entries a specific set of options must be included into the data schema.
-
 According to the principle that **a web component does one thing**, a web application willing to resolve lookups must
 include a client that takes care of that. Back-Kit provides a [crud-lookup-client](Components/clients#lookup-client)
-which will set up fetching routes according to data schema `lookupOptions`.
+which will set up fetching routes according to data schema `lookupOptions`. So, you need to add the following configuration:
+
+```json
+{
+  "$ref": {
+    "dataSchema": { ... },
+  },
+  "content": [
+    ...,
+    {
+      "type": "element",
+      "tag": "bk-crud-lookup-client",
+      "properties": {
+        "basePath": "/v2",
+        "dataSchema": {
+          "$ref": "dataSchema"
+        }
+      }
+    }
+  ]
+}
+```
+
+Moreover, a specific set of options must be included into the data schema.  
+
+For instance, if you have a `recipe` field in the main collection, which is an id that refers to an external collection `recipes` and you want to lookup the `name` field, you should use the following configuration:
 
 ```json
 {
@@ -388,10 +412,36 @@ which will set up fetching routes according to data schema `lookupOptions`.
     "lookupOptions": {
       "lookupDataSource": "recipes",
       "lookupFields": ["name"],
+      "lookupValue": "_id"
+    }
+  },
+  ...
+}
+```
+
+You can also look for more than one field and concatenate the values in a single string with a `lookupDelimiter`:
+```json
+{
+  ...
+  "recipe": {
+    "type": "string",
+    "format": "lookup",
+    ...
+    "lookupOptions": {
+      "lookupDataSource": "recipes",
+      "lookupFields": ["name", "author"],
       "lookupDelimiter": " - ",
       "lookupValue": "_id"
     }
   },
+  ...
+}
+```
+
+Concerning multilookups, you can rather use the configuration below. This will lookup, in the `ingredients` table, the array of ingredients that belong to the recipe.
+```json
+{
+  ...
   "ingredients": {
     "type": "array",
     "format": "multilookup",
@@ -405,16 +455,13 @@ which will set up fetching routes according to data schema `lookupOptions`.
   }
   ...
 ```
+#### Lookup options
 
-The main collection has a `recipe` item but holds only its `_id`. Thus resolving the lookup means to look into a collection
-name as stated in `lookupDataSource`, use the item value the main collection holds as `lookupValue`.
-
-From recipes, items
-needed are listed in `lookupFields` and rendered as a string delimited by `lookupDelimiter`.
+Here is the full list of lookup options.
 
 | `lookupOptions` properties | description |
 |----------------------------|-------------|
-| `lookupDataSource` | lookup destination collection |
+| `lookupDataSource` | the endpoint for performing the lookup in the destination collection (without leading and trailing `/`) . This will be concatenated to the `basePath` of the `crud-client-lookup` configuration |
 | `lookupValue` | the item used to resolve the lookup onto the destination collection and held on the main collection |
 | `lookupFields` | fields to be retrieved on the destination collection |
 | `lookupDelimiter` | a string with a delimiter to join values when multiple `lookupFields` are specified |

@@ -8,6 +8,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.0.0 - 2022-09-23
+
+### BREAKING CHANGES
+
+- `Ajv` major upgrade to v8. Look at its [release notes](https://github.com/ajv-validator/ajv/releases/tag/v8.0.0).
+- Remove multi-type definition for nullable objects, in order to favor the `nullable` property.
+  The service expected behavior will be equivalent, but the API Schemas will change if compared to the previous versions.
+- Refactored Partial Indexes configuration properties
+
+### Fixed
+
+- object `nullable` field attribute is now recognized ([#44](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/44))
+- array `nullable` field attribute is now recognized ([#34](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/34))
+- export route works also when an array field is set to null ([#29](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/29))
+- failing tests on Mongo encryption lib
+
+### Changed
+
+- Refactored Partial Indexes configuration properties, in order to be more aligned to what is displayed on the Console Frontend
+- replaced deprecated `fastify-mongodb` and `fastify-env` with their respective
+namespace scoped version `@fastify/mongodb` and `fastify/env`
+- remove multi-type definitions (`["<type>", "null"]`) to exploit only `nullable` attribute
+when defining that a property can be set to `null`
+- replace `standard` and `snazzy` with Mia `eslint` configuration,
+refactoring code where needed to match the latest code styles
+- set Fastify to use Ajv v8 compiler
+- upgraded Ajv to v8, adopting its newer (and stricter) default configs.
+This required to review source code and tests according to the [migration guide](https://ajv.js.org/v6-to-v8-migration.html).
+- upgraded service dependencies
+
+### Add
+
+- Added support for base64 encoded (json) query params to support the ODI HTTP Client
+- Added support to partial indexes
+
 ## 5.4.2 - 2022-07-28
 
 ### Fixed
