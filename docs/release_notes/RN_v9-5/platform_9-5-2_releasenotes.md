@@ -11,6 +11,8 @@ _October 6th, 2022_
 
 ### Improvements
 
+Project Creation is now available to all Company Owners thanks to the new permission *console.company.project.create*; the group `create_project` has been removed. For further information check out the [permission documentation](../../development_suite/console-levels-and-permission-management).
+
 #### Improved management of Config Maps and Secrets in Cronjobs and Services sections
 
 In Cronjobs and Services sections, the long list of Config Maps and Secrets cards has been replaced with two simple cards that allow to manage the two types of configurations.
