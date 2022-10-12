@@ -10,10 +10,13 @@ The FHIR Adapter allows you to upload and download files to a FHIR Server. The s
 :::
 
 ## APIs
+
 This service exposes several APIs, useful to upload, delete or download the files, described in details in the next paragraphs.
 
 ### Upload
+
 To upload a file to the FHIR Server, via FHIR Adapter, you have to perform a `POST` request to a special route called `/DocumentReference` with a **multipart** body, containing the file to upload. In addition to the file, you can specify other properties:
+
 * **name**: the name associated to the file. Please note that this is not the `filename` automatically associated by the file system. It is an additional name that describe the file (for example, inserted by the user).
 * **date**: the date associated to the file.
 * **subject**: it is the identifier of the subject related to the file. For example, it can be the identifier of a patient.
@@ -23,6 +26,7 @@ Please note that if you specify a subject to link to the file, this subject must
 :::
 
 Here you can find an example request for file upload:
+
 ```bash
 POST /DocumentReference HTTP/1.1
 ... other headers ...
@@ -60,9 +64,11 @@ In case of success, the response is a JSON with the following fields:
 * **location**: the URL that can be used to download the file using the same server that performed the upload
 
 ### Download
+
 To download a file that was previously uploaded to the FHIR Server, via FHIR Adapter, you have to perform a `GET` request with the `_id` of the file as path parameter.
 
 **Example**
+
 ```bash
 curl --request GET \
   --url http://your-url/DocumentReference/:id
@@ -70,4 +76,5 @@ curl --request GET \
 ```
 
 ### Delete
+
 The deletion of a file from the FHIR Server follows the procedure explained in the [API Endpoints section](overview_and_usage).
