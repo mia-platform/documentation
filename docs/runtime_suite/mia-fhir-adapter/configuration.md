@@ -10,6 +10,7 @@ The following documentation assumes a prior knowledge about the FHIR standard. F
 :::
 
 ## Environment variables
+
 * **LOG_LEVEL** (default: `info`): level of the log. It could be trace, debug, info, warn, error, fatal.
 * **CONFIG_PATH**: the path of the configuration file with the translation configuration.
 * **FHIR_SERVER_BASE_PATH**: the base path of the FHIR Server related to the FHIR Adapter. The path must include the protocol. Example: `http://fhir-server/fhir/api`.
@@ -18,6 +19,7 @@ The following documentation assumes a prior knowledge about the FHIR standard. F
 * **FILE_DOWNLOAD_BASE_PATH**: the relative path as file location prefix.
 
 ## Translation
+
 The configuration for the translation is expressed through a JSON file. The file is divided into 2 main sections: the definition of the FHIR references which compose an entity and the definition of the mappings.
 
 In order to describe the translation configuration, we will use the following example:
@@ -43,6 +45,7 @@ In order to describe the translation configuration, we will use the following ex
 ```
 
 The configuration file is composed by 4 different main fields:
+
 * **resource**: it is the name of the FHIR resource the mapping refers to. The name must be one of the available FHIR resources, since it used by the FHIR Adapter to contact the FHIR Server to save the resource. [Here](https://www.hl7.org/fhir/resourcelist.html) you can find the list of the available FHIR resources.
 
   :::warning Please note that the resource list must take into consideration the FHIR version the Server is using. :::
@@ -62,11 +65,13 @@ Please note that the **generic2FHIR** and the **FHIR2generic** mappings may diff
 :::
 
 ### Composition
+
 A composition object is a JSON object that represents a dependency of the entity you want to save or retrieve from a FHIR Server. In order to better understand the configuration of the **composition** object field, let us recall the example used in the [Overview section](overview_and_usage#overview).
 
 ![Translation example schema](img/translation-example-schema.png)
 
 It is composed by the following fields:
+
 * **entityName**: it is the name of the FHIR resource which compose the entity.
 * **referencedByMainEntity**: it is a boolean value and it shows whether the child FHIR resource is referenced in the main resource or not. In the running example, we can see that the object `ClinicalImpression`, that is the main resource, refers to `Patient` in the JSON, in the field `subject.reference`. Thus, the value is `true`.
 
@@ -104,6 +109,7 @@ It is composed by the following fields:
   ```
 
 ### Mapping rules
+
 The mapping of the JSON fields between a custom and FHIR standard format, and vice versa, is defined, respectively, in the objects `generic2FHIR` and `FHIR2generic`, which are array that contains several JSON objects, each one representing a mapping rule.
 
 The mapping procedure is schematized in the following picture:
@@ -111,6 +117,7 @@ The mapping procedure is schematized in the following picture:
 ![Mapping procedure schema](img/mapping-procedure-schema.png)
 
 The mapping rule schema is the following:
+
 ```json
 {
   "title": "Mapping Configuration",
@@ -143,7 +150,7 @@ The mapping rule schema is the following:
               "defaultValue": {
                 "type": "string",
                 "description": "The value assigned to the property in case the source is 'undefined'."
-              }          		
+              }
           },
           "oneOf": [
             { "required": ["props"] },
@@ -304,10 +311,11 @@ To facilitate understanding, the translation operations that can be performed us
 :::warning
 In the **FHIR2generic** mappings, in the `destination` field the first nested level must be the name of the target resource.
 The same hold for the **generic2FHIR**. In this case the source resource must be defined in the first nested level of the `props` values.
-For further information, please refer to the following running example. 
+For further information, please refer to the following running example.
 :::
 
 ## Running Example
+
 To better understand the translation configuration, let us take an overview on a real-case scenario configuration.
 
 In the following JSON snippet you can find the full configuration for the `ClinicalImpression` example used in the documentation. The translate configuration is defined for the `ClinicalImpression` FHIR resource, that contains also information about the `Patient`, defined in the **composition** section.

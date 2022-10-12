@@ -14,23 +14,27 @@ The following documentation is intended for users who have minimal knowledge of 
 :::
 
 ## Overview
+
 The FHIR Adapter allows you to save and retrieve FHIR data from a FHIR Server using non-standard JSON payloads, exploiting a configuration to map the fields from a non-standard JSON to the fields of a standard FHIR JSON and vice versa.
 
 In the following image, you can find an example of mapping. Let us suppose to have a JSON representing a clinical impression in a non-standard format. In the example, the custom clinical impression is composed by some information related to the patient, such as `firstName`, `lastName` and `birthDate`, and some information strictly related to the clinical impression. When switching to a FHIR context, this results in two separate entities with different field names and nesting.
 
 Therefore, the FHIR Adapter is able to perform two main operations:
+
 * Map a non-standard JSON to one or more JSON objects which follow the FHIR standard.
 * Save the FHIR objects to the server and, in case of two or more FHIR JSON objects saved, manage the references between those objects.
 
 ![Translation Example Schema](img/translation-example-schema.png)
 
 ## Usage
+
 Despite the translation and saving logic inherent and configured in the plugin, it can be used as a service dedicated to the data storage, such as the *CRUD Service*.
 
 The FHIR Adapter exposes APIs which allow to:
+
 * read a collection and filter results
 * find elements of a collection
-* count number of elements in a collection 
+* count number of elements in a collection
 * create one or more elements in one or more collections
 * update one or more elements in one or more collections
 * delete one or more elements in one or more collections
@@ -39,7 +43,9 @@ The FHIR Adapter exposes APIs which allow to:
 * count number of versions of an element in a collection
 
 ### Conventions
+
 We will use the following naming conventions:
+
 * **collection**: a set of FHIR resources in the FHIR Server
 * **entity**: an item in the context of the FHIR Adapter
 * **resource** or **FHIR resource**: an item in the context of the FHIR Server, that be belongs to a FHIR Server collection
@@ -53,12 +59,15 @@ There is a difference between the concept of item in the FHIR Adapter context an
 :::
 
 ## FHIR Adapter Security
+
 FHIR Adapter APIs must not be exposed directly to the Internet, but they must always be protected by the API Gateway or a BFF.
 
 ### API Key
+
 If FHIR Adapter APIs are exposed under an API Key you have to pass the key into the request header with the name `client-key`.
 
 **Example**
+
 ```bash
 curl --request GET \
   --url 'https://your-url/v2/your-collection-name/' \
@@ -67,11 +76,12 @@ curl --request GET \
 ```
 
 ## FHIR Adapter Endpoints
+
 APIs configured with Mia-Platform can be consumed with any technology that supports HTTP protocol. For tests during development we recommend one of the following tools:
 
-- [curl](https://curl.haxx.se/)
-- [insomnia](https://insomnia.rest/)
-- [postman](https://www.getpostman.com/)
+* [curl](https://curl.haxx.se/)
+* [insomnia](https://insomnia.rest/)
+* [postman](https://www.getpostman.com/)
 
 In the examples for brevity we will use curl. The following are the typical operations that can be done with an APIRestful FHIR Adapter created with Mia-Platform.
 
@@ -84,6 +94,7 @@ client-key: client-key
 If your endpoints are also protected by authentication and authorization you need to pass the access token to the curl command.
 
 ### Create
+
 It is possible to create one or more resources in one or more collections. The number of created resources depends on the FHIR Adapter configuration.
 
 To create one or more resources use *POST* request and pass, in the body of the request, the JSON representation of the new resource(s).
@@ -109,9 +120,11 @@ in response, you will get a JSON object like this:
 where **_id** is the unique identifier of the new resource inserted.
 
 ### Read
+
 In this section you will see how to query a collection.
 
 #### Get a list of resources
+
 To list a collection, simply call the endpoint with a **GET**
 
 ```bash
@@ -141,6 +154,7 @@ In response of this request you will get a JSON array that contains all the reso
 ```
 
 #### Get a single entity by _id
+
 To get just one entity, simply pass the *_id* of the document as path param.
 
 To get just one document read only one element, simply pass the *_id* of the document as path param.
@@ -186,8 +200,8 @@ By default GET returns a limited number of entities. You can use pagination to r
 
 To paginate you must use the following query parameters:
 
-- **_l**: limits the number of documents returned. Minimum value 1. Maximum value is 500. If you pass such limit, the FHIR Adapter truncates to 500 the result.
-- **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
+* **_l**: limits the number of documents returned. Minimum value 1. Maximum value is 500. If you pass such limit, the FHIR Adapter truncates to 500 the result.
+* **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
 
 This is an example of request that get *two documents per page* and you ask for the *third page* (skip 4 documents).
 
@@ -221,9 +235,11 @@ returns
 **Note**: filters can be applied to the count.
 
 ### Update
+
 You can update an entity, that means updating one or more resources in one or more collections. The operations of the update are made by using a **PATCH** request, passing the *_id* of the entity as path param. In the body you have to pass a JSON with the `$set` operator. You can specify only the field you want to modify, without including all the entity properties.
 
 **Example**
+
 ```bash
 curl --request PATCH \
   --url https://your-url/v2/patient/1234 \
@@ -236,17 +252,21 @@ curl --request PATCH \
 ```
 
 ### Delete
+
 You can delete an entity, that means deleting one ore more resources in one or more collections. To delete an entity use a DELETE request passing the *_id* as path param.
 
 **Example**
+
 ```bash
 curl --request DELETE https://your-url/v2/patient/1234
 ```
 
 ### History
+
 You can retrieve the history of a FHIR resource. The operations of the update are made by using a **GET** request, passing the *_id* of the entity as path param and the adding the *_history* keyword at the end of the URL.
 
 **Example**
+
 ```bash
 curl --request GET \
   --url https://your-url/v2/patient/1234/_history
@@ -259,6 +279,7 @@ The endpoint accepts the query parameters **_sk** and **_l**, with the same beha
 
 The response is an array where each contained object represents a version of the FHIR resource. This endpoint does not take into consideration the composition of the **entity** and returns the translation only for the main resource. For further info, please refer to the [Configuration section](configuration#translation).
 In addition to the fields contained in the translation configuration, the FHIR Adapter, for each version item, add some metadata fields:
+
 * **lastUpdate**: the datetime of the last update.
 * **versionId**: the version referred to the version item.
 * **currentVersion**: if the version item represents the current and last version.

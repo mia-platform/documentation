@@ -223,12 +223,12 @@ acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
 ```
 
-- ***json_query_params_encoding***: the encoding in which the json query params are sent. This feature is only made to support HTTP clients like [OCI](https://docs.oracle.com/middleware/12211/odi/concepts/intro.htm) which have problems with special characters in the query params of the request, if you don't have such problems you most likely don't need to declare this header. Right now the only option is `base64` and any other value will be treated as if the params are URL encoded. Example:
+- ***json-query-params-encoding***: the encoding in which the json query params are sent. This feature is only made to support HTTP clients like [OCI](https://docs.oracle.com/middleware/12211/odi/concepts/intro.htm) which have problems with special characters in the query params of the request, if you don't have such problems you most likely don't need to declare this header. Right now the only option is `base64` and any other value will be treated as if the params are URL encoded. Example:
 
 ```bash
 curl --request GET \
   --url 'https://your-url/v2/plates/?_q=base64encodedjson' \
-  --header 'json_query_params_encoding: base64'
+  --header 'json-query-params-encoding: base64'
 ```
 
 - ***userId***: the user identifier that do the update
@@ -640,7 +640,7 @@ The list of currently supported MongoDB aggregation operators is the following:
 Here you can find the official Mongo documentation about the [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-projection) field into the find operator.
 
 :::note
-If you have problems with the special characters in the URL encoding you can try the `json_query_params_encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
+If you have problems with the special characters in the URL encoding you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
 :::
 
 #### Combine all together
@@ -698,7 +698,7 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 **Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
 
 :::note
-If you have problems with the special characters in the URL encoding you can try the `json_query_params_encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
+If you have problems with the special characters in the URL encoding you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
 :::
 
 #### Count
