@@ -125,7 +125,7 @@ For further information contact your Mia Platform referent
 <tr><td>SINGLE_VIEWS_PORTFOLIO_ORIGIN</td><td>true</td><td>should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`</td><td>-</td></tr>
 <tr><td>SINGLE_VIEWS_ERRORS_COLLECTION</td><td>true</td><td>Name of a MongoDB CRUD you want to use as collection for single view errors.</td><td>-</td></tr>
 <tr><td>KAFKA_CONSUMER_GROUP_ID</td><td>false</td><td><b>@deprecated</b> - in favor of KAFKA_GROUP_ID. The Kafka consumer group identifier</td><td>-</td></tr>
-<tr><td>KAFKA_GROUP_ID</td><td>false</td><td>The Kafka consumer group identifier</td><td>-</td></tr>
+<tr><td>KAFKA_GROUP_ID</td><td>true</td><td>defines the Kafka group id (it is suggested to use a syntax like <code>{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}</code>)</td><td>-</td></tr>
 <tr><td>KAFKA_CLIENT_ID</td><td>false</td><td>The Kafka client identifier</td><td>-</td></tr>
 <tr><td>KAFKA_BROKERS_LIST</td><td>false</td><td><b>@deprecated</b> - in favor of KAFKA_BROKERS. list of brokers the service needs to connect to</td><td>-</td></tr>
 <tr><td>KAFKA_BROKERS</td><td>false</td><td>list of brokers the service needs to connect to</td><td>-</td></tr>
