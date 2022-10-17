@@ -103,6 +103,10 @@ timestamp: '1234556789'
 offset: '100'
 ```
 
+:::warning
+The `basic` Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
+:::
+
 #### Golden Gate
 
 The `timestamp` of the Kafka message is a stringified integer greater than zero. This integer has to be a valid timestamp.  
@@ -111,6 +115,7 @@ The `key` can have any valid Kafka `key` value.
 The `value` of the Kafka message instead needs to have the following fields:
 
 - `op_type`: the type of operation (`I` for insert, `U` for update, `D` for delete).
+- `pos`: a positive integer, usually a timestamp, which ensures messages are processed in the correct order
 - `after`: the data values after the operation execution (`null` or not set if it's a delete operation)
 - `before`: the data values before the operation execution (`null` or not set if it's an insert)
 
@@ -141,9 +146,16 @@ To do that, you need to create a `Custom Kafka Message Adapter` inside the Kafka
 - **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
 - **value**: the data values of the projection, or null
 - **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
+- **before**: optional value that indicates the data values before the operation execution
+- **after**: optional value that indicates the data values after the operation execution
+- **operationPosition**: optional value that indicates a positive integer, usually a timestamp, which ensures messages are processed in the correct order
 
 If the `value` is null, it is a delete operation.
 The `keyObject` **cannot** be null.
+
+:::note
+To support a Primary Key update, the `before`, `after` and `operationPosition` fields should be included in the adapter. (Hint: if not present, a simple `operationPosition` value might be the Kafka message timestamp).
+:::
 
 Inside configmap folder create your javascript file named `kafkaMessageAdapter.js`.
 
@@ -361,6 +373,27 @@ When the real time updater writes to Mongo in reaction to a CDC update, a messag
 
 
 ## Advanced topics
+
+### Primary Key update
+
+Starting from `v7.1.0`, the Real-Time Updater supports the update of a Primary Key. In particular, it detects if received ingestion messages contain an updated Primary Key. In that case, the Real-Time updater automatically handles updating events on the existing records without requiring additional messages.
+
+When the Real-Time Updater receives a Primary Key update, it triggers two different actions:
+1. the deletion of the old record with the old Primary Key
+2. the creation of a new record with the updated content and the updated Primary Key
+
+:::note
+In order to handle a Primary Key update, the Real-Time Updater needs to receive the following data:
+- a positional information about the current operation
+- the data values before the update
+- the data values after the update
+
+More details about the configuration of these fields can be found inside each Kafka message format paragraph in this page.
+:::
+
+:::warning
+The `basic` Kafka message format does not include a field to store data values before updates, thus not supporting the Primary Key update.
+:::
 
 ### Snappy compression
 
