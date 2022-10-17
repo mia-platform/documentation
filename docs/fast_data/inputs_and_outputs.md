@@ -90,6 +90,7 @@ This format has 3 possible operation types: Insert, Update, Delete. On top of th
 * `key`: the identifier (primary key) of the projection that has been updated
 * `value`: it is an object representing the change that happened, containing the following fields:
   * `op_type`: the type of operation (`I` for insert, `U` for update, `D` for delete).
+  * `pos`: a positive integer, usually a timestamp, which ensures messages are processed in the correct order
   * `before`: the data values before the operation execution (null or not set if it is an insert operation)
   * `after`:the data values after the operation execution (null or not set if it is a delete operation)
 * `timestamp`: the timestamp of the Kafka message, it has to be a stringified integer greater than zero.
@@ -155,6 +156,10 @@ channels:
 #### Custom
 
 If none of the above formats applies for your use case, you can use your custom format and specify custom adapter that will make the message ready to be processed by the Real Time Updater service.
+
+:::note
+Further information about the Custom message configuration can be found inside the [Custom](configuration/realtime_updater/common.md#custom) section of the Common page.
+:::
 
 #### Topic naming convention
 
