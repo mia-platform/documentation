@@ -51,9 +51,9 @@ const secondRowFeatures = [
         label: "Read the release notes",
       },
       {
-        icon: "video",
+        icon: "globe",
         target: "_blank",
-        href: "https://mia-platform.eu/mia-platform-v10-for-a-better-development/",
+        href: "https://mia-platform.eu/mia-platform-v10-for-a-better-development/?utm_source=docs&utm_medium=doc_homepage&utm_campaign=v10_cmp",
         label: "Discover Mia-Platform v10.0 🎉",
       },
     ],
@@ -138,7 +138,7 @@ function Home() {
             <div className="container">
               {<div className="row">
               <VersionBanner
-                link="/docs/release_notes/mia-platform-v10-preview"
+                link="/docs/release_notes/mia-platform-v10-overview"
                 majorVersion="4"
                 subTitle="Click to know more about how Mia-Platform is growing and where it is going!"
                 title="Mia-Platform v10 is Generally Available!"
