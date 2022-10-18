@@ -53,8 +53,8 @@ const secondRowFeatures = [
       {
         icon: "video",
         target: "_blank",
-        href: "https://vimeo.com/701267202/741af815e5",
-        label: "Discover Mia-Platform v9.0 🎉",
+        href: "https://mia-platform.eu/mia-platform-v10-for-a-better-development/",
+        label: "Discover Mia-Platform v10.0 🎉",
       },
     ],
   },
