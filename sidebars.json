@@ -1,163 +1,4 @@
 {
-  "cms": [
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Backoffice",
-      "items": [
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/overview"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/data_flow"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/page_layout"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/core_concepts"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/events"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/plugin_example"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/application"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/plugin_navigation"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/changelog"
-        },
-        {
-          "type": "category",
-          "label": "Components",
-          "items": [
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/adapters"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/buttons"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/clients"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/data_manipulation"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/data_querying"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/data_visualization"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/misc"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/typography"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Data Visualization",
-      "type": "category",
-      "collapsed": true,
-      "items": [
-        {
-          "id": "business_suite/data-visualization",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/timeline",
-          "type": "doc"
-        }
-      ]
-    },
-    {
-      "label": "Previous tools",
-      "type": "category",
-      "collapsed": true,
-      "items": [
-        {
-          "id": "business_suite/overview-business-suite",
-          "type": "doc"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/guide_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/cms_configuration/config_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/cms_configuration/conf_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/colorare_il_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/update_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/custom-frontends-integration-CMS",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/video-pills",
-              "type": "doc"
-            }
-          ],
-          "label": "CMS",
-          "type": "category"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/cms_configuration/config_analytics",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/conf_analytics",
-              "type": "doc"
-            }
-          ],
-          "label": "Analytics",
-          "type": "category"
-        }
-      ]
-    }
-  ],
   "devOpsConsole": [
     {
       "id": "development_suite/overview-dev-suite",
@@ -527,6 +368,165 @@
         {
           "id": "development_suite/use-cases/grpc",
           "type": "doc"
+        }
+      ]
+    }
+  ],
+  "cms": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Backoffice",
+      "items": [
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/overview"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/data_flow"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/page_layout"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/core_concepts"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/events"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/plugin_example"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/application"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/plugin_navigation"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/changelog"
+        },
+        {
+          "type": "category",
+          "label": "Components",
+          "items": [
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/adapters"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/buttons"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/clients"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_manipulation"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_querying"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_visualization"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/misc"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/typography"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Data Visualization",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "business_suite/data-visualization",
+          "type": "doc"
+        },
+        {
+          "id": "business_suite/timeline",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "label": "Previous tools",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "business_suite/overview-business-suite",
+          "type": "doc"
+        },
+        {
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/guide_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/cms_configuration/config_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/cms_configuration/conf_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/colorare_il_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/update_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/custom-frontends-integration-CMS",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/video-pills",
+              "type": "doc"
+            }
+          ],
+          "label": "CMS",
+          "type": "category"
+        },
+        {
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/cms_configuration/config_analytics",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/conf_analytics",
+              "type": "doc"
+            }
+          ],
+          "label": "Analytics",
+          "type": "category"
         }
       ]
     }
@@ -2133,7 +2133,7 @@
   ],
   "releaseNotes": [
     {
-      "id": "release_notes/mia-platform-v9-preview",
+      "id": "release_notes/mia-platform-v10-preview",
       "type": "doc"
     },
     {
@@ -2146,59 +2146,7 @@
       "collapsed": false,
       "items": [
         {
-          "id": "release_notes/RN_v9-5/v9.5.3",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-5/v9.5.2",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-5/v9.5.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-5/v9.5.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-4/v9.4.3",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-4/v9.4.2",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-4/v9.4.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-4/v9.4.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-3/v9.3.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-2/v9.2.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-2/v9.2.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-1/v9.1.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-0/v9.0.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-0/v9.0.0",
+          "id": "release_notes/RN_v10-0/v10.0.0",
           "type": "doc"
         }
       ]
