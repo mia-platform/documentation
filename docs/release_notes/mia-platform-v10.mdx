@@ -1,0 +1,93 @@
+---
+id: mia-platform-v10-preview
+title: Mia-Platform v10.0
+sidebar_label: v10.0 Overview
+image: "img/release-note-link-preview.png"
+---
+
+import bannerImageUrl from './img/banner-overview-v10.png'
+
+Welcome to Mia-Platform v10.0, a major full of new integrations and functionalities for an Enriched Control Plane ensuring a Frictionless Developer Experience.
+
+## Console
+
+### Merge and Promote of configurations
+
+Within the project, different users can concurrently work on the same branch configuration while having visibility of any changes remotely made by other users.  
+More specifically, this new feature offers a better developer experience in Mia-Platform Console, allowing users to:
+- have visibility on all the configuration changes made locally before committing them
+- start the merge process in order to align those changes to the last committed configuration within the same branch. 
+Moreover, users can also align configurations of two different branches within the same project.  
+In this way, it is possible to easily promote a branch configuration on different environments up to the production one.
+
+### Management of Clusters in self-service mode
+
+Through a brand new section in Mia-Platform Console, it is now possible to manage the infrastructure on which to deploy the Projects.  
+In fact, it is possible to connect and manage Kubernetes Clusters through an easy-to-use interface and view some details about it, regardless of the Vendor and Kubernetes distribution installed.
+
+### Management of Environment in self-service mode
+
+The Environment section of the console has been enhanced, providing the ability for a user with respective permissions to be able to add, edit and delete an environment directly through a dedicated graphical interface on Mia-Platform Console.
+
+### Providers & Tools Integration
+
+Several new providers and tools have been integrated in Mia Platform console.
+
+#### Git Providers: Azure DevOps and BitBucket
+
+Mia-Platform Console supports the use of 2 new Git Providers, Azure DevOps and BitBucket, in order to meet almost all the technical needs of the market.
+
+#### Jenkins
+
+Mia-Platform Console is now integrated with Jenkins, another provider to better manage the Deploy pipelines.
+
+#### Vault Secret Manager
+
+Mia-Platform Console can now manage secreted variables through Vault secret manager.
+
+### Project Quick Links
+
+Inside of the project homepage, a Project Administrator can now set up and manage a carousel of quick useful links to better organize the team’s workload in a project. These links will be visible and clickable directly from the project homepage for all the members of the project.  
+Moreover, they can also be reached through the shortcut Ctrl/Cmd + K, by clicking on the “Project Links” entry.  
+
+[SCREENSHOTS]
+
+## Fast Data
+
+### Single View configuration Low Code in a dedicated area
+
+Single View page now contains a dedicated tab where you can configure your Low Code aggregation without having to navigate to the Microservice page. Mia-Platform Console will help you to write your configuration thanks the integrated syntax checker.
+
+### Single View Trigger
+
+The Single View Trigger is a new microservice available on the Marketplace, whose purpose is to link the Real-Time Updater and the Single View Creator.  
+The service will consume Kafka messages produced by the RTU on a specific topic that will follow the following naming convention, it will execute the appropriate strategies and generate projection changes either on Mongo or Kafka.
+
+### Salesforce Streaming API Connector
+
+## Marketplace
+
+### Applications 2.0
+
+In addition to Microservices, the applications in the Marketplace support the configuration of resources such as Endpoints, Public Variables and CRUD Collections.  
+In this way, with a few simple clicks you can deploy perfectly functional applications without configuring anything!
+
+### Backoffice
+
+Mia-Platform Backoffice has new functionalities such as handling geographic data and bulk actions.  
+Existing features have been enhanced with a particular focus on files - which can now be viewed in browser and modified in batches - and filters - with the “exist” operator and hidden static filters.
+
+### Extended Payment Gateway Manager
+
+Manage in one place all logics and business processes related to payments, now also supporting BNPL and recurrent payments.
+
+### MongoDB Views for CRUD Service
+
+The MongoDB View section has been introduced inside the Design area of the Console.  
+Here, user can create and configure a View. Then, the view can be exposed through an Endpoint of type MongoDB View.  
+Moreover, it is possible to see a MongoDB View's content from the CMS by creating a new CMS Page from the CMS section of the Console.
+
+<br/><br/>
+<a target="_blank" href="https://mia-platform.eu/mia-platform-v10-for-a-better-development/">
+<img src={bannerImageUrl} alt="Overview v10" />
+</a>

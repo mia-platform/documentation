@@ -74,7 +74,7 @@ In order to edit the information available in the Runtime Environments table (yo
   ]
 ```
 
-### Links configuration
+### Environment Links configuration
 
 ```js
 {

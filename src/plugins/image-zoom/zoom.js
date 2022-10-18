@@ -1,7 +1,7 @@
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import mediumZoom from 'medium-zoom';
 
-const className = '.markdown img'
+const className = '.markdown :not(a) > img'
 
 export default (function () {
   if (!ExecutionEnvironment.canUseDOM || window === undefined) {
