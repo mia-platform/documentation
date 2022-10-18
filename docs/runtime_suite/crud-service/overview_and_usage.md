@@ -207,6 +207,8 @@ For the nested objects, it is possible to add an index using the dot notation to
 Every index that is not specified in the collection definition will be **dropped** at startup, unless its name starts with `preserve_` prefix
 :::
 
+#### Partial Indexes
+
 From version 6.0.1 of the CRUD Service, it is possible to configure an index as a _partial index_. A partial index, as explained in details in the dedicated [MongoDB documentation page](https://www.mongodb.com/docs/manual/core/index-partial/) is an index defined by a conditional expression. In order to create a partial index in the console, it is necessary to activate the "_Enable this index as Partial Index_" toggle button included in the _Indexes_ card, then write the filter expression inside the JSON editor that will show up, as shown in the image below.
 
 ![Partial Indexes](img/partial-indexes.png)
