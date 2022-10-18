@@ -2127,6 +2127,10 @@
         {
           "id": "paas/cert-manager",
           "type": "doc"
+        },
+        {
+          "id": "paas/traefik",
+          "type": "doc"
         }
       ]
     }
