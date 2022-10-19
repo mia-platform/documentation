@@ -9,7 +9,6 @@ _October 20th, 2022_
 
 ## Console
 
-
 ### New Features
 
 #### Self-service Cluster Management
@@ -43,21 +42,11 @@ It has been fixed a bug that prevented viewing and browsing more than 20 branche
 
 Now it has been fixed a bug of displaying long environment names on the environment selection
 
-### Improvements
-
 ## Marketplace
 
 ### CRUD Service v6.0.1
 
 A new version of the CRUD Service has been released, including fixes on nullable fields and the complete support for Mongo partial indexes.
-
-### New Marketplace Components
-
-### New Features
-
-### Bug Fix
-
-
 
 ## Backoffice
 
@@ -82,9 +71,6 @@ skip query parameter (`_sk`) is reset when fetching data (unless query was trigg
 
 #### `bk-layout-container` allows to disable shadow-dom
 `bk-layout-container` supports disabling its render root as shadow dom. Useful to embed `bk-calendar`
-
-
-
 
 ## How to update your Console
 
