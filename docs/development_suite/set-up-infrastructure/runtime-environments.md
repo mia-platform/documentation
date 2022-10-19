@@ -1,43 +1,99 @@
 ---
 id: runtime-environments
-title:  Runtime Environments
-sidebar_label: Manage Runtime Environments
+title: Environments Section
+sidebar_label: Environments Section
 ---
-Runtime environments are the computer systems in which your applications are deployed and executed. Nowadays, it is common to have multiple runtime environments, for example a test environment and a production one. The Console is built with this concept in mind, and thus provides support and tools for you to easily manage multiple runtime environments.
 
-You can deploy the same codebase to different runtime environments, obtaining different behaviors based on some environment configuration, like [environment variables](./env-var). Another notable change is the actual hardware of which the runtime environment comprises of, which is usually more performant for production environments.
+Runtime environments are the set of computer systems, servers, networks, storage, etc. where the applications are released and executed. Nowadays, it is common to have multiple runtime environments with different connotations - for example, one dedicated to production and one for testing bugs or new features. The Console is built with this concept in mind, and thus provides support and tools to easily manage multiple environments.
 
-The Console handles environments in a project-specific manner. When creating a new project, it inherits the runtime environments from the company it belongs to. After creating the project, it is possible to edit those for the specific project. Each runtime environment runs on its kubernetes cluster namespace, and its properties can be modified by means of the CMS only.
+You can deploy the same codebase to different environments obtaining different behaviors based on some configurations like via [environment variables](./env-var). Another notable difference is that different environments may differ in hardware resource usage, and it is therefore possible to maintain more resources (or the more performant ones)for production environments and not for testing environments.
 
-It is possible to have an overview of the project runtime environments in the Settings area, which contains a Runtime Environments card displaying a table with a row for each environment, as shown in the picture below.
+The Console handles environments in a project-specific manner. When creating a new project, it will inherit the runtime environments configured in the company it belongs to. After creating a project it is possible to add, edit and remove them for the specific project. Each runtime environment runs in a dedicated Kubernetes namespace in the configured cluster.
+
+In the Settings area, you can have an overview of the runtime environments configured for the project through a Runtime Environments card, which displays a table with a row for each environment, as shown in the picture below.
 
 ![environments table](img/environments_table.png)
 
 The table displays information in the following columns:
 
+* **Name**: a label given by the user to recognize the runtime environment;
 * **ID**: the human-readable ID of the runtime environment;
-* **Documentation**: a link to the main documentation deployed in this environment;
-* **CMS**: a link to the main CMS deployed in this environment;
-* **Application**: a link to the main application deployed in this environment.
+* **Documentation**: a link to the main documentation deployed in the runtime environment;
+* **CMS**: a link to the main CMS deployed in the runtime environment;
+* **Application**: a link to the main application deployed in the runtime environment;
+* **Cluster**: the ID of the cluster to which the runtime environment is linked.
 
-If you want to have more information about a specific environment, you can expand its row by clicking on the `+` button at the left of the row, which provides the following additional information:
+A label also appears next to the name to identify production environments. If you want to have more information about a specific environment, you can expand its row by clicking on the `+` button on the left, which provides the following additional information:
 
-* **Documentation**: a group of links to all the documentations available in this environment;
-* **CMS**: a group of links to all of the CMSs available in this environment;
-* **Application**: a group of links to all of the applications available in this environment;
-* **Cluster namespace**: the namespace of the kubernetes cluster the runtime environment runs on;
-* **Cluster hostname**: the hostname of the kubernetes cluster the runtime environment runs on;
-* **Description**: a textual description of the runtime environment.
+* **Documentation**: a group of links to all the documentation available in the runtime environment;
+* **CMS**: a group of links to all the CMSs available in the runtime environment;
+* **Application**: a group of links to all the applications available in the runtime environment;
+* **Cluster Namespace**: the namespace of the Kubernetes cluster the runtime environment runs on;
+* **Cluster Hostname**: the hostname of the Kubernetes cluster the runtime environment runs on;
+* **Description**: a brief description of the runtime environment.
 
 Additionally, one could define custom links to be displayed among the additional information provided in the expanded row.
 
-## Managing runtime environments
+## Add an Environment
 
-In this section you will learn how to manage your runtime environments using the CMS. In case you don't have access to it, please contact your Mia Platform referent.
+You can add a new environment by clicking on the "Add new runtime environment" button, located in the top right corner of the page. A modal will show up, and you will be asked to fill a form containing some information related to the environment:
+
+* **Name** (*required*): a label given by the user to recognize the runtime environment;
+* **Production environment**: a toggle that specifies whether or not the runtime environment is a production environment;
+* **Environment ID** (*required*): the human-readable ID of the runtime environment;
+* **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
+* **Cluster ID** (*required*): the ID of the Kubernetes cluster the runtime environment runs on;
+* **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Company ID and Environment ID);
+* **Host**: the URL of the project host on which are exposed, among other things, API Portal and Dev Portal;
+* **Backoffice host**: the URL of the project host on which the CMS is exposed;
+* **Description**: a brief description of the runtime environment.
+
+![add environment](img/add_environment.png)
+
+By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table.
+
+:::warning
+After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](add-environment.md) for more information.
+:::
+
+## View Environment Information
+
+By clicking on the arrow button located in the rightmost column of an environment entry in the table, a new page will show up, displaying information about the specific runtime environment through 2 cards:
+
+* **Details**: this card shows information inserted by the user when creating a new environment, along with the links to Documentation, CMS, and Application, automatically generated and previously shown in the respective table entry, and allows to modify some information through the "Edit" button in the top right corner, as further explained [below](#edit-an-environment).
+
+* **Cluster connection**: this card simply shows information (ID, URL, namespace) about the Kubernetes cluster the runtime environment runs on. This information is not editable.
+
+![environment detail](img/environment_detail.png)
+
+## Edit an Environment
+
+As mentioned in the previous section, through the "Edit" button in the top right corner of the Details card, it is possible to modify some information inserted by the user while creating the runtime environment. A click on the button opens a modal very similar to the one seen when creating the environment, but in which all the fields are read-only except for Name and Description. By clicking on "Save changes", the environment information will be updated.
+
+![edit environment](img/edit_environment.png)
+
+## Remove an Environment
+
+In the bottom part of the page, there is a footer which allows to delete the runtime environment from the Console. By clicking on the "Delete" button, a modal will be displayed, asking for confirmation of the deletion.
+
+![delete environment](img/delete_environment.png)
+
+After entering the name in the input field and clicking "Delete," a loading and finally a feedback of successful removal will be shown. Closing the modal will then redirect you to the environments table. In case of errors, an informative feedback will be shown instead, and the "Close" button will not perform any redirection.
+
+:::warning
+As mentioned in the warning displayed in the deletion modal, the runtime environment deletion implies the deletion of the related cluster namespace and all resources configured within the environment.
+:::
+:::warning
+After you have deleted the runtime environment from the Console, you are tasked with properly cleanup your project on your Git provider from the resources and pipelines needed for that environment. Click [here](remove-environment.md) for more information.
+:::
+
+## Manage Runtime Environments via CMS
+
+In this section, you will learn how to manage your runtime environments using the CMS. In case you don't have access to it, please contact your Mia-Platform referent.
 
 Using the CMS, it is possible to create, update, and delete runtime environments. More about the creation process can be found [here](./create-project.mdx#step-3-environments), while information about editing from the CMS can be found [here](./create-project.mdx#step-6-customize-the-project-with-additional-information-optional).
 
-In order to edit the information available in the Runtime Environments table (you can edit environment properties, add new links or change the present ones), you need to access your `Project` properties. There, you will find the objects `Environments` and `links`, whose schema is described below. You just need to edit them trough the dedicated drawer or modal and save your changes.
+In order to edit the information available in the Runtime Environments table (you can edit environment properties, add new links or change the current ones), you need to access your `Project` properties. There, you will find the objects `Environments` and `links`, whose schema is described below. You only need to edit them through the dedicated drawer or modal and save your changes.
 
 ### Environments configuration
 
@@ -97,16 +153,18 @@ In order to edit the information available in the Runtime Environments table (yo
 }
 ```
 
-Every link specifies a path that is going to be concatenated to a base url defined in the environment host if their `isBackoffice` properties match. This means that you only specify the path of these links once, and the system is going to automatically generate the correct links based on the environments, which will be shown in the table. In case you have multiple hosts for the same environment, the links you will have one link for each host of each environment.
+Every link specifies a path that is going to be concatenated to a base URL defined in the environment host if their `isBackoffice` property matches. This means that you only need to specify the path of these links once, and the system will automatically generate the correct links for the environment, which will be shown in the table. In case you have multiple hosts for the same environment, you will get one link for each host of each environment.
 
-In case your link has an `isBackoffice` property set to a value which doesn't match any of the hosts `isBackoffice` property, then a default value will be displayed.
+In case your link has an `isBackoffice` property set to a value which doesn't match any of the hosts `isBackoffice` property values, then a default value will be displayed.
+
 :::info
-If `isBackoffice` is not set in host property, it is considered to be falsy in this case.
+If the `isBackoffice` property is not set, it is considered to be falsy.
 :::
+
 More specifically, the defaults based on the link types are:
 
-* **Documentation**: the host with `isBackoffice` property set to `false` concatenated with `/documentations/api-portal`
-* **CMS**: the host with `isBackoffice` property set to `true`
-* **Application**: no default value is present
+* **Documentation**: the host with `isBackoffice` property set to `false` concatenated with `/documentations/api-portal`;
+* **CMS**: the host with `isBackoffice` property set to `true`;
+* **Application**: no default value is present.
 
 The `custom` element can be named as you wish, and you can have any number of custom links. The name you write in the configuration will be the label of the link in the table.
