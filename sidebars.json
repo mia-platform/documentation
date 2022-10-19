@@ -32,8 +32,23 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/runtime-environments",
-          "type": "doc"
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/runtime-environments",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/add-environment",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/remove-environment",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Runtime Environments",
+          "type": "category"
         },
         {
           "collapsed": true,
