@@ -20,7 +20,7 @@ More specifically, this new feature offers a better developer experience in Mia-
 - start the merge process in order to align those changes to the last committed configuration within the same branch. 
 
 Moreover, users can also align configurations of two different branches within the same project.  
-In this way, it is possible to easily promote a branch configuration on different environments up to the production one.
+In this way, it is possible to easily promote a branch configuration on different environments up to the production one. Find out more [here](../development_suite/api-console/api-design/merge_collaboration).
 
 ### Management of Clusters in self-service mode
 
@@ -29,11 +29,11 @@ In fact, it is possible to connect and manage Kubernetes Clusters through an eas
 
 ### Management of Environment in self-service mode
 
-The Environment section of the console has been enhanced, providing the ability for a user with respective permissions to be able to add, edit and delete an environment directly through a dedicated graphical interface on Mia-Platform Console.
+The Environment section of the console has been enhanced, providing the ability for a user with respective permissions to be able to add, edit and delete an environment directly through a dedicated graphical interface on Mia-Platform Console. Find out more [here](../development_suite/set-up-infrastructure/runtime-environments).
 
 ### Providers & Tools Integration
 
-Several new providers and tools have been integrated in Mia Platform console.
+Several new providers and tools have been integrated in Mia Platform Console.
 
 #### Git Providers: Azure DevOps and BitBucket
 
@@ -50,9 +50,7 @@ Mia-Platform Console can now manage secreted variables through Vault secret mana
 ### Project Quick Links
 
 Inside of the project homepage, a Project Administrator can now set up and manage a carousel of quick useful links to better organize the team’s workload in a project. These links will be visible and clickable directly from the project homepage for all the members of the project.  
-Moreover, they can also be reached through the shortcut Ctrl/Cmd + K, by clicking on the “Project Links” entry.  
-
-[SCREENSHOTS]
+Moreover, they can also be reached through the shortcut Ctrl/Cmd + K, by clicking on the “Project Links” entry. Find out more [here](../development_suite/overview-dev-suite#project-links-and-dashboards).
 
 ## Fast Data
 
@@ -62,10 +60,13 @@ Single View page now contains a dedicated tab where you can configure your Low C
 
 ### Single View Trigger
 
-The Single View Trigger is a new microservice available on the Marketplace, whose purpose is to link the Real-Time Updater and the Single View Creator.  
-The service will consume Kafka messages produced by the RTU on a specific topic that will follow the following naming convention, it will execute the appropriate strategies and generate projection changes either on Mongo or Kafka.
+The Single View Trigger is a new microservice available on the Marketplace, whose purpose is to link the Real-Time Updater (RTU) and the Single View Creator.
+The service will consume Kafka messages produced by the RTU on a specific topic, execute the appropriate strategies and generate projection changes either on MongoDB or Kafka.
 
 ### Salesforce Streaming API Connector
+
+The Salesforce Connector Service provides a way to import data from StreamingAPI directly into your FastData projections.
+This connector manages connection, authentication, and processing of data received via Salesforce streaming API. It listens to the changes in the data sources of Salesforce and brings them to one or more Kafka topics.
 
 ## Marketplace
 
@@ -87,7 +88,7 @@ Manage in one place all logics and business processes related to payments, now a
 
 The MongoDB View section has been introduced inside the Design area of the Console.  
 Here, user can create and configure a View. Then, the view can be exposed through an Endpoint of type MongoDB View.  
-Moreover, it is possible to see a MongoDB View's content from the CMS by creating a new CMS Page from the CMS section of the Console.
+Moreover, it is possible to see a MongoDB View's content from the CMS by creating a new CMS Page from the CMS section of the Console. Find out more [here](../development_suite/api-console/api-design/mongo_views).
 
 <br/><br/>
 <a target="_blank" href="https://mia-platform.eu/mia-platform-v10-for-a-better-development/?utm_source=docs&utm_medium=banner&utm_campaign=v10_cmp">
