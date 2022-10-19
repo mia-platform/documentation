@@ -44,7 +44,8 @@ On this page we keep you aligned on the most important issues
 ## How to influence the roadmap
 
 The roadmap is constantly evolving to quickly respond to market needs.
-A roadmap is only useful if it captures real needs. If you have success stories, feedback, or ideas, we want to hear from you! Schedule a meeting with us. We are happy to hear from you, propose your idea [here](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/78/create/253). 
+A roadmap is only useful if it captures real needs. If you have success stories, feedback, or ideas, we want to hear from you! 
+Join our [Mia-Platform Community Space](https://github.com/mia-platform/community/discussions) and propose your idea! 
 
 ## Roadmap evolution
 
