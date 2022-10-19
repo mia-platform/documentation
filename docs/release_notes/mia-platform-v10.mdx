@@ -52,8 +52,6 @@ Mia-Platform Console can now manage secreted variables through Vault secret mana
 Inside of the project homepage, a Project Administrator can now set up and manage a carousel of quick useful links to better organize the team’s workload in a project. These links will be visible and clickable directly from the project homepage for all the members of the project.  
 Moreover, they can also be reached through the shortcut Ctrl/Cmd + K, by clicking on the “Project Links” entry.  
 
-[SCREENSHOTS]
-
 ## Fast Data
 
 ### Single View configuration Low Code in a dedicated area
@@ -62,10 +60,13 @@ Single View page now contains a dedicated tab where you can configure your Low C
 
 ### Single View Trigger
 
-The Single View Trigger is a new microservice available on the Marketplace, whose purpose is to link the Real-Time Updater and the Single View Creator.  
-The service will consume Kafka messages produced by the RTU on a specific topic that will follow the following naming convention, it will execute the appropriate strategies and generate projection changes either on Mongo or Kafka.
+The Single View Trigger is a new microservice available on the Marketplace, whose purpose is to link the Real-Time Updater (RTU) and the Single View Creator.
+The service will consume Kafka messages produced by the RTU on a specific topic, will execute the appropriate strategies, and will generate projection changes either on MongoDB or Kafka.
 
 ### Salesforce Streaming API Connector
+
+The Salesforce Connector Service provides a way to import data from StreamingAPI directly into your FastData projections.
+This connector manages connection, authentication, and processing of data received via Salesforce streaming API. It listens to the changes of the data sources of Salesforce, and bring them on one or more Kafka topics.
 
 ## Marketplace
 
