@@ -63,6 +63,10 @@
       "type": "category"
     },
     {
+      "id": "development_suite/clusters-management/clusters-management",
+      "type": "doc"
+    },
+    {
       "id": "development_suite/api-console/user-management",
       "type": "doc"
     },
