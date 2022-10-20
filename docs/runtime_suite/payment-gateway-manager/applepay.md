@@ -8,7 +8,6 @@ Note that at the moment Apple Pay payments are only supported with the Gestpay (
 ## Gestpay
 
 ### Making a payment
-
 The service is expecting a JSON representation of a [ApplePayPKPaymentToken](https://git.tools.mia-platform.eu/platform/plugins/payment-gateway-manager/-/blob/master/src/main/kotlin/eu/mia_platform/payment_gateways_manager/gestpay/model/PaymentSubmitApplePayRequest.kt#L44) described as below:
 
 ```typescript
@@ -33,7 +32,6 @@ The service is expecting a JSON representation of a [ApplePayPKPaymentToken](htt
 ```
 
 #### How to retrieve the payment token
-
 Few steps are required in order to obtain a payment dictionary compliant to the structure expected above.
 After making a `PKPaymentRequest` using Apple's PassKit framework, you can retrieve the `PKPayment` object from the `PKPaymentAuthorizationViewController` didAuthorizePayment completion callback.
 
