@@ -54,7 +54,7 @@ const secondRowFeatures = [
         icon: "globe",
         target: "_blank",
         href: "https://mia-platform.eu/mia-platform-v10-for-a-better-development/?utm_source=docs&utm_medium=doc_homepage&utm_campaign=v10_cmp",
-        label: "Discover Mia-Platform v10.0 🎉",
+        label: "Discover Mia-Platform v10 🎉",
       },
     ],
   },

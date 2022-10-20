@@ -2160,13 +2160,13 @@
       "type": "doc"
     },
     {
-      "id": "release_notes/release_notes",
-      "type": "doc"
-    },
-    {
       "label": "Versions",
       "type": "category",
       "collapsed": false,
+      "link": {
+        "type": "doc",
+        "id": "release_notes/release_notes"
+      },
       "items": [
         {
           "id": "release_notes/RN_v10-0/v10.0.0",
