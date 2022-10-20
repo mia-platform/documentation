@@ -29,7 +29,6 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **SATISPAY_AFTER_BUY_MOBILE_REDIRECT_URL** (required): url-scheme that will be used by iOS/Android to redirect the 
 user after completing a payment via the Satispay mobile app
 
-
 ## Unicredit Specific Environment Variables
 * **UNICREDIT_NUMERO_COMMERCIANTE** (required): merchant identification code.
 * **UNICREDIT_PASSWORD** (required): password for accessing the payment system.
@@ -41,7 +40,6 @@ user after completing a payment via the Satispay mobile app
 * **UNICREDIT_AFTER_BUY_KO_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
 * **UNICREDIT_USE_PRE_AUTHORIZATION** (required): "true" or "false" whether if you want to use pre-authorization for credit card payments or not.
 
-
 ## Braintree Specific Environment Variables
 * **BRAINTREE_SUBMIT_FOR_SETTLEMENT** (required): flag that determines whether transactions are immediately submitted for settlement or not.
 * **BRAINTREE_MERCHANT_ID** (required): string that identifies the used merchant id.
@@ -49,7 +47,6 @@ user after completing a payment via the Satispay mobile app
 * **BRAINTREE_PUBLIC_KEY** (required): Braintree API public key.
 * **BRAINTREE_PRIVATE_KEY** (required): Braintree API private key.
 * **BRAINTREE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Braintree Sandbox or Production environment.
-
 
 ## Scalapay Specific Environment Variables
 * **SCALAPAY_BASE_PATH** (required): Address to Scalapay base path. Scalapay has three different environments, integration, staging and production.
