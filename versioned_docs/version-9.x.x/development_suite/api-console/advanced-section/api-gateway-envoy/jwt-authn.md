@@ -47,32 +47,85 @@ The snippet below shows the implementation of a **JWT authentication filter** fo
         provider_name: provider1
 ```
 
-This filter applies JWT authentication on all the `/api` routes, except the ones explicitly listed (`/api/sample-route-1` and `/api/sample-route-2`). 
+This filter applies JWT authentication on all the `/api` routes, except the ones explicitly listed (`/api/sample-route-1` and `/api/sample-route-2`).
 
-In this example, the JWKS is specified through an inline string. The same property `local_jwks` allows you to retrieve it from a local file, as in the following snippet:
+:::info
+In case you want to use the configuration above, please make sure the variable `JWT_TOKEN_SIGN_KEY_BASE64` exists and contains the correct sign key (or use your own sign key).
+:::
+
+#### **Local JWKS**
+
+In the example above, the JWKS location is specified through an inline string. The same property `local_jwks` allows you to retrieve it from a local file, as in the following snippet:
 
 ```yaml
 local_jwks:
   filename: /etc/envoy/jwks/jwks1.txt
 ```
 
-Otherwise, you could decide to fetch the JWKS from a remote server via HTTP/HTTPS, through the `remote_jwks` property. This field defines the HTTP URI of the remote server and the cache duration. For example:
+#### **Remote JWKS**
+
+If your authentication service exposes a `/.well-known/jwks.json` endpoint, you could fetch the JWKS remotely via HTTP through the `remote_jwks` property. This field defines the HTTP URI of the remote server and the cache duration.
+
+:::warning
+Remember that the upstream in the `cluster` field must be an existing cluster in your configuration.
+:::
+
+For example:
 
 ```yaml
 remote_jwks:
   http_uri:
-    uri: https://www.googleapis.com/oauth2/v1/certs
-    cluster: jwt.www.googleapis.com|443
+    uri: http://authentication-cluster/.well-known/jwks.json
+    cluster: authentication-service
     timeout: 1s
   cache_duration:
     seconds: 300
 ```
 
-For more details concerning the filter properties, visit [this section](../../../../runtime_suite/envoy-api-gateway/filters.md).
+On the other hand, if you want to retrieve the JWKS from an HTTPS endpoint (for example, an auth0 server), the configuration would look like the following:
 
-:::info
-In case you want to use the configuration above, please make sure the variable `JWT_TOKEN_SIGN_KEY_BASE64` exists and contains the correct sign key (or use your own sign key).
-:::
+```yaml
+remote_jwks:
+  http_uri:
+    uri: https://example.auth0.com/.well-known/jwks.json
+    cluster: jwks-cluster
+    timeout: 1s
+  cache_duration:
+    seconds: 300
+```
+
+To reach the endpoint at the specified URI, you will need to define its corresponding upstream in the `clusters.yaml` extension file, together with its TLS context (for HTTPS):
+
+```yaml
+- "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+  name: jwks-cluster
+  connect_timeout: 30s
+  type: LOGICAL_DNS
+  lb_policy: ROUND_ROBIN
+  dns_lookup_family: V4_ONLY
+  load_assignment:
+    cluster_name: jwks-cluster
+    endpoints:
+    - lb_endpoints:
+      - endpoint:
+          address:
+            socket_address:
+              address: example.auth0.com
+              port_value: 443
+  transport_socket:
+    name: envoy.transport_sockets.tls
+    typed_config:
+      '@type': type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
+      sni: example.auth0.com
+      common_tls_context:
+        validation_context:
+          trusted_ca:
+            filename: /etc/ssl/certs/ca-certificates.crt
+```
+
+The `dns_lookup_family` field needs to be set to `V4_ONLY` to force IPv4 connectivity to auth0, otherwise the fetch of the JWKS fails (see [this blogpost](https://farcaller.net/jwks-remote-fetch-is-failed/) for a more detailed explanation of the error).
+
+For more details concerning the filter properties, visit [this section](../../../../runtime_suite/envoy-api-gateway/filters.md).
 
 ### LUA script
 
