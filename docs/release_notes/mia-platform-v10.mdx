@@ -13,44 +13,49 @@ Welcome to Mia-Platform v10, a major full of new integrations and functionalitie
 
 ### Merge and Promote configurations
 
-Within the project, different users can concurrently work on the same branch configuration while having visibility of any changes remotely made by other users.  
-More specifically, this new feature offers a better developer experience in Mia-Platform Console, allowing users to:
+Making development in Mia-Platform Console easier and more efficient has been the principal focus of this major.
+In this direction, this new feature aims to offer a better developer experience throughout the entire Console configuration lifecycle, enabling a smarter way to reduce the typically time-consuming conflict resolutions and providing the merge of configurations directly in Mia-Platform Console.
+Now, within the project, different users can concurrently work on the same branch configuration while having visibility of any changes remotely made by other users.
+More specifically, it is possible to:
 
 - have visibility on all the configuration changes made locally before committing them;
 - start the merge process in order to align those changes to the last committed configuration within the same branch. 
 
-Moreover, users can also align configurations of two different branches within the same project.  
-In this way, it is possible to easily promote a branch configuration on different environments up to the production one. Find out more [here](../development_suite/api-console/api-design/merge_collaboration).
+Moreover, users can also align configurations of two different branches within the same project.
+In this way, the configuration of a branch can be easily and efficiently promoted across different environments up to the production one. Find out more [here](../development_suite/api-console/api-design/merge_collaboration).
 
 ### Management of Clusters in self-service mode
 
-Through a brand new section in Mia-Platform Console, it is now possible to manage the infrastructure on which to deploy the Projects.  
-In fact, it is possible to connect and manage Kubernetes Clusters through an easy-to-use interface and view some details about it, regardless of the Vendor and Kubernetes distribution installed. Find out more [here](../development_suite/clusters-management).
+Infrastructure governance is a very important issue when it comes to a product like Mia-Platform. 
+Both from an administrative perspective and purely from a developer experience perspective, the distance between the infrastructure part and the development implementation part can cause frictions.
+Therefore, we have created a new section in Mia-Platform Console - inside the Company overview area - where each company will be able to view and fully manage the Kubernetes clusters connected to the console, which are then used to deploy their projects, regardless of the vendor and the Kubernetes distribution. Find out more [here](../development_suite/clusters-management). 
 
 ### Management of Environment in self-service mode
 
-The Environment section of the console has been enhanced, providing the ability for a user with respective permissions to be able to add, edit and delete an environment directly through a dedicated graphical interface on Mia-Platform Console. Find out more [here](../development_suite/set-up-infrastructure/runtime-environments).
+Just as with Clusters, Projects Environments also take on fundamental importance in the context of Mia-Platform offerings. Their easy and smooth management not only decreases useful friction between infrastructure and development teams, but also contributes fundamentally to reducing the time-to-market of projects. 
+This is why we have introduced in the Environment section of the Project Settings area the possibility to manage in an almost self-service way the creation, modification and deletion of the environments of each project. Find out more [here](../development_suite/set-up-infrastructure/runtime-environments).
 
 ### Providers & Tools Integration
 
-Several new providers and tools have been integrated in Mia Platform Console.
+Product integrability with new providers, tools or external services is - in our view - a strength of our offering. For this reason, several new providers and tools have been integrated in Mia Platform Console.
 
 #### Git Providers: Azure DevOps and BitBucket
 
 Mia-Platform Console supports the use of 2 new Git Providers, Azure DevOps and BitBucket, in order to meet almost all the technical needs of the market.
 
-#### Jenkins
+#### CI Tool: Jenkins
 
 Mia-Platform Console is now integrated with Jenkins, another provider to better manage the Deploy pipelines.
 
-#### Vault Secret Manager
+#### Secret Manager: Vault
 
 Mia-Platform Console can now manage secreted variables through Vault secret manager.
 
 ### Project Quick Links
 
-Inside of the project homepage, a Project Administrator can now set up and manage a carousel of quick useful links to better organize the team’s workload in a project. These links will be visible and clickable directly from the project homepage for all the members of the project.  
-Moreover, they can also be reached through the shortcut Ctrl/Cmd + K, by clicking on the “Project Links” entry. Find out more [here](../development_suite/overview-dev-suite#project-links-and-dashboards).
+Now, in each project, the Project Administrator can set up and manage quick useful links to better organize and speed up the team workflows.
+These links will be visible and available for consultation directly from the Project homepage for all the members of the project.
+Moreover, they can also be reached through the shortcut Ctrl/Cmd + K, by clicking on the "Project Links" entry. Find out more [here](../development_suite/overview-dev-suite#project-links-and-dashboards).
 
 ## Fast Data
 
