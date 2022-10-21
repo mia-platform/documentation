@@ -84,6 +84,12 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 * **Name** (*required*): this is the internal hostname;  
 
 * **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s;
+:::info
+  Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
+  - `hostname` is the registry hostname where the docker image is hosted
+  - `imagename` is the docker image name
+  - `tag` is the version of the docker image
+:::
 
 * **Description** (*optional*): this is the description of your microservice.
 
@@ -206,6 +212,11 @@ For each label, you have to define:
 
 * **Description**
 
+:::info
+**Label keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.  
+For more information regarding the syntax check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
+:::
+
 ![add-new-label](img/add-new-label.png)
 
 #### Default labels
@@ -235,6 +246,11 @@ For each annotation, you have to define:
 * **Value** (*required*)
 
 * **Description**
+
+:::info
+**Annotation keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.  
+For more information regarding the syntax check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set).
+:::
 
 ![add-new-annotation](img/add-new-annotation.png)
 
