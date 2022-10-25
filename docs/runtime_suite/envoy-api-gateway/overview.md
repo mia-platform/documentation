@@ -29,6 +29,10 @@ On the other hand, the **CDS** presents a list of the available upstream cluster
 Currently, we support Envoy `1.21.1`.
 :::
 
+:::caution
+If you're using Envoy together with an authorization service, make sure you're using version `2.4.0` or latest.
+:::
+
 ## Configuration steps
 
 ### New project
@@ -45,6 +49,11 @@ If you already have an existing project and want to switch to Envoy, you will ju
 :::warning
 The existing extensions for the previous API Gateway cannot be automatically migrated, thus they have to be migrated manually.
 :::
+
+## Troubleshooting
+
+### Repeated 404 - Not Found for all configured endpoints
+If you're repeatedly getting a "404 - Not Found" error from Envoy while trying to contact different endpoints correctly defined in the console, you should check for your authorization service's version: versions previous to `2.4.0` don't support Envoy compatibility.
 
 <!-- ### Extensions migration from NGINX
 
