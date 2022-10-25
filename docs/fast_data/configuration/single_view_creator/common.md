@@ -146,7 +146,7 @@ For further information contact your Mia Platform referent
 <tr><td>AGGREGATION_FOLDER</td><td>false</td><td>the path to the Aggregation folder, e.g. `/home/node/app/aggregation`</td><td>-</td></tr>
 <tr><td>USE_AUTOMATIC</td><td>false</td><td>wheather to use the low code architecture for the Single View Creator service or not</td><td>-</td></tr>
 <tr><td>PROJECTIONS_CHANGES_SOURCE</td><td>false</td><td>System to use to handle the Projection Changes, supported methods are KAFKA or MONGO</td><td>MONGO</td></tr>
-
+<tr><td>READ_TOPIC_FROM_BEGINNING</td><td>false</td><td>Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if <code>PROJECTIONS_CHANGES_SOURCE</code> is set to <i>KAFKA</i>.</td><td>false</td></tr>
 </table>
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
