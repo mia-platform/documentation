@@ -80,4 +80,4 @@ skip query parameter (`_sk`) is reset when fetching data (unless query was trigg
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.0`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.1`.
