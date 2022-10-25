@@ -23,16 +23,7 @@ The table displays information in the following columns:
 * **Application**: a link to the main application deployed in the runtime environment;
 * **Cluster**: the ID of the cluster to which the runtime environment is linked.
 
-A label also appears next to the name to identify production environments. If you want to have more information about a specific environment, you can expand its row by clicking on the `+` button on the left, which provides the following additional information:
-
-* **Documentation**: a group of links to all the documentation available in the runtime environment;
-* **CMS**: a group of links to all the CMSs available in the runtime environment;
-* **Application**: a group of links to all the applications available in the runtime environment;
-* **Cluster Namespace**: the namespace of the Kubernetes cluster the runtime environment runs on;
-* **Cluster Hostname**: the hostname of the Kubernetes cluster the runtime environment runs on;
-* **Description**: a brief description of the runtime environment.
-
-Additionally, one could define custom links to be displayed among the additional information provided in the expanded row.
+A label also appears next to the name to identify production environments.
 
 ## Add an Environment
 
@@ -44,8 +35,8 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 * **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
 * **Cluster ID** (*required*): the ID of the Kubernetes cluster the runtime environment runs on;
 * **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Company ID and Environment ID);
-* **Host**: the URL of the project host on which are exposed, among other things, API Portal and Dev Portal;
-* **Backoffice host**: the URL of the project host on which the CMS is exposed;
+* **Project URL**: the URL (consisting of protocol + host) on which the project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
+* **CMS URL**: the URL (consisting of protocol + host) on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
 * **Description**: a brief description of the runtime environment.
 
 ![add environment](img/add_environment.png)
