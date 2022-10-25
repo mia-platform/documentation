@@ -99,7 +99,7 @@ const config = {
         },
         {
           type: 'doc',
-          docId: "release_notes/RN_v10-0/v10.0.0",
+          docId: "release_notes/release_notes",
           label: "Release notes",
           position: "left",
           activeBaseRegex: "(docs|docs/\\d.x)/(release_notes|info/(version_policy|bug_policy|support-policy))"
