@@ -31,7 +31,7 @@ Below you can find a complete example of *Sleepinfo* resource.
     timeZone: "Europe/Rome"
     suspendCronJobs: true
     excludeRef:
-        - apiVersion: "apps/v1"
+      - apiVersion: "apps/v1"
         kind:       Deployment
         name:       api-gateway
 ```
