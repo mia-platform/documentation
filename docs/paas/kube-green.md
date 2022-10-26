@@ -20,20 +20,20 @@ If your project is hosted on the PaaS, kube-green is ready to be configured. Eve
 Below you can find a complete example of *Sleepinfo* resource.
 
 ```yaml
-    apiVersion: kube-green.com/v1alpha1
-    kind: SleepInfo
-    metadata:
-    name: working-hours
-    spec:
-    weekdays: "1-5"
-    sleepAt: "20:00"
-    wakeUpAt: "08:00"
-    timeZone: "Europe/Rome"
-    suspendCronJobs: true
-    excludeRef:
-      - apiVersion: "apps/v1"
-        kind:       Deployment
-        name:       api-gateway
+apiVersion: kube-green.com/v1alpha1
+kind: SleepInfo
+metadata:
+  name: working-hours
+spec:
+  weekdays: "1-5"
+  sleepAt: "20:00"
+  wakeUpAt: "08:00"
+  timeZone: "Europe/Rome"
+  suspendCronJobs: true
+  excludeRef:
+    - apiVersion: "apps/v1"
+      kind: Deployment
+      name: api-gateway
 ```
 
 The SleepInfo spec contains:
