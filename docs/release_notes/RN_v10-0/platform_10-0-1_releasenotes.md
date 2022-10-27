@@ -13,9 +13,14 @@ _October 27th, 2022_
 
 #### Endpoint section
 
-Fixed problems that prevented a user to update "Show in API Portal", 
-"Support only JSON format on request", "Force the endpoint to pass through the Microservice Gateway", 
-"Support only JSON format on response", "Timeout", "Rate limit", "Request body size limit" values in Endpoint Settings
+Fixed problems that prevented a user to update some values in endpoint settings, in particular:
+* "Show in API Portal";
+* "Support only JSON format on request";
+* "Force the endpoint to pass through the Microservice Gateway";
+* "Support only JSON format on response";
+* "Timeout";
+* "Rate limit"; 
+* "Request body size limit";
 
 ## How to update your Console
 
