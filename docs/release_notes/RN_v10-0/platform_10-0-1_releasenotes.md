@@ -11,7 +11,7 @@ _October 27th, 2022_
 
 ### Bug Fix
 
-#### Endpoint section
+#### Update data in Endpoints section
 
 Fixed problems that prevented a user to update some values in endpoint settings, in particular:
 * "Show in API Portal";
