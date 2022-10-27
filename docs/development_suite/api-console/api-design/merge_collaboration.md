@@ -100,6 +100,19 @@ After the merge process is completed with success, press the _Continue Editing_ 
   </div>
 </div>
 
+### What if I made a mistake?
+
+If you are working on a section of the Merge modal and want to undo all changes applied to that section since the start of the Merge, you can use the **Revert button**.  
+This button allows you to go back to the initial situation for the current section, without having to cancel the entire Merge process. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '550px'}}> 
+
+![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-revert-button.png)
+
+  </div>
+</div>
+
 ## Merge from another branch
 
 As an alternative to the merging process already described above, it is also possible to merge your actual configuration not only with the different remote configuration within the same branch, but also with other different branches. 
