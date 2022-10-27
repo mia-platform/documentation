@@ -1,7 +1,7 @@
 ---
-id: v10.0.0
-title: Version v10.0.0 Release Notes
-sidebar_label: v10.0.0
+id: v10.0.1
+title: Version v10.0.1 Release Notes
+sidebar_label: v10.0.1
 image: "img/release-note-link-preview.png"
 ---
 
