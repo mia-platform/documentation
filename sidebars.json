@@ -2169,6 +2169,10 @@
       },
       "items": [
         {
+          "id": "release_notes/RN_v10-0/v10.0.1",
+          "type": "doc"
+        },
+        {
           "id": "release_notes/RN_v10-0/v10.0.0",
           "type": "doc"
         }
