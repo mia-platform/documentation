@@ -13,4 +13,4 @@ _October 20th, 2022_
 
 #### Endpoint section
 
-description
+Now Endpoint settings section updates data when user changes values
