@@ -5,7 +5,7 @@ sidebar_label: v10.0.0
 image: "img/release-note-link-preview.png"
 ---
 
-_October 20th, 2022_
+_October 27th, 2022_
 
 ## Console
 
