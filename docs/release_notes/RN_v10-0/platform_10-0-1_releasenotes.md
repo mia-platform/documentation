@@ -19,4 +19,4 @@ Fixed problems that prevented a user to update "Show in API Portal",
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.1`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.2`.
