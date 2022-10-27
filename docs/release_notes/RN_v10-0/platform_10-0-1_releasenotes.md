@@ -14,3 +14,7 @@ _October 27th, 2022_
 #### Endpoint section
 
 Now Endpoint settings section updates data when user changes values
+
+## How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.1`.
