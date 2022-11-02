@@ -47,6 +47,32 @@ By clicking on "Create environment", the new runtime environment will be generat
 After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](add-environment.md) for more information.
 :::
 
+### What happens behind the scenes?
+
+When the user requests the creation of a new runtime environment, the following operations are performed:
+
+1. Further validation on environment ID and namespace format;
+2. Update of the reference project, in which the new environment is added;
+3. Retrieval of the credentials of the Kubernetes cluster on which the environment will be created;
+4. Creation of the namespace associated with the environment;
+5. Creation of the service account for the newly created namespace;
+6. Creation of the secret associated with the service account, which includes Pipeline Token and Certificate Authority;
+7. Creation of the role binding to assign the service account the ability to deploy.
+
+If there are no errors, the creation modal will display a successful feedback containing the credentials (Pipeline Token and Certificate Authority) required for deployment. It is possible to manually copy the credentials, or download them in JSON format using the "Download recap" button.
+
+![add environment success](img/add_environment_success.png)
+
+:::info
+If the Kubernetes cluster has not been properly prepared (and consequently does not have a reference service account that can be associated with the new namespace), steps 4-7 are skipped, and the successful feedback is shown to the user without credentials. The user will then **not** be able to deploy without further actions on the cluster.
+
+[Here](../../development_suite/clusters-management#cluster-preparation) you can find more information on how to setup your cluster.
+:::
+
+The action of creating the environment will instead result in an error if problems occur in steps 1-3. In case of issues in steps 4-7, the modal will still show a successful feedback, along with an error warning prompting the user to contact their cluster administrator.
+
+![add environment error](img/add_environment_error.png)
+
 ## View Environment Information
 
 By clicking on the arrow button located in the rightmost column of an environment entry in the table, a new page will show up, displaying information about the specific runtime environment through 2 cards:
