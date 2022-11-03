@@ -13,7 +13,7 @@ sidebar_label: Create Views
 
 ![create view form](img/create_mongodb_view.png)
 
-A View requires a `source` collection from which the aggregation starts.   
+A View requires a `source` collection, projection or single view from which the aggregation starts.   
 The *Internal Endpoints* is the path from which the view is going to be exposed by the [CRUD Service](/docs/runtime_suite/crud-service/overview_and_usage) inside the namespace. Additional internal endpoints can be defined in the Internal Endpoints card of the View. Only paths with `GET` methods are exposed, since you can perform only `read` operation on a view.
 
 ![Internal endpoint view](img/internal_endpoint_view.png)
@@ -37,7 +37,7 @@ This feature is available from version `5.2.2` of [CRUD Service](/docs/runtime_s
 ### Fields
 
 Fields you are defining in a View are the fields you expect to have at the end of the aggregation. 
-Fields types can be the same of the [MongoDB CRUD](/docs/development_suite/api-console/api-design/crud_advanced#fields), nested fields are supported as well. 
+Fields types can be the same of your [collection](/docs/development_suite/api-console/api-design/crud_advanced#fields),[projection](https://docs.mia-platform.eu/docs/fast_data/configuration/projections#projection-fields) or [single view](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views#single-view-data-model). Nested fields are supported as well. 
 Unlike MongoDB CRUD, you cannot set indexes on these views' fields instead, because they are going to use indexes of the underlying collection. To know more about it, please refer to the [official documentation](https://www.mongodb.com/docs/manual/core/views/#index-use-and-sort-operations).
 
 ### Expose through endpoints
