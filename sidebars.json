@@ -728,11 +728,11 @@
       "collapsed": true,
       "items": [
         {
-          "id": "tutorial/node_ms/node_ms_tutorial",
+          "id": "tutorial/rest_api/quick_rest_api",
           "type": "doc"
         },
         {
-          "id": "tutorial/rest_api/quick_rest_api",
+          "id": "tutorial/node_ms/node_ms_tutorial",
           "type": "doc"
         },
         {
