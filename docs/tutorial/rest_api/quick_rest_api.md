@@ -58,7 +58,7 @@ There is also other information for each field:
  * **Sensitivity**: the sensitivity of the field based on GDPR category.
 
 At this point, **you have to create our DB schema** by creating the properties of your CRUD. **In this section you can add a new property by selecting Add field**. 
-You can also export the already created fields in JSON format or import your fields, we will use this functionality later in the tutorial but, if you are interested in this part you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection)..
+You can also export the already created fields in JSON format, or you can import your fields from an existing JSON file. This functionality will be described later in the tutorial. If you are interested in this part, you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection)..
 
 ![Add field to the CRUD collection](img/MongoDB-Collection-add-field.png)
 
