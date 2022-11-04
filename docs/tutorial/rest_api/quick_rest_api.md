@@ -226,7 +226,7 @@ Save the made changes by clicking on the branch name in the top bar.
 
 ![Open save modal the CRUD collection](img/MongoDB-Collection-open-save-modal.png)
 
-By clicking on "Save configuration", a modal will appear. Here you can insert your 
+By clicking on "Save configuration", a modal will appear. Here you can insert a message specifying what has been modified and save the new version.
 ![Save the CRUD collection](img/MongoDB-Collection-save.png)
 
 :::warning
