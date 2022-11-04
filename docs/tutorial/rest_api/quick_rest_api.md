@@ -250,7 +250,7 @@ The Endpoints screen is composed by four different section.
 The left section will **contain all the endpoints created on this project**. By default, here you could find the public endpoints of the API portal.  
 The right section will **contain the details** about each existing endpoint.
 
-Select **"Create new endpoint"**
+Select **"Create new endpoint"**:
 
 ![Create the books endpoints](img/MongoDB-Collection-endpoint-create.png)
 
