@@ -310,4 +310,4 @@ By **expanding a method**, you will find everything you need to make an call. In
 You can also export the schema of a collection's fields.
 ![Export the CRUD collection](img/MongoDB-Collection-export.png)
 
-It is possible to **export the JSON of the CRUD Collection by clicking on "Export to JSON"**: by doing so, your browser will download a JSON containing the description (schema) of our CRUD.
+It is possible to **export the JSON of the CRUD Collection by clicking on "Export to JSON"**. By doing so, your browser will download a JSON containing the description (schema) of your CRUD.
