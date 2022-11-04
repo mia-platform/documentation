@@ -267,7 +267,7 @@ After you will have create the endpoint, **by clicking the `/books` in the left 
   
 ![Endpoint Detail](img/MongoDB-Collection-endpoint-detail.png)  
   
- * **Details**: here you can change the description and show the the endpoint in the API Portal;
+ * **Details**: here you can change the description and show the endpoint in the API Portal;
  * **Configure the microservice gateway**: here you can force the endpoint to pass through the Microservice Gateway;
  * **Security Management**: here you can enable the authentication and the User Group Permission or the CMS User Permission.
 
