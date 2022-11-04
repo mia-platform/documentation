@@ -106,7 +106,7 @@ After adding this fields, you can read the properties in the CRUD page:
 
 ![Fields to the CRUD collection](img/MongoDB-Collection-all-fields.png)
 
-Of course, you can **edit and delete any existing field** or, if you need it, you can add other fields.
+You can **edit and delete any existing field** or, if you need it, you can add other fields.
 
 ### Option 2: Import CRUD collection 
 
