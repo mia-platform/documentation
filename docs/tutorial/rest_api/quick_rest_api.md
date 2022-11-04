@@ -35,7 +35,7 @@ The left section will contain **all the CRUD Collections** created on this proje
 The right section will contain the **detail about each already created CRUD** Collection.  
 
 Select **"Create new CRUD"**: here you can choose the CRUD Collection name and the internal endpoint.  
-By default, **the suggested name of the internal endpoint** is the same entered in the collection name. However, it is always possible to choose a custom name by simply editing the internal endpoint field. The _internal endpoint_ is the one that callers making requests directly to the `crud-service` (i.e. from the inside of the project) can use to execute CRUD operations on the collection we're creating.
+By default, **the suggested name of the internal endpoint** is the same entered in the collection name. However, it is always possible to choose a custom name by simply editing the internal endpoint field. The _internal endpoint_ can be used by callers making requests directly to the `crud-service` (i.e. from the inside of the project) to execute CRUD operations on the collection we're creating.
 
 :::info
 Remember that **two CRUDs collections or two identical endpoints (with the same path) cannot exist on the same project**. So, if you import an existing collection, you will have to choose another name and path.
