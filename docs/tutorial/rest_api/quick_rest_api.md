@@ -7,7 +7,7 @@ sidebar_label: Create a Rest API in 5 minutes
 A **REST API is an application programming interface** that conforms to the constraints of REST architectural style, and allows **for interactions with RESTful web services**.
 REST APIs **allow clients** (like mobile, web and other applications) **to read, write, and edit the data** of a system (like servers, databases, and many others) **hiding the implementation details** of the system itself.
 
-In this tutorial we will see how use **Mia-Platform Console** in order to **set up and expose toward the outside the cluster a REST API** to **execute CRUD operations** (Create, Read, Update, Delete) on a collection of data.
+In this tutorial we will see how to use **Mia-Platform Console** to **set up and expose toward the outside the cluster a REST API** to **execute CRUD operations** (Create, Read, Update, Delete) on a collection of data.
 
 ## What We’ll Build
 In this tutorial we will create and expose a CRUD collection. More specifically, we will:
