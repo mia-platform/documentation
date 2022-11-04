@@ -349,6 +349,10 @@
         {
           "id": "development_suite/set-up-infrastructure/providers-management",
           "type": "doc"
+        },
+        {
+          "id": "self_hosted/troubleshooting",
+          "type": "doc"
         }
       ],
       "label": "On-Premise Configurations",
