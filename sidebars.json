@@ -1,163 +1,4 @@
 {
-  "cms": [
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Backoffice",
-      "items": [
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/overview"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/data_flow"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/page_layout"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/core_concepts"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/events"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/plugin_example"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/application"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/plugin_navigation"
-        },
-        {
-          "type": "doc",
-          "id": "business_suite/backoffice/changelog"
-        },
-        {
-          "type": "category",
-          "label": "Components",
-          "items": [
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/adapters"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/buttons"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/clients"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/data_manipulation"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/data_querying"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/data_visualization"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/misc"
-            },
-            {
-              "type": "doc",
-              "id": "business_suite/backoffice/Components/typography"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Data Visualization",
-      "type": "category",
-      "collapsed": true,
-      "items": [
-        {
-          "id": "business_suite/data-visualization",
-          "type": "doc"
-        },
-        {
-          "id": "business_suite/timeline",
-          "type": "doc"
-        }
-      ]
-    },
-    {
-      "label": "Previous tools",
-      "type": "category",
-      "collapsed": true,
-      "items": [
-        {
-          "id": "business_suite/overview-business-suite",
-          "type": "doc"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/guide_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/cms_configuration/config_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/cms_configuration/conf_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/colorare_il_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/update_cms",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/custom-frontends-integration-CMS",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/video-pills",
-              "type": "doc"
-            }
-          ],
-          "label": "CMS",
-          "type": "category"
-        },
-        {
-          "collapsed": false,
-          "items": [
-            {
-              "id": "business_suite/cms_configuration/config_analytics",
-              "type": "doc"
-            },
-            {
-              "id": "business_suite/conf_analytics",
-              "type": "doc"
-            }
-          ],
-          "label": "Analytics",
-          "type": "category"
-        }
-      ]
-    }
-  ],
   "devOpsConsole": [
     {
       "id": "development_suite/overview-dev-suite",
@@ -191,14 +32,29 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/runtime-environments",
-          "type": "doc"
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/runtime-environments",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/add-environment",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/remove-environment",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Runtime Environments",
+          "type": "category"
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/set-up-infrastructure/env-var-intro",
+              "id": "development_suite/set-up-infrastructure/env-var",
               "type": "doc"
             },
             {
@@ -220,6 +76,10 @@
       ],
       "label": "Set up infrastructure",
       "type": "category"
+    },
+    {
+      "id": "development_suite/clusters-management/clusters-management",
+      "type": "doc"
     },
     {
       "id": "development_suite/api-console/user-management",
@@ -315,7 +175,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/merge-collaboration",
+          "id": "development_suite/api-console/api-design/merge_collaboration",
           "type": "doc"
         },
         {
@@ -489,6 +349,10 @@
         {
           "id": "development_suite/set-up-infrastructure/providers-management",
           "type": "doc"
+        },
+        {
+          "id": "self_hosted/troubleshooting",
+          "type": "doc"
         }
       ],
       "label": "On-Premise Configurations",
@@ -508,6 +372,186 @@
     {
       "id": "development_suite/license-metrics/license-metrics",
       "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Use Cases",
+      "link": {
+        "type": "generated-index",
+        "title": "Use Cases",
+        "description": "A list of advanced use cases and how to configure in Console",
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
+        "slug": "development_suite/use-cases"
+      },
+      "items": [
+        {
+          "id": "development_suite/use-cases/grpc",
+          "type": "doc"
+        }
+      ]
+    }
+  ],
+  "cms": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Backoffice",
+      "items": [
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/overview"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/data_flow"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/page_layout"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/core_concepts"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/events"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/plugin_example"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/application"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/plugin_navigation"
+        },
+        {
+          "type": "doc",
+          "id": "business_suite/backoffice/changelog"
+        },
+        {
+          "type": "category",
+          "label": "Components",
+          "items": [
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/adapters"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/buttons"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/clients"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_manipulation"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_querying"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/data_visualization"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/misc"
+            },
+            {
+              "type": "doc",
+              "id": "business_suite/backoffice/Components/typography"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Data Visualization",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "business_suite/data-visualization",
+          "type": "doc"
+        },
+        {
+          "id": "business_suite/timeline",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "label": "Previous tools",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "business_suite/overview-business-suite",
+          "type": "doc"
+        },
+        {
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/guide_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/cms_configuration/config_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/cms_configuration/conf_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/colorare_il_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/update_cms",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/custom-frontends-integration-CMS",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/video-pills",
+              "type": "doc"
+            }
+          ],
+          "label": "CMS",
+          "type": "category"
+        },
+        {
+          "collapsed": false,
+          "items": [
+            {
+              "id": "business_suite/cms_configuration/config_analytics",
+              "type": "doc"
+            },
+            {
+              "id": "business_suite/conf_analytics",
+              "type": "doc"
+            }
+          ],
+          "label": "Analytics",
+          "type": "category"
+        }
+      ]
     }
   ],
   "devPortal": [
@@ -712,6 +756,17 @@
         }
       ],
       "label": "Monitoring",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/troubleshooting/rtu_keeps_restarting_rebalancing",
+          "type": "doc"
+        }
+      ],
+      "label": "Troubleshooting",
       "type": "category"
     }
   ],
@@ -1067,6 +1122,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/auth0-client/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-client/usage"
                 },
                 {
                   "type": "doc",
@@ -1442,6 +1501,48 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/messaging-service/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Mia FHIR Adapter",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-adapter/overview_and_usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-adapter/files_management"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-adapter/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-adapter/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Mia FHIR Server",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-server/overview_and_usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-server/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/mia-fhir-server/changelog"
                 }
               ]
             },
@@ -1931,6 +2032,44 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Auth0 + Api Gateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-+-api-gateway/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-+-api-gateway/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-+-api-gateway/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Auth0 + Backoffice",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-+-backoffice/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-+-backoffice/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/auth0-+-backoffice/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Salesforce Streaming API Connector",
               "items": [
                 {
@@ -2011,62 +2150,34 @@
         {
           "id": "paas/cert-manager",
           "type": "doc"
+        },
+        {
+          "id": "paas/traefik",
+          "type": "doc"
         }
       ]
     }
   ],
   "releaseNotes": [
     {
-      "id": "release_notes/mia-platform-v9-preview",
-      "type": "doc"
-    },
-    {
-      "id": "release_notes/release_notes",
+      "id": "release_notes/mia-platform-v10-overview",
       "type": "doc"
     },
     {
       "label": "Versions",
       "type": "category",
       "collapsed": false,
+      "link": {
+        "type": "doc",
+        "id": "release_notes/release_notes"
+      },
       "items": [
         {
-          "id": "release_notes/RN_v9-4/v9.4.3",
+          "id": "release_notes/RN_v10-0/v10.0.1",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-4/v9.4.2",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-4/v9.4.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-4/v9.4.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-3/v9.3.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-2/v9.2.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-2/v9.2.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-1/v9.1.0",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-0/v9.0.1",
-          "type": "doc"
-        },
-        {
-          "id": "release_notes/RN_v9-0/v9.0.0",
+          "id": "release_notes/RN_v10-0/v10.0.0",
           "type": "doc"
         }
       ]

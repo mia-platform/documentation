@@ -10,6 +10,7 @@
       "Boundarye",
       "Brotli",
       "BYOI",
+      "BNPL",
       "ccloud",
       "clusterization",
       "cmsfilters",
@@ -17,6 +18,7 @@
       "cmsmenu",
       "cmsmultilookup",
       "cmstheme",
+      "CNCF",
       "cond",
       "configmap",
       "configmaps",
@@ -48,6 +50,7 @@
       "highcharts",
       "highmaps",
       "hmac",
+      "hsts",
       "imbonati",
       "infobox",
       "intellij",
@@ -62,6 +65,7 @@
       "kubelet",
       "kubens",
       "kubernetes",
+      "kubernetescrd",
       "locustfile",
       "Lucene",
       "luxon",
@@ -141,7 +145,10 @@
       "tini",
       "WHATWG",
       "JWTs",
-      "clusters"
+      "YAGES",
+      "clusters",
+      "DSTU",
+      "CNAME"
   ],
   "ignoreWords": [
     "authz",
@@ -149,6 +156,7 @@
     "authn",
     "grpc",
     "clcr",
+    "cmdk",
     "cms",
     "ddthh",
     "isauthnecessary",
@@ -208,11 +216,14 @@
     "exfiltrate",
     "teleconsultationroomid",
     "envfile",
+    "Tanzu",
     "repos",
+    "hsts",
     "resourcequotas",
     "statefulsets",
     "ingressroutetcps",
-    "containo"
+    "containo",
+    "kafkajs"
   ],
   "dictionaries": [
     "softwareTerms",

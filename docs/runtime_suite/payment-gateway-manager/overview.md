@@ -16,7 +16,6 @@ The payment processing logic includes:
 * **Manage a transaction session** on a payment provider (e.g. to perform 3D-Secure authentication) 
 
 ## Interfaces
-
 The *PGM* interfaces aim to be Payment Provider agnostic.
 This way an eventual Payment Provider's change does not involve huge modifications for the services leveraging the *PGM*.
 Some providers may require additional fields, in which case they will be wrapped in a single, optional object field.
@@ -35,7 +34,6 @@ Some providers may require additional fields, in which case they will be wrapped
 * Check the status of the session: `POST /{provider}/session/check`
 
 ## Supported Providers and Payment Methods
-
 | Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy |
 |-------------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|
 | gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       |          |          |            |       |
@@ -57,7 +55,6 @@ You can also use `/documentation/openapi.json` as the documentation endpoint in 
 to the API Portal.
 
 ## Notes
-
 :::warning
 At the moment the currency used for payments is not configurable and is set to be Euros by default, except for session operations.
 :::

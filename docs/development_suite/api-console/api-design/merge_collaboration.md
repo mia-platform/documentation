@@ -1,7 +1,7 @@
 ---
-id: merge-collaboration
-title:  Collaborate and Merge
-sidebar_label: Collaborate and Merge
+id: merge_collaboration
+title:  Merge of configurations
+sidebar_label: Merge of configurations
 ---
 
 :::caution
@@ -10,14 +10,20 @@ This is a **BETA** feature and, as such, is currently under **active development
 Always pay close attention to the changes you apply to the configuration files!
 :::
 
-When multiple people collaborate on the same configuration branch within a Project, they will be notified whenever another user has saved the configuration before them.
+Within the project, different users can concurrently work on the same branch while having visibility of any configuration changes made by other users.
+As a matter of fact, from the Design area, and specifically through the branch action popover, it will be possible to:
 
-The branch action popover will present the information of the new commit available, allowing the user to decide whether to merge the configurations together or to save its configuration on a new branch.  
+- Have visibility if other users have committed new changes to the configuration of the branch you are also working on
+- Be aligned to the latest changes remotely committed by starting a merged flow that will allow you to identify diffs between compared configurations and to resolve changes/conflicts
+- Align the configurations of two different branches within the same project
+- Have visibility on all the configuration changes made locally before committing them
+
+Therefore, in case of a new commit is available, users can decide whether to start a merge configurations process or to save their local changes on a new branch.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
 
-![Branch action popover menu with merge option](img/merge-collaboration/action-popover-normal-mode.png)
+![Branch action popover menu with merge option](img/merge-collaboration/action-popover-merge-mode.png)
 
   </div>
 </div>
@@ -30,29 +36,41 @@ If you want to **save on the same branch** you must perform the merge; otherwise
 
 Once there is a new available commit from remote, the action popover will display two different options, Merge or Pull, based on whether you have already performed some changes or not in your local configuration.
 
-If you haven't performed any changes yet, you can click on the Pull action from the action popover and it will simply download the updated configuration, in order for you to start working on it; conversely, if you do have already performed some changes, by clicking on the Merge action it will open the Merge modal and let you start the merge between your changes and the remote changes someone just saved.
+If no local changes have been made, you can click on the Pull action from the action popover in order to download the updated configuration and start working on it.
 
-<div style={{display: 'flex', flexDirection: 'row', gap: '8px'}}>
-<div>
-
-![Branch action popover menu with merge option](img/merge-collaboration/action-popover-merge-mode.png)
-
-</div>
-<div>
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '340px'}}> 
 
 ![Branch action popover menu with pull option](img/merge-collaboration/action-popover-pull-mode.png)
 
-</div>
+  </div>
 </div>
 
-## How to perform a Merge between configurations
+Conversely, if you have already performed some changes, a merge modal will be opened when clicking on the Merge configuration button. This will let you start the merge process between your changes and the remote changes that another user has just saved.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '340px'}}> 
+
+![Branch action popover menu with merge option](img/merge-collaboration/action-popover-merge-mode.png)
+
+  </div>
+</div>
+
+## How to perform a Merge of configurations
 
 In order to perform the merge, press on the _Merge Configuration_ button: this will open a modal where the different parts of the configuration are shown; each configuration part will open up two editors displaying the remote configuration saved by someone else (on the left) and your local configuration (on the right).
 
 ![Merge configuration modal](img/merge-collaboration/merge-modal-change-view.png)
 
-Use the sidebar to navigate between the different sections and the editor to resolve the changes, either by applying the one on the left into the editor on the right, or by approving your changes and moving them to the editor on left.  
-Sections where there are changes are marked with a warning so that you can review them with ease.
+From the sidebar on the left, you can navigate through different sections showing different parts of your project configuration.
+The items shown in the sidebar follow the grouping order used within the Design area sidebar (for example, the user can easily identify the Endpoints section on top, then move on to the Workload section - in which there are the microservices configurations - and finally arrive at the MongoDB CRUD section to view its collections).
+
+The sections where changes occur are marked with a warning so you can review them easily.
+
+Entering one of them, to resolve a diff, you can:
+- edit the local configuration on the right-hand editor (the left-hand editor is read-only)
+- either apply the remote changes from the left into the editor on the right or approve your local changes by moving them to the editor on the left. To apply the specific changes, you have to click on the small arrows located between the two editors (as shown in the image right above). 
+
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
@@ -62,14 +80,14 @@ Sections where there are changes are marked with a warning so that you can revie
   </div>
 </div>
 
-In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section the navigation buttons will be disabled.
+In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section, the navigation buttons will be disabled.
 
-When you are satisfied with your merge simply press the _Confirm Merge_ button.
+When you are satisfied with your merge just press the _Confirm Merge_ button.
 
 :::caution
-When the merge is confirmed, the content from the editor on the _right_ is taken as correct configuration and injected into your local configuration.
+Once the merge is confirmed, the content from the editor on the _right_ is taken as the correct configuration and injected into your local configuration.
 
-Please note that **you'll have to approve all changes coming from the remote configuration**, otherwise you may lose some changes.
+Please note that **you will have to approve all the changes coming from the remote configuration**, otherwise you may lose some changes.
 :::
 
 After the merge process is completed with success, press the _Continue Editing_ button in the feedback modal
@@ -78,6 +96,19 @@ After the merge process is completed with success, press the _Continue Editing_ 
   <div style={{display: 'flex', width: '450px'}}> 
 
 ![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-ok-feedback.png)
+
+  </div>
+</div>
+
+### What if I made a mistake?
+
+If you are working on a section of the Merge modal and want to undo all changes applied to that section since the start of the Merge, you can use the **Revert button**.  
+This button allows you to go back to the initial situation for the current section, without having to cancel the entire Merge process. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '550px'}}> 
+
+![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-revert-button.png)
 
   </div>
 </div>

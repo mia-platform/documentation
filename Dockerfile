@@ -20,6 +20,7 @@ LABEL maintainer="Mia Platform Core Team<core@mia-platform.eu>" \
   eu.mia-platform.url="https://www.mia-platform.eu" \
   eu.mia-platform.version="0.0.0"
 
+COPY nginx/permanent.redirects ./conf.d/permanent.redirects
 COPY nginx/website.conf ./conf.d/website.conf
 
 WORKDIR /usr/static

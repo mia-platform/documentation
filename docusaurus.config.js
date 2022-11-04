@@ -261,16 +261,16 @@ const config = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "9.x (Current)",
+              label: "10.x (Current)",
               path: "",
+            },
+            "9.x.x": {
+              label: "9.5.x",
+              path: "9.x",
             },
             "8.x.x": {
               label: "8.9.x",
               path: "8.x",
-            },
-            "7.x.x": {
-              label: "7.9.x",
-              path: "7.x",
             },
           },
         },

@@ -182,7 +182,7 @@ When a new property is added to a collection it is possible to specify the follo
 
 For the Objects and array of Objects, you could add a JSON Schema describing the expected properties.
 
-### Collection document Properties properties
+### Collection document properties
 
 Each property can defined as:
 
@@ -207,6 +207,24 @@ For the nested objects, it is possible to add an index using the dot notation to
 Every index that is not specified in the collection definition will be **dropped** at startup, unless its name starts with `preserve_` prefix
 :::
 
+#### Partial Indexes
+
+From version 6.0.1 of the CRUD Service, it is possible to configure an index as a _partial index_. A partial index, as explained in details in the dedicated [MongoDB documentation page](https://www.mongodb.com/docs/manual/core/index-partial/) is an index defined by a conditional expression. In order to create a partial index in the console, it is necessary to activate the "_Enable this index as Partial Index_" toggle button included in the _Indexes_ card, then write the filter expression inside the JSON editor that will show up, as shown in the image below.
+
+![Partial Indexes](img/partial-indexes.png)
+
+This filter expression should be a JSON with the definition that accepts the documents based on filter conditions. This JSON will be included in the collection's configuration as a string and used by Mongo when starting the CRUD Service. Its content should be identical to the value of the property _partialFilterExpression_ as explained in the official MongoDB documentation. 
+
+Note that any field included in the filter expression is used only during the filtering operation and are unrelated to those included in the index table.
+
+The expression in the screenshot will index only documents where `type` is equal to "_DRAFT_", but you can use comparison expressions and various operations, as explained in the MongoDB documentation. E.g., the following filter expression will index only those documents where the property _age_ is lower than 21:
+
+```
+{
+  "age": { "$lt": 21 }
+}
+```
+
 ## CRUD Headers
 
 The CRUD service accept the following header:
@@ -221,6 +239,14 @@ acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
 
 ```json
 acl_read_columns: JSON.stringify(['name', 'author', 'isbn'])
+```
+
+- ***json-query-params-encoding***: the encoding in which the json query params are sent. This feature is only made to support HTTP clients like [OCI](https://docs.oracle.com/middleware/12211/odi/concepts/intro.htm) which have problems with special characters in the query params of the request, if you don't have such problems you most likely don't need to declare this header. Right now the only option is `base64` and any other value will be treated as if the params are URL encoded. Example:
+
+```bash
+curl --request GET \
+  --url 'https://your-url/v2/plates/?_q=base64encodedjson' \
+  --header 'json-query-params-encoding: base64'
 ```
 
 - ***userId***: the user identifier that do the update
@@ -631,6 +657,10 @@ The list of currently supported MongoDB aggregation operators is the following:
 
 Here you can find the official Mongo documentation about the [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-projection) field into the find operator.
 
+:::note
+If you have problems with the special characters in the URL encoding you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
+:::
+
 #### Combine all together
 
 You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients do the following request.
@@ -657,7 +687,7 @@ For example we can look for plates that have a name that begins with V, that hav
 }
 ```
 
-The query must be encoded and passed to _q parameter
+The query must be URL encoded and passed to _q parameter
 
 ```bash
 curl --request GET \
@@ -684,6 +714,10 @@ You can use more MongoDB filters in query **_q**. Here is the complete list:
 - $text
 
 **Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
+
+:::note
+If you have problems with the special characters in the URL encoding you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
+:::
 
 #### Count
 

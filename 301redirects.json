@@ -1,0 +1,122 @@
+{
+  "/user_guide_and_tools/cms/guide_cms":  {
+    "destination": "/docs/business_suite/guide_cms",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/development_suite/api-portal/swagger_conf": {
+    "destination": "/docs/runtime_suite/swagger-aggregator/overview",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/development_suite/monitoring-dashboard/dev_ops_guide/log":  {
+    "destination": "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log",
+    "addedOn": "2022-10-01"
+  },
+  "/development_suite/api-console/api-design/esponi_api": {
+    "destination": "/docs/development_suite/api-console/api-design/endpoints",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/mail-notification":  {
+    "destination": "/docs/runtime_suite/ses-mail-notification-service/configuration",
+    "addedOn": "2022-10-01"
+  },
+  "/dev_ops_guide/git_vademecum/": {
+    "destination": "/docs/guidelines/git_vademecum",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/guidelines/communication_between_services_mp4":  {
+    "destination": "/docs/development_suite/api-console/api-design/services",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/development_suite/miactl/overview": {
+    "destination": "/docs/runtime_suite_tools/miactl/overview",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/notifications-manager":  {
+    "destination": "/docs/runtime_suite/push-notification-manager/configuration",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/push_notifications_platform_4": {
+    "destination": "/docs/runtime_suite/push-notification-sender/overview",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/api-gateway-envoy/filters":  {
+    "destination": "/docs/runtime_suite/envoy-api-gateway/filters",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/api-gateway-envoy/overview": {
+    "destination": "/docs/runtime_suite/envoy-api-gateway/overview",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/event-source-management":  {
+    "destination": "/docs/fast_data/overview",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/runtime_suite/pdf-service": {
+    "destination": "/docs/runtime_suite/pdf-service/overview",
+    "addedOn": "2022-10-01"
+  },
+  "/info/version-policy/":  {
+    "destination": "/docs/info/version_policy/",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/development_suite/api-console/api-design/templates_conf": {
+    "destination": "/docs/marketplace/add_to_marketplace/contributing_overview/",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/overview":  {
+    "destination": "/docs/fast_data/what_is_fast_data",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/setup_fast_data": {
+    "destination": "/docs/fast_data/architecture",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/create_projection":  {
+    "destination": "/docs/fast_data/configuration/projections",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/cast_functions": {
+    "destination": "/docs/fast_data/configuration/cast_functions",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/single_view":  {
+    "destination": "/docs/fast_data/configuration/single_views",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/single_view_creator/overview": {
+    "destination": "/docs/fast_data/single_view_creator",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/single_view_creator/low-code-configuration":  {
+    "destination": "/docs/fast_data/configuration/single_view_creator/low_code",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/single_view_creator/manual-configuration": {
+    "destination": "/docs/fast_data/configuration/single_view_creator/manual",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/real_time_updater/overview":  {
+    "destination": "/docs/fast_data/realtime_updater",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/real_time_updater/low-code-configuration": {
+    "destination": "/docs/fast_data/configuration/realtime_updater/low_code",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/real_time_updater/manual-configuration":  {
+    "destination": "/docs/fast_data/configuration/realtime_updater/manual",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/single_view_trigger/overview": {
+    "destination": "/docs/fast_data/single_view_trigger",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/single_view_trigger/configuration":  {
+    "destination": "/docs/fast_data/configuration/single_view_trigger",
+    "addedOn": "2022-10-01"
+  },
+  "/docs/development_suite/api-console/api-design/rbac_api_configuration": {
+    "destination": "/docs/development_suite/api-console/api-design/rbac",
+    "addedOn": "2022-10-01"
+  }
+}

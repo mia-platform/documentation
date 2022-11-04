@@ -8,7 +8,6 @@ Provider specific edge cases are covered in more detail in the following pages, 
 the PGM and how to interact with it.
 
 ## 1) Payment
-
 The following example is based on the credit card payment method, but it can be applied to any payment.
 
 In order to perform a payment we make an `HTTP POST` on `http://payment-gateway-manager/generic-provider/credit-cards/pay`, for example
@@ -52,7 +51,6 @@ If the payment doesn't require any additional step, a positive reply will be sim
 }
 ```
 
-
 At this point the transaction has been performed on the `generic-provider`.
 
 If payment pre-authorization has been activated, at the end of the process the order will be in a state where payment must be confirmed. 
@@ -72,9 +70,7 @@ For this to work, you have to specify the following optional fields in the /pay 
 }
 ```
 
-
 ## 2) M2M Callback Transaction Verification
-
 When the transaction result is known by the `generic-provider`, the latter may notify the `Payment Gateway Manager` 
 through the `HTTP GET` or `HTTP POST` on `http://payment-gateway-manager/generic-provider/callback`.
 
@@ -97,6 +93,7 @@ Considering the above example, the notification may include a body as follows:
     "shopTransactionID": "123456789"
 }
 ```
+
 ## 3) Payment Confirmation
 If the service is set to use pre-authorization, to confirm the payment and actually deduct the money from the user's wallet,
  you must call the confirmation endpoint `http://payment-gateway-manager/generic-provider/credit-cards/confirm` via `POST` with the following body:
@@ -109,7 +106,7 @@ If the service is set to use pre-authorization, to confirm the payment and actua
 ```
 If the response returns `200` as HTTP status code, the order confirmation was successful.
 
-::: warning
+:::warning
 At the moment only `Unicredit` supports payment with pre-authorization.
 :::
 
@@ -124,12 +121,10 @@ The transaction can be refund by calling `HTTP POST` on `http://payment-gateway-
 If the reply returns `200` as HTTP Status code, the refund has been performed correctly.
 
 :::warning
-At the moment the `satispay`, `braintree` and `scalapay` providers don't support refunds
+At the moment the `satispay`, `braintree`, `scalapay` and `soisy` providers don't support refunds, as well as `gestpay` in case of `pay-pal` payment method. 
 :::
 
-
 ## 5) Async Check Transaction Status
-
 You can ask the Payment Gateway Manager to trigger a check on a particular order by calling an `HTTP GET` on `http://payment-gateway-manager/generic-provider/check`.
 
 The query parameters for this api depend on the provider:
@@ -162,7 +157,6 @@ The notification may include a body as follows:
 ```
 
 ## 6) Sync Check Transaction Status
-
 You can retrieve the status of a transaction by performing an `HTTP GET` on `http://payment-gateway-manager/generic-provider/status?shopTransactionId=my-stid`. This API is a synchronous and dumbed down version of `/check`.
 
 The PGM will contact the payment provider and return a body as follows:
@@ -175,12 +169,11 @@ The PGM will contact the payment provider and return a body as follows:
 
 The possible values for `value` are `ACCEPTED`, `FAILED`, and `PENDING`.
 
-::: note 
+:::note 
 This API has been implemented to give sync access to a transaction status, e.g. to poll a status for payment providers that don't let frontends intercept the outcome of a payment (like Satispay).
 :::
 
-::: warning This endpoint is only available for `satispay`, `scalapay` and `soisy` providers at the moment. :::
-
+:::warning This endpoint is only available for `satispay`, `scalapay` and `soisy` providers at the moment. :::
 
 ## 7) Manage a Transaction Session
 You can ask a payment provider to establish a new transaction session in order to perform various operations, such as Pre-Authentication, invalidation or refund of a payment. In this way, the PGM can work as a **validator** (secure actor, possibly endowed with a secret) of the communication between the user and the payment provider.

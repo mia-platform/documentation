@@ -8,6 +8,7 @@ import styles from "./styles.module.css";
 const iconComponents = {
   rocket: SVGIcon.rocketSVG,
   console: SVGIcon.consoleSVG,
+  globe: SVGIcon.globeSVG,
   learn: SVGIcon.learnSVG,
   new: SVGIcon.newSVG,
   video: SVGIcon.videoSVG,

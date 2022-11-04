@@ -84,6 +84,12 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 * **Name** (*required*): this is the internal hostname;  
 
 * **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s;
+:::info
+  Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
+  - `hostname` is the registry hostname where the docker image is hosted
+  - `imagename` is the docker image name
+  - `tag` is the version of the docker image
+:::
 
 * **Description** (*optional*): this is the description of your microservice.
 
@@ -190,7 +196,7 @@ A variable definition in the `.env` file has to be contained in a single line an
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
-You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var-intro.md) of Mia-Platform Docs.
+You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var) of Mia-Platform Docs.
 
 ### Labels Configuration
 
@@ -205,6 +211,11 @@ For each label, you have to define:
 * **Value** (*required*)
 
 * **Description**
+
+:::info
+**Label keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.  
+For more information regarding the syntax check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
+:::
 
 ![add-new-label](img/add-new-label.png)
 
@@ -235,6 +246,11 @@ For each annotation, you have to define:
 * **Value** (*required*)
 
 * **Description**
+
+:::info
+**Annotation keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.  
+For more information regarding the syntax check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set).
+:::
 
 ![add-new-annotation](img/add-new-annotation.png)
 
@@ -279,7 +295,7 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
 Moreover, you can decide to preserve files and directories already existing in the Runtime Mount Path directory, by activating the related checkbox.
 
-![service-add-configuration](img/New_configuration_-_subpath_configmap.png)
+![service-add-configuration](img/create-new-configMap.gif)
 
 For each configuration created, a new card will be visible.
 
@@ -298,7 +314,7 @@ In this way, all the files of the ConfigMap are loaded in the position defined a
 Custom services configuration now supports ConfigMaps larger than __1MB__ (this limit is imposed by Kubernetes). Large ConfigMaps will be automatically split into multiple parts and joined back together during deployment.
 :::
 
- ![service-add-file-new](img/Add_file_-_subpath_configmap.png)
+ ![service-add-file-new](img/example-configMap-detail.png)
 
 #### Shared ConfigMaps
 
