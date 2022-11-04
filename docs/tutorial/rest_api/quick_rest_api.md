@@ -210,7 +210,7 @@ The downloaded schema will be:
 ]
 ```
  
-If you want to **import the schema**, you must clicking on **"Imports fields from file"**:
+If you want to **import the schema**, you must click on **"Import fields from file"**:
 ![Default MongoDB CRUD](img/MongoDB-Collection-default.png)
 
 You can **select the file within your local machine** and upload it:
