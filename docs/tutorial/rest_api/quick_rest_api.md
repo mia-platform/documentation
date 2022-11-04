@@ -65,9 +65,9 @@ There is also other information for each field:
  * **Sensitivity**: the sensitivity of the field based on GDPR category.
 
 ## Define the data schema
-At this point, **you have to create our DB schema** by creating the properties of your CRUD collection. In order to do this, you can choose between:
-  - option 1: manually adding the properties,
-  - option 2: importing the properties from a JSON file.
+At this point, **you have to create the DB schema** by creating the properties of your CRUD collection. To do this, you can choose between 2 options:
+  - manually adding the properties;
+  - importing the properties from a JSON file.
 
 ### Option 1: Manually add CRUD collection fields
 
