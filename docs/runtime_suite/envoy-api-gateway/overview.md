@@ -50,44 +50,18 @@ If you already have an existing project and want to switch to Envoy, you will ju
 The existing extensions for the previous API Gateway cannot be automatically migrated, thus they have to be migrated manually.
 :::
 
+## Prometheus metrics
+
+Prometheus metrics are exposed by Envoy at the port *9901* with path `/stats/prometheus`.
+
+So, to configure [ServiceMonitor](../../development_suite/api-console/api-design/microservice-monitoring#configure-servicemonitor) in Console, you should set:
+
+- **Path**: `/stats/prometheus`
+- **Port**: *9901*
+- **Scraping Interval**: `60s`
+
 ## Troubleshooting
 
 ### Repeated 404 - Not Found for all configured endpoints
+
 If you're repeatedly getting a "404 - Not Found" error from Envoy while trying to contact different endpoints correctly defined in the console, you should check for your authorization service's version: versions previous to `2.4.0` don't support Envoy compatibility.
-
-<!-- ### Extensions migration from NGINX
-
-If you are moving from our [API Gateway based on NGINX](../api-gateway/overview) you should also migrate existing extensions in order to reproduce the same behavior with Envoy. Depending on the extension, this migration can be more or less complicated. In the following sections we will illustrate the migration process for the most commonly used NGINX extensions.
-
-#### Endpoints extension migration
-
-With NGINX API Gateway additional endpoints can be defined using multiple [maps](../../development_suite/api-console/advanced-section/api-gateway/how-to#what-is-a-map):
-
-- `maps-proxyUrl.*.map` for path rewrite
-- `maps-proxyName.*.map` for upstream definition
-
-Together, these maps, contain the complete definition of the additional endpoints. In order to add those endpoints to Envoy we can use the [endpoints extension](../../development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#endpoints). For example, assuming we have the following maps:
-
-```
-# File: maps-proxyUrl.before.map
-
-"~^(secreted|unsecreted)-1-GET-/app_dataentry" "cms-site";
-"~^(secreted|unsecreted)-1-GET-/users/me" "authentication-service";
-"~^(GET|POST|PUT|PATCH|DELETE)-/v2/api/projects(?<path>[/\?].*|$)$" "/api/projects$path";
-```
-
-```
-# File: maps-proxyName.before.map
-
-"~^(secreted|unsecreted)-1-GET-/app_dataentry" "cms-site";
-"~^(secreted|unsecreted)-1-GET-/users/me" "authentication-service";
-"~^(GET|POST|PUT|PATCH|DELETE)-/v2/api/projects(?<path>[/\?].*|$)$" "/api/projects$path";
-```
-
-They can be translated to:
-
-```yaml
-# File: endpoints.yaml
-```
-
-The match translation can be done in many ways, we recommend to use: `path` for exact matches, `prefix` for prefixes and `safe_regex` for everything else. -->
