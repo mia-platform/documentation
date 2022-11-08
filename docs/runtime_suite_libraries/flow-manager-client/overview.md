@@ -23,7 +23,8 @@ kafkaConfig = {
   username: { type: 'string', nullable: true },
   password: { type: 'string', nullable: true },
   connectionTimeout: { type: 'integer', default: 10000, description: 'milliseconds' },
-  authenticationTimeout: { type: 'integer', default: 10000, description: 'milliseconds' }
+  authenticationTimeout: { type: 'integer', default: 10000, description: 'milliseconds' },
+  connectionRetries: { type: 'integer', default: 5, description: 'number of times the client should try to connect'}
 }
 
 consumerConfig = {

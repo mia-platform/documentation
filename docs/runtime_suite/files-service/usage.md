@@ -192,7 +192,14 @@ Consider consulting the Open API definition of the service to get more informati
 To download a single file that was previously uploaded, specifying its `file` field.
 #### Query parameters 
 - `download=1`: to download the file as an attachment.
-- `downloadWithOriginalName=1`: to download the file with its original name.
+- `downloadWithOriginalName=1`: to download the file with its original name as attachment.
+- `useOriginalName=1`: to get the file with its original name.
+
+:::info
+The `GET /download/:file` API, when used as link in the browser has different behaviors based on these query parameters; in particular with one of the `download*` query parameters the file is downloaded as attachment. Instead, the `use*` query parameter opens the requested file in the browser window.
+
+This rule applies for all files except for HTML which are always downloaded preventing the browser from rendering them.
+:::
 
 ### **Download many**: `GET /download`
 To download a ZIP archive containing all the files specified in the query parameters.

@@ -226,8 +226,7 @@ and the number of updated users in the payload.
 
 ### GET /userinfo
 
-Returns the data of the logged used. It acts as a combination of a `/userinfo` on the authentication service and a
-`GET /users/:id` on the CRUD.
+Returns the data of the logged used. It acts as a combination of a `/userinfo` on the authentication service and a `GET /users/:id` on the CRUD.
 
 :::note
 The behavior of this endpoint can be configured through the `USERINFO_ADDITIONAL_PROPERTIES` environment variable,
@@ -242,6 +241,12 @@ Note that the auth client properties, coming from the auth client `/userinfo` en
 
 :::info
 Cookies `sid` and `client-key` must be passed as headers to the `/userinfo`.
+:::
+
+If the Rönd roles collection is configured and the `ROLES_CRUD_ENDPOINT` environment variable is defined, the response payload will contain also the `permissions` array (checking the user's current roles).
+
+:::note
+In order to retrieve the user's `permissions`, you also need to add the `permissions` property to the `USERINFO_ADDITIONAL_PROPERTIES` environment variable.
 :::
 
 #### Response

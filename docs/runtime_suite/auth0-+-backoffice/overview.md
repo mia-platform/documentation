@@ -7,5 +7,5 @@ This application allows you to setup all the microservices, endpoints, collectio
 The authorization feature is provided by Auth0.
 
 For further information refer to the documentation of these _basic_ applications:
-- [Auth0 + Api Gateway](../../runtime_suite/auth0-+-api-gateway/overview)
+- [Auth0 + Api Gateway](../../runtime_suite/auth0-+-apigateway/overview)
 - [Backoffice](../../business_suite/backoffice/overview)

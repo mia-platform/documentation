@@ -827,6 +827,81 @@ will be resolved to:
   }
 }
 ```
+
+
+### Customize table data
+
+Property `displayedDataPath` enables to display a nested array of an element of the received data. It consists of the path to the desired object where the first key is `data`.
+
+:::info
+`dataschema` has to be the nested schema
+:::
+
+#### Example
+
+In this example, `bk-table` will display the array of `commonCombos` of the first element received.
+
+```json
+{
+  ...
+  "properties": {
+    "displayedDataPath": "data.[0].commonCombos",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    }
+  }
+  ...
+}
+```
+
+
+### Fix columns
+
+It is possible to fix columns from left and/or from right using the property `fixedColumns`: it takes either a number that represents the number of columns to fix from left or an object with `left` and/or `right` key and a number as value. The value represents the number of columns to fix from left/right.
+
+#### Example 1 and 2
+
+With both configurations, the first column from left is fixed.
+
+```json
+  ...
+  "properties": {
+    "fixedColumns": {
+      "left": 1
+    }
+  }
+```
+
+```json
+  ...
+  "properties": {
+    "fixedColumns": 1
+  }
+```
+
+#### Example 3
+
+With this configuration, the first two columns from left and the first column from right (so the last one excluded the `actions` column) are fixed.
+
+```json
+  ...
+  "properties": {
+    "fixedColumns": {
+      "left": 2,
+      "right": 1
+    }
+  }
+```
+
+
 ### Actions
 It is possible to include an actions columns in the table, through the properties `rowActions`, `customActions`, `navigationRowActions`. Configurable buttons or generic components will be rendered inside the actions columns.
 #### Configuring actions via `rowActions`
@@ -990,6 +1065,8 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 |`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
 |`rowActions`| - |DataActions| - |list of actions to render per row |
 |`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
+|`fixedColumns`| - | number \\| Record<'left' \\| 'right', number> | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
+|`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data
 
 
 ### Listens to

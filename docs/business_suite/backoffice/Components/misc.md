@@ -214,6 +214,7 @@ For those cases falling outside the previous scope, for instance a customer whic
 definitively stored on different places, a layout that can be switched might come in handy.
 By reproducing an `element-composer`-compatible configuration, `bk-layout-container` provides a wrapper for different configurations wired to one or many `eventBus`.
 Such configurations can be switched by using a single event on the default bus coming from the `element-composer`, or anyway injected in the `bk-layout-container` instance on the page.
+
 ### customer example
 Let's then suppose we have a customer, a list of their previous purchases and a list of their 
 current basket items.
@@ -352,11 +353,32 @@ and layout must contain a valid `bk-layout-container` `content` prop key. A `bk-
 }
 ```
 
+### Disable shadow dom
+
+Adding the attribute `disable-shadow-dom` allows to disable the shadow dom for this component, which can be useful when it has to embed children which bubble events up to the document root such as `bk-calendar`.
+
+:::caution
+`disable-shadow-dom` must be passed as attribute to `bk-layout-container`, and not as property. For instance:
+```json
+{
+  "type": "element",
+  "tag": "bk-layout-container",
+  "attributes": {
+    "disable-shadow-dom":""
+  },
+  "properties": {
+    ...
+  }
+}
+```
+:::
+
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`content`| - |undefined \\| Record\<string, LayoutNode\> \| Record\<string, LayoutNode[]\>| - |layouts configuration |
+|`disableShadowDom`| `disable-shadow-dom` \\| boolean | false | disable the shadow dom as render root |
 |`currentLayout`|`current-layout`|string| - |default layout to view on landing |
 
 

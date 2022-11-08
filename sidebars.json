@@ -1178,6 +1178,48 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Chat Service Backend",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-backend/overview_and_usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-backend/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-backend/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Chat Service Frontend",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-frontend/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-frontend/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-frontend/customization"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/chat-service-frontend/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Client Credentials",
               "items": [
                 {
@@ -1225,10 +1267,6 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/crud-service/encryption_configuration"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/crud-service/mongodb_views_generation"
                 },
                 {
                   "type": "doc",
@@ -1474,6 +1512,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/kafka2firebase/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Kafka2Rest service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/kafka2rest-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/kafka2rest-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/kafka2rest-service/changelog"
                 }
               ]
             },
@@ -1737,6 +1794,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/push-notification-sender/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Rest2Kafka service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rest2kafka-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rest2kafka-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/rest2kafka-service/changelog"
                 }
               ]
             },
@@ -2028,19 +2104,19 @@
             {
               "collapsed": true,
               "type": "category",
-              "label": "Auth0 + Api Gateway",
+              "label": "Auth0 + ApiGateway",
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-+-api-gateway/overview"
+                  "id": "runtime_suite/auth0-+-apigateway/overview"
                 },
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-+-api-gateway/configuration"
+                  "id": "runtime_suite/auth0-+-apigateway/configuration"
                 },
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-+-api-gateway/changelog"
+                  "id": "runtime_suite/auth0-+-apigateway/changelog"
                 }
               ]
             },
@@ -2060,6 +2136,25 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/auth0-+-backoffice/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Data Analytics",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/data-analytics/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/data-analytics/how_to_use"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/data-analytics/changelog"
                 }
               ]
             },

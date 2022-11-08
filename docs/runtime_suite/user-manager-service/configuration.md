@@ -73,6 +73,11 @@ The User Manager Service accepts the following environment variables.
   `/userinfo` endpoint.
 - **ROND_ENABLED**: if `true` allows the UMS to integrate with Rönd. It defaults to `false` if not set.
 - **ROND_SERVICE**: the name of the Rönd service, it defaults to `rond-service` if not set.
+- **ROLES_CRUD_ENDPOINT**: the CRUD endpoint that stores the roles that can be assigned to users in the `roles` string array. When this environment variable is defined and the `permissions` property is added to the `USERINFO_ADDITIONAL_PROPERTIES` env var, the `/userinfo` endpoint will return also the user's `permissions`.
+
+:::info
+The roles CRUD should have the minimum required properties of the role object described in the `RBAC Data model` of the [Rönd documentation](https://rond-authz.io/docs/policy-integration). This is required because the user's permissions are resolved using the roleIds in the roles array. Roles with matching `roleId` are retrieved and user's permissions are merged in a single array.
+:::
 
 The User Manager Service also inherits the custom-plugin-library standard environment variables.
 The `ADDITIONAL_HEADERS_TO_PROXY` environment variable must contain `cookie` in order to make the `/userinfo`

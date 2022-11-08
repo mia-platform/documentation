@@ -8,7 +8,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.6.1] 2022-11-08
+
+### Added
+
+- The SV Patch can now be applied with a single step operation employing a MongoDB `updateMany` instead scanning all the matching records. This speeds up the process but no SV update/creation event is produced.
+
+## [5.6.0] 2022-10-27
+
+### Changed
+
+- updated single-view-creator-lib to v14.5.0 to remove `documentId`, `before` and `after` in sv-update topics
+
+## [5.5.1] 2022-10-25
+
+### Added
+- updated `@mia-platform-internal/single-view-creator-lib` @14.4.1, introducing `arrayFilters` option to custom patch action functions
+
+## [5.5.0] 2022-10-25
+
+### Added
+
+- updated `@mia-platform-internal/single-view-creator-lib` @14.4.0, introducing the `READ_TOPIC_FROM_BEGINNING` environment variable to decide whether read from the beginning of a topic when subscribing to it (default value: `false`);
+
+## [5.4.0] 2022-10-24
+
+### Updated
+
+- updated `@mia-platform-internal/single-view-creator-lib` @14.3.0, introducing support for SV patch on legacy architecture, and updated other outdated dependencies.
+
+### Fixed
+
+- updated `@mia-platform-internal/single-view-creator-lib` @14.3.1, fixing certification authority handling by the kafka consumer
+
 ## [5.3.0] 2022-09-27
+
 ### Added
 - added support for the new svTriggerHandlerCustomConfig configuration, added interpretation of the new configuration so as to pass the patch operation to the library to execute.
 
@@ -25,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 
 - the properties _before_ and _after_ in sv-update messages are empty by default (to include them, the environment variable `ADD_BEFORE_AFTER_CONTENT` must be included and set to _true_)
 
-### Added 
+### Added
+
 - `mia_metadata_custom_metrics` exposed prometheus client
 
 ### Changed
@@ -242,7 +277,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- insert in Single View and Before After kafka information about original kafka message that triggered the Fast Data update. Information are taken from the projection changes. 
+- insert in Single View and Before After kafka information about original kafka message that triggered the Fast Data update. Information are taken from the projection changes.
 
 ## [3.1.0] 2021-10-26
 

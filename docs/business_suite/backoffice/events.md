@@ -221,7 +221,7 @@ requires a modification of the currently viewed dataset (filtering, sorting, pag
     value: string | number | boolean | any[]
     applied?: boolean
     name: string
-  }
+  }[]
   date?: string
   view?: string
 }

@@ -65,6 +65,8 @@ It follows a description of the fields of the collection.
 
 - **smsMessage (required)** - `string`: body the SMS. It supports [interpolation](./overview.md#messages-interpolation).
 
+- **voiceMessage (required)** - `string`: body the voice message. It supports [interpolation](./overview.md#messages-interpolation).
+
 - **pushTitle (required)** - `string`: title of the notification. It supports [interpolation](./overview.md#messages-interpolation).
 
 - **pushSubtitle** - `string`: subtitle of the notification. It supports [interpolation](./overview.md#messages-interpolation).
@@ -112,6 +114,10 @@ The Messaging Service accepts the following environment variables.
 
 - **CONFIGURATION_PATH (required)**: path of the config map file containing the service configuration.
 
+- **KALEYRA_API_KEY**: Kaleyra API key for the outbound calling service.
+
+- **KALEYRA_SID**: Kaleyra SID for the outbound calling service.
+
 ## Service configuration
 
 The service needs a configuration file in JSON format, that can be provided to it as a configmap. You can choose the
@@ -130,7 +136,7 @@ as default.
   - **clusters** - `string`: the name of the property in the Users CRUD containing the user's cluster list.
   
 - **activeChannels (required)** - `string array`: the list of active channels over which each message will be delivered.
-  Possible values are `email`, `sms` and `push`.
+  Possible values are `email`, `sms`, `push` and `voice`.
 
 :::tip
 Keep in mind that even if a channel is active, a user will not receive messages over that channel if the correspondent
@@ -142,6 +148,7 @@ property in the [Users CRUD](#users-crud-required) does not have a value.
   - **sms** - `string`: the sender of the SMS messages. Required if the `sms` channel is enabled. It can be one of the following:
     - a phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format
     - an [alphanumeric sender ID](https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id)
+  - **voice** - `string`: the caller phone number of the voice messages. Required if the `voice` channel is enabled. The phone number **must be registered in the [Kaleyra console](https://eu.kaleyra.io/numbers/manage)**.
 
 It follows an example of a valid configuration file.
 

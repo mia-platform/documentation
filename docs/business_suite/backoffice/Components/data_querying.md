@@ -3,6 +3,84 @@ id: data_querying
 title: Data Querying
 sidebar_label: Data Querying
 ---
+## bk-expanded-filters
+
+Manages the display, application, and modification of filters.
+
+```html
+<bk-expanded-filters></bk-expanded-filters>
+```
+
+It displays a grid of filters.
+
+The max number of columns is 4. They shrink to 3 or 2 columns depending on the window width.
+
+:::warn
+Either use `bk-filters-drawer` (with `bk-filters-manager`) or `bk-expanded-filters` because they both listen to the same event to be shown.
+:::
+
+
+### Configuration
+
+Property `filtersConfig` allows to specify the filters to show. It is an array of dataschema properties and/or objects of dataschema property and operator.
+
+#### Example
+
+```json
+...
+  {
+    "type": "element",
+    "tag": "bk-expanded-filters",
+    "properties": {
+      "dataSchema": {
+        "$ref": "dataSchema"
+      },
+      "filtersConfig": [
+        {
+          "property" :"orderedAt",
+          "operator": "equal"
+        },
+        "dishes",
+        "riderId"
+      ]
+    }
+  }
+...
+```
+
+If the operator is missing, `includesAll` operator is set by default for `multilookups` properties and `equal` operator for the others.
+
+It is not possible to specify the same property more than once and properties with `filterOptions.hidden` set to true, are not shown even if specified.
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+| `dataSchema` | - | ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
+| filtersConfig | - | string \| ({property: string, operator: string})[] | - | lists the filters to include in the component |
+| openByDefault | open-by-default | boolean | false | whether to show the component by default |
+| liveSearchTimeout | live-search-timeout | number | 5000 | live-search timeout |
+| liveSearchItemsLimit | live-search-items-limit | number | 10 | max items to fetch on regex live search |
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[filter](../events#filter)|display/close the expanded filters component| - | - |
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|[change-query](../events#change-query)| when done filling or clearing the form, applies or clear the filters |
+
+### Bootstrap
+
+None
+
+
 ## bk-export-modal
 
 Modal to allow user configuration of a data export task
@@ -97,7 +175,7 @@ Manages the display, application, and modification of filters.
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition|...|dataSchema to be included if some filter must be interpreted as hidden |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
 |`filters`| - |Filter[]|[]|List of currently applied [filters](../core_concepts#filters) |
 |`hide`|`hide`|boolean|false|Hides the rendered component |
 
