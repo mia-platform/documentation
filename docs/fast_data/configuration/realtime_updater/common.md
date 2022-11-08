@@ -5,7 +5,7 @@ sidebar_label: Common
 ---
 
 Real-Time Updater is the service in charge of keeping up to date the projections with the data sent by the connected system.   
-Optionally, the service can generates several events so that your services can consume these events and react when projections are updated. 
+Optionally, the service can generate several events so that your services can consume these events and react when projections are updated. 
 
 For having an overview of the features of the Real-Time Updater, you can go [here](../../realtime_updater.md).   
 Here below, instead, all the configurations the service accepts are explained. 
@@ -33,8 +33,8 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr><td>MAP_TABLE_FOLDER</td><td>false</td><td>defines the path to the map table folder</td><td>-</td></tr>
     <tr><td>STRATEGIES_FOLDER</td><td>false</td><td>defines the path to the strategies' folder</td><td>-</td></tr>
     <tr><td>KAFKA_SASL_MECHANISM</td><td>false</td><td>defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`.</td><td>plain</td></tr>
-    <tr><td>USE_UPSERT</td><td>false</td><td>defines whether to use [upsert](#Upsert) or not when performing insert and update operations.</td><td>true</td></tr>
-    <tr><td>KAFKA_MESSAGE_ADAPTER</td><td>false</td><td>defines which Kafka message adapter to use. Its value can be one of the following: `basic`, `golden-gate`, `custom`.</td><td>basic</td></tr>
+    <tr><td>USE_UPSERT</td><td>false</td><td>defines whether to use <a href="./common#upsert">upsert</a> or not when performing insert and update operations.</td><td>true</td></tr>
+    <tr><td>KAFKA_MESSAGE_ADAPTER</td><td>false</td><td>defines which Kafka message adapter to use. Its value can be either `basic`, `golden-gate` or `custom`. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td><td>basic</td></tr>
     <tr><td>KAFKA_PROJECTION_CHANGES_FOLDER</td><td>false</td><td>path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).</td><td>-</td></tr>
     <tr><td>GENERATE_KAFKA_PROJECTION_CHANGES</td><td>false</td><td>defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above).</td><td>false</td></tr>
     <tr><td>KAFKA_CONSUMER_MAX_WAIT_TIME</td><td>false</td><td>defines the maximum waiting time of Kafka Consumer for new data in batch.</td><td>500</td></tr>
@@ -70,20 +70,27 @@ The Real-Time Updater accepts the following configurations:
 In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real-Time Updater.
 
-Once you have created a System, you need to select the format of the Kafka messages sent by the system.
-To do that, you must correctly configure the Kafka Message Adapter, changing the value of the Real Time Updater's `KAFKA_MESSAGE_ADAPTER` environment variable, which should be one of the following: `basic`, `golden-gate`, `custom`.
+Since a Real Time Updater is connected to one System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, between one of the following three options (further details in the paragraphs below):
+- `Basic`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
+- `Golden Gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) type CDC;
+- `Custom`, in case you need a completely customized message adapter (you'll be requested to write the implementation code); 
+
+When the System of Records has been created, saving the configuration will automatically create a new Real Time Updater service, which can be viewed in the _Microservices_ section of the console.
+
+In case you need to change the type of adapter to use in the Real Time Updater, you can easily do that from the System of Records page in the _Projection_ section of the console: after selecting your System (the same one associated to the Real Time Updater), click on the _Real Time Updater_ tab, then select the adapter type you want to use.
 
 Another option that you should be aware of when thinking about the format of your Kafka messages is the "upsert" or "insert".
 By default, the real-time-updater will perform upsert operations, but you can optionally decide to perform inserts that will fail if the document already exists, instead of updating it.
 
-#### Basic
+#### IBM InfoSphere Data Replication for DB2
 
-It's the default one.
+It's the default one, it is based on the [IBM InfoSphere Data Replication engine](https://www.ibm.com/docs/en/idr/11.4.0?topic=console-overview-cdc-replication).
 
-The `timestamp` of the Kafka message has to be a stringified integer greater than zero. This integer has to be a valid timestamp.
-The `key` of the Kafka message has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
-The `value` is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
-The `offset` is the offset of the Kafka message.
+The message should include the following properties:
+- `timestamp`: a stringified integer greater than zero. This integer has to be a valid timestamp.
+- `key`: it has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
+- `value`: it is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
+- `offset`: it is the offset of the Kafka message.
 
 Example of a delete operation
 
@@ -95,7 +102,6 @@ offset: '100'
 ```
 
 Example of an upsert:
-
 ```text
 key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
 value: `{"NAME": 456}`
@@ -103,23 +109,19 @@ timestamp: '1234556789'
 offset: '100'
 ```
 
+These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
+
 :::warning
-The `basic` Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
+This Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
 :::
 
-#### Golden Gate
+#### Oracle GoldenGate
 
-The `timestamp` of the Kafka message is a stringified integer greater than zero. This integer has to be a valid timestamp.  
-The `offset` is the offset of the Kafka message.
-The `key` can have any valid Kafka `key` value.  
-The `value` of the Kafka message instead needs to have the following fields:
+This Kafka Message Adapter has been created to have a format supported by [Oracle Golden Gate](https://docs.oracle.com/en/middleware/goldengate/big-data/21.1/gadbd/using-kafka-connect-handler.html#GUID-81730248-AC12-438E-AF82-48C7002178EC). 
 
-- `op_type`: the type of operation (`I` for insert, `U` for update, `D` for delete).
-- `pos`: a positive integer, usually a timestamp, which ensures messages are processed in the correct order
-- `after`: the data values after the operation execution (`null` or not set if it's a delete operation)
-- `before`: the data values before the operation execution (`null` or not set if it's an insert)
+In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
 
-Example of `value` for an insert operation:
+The following is an example of `value` for an insert operation:
 
 ```JSON
 {
@@ -138,8 +140,9 @@ Example of `value` for an insert operation:
 
 #### Custom
 
-If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages.
-To do that, you need to create a `Custom Kafka Message Adapter` inside the Kafka Adapters configmap. The adapter is a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure. This function that accepts as arguments the Kafka message and the list of primary keys of the projection, and returns an object with the following properties:
+If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages. 
+
+To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
 
 - **offset**: the offset of the Kafka message
 - **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
@@ -392,7 +395,7 @@ More details about the configuration of these fields can be found inside each Ka
 :::
 
 :::warning
-The `basic` Kafka message format does not include a field to store data values before updates, thus not supporting the Primary Key update.
+The Kafka message format based on the _IBM InfoSphere Data Replication for DB2_ CDC does not support the Primary Key update.
 :::
 
 ### Snappy compression

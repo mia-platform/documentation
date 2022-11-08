@@ -23,18 +23,22 @@ This message is then read by the Real Time Updater, which uses it to update the 
 
 Based on how the syncing system is set up, the format can be one of three possible types:
 
-* Basic
-* Golden Gate
+* IBM InfoSphere Data Replication for DB2
+* Oracle Golden Gate
 * Custom
 
-#### Basic
+This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
 
-This is the default format, that only has 2 different operation types: Upsert and Delete. The message format consists of four fields:
+#### IBM InfoSphere Data Replication for DB2
+
+This is the default format, based on the [IBM InfoSphere Data Replication for DB2 format](https://www.ibm.com/docs/en/idr/11.4.0?topic=console-overview-cdc-replication). It has only 2 different operation types: Upsert and Delete. The message format consists of four fields:
 
 * `key`: the identifier (primary key) of the projection that has been updated
-* `value`: if the message is a **delete** operation, it is **null**; if it is an insert or update operation, the value is a JSON containing the object with all its new fields.
+* `value`: if the message is a **delete** operation, it is **null**; if it is an upsert operation, the value is a JSON containing the object with all its new fields.
 * `timestamp`: the timestamp of the Kafka message, it has to be a stringified integer greater than zero.
 * `offset`: the Kafka offset
+
+These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
 
 **Message Example**:
 
@@ -85,16 +89,9 @@ channels:
 
 #### Golden Gate
 
-This format has 3 possible operation types: Insert, Update, Delete. On top of that, it can provide information about the previous state of the data. Its fields are:
+This Kafka Message Adapter has been created to have a format supported by [Oracle Golden Gate](https://docs.oracle.com/en/middleware/goldengate/big-data/21.1/gadbd/using-kafka-connect-handler.html#GUID-81730248-AC12-438E-AF82-48C7002178EC).
 
-* `key`: the identifier (primary key) of the projection that has been updated
-* `value`: it is an object representing the change that happened, containing the following fields:
-  * `op_type`: the type of operation (`I` for insert, `U` for update, `D` for delete).
-  * `pos`: a positive integer, usually a timestamp, which ensures messages are processed in the correct order
-  * `before`: the data values before the operation execution (null or not set if it is an insert operation)
-  * `after`:the data values after the operation execution (null or not set if it is a delete operation)
-* `timestamp`: the timestamp of the Kafka message, it has to be a stringified integer greater than zero.
-* `offset`: the Kafka offset
+In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
 
 **Message Example**:
 
