@@ -27,13 +27,11 @@ In case the automation is not expressive enough for your use case, you can alway
 
 ## Step by step Low Code journey
 
-The Fast Data Low Code experience has the same prerequisite as traditional Fast Data, for this reason, it is fundamental to follow the [Fast Data overview](./what_is_fast_data.md) documentation for the proper functioning of the system.
+The Fast Data Low Code experience is basically composed by some steps with No Code approach, and some other steps with a Low Code approach. In order to understand the proper functioning of the system, it is important to go in deep with the [Fast Data overview](./what_is_fast_data.md) documentation.
 
 ### Creating a System of Record (No Code)
 
-While you are creating your system of record, the console will allow you to choose between [Low Code](./configuration/realtime_updater/low_code.md) or [Manual](./configuration/realtime_updater/manual.md) configuration. By clicking on Low Code the Real Time Updater Low Code will be created, and you will be able to proceed to the configuration of your microservice.
-
-![systemcreation](./img/systemcreation.png)
+The creation of the System of Record is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Record that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](./configuration/realtime_updater/low_code.md) microservice.
 
 #### ER Schema definition and other Configmaps (Low Code)
 
