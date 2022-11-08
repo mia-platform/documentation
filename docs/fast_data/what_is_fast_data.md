@@ -16,7 +16,7 @@ The main goal of Fast Data is to aggregate business data from different sources 
 
 The aggregation is done using another, valuable, intermediary collection called **Projection**. This collection is a **standardized** version of the original data, containing only the fields you are interested in, and *casting* them to a common format (e.g. it is common to have multiple date formats in your data sources, but with the correct configuration you can solve this issue and have one format shared among all Projections).
 
-Moreover, Fast Data provides ready-to-use microservices and a user-friendly interface to set up the data flow, supporting both **low-code** and manual configuration. The low-code configuration helps you to get started in a very short amount of time; the manual configuration gives you all the flexibility that writing code can provide you with.
+Moreover, Fast Data provides ready-to-use microservices and a user-friendly interface to set up the data flow in a **low-code** fashion. The low-code configuration helps you to get started in a very short amount of time.
 
 ## How Fast Data can impact your business
 

@@ -28,8 +28,6 @@ To know more about Real-Time Updater service Configurations you can go [here](./
 
 When a projection is updated, Real-Time Updater will generate an event telling that a specific Single View needs to be updated since it depends on the Projection updated, by sending a Kafka Message or upserting a document in a Projection Changes collection. This event contains a reference to the identifier of the Single View document that have to be updated since it depends on the Projection updated. 
 
-For getting the identifier of the Single View, Real-Time Updater performs an algorithm called `strategy` that consists of the following a path that connects some projections, starting from the one updated, in order to reach the one containing the identifier of the Single View we look for.
+In order to get the identifier of the Single View, the Real-Time Updater performs an algorithm called `strategy` that consists of following a path that connects some projections, starting from the one updated, in order to reach the one containing the identifier of the Single View we look for.
 
-This algorithm can be implemented in two modes:
-- [Manual](./configuration/realtime_updater/manual.md): recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
-- [Low Code](./configuration/realtime_updater/low_code.md): recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.
+This algorithm can be implemented using the [Real Time Updater Low Code](./configuration/realtime_updater/low_code.md). It uses json files for configuration and the environment variables are already set with correct default values.
