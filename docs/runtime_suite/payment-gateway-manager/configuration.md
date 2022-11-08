@@ -6,6 +6,7 @@ sidebar_label: Configuration
 The **Payment Gateway Manager (PGM)** needs some environment variables to work properly.
 
 ## Generic Environment Variables
+
 * **LOG_LEVEL**
 * **HTTP_LOG_LEVEL**: `basic`, `body`, `headers` or `none`; logs additional info about http requests
     made towards external systems, defaults to `none`
@@ -16,11 +17,13 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 (e.g. `http://my-domain/payment-gateway-manager`)
 
 ## GestPay (Axerve) Specific Environment Variables
+
 * **GESTPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Axerve Sandbox or Production environment.
 * **GESTPAY_API_KEY** (required)
 * **GESTPAY_SHOP_LOGIN** (required)
 
 ## Satispay Specific Environment Variables
+
 * **SATISPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Satispay Staging or Production environment.
 * **SATISPAY_KEY_ID** (required)
 * **SATISPAY_PRIVATE_KEY** (required): private key copied from the `.pem` file, must use single spaces instead of `\n`
@@ -30,6 +33,7 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 user after completing a payment via the Satispay mobile app
 
 ## Unicredit Specific Environment Variables
+
 * **UNICREDIT_NUMERO_COMMERCIANTE** (required): merchant identification code.
 * **UNICREDIT_PASSWORD** (required): password for accessing the payment system.
 * **UNICREDIT_SECRET** (required): secret key used to encrypt communications with the payment gateway.
@@ -41,6 +45,7 @@ user after completing a payment via the Satispay mobile app
 * **UNICREDIT_USE_PRE_AUTHORIZATION** (required): "true" or "false" whether if you want to use pre-authorization for credit card payments or not.
 
 ## Braintree Specific Environment Variables
+
 * **BRAINTREE_SUBMIT_FOR_SETTLEMENT** (required): flag that determines whether transactions are immediately submitted for settlement or not.
 * **BRAINTREE_MERCHANT_ID** (required): string that identifies the used merchant id.
 * **BRAINTREE_MERCHANT_ACCOUNT_ID** (required): string that identifies the used merchant account id.
@@ -49,18 +54,21 @@ user after completing a payment via the Satispay mobile app
 * **BRAINTREE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Braintree Sandbox or Production environment.
 
 ## Scalapay Specific Environment Variables
+
 * **SCALAPAY_BASE_PATH** (required): Address to Scalapay base path. Scalapay has three different environments, integration, staging and production.
 * **SCALAPAY_API_KEY** (required)
 * **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction. (Overridable via request body)
 * **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
 
 ## SafeCharge Specific Environment Variables
+
 * **SAFECHARGE_MERCHANT_ID** (required): Merchant identification code.
 * **SAFECHARGE_MERCHANT_SITE_ID** (required): Merchant site identification code.
 * **SAFECHARGE_MERCHANT_SECRET_KEY** (required): Merchant secret for validating the communication.
 * **SAFECHARGE_URL** (required): Base URL of the SafeCharge provider.
 
 ## Soisy Specific Environment Variables
+
 * **SOISY_SHOP_ID** (required)
 * **SOISY_PARTNER_KEY** (required): X-Auth-Token header for authentication on Soisy.
 * **SOISY_BASE_URL** (required): Base URL of the Soisy provider.

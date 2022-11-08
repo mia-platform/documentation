@@ -8,6 +8,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.4.12] 2022-11-04
+
+### Fixed
+
+- fixed incorrect route inclusion and exclusion when parameter with `:<param>` (instead of `{<param>}`) is present in `path` property of `includePaths` and `excludePaths`.
+
+## [3.4.11] 2022-10-28
+
+### Fixed
+
+- fixed incorrect path transformation when parameter is present in path rewrite and in path prefix
+
+## [3.4.10] 2022-10-25
+
+### Fixed
+
+- fixed incorrect ending `/` addition when path rewrite equals service route.
+
+## 3.4.9 - 20-10-2022
+
+### Fixed
+
+- added env var `CONCURRENT_REQUEST_LIMIT` to make configurable the limit of concurrent requests (default is 10)
+
 ## 3.4.8 - 11-08-2022
 
 ### Fixed

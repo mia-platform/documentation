@@ -4,6 +4,7 @@ title: Braintree
 sidebar_label: Braintree
 ---
 ## Starting a payment
+
 BrainTree requires an additional object for the `/pay` request body, named `brainTreeDataRequest`:
 
 ```json lines
@@ -34,6 +35,7 @@ Checkout + Vault is only supported on JS frontends; iOS and Android apps must pe
 :::
 
 ## Using our utility APIs
+
 This section describes some braintree specific endpoints that handle interactions with customers and tokens.
 
 The utilities the PGM offers are:
@@ -43,6 +45,7 @@ The utilities the PGM offers are:
 - `POST /braintree/customer`
 
 ### Retrieving a customer token
+
 BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the 
 billing agreement terms and conditions or the PayPal checkout page. This token can be retrieved using the
 `GET /braintree/token?customer_id=someId` endpoint.
@@ -63,15 +66,19 @@ The response body is:
 It gives access to the token and tells you if the customer is vaulted.
 
 ### Submitting a transaction for settlement
+
 When a new transaction is generated with the option `submitForSettlement` set to false, it needs to be submitted 
 for settlement later on, in order to allow braintree to capture money from the customer's account.
 The `POST /braintree/submit` endpoint submits a transaction for settlement. The call has as parameter the id of the 
 transaction that must be submitted for settlement.
 The call returns a message that confirms the correct execution of the operation.
 
-:::info The /submit POST call has been implemented, but it's never been tested in production. :::
+:::info
+The /submit POST call has been implemented, but it's never been tested in production.
+:::
 
 ### Retrieving a customer token
+
 BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the 
 billing agreement terms and conditions or the PayPal checkout page. This token can be retrieved using the
 `GET /braintree/token?customer_id=someId` endpoint.
@@ -90,5 +97,6 @@ The response body is:
 ```
 
 ### Payment Method Revocation Webhook
+
 The `POST /braintree/delete` endpoint is a webhook-ready API to be linked with a BrainTree account, under the API/Webhooks
 section of their portal. It performs necessary cleanup work upon receiving _Payment Method Revoked By Customer_ notifications.

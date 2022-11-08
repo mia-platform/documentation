@@ -13,7 +13,7 @@ With this API you can send a new message to your users through different channel
 
 The body of the request should have the following shape.
 
-- **channels (required)** - `array of strings`: list of channels you want to send you message over. Possible values are `email`, `sms` and `push`.
+- **channels (required)** - `array of strings`: list of channels you want to send you message over. Possible values are `email`, `sms`, `push` and `voice`.
 
 :::caution
 This list has to be a subset of the `activeChannels` property specified in the [service configuration](./configuration.md#service-configuration).
@@ -27,7 +27,7 @@ if `clusters` is not defined.
 - **messageTitle** - `string`: title of the message. It will be used as title for e-mails and push notifications. Required 
 if `templateId` is not defined. It will be ignored if `templateId` is defined. It supports [interpolation](./overview.md#messages-interpolation).
 
-- **messageContent** - `string`: content of the message. It will be used as content for e-mails, sms, and push
+- **messageContent** - `string`: content of the message. It will be used as content for e-mails, sms, push and voice
 notifications. Required if `templateId` is not defined. It will be ignored if `templateId` is defined. It supports 
 [interpolation](./overview.md#messages-interpolation).
 

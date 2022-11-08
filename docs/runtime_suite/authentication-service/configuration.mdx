@@ -387,18 +387,18 @@ This is a configuration example for an app using the generic OAuth2 authenticati
           "baseUrl": "YOUR_BASE_URL",
           "scope": ["YOUR", "SCOPES"],
           "order": 10,
-          "userSettingsURL": "YOUR_USER_SETTINGS_URL"
+          "userSettingsURL": "YOUR_USER_SETTINGS_URL",
+          "oidcKeys": {
+            "id": "YOUR_ID_KEY",
+            "name": "YOUR_NAME_KEY",
+            "username": "YOUR_USERNAME_KEY",
+            "email": "YOUR_EMAIL_KEY"
+          }
         }
       },
       "redirectUrl": "https://test.com/callback",
       "realm": "my-realm",
-      "defaultGroups": [],
-      "oidcKeys": {
-        "id": "YOUR_ID_KEY",
-        "name": "YOUR_NAME_KEY",
-        "username": "YOUR_USERNAME_KEY",
-        "email": "YOUR_EMAIL_KEY"
-      },
+      "defaultGroups": []
     }
   }
 }

@@ -93,8 +93,6 @@ This component allows to change the value of a object key in all the selected ob
 <bk-bulk-actions></bk-bulk-actions>
 ```
 
-This component allows to change the value of a object key in all the selected objects.
-
 :::info
 It works only with **enum or boolean** data and it appears once one or more items are selected.
 Remember to pass the dataschema in the configuration file.
@@ -282,7 +280,7 @@ The possible actions are:
 <bk-button></bk-button>
 ```
 
-# bk-buttons
+## bk-buttons
 
 This button is a generic web component that is fully configurable.
 
@@ -303,7 +301,7 @@ In some cases the configurable onClick action can receive args as parameters tha
 - for event the args are added to the eventBus payload
 - for http the args are used as post payload if the config is not provided
 
-## Actions
+### Actions
 
 All the parameters inside `clickConfig` can be dynamically interpolated into the WebComponent properties throw handlebars. With this syntax it is possible to access information about the current user or the URL of the page. Specifically, there are 3 objects available:
 
@@ -355,7 +353,7 @@ In this configuration the property `urlMask` is specified to get the value of th
 This behavior is not available for buttons embedded within components that already dynamically interpolate data, such as tables.
 :::
 
-### HTTP Request
+#### HTTP Request
 
 There are 3 available configurations available on `clickConfig` with `type` `http`
 
@@ -395,7 +393,7 @@ If the button is mounted on a component which provides context, say a `bk-table`
 }
 ```
 
-### File Upload
+#### File Upload
 
 By setting `clickConfig` type to `file-upload`, on click the button perform and automatic file upload post. When clicking, browser opens its
 native upload dialog allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using
@@ -446,7 +444,7 @@ For instance if a plugin reload is required after successful upload one could pi
 }
 ```
 
-### File Download
+#### File Download
 
 By setting `clickConfig` type to `file-download`, on click the button perform a browser native file download.
 For instance a `file-download` configuration con be set as
@@ -477,7 +475,107 @@ For instance if a plugin reload is required after successful upload one could pi
   }
 }
 ```
+### Require confirmation before executing an action
 
+It is possible to ask for confirmation before executing an action using a `require-confirm` event and nesting the desired action inside its configuration.
+
+#### Basic example:
+
+```json
+{
+  ...
+  "clickConfig": {
+    "type": "event",
+    "actionConfig": {
+      "label": "require-confirm",
+      "payload": {
+        "configOk": {
+          "tag": "bk-button",
+          "properties": {
+            "content": "Delete",
+            "clickConfig": {
+              "type": "http",
+              "actionConfig": {
+                "url": "/order-service/{{args.[1]._id}}",
+                "method": "DELETE",
+                "body": {},
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+### Bulk button
+
+It is possible to create a button that listens to `selected-data-bulk` event by setting `bulkButton` property to `true`.
+
+Selected data can be sent through an HTTP request or an event  setting `{{rawObject selectedData}}` in http request body or event payload in configuration.
+
+
+#### Example with an HTTP request:
+
+```json
+{
+  ...
+  "bulkButton": true,
+  "clickconfig": {
+    "type": "http",
+    "actionconfig": {
+      "url": "/v2/users/",
+      "method": "POST",
+      "body": "{{rawObject selectedData}}"
+    }
+  }
+}
+```
+
+#### Example with an event
+
+```json
+{
+  ...
+  "bulkButton": true,
+  "clickConfig": {
+    "type": "event",
+    "actionConfig": {
+      "label": "display-data",
+      "payload": {"data": "{{rawObject selectedData}}"}
+    }
+  }
+}
+```
+
+:::info
+
+After the action on click is executed, rows in table remain selected. It is possible to deselect them by sending a `change-query` event with an empty payload.
+
+Example of configuration:
+
+```json
+{
+  ...
+  "bulkButton": true,
+  "clickconfig": {
+    "type": "http",
+    "actionconfig": {
+      "url": "/v2/users/",
+      "method": "POST",
+      "body": "{{rawObject selectedData}}",
+      "returnEvent": {
+        "label": "change-query",
+        "payload": {}
+      }
+    }
+  }
+}
+```
+
+:::
 
 ### Properties & Attributes
 
@@ -503,7 +601,7 @@ For instance if a plugin reload is required after successful upload one could pi
 |`type`|`type`|string|'primary'|button type property |
 |`urlMask`|`url-mask`|string|''|url mask to apply to the current path to extract dynamic parameters |
 |`clickConfig`| - |undefined \\| ClickConfig| - |schema describing how to configure onCLick event |
-
+|`bulkButton`| - | boolean | false | whether to use it as a bulk button or not. If set to true, it listens to selected-data-bulk event |
 ### Listens to
 
 This component listens to no event.

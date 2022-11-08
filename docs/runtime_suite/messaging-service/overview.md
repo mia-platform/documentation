@@ -3,7 +3,7 @@ id: overview
 title: Messaging Service
 sidebar_label: Overview
 ---
-Messaging Service allows sending messages to your users through various channels, namely **e-mail**, **SMS**, and **push notification**.
+Messaging Service allows sending messages to your users through various channels, namely **e-mail**, **SMS**, **push notification** and **voice**.
 
 To send those messages, this service leverages three other Mia-Platform plugins:
 - [SES Mail Notification Service](../ses-mail-notification-service/configuration.md)
@@ -12,6 +12,7 @@ To send those messages, this service leverages three other Mia-Platform plugins:
 
 :::caution
 In order to send a message through a particular channel, you need to deploy the corresponding plugin.
+This is not needed for the **voice** channel, for which there is a direct interaction with Kaleyra APIs.
 :::
 
 ## Users clustering

@@ -32,3 +32,8 @@ However, you will find a link that will redirect you to **MongoDB CRUD** dedicat
 * **HTTP_PORT**: The port exposed by the service.
 * **LOG_LEVEL** (*default: `info`*): level of the log. It could be trace, debug, info, warn, error, fatal.
 * **EXPOSE_METRICS** (*default: `false`*): boolean that specifies if prometheus metrics should be exposed or not.
+* **ALLOW_DISK_USE_IN_QUERIES**: sets the `allowDiskUse` option in the MongoDB queries, useful when working with MongoDB Views requiring heavy aggregations (added in v6.0.2, works with MongoDB >= 4.4).
+
+:::warning
+Using `ALLOW_DISK_USE_IN_QUERIES` (either with `true` or `false` values) with a MongoDB version lower than 4.4 will make all the GETs unusable, since the MongoDB cluster will raise an error for the unrecognized option `allowDiskUse`.
+:::

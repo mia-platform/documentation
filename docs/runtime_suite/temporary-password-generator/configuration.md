@@ -13,6 +13,7 @@ The service needs the following environment variable:
 - **CRUD_HOST** (optional, default to `crud-service`): the host of the crud-service.
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal.
 - **HTTP_PORT** (optional, default to `3000`): port where the web server is exposed.
+- **OTP_NUMERIC_ONLY** (optional, default to `false`): flag to enable only 6-digit numeric OTP.
 
 ## Create a CRUD
 The _Temporary Password Generator_ stores the issued codes in a CRUD. You need to create it according to the following schema:

@@ -13,10 +13,11 @@ It is also possible to expose your Swagger Aggregator microservice with multiple
 
 ## Environment variables
 
-- CONFIG_FILE_PATH (__required__): defines the path of the configuration file
-- TRUSTED_PROXIES: defines a list of trusted proxies ips
-- MERGE_STRATEGY: defines the strategy to merge: `THROWS` or `FIRST` (default: `THROWS`)
-- TIMEOUT_CHECKUP_PROBE_DEPENDENCIES_IN_SECOND: defines the timeout to check the probe dependencies (default 10s)
+- `CONFIG_FILE_PATH` (__required__): defines the path of the configuration file
+- `TRUSTED_PROXIES`: defines a list of trusted proxies ips
+- `MERGE_STRATEGY`: defines the strategy to merge: `THROWS` or `FIRST` (default: `THROWS`)
+- `TIMEOUT_CHECKUP_PROBE_DEPENDENCIES_IN_SECOND`: defines the timeout to check the probe dependencies (default 10s)
+- `CONCURRENT_REQUEST_LIMIT`: lets you define the number of allowed concurrent requests that should be done by the service to fetch the documentations
 
 ## Configuration file
 

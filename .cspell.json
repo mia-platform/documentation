@@ -148,7 +148,9 @@
       "YAGES",
       "clusters",
       "DSTU",
-      "CNAME"
+      "CNAME",
+      "antd",
+      "kaleyra"
   ],
   "ignoreWords": [
     "authz",

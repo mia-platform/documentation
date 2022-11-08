@@ -8,12 +8,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.0 - 07/11/2022
+
+### Added
+
+- Support of Paypal refund with Gestpay (Axerve) provider
+
+### Fixed
+
+- Make ScalaPay callback request body shipping fields nullable
+
+## 2.7.0 - 04/11/2022
+
+### Added
+
+- Add Satispay refund with Satispay and Gestpay provider
+
+### Fixed
+
+- Unicredit: Orders with code CO were incorrectly considered as payed.
+
 ## 2.6.2 - 06/10/2022
 
 ### Security fix
+
 - CVE-2021-42550
 - CVE-2022-37434
-
 
 ## 2.6.1 - 06/10/2022
 
@@ -26,7 +46,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Added possibility for GestPay payments to override redirect URLs via /pay request body, including the URL for the server callback
-
 
 ## 2.5.1 - 18/07/2022
 
