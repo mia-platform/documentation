@@ -21,7 +21,7 @@ Moreover, even MongoDB Query Exporter v1.0.0 belonging to Fast Data Monitoring A
 
 #### Configure Kafka timeout and interval on Realtime Updater
 
-Since v5.2.0 Kafka connection and session timeout, and Heartbeat interval can now be configured on [Realtime Updater](/docs/fast_data/real_time_updater/manual-configuration#environment-variables)
+Since v5.2.0 Kafka connection and session timeout, and Heartbeat interval can now be configured on [Realtime Updater](/docs/fast_data/configuration/realtime_updater/common#environment-variables)
 
 #### Prevent projection overwrite by old message is not enabled by default
 
