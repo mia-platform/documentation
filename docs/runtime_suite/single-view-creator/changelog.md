@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.6.2] 2022-11-10
+
+## Added
+
+- Environment Variable `MAX_INTERVAL_BETWEEN_FETCHES_TO_BE_ALIVE_IN_MS` used by the `single-view-creator-lib`.
+
+### Changed
+
+- upgrade `@mia-platform-internal/fast-data-automation-lib` to `v2.2.1`
+
 ## [5.6.1] 2022-11-08
 
 ### Added
