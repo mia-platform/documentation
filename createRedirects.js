@@ -26,11 +26,10 @@ const redirectPaths = {
   "/docs/fast_data/configuration/single_view_creator/manual": "/docs/fast_data/single_view_creator/manual-configuration",
   "/docs/fast_data/realtime_updater": "/docs/fast_data/real_time_updater/overview",
   "/docs/fast_data/configuration/realtime_updater/low_code": "/docs/fast_data/real_time_updater/low-code-configuration",
-  "/docs/fast_data/configuration/realtime_updater/manual": "/docs/fast_data/real_time_updater/manual-configuration",
+  "/docs/fast_data/configuration/realtime_updater/common": "/docs/fast_data/real_time_updater/manual-configuration",
   "/docs/fast_data/single_view_trigger": "/docs/fast_data/single_view_trigger/overview",
   "/docs/fast_data/configuration/single_view_trigger": "/docs/fast_data/single_view_trigger/configuration",
-  "/docs/development_suite/api-console/api-design/rbac": "/docs/development_suite/api-console/api-design/rbac_api_configuration",
-  "/docs/fast_data/configuration/realtime_updater/common": "/docs/fast_data/configuration/realtime_updater/manual"
+  "/docs/development_suite/api-console/api-design/rbac": "/docs/development_suite/api-console/api-design/rbac_api_configuration"
 };
 
 const createRedirects = (path) => {
