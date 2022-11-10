@@ -374,6 +374,10 @@ For example:
 
 When the real time updater writes to Mongo in reaction to a CDC update, a message is sent to the related topic. For example, if a new projection is saved to the `registry-json`, an `INSERT` message is generated to the topic `registry-json.update`. The key of the resulting Kafka message will be the stringified JSON of the projection key value.
 
+:::info
+Notice that you can either set the topics for all the projections, or for a subset of them.
+So, for example, if you need to setup a [Single View Patch](#single-view-patch) operation, you may want to configure only the projections needed in such Single View.
+:::
 
 ## Advanced topics
 
@@ -524,3 +528,14 @@ This behavior has been introduced from v4.0.0 and above. In previous versions in
 ### CA certs
 
 Since service version `5.4.0`, you can set your CA certs by providing a path to the certification file in the environment variable `CA_CERT_PATH`.
+
+### Single View Patch
+
+:::info
+This feature is supported from version `7.1.2` of the Real-Time Updater
+:::
+
+As explained [here](../single_views.md#single-view-patch), in order to arrange the Real-Time Updater for this specific operation, it's important to understand which are the projections impacted. Then, the following steps have to be followed:
+
+* Activate Projection Updates with the env `GENERATE_KAFKA_PROJECTION_UPDATES`
+* Configure the [Projection Updates](#kafka-projection-updates-configuration) only for the specific Projection

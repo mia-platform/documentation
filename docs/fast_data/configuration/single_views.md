@@ -140,6 +140,47 @@ You **cannot** delete a Single View if it has any endpoint associated, you will 
 Deleting a Single View does **not** delete the microservice associated.
 :::
 
+## Single View Patch
+
+The Aggregation is not the only way possible to update Single Views, there is also an alternative called `SV Patch`. With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection, without regenerating the whole Single View.
+
+This kind of operation is strongly recommended when a field of a Projection that is in common with a vast portion of Single Views, is updated.
+Let's see an example:
+
+Supposing we have a Projection that maps every country to a unique code, like:
+
+```json
+{
+   "ITALY": 0001,
+   "FRANCE": 0002,
+   ...
+}
+```
+
+And we have a Single View with personal data for a lot of people, including the code of the country in which they live, like:
+
+```json
+{
+   "name": "mario",
+   "surname": "rossi",
+   "address": "foo",
+   "countryCode": 0001,
+   ...
+}
+```
+
+It could happen that the code corresponding to `Italy` has to be updated.
+This scenario brings to a problem: The Single View Creator will have to re-generate every Single View, for all the users with the obsolete `countryCode`; this operation is extremely heavy and time demanding, it could potentially block the updates of other Single Views.
+
+To prevent this problem, a new infrastructure has been designed:
+
+![SV-Patch infrastructure](../img/single-view-patch-infrastructure.png)
+
+The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
+This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.
+
+To understand how to configure both services click on them: [Real-Time Updater](./realtime_updater/common.md#single-view-patch) and [Single View Creator](./single_view_creator/common.md#single-view-patch). 
+
 ## Technical limitation
 
 In your custom files (e.g. `fast-data-files`) you can import only the node modules present in the following list:

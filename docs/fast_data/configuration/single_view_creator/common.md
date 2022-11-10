@@ -146,6 +146,9 @@ For further information contact your Mia Platform referent
 <tr><td>AGGREGATION_FOLDER</td><td>false</td><td>the path to the Aggregation folder, e.g. `/home/node/app/aggregation`</td><td>-</td></tr>
 <tr><td>USE_AUTOMATIC</td><td>false</td><td>wheather to use the low code architecture for the Single View Creator service or not</td><td>-</td></tr>
 <tr><td>PROJECTIONS_CHANGES_SOURCE</td><td>false</td><td>System to use to handle the Projection Changes, supported methods are KAFKA or MONGO</td><td>MONGO</td></tr>
+<tr><td>KAFKA_PROJECTION_CHANGES_TOPICS</td><td>false</td><td>Comma separated list of projection changes topics</td><td>-</td></tr>
+<tr><td>KAFKA_PROJECTION_UPDATE_TOPICS</td><td>false</td><td>Comma separated list of projection update topics</td><td>-</td></tr>
+<tr><td>SV_TRIGGER_HANDLER_CUSTOM_CONFIG</td><td>false</td><td>Path to the config defining SV-Patch actions</td><td>-</td></tr>
 <tr><td>READ_TOPIC_FROM_BEGINNING</td><td>false</td><td>Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if <code>PROJECTIONS_CHANGES_SOURCE</code> is set to <i>KAFKA</i>.</td><td>false</td></tr>
 </table>
 
@@ -362,3 +365,54 @@ It is highly recommended using a TTL index to enable the automatic deletion of o
 ### CA certs
 
 Since service version `3.9.0`, you can set your CA certs by providing a path to the certification file in the environment variable `CA_CERT_PATH`.
+
+### Single View Patch
+
+:::info
+This feature is supported from version `5.6.1` of the Single View Creator
+:::
+
+To configure a Single View Creator dedicated to [Single View Patch](../single_views.md#single-view-patch) operations, some steps has to be followed:
+
+* Set the env var `KAFKA_PROJECTION_UPDATE_TOPICS` with the comma separated list of the `pr-update` topics corresponding to the SV-Patch projection.
+* Set the env var `SV_TRIGGER_HANDLER_CUSTOM_CONFIG` with the path to the main file defining SV-Patches actions, for example `/home/node/app/svTriggerHandlerCustomConfig/svTriggerHandlerCustomConfig.json`
+* Create a new ConfigMap with this Runtime Mount Path: `.../svTriggerHandlerCustomConfig`
+
+#### svTriggerHandlerCustomConfig
+
+This config map is composed by a main file, `svTriggerHandlerCustomConfig.json`, that defines where to read the Patch Action for each Projection.
+
+It is structured as following: 
+
+```json
+{
+  "patchRules": [
+    {
+      "projection": "projection_A",
+      "patchAction": "__fromFile__[customPatchForA.js]"
+    }
+    {
+      "projection": "projection_B",
+      "patchAction": "__fromFile__[customPatchForB.js]"
+    }
+  ]
+}
+```
+
+In the same config map, we have to insert the other files that are defined in the `patchRules` of the `svTriggerHandlerCustomConfig.json` (in the above example `customPatchForA.js` and `customPatchForB.js`).
+
+They are structured as following:
+
+```javascript
+'use strict'
+
+module.exports = (logger, projection) => {
+  logger.info('Function custom patch for projection A')
+  return {
+    filter: { 'sv-primary-key': projection['primary-key-projection-A'] },
+    update: { $set: { 'field-0': projection['changed-field'] } },
+  }
+}
+```
+
+Basically we can define any update operation we want, that will be performed on all the Single Views matching the filter.
