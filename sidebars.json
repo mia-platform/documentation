@@ -1484,6 +1484,29 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Invoice Service",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/invoice-service/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/invoice-service/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/invoice-service/usage"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/invoice-service/changelog"
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "JWT Token Validator",
               "items": [
                 {
