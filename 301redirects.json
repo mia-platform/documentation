@@ -118,5 +118,17 @@
   "/docs/development_suite/api-console/api-design/rbac_api_configuration": {
     "destination": "/docs/development_suite/api-console/api-design/rbac",
     "addedOn": "2022-10-01"
+  },
+  "/docs/fast_data/real_time_updater/manual-configuration": {
+    "destination": "/docs/fast_data/configuration/realtime_updater/common",
+    "addedOn": "2022-11-08"
+  },
+  "/docs/development_suite/api-console/api-design/rbac_api_configuration": {
+    "destination": "/docs/development_suite/api-console/api-design/rbac",
+    "addedOn": "2022-11-08"
+  },
+  "/docs/fast_data/configuration/real_time_updater/manual": {
+    "destination": "/docs/fast_data/configuration/real_time_updater/common",
+    "addedOn": "2022-11-08"
   }
 }
