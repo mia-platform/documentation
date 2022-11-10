@@ -22,7 +22,7 @@ In the Design Area, you can see a branch management area on the top-right corner
 - switch to a specific branch or tag 
 - create a new branch from an existing branch
 - create a new tag
-- discard you local changes
+- discard your local changes
 - visit the commit history
 - save your work
 
