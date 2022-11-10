@@ -78,55 +78,13 @@ For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal
 
 ## Endpoint settings
 
-This card includes 3 sections: *Generals*, *Microservice Gateway* and *Security*.
-
-![Endpoint settings card](img/endpoint-settings-card.png)
-
-### Manage general parameters and visibility of your endpoints
-
-In the **Generals** section you can set values for some endpoint parameters. Specifically:
-
-* **Timeout** (*integer*): the maximum amount of time (in seconds) the gateway waits while the request is processed by the upstream or downstream;
-* **Rate limit** (*integer*): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
-* **Request body size** (*decimal*): the maximum body size of user requests.
-
-The `Show in API Portal` flag, if enabled, allows seeing all endpoint routes in the [Documentation Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
-
-The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be visible in the API Portal and which should not.
-The `inherited` flag (enabled by default) will guarantee that the selected route will inherit the visibility of its base endpoint.
-Disabling this flag for a specific route will allow defining a custom behavior for that route.
-
-Managing the visibility of the endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permissions that users do not possess.
-
-:::caution
-It is important to notice that changing the visibility of an endpoint or a route **will not alter its functionality**, a route will **still be contactable** even if its visibility is hidden.
-:::
-
-### Transition through Microservice Gateway
-
-Thanks to this feature, you can define, in all endpoints of type **CRUD** or **Microservice**, which route is going to pass through the Microservice Gateway.
-
-In the **Microservice Gateway** section you can manage the transition through the Microservice Gateway for all requests to the endpoint you are customizing. This section is visible only if the microservice-gateway is enabled, and it is equipped with a checkbox which allows to force the endpoint that you are editing to pass through the Microservice Gateway.
-
-For endpoints of type **Microservice**, this section includes also two flags related to the format of the request/response.
-In particular, the Microservice Gateway service performs some checks on the **content-type** header:
-
-* **Request**: if your endpoint uses `content-type: application/json` in requests, enable the "Support only JSON format on request" flag. If this flag is disabled, you won't be able to access the request body from decorators, if set.
-
-* **Response**: if your endpoint uses `content-type: application/json` in responses, enable the "Support only JSON format on response" flag. If this flag is disabled, you won't be able to access the response body from POST decorators, if set.
-
-:::warning
-If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
-:::
-
-:::caution
-* Due to an issue with microservice-gateway, content-type: `application/x-www-form-urlencoded` is converted to JSON.
-* Due to another issue with microservice-gateway, if binary data (e.g. PDF files) passes through this service it could be wrongly encoded, resulting in corrupted files.
-:::
+This card possibly includes 4 tabs: *Security*, *Documentation*, *Microservice Gateway* and *Advanced*.
 
 ### Manage the security of your endpoints
 
-In the **Security** section, you can manage the security and the permissions at the endpoint level. All the following functionalities require the [authorization service](../../../runtime_suite/authorization-service/usage.md) and are based on its [configuration](../../../runtime_suite/authorization-service/configuration.md).
+![Endpoint settings card - Security](img/endpoint-settings-card-security.png)
+
+In the **Security** tab, you can manage the security and the permissions at the endpoint level. All the following functionalities require the [authorization service](../../../runtime_suite/authorization-service/usage.md) and are based on its [configuration](../../../runtime_suite/authorization-service/configuration.md).
 
 The security can be managed at three levels:
 
@@ -193,15 +151,63 @@ With this configuration, calls to this endpoint will have a different outcome de
 If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
 Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually. In any case, you cannot remove the checks on the [isBackoffice](../../../runtime_suite/session-manager.md) property that ensure the expression will be considered only for calls coming from the CMS.
 
-![endpoint security CRUD](img/endpoint-security-CRUD.png)
-
 :::tip
 If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of the [Authorization Service](../../../runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
 :::
 
-:::tip Api Key
+:::tip API Key
 Check out the [API Key section](api_key.md) to know more about API Keys.
 :::
+
+### Manage the visibility of your endpoints
+
+![Endpoint settings card - Documentation](img/endpoint-settings-card-documentation.png)
+
+The **Documentation** tab is visible only if the API Portal is enabled, and includes the `Show in API Portal` flag, which, if enabled, allows seeing all endpoint routes in the [Documentation Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
+
+The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be visible in the API Portal and which should not.
+The `inherited` flag (enabled by default) will guarantee that the selected route will inherit the visibility of its base endpoint.
+Disabling this flag for a specific route will allow defining a custom behavior for that route.
+
+Managing the visibility of the endpoints and their routes is useful if, for example, you want to show publicly exposed routes while hiding in the API Portal the ones that require special permissions that users do not possess.
+
+:::caution
+It is important to notice that changing the visibility of an endpoint or a route **will not alter its functionality**, a route will **still be contactable** even if its visibility is hidden.
+:::
+
+### Transition through Microservice Gateway
+
+![Endpoint settings card - Microservice Gateway](img/endpoint-settings-card-microservice-gateway.png)
+
+Thanks to this feature, you can define, in all endpoints of type **CRUD** or **Microservice**, which route is going to pass through the Microservice Gateway.
+
+In the **Microservice Gateway** tab you can manage the transition through the Microservice Gateway for all requests to the endpoint you are customizing. This tab is visible only if the microservice-gateway is enabled, and it is equipped with a checkbox which allows to force the endpoint that you are editing to pass through the Microservice Gateway.
+
+For endpoints of type **Microservice**, this tab includes also two flags related to the format of the request/response.
+In particular, the Microservice Gateway service performs some checks on the **content-type** header:
+
+* **Request**: if your endpoint uses `content-type: application/json` in requests, enable the "on request" flag. If this flag is disabled, you won't be able to access the request body from decorators, if set.
+
+* **Response**: if your endpoint uses `content-type: application/json` in responses, enable the "on response" flag. If this flag is disabled, you won't be able to access the response body from POST decorators, if set.
+
+:::warning
+If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
+:::
+
+:::caution
+* Due to an issue with microservice-gateway, content-type: `application/x-www-form-urlencoded` is converted to JSON.
+* Due to another issue with microservice-gateway, if binary data (e.g. PDF files) passes through this service it could be wrongly encoded, resulting in corrupted files.
+:::
+
+### Manage advanced endpoint parameters
+
+![Endpoint settings card - Advanced](img/endpoint-settings-card-advanced.png)
+
+The **Advanced** tab is visible only if the Envoy API Gateway service is enabled, and allows to set values for some endpoint parameters. Specifically:
+
+* **Timeout** (*integer*): the maximum amount of time (in seconds) the gateway waits while the request is processed by the upstream or downstream;
+* **Rate limit** (*integer*): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
+* **Request body size** (*decimal*): the maximum body size of user requests.
 
 ## Routes
 
