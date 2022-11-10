@@ -2133,11 +2133,11 @@
   ],
   "releaseNotes": [
     {
-      "id": "release_notes/mia-platform-v9-preview",
+      "id": "release-notes/mia-platform-v9-preview",
       "type": "doc"
     },
     {
-      "id": "release_notes/release_notes",
+      "id": "release-notes/versions",
       "type": "doc"
     },
     {
@@ -2146,65 +2146,65 @@
       "collapsed": false,
       "items": [
         {
-          "id": "release_notes/RN_v9-5/v9.5.3",
+          "id": "release-notes/RN_v9-5/v9.5.3",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-5/v9.5.2",
+          "id": "release-notes/RN_v9-5/v9.5.2",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-5/v9.5.1",
+          "id": "release-notes/RN_v9-5/v9.5.1",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-5/v9.5.0",
+          "id": "release-notes/RN_v9-5/v9.5.0",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-4/v9.4.3",
+          "id": "release-notes/RN_v9-4/v9.4.3",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-4/v9.4.2",
+          "id": "release-notes/RN_v9-4/v9.4.2",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-4/v9.4.1",
+          "id": "release-notes/RN_v9-4/v9.4.1",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-4/v9.4.0",
+          "id": "release-notes/RN_v9-4/v9.4.0",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-3/v9.3.0",
+          "id": "release-notes/RN_v9-3/v9.3.0",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-2/v9.2.1",
+          "id": "release-notes/RN_v9-2/v9.2.1",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-2/v9.2.0",
+          "id": "release-notes/RN_v9-2/v9.2.0",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-1/v9.1.0",
+          "id": "release-notes/RN_v9-1/v9.1.0",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-0/v9.0.1",
+          "id": "release-notes/RN_v9-0/v9.0.1",
           "type": "doc"
         },
         {
-          "id": "release_notes/RN_v9-0/v9.0.0",
+          "id": "release-notes/RN_v9-0/v9.0.0",
           "type": "doc"
         }
       ]
     },
     {
-      "id": "release_notes/roadmap",
+      "id": "release-notes/roadmap",
       "type": "doc"
     },
     {
@@ -2216,7 +2216,7 @@
       "type": "doc"
     },
     {
-      "id": "release_notes/support-policy",
+      "id": "release-notes/support-policy",
       "type": "doc"
     }
   ],

@@ -99,10 +99,10 @@ const config = {
         },
         {
           type: 'doc',
-          docId: "release_notes/release_notes",
+          docId: "release-notes/versions",
           label: "Release notes",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(release_notes|info/(version_policy|bug_policy|support-policy))"
+          activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
         },
         {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
@@ -202,7 +202,7 @@ const config = {
             },
             {
               label: "Release Notes",
-              to: "/docs/release_notes/release_notes",
+              to: "/docs/release-notes/versions",
             },
           ],
         },
