@@ -6,7 +6,7 @@ The format is as follows:
     "destination": "/docs/new/link",
     "addedOn": "2022-10-01"
 },
-addedOn is optional, but if you add it, please use the format YYYY-MM-DD, this is used to track when the redirect was added.
+addedOn is optional but recommended, please use the format YYYY-MM-DD, this is used to track when the redirect was added.
 */
 
 const linkFile = require('./301redirects.json');
