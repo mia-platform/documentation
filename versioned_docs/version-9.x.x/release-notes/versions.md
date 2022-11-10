@@ -1,9 +1,9 @@
 ---
-id: release_notes
+id: versions
 title: Mia-Platform release notes
 sidebar_label: Mia-Platform release notes
 image: "img/release-note-link-preview.png"
-slug: "/release_notes/release_notes"
+slug: "/release-notes/versions"
 ---
 | Release | Release notes                       |
 | ------- |-------------------------------------|

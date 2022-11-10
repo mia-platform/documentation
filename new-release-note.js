@@ -7,7 +7,7 @@ let unreleased = fs.readFileSync('./release-note-unreleased.md', {encoding: 'utf
 unreleased = unreleased.replace(/_VERSION_/g, newVersion)
 const desiredMinorFolder = newVersion.split('.').slice(0, -1).join('-')
 const newFolder = `RN_v${desiredMinorFolder}`
-const dir = path.join(__dirname, 'docs', 'release_notes', newFolder)
+const dir = path.join(__dirname, 'docs', 'release-notes', newFolder)
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir, {recursive: true});
 }

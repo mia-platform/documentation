@@ -1,2 +1,2 @@
-const sideBar=require('./sidebars.json')
-module.exports = sideBar
+const sidebar = require('./sidebars.json')
+module.exports = sidebar

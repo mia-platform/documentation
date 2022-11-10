@@ -24,4 +24,4 @@ Find out more about [Mia-Platform Console](/docs/dev_portal/overview.md) and the
 
 ### More Resources
 
-If you want to know more about Mia-Platform, please visit our [Release Note](../release_notes/release_notes.md) and our [Blog](https://blog.mia-platform.eu/en).
+If you want to know more about Mia-Platform, please visit our [Release Note](../release-notes/versions) and our [Blog](https://blog.mia-platform.eu/en).
