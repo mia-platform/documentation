@@ -158,18 +158,44 @@ Assuming you have a Vault instance setup and running and a Console project alrea
 
 2. Link the provider to the project or environment from the CMS. Retrieve the previously created provider's `_id` (it will be prompted to you in the creation step) and from the CMS edit the `Environments variables` section to look like this:
 
-```json
-{
+  ```json
+    {
+      "type": "vault",
+      "providerId": <your provider's _id>
+    }
+  ```
+
+  You can also differentiate providers for specific environments. In this way, you can set up different Vault providers to be used in different environments. To do this, you must create an `environmentsVariables` object having the same structure as the one shown above inside the target environment object in the `Environments` section on the CMS. Any environment that doesn't specify its own `environmentsVariables` configuration will automatically inherit it from the project.
+
+  :::tip example
+  As an example, consider we have two Vault instances setup and running. These instances are configured in two providers having ids `vault-prod` and `vault-dev`. In our project, we want to use the `vault-prod` provider only for the production environment and the `vault-dev` provider for the other ones.
+
+  This is how the `Environments variables` section of the CMS should look like:
+  ```json
+  {
     "type": "vault",
-    "providerId": <your provider's _id>
-}
-```
+    "providerId": "vault-dev"
+  }
+  ```
 
-:::info
-Vault providers can even be linked to the environments-level, in a way that different environments can manage their variables in different Vault instances. To do so, edit the environment configuration from the CMS and put an object similar to that of the project-level in the environment's `environmentsVariables` property.
+  And below the `Environments` section of the CMS:
+  ```json
+  [
+    { 
+      "envId": "production", 
+      "isProduction": true,
+      "environmentsVariables": {
+        "type": "vault",
+        "providerId": "vault-prod"
+      }
+    },
+    { "envId": "development" },
+    { "envId": "staging" }
+  ]
+  ```
 
-Any environment that doesn't specify its own `environmentsVariables` configuration will automatically inherit it from the project.
-:::
+  In this way, `development` and `staging` environments will inherit their `environmentsVariables` configuration from the project. While the `production` environment will override it.
+  :::
 
 # Use Vault variables inside a project
 
