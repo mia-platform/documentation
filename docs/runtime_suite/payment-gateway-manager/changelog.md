@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 2.8.1 - 09/11/2022
 
+### Fixed
+
+- Add travelDate to scalapay callback
+
 ### Added
 
 - Multi module repository

@@ -3,7 +3,7 @@ id: usage
 title: PDF Invoice Service Usage
 sidebar_label: Usage
 ---
-The service exposes only the `\print-pdf` in `POST`. The request must contain a body with the following properties:
+The service exposes only the `/print-pdf` in `POST`. The request must contain a body with the following properties:
 
 ```javascript
 {
