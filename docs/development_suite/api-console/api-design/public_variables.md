@@ -208,4 +208,4 @@ In this case, the Public Variables feature should be already enabled since the p
 
 ### You are using your own custom Pipelines
 
-In this case, please look at the documentation [here](docs/development_suite/deploy/pipeline-configuration) to know how to read public variables.
+In this case, please look at the documentation [here](../../deploy/pipeline-configuration) to know how to read public variables.
