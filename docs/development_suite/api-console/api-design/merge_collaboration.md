@@ -10,6 +10,15 @@ This is a **BETA** feature and, as such, is currently under **active development
 Always pay close attention to the changes you apply to the configuration files!
 :::
 
+:::caution
+Currently, in the merge process, the following Design sections are not supported:
+
+- Visualize
+- Advanced
+
+Therefore, the user must manage them manually.
+:::
+
 Within the project, different users can concurrently work on the same branch while having visibility of any configuration changes made by other users.
 As a matter of fact, from the Design area, and specifically through the branch action popover, it will be possible to:
 
