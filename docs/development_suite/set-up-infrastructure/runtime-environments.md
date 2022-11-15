@@ -41,7 +41,11 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 
 ![add environment](img/add_environment.png)
 
-By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table.
+By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table.  
+
+:::info
+If the Console service account has proper permissions, the namespace on the Kubernetes cluster will be created as well. If not given the permissions, the project will be created but not the namespace (this could be useful for some environment where the namespaces must be created following a specific process).
+:::
 
 :::warning
 After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](add-environment.md) for more information.
