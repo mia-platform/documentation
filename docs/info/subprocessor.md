@@ -18,7 +18,6 @@ Follows the list of sub-processors
 | Mongo Atlas                | DataBase provider       | Belgium        | <https://www.mongodb.com/>  |
 | Google Cloud               | Data hosting            | Belgium        | <https://cloud.google.com/> |
 | AWS Service                | Data hosting            | Ireland        | <https://aws.amazon.com/>   |
-| Elastic Search             | Log & Monitoring        | Belgium        | <https://www.elastic.co/>   |
 | Confluent                  | Event Streaming         | Belgium        | <https://www.confluent.io/> |
 | Auth0                      | Authentication provider | Germany        | <https://auth0.com/>        |
 | Okta                       | Authentication provider | Germany        | <https://www.okta.com>      |
