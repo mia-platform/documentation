@@ -5,7 +5,7 @@ sidebar_label: v10.1.0
 image: "img/release-note-link-preview.png"
 ---
 
-_November 10th, 2022_
+_November 16th, 2022_
 
 ## Console
 
@@ -187,4 +187,4 @@ Header in drawer components is aligned with Antd design systems styling.
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.5`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.6`.
