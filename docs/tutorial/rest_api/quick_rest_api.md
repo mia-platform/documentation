@@ -64,8 +64,14 @@ There is also other information for each field:
  * **Client-side Encryption**: if the field is client-side encrypted;
  * **Sensitivity**: the sensitivity of the field based on GDPR category.
 
-At this point, **you have to create our DB schema** by creating the properties of your CRUD. **In this section you can add a new property by selecting Add field**. 
-You can also export the already created fields in JSON format, or you can import your fields from an existing JSON file. This functionality will be described later in the tutorial. If you are interested in this part, you can [jump directly to section](../../tutorial/rest_api/quick_rest_api#export-and-import-crud-collection)..
+## Define the data schema
+At this point, **you have to create the DB schema** by creating the properties of your CRUD collection. To do this, you can choose between 2 options:
+  - manually adding the properties;
+  - importing the properties from a JSON file.
+
+### Option 1: Manually add CRUD collection fields
+
+In order to create the fields manually, you must click on the **Add field** button.
 
 ![Add field to the CRUD collection](img/MongoDB-Collection-add-field.png)
 
