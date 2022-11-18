@@ -20,6 +20,8 @@ The *Internal Endpoints* is the path from which the view is going to be exposed 
 
 The data exposed by the view are the result of a series of step the data of the `source` collection are going through. These steps are defined in the `pipeline`, and can filter, group, join, project or transform the data. These steps compose the so-called [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/).
 
+### Aggregation
+
 MongoDB will run an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/) starting from the `source` collection.    
 When you create a new view, the console will set a default pipeline which returns only `PUBLIC` documents. You can edit it through the dedicated editor.   
 
