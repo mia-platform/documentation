@@ -20,7 +20,7 @@ Mia-Platform provides you with two main tools to govern complexity and speed up 
 - **Mia-Platform Console**: a powerful Internal Developer Portal to govern all projects in one place and to industrialize DevOps;
 - **The Marketplace**: a catalog of ready-to-use components to speed up development and to promote reuse of code and evolvability in the long term.
 
-Find out more about [Mia-Platform Console](/docs/dev_portal/overview.md) and the [Marketplace](/docs/marketplace/overview_marketplace.md).
+Find out more about [Mia-Platform Console](/docs/development_suite/overview-dev-suite.md) and the [Marketplace](/docs/marketplace/overview_marketplace.md).
 
 ### More Resources
 
