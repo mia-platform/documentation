@@ -159,6 +159,26 @@ Each argument should be on a new line and by default no arguments are specified.
  If you are searching for information about microservice's probes and other runtime options you should visit [this page](./microservice-runtime-resources.md).
 :::
 
+### Container Ports Configuration
+
+In this section you can manage the microservice container ports. Note that if no container port is set, the microservice will be unreachable by any other service in the Project.
+
+For each container port, you have to define: 
+
+* **Port name** (*required*)
+
+* **Port** (*required, default value: 80*)
+
+* **Target port** (*default value: 3000*)
+
+* **Protocol** (*default: TCP*)
+
+![container-ports-section](img/container-ports-card.png)
+
+:::info
+If you want more information about configuring the microservice container ports, visit [this page](./microservice-container-ports).
+:::
+
 ### Environment Variable Configuration
 
 In this section, you can manage, add and delete the environment variables associated to your microservice.  

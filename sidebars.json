@@ -116,6 +116,10 @@
               "type": "doc"
             },
             {
+              "id": "development_suite/api-console/api-design/microservice-container-ports",
+              "type": "doc"
+            },
+            {
               "id": "development_suite/api-console/api-design/microservice-runtime-resources",
               "type": "doc"
             },
