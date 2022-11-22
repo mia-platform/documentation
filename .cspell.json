@@ -150,7 +150,9 @@
       "DSTU",
       "CNAME",
       "antd",
-      "kaleyra"
+      "kaleyra",
+      "mTLS",
+      "Linkerd"
   ],
   "ignoreWords": [
     "authz",
