@@ -2287,6 +2287,10 @@
         {
           "id": "paas/traefik",
           "type": "doc"
+        },
+        {
+          "id": "paas/mtls",
+          "type": "doc"
         }
       ]
     }
