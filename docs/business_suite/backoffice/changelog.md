@@ -8,19 +8,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2022-17-02
+
+### Added
+
+- file download with POST requests
+- configurable height of object/array editor in `bk-filter-drawer`, `bk-form-drawer`, `bk-form-modal` and `bk-form-card`
+- `bk-table` custom actions can be configured on a per-nested-level basis
+- `bk-file-client` forwards `useOriginalName` query parameter to `files-service` (needs `files-service` 2.6.4+)
+- number fields support `date-time`, `date`, `time` formats
+- `sortOption` is supported in `lookupOptions`, controlling `_s` parameter when fetching lookups
+
+### Fixed
+
+- `bk-card` with default role doesn't show border
+- nested objects are shown in `bk-table` component without need to include `bk-pagination` in page
+- when the same date is used in a `between` filter in `bk-expanded-filters` component, the correct filter is created
+- fixed infinite loading caused by non-existing file in download-file event
+- `bk-table` correctly performs `pushState` and `replaceState` when `browseOnRowSelect` property has `navigationType` set to "push" or "replace"
+
 ## [1.1.2] - 2022-11-02
 
 ### Fixed
 
 - `bk-table` correctly indexes rows if `primaryKey` property is not defined (fixes rendering errors with nested objects)
-- drawers follow Antd standard styling
+- drawers follow Ant standard styling
 
 ### Added
 
 - `bk-button` enables bulk actions
 - new component `bk-expanded-filter`
 - `bk-table` accepts nested object path as data source
-
 
 ## [1.1.1] - 2022-10-19
 
@@ -29,13 +47,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `bk-form-drawer` and `bk-form-modal` show `readOnly` dates with correct format, specified in `dateOptions`
 - components keep loading until lookups aren't solved
 - skip parameter (`_sk`) is reset when fetching data (unless query was triggered by pagination update)
-- `bk-filters-drawer` filters of type `date` work correctly
+- `bk-filter-drawer` filters of type `date` work correctly
 - `bk-layout-container` supports disabling its render root as shadow dom. Useful to embed `bk-calendar`.
 
 ### Added
 
 - enable `urlMask` in `bk-table` `customActions`.
-
 
 ## [1.1.0] - 2022-10-05
 
@@ -465,7 +482,7 @@ by free-text search
 ### Fixed
 
 - Filters on array properties that are not multilookup are now supported
-- `bk-filters-drawer` will now wait for lookup data if there is at least one lookup property
+- `bk-filter-drawer` will now wait for lookup data if there is at least one lookup property
   in the data schema
 
 ### BREAKING CHANGES

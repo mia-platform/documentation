@@ -20,11 +20,14 @@ The backend service exposes the following APIs:
 
 ### Form Visualizer
 
+- `GET /visualizer/config`: it returns the configuration needed by the form visualizer;
 - `GET /visualizer/schemas/{id}`: it returns a configured form that will be shown in the Form Visualizer;
 - `POST /visualizer/forms`: it saves the submitted data of a user that filled a form shown in the Form Visualizer;
 - `GET /visualizer/forms/{id}`: it returns a submitted form by ID, enabling the review of data provided by the end user;
 - `PUT /visualizer/forms/{id}`: it updates a submitted form by ID;
-- `GET /visualizer/assignments/{assignmentId}/schema-id`: (`from version 1.2.0`) it returns a form ID given a [form assignment](form_assignments_configuration) ID.
+- `GET /visualizer/assignments/{assignmentId}/schema-id`: (`from version 1.2.0`) it returns a form ID given a [form assignment](form_assignments_configuration) ID;
+- `DELETE /visualizer/forms/{id}`: it deletes a submitted form by ID and its draft;
+- `POST /visualizer/forms/draft/{formId}`: if formId is undefined it saves a form and its draft, otherwise it  saves the draft of the form;
 
 These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS). Discover more about the frontend integration [here](../form-service-frontend/configuration#integration-with-micro-lc-and-headless-cms).
 
@@ -38,6 +41,10 @@ Let us suppose that the `submit_url` has been set to `http://microservice/resour
 :::
 
 In order to obtain form data versioning, the calls to the **Form-Service Frontend** must be done including the `_v` parameter. See [here](../form-service-frontend/overview#form-data-versioning-support) for Form-Service Frontend usage.
+
+#### Form draft support
+The Form-Service Backend allows to retrieve draft data by including the parameter `_status` to the request performed to retrieve form data. If the `_status` parameter is equal to `draft` the data retrieved in the request `GET /visualizer/forms/{id}?_status=draft` is the draft, otherwise it retrives the stable form data.
+
 
 ## Further details
 

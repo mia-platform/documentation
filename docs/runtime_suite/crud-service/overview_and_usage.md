@@ -634,6 +634,7 @@ The list of currently supported MongoDB aggregation operators is the following:
 - Logical: `$and`, `$not`, `$nor`, `$or`,
 - Evaluation: `$exists`, `$type`, `$cond`, `$regexMatch`, `$mod`,
 - Array: `$filter`, `$reduce`, `$concatArrays`, `$first`, `$map`, `$all`, `$elemMatch`, `$size`,
+- Conversion: `$dateToString`
 
 **Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
 

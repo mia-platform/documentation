@@ -280,15 +280,7 @@ The possible actions are:
 <bk-button></bk-button>
 ```
 
-## bk-buttons
-
-This button is a generic web component that is fully configurable.
-
-:::info
-This button is reachable as `bk-button` or `bk-generic-button`
-:::
-
-Also the button is configurable to define an action to be fired when the button is clicked, the possible actions are:
+The button is configurable to define an action to be fired when the button is clicked, the possible actions are:
 
 - event: push an event into the eventBus
 - href: perform a redirect
@@ -349,13 +341,9 @@ Example of configuration:
 
 In this configuration the property `urlMask` is specified to get the value of the first query parameter `pageNumber` and is saved in the `myPageNumber` key of the `searchParams.params` object. The example configuration will create a button that on click action will emit a `add-new` event with the information about the current page number in the payload.
 
-:::warning
-This behavior is not available for buttons embedded within components that already dynamically interpolate data, such as tables.
-:::
-
 #### HTTP Request
 
-There are 3 available configurations available on `clickConfig` with `type` `http`
+There are 3 available configurations on `clickConfig` with `type` `http`
 
 - `GET`
 - `POST`
@@ -367,9 +355,9 @@ For instance an `http` configuration con be set as
 
 ```json
 {
-  "clickconfig": {
+  "clickConfig": {
     "type": "http",
-    "actionconfig": {
+    "actionConfig": {
       "url": "/v2/users/",
       "method": "POST",
       "body": "some body"
@@ -378,13 +366,33 @@ For instance an `http` configuration con be set as
 }
 ```
 
+Query params can be specified in the `config` property:
+```json
+{
+  "clickConfig": {
+    "type": "http",
+    "actionConfig": {
+      "url": "/v2/users/",
+      "method": "POST",
+      "body": "some body",
+      "config": {
+        "params": {
+          "some": "query-params"
+        }
+      }
+    }
+  }
+}
+```
+
+
 If the button is mounted on a component which provides context, say a `bk-table`, it is possible to achieve body dynamic construction as per
 
 ```json
 {
-  "clickconfig": {
+  "clickConfig": {
     "type": "http",
-    "actionconfig": {
+    "actionConfig": {
       "url": "/v2/users/",
       "method": "POST",
       "body": "{{rawObject args.[1]}}"
@@ -475,6 +483,27 @@ For instance if a plugin reload is required after successful upload one could pi
   }
 }
 ```
+
+File download can be also executed configuring an [HTTP request](#http-request), adding `downloadAsFile` to the `config` property in `actionConfig`. It works with `GET` and `POST` requests.
+
+For example:
+```json
+{
+  "clickConfig": {
+    "type": "http",
+    "actionConfig": {
+      "url": "/v2/users/",
+      "method": "POST",
+      "body": "some body",
+      "config": {
+        "downloadAsFile": true
+      }
+    }
+  }
+}
+```
+
+
 ### Require confirmation before executing an action
 
 It is possible to ask for confirmation before executing an action using a `require-confirm` event and nesting the desired action inside its configuration.
@@ -523,9 +552,9 @@ Selected data can be sent through an HTTP request or an event  setting `{{rawObj
 {
   ...
   "bulkButton": true,
-  "clickconfig": {
+  "clickConfig": {
     "type": "http",
-    "actionconfig": {
+    "actionConfig": {
       "url": "/v2/users/",
       "method": "POST",
       "body": "{{rawObject selectedData}}"
@@ -560,9 +589,9 @@ Example of configuration:
 {
   ...
   "bulkButton": true,
-  "clickconfig": {
+  "clickConfig": {
     "type": "http",
-    "actionconfig": {
+    "actionConfig": {
       "url": "/v2/users/",
       "method": "POST",
       "body": "{{rawObject selectedData}}",

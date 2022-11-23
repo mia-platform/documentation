@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.1.1 - 2022-11-22
+
+## 6.1.0 - 2022-11-22
+
+- The CRUD Service officially supports MongoDB v6.0. See the [official MongoDB release note](https://www.mongodb.com/docs/manual/release-notes/6.0-compatibility/) for more information.
+
 ## 6.0.2 - 2022-10-25
 
 ### Added

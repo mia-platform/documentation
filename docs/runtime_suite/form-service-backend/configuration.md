@@ -12,11 +12,11 @@ To create the Form Service Backend you can search for it in the Console Marketpl
 
 2. Create the `/api/v1/forms` endpoint for the newly created microservice. The endpoint of this microservice must be exactly this one because the Form Service Frontend will use this path as prefix for the API calls to the Form Service Backend.
 
-The **Form Service Backend** exposes the `GET /builder/config` endpoint used to configure the **Form Service Frontend**.
-The endpoint returns the configuration in `JSON` format.
+The **Form Service Backend** exposes the `GET /builder/config` and `GET /visualizer/config` endpoints used to configure the **Form Service Frontend**.
+These endpoints return the configurations in `JSON` format.
 
 The microservice requires the `FORM_SERVICE_CONFIG_PATH` environment variable to specify the path where the `JSON` is stored. If no path is defined a default configuration will be used.
-The default config has only the *formSchemasCrud* and *formSchemaMapCrud* fields with default values. See [Form Service Configuration section](#form-service-configuration) for further details about these parameters.
+The default config has only the *formSchemasCrud*, *formSchemaMapCrud* and *formDraftsCrud* fields with default values. See [Form Service Configuration section](#form-service-configuration) for further details about these parameters.
 
 To configure the **Form Service Backend** service with the Console, follow these steps:
 
@@ -53,21 +53,35 @@ See the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-param
 
 See the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter) section for details.
 
-- **4. formMetadata**
+- **4. formDraftsCrud**
+  - *type*: string;
+  - *required*: `false`;
+  - *description*: the endpoint used by the **Form Service Backend** to perform CRUD operations on drafts (defaults to `/form-drafts`).
+
+See the [form drafts CRUD endpoint parameter](#form-drafts-crud-endpoint-parameter) section for details.
+
+- **5. formMetadata**
   - *type*: array of objects;
   - *required*: `false`;
   - *description*: the additional metadata to show in Form Builder and required in the CRUD that is used to save the Forms created with the Form Builder.
 
 See the [form metadata parameters](#form-metadata-parameters) section for details on how you can add metadata to the Forms created with the Form Builder.
 
-- **5. formSubmitUrls**
+- **6. formSubmitUrls**
   - *type*: array of objects;
   - *required*: `false`;
   - *description*: contains the list of URLs that can be used to perform Form submission. The Form Builder will show the available URLs if the array is provided, otherwise a text field will be shown to allow user to provide the URL.
 
 See the [form submit urls parameters](#form-submit-urls-parameters) section for details.
 
-- **6. formBuilderOptions**
+- **7. formVisualizerOptions**
+  - *type*: object;
+  - *required*: `false`;
+  - *description*: this object contains the Form Visualizer options. In particular it defines the interval between autosaves. If not defined, this inteval is set to a default value (10 seconds) by the **Form Service Frontend**
+
+See the [form visualizer options](#form-visualizer-options-parameters) section for details.
+
+- **8. formBuilderOptions**
   - *type*: object;
   - *required*: `false`;
   - *description*: this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.
@@ -89,6 +103,9 @@ The `JSON` file is structured like the following example:
   "formSubmitUrls": [
     ...
   ],
+  "formVisualizerOptions": {
+    ...
+  },
   "formBuilderOptions": {
     ...
   }
@@ -159,6 +176,17 @@ The **Form Service Backend** `PUT /visualizer/forms/:id` endpoint will reply wit
 
 :::
 
+### Form Drafts CRUD endpoint parameter
+
+This parameter is the CRUD endpoint used in the **Form Service Backend** to perform CRUD operations on drafts. It can be any CRUD endpoint. The default value is `/form-drafts`.
+
+The main properties of the CRUD are:
+
+- **data**, of type *object*, which contains the data saved on the draft;
+- **formSchemaId**, of type *string*; the ID of the form schema;
+- **stableFormId**, of type *string*; The ID of the stable form of the draft.
+
+
 ### Form Metadata parameters
 
 This config section specifies the optional metadata of the Forms created with the Form Builder. An array of *form field* objects must be defined with the following properties:
@@ -218,6 +246,18 @@ The *submit urls* can be either provided with the [CRUD Service](../crud-service
 More details on the submit URLs APIs can be found at [this page](submit_urls).
 
 :::
+
+### Form Visualizer Options parameters
+
+This part of the configuration object allows the customization of the Form Visualizer, in particular the value of the inteval in milliseconds between autosaves.
+
+Here you can find an example of a *formVisualizerOptions* object:
+
+```json
+"formVisualizerOptions": {
+    "autosaveIntervalValueMs": "5000"
+  }
+```
 
 ### Form Builder Options parameters
 
@@ -416,6 +456,14 @@ This CRUD is required and used by the **Form Service Backend** to link form data
 The required properties (specified in the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schema_map_crud_fields.json">json file</a>.
 
 If you want to use the default value of the *formSchemaMapCrud* you need to expose this CRUD with the `/form-schema-map` endpoint. Any other endpoint must be specified in the configuration `JSON`.
+
+###  form_drafts
+
+This CRUD is required and used by the **Form Service Backend** to store draft data (inserted by a Form Visualizer user).
+
+The required properties (specified in the [form drafts CRUD endpoint parameter](#form-drafts-crud-endpoint-parameter) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_draft_crud_fields.json">json file</a>.
+
+If you want to use the default value of the *formDraftsCrud* you need to expose this CRUD with the `/form-drafts` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
 Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../form-service-frontend/configuration).
 

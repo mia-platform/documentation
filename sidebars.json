@@ -1182,6 +1182,31 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Care Kit",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/changelog"
+                },
+                {
+                  "type": "category",
+                  "label": "Components",
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "runtime_suite/care-kit/Components/am-calendar"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Chat Service Backend",
               "items": [
                 {
