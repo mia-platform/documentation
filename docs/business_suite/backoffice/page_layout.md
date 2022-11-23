@@ -179,8 +179,7 @@ When `type` is set to `string`, the extra key `enum` is available to specify ava
 When `type` is set to `string` or `number`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows
 customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs](https://day.js.org/)
 library and its [parsing/formatting syntax](https://day.js.org/docs/en/parse/string-format).
-If `type` is `number` the datum is expected to be a `long` epoch time and will be converted onto the client/browser according to its
-timezone.
+If `type` is `number` the datum is expected to be a `long` epoch time, and will be converted onto the client/browser according to the timezone specified in `dateOptions.timeZone` (as a TZ database name, for instance "Europe/Rome"), or else as the client/browser timezone.
 
 :::note
 Please note that the date fields are saved in ISO 8601 format, so it's up to the user to convert them in UTC from its local time before using them in the Appointment Manager.
@@ -464,10 +463,11 @@ Here is the full list of lookup options.
 | `lookupDataSource` | the endpoint for performing the lookup in the destination collection (without leading and trailing `/`) . This will be concatenated to the `basePath` of the `crud-client-lookup` configuration |
 | `lookupValue` | the item used to resolve the lookup onto the destination collection and held on the main collection |
 | `lookupFields` | fields to be retrieved on the destination collection |
-| `lookupDelimiter` | a string with a delimiter to join values when multiple `lookupFields` are specified |
+| `lookupDelimiter` | string with a delimiter to join values when multiple `lookupFields` are specified |
 | `lookupQueries` | an array of [filters](core_concepts#filters) on lookup data + `propertyType` specifying the type of the filtered property |
-| `lookupAddTrailingSlash` | a boolean which determines whether or not to add a trailing `/` to `lookupDataSource` to generate the url for querying data (`true` if not specified) |
-| `lookupDeps` | an array of [dependencies](#dependent-lookups), used to specify dependencies from other fields of the form |
+| `lookupAddTrailingSlash` | whether or not to add a trailing `/` to `lookupDataSource` to generate the url for querying data (`true` if not specified) |
+| `lookupDeps` | array of [dependencies](#dependent-lookups), used to specify dependencies from other fields of the form |
+| `sortOption` | string corresponding to `_s` parameter in call for fetching lookup values |
 
 :::caution
 

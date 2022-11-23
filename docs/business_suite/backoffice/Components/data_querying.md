@@ -16,13 +16,13 @@ It displays a grid of filters.
 The max number of columns is 4. They shrink to 3 or 2 columns depending on the window width.
 
 :::warn
-Either use `bk-filters-drawer` (with `bk-filters-manager`) or `bk-expanded-filters` because they both listen to the same event to be shown.
+Either use `bk-filter-drawer` (with `bk-filters-manager`) or `bk-expanded-filters` because they both listen to the same event to be shown.
 :::
 
 
 ### Configuration
 
-Property `filtersConfig` allows to specify the filters to show. It is an array of dataschema properties and/or objects of dataschema property and operator.
+Property `filtersConfig` allows to specify the filters to show. It is an array of dataschema properties and/or objects of dataschema property and operator (see addFilter event operators).
 
 #### Example
 
@@ -137,6 +137,7 @@ This is the filter drawer
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`|`width`|string| - |width occupied by the component |
+|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
 
 ### Listens to
 

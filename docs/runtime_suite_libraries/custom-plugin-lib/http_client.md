@@ -58,6 +58,7 @@ All methods return a *Promise object*. You can access to:
 * **Status code** of the response trough the `statusCode` property
 * **Body** of the response trough the `payload` property
 * **Headers** of the response trough the `headers` property
+* **Duration** of the http call trough the `duration` property
 
 If service responds with status code not valid (it is possible to modify this using the `validateStatus` ), the error object contains:
 
@@ -65,6 +66,7 @@ If service responds with status code not valid (it is possible to modify this us
 * **Status code** of the response trough the `statusCode` property
 * **Body** of the response trough the `payload` property
 * **Headers** of the response trough the `headers` property
+* **Duration** of the http call trough the `duration` property
 
 If error is not an http error, it is throw the error message and the error code.
 

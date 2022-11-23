@@ -428,9 +428,7 @@ manages http requests towards an instance of [Mia Files Service](../../../runtim
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`queryParams`| - |Record\<string, any\>|...|queryParams to be passed to the Files Service. According with documentation, it defaults to {"download": 1, "downloadWithOriginalName": 1}. To remove Content-Disposition with name and use it's
-_id as name, use only "download"
-|
+|`queryParams`| - |Record\<string, any\>| {"download": 1, "downloadWithOriginalName": 1, "useOriginalName": 1} | queryParams to be passed to the Files Service. According with documentation. |
 
 ### Listens to
 

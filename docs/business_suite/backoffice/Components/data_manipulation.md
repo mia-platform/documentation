@@ -184,6 +184,7 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
+|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
 
 ### Listens to
 
@@ -361,6 +362,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`requireConfirm`| - |boolean \\| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`| - |string \\| number|500|with of the drawer |
+|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
 
 ### Listens to
 
@@ -640,6 +642,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`rootElementSelector`|`root-element-selector`|string|'#microlc-element-composer'|root element to append the modal to |
 |`width`|`width`|string|'90vw'|with of the modal |
 |`wizard`| - |boolean \\| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
+|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
 
 ### Listens to
 
