@@ -88,7 +88,7 @@ The following options are supported:
 When configuring the JSON schema of a field of type `Object` you can also add the `type` option to the schema, but the only accepted value for this option is `object`.
 :::
 
-An example of a possible valid schema:
+#### Valid schema example
 
 ```json
 { 
@@ -117,6 +117,8 @@ An example of a possible valid schema:
     "required": ["address", "groups", "name", "phone"]
 }
 ```
+
+#### Schema validation
 
 The schema specified in *properties* (for both of them) **cannot** have the following operators:
 
