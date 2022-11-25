@@ -174,7 +174,6 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger)
     key: keyAsBuffer, // type Buffer
     timestamp: timestampAsString, // type string
     offset: offsetAsString, // type string
-    operation: operationAsString // type string
   } = kafkaMessage
 
   // your adapting logic
