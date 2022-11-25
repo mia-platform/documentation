@@ -269,6 +269,41 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.sv-trigger` as well.
 
+## Custom Projection Changes Collection
+
+You can choose to use a collection you have already created in the CRUD section.  
+
+In order to do that, your collection is supposed to have the following fields (apart from the default ones):
+
+```json
+[
+    {"name":"type","type":"string","required":false,"nullable":false},
+    {"name":"changes","type":"Array_RawObject","required":false,"nullable":false},
+    {"name":"identifier","type":"RawObject","required":true,"nullable":false},
+    {"name":"doneAt","type":"Date","required":false,"nullable":false}
+]
+```
+
+You also need to have the following additional indexes:
+
+Add an index with *name* `type_change_state`, *type* `normal`, *unique* `false`.  
+You need to add the following index fields:
+
+- *name* `changes.state`, *order* `ASCENDENT`
+- *name* `type`, *order* `ASCENDENT`
+
+Add another index with *name* `type_identifier`, *type* `normal`, *unique* `true`.  
+You need to add the following index fields:
+
+- *name* `identifier`, *order* `ASCENDENT`
+- *name* `type`, *order* `ASCENDENT`
+
+After that, you need to set your collection as the one to be used by the Real-Time Updater. To do so, set the name of the collection you want to use as value of the `PROJECTIONS_CHANGES_COLLECTION_NAME` environment variable of the service.
+
+:::note
+To allow the Single View Creator to read from the Projection Changes, the collection name should also be set in the `PROJECTIONS_CHANGES_COLLECTION` environment variable of your Single View Creator service. 
+:::
+
 ### Kafka Projection Updates configuration
 
 Whenever the real-time updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
