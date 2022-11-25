@@ -47,9 +47,12 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr><td>GENERATE_KAFKA_PROJECTION_UPDATES</td><td>false</td><td>defines whether the realtime updater should send a message of update every time it writes the projection to Mongo.</td><td>false</td></tr>
     <tr><td>CA_CERT_PATH</td><td>false</td><td>the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`</td><td>-</td></tr>
     <tr><td>SYSTEM_OF_RECORDS</td><td>true</td><td>the name of the system of records associated to the Real Time Updater</td><td>-</td></tr>
+    <tr><td>PAUSE_TOPIC_CONSUMPTION_ON_ERROR</td><td>false</td><td>
+    If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature <a href="./common#pause-single-topics-consumption-on-error">here</a>
+    </td><td>false</td></tr>
 </table>
 
-## How data are managed on MongoDB
+## How data is managed on MongoDB
 
 ### Projection Deletion
 
@@ -539,3 +542,15 @@ As explained [here](../single_views.md#single-view-patch), in order to arrange t
 
 * Activate Projection Updates with the env `GENERATE_KAFKA_PROJECTION_UPDATES`
 * Configure the [Projection Updates](#kafka-projection-updates-configuration) only for the specific Projection
+
+### Pause single topic's consumption on error
+
+:::info
+This feature is supported from version `7.1.4` of the Real-Time Updater
+:::
+
+When the Real Time Updater encounters an error while consuming an ingestion message it will just pause the topic's consumption of that message, instead of crashing. This feature is disabled by default, to enable it use the <code>PAUSE_TOPIC_CONSUMPTION_ON_ERROR</code> environment variable.
+
+To use this feature make sure you have properly configured your alerts in your grafana dashboards so you can quickly detect pauses on topics' consumption and act on the problematic message to resume the consumption.
+The ideal for that would be to set up some alerts based on the <code>kafka_consumergroup_lag</code> metric exposed by the <code>kafka-exporter</code> service configured in your project.
+More on configuring alarms on grafana [here](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/create-grafana-managed-rule/)
