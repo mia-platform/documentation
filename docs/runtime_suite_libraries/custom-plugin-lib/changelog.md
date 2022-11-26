@@ -7,7 +7,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### v5.1.4 - 2022-11-23
+## v5.1.5 - 2022-11-24
+
+### Fixed
+
+- fix the handle of env var required with a configured default
+
+## v5.1.4 - 2022-11-23
+
+THIS VERSION CONTAINS A BREAKING CHANGES
+
+This version contains a bug when it's configured a required env var with a default. The default is not handled before the default, so the service will not start.
 
 ### Added
 
