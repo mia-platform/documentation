@@ -149,6 +149,9 @@ function getItems(items, prefix) {
     } else {
       files[item.id.replace(prefix, '')] = true
     }
+    if (item.link?.id) {
+      files[item.link.id.replace(prefix, '')] = true
+    }
   }
   return files
 }
@@ -169,6 +172,9 @@ function getSidebarLinkedFiles(sidebarFilePath, prefix = '') {
         }
       } else if (detail.id) {
         files[detail.id.replace(prefix, '')] = true
+      }
+      if (detail.link?.id) {
+        files[detail.link.id.replace(prefix, '')] = true
       }
     })
   })

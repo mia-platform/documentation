@@ -8,7 +8,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.1.2 - 2022-11-24
+
+### Fix
+
+- Fields stored as string are casted to number if requested by schema 
+
 ## 6.1.1 - 2022-11-22
+
+- - support for `$dateToString` project operator in `_rawp` query param.
 
 ## 6.1.0 - 2022-11-22
 
