@@ -12,7 +12,8 @@ At least one container port is needed in order to expose the microservice. If yo
 
 ![container-ports-section](img/container-ports-card.png)
 
-To define a container port, four properties are needed: 
+To define a container port, four properties are needed:
+
 - Port name
 - Port
 - Target Port
