@@ -25,10 +25,6 @@ We have implemented the shortcut cmd/ctrl + enter to:
 - create a new Branch 
 - save the extensions in the Advanced configurations section
 
-#### Tenant name in the Company Overview launcher
-
-Now, the launcher of the Company Overview always shows the Tenant name.
-
 ### Bug Fix
 
 #### Merge flow improvements
