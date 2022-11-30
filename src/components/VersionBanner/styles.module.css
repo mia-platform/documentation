@@ -59,7 +59,7 @@
   line-height: 1.1rem;
   font-weight: 500;
   font-family: var(--ifm-font-family-Inter);
-  color:rgba(255, 255, 255, 0.8);
+  color:rgba(255, 255, 255, 0.9);
 }
 
 html[data-theme=dark] .versionBanner {
