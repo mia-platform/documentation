@@ -91,6 +91,8 @@ Once you select the card to upload a Docker image, you can see a new tab where y
   - `tag` is the version of the docker image
 :::
 
+* **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
+
 * **Description** (*optional*): this is the description of your microservice.
 
 ![service-docker-image](img/service-docker-image.png)
