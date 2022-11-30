@@ -14,7 +14,8 @@
     "lint": "eslint --ext js .",
     "spellcheck": "npx cspell './docs/**'",
     "release-note": "node ./new-release-note.js",
-    "check-content": "node ./check-content.js",
+    "check-content": "npm run validate-links && node ./check-content.js",
+    "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
     "check-redirects": "node ./scripts/check-permanent-redirects.js"
   },

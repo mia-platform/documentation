@@ -4,7 +4,7 @@ title: Homepage Configuration
 sidebar_label: Homepage Configuration
 ---
 
-Once you successfully followed the [steps](./application_creation.md) to create the Dev Portal application, you can start adding all information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all information characterizing your organization at the endpoint `/back-office/`. 
 
 Through the **Backoffice** section of the Dev Portal, you can easily access the repository that will contain the code of the Dev Portal homepage. This can be achieved by clicking the **Homepage** link inside the **Static files** section, displayed right after the marketplace and requests management.
 
@@ -42,7 +42,7 @@ To customize the homepage, you can directly modify the content of the existing c
 
 In general, both content and graphical appearance can be modified to any extent using the provided repository. However, you can also use an external repository to present your content.
 
-If you need to change the repository used for the Dev Portal homepage, you just need to modify the `dev-portal-micro-lc-backend` [configuration](./application_creation.md#2-configure-dev-portal-micro-lc-backend) by updating the `logo/navigation_url` field of the `configuration.json` file.
+If you need to change the repository used for the Dev Portal homepage, you just need to modify the `dev-portal-micro-lc-backend` [configuration](/dev_portal/application_creation.md#2-configure-dev-portal-micro-lc-backend) by updating the `logo/navigation_url` field of the `configuration.json` file.
 
 :::caution
 If you choose to use a different repository, or you simply want to edit the position of your homepage source code inside the Docusaurus repository, you also need to reflect this modification in the backoffice **Homepage** link.

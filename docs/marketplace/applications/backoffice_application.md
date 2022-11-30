@@ -4,7 +4,7 @@ title: Backoffice Application
 sidebar_label: Backoffice Application
 ---
 
-In order to simplify the creation of the [Backoffice](../../business_suite/backoffice/overview.md) an Application is 
+In order to simplify the creation of the [Backoffice](/business_suite/backoffice/overview.md) an Application is 
 available in the Marketplace that allows the user to configure it in a few clicks.
 
 ## Instantiation steps
@@ -46,7 +46,7 @@ Go to the `CRUD` section and create a new collection named however you like with
 * `email`: String (required)
 
 You can create the fields importing this <a download target="_blank" href="/docs_files_to_download/backofficeApplicationCrud.json">JSON file</a> 
-and following [this guide](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
+and following [this guide](/development_suite/api-console/api-design/crud_advanced.md#how-to-create-the-fields-of-your-crud-by-importing-a-json).
 
 ### 4. Endpoints configuration
 
@@ -109,5 +109,5 @@ The last step consists in hooking up the example configuration of the Backoffice
 After these quick steps, your Backoffice application will start working.
 
 :::info
-For more information about its usage, visit the dedicated [Backoffice](../../business_suite/backoffice/overview.md) section.
+For more information about its usage, visit the dedicated [Backoffice](/business_suite/backoffice/overview.md) section.
 :::

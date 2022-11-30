@@ -6,7 +6,7 @@ sidebar_label: Backoffice Section
 
 In order to test a specific API or event, the Marketplace allows users to request a unique **token** from a component detail page. Token requests need to be properly processed to eventually grant users permissions to use a certain API or event.
 
-Once you successfully followed the [steps](./application_creation.md) to create the Dev Portal application, you can start managing all the information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/dev_portal/application_creation.md) to create the Dev Portal application, you can start managing all the information characterizing your organization at the endpoint `/back-office/`. 
 
 ## Requests Page
 
@@ -44,7 +44,7 @@ In particular, a new request will be characterized by the following properties:
 
 When you select a received request, you will be able to see, along with all the request information, a **Manage Permissions** link.
 
-This link, which can be configured from the design area of the console, aims at speeding up the [API token generation](./api_token_generation.md) process. Its role is to redirect the user managing the requests to the page where he/she will be able to give users access privileges for a certain component.  
+This link, which can be configured from the design area of the console, aims at speeding up the [API token generation](/dev_portal/api_token_generation.md) process. Its role is to redirect the user managing the requests to the page where he/she will be able to give users access privileges for a certain component.  
 
 ![manage permissions](./img/manage_permissions.png)
 

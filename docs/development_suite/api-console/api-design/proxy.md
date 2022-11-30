@@ -62,9 +62,9 @@ When you call an [external proxy](#create-a-new-external-proxy) any cookie/clien
 
 ## Expose a Proxy
 
-Before using a proxy you have to expose it by an [endpoint](endpoints.md#what-is-an-endpoint).
+Before using a proxy you have to expose it by an [endpoint](/development_suite/api-console/api-design/endpoints.md#what-is-an-endpoint).
 
-The `Type` of the endpoint must be `External Proxy/Cross Projects proxy`. In the `Microservice` field select the name of the proxy you want to expose. The proxy endpoint will be exposed on [API gateway](../../../runtime_suite/api-gateway/overview.md).
+The `Type` of the endpoint must be `External Proxy/Cross Projects proxy`. In the `Microservice` field select the name of the proxy you want to expose. The proxy endpoint will be exposed on [API gateway](/runtime_suite/api-gateway/overview.md).
 
 ![Expose proxy](img/how_to_expose_proxy.gif)
 
@@ -81,7 +81,7 @@ curl --request GET
 
 ### How to call a proxy endpoint from a microservice
 
-The proxy endpoints are exposed on the [API gateway](../../../runtime_suite/api-gateway/overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
+The proxy endpoints are exposed on the [API gateway](/runtime_suite/api-gateway/overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
 
-You can also use the [Mia-Platform Service Libraries](../../../libraries/overview_service_libraries) that help you to get a proxy towards the API Gateway.
+You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.
 

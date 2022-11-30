@@ -14,8 +14,8 @@ This service is available as a plugin or as a template:
 We strongly recommend using the plugin. Template is supposed to be used only for advanced use-case where the plugin can not be used. 
 
 Single View Creator plugin can be used in two modes:
-- [Low Code](./low_code.md): allows you to perform aggregation through JSON without writing any Javascript code in most cases. If you need custom behavior you will still be able to writing your own code for just that piece of aggregation.
-- [Manual](./manual.md): allows you to perform aggregation writing your own Javascript code.
+- [Low Code](/fast_data/configuration/single_view_creator/low_code.md): allows you to perform aggregation through JSON without writing any Javascript code in most cases. If you need custom behavior you will still be able to writing your own code for just that piece of aggregation.
+- [Manual](/fast_data/configuration/single_view_creator/manual.md): allows you to perform aggregation writing your own Javascript code.
 
 We recommend using the Low Code since it allows you to be faster and safer in aggregating your data. You will just need to think about the data and not the code for doing so.    
 Manual mode is supposed to be used only for cases where Low Code can not be used, but it should rarely happen, since if you are using Low Code you will still be able to writing custom Javascript function for the specific piece of aggregation that Low Code can not perform.
@@ -24,12 +24,12 @@ Manual mode is supposed to be used only for cases where Low Code can not be used
 
 ### Plugin
 
-Go to the [Marketplace](/docs/marketplace/overview_marketplace) and create a `Single View Creator` or `Single View Creator - Low Code` plugin. 
+Go to the [Marketplace](/marketplace/overview_marketplace.md) and create a `Single View Creator` or `Single View Creator - Low Code` plugin. 
 Go to the microservice page of the one created and set the correct values to the environment variables containing a placeholder. 
 
 ## Template
 
-Search in the [Marketplace](/docs/marketplace/overview_marketplace) for a `Single View Creator - Template` and create it.
+Search in the [Marketplace](/marketplace/overview_marketplace.md) for a `Single View Creator - Template` and create it.
 Then go to the microservice page of the one created and set the correct values to the environment variables containing a placeholder. 
 Click on the repository link in the microservice page and clone on your computer the repository.
 
@@ -41,7 +41,7 @@ For further information contact your Mia Platform referent
 ### Code overview
 
 The service starts in `index.js` file.
-First, the template uses the [Custom Plugin Lib](https://docs.mia-platform.eu/docs/development_suite/api-console/api-design/plugin_baas_4) to instantiate a service.
+First, the template uses the [Custom Plugin Lib](/development_suite/api-console/api-design/plugin_baas_4.md) to instantiate a service.
 Inside its callback, the `single-view-creator-lib` is initialized to deal with the complexity of the Fast Data components.
 
 ```js
@@ -51,7 +51,7 @@ await singleViewCreator.initEnvironment() // connect Mongo, Kafka and create the
 service.decorate('patient', singleViewCreator.k8sPatient)
 ```
 
-Where `config` is an object whose fields represent the [Microservice environment variables](/docs/development_suite/api-console/api-design/services.md#environment-variable-configuration).
+Where `config` is an object whose fields represent the [Microservice environment variables](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
 Some environment variables will be pre-compiled when you create the service from template, others won't, but they will still have a placeholder as value. Replace it with the correct value.
 
@@ -159,13 +159,13 @@ If you do not want to use Kafka in the Single View Creator, you can just not set
 
 Single View Key is the Single View Creator part in charge of identifying the single view document that needs to be updated as consequence of the event that the service has consumed. 
 
-If you are using Low Code, please visit [here](./low_code.md#single-view-key), otherwise you can go to the [manual documentation](./manual.md#single-view-key)
+If you are using Low Code, please visit [here](/fast_data/configuration/single_view_creator/low_code.md#single-view-key), otherwise you can go to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#single-view-key)
 
 ## Aggregation
 
 Aggregation is the Single View Creator part in charge of aggregating data of projections and generating the Single View that is going to be updated. 
 
-If you are using Low Code, please visit [here](./low_code.md#aggregation), otherwise you can go to the [manual documentation](./manual.md#aggregation)
+If you are using Low Code, please visit [here](/fast_data/configuration/single_view_creator/low_code.md#aggregation), otherwise you can go to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#aggregation)
 
 :::note
 Since version `v5.0.0` of Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a single view with the field `__STATE__` from the aggregation will update the Single View to that state (among the others changes).   
@@ -241,7 +241,7 @@ For both functions, the output is composed of an object containing two fields:
 - `old` which contains the old Single View
 - `new` which contains the new Single View
 
-These values will respectively be the `before` and the `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator. The naming convention for this topic can be found [here](../../inputs_and_outputs.md#single-view-before-after).
+These values will respectively be the `before` and the `after` of the message sent to the `KAFKA_BA_TOPIC` topic, that is the topic responsible for tracking any result of the Single View creator. The naming convention for this topic can be found [here](/fast_data/inputs_and_outputs.md#single-view-before-after).
 
 ```js
 async function upsertSingleViewFunction(
@@ -361,7 +361,7 @@ When generating a Single View, every error that occurs is saved in MongoDB, with
 - `updaterId`: set to `single-view-creator`
 - `updatedAt`: time of creation
 
-It is highly recommended using a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](/docs/development_suite/api-console/api-design/crud_advanced.md#indexes).
+It is highly recommended using a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](/development_suite/api-console/api-design/crud_advanced.md#indexes).
 
 ### CA certs
 
@@ -373,7 +373,7 @@ Since service version `3.9.0`, you can set your CA certs by providing a path to 
 This feature is supported from version `5.6.1` of the Single View Creator
 :::
 
-To configure a Single View Creator dedicated to [Single View Patch](../single_views.md#single-view-patch) operations, some steps has to be followed:
+To configure a Single View Creator dedicated to [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) operations, some steps has to be followed:
 
 * Set the env var `KAFKA_PROJECTION_UPDATE_TOPICS` with the comma separated list of the `pr-update` topics corresponding to the SV-Patch projection.
 * Set the env var `SV_TRIGGER_HANDLER_CUSTOM_CONFIG` with the path to the main file defining SV-Patches actions, for example `/home/node/app/svTriggerHandlerCustomConfig/svTriggerHandlerCustomConfig.json`

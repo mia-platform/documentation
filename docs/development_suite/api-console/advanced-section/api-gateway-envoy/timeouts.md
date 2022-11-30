@@ -34,7 +34,7 @@ The `stream_idle_timeout` of our Envoy API Gateway defaults to 60 seconds. To ch
 
 The `idle_timeout` property overwrites the `stream_idle_timeout` defined at the HTTP connection manager level. As a consequence, you can customize your stream timeout per route without touching the global settings.
 
-To tune this timeout for a route, you will need to add the endpoint via extension, as illustrated [here](extensions.md#endpoints). Let's assume you want to increase to 2 minutes the timeout of a specific frontend route. The endpoint extension will look as follows:
+To tune this timeout for a route, you will need to add the endpoint via extension, as illustrated [here](/development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#endpoints). Let's assume you want to increase to 2 minutes the timeout of a specific frontend route. The endpoint extension will look as follows:
 
 ```yaml
 - listener_name: frontend

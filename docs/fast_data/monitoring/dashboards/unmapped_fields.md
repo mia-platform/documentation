@@ -13,7 +13,7 @@ This feature is available since Realtime Updater v4.4.0
 This situation could happen for two main reasons:
 
 - Inside the console, the field was not registered
-- The [Cast Function](../../the_basics.md#cast-function) launches an error
+- The [Cast Function](/fast_data/the_basics.md#cast-function) launches an error
 
 In order to use this dashboard, the following configuration steps are needed:
 

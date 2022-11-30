@@ -97,5 +97,5 @@ What you might want could be a similar Role Binding organization:
 When you wish to assign a Role on a specific resource what you have to do is create a binding with a properly configured resource object.
 
 :::info
-For more information regarding how a binding is defined and how to configure the resources check out the [following documentation page](./api-console/api-design/rbac#rbac-storage).
+For more information regarding how a binding is defined and how to configure the resources check out the [following documentation page](/development_suite/api-console/api-design/rbac.md#rbac-storage).
 :::

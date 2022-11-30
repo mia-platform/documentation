@@ -12,11 +12,11 @@ A CRUD is a service that allows you to interact with persistently stored data an
 * **Update**
 * **Delete**
 
-These functions combined define the acronym **CRUD** and are described in detail [here](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).  
-In this section, you will understand how to configure your first [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md) collections through user interface by creating and managing one or more CRUDs without worrying about setting up any database on your own.
+These functions combined define the acronym **CRUD** and are described in detail [here](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints).  
+In this section, you will understand how to configure your first [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) collections through user interface by creating and managing one or more CRUDs without worrying about setting up any database on your own.
 
 :::caution
-If the MongoDB CRUD section in your project is disabled because the `crud-service` had not been added during project creation, you can autonomously add it to your branch by creating it from the Marketplace. Visit its [documentation](../../../runtime_suite/crud-service/configuration.md) to learn how to do so.
+If the MongoDB CRUD section in your project is disabled because the `crud-service` had not been added during project creation, you can autonomously add it to your branch by creating it from the Marketplace. Visit its [documentation](/runtime_suite/crud-service/configuration.md) to learn how to do so.
 :::
 
 To manage your CRUDs, Mia-Platform's Console offers a specific section, **MongoDB CRUD**, in the **Design** area of your project.
@@ -26,7 +26,7 @@ To manage your CRUDs, Mia-Platform's Console offers a specific section, **MongoD
 In order to create a new CRUD, open the dedicated section, select **Create new CRUD** and fill in the following information:
 
 * **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake_case` as naming convention). In our case, we will name the collection “books”;
-* **Internal endpoint**: this is the first endpoint that will be exposed by the [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md). The console will prefill it but you can change it according to your preference.
+* **Internal endpoint**: this is the first endpoint that will be exposed by the [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md). The console will prefill it but you can change it according to your preference.
 
 ![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.PNG)
 
@@ -38,10 +38,10 @@ As soon as you push **Create**, a new page ("books" in our example) is created a
 
 In the section **Fields**, you can enter the properties of your collection.
 By default, there are fields that can not be changed, such as: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `_STATE_`.  
-These fields are internally required; you can use them to perform queries or to create [indexes](./crud_advanced#indexes).  
+These fields are internally required; you can use them to perform queries or to create [indexes](#indexes).  
 
 :::info
-[Here](../../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) you can find a detailed description of the default fields.
+[Here](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) you can find a detailed description of the default fields.
 :::
 
 You can add new fields by selecting **Add new** and fill in the blank form with the value you need.
@@ -136,25 +136,25 @@ Adding the previously listed operators (like `oneOf`, for example) in the input 
 Remember to avoid using them.
 :::
 
-You can also create nested CRUDs by importing a JSON file, check this [section](./crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json) to understand how.
+You can also create nested CRUDs by importing a JSON file, check this [section](#how-to-create-the-fields-of-your-crud-by-importing-a-json) to understand how.
 
 ### CRUD Service exposed routes
 
-The [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.  
+The [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project, without the need to expose the CRUD to the outside world, by using the specified CRUD endpoint routes in the dedicated card in CRUD detail view.  
 This is particularly helpful when you want one of your microservices to maintain a specific state and, to do so, you need to persistently store some data. Since this data has the only purpose of describing the state of your microservice, it is preferable to avoid exposing it to the outside world (it can also be confidential data, that you want to keep private).  
 Therefore, our CRUD Service will handle this situation for you, by making your microservices interact with your CRUDs internal routes without the need to define an external endpoint route that will unnecessarily expose your CRUD.
 
-Otherwise, if you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](./endpoints). By doing so, you will be able to view your CRUD API Documentation in Mia-Platform [Documentation Portal](../../api-portal/api-documentations), where you can also interact with your CRUD and test the calls to it.
+Otherwise, if you want the CRUD to be accessible from the outside, you can create a new CRUD-type Endpoint in the [**Design Endpoint section**](/development_suite/api-console/api-design/endpoints.md). By doing so, you will be able to view your CRUD API Documentation in Mia-Platform [Documentation Portal](/development_suite/api-portal/api-documentations.md), where you can also interact with your CRUD and test the calls to it.
 
 :::info
-To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../../runtime_suite/crud-service/overview_and_usage#crud-endpoints).
+To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints).
 :::
 
 Beyond the first route, automatically exposed when creating the CRUD, you can always **add new routes** and **modify existing ones**.
 In each CRUD's detail page you can view all the internal routes associated with your CRUD and edit them.  
 The definition of multiple internal routes can be useful when you want to gather different documents based on their `__STATE__` property. For example, one internal route can gather all documents in `DRAFT` state, another one the ones in `PUBLIC` state.  
 :::info
-For an in depth description of the `__STATE__` field, follow this [link](../../../runtime_suite/crud-service/overview_and_usage#__state__-management).  
+For an in depth description of the `__STATE__` field, follow this [link](/runtime_suite/crud-service/overview_and_usage.md#__state__-management).  
 :::
 In our case we will see the first internal endpoint with a **route base path** equal to "/books". The _default state_ (used on document creation) is set to _DRAFT_ by default.
 
@@ -170,7 +170,7 @@ You can always change the default state of an existing route by simply clicking 
 
 ![default_state](img/default_state.png)
 
-You can delete a route but you must always leave at least one endpoint exposed by the [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither the services in your project.
+You can delete a route but you must always leave at least one endpoint exposed by the [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither the services in your project.
 
 ### How to create the fields of your CRUD by importing a JSON
 
@@ -191,7 +191,7 @@ Remember that the file must be a JSON with the following directions:
 * `required` must be `false` or `true`
 * `nullable` must be `false` or `true`
 
-`RawObject` and `Array_RawObject` support both a custom JSON Schema that is explained [here](./crud_advanced#create-nested-cruds).  
+`RawObject` and `Array_RawObject` support both a custom JSON Schema that is explained [here](#create-nested-cruds).  
 To correctly import it, add a property *schema* to the field that contains the custom JSON Schema.  
 
 This is an example of a field of type `RawObject` where is specified the schema object the properties of the object (*properties*), the required properties (`somethingNumber`) and if object could accept additional properties (in this example it is set to false):
@@ -367,7 +367,7 @@ Once you named your index, you can choose among 4 types:
 * **TTL**
 
 :::info
-If you want to know more about what indexes are, how you can use them and what type of index suits your needs, please consult the [crud service documentation](../../../runtime_suite/crud-service/overview_and_usage#indexes).
+If you want to know more about what indexes are, how you can use them and what type of index suits your needs, please consult the [crud service documentation](/runtime_suite/crud-service/overview_and_usage.md#indexes).
 :::
 
 You can also choose whether to make the index unique by ticking the correspondent checkbox.

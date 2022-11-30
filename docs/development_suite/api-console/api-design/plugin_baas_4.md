@@ -24,7 +24,7 @@ The remaining part of this guide will describe how to develop, test and deploy y
 
 From the microservices area it is possible to add a new service starting from the Node.js template that is already set up and configured to use the `Mia Service Node.js Library`.
 
-Check out the [Marketplace Documentation](./../../../marketplace/overview_marketplace.md) for further information on how to install and bootstrap a service from a Marketplace template.
+Check out the [Marketplace Documentation](/marketplace/overview_marketplace.md) for further information on how to install and bootstrap a service from a Marketplace template.
 
 ### Manual installation on a new repository
 
@@ -285,7 +285,7 @@ async function tokenGeneration(request, response) {
 Through `Mia Service Node.js Library` it is possible to declare PRE and POST decorators. From a conceptual point of view, a decorator
 of (1) PRE or (2) POST is a transformation applied from `microservice-gateway` to (1) a request addressed
 to a service (**original request**) or (2) to the reply (**original reply**) that this service sends to
-caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is important to configure them also in the console. More information are available [in the Decorators docs](decorators).
+caller. From a practical point of view, decorators are implemented as HTTP requests in `POST` to a specified microservice. In order to use the decorators it is important to configure them also in the console. More information are available [in the Decorators docs](/development_suite/api-console/api-design/decorators.md).
 
 The declaration of a decorator using `Mia Service Node.js Library` occurs in a similar way to the declaration of a route
 
@@ -512,7 +512,7 @@ const schema = {
 Like any service on the Platform, a microservice must be set up to be released in different environments, starting from the local environment (the development machine) to development, test and production environments. The differences between various environments are managed through the mechanism of environment variables.  
 In addition to the mandatory ones, using `Mia Service Node.js Library` it is possible to define other environment variables based on
 needs of the single microservice, to then access them and use their values ​​in the code of the handlers. For the definition yes
-use the [JSON schema format](<http://json-schema.org/>).
+use the [JSON schema format](http://json-schema.org/).
 
 If the correct set of environment variables is not supplied to the microservice,
 the microservice does not start by returning in output which environment variable is missing.

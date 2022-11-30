@@ -80,7 +80,7 @@ Here's an example of a valid cluster configuration:
 
 This extension allows you to add or overwrite endpoints and routes in the `endpoints.yaml` file. Endpoints added with this feature will have priority over the automatically generated ones (assuming they have the same path, prefix, or regex).
 
-The snippet below illustrates an example of a frontend `GET` route towards `my-upstream` with prefix rewrite. Remember to set the `timeout` property to `0s` to disable the default request timeout and enforce the global `stream_idle_timeout` ([learn more](timeouts.md)).
+The snippet below illustrates an example of a frontend `GET` route towards `my-upstream` with prefix rewrite. Remember to set the `timeout` property to `0s` to disable the default request timeout and enforce the global `stream_idle_timeout` ([learn more](/development_suite/api-console/advanced-section/api-gateway-envoy/timeouts.md)).
 
 ```yaml
 - listener_name: frontend
@@ -278,7 +278,7 @@ LUA scripts can be used to log request and response data, for debugging purposes
 
 #### Importing a library
 
-Sometimes it could be useful to import external LUA libraries or refactor existing scripts into dedicated files. This could be done using the LUA scripts extension in combination with [configmaps](../../api-design/services#configmaps). For example, let's assume we have a file called `my-library.lua` that exports a function called `myLibFunction` and we want to apply this function to incoming requests. This could be done through the following steps:
+Sometimes it could be useful to import external LUA libraries or refactor existing scripts into dedicated files. This could be done using the LUA scripts extension in combination with [configmaps](/development_suite/api-console/api-design/services.md#configmaps). For example, let's assume we have a file called `my-library.lua` that exports a function called `myLibFunction` and we want to apply this function to incoming requests. This could be done through the following steps:
 
 1. Create a configmap for the API Gateway service and mount it in an arbitrary path, in this example, we have chosen `/etc/lua/lib`
 2. Add your script file `my-library.lua` to the configmap you just created

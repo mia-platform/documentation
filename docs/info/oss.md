@@ -9,28 +9,28 @@ Mia-Platform includes components subject to the terms and conditions of “open 
 
 ## List of 3rd party Open Source Components
 
-| Module        | Licenses                               |
-|-----------------------|----------------------------------------|
-| Docker                | [Apache-2.0](./licenses/apache-2.0.md) |
-| Node.js               | [Apache-2.0](./licenses/apache-2.0.md) |
-| Fastify               | [MIT](./licenses/mit.md)               |
-| NGinx                 | [Apache-2.0](./licenses/apache-2.0.md) |
-| Express.js            | [Apache-2.0](./licenses/apache-2.0.md) |
-| Swagger IO            | [Apache-2.0](./licenses/apache-2.0.md) |
+| Module        | Licenses                              |
+|-----------------------|---------------------------------------|
+| Docker                | [Apache-2.0](/info/licenses/apache-2.0.md) |
+| Node.js               | [Apache-2.0](/info/licenses/apache-2.0.md) |
+| Fastify               | [MIT](/info/licenses/mit.md)              |
+| NGinx                 | [Apache-2.0](/info/licenses/apache-2.0.md) |
+| Express.js            | [Apache-2.0](/info/licenses/apache-2.0.md) |
+| Swagger IO            | [Apache-2.0](/info/licenses/apache-2.0.md) |
 
 ## List of 3rd party Libraries Used
 ## Licenses
 
-### [MIT](./licenses/mit.md)
+### [MIT](/info/licenses/mit.md)
 
-### [ISC](./licenses/isc.md)  
+### [ISC](/info/licenses/isc.md)  
 
-### [BSD-2-Clause](./licenses/bsd-2-clause) 
+### [BSD-2-Clause](/info/licenses/bsd-2-clause.md) 
 
-### [BSD-3-Clause](./licenses/bsd-3-clause) 
+### [BSD-3-Clause](/info/licenses/bsd-3-clause.md) 
 
-### [Apache-2.0](./licenses/apache-2.0) 
+### [Apache-2.0](/info/licenses/apache-2.0.md) 
 
-### [Python-2.0](./licenses/python-2.0)
+### [Python-2.0](/info/licenses/python-2.0.md)
 
-### [CC-BY-4.0](./licenses/cc-by-4.0.md)
+### [CC-BY-4.0](/info/licenses/cc-by-4.0.md)

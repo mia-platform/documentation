@@ -80,7 +80,7 @@ By enabling client-side encryption, you can encode a specific portion of your da
 Encryption helps you protect private information by means of an **encryption key**, an unpredictable and unique string of bits created explicitly for encrypting and decrypting data.
 :::
 
-You can have further details regarding different encryption key generation techniques in the [dedicated section](./../../../runtime_suite/crud-service/encryption_configuration#configuration).
+You can have further details regarding different encryption key generation techniques in the [dedicated section](/runtime_suite/crud-service/encryption_configuration.md#configuration).
 
 
 There are several ways in which encryption algorithms can be designed to protect your data. Different implementations may provide different levels of protection or other types of capabilities, such as the searchability of encrypted data.
@@ -96,7 +96,7 @@ Mia-Platform's Console allows you to choose between two different encryption str
 
 :::note
 The custom mode is available only for type `Object` and allows you to encrypt only certain fields defined in your JSON Schema. Furthermore you can also decide to make some specific fields searchable, based on your preferences and operating context.
-For more details, please visit the [dedicated section](/docs/runtime_suite/crud-service/encryption_configuration#activate-object-encryption).
+For more details, please visit the [dedicated section](/runtime_suite/crud-service/encryption_configuration.md#activate-object-encryption).
 :::
 
 :::info
@@ -115,7 +115,7 @@ You can set an encryption strategy from every collection table in the design sec
 
 ![client side encryption](img/client-side-encryption.gif)
 
-For further details regarding client-side encryption, check out the complete [encryption configuration](./../../../runtime_suite/crud-service/encryption_configuration).
+For further details regarding client-side encryption, check out the complete [encryption configuration](/runtime_suite/crud-service/encryption_configuration.md).
 
 :::caution
 It's only advisable to encrypt newly created collection fields.

@@ -13,11 +13,11 @@ _November 16th, 2022_
 
 #### Merge editor Revert button
 
-Inside the Merge editor modal, the Revert button makes it possible to discard all changes applied to the current section since the start of the Merge process. If you think you made some mistakes in the section you are currently working on and want to start over, the button allows you to do so without having to cancel the entire Merge process. Find out more [here](../development_suite/api-console/api-design/merge_collaboration).
+Inside the Merge editor modal, the Revert button makes it possible to discard all changes applied to the current section since the start of the Merge process. If you think you made some mistakes in the section you are currently working on and want to start over, the button allows you to do so without having to cancel the entire Merge process. Find out more [here](/development_suite/api-console/api-design/merge_collaboration.md).
 
 #### New permission for creating and deleting companies
 
-A new set of permissions has been added to protect company creation and deletion; these permissions are setting the ground for administrative capabilities across the whole Console installation. You can find more info in the [documentation page](../development_suite/console-levels-and-permission-management), but make sure to update your Console administrators users by removing the `create_company` group and granting them the new permissions by creating a specific binding. The newly introduced permissions are:
+A new set of permissions has been added to protect company creation and deletion; these permissions are setting the ground for administrative capabilities across the whole Console installation. You can find more info in the [documentation page](/development_suite/console-levels-and-permission-management.md), but make sure to update your Console administrators users by removing the `create_company` group and granting them the new permissions by creating a specific binding. The newly introduced permissions are:
 
 * `console.root.company.create`: allows the user to create any Company (a Company Owner role is granted to the user on the newly created Company)
 * `console.root.company.delete`: allows the user to delete any Company
@@ -25,13 +25,13 @@ A new set of permissions has been added to protect company creation and deletion
 
 #### Partial Indexes configurable from Console in MongoDB CRUD section
 
-You can now configure the Partial Indexes of a CRUD Collection from the Console. Find out more [here](../development_suite/api-console/api-design/crud_advanced).
+You can now configure the Partial Indexes of a CRUD Collection from the Console. Find out more [here](/development_suite/api-console/api-design/crud_advanced.md).
 
 ### Improvements
 
 #### Reorganization of detail and settings on Endpoints section
 
-The information regarding specific settings on individual endpoints has been reorganized into handy tabs within the card. Find out more [here](../development_suite/api-console/api-design/endpoints#endpoint-settings).
+The information regarding specific settings on individual endpoints has been reorganized into handy tabs within the card. Find out more [here](/development_suite/api-console/api-design/endpoints.md#endpoint-settings).
 
 #### Branch selection modal
 
@@ -65,7 +65,7 @@ A new environment variable called `ADD_BEFORE_AFTER_CONTENT` must be set to `tru
 
 #### Kafka Message sv-update changed format
 
-Changed [`sv-update` kafka message format](../../docs/fast_data/inputs_and_outputs#single-view-update) sent from the Single View Creator.
+Changed [`sv-update` kafka message format](/fast_data/inputs_and_outputs.md#single-view-update) sent from the Single View Creator.
 
 ### New Features
 

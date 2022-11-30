@@ -11,7 +11,7 @@ gRPC is a modern and open source high performance Remote Procedure Call (RPC) fr
 
 Prerequisite:
 
-- a Console project with at least one environment (follow [this guide](../set-up-infrastructure/create-project) if you want to create it)
+- a Console project with at least one environment (follow [this guide](/development_suite/set-up-infrastructure/create-project.mdx) if you want to create it)
 <!-- TODO: change YAGES with our gRPC server -->
 - a service using gRPC. In the following use case we use as example [YAGES](https://github.com/mhausenblas/yages) (yet another gRPC echo server)
 - a Kubernetes cluster with installed Traefik ingress (the default ingress used in Mia-Platform PaaS)
@@ -29,14 +29,14 @@ Once created, modify this information:
 - remove all the Environment Variables except the `HTTP_PORT` env var, and set as value the port exposed by the service
 
 :::note
-Probes in gRPC can use [this tool](https://github.com/grpc-ecosystem/grpc-health-probe/) if you use Kubernetes at version less than 1.24, otherwise it is possible to add [the newly supported specific probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-grpc-liveness-probe). Those configuration cannot be done with Console at the moment, but if necessary you can always transform the service to [advanced](../api-console/api-design/services#advanced-configuration) and set it manually.
+Probes in gRPC can use [this tool](https://github.com/grpc-ecosystem/grpc-health-probe/) if you use Kubernetes at version less than 1.24, otherwise it is possible to add [the newly supported specific probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-grpc-liveness-probe). Those configuration cannot be done with Console at the moment, but if necessary you can always transform the service to [advanced](/development_suite/api-console/api-design/services.md#advanced-configuration) and set it manually.
 :::
 
 ## Use inside the cluster
 
 ### Deploy
 
-Go to the [Deploy section](../deploy/deploy) and deploy the branch just edited. Once the deploy is successfull, verify that all pods are running (including the `grpc-service`) from the [Runtime section](../monitoring/monitoring) of the Console.
+Go to the [Deploy section](/development_suite/deploy/deploy.md) and deploy the branch just edited. Once the deploy is successfull, verify that all pods are running (including the `grpc-service`) from the [Runtime section](/development_suite/monitoring/monitoring.md) of the Console.
 
 ### Test with port-forward
 
@@ -70,7 +70,7 @@ and you should obtain the response
 
 #### Configure envoy
 
-To expose the server with the Envoy API Gateway, you can [create an endpoint](../api-console/api-design/endpoints) on `/` which point to the `grpc-service` microservice.
+To expose the server with the Envoy API Gateway, you can [create an endpoint](/development_suite/api-console/api-design/endpoints.md) on `/` which point to the `grpc-service` microservice.
 
 :::info
 It is possible to expose a specific endpoint pointing to the correct microservice.  
@@ -78,7 +78,7 @@ To contact the API, the client must have the `.proto` file loaded. Otherwise, th
 To expose an endpoint, remember that it is created from the method called. So, if we call the method `yages.Echo.Ping`, the path colled will be `/yages.Echo/Ping`. It is possible from the Console to expose an endpoint with basePath set to `/yages.Echo` and the rewritePath to `/yages.Echo`, and it works.
 :::
 
-gRPC is based on http2, so the cluster created in envoy must use http2. To configure so, from the advanced section in design area, open the `api-gateway-envoy/clusters.yaml` file. This file can overwrite the clusters configuration (see [here](../api-console/advanced-section/api-gateway-envoy/extensions#clusters) the docs).
+gRPC is based on http2, so the cluster created in envoy must use http2. To configure so, from the advanced section in design area, open the `api-gateway-envoy/clusters.yaml` file. This file can overwrite the clusters configuration (see [here](/development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#clusters) the docs).
 The `http2_protocol_options` is the option necessary to make it works correctly, so you should add the following configuration:
 
 ```yaml

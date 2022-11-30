@@ -4,15 +4,15 @@ title: ER Schema Configuration
 sidebar_label: ER Schema
 ---
 
-In this document we guide you through the configuration of the ER Schema, one of the configuration files required by the [Single View Creator](../architecture.md#single-view-creator-svc), [Real Time Updater](../architecture.md#real-time-updater-rtu) and [Single View Trigger](../architecture.md#single-view-trigger-svt) in a low-code situation.
+In this document we guide you through the configuration of the ER Schema, one of the configuration files required by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc), [Real Time Updater](/fast_data/architecture.md#real-time-updater-rtu) and [Single View Trigger](/fast_data/architecture.md#single-view-trigger-svt) in a low-code situation.
 
 :::tip
-If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](../../tutorial/fast_data/fast_data_low_code_tutorial)
+If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx)
 :::
 
 ## Overview
 
-The ER Schema or Entity-Relation Schema defines the relationships between the collections of a [System of Records](../the_basics.md#system-of-records-sor).
+The ER Schema or Entity-Relation Schema defines the relationships between the collections of a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
 
 ## Syntax
 

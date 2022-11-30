@@ -4,7 +4,7 @@ title: Marketplace Management
 sidebar_label: Marketplace Management
 ---
 
-Once you successfully followed the [steps](./application_creation.md) to create the Dev Portal application, you can start adding all the information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all the information characterizing your organization at the endpoint `/back-office/`. 
 
 Through the **Backoffice** section of the Dev Portal, you can edit and manage all the data that will be shown in the Dev Portal Marketplace.
 

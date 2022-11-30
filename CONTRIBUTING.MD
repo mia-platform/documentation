@@ -4,9 +4,11 @@ Docusaurus use **Markdown**, check out the [official docs](https://v2.docusaurus
 
 To contribute to the Mia-Platform docs:
 
-1. Clone git@git.tools.mia-platform.eu:platform/documentations.git;
+1. Read the contributing guidelines [here](#contributing-guidelines).
 
-2. Create a branch named according to these rules: `activity/task-topic`
+2. Clone git@git.tools.mia-platform.eu:platform/documentations.git;
+
+3. Create a branch named according to these rules: `activity/task-topic`
     - **activity** can be:
       - `edit` if you are changing one or more pages.  
       - `new` if you are working on a new page or section related to features already in production.  
@@ -23,11 +25,34 @@ To contribute to the Mia-Platform docs:
 
     > :warning: **It's strictly important to follow branch name conventions**
 
-3. Share your knowledge following the [style guidelines](./styleguide.md)!
+4. Share your knowledge following the [style guidelines](./styleguide.md)!
 
-4. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
+5. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
 
-5. Submit a merge request (name it according to the rule: `Activity (task): topic`), then post the MR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+6. Submit a merge request (name it according to the rule: `Activity (task): topic`), then post the MR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+
+## Contributing guidelines
+
+### Internal Links
+Linking a resource to another one inside the documentation is done using the following rules:
+
+ * Each link must be relative to the /docs/ of the project (including subfolders).
+   * e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
+ * The extension it's mandatory and must be `.md` or `.mdx`.
+ * The link can include an anchor to a specific section of the page.
+   * e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
+   * e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
+ * Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.  
+
+An automatic check is performed on each push to verify that the links are correct.
+The check is performed to each file in the /docs/ folder excluding the folder managed by the **doc aggregator**:
+ * docs/runtime_suite
+ * docs/runtime_suite_examples
+ * docs/runtime_suite_templates
+ * docs/runtime_suite_libraries
+ * docs/runtime_suite_tools
+ * docs/business_suite
+
 
 ## Repository structure
 

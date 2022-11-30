@@ -6,12 +6,12 @@ sidebar_label: Create Replicas
 ## What needs the Replicas for
 
 Replicas allow you to set the number of replicas for your services in purpose to autoscaling them **CPU usage-based**.  
-The feature is thought to generate the replicas **only for the productions environments** where the [Environment Variable](../.-/../../set-up-infrastructure/env-var) `ENABLE_HPA` is set to `true`.
+The feature is thought to generate the replicas **only for the productions environments** where the [Environment Variable](/development_suite/set-up-infrastructure/env-var-intro.md) `ENABLE_HPA` is set to `true`.
 
 :::caution
 Based on your release pipeline, the `ENABLE_HPA` environment variable could need the environment prefix (e.g. `PROD_`) or not.  
 
-The replicas configured will not work properly if the [static replicas](./services#microservice-configuration) is set to 0.
+The replicas configured will not work properly if the [static replicas](/development_suite/api-console/api-design/services.md#microservice-configuration) is set to 0.
 :::
 
 :::info
@@ -25,7 +25,7 @@ This process is entrusted to the [Horizontal Pod Autoscaler](https://kubernetes.
 Upon accessing the Console Design area and selecting the *Replicas* section in the left menu, you'll see the list of your services for which you can set Replicas.
 
 :::caution
-For supporting Replicas a service must have both the [minimum and the maximum of CPU limit set](microservices-cpu-resources.md)
+For supporting Replicas a service must have both the [minimum and the maximum of CPU limit set](/development_suite/api-console/api-design/microservices-cpu-resources.md)
 :::
 
 In the table rows, for each service, you can directly change the following parameters:
@@ -50,7 +50,7 @@ You can also scale services manually writing yourself the configuration.
 You have to enable the horizontal auto-scaling of the services managed by the Console, setting the environment variable `ENABLE_HPA` to `true` for the production environments. Then create the hpa files in configuration folder, inside the `configurations/{environment_name}` directory. The horizontal auto-scaling is entrusted to  [HPA Kubernetes resource](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
 
 :::info
-Check out [this page](../advanced-section/dev-console-config/replicas) for manually set the number of replicas of a Platform Services  
+Check out [this page](/development_suite/api-console/advanced-section/dev-console-config/replicas.md) for manually set the number of replicas of a Platform Services  
 :::
 
 The resource that is taken into consideration is the use of CPU. If the value ​​exceeds the threshold expressed as a percentage, the system will create a new instance of the pod to divide the load. The instance will come deleted after a period of time when all available instances remain below the set threshold.

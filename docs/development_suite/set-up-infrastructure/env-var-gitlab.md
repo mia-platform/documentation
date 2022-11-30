@@ -21,7 +21,7 @@ Prefixes can be of two types:
 * **Differentiated**: according to the environment
 
 When a project is created it is associated to a specific Company.
-As described in the [Company section](create-project#create-a-company) a project associated to a specific company will inherit the environment information. For this reason, a differentiated environment variable must have the prefix associated to the `ID` of the specific environment. 
+As described in the [Company section](/development_suite/set-up-infrastructure/create-project.mdx#create-a-company) a project associated to a specific company will inherit the environment information. For this reason, a differentiated environment variable must have the prefix associated to the `ID` of the specific environment. 
 It is possible to find it in the table of the Envs area.
 
 ![envs-table](img/runtime-table-envs.png)

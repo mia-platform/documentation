@@ -8,8 +8,8 @@ The Marketplace can be populated with components belonging to one of the followi
 
 * **plugins**: services for which users have no access to the actual code. Users will still be able to download their Docker image, configure and use them within their projects.  
 * **templates** and **examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
-* **applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](../applications/mia_applications) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
-* **proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](../../development_suite/api-console/api-design/proxies).  
+* **applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
+* **proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
 
 
 :::note
@@ -278,7 +278,7 @@ Here below are listed all the properties that must be provided for each collecti
   - **encryptionSearchable**: a brief description regarding the reason for the encryption
   
 :::info
-You can find more information regarding **sensitivity** and **encryption** properties in the [**gdpr** section](../../development_suite/api-console/api-design/gdpr) of the documentation.
+You can find more information regarding **sensitivity** and **encryption** properties in the [**gdpr** section](/development_suite/api-console/api-design/gdpr.md) of the documentation.
 :::
 
 - **indexes**: array of indexes used in your collection.  
@@ -320,7 +320,7 @@ Alternatively, you can choose among the available labels of a Marketplace compon
 - beta
 - stable
 
-For more information regarding release stages, take a look at the [components lifecycle](../overview_marketplace#marketplace-component-lifecycle) section.
+For more information regarding release stages, take a look at the [components lifecycle](/marketplace/overview_marketplace.md#marketplace-component-lifecycle) section.
 
 ## Examples
 

@@ -3,11 +3,11 @@ id: custom_microservice_get_started
 title: Create Microservice from Template
 sidebar_label: Create Microservice from Template
 ---
-Following we will see how to create a Microservice using the [Console](./../../overview-dev-suite).
+Following we will see how to create a Microservice using the [Console](/development_suite/overview-dev-suite.md).
 
 :::info
 The following guide is generic, so you can follow it to create any type of Microservice from template.  
-You can read [here](../../../development_suite/api-console/api-design/plugin_baas_4) a dedicated guide about creating from the **Node.js Template**
+You can read [here](/development_suite/api-console/api-design/plugin_baas_4.md) a dedicated guide about creating from the **Node.js Template**
 :::
 
 ### 1. Microservice creation
@@ -73,7 +73,7 @@ Now your Microservice should be _up and running_, you can check it calling the *
 The `status` property should be *OK*.
 
 :::note
-Check out the [Microservices vademecum](../../../guidelines/microservice_vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for further details.
+Check out the [Microservices vademecum](/guidelines/microservice_vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for further details.
 :::
 
-Trough the [Log & monitoring section](../../monitoring/monitoring.md) you can monitor the status of the related Microservice container
+Trough the [Log & monitoring section](/development_suite/monitoring/monitoring.md) you can monitor the status of the related Microservice container
