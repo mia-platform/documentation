@@ -10,11 +10,11 @@ import Mermaid from "./../../../../src/components/Mermaid";
 
 Role Based Access Control (RBAC) is an authorization mechanism built on top of user Roles useful to decouple actions that user can perform (generally known as _permissions_) and their higher-level Role inside an information system.
 RBAC allows you to define your custom permissions, group them by [Roles](#roles) and then assign those Roles to your users (or even groups of users).
-Therefore, enabling RBAC in Console allows you to empower the level of your [Console permission management](../../../development_suite/console-levels-and-permission-management).
+Therefore, enabling RBAC in Console allows you to empower the level of your [Console permission management](/development_suite/console-levels-and-permission-management.md).
 
 Taking aside the security implications that adopting RBAC provides to your solution, one of the most important benefits (in comparison to a simplest ACL mechanism) is the governance capabilities it provides to your system administrators when dealing with what users using your platform may or may not be allowed to do.
 
-Leveraging Mia-Platform already existing [authentication and authorization solutions](../../../development_suite/set-up-infrastructure/authorization-flow) RBAC is made available to your projects in the Console through a dedicated UI; all you need to do is head to the RBAC section (in the Design area) and enable it for your services.
+Leveraging Mia-Platform already existing [authentication and authorization solutions](/development_suite/set-up-infrastructure/authorization-flow.md) RBAC is made available to your projects in the Console through a dedicated UI; all you need to do is head to the RBAC section (in the Design area) and enable it for your services.
 
 In this page you can find further details on how RBAC works and how to properly configure it in your project.
 
@@ -59,7 +59,7 @@ Once you had written your policies you can test them using the **Test** button.
 We strongly suggest you to test your policies, you may notice that if you have written some tests you won't be able to save your changes until your tests are passed.
 :::
 
-You can find more information about [writing your own policies here](./rbac_policies).
+You can find more information about [writing your own policies here](/development_suite/api-console/api-design/rbac_policies.md).
 
 ### Manual Routes Tab
 
@@ -213,7 +213,7 @@ We succeed in obtaining the following object representing a mongo query
 For some of your APIs you may need to manipulate data, based on the permissions of the requesting user, before sending it to the final target. This is the case in which we talk about response filtering.  
 Whenever this filtering is performed on the results obtained by a HTTP request, we talk about response filtering on response.
 RBAC service allows you to manipulate the response body directly in a policy.  
-As shown in the [RBAC policies](../api-design/rbac_policies.md#policies-input-data) section, your policies will be provided with the original response body, allowing you to manipulate it.  
+As shown in the [RBAC policies](/development_suite/api-console/api-design/rbac_policies.md#policies-input-data) section, your policies will be provided with the original response body, allowing you to manipulate it.  
 
 After the policy is written, you need to register it in the [api configuration](https://rond-authz.io/docs/configuration#configuration-files) or in the [**Manual Routes** section](#manual-routes-tab). 
 

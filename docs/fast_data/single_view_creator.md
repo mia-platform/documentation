@@ -14,14 +14,14 @@ To start configuring your own Single View Creator, you have three options:
 * Start from the *Single View Creator Plugin*
 * Start from the *Single View Creator Template*
 
-The first option uses the Low Code configuration, the second and third options use the manual configuration. More information about the differences between Low Code and manual configurations can be found [here](./no_code_overview.md).
+The first option uses the Low Code configuration, the second and third options use the manual configuration. More information about the differences between Low Code and manual configurations can be found [here](/fast_data/no_code_overview.md).
 
 ### Single View Creator Configurations
 
-To know more about Single View Creator service Configurations you can go [here](./configuration/single_view_creator/common.md)
+To know more about Single View Creator service Configurations you can go [here](/fast_data/configuration/single_view_creator/common.md)
 
 When a Single View Creator consumes events regarding a Single View to update, he needs to perform an aggregation to be able to upsert the single view correctly. 
 
 This aggregation can be implemented in two modes:
-- [Manual](./configuration/single_view_creator/manual.md): recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
-- [Low Code](./configuration/single_view_creator/low_code.md): recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.
+- [Manual](/fast_data/configuration/single_view_creator/manual.md): recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
+- [Low Code](/fast_data/configuration/single_view_creator/low_code.md): recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.

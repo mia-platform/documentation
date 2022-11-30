@@ -4,7 +4,7 @@ title: Single Views Configuration
 sidebar_label: Single Views
 ---
 
-In this document we guide you through the configuration of [Single Views](../the_basics.md#single-view-sv) directly in the Console.
+In this document we guide you through the configuration of [Single Views](/fast_data/the_basics.md#single-view-sv) directly in the Console.
 
 ## Create the Single View
 
@@ -16,17 +16,17 @@ Once created, you will be redirected to the Single View detail page.
 
 ## Single View Data Model
 
-Single views collections are created on the *CRUD Service*, so we add all the [default fields](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) and indexes required for the CRUD collections in creation.
+Single views collections are created on the *CRUD Service*, so we add all the [default fields](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
 
 To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card.
 
 ![Fast Data Single View Fields](../img/single-view-detail-fields.png)
 
-The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](../../development_suite/api-console/api-design/crud_advanced#create-a-new-crud). To know more about indexes [click here](../../runtime_suite/crud-service/overview_and_usage#indexes).
+The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](/development_suite/api-console/api-design/crud_advanced.md#create-a-new-crud). To know more about indexes [click here](/runtime_suite/crud-service/overview_and_usage.md#indexes).
 
 ## Create the Single View Creator service
 
-You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](../inputs_and_outputs.md#projection-change) event occurs.
+You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change) event occurs.
 
 A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Records through Projection Changes.
 
@@ -62,10 +62,10 @@ If you already have Single View Creator services already linked, you can link mo
 ![Fast Data link Single View Creator](../img/single-view-detail-add-another-svc.png)
 
 :::info
-In the [Marketplace](/docs/marketplace/overview_marketplace), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](./single_view_creator/common.md).
+In the [Marketplace](/marketplace/overview_marketplace.md), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](/fast_data/configuration/single_view_creator/common.md).
 :::
 
-Once a Single View Creator is linked, if it's configured as Low Code, then its [Low Code configuration](./single_view_creator/low_code) files are shown in a dedicated card. Click on the Edit button to edit them.
+Once a Single View Creator is linked, if it's configured as Low Code, then its [Low Code configuration](/fast_data/configuration/single_view_creator/low_code.md) files are shown in a dedicated card. Click on the Edit button to edit them.
 
 ![Fast Data edit Low Code configuration](../img/single-view-detail-edit-configuration.png)
 
@@ -79,7 +79,7 @@ We recommend testing configurations with unit tests using the [Fast Data Low Cod
 Click on Save to save the configuration, otherwise click on Cancel to discard changes.
 
 :::note
-When you save the Low Code configuration, the related Single View Creator config maps are updated locally with the changes. No automatic commit is going to be made. To persist the changes on Git, like for any other changes on the Console, you need to [Save the branch configuration](/docs/development_suite/api-console/api-design/design-overview#how-to-save-your-configuration). 
+When you save the Low Code configuration, the related Single View Creator config maps are updated locally with the changes. No automatic commit is going to be made. To persist the changes on Git, like for any other changes on the Console, you need to [Save the branch configuration](/development_suite/api-console/api-design/overview.md#how-to-save-your-configuration). 
 :::
 
 ## Link projections to the Single View
@@ -90,7 +90,7 @@ In the detail page of the Single View, click on the `Strategies` tab.
 
 Here it's shown a table in which you have to specify the all projections that will be read to get the data that the Single View needs (remember that a Single View is an aggregation of data from different projections).
 
-To link a strategy to your Single View, once you entered the [`Strategies`](strategies) tab, you can click on the `Add link to strategy` button, which will let you select:
+To link a strategy to your Single View, once you entered the [`Strategies`](/fast_data/configuration/strategies.md) tab, you can click on the `Add link to strategy` button, which will let you select:
 
 1. A System and a Projection from said system
 2. Whether the strategy type is `low code` or `manual`
@@ -127,9 +127,9 @@ In the table, you have the option to turn a manual strategy into a low code stra
 
 You can expose the Single View through the crud-service without writing any code, or you can always create a custom service to access to MongoDB if you have special needs.
 
-You could [check here](../../development_suite/api-console/api-design/endpoints) how to expose an endpoint of the CRUD service outside your project through the Console.
+You could [check here](/development_suite/api-console/api-design/endpoints.md) how to expose an endpoint of the CRUD service outside your project through the Console.
 
-[Click here](../../runtime_suite/crud-service/overview_and_usage) if you want the usage documentation for the CRUD.
+[Click here](/runtime_suite/crud-service/overview_and_usage.md) if you want the usage documentation for the CRUD.
 
 ## How to delete a Single View
 
@@ -179,7 +179,7 @@ To prevent this problem, a new infrastructure has been designed:
 The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
 This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.
 
-To understand how to configure both services click on them: [Real-Time Updater](./realtime_updater/common.md#single-view-patch) and [Single View Creator](./single_view_creator/common.md#single-view-patch). 
+To understand how to configure both services click on them: [Real-Time Updater](/fast_data/configuration/realtime_updater/common.md#single-view-patch) and [Single View Creator](/fast_data/configuration/single_view_creator/common.md#single-view-patch). 
 
 ## Technical limitation
 

@@ -6,7 +6,7 @@ sidebar_label: Create API Keys
 
 ## What is an API Key
 
-An API key allows you to protect your endpoints. You can create API keys for different clients and [manage the security of your endpoints](endpoints#manage-the-security-of-your-endpoints) to allow call them only passing an API Key belong to specific clients.
+An API key allows you to protect your endpoints. You can create API keys for different clients and [manage the security of your endpoints](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) to allow call them only passing an API Key belong to specific clients.
 
 This feature is also useful to identify the client that has called the endpoint.
 
@@ -44,5 +44,5 @@ curl --request GET
 ```
 
 :::info
-Check out the [manage the security of your endpoints section](endpoints#manage-the-security-of-your-endpoints) to know in detail how to write the user group expression
+Check out the [manage the security of your endpoints section](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) to know in detail how to write the user group expression
 :::

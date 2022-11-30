@@ -23,7 +23,7 @@ The two services that will be generated with this application use the docker ima
 * [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter)
 
 :::caution
-If you are planning to use [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator) as a monitoring system for your project, you can automatically generate and configure the `servicemonitor.yml` files for all the monitoring services using their [Metrics card](../../development_suite/api-console/api-design/microservice-monitoring.md).
+If you are planning to use [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator) as a monitoring system for your project, you can automatically generate and configure the `servicemonitor.yml` files for all the monitoring services using their [Metrics card](/development_suite/api-console/api-design/microservice-monitoring.md).
 :::
 
 ## Grafana Dashboards Setup
@@ -32,12 +32,12 @@ We assume you already have Grafana up and running, and you are familiar with its
 
 There are three Dashboards ready to use:
 
-1. [Consumer Groups](./dashboards/consumer_groups.md)
-2. [Projection Changes](./dashboards/projection_changes.md)
-3. [Single Views](./dashboards/single_views.md)
+1. [Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md)
+2. [Projection Changes](/fast_data/monitoring/dashboards/projection_changes.md)
+3. [Single Views](/fast_data/monitoring/dashboards/single_views.md)
 
 More details on what information they provide in their specific pages.
 
 ## Putting It All Together
 
-Once your Dashboards are ready, it can be very handy to view them directly inside the console. To do that, you can visit the `Dashboards` section of your project and add the Dashboards you just created to it, as explained [here](../../development_suite/monitoring/dashboard.md#add-a-dashboard).
+Once your Dashboards are ready, it can be very handy to view them directly inside the console. To do that, you can visit the `Dashboards` section of your project and add the Dashboards you just created to it, as explained [here](/development_suite/monitoring/dashboard.md#add-a-dashboard).

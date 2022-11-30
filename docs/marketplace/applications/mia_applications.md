@@ -5,17 +5,17 @@ sidebar_label: Mia-Platform Applications
 ---
 An **Application** represents a useful way to instantiate and configure, through a unified experience, a bundle of resources: 
 
-- [**Microservices**](../../development_suite/api-console/api-design/services) (Plugins, Examples and Templates)
-- [**Endpoints**](../../development_suite/api-console/api-design/endpoints)
-- [**CRUD Collections**](../../development_suite/api-console/api-design/crud_advanced)
-- [**Public Variables**](../../development_suite/api-console/api-design/public_variables)
+- [**Microservices**](/development_suite/api-console/api-design/services.md) (Plugins, Examples and Templates)
+- [**Endpoints**](/development_suite/api-console/api-design/endpoints.md)
+- [**CRUD Collections**](/development_suite/api-console/api-design/crud_advanced.md)
+- [**Public Variables**](/development_suite/api-console/api-design/public_variables.md)
 
 :::info
 You can easily access all the available applications from the Design area of the console: 
 - move to the applications section;
 - click `Create New Application`.
 
-You will be redirected to the [Marketplace](../overview_marketplace), already filtered by **_Application_** type.
+You will be redirected to the [Marketplace](/marketplace/overview_marketplace.md), already filtered by **_Application_** type.
 :::
 
 ## Creating an Application

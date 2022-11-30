@@ -8,7 +8,7 @@ In an enterprise environment, to encrypt SSL connections, there could be a set o
 By following this guide you'll be able to provide one or more trusted certificates in PEM format in a single file for the **core** services managed by the Console.
 
 :::info
-If you want to add a custom CA certificate to a custom service you should visit [this page](../../api-design/services.md#provide-a-ca-certificate-to-a-custom-service).
+If you want to add a custom CA certificate to a custom service you should visit [this page](/development_suite/api-console/api-design/services.md#provide-a-ca-certificate-to-a-custom-service).
 :::
 
 To configure a custom CA certificate for `cms-backend` core service, for example, you might:

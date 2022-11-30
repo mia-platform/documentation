@@ -17,7 +17,7 @@ Below are listed some required routes that each microservice has to expose.
 
 `/documentation/json`
 
-Each microservice must expose the Swagger documentation route. For further information about Swagger, see the [Swagger Aggregator page](../runtime_suite/swagger-aggregator/overview).
+Each microservice must expose the Swagger documentation route. For further information about Swagger, see the [Swagger Aggregator page](/runtime_suite/swagger-aggregator/overview.md).
 
 ### Health routes ###
 
@@ -52,7 +52,7 @@ When this occurs, Kubernetes avoids sending to the pod new incoming TCP connecti
 The purpose of this rout is to check the status of all the microservice dependencies.
 
 :::caution
-This route is not used by Kubernetes, but **exclusively** by the [**Doctor service**](../runtime_suite/doctor-service/configuration).
+This route is not used by Kubernetes, but **exclusively** by the [**Doctor service**](/runtime_suite/doctor-service/configuration.md).
 :::
 
 If your application depends on:

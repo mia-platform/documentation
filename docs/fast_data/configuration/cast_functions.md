@@ -4,7 +4,7 @@ title: Cast Functions Configuration
 sidebar_label: Cast Functions
 ---
 
-In this document we guide you through the configuration of [Cast Functions](../the_basics.md#cast-function) directly in the Console.
+In this document we guide you through the configuration of [Cast Functions](/fast_data/the_basics.md#cast-function) directly in the Console.
 
 ## Default Cast Functions
 
@@ -54,7 +54,7 @@ As you can see in the example above, the cast function accepts three arguments:
 - **fieldName**: the name of the field associated with the value (e.g.: *restaurantName*)
 - **logger**: the logger you can use to log in your function (an instance of the [Pino logger](https://github.com/pinojs/pino)).
 
-To know the technical limitation you have in your cast function, [read here](./cast_functions#technical-limitation)
+To know the technical limitation you have in your cast function, [read here](#technical-limitation)
 
 ## How and when are the Default Cast Functions updated?
 

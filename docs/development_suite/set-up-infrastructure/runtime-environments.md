@@ -6,7 +6,7 @@ sidebar_label: Environments Section
 
 Runtime environments are the set of computer systems, servers, networks, storage, etc. where the applications are released and executed. Nowadays, it is common to have multiple runtime environments with different connotations - for example, one dedicated to production and one for testing bugs or new features. The Console is built with this concept in mind, and thus provides support and tools to easily manage multiple environments.
 
-You can deploy the same codebase to different environments obtaining different behaviors based on some configurations like via [environment variables](./env-var). Another notable difference is that different environments may differ in hardware resource usage, and it is therefore possible to maintain more resources (or the more performant ones)for production environments and not for testing environments.
+You can deploy the same codebase to different environments obtaining different behaviors based on some configurations like via [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md). Another notable difference is that different environments may differ in hardware resource usage, and it is therefore possible to maintain more resources (or the more performant ones)for production environments and not for testing environments.
 
 The Console handles environments in a project-specific manner. When creating a new project, it will inherit the runtime environments configured in the company it belongs to. After creating a project it is possible to add, edit and remove them for the specific project. Each runtime environment runs in a dedicated Kubernetes namespace in the configured cluster.
 
@@ -33,7 +33,7 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 * **Production environment**: a toggle that specifies whether or not the runtime environment is a production environment;
 * **Environment ID** (*required*): the human-readable ID of the runtime environment;
 * **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
-* **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](../clusters-management/clusters-management.md) first);
+* **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](/development_suite/clusters-management/clusters-management.md) first);
 * **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Company ID and Environment ID);
 * **Project URL**: the URL (consisting of protocol + host) on which the project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
 * **CMS URL**: the URL (consisting of protocol + host) on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
@@ -48,7 +48,7 @@ If the Console service account has proper permissions, the namespace on the Kube
 :::
 
 :::warning
-After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](add-environment.md) for more information.
+After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](/development_suite/set-up-infrastructure/add-environment.md) for more information.
 :::
 
 ### What happens behind the scenes?
@@ -70,7 +70,7 @@ If there are no errors, the creation modal will display a successful feedback co
 :::info
 If the Kubernetes cluster has not been properly prepared (and consequently does not have a reference service account that can be associated with the new namespace), steps 4-7 are skipped, and the successful feedback is shown to the user without credentials. The user will then **not** be able to deploy without further actions on the cluster.
 
-[Here](../../development_suite/clusters-management#cluster-preparation) you can find more information on how to setup your cluster.
+[Here](/development_suite/clusters-management/clusters-management.md#cluster-preparation) you can find more information on how to setup your cluster.
 :::
 
 The action of creating the environment will instead result in an error if problems occur in steps 1-3. In case of issues in steps 4-7, the modal will still show a successful feedback, along with an error warning prompting the user to contact their cluster administrator.
@@ -105,14 +105,14 @@ After entering the name in the input field and clicking "Delete," a loading and 
 As mentioned in the warning displayed in the deletion modal, the runtime environment deletion implies the deletion of the related cluster namespace and all resources configured within the environment.
 :::
 :::warning
-After you have deleted the runtime environment from the Console, you are tasked with properly cleanup your project on your Git provider from the resources and pipelines needed for that environment. Click [here](remove-environment.md) for more information.
+After you have deleted the runtime environment from the Console, you are tasked with properly cleanup your project on your Git provider from the resources and pipelines needed for that environment. Click [here](/development_suite/set-up-infrastructure/remove-environment.md) for more information.
 :::
 
 ## Manage Runtime Environments via CMS
 
 In this section, you will learn how to manage your runtime environments using the CMS. In case you don't have access to it, please contact your Mia-Platform referent.
 
-Using the CMS, it is possible to create, update, and delete runtime environments. More about the creation process can be found [here](./create-project.mdx#step-3-environments), while information about editing from the CMS can be found [here](./create-project.mdx#step-6-customize-the-project-with-additional-information-optional).
+Using the CMS, it is possible to create, update, and delete runtime environments. More about the creation process can be found [here](/development_suite/set-up-infrastructure/create-project.mdx#step-3-environments), while information about editing from the CMS can be found [here](/development_suite/set-up-infrastructure/create-project.mdx#step-6-customize-the-project-with-additional-information-optional).
 
 In order to edit the information available in the Runtime Environments table (you can edit environment properties, add new links or change the current ones), you need to access your `Project` properties. There, you will find the objects `Environments` and `links`, whose schema is described below. You only need to edit them through the dedicated drawer or modal and save your changes.
 

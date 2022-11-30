@@ -48,7 +48,7 @@ If you already defined a variable with the desired value in the Envs or in the P
 
 The ses-mail-notification-service will be responsible for sending the emails once requested by another helper service, the **Function Service**.
 
-To have further details regarding the **SES mail notification service configuration** please refer to the official [documentation](../runtime_suite/ses-mail-notification-service/configuration.md).
+To have further details regarding the **SES mail notification service configuration** please refer to the official [documentation](/runtime_suite/ses-mail-notification-service/configuration.md).
 
 ## Create the Function Service 
 This service allows users to define custom functions directly from the console and expose them to a specific endpoint. 
@@ -167,7 +167,7 @@ However, we would like to focus the attention on a few configuration settings th
   
 - **USE_FILTERS**: If you decide to use this link to redirect to the backoffice page, you can set this parameter to `true` to use a **BUTTON_LINK_WITH_FILTERS**. This will allow the recipients to land on the backoffice page with filters regarding the request already applied. You can also edit the content of BUTTON_LINK_WITH_FILTERS to apply your own filters.
 
-You can have further details regarding the **function service configuration** at the official [documentation](../runtime_suite/function-service/configuration.md).
+You can have further details regarding the **function service configuration** at the official [documentation](/runtime_suite/function-service/configuration.md).
 
 ## Create the Decorator 
   

@@ -19,7 +19,7 @@ In particular, you will:
 
 ## Prerequisites  
   
-Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](../../fast_data/architecture.md), including [Projections](../../fast_data/configuration/projections.md), [Single View](../../fast_data/configuration/single_views.md), and Kafka (including producers and consumers).
+Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](/fast_data/architecture.md), including [Projections](/fast_data/configuration/projections.md), [Single View](/fast_data/configuration/single_views.md), and Kafka (including producers and consumers).
 For the technical part of this tutorial, an up-and-running Kafka cluster is required.
 
 ## Projections
@@ -130,7 +130,7 @@ Now we need to configure all the parameters of the microservice. Here is an exam
 - **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers 
 - **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
 
-There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Real-Time Updater](../../fast_data/configuration/realtime_updater/common.md).
+There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater/common.md).
 
 #### Microservice Variables
 After the basic configuration of the microservice, we need to configure two configMaps: one is the ER Schema, and the other is the Projection Changes Schema.
@@ -262,7 +262,7 @@ Remember that the endpoint connected to the Fast Data will create just the read 
 Now it's time to save and deploy the new configuration.
 ![Deploy the configuration](img/10-deploy.png)
 
-After that, we can try to send message to the Kafka Topic created in the previous steps, and we can see the data stored in the Projection using the APIs available in the [API Documentations](../../development_suite/api-portal/api-documentations)
+After that, we can try to send message to the Kafka Topic created in the previous steps, and we can see the data stored in the Projection using the APIs available in the [API Documentations](/development_suite/api-portal/api-documentations.md)
 
 ## Single View
 The Single View is an architectural object that it's used to store the aggregate data from the Projections. The goal of the Single View is to store the data already aggregated and ready to use from the Projection.
@@ -362,9 +362,9 @@ The config's condition is represented by:
   * registry_id (from the Single View document): registry_id (obtained from the Projection Change document)
 
 #### ER-Schema
-The ER-Schema is the same one we used in the Projection Microservice. We can duplicate the configMap, or we can use a [Shared ConfigMap](../../development_suite/api-console/api-design/services#shared-configmaps).
+The ER-Schema is the same one we used in the Projection Microservice. We can duplicate the configMap, or we can use a [Shared ConfigMap](/development_suite/api-console/api-design/services.md#shared-configmaps).
 
-To simplify, here' the same ER-Schema used in the [Projection ER-Schema](../../tutorial/fast_data/fast_data_low_code_tutorial#er-schema):
+To simplify, here' the same ER-Schema used in the [Projection ER-Schema](#er-schema):
 ```json {4,7,9,13,15} showLineNumbers
 {
   "version": "1.0.0",
@@ -467,5 +467,5 @@ Now we have the Projections, the Single View and each configuration ready to be 
 
 ![Expose Single View](img/32-expose-single-view.png)
 
-Now we can Commit & Generate our changes, deploy, and try our [Fast Data](../../fast_data/architecture.md) sending data from the Kafka Topic, and see the result in the Single View using the endpoints.
+Now we can Commit & Generate our changes, deploy, and try our [Fast Data](/fast_data/architecture.md) sending data from the Kafka Topic, and see the result in the Single View using the endpoints.
 

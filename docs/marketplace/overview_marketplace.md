@@ -11,15 +11,15 @@ In the Marketplace, you will be able to choose from a set of components (mostly 
 
 Marketplace components you can start from include:
 
-* **[Plugin](../runtime_suite/mia-platform-plugins.md)**: a ready-to-use Microservice.  
+* **[Plugin](/runtime_suite/mia-platform-plugins.md)**: a ready-to-use Microservice.  
 
-* **[Template](./templates/mia_templates.md)**: a base repository from which you can start to create a new Microservice.  
+* **[Template](/marketplace/templates/mia_templates.md)**: a base repository from which you can start to create a new Microservice.  
 
-* **[Example](./examples/mia_examples.md)**: a specific use-case, a ready-to-use model to create your Microservice.
+* **[Example](/marketplace/examples/mia_examples.md)**: a specific use-case, a ready-to-use model to create your Microservice.
 
-* **[Application](./applications/mia_applications.md)**: a bundle of resources including Plugins, Templates, and Examples, but also Endpoints, Collections, and Public Variables.
+* **[Application](/marketplace/applications/mia_applications.md)**: a bundle of resources including Plugins, Templates, and Examples, but also Endpoints, Collections, and Public Variables.
 
-* **Docker Image Name**: an existing Docker image of a Microservice (check out the [Create a service](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) section for further information).
+* **Docker Image Name**: an existing Docker image of a Microservice (check out the [Create a service](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) section for further information).
 
 
 :::info
@@ -28,7 +28,7 @@ You can go deeper into the code of Templates and Examples by visiting the [Mia-P
 
 ### Explore the Marketplace
 
-You can access the Mia-Platform Marketplace from the *Design area* of the *Console*, either when you are [creating a new microservice](./../development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template) or creating a new application.
+You can access the Mia-Platform Marketplace from the *Design area* of the *Console*, either when you are [creating a new microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template) or creating a new application.
 
 :::note
 In the first case, you will be able to filter by one of the following component types: Plugins, Templates, and Examples. 

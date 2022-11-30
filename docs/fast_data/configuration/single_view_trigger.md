@@ -33,22 +33,22 @@ Since this service purpose is to lighten the workload of the Real-Time Updater, 
 
 The required ones are:
 
-- [MAP_TABLE](./realtime_updater/common.md#maptable-configurations)
-- [Kafka Projection Updates](./realtime_updater/common.md#kafka-projection-updates-configuration)
+- [MAP_TABLE](/fast_data/configuration/realtime_updater/common.md#maptable-configurations)
+- [Kafka Projection Updates](/fast_data/configuration/realtime_updater/common.md#kafka-projection-updates-configuration)
 
 If the projection changes have to be produced on Kafka, it will also need
 
-- [Kafka Projection Changes](./realtime_updater/common.md#kafka-projection-changes-configuration)
+- [Kafka Projection Changes](/fast_data/configuration/realtime_updater/common.md#kafka-projection-changes-configuration)
 
 In case the environment variable `USE_AUTOMATIC_STRATEGIES` is set to `true`, the following configurations will be needed:
 
-- [ER schema](./erSchema.md)
-- [Projection Changes Schema](./realtime_updater/common.md#projection-changes)
+- [ER schema](/fast_data/configuration/erSchema.md)
+- [Projection Changes Schema](/fast_data/configuration/realtime_updater/common.md#projection-changes)
 
 Otherwise, if you need extreme customization for your project, it's suggested to adopt the manual approach for strategies configuration. To do so, the environment variable `USE_AUTOMATIC_STRATEGIES` must be set to `false`.
 
 In this case the default mount path used for strategy configuration is: `/home/node/app/configurations/strategies`.
-In this folder you have all the generated [Strategies](./strategies.md) which you have defined in your GitLab project inside the `fast-data-files/strategies` directory.
+In this folder you have all the generated [Strategies](/fast_data/configuration/strategies.md) which you have defined in your GitLab project inside the `fast-data-files/strategies` directory.
 
 ### CA certs
 

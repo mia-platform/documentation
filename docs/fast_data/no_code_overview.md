@@ -27,24 +27,24 @@ In case the automation is not expressive enough for your use case, you can alway
 
 ## Step by step Low Code journey
 
-The Fast Data Low Code experience is basically composed by some steps with No Code approach, and some other steps with a Low Code approach. In order to understand the proper functioning of the system, it is important to go in deep with the [Fast Data overview](./what_is_fast_data.md) documentation.
+The Fast Data Low Code experience is basically composed by some steps with No Code approach, and some other steps with a Low Code approach. In order to understand the proper functioning of the system, it is important to go in deep with the [Fast Data overview](/fast_data//what_is_fast_data.md) documentation.
 
 ### Creating a System of Record (No Code)
 
-The creation of the System of Record is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Record that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](./configuration/realtime_updater/low_code.md) microservice.
+The creation of the System of Record is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Record that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](/fast_data//configuration/realtime_updater/low_code.md) microservice.
 
 #### ER Schema definition and other Configmaps (Low Code)
 
 The Real Time Updater Low Code needs some configurations:
 
-- [erSchema.json](./configuration/erSchema.md) configuration: useful to define the interconnection between projections
-- The [projectionChangeSchema.json](./configuration/realtime_updater/common.md#projection-changes): useful to the system to know which single view needs to be updated
+- [erSchema.json](/fast_data//configuration/erSchema.md) configuration: useful to define the interconnection between projections
+- The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater/common.md#projection-changes): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](./configuration/single_view_creator/low_code.md).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data//configuration/single_view_creator/low_code.md).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 
@@ -56,4 +56,4 @@ Also, in this case, it is needed to configure some Config Maps:
 
 #### Linking Strategies (No Code)
 
-The Fast Data No Code experience ends with the possibility to link a [strategy](./the_basics.md#strategies) to your single view. To do that, you need to go in the `strategies` section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.
+The Fast Data No Code experience ends with the possibility to link a [strategy](/fast_data/the_basics.md#strategies) to your single view. To do that, you need to go in the `strategies` section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.

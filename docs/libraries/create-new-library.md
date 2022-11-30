@@ -13,7 +13,7 @@ Your library should make the creation of  Microservices easier by providing func
 
 The library should include an HTTP client which exposes HTTP verbs (`get`, `post`, `patch`, etc).
 
-Moreover, to easily perform [**CRUD**](./../development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
+Moreover, to easily perform [**CRUD**](/development_suite/api-console/api-design/crud_advanced.md) operations it should also include a specific HTTP client to make relative requests, e.g:
 
 * `get(...)`: `GET` */collectionName*
 * `getById(...)`: `GET` */collectionName/{id}*
@@ -22,14 +22,14 @@ Moreover, to easily perform [**CRUD**](./../development_suite/api-console/api-de
 * `POST` */v2/items/bulks*
 * `DELETE` */v2/items/{id}*
 
-Calling any [**service**](./../development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of microservices. To do this, the developer who will use your library should be able to call a route with some options.
+Calling any [**service**](/development_suite/api-console/api-design/services.md) defined on the Platform project should be an important feature for the creation of microservices. To do this, the developer who will use your library should be able to call a route with some options.
 
 Check out the related [Mia service Node.js library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) for an example.
 
 ### Decorators
 
-The library should provide methods to declare and handle the [**Console decorators**](./../development_suite/api-console/api-design/decorators.md).  
-It should include methods for accessing the original HTTP request and response and change them, according to the [following rules](./../development_suite/api-console/api-design/decorators.md).
+The library should provide methods to declare and handle the [**Console decorators**](/development_suite/api-console/api-design/decorators.md).  
+It should include methods for accessing the original HTTP request and response and change them, according to the [following rules](/development_suite/api-console/api-design/decorators.md).
 
 Check out the [Mia service Node.js library decorators documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/decorators.md) for an example.
 
@@ -41,7 +41,7 @@ Check out the [Mia service Node.js library API documentation](https://github.com
 
 ### Logging
 
-The library should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](../getting_started/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](../development_suite/overview-dev-suite/#log-monitoring) and to use them to create custom dashboards.
+The library should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/getting_started/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
 
 Check out the [Mia service Node.js logging documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/logging.md) for an example.
 

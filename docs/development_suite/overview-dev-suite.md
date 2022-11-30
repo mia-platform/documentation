@@ -85,7 +85,7 @@ If no threshold has been set for all your microservices, the graphs will display
 At the bottom of the graphs, it is possible to see the current usage, which represents the usage of CPU or RAM when you loaded the homepage.
 
 :::info
-Limit and Request are calculated as the sum of all the containers limits and requests of each pod respectively. For this reason, [HPA](./api-console/api-design/replicas#what-needs-the-replicas-for) changes are taken into account.
+Limit and Request are calculated as the sum of all the containers limits and requests of each pod respectively. For this reason, [HPA](/development_suite/api-console/api-design/replicas.md#what-needs-the-replicas-for) changes are taken into account.
 :::
 
 #### Project links and Dashboards
@@ -93,7 +93,7 @@ Limit and Request are calculated as the sum of all the containers limits and req
 On the right side of each Environment card, you can find links specific to each environment, that can be configured to redirect you to your project Documentation, CMS and Application. In addition, in the Dashboards section - visible on the right side of each environmental card - you can find the names of the first dashboards created in your project. By clicking on one of them, you will be redirected to the corresponding dashboard in the Dashboards Area. You can also click on "View all" to see all of the available dashboards.
 
 :::info
-To learn how to configure the environment links of your project, visit [this page](./set-up-infrastructure/runtime-environments#environment-links-configuration).
+To learn how to configure the environment links of your project, visit [this page](/development_suite/set-up-infrastructure/runtime-environments.md#environment-links-configuration).
 :::
 
 Moreover, above the Environment cards, the Project Administrator (or Company Owner) can set up other useful links that make it easy for you to access other tools related to your project. These quick links will appear at the top of the Metrics Homepage as a carousel of small clickable cards.
@@ -134,7 +134,7 @@ The Environments & Private Variables section contains all the information about 
 
 You can deploy the same codebase to different runtime environments, obtaining different behaviors based on some environment configuration, like environment variables. Another notable change is the actual hardware on which the runtime environment runs, which is usually more performant for production environments.
   
-[More information about Environments & Private Variables here](../development_suite/set-up-infrastructure/runtime-environments.md)  
+[More information about Environments & Private Variables here](/development_suite/set-up-infrastructure/runtime-environments.md)  
   
 ### Design
 
@@ -142,7 +142,7 @@ The Design section allows you to modify the configuration and architecture of yo
 
 You will be able to define the limits of each microservice, the variables to be used, define the RBAC rules, and configure any other aspect related to the creation of your digital platform.
   
-[More information about Design here](./api-console/api-design/overview.md)  
+[More information about Design here](/development_suite/api-console/api-design/overview.md)  
   
 ### Deploy
 
@@ -152,7 +152,7 @@ This section allows you to follow in a simple and effective way a Continuous Dep
 
 The Deploy Area is divided into two Sections: Deploy and History. When a user enters the Deploy Area, they are automatically led to Deploy Section.
   
-[More information about Deploy here](./deploy/deploy.md)  
+[More information about Deploy here](/development_suite/deploy/deploy.md)  
   
 ### Dashboards
 
@@ -160,7 +160,7 @@ The Dashboard section allows you to keep the tools you use to monitor your proje
 
 From this section, you can add, edit, and delete dashboards. Each environment has its own dashboards, since you usually want to monitor a specific environment. Changes to dashboards in one environment will not affect dashboards in the other environments.
   
-[More information about Dashboards here](./monitoring/dashboard.md)  
+[More information about Dashboards here](/development_suite/monitoring/dashboard.md)  
   
 ### Runtime
 
@@ -170,7 +170,7 @@ The area has a subsection for each environment existing in the specific project.
 
 From here you are able to access individual pod logs. If necessary, you can manually select and restart pods.
   
-[More information about Runtime here](./monitoring/monitoring.md)  
+[More information about Runtime here](/development_suite/monitoring/monitoring.md)  
   
 ### Debug
 
@@ -179,7 +179,7 @@ At the first level you have the necessary information to understand the health o
 
 The real potential of the debug area is its connection with telepresence. Pressing the "Debug" button will in fact display a string to be pasted on your terminal that simulates the behavior of your microservice in a real context. Telepresence is an open source tool that lets you run a single service locally, while connecting that service to a remote Kubernetes cluster.
   
-[More information about Debug here](./debugging/telepresence.md)  
+[More information about Debug here](/development_suite/debugging/telepresence.md)  
   
 ### Documentation
 
@@ -189,7 +189,7 @@ The Documentation section in the Developer Console area exposes the Open API doc
   
 To test each API, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag.
   
-[More information about Documentation here](./api-portal/api-documentations.md)  
+[More information about Documentation here](/development_suite/api-portal/api-documentations.md)  
   
 ### Marketplace
 
@@ -205,4 +205,4 @@ You can start from a:
 * Application: a bundle of resources including Plugins, Templates and Examples, or resources like CRUD, Endpoints, etc;
 * Docker Image Name: an existing Docker image of a Microservice.
   
-[More information about Marketplace here](../marketplace/overview_marketplace.md)  
+[More information about Marketplace here](/marketplace/overview_marketplace.md)  

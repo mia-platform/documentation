@@ -125,7 +125,7 @@ To reach the endpoint at the specified URI, you will need to define its correspo
 
 The `dns_lookup_family` field needs to be set to `V4_ONLY` to force IPv4 connectivity to auth0, otherwise the fetch of the JWKS fails (see [this blogpost](https://farcaller.net/jwks-remote-fetch-is-failed/) for a more detailed explanation of the error).
 
-For more details concerning the filter properties, visit [this section](../../../../runtime_suite/envoy-api-gateway/filters.md).
+For more details concerning the filter properties, visit [this section](/runtime_suite/envoy-api-gateway/filters.md).
 
 ### LUA script
 

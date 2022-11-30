@@ -7,12 +7,12 @@ sidebar_label: Configure
 
 :::caution
 All Microservices of the platform as a default are internally exposed on the **80 port** with **hostname equal to the service name**.  
-So for example the [CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md) will be reachable at the url `http://crud-service`. This is applied to all microservices.
+So for example the [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) will be reachable at the url `http://crud-service`. This is applied to all microservices.
 :::
 
 In this section you can learn how to create and manage Microservices on Mia-Platform Console.
 
-You can create a Microservice from the Marketplace section of Console. To learn more about Marketplace, you can read [this page](./../../../marketplace/overview_marketplace.md) of Mia-Platform Docs.
+You can create a Microservice from the Marketplace section of Console. To learn more about Marketplace, you can read [this page](/marketplace/overview_marketplace.md) of Mia-Platform Docs.
 
 You can create a Microservice by:
 
@@ -36,7 +36,7 @@ The results of your search will appear **organized by category**.
 
 The Microservice can be created starting from existing and ready-to-use Examples or Templates.
 
-In the [Marketplace](./../../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
@@ -73,7 +73,7 @@ In order to use the templates provided by Mia-Platform you can contact your refe
 :::
 
 :::info
-At this [link](../../../development_suite/api-console/api-design/custom_microservice_get_started/) you can find a more detailed guide and overview about how to create new service starting from Templates.
+At this [link](/development_suite/api-console/api-design/custom_microservice_get_started.md) you can find a more detailed guide and overview about how to create new service starting from Templates.
 :::
 
 ## How to create a Microservice from a Docker Image
@@ -131,7 +131,7 @@ In this section, you can manage the resources dedicated to your microservice:
 * **Static replicas**: You have to specify the number of replicas of your microservice.  
   When a new microservice is created its default value is *1*.
 
-  It is possible to have two different behaviors when a microservice has a [hpa](./replicas) configured.
+  It is possible to have two different behaviors when a microservice has a [hpa](/development_suite/api-console/api-design/replicas.md) configured.
   * *static replicas greater than 0*: the *hpa replicas* has priority and so they will be used.
   * *static replicas equals 0*: the *static replicas* has priority and so no microservice will be deployed.
 
@@ -147,7 +147,7 @@ In this section, you can manage the resources dedicated to your microservice:
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
 :::info
-  See more about the log parsers on the [guidelines](../../../getting_started/monitoring-dashboard/dev_ops_guide/log)
+  See more about the log parsers on the [guidelines](/getting_started/monitoring-dashboard/dev_ops_guide/log.md)
 :::
 
 * **Args**: You can specify the arguments for the [command](https://kubernetes.io/docs/tasks/inject-data-application/_print/#define-a-command-and-arguments-when-you-create-a-pod) of your microservice container.  
@@ -156,7 +156,7 @@ Each argument should be on a new line and by default no arguments are specified.
  ![service-detail-configuration](img/service-detail-configuration.png)
 
 :::info
- If you are searching for information about microservice's probes and other runtime options you should visit [this page](./microservice-runtime-resources.md).
+ If you are searching for information about microservice's probes and other runtime options you should visit [this page](/development_suite/api-console/api-design/microservice-runtime-resources.md).
 :::
 
 ### Container Ports Configuration
@@ -176,7 +176,7 @@ For each container port, you have to define:
 ![container-ports-section](img/container-ports-card.png)
 
 :::info
-If you want more information about configuring the microservice container ports, visit [this page](./microservice-container-ports).
+If you want more information about configuring the microservice container ports, visit [this page](/development_suite/api-console/api-design/microservice-container-ports.md).
 :::
 
 ### Environment Variable Configuration
@@ -190,7 +190,7 @@ Currently, the following types exist:
 * **From Secret**: this type represents a value that is obtained from a Kubernetes Secret. For this type, it is necessary to specify the **Secret Name** and the **Secret Key** from which this value can be retrieved.
 
 :::info
-If you want more information about adding Kubernetes secrets to a microservice visit the following [link](./services#secrets).
+If you want more information about adding Kubernetes secrets to a microservice visit the following [link](/development_suite/api-console/api-design/services.md#secrets).
 :::
 
 Therefore, for each variable, you have to define:
@@ -216,7 +216,7 @@ A variable definition in the `.env` file has to be contained in a single line an
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
-You can find more information about environment variables at this [link](../../set-up-infrastructure/env-var) of Mia-Platform Docs.
+You can find more information about environment variables at this [link](/development_suite/set-up-infrastructure/env-var-intro.md) of Mia-Platform Docs.
 
 ### Labels Configuration
 
@@ -323,7 +323,7 @@ For each configuration created, a new card will be visible.
 
 You can mount files to your microservice using *configmaps*. This feature can be useful if your microservice requires a particular configuration that can be read from a certain type of file (e.g. a complex configuration file that can't be provided via simple environment variables).
 
-Check out the files service [example](../../../runtime_suite/files-service/configuration) to further understand the role of configmaps in microservices.
+Check out the files service [example](/runtime_suite/files-service/configuration.md) to further understand the role of configmaps in microservices.
 
 You can click _Add file_ to generate a new custom file (e.g. a JSON or YAML file, but could be anything you need) and start writing your custom configurations. With the _Delete File_ button you can remove the file from your custom configuration.
 
@@ -384,7 +384,7 @@ Once you'll add a secret to one of your microservices, the secret's name will be
 You need to give **additional permissions** to the console service account in order to be able to get the list of the secrets on the cluster.
 :::
 
-It is also possible to use Kubernetes secrets to setup specific environment variables, follow this [link](./services#environment-variable-configuration) to understand how to do so.  
+It is also possible to use Kubernetes secrets to setup specific environment variables, follow this [link](/development_suite/api-console/api-design/services.md#environment-variable-configuration) to understand how to do so.  
 
 ### Provide a CA Certificate to a custom service
 

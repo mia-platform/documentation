@@ -7,7 +7,7 @@ sidebar_label: Manage Users
 Mia-Platform Console allows users to manage other users accesses throughout their company. Letting them full ownership of deciding who has access to what resources and with what role.
 
 :::note
-To find out more about available Roles check out [this documentation page](../console-levels-and-permission-management#users-capabilities-inside-console).
+To find out more about available Roles check out [this documentation page](/development_suite/console-levels-and-permission-management.md#users-capabilities-inside-console).
 :::
 
 In particular a user can be assigned a Role on the following resources:
@@ -75,7 +75,7 @@ A user with enough administrative permission on a specific Project will be able 
 :::note
 As stated above each user existing in the Company will be shown for the Project users administration portal, this does not mean that all the user has access to the project since this depends on the role they are assigned on the Company and how the permission are inherited.
 
-For further information about permissions and role inheritance check out this [documentation page](../console-levels-and-permission-management).
+For further information about permissions and role inheritance check out this [documentation page](/development_suite/console-levels-and-permission-management.md).
 :::
 
 ### Editing a user role at project level

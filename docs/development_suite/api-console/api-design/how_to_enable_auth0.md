@@ -11,7 +11,7 @@ sidebar_label: Enable Auth0
 
 2. Delete the configuration files of the disabled services;
 
-3. Log into the console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from [scratch](./../api-design/how_to_enable_auth0.md) as an extension. To configure auth0-client, visit [the docs](./../../../runtime_suite/auth0-client/configuration.md). Configure also the env variables (`REDIS_HOSTS` is required).
+3. Log into the console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from [scratch](/development_suite/api-console/api-design/how_to_enable_auth0.md) as an extension. To configure auth0-client, visit [the docs](/runtime_suite/auth0-client/configuration.md). Configure also the env variables (`REDIS_HOSTS` is required).
 
 4. Link correctly client-type and client-key to use the correct auth0 client.
 

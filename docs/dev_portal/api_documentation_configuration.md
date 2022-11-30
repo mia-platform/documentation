@@ -4,11 +4,11 @@ title: API Documentation Configuration
 sidebar_label: API Documentation Configuration
 ---
 
-The Dev Portal uses the [Swagger Aggregator](../runtime_suite/swagger-aggregator/overview) to make all your OpenAPI specifications,
+The Dev Portal uses the [Swagger Aggregator](/runtime_suite/swagger-aggregator/overview.md) to make all your OpenAPI specifications,
 even the ones spread across different projects, available in a unique place.
 
 :::caution
-As mentioned [here](./application_creation.md#2-configure-api-portal), the version of your **api-portal** needs to be at least **1.14** in order to configure the api documentation correctly.
+As mentioned [here](/dev_portal/application_creation.md#2-configure-api-portal), the version of your **api-portal** needs to be at least **1.14** in order to configure the api documentation correctly.
 :::
 
 ## Configure the API Documentation in Try/View Mode
@@ -48,11 +48,11 @@ To include specifications from different projects, you can import them by URL us
 
 ![Advanced console area Swagger Aggregator](img/swagger-aggregator-advanced-area.png)
 
-Check the [Swagger Aggregator Advanced Config](../development_suite/api-console/advanced-section/swagger-aggregator/configuration#servicesurlsbefore-and-servicesurlsafter)
+Check the [Swagger Aggregator Advanced Config](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md#servicesurlsbefore-and-servicesurlsafter)
 for more details.
 
 :::caution
 Remember to set appropriate **request** and **limits** levels to the Swagger Aggregator microservice in order to avoid performance issues.
 
-Check out the dedicated [section](https://docs.mia-platform.eu/docs/tutorial/requests_limits/requests_limits_tutorial) for more information regarding requests and limits.
+Check out the dedicated [section](/tutorial/requests_limits/requests_limits_tutorial.mdx) for more information regarding requests and limits.
 :::

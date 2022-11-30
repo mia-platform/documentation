@@ -6,9 +6,9 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](../../../tutorial/rest_api/quick_rest_api).
+An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/tutorial/rest_api/quick_rest_api.md).
 
-This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](../../overview-dev-suite). 
+This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md). 
 
 An endpoint can be of different types:
 
@@ -45,7 +45,7 @@ All endpoint types share the following properties:
 
 Upon creation of **CRUD** type endpoints, you will be able to choose any _CRUD Base Path_ from the routes that have been configured in the CRUD section.
 
-You can find more info about how to create an internal endpoint in the [CRUD documentation](crud_advanced.md).
+You can find more info about how to create an internal endpoint in the [CRUD documentation](/development_suite/api-console/api-design/crud_advanced.md).
 
 #### Microservice, External Proxy and Cross Project Proxy
 
@@ -55,13 +55,13 @@ Upon creation of an endpoint linked to a microservice, you will be able to edit 
 
 #### Fast Data Projection
 
-This endpoint type is used to read data of the [Fast Data Projection](../../../fast_data/configuration/projections.md).
-These APIs are read-only, because they should be edited only by the [Real-Time Updater](../../../fast_data/architecture.md#real-time-updater-rtu).
+This endpoint type is used to read data of the [Fast Data Projection](/fast_data/configuration/projections.md).
+These APIs are read-only, because they should be edited only by the [Real-Time Updater](/fast_data/architecture.md#real-time-updater-rtu).
 
 #### Fast Data Single View
 
-This endpoint type is used to read data of the [Fast Data Single View](../../../fast_data/the_basics.md#single-view-sv).
-These APIs are read-only, because they should be edited only by the [Single View Creator](../../../fast_data/architecture.md#single-view-creator-svc).
+This endpoint type is used to read data of the [Fast Data Single View](/fast_data/the_basics.md#single-view-sv).
+These APIs are read-only, because they should be edited only by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc).
 
 ### About Rewrite Base Path
 
@@ -84,13 +84,13 @@ This card possibly includes 4 tabs: *Security*, *Documentation*, *Microservice G
 
 ![Endpoint settings card - Security](img/endpoint-settings-card-security.png)
 
-In the **Security** tab, you can manage the security and the permissions at the endpoint level. All the following functionalities require the [authorization service](../../../runtime_suite/authorization-service/usage.md) and are based on its [configuration](../../../runtime_suite/authorization-service/configuration.md).
+In the **Security** tab, you can manage the security and the permissions at the endpoint level. All the following functionalities require the [authorization service](/runtime_suite/authorization-service/usage.md) and are based on its [configuration](/runtime_suite/authorization-service/configuration.md).
 
 The security can be managed at three levels:
 
 1. The `Authentication required` flag, when disabled, allows to call an endpoint **without the need to be logged in**. If it is enabled and the endpoint is invoked by an **unregistered user**, the request will receive an unauthorized error.
 
-2. The `API Key required` flag configures the endpoint to require to set the `secret`/`client-key` header with a valid [API Key](api_key.md). You can also set a `mia_client_key` cookie with the value of the API Key.
+2. The `API Key required` flag configures the endpoint to require to set the `secret`/`client-key` header with a valid [API Key](/development_suite/api-console/api-design/api_key.md). You can also set a `mia_client_key` cookie with the value of the API Key.
 
 :::tip Example of request passing an API Key
 `curl --request GET --url <https://your-url/endpoint> --header 'accept: application/json' --header 'secret: <Api Key value>'`
@@ -149,23 +149,23 @@ With this configuration, calls to this endpoint will have a different outcome de
 * An unregistered user tries to contact your endpoint and provides the correct API Key value for the clientType `bar`: the call is successful since the second condition of **User Group Permission** is truthy and the endpoint is open to not authenticated calls.
 
 If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
-Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually. In any case, you cannot remove the checks on the [isBackoffice](../../../runtime_suite/session-manager.md) property that ensure the expression will be considered only for calls coming from the CMS.
+Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually. In any case, you cannot remove the checks on the [isBackoffice](/runtime_suite/session-manager.md) property that ensure the expression will be considered only for calls coming from the CMS.
 
 :::tip
-If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](../../monitoring/monitoring.md) to check out the logs of the [Authorization Service](../../../runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
+If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](/development_suite/monitoring/monitoring.md) to check out the logs of the [Authorization Service](/runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
 :::
 
 :::tip API Key
-Check out the [API Key section](api_key.md) to know more about API Keys.
+Check out the [API Key section](/development_suite/api-console/api-design/api_key.md) to know more about API Keys.
 :::
 
 ### Manage the visibility of your endpoints
 
 ![Endpoint settings card - Documentation](img/endpoint-settings-card-documentation.png)
 
-The **Documentation** tab is visible only if the API Portal is enabled, and includes the `Show in API Portal` flag, which, if enabled, allows seeing all endpoint routes in the [Documentation Portal](../../api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
+The **Documentation** tab is visible only if the API Portal is enabled, and includes the `Show in API Portal` flag, which, if enabled, allows seeing all endpoint routes in the [Documentation Portal](/development_suite/api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
 
-The visibility can also be defined at the route level in the [routes](endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be visible in the API Portal and which should not.
+The visibility can also be defined at the route level in the [routes](/development_suite/api-console/api-design/endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be visible in the API Portal and which should not.
 The `inherited` flag (enabled by default) will guarantee that the selected route will inherit the visibility of its base endpoint.
 Disabling this flag for a specific route will allow defining a custom behavior for that route.
 
@@ -252,5 +252,5 @@ If it differs from the endpoint settings, we can choose not to inherit global se
 For endpoints of type **CRUD**, **Microservice** and **Fast Data Projection** it is also possible to link decorators to the selected route verb.
 
 :::info
-For a detailed description on how to link a decorator to a route visit this [link](./decorators.md#link-a-decorator-to-a-route).
+For a detailed description on how to link a decorator to a route visit this [link](/development_suite/api-console/api-design/decorators.md#link-a-decorator-to-a-route).
 :::

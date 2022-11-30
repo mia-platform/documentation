@@ -6,13 +6,13 @@ sidebar_label: Create a Node.js Microservice
 
 import VideoBox from './../../../src/components/VideoBox'
 
-In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js template](../../marketplace/templates/mia_templates) from the [Marketplace](../../marketplace/overview_marketplace).
+In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js template](/marketplace/templates/mia_templates.md) from the [Marketplace](/marketplace/overview_marketplace.md).
 
 ## What We’ll Build
 
-In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](../../runtime_suite/api-gateway/overview.md).
+In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](/runtime_suite/api-gateway/overview.md).
 
-Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](../../development_suite/set-up-infrastructure/env-var).
+Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](/development_suite/set-up-infrastructure/env-var-intro.md).
 Moreover we'll create a **CRUD for storing customers and orders** and develop a Microservice that **calculates the shipping cost for a specific order**. If the order belongs to a new customer the shipping cost is reduced, otherwise, a default cost is applied.
 
 ## Prerequisites
@@ -23,19 +23,19 @@ Prepare your favorite IDE to interact with Git repositories.
 
 ## Create CRUDs
 
-First of all open your project, and create the following [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) collections. In order to do this follow these steps:
+First of all open your project, and create the following [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) collections. In order to do this follow these steps:
 
 ### Customers CRUD
 
-1. In the [Console](../../development_suite/overview-dev-suite) select your project.
+1. In the [Console](/development_suite/overview-dev-suite.md) select your project.
 2. Select _Design section_.
 3. Select the branch _master_.
-4. Go to section [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and click _Create new CRUD_.
+4. Go to section [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) and click _Create new CRUD_.
 5. Insert the name `customers` and press _Create_.
 6. Now you have to set your collection fields. Scroll to the _Fields_ section and click _Add field_ to create the following fields:
 
 :::tip
-You can accelerate the field creation process by [importing them from JSON](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
+You can accelerate the field creation process by [importing them from JSON](/development_suite/api-console/api-design/crud_advanced.md#how-to-create-the-fields-of-your-crud-by-importing-a-json).
 In order to do this download <a download target="_blank" href="/docs_files_to_download/orders.json"> orders crud JSON</a> and <a download target="_blank" href="/docs_files_to_download/customers.json"> customers CRUD JSON</a>.
 :::
 
@@ -56,14 +56,14 @@ Create `orders` CRUD with the following fields:
 | **customerId**      | ObjectId         |
 
 :::info
-Check out [this tutorial](../../tutorial/rest_api/quick_rest_api) and see this short [video](../../getting_started/video_pills/video_pills#how-to-create-a-crud) to learn how to create and expose CRUDs.
+Check out [this tutorial](/tutorial/rest_api/quick_rest_api.md) and see this short [video](/getting_started/video_pills/video_pills.mdx#how-to-create-a-crud) to learn how to create and expose CRUDs.
 :::
 
 ![CRUD in Console](img/node-ms-crud.png)
 
 Now you should expose your collection through an Endpoint and create your first API.
 
-1. Go to section [Endpoints](../../development_suite/api-console/api-design/endpoints.md) and click _Create new endpoint_. Then enter the following information:
+1. Go to section [Endpoints](/development_suite/api-console/api-design/endpoints.md) and click _Create new endpoint_. Then enter the following information:
 
    - `/customers` as **Base path**.
    - `CRUD` as **Type**.
@@ -88,7 +88,7 @@ Upon configuration save, the Console will generate updates for the Kubernetes co
 :::
 
 :::info
-Check out the [endpoint documentation](../../development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
+Check out the [endpoint documentation](/development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
 :::
 
 ## Create the Microservice from the Marketplace Template
@@ -101,11 +101,11 @@ Watch this short video to learn how it's easy to create a Node.js Microservice f
 
 A Microservice can be created starting from existing Templates. Starting from a Mia-Platform Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices(such as testing, logging, health routes, etc).
 
-In the [Marketplace](../../marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
+In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
 
 We'll create a microservice from [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/):
 
-1. Go to section [Microservices section](../../development_suite/api-console/api-design/services.md) and click _Create a Microservice_.
+1. Go to section [Microservices section](/development_suite/api-console/api-design/services.md) and click _Create a Microservice_.
 1. Search the template `Node.js Template`, then select it.
 1. Now enter the following information:
    - `get-shipping-cost` as **Name**.
@@ -114,7 +114,7 @@ We'll create a microservice from [Node.js template](https://github.com/mia-platf
 
 Now you have to expose the microservice:
 
-1. Go to [Endpoints](../../development_suite/api-console/api-design/endpoints.md) section and click _Create new endpoint_. Then enter the following information:
+1. Go to [Endpoints](/development_suite/api-console/api-design/endpoints.md) section and click _Create new endpoint_. Then enter the following information:
 
    - `/shipping-cost-service` as **Base path**.
    - `Microservice` as **Type**.
@@ -139,7 +139,7 @@ Clone the repository, and open the project with your favorite IDE. The code base
 
 The project includes the following packages:
 
-- [@mia-platform/custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib): The [Mia service Node.js library](../../libraries/overview_service_libraries) that helps the creation and the interactions of microservices within Mia-Platform.
+- [@mia-platform/custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib): The [Mia service Node.js library](/libraries/mia-service-libraries.md) that helps the creation and the interactions of microservices within Mia-Platform.
 - [ESlint](https://eslint.org/): a lint tool with [the config for Mia-Platform JavaScript Style](https://github.com/mia-platform/eslint-config-mia). Naturally, you can use whatever you like.
 - [Nock](https://github.com/nock/nock): HTTP server mocking and expectations library that helps to write tests
 - [Tap](https://node-tap.org/): a test library
@@ -149,7 +149,7 @@ The project also includes several NPM scripts, later in the course we will see w
 
 ## Health routes
 
-Let's go back to the Console, specifically go to the microservice detail page. You can see several configuration fields (check out this [page](../../development_suite/api-console/api-design/services#manage-microservices) for more details), in particular the _probes_ section define the [health routes](../../guidelines/microservice_vademecum#health-routes) for the Kubernetes pod:
+Let's go back to the Console, specifically go to the microservice detail page. You can see several configuration fields (check out this [page](/development_suite/api-console/api-design/services.md#manage-microservices) for more details), in particular the _probes_ section define the [health routes](/guidelines/microservice_vademecum.md#health-routes) for the Kubernetes pod:
 
 - The _Readiness path_ provides k8s with information about when the container is ready to receive incoming traffic. The default route is `/-/ready`.
 - The _Liveness path_ provides k8s with information about when the container is in a healthy state. The default route is `/-/healthz`.
@@ -162,7 +162,7 @@ Check out [Kubernetes official documentation](https://kubernetes.io/docs/tasks/c
 
 ## API Documentation
 
-Another important field in the microservice configuration is the _API documentation path_. This is the route called to fetch the automatically generated API Documentation to be shown in the [API Portal](../../runtime_suite/api-portal/overview.md). Even in this case, you don't have to write any code, this route is already integrated in the microservice.
+Another important field in the microservice configuration is the _API documentation path_. This is the route called to fetch the automatically generated API Documentation to be shown in the [API Portal](/runtime_suite/api-portal/overview.md). Even in this case, you don't have to write any code, this route is already integrated in the microservice.
 
 As of now, our microservice doesn't expose any custom route. Later we'll see how to configure documentation for any route.
 
@@ -170,7 +170,7 @@ Now we'll try to deploy the Console project.
 
 ## Deploy
 
-By [deploying](../../development_suite/deploy/deploy) your Console project a new Kubernetes Pod will be created for your custom service. In this case we'll also release the previously created CRUDs:
+By [deploying](/development_suite/deploy/deploy.md) your Console project a new Kubernetes Pod will be created for your custom service. In this case we'll also release the previously created CRUDs:
 
 1. Go to section _Deploy_.
 2. As environment select _Development_.
@@ -181,7 +181,7 @@ A pipeline will be triggered by the Console to start the deploy of your project.
 
 ## The API Portal
 
-After the deploy the [API Portal](../../runtime_suite/api-portal/overview.md) allows us to see the API Documentations for the chosen environments.
+After the deploy the [API Portal](/runtime_suite/api-portal/overview.md) allows us to see the API Documentations for the chosen environments.
 
 To access it, select the _Docs_ tab in the top menu and select `Development`, as the environment you deployed to:
 
@@ -246,7 +246,7 @@ module.exports = customService(async function index(service) {
 })
 ```
 
-First we import the [Mia service Node.js library](../../libraries/overview_service_libraries), which creates the infrastructure ready to accept the definition of routes and decorators. The library is **built on [Fastify](https://www.fastify.io/)**.
+First we import the [Mia service Node.js library](/libraries/mia-service-libraries.md), which creates the infrastructure ready to accept the definition of routes and decorators. The library is **built on [Fastify](https://www.fastify.io/)**.
 The function returned by require, `customService`, expects an async function to initialize and configure the `service`.
 
 [`service`](https://www.fastify.io/docs/latest/Server/) is a Fastify instance, that is decorated by the library to help you interact with Mia-Platform resources. You can use service to register any Fastify routes, custom decorations and plugin.
@@ -492,12 +492,12 @@ return {
 }
 ```
 
-With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](../../runtime_suite/microservice-gateway/overview). In this case, we have got a proxy for [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) and use it to read documents from CRUDs collection.
+With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](/runtime_suite/microservice-gateway/overview.md). In this case, we have got a proxy for [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) and use it to read documents from CRUDs collection.
 
 `allowedStatusCodes` options allows to define which status codes of the response are accepted. If the response status code is not contained in this array, the promise will be rejected.
 
 :::info CRUD Service
-To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](../../runtime_suite/crud-service/overview_and_usage#crud-endpoints)
+To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
 :::
 
 ### Add the route
@@ -532,9 +532,9 @@ Finally commit and push changes to master.
 
 ## Try the Microservice
 
-Now, [deploy](../../development_suite/deploy/deploy) again the Console project to try the microservice.
+Now, [deploy](/development_suite/deploy/deploy.md) again the Console project to try the microservice.
 
-After the deploy open the [API Portal](../../runtime_suite/api-portal/overview.md) and use the _Orders_ and _Customers_ CRUD routes to add some test data.
+After the deploy open the [API Portal](/runtime_suite/api-portal/overview.md) and use the _Orders_ and _Customers_ CRUD routes to add some test data.
 
 Now you can try the `GET /get-shipping-cost` route:
 
@@ -542,7 +542,7 @@ Now you can try the `GET /get-shipping-cost` route:
 
 ## Environment variable
 
-To conclude, create a new [environment variable](../../development_suite/set-up-infrastructure/env-var) to store the shipping cost for new customers.
+To conclude, create a new [environment variable](/development_suite/set-up-infrastructure/env-var-intro.md) to store the shipping cost for new customers.
 
 An environment variable is a variable whose value is set outside the microservices. An environment variable is made up of a name/value pair. You can set a different value for each environment (Development, Production, etc.).
 
@@ -565,7 +565,7 @@ Using `MIA_..` as a prefix in the ENV you will set the value for all environment
 
 Now we have to add the [environment variable to the microservice:
 
-1. Go to section [Microservices section](../../development_suite/api-console/api-design/services.md) and select the _get-shipping-cost_ service.
+1. Go to section [Microservices section](/development_suite/api-console/api-design/services.md) and select the _get-shipping-cost_ service.
 1. Go to section _Environment variable configuration_ click _Add Environment Variable_
 1. Insert the key `NEW_CUSTOMER_SHIPPING_COST` and `{{NEW_CUSTOMER_SHIPPING_COST}}` as value.
 1. Commit the changes
@@ -608,7 +608,7 @@ async function handler(req, reply) {
 ```
 
 :::info Logging
-Check out the [Guidelines for logs](../../getting_started/monitoring-dashboard/dev_ops_guide/log) for more details about this topic
+Check out the [Guidelines for logs](/getting_started/monitoring-dashboard/dev_ops_guide/log.md) for more details about this topic
 :::
 
 Finally adjust the tests, let's back to `tests/index.test.js` file: in the `setupFastify` method inject the `NEW_CUSTOMER_SHIPPING_COST` ENV:
@@ -631,9 +631,9 @@ Now you can commit and push the code to the master branch.
 
 ## Final test
 
-Now, [deploy](../../development_suite/deploy/deploy) the Console project to try the microservice.
+Now, [deploy](/development_suite/deploy/deploy.md) the Console project to try the microservice.
 
-After the deploy open the [Documentation Portal](https://docs.mia-platform.eu/docs/development_suite/api-portal/api-documentations) and try the `GET /get-shipping-cost` route:
+After the deploy open the [Documentation Portal](/development_suite/api-portal/api-documentations.md) and try the `GET /get-shipping-cost` route:
 
 ![API Portal try /get-shipping-cost](img/node-ms-api-portal-final-test.gif)
 

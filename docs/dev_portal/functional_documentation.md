@@ -4,7 +4,7 @@ title: Functional Documentation
 sidebar_label: Functional Documentation
 ---
 
-Once you successfully followed the [steps](./application_creation.md) to create the Dev Portal application, you can start adding all information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all information characterizing your organization at the endpoint `/back-office/`. 
 
 Through the **Backoffice** section of the Dev Portal, you can easily access the documentation repository that will be shown in the Dev Portal Documentation.
 
@@ -26,7 +26,7 @@ The Dev Portal Documentation section allows users to deeply understand each part
 
 When you create a Dev Portal application, you are also generating a Docusaurus template with a dedicated repository that will help you manage your documentation.
 
-From the Backoffice, you can easily reach this repository by clicking the **Documentation** link inside the **Static files** section, displayed right after the [marketplace](./marketplace_management.md) and [requests](./requests_management.md) management sections.
+From the Backoffice, you can easily reach this repository by clicking the **Documentation** link inside the **Static files** section, displayed right after the [marketplace](/dev_portal/marketplace_management.md) and [requests](/dev_portal/requests_management.md) management sections.
 
 ### Overview
 
