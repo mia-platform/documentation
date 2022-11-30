@@ -432,8 +432,8 @@
         "mia.pass.test.realtime-updater": "blue",
         "mia.realtime.importer.preproduction": "blue",
         "mia.realtime.importer.test": "blue",
-        "padauto-importer-cdc-preprod-2020-06-24": "#50b8da",
-        "padauto-importer-cdc-test-2020-05-27": "#50b8da",
+        "padauto-importer-cdc-preprod-2020-06-24": "#1890FF",
+        "padauto-importer-cdc-test-2020-05-27": "#1890FF",
         "request-pusher-dev-20200806": "blue",
         "request-pusher-preprod-20200420": "blue",
         "single-view-indexer": "blue"

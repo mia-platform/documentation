@@ -47,7 +47,7 @@ function Hexagons() {
   return (
     <div style={styles.wrapperHexagon}>
       {renderSvg({
-        fill: "#5fa37e",
+        fill: "#2CB47B",
         style: {
           margin: "0 0 0 14%",
           width: 25,
@@ -56,7 +56,7 @@ function Hexagons() {
         },
       })}
       {renderSvg({
-        fill: "#e06565",
+        fill: "#F03F45",
         style: {
           margin: "0px 0 0 23%",
           width: 16,
@@ -64,7 +64,7 @@ function Hexagons() {
         },
       })}
       {renderSvg({
-        fill: "#50b8da",
+        fill: "#1890FF",
         style: {
           margin: "75px 0 0 23%",
           width: 16,
@@ -72,7 +72,7 @@ function Hexagons() {
         },
       })}
       {renderSvg({
-        fill: "#614f8c",
+        fill: "#6536DD",
         style: {
           margin: "70px 0 0 28%",
           width: 16,
@@ -80,7 +80,7 @@ function Hexagons() {
         }
       })}
       {renderSvg({
-        fill: "#50b8da",
+        fill: "#1890FF",
         style: {
           margin: "15px 16% 0 0",
           right: 0,
@@ -89,7 +89,7 @@ function Hexagons() {
         },
       })}
       {renderSvg({
-        fill: "#614f8c",
+        fill: "#6536DD",
         style: {
           margin: "10px 25% 0 0",
           width: 16,
@@ -99,7 +99,7 @@ function Hexagons() {
         }
       })}
        {renderSvg({
-        fill: "#e06565",
+        fill: "#F03F45",
         style: {
           margin: "60px 20% 0 0",
           width: 16,
@@ -108,7 +108,7 @@ function Hexagons() {
         },
       })}
       {renderSvg({
-        fill: "#e98e56",
+        fill: "#FF9933",
         style: {
           margin: "65px 28% 0 0",
           right: 0,
