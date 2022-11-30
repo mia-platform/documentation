@@ -11,7 +11,7 @@
   overflow: hidden;
   border-radius: 2px;
   color: white;
-  font-family: var(--ifm-font-family-museosans);
+  font-family: var(--ifm-font-family-Inter);
 }
 
 .mainBox {
