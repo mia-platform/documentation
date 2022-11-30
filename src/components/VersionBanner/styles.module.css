@@ -50,6 +50,7 @@
   font-size: 2.1rem;
   line-height: 2.1rem;
   font-weight: 900;
+  font-family: var(--ifm-font-family-Inter);
 }
 
 .subTitle {
@@ -57,7 +58,8 @@
   font-size: 1.1rem;
   line-height: 1.1rem;
   font-weight: 500;
-  color:rgba(255, 255, 255, 0.8);
+  font-family: var(--ifm-font-family-Inter);
+  color:rgba(255, 255, 255, 0.9);
 }
 
 html[data-theme=dark] .versionBanner {
