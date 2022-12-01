@@ -45,17 +45,17 @@ The developer portal can give access to a whole series of opportunities with ext
 
 We built the dev portal using [`micro-lc`](https://github.com/mia-platform/micro-lc), our open-source product to easily deploy web applications using the micro-frontends technology.
 
-Given the great importance of the business side, we have structured a very simple and low-code process for the creation and the complete management of the portal. In [this section](../dev_portal/application_creation.md), you can easily access to the first step of the creation and configuration guide.
+Given the great importance of the business side, we have structured a very simple and low-code process for the creation and the complete management of the portal. In [this section](/dev_portal/application_creation.md), you can easily access to the first step of the creation and configuration guide.
 
 ### Structure
 
 The portal we offer consists of the following sections
 
-- _[Functional Documentation](./functional_documentation.md)_: for the functional documentation of the architecture, using [Docusaurus](https://docusaurus.io/);
-- _[Marketplace](./marketplace_management.md)_: as showcase for your services; you can use it to sell them;
-- _[API Portal](../runtime_suite/api-portal/overview)_: to display your Open API specification documents.
+- _[Functional Documentation](/dev_portal/functional_documentation.md)_: for the functional documentation of the architecture, using [Docusaurus](https://docusaurus.io/);
+- _[Marketplace](/dev_portal/marketplace_management.md)_: as showcase for your services; you can use it to sell them;
+- _[API Portal](/runtime_suite/api-portal/overview.md)_: to display your Open API specification documents.
 
-In addition, we provide a dedicated [product](../business_suite/backoffice/overview.md) in order to manage all the _Marketplace_ content, as:
+In addition, we provide a dedicated [product](/business_suite/backoffice/overview.md) in order to manage all the _Marketplace_ content, as:
 - **_Components_**: The list of the components that you want to make available through the _Marketplace_;
 - **_Categories_**: the categories in which group your components;
 - **_Requests_**: the access requests to your components;

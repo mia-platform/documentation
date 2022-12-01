@@ -6,27 +6,27 @@
 }
 
 .hexagonOrange{ 
-  fill:#e98e56;
+  fill:#FF9933;
 }
 
 .hexagonRed{
-  fill:#e06565;
+  fill:#F03F45;
 }
 
 .hexagonBlue {
-  fill:#50b8da;
+  fill:#1890FF;
 }
 
 .hexagonGreen{
-  fill:#54a97d;
+  fill:#2CB47B;
 }
 
 .hexagonPurple {
-  fill:#614f8c;
+  fill:#6536DD;
 }
 
 .letter{
-  fill:#444950;
+  fill:#414748;
 }
 
 html[data-theme=dark] .letter {

@@ -24,7 +24,7 @@ This type of variables ensures a greater level of accessibility compared to proj
 :::warning
 Public variables **should not contain sensitive information**. 
 
-As the name suggest, these variables save their content in an open environment. In order to configure environment variables either presenting confidential information or requiring a conditional access policy, please refer to the [**Environments**](../../../development_suite/set-up-infrastructure/env-var) section.
+As the name suggest, these variables save their content in an open environment. In order to configure environment variables either presenting confidential information or requiring a conditional access policy, please refer to the [**Environments**](/development_suite/set-up-infrastructure/env-var-intro.md) section.
 :::
 
 ## Create a new public variable
@@ -46,7 +46,7 @@ By selecting the **Create Another** checkbox, you can keep the popover opened to
 
 ### Inheritance with Env variables
 
-When generating a public variable, it might occur that the chosen name overlaps with other variables already existing in the project configuration. In particular, project level variables set in the [Environments](../../../development_suite/set-up-infrastructure/env-var) section are taken into consideration, since they share the same scope and purpose. 
+When generating a public variable, it might occur that the chosen name overlaps with other variables already existing in the project configuration. In particular, project level variables set in the [Environments](/development_suite/set-up-infrastructure/env-var-intro.md) section are taken into consideration, since they share the same scope and purpose. 
 
 In this case, there exists a precise hierarchy to establish which value should be considered. In the deployment pipeline public variables are mounted after Env variables, hence their value will take the precedence over a project level configuration in case of overlaps.
 
@@ -106,7 +106,7 @@ In order to interpolate your configurations, you need to represent the variable 
 
 In order to use a public variable in a microservice, you first need to create a new public variable. In our case, we will name our public variable `HTTP_PORT`. 
 
-Move to the microservice section. Inside the microservice card, you can select or create an environment variable (For further details on how to create a new environment variable check out the [dedicated section](../../../development_suite/api-console/api-design/services#environment-variable-configuration)). 
+Move to the microservice section. Inside the microservice card, you can select or create an environment variable (For further details on how to create a new environment variable check out the [dedicated section](/development_suite/api-console/api-design/services.md#environment-variable-configuration)). 
 
 In order to use the public variable, it will be sufficient to interpolate the environment variable values with the previously created public variable key. In our example, we will create a new variable called `SELECTED_PORT` and will set `{{HTTP_PORT}}` as its value.
 
@@ -120,7 +120,7 @@ By interpolating the variable values with a public variable key will have the ef
 
 Public variables can also be used inside microservices' configmap configurations.
 
-Inside the microservice card, you can select or create a new configuration of type configmap (You can learn how to create a configmap configuration from the [microservices section](../../../development_suite/api-console/api-design/services#configmaps)). 
+Inside the microservice card, you can select or create a new configuration of type configmap (You can learn how to create a configmap configuration from the [microservices section](/development_suite/api-console/api-design/services.md#configmaps)). 
 
 Once you have created a configmap, create or select a configuration file.
 
@@ -208,4 +208,4 @@ In this case, the Public Variables feature should be already enabled since the p
 
 ### You are using your own custom Pipelines
 
-In this case, please look at the documentation [here](../../deploy/pipeline-configuration) to know how to read public variables.
+In this case, please look at the documentation [here](/development_suite/deploy/pipeline-configuration.md) to know how to read public variables.

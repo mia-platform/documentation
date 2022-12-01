@@ -144,10 +144,10 @@ It is also **required** to deploy the corresponding secret in the project's envi
 
 Assuming you have a Vault instance setup and running and a Console project already created, you can configure it to use Vault to store your environment variables. The steps to do that are the following:
 
-1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
+1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](/development_suite/set-up-infrastructure/configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
   
   In this step you have to configure:
-    - The [provider related fields](./configure-provider.mdx#body-schema), having type `vault`
+    - The [provider related fields](/development_suite/set-up-infrastructure/configure-provider.mdx#body-schema), having type `vault`
     - The provider credentials, depending on the [authentication method chosen](#authentication-methods) while the Vault instance was configured, two types of credentials are supported:
       - `token` credentials for the [token authentication method](#token-authentication-method), where `content.accessToken` directly stores your Vault token.
       - `m2m` credentials for the [kubernetes authentication method](#kubernetes-authentication-method). That stores a JWT linked to a service account in the target Kubernetes cluster and a URL to retrieve a short-lived token starting from the JWT via Vault APIs. These pieces of information are stored respectively in the `content.token` and `content.accessTokenURL` properties of the credentials document.
@@ -199,7 +199,7 @@ Assuming you have a Vault instance setup and running and a Console project alrea
 
 # Use Vault variables inside a project
 
-Variables stored in a Vault provider cannot be directly interpolated in the project's configuration. However, you could access these variables by creating a new microservice environment variable and setting **value type** to **from secret**, **secret name** to `vault-secret`, and **secret key** to the target secreted environment variable name, take a look at the [microservice configuration section](../api-console/api-design/services#environment-variable-configuration).
+Variables stored in a Vault provider cannot be directly interpolated in the project's configuration. However, you could access these variables by creating a new microservice environment variable and setting **value type** to **from secret**, **secret name** to `vault-secret`, and **secret key** to the target secreted environment variable name, take a look at the [microservice configuration section](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
 Projects that use Vault as the secret provider cannot manage their variables using the Console interface but they need to be manually edited from the Vault instance as described in a [previous section](#secret-engines-and-vault-secrets).
 

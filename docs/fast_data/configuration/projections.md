@@ -4,7 +4,7 @@ title: Projections Configuration
 sidebar_label: Projections
 ---
 
-In this document we guide you through the configuration of [Projections](../the_basics.md#projection) directly in the Console.
+In this document we guide you through the configuration of [Projections](/fast_data/the_basics.md#projection) directly in the Console.
 
 ## Create a System of Records
 
@@ -91,7 +91,7 @@ You cannot import fields with the same name as one of the metadata fields. If th
 
 ### Indexes
 
-In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](../../runtime_suite/crud-service/overview_and_usage#indexes).
+In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/overview_and_usage.md#indexes).
 However, differently from `Indexes` that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
 An `_id` index is created by default, and it is not deletable.
@@ -132,7 +132,7 @@ where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled wi
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
+A projection has the [predefined collection properties](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
 
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 
@@ -179,7 +179,7 @@ The default value for ths input is the same as the default used by the Console, 
 
 #### Kafka adapter format
 
-Either `Basic`, `Golden Gate`, or `Custom`. [Click here](../inputs_and_outputs.md#data-change-message) for more detail about the Kafka adapter formats.
+Either `Basic`, `Golden Gate`, or `Custom`. [Click here](/fast_data/inputs_and_outputs.md#data-change-message) for more detail about the Kafka adapter formats.
 
 ![Topic pattern and Kafka adapter format modal page](../img/importDDL/topic_pattern_and_kafka_adapter_format_modal_page.png)
 
@@ -212,9 +212,9 @@ When you click continue, the console will generate the new configuration for the
 
 You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real Time Updater service).
 
-To expose the Fast Data projection, [create an Endpoint](../../development_suite/api-console/api-design/endpoints) with type `Fast Data Projection` linked to the desired projection.
+To expose the Fast Data projection, [create an Endpoint](/development_suite/api-console/api-design/endpoints.md) with type `Fast Data Projection` linked to the desired projection.
 
-You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](../../business_suite/cms_configuration/conf_cms#configure-pages).
+You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](/business_suite/cms_configuration/conf_cms.md#configure-pages).
 
 :::info
 The exposed API is not required for Fast Data to work. It is an optional behavior in case you need access to the data without directly accessing it from the database.

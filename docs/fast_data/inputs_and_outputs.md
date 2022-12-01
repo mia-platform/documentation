@@ -155,7 +155,7 @@ channels:
 If none of the above formats applies for your use case, you can use your custom format and specify custom adapter that will make the message ready to be processed by the Real Time Updater service.
 
 :::note
-Further information about the Custom message configuration can be found inside the [Custom](configuration/realtime_updater/common.md#custom) section of the Common page.
+Further information about the Custom message configuration can be found inside the [Custom](/fast_data/configuration/realtime_updater/common.md#custom) section of the Common page.
 :::
 
 #### Topic naming convention

@@ -6,7 +6,7 @@ sidebar_label: Flow Manager Visualizer
 
 ## Overview
 
-The Flow Manager Visualizer helps you graphically visualize your [flow manager](../../../runtime_suite/flow-manager-service/overview.md) service configuration in a simple fashion.
+The Flow Manager Visualizer helps you graphically visualize your [flow manager](/runtime_suite/flow-manager-service/overview.md) service configuration in a simple fashion.
 
 By selecting the _Flow Manager_ menu in the Design Area you will be presented with the list of `flow-manager` services that are currently configured in your project.
 

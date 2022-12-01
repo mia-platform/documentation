@@ -2,10 +2,10 @@
 
 Take a walkthrough that covers creating your first real project. You will:
 
-* use [CRUDs](../../development_suite/api-console/api-design/crud_advanced.md).
-* create [microservices](../../development_suite/api-console/api-design/plugin_baas_4.md).
-* Use and configure a [Plugin](../../business_suite/overview-business-suite.md).
-* configure the [CMS](../../business_suite/cms_configuration/config_cms.md).
+* use [CRUDs](/development_suite/api-console/api-design/crud_advanced.md).
+* create [microservices](/development_suite/api-console/api-design/plugin_baas_4.md).
+* Use and configure a [Plugin](/business_suite/overview-business-suite.md).
+* configure the [CMS](/business_suite/cms_configuration/config_cms.md).
 
 At the end of these steps, your services will run on Mia-Platform PaaS.
 
@@ -76,7 +76,7 @@ This collection will contain dishes with images. In order to create the CRUD fol
 1. Select the project *Your First Project*.
 2. Select *Design section*.
 3. Select the branch *master*.
-4. Go to section [CRUD](../../development_suite/api-console/api-design/crud_advanced.md) and click *Create new CRUD*.
+4. Go to section [CRUD](/development_suite/api-console/api-design/crud_advanced.md) and click *Create new CRUD*.
 5. Insert the name `dishes` and press *Create*.
 6. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add Field* to create the following fields:
 
@@ -100,7 +100,7 @@ That's it? Yes! We have just created a MongoDB collection and a CRUD ready to be
 
 **Now you should expose your collection through an Endpoint and create your first API.**
 
-1. Go to section [Endpoints](../../development_suite/api-console/api-design/endpoints.md) and click *Add new*. Then enter the following information:
+1. Go to section [Endpoints](/development_suite/api-console/api-design/endpoints.md) and click *Add new*. Then enter the following information:
    */dishes* as **Base path**.
    *CRUD* as **Type**.
     Select *dishes* as **CRUD**.
@@ -119,7 +119,7 @@ That's it? Yes! We have just created a MongoDB collection and a CRUD ready to be
         All items in design area **are not saved** until you click **Commit & Generate**. However, you can create different entities and then save all the work only at the end.  
         Internally, when you commit, the Console properly updates and commit the Kubernetes files on configuration repository of your project.
 
-Checkout the [endpoint documentation](../../development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
+Checkout the [endpoint documentation](/development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
 
 ### Create a CRUD for ingredients
 
@@ -211,7 +211,7 @@ Now let's commit and save our work to be ready to deploy.
 
 Now, to test our CRUDs, we have to deploy our project:
 
-1. Go to section [Deploy](../../development_suite/deploy/deploy.md) and click *Create new CRUD*.
+1. Go to section [Deploy](/development_suite/deploy/deploy.md) and click *Create new CRUD*.
 2. As environment select *Development*
 3. Select the branch master *Master*. You can see the related last commit.
 4. Click *Deploy*
@@ -223,7 +223,7 @@ Once deployed our endpoints can immediately be tested with the API Portal.
 
 ## Try your API
 
-To try our CRUDs automatically exposed by an API, let's how access to [Documentation Portal](../../development_suite/api-portal/api-documentations.md) to try it and see the auto-generated API documentation.
+To try our CRUDs automatically exposed by an API, let's how access to [Documentation Portal](/development_suite/api-portal/api-documentations.md) to try it and see the auto-generated API documentation.
 
 Select from navigation bar *Documentation*, then select *Development*. You'll see the list of your CRUDs, each list contains the routes of your API, with a functionality description.
 
@@ -236,21 +236,21 @@ Try to get a list of dishes:
 Don't you see anything? Do not worry! There is no data in our CRUD yet. In the next step, we will create our first service and it will be just dedicated to generating test data.
 
 !!! info
-    You may already share the specs of your APIs with partners that are building the apps. You can export them to a JSON/Yaml file compliant with OpenAPI 3/Swagger format.  Check out the [Documentation Portal](../../development_suite/api-portal/api-documentations.md) to further detail.
+    You may already share the specs of your APIs with partners that are building the apps. You can export them to a JSON/Yaml file compliant with OpenAPI 3/Swagger format.  Check out the [Documentation Portal](/development_suite/api-portal/api-documentations.md) to further detail.
 
 ### Create services
 
 Mia-Platform adopts a microservices architecture, so our food delivery platform will be sliced into a set of smaller and interconnected services. Each microservices will be responsible for a single business logic.  
-With Mia-Platform you can easily create and orchestrate your microservices. You can create a service from [examples](../../marketplace/examples/mia_examples.md) and [templates](../../marketplace/templates/mia_templates.md) or get one ready to use. There is a [whole set](../../runtime_suite/mia-platform-plugins.md based on different use cases.  
+With Mia-Platform you can easily create and orchestrate your microservices. You can create a service from [examples](/marketplace/examples/mia_examples.md) and [templates](/marketplace/templates/mia_templates.md) or get one ready to use. There is a [whole set](/runtime_suite/mia-platform-plugins.md based on different use cases.  
 
 :::info
-For this walkthrough we'll use a ready-to-use service that we'll customize. You can find this in the [Marketplace](../../marketplace/overview_marketplace.md), with many other templates, example and ready-to-use services.
+For this walkthrough we'll use a ready-to-use service that we'll customize. You can find this in the [Marketplace](/marketplace/overview_marketplace.md), with many other templates, example and ready-to-use services.
 :::
 
 ### Create data generator service
 
 As mentioned above there is no data in our CRUDs, and in order to correctly develop the service, we need to create and consume test data. Now will create our first service that will be responsible to create these data. In order to create the service follow these steps:
 
-1. In *Design area*,go to [Microservices section](../../development_suite/api-console/api-design/services.md) and click *Create a Microservice*.
+1. In *Design area*,go to [Microservices section](/development_suite/api-console/api-design/services.md) and click *Create a Microservice*.
 2. Search the example `Data generator example`, then click the related tab.
 3. Now you have to set your collection's fields. Scroll to *Fields* section and click *Add Field* to create the following fields:

@@ -26,19 +26,19 @@ Finally, it is important to underline how the configuration of this authorizatio
 
 ## Client credentials service
 
-First of all, if it has not already been done, install the [`Client Credentials service`](../runtime_suite/client-credentials/usage) in every project in which you are interested in managing accesses for the Developer Portal. 
+First of all, if it has not already been done, install the [`Client Credentials service`](/runtime_suite/client-credentials/usage.md) in every project in which you are interested in managing accesses for the Developer Portal. 
 This service is used to store and manage your client credentials.
 
 Below there are the APIs that you will need to manage the authorization:
-- [`/register`](../runtime_suite/client-credentials/usage#post-register): this API is used to generate a new `client_id` using the public key provided by the Developer Portal user.  
+- [`/register`](/runtime_suite/client-credentials/usage.md#post-register): this API is used to generate a new `client_id` using the public key provided by the Developer Portal user.  
 **For security reasons, we suggest to use the `private_key_jwt` as `token_endpoint_auth_method`**;
-- [`/oauth/token`](../runtime_suite/client-credentials/usage#post-oauthtoken): this API will be used by the Developer Portal user to obtain the Bearer token used to authenticate his requests.  
+- [`/oauth/token`](/runtime_suite/client-credentials/usage.md#post-oauthtoken): this API will be used by the Developer Portal user to obtain the Bearer token used to authenticate his requests.  
 **For security reasons, we suggest to use the `private_key_jwt` as `token_endpoint_auth_method`**;
-- [`/tokeninfo`](../runtime_suite/client-credentials/usage#get-tokeninfo): this API is used by the `Authorization service` to verify your token.
+- [`/tokeninfo`](/runtime_suite/client-credentials/usage.md#get-tokeninfo): this API is used by the `Authorization service` to verify your token.
 
-[On this page](../runtime_suite/client-credentials/configuration) you will find all the information to correctly configure the service and its related environment variables.
+[On this page](/runtime_suite/client-credentials/configuration.md) you will find all the information to correctly configure the service and its related environment variables.
 
-Furthermore, it's suggested to read the [authentication flow diagram](../runtime_suite/client-credentials/usage#supported-authentication-flow) in order to better understand what is described here and in the rest of the document.
+Furthermore, it's suggested to read the [authentication flow diagram](/runtime_suite/client-credentials/usage.md#supported-authentication-flow) in order to better understand what is described here and in the rest of the document.
 
 In the end, your configuration should look like this:
 
@@ -51,11 +51,11 @@ We always suggest configuring it as **secret**.
 
 ## Authorization service
 
-After that, **and always for every project in which you are interested in managing accesses for the developer portal**, it is necessary to install the [`Authorization Service`](../runtime_suite/authorization-service/overview), if not already installed. 
+After that, **and always for every project in which you are interested in managing accesses for the developer portal**, it is necessary to install the [`Authorization Service`](/runtime_suite/authorization-service/overview.md), if not already installed. 
 
 This service works as a bridge between the `API Gateway` and the `Client credentials service`. It is invoked by the `API Gateway` on an income request and uses the `Client credentials service` to check if the provided token is valid: if everything is ok, the request is forwarded to the destination microservice in order to be processed.
 
-To configure the service, check the [dedicated documentation](../runtime_suite/authorization-service/configuration).
+To configure the service, check the [dedicated documentation](/runtime_suite/authorization-service/configuration.md).
 For a better configuration, is also suggested to set the following environment variables as follows:
 - `AUTHORIZATION_HEADERS_TO_PROXY`: `authorization,cookie`;
 - `CUSTOM_PERMISSIONS_KEY`: `permissions`;
@@ -68,8 +68,8 @@ In the end, your configuration should look like this:
 
 ## Project requests management
 
-Using the [`/register`](../runtime_suite/client-credentials/usage#post-register) endpoint of the `Client Credentials service`, for example from the API Portal, you can create a new `client_id` that you must provide to your users to allow them to access to your resources;
-the invocation of this API store the credentials in the collection configured in the [CRUD_CLIENT_BASE_URL](../runtime_suite/client-credentials/configuration#environment-variables) variable.
+Using the [`/register`](/runtime_suite/client-credentials/usage.md#post-register) endpoint of the `Client Credentials service`, for example from the API Portal, you can create a new `client_id` that you must provide to your users to allow them to access to your resources;
+the invocation of this API store the credentials in the collection configured in the [CRUD_CLIENT_BASE_URL](/runtime_suite/client-credentials/configuration.md#environment-variables) variable.
 
 In order to facilitate the management of the permissions associated with the credential, you can configure the CMS to expose a new page for the collection used to store them.
 
@@ -79,7 +79,7 @@ The following is an example of this page:
 
 ## Usage flow
 
-When you created the `client_id` and correctly set the associated permissions, your user is now able to call the [`/oauth/token`](../runtime_suite/client-credentials/usage#post-oauthtoken) API:
+When you created the `client_id` and correctly set the associated permissions, your user is now able to call the [`/oauth/token`](/runtime_suite/client-credentials/usage.md#post-oauthtoken) API:
 with the Bearer token returned by it, the user will be able to access the requested resource by simply inserting the `Authorization` header; for example:
 
 `Authorization: Bearer eyJhbGciOi...`

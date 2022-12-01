@@ -36,7 +36,7 @@ When creating a low code system, its service will have a link to the `er-schema`
 
 The `erSchema.json` configmap defines the relationship between tables and projections.
 
-[Here](../erSchema.md) you can find a deep explanation of how ER Schema configuration works.
+[Here](/fast_data/configuration/erSchema.md) you can find a deep explanation of how ER Schema configuration works.
 
 ### Projection Changes Schema
 
@@ -109,9 +109,9 @@ Given the `pr_allergens` → `pr_allergens_registry` → `pr_registry` path, bot
 :::
 
 :::warning
-If [automatic aggregation](../single_view_creator/low_code.md) is used, the reference object key (in this case `ID_USER`) is required to have the same name as the projection changes identifier, which is the starting point of the aggregation.
-Otherwise, if the automatic aggregation is not used, it is possible naming the key as preferred coherently with the `singleViewKey.js` and `mapper.js` file in the [Single View Creator](../single_view_creator/manual.md).
-It is possible to write the `projectionChangesSchema.json` in `ConfigMaps & Secret` area of the [Automatic Single view Plugin](../single_view_creator/low_code.md).
+If [automatic aggregation](/fast_data/configuration/single_view_creator/low_code.md) is used, the reference object key (in this case `ID_USER`) is required to have the same name as the projection changes identifier, which is the starting point of the aggregation.
+Otherwise, if the automatic aggregation is not used, it is possible naming the key as preferred coherently with the `singleViewKey.js` and `mapper.js` file in the [Single View Creator](/fast_data/configuration/single_view_creator/manual.md).
+It is possible to write the `projectionChangesSchema.json` in `ConfigMaps & Secret` area of the [Automatic Single view Plugin](/fast_data/configuration/single_view_creator/low_code.md).
 :::
 
 At the end of the configuration be sure to register the projection in the Strategies' page of your single view:

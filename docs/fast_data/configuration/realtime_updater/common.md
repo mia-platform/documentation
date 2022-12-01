@@ -7,7 +7,7 @@ sidebar_label: Common
 Real-Time Updater is the service in charge of keeping up to date the projections with the data sent by the connected system.   
 Optionally, the service can generate several events so that your services can consume these events and react when projections are updated. 
 
-For having an overview of the features of the Real-Time Updater, you can go [here](../../realtime_updater.md).   
+For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/realtime_updater.md).   
 Here below, instead, all the configurations the service accepts are explained. 
 
 ## Environment variables
@@ -174,7 +174,6 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger)
     key: keyAsBuffer, // type Buffer
     timestamp: timestampAsString, // type string
     offset: offsetAsString, // type string
-    operation: operationAsString // type string
   } = kafkaMessage
 
   // your adapting logic
@@ -197,7 +196,7 @@ The `primaryKeys` is an array of strings which are the primary keys of the proje
 ### CAST_FUNCTION configurations
 
 The mount path used for these configurations is: `/home/node/app/configurations/castFunctionsFolder`.  
-In this folder you have all the generated [Cast Functions](../cast_functions) definitions. This configuration is read-only since you can configure it from its dedicated section of the Console.
+In this folder you have all the generated [Cast Functions](/fast_data/configuration/cast_functions.md) definitions. This configuration is read-only since you can configure it from its dedicated section of the Console.
 
 ### MAP_TABLE configurations
 
@@ -242,7 +241,7 @@ where:
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
 - `MY_STRATEGY` is the strategy to be used to get the identifier of the Single View to update. It could be the name of a file or, in case an automatic strategy, the string `__automatic__`.
-- `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](../../inputs_and_outputs.md#topic-for-svc-trigger))
+- `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](/fast_data/inputs_and_outputs.md#topic-for-svc-trigger))
 
 Example:
 
@@ -573,7 +572,7 @@ Since service version `5.4.0`, you can set your CA certs by providing a path to 
 This feature is supported from version `7.1.2` of the Real-Time Updater
 :::
 
-As explained [here](../single_views.md#single-view-patch), in order to arrange the Real-Time Updater for this specific operation, it's important to understand which are the projections impacted. Then, the following steps have to be followed:
+As explained [here](/fast_data/configuration/single_views.md#single-view-patch), in order to arrange the Real-Time Updater for this specific operation, it's important to understand which are the projections impacted. Then, the following steps have to be followed:
 
 * Activate Projection Updates with the env `GENERATE_KAFKA_PROJECTION_UPDATES`
 * Configure the [Projection Updates](#kafka-projection-updates-configuration) only for the specific Projection

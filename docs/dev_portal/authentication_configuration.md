@@ -8,9 +8,9 @@ The Dev Portal can be protected by unauthorized users by configuring an authenti
 
 In this guide, we show how to configure the Dev Portal with [Auth0](https://auth0.com/).
 
-## Close the Dev Portal Entrypoint
+## Protect the Dev Portal Entrypoint
 
-The first thing you want to do is to enable authentication on the Dev Portal entrypoints you want to protect. This step will inform the [Api Gateway](../runtime_suite/api-gateway/overview.md) to redirect any request to an authentication process.
+The first thing you want to do is to enable authentication on the Dev Portal entrypoints you want to protect. This step will inform the [Api Gateway](/runtime_suite/api-gateway/overview.md) to redirect any request to an authentication process.
 
 Move to the design area of the console, go to the endpoints page, and select a Dev Portal entrypoint you want to protect. By default, the main entrypoint selected when creating a new Dev Portal Application will be the `/` endpoint.
 
@@ -86,6 +86,7 @@ Compile the creation form as follows:
 
 - type: **Microservice**
 - Microservice: **oauth-login-site**
+- Rewrite Base Path: **/web-login**
 
 
 ## Configure the Authorization Service 
@@ -112,7 +113,7 @@ Now, go to the environment variables section and make sure they are compiled as 
 - **CUSTOM_PERMISSIONS_KEY**: permissions;
 - **AUTHORIZATION_HEADERS_TO_PROXY**: cookie,authorization.
 
-To have further details regarding the Authorization Service configuration please refer to the official [documentation](../runtime_suite/authorization-service/configuration.md).
+To have further details regarding the Authorization Service configuration please refer to the official [documentation](/runtime_suite/authorization-service/configuration.md).
 
 
 ## Configure Auth0 Client
@@ -189,15 +190,16 @@ Auth0 clientIds and secrets require access to the Auth0 platform and to have the
 
 Finally, move to the endpoints section and start creating the following endpoints:
 
-- `/authorize`;
-- `/oauth/token`.
+- `/authorize`:
+   - type: **Microservice**
+   - Microservice: **auth0-client**
+   - Rewrite Base Path: **/authorize**
+- `/oauth/token`:
+   - type: **Microservice**
+   - Microservice: **auth0-client**
+   - Rewrite Base Path: **/oauth/token**
 
-For each endpoint, compile the creation form as follows: 
-
-- type: **Microservice**
-- Microservice: **auth0-client**
-
-To have further details regarding the Auth0 Client configuration please refer to the official [documentation](../runtime_suite/auth0-client/configuration.md).
+To have further details regarding the Auth0 Client configuration please refer to the official [documentation](/runtime_suite/auth0-client/configuration.md).
 
 ## Configure API Key clientType:
 
@@ -241,3 +243,21 @@ The final result should look like this:
 :::info
 Once you have defined a permission group for an endpoint, all the users accessing that route will need to be part of the relative group on the Auth0 platform to successfully log into the application.
 :::
+
+## Troubleshooting
+
+Following some common error use case.
+
+### Redirects loop - Too many redirects
+
+After you configured the authentication flow can happen that you get the following error:
+
+![browser too many redirects](./img/browser-too-many-redirects.png)
+
+Moreover, if you check the redirects flow, you will get something like this:
+
+![redirects flow](./img/too_many_redirects_flow.png)
+
+When this error happens, you probably forgot to configure the `/web-login` _Rewrite Base Path_ property during the _Oauth Login Site_ endpoint configuration.
+
+Check the [configuration](/dev_portal/authentication_configuration.md#configure-login-site) section to set the right _Rewrite Base Path_.

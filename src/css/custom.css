@@ -7,13 +7,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #28B7E0;
-  --ifm-color-primary-dark: #28B7E0;
-  --ifm-color-primary-darker: #28B7E0;
-  --ifm-color-primary-darkest: #28B7E0;
-  --ifm-color-primary-light: #28B7E0;
-  --ifm-color-primary-lighter: #28B7E0;
-  --ifm-color-primary-lightest: #28B7E0;
+  --ifm-color-primary: #1890FF;
+  --ifm-color-primary-dark: #1890FF;
+  --ifm-color-primary-darker: #1890FF;
+  --ifm-color-primary-darkest: #1890FF;
+  --ifm-color-primary-light: #1890FF;
+  --ifm-color-primary-lighter: #1890FF;
+  --ifm-color-primary-lightest: #1890FF;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 85%;
   --ifm-global-spacing:1rem;
@@ -21,7 +21,7 @@
   --ifm-color-warning: var(--ifm-color-warning-lightest);
   --ifm-alert-color: black;
   --searchbar-placeholder: 'Search for terms, features and more...';
-  --ifm-font-family-museosans: "MuseoSans";
+  --ifm-font-family-Inter: "Inter";
   --ifm-navbar-item-padding-horizontal: .7rem;
 }
 
@@ -55,7 +55,7 @@ div[role="banner"] {
 }
 
 html[data-theme='dark'] .DocSearch {
-  --ifm-card-color:#444950;
+  --ifm-card-color:#202526;
   --docsearch-modal-background:var(--ifm-background-color);
   --docsearch-hit-background:var(--ifm-background-surface-color);
   --docsearch-footer-background: var(--ifm-background-surface-color);
@@ -63,7 +63,7 @@ html[data-theme='dark'] .DocSearch {
 
 
 html[data-theme='dark'] .DocSearch-Button {
-  --ifm-card-color:#444950;
+  --ifm-card-color:#202526;
   background: var(--ifm-card-color);
 }
 
@@ -80,7 +80,7 @@ html[data-theme='dark'] .DocSearch-Button {
   padding: 5px 10px;
   margin: 15px;
   background-color: var(--ifm-badge-background-color);
-  border-color: #28b7e0;
+  border-color: #1890FF;
   border-style: solid;
   border-width:1px;
   border-radius: 4px;
@@ -130,15 +130,15 @@ html[data-theme='dark'] .DocSearch-Button {
 }
 
 @font-face {
-  font-family: "MuseoSans";
-  src: url('/font/MuseoSans_500.otf')  format("opentype");
+  font-family: "Inter";
+  src: url('/font/Inter-Regular.otf')  format("opentype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "MuseoSans";
-  src: url('/font/MuseoSans_900.otf')  format("opentype");
+  font-family: "Inter";
+  src: url('/font/Inter-SemiBold.otf')  format("opentype");
   font-weight: 900;
   font-style: normal;
 }

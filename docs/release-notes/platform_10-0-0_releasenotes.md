@@ -13,15 +13,15 @@ _October 20th, 2022_
 
 #### Self-service Cluster Management
 
-Through a new section in Mia-Platform Console it’s possible to manage the infrastructure on which to deploy the Projects: in fact, it is possible to connect and manage Kubernetes Clusters through a handy interface and view some details about it, regardless of the Vendor and Kubernetes distribution installed. Find out more [here](../development_suite/clusters-management).
+Through a new section in Mia-Platform Console it’s possible to manage the infrastructure on which to deploy the Projects: in fact, it is possible to connect and manage Kubernetes Clusters through a handy interface and view some details about it, regardless of the Vendor and Kubernetes distribution installed. Find out more [here](/development_suite/clusters-management/clusters-management.md).
 
 #### Self-service Project Environment Management
 
-The Environment section of Mia-Platform Console has been enhanced, providing the ability for a user with respective permissions to be able to add, edit and delete an environment directly through a dedicated graphical interface on Mia-Platform Console. Find out more [here](../development_suite/set-up-infrastructure/runtime-environments).
+The Environment section of Mia-Platform Console has been enhanced, providing the ability for a user with respective permissions to be able to add, edit and delete an environment directly through a dedicated graphical interface on Mia-Platform Console. Find out more [here](/development_suite/set-up-infrastructure/runtime-environments.md).
 
 #### Project Quick Links
 
-Now, inside the Metrics Homepage, a Project Administrator (or Company Owner) can set up some Project Quick Links that will make it easy for you to access other tools related to your project. These links can help teams to better structure developer workflows and speed up their processes. Find out more [here](../development_suite/overview-dev-suite#project-links-and-dashboards).
+Now, inside the Metrics Homepage, a Project Administrator (or Company Owner) can set up some Project Quick Links that will make it easy for you to access other tools related to your project. These links can help teams to better structure developer workflows and speed up their processes. Find out more [here](/development_suite/overview-dev-suite.md#project-links-and-dashboards).
 
 ![Mia-Platform Console Metrics Homepage](./img/10.0/Mia-Platform-metrics-homepage.png)
 

@@ -407,10 +407,6 @@
       "items": [
         {
           "type": "doc",
-          "id": "business_suite/backoffice/overview"
-        },
-        {
-          "type": "doc",
           "id": "business_suite/backoffice/data_flow"
         },
         {
@@ -479,7 +475,11 @@
             }
           ]
         }
-      ]
+      ],
+      "link": {
+        "type": "doc",
+        "id": "business_suite/backoffice/overview"
+      }
     },
     {
       "label": "Data Visualization",
@@ -934,17 +934,17 @@
           "items": [
             {
               "type": "doc",
-              "id": "runtime_suite_libraries/flow-manager-client/overview"
-            },
-            {
-              "type": "doc",
               "id": "runtime_suite_libraries/flow-manager-client/setup"
             },
             {
               "type": "doc",
               "id": "runtime_suite_libraries/flow-manager-client/changelog"
             }
-          ]
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite_libraries/flow-manager-client/overview"
+          }
         },
         {
           "collapsed": true,
@@ -1041,13 +1041,13 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/acl-service/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/acl-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/acl-service/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1056,17 +1056,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/api-gateway/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/api-gateway/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/api-gateway/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/api-gateway/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1075,27 +1075,23 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/api-portal/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/api-portal/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/api-portal/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/api-portal/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Appointment Manager",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/appointment-manager/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/appointment-manager/configuration"
@@ -1108,7 +1104,11 @@
                   "type": "doc",
                   "id": "runtime_suite/appointment-manager/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/appointment-manager/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1140,10 +1140,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/authentication-service/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/authentication-service/configuration"
                 },
                 {
@@ -1154,17 +1150,17 @@
                   "type": "doc",
                   "id": "runtime_suite/authentication-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/authentication-service/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Authorization Service",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/authorization-service/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/authorization-service/configuration"
@@ -1177,17 +1173,17 @@
                   "type": "doc",
                   "id": "runtime_suite/authorization-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/authorization-service/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Care Kit",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/care-kit/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/changelog"
@@ -1202,7 +1198,11 @@
                     }
                   ]
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/care-kit/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1230,10 +1230,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/chat-service-frontend/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/chat-service-frontend/configuration"
                 },
                 {
@@ -1244,7 +1240,11 @@
                   "type": "doc",
                   "id": "runtime_suite/chat-service-frontend/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/chat-service-frontend/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1348,17 +1348,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/export-service/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/export-service/usage"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/export-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/export-service/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1386,10 +1386,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/flow-manager-service/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/flow-manager-service/how_it_works"
                 },
                 {
@@ -1412,17 +1408,17 @@
                   "type": "doc",
                   "id": "runtime_suite/flow-manager-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/flow-manager-service/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Form Service Backend",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/form-service-backend/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/form-service-backend/configuration"
@@ -1443,17 +1439,17 @@
                   "type": "doc",
                   "id": "runtime_suite/form-service-backend/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/form-service-backend/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Form Service Frontend",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/form-service-frontend/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/form-service-frontend/configuration"
@@ -1470,7 +1466,11 @@
                   "type": "doc",
                   "id": "runtime_suite/form-service-frontend/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/form-service-frontend/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1494,10 +1494,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/http-proxy-manager/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/http-proxy-manager/how_to_use"
                 },
                 {
@@ -1508,17 +1504,17 @@
                   "type": "doc",
                   "id": "runtime_suite/http-proxy-manager/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/http-proxy-manager/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Invoice Service",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/invoice-service/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/invoice-service/configuration"
@@ -1531,7 +1527,11 @@
                   "type": "doc",
                   "id": "runtime_suite/invoice-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/invoice-service/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1555,17 +1555,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/kafka2firebase/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/kafka2firebase/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/kafka2firebase/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/kafka2firebase/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1574,27 +1574,23 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/kafka2rest-service/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/kafka2rest-service/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/kafka2rest-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/kafka2rest-service/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Messaging Service",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/messaging-service/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/messaging-service/configuration"
@@ -1607,7 +1603,11 @@
                   "type": "doc",
                   "id": "runtime_suite/messaging-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/messaging-service/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1680,10 +1680,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/microservice-gateway/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/microservice-gateway/configuration"
                 },
                 {
@@ -1694,7 +1690,11 @@
                   "type": "doc",
                   "id": "runtime_suite/microservice-gateway/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/microservice-gateway/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1741,10 +1741,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/payment-gateway-manager/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/how_it_works"
                 },
                 {
@@ -1767,17 +1763,17 @@
                   "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/payment-gateway-manager/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "PDF Service",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/pdf-service/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/pdf-service/configuration"
@@ -1790,7 +1786,11 @@
                   "type": "doc",
                   "id": "runtime_suite/pdf-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/pdf-service/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1799,17 +1799,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/proxy-google-fhir/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/proxy-google-fhir/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/proxy-google-fhir/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/proxy-google-fhir/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1837,17 +1837,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/push-notification-sender/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/push-notification-sender/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/push-notification-sender/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/push-notification-sender/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1856,17 +1856,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/rest2kafka-service/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/rest2kafka-service/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/rest2kafka-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/rest2kafka-service/overview"
+              }
             },
             {
               "collapsed": true,
@@ -1954,10 +1954,6 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/swagger-aggregator/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/swagger-aggregator/configuration"
                 },
                 {
@@ -1968,17 +1964,17 @@
                   "type": "doc",
                   "id": "runtime_suite/swagger-aggregator/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/swagger-aggregator/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Teleconsultation Service Backend",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/teleconsultation-service-backend/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/teleconsultation-service-backend/configuration"
@@ -1991,17 +1987,17 @@
                   "type": "doc",
                   "id": "runtime_suite/teleconsultation-service-backend/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/teleconsultation-service-backend/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Teleconsultation Service Frontend",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/teleconsultation-service-frontend/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/teleconsultation-service-frontend/configuration"
@@ -2014,17 +2010,17 @@
                   "type": "doc",
                   "id": "runtime_suite/teleconsultation-service-frontend/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/teleconsultation-service-frontend/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Temporary Password Generator",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/temporary-password-generator/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/temporary-password-generator/how_to_use"
@@ -2037,17 +2033,17 @@
                   "type": "doc",
                   "id": "runtime_suite/temporary-password-generator/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/temporary-password-generator/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Timer Service",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/timer-service/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/timer-service/configuration"
@@ -2060,17 +2056,17 @@
                   "type": "doc",
                   "id": "runtime_suite/timer-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/timer-service/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "User Manager Service",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/user-manager-service/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/user-manager-service/configuration"
@@ -2083,7 +2079,11 @@
                   "type": "doc",
                   "id": "runtime_suite/user-manager-service/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/user-manager-service/overview"
+              }
             }
           ],
           "label": "Plugins List",
@@ -2119,17 +2119,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite_templates/node.js-template/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite_templates/node.js-template/walkthrough"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite_templates/node.js-template/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/node.js-template/overview"
+              }
             }
           ]
         }
@@ -2175,17 +2175,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-+-apigateway/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/auth0-+-apigateway/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/auth0-+-apigateway/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/auth0-+-apigateway/overview"
+              }
             },
             {
               "collapsed": true,
@@ -2194,17 +2194,17 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/auth0-+-backoffice/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/auth0-+-backoffice/configuration"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/auth0-+-backoffice/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/auth0-+-backoffice/overview"
+              }
             },
             {
               "collapsed": true,
@@ -2213,27 +2213,23 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/data-analytics/overview"
-                },
-                {
-                  "type": "doc",
                   "id": "runtime_suite/data-analytics/how_to_use"
                 },
                 {
                   "type": "doc",
                   "id": "runtime_suite/data-analytics/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/data-analytics/overview"
+              }
             },
             {
               "collapsed": true,
               "type": "category",
               "label": "Salesforce Streaming API Connector",
               "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/salesforce-streaming-api-connector/overview"
-                },
                 {
                   "type": "doc",
                   "id": "runtime_suite/salesforce-streaming-api-connector/connector_in_depth"
@@ -2258,7 +2254,11 @@
                   "type": "doc",
                   "id": "runtime_suite/salesforce-streaming-api-connector/changelog"
                 }
-              ]
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/salesforce-streaming-api-connector/overview"
+              }
             }
           ]
         }
@@ -2335,6 +2335,10 @@
       },
       "items": [
         {
+          "id": "release-notes/v10.1.1",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v10.1.0",
           "type": "doc"
         },
@@ -2395,27 +2399,23 @@
           "items": [
             {
               "type": "doc",
-              "id": "runtime_suite_tools/miactl/overview"
-            },
-            {
-              "type": "doc",
               "id": "runtime_suite_tools/miactl/setup"
             },
             {
               "type": "doc",
               "id": "runtime_suite_tools/miactl/changelog"
             }
-          ]
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite_tools/miactl/overview"
+          }
         },
         {
           "collapsed": true,
           "type": "category",
           "label": "mlp",
           "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/mlp/overview"
-            },
             {
               "type": "doc",
               "id": "runtime_suite_tools/mlp/setup"
@@ -2444,7 +2444,11 @@
               "type": "doc",
               "id": "runtime_suite_tools/mlp/changelog"
             }
-          ]
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite_tools/mlp/overview"
+          }
         }
       ]
     }

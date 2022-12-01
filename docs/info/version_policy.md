@@ -28,7 +28,7 @@ Below are listed all the Major versions of Mia-Platform released.
 Mia-Platform guarantees **security patches** for the two preceding versions to the current Major.
 
 **Bux Fixing Patch** and **Minor** will instead only be released for the current Major.
-[Read Here](./bug_policy.md) to discover more about our bug policy
+[Read Here](/info/bug_policy.md) to discover more about our bug policy
 
 Release | Release Date |  End of Life Date
 -------| -------|-------

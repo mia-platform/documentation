@@ -13,14 +13,14 @@ To integrate the Dev Portal, you only need to be able to access the project from
 ## Integration steps
 
 To deploy a Dev Portal instance on the Mia Platform Console, you will have to:
-- create the Dev Portal [application](../marketplace/applications/mia_applications);
+- create the Dev Portal [application](/marketplace/applications/mia_applications.md);
 - configure the theming properties of [micro-lc](https://microlc.io/documentation/docs/micro-lc);
 - configure redirects;
 - configure API documentation, authentication, and notifications (optional).
 
 ### 1. Create Dev Portal Application 
 
-The first fundamental requirement for a correct Dev Portal configuration is creating the Dev Portal application through the [Marketplace](../marketplace/overview_marketplace).
+The first fundamental requirement for a correct Dev Portal configuration is creating the Dev Portal application through the [Marketplace](/marketplace/overview_marketplace.md).
 
 The following steps will lead you to create an instance of the Dev Portal application:
 

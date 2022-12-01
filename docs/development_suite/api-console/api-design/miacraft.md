@@ -18,11 +18,11 @@ All the icons shown correspond to a specific type of microservice except for the
 | Icon      | Description |
 | :-----------: | ----------- |
 | ![client-icon](img/client-icon.png) |Client|
-| ![apigateway-icon](img/apigateway-icon.PNG) |[API Gateway](../../../runtime_suite/api-gateway/overview.md)|
+| ![apigateway-icon](img/apigateway-icon.PNG) |[API Gateway](/runtime_suite/api-gateway/overview.md)|
 | ![service-icon](img/service-icon.png) | Microservices which type is “core” |
 | ![custom-service-icon](img/custom-service-icon.png) | Microservices which type is “custom”|
-| ![crud-icon](img/crud-icon.png) | [CRUD](crud_advanced.md)|
-| ![cms-site-icon](img/cms-site-icon.png) | [CMS Site](../../../business_suite/guide_cms.md)|
+| ![crud-icon](img/crud-icon.png) | [CRUD](/development_suite/api-console/api-design/crud_advanced.md)|
+| ![cms-site-icon](img/cms-site-icon.png) | [CMS Site](/business_suite/guide_cms.md)|
 
 
 ## Main functionalities
