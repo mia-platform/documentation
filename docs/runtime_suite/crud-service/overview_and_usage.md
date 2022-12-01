@@ -3,7 +3,7 @@ id: overview_and_usage
 title: CRUD Service
 sidebar_label: Overview and Usage
 ---
-CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable and secure way.
+CRUD acronym stays for ***Create-Read-Update-Delete***. The CRUD Service purpose is to abstract a Data Collections allowing developers to expose CRUD APIs over the database in an easy, scalable, and secure way.
 
 Mia-Platform Console takes advantage of the CRUD Service to let you configure CRUDs through a dedicated UI, the [MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md) section.
 
@@ -11,7 +11,7 @@ Mia-Platform Console takes advantage of the CRUD Service to let you configure CR
 At the moment, you can have only one CRUD Service in your branch at a time.
 :::
 
-It's possible to configure CRUD Service with more than one collection and to scale it horizontally. In this section you will learn how to configure, deploy and use Mia-Platform CRUD Service.
+It's possible to configure CRUD Service with more than one collection and to scale it horizontally. In this section you will learn how to configure, deploy, and use Mia-Platform CRUD Service.
 
 ## Introduction
 
@@ -24,13 +24,15 @@ Via APIs it's possible to:
 - count number of elements in a collection;
 - create a new element in a collection (also with a bulk action);
 - update one or more elements of a collection;
-- delete one or more elements of a collection;
+- delete one or more elements of a collection.
 
 The following guide will help you to get familiar with the APIs of the CRUD Service.
 
 ![API Portal](img/crud-api-portal.png)
 
+:::info
 Remember: the API Portal visualize all API configured and exposed by CRUD.
+:::
 
 ### Conventions
 
@@ -52,7 +54,6 @@ In the following guide we will use a collection named *Plates* that contains a l
 - image: array of photos (a JSON object)
 - position: the geocoded position of a plate
 
-
 ## CRUD Collection Properties
 
 Some collection field properties are predefined, others are custom and can be configured with different data types.
@@ -63,30 +64,38 @@ All properties can be indexed to speed up the data retrieval. The indexes config
 
 CRUD by default comes with a set of common properties that simplify the data management:
 
-- **_id**: unique 24 character length hexadecimal String that identifies a document in the collection
-- **creatorId**: String, id of the user who created the document
-- **createdAt**: Date, date and time when the document has been created
-- **updaterId**: String, id of the user who last updated the document; this information is overwritten every time the document is updated
-- **updatedAt**: Date, date and time when the document has been updated; this information is overwritten every time the document is updated
-- **`__STATE__`**: String, is the current state of the document, can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Only some transformations are allowed, such as `DRAFT` -> `PUBLIC`, while others are not.
+| Property          | Type   | Description                                                                                                                                                                                                                                                                            |
+|-------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`_id`**         | String | Unique 24 character length hexadecimal String that identifies a document in the collection.                                                                                                                                                                                            |
+| **`creatorId`**   | String | Id of the user who created the document.                                                                                                                                                                                                                                               |
+| **`createdAt`**   | Date   | Date and time when the document has been created.                                                                                                                                                                                                                                      |
+| **`updaterId`**   | String | Id of the user who last updated the document; this information is overwritten every time the document is updated.                                                                                                                                                                      |
+| **`updatedAt`**   | Date   | Date and time when the document has been updated; this information is overwritten every time the document is updated.                                                                                                                                                                  |
+| **`__STATE__`**   | String | The current state of the document: can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Allowed transformation are [illustrated below](#state-transitions). |
 
 :::note
-The only two default fields that it is possible to encrypt are **updaterId ** and **creatorId **. 
+The only two default fields that it is possible to encrypt are `updaterId` and `creatorId`.
 :::
 
 Furthermore, you can edit the default fields in a limited way, in particular:
-- `_id`: you can change the description, the GDPR sensitivity, the GDPR description and the `type`. For the `type`, you can choose between:
-  - `ObjectId` (default value): corresponds to [MongoDB ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) that is the unique key to identify a document.
-  - `String`: id of type string that follows UUID v4 format.
-- `creatorId`: you can change the description, the encryption settings, the GDPR sensitivity and the GDPR description.
-- `createdAt`: you can change the description, the GDPR sensitivity and the GDPR description.
-- `updaterId`: you can change the description, the encryption settings, the GDPR sensitivity and the GDPR description.
-- `updatedAt`: you can change the description, the GDPR sensitivity and the GDPR description.
-- `__STATE__`: you can change the description, the GDPR sensitivity and the GDPR description.
+
+| Property          | Description | Encryption settings | GDPR sensitivity | GDPR description |
+|-----------------  |-------------|---------------------|------------------|------------------|
+| **`_id`**         | OK          | -                   | OK               | OK               |
+| **`creatorId`**   | OK          | OK                  | OK               | OK               |
+| **`createdAt`**   | OK          | -                   | OK               | OK               |
+| **`updaterId`**   | OK          | OK                  | OK               | OK               |
+| **`updatedAt`**   | OK          | -                   | OK               | OK               |
+| **`__STATE__`**   | OK          | -                   | OK               | OK               |
+
+For the `_id` field you can also change the `type`, choosing between:
+
+- `ObjectId` (default value): corresponds to [MongoDB ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) that is the unique key to identify a document.
+- `String`: id of type string that follows UUID v4 format.
 
 #### Example of a Collection with only predefined Properties
 
-If you create a CRUD named `empty` without any configuration in the Console you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
+If you create a CRUD named `empty` without any configuration in the Console, you will create a schema with the predefined properties. When you POST on that CRUD you will obtain the following document.
 
 ```bash
 curl --request GET \
@@ -112,16 +121,18 @@ curl --request GET \
 
 ##### STATE values
 
-- **PUBLIC**: the document is visible without specifying the value of ```_st``` in the query string
-- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```
+- **PUBLIC**: the document is visible without specifying the value of ```_st``` in the query string.
+- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```.
 - **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS  not visualize this element and it is possible to recover it only programmatically.
+- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS not visualize this element, and it is possible to recover it only programmatically.
 
-**Note**: the query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
+:::note
+The query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
+:::
 
 By default, when a new item in CRUD is added via POST, the document status is DRAFT. It's possible to change this behavior in the endpoint section of the CRUD changing the default behavior to PUBLIC. This configuration is available in Console/Design/Endpoints section.
 
-It is also possible to enable *hard delete* function to delete permanently an document from the CMS.
+It is also possible to enable *hard delete* function to delete permanently a document from the CMS.
 
 ##### State Transitions
 
@@ -144,7 +155,7 @@ To transit the STATE of an item of a CRUD you need to POST it via the following 
 It is not possible to change the STATE of an item via a PATCH endpoint.
 :::
 
-for example
+For example, the following request will update from DRAFT (default state) to PUBLISH the collection document with `_id=5e8a125eb74dbf0011444ed3`:
 
 ```bash
  curl --request POST \
@@ -154,11 +165,9 @@ for example
   --data '{"stateTo":"PUBLIC"}'
 ```
 
-update from DRAFT (default state) to PUBLISH the collection document `5e8a125eb74dbf0011444ed3`.
-
 ### Collection Properties Types
 
-When a new property is added to a collection it is possible to specify the following types:
+When a new property is added to a collection, it is possible to specify the following types:
 
 - String: UTF-8 character set
 - Number
@@ -184,15 +193,15 @@ For the Objects and array of Objects, you could add a JSON Schema describing the
 
 ### Collection document properties
 
-Each property can defined as:
+Each property can be defined as:
 
-- **required**: the property cannot be empty
-- **encrypted**: the property is encrypted at rest
-- **nullable**: the property can be null
+- **required**: the property cannot be empty;
+- **encrypted**: the property is encrypted at rest;
+- **nullable**: the property can be null.
 
 ### Indexes
 
-Any CRUD field can be indexed. In Console/Design/MongoDB CRUD the following indexes can be configured:
+Any CRUD field can be indexed. In Console/Design/MongoDB CRUD, the following indexes can be configured:
 
 - **Normal**: standard [MongoDB index](https://docs.mongodb.com/manual/indexes/) which can hold references to a single field or to multiple ones.
 - **Geo**: geospatial index that supports queries on a 2D plane. Follow this [link](https://docs.mongodb.com/manual/geospatial-queries/) to learn more about MongoDB geospatial queries.
@@ -209,9 +218,9 @@ Every index that is not specified in the collection definition will be **dropped
 
 ## CRUD Headers
 
-The CRUD service accept the following header:
+The CRUD service accepts the following header:
 
-- ***acl_rows***: an array of mongodb queries that limits the documents that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the query string. Example:
+- ***acl_rows***: an array of MongoDB queries that limits the documents that a request can return. The value of acl_rows is a stringified JSON, which is in AND with the query string. Example:
 
 ```json
 acl_rows: JSON.stringify([{ price: { $gt: MATCHING_PRICE } }])
@@ -231,7 +240,7 @@ curl --request GET \
   --header 'json-query-params-encoding: base64'
 ```
 
-- ***userId***: the user identifier that do the update
+- ***userId***: the user identifier that do the update.
 
 Usually this is used by PRE/POST Orchestrator to manage concatenated request to CRUD.
 
@@ -239,13 +248,15 @@ Usually this is used by PRE/POST Orchestrator to manage concatenated request to 
 
 ### Expose a CRUD Service
 
+:::warning
 CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
+:::
 
 ### API Key
 
 If a CRUD is exposed under an [API Key](../../development_suite/api-console/api-design/api-key) you have to pass the key into the request header with the name `client-key`.
 
-Example
+Example:
 
 ```bash
 curl --request GET \
@@ -262,9 +273,11 @@ APIs configured with Mia-Platform can be consumed with any technology that suppo
 - [insomnia](https://insomnia.rest/)
 - [postman](https://www.getpostman.com/)
 
-In the examples for brevity we will use curl. Following are the typical operations that can be done with an APIRestful CRUD created with Mia-Platform.
+In the examples, we will use curl for brevity. Following are the typical operations that can be done with an API Restful CRUD created with Mia-Platform.
 
-*Note*: all of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using Console.
+:::note
+All of these examples can be tested using the API Portal of Mia-Platform. The Portal can be accessed using Console.
+:::
 
 Let's see how to perform C-R-U-D operations.
 
@@ -274,21 +287,23 @@ All examples are sent to <https://your-url> Mia-Platfrom instance. We assume tha
 client-key: client-key
 ```
 
-If your endpoints are also protected by authentication and authorization you need to pass the access token to the curl command.
+If your endpoints are also protected by authentication and authorization, you need to pass the access token to the curl command.
 
 ### Create
 
-It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist CRUD creates it automatically and force the indexes configured in Console. A document can be created in three different ways:
+It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist, the CRUD service creates it automatically and force the indexes configured in Console. A document can be created in three different ways:
 
-- inserting a single JSON document
-- inserting or updating one JSON document
-- inserting multiple JSON documents (bulk)
+- inserting a single JSON document;
+- inserting or updating one JSON document;
+- inserting multiple JSON documents (bulk).
 
 The JSON document sent to CRUD is validated against the JSON schema defined in Console before the insertion.
 
 #### Insert a single document
 
-To create a document use *POST* request and pass, in the body of the request, the JSON representation of the new document. For example if you want to store a new document in the exposed collection `plates` you need to create a JSON like this one:
+To create a document use *POST* request. In the body of the request add the JSON representation of the new document.
+
+For example, if you want to store a new document in the exposed collection `plates`, you need to create a JSON like the following one:
 
 ```json
 {
@@ -297,7 +312,7 @@ To create a document use *POST* request and pass, in the body of the request, th
 }
 ```
 
-and insert it in the collection using a POST request
+Then you have to insert it in the collection using a POST request, like the following one:
 
 ```bash
 curl --request POST \
@@ -308,7 +323,7 @@ curl --request POST \
   --data '{"name":"Spaghetti with tomato sauce","description":"The classic italian dish"}'
 ```
 
-in response, you will get a JSON object like this:
+In response, you will get a JSON object like the one below, where **_id** is the unique identifier of the new document inserted:
 
 ```json
 {
@@ -316,11 +331,9 @@ in response, you will get a JSON object like this:
 }
 ```
 
-where **_id** is the unique identifier of the new document inserted.
-
 #### Insert or Update one document
 
-If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the endpoint upsert-one. You need to specify in query parameters all data to match eventually the existent document and in request body the JSON document you want to insert or update.
+If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the endpoint `upsert-one`. You need to specify in query parameters all data to match eventually the existent document, and in request body the JSON document you want to insert or update.
 
 ```bash
 curl --request POST \
@@ -331,19 +344,23 @@ curl --request POST \
   --data '{"$set":{"name":"Spaghetti with seafood"}}'
 ```
 
-in response you will obtain the document if already exist or a new document if is not present. The document will reflect all the updates you specified.
+In response, you will obtain the document if already exist, or a new document if it is not present. The document will reflect all the updates you specified.
 
-**note**: if you don't specify the query string the first document of the collection is updated.
+:::note
+If you don't specify the query string, the first document of the collection is updated.
+:::
 
-If instead of ```$set``` you use ```$setOnInsert``` values are set only if the document don't exist.
+If instead of ```$set``` you use ```$setOnInsert```, values are set only if the document don't exist.
 
-With upsert-one you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. It follows the details.
+With `upsert-one`, you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. More details below.
 
-**note**: CRUD performs two steps with upsert-one, first search for the document and second update it or insert a new one. Be aware that this operation is not atomic.
+:::note
+CRUD Service performs two steps with `upsert-one`: firstly, it searches for the document, and secondly it updates the document or insert a new one. Be aware that this operation is not atomic.
+:::
 
 ##### Unset an item value
 
-If you want to unset an item value when you update just use $unset. For example you want to insert a new document with Rice and unset the price.
+If you want to unset an item value when you update it, just use `$unset`. For example, you want to insert a new document with Rice and unset the price.
 
 ```json
 [
@@ -361,7 +378,7 @@ If you want to unset an item value when you update just use $unset. For example 
 ]
 ```
 
-just call
+Just perform the call:
 
 ```bash
 curl --request POST \
@@ -372,7 +389,7 @@ curl --request POST \
   --data '{"$set":{"description":"The correct description"},"$unset":{"price":true}}'
 ```
 
-and the document become the following, without the price property and with the updated description.
+The document will become the following, without the price property and with the updated description.
 
 ```json
 [
@@ -391,7 +408,7 @@ and the document become the following, without the price property and with the u
 
 #### Insert multiple documents
 
-The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example to add three dishes to plates collection you have to POST the /bulk on the resource.
+The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example, to add three dishes to plates collection, you have to POST the `/bulk` on the resource.
 
 ```bash
 curl --request POST \
@@ -416,7 +433,7 @@ In this section you will learn how to query a collection.
 
 #### Get a list of documents
 
-To list a collection, simply call the endpoint with a **GET**
+To list a collection, simply call the endpoint with a **GET**.
 
 ```bash
 curl -X GET https://your-url/v2/plates/ \
@@ -429,7 +446,7 @@ curl -X GET https://your-url/v2/plates/ \
 Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
 :::
 
-In response of this request you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must to set STATE to DRAFT.
+In response of this request, you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with `__STATE__` equal to PUBLIC. To retrieve other documents you must set `__STATE__` to DRAFT.
 
 ```json
 [
@@ -468,11 +485,13 @@ In response of this request you will get a JSON array that contains all the docu
 ]
 ```
 
-**Note**: the maximum number of documents returned are configurable through the variable *CRUD_MAX_LIMIT*. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
+:::note
+The maximum number of documents returned are configurable through the variable *CRUD_MAX_LIMIT*. If you want more documents, please use pagination. You can change this behavior by setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it, be aware that you can hang the service for out of memory error.
+:::
 
 #### Get a single document by _id
 
-To get just one document read only one element, simply pass the *_id* of the document as path param.
+To read only one element, simply pass the *_id* of the document as path parameter.
 
 ```bash
 curl -X GET https://your-url/v2/plates/5df8aff66498d30011b19e4d \
@@ -481,7 +500,7 @@ curl -X GET https://your-url/v2/plates/5df8aff66498d30011b19e4d \
 -H  "client-key: client-key"
 ```
 
-In response to this request you get a JSON Object like the following.
+In response to this request, you get a JSON Object like the following.
 
 ```json
 {
@@ -512,17 +531,19 @@ In response to this request you get a JSON Object like the following.
 }
 ```
 
-**Note**: the query will return only PUBLIC documents. To retrieve a DRAFT document add to query string ```&_st=DRAFT```
+:::note
+The query will return only PUBLIC documents. To retrieve a DRAFT document, add to query string ```&_st=DRAFT```.
+:::
 
 #### Sort
 
-It is possible to sort the list of documents returned by a GET passing to the query string the **_s** parameter. The value of the parameter is
+It is possible to sort the list of documents returned by a GET passing to the query string the **_s** parameter. The value of the parameter is the following:
 
 ```bash
 [-|empty]<property name>
 ```
 
-By default the sort id ascending, using - for descending. The following sort plates by names in alphabetical order.
+By default, the sorting is ascending; use - for descending. The following call sorts plates by names in alphabetical order.
 
 ```bash
 curl --request GET \
@@ -531,7 +552,7 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-Sorting for multiple values is made possible by passing multiple times the **_s** query parameter with the desired property or by passing a comma separated list of values to the **_s** as done in the examples below.
+Sorting for multiple values is made possible by passing multiple times the **_s** query parameter with the desired property, or by passing a comma separated list of values to the **_s**, as done in the examples below.
 
 ```bash
 curl --request GET \
@@ -549,17 +570,16 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-
 #### Paginate
 
-By default GET returns a limited number of documents. You can use pagination to return more documents. Pagination accepts filters and sorts parameters.
+By default, GET returns a limited number of documents. You can use pagination to return more documents. Pagination accepts filters and sorts parameters.
 
-To paginate you must use the following query parameters:
+To paginate, use the following query parameters:
 
 - **_l**: limits the number of documents returned. Minimum value 1. Maximum value can be configured with the environment variable *CRUD_MAX_LIMIT*. If you pass such limit, the CRUD Service truncate to *CRUD_MAX_LIMIT* the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
-- **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is bigint.
+- **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is `bigint`.
 
-This is an example of request that get *two documents per page* and you ask for the *third page* (skip 4 documents).
+This is an example of a request that gets *two documents per page*, and you want to ask for the *third page* (skip 4 documents).
 
 ```bash
 curl --request GET \
@@ -568,11 +588,11 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-Combining _l and_sk you can paginate the request. If you want to visualize the number of pages in your UI you need also count with a request the number of documents.
+Combining `_l` and `_sk`, you can paginate the request. If you want to visualize the number of pages in your UI, you need also count with a request the number of documents.
 
 #### Return a subset of properties
 
-You can return just a some of the document properties (like GraphQL sub-selection or SQL select) using  ```_p``` parameter. You can select multiple properties separated by commas.
+You can return just some document properties (like GraphQL sub-selection or SQL select), using the `_p` parameter. You can select multiple properties separated by commas.
 
 ```bash
 curl --request GET \
@@ -604,24 +624,21 @@ This allows an improved expressibility and let the user get advantage of some Mo
 
 Here follow some examples of its usage:
 
-- Simple projection of some fields
-```bash
+```bash title="Simple projection of some fields"
 curl --request GET \
   --url 'https://your-url/v2/plates/?_rawp={"someField":1,"someOtherField":1}' \
   --header 'accept: application/json' \
   --header 'client-key: client-key'
 ```
 
-- Exclude some fields
-```bash
+```bash title="Exclude some fields"
 curl --request GET \
   --url 'https://your-url/v2/plates/?_rawp={"excludedField":0,"someOtherExcludedField":0}' \
   --header 'accept: application/json' \
   --header 'client-key: client-key'
 ```
 
-- Use a `$filter` operator to get only the objects with `someSubfield = someValue` of an array `someArray`:
-```bash
+```bash title="Use a $filter operator to get only the objects with someSubfield=someValue of an array someArray"
 curl --request GET \
   --url 'https://your-url/v2/plates/?_rawp={"result":{"$filter":{"input":"$someArray","as":"item","cond":{"$$item.someSubfield":"someValue"}}}}' \
   --header 'accept: application/json' \
@@ -630,23 +647,25 @@ curl --request GET \
 
 The list of currently supported MongoDB aggregation operators is the following:
 
-- Comparison: `$eq`, `$gt`, `$gte`, `$in`, `$lt`, `$lte`, `$ne`, `$nin`,
-- Logical: `$and`, `$not`, `$nor`, `$or`,
-- Evaluation: `$exists`, `$type`, `$cond`, `$regexMatch`, `$mod`,
-- Array: `$filter`, `$reduce`, `$concatArrays`, `$first`, `$map`, `$all`, `$elemMatch`, `$size`,
-- Conversion: `$dateToString`
+- Comparison: `$eq`, `$gt`, `$gte`, `$in`, `$lt`, `$lte`, `$ne`, `$nin`;
+- Logical: `$and`, `$not`, `$nor`, `$or`;
+- Evaluation: `$exists`, `$type`, `$cond`, `$regexMatch`, `$mod`;
+- Array: `$filter`, `$reduce`, `$concatArrays`, `$first`, `$map`, `$all`, `$elemMatch`, `$size`;
+- Conversion: `$dateToString`.
 
-**Note**: `_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
+:::caution
+`_p` and `_rawp` cannot be used at the same time. The use of aggregation operators inside a projection is supported only on MongoDB v4.4+.
+:::
 
 Here you can find the official Mongo documentation about the [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-projection) field into the find operator.
 
 :::note
-If you have problems with the special characters in the URL encoding you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
+If you have problems with the special characters in the URL encoding, you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
 :::
 
 #### Combine all together
 
-You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients do the following request.
+You can combine all together. For example to get the first 2 plates, sorted by name with just name and ingredients, do the following request.
 
 ```bash
 curl --request GET \
@@ -657,9 +676,9 @@ curl --request GET \
 
 #### Filters with MongoDB Query
 
-Documents can be filtered using mongo queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
+Documents can be filtered using MongoDB queries. It is possible to filter in and or in cascade quoting all of them the properties of documents. [More details on the MongoDB site for queries on a resource](Https://docs.mongodb.com/manual/tutorial/query-documents/)
 
-For example we can look for plates that have a name that begins with V, that have price and two ingredients.
+For example, we can look for plates that have a name that begins with V, that have price and two ingredients.
 
 ```bash
 {"$and":[
@@ -670,7 +689,7 @@ For example we can look for plates that have a name that begins with V, that hav
 }
 ```
 
-The query must be URL encoded and passed to _q parameter
+The query must be URL encoded and passed to `_q` parameter:
 
 ```bash
 curl --request GET \
@@ -681,52 +700,54 @@ curl --request GET \
 
 You can use more MongoDB filters in query **_q**. Here is the complete list:
 
-- $gt
-- $lt
-- $gte
-- $lte
-- $eq
-- $ne
-- $in
-- $nin
-- $all
-- $exists
-- $nearSphere
-- $regex
-- $elemMatch and $options
-- $text
+- `$gt`
+- `$lt`
+- `$gte`
+- `$lte`
+- `$eq`
+- `$ne`
+- `$in`
+- `$nin`
+- `$all`
+- `$exists`
+- `$nearSphere`
+- `$regex`
+- `$elemMatch` and `$options`
+- `$text`
 
-**Note**: aggregate cannot be used. To use aggregate please see Mia-Platform MongoDB Reader Service.
+Aggregate cannot be used. To use aggregate please see [Mia-Platform MongoDB Reader Service](../mongodb-reader/configuration.md).
 
 :::note
-If you have problems with the special characters in the URL encoding you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers))
+If you have problems with the special characters in the URL encoding, you can try the `json-query-params-encoding` header. More info at ([CRUD Headers](./overview_and_usage.md#crud-headers)).
 :::
 
 #### Count
 
-It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the /count of the resource
+It may be helpful to know how many documents contains a list of documents. For this purpose it is sufficient to invoke a GET on the `/count` of the resource:
 
 ```bash
 curl -X GET https://your-url/v2/plates/count -H  "accept: application/json" -H  "content-type: application/json" -H  "client-key: client-key"
 ```
 
-returns
+This will return:
 
 ```json
 3
 ```
 
-**Note**: filters can be applied to the count. By default only PUBLIC documents are counted.
+:::note
+Filters can be applied to the count. By default, only PUBLIC documents are counted.
+:::
 
 #### Geospatial Queries
 
-On CRUD service it's possible to filter data also for proximity using MongoDB Geospatial Queries.
+On CRUD service, it is possible to filter data also for proximity, using MongoDB Geospatial Queries.
 
-To enable this feature you need to create an Position index on Console.
+To enable this feature, you need to create a Position index on Console.
 
 ![Position Index](img/position-index.png)
 
-When the index is created you can use $nearSphere. For example to search a plate near you, between 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
+When the index is created, you can use the `$nearSphere` parameter. For example, to search a plate near you, between 0 meters and 1200 meters from your position longitude: 9.18 and latitude: 45.46 (Milan, Italy), you can use this MongoDB query.
 
 ```json
 {"position":
@@ -740,7 +761,7 @@ When the index is created you can use $nearSphere. For example to search a plate
 This query is not supported on count API due to MongoDB restrictions.
 :::
 
-to get the list of plates just encode the query and use _q.
+To get the list of plates, just encode the query and use `_q`.
 
 ```bash
 curl --request GET \
@@ -749,21 +770,21 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-The result will be sorted from the nearest to the furthest.
+The results will be sorted from the nearest to the furthest.
 
 #### Text Search Queries
 
-On CRUD service it's possible to filter text fields which match a search filter using MongoDB Text Search Queries.
-The query string is parsed and single words are used to query the Text index. A match is evaluated when the text value of an indexed field is considered to be the same word according to language rules. Indeed, it might be essential to set the `$language` option (English is the default language).
+On CRUD service it is possible to filter text fields which match a search filter, using MongoDB Text Search Queries.
+The query string is parsed and single words are used to query the Text index. A match is evaluated when the text value of an indexed field is considered to be the same word, according to language rules. Indeed, it might be essential to set the `$language` option (English is the default language).
 See [$text](https://docs.mongodb.com/manual/reference/operator/query/text/) documentation to go in detail.
 
 :::caution
-Text search can't be used when encryption is enabled; for further information check out the official [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/security-client-side-query-aggregation-support/#supported-query-operators).
+Text search can't be used when encryption is enabled. For further information check out the official [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/security-client-side-query-aggregation-support/#supported-query-operators).
 :::
 
-To enable this feature you need to create a Text index on Console. At most one Text index can exist, but it can cover multiple fields. Only strings and arrays of strings can be indexed by a Text index.
+To enable this feature, you need to create a Text index on Console. No more than one Text index can exist, but it can cover multiple fields. Only strings and arrays of strings can be indexed by a Text index.
 
-For example to search a plate with a `name` matching the word "FRIED" (by default the `$caseSensitive` is set to `false`), after creating a Text index on the field `name`, you can use this $text MongoDB query. 
+For example, to search a plate with a `name` matching the word "FRIED" (by default the `$caseSensitive` is set to `false`), after creating a Text index on the field `name`, you can use this `$text` MongoDB query.
 
 ```json
 { "$text":
@@ -771,7 +792,7 @@ For example to search a plate with a `name` matching the word "FRIED" (by defaul
 }
 ```
 
-to get the list of plates just encode the query and use _q.
+To get the list of plates, just encode the query and use `_q`.
 
 ```bash
 curl --request GET \
@@ -780,7 +801,7 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
-The result will be sorted by text relevance score, contrary to MongoDB $text query which returns no order by default.
+The results will be sorted by text relevance score, contrary to MongoDB `$text` query which returns no order by default.
 
 ### Update
 
@@ -808,7 +829,7 @@ In the body of the request you can use the following operators:
   This operator sets the value of a field to the current date:  
   `{ $currentDate: { <field1>: true, ... } }`
 :::note
-The field must be of type `Date`. The format of dates it's **ISO-8601**: YYYY-MM-DDTHH:mm:ss.sssZ
+The field must be of type `Date`. The format of dates it's **ISO-8601**: YYYY-MM-DDTHH:mm:ss.sssZ.
 :::
 
 - `$push`
@@ -821,14 +842,14 @@ The syntax is [MongoDB Field Update Operators](https://docs.mongodb.com/manual/r
 
 #### Update a single document
 
-To update a single document use `PATCH` passing the *_id* of the document as path param.  
-In the body you have to pass a JSON with the desired operators set.
+To update a single document, use `PATCH` passing the *_id* of the document as path paramater.  
+In the body, you have to pass a JSON with the desired operators set.
 
 The route to call is the following:
 
 `PATCH` `https://your-url/<CRUD collection endpoint>/{id}`
 
-**E.g**:
+Below you can see and example:
 
 ```curl
 curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aaz0011526361' \
@@ -845,8 +866,8 @@ curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aa
 ```
 
 :::caution
-If you want to update an [Array RawObject property](#rawobject-and-array_rawobject-with-schemas) using the [positional operators](https://docs.mongodb.com/manual/reference/operator/update/positional-all/) `.$.merge` and `.$.replace`, you have to specify the position of the element by filtering by property with the [_q query param](#filters-with-mongodb-query).  
-You have to filter the field by object/value. The value of the filter must be URL encoded. If the **filter matches multiple elements will be patched only the first occurrence**.
+If you want to update an [Array RawObject property](#rawobject-and-array_rawobject-with-schemas) using the [positional operators](https://docs.mongodb.com/manual/reference/operator/update/positional-all/) `.$.merge` and `.$.replace`, you have to specify the position of the element by filtering by property with the [`_q` query param](#filters-with-mongodb-query).  
+You have to filter the field by object/value. The value of the filter must be URL encoded. If the **filter matches multiple elements, only the first occurrence will be patched**.
 
 The following example replace the element of the property `arrayOfAuthors` containing the value `{"name:"wrongName"}` with the object `{"name":"author correct name"}`. The not encoded `_q` is `arrayOfAuthors={"name":"wrongName"}`:
 
@@ -865,18 +886,18 @@ This is valid for **all types of Array field**, including arrays of numbers and 
 
 #### Update multiple documents
 
-To update multiple documents you have two possibilities:
+To update multiple documents, you have two possibilities:
 
-- **Update multiple documents that match a query**  
-  In order to do this, you have to use a **PATCH** request, filtering by query params the documents you want to update.  
+- **Update multiple documents that match a query**.  
+  For this action, you have to use a **PATCH** request, filtering by query parameters the documents you want to update.  
   You can filter by fields values, the [_q query param](#filters-with-mongodb-query) and [STATE](#predefined-collection-properties) using `_st` param.  
-  In the body you have to pass a JSON with the desired set of operators with with the new values.
+  In the body you have to pass a JSON with the desired set of operators with the new values.
 
   The route to call is the following:
 
   `PATCH` `https://your-url/<CRUD collection endpoint>/`
 
-  **e.g.**:
+  Below you can see and example:
 
   ```curl
   curl --location --request PATCH 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=PUBLIC' \
@@ -888,19 +909,19 @@ To update multiple documents you have two possibilities:
   }'
   ```
 
-- **Update multiple documents, each one with its own modifications**  
-  In order to do this, you have to use a **PATCH** request with an array as the request body.
-  Each element represents a document to update and it's an object with the following properties:
-  - `filter`
-    Contains the filter conditions for select the document. As seen above you can filter by fields values, the [_q query param](#filters-with-mongodb-query) and `_st` param.
-  - `update`
+- **Update multiple documents, each one with its own modifications**.  
+  For this action, you have to use a **PATCH** request with an array as the request body.
+  Each element represents a document to update, and it's an object with the following properties:
+  - `filter`:
+    Contains the filter conditions for selecting the document. As seen above, you can filter by fields values, the [_q query param](#filters-with-mongodb-query), and `_st` parameter.
+  - `update`:
     Contains the update operators with the new values.
 
   The route to call is the following:
 
   `PATCH` `https://your-url/<CRUD collection endpoint>/bulk`
 
-  **E.g**:
+  Below you can see and example:
 
   ```curl
   curl --location --request PATCH 'url.mia-platform.eu/v2/books/bulk' \
@@ -932,13 +953,13 @@ You can delete one or more documents in a collection.
 
 #### Delete a single document
 
-To delete a single document use a **DELETE** request passing the *_id* of the document as path param.  
+To delete a single document use a **DELETE** request, passing the *_id* of the document as path parameter.  
 
 The route to call is the following:
 
 `DELETE` `https://your-url/<CRUD collection endpoint>/{id}`
 
-**e.g.**:
+Below you can see and example:
 
 ```curl
 curl --location --request DELETE 'url.mia-platform.eu/v2/books/1f11d444830aaz0011526361'
@@ -946,14 +967,14 @@ curl --location --request DELETE 'url.mia-platform.eu/v2/books/1f11d444830aaz001
 
 #### Delete multiple documents
 
-To delete multiple document you have to use a `DELETE` request filtering by query params the documents you want to delete.  
-You can filter by fields values, the [_q query param](#filters-with-mongodb-query) and [STATE](#predefined-collection-properties) using `_st` param.  
+To delete multiple document you have to use a `DELETE` request, filtering by query parameters the documents you want to delete.  
+You can filter by fields values, the [_q query param](#filters-with-mongodb-query), and [STATE](#predefined-collection-properties) using `_st` param.  
 
 The route to call is the following:
 
 `DELETE` `https://your-url/<CRUD collection endpoint>/`
 
-**e.g.**:
+Below you can see and example:
 
 ```curl
 curl --location --request DELETE 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=DRAFT'
@@ -963,9 +984,7 @@ curl --location --request DELETE 'url.mia-platform.eu/v2/books/?category=sci-fi&
 
 Nested properties of a field of type `RawObject` and `Array_RawObject` can be used in REST APIs with object notation or dot notation.
 
-Example of `PATCH` with dot notation
-
-```curl
+```curl title="Example of PATCH with dot notation"
 curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/111111111111111111111111' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -976,9 +995,7 @@ curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1111111111111
 }'
 ```
 
-Example of `PATCH` with object notation
-
-```curl
+```curl title="Example of PATCH with object notation"
 curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/111111111111111111111111' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -995,7 +1012,7 @@ curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1111111111111
 }'
 ```
 
-The two operation above have different effect.  
+The two operations above have different effect.  
 *"metadata.somethingObject.childNumber": "9"* assigns "9" to the field "childNumber".  
 
 In the "Example with object notation" you are setting a value to the field *metadata*.  
@@ -1016,13 +1033,13 @@ Values will be casted based on the JSON Schema.
 So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
 
 :::note
-In the `$unset` operation of nested properties it's not made a validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use $unset on nested properties.
+In the `$unset` operation of nested properties there is no validation that the properties you are unsetting are required or not; the unset of a required property will be an error getting the document. Be careful when you use `$unset` on nested properties.
 :::
 
-Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a *$set* of a *`PATCH`*) with dot notation. The field have to be valid against the following pattern *FIELD_NAME.* where *FIELD_NAME* is the name of the field. (e.g.: `*set: { "myObject.something": "foobar"}*`).
+Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a `$set` of a *`PATCH`*) with dot notation. The field have to be valid against the following pattern: *FIELD_NAME.* where *FIELD_NAME* is the name of the field (e.g.: `*set: { "myObject.something": "foobar"}*`).
 
 :::note
-The pattern contains `.` and not `\.`, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons
+The pattern contains `.` and not `\.`, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons.
 :::
 
 The operators **.$.merge** and **.$.replace** can also be used on nested arrays.
@@ -1046,7 +1063,7 @@ curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
 This will update the item of the collection *books* with *_id* equals to 111111111111111111111111 and that have an item of the array *somethingArrayOfNumbers* inside *metadata* equals to 3.
 It will be set to 5 the item of *somethingArrayOfNumbers* equals to 3.  
 
-In case of array of object can also be used to **$.merge** operators.
+In case of array of objects, you can also use **$.merge** operators.
 
 ```json
 curl --location --request PATCH 'demo.mia-platform.eu/v2/books/bulk' \
@@ -1066,34 +1083,49 @@ This will update the item of the collection *books* with *_id* equals to 1111111
 It will be set to 5 the field *anotherNumber* of the item of *somethingArrayObject* that have matched the query of the filter (so that was equals to *{"anotherNumber": 3, "somethingElse": "foo"}*)
 
 :::warning
-The values of **$.replace** and **$.merge** does not support "dot notation". So cannot be done: *"something.$.merge": {"foo.bar.lorem": 5}*
+The values of **$.replace** and **$.merge** does not support "dot notation". So you cannot do: *"something.$.merge": {"foo.bar.lorem": 5}*
 :::
 
 ### CRUD Limits
 
 CRUD service has the following limits:
 
-- dimension of a single item in a collection: 16 MB
-- default number of returned items of a collection from a GET: 200
+- dimension of a single item in a collection: 16 MB.
+- default number of returned items of a collection from a GET: 200.
 
 ### Response codes of CRUD
 
 Below is a list of return codes typical of an API request:
 
-- **2xx (Success category)**
-Success status:
-  - 200 Ok The standard HTTP response representing success for GET, PUT or POST.
-  - 201 Created This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code.
-  - 204 No Content represents the request is successfully processed, but has not returned any content.
-- **3xx (Redirection Category)**
-  - 304 Not Modified indicates that the client has the response already in its cache. And hence there is no need to transfer the same data again.
-- **4xx (Client Error Category)**
-  These status codes represent that the client has raised a faulty request.
-  - 400 Bad Request indicates that the request by the client was not processed, as the server could not understand what the client is asking for.
-  - 401 Unauthorized indicates that the client is not allowed to access documents, and should re-request with the required credentials.
-  - 403 Forbidden indicates that the request is valid and the client is authenticated, but the client is not allowed access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server.
-  - 404 Not Found indicates that the requested resource is not available now.
-  - 410 Gone indicates that the requested resource is no longer available which has been intentionally moved.
-- **5xx (Server Error Category)**
-  - 500 Internal Server Error indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.
-  - 503 Service Unavailable indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance.
+#### 2xx (Success category)
+
+| Code    | Message    | Description                                                                                                                                                        |
+|---------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **200** | Ok         | The standard HTTP response representing success for GET, PUT or POST.                                                                                              |
+| **201** | Created    | This status code should be returned whenever the new instance is created. E.g on creating a new instance, using POST method, should always return 201 status code. |
+| **204** | No Content | The request is successfully processed, but has not returned any content.                                                                                           |
+
+#### 3xx (Redirection Category)
+
+| Code    | Message      | Description                                                                                                                  |
+|---------|--------------|------------------------------------------------------------------------------------------------------------------------------|
+| **304** | Not Modified | Indicates that the client has the response already in its cache, and hence there is no need to transfer the same data again. |
+
+#### 4xx (Client Error Category)
+
+These status codes represent that the client has raised a faulty request.
+
+| Code    | Message      | Description                                                                                                                                                                                                                                 |
+|---------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **400** | Bad Request  | Indicates that the request by the client was not processed, as the server could not understand what the client is asking for.                                                                                                               |
+| **401** | Unauthorized | Indicates that the client is not allowed to access documents, and should re-request with the required credentials.                                                                                                                          |
+| **403** | Forbidden    | Indicates that the request is valid and the client is authenticated, but the client is not allowed to access the page or resource for any reason. E.g sometimes the authorized client is not allowed to access the directory on the server. |
+| **404** | Not Found    | Indicates that the requested resource is not available now.                                                                                                                                                                                 |
+| **410** | Gone         | Indicates that the requested resource is no longer available because ot has been intentionally moved.                                                                                                                                       |
+
+#### 5xx (Server Error Category)
+
+| Code    | Message               | Description                                                                                                                          |
+|---------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| **500** | Internal Server Error | Indicates that the request is valid, but the server is totally confused and the server is asked to serve some unexpected condition.  |
+| **503** | Service Unavailable   | Indicates that the server is down or unavailable to receive and process the request. Mostly if the server is undergoing maintenance. |
