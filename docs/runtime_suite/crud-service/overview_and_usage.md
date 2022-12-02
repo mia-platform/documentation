@@ -240,7 +240,7 @@ curl --request GET \
   --header 'json-query-params-encoding: base64'
 ```
 
-- ***userId***: the user identifier that do the update.
+- ***userId***: the identifier of the user that is doing the update.
 
 Usually this is used by PRE/POST Orchestrator to manage concatenated request to CRUD.
 
@@ -249,7 +249,7 @@ Usually this is used by PRE/POST Orchestrator to manage concatenated request to 
 ### Expose a CRUD Service
 
 :::warning
-CRUD must not be exposed directly to the Internet but always must be protected by the API Gateway or a BFF.
+CRUD must **not** be exposed directly to the Internet. It must **always** be protected by the API Gateway or a BFF.
 :::
 
 ### API Key
@@ -301,7 +301,7 @@ The JSON document sent to CRUD is validated against the JSON schema defined in C
 
 #### Insert a single document
 
-To create a document use *POST* request. In the body of the request add the JSON representation of the new document.
+To create a document use *POST* request. As the body of the request, provide the JSON representation of the new document.
 
 For example, if you want to store a new document in the exposed collection `plates`, you need to create a JSON like the following one:
 
@@ -333,7 +333,7 @@ In response, you will get a JSON object like the one below, where **_id** is the
 
 #### Insert or Update one document
 
-If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the endpoint `upsert-one`. You need to specify in query parameters all data to match eventually the existent document, and in request body the JSON document you want to insert or update.
+If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the `upsert-one` endpoint. You need to specify in query parameters all data to match eventually the existent document, and in request body the JSON document you want to insert or update.
 
 ```bash
 curl --request POST \
@@ -355,7 +355,7 @@ If instead of ```$set``` you use ```$setOnInsert```, values are set only if the 
 With `upsert-one`, you can also manipulate a single document in the same instance when you insert or update it. This is really useful when you want to update the document and set a value at the same time. More details below.
 
 :::note
-CRUD Service performs two steps with `upsert-one`: firstly, it searches for the document, and secondly it updates the document or insert a new one. Be aware that this operation is not atomic.
+Two steps take place when the `upsert-one` operation is executed: firstly, it searches for the document, and secondly it updates the document or insert a new one. Be aware that this operation is not atomic.
 :::
 
 ##### Unset an item value
