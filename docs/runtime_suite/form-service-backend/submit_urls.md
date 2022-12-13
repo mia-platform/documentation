@@ -19,6 +19,8 @@ If the retrieve data procedure is successful, the response body must be a JSON o
 | Name | Required | Description |
 | ------ | ------ | ------ |
 | data | `true` | Content of the form data |
+| isValid | `true` | It indicates if the form is stable |
+| hasDraft | `true` | It indicates if the form has a draft |
 
 :::info
 Each property of the `data` object is related to a component of the form.
@@ -32,7 +34,9 @@ Each property of the `data` object is related to a component of the form.
     "property1": "value1",
     "property2": "value2",
     ...
-  }
+  },
+  isValid: true,
+  hasDraft: false
 }
 ```
 
@@ -121,6 +125,8 @@ If the update procedure is successful, the response body must be a JSON object w
 | formSchemaId | `true` | The ID of the form schema related to the provided form data |
 | formAssignmentId | `true` | The ID of the form assignment |
 | data | `true` | Content of the form data |
+| isValid | `true` | It indicates if the form is stable |
+| hasDraft | `true` | It indicates if the form has a draft |
 
 #### Example
 
@@ -133,6 +139,9 @@ If the update procedure is successful, the response body must be a JSON object w
     "property1": "value1",
     "property2": "value2",
     ...
+  },
+  isValid: true,
+  hasDraft: false
 }
 ```
 

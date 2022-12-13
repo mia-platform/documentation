@@ -12,15 +12,16 @@ An example of such payment strategy is paying monthly for a season ticket that c
 In the following table are reported which payment providers support recurrent payments strategy
 alongside which of their payments methods are enabled for it.
 
-| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy |
-|-------------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|
-| gestpay (Axerve)        | **✓**        |          |           | **✓**   |          |          |            |       |
-| satispay                |              |          |           |         |          |          |            |       |
-| unicredit               |              |          |           |         |          |          |            |       |
-| braintree               |              |          |           |         |          |          |            |       |
-| scalapay                |              |          |           |         |          |          |            |       |
-| safecharge              |              |          |           |         |          |          |            |       |
-| soisy                   |              |          |           |         |          |          |            |       |
+| Provider         | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy | stripe |
+|------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|--------|
+| gestpay (Axerve) | **✓**        |          |           | **✓**   |          |          |            |       |        |
+| satispay         |              |          |           |         |          |          |            |       |        |
+| unicredit        |              |          |           |         |          |          |            |       |        |
+| braintree        |              |          |           |         |          |          |            |       |        |
+| scalapay         |              |          |           |         |          |          |            |       |        |
+| safecharge       |              |          |           |         |          |          |            |       |        |
+| soisy            |              |          |           |         |          |          |            |       |        |
+| stripe           |              |          |           |         |          |          |            |       | **✓**  |
 
 ## How it works
 
@@ -35,7 +36,7 @@ To achieve such behavior it is possible to exploit the endpoint dedicated to rec
 
 This endpoint requires a payload as input, which extends the one of standard payments by adding the `recurrentDetails` property,
 which describes how the recurrence strategy should be configured.
-Recurrence strategy configuration depends on the adopted payment method. However there is a single
+Recurrence strategy configuration depends on the adopted payment method. However, there is a single
 property that is shared across all the payment object, which is `isFirstInstallment`. This property is important
 to distinguish whether current payment is the initial or a subsequent one. Depending on its value,
 which can be either `true` or `false` respectively, different logics are applied to the request.
@@ -90,7 +91,7 @@ Response example:
 }
 ```
 
-where the `redirectToUrl` is the url where the user should be redirect to end the payment.
+where the `redirectToUrl` is the url where the user should be redirected to end the payment.
 
 ### Subsequent Payment
 
@@ -166,7 +167,7 @@ Response example:
 }
 ```
 
-In order to pay the user must be redirect to the url set in `redirectToUrl` response property. There, they will
+In order to pay the user must be redirected to the url set in `redirectToUrl` response property. There, they will
 be able to complete the procedure through PayPal interface. Once the payment is terminated, PayPal will call
 the specified webhook to notify of the payment status. It is important to define as callback URL the `/gestpay/callback`
 endpoint of your Payment Gateway Manager instance, so that your service can be notified with the important

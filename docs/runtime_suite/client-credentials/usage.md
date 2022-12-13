@@ -9,6 +9,15 @@ In this section, we show you how to use the `client-credentials` service.
 
 ## Endpoints
 
+### POST /register
+
+The register endpoint has different [auth method](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication). The supported methods are `client_secret_basic` and `private_key_jwt`).
+One client has only one method possible.
+
+The default method (if is not passed during registration) is the `client_secret_basic`.
+
+Once called the endpoint, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
+
 ### POST /oauth/token
 
 In the login flow, you should call the `/oauth/token` endpoint with method POST.
@@ -225,15 +234,6 @@ Example response:
     "aud": ["my-aud"]
 }
 ```
-
-### POST /register
-
-The register endpoint has different [auth method](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication). The supported methods are `client_secret_basic` and `private_key_jwt`).
-One client has only one method possible.
-
-The default method (if is not passed during registration) is the `client_secret_basic`.
-
-Once called the endpoint, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
 
 #### Client secret basic
 

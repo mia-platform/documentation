@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.9.0 - 05/12/2022
+
+### Added
+
+- Stripe payment provider
+
 ## 2.8.2 - 14/11/2022
 
 ### Added

@@ -127,7 +127,14 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
         },
         "defaultConnection": {
           "type": "string"
-        }
+        },
+        "sameSite": {
+          "enum": ["Lax", "Strict", "None"],
+          "description": "The sameSite field set the SameSite attribute of the clientType Set-Cookie HTTP response header. It allows you to declare if your cookie should be restricted to a first-party or same-site context.
+          - \"Lax\": Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (i.e., when following a link).
+          - \"Strict\": Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
+          - \"None\": Cookies will be sent in all contexts, i.e. in responses to both first-party and cross-site requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)."
+        },
       },
       "required": [
         "auth0Url",

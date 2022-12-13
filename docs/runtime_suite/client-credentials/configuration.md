@@ -7,13 +7,15 @@ The credentials service allow to expose API to perform OAuth2 compliant client c
 
 In this section, we show you how to configure the `client-credentials` service step by step.
 
-## Client collection on CRUD
+## Step 1: Create the client collection
 
-This service uses a crud-service collection to handle clients.
+This service uses a [crud-service](../../runtime_suite/crud-service/overview_and_usage) collection to handle clients.
 
-Create a CRUD collections in the MongoDB CRUD section of the Console with a name (we call the collection `clients`), save a file with the collection fields in this [JSON](#crud-fields-json) and import the CRUD fields from this.
+[Create a CRUD collection](../../development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">this fields</a>, and import them into the Console ([here a docs on how to import fields](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
 
+:::info
 We suggest you to create a unique index for the `clientId` field (which must not be duplicated).
+:::
 
 ## Environment variables
 
@@ -28,7 +30,7 @@ This service is configurable with the following environment variables:
 * **CLIENT_SECRET_HASH_COST** (default to `10`): the cost to generate the hash of the client secret (using bcrypt);
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
 * **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
-* **MONGODB_CREDENTIALS_DATABASE_NAME** (*required*): the mongo db name which will include the `credentials` collection;
+* **MONGODB_CREDENTIALS_DATABASE_NAME**: the mongo db name which will include the `credentials` collection. If not set, it is taken from the MongoDB URL configured in `CREDENTIALS_MONGODB_URL` env var;
 * **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private rsa key. [Click here](#rsa-key-management) to see how to create it;
 * **PRIVATE_KEY_PASSWORD**: password to decrypt the rsa key, if it is encrypted with a password. If it is empty, rsa key is treated as a non protected rsa key;
 * **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string;
@@ -88,7 +90,6 @@ secrets:
 
 If you use GitLab as CI tool, set the environment variable `PRIVATE_KEY` with the value of the private key (copy the value using `pbcopy < private.key`).
 
-
 #### Configure the service volume manually
 
 You should set the key as volume from secret in the `client-credentials` service.
@@ -139,6 +140,7 @@ kind: ConfigMap
 metadata:
   name: client-credentials
 ```
+
 Now you have to load the config map inside a volume and mount that volume, as follows:
 
 ```yaml
@@ -162,6 +164,7 @@ spec:
     configMap:
       name: openid-config
 ```
+
 _Note: the custom configuration **MUST** contain at least every required field._
 
 _**Required** fields:_
@@ -173,128 +176,6 @@ _**Required** fields:_
 - _id_token_signing_alg_values_supported_
 
 Reference: [OpenId Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
-
-## CRUD fields JSON
-
-Save a file with this JSON and import it as fields in the MongoDB CRUD section of the Console.
-
-```json
-[{
-    "name": "_id",
-    "description": "_id",
-    "type": "ObjectId",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "creatorId",
-    "description": "creatorId",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "createdAt",
-    "description": "createdAt",
-    "type": "Date",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "updaterId",
-    "description": "updaterId",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "updatedAt",
-    "description": "updatedAt",
-    "type": "Date",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "__STATE__",
-    "description": "__STATE__",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "name",
-    "description": "",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "permissions",
-    "description": "",
-    "type": "Array_string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "audience",
-    "description": "",
-    "type": "Array_string",
-    "required": false,
-    "nullable": false
-  },
-  {
-    "name": "allowedCustomClaims",
-    "description": "",
-    "type": "Array_string",
-    "required": false,
-    "nullable": true
-  },
-  {
-    "name": "clientId",
-    "description": "",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "authMethod",
-    "description": "",
-    "type": "string",
-    "required": false,
-    "nullable": false
-  },
-  {
-    "name": "publicKey",
-    "description": "",
-    "type": "RawObject",
-    "required": false,
-    "nullable": false,
-    "schema": {
-      "properties": {
-        "alg": {
-          "type": "string"
-        },
-        "kty": {
-          "type": "string"
-        },
-        "use": {
-          "type": "string"
-        },
-        "n": {
-          "type": "string"
-        },
-        "e": {
-          "type": "string"
-        },
-        "kid": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": true
-    }
-  }
-]
-```
 
 ## Reference
 

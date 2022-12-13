@@ -72,3 +72,8 @@ user after completing a payment via the Satispay mobile app
 * **SOISY_SHOP_ID** (required)
 * **SOISY_PARTNER_KEY** (required): X-Auth-Token header for authentication on Soisy.
 * **SOISY_BASE_URL** (required): Base URL of the Soisy provider.
+
+## Stripe Specific Environment Variables
+
+* **STRIPE_BASE_URL** (required): Base URL of the Stripe provider.
+* **STRIPE_PRIVATE_KEY** (required): Stripe API private key.

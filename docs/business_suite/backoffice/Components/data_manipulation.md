@@ -628,8 +628,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table
-|
+|`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table|
 |`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |

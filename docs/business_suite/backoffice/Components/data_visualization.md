@@ -19,7 +19,7 @@ Renders a calendar to manage appointments.
 |`additionalCreatePayload`| - |{ [x: string]: any; }| - | - |{}|data that should be passed in the payload of a new event alongside `startDate` and `endDate`|
 |`date`| - |Date| - | - |new Date()|current date of the calendar|
 |`height`|`height`|string| - | - | - |css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height]|
-|`view`| - |"agenda" \\| "day" \| "month" \| "week" \| "work_week"| - | - |'month'|current view of the calendar. Possible values are `month`, `week`, or `day`|
+|`view`| - |"agenda" \| "day" \| "month" \| "week" \| "work_week"| - | - |'month'|current view of the calendar. Possible values are `month`, `week`, or `day`|
 
 ### Listens to
 
@@ -96,7 +96,7 @@ It is not suited for editing. That role is delegated to the `bk-form-card` compo
 `bk-card` is made by blocks and is recursive, which means that cards can be embedded in cards creating, for instance, a picture gallery instead of showing a single picture.
 This can be achieved by leveraging only the `bk-card` tag.
 
-## Roles
+### Roles
 
 A `bk-card` has roles which define a color code
 
@@ -105,7 +105,7 @@ A `bk-card` has roles which define a color code
 3. `success` - white background, primary-color border and primary-color font color
 4. `error` - red background, red border and red main title.
 
-## Layout
+### Layout
 
 A `bk-card` is made of 3 HTML5 tag
 
@@ -165,7 +165,7 @@ export type TaggableCustom = {
 }
 ```
 
-### Header
+#### Header
 
 Header supports:
 
@@ -197,7 +197,7 @@ Available icons are [`@ant-design/icons`](https://ant.design/components/icon) or
 Icons are dynamically imported to reduce bundle size. So if you don't use you don't download it.
 :::
 
-### Footer
+#### Footer
 
 Footer encapsulates actions and can mount an unlimited number of buttons (or even other components). Its configuration supports
 
@@ -291,7 +291,7 @@ It is possible to replace handlebars with an object instead of a string value us
 
 This footer will have a button that emits a `selected-data` event with payload the card content as an object.
 
-### Main
+#### Main
 
 Main is the core part of the card and the most widely customizable section. It roughly accepts configuration for 3 different modes (all of which can be combined at will in a single card).
 
@@ -464,12 +464,12 @@ In the example configuration below we have a card that declares an array of URL,
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`arraySource`| - |Record\<string, Record\<string, string \\| TaggableCustom\>[]\>|{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
+|`arraySource`| - |Record<string, Record<string, string \| TaggableCustom>[]>|{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
 |`cardSchema`| - |CardSchema|{}|schema that describes the card layout, role and type/style |
 |`containerStyle`| - |CSSProperties| - |React-like CSS properties to decorate card container |
 |`customMessageOnAbsentDatum`| - |LocalizedText| - |when datum reaches the card but it doesn't have value but some was expected, the displayed string can be overridden with a custom message |
 |`customMessageOnAbsentLookup`| - |LocalizedText| - |when using a CRUD-client-like source, it helps displaying a custom message on lookup that couldn't be resolved |
-|`objectSource`| - |Record\<string, string \\| TaggableCustom\>|{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
+|`objectSource`| - |Record<string, string \| TaggableCustom>|{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
 |`role`| - |CardRoles|'default'|card role to select color schema |
 
 ### Listens to
@@ -1208,11 +1208,11 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 |`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
 |`maxLines`|`max-lines`|number| - |force lines that will be displayed together |
 |`navigationRowActions`| - |NavigationDataActions|DEFATULT_NAV_ACTIONS|actions in nested objects.|
-|`openFileInViewerRegex`| - |string \\| string[] \| Record<string, "view" \| "download">| - |regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer (default) or is downloaded. |
+|`openFileInViewerRegex`| - |string \| string[] \| Record<string, "view" \| "download">| - |regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer (default) or is downloaded. |
 |`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
 |`rowActions`| - |DataActions| - |list of actions to render per row |
 |`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
-|`fixedColumns`| - | number \\| Record<'left' \\| 'right', number> | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
+|`fixedColumns`| - | number \| Record<'left' \| 'right', number> | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
 |`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data
 
 ### Listens to

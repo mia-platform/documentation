@@ -1102,6 +1102,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/appointment-manager/performance"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/appointment-manager/changelog"
                 }
               ],
@@ -1753,6 +1757,10 @@
                 },
                 {
                   "type": "doc",
+                  "id": "runtime_suite/payment-gateway-manager/stripe"
+                },
+                {
+                  "type": "doc",
                   "id": "runtime_suite/payment-gateway-manager/recurrent_payments"
                 },
                 {
@@ -2171,44 +2179,6 @@
             {
               "collapsed": true,
               "type": "category",
-              "label": "Auth0 + ApiGateway",
-              "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/auth0-+-apigateway/configuration"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/auth0-+-apigateway/changelog"
-                }
-              ],
-              "link": {
-                "type": "doc",
-                "id": "runtime_suite/auth0-+-apigateway/overview"
-              }
-            },
-            {
-              "collapsed": true,
-              "type": "category",
-              "label": "Auth0 + Backoffice",
-              "items": [
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/auth0-+-backoffice/configuration"
-                },
-                {
-                  "type": "doc",
-                  "id": "runtime_suite/auth0-+-backoffice/changelog"
-                }
-              ],
-              "link": {
-                "type": "doc",
-                "id": "runtime_suite/auth0-+-backoffice/overview"
-              }
-            },
-            {
-              "collapsed": true,
-              "type": "category",
               "label": "Data Analytics",
               "items": [
                 {
@@ -2258,6 +2228,44 @@
               "link": {
                 "type": "doc",
                 "id": "runtime_suite/salesforce-streaming-api-connector/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Secure ApiGateway",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/secure-apigateway/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/secure-apigateway/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/secure-apigateway/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Secure Backoffice",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/secure-backoffice/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/secure-backoffice/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/secure-backoffice/overview"
               }
             }
           ]

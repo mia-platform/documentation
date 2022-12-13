@@ -14,6 +14,8 @@ To configure the chat service it is necessary to deploy the docker image availab
 * **`PERMISSIONS_CONFIG`** the location of the Stream permissions configuration file (e.g. `/home/app/permissions.json`) added into the project using a k8s config map. If no config map is provided, the default permission system is used
 * **`STYLE_CONFIG`** the location of the style configuration file (e.g. `/home/app/style.json`) added into the project using a k8s config map.
 * **`EXPIRATION_TOKEN_DURATION`** the duration (in seconds) of the token before it expires. If not set the token has no expiration.
+* **`USERID_HEADER_KEY`** [required] the key inside the headers used to retrieve the userId of the logged-in user. When specifying the property with a dot notation, it will be assumed that the property is a nested property of a stringified object.
+* For instance, `miauserproperties._id` will be considered as the property `_id` of a stringified object inside `miauserproperties`.
 
 You can read more about API keys and tokens [here](https://getstream.io/chat/docs/rest/#api-keys-and-tokens).
 

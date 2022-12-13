@@ -197,6 +197,218 @@ None
 
 
 
+## bk-layout
+
+Displays a menu, analogous to the [micro-lc](https://github.com/micro-lc/micro-lc) (version 2.0.0+) menu, which allows to navigate amongst plugins.
+
+![layout](../img/bk-layout.png)
+```html
+<bk-layout></bk-layout>
+```
+
+:::caution
+`bk-layout` is not supported by [micro-lc](https://github.com/micro-lc/micro-lc) version <2.0.0. `micro-lc` version 2.0.0+ (or a custom rendering engine) should be used.
+:::
+
+`bk-layout` can be configured in a number of ways:
+
+### Mode
+Three modes are available:
+
+```typescript
+type Menu = 'fixedSideBar' | 'overlaySideBar' | 'topBar'
+```
+
+Controlling how the menu is rendered - either as a side-bar (overlay or fixed) or a top-bar.
+
+### Logo
+
+<!-- TODO: url supports {urlDarkImage: string, urlLightImage: string} type too, update once dark-mode is supported -->
+```typescript
+type Logo {
+  /** Alternative text to display if the logo is not found  */
+  altText?: string
+
+  /** Link to navigate to when the logo is clicked */
+  onClickHref?: string
+
+  /** URL of the logo image */
+  url?: string
+}
+```
+
+### Help Menu
+
+```typescript
+type HelpMenu {
+  /** Link to the help page */
+  helpHref: string
+}
+```
+
+### User Menu
+
+```typescript
+type UserMenu {
+  /** Configuration needed to perform user logout */
+  logout?: {
+    /** Method used to perform the call to the URL specified in the 'url' property */
+    method?: 'GET' | 'POST'
+
+    /** URL to be redirected to after the logout */
+    redirectUrl?: string
+
+    /** URL called to log out the user. The method used is the one specified in the 'method' property */
+    url?: string
+  }
+
+  /** URL called in GET to retrieve user data */
+  userInfoUrl: string
+
+  /** Mapping between the properties returned from the user info URL call and the ones expected by the component */
+  userPropertiesMapping?: Record<string, 'name' | 'avatar' | string>
+}
+```
+
+### Head
+
+```typescript
+type Head {
+  /** Url of the fav icon */
+  favIconUrl?: string
+
+  /** Title of the tab */
+  title?: string
+}
+```
+
+### Custom locale
+
+It is possible to override default labels.
+<!-- TODO: `light` and `dark` are also available, update once dark-mode is supported -->
+```typescript
+type Locale = {
+  collapse?: string
+  logout?: string
+}
+```
+
+### Menu Items
+
+Items in the menu. These can be of two types, `href` or `application`. `href` menu items behave lie links, navigating to a configurable page upon click; while `application` pages navigate to a plugin.
+
+Multiple menu items can be grouped into recursive structures, `categories` (collapsible) and `groups` (non-collapsible).
+
+All types of menu item have internationalized labels [localizedText](../core_concepts#localization-and-i18n).
+
+#### Href
+```typescript
+export interface HrefMenuItem {
+  /** Link's destination */
+  href: string
+
+  /** Icon of the menu item */
+  icon?: string
+
+  /** Unique identifier of the href */
+  id: string
+
+  /** Label of the menu item */
+  label?: LocalizedText
+
+  /** Specifies where to open the linked document */
+  target?: '_blank' | '_self' | '_parent' | '_top'
+
+  /** Type of the item: hyperlink to another page */
+  type: 'href'
+}
+```
+
+### Application
+```typescript
+export interface ApplicationMenuItem {
+  /** Icon to visualize */
+  icon?: string
+
+  /** Unique identifier of the corresponding micro-lc application  */
+  id: string
+  
+  /** Label of the menu item */
+  label?: LocalizedText
+  
+  /** Identifiers of micro-lc other applications that also correspond to the item */
+  selectedAlsoOn?: string[]
+  
+  /** Type of the item: micro-lc application */
+  type: 'application'
+}
+```
+
+### Category
+```typescript
+export interface CategoryMenuItem {
+  /** Menu items included in the category */
+  children?: MenuItem[]
+
+  /** Icon to visualize */
+  icon?: string
+
+  /** Unique identifier of the category */
+  id: string
+
+  /** Label of the menu item */
+  label?: LocalizedText
+
+  /** Type of the item: collapsible sub-menu */
+  type: 'category'
+}
+
+```
+
+### Group
+```typescript
+export interface GroupMenuItem {
+  /** Menu items included in the group */
+  children?: MenuItem[]
+
+  /** Unique identifier of the group */
+  id: string
+
+  /** Label of the menu item */
+  label?: LocalizedText
+
+  /** Type of the item: non-collapsible group of items */
+  type: 'group'
+}
+```
+
+### Properties & Attributes
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|mode | mode | Mode | overlaySideBar | controls how the menu is visualized |
+|logo | - | Logo | - | logo to be visualized in the menu |
+| menuItems | - | MenuItem[] | - | describes the items in the menu |
+| helpMenu | - | HelpMenu  | - | controls the help button on the menu |
+| userMenu | - | UserMenu  | - | controls the user information section of the menu |
+| head | - | Head  | - | controls tab visualization options |
+| locale | - | Record<string, string> | - | allows to override component labels |
+
+### Listens to
+
+This component listens to no event.
+
+
+### Emits
+
+This component emits no event.
+
+
+### Bootstrap
+
+None
+
+
+
 ## bk-layout-container
 
 allows swapping layouts
@@ -456,12 +668,14 @@ displays toast notifications about events happening on the EventBus according to
 Properties `successEventMap` and `errorEventMap` map the `triggered-by` field of [success](../events#success) and [error](../events#error) events into notification properties.
 ### Triggering notifications from bk-button
 Using the following keys, it is possible to trigger a notification as a result of a HTTP-call triggered by a `bk-button` component:
+
 | key | operation |
 |-----|-----------|
 | `get-http-generic-button` | GET http call |
 | `post-http-generic-button` | POST http call |
 | `delete-http-generic-button` | DELETE http call |
 | `bk-button-file-upload` | File upload |
+
 ### Example
 ```json
 {
@@ -511,6 +725,7 @@ Using the following keys, it is possible to trigger a notification as a result o
   }
 }
 ```
+
 | property | type | values | description |
 |----------|------|--------|-------------|
 | title   | [localizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification title |
