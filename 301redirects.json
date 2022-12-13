@@ -122,5 +122,13 @@
   "/docs/fast_data/configuration/realtime_updater/manual": {
     "destination": "/docs/fast_data/configuration/realtime_updater/common",
     "addedOn": "2022-11-10"
+  },
+  "/docs/runtime_suite/auth0-+-api-gateway/overview": {
+    "destination": "/docs/runtime_suite/secure-apigateway/overview",
+    "addedOn": "2022-12-06"
+  },
+  "/docs/runtime_suite/auth0-+-backoffice/overview": {
+    "destination": "/docs/runtime_suite/secure-backoffice/overview",
+    "addedOn": "2022-12-06"
   }
 }
