@@ -303,6 +303,158 @@ provides a fixed set of filters rendered as tabs, possibly on top of a bk-table 
 <bk-tabs></bk-tabs>
 ```
 
+### Tab Configuration
+
+The `Tab` configuration object type is:
+
+```typescript
+type Tab {
+  title: string | Record<string, string>
+  filters?: ConfigurableTabFilter[]
+  event?: Partial<Event>
+  order?: number
+  key: string
+}
+```
+
+in which
+
+- `order` is the tab order number
+- `filters` is an array of filters that will be applied when the tab is opened. Read [Filters Configuration for details](#filters-configuration)
+- `event` an event launched when the tab is opened
+
+
+An example of configuration:
+
+```json
+  {
+    "key": "pending",
+    "title": {
+      "en": "Pending",
+      "it": "In attesa"
+    },
+    "filters": [
+      {
+        "property": "status",
+        "operator": "equal",
+        "value": "Pending"
+      },
+    ]
+  },
+  {
+    "key": "preparing",
+    "title": {
+      "en": "Preparing",
+      "it": "In preparazione"
+    },
+    "filters": [
+      {
+        "property": "status",
+        "operator": "equal",
+        "value": "Preparing"
+      }
+    ]
+  }
+```
+
+#### Filters Configuration
+
+The `ConfigurableTabFilter` object type is:
+
+```typescript
+type ConfigurableTabFilter {
+  operator: FilterOperator // see addFilter event operator
+  property: string
+  value: string | number | boolean | any[] | DateOptions
+}
+
+type DateOptions = {
+  value: string
+  offset: number
+  operation: 'add' | 'subtract'
+  unit: 'day' | 'week' | 'month' | 'year' | 'hour' | 'minute' | 'second' | 'millisecond'
+}
+```
+
+As seen above, an example of a filter configuration could be:
+
+```json
+  ...
+  "filters": [
+    {
+      "property": "status",
+      "operator": "equal",
+      "value": "Preparing"
+    }
+  ]
+```
+
+When filtering by a date, it is possible to use a special keyword in the value key: `$today`. If used, the value will correspond to the current date when the tab is opened. For example:
+
+```json
+  ...
+  "filters": [
+    {
+      "property": "orderedAt",
+      "operator": "less",
+      "value": "$today"
+    }
+  ]
+```
+
+It is also possible to make a real-time data manipulation using the `DateOptions` type for the filter `value`. For example, if you want to show only the data from one week ago to today, you could configure a filter like this:
+
+```json
+  ...
+  "filters": [
+    {
+      "property": "orderedAt",
+      "operator": "greaterEqual",
+      "value": {
+        "value": "$today",
+        "offset": 1,
+        "unit": "week",
+        "operation": "subtract"
+      }
+    }
+  ]
+```
+
+In case of filter with operator `between`, `value` should be an array. `DateOptions` are still valid in this case. For instance:
+
+```json
+  ...
+  "filters": [
+    {
+      "property": "orderedAt",
+      "operator": "between",
+      "value": [
+        {
+          "value": "$today",
+          "offset": 1,
+          "unit": "week",
+          "operation": "subtract"
+        },
+        "$today"
+      ]
+    }
+  ]
+```
+
+#### Accessing current user
+
+It is possible to access information of the current user through handle-bar notation `{{currentUser}}`. For instance:
+
+```json
+  ...
+  "filters": [
+    {
+      "property": "userField",
+      "operator": "equal",
+      "value": "{{currentUser.name}}"
+    }
+  ]
+```
 
 
 ### Properties & Attributes

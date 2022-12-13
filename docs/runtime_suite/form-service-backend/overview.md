@@ -43,7 +43,10 @@ Let us suppose that the `submit_url` has been set to `http://microservice/resour
 In order to obtain form data versioning, the calls to the **Form-Service Frontend** must be done including the `_v` parameter. See [here](../form-service-frontend/overview#form-data-versioning-support) for Form-Service Frontend usage.
 
 #### Form draft support
-The Form-Service Backend allows to retrieve draft data by including the parameter `_status` to the request performed to retrieve form data. If the `_status` parameter is equal to `draft` the data retrieved in the request `GET /visualizer/forms/{id}?_status=draft` is the draft, otherwise it retrives the stable form data.
+
+
+The Form-Service Backend allows to retrieve draft data by including the parameter `_status` to the request performed to retrieve the form. If the `_status` parameter is equal to `draft` the data retrieved in the request `GET /visualizer/forms/{id}?_status=draft` is the draft, otherwise it retrives the stable form data.
+Every form has two parametes: `isValid` and `hasDraft`. The first one indicates if the form has been submitted. The latter indicates if the draft of the form exists.
 
 
 ## Further details

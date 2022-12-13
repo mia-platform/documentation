@@ -36,15 +36,16 @@ Some providers may require additional fields, in which case they will be wrapped
 
 ## Supported Providers and Payment Methods
 
-| Provider                | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy |
-|-------------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|
-| gestpay (Axerve)        | ✓            | ✓        | ✓         | ✓       | ✓        |          |            |       |
-| satispay                |              |          |           |         | ✓        |          |            |       |
-| unicredit               | ✓            |          |           |         |          |          |            |       |
-| braintree               |              |          |           | ✓       |          |          |            |       |
-| scalapay                |              |          |           |         |          | ✓        |            |       |
-| safecharge              |              |          |           |         |          |          | ✓          |       |
-| soisy                   |              |          |           |         |          |          |            | ✓     |
+| Provider         | credit-cards | applepay | googlepay | pay-pal | satispay | scalapay | safecharge | soisy | stripe |
+|------------------|--------------|----------|-----------|---------|----------|----------|------------|-------|--------|
+| gestpay (Axerve) | ✓            | ✓        | ✓         | ✓       | ✓        |          |            |       |        |
+| satispay         |              |          |           |         | ✓        |          |            |       |        |
+| unicredit        | ✓            |          |           |         |          |          |            |       |        |
+| braintree        |              |          |           | ✓       |          |          |            |       |        |
+| scalapay         |              |          |           |         |          | ✓        |            |       |        |
+| safecharge       |              |          |           |         |          |          | ✓          |       |        |
+| soisy            |              |          |           |         |          |          |            | ✓     |        |
+| stripe           |              |          |           |         |          |          |            |       | ✓      |
 
 ## Utility APIs
 

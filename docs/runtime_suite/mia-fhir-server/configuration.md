@@ -21,6 +21,7 @@ In order to start using the Mia FHIR Server, all you have to do is adding it fro
 * **ALLOW_EXTERNAL_REFERENCES** (*default: `false`*): it enables the presence in the FHIR resource payloads of references external from the current Mia FHIR Server context.
 * **DEFAULT_PAGE_SIZE** (*default: `20`*): the default number of records returned by the Mia FHIR Server.
 * **NARRATIVE_ENABLED** (*default: `false`*): it enables the presence of the narrative, which is an HTML code snippet containing a resume of the resource. For further details about the narrative, please refer to the [official FHIR documentation](https://hl7.org/fhir/narrative.html).
+* **RESUE_CACHED_SEARCH_RESULTS_MILLIS** (*default: `0`*): it defines the value of the cache TTL (Time-To-Live) for the search results. Note that, setting a value greater than zero can lead to unexpected behavior for search requests. Indeed, the inserted entities could be not immediately visible due to this TTL cache setting.
 
 :::warning
 All the environment variables are **required**.

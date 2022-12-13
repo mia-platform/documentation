@@ -71,7 +71,7 @@ CRUD by default comes with a set of common properties that simplify the data man
 | **`createdAt`**   | Date   | Date and time when the document has been created.                                                                                                                                                                                                                                      |
 | **`updaterId`**   | String | Id of the user who last updated the document; this information is overwritten every time the document is updated.                                                                                                                                                                      |
 | **`updatedAt`**   | Date   | Date and time when the document has been updated; this information is overwritten every time the document is updated.                                                                                                                                                                  |
-| **`__STATE__`**   | String | The current state of the document: can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Allowed transformation are [illustrated below](#state-transitions). |
+| **`__STATE__`**   | String | The current state of the document: can be one of `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`. The state of the document can't be set directly, but can be changed via the dedicated REST API call. Allowed transitions are [illustrated below](#state-transitions). |
 
 :::note
 The only two default fields that it is possible to encrypt are `updaterId` and `creatorId`.
@@ -122,9 +122,9 @@ curl --request GET \
 ##### STATE values
 
 - **PUBLIC**: the document is visible without specifying the value of ```_st``` in the query string.
-- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```.
+- **DRAFT**: the document is in draft status, to retrieve the document you need to specify in the query string the parameter ```_st=DRAFT```
 - **TRASH**: the document is *soft deleted*; you can still query this document specifying in the query string  ```_st=TRASH```. The Mia-Platform Headless CMS will visualize this element in the Trash section and it's possible to recover it.
-- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS not visualize this element, and it is possible to recover it only programmatically.
+- **DELETED**: the document is *deleted*; you can still query this document specifying in the query string  ```_st=DELETED```. The Mia-Platform Headless CMS does not visualize this element, and it is possible to recover it only programmatically.
 
 :::note
 The query string can specify more than one status separating in with commas. Example: `_st=PUBLIC,DRAFT` return both PUBLIC and DRAFT documents.
@@ -291,7 +291,7 @@ If your endpoints are also protected by authentication and authorization, you ne
 
 ### Create
 
-It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist, the CRUD service creates it automatically and force the indexes configured in Console. A document can be created in three different ways:
+It's possible to create one or more documents in a collection. If the MongoDB collection doesn't exist, the CRUD Service creates it automatically and force the indexes configured in Console. A document can be created in three different ways:
 
 - inserting a single JSON document;
 - inserting or updating one JSON document;
@@ -301,9 +301,9 @@ The JSON document sent to CRUD is validated against the JSON schema defined in C
 
 #### Insert a single document
 
-To create a document use *POST* request. As the body of the request, provide the JSON representation of the new document.
+To create a document, use *POST* request. As the body of the request, provide the JSON representation of the new document.
 
-For example, if you want to store a new document in the exposed collection `plates`, you need to create a JSON like the following one:
+For example, if you want to store a new document in the exposed collection `plates`, you need to create a JSON like this one:
 
 ```json
 {
@@ -333,7 +333,7 @@ In response, you will get a JSON object like the one below, where **_id** is the
 
 #### Insert or Update one document
 
-If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the `upsert-one` endpoint. You need to specify in query parameters all data to match eventually the existent document, and in request body the JSON document you want to insert or update.
+If you are not sure if the document is already present in the collection, you can use the Insert or Update feature calling the `upsert-one` endpoint. You need to specify in query parameters all data to match eventually the existent document and in request body the JSON document you want to insert or update.
 
 ```bash
 curl --request POST \
@@ -344,10 +344,10 @@ curl --request POST \
   --data '{"$set":{"name":"Spaghetti with seafood"}}'
 ```
 
-In response, you will obtain the document if already exist, or a new document if it is not present. The document will reflect all the updates you specified.
+In response, you will obtain the document if it already exists, or a new document if it is not present. The document will reflect all the updates you specified.
 
 :::note
-If you don't specify the query string, the first document of the collection is updated.
+If you don't specify the query string the first document of the collection is updated.
 :::
 
 If instead of ```$set``` you use ```$setOnInsert```, values are set only if the document don't exist.
@@ -408,7 +408,7 @@ The document will become the following, without the price property and with the 
 
 #### Insert multiple documents
 
-The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example, to add three dishes to plates collection, you have to POST the `/bulk` on the resource.
+The bulk insert can be performed POST on CRUD a JSON **array** of documents. For example, to add three dishes to plates collection you have to POST the `/bulk` on the resource.
 
 ```bash
 curl --request POST \
@@ -446,7 +446,7 @@ curl -X GET https://your-url/v2/plates/ \
 Always end you request with a slash.  <https://your-url/plates/> is correct.  <https://your-url/plates> is wrong.
 :::
 
-In response of this request, you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with `__STATE__` equal to PUBLIC. To retrieve other documents you must set `__STATE__` to DRAFT.
+In response of this request, you will get a JSON array that contains all the documents of the collection. The sorting is by insertion. The request return only documents with ```__STATE__``` equal to PUBLIC. To retrieve other documents you must set `STATE` to DRAFT.
 
 ```json
 [
@@ -486,12 +486,12 @@ In response of this request, you will get a JSON array that contains all the doc
 ```
 
 :::note
-The maximum number of documents returned are configurable through the variable *CRUD_MAX_LIMIT*. If you want more documents, please use pagination. You can change this behavior by setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it, be aware that you can hang the service for out of memory error.
+The maximum number of documents returned are configurable through the variable *CRUD_MAX_LIMIT*. If you want more documents please use pagination. You can change this behavior setting the variable *CRUD_LIMIT_CONSTRAINT_ENABLED* to false. If you change it be aware that you can hang the service for out of memory error.
 :::
 
 #### Get a single document by _id
 
-To read only one element, simply pass the *_id* of the document as path parameter.
+To read just one document, simply pass the *_id* of the document as path parameter.
 
 ```bash
 curl -X GET https://your-url/v2/plates/5df8aff66498d30011b19e4d \
@@ -532,7 +532,7 @@ In response to this request, you get a JSON Object like the following.
 ```
 
 :::note
-The query will return only PUBLIC documents. To retrieve a DRAFT document, add to query string ```&_st=DRAFT```.
+The query will return only PUBLIC documents. To retrieve a DRAFT document add to query string ```&_st=DRAFT```.
 :::
 
 #### Sort
@@ -543,7 +543,7 @@ It is possible to sort the list of documents returned by a GET passing to the qu
 [-|empty]<property name>
 ```
 
-By default, the sorting is ascending; use - for descending. The following call sorts plates by names in alphabetical order.
+By default, the sorting is ascending; use `-` for descending. The following call sorts plates by names in alphabetical order.
 
 ```bash
 curl --request GET \
@@ -570,6 +570,7 @@ curl --request GET \
   --header 'client-key: client-key'
 ```
 
+
 #### Paginate
 
 By default, GET returns a limited number of documents. You can use pagination to return more documents. Pagination accepts filters and sorts parameters.
@@ -592,7 +593,7 @@ Combining `_l` and `_sk`, you can paginate the request. If you want to visualize
 
 #### Return a subset of properties
 
-You can return just some document properties (like GraphQL sub-selection or SQL select), using the `_p` parameter. You can select multiple properties separated by commas.
+You can return just some document properties (like GraphQL sub-selection or SQL select) using `_p` parameter. You can select multiple properties separated by commas.
 
 ```bash
 curl --request GET \
@@ -842,14 +843,14 @@ The syntax is [MongoDB Field Update Operators](https://docs.mongodb.com/manual/r
 
 #### Update a single document
 
-To update a single document, use `PATCH` passing the *_id* of the document as path paramater.  
+To update a single document, use `PATCH` passing the *_id* of the document as path parameter.  
 In the body, you have to pass a JSON with the desired operators set.
 
 The route to call is the following:
 
 `PATCH` `https://your-url/<CRUD collection endpoint>/{id}`
 
-Below you can see and example:
+Below you can see an example:
 
 ```curl
 curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aaz0011526361' \
@@ -869,7 +870,7 @@ curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aa
 If you want to update an [Array RawObject property](#rawobject-and-array_rawobject-with-schemas) using the [positional operators](https://docs.mongodb.com/manual/reference/operator/update/positional-all/) `.$.merge` and `.$.replace`, you have to specify the position of the element by filtering by property with the [`_q` query param](#filters-with-mongodb-query).  
 You have to filter the field by object/value. The value of the filter must be URL encoded. If the **filter matches multiple elements, only the first occurrence will be patched**.
 
-The following example replace the element of the property `arrayOfAuthors` containing the value `{"name:"wrongName"}` with the object `{"name":"author correct name"}`. The not encoded `_q` is `arrayOfAuthors={"name":"wrongName"}`:
+The following example replaces the element of the property `arrayOfAuthors` containing the value `{"name:"wrongName"}` with the object `{"name":"author correct name"}`. The not encoded `_q` is `arrayOfAuthors={"name":"wrongName"}`:
 
 ```curl
 curl --location --request PATCH 'your-url.mia-platform.eu/v2/books/1f11d444830aaz0011526361?_q=%7B%arrayOfAuthors%22%3A%7B%22name%22%3A%2222wrongName%22%7D%7D' \
@@ -888,7 +889,7 @@ This is valid for **all types of Array field**, including arrays of numbers and 
 
 To update multiple documents, you have two possibilities:
 
-- **Update multiple documents that match a query**.  
+- **Update multiple documents that match a query**  
   For this action, you have to use a **PATCH** request, filtering by query parameters the documents you want to update.  
   You can filter by fields values, the [_q query param](#filters-with-mongodb-query) and [STATE](#predefined-collection-properties) using `_st` param.  
   In the body you have to pass a JSON with the desired set of operators with the new values.
@@ -897,7 +898,7 @@ To update multiple documents, you have two possibilities:
 
   `PATCH` `https://your-url/<CRUD collection endpoint>/`
 
-  Below you can see and example:
+  Below you can see an example:
 
   ```curl
   curl --location --request PATCH 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=PUBLIC' \
@@ -909,11 +910,11 @@ To update multiple documents, you have two possibilities:
   }'
   ```
 
-- **Update multiple documents, each one with its own modifications**.  
+- **Update multiple documents, each one with its own modifications**  
   For this action, you have to use a **PATCH** request with an array as the request body.
   Each element represents a document to update, and it's an object with the following properties:
   - `filter`:
-    Contains the filter conditions for selecting the document. As seen above, you can filter by fields values, the [_q query param](#filters-with-mongodb-query), and `_st` parameter.
+    Contains the filter conditions for select the document. As seen above you can filter by fields values, the [_q query param](#filters-with-mongodb-query), and `_st` parameter.
   - `update`:
     Contains the update operators with the new values.
 
@@ -921,7 +922,7 @@ To update multiple documents, you have two possibilities:
 
   `PATCH` `https://your-url/<CRUD collection endpoint>/bulk`
 
-  Below you can see and example:
+  Below you can see an example:
 
   ```curl
   curl --location --request PATCH 'url.mia-platform.eu/v2/books/bulk' \
@@ -959,7 +960,7 @@ The route to call is the following:
 
 `DELETE` `https://your-url/<CRUD collection endpoint>/{id}`
 
-Below you can see and example:
+Below you can see an example:
 
 ```curl
 curl --location --request DELETE 'url.mia-platform.eu/v2/books/1f11d444830aaz0011526361'
@@ -968,13 +969,13 @@ curl --location --request DELETE 'url.mia-platform.eu/v2/books/1f11d444830aaz001
 #### Delete multiple documents
 
 To delete multiple document you have to use a `DELETE` request, filtering by query parameters the documents you want to delete.  
-You can filter by fields values, the [_q query param](#filters-with-mongodb-query), and [STATE](#predefined-collection-properties) using `_st` param.  
+You can filter by fields values, the [_q query param](#filters-with-mongodb-query), and [STATE](#predefined-collection-properties) using `_st` parameter.  
 
 The route to call is the following:
 
 `DELETE` `https://your-url/<CRUD collection endpoint>/`
 
-Below you can see and example:
+Below you can see an example:
 
 ```curl
 curl --location --request DELETE 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=DRAFT'
@@ -1033,10 +1034,10 @@ Values will be casted based on the JSON Schema.
 So, if *childNumber* is *{ "type": "number" }*, it will be casted from string *9* to number *9*.
 
 :::note
-In the `$unset` operation of nested properties there is no validation that the properties you are unsetting are required or not; the unset of a required property will be an error getting the document. Be careful when you use `$unset` on nested properties.
+In the `$unset` operation of nested properties there is no validation that the properties you are unsetting are required or not, and the unset of a required property will be an error getting the document. Be careful when you use `$unset` on nested properties.
 :::
 
-Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a `$set` of a *`PATCH`*) with dot notation. The field have to be valid against the following pattern: *FIELD_NAME.* where *FIELD_NAME* is the name of the field (e.g.: `*set: { "myObject.something": "foobar"}*`).
+Fields of type `RawObject` without a schema can also be used in REST APIs (e.g. in a `$set` of a *`PATCH`*) with dot notation. The field have to be valid against the following pattern: *FIELD_NAME.* where *FIELD_NAME* is the name of the field. (e.g.: `*set: { "myObject.something": "foobar"}*`).
 
 :::note
 The pattern contains `.` and not `\.`, so it's "any character" and not "dot character". It's been kept in this way for retrocompatibility reasons.
