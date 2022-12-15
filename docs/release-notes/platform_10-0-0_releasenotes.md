@@ -13,7 +13,7 @@ _October 20th, 2022_
 
 #### Self-service Cluster Management
 
-Through a new section in Mia-Platform Console it’s possible to manage the infrastructure on which to deploy the Projects: in fact, it is possible to connect and manage Kubernetes Clusters through a handy interface and view some details about it, regardless of the Vendor and Kubernetes distribution installed. Find out more [here](/development_suite/clusters-management/clusters-management.md).
+Through a new section in Mia-Platform Console it’s possible to manage the infrastructure on which to deploy the Projects: in fact, it is possible to connect and manage Kubernetes Clusters through a handy interface and view some details about it, regardless of the Vendor and Kubernetes distribution installed. Find out more [here](/development_suite/clusters-management/clusters-overview-setup.md).
 
 #### Self-service Project Environment Management
 

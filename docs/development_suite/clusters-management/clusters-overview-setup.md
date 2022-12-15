@@ -1,7 +1,7 @@
 ---
-id: clusters-management
-title: Manage Clusters
-sidebar_label: Manage Clusters
+id: clusters-overview-setup
+title: Clusters Overview & Setup
+sidebar_label: Clusters Overview & Setup
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,6 +13,8 @@ Mia-Platform Console allows authorized users to manage the Kubernetes clusters o
 * Edit the connection to an existing Kubernetes cluster, and eventually the cluster information;
 * Delete the connection to an existing Kubernetes cluster.
 
+Detailed information on how to perform these operations can be found [here](/development_suite/clusters-management/add-edit-remove-cluster.md).
+
 :::note
 It is essential to point out that these operations do not have an impact on the original Kubernetes cluster, but only on the connection to the cluster itself, as they are meant to provide the user with information about it. Therefore, as an example, adding a new cluster connection does not generate a new cluster, but simply links an existing one to the Console.
 :::
@@ -23,11 +25,11 @@ To access these features, head to the Company Overview area of the Console by cl
 
 You will be automatically redirected to the Clusters section, in which you can see a table containing some information about the clusters connected to the Console:
 
-* **ID**: friendly identifier of the cluster, assigned by the user while connecting the cluster to the Console;
+* **Cluster ID**: friendly identifier of the cluster, assigned by the user while connecting the cluster to the Console;
 * **Kubernetes version**: Git version of the Kubernetes master node associated with the cluster;
-* **URL**: URL used to connect to the cluster, which indicates where the cluster is exposed;
+* **Cluster URL**: URL used to connect to the cluster, which indicates where the cluster is exposed;
 * **Vendor**: a label used to describe the vendor of the cluster (e.g. Google, AWS...);
-* **Kubernetes distribution**: a label used to describe the distribution of the cluster (e.g. WMWare Tanzu, GKE).
+* **Runtime service**: a label used to describe the runtime service of the cluster (e.g. WMWare Tanzu, GKE).
 
 ![Clusters table](img/clusters-table.png)
 
@@ -220,32 +222,7 @@ kubectl -n get secret `kubectl get sa $(SERVICE_ACCOUNT_NAME) -o jsonpath='{.sec
 If you have created everything in a specific namespace, don't forget to specify it using the `-n` parameter of the `kubectl`.
 :::
 
-## Connect a Cluster
-
-You can connect a cluster by clicking on the "Add cluster connection" button, located in the top right corner of the page. A modal will show up, and you will be asked to fill a form containing some information related to the cluster:
-
-* **Cluster ID** (*required*): friendly identifier of the cluster, assigned by the user while connecting the cluster to the Console;
-* **Cluster URL** (*required*): URL used to connect to the cluster, which indicates where the cluster is exposed;
-* **Proxy URL**: URL of the proxy used to connect to the cluster, usually needed when the cluster is exposed on a private network;
-* **Cluster Token** (*required*): base64 decoded JWT token needed by the service account to perform operations on the cluster.  
-  To extract it, refer to [the previous paragraph](#ca-and-token);
-* **Vendor**: a label used to describe the vendor of the cluster (e.g. Google, AWS...);
-* **Kubernetes distribution**: a label used to describe the distribution of the cluster (e.g. WMWare Tanzu, GKE);
-* **Geographics**: a label used to describe the location of the cluster;
-* **Description**: a brief description of the cluster;
-* **Certificate authority**: base64 decoded CA certificate for the TLS connection with the cluster.  
-  To extract it, refer to [the previous paragraph](#ca-and-token).
-
-![Add cluster connection](img/add-cluster-connection.png)
-
-By clicking on "Add cluster", the connection to the cluster will be set, and it will appear as a new entry in the table.
-
-:::note
-A syntactic check is performed at the moment of data entry, but the Console will verify their correctness on saving, contacting the cluster to establish the connection.  
-Therefore, inserting a wrong URL, token, or certificate will result in a network error because the cluster will not be contacted successfully, and thus it will not be connected nor saved.
-:::
-
-## Configure and connect the service account to the cluster
+## Configure and connect the Service Account to the Cluster
 
 :::danger
 In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment.
@@ -271,47 +248,3 @@ A brief example of the Service Account object:
 ### 2. Via service request
 
 By opening a service request in which all the details of the cluster to be configured to the service account must be specified.
-
-
-## View Cluster Information
-
-By clicking on the arrow button located in the rightmost column of a cluster entry in the table, a new page will show up, displaying information about the specific cluster through 3 cards:
-
-* **Details**: this card shows the information inserted by the user when connecting the cluster to the Console, and allows to modify this information through the "Edit" button in the top right corner, as further explained [below](#edit-a-cluster-connection).
-
-![Cluster details](img/cluster-details.png)
-
-It is also possible to quickly copy the cluster token through a specific copy icon, while clicking on the "View certificate" button allows to visualize the base64 CA certificate in both human-readable and plain version in a two-tabs modal. The "Expanded view" tab displays the human-readable version of the certificate, while the "Text view" tab shows its plain version, and a copy button in the modal footer allows the user to quickly copy the plain base64 CA certificate.
-
-![Certificate expanded view](img/certificate-expanded-view.png)
-![Certificate text view](img/certificate-text-view.png)
-
-* **Runtime information**: this card shows the runtime information of the cluster, taken by aggregating data from the machines on which the cluster is hosted. More specifically:
-  * **Kubernetes version**: Git version of the Kubernetes master node associated with the cluster;
-  * **RAM**: total amount of RAM used by the machines (in MiB);
-  * **CPU**: total amount of CPU used by the machines (in terms of number of cores);
-  * **Nodes**: number of nodes associated with the cluster.
-
-![Cluster runtime information](img/cluster-runtime-information.png)
-
-* **Utilization**: this card simply shows the environments installed on the cluster, and the projects associated with these environments. A search bar allows to quickly find the project you are looking for, filtering the data in the table.
-
-![Cluster utilization](img/cluster-utilization.png)
-
-## Edit a Cluster Connection
-
-As mentioned in the previous section, through the "Edit" button in the top right corner of the Details card, it is possible to modify (most of) the information inserted by the user while connecting the cluster to the Console. A click on the button opens a modal very similar to the one seen when connecting the cluster, with the difference that the Cluster ID and Cluster URL information can no longer be changed. By clicking on "Edit cluster", the connection to the cluster will be updated.
-
-![Edit cluster connection](img/edit-cluster-connection.png)
-
-## Remove a Cluster Connection
-
-In the bottom part of the page, there is a footer which allows to remove the cluster connection from the Console. By clicking on the "Remove" button, a modal will be displayed, asking for confirmation of the removal.
-
-![Remove cluster connection](img/remove-cluster-connection.png)
-
-After entering the name in the input field and clicking "Remove," a loading and finally a feedback of successful removal will be shown. Closing the modal will then redirect you to the clusters table. In case of errors, an informative feedback will be shown instead, and the "Close" button will not perform any redirection.
-
-:::note
-Removing a cluster connection is only possible if the cluster has no connected environment.
-:::
