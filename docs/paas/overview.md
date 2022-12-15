@@ -44,7 +44,6 @@ Maintenance windows for upgrades are regularly scheduled every 3 months with at 
 
 Our software and infrastructure updates include:
 
-* ElasticSearch;
 * GitLab;
 * Grafana;
 * Kafka;
