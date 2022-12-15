@@ -16,8 +16,27 @@
           "type": "doc"
         },
         {
-          "type": "doc",
-          "id": "development_suite/set-up-infrastructure/kustomize"
+          "label": "Kustomize your configurations",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/projects",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/examples",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "development_suite/console-levels-and-permission-management",
