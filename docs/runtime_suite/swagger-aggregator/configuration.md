@@ -195,7 +195,7 @@ Otherwise, if `verbsToTransform` property is defined, only the routes that exact
 :::
 
 :::caution
-Please be sure to validate the configuration with the following <a download target="_blank" href="/docs_files_to_download/swagger-aggregator-config.jsonschema.js"> JSON schema</a> before running the service, otherwise the microservice will not correctly start.
+Please be sure to validate the configuration with the following <a download target="_blank" href="/docs_files_to_download/swagger-aggregator/swagger-aggregator-config.jsonschema.js"> JSON schema</a> before running the service, otherwise the microservice will not correctly start.
 :::
 
 :::info
