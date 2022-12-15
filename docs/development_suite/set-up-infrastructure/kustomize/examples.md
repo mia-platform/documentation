@@ -1,49 +1,8 @@
 ---
-id: kustomize
-title:  Kustomize your configuration
-sidebar_label: Kustomize your configuration
+id: examples
+title: Kustomize Use Cases
+sidebar_label: Kustomize Use Cases
 ---
-
-Optionally you can use [Kustomize](https://kustomize.io/) as a project-level configuration manager. This feature allows you to modify the default configuration of your microservices on a per-environment basis in a simple declarative way with pure YAML. Learn how to enable this feature [here](/development_suite/set-up-infrastructure/create-project.mdx#create-a-template).
-
-With Kustomize, you can specify `overlays` to overwrite the default configuration of your microservices for a specific environment. To do so, you have to manually modify the project configuration by editing the following files inside the chosen environment folder (`./overlays/%envId%/`):
-
-* `kustomization.yaml`: file that contains the directives that define the resulting configuration for the services deployed in the selected environment `%envId%`. Here, you can specify both the new resources to add and the base resources to patch. For more info see [here](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#kustomize-feature-list).
-* `%resourceName%.yaml` (put your actual resource name instead of `%resourceName%`): files containing the new resources to add to your base configuration.
-* `%patchName%.patch.yaml` (put your actual patch name instead of `%patchName%`): files containing possible partial modifications to your base project configuration.
-
-### The new project structure
-
-To enable Kustomize, you need to manually change the project configuration structure from this one:
-
-```plain
-.
-├── configuration
-│   ├── %resourceName%.yaml
-│   └── %envId%
-|       └── %resourceName%.yaml
-└── variables
-    └── %envId%.env
-```
-
-To this one:
-
-```plain
-.
-├── configuration
-│   ├── kustomization.yaml
-│   └── %resourceName%.yaml
-└── overlays
-    └── %envId%
-        ├── kustomization.yaml
-        ├── variables.env
-        ├── %resourceName%.yaml        
-        └── %patchName%.patch.yaml
-```
-
-Firstly, you need to move all of your environment folders to a new first-level directory called `overlays`. Then, you have to place the `.env` variables files from `variables` in the corresponding environment folder of the new location and rename it to `variables.env`. Remember to add `kustomization.yaml` files.
-
-## Use cases
 
 ### Patch replicas
 
@@ -100,7 +59,7 @@ patches:
       annotationSelector: <optional annotation selector>
 ```
 
-For example, imagine you want to inject a sidecar proxy to all your Kubernetes deployments.
+For example, imagine you want to inject a sidecar proxy into all your Kubernetes deployments.
 
 Let's suppose you already have a couple of microservices with the following deployments:
 
