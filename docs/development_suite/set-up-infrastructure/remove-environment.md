@@ -21,3 +21,7 @@ In a plain project, you can find the folder inside `configurations`. Additionall
 ### Kustomize Project
 
 In a Kustomize project, all files are located inside the `overlays` subfolder that is typically named like the runtime environment.
+
+## Environment Variables
+
+Once you have cleanup the git repository you can go in the Mia-Platform Console section for managing the Environment Variables and delete all the values with the `<ENV_PREFIX>` from the list to cleanup the section and avoiding to leave around old unused values.

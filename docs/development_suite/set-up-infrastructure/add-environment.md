@@ -50,9 +50,11 @@ Based on the development flow of your project, this setup must be done on all br
 
 If your Console project has configured resources that are not managed by the Console in one or more environments through yaml files inside the configurations subfolders, you have to create an additional folder for the new environment with the name that your deploy tool will expect for the environment, and add all the files you need.
 
+For setting up a starting point for the Public Variables, you can create a new file inside the `variables` folder named `<environment-id>.env` copying the content from one of the other files inside that folder from one of the existing environments that is the more similar to the new one and than changing the values accordingly.
+
 ### Kustomize Project
 
-If your project is of type Kustomize, you have to prepare the new environment folder inside `overlays`. In this folder you have to create at least two files: one called `variables.env`, which will be filled with the public environments of the project, and one called `kustomization.yaml`. The content of this last file **must** be the following:
+If your project is of type Kustomize, you have to prepare the new environment folder inside `overlays`. In this folder you have to create at least two files: one called `variables.env`, which will be filled with the Public Variables of the project, and one called `kustomization.yaml`. The content of this last file **must** be the following:
 
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -61,4 +63,11 @@ resources:
 - ../../configuration
 ```
 
+The `variables.env` file can be created starting from a copy of one of the similar files contained in the others `overlays` subfolder choosing the one of the existing environment that is the more similar to the new one and than changing the values accordingly
+
 After those two files, you will have to add all custom files not managed by the Console to the new `overlays` subfolder, just like the plain project case.
+
+## Environment Variables
+
+The last step before to deploy a new runtime environment is to create the secreted Environment Variable from the specified environment.
+To do so you must have the permission to manage Environment Variables section inside Console and add the various overrides for your environment using the correct prefix when is needed. For example if you have a variable with the key `ENV_KEY` that must have a different values for every environments you must add a `<ENV_PREFIX>_ENV_KEY` with the correct value for it.
