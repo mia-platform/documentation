@@ -78,8 +78,23 @@
       "type": "category"
     },
     {
-      "id": "development_suite/clusters-management/clusters-management",
-      "type": "doc"
+      "collapsed": true,
+      "type": "category",
+      "label": "Manage Clusters",
+      "items": [
+        {
+          "id": "development_suite/clusters-management/clusters-overview-setup",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/clusters-management/vendors-runtime-services",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/clusters-management/add-edit-remove-cluster",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "development_suite/api-console/user-management",
