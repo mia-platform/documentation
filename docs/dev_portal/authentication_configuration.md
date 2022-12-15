@@ -244,6 +244,54 @@ The final result should look like this:
 Once you have defined a permission group for an endpoint, all the users accessing that route will need to be part of the relative group on the Auth0 platform to successfully log into the application.
 :::
 
+## User info and Logout
+
+After users have logged in, it may be useful to show them their personal information and the logout button, like the following example:
+
+![userinfo and logout](./img/dev-portal-userinfo-logout.png)
+
+
+To show the user info and the logout button you just need to edit a couple of properties of the backend.
+
+During the creation of the **Dev Portal** application were created two backend microservices:
+
+- Backoffice Micro-lc Backend
+- Dev Portal Micro-lc Backend
+
+Inside them you can find the `authentication.json` config-map file, with the authentication properties.
+
+As reported into the [official micro-lc documentation](https://micro-lc.io/documentation/docs/micro-lc/authentication#userinfourl), to add the userinfo and logout button, you just need to set the following properties:
+
+- isAuthNecessary
+- userInfoUrl
+- userLogoutUrl
+
+like the following example (example of the _Dev Portal Micro-lc Backend_ service):
+
+```json
+{
+  "isAuthNecessary": true,
+  "userInfoUrl": "/userinfo",
+  "userLogoutUrl": "/logout?redirect=/web-login?redirect=/dev-portal/"
+}
+```
+
+Moreover, you possibly need to expose the `userinfo` and `logout` on the API Gateway, based on the authentication you used.
+
+In this guide we use [Auth0](https://auth0.com/) and the `auth0-client` microservice, so you need to expose the following APIs:
+
+- `/userinfo`:
+   - type: **Microservice**
+   - Microservice: **auth0-client**
+   - Rewrite Base Path: **/**
+- `/logout`:
+   - type: **Microservice**
+   - Microservice: **auth0-client**
+   - Rewrite Base Path: **/logout**
+
+!!! Warning
+Remember to configure the _Allowed logout URLs_ on Auth0, otherwise the logout flow will not work.
+
 ## Troubleshooting
 
 Following some common error use case.
