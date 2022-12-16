@@ -2327,6 +2327,10 @@
       "type": "doc"
     },
     {
+      "id": "paas/security/secret_scanning",
+      "type": "doc"
+    },
+    {
       "id": "info/mia_service_level_agreement",
       "type": "doc"
     },
