@@ -21,6 +21,10 @@ The user structure must contains:
 * `groups`: a list of groups
 * a unique identifier of the user (default `sub` but configurable through `CUSTOM_USER_ID_KEY`). User id cannot be empty.
 
+The user structure may also contain a field of choice at the first level to be used as array of user's permissions. The name of the field that the authorization service will consider for permissions can be configured by means of the environment variable `CUSTOM_PERMISSIONS_KEY`.<br/>
+The permissions field must be an array of strings, where each string represent a permission identifier.
+Permissions can then be used in ACL expressions as describe [here](../../development_suite/api-console/api-design/endpoints#manage-the-security-of-your-endpoints).
+
 ### Headers set by `/auth`
 
 * `mia-allowed`: set to 0 or 1. 0 -> not allowed. 1 -> allowed

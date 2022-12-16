@@ -40,7 +40,7 @@ service.addPostDecorator('/notify', function notifyHandler(request) {
     )
   } catch (error) {
     // Log at "ERROR" level
-    req.log.error('Error sending notification', error)
+    req.log.error({ error }, 'Error sending notification')
   }
 ) 
 ```

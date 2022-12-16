@@ -2232,6 +2232,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Payments Integration Hub",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/payments-integration-hub/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/payments-integration-hub/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite/payments-integration-hub/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Salesforce Streaming API Connector",
               "items": [
                 {
