@@ -120,7 +120,7 @@ If you rely on `auth0-client` or on the `authentication-service`, the value of t
 * **USER_PROPERTIES_TO_PROXY**: specifies which user properties need to be proxied (to the url set by **USERINFO_URL** variable);
 * **CLIENT_TYPE_HEADER_KEY** (*required, default: `client-type`*): the header key which identifies the value which determines the client type;
 * **BACKOFFICE_USERINFO_URL**: the backoffice url of the service that provides information about the user;
-* **CUSTOM_PERMISSIONS_KEY**: the key which identifies the list of permission in the user's request;
+* **CUSTOM_PERMISSIONS_KEY**: the name of the field in the response from **USERINFO_URL** to be used to retrieve permissions. The field must be at the first level of the response and must be an array of strings. Permissions can then be used in ACL expressions as described [here](../../development_suite/api-console/api-design/endpoints#manage-the-security-of-your-endpoints);
 * **DELAY_SHUTDOWN_SECONDS** (*default: `10`*): the amount of seconds waited before closing the service when performing a graceful shutdown;
 * **HEADERS_TO_PROXY**: specifies which headers need to be proxied (to the url set by **USERINFO_URL** variable). If you are using `auth0-client` or `authentication-service`, its value should be `x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host`;
 * **AUTHORIZATION_HEADERS_TO_PROXY**: specifies which headers could contain the authorization headers used by the user services in a comma separated list of headers. For example, in an oidc flow where the session is saved as bearer token, here should be set `authorization`.
