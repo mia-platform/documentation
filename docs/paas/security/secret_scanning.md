@@ -23,3 +23,9 @@ Secret Detection can be customized by defining the following CI/CD variables:
 | SECRET_DETECTION_HISTORIC_SCAN	    | FALSE       | Enables scanning of previous commits                                 |
 | SECRET_DETECTION_IMAGE_SUFFIX         | ""          | Suffix added to the image name.                                      |
 | SECRET_DETECTION_LOG_OPTIONS          | ""          | git log option to define commit ranges.                              |
+
+:::warning
+If SECRET_DETECTION_HISTORIC_SCAN is not enabled, only the last commit will be checked against secret scanning.
+
+When SECRET_DETECTION_HISTORIC_SCAN is in use with Mia-Platform pipelines, it is also required to set the GIT_DEPTH variable to 0 or the pipeline will otherwise break.
+:::
