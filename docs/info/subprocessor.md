@@ -21,3 +21,4 @@ Follows the list of sub-processors
 | Confluent                  | Event Streaming         | Belgium        | <https://www.confluent.io/> |
 | Auth0                      | Authentication provider | Germany        | <https://auth0.com/>        |
 | Okta                       | Authentication provider | Germany        | <https://www.okta.com>      |
+| Atlassian                  | Support Portal          | Ireland        | <https://www.atlassian.com/>|
