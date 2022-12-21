@@ -802,6 +802,17 @@
       ],
       "label": "Troubleshooting",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/faq/failure_handling_fast_data",
+          "type": "doc"
+        }
+      ],
+      "label": "FAQ",
+      "type": "category"
     }
   ],
   "gettingStarted": [
