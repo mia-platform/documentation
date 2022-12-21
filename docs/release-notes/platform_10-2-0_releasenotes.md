@@ -54,6 +54,16 @@ Now, inside the save configuration modal, you can see the current branch from wh
 
 ### Bug Fix
 
+#### Nginx API Gateway security headers
+
+Nginx API Gateway now includes some important security headers to prevent by default content type sniffing and click jacking; this may cause issues if you were relying on one of the following headers default values it is recommended to verify
+everything works as intended.
+
+:::caution
+THe Backoffice application using micro-lc prior to v1.0.1 is incompatible with this security fix, make sure to update the service.
+:::
+
+
 #### Merge flow improvements
 
 While still in BETA, there have been several improvements to the Merge experience:
@@ -141,4 +151,4 @@ Buttons in `bk-confirmation-modal` do not hold state from previous renderings.
 ## How to update your Console
 
 This release contains a potentially breaking change due to the presence of a new database index. For more information on how this might affect you, contact your administrator or your Mia Platform referent before upgrading the Console.
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.2.7`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.2.8`.
