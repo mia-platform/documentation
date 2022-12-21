@@ -149,7 +149,7 @@ With this configuration, calls to this endpoint will have a different outcome de
 * An unregistered user tries to contact your endpoint and provides the correct API Key value for the clientType `bar`: the call is successful since the second condition of **User Group Permission** is truthy and the endpoint is open to not authenticated calls.
 
 If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
-Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually. In any case, you cannot remove the checks on the [isBackoffice](/runtime_suite/session-manager.md) property that ensure the expression will be considered only for calls coming from the CMS.
+Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually.
 
 :::tip
 If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](/development_suite/monitoring/monitoring.md) to check out the logs of the [Authorization Service](/runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.

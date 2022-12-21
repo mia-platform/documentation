@@ -30,7 +30,7 @@ A practical and intuitive interface to Create, Read, Update and Delete content o
 
 ### CMS Site
 
-A microservice providing a web interface to help users directly interact with the CMS. More information about it can be found [here](../runtime_suite/cms-site/overview.md).
+A microservice providing a web interface to help users directly interact with the CMS.
 
 ### Analytics
 

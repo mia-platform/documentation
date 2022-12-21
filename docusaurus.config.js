@@ -250,7 +250,7 @@ const config = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
-    },
+    }
   },
   presets: [
     [
