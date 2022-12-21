@@ -147,7 +147,7 @@ Assuming you have a Vault instance setup and running and a Console project alrea
 1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](/development_suite/set-up-infrastructure/configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
   
   In this step you have to configure:
-    - The [provider related fields](/development_suite/set-up-infrastructure/configure-provider.mdx#body-schema), having type `vault`
+    - The [provider related fields](/development_suite/set-up-infrastructure/configure-provider.mdx#body-schema), having type `vault`. Optionally, you can setup a custom Certificate Authority and/or proxy.
     - The provider credentials, depending on the [authentication method chosen](#authentication-methods) while the Vault instance was configured, two types of credentials are supported:
       - `token` credentials for the [token authentication method](#token-authentication-method), where `content.accessToken` directly stores your Vault token.
       - `m2m` credentials for the [kubernetes authentication method](#kubernetes-authentication-method). That stores a JWT linked to a service account in the target Kubernetes cluster and a URL to retrieve a short-lived token starting from the JWT via Vault APIs. These pieces of information are stored respectively in the `content.token` and `content.accessTokenURL` properties of the credentials document.

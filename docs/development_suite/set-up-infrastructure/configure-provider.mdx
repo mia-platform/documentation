@@ -46,13 +46,18 @@ or you can use the Console API Portal, under the "Providers" tag.
 #### Body schema
 To create a new provider, you must invoke the POST `/api/backend/tenants/{tenantId}/providers` following this body schema:
 
-- **id (string)**: it will be used to identify the provider;
+- **providerId (string)**: it will be used to identify the provider;
 - **label (string)**: an human-readable name for the provider;
 - **type (string)**: the type of provider you are going to insert. Can be `gitlab`, `github`, `bitbucket`, `azure-devops`, `vault`, or `jenkins`;
 - **urls (object)**: an object that contains:
   - **apiBase (string)**: the API base url of the provider (without trailing slash);
   - **base (string)**: the base url of the provider (without trailing slash).
 - **credentials (object)**: an object that contains credential fields.
+- **proxy (object)**: an object that configures the proxy agent for the provider calls, it contains:
+  - **url (string)**: the proxy url, this prop is required if you want to configure a proxy for your provider.
+  - **username (string)**: the username used to authenticate with basic auth during the proxy connect request.
+  - **password (string)**: the password used to authenticate with basic auth during the proxy connect request, this property is safely encrypted.
+- **Base64CA (string)**: certificate of the trusted Certification Authority
 
 The **credential** object fields change for each provider:
 
