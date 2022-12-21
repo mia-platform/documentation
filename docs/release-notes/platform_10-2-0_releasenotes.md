@@ -60,7 +60,7 @@ Nginx API Gateway now includes some important security headers to prevent by def
 everything works as intended.
 
 :::caution
-THe Backoffice application using micro-lc prior to v1.0.1 is incompatible with this security fix, make sure to update the service.
+The Backoffice application using micro-lc prior to v1.0.1 is incompatible with this security fix, make sure to update the service.
 :::
 
 
