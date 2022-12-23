@@ -3,7 +3,7 @@ id: data_visualization
 title: Data Visualization
 sidebar_label: Data Visualization
 ---
-## Calendar
+## bk-calendar
 
 Renders a calendar to manage appointments.
 ![calendar](../img/bk-calendar.png)
@@ -20,7 +20,7 @@ Renders a calendar to manage appointments.
 |`date`| - |Date| - | - |new Date()|current date of the calendar|
 |`height`|`height`|string| - | - | - |css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height]|
 |`view`| - |"agenda" \| "day" \| "month" \| "week" \| "work_week"| - | - |'month'|current view of the calendar. Possible values are `month`, `week`, or `day`|
-
+|`filtersName`| - |{start: [LocalizedString](../core_concepts#localization-and-i18n), end: [LocalizedString](../core_concepts#localization-and-i18n)}| - | - | {start: "bk-calendar-start-date-filter", end: "bk-calendar-end-date-filter"} |names of default date filters|
 ### Listens to
 
 | event | action | emits | on error |
@@ -570,6 +570,252 @@ The content of the title, extracted from the first entry, is chosen through the 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |display-data|triggers page refresh and goes back to 0-level|change-query| - |
+
+### Emits
+
+This component emits no event.
+
+### Bootstrap
+
+None
+
+## bk-gallery
+
+```html
+<bk-gallery></bk-gallery>
+```
+
+![bk-gallery](../img/bk-gallery.png)
+
+Allows to visualize image files within an adaptive grid, as well as other data.
+
+Each item in the grid is composed of:
+- readonly data (title, subtitle, thumbanil, preview)
+- actions (buttons, action menu, clickable image)
+
+### Appearance
+
+#### Gallery Items
+Gallery items are placed into a grid, which adapts to the screen size.
+
+Each gallery item can be configured in size using properties `itemHeight` and `itemWidth`, controlling height and width respectively.
+
+If `itemHeight` is not specified, items adapt their height to their content.
+
+Property `itemWidth` supports both numeric values (will be interpreted as pixels) or strings "small", "medium", "large".
+It represents the attempted width of each gallery item, but may vary slightly because of the adaptive nature of the grid.
+
+`gutter` property can be used to control the spacing around each gallery item.
+
+#### Preview Modal
+
+Unless property `disableExpand` is set to false, it is possible to visualize the item `preview` image inside a modal.
+The modal can be configured in size using `modalWidth` and `modalHeight`, and a title can be specified with `modalTitle` (if not specified, the item title is used).
+
+### Data
+
+Each gallery item allows to visualize an image (thumbanil), a preview within a modal (preview) and two types of text (title and subTitle).
+
+The properties that control this options are:
+- `thumbnailSource`
+- `previewSource`
+- `titleSource`
+- `subTitleSource`
+
+Upon listening to a `displayData` event, the gallery component adds one item per data row using these properties.
+
+#### XPath
+
+`titleSource`, `subTitleSource`, `thumbnailSource` and `previewSource` properties are of type `XPath`.
+
+```typescript
+type XPath = string | {
+  path?: string
+  default?: LocalizedText
+}
+```
+
+An XPath represents the path to apply to the data source, in javascript notation, to extract the desired data.
+For instance, with data equal to
+```json
+[
+  {
+    "objField": {
+      "arrField": [
+        "test"
+      ],
+      "stringField": "foo"
+    },
+    "document": "some/path.jpg"
+  }
+]
+```
+a gallery with the following properties:
+```json
+{
+  "titleSource": "objField.arrField.[0]",
+  "subTitleSource": "objField.stringField",
+  "thumbnailSource": "document"
+}
+```
+will consist of a single item with
+  - title equal to "test"
+  - subTitle equal to "foo"
+  - thumbnail equal to "some/path.jpg"
+  - preview, since `previewSource` is not specified, equal to thumbnail, thus "some/path.jpg"
+
+XPath `default` key can be utilized to provide a default value in case the path is not resolved. For instance, the same input data with a gallery configured like
+```json
+{
+  "titleSource": "objField.arrField.[0]",
+  "subTitleSource": "objField.stringField",
+  "thumbnailSource": "document",
+  "previewSource": {
+    "path": "objField.preview",
+    "default": "default/file.jpg"
+  }
+}
+```
+results is a single item with
+  - title equal to "test"
+  - subTitle equal to "foo"
+  - thumbnail equal to "some/path.jpg"
+  - preview equal to "default/file.jpg"
+
+
+`thumbnailSource` and `previewSource` also allow to specify a `template` field, which is used to interpolate the extracted value within a string. For instance, assuming the same data as the previous examples as input, the configuration
+```json
+{
+  "thumbnailSource": {
+    "path": "document",
+    "default": "default/file.jpg",
+    "template": "full/{{file}}"
+  }
+}
+```
+results in a single item having thumbnail equal to "full/some/path.jpg". The keyword `file` is used to identify the data extracted using `path`.
+:::caution
+In case of an XPath with template with path unresolved, `default` is used without being interpolated inside `template`.
+For instance, assuming the same input data and configuration
+```json
+{
+    "thumbnailSource": {
+    "path": "unk",
+    "default": "default/file.jpg",
+    "template": "full/{{file}}"
+  }
+}
+```
+the resulting `thumbanil` is "default/file.jpg" and NOT "full/default/file.jpg
+:::
+
+
+### Actions
+
+`onImageClick` and `actions` properties allow to add [actions](../actions.md) to the `bk-gallery`.
+
+Property `actions` is of type
+```typescript
+type GalleryAction = {
+  iconId?: string,
+  content?: string,
+  danger?: boolean,
+  action: Action
+}
+```
+
+The first two actions are rendered as buttons, (for which an iconId is required). The rest of the actions are rendered within an action menu.
+
+Each action in the Gallery component is called with the following context:
+```typescript
+{
+  thumbnail: ..., // source for thumbnail image of the item
+  preview: ..., // source for preview image of the item
+  title: ..., // title of the item
+  subTitle: ..., // subtitle of the item
+  ... // all data fields of gallery item
+}
+```
+which allows for dynamic configurations through [handlebars syntax](https://handlebarsjs.com/guide/expressions.html).
+
+For instance, the following is a valid configuration for `actions`:
+```json
+{
+  ...
+  "actions": {
+    "iconId": "fas fa-users",
+    "action": {
+      "type": "http",
+      "config": {
+        "url": "/url",
+        "method": "POST",
+        "body": {
+          "field1": "{{thumbnail}}",
+          "field2": "{{name}}"
+        }
+      }
+    }
+  }
+}
+```
+
+This action executes a POST call to the endpoint `/url`. The body will be resolved using the thumbnail of the gallery item, and the field `name` of its data.
+
+It is possible to use the whole item data as input using key `context`:
+```json
+{
+  "iconId": "fas fa-users",
+  "action": {
+    "type": "http",
+    "config": {
+      "url": "/url",
+      "method": "POST",
+      "body": "{{rawObject context}}"
+    }
+  }
+}
+```
+`rawObject` is a custom helper signaling that `context` should not be stringified.
+
+:::info
+Notice that the keyword `context`, in this situation, does not include the values of `thumbnail`, `preview`, `title`, `subTitle`.
+:::
+
+### Checkbox
+
+Each item can be selected (emitting `selectedDataBulk` event, allowing integration 
+with components such as `bk-footer` or `bk-bulk-actions`) through a checkbox, unless `disableSelection` property is set to true.
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+| `thumbnailSource` | - | TemplateXPath | - | source path to thumbnail image |
+| `previewSource` | - | TemplateXPath | - | source path to preview image (if not specified, `thumbnailSource` is used) |
+| `titleSource` | - | XPath | - | source path to title text |
+| `subTitleSource` | - | XPath | - | source path to subtitle text |
+| `disableSelection` | `disable-selection` | boolean | false | whether to disable the possibility to select gallery items |
+| `actions` | - | GalleryAction \\| GalleryAction[] | - | available actions per gallery item |
+| `onImageClick` | - | Action | - | action to execute on image click |
+| `disableExpand` | `disable-expand` | boolean | false | whether to disable the possibility of viewing the image inside a modal (preview) |
+| `modalWidth` | `modal-width` | number \\| string | - | width of the preview modal |
+| `modalHeight` | `modal-height` | number \\| string | - | height of the preview modal |
+| `modalTitle` | `modal-title` | string | - | title of the preview modal (if not specified, the title is used) |
+| `gutter` | `gutter` | number | 20 | gutter of gallery items (vertical and horizontal spacing among gallery items) |
+| `primaryKey` | `primary-key` | string | "_id" | key used for indexing gallery items |
+| `itemHeight` | `item-height` | number \\| string | - | height of gallery items. If not specified, items adapt to their content |
+| `itemWidth` | `item-width` | number \\| "small" \\| "medium" \\| "large" | "medium" | attempted width of gallery items |
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+| [displayData](../events#displayData) | receives data to display | - | - |
+
+
+
+
 
 ### Emits
 

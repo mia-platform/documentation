@@ -453,6 +453,10 @@
         },
         {
           "type": "doc",
+          "id": "business_suite/backoffice/actions"
+        },
+        {
+          "type": "doc",
           "id": "business_suite/backoffice/events"
         },
         {
@@ -1034,11 +1038,6 @@
       "collapsed": true,
       "items": [
         {
-          "id": "marketplace/applications/backoffice_application",
-          "type": "doc",
-          "label": "Backoffice Application"
-        },
-        {
           "collapsed": true,
           "type": "category",
           "label": "API Documentation Aggregator",
@@ -1052,6 +1051,11 @@
               "id": "runtime_suite/api-documentation-aggregator/changelog"
             }
           ]
+        },
+        {
+          "id": "marketplace/applications/backoffice_application",
+          "type": "doc",
+          "label": "Backoffice Application"
         },
         {
           "collapsed": true,

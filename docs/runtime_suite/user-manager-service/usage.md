@@ -109,6 +109,16 @@ If the environment variable `ROND_ENABLED` is set to true and in the request bod
 a request towards the Rönd service is performed in order to set the roles and permissions.
 :::
 
+#### Query parameters
+
+This request accepts the following query parameter:
+- **postponeAuthUserCreation** - `booelan` (from v1.3.0): if `true` the user is only created in the `users` CRUD collection.
+
+:::note
+If a user is created only in the `users` CRUD collection, either with `authUserCreationDisabled` or `postponeAuthUserCreation` equal to true, there is no control on uniqueness based on username or email.
+You make these properties unique [indexes](../../development_suite/api-console/api-design/crud_advanced#indexes) to enforce users with unique username or email in the `users` CRUD collection.
+:::
+
 #### Response
 
 If the user is successfully created, you will receive a response with a 200 status code and the `_id` of the newly
