@@ -35,8 +35,8 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 * **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
 * **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](/development_suite/clusters-management/add-edit-remove-cluster.md) first);
 * **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Company ID and Environment ID);
-* **Project URL**: the URL (consisting of protocol + host) on which the project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
-* **CMS URL**: the URL (consisting of protocol + host) on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
+* **Project URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
+* **CMS URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
 * **Description**: a brief description of the runtime environment.
 
 ![add environment](img/add_environment.png)
@@ -48,7 +48,7 @@ If the Console service account has proper permissions, the namespace on the Kube
 :::
 
 :::warning
-After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](/development_suite/set-up-infrastructure/add-environment.md) for more information.
+After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](/development_suite/set-up-infrastructure/add-environment.mdx) for more information.
 :::
 
 ### What happens behind the scenes?
