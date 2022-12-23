@@ -14,6 +14,14 @@ To do so, open the **Projections** section in the fast data group of Mia-Platfor
 
 The creation of a System of Records requires you to insert a system ID which is useful to recognize the system, and to choose if you want to set the Real Time Updater manually or with Low Code configuration.
 
+Additionally, you have to choose a Kafka adapter format:
+
+#### Kafka adapter format
+
+Either `DB2`, `Golden Gate`, or `Custom`. [Click here](/fast_data/inputs_and_outputs.md#data-change-message) for more detail about the Kafka adapter formats.
+
+![Create a System of Records](../img/create_system_of_record.png)
+
 ## Delete a System of Records
 
 To delete a System of Records, you have to click the Delete button in the bottom-right corner of the System of Records detail page.  
@@ -163,7 +171,7 @@ The maximum size of the DDL file is 20MB
 
 To start importing projections from a DDL, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process.
 
-On the first page, you will need to provide two information:
+On the first page, you will need to specify a topic pattern:
 
 #### Topic pattern
 
@@ -175,13 +183,9 @@ The topic pattern is a template string that will be interpolated for each combin
 * projectionId
 * envId
 
-The default value for ths input is the same as the default used by the Console, which is `${tenantId}.${envId}.${systemId}.${projectionId}.ingestion`.
+The default value for this input is the same as the default used by the Console, which is `${tenantId}.${envId}.${systemId}.${projectionId}.ingestion`.
 
-#### Kafka adapter format
-
-Either `Basic`, `Golden Gate`, or `Custom`. [Click here](/fast_data/inputs_and_outputs.md#data-change-message) for more detail about the Kafka adapter formats.
-
-![Topic pattern and Kafka adapter format modal page](../img/importDDL/topic_pattern_and_kafka_adapter_format_modal_page.png)
+![Topic pattern modal page](../img/importDDL/topic_pattern_modal_page.png)
 
 ### Importing - step 2
 
