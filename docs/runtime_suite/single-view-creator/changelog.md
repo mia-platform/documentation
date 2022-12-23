@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.6.4] 2022-12-20
+
+### Fixed
+
+- Aggregation matched all documents when both fields in the `identifierQueryMapping` were inexistent on the starting document. Now the query does not match any documents in that case. This fix comes with @mia-platform-internal/fast-data-automation-lib: 2.3.2
+
+### Added
+
+- Added metric for the sv-patch in @mia-platform-internal/single-view-creator-lib: 14.5.2 (just a label in the `svGenCounter` and `errorCounter` metrics)
+
 ## [5.6.3] 2022-11-28
 
 ### Fixed

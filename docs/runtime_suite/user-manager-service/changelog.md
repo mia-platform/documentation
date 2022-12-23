@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.2] 2022-12-15
 
+### Fixed
+
 - Fix users patch when email is missing in the users' `USERS_CRUD_ENDPOINT` CRUD
 
 ## [1.2.1] 2022-11-18

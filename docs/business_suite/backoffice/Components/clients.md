@@ -87,6 +87,7 @@ This web component is designed to handle `CRUD` operations towards [Mia-Platform
 |`initialEvent`| - |ChangeQueryPayload|INITIAL_EVENT|in case of no `change-query` received, an initial event with this payload will be thrown |
 |`keepStateWhileDuplicating`|`keep-state-while-duplicating`|boolean|false|if `true` duplicate will keep the original record __STATE__ |
 |`shouldIncludeProjections`|`should-include-projections`|boolean|true|should append projection when exporting from CRUD service |
+|`keepPageCount`|`keep-page-count`|boolean|false| should attempt to stay on current page after successful CRUD operation |
 
 ### Listens to
 

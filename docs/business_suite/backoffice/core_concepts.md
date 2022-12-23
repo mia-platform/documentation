@@ -6,7 +6,7 @@ sidebar_label: Core concepts
 ## Localization and i18n
 
 Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind
-of typography can be easily internationalized by passing a `LocalizedString` object containing specific translations according
+of typography can be easily internationalized by passing a `LocalizedString` (or `LocalizedText`) object containing specific translations according
 to [ISO 639-1 codes](https://www.loc.gov/standards/iso639-2/php/code_list.php).
 
 ```json
