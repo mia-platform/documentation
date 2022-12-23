@@ -34,7 +34,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr><td>STRATEGIES_FOLDER</td><td>false</td><td>defines the path to the strategies' folder</td><td>-</td></tr>
     <tr><td>KAFKA_SASL_MECHANISM</td><td>false</td><td>defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`.</td><td>plain</td></tr>
     <tr><td>USE_UPSERT</td><td>false</td><td>defines whether to use <a href="./common#upsert">upsert</a> or not when performing insert and update operations.</td><td>true</td></tr>
-    <tr><td>KAFKA_MESSAGE_ADAPTER</td><td>false</td><td>defines which Kafka message adapter to use. Its value can be either `basic`, `golden-gate` or `custom`. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td><td>basic</td></tr>
+    <tr><td>KAFKA_MESSAGE_ADAPTER</td><td>false</td><td>defines which Kafka message adapter to use. Its value can be either `basic` (DB2 adapter), `golden-gate` or `custom`. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td><td>basic</td></tr>
     <tr><td>KAFKA_PROJECTION_CHANGES_FOLDER</td><td>false</td><td>path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).</td><td>-</td></tr>
     <tr><td>GENERATE_KAFKA_PROJECTION_CHANGES</td><td>false</td><td>defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above).</td><td>false</td></tr>
     <tr><td>KAFKA_CONSUMER_MAX_WAIT_TIME</td><td>false</td><td>defines the maximum waiting time of Kafka Consumer for new data in batch.</td><td>500</td></tr>
@@ -74,7 +74,7 @@ In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafk
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real-Time Updater.
 
 Since a Real Time Updater is connected to one System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, between one of the following three options (further details in the paragraphs below):
-- `Basic`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
+- `DB2`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
 - `Golden Gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) type CDC;
 - `Custom`, in case you need a completely customized message adapter (you'll be requested to write the implementation code); 
 
