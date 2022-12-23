@@ -34,25 +34,26 @@ To contribute to the Mia-Platform docs:
 ## Contributing guidelines
 
 ### Internal Links
+
 Linking a resource to another one inside the documentation is done using the following rules:
 
- * Each link must be relative to the /docs/ of the project (including subfolders).
-   * e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
- * The extension it's mandatory and must be `.md` or `.mdx`.
- * The link can include an anchor to a specific section of the page.
-   * e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
-   * e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
- * Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.  
+- Each link must be relative to the /docs/ of the project (including subfolders).
+  - e.g. if you want to link to the page `/docs/getting_started/faq.md` you have to write `[FAQ](/getting_started/faq.md)`.
+- The extension it's mandatory and must be `.md` or `.mdx`.
+- The link can include an anchor to a specific section of the page.
+  - e.g. if you want to link to the section `#how-to-contribute` of the page `/docs/getting_started/faq.md` you have to write `[How to contribute](/docs/getting_started/faq.md#how-to-contribute)`.
+  - e.g. if you want to link an anchor inside the same page you have to write `[How to contribute](#how-to-contribute)`.
+- Linking internal resources using https://docs.mia-platform.eu/ **is NOT allowed**.  
 
 An automatic check is performed on each push to verify that the links are correct.
 The check is performed to each file in the /docs/ folder excluding the folder managed by the **doc aggregator**:
- * docs/runtime_suite
- * docs/runtime_suite_examples
- * docs/runtime_suite_templates
- * docs/runtime_suite_libraries
- * docs/runtime_suite_tools
- * docs/business_suite
 
+- docs/runtime_suite
+- docs/runtime_suite_examples
+- docs/runtime_suite_templates
+- docs/runtime_suite_libraries
+- docs/runtime_suite_tools
+- docs/business_suite
 
 ## Repository structure
 
@@ -134,8 +135,8 @@ The complete ID of the page is:
 
 You can write the pages using:
 
-* [GFM markdown syntax](https://guides.github.com/features/mastering-markdown/), the same syntax used in GitHub
-* The [Docusaurus admonitions](https://v2.docusaurus.io/docs/markdown-features/#calloutsadmonitions) (using these instead of *N.B, Info: , eg.*)
+- [GFM markdown syntax](https://guides.github.com/features/mastering-markdown/), the same syntax used in GitHub
+- The [Docusaurus admonitions](https://v2.docusaurus.io/docs/markdown-features/#calloutsadmonitions) (using these instead of *N.B, Info: , eg.*)
 
 For more details see the [Docusaurus documentation](https://docusaurus.io/docs/en/doc-markdown).
 
@@ -239,9 +240,9 @@ The links defined in the `a` properties link the main item menu to a single **si
    }
 ```
 
-* To add an item linked to  page  you have to add an object with `"type": "doc"` and the property `"id"` valued with the final id of the page.
+- To add an item linked to  page  you have to add an object with `"type": "doc"` and the property `"id"` valued with the final id of the page.
 
-* To create a sub-element that contains other elements you have to add an object with `"type": "category"` and the property `"label"` valued with the label of the item.
+- To create a sub-element that contains other elements you have to add an object with `"type": "category"` and the property `"label"` valued with the label of the item.
 
 #### Repository deploy rules
 
