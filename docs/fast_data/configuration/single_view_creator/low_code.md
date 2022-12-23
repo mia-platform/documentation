@@ -169,9 +169,6 @@ When you want to map a single view field to an array of value as usual happens i
 
 ### Advanced options
 
-Basic options are simple and meant for streamlined use cases, however, sometimes the need for more complex logic in the creation of the single view arises, and in those scenarios you can take advantage of our advanced options, starting from Aggregation configuration version `1.1.0` and Single View Creator service version `v3.6.0`
-We introduce these options by showing the use case they solve.
-
 #### Using the same Projection as a Dependency multiple times under different conditions
 
 When listing dependencies, it is mandatory that each dependency has a different name, as its name is used to identify it. When it comes to config, this is not a problem, as you can name a config dependency as you wish, but it is different when we need to deal with projections.
@@ -260,6 +257,10 @@ This is incorrect, because there is ambiguity about which `PEOPLE` dependency to
 
 You can solve this problem using the `aliasOf` option, which allows using a different name for a dependency of type `projection`. When using `aliasOf: 'PROJECTION_NAME'`, the named dependency is linked to that projection.
 
+:::info
+The `aliasOf` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
+:::
+
 Now that the `aliasOf` option is clear, we can have a look at the following configuration, which solves the problem in the example:
 
 ```json
@@ -294,6 +295,11 @@ Now that the `aliasOf` option is clear, we can have a look at the following conf
 As you can see, we used the same projection two times, under different conditions: the first time we matched the record based on its identifier (`PEOPLE` dependency, without alias), the second time we matched the record based on the `MARRIAGE_b_TO_PEOPLE` condition (`PARTNER` dependency, with alias).
 
 You can reference a dependency under alias also in another dependency, with the `useAlias` option. Since `CHILD_TO_MOTHER` refers to the ER-Schema, which uses only the projections name and not the dependencies name, you need to use `useAlias` to specify which is the specific dependency that refers to the projection of the relation you want to use.
+
+:::info
+The `useAlias` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
+:::
+
 If we needed to use the `PARTNER` dependency as a base for another dependency (for example, if we are looking for the mother in law), a valid configuration would be:
 
 ```json
@@ -319,14 +325,14 @@ Note that we used `aliasOf` inside the `MOTHER_IN_LAW` dependency as well becaus
 Sometimes, when writing a dependency of a projection that is matched on its `_identifier`, we find that the identifier has more fields than we want, or has fields with different names, which makes the automatic query mapping result in no documents found.
 In this scenario, you can employ the `identifierQueryMapping` option, which provides a new query mapping for the identifier of a projection, allowing you to have a custom way of matching documents based on their identifier.
 
+:::info
+The `identifierQueryMapping` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
+:::
+
 In particular, there are two main cases when this could come in handy:
 
 1. renaming fields for querying
 2. reducing the number of fields to query on
-
-:::info
-Most of the time you will not face these scenarios, and most likely that will only happen if you use some advanced configuration.
-:::
 
 Renaming fields can be required when you want to achieve a high level of decoupling, so you avoid using the document identifier key, but instead you use a more explicit name, for example instead of `"id"` you might want to use `"my_single_view_id"`, because this clearly shows what this `"id"` refers to.
 An identifier with that logic would be:
@@ -445,6 +451,10 @@ Thanks to the `_select` option, we can create a `JOB` dependency, which will use
 }
 ```
 
+:::info
+The `_select_` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
+:::
+
 As you can see, the `_select` option has a long set of rules, which we are going to break down here.
 
 The `_select` is a way of providing one of many different configurations for a specific dependency, based on some conditions.
@@ -469,7 +479,11 @@ For example, using the equality operator, we can write this condition:
 Here, the first operand is a variable which takes its value from `USER.job`, while the second operand is a constant string: `"doctor"`. This simply means that this condition will match when the `job` field of the `USER` dependency is equal to `"doctor"`.
 This pattern is repeated for all other operators, as they are binary as well.
 
-As operand, it is possible to use constant values, in the exact same way as seen in the [ER diagram](/fast_data/configuration/erSchema.md#syntax). If the `aggregator.json` file uses the 1.3.0 version, we can also use functions to return a value that will be evaluated in the condition.
+As operand, it is possible to use constant values, in the exact same way as seen in the [ER schema](/fast_data/configuration/erSchema.md#syntax).
+
+:::info
+Functions can also be used as value from the `1.3.0` version of the `aggregation.json` which is supported from the version `5.1.0` of the Single View Creator service
+:::
 
 The function works in the same way as explained in the Mapping section, with the only difference that will accept only two parameters: 
 
@@ -580,9 +594,48 @@ The order resolution is important for the correctness of the aggregation since e
 
 :::note
 Since version `v5.0.0` of Single View Creator service returning a single view with the field `__STATE__` from the aggregation will update the Single View to that state (among the others changes).   
-This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `aggregation.json` the single view updated will have the __STATE__ equals to `DRAFT`. 
-Previously, the `__STATE__` you returned was ignored, and the Single View would always have the __STATE__ equals to `PUBLIC`.
+This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `aggregation.json` the single view updated will have the `__STATE__` equals to `DRAFT`. 
+Previously, the `__STATE__` you returned was ignored, and the Single View would always have the `__STATE__` equals to `PUBLIC`.
 :::
+
+#### Aggregate documents with different `__STATE__` other than `PUBLIC`
+
+With the version `5.1.0` of the Single View Creator the `__STATE__` field in the projection is taken into consideration when aggregating, meaning if a dependency has its `__STATE__` set to **anything else but** `PUBLIC` it won't be added to the Single View.
+
+In case you would like to include other states too in the aggregation process you can do it with the `onStates` field which allows you to define exactly which states you want to include in to the Single View. The value is an array with any of the following states: `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`.
+
+:::info
+The `onStates` field can be used from the `1.2.0` version of the `aggregation.json`
+:::
+
+Here's a working example:
+
+```json
+{
+   "version": "1.2.0",
+   "config": {
+      "SV_CONFIG": {
+         "dependencies": {
+         "USER": {
+            "type": "projection",
+            "on": "_identifier",
+            "onStates": ["PUBLIC", "DRAFT"]
+         },
+         "WORK": {
+            "type": "projection",
+            "aliasOf": "JOB",
+            "on": "USER_TO_JOB",
+            "onStates": ["PUBLIC", "DRAFT"]
+         }
+         },
+         "mapping": {
+            "myId": "USER.id",
+            "job": "WORK.label"
+         }
+      }
+   }
+}
+```
 
 ## Example
 
