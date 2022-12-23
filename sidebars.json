@@ -1035,7 +1035,8 @@
       "items": [
         {
           "id": "marketplace/applications/backoffice_application",
-          "type": "doc"
+          "type": "doc",
+          "label": "Backoffice Application"
         },
         {
           "collapsed": true,
