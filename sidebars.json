@@ -400,11 +400,15 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/user-profile/profile-picture",
+          "id": "development_suite/user-settings/user-profile-picture",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/user-companies",
           "type": "doc"
         }
       ],
-      "label": "User profile",
+      "label": "User settings",
       "type": "category"
     },
     {

@@ -1,7 +1,7 @@
 ---
-id: profile-picture
-title: Profile picture
-sidebar_label: Profile picture
+id: user-profile-picture
+title: User profile picture
+sidebar_label: User profile picture
 ---
 
 Each user in the console has an avatar image that can be configured on the authentication provider.
