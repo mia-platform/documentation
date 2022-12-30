@@ -77,26 +77,25 @@ This can be any service (either created from Mia-Platform [Marketplace](/marketp
 Once a request reaches the custom service, the user performing the request has already been authenticated and authorized successfully.
 Its purpose is to receive the request, perform some custom application logic and produce a response that will be sent back to the client through the API Gateway.
 
-## Authorization with RBAC
-
-Role Based Access Control (RBAC) is an authorization mechanism integrated in Console that provides more advanced and efficient authorization logics, guaranteeing security and governance benefits in managing your project.
+## Authorization with Rönd
 
 In addition to the above-mentioned services that are involved in an authentication and authorization flow, 
-Mia-Platform provides another service, the RBAC Service. 
+Mia-Platform provides another service: Rönd.  
+[Rönd](https://rond-authz.io) is an authorization mechanism integrated in Console that provides more advanced and efficient authorization logics, guaranteeing security and governance benefits in managing your project.
 
-RBAC Service is the core service responsible for handling advanced authorization mechanisms through the 
-[evaluation of policies](/development_suite/api-console/api-design/rbac_policies.md) written in Rego, 
+Rönd is the core service responsible for handling advanced authorization mechanisms through the 
+[evaluation of policies](https://rond-authz.io/docs/policy-integration) written in Rego, 
 the [OPA](https://www.openpolicyagent.org/docs/latest/) language.
 
-In order to prevent single point of failures in your project architecture, RBAC policies are evaluated with a decentralized strategy by different RBAC service instances that are distributed within your project.  
-Each service that you have enabled RBAC for is, in fact, accompanied by a dedicated RBAC Service instance.
+In order to prevent single point of failures in your project architecture, authorization policies are evaluated with a decentralized strategy by different Rönd instances that are distributed within your project.  
+In fact, when you enable Rönd on one of your services, a new instance of Rönd will be created in the same pod in which the service instance is running.
 
-RBAC service intercepts the traffic directed to your service and implements the authorization 
-logics by evaluating your policies to perform decisions or actions, such as:
+Rönd intercepts the traffic directed to your service and executes the authorization
+logics, evaluating your policies and performing related decisions or actions, such as:
 
-* authorization enforcement on request attributes (such as: request path, headers, query parameters, path parameters, client type, etc) and all the user properties provided by the Authorization Service in the `miauserproperties` and `miausergroups` platform headers. [See more information here](/development_suite/api-console/api-design/rbac_policies.md#policies-input-data)
-* query generation for data [filtering on request](/development_suite/api-console/api-design/rbac.md#rbac-rows-filtering).
-* [response body filtering](/development_suite/api-console/api-design/rbac.md#rbac-response-filtering) to remove or change data returned by your services.
+* authorization enforcement on request attributes (such as: request path, headers, query parameters, path parameters, client type, etc) and all the user properties provided by the Authorization Service in the `miauserid` and `miausergroups` platform headers. [See more information here](https://rond-authz.io/docs/policy-integration#rbac-data-model)
+* query generation for data [filtering on request](https://rond-authz.io/docs/policy-integration#rows-filtering).
+* [response body filtering](https://rond-authz.io/docs/policy-integration#response-filtering) to remove or change data returned by your services.
 
 To know more about how managing and implementing RBAC functionalities, 
-visit the [RBAC documentation page](/development_suite/api-console/api-design/rbac.md).
+visit the [Rönd documentation page](https://rond-authz.io/docs/policy-integration).
