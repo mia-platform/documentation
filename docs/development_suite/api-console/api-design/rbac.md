@@ -1,53 +1,74 @@
 ---
 id: rbac
-title: Manage Permissions with RBAC
-sidebar_label: RBAC Overview
+title: Authorization Management
+sidebar_label: Authorization Management
 ---
 
 import Mermaid from "./../../../../src/components/Mermaid";
 
-## What is RBAC
+## Overview
 
-Role Based Access Control (RBAC) is an authorization mechanism built on top of user Roles useful to decouple actions that user can perform (generally known as _permissions_) and their higher-level Role inside an information system.
-RBAC allows you to define your custom permissions, group them by [Roles](#roles) and then assign those Roles to your users (or even groups of users).
-Therefore, enabling RBAC in Console allows you to empower the level of your [Console permission management](/development_suite/console-levels-and-permission-management.md).
+Mia-Platform Console allows you to define custom security policies for your system. These policies can leverage both an Attribute-Based Access Control (ABAC) and a Role-Based Access Control (RBAC) approach.  
+You can configure your security policies from the Authorization section (inside the Design area) and enable them for your services.
 
-Taking aside the security implications that adopting RBAC provides to your solution, one of the most important benefits (in comparison to a simplest ACL mechanism) is the governance capabilities it provides to your system administrators when dealing with what users using your platform may or may not be allowed to do.
+:::info
+To achieve this level of security, Mia-Platform runs [**Rönd** (an open-source authorization mechanism)](https://rond-authz.io) as a sidecar container, for each of your pods.  
+Find out more about Rönd in the [project documentation](https://rond-authz.io/docs).
+:::
 
-Leveraging Mia-Platform already existing [authentication and authorization solutions](/development_suite/set-up-infrastructure/authorization-flow.md) RBAC is made available to your projects in the Console through a dedicated UI; all you need to do is head to the RBAC section (in the Design area) and enable it for your services.
+## How to configure Authorization for your project
 
-In this page you can find further details on how RBAC works and how to properly configure it in your project.
+Heading to the Authorization section (inside the Design area), you can manage Authorization configurations for your system. This section is made of four different tabs:
 
-## How to configure RBAC in your project
-
-Inside the Design area a new section is available to manage RBAC configurations. This new section will present four different tabs:
-
-- [**Overview**](#overview-tab): in this tab, you can enable and configure the [RBAC sidecar](#rbac-service) for each service of your project;
-- [**General Settings**](#general-settings-tab): in this tab, you can control shared settings between all of your RBAC instances in the project (such as the version of the RBAC service or the [storage configuration](#rbac-storage));
-- [**Policies**](#policies-tab): in this tab, you can write and test your own policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/);
+- [**Overview**](#overview-tab): in this tab, you can enable and configure Rönd for each service of your project;
+- [**General Settings**](#general-settings-tab): in this tab, you can control shared settings between all of your Rönd instances in the project (such as the version of Rönd service or the [storage configuration](#rbac-storage));
+- [**Policies**](#policies-tab): in this tab, you can write and test your own policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/))
 - [**Manual Routes**](#manual-routes-tab): in this tab, you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification).
 
 ### Overview tab
 
-Inside the Overview tab you can enable RBAC sidecar injection for any service that is available in your project. Moreover, since a new container will be deployed in your namespace, you can view and configure the following information:
+From the Overview tab you can enable Rönd for any service that is available in your project. Moreover, since a new container will be deployed in your namespace, you can view and configure the following information:
 
 - **Memory Request and Limit**: Memory request and Memory limit of the sidecar container
-- **CPU Request and CPU Limit**: CPU request and CPU limit of the container of the sidecar
+- **CPU Request and CPU Limit**: CPU request and CPU limit of the sidecar container
 
-To enable RBAC sidecar injection for a specific service you have to use the **Enable RBAC** switch available in the table editing drawer. After enabling the RBAC you will be able to customize resources request and limit.
+To enable Rönd for a specific service you have to use the **Enable Rönd** switch available in the table editing drawer. After enabling Rönd you will be able to customize resources request and limit.
 
-#### API Permission definition
+Once you have enabled Rönd on one of your services, you have to define which policy is required by which of your service APIs.  
+If your service exposes OpenAPI 3 Specification you can use the **custom attribute** `x-rond` [described here](https://rond-authz.io/docs/configuration#configuration-files), otherwise if your service does not expose its API documentation and you don't plan to add it you can use the [Manual Routes configuration tab](#manual-routes-tab)
 
-Once you have enabled RBAC on one of your services, what you want to do is defining which policy is required by your service APIs; if your service
-exposes OpenAPI 3 Specification you can use the **custom attribute** `x-permission` [described here](https://rond-authz.io/docs/configuration#configuration-files), otherwise if your service does not expose its API documentation and you don't plan to add it you can use the [Manual Routes configuration tab](#manual-routes-tab)
+:::info
+**Be careful**: the value of the environment variable `LOG_LEVEL` is set by the Console with the value of the `LOG_LEVEL` environment variable of the service to which the sidecar is attached to.
+:::
 
 ### General Settings Tab
 
-Inside the General Settings tab you can change the RBAC sidecar service version and configure [RBAC Storage](#rbac-storage) information.
+Inside the General Settings tab you can:
+- define the Rönd service version
+- configure RBAC Storage information.
+
+#### RBAC Storage
+
+RBAC is configured by design to load Roles and Bindings from MongoDB. In order to properly configure MongoDB connection string and collection names head to the **General Settings** tab and change the values in the RBAC Storage card.  
+These values are set by default to `{{MONGODB_URL}}`, `rbac-bindings` and `rbac-roles`. Feel free to change the names to better suite your
+naming conventions and standards.  
+
+:::info
+You have to provide the collection names you wish to use in your project, when you save the configuration the new collections will be created and will be visible in the **MongoDB CRUD** section.
+:::
+
+:::caution
+If you wish to change the collection names in a future moment you **must** manually delete the old ones.
+:::
+
+#### RBAC Data Models
+
+As previously said Roles and Bindings collections are created when saving your configuration according to the ones specified in the [General Settings](#general-settings-tab).  
+You can find more about the structure of the collection data models in [Rönd documentation](https://rond-authz.io/docs/policy-integration#rbac-data-model).
 
 ### Policies Tab
 
-In the **Policies** tab you can write your own policies that will be used by RBAC service to evaluate the incoming requests.
+In the **Policies** tab you can write your own policies that will be used by Rönd service to evaluate the incoming requests.
 
 You will find a read-only section that shows your current policies; if you want to modify them or create new ones you can click on the `Edit policies` button that will open a modal with two different editors.
 
@@ -59,30 +80,32 @@ Once you had written your policies you can test them using the **Test** button.
 We strongly suggest you to test your policies, you may notice that if you have written some tests you won't be able to save your changes until your tests are passed.
 :::
 
-You can find more information about [writing your own policies here](/development_suite/api-console/api-design/rbac_policies.md).
+You can find more information about writing your own policies [in the Rönd documentation](https://rond-authz.io/docs/policy-integration).
 
 ### Manual Routes Tab
 
-If, for any reason, the service you wish to apply RBAC to does not expose any API documentation, or you don't have access to the codebase in order to implement
-your own documentation API, you can always provide a manual routes configuration to the RBAC sidecar.
+If you want to apply Rönd policies, but your service does not expose any API documentation, or you don't have access to the codebase in order to implement
+your own documentation API, you can set up manual routes for Rönd.
 
-In order to do so, you can go to the Manual Routes configuration tab in the RBAC section and define your own routes by selecting the `Add New` button.  
-In the creation form, you will be asked for a microservice name (to be chosen among the ones that you have selected RBAC sidecar injection enabled for), then you'll have to provide a verb and a path that identify the API invocation and at last the `Allow Policy` that should be required for that API.
+To do this, from the Manual Routes configuration tab, you can define your own routes by selecting the `Add New` button.  
+Select a microservice from the list and then provide a verb and a path that identify the API invocation and at last the `Allow Policy` that should be required for that API.  
+NOTE: if your service is not in the list, you have to firstly enable Rönd for that service from the [Overview tab](#overview-tab)
 
 :::info
-It's possible to add new manual route to register a permission for a group of paths using the wildcard (e.g. "/foo/*") and also to select the method ALL to register the same permission for all http methods of the inserted path, but pay attention to the [routes priority rules](#routes-priority)
+It is possible to add new manual route to register a permission for a group of paths using the wildcard (e.g. "/foo/*") and also to select the method ALL to register the same permission for all http methods of the inserted path, but pay attention to the [routes priority rules](#routes-priority)
 :::
 
 During or after the creation of a manual route, you will also be able to associate to it a **Rows Filter** or a **Response Filter**, described in depth in their dedicated sections:
-- [**RBAC rows filtering**](#rbac-rows-filtering)
-- [**RBAC response filtering**](#rbac-response-filtering)
+- [**Rows filtering**](https://rond-authz.io/docs/policy-integration#rows-filtering)
+- [**Response filtering**](https://rond-authz.io/docs/policy-integration#response-filtering)
 
 To activate the filters, you can use the corresponding switch and then configuring them. In particular:
-- `Row Filtering` uses the `acl_rows` value as **headerName**  by default, but you can set a custom value to replace it.
-- `Response Filtering` requires instead the name of the filter policy used to evaluate the response received by RBAC sidecar. 
+- `Rows Filtering` uses the `acl_rows` value as **headerName**  by default, but you can set a custom value to replace it.
+- `Response Filtering` requires instead the name of the filter policy used to evaluate the response received by Rönd. 
 
 :::caution
-While normally the RBAC sidecar will self-configure itself by consuming the API documentation of its target service when you add a new manual route to the RBAC configuration for a microservice, that self-configuration functionality gets disabled, thus you're required to register all the routes that your service exposes.
+Normally Rönd will configure by itself consuming the API documentation of its target service.  
+When adding a new manual route to the configuration for a microservice, the self-configuration feature will turn off. Thus you are required to register all the routes that your service exposes.
 :::
 
 ### Routes Priority
@@ -108,263 +131,86 @@ Paths to resolve
 
 ```
 
-### RBAC rows filtering
+## How to write a policy
 
-It may happen that for some of your APIs you need to filter out some results based on the permissions of the requesting user. This is the case in which we talk about rows filtering.  
-The RBAC service allows you to retrieve automatically a query for your DBMS coming from the evaluation of the permissions of a user. This query will be passed as a header to the requested service that should know how to handle it properly.
+As already mentioned, Mia-Platform authorization system uses Rönd under the hood thus the way to write policies is the same.  
+Please, refer to [Rönd documentation](https://rond-authz.io/docs/policy-integration) to understand better how to write policies.
 
-To let the RBAC service knows it has to perform this query generation, you need to configure it in the [api configuration](https://rond-authz.io/docs/configuration#configuration-files) or go to [**Manual Routes** tab](#manual-routes-tab). 
+## How to test your policies
+The Permission policy testing framework also leverages Open Policy Agent technology and so, in order to write valid tests, 
+you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
 
+From the ***Policies tab***, click on the ***Edit policies*** button to open the policy editor.  
+The policy editor is made of three areas:
+- *Policies*: the editor where you can define your custom policies
+- *Test*: the editor where you can test your policies
+- *Output*: the output console, that helps you writing and debugging your policies
 
-The `headerName field` will be used to provide the name of the header that will contain the final query and will be passed to the requested service. If you don't specify any value for headerName, by default it will take the `acl_rows` value.
+### Test Simple Policy
 
-:::caution
-The rows filtering, in order to correctly work, needs the definition of a permission evaluation, that has to be written and tested in the properly [Policies tab](#policies-tab) of RBAC section.
-:::
+Let's test the example policy from the [Rönd documentation](https://rond-authz.io/docs/policy-integration#example-of-a-policy):  
+```rego
+package policies
 
-#### How to write a query in rego for permission evaluation
+default api_key = false
+api_key {
+  get_header("x-api-key", input.request.headers) != ""
+}
+```
 
-Any RBAC policies is provided with the iterable `data.resources[_]`. This structure is used to build up the query. 
-You can use it to perform any kind of comparison between it and anything you want from the input or maybe a constant value.  
-We remind you that the query will be built from the field name of the resource object accessed in the permission.
-
-:::caution
-To build your query remember to use assign in the `data.resources` iterable the same properties you have defined in the data model you need to be queried.
-:::
-
-In the example below, given a valid rows filtering configuration, the `allow` policy requires that the requested resource details can be retrieved by the user and by its manager.
+For this policy we can write two tests:
 
 ```rego
-allow {
-   input.request.method == "GET"
-   resource := data.resources[_]
-   resource.name == input.user
-   resource.description == "this is the user description"
+package policies
+
+# Test 1: Checks that the request is accepted.
+test_api_key_allowed {
+  api_key with input as {"request": {"headers": {"X-Api-Key": ["something"]}}}
 }
 
-allow {
-   input.request.method == "GET"
-   resource := data.resources[_]
-   resource.manager == input.user
-   resource.name == input.path[1]
+# Test 2: Checks that the request is rejected.
+test_api_key_not_allowed {
+  not api_key with input as {"request": {"headers": {}}}
 }
 ```
 
 :::caution
-Policy for row filtering does not support the `default` declaration. E.g. `default allow = true`. Using it will prevent any filter to be generated.
+If any of your tests does not pass you won't be able to save your permissions changes! 
+You may still exit the modal by clicking the close icon on the top right, however all changes done will be discarded.
+
+It is still possible to save your permissions if you have no test implemented, however this is **NOT RECOMMENDED**!
 :::
 
+### Test Filters Policy
 
-Given as input to the permission evaluator
-
-```json
-[
-   {
-      "input": {
-            "method": "GET",
-            "path": ["resource", "bob"],
-            "user": "alice"
-         }
-   }
-]
-```
-
-We succeed in obtaining the following object representing a mongo query
-
-```json
-[
-   {
-      "$or":[
-         {
-            "$and":[
-               {
-                  "name":{
-                     "$eq":"alice"
-                  }
-               },
-               {
-                  "description":{
-                     "$eq":"this is the user description"
-                  }
-               }
-            ]
-         },
-         {
-            "$and":[
-               {
-                  "manager":{
-                     "$eq":"alice"
-                  }
-               },
-               {
-                  "name":{
-                     "$eq":"bob"
-                  }
-               }
-            ]
-         }
-      ]
-   }
-]
-```
-
-### RBAC response filtering
-
-For some of your APIs you may need to manipulate data, based on the permissions of the requesting user, before sending it to the final target. This is the case in which we talk about response filtering.  
-Whenever this filtering is performed on the results obtained by a HTTP request, we talk about response filtering on response.
-RBAC service allows you to manipulate the response body directly in a policy.  
-As shown in the [RBAC policies](/development_suite/api-console/api-design/rbac_policies.md#policies-input-data) section, your policies will be provided with the original response body, allowing you to manipulate it.  
-
-After the policy is written, you need to register it in the [api configuration](https://rond-authz.io/docs/configuration#configuration-files) or in the [**Manual Routes** section](#manual-routes-tab). 
-
-:::caution
-Response filtering is applied only if the response Content Type is `application/json`; if any other Content Type is found (based on the `Content-Type` header value), an error will be sent to the caller.
-
-**Be careful**, the written policy must respect the syntax 
-
+Let's test another example of policy from the [Rönd documentation](https://rond-authz.io/docs/policy-integration#rbac-policies-for-permission-evaluation), this time using the Row Filtering:
 ```rego
-policy_name[return_value]{
-   somePolicyContent==true
+package policies
+
+filter_projects_example {
+    bindings := input.user.bindings[_]
+    resource := data.resources[_]
+    resource._id == bindings.resource.resourceId
 }
 ```
-
-and must return the new value of the modified data.
-:::
-
+In order to test this filter policy we need to provide some additional data to both the `input` and the `data.resources` fields.  
+We can do this by just mocking these fields with some testing values:
 ```rego
-filter_response_example[result] {
-   body := input.request.body
-   result := object.remove(body, ["someField"])
+package policies
+
+test_filter_projects_example {
+    filter_projects_example
+        with input as {
+            "user": {
+                "bindings": bindings_mock,
+                "roles": roles_mock
+            }
+        }
+        with data.resources as [
+          {"_id": "resource1"}, 
+          {"_id": "resource2"}
+        ]
 }
-```
-
-## Technical details
-
-### RBAC Service
-
-The RBAC Service is the core service that is responsible for handling policies evaluations; it is thought to run alongside your application container (as a sidecar), to intercept traffic directed to your service and to reject unwanted/unauthorized API invocation.
-
-<div style={{textAlign: 'center'}}>
-
-![sidecar](img/sidecar.png)
-
-</div>
-
-In order to know which API should be exposed RBAC sidecar will try to fetch from the application services an OpenAPI 3 compliant specification. At this point RBAC Service will expose all your application service APIs and after performing policy evaluation decide whether the API invocation should be forwarded to the application service.
-
-Below a sequence diagram that describes the main flow between a client and the final custom service:
-
-<Mermaid chart={`sequenceDiagram
-title: RBAC sequence diagram for policy evaluation
-participant client
-participant rbac_service
-participant custom_service
-participant db
-client ->> rbac_service: [subject, api_path]
-activate rbac_service
-rbac_service ->> db: get user bindings and roles
-activate db
-db ->> rbac_service: user bindings with roles and permissions
-deactivate db
-alt user has not permissions
-rbac_service ->> client: forbidden 403
-else user has permissions
-rbac_service ->> custom_service: api call with eventual filters
-activate custom_service
-custom_service ->> rbac_service: response
-deactivate custom_service
-rbac_service ->> client : response
-deactivate rbac_service
-end`}/>
-
-:::info
-
-**Be careful**: the value of the environment variable `LOG_LEVEL` is set by the Console with the value of the `LOG_LEVEL` environment variable of the service to which the sidecar is attached to.
-
-:::
-
-### RBAC Storage
-
-RBAC is configured by design to load Roles and Bindings from MongoDB, in order to properly configure MongoDB connection string and collection names head to the **General Settings** tab
-change the values in the RBAC Storage card. These values are set by default to `{{MONGODB_URL}}`, `rbac-bindings` and `rbac-roles`; feel free to change the names to better suite your
-naming conventions and standards.  
-
-:::info
-You have to provide the collection names you wish to use in your project, when you save the configuration the new collections will be created and will be visible in the **MongoDB CRUD** section.
-:::
-
-:::caution
-If you wish to change the collection names in a second occasion you **must** manually delete the old ones.
-:::
-
-#### RBAC Data Models
-
-As previously said Roles and Bindings collections are created when saving your configuration according to the ones specified in the [General Settings](#general-settings-tab), the collection data models are described here.
-
-##### Roles
-
-This collection contains all the roles needed in an organization with their specific permissions.
-
-The collection fields are:
-
-- **roleId** (string, required): the **_unique_** id of the roles
-- **name** (string,required): name of the role
-- **description** (string): description of the role
-- **permissions** (string array, required): list of permissions ids for the role
-
-```json
-[
-   {
-      "roleId": "roleUniqueIdentifier",
-      "name": "TL",
-      "description": "company tech leader",
-      "permissions": [
-         "console.project.view",
-         "console.environment.deploy",
-         "console.company.billing.view"
-      ]
-   }
-]
-```
-
-##### Bindings
-
-A Binding represents an association between a set of Subjects (or groups), a set of Roles and (optionally) a Resource.
-
-:::note
-A _Subject_ may represent a user or another application; its identifier is retrieved by the RBAC Service from the Mia-Platform standard header `miauserid`
-
-Groups are retrieved by the RBAC Service from the Mia-Platform standard header `miausergroups`)
-:::
-
-In this collection there are stored all the bindings between users or groups of users and a resource with a list of roles. The fields for this collections are:
-
-- **bindingId** (string, required): **_unique_** id of the binding
-- **groups** (string array): list of user group identifiers
-- **subject** (string array): list of user ids
-- **roles** (string array): list of role ids
-- **permissions**: (strings) list of permission ids
-- **resource**: (object) with properties `type` and `id`
-
-```json
-[
-   {   
-      "bindingId": "bindingUniqueIdentifier",
-      "groups": [
-         "team1"
-      ],
-      "subjects": [
-         "bob"
-      ],
-      "roles": [
-         "TLRoleId"
-      ],
-      "resource": {
-         "resourceId": "project1",
-         "resourceType": "project"
-      }
-   }
-]
 ```
 
 <br/>

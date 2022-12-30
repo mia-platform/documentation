@@ -186,19 +186,8 @@
           "type": "doc"
         },
         {
-          "collapsed": true,
-          "type": "category",
-          "label": "Configure RBAC",
-          "items": [
-            {
-              "id": "development_suite/api-console/api-design/rbac",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/api-design/rbac_policies",
-              "type": "doc"
-            }
-          ]
+          "id": "development_suite/api-console/api-design/rbac",
+          "type": "doc"
         },
         {
           "id": "development_suite/api-console/api-design/api-key",
