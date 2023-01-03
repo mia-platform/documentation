@@ -59,3 +59,9 @@ The following ciphersuites are supported by default:
 TLS certificates are automatically generated using Let's Encrypt. Traefik is configured to use Let's Encrypt to automatically generate and renew the certificates for Mia-Platform domains. By default, Traefik manages 90 days certificates, and starts to renew certificates 30 days before they expire.
 
 For more information about Let's Encrypt certificates compatibility, visit [Let's Encrypt documentation](https://letsencrypt.org/docs/certificate-compatibility/).
+
+## Vulnerability Management
+
+Mia-Platform implements a central ticketing system that tracks all security issues until remediation. Our implementation consists of patches to the OS and the applications on a regular schedule and on need-to-update basis, in accordance with the CVSS (Common Vulnerability Scoring System).
+
+We define development tasks, bug fixes, and new features as issues for specific target releases, deploying them to production only after completing requisite checkpoints such as quality assurance testing, staged deployment, and review.
