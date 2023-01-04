@@ -5,7 +5,7 @@
       "type": "doc"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "items": [
         {
           "id": "development_suite/company/create",
@@ -14,7 +14,7 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "Manage Clusters",
+          "label": "Clusters",
           "link": {
             "id": "development_suite/clusters-management/clusters-overview-setup",
             "type": "doc"
@@ -41,18 +41,18 @@
         {
           "id": "development_suite/endpoint-overview/endpoint-overview",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/license-metrics/license-metrics",
+          "type": "doc"
         }
       ],
       "label": "Company",
       "type": "category"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "items": [
-        {
-          "id": "development_suite/set-up-infrastructure/authorization-flow",
-          "type": "doc"
-        },
         {
           "id": "development_suite/set-up-infrastructure/create-project",
           "type": "doc"
@@ -81,7 +81,280 @@
           ]
         },
         {
-          "id": "development_suite/console-levels-and-permission-management",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/add-environment",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/remove-environment",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Runtime Environments",
+          "type": "category",
+          "link": {
+            "id": "development_suite/set-up-infrastructure/runtime-environments",
+            "type": "doc"
+          }
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-vault",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Environment Variables",
+          "type": "category",
+          "link": {
+            "id": "development_suite/set-up-infrastructure/env-var",
+            "type": "doc"
+          }
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/api-console/api-design/design-overview",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/crud_advanced",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/mongo_views",
+              "type": "doc"
+            },
+            {
+              "collapsed": true,
+              "items": [
+                {
+                  "id": "development_suite/api-console/api-design/services",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/api-design/microservice-memory-resources",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/api-design/microservices-cpu-resources",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/api-design/microservice-container-ports",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/api-design/microservice-runtime-resources",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/api-design/microservice-monitoring",
+                  "type": "doc"
+                }
+              ],
+              "label": "Create Services",
+              "type": "category"
+            },
+            {
+              "id": "development_suite/api-console/api-design/replicas",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/jobs-cronjob",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/decorators",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/flow-manager-visualizer",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/endpoints",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/rbac",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/api-key",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/proxies",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/public_variables",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/merge_collaboration",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/miacraft",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/gdpr",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/security",
+              "type": "doc"
+            },
+            {
+              "collapsed": true,
+              "items": [
+                {
+                  "collapsed": true,
+                  "items": [
+                    {
+                      "id": "development_suite/api-console/advanced-section/dev-console-config/advanced_name_core",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/dev-console-config/replicas",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs",
+                      "type": "doc"
+                    }
+                  ],
+                  "label": "Console Configuration",
+                  "type": "category"
+                },
+                {
+                  "collapsed": true,
+                  "items": [
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway/how-to",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway/request-size",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway/change-timeout",
+                      "type": "doc"
+                    }
+                  ],
+                  "label": "API Gateway",
+                  "type": "category"
+                },
+                {
+                  "collapsed": true,
+                  "items": [
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway-envoy/extensions",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway-envoy/websockets",
+                      "type": "doc"
+                    },
+                    {
+                      "id": "development_suite/api-console/advanced-section/api-gateway-envoy/timeouts",
+                      "type": "doc"
+                    }
+                  ],
+                  "label": "Envoy API Gateway",
+                  "type": "category"
+                },
+                {
+                  "id": "development_suite/api-console/advanced-section/swagger-aggregator/configuration",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/advanced-section/authorization-service/configuration",
+                  "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/advanced-section/auth0-client/configuration",
+                  "type": "doc"
+                }
+              ],
+              "label": "Advanced configuration",
+              "type": "category"
+            }
+          ],
+          "label": "Design your projects",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/deploy/deploy",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-configuration",
+              "type": "doc"
+            }
+          ],
+          "label": "Deploy what you have created",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/debugging/telepresence",
+              "type": "doc"
+            }
+          ],
+          "label": "Debug",
+          "type": "category"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/monitoring/monitoring",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/monitoring/monitoring_namespace",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/monitoring/configuration",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/monitoring/dashboard",
+              "type": "doc"
+            }
+          ],
+          "label": "Log & monitor your application",
+          "type": "category"
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/authorization-flow",
           "type": "doc"
         },
         {
@@ -93,293 +366,46 @@
           "type": "doc"
         },
         {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/runtime-environments",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/add-environment",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/remove-environment",
-              "type": "doc"
-            }
-          ],
-          "label": "Manage Runtime Environments",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/env-var",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/env-var-vault",
-              "type": "doc"
-            }
-          ],
-          "label": "Manage Environment Variables",
-          "type": "category"
+          "id": "development_suite/api-portal/api-documentations",
+          "type": "doc"
         },
         {
           "id": "development_suite/set-up-infrastructure/ranges-and-quotas",
           "type": "doc"
         }
       ],
-      "label": "Set up infrastructure",
+      "label": "Projects",
       "type": "category"
-    },
-    {
-      "id": "development_suite/api-console/user-management",
-      "type": "doc"
     },
     {
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/api-console/api-design/design-overview",
+          "id": "development_suite/console-levels-and-permission-management",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/crud_advanced",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/mongo_views",
+          "id": "development_suite/api-console/user-management",
           "type": "doc"
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/api-console/api-design/services",
+              "id": "development_suite/user-settings/user-profile-picture",
               "type": "doc"
             },
             {
-              "id": "development_suite/api-console/api-design/microservice-memory-resources",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/api-design/microservices-cpu-resources",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/api-design/microservice-container-ports",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/api-design/microservice-runtime-resources",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/api-design/microservice-monitoring",
+              "id": "development_suite/user-settings/user-companies",
               "type": "doc"
             }
           ],
-          "label": "Create Services",
+          "label": "User settings",
           "type": "category"
-        },
-        {
-          "id": "development_suite/api-console/api-design/replicas",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/jobs-cronjob",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/decorators",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/flow-manager-visualizer",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/endpoints",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/rbac",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/api-key",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/proxies",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/public_variables",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/merge_collaboration",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/miacraft",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/gdpr",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/security",
-          "type": "doc"
         }
       ],
-      "label": "Design your projects",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/deploy/deploy",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/deploy/configuration",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/deploy/pipeline-configuration",
-          "type": "doc"
-        }
-      ],
-      "label": "Deploy what you have created",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/api-console/advanced-section/dev-console-config/advanced_name_core",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/dev-console-config/replicas",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs",
-              "type": "doc"
-            }
-          ],
-          "label": "Console Configuration",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway/how-to",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway/request-size",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway/change-timeout",
-              "type": "doc"
-            }
-          ],
-          "label": "API Gateway",
-          "type": "category"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/extensions",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/websockets",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/api-console/advanced-section/api-gateway-envoy/timeouts",
-              "type": "doc"
-            }
-          ],
-          "label": "Envoy API Gateway",
-          "type": "category"
-        },
-        {
-          "id": "development_suite/api-console/advanced-section/swagger-aggregator/configuration",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/advanced-section/authorization-service/configuration",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/advanced-section/auth0-client/configuration",
-          "type": "doc"
-        }
-      ],
-      "label": "Advanced configuration",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/debugging/telepresence",
-          "type": "doc"
-        }
-      ],
-      "label": "Debug",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/monitoring/monitoring",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/monitoring/monitoring_namespace",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/monitoring/configuration",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/monitoring/dashboard",
-          "type": "doc"
-        }
-      ],
-      "label": "Log & monitor your application",
-      "type": "category"
-    },
-    {
-      "id": "development_suite/api-portal/api-documentations",
-      "type": "doc"
+      "type": "category",
+      "label": "Identity and Access Management"
     },
     {
       "collapsed": true,
@@ -397,27 +423,8 @@
           "type": "doc"
         }
       ],
-      "label": "On-Premise Configurations",
+      "label": "Self-Hosted Configurations",
       "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/user-settings/user-profile-picture",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/user-settings/user-companies",
-          "type": "doc"
-        }
-      ],
-      "label": "User settings",
-      "type": "category"
-    },
-    {
-      "id": "development_suite/license-metrics/license-metrics",
-      "type": "doc"
     },
     {
       "collapsed": true,

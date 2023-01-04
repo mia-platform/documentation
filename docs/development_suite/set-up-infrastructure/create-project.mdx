@@ -7,12 +7,13 @@ sidebar_label: Create a Project
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The project creation process allows you to configure a project, which lifecycle can then be entirely managed and developed through Console areas.
+The project creation process allows you to configure a project,
+which lifecycle can then be entirely managed and developed through Console areas.
 
-## How to set up Console
+## Prerequisites
 
 The first section of this guide allows you to gain the prerequisites needed to create a project.
-In particular, to create a project, you need to have already set up your Console and configured these three features:
+In particular, to create a project, you need to have already set up your Console and configured these three resources:
 
 * **Company**: A company is the resource which has the governance of all the projects inside it.
 Each created project starts with the default information (providers, environments, CI/CD integration and cluster information) of its company.
@@ -25,6 +26,8 @@ The template allows you to pre-fill resources in your project and start all the 
 In short, it constitutes a base on which to create your project. [This link to a guide on how to handle project template](/development_suite/company/project-templates.md).
 
 Once you have provider, company, and template correctly configured, you are able to create a new project.
+
+To create a new project, you must have the permission `console.company.project.create`.
 
 ## Project creation
 
@@ -196,7 +199,7 @@ At the end of the configuration, on the backend side, the project will have the 
 In case `type` is set to `prometheus-operator`, you will be able to configure the creation of the `service monitor` for your microservices.
 More information about this feature [here](/development_suite/api-console/api-design/microservice-monitoring.md).
 
-### Sample of project data structure with tenantId
+### Sample of project data structure
 
 ```json
 {
@@ -220,46 +223,19 @@ When loading the Home Page of the Console, the project `Frontend Gateway` will b
 
 ![new-cards-detail](img/new-cards-detail.png)
 
-### Customize your cluster
-
-It is possible to add a proxy configuration in cluster configuration in environments.
-A configuration example:
-
-```json
-{
-  "environments": [
-    {
-      "cluster": {
-        "proxy": {
-          "url": "http://url-to-proxy/"
-        }
-      }
-    }
-  ]
-}
-```
-
-Proxy URL supports `http`, `https`, and basic auth inside proxy URL. For example, an URL with basic auth would be like `https://username:password@url-to-proxy/`.
-
-### Final Step: **Activate CRUD**
-
-To activate the CRUD for your project, you can contact your Mia-Platform's responsible for creating a connection with MongoDB.
-
 ### Setup PaaS templates
 
 If you are using the PaaS Console, the following templates are available:
 
-* `Mia-Platform Multitenant with Traefik`: it contains all services used by the Console (i.e. `crud-service`, `api-portal`, `swagger-aggregator`, `microservice-gateway`, `authorization-service`, `api-gateway`, `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client`, and `oauth-login-site`) with a correct configuration;
-* `Mia-Platform Multitenant Without CMS`: it contains all services except the CMS-related ones, i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client`, and `oauth-login-site`.
+* `Mia-Platform Basic Project Template`: it contains an empty project exposed with Traefik Ingress with `Kustomize` project structure;
+* `Basic Project Template without IngressRoute`: it contains an empty project not exposed.
 
-A project created with one of these templates is almost ready to use, but some configuration is required for all its services to work correctly:
-
-1. For the `crud-service` to be deployed and work correctly, you need a value for the environment variable `MONGODB_URL`. When the project is first created, its value is an empty string. To fix that, go to Environments section, check out the Environment Variables table, and either change its value, or delete it if you want to inherit this value. This needs to be done for all the environments you are interested in.
-2. For `auth0-client` service to be deployed and work correctly, you need to setup various environment variables, as specified in its configuration. You can find the configuration in the Design Area, Advanced Section, `auth0-client` option, `config.js` file. More on the configuration of the `auth0-client` [here](/runtime_suite/auth0-client/configuration.md).
+A project created with one of these templates is ready to use.
+You could start creating a new service [from the Marketplace](/development_suite/api-console/api-design/services.md).
 
 ### Configure Security Features
 
-From the CMS page it is possible to employ a set of security features in order to enrich the configuration of your project.
+From the CMS page it is possible to configure a set of security features in order to enrich the configuration of your project.
 
 Those features are all set to `true` by default and can be switched off for testing or to account for compatibility issues, by managing the properties of the `securityFeatures` key.
 

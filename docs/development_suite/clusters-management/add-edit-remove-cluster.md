@@ -1,7 +1,7 @@
 ---
 id: add-edit-remove-cluster
-title: Add, edit and remove a Cluster
-sidebar_label: Add, edit and remove a Cluster
+title: Connect and Manage a Cluster
+sidebar_label: Connect and Manage a Cluster
 ---
 
 ## Connect a Cluster
