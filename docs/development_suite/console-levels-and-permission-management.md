@@ -1,7 +1,7 @@
 ---
 id: console-levels-and-permission-management
 title:  Console levels and permission management
-sidebar_label: Console levels and permission management
+sidebar_label: Console resources and permission management
 ---
 Assigning different roles and permissions to each user is a key action for defining responsibilities within your platform ecosystem.
 The Console is based on hierarchical levels, and for each of them, specific permissions and capabilities have been identified and assigned to users.

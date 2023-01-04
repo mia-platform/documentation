@@ -1,7 +1,7 @@
 ---
 id: env-var-gitlab
 title: Manage Environment Variables With Gitlab
-sidebar_label: Gitlab Environment Variables
+sidebar_label: Gitlab
 ---
 
 Thanks to our Console in the Settings area it is possible to manage your Environment Variables.
