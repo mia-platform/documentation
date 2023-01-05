@@ -18,7 +18,7 @@ Here, we will discuss the inputs and outputs related to data ingestion.
 
 ### Data Change Message
 
-This is a kind of Kafka message that is going to be sent when a System of Record is updated.
+This is a kind of Kafka message that is going to be sent when a System of Records is updated.
 This message is then read by the Real Time Updater, which uses it to update the Projections.
 
 Based on how the syncing system is set up, the format can be one of three possible types:

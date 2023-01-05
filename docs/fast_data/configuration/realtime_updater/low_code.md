@@ -13,7 +13,7 @@ Low Code Real Time Updater is available since version `4.2.0`
 If the System of Records has been created using the automatic configuration, the Real-Time updater has all the environments variables already prepared.
 
 :::info
-You can quickly convert a System of Record from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up you Fast Data Low Code project properly.
+You can quickly convert a System of Records from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up you Fast Data Low Code project properly.
 :::
 
 :::warning

@@ -26,7 +26,7 @@ Projections are stored on MongoDB, which means the original data can be transfor
 
 ### Cast Function
 
-Cast Functions, as the name suggests, are JavaScript functions used to transform the data originally coming from the System of Record before it is saved in the Projection.
+Cast Functions, as the name suggests, are JavaScript functions used to transform the data originally coming from the System of Records before it is saved in the Projection.
 This is particularly useful when the SoRs use different format. A common case is with date formats: using Cast Functions, you can guarantee all your Projections will have their dates saved in a coherent and consistent way, making querying them an easier and reliable task.
 
 The Console provides basic Cast Functions for the most common use cases, together with the possibility to add custom ones written in plain JavaScript.
