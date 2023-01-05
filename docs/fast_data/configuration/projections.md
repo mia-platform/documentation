@@ -8,11 +8,11 @@ In this document we guide you through the configuration of [Projections](/fast_d
 
 ## Create a System of Records
 
-To create a projection, you should create a System of Records. This is the data source which updates the projections.
+To create a Projection, you should first of all create a System of Records, which is the data source that updates the Projection.
 
-To do so, open the **Projections** section in the fast data group of Mia-Platform Console. Then, select the create button.
+To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Records` button.
 
-The creation of a System of Records requires you to insert a system ID which is useful to recognize the system, and to choose if you want to set the Real Time Updater manually or with Low Code configuration.
+The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) to be used: [DB2](/fast_data/configuration/realtime_updater/common.md#ibm-infosphere-data-replication-for-db2), [Golden Gate](/fast_data/configuration/realtime_updater/common.md#oracle-goldengate) or [Custom](/fast_data/configuration/realtime_updater/common.md#custom). The System of Records is then created.
 
 Additionally, you have to choose a Kafka adapter format:
 
@@ -24,8 +24,17 @@ Either `DB2`, `Golden Gate`, or `Custom`. [Click here](/fast_data/inputs_and_out
 
 ## Delete a System of Records
 
-To delete a System of Records, you have to click the Delete button in the bottom-right corner of the System of Records detail page.  
-The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it.  
+To delete a System of Records, you have to click the `Delete` button in the bottom-right corner of the System of Records detail page.
+
+The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it.
+
+## Create a Projection
+
+To create a new Projection, open the **Projections** section in the Fast Data group of Mia-Platform Console, then select an existing System of Records or [create a new one](#create-a-system-of-records).
+
+Inside the System of Records page click the `Create new Projection` button on the top-right corner of the page and insert a Projection Name for the new Projection inside the pop-up displayed. After that, the new Projection details page will be displayed.
+
+In order to finally create the new Projection, you will need to save the configuration.
 
 ## Projection details
 
@@ -33,8 +42,8 @@ In order to access this section:
 
 1. Go to the Design Area
 2. Go to the Projections Section
-3. Select the correct SoR and click on the arrow on the right
-4. Select the Projection that you are interested in and click on the arrow on the right
+3. Select a System of Records and click on the arrow on the right
+4. Select an existing Projection and click on the arrow on the right
 
 ### Projection fields
 
@@ -128,15 +137,40 @@ In this way, the Real Time Updater updates the Projection document with the corr
 
 ### Kafka topics
 
-Inside the projection detail page, there is a card with detail of `Kafka topics`.
-Here, you can modify the default name of the topics per environment.
-The topics names are pre-compiled with our suggested name:
+Inside each Projection detail page, a section named `Kafka topics` contains information about the following topics:
+
+* Ingestion topic
+* PR update topic
+
+#### Ingestion topic
+
+This section contains the name of the ingestion topics for each environment.
+The topic names are editable and pre-compiled with our suggested format:
 
 ```txt
 tenantId.environmentId.systemId.projectionName.ingestion
 ```
 
-where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled with, respectively, the id of the tenant of the project, the id of the associated environment, the id of the system which owns the projection and the name of the projection.
+where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled with, respectively, the id of the tenant of the project, the id of the associated environment, the id of the System which owns the Projection and the name of the Projection.
+
+#### PR update topic
+
+This section contains the name of the PR update topics for each environment.
+The topic names are **not** editable and pre-compiled with our default format:
+
+```txt
+tenantId.environmentId.systemId.projectionName.pr-update
+```
+
+where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled with the same values specified in the previous paragraph about ingestion topics.
+
+When a new Projection is created, the PR update topics values (for each Projection and for each environment) are added to the `FAST_DATA_PR_UPDATES_MAP_{SYSTEM_OF_RECORDS_NAME}` public variable, where `{SYSTEM_OF_RECORDS_NAME}` is filled with the capitalized name of the new Projection System of Records. For existing System of Records, if the public variable is not present it will be created when saving the configuration.
+
+The content of the `FAST_DATA_PR_UPDATES_MAP_{SYSTEM_OF_RECORDS_NAME}` public variable is then added to the `kafkaProjectionUpdates.json` config map, used by the Real-Time Updater service inside the `KAFKA_PROJECTION_CHANGES_FOLDER` environment variable, which contains its folder path.
+
+:::Info
+If you prefer to use custom topics for PR updates, it will be necessary to create a new config map containing the PR update topics values (for each Projection and for each environment) inside a JSON file. The new config map folder path should be then inserted inside the `KAFKA_PROJECTION_CHANGES_FOLDER` environment variable of the Real-Time Updater.
+:::
 
 ### Projection metadata
 
