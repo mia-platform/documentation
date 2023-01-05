@@ -60,6 +60,18 @@ TLS certificates are automatically generated using Let's Encrypt. Traefik is con
 
 For more information about Let's Encrypt certificates compatibility, visit [Let's Encrypt documentation](https://letsencrypt.org/docs/certificate-compatibility/).
 
+## Internal Testing
+
+Mia-Platform performs regular risk assessments internally, which involve identifying and analyzing technical vulnerabilities and examining business risks and concerns.
+
+## External Testing
+
+The console is subject to external penetration testing exercises (at least once per calendar year).
+
+Customers adopting our product might undergo supplementary external penetration tests performed by external companies. The deliverables resulting from such activities might be shared with Mia Platform when vulnerabilities concerning our product are discovered and need treatment.
+
+Application-level security tests follow a standard application assessment methodology (e.g. OWASP with scores leveraging the CVSS framework).
+
 ## Vulnerability Management
 
 Mia-Platform implements a central ticketing system that tracks all security issues until remediation. Our implementation consists of patches to the OS and the applications on a regular schedule and on need-to-update basis, in accordance with the CVSS (Common Vulnerability Scoring System).
