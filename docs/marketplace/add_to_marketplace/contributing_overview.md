@@ -4,30 +4,35 @@ title:  Add a new element to the Marketplace
 sidebar_label: Add a new element to the Marketplace
 ---
 
-The Marketplace can be populated with components belonging to one of the following typologies: 
+:::info
+If you want to contribute to Mia-Platform Marketplace with a new component, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item), wherein you will find what information is needed for the request.
 
-* **plugins**: services for which users have no access to the actual code. Users will still be able to download their Docker image, configure and use them within their projects.  
-* **templates** and **examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
-* **applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
-* **proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
+A Mia-Platform referent will take over the issue and contact you to plan together the addition of the component to the Marketplace on the basis of our guidelines described on this documentation page.
+:::
 
+Actually, Mia-Platform Marketplace can be populated with components belonging to one of the following typologies:
+
+- **plugins**: services for which users have no access to the actual code. Users will still be able to download their Docker image, configure and use them within their projects.  
+- **templates** and **examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
+- **applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
+- **proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
 
 :::note
-Marketplace components are identified by a **category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).   
+Marketplace components are identified by a **category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
 
-Users who wish to contribute to the Marketplace can choose to associate a new component to a pre-existing category or propose a new category by contacting their Mia-Platform referent.  
+Once the request has been taken over, together with the Mia-Platform referent it will be possible to determine whether the component can be associated to a pre-existing category, or whether a new category will be needed.
 :::
 
 ## How to configure a new component
 
 Each Marketplace component is identified by a specific data model (a JSON document). Such models are stored on a MongoDB collection and can be modified through the Marketplace section of the Console CMS.
 
-In the [Examples](#examples) section, you will find a few samples of preconfigured components configurations. 
+In the [Examples](#examples) section, you will find a few samples of preconfigured components configurations.
 
 :::info
-If you don't have the right permission to access the Console CMS, you should hand over the newly created component configuration to one of your Mia-Platform referents. 
+If you don't have the right permission to access the Console CMS, you should hand over the newly created component configuration to one of your Mia-Platform referents.
 
-They will then be responsible for adding your data to the Marketplace components collection. 
+They will then be responsible for adding your data to the Marketplace components collection.
 :::
 
 ### Common to every component
@@ -37,10 +42,10 @@ Here below are listed all the properties that must be provided for each type of 
 - **name**: the component name appearing in the Marketplace card
 - **description**: a brief description (10 to 20 words) regarding the service functionalities
 - **type**: the type of your component (plugin, template, example, application, or proxy)
-- **comingSoon** and **releaseStage**: properties to identify the maturity of the component (learn how to configure them in a [dedicated section](#relese-stage-of-a-new-component) later on this page)
+- **comingSoon** and **releaseStage**: properties to identify the maturity of the component (learn how to configure them in a [dedicated section](#release-stage-of-a-new-component) later on this page)
 - **categoryId**: a label to help categorize components by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a component uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
 - **supportedBy**: a label to identify the company that has produced the component (only used if `supportedByImage` is not provided)
-- **image** and **supportedByImage**: respectively the image that will be associated with the component and the image that will be associated with the company that has produced it. 
+- **image** and **supportedByImage**: respectively the image that will be associated with the component and the image that will be associated with the company that has produced it.
   
 It will be possible to add images using dedicated input fields:  
 
@@ -73,23 +78,23 @@ Each property described in the following paragraphs regarding the microservices 
 Here below are listed all the properties that must be provided for each microservice component:
   
 - **componentId**: a unique component id that can be used to identify the component and all the services generated from it. Each service created using this component will have the identifier value in the **sourceComponentId** property.
-- **defaultEnvironmentVariables**: the environment variables that will overwrite the default environment variables applied by DevOps Console.   
+- **defaultEnvironmentVariables**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
   In particular, for each of them you need to provide:  
-  - **name**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`) 
+  - **name**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
   - **value**: the variable default value
 - **defaultConfigMaps**: the default configmaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
   - **name**: the name of the configmap file
   - **content**: the initial content of the file
-- **defaultSecrets**: the default secrets, if any, to be mounted inside the container of the  microservice. 
+- **defaultSecrets**: the default secrets, if any, to be mounted inside the container of the  microservice.
   In particular, for each of them you need to provide:  
-    - **name**: the name of the secret file  
-- **defaultProbes**: the readiness and liveness paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by DevOps Console. 
+  - **name**: the name of the secret file  
+- **defaultProbes**: the readiness and liveness paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by DevOps Console.
 - **defaultLogParser**: one of the following log parser types:
-  * `mia-plain`: collects logs but does not parse them
-  * `mia-json`: parses JSON logs based on the documented format
-  * `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
-- **defaultDocumentationPath**: the APIs documentation path. 
+  - `mia-plain`: collects logs but does not parse them
+  - `mia-json`: parses JSON logs based on the documented format
+  - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
+- **defaultDocumentationPath**: the APIs documentation path.
 - **defaultResources**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
 
 :::caution
@@ -104,21 +109,20 @@ A service created from the Marketplace can feature custom links to other console
 
 A link is an object shaped as follows:
 
-- **label** _string_ (required): the label to be shown in the link button, does not support internationalization and it is shown right next to a _View_ copy (e.g. with the label set to **Resource** the resulting button will be **View Resource**);
-- **targetSection** _string_ (required): the name of the registered microfrontend where the link should land (e.g. `flow-manager`);
-- **enableIf** _string_: the name of a feature toggle to be used to optionally display the link. 
-
+- **label** *string* (required): the label to be shown in the link button, does not support internationalization and it is shown right next to a  *View* copy (e.g. with the label set to **Resource** the resulting button will be **View Resource**);
+- **targetSection** *string* (required): the name of the registered microfrontend where the link should land (e.g. `flow-manager`);
+- **enableIf** *string*: the name of a feature toggle to be used to optionally display the link.
 
 ### Plugins
 
 If the service you want to publish is a **plugin**:
 
 - The service must be a **Docker image**.  
-- The Docker image must be pushed on an accessible registry. If you use the **Mia-Platform registry**, your Mia-Platform referent will provide the credentials to do it. 
+- The Docker image must be pushed on an accessible registry. If you use the **Mia-Platform registry**, your Mia-Platform referent will provide the credentials to do it.
 
 The Docker image must be specified in the `dockerImage` field in the service Marketplace document.
 
-The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:   
+The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:  
 
 ```json
 {
@@ -140,16 +144,20 @@ To use the templates provided by Mia-Platform, you can contact your referent to 
 - The service must be well documented and the field `documentation` helps in it.  
 In fact, during service creation, it is possible to access the service documentation by clicking on `View documentation` button, which will appear only if the `documentation` field has been filled correctly.  
 Two properties must be specified inside `documentation`:  
-  * `type`, currently only two types exist:
-    * `markdown`: represents a markdown file (with `.md` file extension), for example, a `README.md` file inside of a Git repository.
-    * `externalLink`: represents a link to an external website page, for example to Mia Platform documentation.
-  * `url`, contains the URL where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).  
+  - `type`, currently only two types exist:
+    - `markdown`: represents a markdown file (with `.md` file extension), for example, a `README.md` file inside of a Git repository.
+    - `externalLink`: represents a link to an external website page, for example to Mia Platform documentation.
+  - `url`, contains the URL where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).  
 
 :::caution
 By adding an **Example** or a **Template**, the code provided will act as a boilerplate for everyone creating a service from that Marketplace component, therefore that code will be accessible to all Console users.
 :::  
 
 Once the user creates a new microservice starting from your template or example, the Console will create a new Git repository in which it will copy all the template files.
+
+:::info
+Further details on creating a template are provided by visiting [this documentation page](/marketplace/templates/template_create.md).
+:::
 
 #### Configure Marketplace Strings
 
@@ -178,7 +186,8 @@ The following strings still work but are deprecated: it is recommended not to us
 
 ### Applications
 
-Currently, applications support 4 types of resources: 
+Currently, applications support 4 types of resources:
+
 - services (plugins, templates, examples)
 - endpoints
 - CRUD collections
@@ -194,6 +203,7 @@ Therefore an application will include a **resources** field with the following s
   "unsecretedVariables": {},
 }
 ```
+
 :::info
 Only the **services** field must be necessarily configured for an application configuration to be valid.
 :::
@@ -214,7 +224,7 @@ Here below are listed all the properties that must be provided for each endpoint
 - **defaultPathRewrite**: the default path rewrite of the endpoint
 - **description**: a brief description (10 to 20 words) regarding the endpoint functionalities
 - **type**: a label to identify the type of endpoint:
-  - `custom`: linked to a microservice 
+  - `custom`: linked to a microservice
   - `crud`: linked to a CRUD collection
   - `view`: linked to a MongoDB view
   - `external`: linked to an external proxy
@@ -234,7 +244,7 @@ Here below are listed all the properties that must be provided for each endpoint
 When you add an endpoint to an application make sure the resource the endpoint is linked to (microservice, collection, etc.) is also present in the application configuration.
 :::
 
-- **routes**: routes already configured for your endpoint. 
+- **routes**: routes already configured for your endpoint.
   Each route should specify the following properties:
   - **id**: route id (e.g. POST/users)
   - **verb**: route verb: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
@@ -247,12 +257,14 @@ When you add an endpoint to an application make sure the resource the endpoint i
 
 :::info
 Every route boolean value (such as public, secreted, etc.) must comply with the following inheritance structure:
+
 ```json
 {
   "inherited": boolean,
   "value": boolean
 }
 ```
+
 :::
 
 #### Configure Collections
@@ -260,6 +272,7 @@ Every route boolean value (such as public, secreted, etc.) must comply with the 
 The **collections** field of an application is an object composed of properties named as the collections composing it.
 
 Here below are listed all the properties that must be provided for each collection:
+
 - **id**: the collection identifier (e.g. users)
 - **description**: a brief description (10 to 20 words) regarding the collection functionalities
 - **defaultName**: name proposed to the user when creating the collection
@@ -297,26 +310,26 @@ You can find more information regarding **sensitivity** and **encryption** prope
 The **unsecretedVariables** field of an application is an object composed of properties named as the public variables composing it.
 
 Here below are listed all the properties that must be provided for each public variable:
+
 - **productionEnv**: value to be used in production environments
 - **noProductionEnv**: value to be used in no production environments
 
-
-## Best Practices! 
+## Best Practices!
 
 Here are listed some useful advice to strengthen your components:
 
-* **Test**: each service must have well-tested code;
-* **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
-
+- **Test**: each service must have well-tested code;
+- **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
 
 ## Release Stage of a new component
 
-From the CMS of the Console, users can associate components with a **release stage** label that will help users identify the maturity of the component. 
+From the CMS of the Console, users can associate components with a **release stage** label that will help users identify the maturity of the component.
 
 If you just started developing your component you can select the **coming soon** option to inform users about the imminent publication of your component.
 
 Alternatively, you can choose among the available labels of a Marketplace component lifecycle:
-- preview 
+
+- preview
 - beta
 - stable
 
@@ -434,6 +447,7 @@ For more information regarding release stages, take a look at the [components li
   } 
 }
 ```
+
 </p>
 </details>
 
@@ -662,5 +676,6 @@ For more information regarding release stages, take a look at the [components li
   }
 }
 ```
+
 </p>
 </details>
