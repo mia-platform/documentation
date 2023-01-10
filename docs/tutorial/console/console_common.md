@@ -83,7 +83,7 @@ You must be in the Runtime section of the console to perform this action.
 6. Click on _Describe_. From this page you can see a JSON description of the pod.
 7. Click on _Events_. From this page you can see a list of events occurred in the pod.
 
-For more information on monitoring the infrastructure please see the [dedicated](/development_suite/monitoring/monitoring) page.
+For more information on monitoring the infrastructure please see the [dedicated](/development_suite/monitoring/monitoring.md) page.
 
 ## View repository
 
