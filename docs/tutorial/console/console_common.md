@@ -10,6 +10,8 @@ For an overview of the console please see the [dedicated](/development_suite/ove
 
 ## Create a new branch
 
+To start making changes on the console you must be working on a branch. By default the _master_ branch is present but you can create any number of branches to work on.
+
 This section explains how to create a new branch on the console.
 
 The console internally uses git repositories to persist configuration changes you make. This action will create a new git branch on the Configurations repository of the project.
@@ -71,6 +73,8 @@ You can also create a new branch while saving your changes. See the next section
 
 ## Save changes
 
+Configuration changes made on the console must be saved explicitly. By doing so you save your work for later use or deploy, but you can also let other people see your changes if they have access to your project.
+
 This section explains how to save configuration changes you made on the console.
 
 This action will create a new git commit on the Configurations repository of the project.
@@ -89,6 +93,8 @@ Always remember to save your changes in order to persist them. Unsaved versions 
 :::
 
 ## Deploy changes
+
+The changes you made on the console must be deployed in order for you to see them in action. Your project is linked with an infrastructure managed with Kubernetes on which you can deploy everything you configured from the console.
 
 This section explains how to deploy any changes you made into an environment.
 
@@ -109,6 +115,8 @@ For more information on deploying please see the [dedicated](/development_suite/
 
 ## Monitor infrastructure
 
+Once your changes have been deployed, you can monitor their status and see information about the pods running them as well as application logs.
+
 This section explains how to monitor your deployed services.
 
 You must be in the Runtime section of the console to perform this action.
@@ -127,6 +135,8 @@ You must be in the Runtime section of the console to perform this action.
 For more information on monitoring the infrastructure please see the [dedicated](/development_suite/monitoring/monitoring.md) page.
 
 ## View repository
+
+If you want to see directly the code of the configurations you made, you can check the Configuration repository of your project.
 
 To view the Configurations repository of the project simply click on the Git provider icon (Gitlab in the image below) on the top-right of the screen.
 
