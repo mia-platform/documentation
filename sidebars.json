@@ -847,6 +847,10 @@
       "collapsed": true,
       "items": [
         {
+          "id": "tutorial/console/console_common",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/rest_api/quick_rest_api",
           "type": "doc"
         },
