@@ -18,13 +18,54 @@ You must be in the Design section of the console to perform this action.
 
 1. Click on the branch selection menu on top of the screen.
 
----Screenshot---
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Branch selection](img/create-new-branch-1.png)
+  
+  </div>
+</div>
 
 2. Click on _Change branch_. The _Select Branch or Tag_ form will appear.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Select branch or tag](img/create-new-branch-2.png)
+  
+  </div>
+</div>
+
 3. Click on _Create new branch_. The _Create new branch_ form will appear.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Create new branch](img/create-new-branch-3.png)
+  
+  </div>
+</div>
+
 4. You can select the source branch from which to start from the drop-down list on top. If a branch is already set, it will be proposed by default.
 5. You can enter the new branch name.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Create new branch filled](img/create-new-branch-5.png)
+  
+  </div>
+</div>
+
 6. Click _Create new branch_. The new branch will be created.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Branch created](img/create-new-branch-6.png)
+  
+  </div>
+</div>
 
 You can also create a new branch while saving your changes. See the next section.
 
