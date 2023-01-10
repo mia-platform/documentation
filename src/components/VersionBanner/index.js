@@ -1,21 +1,23 @@
-import React,{useState,useEffect,} from "react";
-import clsx from "clsx";
+import React, {useState, useEffect, useCallback, useMemo} from "react"
 import PropTypes from 'prop-types'
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
-import {useWindowSize} from "@docusaurus/theme-common";
+import clsx from "clsx"
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment"
+import {useWindowSize} from "@docusaurus/theme-common"
 
-import styles from "./styles.module.css";
-import {desktop} from "../../lib/constants";
+import styles from "./styles.module.css"
+import {desktop} from "../../lib/constants"
 
-const STORAGE_VERSION_BANNER_DISMISS_KEY = 'custom.versionBanner{{majorVersion}}.dismiss';
+const STORAGE_VERSION_BANNER_DISMISS_KEY = 'custom.versionBanner{{majorVersion}}.dismiss'
 
-const getContent=(isDesktop,title,subtitle) => {
+const BannerContent = ({isDesktop, title, subtitle}) => {
   return (
     <>
-      {isDesktop &&
-      <div className={styles.imgBox}>
-        <img src="/img/tuna-logo.png"/>
-      </div>}
+      {
+        isDesktop &&
+          <div className={styles.imgBox}>
+            <img src="/img/tuna-logo.png"/>
+          </div>
+      }
       <div className={styles.titlesBox}>
           <span className={styles.title}>{title}</span>
           <span className={styles.subTitle}>{subtitle}</span>
@@ -23,49 +25,47 @@ const getContent=(isDesktop,title,subtitle) => {
     </>
   )
 }
+BannerContent.propTypes = {
+  isDesktop: PropTypes.bool,
+  subtitle: PropTypes.string,
+  title: PropTypes.string,
+}
 
-function VersionBanner(props) {
-  const {title,subTitle,link,majorVersion}=props
-
-  const windowSize = useWindowSize();
-
+function VersionBanner({title,subTitle,link,majorVersion}) {
   // Props version allows to read/set a new local storage key when a new version is release
-  const dismissKey=STORAGE_VERSION_BANNER_DISMISS_KEY.replace('{{majorVersion}}',majorVersion);
-
-  const dismissVersionBannerKeyValue = ExecutionEnvironment.canUseDOM ? localStorage.getItem(dismissKey) : false;
-
+  const dismissKey = STORAGE_VERSION_BANNER_DISMISS_KEY.replace('{{majorVersion}}', majorVersion)
+  const dismissVersionBannerKeyValue = ExecutionEnvironment.canUseDOM ? !!localStorage.getItem(dismissKey) : false
   const [shown, setShown] = useState(!dismissVersionBannerKeyValue)
+
+  const windowSize = useWindowSize()
   const [isDesktop, setIsDesktop] = useState(false)
 
-  useEffect(() => {
-    setIsDesktop(windowSize === desktop);
-  }, [windowSize]);
+  useEffect(() => setIsDesktop(windowSize === desktop), [windowSize])
 
-  if(!shown)
-   return null;
+  const onDismissClick = useCallback(() => {
+    localStorage.setItem(dismissKey, 'true')
+    setShown(false)
+  }, [dismissKey, setShown])
 
-  const closeBtnSpanContent='x'
+  const bannerContent = useMemo(() => <BannerContent isDesktop={isDesktop} subtitle={subTitle} title={title}/>, [isDesktop, subTitle, title])
 
-  return (
+  return !shown ? null : (
     <div className={clsx("col col--12", styles.versionBanner)}>
       {
-        link ? (<a className={styles.versionBannerLink} href={link}><div className={styles.mainBox}>{getContent(isDesktop,title,subTitle)}</div></a>) : (getContent(isDesktop,title,subTitle))
+        link ? (
+          <a className={styles.versionBannerLink} href={link}>
+            <div className={styles.mainBox}> {bannerContent} </div>
+          </a>
+        ) : bannerContent
       }
       <div className={styles.closeBtnBox}>
-        <div
-          className={styles.closeBtn}
-          onClick={() => {
-            localStorage.setItem(dismissKey, 'true')
-            setShown(false)
-          }}
-        >
-        <span aria-hidden="true">{closeBtnSpanContent}</span>
-      </div>
+        <div className={styles.closeBtn} onClick={onDismissClick}>
+          <span aria-hidden="true">{'x'}</span>
+        </div>
       </div>
     </div>
   )
 }
-
 VersionBanner.propTypes = {
   link: PropTypes.string,
   // It's must be a string like 8,7,6...
@@ -74,4 +74,4 @@ VersionBanner.propTypes = {
   title:PropTypes.string,
 }
 
-export default VersionBanner;
+export default VersionBanner

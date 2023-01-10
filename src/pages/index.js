@@ -112,7 +112,7 @@ function Home() {
 
   return (
     <Layout
-      description="Mia‑Platform provides the first end-to-end Digital Integration Hub on the market with a full DevOps Lifecycle Management: one unique Console to run Fast Data, Microservices and APIs."
+      description="Mia-Platform provides the first end-to-end Digital Integration Hub on the market with a full DevOps Lifecycle Management: one unique Console to run Fast Data, Microservices and APIs."
       title={siteConfig.title}
     >
       <Fragment>
