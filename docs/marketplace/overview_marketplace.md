@@ -21,7 +21,6 @@ Marketplace components you can start from include:
 
 * **Docker Image Name**: an existing Docker image of a Microservice (check out the [Create a service](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) section for further information).
 
-
 :::info
 You can go deeper into the code of Templates and Examples by visiting the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform-marketplace).
 :::
@@ -31,12 +30,12 @@ You can go deeper into the code of Templates and Examples by visiting the [Mia-P
 You can access the Mia-Platform Marketplace from the *Design area* of the *Console*, either when you are [creating a new microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template) or creating a new application.
 
 :::note
-In the first case, you will be able to filter by one of the following component types: Plugins, Templates, and Examples. 
+In the first case, you will be able to filter by one of the following component types: Plugins, Templates, and Examples.
 
-In the second case, you will only be able to see components of Application type. 
+In the second case, you will only be able to see components of Application type.
 :::
 
-In both cases, you will be able to filter components by **category**, a property reflecting the purpose, the field, or the use-case a component is associated with (e.g. Data visualization). 
+In both cases, you will be able to filter components by **category**, a property reflecting the purpose, the field, or the use-case a component is associated with (e.g. Data visualization).
 
 The results of your search will always appear organized by category.
 
@@ -57,4 +56,3 @@ The following are the expected stages along a Marketplace component lifecycle:
 * **Beta**: implementation is complete, these components won't be subject to any undocumented breaking change but may still include bugs (hence they must be used with caution)
 
 * **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.
-
