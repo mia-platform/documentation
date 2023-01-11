@@ -188,9 +188,9 @@ You must be in the _Design_ section of the console to perform this action.
 
 4. Click _Start merge_ button. The _Manage diffs and Merge_ screen will appear.
 
-![Branch Differencies](img/merge-branches-4.png)
+![Branch Differences](img/merge-branches-4.png)
 
-5. You can review the differencies between the current branch and the one you selected and update the right editor of the screen where _Your changes_ are displayed if you want.
+5. You can review the differences between the current branch and the one you selected and update the right editor of the screen where _Your changes_ are displayed if you want.
 6. Click _Confirm merge_.
 7. You will be asked for confirmation about the new configuration. Click _Confirm Merge_.
 
