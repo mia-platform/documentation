@@ -146,9 +146,97 @@ You must be in the _Design_ section of the console to perform this action.
 Always remember to save your changes in order to persist them. Unsaved versions are not visible to other users and you cannot deploy them. If you change branch without saving your current changes, they will be lost.
 :::
 
+## Merge changes
+
+By working with **multiple branches** and collaboratively with your team, you can choose to follow your preferred **branching strategy** on the console too. For example you might use the _master_ branch as your main branch with **production-ready configurations** while using _feature branches_ to build or test new features. Once a feature is complete you will want to merge it onto the _master_ branch, making the changes from the feature branch available also on the _master_ branch.
+
+This section explains how to merge a branch into another one on the console. Make sure you are positioned on your target branch before merging.
+
+You must be in the _Design_ section of the console to perform this action.
+
+![Design Section](img/design-section.png)
+
+1. Click on the branch selection menu on top of the screen.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Branch Selection](img/merge-branches-1.png)
+  
+  </div>
+</div>
+
+2. Click on the _Merge from another branch_ button. The _Merge branches_ from will appear.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Merge Branches Button](img/merge-branches-2.png)
+  
+  </div>
+</div>
+
+3. Select the branch you want to merge from the drop-down list.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Merge Branches Selection](img/merge-branches-3.png)
+  
+  </div>
+</div>
+
+4. Click _Start merge_ button. The _Manage diffs and Merge_ screen will appear.
+
+![Branch Differencies](img/merge-branches-4.png)
+
+5. You can review the differencies between the current branch and the one you selected and update the right editor of the screen where _Your changes_ are displayed if you want.
+6. Click _Confirm merge_.
+7. You will be asked for confirmation about the new configuration. Click _Confirm Merge_.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Merge Confirmation](img/merge-branches-7.png)
+  
+  </div>
+</div>
+
+8. The configurations will be merged and the result will be displayed on screen.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Merge Result](img/merge-branches-8.png)
+  
+  </div>
+</div>
+
+9. Click _Continue editing_, if you want to make other changes on the merge, or _Save configuration_.
+10. If you are saving configuration you will be asked to save your changes.
+11. Fill the form with a commit title and optionally a commit description.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Merge Commit](img/merge-branches-11.png)
+  
+  </div>
+</div>
+
+12. Click _Save_ to complete the merge.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Merge Save](img/merge-branches-12.png)
+  
+  </div>
+</div>
+
 ## Deploy changes
 
-The changes you made on the console must be deployed in order for you to see them in action. Your project is linked with an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications.
+The changes you made on the console must be deployed in order for you to see them in action. Your project is linked with an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications. You can find more information about managing environments [here](/development_suite/set-up-infrastructure/runtime-environments.md).
 
 This section explains how to deploy any changes you made into an **environment**.
 
@@ -172,9 +260,9 @@ This action will take some time depending on the amount of changes to deploy.
 
 For more information on deploying please see the [dedicated](/development_suite/deploy/deploy.md) page.
 
-## Monitor infrastructure
+## Monitor Runtime System
 
-Once your changes have been deployed, you can **monitor their status** and see information about the pods running them as well as **logs**.
+Once your changes have been deployed, you can **monitor your runtime system** and see information about the pods running them as well as **logs**.
 
 This section explains how to monitor your deployed services and pods.
 
