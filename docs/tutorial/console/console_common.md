@@ -23,6 +23,8 @@ The console internally uses **git repositories** to persist configuration change
 
 You must be in the _Design_ section of the console to perform this action.
 
+![Design Section](img/design-section.png)
+
 1. Click on the branch selection menu on top of the screen.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -88,6 +90,8 @@ This action will create a new **git commit** on the _Configurations_ repository 
 
 You must be in the _Design_ section of the console to perform this action.
 
+![Design Section](img/design-section.png)
+
 1. Click on the branch selection menu on top of the screen. If you made some changes, you will see that there are unsaved local changes reported.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -150,6 +154,8 @@ This section explains how to deploy any changes you made into an **environment**
 
 You must be in the _Deploy_ section of the console to perform this action.
 
+![Deploy Section](img/deploy-section.png)
+
 1. You can select the changes to deploy from the _Select branch or tag_ drop-down list.
 
 ![Select Branch](img/deploy-changes-1.png)
@@ -173,6 +179,8 @@ Once your changes have been deployed, you can **monitor their status** and see i
 This section explains how to monitor your deployed services and pods.
 
 You must be in the _Runtime_ section of the console to perform this action.
+
+![Runtime Section](img/runtime-section.png)
 
 1. You can choose the environment to monitor from the drop-down list on top of the screen.
 
