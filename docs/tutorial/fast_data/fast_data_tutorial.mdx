@@ -37,7 +37,7 @@ To create a SoR follow the steps below:
 1. Open the page Projection in the Fast Data section of our left menu; 
 2. Click on the button "Create new System of Records"; 
 ![Page System of Records](img/01-page-system-of-records.png)
-3. In the dialog, choose the name and the type of the SOR (for this tutorial we will use the Low Code configuration);
+3. In the dialog, choose the name (System ID) and the Kafka message format of the SoR (choose the format you want to use for the messages sent on the Kafka topics) and then click on "Go to system page";
 ![Create System of Records](img/02-create-system-of-records.png)
 4. Now we can create the projections inside this System of Records.
 ![Page Projections](img/03-page-projections.png)
@@ -48,10 +48,11 @@ The first projection we will create is the registry, this projection will store 
 Inside a System of Records page we need to click on the "Create new Projection" button  choose the Projection's name and click on "Create".
 ![Create System of Records](img/04-create-projection.png) 
 
-Once the projection is created, you will be redirected to the page of the registry projection.  
-In this page, we can see the Kafka topics for each environment. The Kafka topics will be used by the Real Time Updaters to receive the data from the Source Systems, and to update the projections.
-In the same page we can also see the data schema for the projection and any other configurations related to it. 
-![Create System of Records](img/05-page-overview-projection.png) 
+Once the projection is created, you will be redirected to the page of the registry projection. 
+In this page, we can see the data schema for the projection and any other configurations related to it. 
+![Create System of Records](img/05-page-overview-projection.png)
+At the bottom of the same page we can also see the the Kafka topics for each environment. There are the Ingestion topics and the PR updates topics. Within the scope of this tutorial, only the ingestion topics are considered. The Kafka Ingestion topics will be used by the Real Time Updaters to receive the data from the Source Systems, so that the Projections will be updated.
+![Create System of Records](img/05b-page-overview-projection-kafka.png) 
 
 #### Fields
 Now we need to define the fields that we want to store in the Projection.
@@ -73,15 +74,16 @@ It's mandatory to define at least one field and at last one primary key.
 | **city**        | String | The city of the customer to whom the registry refers.             |
 | **state**       | String | The State of the customer to whom the registry refers.            |
 
-![Projection Overview](img/05-page-overview-projection.png) 
 
 :::info
 By default, the Projection will be created with a Kafka topic that will be used to send the data to the Projection. The Kafka topic can be changed in the Projection's configuration. The only requirement is that the Kafka topic must be unique inside the project.
 Any Kafka Topics used in the Fast Data need to be already created at deploy time. The Fast Data is not responsible for their creation on the cluster Kafka.
 :::
 #### Kafka Topics
-- **mia-platform.advocacy-DEV-delivery-registry.json**: the topic that will be used to send the data to the registry projection in DEV environment
-- **mia-platform.advocacy-PROD-delivery-registry.json**: the topic that will be used to send the data to the registry projection in PROD environment
+
+- **demo.development.delivery.registry.ingestion**: the topic that will be used to send the data to the registry projection in **development** environment
+- **demo.integration.delivery.registry.ingestion**: the topic that will be used to send the data to the registry projection in **integration** environment
+- **demo.production.delivery.registry.ingestion**: the topic that will be used to send the data to the registry projection in **production** environment
 
 ### Order Projection
 The second projection we will create is the order one. This projection will store the data of the user's orders.
@@ -111,8 +113,9 @@ By default, the Projection will be created with a Kafka topic that will be used 
 :::
 
 #### Kafka Topics
-- **mia-platform.advocacy-DEV-delivery-order.json**: the topic that will be used to send the data to the registry projection in DEV environment
-- **mia-platform.advocacy-PROD-delivery-order.json**: the topic that will be used to send the data to the registry projection in PROD environment
+- **demo.development.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in **development** environment
+- **demo.integration.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in **integration** environment
+- **demo.production.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in **production** environment
 
 ### Microservice Realtime Updater Configuration
 Now we have one System of Records and two Projections. Mia-Platform Console will create a microservice that will consume the data from the source systems, and that will update the Projections.
@@ -193,7 +196,7 @@ In this example, we have the registry_id in both the Registry Projection and in 
 {
   "version": "1.0.0",
   "config": {
-    "orderHistory": {
+    "order-history": {
       "paths": [
         {
           "path": [ "registry" ],
@@ -213,7 +216,7 @@ In this example, we have the registry_id in both the Registry Projection and in 
 }
 ```
 
-In our case, to update the orderHistory Single View there are two ways:
+In our case, to update the order-history Single View there are two ways:
 - if we update the projection Registry (on snippet line 7), then we can read the registry_id directly from the projection Registry;
 - if we update the projection Order, then we can read the registry_id directly from the projection Order.
 
@@ -229,7 +232,7 @@ We can have a configuration like the following one:
 {
   "version": "1.0.0",
   "config": {
-    "orderHistory": {
+    "order-history": {
       "paths": [
         {
           "path": [ "product", "orders" ],
@@ -268,16 +271,17 @@ After that, we can try to send message to the Kafka Topic created in the previou
 The Single View is an architectural object that it's used to store the aggregate data from the Projections. The goal of the Single View is to store the data already aggregated and ready to use from the Projection.
 A good approach is to store the data in Single Views dedicated to each channel and each use. For example, if inside the client we use the data from the registry and the order in the same interface, we can create a Single View called "registry_and_order" and store all the useful data in this Single View.
 
-In this tutorial our Single View is called "OrderHistory" and we will create an object schema with the registry information and the orders information linked to the registry.
-So, for this tutorial we will create one Single View called "OrderHistory".
+In this tutorial our Single View is called "order-history" and we will create an object schema with the registry information and the orders information linked to the registry.
+So, for this tutorial we will create one Single View called "order-history".
 
 ### Order History 
 Inside our Single View, each document is an object that contains the registry information about the user, and the information about the orders associated to the user.
 
-We need to open the Single Views page in the Fast Data section of our left menu, then click on the **Create new Single View** button, and we can create a new Single View called "orderHistory".
-![Create New Single View](img/20-create-single-view.png)
+We need to open the Single Views page in the Fast Data section of our left menu, then click on the **Create new Single View** button, and we can create a new Single View called "order-history".
+![Single View](img/19-single-view.png)
 
 Here we can choose the name of the Single View.
+![Create New Single View](img/20-create-single-view.png)
 
 #### Fields
 Now we need to create the fields of the Single View, inside this tutorial we will create the following fields:  
@@ -300,7 +304,7 @@ Of course we can create more fields. Here we omitted the email, phone and addres
 Now we need to create the strategies of the Single View. Strategies are used to define when the data need to be updated in a Single View. For example, when we update the registry we need to update the Single View information. 
 In this tutorial we will create two strategies: the first one is for the registry's update and the second one is for the order's update.
 
-Inside our Single View "orderHistory", click on the **Add link to strategy** button.
+Inside our Single View "order-history", click on the **Add link to strategy** button.
 ![Strategy Page](img/28-strategy-page.png)
 
 Now we will choose the System Of Records and the Projection that we want to link to the Strategy; in our case, "delivery" and "registry".
@@ -369,7 +373,7 @@ To simplify, here' the same ER-Schema used in the [Projection ER-Schema](#er-sch
 {
   "version": "1.0.0",
   "config": {
-    "orderHistory": {
+    "order-history": {
       "paths": [
         {
           "path": [ "registry" ],
@@ -463,7 +467,7 @@ Now we have the Projections, the Single View and each configuration ready to be 
 2. Select **Create new endpoint**;
 3. Choose the Base Path;
 4. Choose **Single View** as Type; 
-5. Select from the list the name of our Single View, in this case /orderHistory.
+5. Select from the list the name of our Single View, in this case /order-history.
 
 ![Expose Single View](img/32-expose-single-view.png)
 
