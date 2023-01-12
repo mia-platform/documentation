@@ -234,6 +234,8 @@ You must be in the _Design_ section of the console to perform this action.
   </div>
 </div>
 
+For more information on merging branches please see the [dedicated](/development_suite/api-console/api-design/merge_collaboration.md) page.
+
 ## Deploy changes
 
 The changes you made on the console must be deployed in order for you to see them in action. Your project is linked with an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications. You can find more information about managing environments [here](/development_suite/set-up-infrastructure/runtime-environments.md).
