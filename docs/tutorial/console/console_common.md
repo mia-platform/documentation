@@ -190,7 +190,8 @@ You must be in the _Design_ section of the console to perform this action.
 
 ![Branch Differences](img/merge-branches-4.png)
 
-5. You can review the differences between the current branch and the one you selected. All the differences are divided by type on the left side of the screen. So for example you can select _Workload_ to view only differences regarding microservices and workload configurations. You can update the editor on the right side, where _Your changes_ are displayed, if you need to resolve merge conflicts.
+5. You can review the differences between the current branch and the one you selected. All the differences are divided by type on the left side of the screen. So for example you can select _Workload_ to view only differences regarding microservices and workload configurations.
+You can apply the changes between the two branches by using the arrow icons between the two editors or you can directly edit the configurations on the right editor if you need to resolve merge conflicts.
 6. Click _Confirm merge_.
 7. You will be asked for confirmation about the new configuration. Click _Confirm Merge_.
 
