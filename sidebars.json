@@ -2370,6 +2370,10 @@
         {
           "id": "paas/mtls",
           "type": "doc"
+        },
+        {
+          "id": "paas/alarms",
+          "type": "doc"
         }
       ]
     }
