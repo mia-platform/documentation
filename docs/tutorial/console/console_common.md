@@ -6,24 +6,36 @@ sidebar_label: Mia-Platform Console Common Actions
 
 The **Mia-Platform Console** is a powerful **Internal Developer Portal** that let you govern all projects in one place and helps you industrialize and automate DevOps, avoid organizational bottlenecks, self-serve developers, solve cloud complexity and enhance accountability & reliability.
 
-On the console you can build complex [projects](/development_suite/api-console/api-design/overview.md) and use an ever-growing list of [plugins](/runtime_suite/mia-platform-plugins.md) but there are some common actions that you will do everyday.
+On the Console you can build complex [projects](/development_suite/api-console/api-design/overview.md) and use an ever-growing list of [plugins](/runtime_suite/mia-platform-plugins.md) but there are some common actions that you will do everyday.
 
-In this page we will see the most frequently performed actions on the Mia-Platform console.
+In this page we will see the most frequently performed actions on the Mia-Platform Console.
 
-For a general overview of the console please see the [dedicated](/development_suite/overview-dev-suite.md) page.
+For a general overview of the Console please see the [dedicated](/development_suite/overview-dev-suite.md) page.
+
+## View repository
+
+Mia-Platform Console enables you to manage your project's configuration by leveraging the advantages of a GitOps approach.
+The Console internally uses **git repositories** to persist configuration changes you make and supports many different git repository providers. You can find more information [here](/development_suite/set-up-infrastructure/create-project.mdx#step-2-repository).
+
+If you want to see directly the **code** of the configurations you made, you can check the _Configuration_ repository of your project.
+
+To view the _Configurations_ repository of the project simply click on the Git provider icon (GitLab in the image below) on the top-right of the screen.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![View Repository](img/view-repository-1.png)
+  
+  </div>
+</div>
 
 ## Create a new branch
 
-To start making changes on the console you must be working on a **branch**. By default the _master_ branch is present but you can create any number of branches to work on.
-You can use different branches for different features you want to create. Each branch is independent and can be used by different members of your team to work collaboratively.
+To start making changes on the Console you must be working on a **branch**. A default branch (usually `master`) is always present but you can create any number of branches to work on. As you would do in any git repository, you can use different branches for different features you want to create. Each branch is independent and can be used by different members of your team to work collaboratively.
 
-This section explains how to create a new branch on the console.
+This section explains **how to create a new branch** on the Console, which, under the hood, will create a new git branch on the _Configurations_ repository of the project.
 
-The console internally uses **git repositories** to persist configuration changes you make. This action will create a new git branch on the _Configurations_ repository of the project. The console supports many different git repository providers, you can find more information [here](/development_suite/set-up-infrastructure/create-project.mdx#step-2-repository).
-
-You must be in the _Design_ section of the console to perform this action.
-
-![Design Section](img/design-section.png)
+You must be in the _Design_ section of the Console to perform this action.
 
 1. Click on the branch selection menu on top of the screen.
 
@@ -80,17 +92,13 @@ You can also create a new branch while saving your changes. See the next section
 
 ## Save changes
 
-Configuration changes made on the console must be **saved explicitly**. By doing so you save your work for later use or deploy, but you can also let other people see your changes if they have access to your project.
+Configuration changes made on the Console must be **saved explicitly**. By doing so you save your work for later use or deploy, but you can also let other people see your changes if they have access to your project.
 
-For example you can create a microservice starting from a template in the [Marketplace](/marketplace/overview_marketplace.md) like explained [here](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+For example, you can create a microservice starting from a template in the [Marketplace](/marketplace/overview_marketplace.md) like explained [here](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
 
-This section explains how to save configuration changes you made on the console.
+This section explains how to save configuration changes you made on the Console, which, under the hood, will create a new **git commit** on the _Configurations_ repository of the project.
 
-This action will create a new **git commit** on the _Configurations_ repository of the project.
-
-You must be in the _Design_ section of the console to perform this action.
-
-![Design Section](img/design-section.png)
+You must be in the _Design_ section of the Console to perform this action.
 
 1. Click on the branch selection menu on top of the screen. If you made some changes, you will see that there are unsaved local changes reported.
 
@@ -102,45 +110,21 @@ You must be in the _Design_ section of the console to perform this action.
   </div>
 </div>
 
-2. Click on _Save configuration_. The _Save configuration_ form will appear. You can see an overview of your changes on the right.
+2. Click on _Save configuration_. The _Save configuration_ form will appear.
+3. In order to save your configuration:
+    1. You must enter a **title** for the commit.
+    2. [Optional] You can enter a commit description.
+    3. [Optional] If you want to save your changes in a new branch by enabling the _Save changes on new branch_ option and enteriring the new branch name.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '500px'}}> 
 
-![Commit Form](img/save-changes-2.png)
+![Commit On New Branch](img/save-changes-2.png)
   
   </div>
 </div>
 
-3. You must enter a title for the commit. Optionally you can enter a commit description.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Commit Form Filled](img/save-changes-3.png)
-  
-  </div>
-</div>
-
-4. If you want to save your changes in a new branch you can set the _Save changes on new branch_ option and enter the new branch name.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Commit On New Branch](img/save-changes-4.png)
-  
-  </div>
-</div>
-
-5. Click _Save_ to save your changes.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Saving](img/save-changes-5.png)
-  
-  </div>
-</div>
+5. Click _Save_ to apply the changes.
 
 :::warning
 Always remember to save your changes in order to persist them. Unsaved versions are not visible to other users and you cannot deploy them. If you change branch without saving your current changes, they will be lost.
@@ -148,13 +132,11 @@ Always remember to save your changes in order to persist them. Unsaved versions 
 
 ## Merge changes
 
-By working with **multiple branches** and collaboratively with your team, you can choose to follow your preferred **branching strategy** on the console too. For example you might use the _master_ branch as your main branch with **production-ready configurations** while using _feature branches_ to build or test new features. Once a feature is complete you will want to merge it onto the _master_ branch, making the changes from the feature branch available also on the _master_ branch.
+By working with **multiple branches** and collaboratively with your team, you can choose to follow your preferred **branching strategy** on the Console too. For example, you might use the _master_ branch as your main branch with **stable configurations** while using dedicated branches to build or test new features. Once a feature is complete you will want to merge it onto the _master_ branch, making the changes from the feature branch available also on the _master_ branch.
 
-This section explains how to merge a branch into another one on the console. Make sure you are positioned on your target branch before merging.
+This section explains **how to merge a branch into another one** on the Console. Make sure you are positioned on your **target** branch before merging.
 
-You must be in the _Design_ section of the console to perform this action.
-
-![Design Section](img/design-section.png)
+You must be in the _Design_ section of the Console to perform this action.
 
 1. Click on the branch selection menu on top of the screen.
 
@@ -190,10 +172,16 @@ You must be in the _Design_ section of the console to perform this action.
 
 ![Branch Differences](img/merge-branches-4.png)
 
-5. You can review the differences between the current branch and the one you selected. All the differences are divided by type on the left side of the screen. So for example you can select _Workload_ to view only differences regarding microservices and workload configurations.
-You can apply the changes between the two branches by using the arrow icons between the two editors or you can directly edit the configurations on the right editor if you need to resolve merge conflicts.
-6. Click _Confirm merge_.
-7. You will be asked for confirmation about the new configuration. Click _Confirm Merge_.
+5. Select a configurations category on the sidebar of the modal in order to review the differences between the two branches. All the configurations are organized by category. If there are any differences in the configuration categories between the two branches, its entry is highlighted by an orange icon in the sidebar. For example, you can select _Workload_ to view only differences regarding microservices and workload configurations.
+6. Once you've selected the configurations category you want to work on, you can apply changes to the target branch. Note that the changes are not applied automatically to the target branch. You must apply them manually on the right editor. To do so, you can:
+    1. Use the arrow icon between the editor to copy a block of configuration from the left editor to the right one.
+    2. Directly  edit the configurations on the right editor (tipically you want to do it to resolve conflicts).
+
+:::tip
+You can use _Previous change_ and _Next change_ button in the lower part of the modal in order to easly move from a change to another.
+:::
+7. Click _Confirm merge_.
+8. You will be asked for confirmation about the new configuration. Click _Confirm Merge_.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '500px'}}> 
@@ -213,37 +201,22 @@ You can apply the changes between the two branches by using the arrow icons betw
   </div>
 </div>
 
-9. Click _Continue editing_, if you want to make other changes on the merge, or _Save configuration_.
-10. If you are saving configuration you will be asked to save your changes.
-11. Fill the form with a commit title and optionally a commit description.
+9. Click _Continue editing_, if you want to make additional changes, otherwise _Save configuration_.
+10. If you are saving configuration the saving configuration modal will appear. Follow the steps 3 and 4 of the guide about how to ["Save changes"](#save-changes) in order to apply the merge. Otherwise you can continue editing in the design area and apply all the changes at the same time by following the whole ["Save changes"](#save-changes) guide.
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Merge Commit](img/merge-branches-11.png)
-  
-  </div>
-</div>
-
-12. Click _Save_ to complete the merge.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Merge Save](img/merge-branches-12.png)
-  
-  </div>
-</div>
+:::warning
+Merge changes must be saved in order to be applied.
+:::
 
 For more information on merging branches please see the [dedicated](/development_suite/api-console/api-design/merge_collaboration.md) page.
 
 ## Deploy changes
 
-The changes you made on the console must be deployed in order for you to see them in action. Your project is linked with an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications. You can find more information about managing environments [here](/development_suite/set-up-infrastructure/runtime-environments.md).
+The changes you made on the Console must be deployed in order for you to see them in action. Your project is linked with an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the Console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications. You can find more information about managing environments [here](/development_suite/set-up-infrastructure/runtime-environments.md).
 
 This section explains how to deploy any changes you made into an **environment**.
 
-You must be in the _Deploy_ section of the console to perform this action.
+You must be in the _Deploy_ section of the Console to perform this action.
 
 ![Deploy Section](img/deploy-section.png)
 
@@ -269,7 +242,7 @@ Once your changes have been deployed, you can **monitor your runtime system** an
 
 This section explains how to monitor your deployed services and pods.
 
-You must be in the _Runtime_ section of the console to perform this action.
+You must be in the _Runtime_ section of the Console to perform this action.
 
 ![Runtime Section](img/runtime-section.png)
 
@@ -308,20 +281,7 @@ For more information on monitoring the infrastructure please see the [dedicated]
 
 For more information about monitoring CPU and memory using Grafana please see the _Set Requests and Limits of a Microservice_ [tutorial](/tutorial/requests_limits/requests_limits_tutorial.mdx#monitoring-cpu-and-memory-usage).
 
-You can also set the console homepage to show environment metrics by using the [Metrics homepage](/development_suite/overview-dev-suite.md#metrics-homepage).
+You can also set the Console homepage to show environment metrics by using the [Metrics homepage](/development_suite/overview-dev-suite.md#metrics-homepage).
 
 For information on how to directly interact with the Kubernetes infrastructure please see [here](/development_suite/clusters-management/add-edit-remove-cluster.md).
 
-## View repository
-
-If you want to see directly the **code** of the configurations you made, you can check the _Configuration_ repository of your project.
-
-To view the _Configurations_ repository of the project simply click on the Git provider icon (Gitlab in the image below) on the top-right of the screen.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![View Repository](img/view-repository-1.png)
-  
-  </div>
-</div>
