@@ -175,10 +175,10 @@ You must be in the _Design_ section of the Console to perform this action.
 5. Select a configurations category on the sidebar of the modal in order to review the differences between the two branches. All the configurations are organized by category. If there are any differences in the configuration categories between the two branches, its entry is highlighted by an orange icon in the sidebar. For example, you can select _Workload_ to view only differences regarding microservices and workload configurations.
 6. Once you've selected the configurations category you want to work on, you can apply changes to the target branch. Note that the changes are not applied automatically to the target branch. You must apply them manually on the right editor. To do so, you can:
     1. Use the arrow icon between the editor to copy a block of configuration from the left editor to the right one.
-    2. Directly  edit the configurations on the right editor (tipically you want to do it to resolve conflicts).
+    2. Directly  edit the configurations on the right editor (typically you want to do it to resolve conflicts).
 
 :::tip
-You can use _Previous change_ and _Next change_ button in the lower part of the modal in order to easly move from a change to another.
+You can use _Previous change_ and _Next change_ button in the lower part of the modal in order to easily move from a change to another.
 :::
 7. Click _Confirm merge_.
 8. You will be asked for confirmation about the new configuration. Click _Confirm Merge_.
