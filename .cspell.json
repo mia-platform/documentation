@@ -154,7 +154,8 @@
       "kaleyra",
       "mTLS",
       "Linkerd",
-      "RESUE"
+      "RESUE",
+      "oauthbearer"
   ],
   "ignoreWords": [
     "authz",
