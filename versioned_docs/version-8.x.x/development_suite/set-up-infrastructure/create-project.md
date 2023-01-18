@@ -569,7 +569,7 @@ A configuration example:
 }
 ```
 
-Proxy url supports `http`, `https` and basic auth inside proxy url. For example, an url with basic auth would be like `https://username:password@url-to-proxy/`.
+Proxy url supports `http`, `https` and basic auth inside proxy url. For example, an url with basic auth would be like `https://username:password@url-to-proxy/`. <!--- gitleaks:allow -->
 
 ### Final Step: **Activate CRUD**
 
