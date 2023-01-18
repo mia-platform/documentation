@@ -32,7 +32,13 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr><td>CAST_FUNCTIONS_FOLDER</td><td>false</td><td>defines the path to the cast-functions folder</td><td>-</td></tr>
     <tr><td>MAP_TABLE_FOLDER</td><td>false</td><td>defines the path to the map table folder</td><td>-</td></tr>
     <tr><td>STRATEGIES_FOLDER</td><td>false</td><td>defines the path to the strategies' folder</td><td>-</td></tr>
-    <tr><td>KAFKA_SASL_MECHANISM</td><td>false</td><td>defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256` or `scram-sha-512`.</td><td>plain</td></tr>
+    <tr><td>KAFKA_SASL_MECHANISM</td><td>false</td><td>defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256`, `scram-sha-512`, `oauthbearer`.</td><td>plain</td></tr>
+    <tr><td>KAFKA_SASL_OAUTH_BASE_URL</td><td>false</td><td>In case of `oauthbearer` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.</td><td>-</td></tr>
+    <tr><td>KAFKA_SASL_OAUTH_PATH</td><td>false</td><td>In case of `oauthbearer` mechanism, it defines the path of the endpoint for fetching the OAuth2 token.</td><td>-</td></tr>
+    <tr><td>KAFKA_SASL_OAUTH_GRANT_TYPE</td><td>false</td><td>In case of `oauthbearer` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type `password` is supported</td><td>password</td></tr>
+    <tr><td>KAFKA_SASL_OAUTH_CLIENT_ID</td><td>false</td><td>In case of `oauthbearer` mechanism, it defines the client id for fetching the OAuth2 token.</td><td>-</td></tr>
+    <tr><td>KAFKA_SASL_OAUTH_CLIENT_SECRET</td><td>false</td><td>In case of `oauthbearer` mechanism, it defines the client secret for fetching the OAuth2 token.</td><td>-</td></tr>
+    <tr><td>KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS</td><td>false</td><td>In case of `oauthbearer` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)</td><td>60000</td></tr>
     <tr><td>USE_UPSERT</td><td>false</td><td>defines whether to use <a href="./common#upsert">upsert</a> or not when performing insert and update operations.</td><td>true</td></tr>
     <tr><td>KAFKA_MESSAGE_ADAPTER</td><td>false</td><td>defines which Kafka message adapter to use. Its value can be either `basic` (DB2 adapter), `golden-gate` or `custom`. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td><td>basic</td></tr>
     <tr><td>KAFKA_PROJECTION_CHANGES_FOLDER</td><td>false</td><td>path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).</td><td>-</td></tr>
