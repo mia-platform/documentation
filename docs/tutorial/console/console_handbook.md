@@ -1,7 +1,7 @@
 ---
-id: console_common
-title: Mia-Platform Console Common Actions
-sidebar_label: Mia-Platform Console Common Actions
+id: console_handbook
+title: Mia-Platform Console Handbook
+sidebar_label: Mia-Platform Console Hanbook
 ---
 
 The **Mia-Platform Console** is a powerful **Internal Developer Portal** that let you govern all projects in one place and helps you industrialize and automate DevOps, avoid organizational bottlenecks, self-serve developers, solve cloud complexity and enhance accountability & reliability.
