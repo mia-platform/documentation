@@ -20,8 +20,8 @@ In this tutorial we will create and expose a CRUD collection. More specifically,
 
 Before starting, we will assume that:
 - you have some familiarity with **API** and **REST** concepts. More information about API is available [here](/guidelines/rest_api_vademecum.md).
-- you have at least `developer` role on the project you want to use to reproduce the steps 
-- you have at least `maintainer` role on the environment of the project you want to deploy on
+- you have at least `developer` role on the project you want to use to reproduce the steps;
+- you have at least `maintainer` role on the environment of the project you want to deploy on.
 - the project you want to use to reproduce the steps includes a [swagger-aggregator](/runtime_suite/swagger-aggregator/overview.md), an [api-portal](/runtime_suite/api-portal/overview.md) and a [crud-service](/runtime_suite/crud-service/overview_and_usage.md)
 
 ## Create a new CRUD collection

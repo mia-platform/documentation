@@ -851,6 +851,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/microservices/microservice_hello_world",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/rest_api/quick_rest_api",
           "type": "doc"
         },
