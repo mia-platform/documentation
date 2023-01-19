@@ -1,66 +1,133 @@
 ---
 id: microservice_hello_world
-title: Create and expose a node.js Hello World
-sidebar_label: Hello World
+title: Create and expose hello world service
+sidebar_label: Hello World Microservice
 ---
 
 import VideoBox from "./../../../src/components/VideoBox";
 
-intro
+In this tutorial we are going to see how to create and expose a Node.js Microservice, to understand the advantages of convenience and simplicity that the Mia-Platform Console offers.
 
 ## What we will build
 
-In this tutorial, we will create a simple Hello World service starting from a marketplace example. We will expose the "Hello World" endpoint outside the cluster.
+We will create a simple Hello World service starting from a marketplace example that exposes a simple "Hello World" endpoint outside the cluster.
 In particular, we will:
 
-- Create a gateway service from a Marketplace plugin;
-- Make our gateway reachable from outside the cluster;
-- Deploy the project and test the reachability;
 - Create a new microservice from a Marketplace example;
+- Create a gateway service from a Marketplace plugin;
 - Expose our microservice API by creating an endpoint;
 - Deploy the project and test the result by contacting it via `curl`.
 
 ## Prerequisites
 
-Before starting we must have an empty project in our Mia-Platform Console. In order to know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
-Moreover, be sure:
+Before starting, we will assume that, you already have a clean project in Mia-Platform Console, in order to know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
 
-- you have at least `developer` role on the project you want to use to reproduce the steps;
-- you have at least `maintainer` role on the environment of the project you want to deploy on.
+The project must:
+
+- Be structured using [kustomize](/development_suite/set-up-infrastructure/kustomize/index.md);
+- Be integrated with [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
+- Have an ingress route pointing to [api-gateway](/paas/traefik.md).
+
+:::tip
+If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
+:::
+
+Moreover, you need at least:
+
+- `developer` role on the project you want to use to reproduce the steps;
+- `maintainer` role on the environment of the project you want to deploy on.
+
+## Create a new microservice
+
+In this section we will discover how to create a Node.js microservice in Mia-Platform Console.
+
+A Microservice can be created starting from existing _Mia-Platform Template_. Doing so, or using _Mia-Platform Service Libraries_, has many advantages, the most important is that it will create a microservice completely compliant with all best practices such as testing, logging, health routes and so on and so forth.
+For those reasons, we will use the [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/).
+
+In order to start the tutorial, you must be in the _design_ section of the project in the [Microservices section](/development_suite/api-console/api-design/services.md) from the left side menu.
+
+In the left area of this section you can find a button to add new microservices and the list of all services currently included in the project. In our case this list is empty since we started from scratch.
+
+In order to create the microservice:
+
+1. Click on the _Create a Microservice_ button;
+1. In the dropdown menu, select _From Marketplace_ option;
+1. On the right side, you will see a catalogue of plugin, templates and examples;
+1. Type **Node.js HelloWorld Microservice Example** in the search bar;
+1. Select the card from the list of result;
+1. Change the service name to `hello-world-service` (it will be also the hostname);
+1. Click on the _Create_ button applying the default fields values.
+
+The last step is to save the changes by committing, if you do not know how to do this, take a brief look at [Mia-Platform handbook](/tutorial/console/console_handbook.md#save-changes) first.
+
+Configuration you have created your first Microservice! 🎉
+
+:::tip
+To find more about this microservice click on the book icon near the name or [here](https://github.com/mia-platform-marketplace/Node.js-Hello-World-Microservice-Example).
+:::
 
 ## Create a gateway service
 
-In order to start the tutorial you must be in the design section of the project.
-
-Select **Microservices** from the menu on the left:
-
-The Microservices screen is composed by four different tabs.
-
-In the left area you can find a button to add new microservices and the list of the services currently included in the project. In our case this list is empty since we have started from scratch.
+Until now we have created a microservice that exposes a `/hello` route but it is only reachable inside the cluster, which is not very useful for this example. So we want to expose the route externally, but to so we first need to create a **gateway service**, so let's create it!
 
 In order to choose your API Gateway service:
 
-- Click on the "Create a Microservice" button.
-- In the dropdown menu, select "From Marketplace" option
-- On the right side, you will see a catalogue of plugin, templates and examples
-- Type "API Gateway" in the search bar
-- Select "API Gateway" from the list of result.
-- Click on the "Create" applying the default fields values.
-
-![Image 1](img/1.png)
+1. Click on the _Create a Microservice_ button;
+1. In the dropdown menu, select _From Marketplace_ option;
+1. On the right side, you will see a catalogue of plugin, templates and examples;
+1. Type "API Gateway" in the search bar;
+1. Select the card titled "API Gateway" from the list of result;
+1. Click on the _Create_ button applying the default fields values.
+1. Commit the changes to make them persistent.
 
 <!-- TODO add a short description of the nginx api gateway and the link to its full documentation -->
 
 :::tip
-You can select your preferred API Gateway for your projects. We are using the nginx-based "API Gateway" for this tutorial.
+You can select your preferred API Gateway for your projects. We are using the nginx-based "API Gateway" only for demonstration purposes.
 :::
 
-## Make our gateway reachable from outside the cluster;
+## Expose our microservice endpoint
 
-## Deploy the project and test the reachability;
+Now the last remaining piece is to inform the API gateway of the presence of our routes to redirect requests to it.
 
-## Create a new microservice from a Marketplace example;
+In order to do so:
 
-## Expose our microservice API by creating an endpoint;
+1. Navigate to in the _endpoints_ section from the left side menu.
+1. Click on the _Create new endpoint_ button;
+1. Fill the input:
+   - **Base path**: "/"
+   - **Type**: in the dropdown menu "_Microservice_"
+   - **Microservice**: in the dropdown menu "hello-world-service"
+1. Click on the _Create_ button.
+1. Commit the changes to make them persistent.
 
-## Deploy the project and test the result by contacting it via `curl`.
+We have completed the design of our first project! Now the last step is to deploy it and test the developed functionality.
+
+## Deploy the project
+
+In this last step of the tutorial we will [deploy](/development_suite/deploy/deploy.md) all the committed functionalities. That means create a new Kubernetes Pod for your custom service.
+
+As brief recap, the services we are gonna deploy are:
+
+- The "hello-world-service" microservice;
+- The API gateway with the endpoint configurations.
+
+In order to deploy the console project:
+
+1. Go to section _Deploy_;
+1. In the right side of the top bar select _Development_ as environment;
+1. Select the correct branch. You can see also the related last commits.
+1. Click _Deploy_.
+
+A pipeline will be triggered by the Console to start the deploy of your project.
+At the end of the pipeline we are ready to test the endpoint!
+
+Try it:
+
+```sh
+curl https://<your-domain>/hello
+```
+
+:::info
+If the response is blank, wait a few seconds to give the time to the pod to start
+:::
