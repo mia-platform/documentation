@@ -6,11 +6,11 @@ sidebar_label: Hello World Microservice
 
 import VideoBox from "./../../../src/components/VideoBox";
 
-In this tutorial we are going to see how to create and expose a Node.js Microservice, to understand the advantages of convenience and simplicity that the Mia-Platform Console offers.
+In this tutorial we are going create and expose outside the cluster a service using Mia-Platform Console. The service will simply reply to an HTTP request with an "Hello World" message.
 
 ## What we will build
 
-We will create a simple Hello World service starting from a marketplace example that exposes a simple "Hello World" endpoint outside the cluster.
+We will create a simple Hello World service starting from [a marketplace example](https://github.com/mia-platform-marketplace/Node.js-Hello-World-Microservice-Example) that exposes a simple "Hello World" endpoint outside the cluster.
 In particular, we will:
 
 - Create a new microservice from a Marketplace example;
@@ -20,13 +20,13 @@ In particular, we will:
 
 ## Prerequisites
 
-Before starting, we will assume that, you already have a clean project in Mia-Platform Console, in order to know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
+Before starting, we will assume that, you already have a clean project in Mia-Platform Console. In order to know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
 
 The project must:
 
 - Be structured using [kustomize](/development_suite/set-up-infrastructure/kustomize/index.md);
-- Be integrated with [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
-- Have an ingress route pointing to [api-gateway](/paas/traefik.md).
+- Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
+- Have an ingress route having "[api-gateway](/paas/traefik.md)" as `service`.
 
 :::tip
 If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
@@ -39,10 +39,7 @@ Moreover, you need at least:
 
 ## Create a new microservice
 
-In this section we will discover how to create a Node.js microservice in Mia-Platform Console.
-
-A Microservice can be created starting from existing _Mia-Platform Template_. Doing so, or using _Mia-Platform Service Libraries_, has many advantages, the most important is that it will create a microservice completely compliant with all best practices such as testing, logging, health routes and so on and so forth.
-For those reasons, we will use the [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/).
+In this section we will discover how use Mia-Platform Console to create a simple microservice exposing an endpoint always replying with an "Hello World" message.
 
 In order to start the tutorial, you must be in the _design_ section of the project in the [Microservices section](/development_suite/api-console/api-design/services.md) from the left side menu.
 
@@ -55,10 +52,10 @@ In order to create the microservice:
 1. On the right side, you will see a catalogue of plugin, templates and examples;
 1. Type **Node.js HelloWorld Microservice Example** in the search bar;
 1. Select the card from the list of result;
-1. Change the service name to `hello-world-service` (it will be also the hostname);
+1. Change the service name to `hello-world-service`;
 1. Click on the _Create_ button applying the default fields values.
 
-The last step is to save the changes by committing, if you do not know how to do this, take a brief look at [Mia-Platform handbook](/tutorial/console/console_handbook.md#save-changes) first.
+The last step is to save the changes by committing, if you do not know how to do it, take a quick look at [Mia-Platform handbook](/tutorial/console/console_handbook.md#save-changes) first.
 
 Configuration you have created your first Microservice! 🎉
 
@@ -66,11 +63,24 @@ Configuration you have created your first Microservice! 🎉
 To find more about this microservice click on the book icon near the name or [here](https://github.com/mia-platform-marketplace/Node.js-Hello-World-Microservice-Example).
 :::
 
+## Check your service configuration and code
+Until now we have created a microservice, but what how is it working?
+
+The whole service configuration is now shown on the right side of the screen. There you can find all the details, like the used docker image, the resources assigned to the service, the ports exposed by the container, configurations for kubernetes probes, environment variables, etc. In order to know all the details of the various fields you can read the section about [Microservice Configuration](/development_suite/api-console/api-design/services.md#manage-microservices).
+
+Mia-Platform Console has created a git repository on the git provovider linked to the project. In order to access to the microservice code, you can simply click on the "View Repository" link in the top-right corner of your service.
+
+Moreover, the Console has linked a build pipeline to the service. You can check it on the pipeline manager linked to your project. Build pipeline are usually triggered on pushes to master branch, so the one building the image of the service we have just created should be running at this point.
+
+:::tip
+If you are using Mia-Platform Console in PaaS, you can check the execution of your build pipeline on the same GitLab repository containing the code of the service we have just created.
+:::
+
 ## Create a gateway service
 
-Until now we have created a microservice that exposes a `/hello` route but it is only reachable inside the cluster, which is not very useful for this example. So we want to expose the route externally, but to so we first need to create a **gateway service**, so let's create it!
+At this point the service we have created is only reachable inside the project, which is cleary not so useful. So we want to expose the route externally, but to so we first need to create a **gateway service**, so let's create it!
 
-In order to choose your API Gateway service:
+In order to add your API Gateway service:
 
 1. Click on the _Create a Microservice_ button;
 1. In the dropdown menu, select _From Marketplace_ option;
@@ -79,8 +89,6 @@ In order to choose your API Gateway service:
 1. Select the card titled "API Gateway" from the list of result;
 1. Click on the _Create_ button applying the default fields values.
 1. Commit the changes to make them persistent.
-
-<!-- TODO add a short description of the nginx api gateway and the link to its full documentation -->
 
 :::tip
 You can select your preferred API Gateway for your projects. We are using the nginx-based "API Gateway" only for demonstration purposes.
@@ -95,7 +103,7 @@ In order to do so:
 1. Navigate to in the _endpoints_ section from the left side menu.
 1. Click on the _Create new endpoint_ button;
 1. Fill the input:
-   - **Base path**: "/"
+   - **Base path**: "/greetings"
    - **Type**: in the dropdown menu "_Microservice_"
    - **Microservice**: in the dropdown menu "hello-world-service"
 1. Click on the _Create_ button.
@@ -105,7 +113,7 @@ We have completed the design of our first project! Now the last step is to deplo
 
 ## Deploy the project
 
-In this last step of the tutorial we will [deploy](/development_suite/deploy/deploy.md) all the committed functionalities. That means create a new Kubernetes Pod for your custom service.
+In this last step of the tutorial we will [deploy](/development_suite/deploy/deploy.md) all the committed configurations. That means create a new Kubernetes Pod each of the services.
 
 As brief recap, the services we are gonna deploy are:
 
@@ -116,18 +124,17 @@ In order to deploy the console project:
 
 1. Go to section _Deploy_;
 1. In the right side of the top bar select _Development_ as environment;
-1. Select the correct branch. You can see also the related last commits.
+1. Select the correct branch. You can see also the related last commits;
 1. Click _Deploy_.
 
-A pipeline will be triggered by the Console to start the deploy of your project.
-At the end of the pipeline we are ready to test the endpoint!
 
+A pipeline will be triggered by the Console to start the deploy of your project.
+
+At the end of the pipeline, go to the _Runtime_ section and wait for your pod to be ready. If you do not know how to do it, take a quick look at [Mia-Platform handbook](/tutorial/console/console_handbook.md#monitor-runtime-system) first.
+
+Now we are ready to test the endpoint!
 Try it:
 
 ```sh
-curl https://<your-domain>/hello
+curl https://<your-domain>/greetings/hello
 ```
-
-:::info
-If the response is blank, wait a few seconds to give the time to the pod to start
-:::
