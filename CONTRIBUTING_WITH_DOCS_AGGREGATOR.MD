@@ -169,37 +169,37 @@ There are two alternatives:
 The correct link structure for a link to another file **in the same** `docs` **folder of the service** is the following:
 
 ```markdown
-[<link text>](./<path/to/file/to/link.extension>#<optional-anchor>)
+[<link text>](./<relative/path/of/the/file/to/link.extension>#<optional-anchor>)
 ```
 
 Here are some examples of correct links to another file inside the docs folder:
 
 ```mardown
-More info ([here](./overview_and_usage.md)) to better understand...
+More info ([here](./10_Overview_and_Usage.md)) to better understand...
 ```
 
 or
 
 ```markdown
-More info ([here](./overview_and_usage.md#service-usage)) to better understand...
+More info ([here](./10_Overview_and_Usage.md#service-usage)) to better understand...
 ```
+
+⚠️ As you may have noticed, the links in this section are relative. Therefore, the rules provided above just give you a rule of thumb to follow, but take into account that special cases may arise.  
+For example, if you nest a file into a subfolder in your service repository, you should take that into account and type an additional `../` in the link path (or replace `./`, if present, with `../`).
 
 ###### Link outside `docs` folder
 
 The correct link structure for a link to another file **outside the service** `docs` **folder** is the following:
 
 ```markdown
-[<link text>](../../<path/of/the/file/to/link.extension>#<optional-anchor>)
+[<link text>](<url/of/the/file/to/link>#<optional-anchor>)
 ```
 
 Here is an example of correct links to another file outside the service `docs` folder:
 
 ```markdown
-[MongoDB CRUD](../../development_suite/api-console/api-design/crud_advanced.md)
+[MongoDB CRUD](https://docs.mia-platform.eu/docs/runtime_suite/crud-service/overview_and_usage)
 ```
-
-⚠️ As you may have noticed, all links in the previous two sections are relative. Therefore, the rules provided above just give you a rule of thumb to follow, but take into account that special cases may arise.  
-For example, if you nest a file into a subfolder in your service repository, you should take that into account and type an additional `../` in the link path (or replace `./`, if present, with `../`).
 
 ##### Special sub-folders in docs folder
 
