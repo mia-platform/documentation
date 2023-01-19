@@ -57,60 +57,38 @@ In order to configure the encryption using the Google KMS, you need the
 [KMS service account json configuration](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
 and the [KMS endpoint](https://cloud.google.com/kms/docs/reference/rest#rest-resource:-v1.projects.locations.keyrings.cryptokeys).
 
-Here is an example of the KMS service account json configuration content:
-```json
-{
-  "type": "service_account",
-  "project_id": "",
-  "private_key_id": "",
-  "private_key": "",
-  "client_email": "",
-  "client_id": "",
-  "auth_uri": "",
-  "token_uri": "",
-  "auth_provider_x509_cert_url": "",
-  "client_x509_cert_url": ""
-}
-```
-
 And here is an example of the KMS endpoint:
 `projects/{project_id}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{keyName}`
 
 With these configurations at hand, you can now configure the environment variables for the CRUD Service:
 
-* **KMS_PROVIDER** (*enum: `gcp`*): the Key Management Service will be hosted by Google Cloud Platform.
-* **KMS_GCP_EMAIL**: service account e-mail of the KMS.
-It corresponds to the `client_email` in the KMS service account json configuration.
-* **KMS_GCP_PROJECT_ID**: GCP project id in which is configured the KMS.
-It corresponds to the `project_id` in the KMS service account json configuration
-* **KMS_GCP_LOCATION**: Location in which the KMS is running.
-It corresponds to the `location` in the KMS endpoint.
-
-Example: if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:location`.
-* **KMS_GCP_KEY_RING**: GCP keyring used by the KMS.
-It corresponds to the `keyRingName` in the KMS endpoint.
-
-Example: if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:keyRing`.
-* **KMS_GCP_KEY_NAME**: GCP key name.
-It corresponds to the `keyName` in the KMS endpoint.
-
-Example: if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:cryptoKey`
-* **KMS_GCP_PRIVATE_KEY_PATH**: Path in which is stored the private key, on the console you **must** mount it as `ConfigMap`.
-The content of this private key corresponds to the **formatted** `private_key` in the KMS service account json configuration.
-* **KEY_VAULT_NAMESPACE**: where the key used for the collection encryption will be stored. **The required format is `{databaseName}.{collectionName}`**.
-
-Example: if the database name is `qqq` and the collection name is `www`, you must enter as the value of the variable `qqq.www`.
+| Variable                      | Type    | Required | Default value              | Description                                                                  |
+|-------------------------------|---------|----------|----------------------------|------------------------------------------------------------------------------|
+| KMS_PROVIDER                  | `gcp`   | Required | -                          | the type of provider used as key Manager Service. It has to be the string `gcp` to use Google Cloud Platform |
+| KMS_GCP_EMAIL                 | String  | Required | -                          | service account e-mail of the KMS. |
+| KMS_GCP_PROJECT_ID            | String  | Required | -                          | GCP project id in which is configured the KMS. It corresponds to the `project_id` in the KMS service account json configuration. |
+| KMS_GCP_LOCATION              | String  | Required | -                          | Location in which the KMS is running. It corresponds to the `location` in the KMS endpoint (e.g. if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:location`).|
+| KMS_GCP_KEY_RING              | String  | Required | -                          | GCP keyring used by the KMS. It corresponds to the `keyRingName` in the KMS endpoint (e.g., if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:keyRing`). |
+| KMS_GCP_KEY_NAME              | String  | Required | -                          | GCP key name. It corresponds to the `keyName` in the KMS endpoint (e.g., if the endpoint is `projects/:projectId/locations/:location/keyRings/:keyRing/cryptoKeys/:cryptoKey`, you must enter as the value of the variable `:cryptoKey`).|
+| KMS_GCP_PRIVATE_KEY_PATH      | String  | Required | -                          | Path in which is stored the private key, on the console you **must** mount it as `ConfigMap`. The content of this private key corresponds to the **formatted** `private_key` in the KMS service account json configuration.|
+| KEY_VAULT_NAMESPACE           | String  | Required | -                          | where the key used for the collection encryption will be stored. **The required format is `{databaseName}.{collectionName}`**. (e.g.: if the database name is `myDatabase` and the collection name is `testCollection`, you must enter as the value of the variable `myDatabase.testCollection`.) |
 
 :::warning
 To ensure that encryption keys are stored correctly, verify that CRUD service has the permissions to create and access the database and collection specified in `KEY_VAULT_NAMESPACE` variable.
 :::
 
 ### Configure CSFLE with Local Key
-In order to configure the encryption using the Local KMS it's necessary to add these new variables:
-
 :::caution
 **The `local` KMS is not recommended for production.**
 :::
+
+In order to configure the encryption using the Local KMS it's necessary to add these new variables:
+
+| Variable                      | Type    | Required | Default value              | Description                                                                  |
+|-------------------------------|---------|----------|----------------------------|------------------------------------------------------------------------------|
+| KMS_PROVIDER                  | `local` | Required | -                          | the type of provider used as key Manager Service. It has to be the string `local` to use a local KMS |
+| LOCAL_MASTER_KEY_PATH         | String  | Required | -                          | Path where the master key is stored. This path **must be mounted** as `ConfigMap`. To generate it, please read [the following guide](#local-master-key-generation). |
+| KEY_VAULT_NAMESPACE            | String  | Required | -                          | where the key used for the collection encryption will be stored. **The required format is `{databaseName}.{collectionName}`**. (e.g.: if the database name is `myDatabase` and the collection name is `testCollection`, you must enter as the value of the variable `myDatabase.testCollection`.) |
 
 * **KMS_PROVIDER** (*enum: `local`*): the key is managed using a local master key.
 * **LOCAL_MASTER_KEY_PATH**: Path where the master key is stored. This path **must be mounted** as `ConfigMap` on the console. To generate it, please read [the following guide](#local-master-key-generation).

@@ -8,6 +8,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] 2023-01-03
+
+### BREAKING CHANGES
+The autosave feature includes a change in the service calls for data storage, which now require two additional fields that are required.
+
+### Changed
+
+- Update CRUD client GET, DELETE, and POST to match CRUD's endpoint paths
+
+#### Note
+Caution: be careful that the submitUrl exposes methods correctly. Read documentation for details, in particular the [Form submit urls parameters](configuration.md#form-submit-urls-parameters) section.
+
+### Added
+
+- Draft Endpoint added.
+- Form Service Backend now edits drafts.
+- Delete Endpoint added. Form Service Backend now deletes forms and drafts.
+- Now formSchamaId of Drafts is not required.
+- Visualizer Config Endpoint added.
+- Added query param _status to GET /visualizer/forms/:id endpoint to retrieve the draft data if "_status" equals "draft".
+- Autosave documentation added.
+- Now the Draft endpoint create a new draft if formId is defined but the draft has not been created yet.
+- Edit to add hasDraft and isValid tags to forms.
+- Added to documentation hasDraft and isValid properties.
+
 ## [1.4.0] 2022-06-23
 
 ### Added

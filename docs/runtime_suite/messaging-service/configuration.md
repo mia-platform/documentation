@@ -61,7 +61,7 @@ It follows a description of the fields of the collection.
 - **emailHtmlMessage** - `string`: html body the e-mail. Required if `message` is not defined. If both are defined, only 
 `emailHtmlMessage` is used. It supports [interpolation](./overview.md#messages-interpolation).
 
-- **emailAttachments** - `array of strings`: list of path to files that should be sent as mail attachments.
+- **emailAttachments** - `array of object`: list of objects with the same interface given by [File Service](../../runtime_suite/files-service/usage). The only compulsory field is the `file` attribute.
 
 - **smsMessage (required)** - `string`: body the SMS. It supports [interpolation](./overview.md#messages-interpolation).
 

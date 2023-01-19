@@ -53,6 +53,11 @@ When possible, the PGM will expose utility APIs for some providers. These APIs a
 developer and allow focusing on the payment process itself, rather than setup processes. The BrainTree helper suite is 
 a clear example of this concept.
 
+## Flow Manager APIs
+
+The PGM is able to communicate with Flow Manager service via REST APIs. In particular it can send some events and it can
+process some commands using dedicated APIs.
+
 ## Documentation
 
 You can view the Swagger compatible OpenAPI documentation by calling the `/documentation` endpoint. 

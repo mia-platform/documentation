@@ -19,4 +19,4 @@ This service supports these OAuth2 providers:
 
 Follow the pages below for more about the _Authentication Service_:
 
-- [_Authentication service_ configuration](configuration.mdx)
+- [_Authentication service_ configuration](./configuration.mdx)

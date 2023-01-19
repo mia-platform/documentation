@@ -602,14 +602,14 @@ Each gallery item can be configured in size using properties `itemHeight` and `i
 
 If `itemHeight` is not specified, items adapt their height to their content.
 
-Property `itemWidth` supports both numeric values (will be interpreted as pixels) or strings "small", "medium", "large".
-It represents the attempted width of each gallery item, but may vary slightly because of the adaptive nature of the grid.
+Property `itemWidth` supports both numeric values (will be interpreted as pixels) or "small", "medium", "large".
+It represents the attempted width of each gallery item, but may vary slightly due to the adaptive nature of the grid.
 
 `gutter` property can be used to control the spacing around each gallery item.
 
 #### Preview Modal
 
-Unless property `disableExpand` is set to false, it is possible to visualize the item `preview` image inside a modal.
+Unless property `disableExpand` is set to false, `preview` image of an item can be visualized inside a modal.
 The modal can be configured in size using `modalWidth` and `modalHeight`, and a title can be specified with `modalTitle` (if not specified, the item title is used).
 
 ### Data
@@ -622,7 +622,7 @@ The properties that control this options are:
 - `titleSource`
 - `subTitleSource`
 
-Upon listening to a `displayData` event, the gallery component adds one item per data row using these properties.
+Upon listening to a [display-data](../events#display-data) event, the Gallery component uses these properties to render one item per data row.
 
 #### XPath
 
@@ -650,7 +650,7 @@ For instance, with data equal to
   }
 ]
 ```
-a gallery with the following properties:
+a gallery configured with the following properties:
 ```json
 {
   "titleSource": "objField.arrField.[0]",
@@ -662,7 +662,7 @@ will consist of a single item with
   - title equal to "test"
   - subTitle equal to "foo"
   - thumbnail equal to "some/path.jpg"
-  - preview, since `previewSource` is not specified, equal to thumbnail, thus "some/path.jpg"
+  - preview equal to "some/path.jpg" (since `previewSource` is not specified, preview is set to be the same as thumbnail)
 
 XPath `default` key can be utilized to provide a default value in case the path is not resolved. For instance, the same input data with a gallery configured like
 ```json
@@ -695,7 +695,7 @@ results is a single item with
 ```
 results in a single item having thumbnail equal to "full/some/path.jpg". The keyword `file` is used to identify the data extracted using `path`.
 :::caution
-In case of an XPath with template with path unresolved, `default` is used without being interpolated inside `template`.
+In case `path` is unresolved, `default` is utilized and it is **not** interpolated inside `template`.
 For instance, assuming the same input data and configuration
 ```json
 {
@@ -706,15 +706,15 @@ For instance, assuming the same input data and configuration
   }
 }
 ```
-the resulting `thumbanil` is "default/file.jpg" and NOT "full/default/file.jpg
+the resulting `thumbanil` is "default/file.jpg" and not "full/default/file.jpg
 :::
 
 
 ### Actions
 
-`onImageClick` and `actions` properties allow to add [actions](../actions.md) to the `bk-gallery`.
+`onImageClick`, `onTitleClick`, `onSubTitleClick` and `actions` properties allow to add [actions](../actions.md) to the `bk-gallery`.
 
-Property `actions` is of type
+Properties `onImageClick`, `onTitleClick`, `onSubTitleClick` are of type [Action](../actions.md), while property `actions` is of type
 ```typescript
 type GalleryAction = {
   iconId?: string,
@@ -726,7 +726,7 @@ type GalleryAction = {
 
 The first two actions are rendered as buttons, (for which an iconId is required). The rest of the actions are rendered within an action menu.
 
-Each action in the Gallery component is called with the following context:
+Each action in the Gallery component has access to the following input data:
 ```typescript
 {
   thumbnail: ..., // source for thumbnail image of the item
@@ -742,20 +742,22 @@ For instance, the following is a valid configuration for `actions`:
 ```json
 {
   ...
-  "actions": {
-    "iconId": "fas fa-users",
-    "action": {
-      "type": "http",
-      "config": {
-        "url": "/url",
-        "method": "POST",
-        "body": {
-          "field1": "{{thumbnail}}",
-          "field2": "{{name}}"
+  "actions": [
+    {
+      "iconId": "fas fa-users",
+      "action": {
+        "type": "http",
+        "config": {
+          "url": "/url",
+          "method": "POST",
+          "body": {
+            "field1": "{{thumbnail}}",
+            "field2": "{{name}}"
+          }
         }
       }
     }
-  }
+  ]
 }
 ```
 
@@ -778,13 +780,12 @@ It is possible to use the whole item data as input using key `context`:
 `rawObject` is a custom helper signaling that `context` should not be stringified.
 
 :::info
-Notice that the keyword `context`, in this situation, does not include the values of `thumbnail`, `preview`, `title`, `subTitle`.
+Keyword `context` does not include the values of `thumbnail`, `preview`, `title`, `subTitle`.
 :::
 
 ### Checkbox
 
-Each item can be selected (emitting `selectedDataBulk` event, allowing integration 
-with components such as `bk-footer` or `bk-bulk-actions`) through a checkbox, unless `disableSelection` property is set to true.
+Each item can be selected through a checkbox, unless `disableSelection` property is set to true. Selecting an item emits a [selected-data-bulk](../events#selected-data-bulk) event with all selected items, allowing integration with components such as `bk-footer` or `bk-bulk-actions`.
 
 ### Properties & Attributes
 
@@ -796,11 +797,13 @@ with components such as `bk-footer` or `bk-bulk-actions`) through a checkbox, un
 | `subTitleSource` | - | XPath | - | source path to subtitle text |
 | `disableSelection` | `disable-selection` | boolean | false | whether to disable the possibility to select gallery items |
 | `actions` | - | GalleryAction \\| GalleryAction[] | - | available actions per gallery item |
-| `onImageClick` | - | Action | - | action to execute on image click |
+| `onImageClick` | - | [Action](../actions.md) | - | action to execute on image click |
+| `onTitleClick` | - | [Action](../actions.md) | - | action to execute on title click |
+| `onSubTitleClick` | - | [Action](../actions.md) | - | action to execute on subtitle click |
 | `disableExpand` | `disable-expand` | boolean | false | whether to disable the possibility of viewing the image inside a modal (preview) |
 | `modalWidth` | `modal-width` | number \\| string | - | width of the preview modal |
 | `modalHeight` | `modal-height` | number \\| string | - | height of the preview modal |
-| `modalTitle` | `modal-title` | string | - | title of the preview modal (if not specified, the title is used) |
+| `modalTitle` | `modal-title` | string | - | title of the preview modal (if not specified, the item title is used) |
 | `gutter` | `gutter` | number | 20 | gutter of gallery items (vertical and horizontal spacing among gallery items) |
 | `primaryKey` | `primary-key` | string | "_id" | key used for indexing gallery items |
 | `itemHeight` | `item-height` | number \\| string | - | height of gallery items. If not specified, items adapt to their content |
@@ -814,12 +817,11 @@ with components such as `bk-footer` or `bk-bulk-actions`) through a checkbox, un
 | [displayData](../events#displayData) | receives data to display | - | - |
 
 
-
-
-
 ### Emits
 
-This component emits no event.
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[selected-data-bulk](../events#selected-data-bulk)|notifies about a change in the items selected through checkboxes|
 
 ### Bootstrap
 
@@ -865,11 +867,12 @@ represents a list of simple elements to be visualized.
 <bk-simple-list></bk-simple-list>
 ```
 
-`bk-simple-list` is used to display a list of simple elements (strings, numbers, ...). The set to display is chosen through the `datasourceKey`, which should match with one of the entries in the `dataSchema` of the page.
+`bk-simple-list` is used to display a list of simple elements (strings, numbers, ...) or even lookups. The set to display is chosen through the `datasourceKey`, which should match with one of the entries in the `dataSchema` of the page.
 A `label` can be specified to be displayed as header of the list.
-![bk-simple-list](../img/bk-simple-list.png)
-Example of configuration:
 
+![bk-simple-list](../img/bk-simple-list.png)
+
+Example of configuration: 
 ```
 {
   "type": "element",
@@ -883,15 +886,16 @@ Example of configuration:
   }
 },
 ```
+With this configuration, the field `items` of the dataSchema will be displayed.
 
-With this configuration, the field `items` of the dataSchema will be displayed. Each item is required to have a basic data type (string, number, ...). In case of complex data type, the `bk-list` component should be used.
-The list of elements to display is passed to the component using the `display-data` event, which contains the data in its payload.
+The list of elements to display is passed to the component using the `display-data` event, which contains the data in its payload. If the datasourceKey refers to a lookup field, it listens to `lookup-data` event which contains the solved lookups.
 
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`datasourceKey`|`datasource-key`|string|''|the object key that will be used to pick the data to show. |
+|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
 |`label`| - |LocalizedText|{}|header of the list. |
 |`loading`|`loading`|boolean|true|sets list on loading at DOM connection |
 

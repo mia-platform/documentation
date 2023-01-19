@@ -15,14 +15,18 @@ It displays a grid of filters.
 
 The max number of columns is 4. They shrink to 3 or 2 columns depending on the window width.
 
-:::warn
+:::warning
 Either use `bk-filter-drawer` (with `bk-filters-manager`) or `bk-expanded-filters` because they both listen to the same event to be shown.
 :::
 
 
 ### Configuration
 
-Property `filtersConfig` allows to specify the filters to show. It is an array of dataschema properties and/or objects of dataschema property and operator (see addFilter event operators).
+Property `filtersConfig` allows to specify the filters to show. It is an array of dataschema properties and/or objects of dataschema property and operator (see add-filter event operators).
+
+:::info
+[Link](../events#add-filter) to add-filter event for the list of available operators
+:::
 
 #### Example
 
@@ -56,7 +60,7 @@ It is not possible to specify the same property more than once and properties wi
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-| `dataSchema` | - | ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
+| dataSchema | - | ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
 | filtersConfig | - | string \| ({property: string, operator: string})[] | - | lists the filters to include in the component |
 | openByDefault | open-by-default | boolean | false | whether to show the component by default |
 | liveSearchTimeout | live-search-timeout | number | 5000 | live-search timeout |
@@ -363,7 +367,7 @@ The `ConfigurableTabFilter` object type is:
 
 ```typescript
 type ConfigurableTabFilter {
-  operator: FilterOperator // see addFilter event operator
+  operator: FilterOperator // see add-filter event operator
   property: string
   value: string | number | boolean | any[] | DateOptions
 }
@@ -375,6 +379,11 @@ type DateOptions = {
   unit: 'day' | 'week' | 'month' | 'year' | 'hour' | 'minute' | 'second' | 'millisecond'
 }
 ```
+
+:::info
+[Link](../events#add-filter) to add-filter event for `FilterOperator` type
+:::
+
 
 As seen above, an example of a filter configuration could be:
 

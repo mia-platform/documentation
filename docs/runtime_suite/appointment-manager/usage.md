@@ -60,7 +60,15 @@ Creates a new appointment in the CRUD collection.
 Depending on the [AM configuration](configuration.md), you can create an appointment by providing:
 
 - in *appointments mode*: a start (`startDate`) and end (`endDate`) date/time;
-- in *full mode*: an availability ID (`availabilityId`), a start (`startDate`) and end (`endDate`) date/time representing a valid slot and the owner ID (`ownerId`).
+- in *full mode* one of the following:
+  - an availability ID (`availabilityId`), a start (`startDate`) and end (`endDate`) date/time representing a valid slot and the owner ID (`ownerId`);
+  - only since version 2.0.1, a slot ID (`slotId`) in the new format and the owner ID (`ownerId`).
+
+:::caution
+
+With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to create an appointment directly from the `slotId`. The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
+
+:::
 
 :::caution
 
@@ -591,16 +599,31 @@ The following endpoints have been kept for backwards compatibility, but we stron
 We recommend using the [`GET /calendar/`](#get-calendar) endpoint, which provides greater flexibility in terms of events you can retrieve.
 :::
 
+:::info
+**v2.0.1**. With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to filter for a specific slot by passing its ID in the `_q` query parameter like this:
+```json
+{
+  "_q": {
+    "_id": "<slot ID>"
+  }
+}
+```
+The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
+:::
+
 Returns the slots matching the given query in a certain period of time and optionally with a given status.
 
 Since the slots are computed on demand, the AM performs the following operations behind the scenes:
 
-1. retrieve from the CRUD all availabilities overlapping, even partially, with the period, and matching the query parameters `_st` and `_q`;
-2. retrieve from the CRUD all exceptions overlapping, even partially, with the period, and matching the query parameter `_q`;
-3. retrieve from the CRUD all appointments and reservations overlapping, even partially, with the period and associated to the availabilities fetched at step 1;
-4. for each availability, compute all the occurrences overlapping, even partially, with the period;
-5. for each availability occurrence obtained at the previous step, compute all the slots;
-6. for each slot, set its status according to the following rules:
+1. check if the `_q` query parameter contains an `_id` field with a valid slot ID; if the field does exist, but it does not contain a valid slot ID, return 400;
+2. if the slot ID is passed, use the slot start and end date as the period to filter for;  
+3. retrieve from the CRUD all availabilities overlapping, even partially, with the period, and matching the query parameters `_st` and `_q` (except for the `_id` field);
+4. retrieve from the CRUD all exceptions overlapping, even partially, with the period, and matching the query parameter `_q` (except for the `_id` field);
+5. retrieve from the CRUD all appointments and reservations overlapping, even partially, with the period and associated to the availabilities fetched at step 1;
+6. for each availability, compute all the occurrences overlapping, even partially, with the period;
+7. for each availability occurrence obtained at the previous step, compute all the slots;
+8. if the slot ID is passed, filter the slot with given ID;
+9. for each slot, set its status according to the following rules:
    1. `UNAVAILABLE` if any exception overlaps, even partially, the time slot;
    2. `BOOKED` if no exception overlaps, even partially, the time slot and the number of appointments or reservation is equals to the slot capacity;
    3. `AVAILABLE` otherwise.

@@ -112,7 +112,7 @@ Stripe also supports multiple partial refund on the same payment, the sum of all
 
 ### One-Time
 
-Through the endpoint `PATCH /pay/expire` is possible to mark as invalid a requested payment not already authorized by the customer.  
+Through the endpoint `POST /pay/expire` is possible to mark as invalid a requested payment not already authorized by the customer.  
 The request body is:
 ```json lines
 {
@@ -122,7 +122,7 @@ The request body is:
 
 ### Recurrent
 
-The endpoint `PATCH /pay/recurrent/expire` sets the date until a subscription remains active.  
+The endpoint `POST /pay/recurrent/expire` sets the date until a subscription remains active.  
 The request body is:
 ```json lines
 {
@@ -136,4 +136,4 @@ Possible values for `cancelType` are:
 * endOfPeriod: cancel the subscription right before the next renewal
 * atDay: cancel the subscription at the day specified in the `cancelTime` field (format "dd/MM/YYYY")
 
-The `cancelTime` field is required only for `"cancelTipe": "atDay"` and must be in the format `dd/MM/yyyy`.
+The `cancelTime` field is required only for `"cancelType": "atDay"` and must be in the format `dd/MM/yyyy`.

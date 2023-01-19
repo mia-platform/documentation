@@ -71,6 +71,25 @@ This request accepts the following fields:
 
 If the change password request is correctly sent, you will receive a response with a 204 status code and no payload.
 
+### POST /users/register
+
+If `POST /users/` has the query parameters `postponeAuthUserCreation` set to `true`, it creates only the user on the CRUD and postpone the creation on the authentication service. `POST /users/register` retrieves data of the user on the CRUD and create the user on the authentication service only if in the configurations of its userGroup `authUserCreationDisabled` equals `false`.
+
+#### Body
+
+This request accepts the following fields:
+- **_id (required)** - `string`: user id in the `users` CRUD.
+- **password** - `string`: optional password. 
+
+:::warning
+The password is randomly generated if the environment variable `RANDOM_PWD_GEN` is set to `true` or if the password is not defined.
+:::
+
+
+#### Response
+
+If the user is created in the authentication service correctly, you will receive a response with a 204 status code and no payload.
+
 ## User Management
 
 ### POST /users/

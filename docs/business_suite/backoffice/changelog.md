@@ -8,6 +8,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] - 2023-01-18
+
+### Added
+
+- `bk-filter-manager` has a new filter operator for dates: `notBetween`
+- components support array of dates
+- filters on fields having `filtersOptions.hidden` set to true can be edited through events - `bk-calendar` works after setting `filtersOptions.hidden` to true for `startDate`, `endDate` fields
+
+### Fixed
+
+- `$today` keyword in filters works correctly with every operator
+- hour in date filters works correctly
+- improved style of `bk-gallery` component
+
+## [1.3.1] - 2023-01-10
+
+### Added
+
+- `bk-simple-list` resolves lookups
+- `bk-form-card` can have a custom card header
+
 ## [1.3.0] - 2022-23-12
 
 ### Added
@@ -23,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Form components support internationalized components for file picker fields
+- Form components support internationalized strings for file picker fields
 
 ## [1.2.2] - 2022-21-12
 

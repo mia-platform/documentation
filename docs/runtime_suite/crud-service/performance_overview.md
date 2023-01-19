@@ -87,7 +87,6 @@ Of all the requests fired to the service, the two tasks were distributed to be: 
 |   50  |          40         |       500    |    1200    |        100      |      300      |
 |  100  |          80         |       500    |    1800    |        100      |      300      |
 
-
 ## Passing through API Gateway
 
 This scenario has been designed to measure the service behavior when the API requests pass through the API Gateway (and Authorization Service, even though no authorization has been set on the API itself). 

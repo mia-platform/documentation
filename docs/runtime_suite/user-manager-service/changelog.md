@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] 2023-01-11
+
+### Fixed
+
+- Fix body in 204 responses (return null instead of an empty object)
+ 
+## [1.3.0] 2023-01-03
+
+### Fixed
+
+- Fix log error registation of auth user already registered on Auth Provider
+
+### Added
+
+- Add boolean `postponeAuthUserCreation` query parameter in the `POST /users/` endpoint with a `false` default value. When `postponeAuthUserCreation=true`, the user is created only in the users' CRUD collection.
+- Add `POST /users/register` endpoint that save the user only in the Auth Provider.
+
 ## [1.2.2] 2022-12-15
 
 ### Fixed

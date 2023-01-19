@@ -110,7 +110,11 @@ delivers data to add a new filter
     | "includeSome"
     | "includeAll"
     | "includeExactly"
-    | "notIncludeAny"
+    | "between"
+    | "notBetween"
+    | "hasLengthEqual"
+    | "hasLengthGreaterEqual"
+    | "hasLengthLessEqual"
   property: string
   value: string | number | boolean | any[]
   applied?: boolean

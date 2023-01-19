@@ -17,6 +17,7 @@ an instance of `Kafka2Rest` service.
 - `TOPICS_REST_CONFIG_PATH`: the path where is located the _kafka-topic_:_base-url_ configuration map
 - `PATH_PROCESSORS_PATH`: the path where is located the path processors Javascript file
 - `BODY_PROCESSORS_PATH`: the path where is located the request body processors Javascript file
+- `VALIDATOR_PROCESSORS_PATH`: the path where is located the message validator processors Javascript file 
 - `KAFKA_CLIENT_ID`: the identifier which can be employed to recognize this service within Kafka environment
 - `KAFKA_GROUP_ID`: the consumer group identifier employed by the service to read messages from Kafka
 - `KAFKA_BROKERS_LIST`: a string containing a comma (`,`) separated list of Kafka brokers addresses. At least one broker should be provided
@@ -65,6 +66,10 @@ Here is provided the JSON schema that defines the configuration for each topic
     "bodyProcessor": {
       "type": "string",
       "description": "the name of a body processor to be employed to generate the request body - selected from one of the available in bodyProcessors file"
+    },
+    "validatorProcessor": {
+      "type": "string",
+      "description": "the name of a validator processor to be employed to filter invalid message - selected from one of the available in validatorProcessor file"
     },
     "tokenIssuerUrl": {
       "type": "string",
@@ -125,7 +130,8 @@ An example of a configuration map is the following one:
       }
     },
     "pathProcessor": "computed",
-    "bodyProcessor": "payloadBased"
+    "bodyProcessor": "payloadBased",
+    "validatorProcessor": "winner"
   },
   "notification-topic": {
     "authentication": "privateKeyJwt",
@@ -152,7 +158,8 @@ An example of a configuration map is the following one:
       }
     },
     "pathProcessor": "constant",
-    "bodyProcessor": "constantBody"
+    "bodyProcessor": "constantBody",
+    "validatorProcessor": "default"
   },
   "interesting-topic": {
     "authentication": "basic",
@@ -177,7 +184,8 @@ An example of a configuration map is the following one:
       }
     },
     "pathProcessor": "coolPathProcessor",
-    "bodyProcessor": "coolBodyProcessor"
+    "bodyProcessor": "coolBodyProcessor",
+    "validatorProcessor": "winner"
   },
 }
 ```
@@ -202,7 +210,6 @@ module.exports = {
   },
   constant: (key, payload) => "commander"
 }
-
 ```
 With the following kafka message:
 ```json
@@ -262,3 +269,33 @@ or this request body, if using the function `constantBody`:
   "msg": "Ion cannon ready to rumble!"
 }
 ```
+
+## Validator Processors
+
+It is a Javascript file that exports a set of functions whose input are the `key` and `payload`
+of incoming Kafka messages. These functions must return a boolean, telling if the message could be
+sent to the service or should be removed.
+
+Below is shown an example of file
+
+```js
+'use strict'
+
+module.exports = {
+  default: (key, payload) => true,
+  winner: (key, payload) => payload.score > 250
+}
+
+```
+With the following kafka message:
+```json
+{
+  "key": "1010010001010101",
+  "payload": {
+    "code": "10000111100101100",
+    "score": 160
+  }
+}
+```
+
+the service would remove the message from the queue if using the `winner` validator.

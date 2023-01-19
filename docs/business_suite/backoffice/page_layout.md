@@ -176,10 +176,23 @@ use extensively formats.
 
 When `type` is set to `string`, the extra key `enum` is available to specify available text entries.
 
-When `type` is set to `string` or `number`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows
-customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs](https://day.js.org/)
-library and its [parsing/formatting syntax](https://day.js.org/docs/en/parse/string-format).
+When `type` is set to `string` or `number` and the format is set to one of `date`, `date-time`, `time`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs](https://day.js.org/) library and its [parsing/formatting syntax](https://day.js.org/docs/en/parse/string-format).
 If `type` is `number` the datum is expected to be a `long` epoch time, and will be converted onto the client/browser according to the timezone specified in `dateOptions.timeZone` (as a TZ database name, for instance "Europe/Rome"), or else as the client/browser timezone.
+Array of dates are also supported. In this case, the datum can be configured using the `items` key. For instance:
+```json
+"availabilities": {
+  ...
+  "type": "array",
+  "items": {
+    "type": "string",
+    "format": "date-time",
+    "dateOptions": {
+      "displayFormat": "DD-MM-YYYY HH:mm",
+    }
+  }
+  ...
+}
+```
 
 :::note
 Please note that the date fields are saved in ISO 8601 format, so it's up to the user to convert them in UTC from its local time before using them in the Appointment Manager.
@@ -194,7 +207,7 @@ Fields of format `currency` automatically display formatted numeric values accor
 For instance:
 ```json
 "amount": {
-...
+  ...
   "type": "number",
   "format": "currency",
   "formOptions": {
@@ -252,7 +265,7 @@ Visualization options concern any web component that is going to render a given 
 |`sortable`|  `boolean` | whether the property can be sorted within the header of the table component |
 |`iconMap`| `object` | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
 |`template`| `LocalizedText` | template of how to visualize the value in the cell |
-|`joinDelimiter`| `string` | delimiter to visualize multi-lookups as a single string |
+|`joinDelimiter`| `string` | delimiter to visualize array items as a single string |
 |`tag`| `string` | tag to use when embedding a custom component |
 |`properties`| `Record<string, any>` | properties for the embedded custom component |
 
@@ -261,9 +274,63 @@ Visualization options concern any web component that is going to render a given 
 | `shape` | `square`, `roundedSquare` | shape of the icon |
 | `color` | hex color | icon color |
 
-#### Notes
 
-Example of mounting a custom component in the table using the `properties` key in visualizationOptions:
+#### Example - template
+
+Example of rendering object and array cells as a string:
+```json
+"name": {
+  ...
+  "type": "object",
+  "visualizationOptions": {
+    "template": "{{name}} {{lastName}}"
+  }
+},
+"dishes": {
+  ...
+  "type": "array",
+  "visualizationOptions": {
+    "template": "{{[0]}}, {{[1]}}, ..."
+  }
+}
+```
+
+Dynamic values can be specified using handlebars. 
+
+#### Example - custom component
+
+Example of mounting a custom component in the table using `tag`, `properties` keys in visualizationOptions:
+
+```json
+"name": {
+  ...
+  "visualizationOptions": {
+    "tag": "bk-button",
+    "properties": {
+      "content": "{{args.[0]}}",
+      "clickConfig": {
+        "type": "http",
+        "actionConfig": {
+          "url": "/endpoint",
+          "body": {
+            "riderId": "{{args.[1]._id}}",
+            "data": "{{rawObject args.[1]}}"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row, while `{{args.[0]}}` the value of the cell. If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
+In the example, key "data" holds an object representation of the whole raw of the table.
+
+:::info
+In the example, `{{args.[0]}}` is equivalent to `{{args.[1].name}}`.
+:::
+
+For non-nested properties, it is possible to provide a (`template`, `configMap`) pair instead of a value. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key). For instance,
 
 ```json
 "name": {
@@ -280,31 +347,13 @@ Example of mounting a custom component in the table using the `properties` key i
         }
       },
       "clickConfig": {
-        "type": "push",
-        "actionConfig": {
-          "url": "/bo-orders-list",
-          "state": {
-            "__BK_INIT": [
-              {
-                "label": "add-new",
-                "payload": {"riderId": "{{rawObject args.[1]._id}}"}
-              }
-            ]
-          }
-        }
+        ...
       }
     }
   }
 }
 ```
-
-Dynamic values can be specified using handlebars. `args.[1]` is the object representation of the table row, while `{{args.[0]}}` the value of the cell. If the value of the field should be considered as object, the handlebars helper 'rawObject' can be specified.
-
-:::info
-In the example, `{{args.[0]}}` is equivalent to `{{args.[1].name}}`.
-:::
-
-It is also possible to provide a (template, configMap) pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key). In the example, the property `disabled` is set to true in the table rows having field `status` equal to "Removed", false otherwise.
+the property `disabled` resolves to true in the table rows having field `status` equal to "Removed", false otherwise.
 
 ### Form Options
 

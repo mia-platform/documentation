@@ -577,7 +577,10 @@ By default, GET returns a limited number of documents. You can use pagination to
 
 To paginate, use the following query parameters:
 
-- **_l**: limits the number of documents returned. Minimum value 1. Maximum value can be configured with the environment variable *CRUD_MAX_LIMIT*. If you pass such limit, the CRUD Service truncate to *CRUD_MAX_LIMIT* the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
+- **_l**: limits the number of documents returned. Minimum value 1. Maximum value can be configured with the environment variable *CRUD_MAX_LIMIT*. 
+:::warning
+If you pass such limit, the CRUD Service truncate to *CRUD_MAX_LIMIT* the result unless the environment variable named *CRUD_LIMIT_CONSTRAINT_ENABLED* is set to *false*.
+:::
 - **_sk**: skip the specified number of documents. Minimum value 0. Maximum value is `bigint`.
 
 This is an example of a request that gets *two documents per page*, and you want to ask for the *third page* (skip 4 documents).
@@ -966,6 +969,8 @@ Below you can see an example:
 curl --location --request DELETE 'url.mia-platform.eu/v2/books/1f11d444830aaz0011526361'
 ```
 
+In case the document exists, the endpoint answers with a `204 No Content`, if doesn't, it responds with a `404 Not Found`.
+
 #### Delete multiple documents
 
 To delete multiple document you have to use a `DELETE` request, filtering by query parameters the documents you want to delete.  
@@ -980,6 +985,9 @@ Below you can see an example:
 ```curl
 curl --location --request DELETE 'url.mia-platform.eu/v2/books/?category=sci-fi&_st=DRAFT'
 ```
+
+The endpoint always responds `200 OK`, with an integer number in the body representing the count of deleted documents. 
+The response is 200 also when no documents are found, in that case the count will be 0.
 
 ### RawObject and Array_RawObject with schemas
 

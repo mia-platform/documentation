@@ -22,7 +22,9 @@ The configurations file required by the *Flow Manager* is in the JSON format and
 - **persistencyManagement**: the section that contains the configurations of the [*Persistency manager*](#persistency-manager) used to get and update the saga
 - **machineDefinition**: the core section, with the [*Finite state machine* configurations](#machine-definition), used by the *Flow Manager* to drive the saga through the flow
 
-The configurations file is validated by the *Flow Manager*, pay attention to the schema rules, or the service will not be deployed.
+:::note
+The configurations file is validated by the *Flow Manager*, pay attention to the schema rules, or the service will not be deployed. All three sections above are required and must not be empty when you deploy.
+:::
 
 Following the details of each section.
 
@@ -403,11 +405,11 @@ To configure the CRUD Persitency Manager use the following properties:
 - **configurations** (required): an object containing the other configurations of the manager
   - **protocol**: the protocol to be used fo (it **must be one of** *http* or *https*, it **defaults** to *http*)  
   - **host**: the *host* of the CRUD service (it **defaults** to *crud-service*)
-  - **collectionName** (required): the collection in which the sagas will be stored
+  - **collectionName** (required): the URL path of the collection in which the sagas will be stored
   - **headers**: the *headers* to use
   - **port**: the *port* to use (it **defaults** to *80*)
 
-Furthermore, you need to create a CRUD collection named *collectionName* from the console using this <a download target="_blank" href="/docs_files_to_download/flow-manager-service/saga-collection.json">schema</a>
+Furthermore, you need to create a CRUD collection with a URL path named as *collectionName* from the console using this <a download target="_blank" href="/docs_files_to_download/flow-manager-service/saga-collection.json">schema</a>
 
 Remember to create a unique index for the collection on the `sagaId` field and to set the default state for new documents to `PUBLIC`.
 
@@ -450,7 +452,7 @@ With the following configurations:
     "protocol": "http",
     "host": "my-crud-service",
     "port": 80,
-    "collectionName": "my-collection"
+    "collectionName": "my-collection-path"
   }
 }
 ```
