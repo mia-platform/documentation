@@ -137,3 +137,13 @@ This will open a modal where the two different branches are shown; each branch w
 
   </div>
 </div>
+
+If the 'merge from another branch' operation is successful, you can choose to delete the source branch. In any case, you can choose either to continue editing or to save your configuration.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}> 
+
+![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-ok-delete-branch.png)
+
+  </div>
+</div>
