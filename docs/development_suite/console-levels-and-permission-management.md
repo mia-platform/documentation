@@ -72,7 +72,8 @@ The following table describes the capabilities and how they are mapped on the de
 | View Company Clusters information                                          | `console.company.cluster.view`                     |   ✅   |      ✅    |   ✅     |      ✅      | ✅ | ✅ |
 | Create a new Company                                                       | `console.root.company.create`                     |        |           |          |              |   |    |
 | Delete any Company                                                         | `console.root.company.delete`                     |        |           |          |              |   |    |
-| View all Companies                                                         | `console.root.view`                               |        |           |          |              |   |    |
+| View all Console resources                                                         | `console.root.view`                               |        |           |          |              |   |    |
+| Manage user roles, groups and bindings                                     | `console.root.user.bind`                          |        |           |          |              |   |    |
 
 
 User roles are manageable from CMS by the **Console administrators**, as they are the only one having access to the Console CMS and thus being able to manage the entire Console, including companies, projects, Marketplace.
