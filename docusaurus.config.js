@@ -55,12 +55,6 @@ const config = {
             },
             {
               type: 'doc',
-              docId: "marketplace/overview_marketplace",
-              label: "Marketplace",
-              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started)"
-            },
-            {
-              type: 'doc',
               docId: "fast_data/what_is_fast_data",
               label: "Fast Data",
               activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
@@ -73,34 +67,23 @@ const config = {
             },
             {
               type: 'doc',
-              docId: "dev_portal/overview",
-              label: "Dev Portal",
-              activeBaseRegex: "(docs|docs/\\d.x)/dev_portal"
-            },
-            {
-              type: 'doc',
-              docId: "libraries/overview_service_libraries",
-              label: "Libraries"
-            },
-            {
-              type: 'doc',
-              docId: "tools/overview_service_tools",
-              label: "Tools",
-              activeBaseRegex: "(docs|docs/\\d.x)/(tools|runtime_suite_tools)"
-            },
+              docId: "marketplace/overview_marketplace",
+              label: "Marketplace",
+              activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
+            }
           ]
         },
         {
-          type: 'doc',
-          docId: "paas/overview",
-          label: "PaaS",
+          label: "Infrastructure",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(monitoring|paas)"
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
+          type: "doc",
+          docId: "paas/overview"
         },
         {
           type: 'doc',
           docId: "release-notes/versions",
-          label: "Release notes",
+          label: "Release Notes",
           position: "left",
           activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
         },
@@ -108,6 +91,11 @@ const config = {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
           position: "left",
           label: "Support"
+        },
+        {
+          href: "https://github.com/mia-platform/community/discussions",
+          position: "left",
+          label: "Community"
         },
         {
           type: "docsVersionDropdown",
