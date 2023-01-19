@@ -204,23 +204,6 @@ Follow the [documentation](https://docs.cloud.oracle.com/en-us/iaas/Content/Obje
 
 For this configuration, should be add `GOOGLE_APPLICATION_CREDENTIALS` env variable and the credential file. To obtain the configuration file, follow [this guide](https://cloud.google.com/docs/authentication/getting-started#auth-cloud-implicit-nodejs).
 
-This file looks like
-
-```json
-{
-  "type": "service_account",
-  "project_id": "my-project",
-  "private_key_id": "MY PRIVATE KEY ID",
-  "private_key": "MY PRIVATE KEY",
-  "client_email": "storage@my-project.iam.gserviceaccount.com",
-  "client_id": "my-client-id",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/storage%40my-project.iam.gserviceaccount.com"
-}
-```
-
 Once obtained this file, you should not commit `private_key_id` and `private_key`.
 The `private-key` is a certificate with newline code (<code>\n</code>). In order to interpolate with in deploy stage of gitlab ci, it should be saved replacing <code>\n</code> with <code>\\\n</code>.
 

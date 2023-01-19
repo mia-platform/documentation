@@ -55,22 +55,6 @@ In order to configure the encryption using the Google KMS, you need the
 [KMS service account json configuration](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) 
 and the [KMS endpoint](https://cloud.google.com/kms/docs/reference/rest#rest-resource:-v1.projects.locations.keyrings.cryptokeys).  
 
-Here is an example of the KMS service account json configuration content:
-```json
-{
-  "type": "service_account",
-  "project_id": "",
-  "private_key_id": "",
-  "private_key": "",
-  "client_email": "",
-  "client_id": "",
-  "auth_uri": "",
-  "token_uri": "",
-  "auth_provider_x509_cert_url": "",
-  "client_x509_cert_url": ""
-}
-```
-
 And here is an example of the KMS endpoint:
 `projects/{project_id}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{keyName}`
 
