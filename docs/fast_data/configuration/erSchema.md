@@ -14,6 +14,10 @@ If you want to try the Fast Data Low Code with a simple example, here's a step b
 
 The ER Schema or Entity-Relation Schema defines the relationships between the collections of a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
 
+:::caution
+Don't forget to [declare your relationships both ways](#direction-of-the-relationships)! 
+:::
+
 ## Syntax
 
 The ER Schema is made of the following fields:
@@ -122,6 +126,48 @@ Conditions can also use MongoDB [Query and Projection Operators](https://www.mon
       }
     }
   }
+}
+```
+
+## Direction of the relationships
+
+Normally when we write an ER Schema we think about declaring a condition in only one direction but this is not enough.
+
+The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/common.md#aggregation). As you know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
+
+Example:
+
+```json title="erSchema.json"
+{
+  // Direction explored by the aggregation
+  "pr_registry": {
+    "outgoing": {
+      "pr_orders": {
+        "conditions": {
+          "reg_to_order": {
+            "condition": {
+              "ID_USER_ORDER": "ID_USER"
+            },
+            "oneToMany": true
+          }
+        }
+      },
+    }
+  },
+  // Direction explored by the strategy
+  "pr_orders": {
+    "outgoing": {
+      "pr_registry": {
+        "conditions": {
+          "order_to_reg": {
+            "condition": {
+              "ID_USER": "ID_USER_ORDER"
+            }
+          }
+        }
+      }
+    }
+  },
 }
 ```
 
