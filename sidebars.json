@@ -492,39 +492,39 @@
         },
         {
           "type": "category",
-          "label": "Components",
+          "label": "components",
           "items": [
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/adapters"
+              "id": "business_suite/backoffice/components/adapters"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/buttons"
+              "id": "business_suite/backoffice/components/buttons"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/clients"
+              "id": "business_suite/backoffice/components/clients"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/data_manipulation"
+              "id": "business_suite/backoffice/components/data_manipulation"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/data_querying"
+              "id": "business_suite/backoffice/components/data_querying"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/data_visualization"
+              "id": "business_suite/backoffice/components/data_visualization"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/misc"
+              "id": "business_suite/backoffice/components/misc"
             },
             {
               "type": "doc",
-              "id": "business_suite/backoffice/Components/typography"
+              "id": "business_suite/backoffice/components/typography"
             }
           ]
         }
@@ -1364,11 +1364,11 @@
             },
             {
               "type": "category",
-              "label": "Components",
+              "label": "components",
               "items": [
                 {
                   "type": "doc",
-                  "id": "runtime_suite/care-kit/Components/am-calendar"
+                  "id": "runtime_suite/care-kit/components/am-calendar"
                 }
               ]
             }
@@ -1939,6 +1939,10 @@
             },
             {
               "type": "doc",
+              "id": "runtime_suite/payment-gateway-manager/flow_manager_integration"
+            },
+            {
+              "type": "doc",
               "id": "runtime_suite/payment-gateway-manager/changelog"
             }
           ],
@@ -1968,6 +1972,29 @@
           "link": {
             "type": "doc",
             "id": "runtime_suite/pdf-service/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Pharma E-Commerce Backend",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/pharma-e-commerce-backend/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/pharma-e-commerce-backend/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/pharma-e-commerce-backend/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/pharma-e-commerce-backend/overview"
           }
         },
         {
@@ -2215,6 +2242,29 @@
           "link": {
             "type": "doc",
             "id": "runtime_suite/temporary-password-generator/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Therapy and Monitoring Manager",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/therapy-and-monitoring-manager/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/therapy-and-monitoring-manager/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/therapy-and-monitoring-manager/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/therapy-and-monitoring-manager/overview"
           }
         },
         {

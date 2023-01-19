@@ -9,4 +9,4 @@ This components are designed to be used inside a [Backoffice](../../business_sui
 
 The component contained in the service are:
 
-- [am-calendar](Components/am-calendar.md)
+- [am-calendar](components/am-calendar.md)

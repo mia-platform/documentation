@@ -100,10 +100,15 @@ The Teleconsultation Service Backend accepts the following environment variables
 - **AUTH_SERVICE**: name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)).
 - **DEFAULT_CLIENT_TYPE**: name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.
 - **UNLIMITED_TELECONSULTATION**: if true the teleconsultation duration is infinite. 
+- **LIVE_TELECONSULTATION**: if true the teleconsultation ends when a participant leaves the call and the number of the remaining partipants are less than two. If no variable is given, true is used as a default.
 - **IMMUTABLE_PERIOD_MS**: the duration of the period (in milliseconds) immediately before the teleconsultation `start_date` during which, if all the participants are known, the service will refuse modification requests for the teleconsultation instance. If no variable is given, 0 is used as a default.
 
 :::note
 When retrieving the teleconsultation link, via `GET /teleconsultation/:teleconsultationId`, the actual link is returned only if the service is not accepting any further modification to the room. In this case, the teleconsultation is either inside the `IMMUTABLE_PERIOD_MS` time frame, or its `start_date` has been passed.
+:::
+
+:::warning
+If `LIVE_TELECONSULTATION` is set to false, the period of time during which a participant is left alone in the call (when all the other participants left) is considered in the teleconsultation provider pricing.
 :::
 
 ### Teleconsultation Service Configuration

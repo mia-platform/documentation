@@ -49,8 +49,10 @@ The `POST` route must receive a body containing a JSON object with the following
 | Name | Required | Description |
 | ------ | ------ | ------ |
 | formSchemaId | `true` | The ID of the form schema related to the provided form data |
-| formAssignmentId | `true` | The ID of the form assignment |
+| formAssignmentId | `false` | The ID of the form assignment |
 | data | `true` | Content of the form data |
+| isValid | `true` | It indicates if the form is stable |
+| hasDraft | `true` | It indicates if the form has a draft |
 
 #### Example
 
@@ -94,9 +96,11 @@ The `PATCH` route must receive a body containing a JSON object with the followin
 
 | Name | Required | Description |
 | ------ | ------ | ------ |
-| formSchemaId | `true` | The ID of the form schema related to the provided form data |
-| formAssignmentId | `true` | The ID of the form assignment |
-| data | `true` | Content of the form data |
+| formSchemaId | `false` | The ID of the form schema related to the provided form data |
+| formAssignmentId | `false` | The ID of the form assignment |
+| data | `false` | Content of the form data |
+| isValid | `false` | It indicates if the form is stable |
+| hasDraft | `false` | It indicates if the form has a draft |
 
 All these properties are included into a parent object with the `$set` key.
 
@@ -121,9 +125,9 @@ If the update procedure is successful, the response body must be a JSON object w
 
 | Name | Required | Description |
 | ------ | ------ | ------ |
-| formDataId | `true` | The ID of the updated form data |
+| _id | `true` | The ID of the updated form data |
 | formSchemaId | `true` | The ID of the form schema related to the provided form data |
-| formAssignmentId | `true` | The ID of the form assignment |
+| formAssignmentId | `false` | The ID of the form assignment |
 | data | `true` | Content of the form data |
 | isValid | `true` | It indicates if the form is stable |
 | hasDraft | `true` | It indicates if the form has a draft |
@@ -146,6 +150,6 @@ If the update procedure is successful, the response body must be a JSON object w
 ```
 
 ## DELETE route
-The `DELETE /{id}` route removes a form saved data from the FHIR API Server. It is required to allow to rollback in case of failure during the insertion in the `formSchemaMapCrud` collection.
+The `DELETE /{id}` route removes a form saved data from the form storage. It is required to allow to rollback in case of failure during the insertion in the `formSchemaMapCrud` collection.
 
 The `DELETE` route does not have a request body. The only passed parameter is the `ID` of the form data represented by the query parameter `{id}`. There is no schema for the response body since we only provide a `204 No Content`.

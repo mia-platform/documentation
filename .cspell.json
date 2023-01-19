@@ -155,6 +155,9 @@
       "mTLS",
       "Linkerd",
       "RESUE",
+      "pharma",
+      "ecommerce",
+      "signup",
       "oauthbearer"
   ],
   "ignoreWords": [
@@ -230,7 +233,10 @@
     "statefulsets",
     "ingressroutetcps",
     "containo",
-    "kafkajs"
+    "kafkajs",
+    "cryptd",
+    "pharmaPrime",
+    "Repubblica"
   ],
   "dictionaries": [
     "softwareTerms",

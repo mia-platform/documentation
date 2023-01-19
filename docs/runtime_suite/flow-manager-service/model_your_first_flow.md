@@ -3,9 +3,11 @@ id: model_your_first_flow
 title: Model your First Flow
 sidebar_label: Model your first flow
 ---
-This guide will follow step by step the complete procedure of creating and configuring a microservice leveraging the Flow Manager plugin. 
+This guide will follow step by step the complete procedure of creating and configuring a microservice leveraging the Flow Manager plugin.
 
 In particular, we will deepen into the already familiar **order creation scenario**. 
+
+Please note that you have to complete all the configurations explained next before you can deploy your automated flow.
 
 ## Configure a Flow Manager Plugin
 
@@ -569,7 +571,7 @@ You should now be able to see the channels we just set:
 
 ### Add Persistency to your Flow
 
-To store permanently the modification applied to a certain flow, or to retrieve an existing one, we can set a persistency manager configuration inside the `persistencyManagement` field.
+To store permanently the modification applied to a certain flow, or to retrieve an existing one, we must set a persistency manager configuration inside the `persistencyManagement` field.
 
 You can have further details regarding the persistency management in the [configuration section](./configuration#persistency-manager)
 

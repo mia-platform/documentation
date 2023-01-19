@@ -8,7 +8,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] 2023-01-18
+
+### BREAKING CHANGES
+
+#### CRUD collections
+
+The `message_templates` CRUD collection schema has changed as follows:
+- `emailAttachments` (**changed**): update type from `array of string` to `array of object`
+
+### Changed
+
+- Support template attachments: now con be sent a communication with both a message and template attachments
+
 ## [1.1.0] 2022-11-25
+
+### Added
 
 - Logs added to channels and crud
 - Added voice channel to messaging service, exploiting Kaleyra outbound calls service

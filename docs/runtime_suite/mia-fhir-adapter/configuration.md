@@ -81,7 +81,7 @@ It is composed by the following fields:
   Please note that the user that configures the translation must know the JSON schemas for the resources defined in the FHIR standard.
   :::
 * **refPropName**: it is the property where the reference to the child resource is contained. In the running example, it can be seen that the information about the `Patient` is contained in the nested field `subject.reference`.
-* **toSave**: it is a boolean and it represents if the child resource must be saved in the FHIR Server. In the running example, the `Patient` information must be saved in the an resource in the FHIR Server, so the value is `true`.
+* **toSave**: it is a boolean and it represents if the child resource must be saved in the FHIR Server. In the running example, the `Patient` information must be saved in the FHIR Server, so the value is `true`.
 
   On the opposite, there may be cases in which the child resource information is included in the input custom JSON but they do not need to be saved. An example is the case in which that child resource, i.e. `Patient` in the example, already exists. In such a case the value should be `false` and a further field called `entityId` must be specified in the configuration.
 * **entityId**: it is the property name in the input payload that represents the identifier of the child resource. As said in the previous point, you can decide to not save a child resource if it has been already inserted. However, it is necessary to include a property in the input payload with the identifier of the child resource, to allow the FHIR Adapter to add the reference to the already existing resource.

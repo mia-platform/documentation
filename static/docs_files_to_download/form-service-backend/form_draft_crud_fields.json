@@ -1,7 +1,7 @@
 [
     {
         "name": "data",
-        "type": "object",
+        "type": "RawObject",
         "required": true,
         "nullable": false,
         "description": "the data saved on the draft"

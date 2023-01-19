@@ -276,9 +276,9 @@ type HrefAction = {
 }
 ```
 
-Actions of type `href` execute a [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) or a [window.location.replace](https://developer.mozilla.org/en-US/docs/Web/API/Location/replace) call (depending on the value of `_target`), that allows navigation to the specified url.
+Actions of type `href` execute a [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) or a [window.location.replace](https://developer.mozilla.org/en-US/docs/Web/API/Location/replace) call (depending on the value of `target`), that allows navigation to the specified url.
 
-In case `config.target` is not self, `onFinish` hook is available.
+In case `config.target` is not "_self", `onFinish` hook is available.
 
 ### Navigation - go back
 
@@ -306,10 +306,8 @@ type CopyAction = {
   config: {
     /* whether or not event should stop propagating. Defaults to true */
     stopPropagation?: boolean
-    
     /* data source to extract text to copy */
     path: XPath
-    
     /* "triggeredBy" field to add to eventBusCancel/eventBusSuccess/eventBusError event meta and for reference to the data forwarded into context */
     triggeredBy?: string
   },
@@ -475,7 +473,7 @@ the above action is equivalent to:
 `$default` key in `configMap` can be specified, and is used if no other `configMap` key matches `template`.
 
 ### Example 3
-It is possible to avoid to stringify when of a dynamic value within a configuration using the custom helper `rawObject`.
+It is possible to avoid to stringify dynamic values within a configuration using the custom helper `rawObject`.
 ```json
 {
   "iconId": "fas fa-users",
@@ -571,7 +569,7 @@ is thus executed after the GET call, navigating to the url `/some/path`.
 
 ### Example 2 - result data is forwarded
 
-Actions may forward extra data in some of their hooks.
+Actions may forward extra data into some of their hooks.
 
 For instance, the following is a valid configuration:
 ```json
@@ -644,10 +642,10 @@ the `onSuccess` action
   ...
 }
 ```
-is executed, with the response of the previous call being provided as additional input, through the key `data_1`.
+is executed, with access to the response of the previous call, through the key `data_1`.
 This results in a second GET call, this time to the endpoint `/url-2/foo`. The dynamic url value `/url-2/{{data_1.field}}` can be correctly resolved using the response of the previous call.
 
-- Assuming the REST call succeeds, and the returned response to be:
+- Assuming the call succeeds, and the returned response to be:
 ```json
 {
   "otherField": "bar"
@@ -679,9 +677,7 @@ is executed, resulting in an event being emitted, with label `add-new` and paylo
 ```
 which can be resolved as the responses from both previous calls are available, through keys `data_1` and `data_2` respectively.
 
-Notice how the third chained action still provides access to the return value from the first action: each action always forwards all its context to its hooks (possibly adding additional data to it).
-
-If we keep assuming the same return values for each GET call, and the first action to be called with input:
+Notice how the third chained action still provides access to the return value from the first action: each action always forwards all its context to its hooks (possibly adding additional data to it).Assuming the same return values for each GET call as previously, and assuming the first action to have context context:
 ```json
 {
   "name": "joe",
@@ -691,7 +687,7 @@ If we keep assuming the same return values for each GET call, and the first acti
 }
 ```
 
-then the second action is executed with input:
+then the second action is executed with context:
 ```json
 {
   "name": "joe",

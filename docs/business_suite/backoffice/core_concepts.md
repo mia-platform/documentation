@@ -110,30 +110,21 @@ the field `filtersOptions`. The key `availableOperators` is an array of string w
 Operators can be selected from the following list:
 
 ```typescript
-type FilterFormOperator = |
+type FilterOperator = |
   'equal' |
-  'doesNotEqual' |
   'exists' |
-  'contains' |
-  'startsWith' |
-  'endsWith' |
-  'between' |
-  'before' |
-  'beforeOrEqual' |
-  'on' |
-  'notOn' |
-  'after' |
-  'afterOrEqual' |
-  'is' |
-  'isNot' |
+  'notEqual' |
   'greater' |
-  'greaterOrEqual' |
+  'greaterEqual' |
   'less' |
-  'lessOrEqual' |
-  'includesAll' |
-  'includesSome' |
-  'includesExactly' |
-  'doesNotInclude' |
+  'lessEqual' |
+  'regex' |
+  'includeSome' |
+  'includeAll' |
+  'includeExactly' |
+  'notIncludeAny' |
+  'between' |
+  'notBetween' |
   'hasLengthEqual' |
   'hasLengthGreaterEqual' |
   'hasLengthLessEqual'

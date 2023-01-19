@@ -205,7 +205,7 @@ This component allows to delete one or more items at the same time.
 4. If the button is clicked, emits a `require-confirm` event to open a dialog to ask for confirmation.
 5. If the action is confirmed, it emits a `delete-data` event to delete all the selected items.
 
-:::warn
+:::warning
 Items in 'PUBLIC' or 'DRAFT' \_\_STATE\_\_, change the state to 'TRASH' while items in 'TRASH' \_\_STATE\_\_ change the state to 'DELETED'.
 :::
 
@@ -223,7 +223,7 @@ Add the component's configuration wherever you want to display it.
   ...
 ```
 
-:::warn
+:::warning
 Remember to add the `bk-confirmation-modal` component to the configuration otherwise the `bk-bulk-delete` won't work properly
 ```json
   ...

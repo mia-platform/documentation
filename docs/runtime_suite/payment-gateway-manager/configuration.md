@@ -15,6 +15,9 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **PAYMENT_CALLBACK_URL** (required): URL used to notify other services about a payment transaction result
 * **PGM_PUBLIC_URL** (required for satispay, scalapay and soisy): URL where this service is exposed 
 (e.g. `http://my-domain/payment-gateway-manager`)
+* **PAYMENT_METHODS**: comma separated list of payment methods returned by `/payment-methods` API
+* **FLOW_MANAGER_URL**: url of the Flow Manager service. If set, Flow Manager related features are enabled
+* **SAGA_CRUD_URL** (required if FLOW_MANAGER_URL is set): url of the saga CRUD collection
 
 ## GestPay (Axerve) Specific Environment Variables
 

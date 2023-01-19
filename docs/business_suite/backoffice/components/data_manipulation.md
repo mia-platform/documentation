@@ -185,6 +185,7 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
 |`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
+| `header`| - | Pick<CardSchema, 'header'>| - | card header |
 
 ### Listens to
 

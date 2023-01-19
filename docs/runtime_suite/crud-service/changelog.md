@@ -8,18 +8,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.2.0 - 2023-01-13
+
+### Changed
+
+- Dockerfile: remove `crud-service-base-image` and merge its configuration into crud-service image definition
+- upgrade NodeJS to `v18`
+- upgrade `mongodb-enterprise-cryptd` to `v5.0.14`
+- upgrade `libmongocrypt` to `v1.6.2-0`
+
+## 6.1.4 - 2023-01-10
+
+### Changed
+
+- Removal of references to Mia s.r.l. internal documents, minor updates on the code for readability
+- JSON definitions of MongoDB Views does not require the property `type` anymore (it will be automatically added with the `view` value)
+
 ## 6.1.3 - 2022-12-02
 
 ### Fix
+
 - `ALLOW_DISK_USE_IN_QUERIES` supports `/count` operations
 
 ## 6.1.2 - 2022-11-24
 
 ### Fix
 
+### Changed
+
 - Fields stored as string are casted to number if requested by schema 
 
 ## 6.1.1 - 2022-11-22
+
+### Changed
 
 - - support for `$dateToString` project operator in `_rawp` query param.
 

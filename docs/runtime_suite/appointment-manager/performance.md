@@ -94,10 +94,13 @@ For the third test suite, we scaled up and down the microservice CPU requests an
 |   5   | 10        | 680         | 4760         | 21080         | 2                   | 1431                       | 3700        | 200          | 400        | 50              | 150           | CPU throttling, <1% failures |
 |   5   | 10        | 680         | 4760         | 21080         | 1                   | 1635                       | 3600        | 150          | 300        | 50              | 150           | Pod restart, CPU throttling, 1% failures |
 
-## Recommended configurations
+## Minimum and recommended configurations
 
-| Number of users     | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
-|:-------------------:|:------------:|:----------:|:---------------:|:-------------:|
-| Less than 5         | 250          | 500        | 50              | 100           |
-| 5-15 users          | 500          | 1000       | 100             | 150           |
-| 20+ users           | 1000         | 1500       | 100             | 150           |
+The following table provides some recommendations, based on the results of the load tests. We suggest you start with the best matching configuration, according to the number of expected simultaneous users. The *single user* configuration represents the minimum requirements, according to our internal tests. You can easily start from any of the following configurations and then fine tune it according to your specific needs.
+
+| Number of concurrent users | CPU Requests | CPU Limits | Memory Requests | Memory Limits |
+|:--------------------------:|:------------:|:----------:|:---------------:|:-------------:|
+| Single user                | 50           | 100        | 50              | 100           |
+| 2-5 users                  | 250          | 500        | 50              | 100           |
+| 5-15 users                 | 500          | 1000       | 100             | 150           |
+| 20+ users                  | 1000         | 1500       | 100             | 150           |
