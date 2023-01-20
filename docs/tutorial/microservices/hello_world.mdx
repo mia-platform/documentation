@@ -68,7 +68,7 @@ Until now we have created a microservice, but how is it working?
 
 The whole service configuration is now shown on the right side of the screen. There you can find all the details, like the used docker image, the resources assigned to the service, the ports exposed by the container, configurations for kubernetes probes, environment variables, etc. In order to know all the details of the various fields you can read the section about [Microservice Configuration](/development_suite/api-console/api-design/services.md#manage-microservices).
 
-Mia-Platform Console has created a git repository on the git provovider linked to the project. In order to access to the microservice code, you can simply click on the "View Repository" link in the top-right corner of your service.
+Mia-Platform Console has created a git repository on the git provider linked to the project. In order to access to the microservice code, you can simply click on the "View Repository" link in the top-right corner of your service.
 
 Moreover, the Console has linked a build pipeline to the service. You can check it on the pipeline manager linked to your project. Build pipeline are usually triggered on pushes to master branch, so the one building the image of the service we have just created should be running at this point.
 
@@ -78,7 +78,7 @@ If you are using Mia-Platform Console in PaaS, you can check the execution of yo
 
 ## Create a gateway microservice
 
-At this point the service we have created is only reachable inside the project, which is cleary not so useful. So we want to expose the route externally, but to do so we first need to create a **gateway service**, so let's create it!
+At this point the service we have created is only reachable inside the project, which is clearly not so useful. So we want to expose the route externally, but to do so we first need to create a **gateway service**, so let's create it!
 
 In order to add your API Gateway service:
 
