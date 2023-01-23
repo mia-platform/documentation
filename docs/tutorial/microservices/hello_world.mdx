@@ -59,11 +59,14 @@ In order to create the microservice:
 
 Congratulations, you have created your first Microservice! 🎉
 
+![Create microservice](img/create-nodejs-hello-world-service.png)
+
 :::tip
 To find more about this microservice, in the Console, click on the book icon next to its name or [here](https://github.com/mia-platform-marketplace/Node.js-Hello-World-Microservice-Example).
 :::
 
 ## Check the microservice configuration and code
+
 Until now we have created a microservice, but how is it working?
 
 The whole service configuration is now shown on the right side of the screen. There you can find all the details, like the used docker image, the resources assigned to the service, the ports exposed by the container, configurations for kubernetes probes, environment variables, etc. In order to know all the details of the various fields you can read the section about [Microservice Configuration](/development_suite/api-console/api-design/services.md#manage-microservices).
@@ -91,6 +94,8 @@ In order to add your API Gateway service:
 1. Click on the _Create_ button applying the default fields values.
 1. Save the changes to make them persistent.
 
+![Create API gateway](img/create-API-gateway.png)
+
 :::tip
 You can select your preferred API Gateway for your projects. We are using the nginx-based "API Gateway" only for demonstration purposes.
 :::
@@ -113,6 +118,8 @@ In order to do so:
 1. In the generated configuration, check that the "Rewrite Base Path" is set to `/`;
 1. Save the changes to make them persistent.
 
+![Create endpoint](img/create-endpoint.png)
+
 By doing this, we have configured the API Gateway so that all the incoming requests having `/greetings` as prefix in the path, are forwarded to the "hello-world-service" without the previously mentioned prefix (e.g. `/greetings/hello` will be received as `/hello` by the service).
 
 We have completed the design of our first project! Now the last step is to deploy it and test the developed functionality.
@@ -127,7 +134,6 @@ To sum up, the services we are going to deploy are:
 - The API gateway with the endpoint configurations.
 
 We can now deploy the project! If you do not know how to do it, take a quick look at [Mia-Platform handbook](/tutorial/console/console_handbook.md#deploy-changes) first.
-
 
 A pipeline will be triggered by the Console to start the deploy of your project.
 
