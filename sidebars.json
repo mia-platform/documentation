@@ -773,6 +773,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/api_portal/api_portal_tutorial",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/rest_api/quick_rest_api",
           "type": "doc"
         },
