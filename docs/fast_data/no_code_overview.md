@@ -4,6 +4,10 @@ title: Fast Data Low Code Overview
 sidebar_label: Fast Data Low Code Overview
 ---
 
+:::tip
+If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx)
+:::
+
 The "Low Code" version of Fast Data is the new standard that leverages the power of configurations to overcome coding complexity in Fast Data setup.
 This experience is based on two main fundamentals: No Code Fast Data and Low Code Fast Data
 
