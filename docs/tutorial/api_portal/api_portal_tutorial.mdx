@@ -6,18 +6,17 @@ sidebar_label: API portal documentation
 
 import VideoBox from "./../../../src/components/VideoBox";
 
-In this tutorial, we will learn how to use the [_API Portal_](/runtime_suite/api-portal/overview.md), a user-friendly interface that allows developers to easily visualize and test their microservices endpoints. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/) Specification, which is a standard format for describing RESTful APIs.
+In this tutorial, we will learn how to create and use the [_API Portal_](/runtime_suite/api-portal/overview.md), a user-friendly interface that allows developers to easily visualize and test their microservices endpoints. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/) Specification. We will also use [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md), a plugin that merges multiple Open Api specification documents in one place, allowing you to add documentation of new microservices without additional work.
 
 ## What we will build
 
-We will continue the previous tutorial adding inside the project the _API Portal_ [plugin](/runtime_suite/mia-platform-plugins.md), from the [_Marketplace_](/marketplace/overview_marketplace.md). Also we will understand how to view the documentation testing the endpoints.
-At least we will add the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md) to join multiple Open Api specification documents in a single place. Amazing, it isn't?
+We will continue the [previous tutorial](/tutorial/microservices/hello_world.mdx) adding inside the project the _API Portal_ and _Swagger Aggregator_ [plugins](/runtime_suite/mia-platform-plugins.md), from the [_Marketplace_](/marketplace/overview_marketplace.md). Also we will understand how to view the documentation testing the endpoints.
 
 In particular, we will:
 
-- Create the _API Portal_ plugin;
-- Create the _Swagger Aggregator_ plugin;
-- Configure the endpoint to be called by the _API Portal_;
+- Set up the _API Portal_ plugin;
+- Set up the _Swagger Aggregator_ plugin;
+- Configure the services and endpoints to be displayed in the _API Portal_;
 - Open the interface and test the endpoints;
 
 ## Prerequisites
@@ -43,13 +42,13 @@ Moreover, you need at least:
 - `developer` role on the project you want to use to reproduce the steps;
 - `maintainer` role on the environment of the project you want to deploy on.
 
-## Install required plugins
+## Install plugins
 
 In order to start the tutorial, you must be in the _design_ section of the project in the [Microservices section](/development_suite/api-console/api-design/services.md) from the left side menu.
 
 ### API Portal
 
-To create the plugin:
+The first plugin we are going to create is _API portal_, the steps to create it are:
 
 1. Click on the _Create a Microservice_ button;
 1. In the dropdown menu, select _From Marketplace_ option;
@@ -63,11 +62,11 @@ To create the plugin:
 
 ### Swagger Aggregator
 
-In the case multiple microservices are running in the same project, that is the most of the cases, it could be usefull to access to all their documentation in one single place. For that we need the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md) plugin!
+In case you have a project with multiple microservices, which is the most common case, it is very useful to have the ability to access their documentation from a single place. To do this, the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md) was designed, whose goal is to go and retrieve all the OpenAPI specification from each service and merge it into a single one, so that it can be shown in its entirety in the API Portal without the developer having to worry about anything else.
 
-Its main purpose is to retrieve all the OpenAPI specifications of each selected service and merge them together so that they can be served in one place via the API portal.
+Used in conjunction with the Mia-Platform Console, it allows you to quickly and easily choose via a checkbox which endpoints to expose and with what degree of security, without requiring additional effort, as you will see later in the tutorial.
 
-In order to create the plugin:
+In order to create this plugin:
 
 1. Click on the _Create a Microservice_ button;
 1. In the dropdown menu, select _From Marketplace_ option;
@@ -81,7 +80,7 @@ In order to create the plugin:
 
 ### Configure plugins endpoints
 
-The last step needed to configure the plugins is to create the necessary endpoints that are required by the console to make the whole process work. This consists of going to the _endpoints_ section and creating:
+The last step needed to configure the plugins is to create the necessary endpoints that are required to make the whole process work. This consists of going to the _endpoints_ section and creating:
 
 1. `/documentations/api-portal` pointing to "api-portal" microservice;
 1. `/documentations/api-portal/api` pointing to "swagger-aggregator" microservice.
@@ -92,7 +91,7 @@ If you still don't know how to create an endpoint look at the [first tutorial](/
 
 ## Configure the services to be documented
 
-Before testing the API Portal we need to configure the services and endpoints to give the API portal the acknowledge of the services whose documentation we want.
+Before testing the API Portal, we need to configure the services and endpoints to give the API portal the acknowledge of the services whose documentation we want.
 
 ### Configure the service
 
@@ -111,7 +110,7 @@ Be sure to remove this path from `api-gateway`, `api-portal` and `swagger-aggreg
 
 ### Configure the endpoint
 
-To configure the endpoint:
+To configure the endpoints:
 
 1. Click on the _Endpoints_ section;
 1. Select the endpoint to configure, in this case _/greetings_;
@@ -124,16 +123,14 @@ To configure the endpoint:
 Be sure to remove those flags from `/documentations/api-portal` and `/documentations/api-portal/api` endpoints!
 :::
 
-Repeat this operations for each service and endpoint you want to show in the API Portal.
+Repeat this operations for each service and endpoint you want to show in the API Portal and magically they will be added!
 
 ## Open the interface and test the endpoint
 
-The last step is to open the API portal interface. Firstly, go to the _environments_ section, open the Environment's menu item and select "Go to Documentation" of the wanted environment, as shown in the image below:
+The last step is to open the API portal interface. Firstly, go to the [_environments_](/development_suite/set-up-infrastructure/runtime-environments.md) section, open the Environment's menu item and select "Go to Documentation" of the wanted environment, as shown in the image below:
 
 ![Open docs](img/open_docs.png)
 
 After clicking the link, this interface will be displayed. Here you will find and search for each endpoint exposed by API Portal, you can also try the endpoint as you can see in the following example:
 
 ![API Portal](img/try_now_api_portal.png)
-
-In conclusion, using the API Portal can greatly improve the development and documentation process for your APIs. It enables a smooth and efficient workflow for your development team and facilitate communication with external developers who may be using your APIs. Overall, it is a valuable step in ensuring the success and maintainability of your API projects.
