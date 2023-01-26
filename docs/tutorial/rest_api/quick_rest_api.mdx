@@ -13,20 +13,18 @@ In this tutorial we will see how to use **Mia-Platform Console** to **set up and
 
 ## What We’ll Build
 
-In this tutorial we will create a CRUD collection and expose it through REST API. More specifically, we will:
+In this guide, we will create a CRUD collection representing books and expose it via REST API. More specifically, we will:
 
-<!-- SCRIVI CHE FAI LIBRERIA -->
-
-- Set up a Crud Service;
-- Create a CURD collection;
+- Set up a _Crud Service_;
+- Create the books _CURD collection_;
 - Add fields to the collection;
 - Expose the CRUD via REST API;
-- Test the API through API Portal.
+- Test the API through _API Portal_.
 
 ## Prerequisites
 
 :::info
-If you have already done the [previous tutorial](/tutorial/microservices/hello_world.mdx), you can skip this section.
+If you have already done the [previous tutorial](/tutorial/api_portal/api_portal_tutorial.mdx), you can skip this section.
 :::
 
 Before starting, we will assume that, you already have a clean project in Mia-Platform Console. In order to know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
@@ -34,9 +32,9 @@ Before starting, we will assume that, you already have a clean project in Mia-Pl
 The project must:
 
 - Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
-- Have an [ingress route](/paas/traefik.md) with "api-gateway" as `service`.
-- Be aware of your project domains. If the project links has been configured, you can find them in the "Environments" section of the "Project Settings", under the "Application" column.
-- Have a properly configured API Portal. If not, please follow the [previous tutorial](/tutorial/microservices/hello_world.mdx)
+- Have an [ingress route](/paas/traefik.md) with "api-gateway" as `service`;
+- Be aware of your project domains. If the project links has been configured, you can find them in the "Environments" section of the "Project Settings", under the "Application" column;
+- Have a properly configured API portal.
 
 Better to have:
 
@@ -56,7 +54,7 @@ The steps are:
 1. On the right side, you will see a catalogue of plugin, templates and examples;
 1. Type **Crud Service** in the search bar;
 1. Select the card from the list of result;
-1. Click on the _Create_ button applying the default fields.
+1. Click on the _Create_ button applying the default fields;
 1. Save the changes by committing.
 
 ## Create a new CRUD collection
@@ -82,7 +80,7 @@ Remember that **two CRUDs collections or two identical endpoints (with the same 
 
 ## CRUD data schema
 
-Once you have created a collection it is time to handle the schema. As you will notice the Mia-Platform Console already creates some **default fields that can not be changed** because they are necessary for the proper functioning of the CRUD collection:
+Once you have created a collection it is time to alter the schema. As you will notice the Mia-Platform Console already creates some **default fields that can not be changed** because they are necessary for the proper functioning of the CRUD collection:
 
 <!-- ![Default MongoDB CRUD](img/MongoDB-Collection-default.png) -->
 
@@ -131,18 +129,18 @@ For this example we will create the following fields:
 | published     | Boolean | Yes      | false    | No                     | the book it's published?       |
 | salesForecast | Number  | No       | false    | No                     | expected number of copies sold |
 
-After adding this fields, you can read the properties in the CRUD page:
+After adding these fields, you can read the properties on the CRUD page, which will look like those shown below:
 
 ![Fields to the CRUD collection](img/MongoDB-Collection-all-fields.png)
 
 ### Option 2: Import CRUD collection
 
-The other option is to import the fields from a json file that is compliant with the CRUD schema. To do so:
+The other option is to import the fields from a CRUD schema-compliant JSON file, doing so it will also be possible to **verify that the loaded structure** is correct and consistent.
+
+To do this:
 
 1. Click **"Import fields from file"** button;
-1. In the dialog select the right file, for this example you can download it from <a download target="_blank" href="/docs_files_to_download/tutorial/rest-api-tutorial-schema.json">Here</a>.
-
-At this point, **you will have your CRUD collection** with exactly the same fields of the first one. You can decide to edit the new CRUD collection (adding or removing fields), to change the name, or to expose it using another endpoint.
+1. In the dialog select the JSON file, for this example you can download it from <a download target="_blank" href="/docs_files_to_download/tutorial/rest-api-tutorial-schema.json">here</a> or copy it from below.
 
 <details><summary>Click to see the tutorial schema:</summary>
 <p>
@@ -152,9 +150,10 @@ At this point, **you will have your CRUD collection** with exactly the same fiel
 </p>
 </details>
 
+At this point, **you will have your CRUD collection** with exactly the same fields of the first one. You can decide to edit the new CRUD collection (adding or removing fields), to change the name, or to expose it using another endpoint.
+
 :::tip
-You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the image [here](/tutorial/rest_api/quick_rest_api.mdx#create-a-new-crud-collection).
-In this case, it will be also possible to **verify that the loaded structure** is correct and consistent.
+You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the [image](/tutorial/rest_api/quick_rest_api.mdx#create-a-new-crud-collection).
 :::
 
 :::tip
@@ -174,11 +173,7 @@ The required parameters to create a new endpoint are the following:
 - **Type**: in the dropdown menu select `"CRUD"`
 - **CRUD Base Path**: in the dropdown menu select `/books`
 
-After you will have create the endpoint, **by clicking the `/books` in the left side you can open the endpoint detail**, including the section:
-
-![Endpoint Detail](img/MongoDB-Collection-endpoint-detail.png)
-
-Now you can save the branch and deploy.
+## Try CRUD endpoints with API Portal
 
 From the **API portal you will find all the API specifications** that will allow you to read, write, edit, and delete the information on your CRUD collection.
 You can perform some insertions using POST call and then try to read the data using the GET request.
@@ -193,7 +188,3 @@ Here you can find an **overview of the API Portal**:
 
 By **expanding a method**, you will find everything you need to make an call. In this case, for example, the POST call:
 ![Endpoint POST Portal](img/MongoDB-Collection-endpoint-portal-post.png)
-
-## Try CRUD endpoints with API Portal
-
-here
