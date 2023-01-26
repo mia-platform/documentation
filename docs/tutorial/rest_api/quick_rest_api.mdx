@@ -4,6 +4,8 @@ title: Create a REST API and CRUD collection
 sidebar_label: Create a Rest API and CRUD collection
 ---
 
+import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
+
 A **REST API is an application programming interface** that conforms to the constraints of REST architectural style, and allows **for interactions with RESTful web services**.
 REST APIs **allow clients** (like mobile, web and other applications) **to read, write, and edit the data** of a system (like servers, databases, and many others) **hiding the implementation details** of the system itself.
 
@@ -57,8 +59,6 @@ The steps are:
 1. Click on the _Create_ button applying the default fields.
 1. Save the changes by committing.
 
-![Create Crud Service](img/MongoDB-Collection-create-crud-service.png)
-
 ## Create a new CRUD collection
 
 After creating the Crud Service you can create a new _CRUD collection_ that contains all the information about the books of a library. To do so, you must be in the [_MongoDB CRUD_](/development_suite/api-console/api-design/crud_advanced.md) section of the project from the left side menu.
@@ -104,8 +104,6 @@ At this point, we can alter the DB schema by creating the required properties of
 
 In order to create the fields manually, you must click on the **Add field** button.
 
-![Add field to the CRUD collection](img/MongoDB-Collection-create-field-crud.gif)
-
 In this interface you can add:
 
 - **Name** (required): the name of the field;
@@ -146,107 +144,16 @@ The other option is to import the fields from a json file that is compliant with
 
 At this point, **you will have your CRUD collection** with exactly the same fields of the first one. You can decide to edit the new CRUD collection (adding or removing fields), to change the name, or to expose it using another endpoint.
 
-The downloaded schema will be:
+<details><summary>Click to see the tutorial schema:</summary>
+<p>
 
-```json title=books.json
-[
-  {
-    "name": "_id",
-    "description": "_id",
-    "type": "ObjectId",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "creatorId",
-    "description": "creatorId",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "createdAt",
-    "description": "createdAt",
-    "type": "Date",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "updaterId",
-    "description": "updaterId",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "updatedAt",
-    "description": "updatedAt",
-    "type": "Date",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "__STATE__",
-    "description": "__STATE__",
-    "type": "string",
-    "required": true,
-    "nullable": false
-  },
-  {
-    "name": "author",
-    "description": "author of the book",
-    "type": "string",
-    "required": true,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "language",
-    "description": "language of the book",
-    "type": "string",
-    "required": true,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "title",
-    "description": "title of the book",
-    "type": "string",
-    "required": true,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "published",
-    "description": "the book it's published?",
-    "type": "boolean",
-    "required": true,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "salesForecast",
-    "description": "in terms of the many copies sold",
-    "type": "number",
-    "required": false,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  }
-]
-```
+<SourceCodeBlock filePath="/docs_files_to_download/tutorial/rest-api-tutorial-schema.json" />
+
+</p>
+</details>
 
 :::tip
-You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the image [here](/tutorial/rest_api/quick_rest_api.md#create-a-new-crud-collection).
+You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the image [here](/tutorial/rest_api/quick_rest_api.mdx#create-a-new-crud-collection).
 In this case, it will be also possible to **verify that the loaded structure** is correct and consistent.
 :::
 
