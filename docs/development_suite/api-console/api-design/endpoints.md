@@ -6,25 +6,25 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/tutorial/rest_api/quick_rest_api.md).
+An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/tutorial/rest_api/quick_rest_api.mdx).
 
-This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md). 
+This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md).
 
 An endpoint can be of different types:
 
-* **CRUD**: hooks your endpoint directly to one of your CRUDs.
-* **MongoDB View**: hooks your endpoint directly to one of your Mongo Views.
-* **Microservice**: hooks your endpoint to a service with logics entirely created by you.
-* **External proxy**: hooks your endpoint to a proxy linked to a service outside of your cluster.
-* **Cross Projects proxy**: hooks your endpoint to a proxy linked to another project contained in your cluster.
-* **Fast Data Projection**: hooks your endpoint to the service which exposes the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
-* **Fast Data Single View**: hooks your endpoint to the service which exposes the Fast Data Single View. This type is visible only if Fast Data is enabled in the Console.
+- **CRUD**: hooks your endpoint directly to one of your CRUDs.
+- **MongoDB View**: hooks your endpoint directly to one of your Mongo Views.
+- **Microservice**: hooks your endpoint to a service with logics entirely created by you.
+- **External proxy**: hooks your endpoint to a proxy linked to a service outside of your cluster.
+- **Cross Projects proxy**: hooks your endpoint to a proxy linked to another project contained in your cluster.
+- **Fast Data Projection**: hooks your endpoint to the service which exposes the Fast Data Projection. This type is visible only if Fast Data is enabled in the Console.
+- **Fast Data Single View**: hooks your endpoint to the service which exposes the Fast Data Single View. This type is visible only if Fast Data is enabled in the Console.
 
 :::warning
 The endpoint type is selectable only during the creation phase. You won't be able to modify it later.
 :::
 
-The information in this section is grouped into 3 cards: *Details*, *Endpoint settings*, *Routes*.
+The information in this section is grouped into 3 cards: _Details_, _Endpoint settings_, _Routes_.
 
 ## Details
 
@@ -36,8 +36,8 @@ This card provides information about properties (basic and specific) of the endp
 
 All endpoint types share the following properties:
 
-* **Base Path**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or IP) that supplies the endpoint.
-* **Description**: optional description of the endpoint.
+- **Base Path**: is the prefix of the route. It can be set as the base address to which the API is served, relative to the host (name or IP) that supplies the endpoint.
+- **Description**: optional description of the endpoint.
 
 ### Specific endpoint properties
 
@@ -78,7 +78,7 @@ For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal
 
 ## Endpoint settings
 
-This card possibly includes 4 tabs: *Security*, *Documentation*, *Microservice Gateway* and *Advanced*.
+This card possibly includes 4 tabs: _Security_, _Documentation_, _Microservice Gateway_ and _Advanced_.
 
 ### Manage the security of your endpoints
 
@@ -97,56 +97,57 @@ The security can be managed at three levels:
 :::
 
 3. `User Group Permission` allows defining a logical expression for authorizing or not the call. If the expression validates to **true**, then the user can access the route. You can use the following properties:
-   * `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the selected clients only, identified by the API Key passed in the `secret` or `client_secret` headers.
-    E.g:
 
-      ```js
-        clientType == "apiKey" || clientType == "apiKey2"
-      ```
-
-    :::info
-    If you have entered a Client Type, the endpoint will be secured by API Key even if the `API Key required` flag is disabled.
-    :::
-
-   * `groups.<group name>` or `<group name> in groups` to check the group to which the logged user belongs. In this way, you can limit the access to specified groups.
-    E.g:
-
-    ```js
-    // Limit access only to users in "admin" group
-    groups.admin
-    ```
-
-    ```js
-    // Limit access only to users in "admin" or "user" group
-    ["admin", "user"] in groups
-    ```
-
-    * `permissions.<permission name>` or `<permission name> in permissions` to limit the access to entities (being users or other clients) who have the required permissions.
+   - `clientType=='<clientType associated with Api Key>` to identify the client author of the call. In this way, you can limit the access to the selected clients only, identified by the API Key passed in the `secret` or `client_secret` headers.
      E.g:
 
-    ```js
-    // Limit access only to users who have "write:orders" permission
-    permissions["write:orders"]
-    ```
+     ```js
+     clientType == "apiKey" || clientType == "apiKey2";
+     ```
 
-    ```js
-    // Limit access only to users who have "write:orders" or "view:orders" permission
-    ["write:orders","view:orders"] in permissions
-    ```
+   :::info
+   If you have entered a Client Type, the endpoint will be secured by API Key even if the `API Key required` flag is disabled.
+   :::
+
+   - `groups.<group name>` or `<group name> in groups` to check the group to which the logged user belongs. In this way, you can limit the access to specified groups.
+     E.g:
+
+   ```js
+   // Limit access only to users in "admin" group
+   groups.admin;
+   ```
+
+   ```js
+   // Limit access only to users in "admin" or "user" group
+   ["admin", "user"] in groups;
+   ```
+
+   - `permissions.<permission name>` or `<permission name> in permissions` to limit the access to entities (being users or other clients) who have the required permissions.
+     E.g:
+
+   ```js
+   // Limit access only to users who have "write:orders" permission
+   permissions["write:orders"];
+   ```
+
+   ```js
+   // Limit access only to users who have "write:orders" or "view:orders" permission
+   ["write:orders", "view:orders"] in permissions;
+   ```
 
 The group expression can also be set to `false` (to block all accesses to the API) or to `true` (to grant **all** accesses to the API). You can combine different expressions using logical operators `&&` (and) and `||` (or).
 
 For example, you can create an endpoint with the following security configuration:
 
-* **Authentication required** flag set to `false`;
-* **API Key required** flag set to `false`;
-* **User Group Permission** field set with the following expression: `groups.foo || clientType=="bar"`.
+- **Authentication required** flag set to `false`;
+- **API Key required** flag set to `false`;
+- **User Group Permission** field set with the following expression: `groups.foo || clientType=="bar"`.
 
 With this configuration, calls to this endpoint will have a different outcome depending on the credentials the user provides/has. Here is a list of possible outcomes:
 
-* An unregistered user tries to contact your endpoint without providing any API Key: the user receives an unauthorized error because the **User Group Permission** condition is falsy.
-* An authenticated user with authorization group `foo` calls your endpoint without providing any API Key: the call is successful since the first condition of **User Group Permission** is truthy and the API Key is not required.
-* An unregistered user tries to contact your endpoint and provides the correct API Key value for the clientType `bar`: the call is successful since the second condition of **User Group Permission** is truthy and the endpoint is open to not authenticated calls.
+- An unregistered user tries to contact your endpoint without providing any API Key: the user receives an unauthorized error because the **User Group Permission** condition is falsy.
+- An authenticated user with authorization group `foo` calls your endpoint without providing any API Key: the call is successful since the first condition of **User Group Permission** is truthy and the API Key is not required.
+- An unregistered user tries to contact your endpoint and provides the correct API Key value for the clientType `bar`: the call is successful since the second condition of **User Group Permission** is truthy and the endpoint is open to not authenticated calls.
 
 If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user permissions for the CMS application.
 Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually.
@@ -186,18 +187,19 @@ In the **Microservice Gateway** tab you can manage the transition through the Mi
 For endpoints of type **Microservice**, this tab includes also two flags related to the format of the request/response.
 In particular, the Microservice Gateway service performs some checks on the **content-type** header:
 
-* **Request**: if your endpoint uses `content-type: application/json` in requests, enable the "on request" flag. If this flag is disabled, you won't be able to access the request body from decorators, if set.
+- **Request**: if your endpoint uses `content-type: application/json` in requests, enable the "on request" flag. If this flag is disabled, you won't be able to access the request body from decorators, if set.
 
-* **Response**: if your endpoint uses `content-type: application/json` in responses, enable the "on response" flag. If this flag is disabled, you won't be able to access the response body from POST decorators, if set.
+- **Response**: if your endpoint uses `content-type: application/json` in responses, enable the "on response" flag. If this flag is disabled, you won't be able to access the response body from POST decorators, if set.
 
 :::warning
 If your project has the microservice-gateway disabled, the configuration of the transition through Microservice Gateway is skipped.
 :::
 
 :::caution
-* Due to an issue with microservice-gateway, content-type: `application/x-www-form-urlencoded` is converted to JSON.
-* Due to another issue with microservice-gateway, if binary data (e.g. PDF files) passes through this service it could be wrongly encoded, resulting in corrupted files.
-:::
+
+- Due to an issue with microservice-gateway, content-type: `application/x-www-form-urlencoded` is converted to JSON.
+- Due to another issue with microservice-gateway, if binary data (e.g. PDF files) passes through this service it could be wrongly encoded, resulting in corrupted files.
+  :::
 
 ### Manage advanced endpoint parameters
 
@@ -205,9 +207,9 @@ If your project has the microservice-gateway disabled, the configuration of the 
 
 The **Advanced** tab is visible only if the Envoy API Gateway service is enabled, and allows to set values for some endpoint parameters. Specifically:
 
-* **Timeout** (*integer*): the maximum amount of time (in seconds) the gateway waits while the request is processed by the upstream or downstream;
-* **Rate limit** (*integer*): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
-* **Request body size** (*decimal*): the maximum body size of user requests.
+- **Timeout** (_integer_): the maximum amount of time (in seconds) the gateway waits while the request is processed by the upstream or downstream;
+- **Rate limit** (_integer_): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
+- **Request body size** (_decimal_): the maximum body size of user requests.
 
 ## Routes
 
@@ -216,11 +218,11 @@ Endpoints of type **CRUD** and **Fast Data Projection** have a specific set of r
 For all other endpoint types, you can create a new route by clicking the `Add new Route` button. You should then specify the **http verb** and the **path** of the new route.
 Regarding the http verb, you can choose among the following:
 
-* **GET**
-* **POST**
-* **PUT**
-* **PATCH**
-* **DELETE**
+- **GET**
+- **POST**
+- **PUT**
+- **PATCH**
+- **DELETE**
 
 ![Routes card](img/routes-card.png)
 
@@ -231,11 +233,11 @@ For example, if in the **Security** section, you have unchecked the **Authentica
 Instead, if in the same endpoint page, you check the **Authentication required** flag in the **Routes** section for the route `/management` with verb `DELETE` you will only change the behavior of that specific route with that specific verb.
 Here we list some example routes and their behavior with the configuration explained above:
 
-* GET '/test': **Authentication required** is `false`.
-* GET '/test/management': **Authentication required** is `false`.
-* GET '/test/customers': **Authentication required** is `false`.
-* DELETE '/test/management': **Authentication required** is `true`.
-* DELETE '/test/management/sales': **Authentication required** is `false`.
+- GET '/test': **Authentication required** is `false`.
+- GET '/test/management': **Authentication required** is `false`.
+- GET '/test/customers': **Authentication required** is `false`.
+- DELETE '/test/management': **Authentication required** is `true`.
+- DELETE '/test/management/sales': **Authentication required** is `false`.
 
 This feature is really helpful when you have to define a custom behavior for one of your routes that differs from the default one that you defined at endpoint level.
 
