@@ -23,7 +23,7 @@ On this page we keep you aligned on the most important issues
 * **Mia-Platform Control Plane**
     * Providers management
     * Full users lifecycle and groups management
-    * Company licence visualization
+    * Company license visualization
     * Management & support of GitOps tools and configurations
     * Revision of Homepage navigation
     * Dinamic sidebar navigation in Design Area 
@@ -35,7 +35,7 @@ On this page we keep you aligned on the most important issues
 
 * **Product Operations**
     * Miactl CLI improvement
-    * Mia-Platform k8s Distro (Vab)
+    * OpenTelemetry for collecting infrastructure telemetry data
 
 * **Fast Data**:
     * Full event-driven architecture
