@@ -275,7 +275,7 @@ You must be in the _Runtime_ section of the Console to perform this action.
 
 ![Pod Events](img/monitoring-7.png)
 
-For more information on monitoring the infrastructure please see the [dedicated](/development_suite/monitoring/monitoring.md) page.
+For more information on monitoring the infrastructure please see the [dedicated](/development_suite/monitoring/introduction.md) page.
 
 For more information about monitoring CPU and memory using Grafana please see the _Set Requests and Limits of a Microservice_ [tutorial](/tutorial/requests_limits/requests_limits_tutorial.mdx#monitoring-cpu-and-memory-usage).
 

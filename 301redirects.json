@@ -130,5 +130,13 @@
   "/docs/runtime_suite/auth0-+-backoffice/overview": {
     "destination": "/docs/runtime_suite/secure-backoffice/overview",
     "addedOn": "2022-12-06"
+  },
+  "/docs/development_suite/monitoring/monitoring": {
+    "destination": "/docs/development_suite/monitoring/resources/pods",
+    "addedOn": "2023-01-27"
+  },
+  "/docs/development_suite/monitoring/monitoring_namespace": {
+    "destination": "/docs/development_suite/monitoring/resources/namespace",
+    "addedOn": "2023-01-27"
   }
 }

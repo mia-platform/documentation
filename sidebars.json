@@ -354,11 +354,31 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/monitoring/monitoring",
+          "id": "development_suite/monitoring/introduction",
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/monitoring_namespace",
+          "id": "development_suite/monitoring/resources/pods",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/monitoring/resources/deployments",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/monitoring/resources/services",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/monitoring/resources/cronjobs",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/monitoring/resources/jobs",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/monitoring/resources/namespace",
           "type": "doc"
         },
         {
