@@ -26,7 +26,7 @@ On this page we keep you aligned on the most important issues
     * Company license visualization
     * Management & support of GitOps tools and configurations
     * Revision of Homepage navigation
-    * Dinamic sidebar navigation in Design Area 
+    * Dynamic sidebar navigation in Design Area 
     * Extension of K8s resources visibility on Runtime Area (Deployments, Service, Cronjob, Job)
 
 * **Integration Features**:
