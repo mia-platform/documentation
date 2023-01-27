@@ -1,8 +1,8 @@
 ---
-id: monitoring
+id: pods
 title:  Monitor your Pods
 sidebar_label: Monitor your Pods
-slug: "/development_suite/monitoring/monitoring"
+slug: "/development_suite/monitoring/resources/pods"
 ---
 ## Monitoring Infrastructure
 
@@ -32,7 +32,7 @@ In case the Containers ready field has the value `0/1` could be because the Pod 
 * **Total Pods Restart**: the number of times the Pod has restarted.
 * **Age**: the date since the Pod was deployed.
 
-![list_of_pods](img/list_of_pods.png)
+![list_of_pods](../img/list_of_pods.png)
 
 :::info
 For more details, hovering the status icon, and the phase label the user will see a tooltip with more information 
@@ -41,11 +41,11 @@ For more details, hovering the status icon, and the phase label the user will se
 Within the table there are a series of action that can be performed:
 - It is possible to refresh the table manually or setting an auto-refresh timer with the specific button in the top-right corner to check changes in the pods status or phase.
 - With the `search` input field, and the `Filter by` selection it is possible to filter the list of pods by their name or setting specific values for some columns such as: Status, Phase and TotalPodsRestart.
-![filter_pods](img/filter.png)
+![filter_pods](../img/filter.png)
   
 - The option icon on the right of each Pod row allows you to:
   - go to the specific configuration page in the design area of the console, if the Pod type is `custom` or `cronjob`;
-    ![burger_menu_ms](img/burger_menu_config.png)
+    ![burger_menu_ms](../img/burger_menu_config.png)
   - go to the logs of a container, always visible;
   - go to the previous logs of a container, visible **only if the Pod has ever restarted**;
 - to restart the individual Pod, always visible.
@@ -53,8 +53,8 @@ Within the table there are a series of action that can be performed:
 :::info
 When restarting a Pod a modal like the one in figure will be shown to the user giving a feedback of which pods are going to be restarted and the result of the restart itself.
 :::
-![modal](img/modal.png)
-![modal_restarted](img/modal_restarted.png)
+![modal](../img/modal.png)
+![modal_restarted](../img/modal_restarted.png)
 :::caution
 Restarting a Pod may cause a downtime of the service if not correctly replicated.
 :::
@@ -64,8 +64,8 @@ Restarting a Pod may cause a downtime of the service if not correctly replicated
   :::caution
     Restarting a Pod may cause a downtime of the service if not correctly replicated. 
   :::
-  ![multiselect](img/multiselect.png)
-  ![view_selected](img/view_selected.png)
+  ![multiselect](../img/multiselect.png)
+  ![view_selected](../img/view_selected.png)
   
 Clicking on a Pod name you can examine its overview and its specific logs.
 
@@ -77,7 +77,7 @@ You can select at most five containers.
 
 :::
 
-![multi_pods_logs](img/multi_pods_logs.png)
+![multi_pods_logs](../img/multi_pods_logs.png)
 
 ### Pod overview
 
@@ -89,17 +89,17 @@ The user can also choose to **restart** their Pod. Clicking "Restart Pod" the PO
 Restarting a Pod may cause a downtime of the service if not correctly replicated.
 :::
 
-![overview_collapsed](img/overview.png)
+![overview_collapsed](../img/overview.png)
 
 ### Pod logs
 
 In the tab `Logs`, are rendered the logs of a container that is running in the Pod.
 
-![pod_logs](img/pod_logs.png)
+![pod_logs](../img/pod_logs.png)
 
 The logs can be filtered, downloaded, deleted or prettified.
 
-![prettified_logs](img/prettified_logs.png)
+![prettified_logs](../img/prettified_logs.png)
 
 It is possible to update the showed logs by clicking "Refresh Logs".
 
@@ -107,7 +107,7 @@ It is possible to update the showed logs by clicking "Refresh Logs".
 
 In the tab `Previous logs`, are rendered the logs of the container that has previously crashed.
 
-![pod_logs](img/pod_previous_logs.png)
+![pod_logs](../img/pod_previous_logs.png)
 
 The logs can be filtered, downloaded or prettified.
 
@@ -120,7 +120,7 @@ Check out the [Guidelines for logs](/getting_started/monitoring-dashboard/dev_op
 
 In the tab `Describe`, you can find the describe of the selected Pod in JSON format.
 
-![describe](img/describe.png)
+![describe](../img/describe.png)
 
 Using the dedicated buttons, the Pod describe can be:
 -  copied to clipboard;
@@ -130,6 +130,6 @@ Using the dedicated buttons, the Pod describe can be:
 ### Pod events
 In the tab `Events`, you can find the events of the selected Pod sorted in a table.
 
-![events](img/events.png)
+![events](../img/events.png)
 
 Using the dedicated button, the events can be refreshed.

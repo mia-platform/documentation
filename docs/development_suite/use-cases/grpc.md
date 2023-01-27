@@ -36,7 +36,7 @@ Probes in gRPC can use [this tool](https://github.com/grpc-ecosystem/grpc-health
 
 ### Deploy
 
-Go to the [Deploy section](/development_suite/deploy/deploy.md) and deploy the branch just edited. Once the deploy is successfull, verify that all pods are running (including the `grpc-service`) from the [Runtime section](/development_suite/monitoring/monitoring.md) of the Console.
+Go to the [Deploy section](/development_suite/deploy/deploy.md) and deploy the branch just edited. Once the deploy is successfull, verify that all pods are running (including the `grpc-service`) from the [Runtime section](/development_suite/monitoring/introduction.md) of the Console.
 
 ### Test with port-forward
 

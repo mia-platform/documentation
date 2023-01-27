@@ -76,4 +76,4 @@ The `status` property should be *OK*.
 Check out the [Microservices vademecum](/guidelines/microservice_vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for further details.
 :::
 
-Trough the [Log & monitoring section](/development_suite/monitoring/monitoring.md) you can monitor the status of the related Microservice container
+Trough the [Log & monitoring section](/development_suite/monitoring/introduction.md) you can monitor the status of the related Microservice container

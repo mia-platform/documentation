@@ -152,7 +152,7 @@ If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user perm
 Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually.
 
 :::tip
-If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](/development_suite/monitoring/monitoring.md) to check out the logs of the [Authorization Service](/runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
+If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](/development_suite/monitoring/introduction.md) to check out the logs of the [Authorization Service](/runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
 :::
 
 :::tip API Key

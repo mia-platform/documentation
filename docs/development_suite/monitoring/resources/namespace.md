@@ -1,5 +1,5 @@
 ---
-id: monitoring_namespace
+id: namespace
 title:  Monitor your Namespace
 sidebar_label: Monitor your Namespace
 ---
@@ -8,7 +8,7 @@ sidebar_label: Monitor your Namespace
 
 In the `Namespace` section, under the `Describe` tab, you can find the describe of the current Namespace in JSON format.
 
-![describe](img/describe_namespace.png)
+![describe](../img/describe_namespace.png)
 
 Using the dedicated buttons, the Namespace describe can be:
 -  copied to clipboard;
@@ -19,6 +19,6 @@ Using the dedicated buttons, the Namespace describe can be:
 
 In the `Namespace` section, under the `Events` tab, you can find the events of the current Namespace sorted in a table.
 
-![events](img/namespace_events.png)
+![events](../img/namespace_events.png)
 
 Using the dedicated button, the events can be refreshed.

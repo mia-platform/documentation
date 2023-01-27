@@ -42,14 +42,22 @@ The Basic Homepage allows users to quickly access the relevant information of ea
   
 The cards show the sections:
 
-* [Environments & Private Variables](#environments--private-variables)
-* [Design](#design)
-* [Deploy](#deploy)
-* [Dashboards](#dashboards)
-* [Runtime](#runtime)
-* [Debug](#debug)
-* [Documentation](#documentation)
-* [Marketplace](#marketplace)
+- [Homepage](#homepage)
+  - [Basic Homepage](#basic-homepage)
+  - [Metrics Homepage](#metrics-homepage)
+    - [Pods status](#pods-status)
+    - [CPU and RAM](#cpu-and-ram)
+    - [Project links and Dashboards](#project-links-and-dashboards)
+- [Console Sections](#console-sections)
+  - [Sections Navigation](#sections-navigation)
+  - [Environments \& Private Variables](#environments--private-variables)
+  - [Design](#design)
+  - [Deploy](#deploy)
+  - [Dashboards](#dashboards)
+  - [Runtime](#runtime)
+  - [Debug](#debug)
+  - [Documentation](#documentation)
+  - [Marketplace](#marketplace)
 
 ### Metrics Homepage
 
@@ -170,7 +178,7 @@ The area has a subsection for each environment existing in the specific project.
 
 From here you are able to access individual pod logs. If necessary, you can manually select and restart pods.
   
-[More information about Runtime here](/development_suite/monitoring/monitoring.md)  
+[More information about Runtime here](/development_suite/monitoring/introduction.md)  
   
 ### Debug
 
