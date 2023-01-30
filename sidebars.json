@@ -123,19 +123,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/auth-0-setup",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-console/api-design/how_to_enable_auth0",
-          "type": "doc"
-        },
-        {
           "id": "development_suite/api-portal/api-documentations",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/set-up-infrastructure/ranges-and-quotas",
           "type": "doc"
         }
       ],
@@ -943,10 +931,6 @@
       "id": "marketplace/add_to_marketplace/contributing_overview",
       "type": "doc",
       "label": "Add to marketplace"
-    },
-    {
-      "id": "development_suite/set-up-infrastructure/authorization-flow",
-      "type": "doc"
     },
     {
       "collapsed": true,
