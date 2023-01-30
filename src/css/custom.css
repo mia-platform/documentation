@@ -166,3 +166,34 @@ html[data-theme='dark'] .DocSearch-Button {
     display: none;
   }
 }
+
+.tabs-container  {
+  border: solid 1px;
+  border-color: lightgray;
+  border-radius: 8px;
+  background: white;
+}
+
+.tabs-container > div {
+  padding: 0px 8px 8px 8px;
+}
+
+.tabs-container .tabs {
+  padding: 0px 0px;
+  border-bottom: solid 1px;
+  border-color: lightgray;
+  background: #f6f6f6;
+  border-radius: 8px 8px 0px 0px;
+  gap: 8px;
+}
+
+.tabs-container .tabs .tabs__item.tabs__item--active {
+  background: var(--ifm-card-color);
+}
+
+.tabs-container .tabs .tabs__item:not(.tabs__item--active):hover {
+  border-radius: 8px 8px 0px 0px;
+  background: none;
+  border-bottom: solid 2px;
+  border-color: lightgray;
+}
