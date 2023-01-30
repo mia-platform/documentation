@@ -38,10 +38,10 @@ On this page we keep you aligned on the most important issues
     * OpenTelemetry for collecting infrastructure telemetry data
 
 * **Fast Data**:
-    * Full event-driven architecture
-    * Support no-code configuration in Console for testing
-    * Control plane for Real Time Updater
-    * Historical Data Management
+    * CDCs integration with Mia Platform Fast Data
+    * Support no-code configuration in Console for ER Schemas
+    * Bucket Storage Support
+    * CSV reader as Fast Data connector
 
 * **Back-office**:
     * Support no-code configuration in Console
