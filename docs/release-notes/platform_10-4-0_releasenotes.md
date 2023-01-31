@@ -5,13 +5,17 @@ sidebar_label: v10.4.0
 image: "img/release-note-link-preview.png"
 ---
 
-_February 02, 2023_
+_February 2, 2023_
 
 ## Console
 
 ### New Features
 
-#### Visualization of deployments, services, cronjobs, jobs in Runtime Area
+#### View all Kubernetes resources in the Runtime area
+
+The Runtime area now features all the resources managed in Console that you can interact with, with these new sections you'll be able to view information for all running [Deployments](/development_suite/monitoring/resources/deployments), [Services](/development_suite/monitoring/resources/services), [CronJobs](/development_suite/monitoring/resources/cronjobs) and [Jobs](/development_suite/monitoring/resources/jobs).
+
+Check out the [new documentation](/development_suite/monitoring/introduction) for the Runtime area to know more!
 
 ### Security improvements 
 
@@ -22,6 +26,9 @@ _February 02, 2023_
 ### Improvements
 
 #### Fullscreen mode improvement
+
+Editor full screen mode is now limited in the tab context, allowing you to navigate your browser tabs without having to exit the fullscreen mode itself!
+
 
 ### Bug Fix
 
@@ -43,4 +50,4 @@ _February 02, 2023_
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.1.17`.
