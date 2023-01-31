@@ -36,6 +36,7 @@ Editor full screen mode is now limited in the tab context, allowing you to navig
 This version addressed a few bugs, here is a comprehensive list:
 
   * A bug affecting ConfigMap editors with many lines has been fixed
+  * Project Template management from CMS has now been limited only to Company Owners and to Super Administrators
 
 ## Fast Data
 
