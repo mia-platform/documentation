@@ -13,9 +13,11 @@ _February 2, 2023_
 
 #### View all Kubernetes resources in the Runtime area
 
-The Runtime area now features all the resources managed in Console that you can interact with, with these new sections you'll be able to view information for all running [Deployments](/development_suite/monitoring/resources/deployments), [Services](/development_suite/monitoring/resources/services), [CronJobs](/development_suite/monitoring/resources/cronjobs) and [Jobs](/development_suite/monitoring/resources/jobs).
+The Runtime area now features all the resources managed in Console that you can interact with, with these new sections you'll be able to view information for all running [Deployments](/development_suite/monitoring/resources/deployments.md), [Services](/development_suite/monitoring/resources/services.md), [CronJobs](/development_suite/monitoring/resources/cronjobs.md) and [Jobs](/development_suite/monitoring/resources/jobs.md).
 
-Check out the [new documentation](/development_suite/monitoring/introduction) for the Runtime area to know more!
+:::tip
+Check out the **[Runtime area documentation](/development_suite/monitoring/introduction.md)** to know more!
+:::
 
 ### Security improvements 
 
