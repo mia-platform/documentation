@@ -29,8 +29,11 @@ Check out the [new documentation](/development_suite/monitoring/introduction) fo
 
 Editor full screen mode is now limited in the tab context, allowing you to navigate your browser tabs without having to exit the fullscreen mode itself!
 
-
 ### Bug Fix
+
+This version addressed a few bugs, here is a comprehensive list:
+
+  * A bug affecting ConfigMap editors with many lines has been fixed
 
 ## Fast Data
 
