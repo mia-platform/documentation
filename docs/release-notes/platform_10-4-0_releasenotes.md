@@ -11,7 +11,15 @@ _February 02, 2023_
 
 ### New Features
 
+#### Visualization of deployments, services, cronjobs, jobs in Runtime Area
+
+#### Companies management through specific permissions for Console Super Admin and Company Owners at backoffice level
+
+#### Project templates management through specific permissions for Console Super Admin and Company Owners at backoffice level
+
 ### Improvements
+
+#### Fullscreen mode improvement
 
 ### Bug Fix
 
@@ -33,4 +41,4 @@ _February 02, 2023_
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.2.13`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
