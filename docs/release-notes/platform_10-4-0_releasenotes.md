@@ -15,9 +15,9 @@ _February 02, 2023_
 
 ### Security improvements 
 
-#### Companies management through specific permissions for Console Super Admin and Company Owners at backoffice level
+#### Addition of specific permissions for managing Companies at backoffice level
 
-#### Project templates management through specific permissions for Console Super Admin and Company Owners at backoffice level
+#### Addition of specific permissions for managing Project Templates at backoffice level
 
 ### Improvements
 
