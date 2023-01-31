@@ -13,6 +13,8 @@ _February 02, 2023_
 
 #### Visualization of deployments, services, cronjobs, jobs in Runtime Area
 
+### Security improvements 
+
 #### Companies management through specific permissions for Console Super Admin and Company Owners at backoffice level
 
 #### Project templates management through specific permissions for Console Super Admin and Company Owners at backoffice level
