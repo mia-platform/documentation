@@ -42,9 +42,30 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### New Features
 
+#### Single View Creator 5.6.5 support for MongoDB v6
+
+Added support for MongoDB v6 in the Single View creator version 5.6.5.
+
 ### Improvements
 
+#### Replace strategy in Single View Creator 5.6.5 now adds a `createdAt` field
+
+From version 5.6.5 the Single View Creator having the `UPSERT_STRATEGY` environment variable set to `replace` adds a `createdAt` field in the Single View whenever a Single View is inserted or replaced.
+
+#### Added prometheus metrics for the SV-patch operation
+
+Single View Creator 5.6.4 now provides metrics for the SV-patch operation having added a prometheus label called `resolutionMethod` which can be `PATCH` or `AGGREGATION`.
+
 ### Bug Fix
+
+#### Single View Creator 5.6.5 fixes SV-patch primary key date field
+
+The Single View Creator in PATCH operation didn't handle dates as primary keys correctly which resulted in no Single View updated.
+Now, from version 5.6.5 of the service, any kind of primary key field type it is properly handled.
+
+#### Single View Creator 5.6.5 retries the message processing instead of skipping
+
+From version 5.6.5 the Single View Creator retries the message processing when an unexpected error is thrown instead of skipping the message.
 
 ## Marketplace
 
