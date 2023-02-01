@@ -21,6 +21,10 @@ Check out the **[Runtime area documentation](/development_suite/monitoring/intro
 
 ### Security improvements 
 
+#### Security issue on Dashboard Area
+
+A security issue that allowed malicious scripts to be inserted into the Dashboard Area has been corrected.
+
 #### Addition of specific permissions for managing Companies at backoffice level
 
 #### Addition of specific permissions for managing Project Templates at backoffice level
@@ -30,6 +34,10 @@ Check out the **[Runtime area documentation](/development_suite/monitoring/intro
 #### Fullscreen mode improvement
 
 Editor full screen mode is now limited in the tab context, allowing you to navigate your browser tabs without having to exit the fullscreen mode itself!
+
+#### Update of the Deployment experience
+
+The console deployment experience has been updated. It is now also possible to access the Runtime Area upon completion of the deployment by clicking on a button on the respective modal.
 
 ### Bug Fix
 
