@@ -81,7 +81,36 @@ From version 5.6.5 the Single View Creator retries the message processing when a
 
 ### Marketplace Updates
 
-## Backoffice
+## Backoffice - 1.3.3
+
+### New Features
+
+### Bug Fix
+
+
+#### `bk-export` component emits success / error events
+
+`bk-export` component emits success / error events. If component property `nativeDownload` is set to `false`, events are emitted when the export is concluded or fails; or whenever the donwload request is sent otherwise.
+
+
+#### Automatic name in filters format dates
+
+`date` / `date-time` / `time` fields are formatted in automatically computed filter names according to `dateOptions.displayFormat` in data-schema.
+
+
+#### Table columns fit content
+
+Columns width in `bk-table` component is improved to better fit their content and title.
+
+
+#### Fields of format "editor" can be edited correctly
+
+Form components allows to edit fields of type `string` and format `editor`.
+
+
+#### Automatic name in filters resolve lookups
+
+Lookup values are correctly resolved in automatically computed filter names
 
 ## How to update your Console
 
