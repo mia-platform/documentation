@@ -19,6 +19,10 @@ The Runtime area now features all the resources managed in Console that you can 
 Check out the **[Runtime area documentation](/development_suite/monitoring/introduction.md)** to know more!
 :::
 
+#### Information tooltips in the Design sidebar menu
+
+In the Design area, you can now display an information tooltip when hovering over the name of a specific section in the sidebar menu. 
+
 ### Security improvements 
 
 #### Security issue on Dashboard Area
