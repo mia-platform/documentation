@@ -90,7 +90,7 @@ From version 5.6.5 the Single View Creator retries the message processing when a
 
 #### `bk-export` component emits success / error events
 
-`bk-export` component emits success / error events. If component property `nativeDownload` is set to `false`, events are emitted when the export is concluded or fails; or whenever the donwload request is sent otherwise.
+`bk-export` component emits success / error events. If component property `nativeDownload` is set to `false`, events are emitted when the export is concluded or fails; or whenever the download request is sent otherwise.
 
 
 #### Automatic name in filters format dates
