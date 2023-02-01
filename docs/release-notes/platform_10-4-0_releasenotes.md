@@ -29,10 +29,6 @@ In the Design area, you can now display an information tooltip when hovering ove
 
 A security issue that allowed malicious scripts to be inserted into the Dashboard Area has been corrected.
 
-#### Addition of specific permissions for managing Companies at backoffice level
-
-#### Addition of specific permissions for managing Project Templates at backoffice level
-
 ### Improvements
 
 #### Full-screen mode improvement
@@ -48,7 +44,7 @@ The console deployment experience has been updated. It is now also possible to a
 This version addressed a few bugs, here is a comprehensive list:
 
   * A bug affecting ConfigMap editors with many lines has been fixed
-  * Project Template management from CMS has now been limited only to Company Owners and to Super Administrators
+  * Project Template management from CMS has now been limited only to Company Owners and to Super Administrators through the addition of specific permissions
 
 ## Fast Data
 
