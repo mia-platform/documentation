@@ -59,7 +59,6 @@ The following table describes the capabilities and how they are mapped on the de
 | Manage dashboards on any Project Environment                               | `console.project.environment.dashboard.manage`         |        |           |          |         | ✅ | |
 | Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |           |          |             | | |
 | Manage users of this Company                                               | `console.company.users.manage`                         |        |           |          |            | | ✅|
-| Edit company information                                                   | `console.company.details.update`                       |        |           |          |            |     |✅|
 | Edit project information of all the Projects of this Company               | `console.company.project.details.update`               |        |           |          |            |  ✅   |✅|
 | Manage users of all the Projects of this Company                           | `console.company.project.users.manage`                 |        |           |          |            | ✅ | |
 | Manage users for this Project                                              | `console.project.users.manage`                         |        |           |          |            | ✅ | |
@@ -74,7 +73,8 @@ The following table describes the capabilities and how they are mapped on the de
 | Delete any Company                                                         | `console.root.company.delete`                     |        |           |          |              |   |    |
 | View all Console resources                                                         | `console.root.view`                               |        |           |          |              |   |    |
 | Manage user roles, groups and bindings                                     | `console.root.user.bind`                          |        |           |          |              |   |    |
-
+| Manage all private and public Project Templates                                     | `console.root.templates.manage`                          |        |           |          |              |   |    |
+| Manage Company Project Templates                                     | `console.company.templates.manage`                          |        |           |          |              |   |  ✅  |
 
 User roles are manageable from CMS by the **Console administrators**, as they are the only one having access to the Console CMS and thus being able to manage the entire Console, including companies, projects, Marketplace.
 
