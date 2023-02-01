@@ -56,13 +56,13 @@ Added support for MongoDB v6 in the Single View creator version 5.6.5.
 
 ### Improvements
 
+#### Added prometheus metrics for the SV-patch operation in Single View Creator 5.6.4
+
+Single View Creator 5.6.4 now provides metrics for the SV-patch operation having added a prometheus label called `resolutionMethod` which can be `PATCH` or `AGGREGATION`.
+
 #### Replace strategy in Single View Creator 5.6.5 now adds a `createdAt` field
 
 From version 5.6.5 the Single View Creator having the `UPSERT_STRATEGY` environment variable set to `replace` adds a `createdAt` field in the Single View whenever a Single View is inserted or replaced.
-
-#### Added prometheus metrics for the SV-patch operation
-
-Single View Creator 5.6.4 now provides metrics for the SV-patch operation having added a prometheus label called `resolutionMethod` which can be `PATCH` or `AGGREGATION`.
 
 ### Bug Fix
 
