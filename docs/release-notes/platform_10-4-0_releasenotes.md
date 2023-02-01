@@ -23,7 +23,11 @@ Check out the **[Runtime area documentation](/development_suite/monitoring/intro
 
 In the Design area, you can now display an information tooltip when hovering over the name of a specific section in the sidebar menu.  
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+
 ![Mia-Platform Information Tooltip](./img/10.4/information-tooltip.png)
+
+</div>
 
 ### Security improvements
 

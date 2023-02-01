@@ -7,6 +7,7 @@ slug: "/release-notes/versions"
 ---
 | Release | Release notes                              |
 |---------|--------------------------------------------|
+| v10.4.0 | [Read the release notes](/release-notes/platform_10-4-0_releasenotes.md) |
 | v10.3.0 | [Read the release notes](/release-notes/platform_10-3-0_releasenotes.md) |
 | v10.2.0 | [Read the release notes](/release-notes/platform_10-2-0_releasenotes.md) |
 | v10.1.1 | [Read the release notes](/release-notes/platform_10-1-1_releasenotes.md) |
