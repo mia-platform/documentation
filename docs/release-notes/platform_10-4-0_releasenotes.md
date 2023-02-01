@@ -31,9 +31,9 @@ A security issue that allowed malicious scripts to be inserted into the Dashboar
 
 ### Improvements
 
-#### Fullscreen mode improvement
+#### Full-screen mode improvement
 
-Editor full screen mode is now limited in the tab context, allowing you to navigate your browser tabs without having to exit the fullscreen mode itself!
+Editor full-screen mode is now limited in the tab context, allowing you to navigate your browser tabs without the need to exit the full-screen mode itself!
 
 #### Update of the Deployment experience
 
