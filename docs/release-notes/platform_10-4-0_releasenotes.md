@@ -37,7 +37,7 @@ Editor full-screen mode is now limited in the tab context, allowing you to navig
 
 #### Update of the Deployment experience
 
-The console deployment experience has been updated. It is now also possible to access the Runtime Area upon completion of the deployment by clicking on a button on the respective modal.
+The overall deployment experience in Console has been updated. It is now also possible to access the Runtime Area once the deployment process has been completed, simply by clicking on a button in the deployment modal.
 
 ### Bug Fix
 
