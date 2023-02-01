@@ -169,9 +169,9 @@ html[data-theme='dark'] .DocSearch-Button {
 
 .tabs-container  {
   border: solid 1px;
-  border-color: lightgray;
   border-radius: 8px;
-  background: white;
+  border-color: var(--ifm-toc-border-color);
+  background: var(--ifm-background-color);
 }
 
 .tabs-container > div {
@@ -179,21 +179,24 @@ html[data-theme='dark'] .DocSearch-Button {
 }
 
 .tabs-container .tabs {
+  gap: 8px;
   padding: 0px 0px;
   border-bottom: solid 1px;
-  border-color: lightgray;
-  background: #f6f6f6;
   border-radius: 8px 8px 0px 0px;
-  gap: 8px;
+  border-color: var(--ifm-toc-border-color);
+  background: rgba(128, 128, 128, 0.2)
 }
 
+html:not([data-theme='dark']) .tabs-container .tabs .tabs__item.tabs__item--active {
+  background: white;
+}
 .tabs-container .tabs .tabs__item.tabs__item--active {
-  background: var(--ifm-card-color);
+  background: var(--ifm-background-color);
 }
 
 .tabs-container .tabs .tabs__item:not(.tabs__item--active):hover {
-  border-radius: 8px 8px 0px 0px;
-  background: none;
   border-bottom: solid 2px;
-  border-color: lightgray;
+  border-radius: 8px 8px 0px 0px;
+  border-color: var(--ifm-toc-border-color);
+  background: none;
 }
