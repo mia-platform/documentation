@@ -21,9 +21,11 @@ Check out the **[Runtime area documentation](/development_suite/monitoring/intro
 
 #### Information tooltips in the Design sidebar menu
 
-In the Design area, you can now display an information tooltip when hovering over the name of a specific section in the sidebar menu. 
+In the Design area, you can now display an information tooltip when hovering over the name of a specific section in the sidebar menu.  
 
-### Security improvements 
+![Mia-Platform Information Tooltip](./img/10.4/information-tooltip.png)
+
+### Security improvements
 
 #### Security issue on Dashboard Area
 
@@ -43,8 +45,8 @@ The overall deployment experience in Console has been updated. It is now also po
 
 This version addressed a few bugs, here is a comprehensive list:
 
-  * A bug affecting ConfigMap editors with many lines has been fixed
-  * Project Template management from CMS has now been limited only to Company Owners and to Super Administrators through the addition of specific permissions
+* A bug affecting ConfigMap editors with many lines has been fixed
+* Project Template management from CMS has now been limited only to Company Owners and to Super Administrators through the addition of specific permissions
 
 ## Fast Data
 
@@ -87,26 +89,21 @@ From version 5.6.5 the Single View Creator retries the message processing when a
 
 ### Bug Fix
 
-
 #### `bk-export` component emits success / error events
 
 `bk-export` component emits success / error events. If component property `nativeDownload` is set to `false`, events are emitted when the export is concluded or fails; or whenever the download request is sent otherwise.
-
 
 #### Automatic name in filters format dates
 
 `date` / `date-time` / `time` fields are formatted in automatically computed filter names according to `dateOptions.displayFormat` in data-schema.
 
-
 #### Table columns fit content
 
 Columns width in `bk-table` component is improved to better fit their content and title.
 
-
 #### Fields of format "editor" can be edited correctly
 
 Form components allows to edit fields of type `string` and format `editor`.
-
 
 #### Automatic name in filters resolve lookups
 
