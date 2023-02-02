@@ -77,15 +77,7 @@ Now, from version 5.6.5 of the service, any kind of primary key field type it is
 
 From version 5.6.5 the Single View Creator retries the message processing when an unexpected error is thrown instead of skipping the message.
 
-## Marketplace
-
-### New Marketplace Components
-
-### Marketplace Updates
-
 ## Backoffice - 1.3.3
-
-### New Features
 
 ### Bug Fix
 
