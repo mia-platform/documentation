@@ -103,4 +103,4 @@ Lookup values are correctly resolved in automatically computed filter names
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.2.17`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.2.21`.
