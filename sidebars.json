@@ -789,6 +789,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/flow_manager/flow_manager_tutorial",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/fast_data/fast_data_low_code_tutorial",
           "type": "doc"
         },
