@@ -6,7 +6,7 @@ sidebar_label: API portal documentation
 
 import VideoBox from "./../../../src/components/VideoBox";
 
-In this tutorial, we will learn how to create and use the [_API Portal_](/runtime_suite/api-portal/overview.md), a user-friendly interface that allows developers to easily visualize and test their microservices endpoints. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/) Specification. We will also use [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md), a plugin that merges multiple Open Api specification documents in one place, allowing you to add documentation of new microservices without additional work.
+In this tutorial, we will learn how to configure and use the [_API Portal_](/runtime_suite/api-portal/overview.md) and the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md) in order to provide the developers with a user-friendly interface that enables them to easily visualize and test endpoints of different microservices in a single place. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/) Specification.
 
 ## What we will build
 
@@ -29,12 +29,15 @@ Before starting, we will assume that, you already have a clean project in Mia-Pl
 
 The project must:
 
-- Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
-- Have an [ingress route](/paas/traefik.md) with "api-gateway" as `service`;
-- Be aware of your project domains. If the project links has been configured, you can find them in the "Environments" section of the "Project Settings", under the "Application" column.
+1. Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
+1. Have an [ingress route](/paas/traefik.md) with `api-gateway` as `service`;
+1. Have an [API Gateway](/runtime_suite/api-gateway/overview.md) or a [Envoy API Gateway](/runtime_suite/envoy-api-gateway/overview.md) in your project
+1. Have a service in your project that at least exposes:
+    - an endpoint that is also reachable outside the project thanks to a proper the endpoints section configuration;
+    - an endpoint, internal respect to the project, that replies with the OpenAPI documentation of the service in json format.
 
 :::tip
-If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
+If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project already satisfy conditions 1 and 2.
 :::
 
 Moreover, you need at least:
@@ -45,6 +48,10 @@ Moreover, you need at least:
 ## Install plugins
 
 In order to start the tutorial, you must be in the _design_ section of the project in the [Microservices section](/development_suite/api-console/api-design/services.md) from the left side menu.
+
+Since a project is ment to have several microservices, we want to have the ability to access their documentation from a single place. To do this, we will include:
+- an [_API Portal_](/runtime_suite/api-portal/overview.md), that will present a graphical interface to show the OpenAPI documentation of our endpoints;
+- a [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md), that will be contacted by the _API Portal_ to have the entire OpenAPI documentation to be shown. In order to create it, it will retreive the OpenAPI documentation of each service and merge it into a single one.
 
 ### API Portal
 
@@ -62,10 +69,6 @@ The first plugin we are going to create is _API portal_, the steps to create it 
 
 ### Swagger Aggregator
 
-In case you have a project with multiple microservices, which is the most common case, it is very useful to have the ability to access their documentation from a single place. To do this, the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/overview.md) was designed, whose goal is to go and retrieve all the OpenAPI specification from each service and merge it into a single one, so that it can be shown in its entirety in the API Portal without the developer having to worry about anything else.
-
-Used in conjunction with the Mia-Platform Console, it allows you to quickly and easily choose via a checkbox which endpoints to expose and with what degree of security, without requiring additional effort, as you will see later in the tutorial.
-
 In order to create this plugin:
 
 1. Click on the _Create a Microservice_ button;
@@ -78,7 +81,7 @@ In order to create this plugin:
 
 ![Create API portal](img/create_swagger_aggregator.png)
 
-### Configure plugins endpoints
+## Configure plugins endpoints
 
 The last step needed to configure the plugins is to create the necessary endpoints that are required to make the whole process work. This consists of going to the _endpoints_ section and creating:
 
@@ -86,26 +89,26 @@ The last step needed to configure the plugins is to create the necessary endpoin
 1. `/documentations/api-portal/api` pointing to "swagger-aggregator" microservice.
 
 :::info
-If you still don't know how to create an endpoint look at the [first tutorial](/tutorial/microservices/hello_world.mdx#expose-the-hello-world-microservice-api)!
+If you don't know how to create an endpoint look at the [first tutorial](/tutorial/microservices/hello_world.mdx#expose-the-hello-world-microservice-api)!
 :::
 
-## Configure the services to be documented
+## Set which documentations must be aggregated
 
-Before testing the API Portal, we need to configure the services and endpoints to give the API portal the acknowledge of the services whose documentation we want.
+Before testing the _API Portal_, we need to configure the services and endpoints in order make the _Swagger Aggregator_ include their documetations in merged one.
 
 ### Configure the service
 
-To configure the services you want to be included in the API Portal:
+First of all we must make the swagger aggregator aware of the endpoints to contact in order to retrieve the documentations of the various services. Therefore, if we want a service documentation to be included in the one shown by the _API Portal_, we need to follow the following steps:
 
 1. Click on the _Microservices_ section;
 1. Select the service to configure, in this case _hello-world-service_;
-1. Under the _details_ section fill the **API documentation path** with the service endpoint that expose the Open Api configuration, in this case `/documentation/json`;
+1. Under the _details_ section fill the **API documentation path** with the service endpoint that expose the OpenAPI documentation, in this case `/documentation/json`;
 1. Save the changes by committing.
 
 ![Configure service](img/configure_service.png)
 
-:::caution
-Be sure to remove this path from `api-gateway`, `api-portal` and `swagger-aggregator` services!
+:::tip
+Note that `api-gateway`, `api-portal` and `swagger-aggregator` services should have _API documentation path_ field blank, since we don't want to fetch any documentation from them.
 :::
 
 ### Configure the endpoint
@@ -120,10 +123,10 @@ To configure the endpoints:
 ![Configure endpoint](img/configure_endpoint.png)
 
 :::caution
-Be sure to remove those flags from `/documentations/api-portal` and `/documentations/api-portal/api` endpoints!
+Be sure that those flags are unchecked for `/documentations/api-portal` and `/documentations/api-portal/api` endpoints!
 :::
 
-Repeat this operations for each service and endpoint you want to show in the API Portal and magically they will be added!
+Repeat these operations for each service and endpoint you want to show in the API Portal.
 
 ## Open the interface and test the endpoint
 
@@ -131,6 +134,6 @@ The last step is to open the API portal interface. Firstly, go to the [_environm
 
 ![Open docs](img/open_docs.png)
 
-After clicking the link, this interface will be displayed. Here you will find and search for each endpoint exposed by API Portal, you can also try the endpoint as you can see in the following example:
+After clicking the link, this interface will be displayed. Here you will find and search for each endpoint exposed by API Portal, you can also try the endpoint by filling in the parameters and click on the `Try it` button:
 
 ![API Portal](img/try_now_api_portal.png)
