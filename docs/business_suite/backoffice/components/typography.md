@@ -19,7 +19,7 @@ renders a header title.
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |LocalizedText|{}|title localized content |
+|`content`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|title localized content |
 
 ### Listens to
 

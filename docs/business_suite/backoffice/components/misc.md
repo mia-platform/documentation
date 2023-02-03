@@ -163,19 +163,19 @@ Generic drawer container for custom content and custom footer
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |Taggable \\| Taggable[]| - |configurable content of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`content`| - |Taggable \| Taggable[]| - |configurable content of the drawer. Supports both object or array, as: {tag: string; properties?: Object; children?: string} |
 |`dataCustomActions`| - |DataCustomAction[]| - |list of actions|
 |`drawerId`|`drawer-id`|string| - |identifier associated to the drawer |
-|`drawerTitle`| - |LocalizedText| - |title of the drawer |
+|`drawerTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |title of the drawer |
 |`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the drawer. This property is to be set programmatically only |
-|`footerComponent`| - |null \\| Taggable \| Taggable[]| - |configurable footer of the drawer. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`footerComponent`| - |null \| Taggable \| Taggable[]| - |configurable footer of the drawer. Supports both object or array, as: {tag: string; properties?: Object; children?: string} |
 |`loading`|`loading`|boolean|false|whether or not the drawer is loading |
 |`mask`|`mask`|boolean|true|whether to mask or not the drawer|
-|`requireConfirm`| - |boolean \\| RequireConfirmOpts|false|whether or not the drawer requires confirmation to close with unsaved data |
+|`requireConfirm`| - |boolean \| RequireConfirmOpts|false|whether or not the drawer requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
-|`subTitle`| - |LocalizedText| - |sub-title of the drawer |
+|`subTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |sub-title of the drawer |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
-|`width`| - |string \\| number| - |width of the drawer |
+|`width`| - |string \| number| - |width of the drawer |
 |`zIndex`|`z-index`|number| - |zIndex of the drawer |
 
 
@@ -299,7 +299,7 @@ Items in the menu. These can be of two types, `href` or `application`. `href` me
 
 Multiple menu items can be grouped into recursive structures, `categories` (collapsible) and `groups` (non-collapsible).
 
-All types of menu item have internationalized labels [localizedText](../core_concepts#localization-and-i18n).
+All types of menu item have internationalized labels [LocalizedText](../core_concepts#localization-and-i18n).
 
 #### Href
 ```typescript
@@ -385,13 +385,13 @@ export interface GroupMenuItem {
 ### Properties & Attributes
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|mode | mode | Mode | overlaySideBar | controls how the menu is visualized |
-|logo | - | Logo | - | logo to be visualized in the menu |
+| mode | mode | Mode | overlaySideBar | controls how the menu is visualized |
+| logo | - | Logo | - | logo to be visualized in the menu |
 | menuItems | - | MenuItem[] | - | describes the items in the menu |
 | helpMenu | - | HelpMenu  | - | controls the help button on the menu |
 | userMenu | - | UserMenu  | - | controls the user information section of the menu |
 | head | - | Head  | - | controls tab visualization options |
-| locale | - | Record<string, string> | - | allows to override component labels |
+| locale | - | {[x: string]: string} | - | allows to override component labels |
 
 ### Listens to
 
@@ -589,8 +589,8 @@ Adding the attribute `disable-shadow-dom` allows to disable the shadow dom for t
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |undefined \\| Record\<string, LayoutNode\> \| Record\<string, LayoutNode[]\>| - |layouts configuration |
-|`disableShadowDom`| `disable-shadow-dom` \\| boolean | false | disable the shadow dom as render root |
+|`content`| - | {[x: string]: LayoutNode} \| {[x: string]: LayoutNode} | - |layouts configuration |
+|`disableShadowDom`| `disable-shadow-dom` \| boolean | false | disable the shadow dom as render root |
 |`currentLayout`|`current-layout`|string| - |default layout to view on landing |
 
 
@@ -623,16 +623,16 @@ Generic modal container for custom content and custom footer
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |Taggable \\| Taggable[]| - |configurable content of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`content`| - |Taggable \| Taggable[]| - |configurable content of the modal. Supports both object or array, as: {tag: string; properties?: Object; children?: string} |
 |`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the modal. This property is to be set programmatically only |
-|`footerComponent`| - |null \\| Taggable \| Taggable[] \| Object| - |configurable footer of the modal. Supports both object or array, as: {tag: string; properties?: Record\<string, any\>; children?: string \| ReactNode} |
+|`footerComponent`| - |null \| Taggable \| Taggable[] \| Object| - |configurable footer of the modal. Supports both object or array, as: {tag: string; properties?: Object; children?: string} |
 |`height`|`height`|string| - |height of the modal |
 |`loading`|`loading`|boolean|false|whether or not the modal is loading |
 |`modalId`|`modal-id`|string| - |identifier associated to the modal |
-|`modalTitle`| - |LocalizedText| - |title of the modal |
-|`requireConfirm`| - |boolean \\| RequireConfirmOpts|false|whether or not the modal requires confirmation to close with unsaved data |
+|`modalTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |title of the modal |
+|`requireConfirm`| - |boolean \| RequireConfirmOpts|false|whether or not the modal requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
-|`subTitle`| - |LocalizedText \\| Taggable \| Taggable[]| - |sub-title of the modal |
+|`subTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n) \| Taggable \| Taggable[]| - |sub-title of the modal |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
 |`width`|`width`|string| - |width of the modal |
 |`zIndex`|`z-index`|number| - |zIndex of the modal |
@@ -664,9 +664,24 @@ displays toast notifications about events happening on the EventBus according to
 ```html
 <bk-notifications></bk-notifications>
 ```
-### Notifications properties
-Properties `successEventMap` and `errorEventMap` map the `triggered-by` field of [success](../events#success) and [error](../events#error) events into notification properties.
+
+### NotificationsMap
+
+```typescript
+type NotificationsMap {
+  [key: string]: {
+    title?: LocalizedText
+    content?: LocalizedText
+    type?: "success" | "error"
+  }
+}
+```
+
+Properties `successEventMap` and `errorEventMap` map the `triggeredBy` field of [success](../events#success) and [error](../events#error) events to an object having keys `title`, `content`, `type`, which is then used to render the corresponding notification.
+Both title and content fields are [localizedText](../core_concepts#localization-and-i18n) strings or objects.
+
 ### Triggering notifications from bk-button
+
 Using the following keys, it is possible to trigger a notification as a result of a HTTP-call triggered by a `bk-button` component:
 
 | key | operation |
@@ -677,6 +692,7 @@ Using the following keys, it is possible to trigger a notification as a result o
 | `bk-button-file-upload` | File upload |
 
 ### Example
+For instance, given the following configuration:
 ```json
 {
   "create-data": {
@@ -687,17 +703,6 @@ Using the following keys, it is possible to trigger a notification as a result o
      "content": {
        "en": "The data has been created correctly",
        "it": "I dati sono stati creati correttamente"
-     },
-     "type": "success"
-  },
-  "update-data": {
-     "title": {
-       "en": "Data was updated correctly!",
-       "it": "Dato aggiornato correttamente!"
-     },
-     "content": {
-       "en": "The data has been updated correctly",
-       "it": "I dati sono stati aggiornati correttamente"
      },
      "type": "success"
   },
@@ -726,10 +731,13 @@ Using the following keys, it is possible to trigger a notification as a result o
 }
 ```
 
+Assuming the current locale of the browser being set to english, a [success](../events#success) event with `meta.triggeredBy` field set to `created-data` (which for instance might happen as a consequence of a successful POST request), triggers the display of a success notification having title "Data was created correctly!", and content "The data has been created correctly".
+
+
 | property | type | values | description |
 |----------|------|--------|-------------|
-| title   | [localizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification title |
-| content | [localizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification content |
+| title   | [LocalizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification title |
+| content | [LocalizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification content |
 | type    | string | `success`, `error`, `info`, `warning` | enum of possible notification styling (i.e. icons, color...) |
 
 ### Properties & Attributes
@@ -739,7 +747,7 @@ Using the following keys, it is possible to trigger a notification as a result o
 |`customEventMap`| - |NotificationsMap|{}|map containing the labels of any event that should be notified and the related `notificationProps` |
 |`duration`|`duration`|number| - |lingering time for the notification in seconds |
 |`errorEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `error` that should be notified with the related `notificationproperties` |
-|`location`| - |"topRight" \\| "topLeft" \| "bottomRight" \| "bottomLeft"|'topRight'|corner location where the notification should be displayed |
+|`location`| - |"topRight" \| "topLeft" \| "bottomRight" \| "bottomLeft"|"topRight"|corner location where the notification should be displayed |
 |`rootElementSelectors`|`root-element-selectors`|string| - |selector to specify where the notification should be appended |
 |`successEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `success` that should be notified with the related `notificationproperties` |
 

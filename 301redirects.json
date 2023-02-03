@@ -138,5 +138,13 @@
   "/docs/development_suite/monitoring/monitoring_namespace": {
     "destination": "/docs/development_suite/monitoring/resources/namespace",
     "addedOn": "2023-01-27"
+  },
+  "/docs/development_suite/set-up-infrastructure/auth-0-setup": {
+    "destination": "/docs/runtime_suite/auth0-client/configure_auth0",
+    "addedOn": "2023-02-03"
+  },
+  "/docs/development_suite/api-console/api-design/how_to_enable_auth0": {
+    "destination": "/docs/runtime_suite/auth0-client/enable_auth0",
+    "addedOn": "2023-02-03"
   }
 }

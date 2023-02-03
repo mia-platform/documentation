@@ -1,6 +1,6 @@
 ---
-id: auth-0-setup
-title:  Configure Auth0
+id: configure_auth0
+title: Configure Auth0
 sidebar_label: Configure Auth0
 ---
 Once you have created your project and want to enable user management on your Headless CMS or another application you will need to follow this short guide.
@@ -108,7 +108,7 @@ https://cms.<tenant>.test.mia-platform.eu/web-login, https://cms.<tenant>.prepro
 
 ## Step 7: Write the configurations on the Console
 
-[Link on the console configuration guide](/runtime_suite/auth0-client/configuration.md)
+Follow this [link](./configuration.md) to learn how to configure the Auth0 Client.
 
 Remember, when configuring the auth0-client, to reuse the value you used as `MIA_NAMESPACE` in the rule configured in the previous point.
 

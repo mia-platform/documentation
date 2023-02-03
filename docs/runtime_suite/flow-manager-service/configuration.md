@@ -71,8 +71,8 @@ Following some examples with explanation.
   "type": "kafka",
   "configurations": {
     "brokers": [
-      "http://myKafkaNode1:9092",
-      "http://myKafkaNode2:9092",
+      "myKafkaNode1:9092",
+      "myKafkaNode2:9092",
     ],
     "inputTopics": [
       "topic-to-subscribe"
@@ -97,7 +97,7 @@ Following some examples with explanation.
   "id": "myKafkaProducer",
   "type": "kafka",
   "configurations": {
-    "brokers": "http://myKafkaNode1:9092,http://myKafkaNode2:9092",
+    "brokers": "myKafkaNode1:9092,myKafkaNode2:9092",
     "outputTopics": [
       "topic-to-publish-on"
     ]
@@ -113,7 +113,7 @@ Following some examples with explanation.
   "type": "kafka",
   "configurations": {
     "brokers": [
-      "http://myKafka:9092"
+      "myKafka:9092"
     ],
     "inputTopics": [
       "topic-to-subscribe"
@@ -535,7 +535,7 @@ The following example configurations can be used as templates.
       "type": "kafka",
       "configurations": {
         "brokers": [
-          "https://kafkaCloud:9092"
+          "kafkaCloud:9092"
         ],
         "inputTopics": [
           "common-events",
@@ -826,7 +826,7 @@ In this section there are common cases of wrong configurations.
   "type": "kafka",
   "configurations": {
     "brokers": [
-      "http://myKafkaConsumer:9092"
+      "myKafkaConsumer:9092"
     ]
   }
 }
@@ -842,7 +842,7 @@ The JSON above is NOT valid because both *inputTopics* and *outputTopics* are mi
   "type": "kafka",
   "configurations": {
     "brokers": [
-      "http://myKafkaConsumer:9092"
+      "myKafkaConsumer:9092"
     ],
     "inputTopics": [
       "inputTopic"

@@ -80,6 +80,9 @@ When the `_v` parameter is specified, the form is set to `readOnly` mode. This m
 
 :::
 
+#### Form data retrieve drafts support
+From `version 1.6.0` the Form-Service Frontend supports the possibility to retrieve form drafts. When calling the `GET /visualizer/{id}` endpoint is possible to specify the `_status` parameter. This parameter will be passed to the Form-Service Backend that, if configured properly, will retrieve the draft version of the requested form data.
+
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:

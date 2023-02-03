@@ -37,11 +37,11 @@ To get started on Backoffice configuration on your local machine consider follow
 This will allow you to spawn a docker-compose equivalent environment on your machine and test configuration edits by simply refreshing your
 browser.
 
-A Back-Kit application that uses a rendering engine such as `microlc-element-composer`, is structured into multiple configuration files:
+A Back-Kit application that uses a rendering engine such as the one of [microlc-v1](https://github.com/micro-lc/micro-lc), is structured into multiple configuration files.
 
 - an `authentication.json` file
 - a `configuration.json` file
-- a configuration file for each plugin or single page application (SPA). These can be organized in subfolders
+- a configuration file for each plugin. These can be organized in subfolders
 
 This is an example of a typical structure for a Back-Kit application:
 
@@ -301,7 +301,7 @@ includes information on the structure of the plugin menu.
 - `id` is a unique identifier of the menu option
 - `label` and `icon` describe the look of the option in the menu
 - `integrationMode` indicates the strategy to use for loading the plugin
-- `pluginRoute` is the url of the SPA
+- `pluginRoute` is the url of the plugin
 - `pluginUrl` is the url of the rendering engine
 - `props` includes further information; in particular `configurationName`, which indicates what configuration file to use for resolving the plugin once the option is selected
 - plugin menu can also be structure its options into subgroups using a `content` option, which includes an array of plugins
@@ -316,12 +316,12 @@ Each plugin has its own configuration file, as described in [layout](page_layout
 
 Following is an image of a Back-Kit application with an empty plugin:
 
-![Example of SPA with an empty plugin](img/no_plugin_spa.png)
+![Example of plugin with an empty plugin](img/no_plugin_spa.png)
 
 The page only includes information specified in the `configuration.json` file, and on the logged-in user.
 
-Once a complete configuration for the plugin is provided, the resulting SPA will be displayed. Selecting a new plugin in the right menu will cause the new plugin to be rendered, without the need for the whole page to load again.
+Once a complete configuration for the plugin is provided, the resulting plugin will be displayed. Selecting a new plugin in the right menu will cause the new plugin to be rendered, without the need for the whole page to load again.
 
-![Example of SPA with web components](img/plugin_spa.png)
+![Example of plugin with web components](img/plugin_spa.png)
 
 For a full example of a plugin configuration, refer to [plugin](plugin_example).

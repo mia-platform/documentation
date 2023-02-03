@@ -121,7 +121,11 @@ The service allows tracking actions performed by the patient concerning a specif
 * the compliance of the observation with respect to what prescribed by the physician;
 * the date of the observation; 
 
-  :::note Please note that the date the observation was entered may be different from the date the observation was conducted. :::
+:::note
+
+Please note that the date the observation was entered may be different from the date the observation was conducted.
+
+:::
 
 * the reference to the referring physician for the therapy or monitoring;
 * the reference to the patient to whom the therapy or monitoring relates.

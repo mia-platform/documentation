@@ -115,19 +115,19 @@ Generic form to edit or create items described by the `dataSchema`
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
-|`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
+|`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table |
-|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`formId`|`form-id`|string| - |id of the form. This property should only be set programmatically. |
-|`formKindIfDisplayData`| - |"add" \\| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default). |
+|`formKindIfDisplayData`| - |"add" \| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default). |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`onFieldsChange`| - |Function| - | - |
 |`onLoading`| - |Function| - | - |
 |`onWizardStepAttempted`| - |Function| - | - |
-|`openingEvent`| - |OpeningEvent \\| OpeningEvent[]|[]|what opening event to listen to. If includes 'insert', `add-new` events will be listened to, if includes 'select', `selected-data` events will be listened to. |
+|`openingEvent`| - |OpeningEvent \| OpeningEvent[]|[]|what opening event to listen to. If includes 'insert', `add-new` events will be listened to, if includes 'select', `selected-data` events will be listened to. |
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
 
 ### Listens to
@@ -180,11 +180,11 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 |`customLabels`| - |Partial\<FormCardLocale\>| - |custom localized texts shown as CTA buttons labels|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
-|`formKind`| - |"add" \\| "edit"|'edit'|data management strategy when setting initial values from displayData: add or edit (default) |
+|`formKind`| - |"add" \| "edit"|"edit"|data management strategy when setting initial values from displayData: add or edit (default) |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
+|`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
 | `header`| - | Pick<CardSchema, 'header'>| - | card header |
 
 ### Listens to
@@ -351,19 +351,19 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
-|`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
+|`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
-|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataCustomActions`| - |DrawerDataActionConfig[]|[]|list of actions to render per row|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \\| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
+|`requireConfirm`| - |boolean \| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
-|`width`| - |string \\| number|500|with of the drawer |
-|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
+|`width`| - |string \| number|500|with of the drawer |
+|`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
 
 ### Listens to
 
@@ -628,21 +628,21 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
-|`allowNavigation`| - |boolean \\| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
+|`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table|
 |`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
-|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`height`|`height`|string|'60vh'|height of the modal |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \\| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
+|`requireConfirm`| - |boolean \| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string|'#microlc-element-composer'|root element to append the modal to |
 |`width`|`width`|string|'90vw'|with of the modal |
-|`wizard`| - |boolean \\| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
-|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
+|`wizard`| - |boolean \| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
+|`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
 
 ### Listens to
 

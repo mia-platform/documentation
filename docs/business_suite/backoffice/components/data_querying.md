@@ -141,7 +141,7 @@ This is the filter drawer
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`|`width`|string| - |width occupied by the component |
-|`editorHeight`|`editor-height`|string \\| number| - | height of object/array editor |
+|`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
 
 ### Listens to
 
@@ -273,7 +273,7 @@ Searching lookup fields could be computationally heavy. The number of searchable
 |----------|-----------|------|---------|-------------|
 |`autoSearchMinInput`|`auto-search-min-input`|number|2|min length of input string before performing automatic search|
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|100|max items to fetch on regex live search|
-|`placeholder`| - |LocalizedText|{}|placeholder of the search bar input |
+|`placeholder`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|placeholder of the search bar input |
 |`searchDebounce`|`search-debounce`|number|0|time to wait before performing an automatic search. If 0, automatic search is disabled|
 |`searchLookups`|`search-lookups`|boolean|false|whether or not to perform search on lookups. If true, `lookup-crud-client` (or any component listening to `search-lookups` and emitting `search-lookups-found`) should be included in the plugin|
 

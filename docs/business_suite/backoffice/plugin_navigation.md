@@ -100,7 +100,7 @@ in the previous example `EventBus` will pipe an `add-new` event with the given `
 }
 ```
 
-## example 1 - food delivery
+## Example - food delivery
 
 Suppose you have food delivery orders listed in the main "collection" using a table.
 The main table expects a field named `orderId` as primary table index. A form is used to create a new

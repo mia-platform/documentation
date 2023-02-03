@@ -25,6 +25,13 @@ Since v2.0.0 two new service configuration fields are supported: `isMessagingAva
 
 :::
 
+:::danger
+
+**v2.1.0**
+Since v2.1.0 the service configuration accepts a list of reminders, that you can send at different times using different templates. You need to upgrade your existing configuration before upgrading to v2.1.x, since the older `reminder` property is no longer valid.
+
+:::
+
 The service requires you to provide a configuration file in JSON format as a configmap. You can choose the
 name and mounting point of the map, as long as you specify the correct path in the `CONFIGURATION_PATH` [environment variable][environment-variables].
 
@@ -36,11 +43,29 @@ Here's an example of a full configuration:
     "doctor": {
       "create": "template_id",
       "delete": "template_id",
-      "reminder": "template_id"
+      "reminders": {
+        [
+          {
+            "template": "template_id",
+            "reminderMilliseconds": 86400000   
+          }
+        ]
+      }
     },
     "patients": {
       "update": "template_id",
-      "reminder": "template_id"
+      "reminders": {
+        [
+          {
+            "template": "template_id_1",
+            "reminderMilliseconds": 86400000   
+          },
+                    {
+            "template": "template_id_2",
+            "reminderMilliseconds": 3600000   
+          },
+        ]
+      }
     }
   },
   "channels": ["email", "push", "sms"],
@@ -56,12 +81,13 @@ A reference presentation of each available field is provided in the following ta
 
 | Name | Required | Default | Description |
 |------|----------|---------|-------------|
-| `users` | Yes | - | Templates to use for sending messages (when you `create`, `update` or `delete` an appointment) and reminders (`reminder`) to appointment participants (e.g. `doctor` and `patients`) |
+| `users` | Yes | - | Templates to use for sending messages (when you `create`, `update` or `delete` an appointment) and `reminders` to appointment participants (e.g. `doctor` and `patients`) |
 | `channels` | Yes | - | The list of channels to send messages on (currently supported channels: `email`, `push`, `sms`) |
 | `reminderThresholdMs` | No | 0 | Send reminders only at least as early before the appointment starts. Zero means the reminders, if enabled, are always sent |
 | `isTeleconsultationAvailable` | No | `false` | If the teleconsultation service is available, enable the integration to generate teleconsultation links. |
 | `isMessagingAvailable` | No | `false` | If the messaging service is available, enable the integration to send messages and reminders. |
 | `isTimerAvailable` | No | `false` | If the timer service is available, enable the integration to set reminders. |
+| `isUserAvailable` | No | `false` | If the resources crud path is available, enable to recover resource's information for `POST /searches/first-available-slot/` endpoint. |
 | `defaultLockDurationMs` | No | - | The default duration of the temporary slot lock (in milliseconds). |
 
 #### `users`
@@ -77,20 +103,39 @@ The structure of the map is the following:
     "create": "template_id",
     "update": "template_id",
     "delete": "template_id",
-    "reminder": "template_id"
+    "reminders": {
+      [
+        {
+          "template": "template_id_1",
+          "reminderMilliseconds": 86400000   
+        },
+        {
+          "template": "template_id_2",
+          "reminderMilliseconds": 3600000   
+        },
+      ]
+    }
   }
 }
 ```
 
-As you can see, inside each user category you can specify four fields: **create**, **update**, **delete** and **reminder**.
-Each of these fields will allow you to set the template for a specific part of the appointment lifecycle.
+As you can see, inside each user category you can specify four fields: **create**, **update**, **delete** and **reminders**.
+Each of these fields will allow you to set the template for a specific part of the appointment lifecycle. The **reminders** field allows setting multiple templates and the amount of time before the appointment (expressed in milliseconds) when each of these templates has to be sent. 
 
 In particular, you will have:
 
 - `create`: where you can set the template for messages sent on the **creation of an appointment**
 - `update`: where you can set the template for messages sent when **update of an appointment**
 - `delete`: where you can set the template for messages sent on the **deletion of an appointment**
-- `reminder`: where you can set the template for messages sent when **the appointment reminder expires**.
+- `reminders`: where you can set the list of template for messages sent when **the respective appointment reminder expires**.
+
+:::danger
+
+**v2.1.0**
+
+Every reminder belonging to the same user group must have an unique template id
+
+:::
 
 #### `channels`
 
@@ -154,8 +199,22 @@ This configuration field is supported only from v2.0.0
 
 A `boolean` which determines if the messaging service can be used.
 If the value is set to **false**, the user can't send set reminders.
-If the value is set to **true**, the user can configure the reminder templates and thresholds.
+If the value is set to **true**, the user can configure the reminders templates and when they are sent.
 
+The default value is **false**.
+
+#### `isUserAvailable`
+
+:::info
+
+**v2.1.0**
+This configuration field is supported only from v2.1.0
+
+:::
+
+A `boolean` which determines if resource CRUD path has been configured.
+If the value is set to **false**, the user can't use search endpoints.
+If the value is set to **true**, the user can call the `POST /searches/first-available-slot/` endpoint.
 The default value is **false**.
 
 #### `defaultLockDurationMs`
@@ -177,11 +236,13 @@ The Appointment Manager accepts the following environment variables.
 |------|----------|-------------|
 | **CONFIGURATION_PATH** | Yes | Path of the config map file containing the service configuration. |
 | **CRUD_SERVICE_NAME** | Yes | Name of the CRUD service. |
-| **RESOURCE_ID_FIELD_NAME** | Yes | Name of the CRUD field containing the resource ID (the field must be present in all CRUD collections). |
+| **RESOURCE_ID_FIELD_NAME** | Yes | Name of the CRUD field containing the resource ID (the field must be present in the availabilities, appointments and exceptions CRUD collections). |
 | **DEFAULT_TIME_ZONE** | Yes | Default IANA time zone, to be used when no time zone is specified by the client when creating new availabilities. |  
 | **APPOINTMENTS_CRUD_NAME** | Yes | Name of the CRUD collection containing the appointments. |
 | **AVAILABILITIES_CRUD_NAME** | In full mode | Name of the CRUD collection containing the availabilities. |
 | **EXCEPTIONS_CRUD_NAME** | In full mode | Name of the CRUD collection containing the exceptions. |
+| **USERS_CRUD_NAME** | If `isUserAvailable` is `true` | Name of the CRUD collection containing the users. |
+| **USER_ID_FIELD_NAME** |  If `isUserAvailable` is `true`  | Name of the CRUD field containing the user ID in the users CRUD. |
 | **MESSAGING_SERVICE_NAME** | If `isMessagingAvailable` or `isTimerService` is `true` | Name of the Messaging Service. **Required** if you want to send messages or set reminders for your appointments.
 | **TIMER_SERVICE_NAME** | If `isTimerService` is `true` | Name of the Timer Service. **Required** if you want to set reminders for your appointments.
 | **TELECONSULTATION_SERVICE_NAME** | If `isTeleconsultationAvailable` is `true` | Name of the teleconsultation service. **Required** if you want to create teleconsultations.
@@ -192,7 +253,8 @@ The Appointment Manager accepts the following environment variables.
 
 The following sections describe the schema of each CRUD collection used by the Appointment Manager.
 
-All the CRUD collections need to have a `string` field with any name of your choice, as long as you specify it in the `RESOURCE_ID_FIELD_NAME` [environment variable][environment-variables], containing the resource ID. This field is necessary to correlate availabilities and appointments to exceptions referring to the same resource. 
+Availabilities, appointments and exceptions CRUD collections need to have a `string` field with any name of your choice, as long as you specify it in the `RESOURCE_ID_FIELD_NAME` [environment variable][environment-variables], containing the resource ID. This field is necessary to correlate availabilities and appointments to exceptions referring to the same resource. 
+The name of the `string` field in the users CRUD collection that identifies a user can be specified in the `USER_ID_FIELD_NAME` [environment variable][environment-variables].
 
 #### Appointments CRUD collection
 
@@ -207,22 +269,23 @@ A new `isFlagged` field is added to track the appointments whose slots are no lo
 
 The Appointment Manager requires a CRUD containing the appointments. The collection can have any name you want, as long as you specify the correct name in the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
 
-The appointments collection must have the following fields:
+The appointments collection must have the following fields, plus the same custom fields defined in the [availabilities CRUD](configuration.md#availabilities-crud-collection):
 
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| startDate | `date` | Yes | Start date/time expressed in format ISO 8601. |
-| endDate | `date` | Yes | End date/time expressed in format ISO 8601. |
-| availabilityId | `string` | In full mode | ID of the appointment's related availability. |
-| ownerId | `string` | In full mode | User who booked the appointment. |
-| reminderMilliseconds | `number` | No | Amount of time before the appointment when users are notified about it (expressed in milliseconds). |
-| reminderIds | `array of ObjectId` | No | List of unique identifiers of the reminders associated with the appointment. |
-| channels | `array of string` | No | List of communication channels used to send messages and reminders. Possible values are **email**, **sms**, and **push**. |
-| isRemote | `boolean` | No | If an appointment will use the teleconsultation or not. |
-| linkTeleconsultation | `string` | No | The link to join the teleconsultation. |
-| isFlagged | `boolean` | No | If an appointment may need to be rescheduled because the associated slot is no longer available. |
-| status | `string` | Yes | The status of the appointment: `AVAILABLE` (reserved but not confirmed) or `BOOKED` (confirmed). |
-| lockExpiration | `date` | No | The expiration of the slot's temporary lock (expressed in format **ISO 8601**), set when the slot is locked with the `PATCH /slots/lock/:id`. |
+| Name                 | Type | Required | Nullable | Description |
+|----------------------|------|----------|----------|-------------|
+| startDate            | `date` | Yes | No | Start date/time expressed in format ISO 8601. |
+| endDate              | `date` | Yes | No | End date/time expressed in format ISO 8601. |
+| availabilityId       | `string` | In full mode | No | ID of the appointment's related availability. |
+| ownerId              | `string` | In full mode | No | User who booked the appointment. |
+| slotId               | `string` | No | No | Slot ID for backward compatibility. |
+| reminderMilliseconds | `number` | No | No | Amount of time before the appointment when users are notified about it (expressed in milliseconds). |
+| reminderIds          | `array of ObjectId` | No | No | List of unique identifiers of the reminders associated with the appointment. |
+| channels             | `array of string` | No | No | List of communication channels used to send messages and reminders. Possible values are **email**, **sms**, and **push**. |
+| isRemote             | `boolean` | No | No | If an appointment will use the teleconsultation or not. |
+| linkTeleconsultation | `string` | No | No | The link to join the teleconsultation. |
+| isFlagged            | `boolean` | No | No | If an appointment may need to be rescheduled because the associated slot is no longer available. |
+| status               | `string` | Yes | No | The status of the appointment: `AVAILABLE` (reserved but not confirmed) or `BOOKED` (confirmed). |
+| lockExpiration       | `date` | No | Yes | The expiration of the slot's temporary lock (expressed in format **ISO 8601**), set when the slot is locked with the `PATCH /slots/lock/:id`. |
 
 :::tip
 
@@ -272,7 +335,7 @@ The availabilities collection must have the following fields:
 
 :::tip
 
-On top of the aforementioned fields, you can add any field you want to the CRUD. The service will treat them as the CRUD would.
+On top of the aforementioned fields, you can add any custom field you want to the CRUD. The service will treat them as the CRUD would.
 
 :::
 
@@ -301,6 +364,13 @@ The exceptions collection must have the following fields:
 On top of the aforementioned fields, you can add any field you want to the CRUD. The service will treat them as the CRUD would.
 
 :::
+
+#### Users CRUD collection
+
+The Appointment Manager uses the users CRUD collection to fetch additional information about appointments participants. This collection is currently required only by the following endpoints:
+
+- `POST /searches/first-available-slot/`.
+
 
 ## Appointments mode
 
@@ -332,12 +402,6 @@ This section provide instructions on how to configure the Appointment Manager to
 
 - Add the name of the [appointments CRUD collection](#appointments-crud-collection) to the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
 
-:::danger
-
-If you use the Backoffice Calendar component, you currently must use `resourceId` as the CRUD field name to store the resource ID due to an open issue with an external dependency of the frontend component. This requirement may be removed in a future release of the Calendar component, once the issue has been fixed.
-
-:::
-
 :::caution
 
 Since the reminder service in turn requires the messaging service to send reminders, if you set `isTimerAvailable` to `true` you must also set `isMessagingAvailable` to `true`.
@@ -361,12 +425,6 @@ This section provide instructions on how to configure the Appointment Manager to
   - a field of type `string` containing the resource ID (e.g. `resourceId`).
 
 - Add the name of the [exceptions CRUD collection](#exceptions-crud-collection) to the `EXCEPTIONS_CRUD_NAME` [environment variable][environment-variables].
-
-:::danger
-
-If you use the Backoffice Calendar component, you must use `resourceId` as the CRUD field name to store the resource ID due to an unresolved issue with an external dependency of the frontend component.
-
-:::
 
 :::caution
 

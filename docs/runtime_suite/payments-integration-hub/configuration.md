@@ -588,7 +588,7 @@ By default, a new collection and a view are created and used by the application 
 
 ### Tenant
 
-Configure your Auth0 tenant following the [dedicated documentation](../../development_suite/set-up-infrastructure/auth-0-setup).
+Configure your Auth0 tenant following the [dedicated documentation](../../runtime_suite/auth0-client/configure_auth0).
 
 ### Public Variables
 

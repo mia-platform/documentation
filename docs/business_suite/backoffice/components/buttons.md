@@ -165,8 +165,8 @@ to customize the dialog texts. They can also be localized, passing an object con
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`requireConfirm`| - |boolean \\| RequireConfirmOpts|false|whether or not the button should ask for confirmation before updating all the selected data with the chosen value|
-|`dataSchema`| - |undefined \\| ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection |
+|`requireConfirm`| - |boolean \| `RequireConfirmOpts`|false|whether or not the button should ask for confirmation before updating all the selected data with the chosen value|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection |
 
 ### Listens to
 
@@ -611,25 +611,25 @@ Example of configuration:
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |LocalizedText|{}|button content |
+|`content`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|button content |
 |`danger`|`danger`|boolean| - |danger flag |
 |`disableOnAction`|`disable-on-action`|boolean|false|configures the button to be disabled while action is in progress |
 |`disabled`|`disabled`|boolean|false|button disabled property |
 |`fileFormKey`|`file-form-key`|string|'file'|when `clickConfig` is of `type` `file-upload`, file is set to this key when appending values to the multipart/form-data that is sent |
 |`iconId`|`icon-id`|string| - |defines which icon should be rendered into the button, if this property is not defined or doesn't match any icon no icon will be rendered |
-|`iconPlacement`| - |"default" \\| "left" \| "right"|'default'|defines where icon should be rendered, either left or right defaulting on left |
+|`iconPlacement`| - |"default" \| "left" \| "right"|"default"|defines where icon should be rendered, either left or right defaulting on left |
 |`listenToLoadingData`|`listen-to-loading-data`|boolean|false|configures the button to be loading when trigger by a loading-data event |
 |`loading`|`loading`|boolean|false|button loading property |
 |`loadingDebounce`|`loading-debounce`|number|400|min time in milliseconds between loading swaps (when less it doesn't trigger `loading` rendering) |
 |`loadingOnAction`|`loading-on-action`|boolean|false|configures the button to be loading while action is in progress |
-|`navigationStrategy`| - |undefined \\| "disable" \| "hide"| - |determines the button behavior upon navigating nested objects. Allowed values are 'disable' and 'hide'. By default, the button does not react to navigation events. |
+|`navigationStrategy`| - |"disable" \| "hide"| - |determines the button behavior upon navigating nested objects. Allowed values are 'disable' and 'hide'. By default, the button does not react to navigation events. |
 |`pathnameParams`| - |Record\<string, string\>|{}|property to inject the object-like source from URL pathname |
 |`searchParams`| - |Record\<string, string\>|{}|property to inject the object-like source from URL search params |
 |`shape`|`shape`|string|'round'|button shape property |
 |`stopPropagationOnClick`|`stop-propagation-on-click`|boolean|true|configures the onClick to disable propagation when action is fired |
 |`type`|`type`|string|'primary'|button type property |
 |`urlMask`|`url-mask`|string|''|url mask to apply to the current path to extract dynamic parameters |
-|`clickConfig`| - |undefined \\| ClickConfig| - |schema describing how to configure onCLick event |
+|`clickConfig`| - |ClickConfig| - |schema describing how to configure onCLick event |
 |`bulkButton`| - | boolean | false | whether to use it as a bulk button or not. If set to true, it listens to selected-data-bulk event |
 ### Listens to
 

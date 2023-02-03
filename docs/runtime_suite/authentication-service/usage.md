@@ -53,7 +53,13 @@ and it will return a JSON object with *accessToken*, *refreshToken* and *expires
 }
 ```
 
-If the `isWebsiteApp` field is set to true in the service configuration, it is returned a cookie header with key *sid*. In this way, it is possible to authorize all the request made by a website, for example.
+When the `isWebsiteApp` field is set to true in the service configuration, the token API will return a session cookie (named *sid*). 
+The *sid* cookie has the following configuration:
+
+    * HttpOnly: `true`
+    * Secure: `true`
+    * Path: `/`
+    * SameSite: `Lax`
 
 ## Userinfo endpoint
 
