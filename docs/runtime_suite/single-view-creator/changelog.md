@@ -8,6 +8,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.6.5] 2023-01-30
+
+### Added
+
+- Added a more self-explanatory error message on aggregation.json validation
+
+### Changed
+
+- Upgraded `@mia-platform-internal/single-view-creator-lib` to `v14.5.3` to fix multiple bugs and introduce support to MongoDB v6.
+In particular the following improvements were made:
+  - When using Single View Creator in PATCH mode, patch actions that employed complex types (such as Date) in the projection identifiers were not handled correctly
+  (due to reconversion towards JSON string). Thus, no related Single View was updated with respect to the modified projection. To fix this behavior it has been introduced
+  a fallback mechanism that exploits the MongoDB document identifier generated in a previous step within Fast Data flow to correctly select the projection
+  from which the update value should be retrieved.
+  - When the Kafka Message Handler failed to parse a Kafka message, instead of stopping itself to retry processing the invalid message, it simply skipped it. 
+  The correct behavior has been restored to enable retrying processing such message.
+  - When `UPSERT_STRATEGY` is set to `replace` the service now adds the field `createdAt` every time it insert or replace a Single View
+- Upgraded service image node version to `v18.13.0`
+
 ## [5.6.4] 2022-12-20
 
 ### Fixed

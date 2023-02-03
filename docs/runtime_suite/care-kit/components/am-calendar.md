@@ -84,6 +84,7 @@ In the same dropdown menu is present the time zoom option that allows the user t
 |`addressProperty`| string | false | address | Name of the event property that contains the location of the event. If present it is shown in the modal detail popover |
 |`appointmentConfig`| [AppointmentConfig](#appointmentconfig) | false |  | Object that contains the name of the appointments properties used to populate booked slot and the draggable modal |
 |`appointmentMode`| boolean | false | false | Boolean the define which calendar mode is in use. If false the calendar is in availability mode, if true in appointment mode |
+|`modalFooterVisible`| boolean | false | true | Boolean the define if the modal with the appointment detail has the footer with the actions buttons |
 |`calendarEndpoint`| string | false | - | The endpoint used to fetched the events in appointment mode |
 |`date`| string | false | new Date() | The date on which the calendar is on load |
 |`height`| string | false | '75vh' | css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height] |

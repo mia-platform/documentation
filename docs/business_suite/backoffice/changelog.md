@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.3] - 2023-01-26
+
+### Fixed
+
+- `bk-export` component emits success / error events
+- `date` / `date-time` / `time` fields are formatted in filter names according to `dateOptions.displayFormat` in data-schema
+- table column minWidth is more fitted to the column title
+- fields of format "editor" can be edited
+- lookups are correctly resolved in filter names
+
 ## [1.3.2] - 2023-01-18
 
 ### Added

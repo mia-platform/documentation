@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [v2.0.4]
 ### Fixed
 
-- Fixed bug that made `resourceId` not work with value different form "resourceId"
+- Fixed `am-calendar` bug that made `resourceId` not work with value different form "resourceId"
 ### Added
 
-- Added property `reminderMilliseconds` that allows to set how much time before a booked appointment the reminders are sent
+- Added property `reminderMilliseconds` to `am-calendar` that allows to set how much time before a booked appointment the reminders are sent

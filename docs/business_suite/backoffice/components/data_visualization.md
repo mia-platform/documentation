@@ -11,6 +11,53 @@ Renders a calendar to manage appointments.
 ```html
 <bk-calendar></bk-calendar>
 ```
+### Views
+
+There are three types of view: day, week and month. Month is the view set as default but it is possible to change it with the `view` property.
+
+
+:::warning
+`bk-calendar` requires `bk-filters-manager` component to be included in the page, as it makes use of [add-filter](../events.md#add-filter) event for data pre-filtering.
+Filters on `startDate` and `endDate` properties can be hidden setting `filterOptions.hidden` to true in the `dataSchema` of the `bk-filters-manager`. For instance:
+
+```json
+  {
+    "type": "element",
+    "tag": "bk-filters-manager",
+    "properties": {
+      "filters": [],
+      "dataSchema": {
+        ...
+        "startDate": {
+          ...
+          "filtersOptions": {
+            "hidden": true
+          }
+        },
+        "endDate": {
+          ...
+          "filtersOptions": {
+            "hidden": true
+          }
+        },
+        ...
+      }
+    }
+    ...
+  }
+```
+:::
+
+
+:::info
+For `bk-calendar` to correctly display appointments, these must have the following fields non null:
+
+| property | description |
+|----------|-------------|
+|`startDate`| start date of the appointment |
+|`endDate`| end date of the appointment |
+|`title`| title of the appointment |
+:::
 
 ### Properties & Attributes
 
@@ -174,9 +221,10 @@ Header supports:
 3. badge
 4. icon
 Each one of them is optional and the layout is left-float icon + title + badge and a second line with the subtitle
-![header-example](../img/card-header.png)
-Title, subtitle and badge can be internationalized using `LocalizedText` which is either a string or an object with language support:
 
+![header-example](../img/card-header.png)
+
+Title, subtitle and badge can be internationalized using [LocalizedText](../core_concepts#localization-and-i18n) which is either a string or an object with language support:
 ```json
 {
   "cardSchema": {
@@ -464,12 +512,12 @@ In the example configuration below we have a card that declares an array of URL,
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`arraySource`| - |Record<string, Record<string, string \| TaggableCustom>[]>|{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
+|`arraySource`| - | { [x: string]: { [y: string]: string \| TaggableCustom }[] } |{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
 |`cardSchema`| - |CardSchema|{}|schema that describes the card layout, role and type/style |
 |`containerStyle`| - |CSSProperties| - |React-like CSS properties to decorate card container |
-|`customMessageOnAbsentDatum`| - |LocalizedText| - |when datum reaches the card but it doesn't have value but some was expected, the displayed string can be overridden with a custom message |
-|`customMessageOnAbsentLookup`| - |LocalizedText| - |when using a CRUD-client-like source, it helps displaying a custom message on lookup that couldn't be resolved |
-|`objectSource`| - |Record<string, string \| TaggableCustom>|{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
+|`customMessageOnAbsentDatum`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |when datum reaches the card but it doesn't have value but some was expected, the displayed string can be overridden with a custom message |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |when using a CRUD-client-like source, it helps displaying a custom message on lookup that couldn't be resolved |
+|`objectSource`| - | { [y: string]: string \| TaggableCustom } |{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
 |`role`| - |CardRoles|'default'|card role to select color schema |
 
 ### Listens to
@@ -523,14 +571,14 @@ Example of configuration:
 ```
 
 With this configuration, if the value is `Value1` the label `Label1` will be used and the Chip component will be shown in red (#F00).  
-The `label` field can be a string or a LocalizedText object. If no label is specified for a value, the value will be displayed as a label.  
-You can specify the `color` field with an Hex color code. If the specified color is not a valid Hex color code, the primary color will be used.
+The `label` field can be a string or a [LocalizedText](../core_concepts#localization-and-i18n) object. If no label is specified for a value, the value will be displayed as a label.  
+Field `color` can be specified using an Hex color code. If the specified color is not a valid Hex color code, the primary color will be used.
 
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`value`| - |LocalizedText|{}|status value. |
+|`value`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|status value. |
 |`valueMap`| - |Record\<string, any\>|{}|map of possible values. |
 
 ### Listens to
@@ -796,18 +844,18 @@ Each item can be selected through a checkbox, unless `disableSelection` property
 | `titleSource` | - | XPath | - | source path to title text |
 | `subTitleSource` | - | XPath | - | source path to subtitle text |
 | `disableSelection` | `disable-selection` | boolean | false | whether to disable the possibility to select gallery items |
-| `actions` | - | GalleryAction \\| GalleryAction[] | - | available actions per gallery item |
+| `actions` | - | GalleryAction \| GalleryAction[] | - | available actions per gallery item |
 | `onImageClick` | - | [Action](../actions.md) | - | action to execute on image click |
 | `onTitleClick` | - | [Action](../actions.md) | - | action to execute on title click |
 | `onSubTitleClick` | - | [Action](../actions.md) | - | action to execute on subtitle click |
 | `disableExpand` | `disable-expand` | boolean | false | whether to disable the possibility of viewing the image inside a modal (preview) |
-| `modalWidth` | `modal-width` | number \\| string | - | width of the preview modal |
-| `modalHeight` | `modal-height` | number \\| string | - | height of the preview modal |
+| `modalWidth` | `modal-width` | number \| string | - | width of the preview modal |
+| `modalHeight` | `modal-height` | number \| string | - | height of the preview modal |
 | `modalTitle` | `modal-title` | string | - | title of the preview modal (if not specified, the item title is used) |
 | `gutter` | `gutter` | number | 20 | gutter of gallery items (vertical and horizontal spacing among gallery items) |
 | `primaryKey` | `primary-key` | string | "_id" | key used for indexing gallery items |
-| `itemHeight` | `item-height` | number \\| string | - | height of gallery items. If not specified, items adapt to their content |
-| `itemWidth` | `item-width` | number \\| "small" \\| "medium" \\| "large" | "medium" | attempted width of gallery items |
+| `itemHeight` | `item-height` | number \| string | - | height of gallery items. If not specified, items adapt to their content |
+| `itemWidth` | `item-width` | number \| "small" \| "medium" \| "large" | "medium" | attempted width of gallery items |
 
 
 ### Listens to
@@ -895,8 +943,8 @@ The list of elements to display is passed to the component using the `display-da
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`datasourceKey`|`datasource-key`|string|''|the object key that will be used to pick the data to show. |
-|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
-|`label`| - |LocalizedText|{}|header of the list. |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`label`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|header of the list. |
 |`loading`|`loading`|boolean|true|sets list on loading at DOM connection |
 
 ### Listens to
@@ -1236,7 +1284,7 @@ Accepts an object such as
 | `meta` | object | any | the event `meta` when `kind` is `event` |
 | `requireConfirm` | object or boolean | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
 
-##### requireConfirm object
+##### RequireConfirm object
 
 | property | type | values | description |
 |----------|------|--------|-------------|
@@ -1277,8 +1325,7 @@ Accepts an array such as
 }
 ```
 
-`customActions` shape is either and `array` of `tag`-`properties` pairs or an `array` of
-custom actions with schema:
+`customActions` shape is either and `array` of `tag`-`properties` pairs or an `array` of custom actions with schema:
 
 ```json
 {
@@ -1322,11 +1369,12 @@ In the first case, each element of the array is a `tag`-`properties` pair, respe
 |-----------------------|------|---------|-------------|
 | `tag` | string | any | custom component to mount |
 | `properties` | {[key: string]: any} | any | properties injected into the component |
-It is often useful mounting [bk-button](./buttons.md#bk-button)s inside the actions columns of the table because of its flexibility.
+
+It is often useful mounting [bk-button](buttons.md#bk-button)s inside the actions columns of the table.
+
 `properties` field allows dynamic interpolation through [handlebars](https://handlebarsjs.com/), analogously as in the case of mounting custom components using `visualizationOptions`, explained above.
 
-Nested navigation do not preserve `customActions`. To configure `customActions` in nested
-navigation mode the second type of `customActions` allowed by the JSON schema above is helpful.
+Nested navigation do not preserve `customActions`. To configure `customActions` in nested navigation mode the second type of `customActions` allowed by the JSON schema above is helpful.
 
 Consider the following setup:
 
@@ -1359,15 +1407,13 @@ Consider the following setup:
 }
 ```
 
-The action with button `Cancel order` will appear on the home of the nested setup. All
-other nesting level will have no `customAction` but the `level-2` reached from `level-1`
-which will instead display a button with label `Refresh`.
+The action with button `Cancel order` will appear on the home of the nested setup. All other nesting level will have no `customAction` but the `level-2` reached from `level-1` which will instead display a button with label `Refresh`.
 
 #### Configuring actions via `navigationRowActions`
 
-`customActions` and `rowActions` are removed from the actions columns when the table is rendering [nested data](../page_layout#nested-dataschemas). `navigationRowActions` allows to specify actions specifically available when the table is displaying nested data.
-As of now, table actions for nested data only allow to display the data inside a form or to delete the data inside a table row.
-It accepts an object such as
+`rowActions` are removed from the actions columns when the table is rendering [nested data](../page_layout#nested-dataschemas). `navigationRowActions` allows to specify actions specifically available when the table is displaying nested data.
+As of now, these only allow to display the data inside a form or to delete the data inside a table row. `customActions` should be utilized in order to configure extra actions in nested views.
+`navigationRowActions` is an object of `NavigationDataActions`, which is an object such as
 
 ```json
   {
@@ -1386,15 +1432,17 @@ It accepts an object such as
 | `kind` | string | `cta`, `icons` | whether to display the action in form of text or icon. |
 | `actions` | array of actions | any | describes the behavior of each. |
 
-##### action object
+##### Action object
 
 | property | type | values | description |
 |----------|------|--------|-------------|
-| `requireConfirm` | booelan | any | Whether or not to require confirm. |
-| `danger` | `boolean` | `true`, `false`, `undefined` | set danger mode on action |
-| `type` | `string` | 'delete', 'detail' | if `delete`, the row is deleted from the nested object (and `update-data` event is emitted). If `detail`, a `selected-data` event is emitted with the data from the row.|
+| `requireConfirm` | booelan | true \| false | Whether or not to require confirm. |
+| `danger` | boolean | true \| false | set danger mode on action. |
+| `type` | string | "delete" \| "detail" | if `delete`, the row is deleted from the nested object (and `update-data` event is emitted). If `detail`, a `selected-data` event is emitted with the data from the row.|
 | `disableInReadonly` | boolean | any | Whether or not to disable the action for read-only nested objects. |
-`navigationRowAction` defaults to:
+
+
+By default, a singe action is rendered in nested tables, which deletes rows if the displayed data is not read-only, ie:
 
 ```json
   {
@@ -1407,12 +1455,11 @@ It accepts an object such as
   }
 ```
 
-which will alllow rows to be deleted when the displayed data is not read-only.
 
 ### Browse on row click
 
 The property `browseOnRowSelect` allows to navigate to a specified link when a table row is clicked.
-`browseOnRowSelect` accepts an object such as
+`browseOnRowSelect` accepts an object of `ClickPayload`, for instance:
 
 ```json
   {
@@ -1432,7 +1479,7 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 | `query` | {[key: string]: any} | any | query parameters |
 | `navigationType` | string | `push`, `replace`, `href` | method used for navigation if target is "_self" |
 
-##### navigation types
+##### Navigation types
 
 `navigationType` values are mapped to navigation methods as follows:
 | value | method |
@@ -1446,23 +1493,23 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`allowNavigation`|`allow-navigation`|boolean|true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
-|`browseOnRowSelect`| - |ClickPayload & Object| - |if set, a click on a row will navigate you to another location |
-|`customActions`| - |Object[]| - |list of custom components, rendered in the action column |
-|`customMessageOnAbsentLookup`| - |LocalizedText| - |override lookup value in case lookup is not resolved due to lack of data |
+|`browseOnRowSelect`| - |ClickPayload| - |if set, a click on a row will navigate you to another location |
+|`customActions`| - |CustomAction[]| - |list of custom components, rendered in the action column |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to display |
 |`disableRowClick`|`disable-row-click`|boolean|false|when `true`, a click on a row does not trigger an event|
 |`disableRowSelection`|`disable-row-selection`|boolean|false|when `true`, checkbox in the first column will not be displayed|
 |`disableRowSelectionChange`|`disable-row-selection-change`|boolean|false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
-|`initialSortDirection`| - |SortDirection| - |initial sorting direction to use when component bootstraps |
+|`initialSortDirection`| - |"descend" \| "ascend"| - |initial sorting direction to use when component bootstraps |
 |`initialSortProperty`|`initial-sort-property`|string| - |Initial property to sort on when component bootstraps |
 |`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
 |`maxLines`|`max-lines`|number| - |force lines that will be displayed together |
-|`navigationRowActions`| - |NavigationDataActions|DEFATULT_NAV_ACTIONS|actions in nested objects.|
-|`openFileInViewerRegex`| - |string \| string[] \| Record<string, "view" \| "download">| - |regex expressions that are matched against file cells. If one matches, the cell is clickable and the file opens inside a viewer (default) or is downloaded. |
+|`navigationRowActions`| - |NavigationDataActions| {"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]} |actions in nested objects.|
+|`openFileInViewerRegex`| - |string \| string[] \| {[regex: string]: "view" \| "download"}| - |regex expressions, matched against file values. If one matches, the corresponding cell is clickable and the file opens inside a viewer (default) or is downloaded. |
 |`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
 |`rowActions`| - |DataActions| - |list of actions to render per row |
 |`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
-|`fixedColumns`| - | number \| Record<'left' \| 'right', number> | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
+|`fixedColumns`| - | number \| {'left': number; 'right': number} | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
 |`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data
 
 ### Listens to
@@ -1485,7 +1532,6 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 |[selected-data-bulk](../events#selected-data-bulk)|notifies about a change in the rows selected through the checkboxes in the first column|
 |[nested-navigation-state/push](../events#nested-navigation-state---push)|notifies to add a step in the navigation path|
 |[nested-navigation-state/display](../events#nested-navigation-state---display)|notifies data to display (emitetd upon column sorting)|
-|Configurable custom events|any event configured in the `rowActions` property|
 
 ### Bootstrap
 

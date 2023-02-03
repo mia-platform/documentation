@@ -64,16 +64,20 @@ Depending on the [AM configuration](configuration.md), you can create an appoint
   - an availability ID (`availabilityId`), a start (`startDate`) and end (`endDate`) date/time representing a valid slot and the owner ID (`ownerId`);
   - only since version 2.0.1, a slot ID (`slotId`) in the new format and the owner ID (`ownerId`).
 
-:::caution
+:::warning
+**v2.0.2**. Since version 2.0.2 this endpoint, when used in *appointments mode*, automatically truncates the date/time fields - `startDate` and `endDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before storing the appointment into the CRUD.
+:::
 
-With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to create an appointment directly from the `slotId`. The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
-
+:::warning
+**v2.0.2**. Since version 2.0.2 this endpoint, when used in *full mode*, add the custom properties from the current version of the availability to the appointment and any field in the request body referring an availability custom property is overwritten.
 :::
 
 :::caution
+With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to create an appointment directly from the `slotId`. The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
+:::
 
-Please note that the date fields are saved in [ISO 8601][iso-8601] format, so its up to the client to convert them in UTC from it's local time before using them in the Appointment Manager.
-
+:::caution
+Please note that the date fields are saved in [ISO 8601][iso-8601] format, so its up to the client to convert them in UTC from its local time before using them in the Appointment Manager.
 :::
 
 This endpoint may have the following side effects.
@@ -110,8 +114,15 @@ The messages will be sent only if the `isMessagingAvailable` [configuration opti
 
 #### Setting reminders
 
-If `reminderMilliseconds` is passed in the body, a reminder will be scheduled for the participants that belong to a category with a
-`reminder` template id (see the [service overview](overview.md#setting-reminders) for more information).
+:::caution
+
+**v2.1.0**
+
+Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored when setting reminders, which means that is no longer possible to customize if and when reminders are scheduled for each appointment by setting or not this property in the request body.
+
+:::
+
+If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview](overview.md#setting-reminders) for more information).
 
 :::warning
 
@@ -161,7 +172,23 @@ Depending on the [AM configuration](configuration.md), you can create an appoint
   "startDate": "2022-10-20T09:00:00.000Z",
   "endDate": "2022-10-20T10:00:00.000Z",
   "isRemote": false,
-  "ownerId": "nicola.moretto"
+  "ownerId": "john.doe"
+}
+```
+
+- in *full mode* (v2.0.2 or later): a slot ID (`slotId`) and the owner ID (`ownerId`);
+
+| Name      | Type     | Description |
+|-----------|----------|-------------|
+| slotId    | `string` | The slot ID in the new format introduced with AM v2. The slot ID from the CRUD collection used in version 1.x is not supported.  |
+| isRemote  | `number` | If the appointments is delivered remotely (default: `false`). |
+| ownerId   | `string` | ID of the owner of the appointment, required to confirm a reservation or modify the appointment. |
+
+```json
+{
+  "slotId": "6357a2357fd318a47240f9c2|2022-10-20T09:00:00.000Z|2022-10-20T10:00:00.000Z",
+  "isRemote": false,
+  "ownerId": "john.doe"
 }
 ```
 
@@ -172,8 +199,6 @@ The appointment must satisfy the following conditions, otherwise a 400 response 
 - `startDate` must be earlier than `endDate`
 - if `isRemote` is `true`, the appointment must have at least two participants
 - `reminderIds` and `linkTeleconsultation` are fully managed by the AM and they cannot be modified by any client
-- `reminderMilliseconds` must be greater or equal than zero
-
 ### Response
 
 If the appointment is successfully created, you will receive a response with a 200 status code and the `_id` of the newly
@@ -265,9 +290,13 @@ The following updates trigger specific actions:
 
 - If the `availabilityId`, `startDate` and/or `endDate` are changed, the AM checks if the new slot is valid and available.
 
-- If `reminderMilliseconds` is unset, all existing reminders will be deleted; in all other cases, the reminders are re-created. 
-
 For further info about what to set as the users value, see the [Teleconsultation Service doc - participants](../teleconsultation-service-backend/usage.md#participants-required).
+
+:::warning
+
+**v2.0.2**. Since v2.0.2 this endpoint automatically truncates the date/time fields - `startDate` and `endDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before updating the appointment into the CRUD.
+
+:::
 
 :::note
 
@@ -310,11 +339,17 @@ will be sent.
 
 #### Setting reminders
 
-A reminder will be set for participants that are **added** to the appointment if they belong to a category with a `reminder` template id (see the [service overview](overview.md#sending-messages) for more information).
+:::caution
+
+**v2.1.0**
+
+Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored when setting reminders, which means that is no longer possible to customize if and when reminders are scheduled for each appointment by setting or not this property in the request body.
+
+:::
+
+One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview](overview.md#sending-messages) for more information).
 
 Any reminder set for participants that are **removed** from the appointment will be aborted.
-
-Reminders for participants that are **not modified** will be updated if they belong to a category with a `reminder` template id (see the [service overview](overview.md#sending-messages) for more information), and if `reminderMilliseconds` has been updated.
 
 :::warning
 
@@ -338,18 +373,6 @@ no reminders will be set (see the [CRUD section](configuration.md#reminderThresh
 
 :::
 
-:::tip
-
-If you want to update the reminders for your users, you just need to update the `reminderMilliseconds`.
-
-:::
-
-:::tip
-
-If you want to abort all the reminders for your users, you just need to unset the `reminderMilliseconds`.
-
-:::
-
 ### Body
 
 The body of this request has the same interface of a CRUD service `PATCH /appointments/:id` request.
@@ -364,7 +387,6 @@ In addition, only a subset of CRUD operations are allowed:
   - `availabilityId`
   - `channels`
   - `ownerId`
-  - `reminderMilliseconds`
 - you can use the following operators only on custom fields:
   - `$inc`
   - `$mul`
@@ -384,7 +406,6 @@ The appointment resulting from the patch must satisfy the following rules:
 - `endDate` must be a valid ISO 8601 date/time;
 - `startDate` must be earlier than `endDate`;
 - if `isRemote` is `true`, the appointment must have at least two participants;
-- `reminderMilliseconds` must be greater or equal than zero.
 
 ### Response
 
@@ -453,7 +474,11 @@ This endpoint has no side effects.
 
 ## POST /availabilities/
 
-Creates a new availability in the CRUD collection. 
+Creates a new availability in the CRUD collection.
+
+:::warning
+**v2.0.2**. Since v2.0.2 this endpoint automatically truncates the date/time fields - `startDate`, `endDate` and `untilDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before storing the availability into the CRUD.
+:::
 
 ### Body
 
@@ -518,6 +543,10 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 Updates the availability with the specified id.
 
 All scheduled appointments, booked on slots that are no longer valid after the patch, will be flagged (`isFlagged` field set to `true`).
+
+:::warning
+**v2.0.2**. Since v2.0.2 this endpoint automatically truncates the date/time fields - `startDate`, `endDate` and `untilDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before updating the availability into the CRUD.
+:::
 
 :::note
 Due to technical constraints, under unexpected circumstances (networking issues, CRUD service not responding, ...), it might happen that appointments are not correctly flagged. However, the system is designed to prevent having perfectly valid appointments being incorrectly flagged.
@@ -600,6 +629,24 @@ We recommend using the [`GET /calendar/`](#get-calendar) endpoint, which provide
 :::
 
 :::info
+**v2.1.0**. Starting with version 2.1.0 we return, for each slot, the resource ID from the corresponding availability, and we filter the exceptions only according to the availabilities resources.
+:::
+
+:::info
+**v2.0.2**. With version 2.0.2 we introduced, to improve compatibility with existing clients, the option to filter for a specific slot by passing its ID in the `_id` query parameter like this:
+```json
+{
+  "_id": "<slot ID>"
+}
+```
+The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
+:::
+
+:::info
+**v2.1.0**. Starting with version 2.1.0 we return, for each slot, the resource ID from the corresponding availability.
+:::
+
+:::info
 **v2.0.1**. With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to filter for a specific slot by passing its ID in the `_q` query parameter like this:
 ```json
 {
@@ -615,10 +662,10 @@ Returns the slots matching the given query in a certain period of time and optio
 
 Since the slots are computed on demand, the AM performs the following operations behind the scenes:
 
-1. check if the `_q` query parameter contains an `_id` field with a valid slot ID; if the field does exist, but it does not contain a valid slot ID, return 400;
+1. check if the `_id` or the `_q` query parameters contain a valid slot ID; if the value does exist, but it does not represent a valid slot ID, return 400;
 2. if the slot ID is passed, use the slot start and end date as the period to filter for;  
 3. retrieve from the CRUD all availabilities overlapping, even partially, with the period, and matching the query parameters `_st` and `_q` (except for the `_id` field);
-4. retrieve from the CRUD all exceptions overlapping, even partially, with the period, and matching the query parameter `_q` (except for the `_id` field);
+4. retrieve from the CRUD all exceptions overlapping, even partially, with the period, and matching the availabilities resources;
 5. retrieve from the CRUD all appointments and reservations overlapping, even partially, with the period and associated to the availabilities fetched at step 1;
 6. for each availability, compute all the occurrences overlapping, even partially, with the period;
 7. for each availability occurrence obtained at the previous step, compute all the slots;
@@ -633,8 +680,7 @@ Since the association between availabilities and exceptions is based on the reso
 :::
 
 :::info
-**v2.0.0**
-With the introduction of recurring availabilities without expiration in v2.0.0, it is now always required a period when searching for calendar events and slots, due to the virtually infinite number of slots associated to this class of availabilities.
+**v2.0.0**. With the introduction of recurring availabilities without expiration in v2.0.0, it is now always required a period when searching for calendar events and slots, due to the virtually infinite number of slots associated to this class of availabilities.
 :::
 
 ### Request
@@ -656,19 +702,26 @@ This endpoint supports the following query parameters:
 
 ### Response
 
+:::info
+**v2.0.2**
+Since version 2.0.2 we return, for each slot, all the availability custom properties, including the resource ID.
+:::
+
+:::danger
+**v2.0.0**
+Since slots are computed dinamically, the `_id` field does not represent and does not have the format of the random ID assigned from the CRUD to each new document, but it's a deterministic string derived from other slot properties (`availabilityId`, `startDate` and `endDate`) that allows the AM to obtain all the slot information from its `_id`.
+:::
+
 If the request is processed correctly, you will receive a response with a 200 status code, and an array of slots, having the following properties:
 
 - `_id`: a unique identifier of the slot;
 - `status`: the slot status (`AVAILABLE`, `BOOKED` or `UNAVAILABLE`);
+- `resourceId`: the unique identifier of the resource associated with the slot;
 - `availabilityId`: the availability id from the CRUD;
 - `startDate`: the start date/time, expressed as a ISO 8601 date-time string;
 - `endDate`: the start date/time, expressed as a ISO 8601 date-time string;
-- `capacity`: the total number of appointments you can book on the slot, corresponds to the availability `simultaneousSlotsNumber`.
-
-:::note
-**v2.0.0**
-Since slots are computed dinamically, the `_id` field does not represent and does not have the format of the random ID assigned from the CRUD to each new document, but it's a deterministic string derived from other slot properties (`availabilityId`, `startDate` and `endDate`) that allows the AM to obtain all the slot information from its `_id`.
-:::
+- `capacity`: the total number of appointments you can book on the slot, corresponds to the availability `simultaneousSlotsNumber`;
+- all the availability custom properties.
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `GET /<collection>` request.
 
@@ -850,9 +903,17 @@ Since the events are aggregated on demand, the AM performs the following operati
    2. `BOOKED` if no exception overlaps, even partially, the time slot and the number of appointments or reservation is equals to the slot capacity;
    3. `AVAILABLE` otherwise.
 
+:::warning
+This endpoint accepts, for compatibility reasons, but ignores the `_l` and `_sk` query parameters. As a consequence, be aware that this endpoint may return an arbitrary number of events, depending on the requested period.
+:::
+
 :::info
 **v2.0.0**
 With the introduction of recurring availabilities without expiration in v2.0.0, it is now always required a period when searching for calendar events and slots, due to the virtually infinite number of slots associated to this class of availabilities.
+:::
+
+:::info
+**v2.0.2** Since version 2.0.2 this endpoint automatically includes `resourceId` in the results.
 :::
 
 ### Request
@@ -985,3 +1046,28 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 [iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
 [service-configuration]: configuration.md#service-configuration "Service configuration"
 [environment variable]: configuration.md#environment-variables "Environment variables"
+
+# Search
+
+## POST /searches/first-available-slot/
+
+:::warning
+Since this endpoint retrieves the resource's information, in order to use this endpoint it is required to configure the path to the users CRUD collection among the environment variables.
+:::
+
+Return the first available slot with the details of the associated resource matching the filters sent in the request body. If there are several slots with the same start date/time (multiple resources available at the same time), they will all be returned.
+
+### Body
+
+The body of this request accepts the following fields:
+
+| Name                    | Type              | Required | Description |
+|-------------------------|-------------------|----------|-------------|
+| endDate                 | `string`          | Yes | End date/time of the range in which the first slot will be searched, expressed in format **ISO 8601**. The range start is by default the moment in which the request is sent. |
+| resourceFilters         | `Object`          | No  | Object containing CRUD filtering option to be applied to the resources. |
+| availabilityFilters     | `Object`          | No  | Object containing CRUD filtering option to be applied to the availability. |
+
+
+### Response
+
+If one ore more slots are successfully found, you will receive a response with a 200 status code and the array of objects. Each of them contains the slot-resource pair. If no slot is found the array will be empty.

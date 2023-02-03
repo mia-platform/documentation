@@ -1253,12 +1253,12 @@
               "id": "runtime_suite/auth0-client/configuration"
             },
             {
-              "id": "development_suite/set-up-infrastructure/auth-0-setup",
-              "type": "doc"
+              "type": "doc",
+              "id": "runtime_suite/auth0-client/configure_auth0"
             },
             {
-              "id": "development_suite/api-console/api-design/how_to_enable_auth0",
-              "type": "doc"
+              "type": "doc",
+              "id": "runtime_suite/auth0-client/enable_auth0"
             },
             {
               "type": "doc",

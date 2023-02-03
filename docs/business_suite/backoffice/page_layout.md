@@ -264,10 +264,10 @@ Visualization options concern any web component that is going to render a given 
 |`hiddenLabel`|  `boolean` | whether the label of the property is shown within the header of the table component |
 |`sortable`|  `boolean` | whether the property can be sorted within the header of the table component |
 |`iconMap`| `object` | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
-|`template`| `LocalizedText` | template of how to visualize the value in the cell |
+|`template`| [LocalizedText](core_concepts#localization-and-i18n) | template of how to visualize the value in the cell |
 |`joinDelimiter`| `string` | delimiter to visualize array items as a single string |
 |`tag`| `string` | tag to use when embedding a custom component |
-|`properties`| `Record<string, any>` | properties for the embedded custom component |
+|`properties`| { [x: string]: any } | properties for the embedded custom component |
 
 | `iconMap` option | values | description |
 |--------|---------|-------------|
@@ -835,7 +835,7 @@ This is also true for all object and arrays that are nested inside a read only f
 For instance, in the example above, the array `children` is specified to be read only, therefore the array `toys` will also be treated as read only.
 
 :::caution
-A [bk-breadcrumbs](Components/data_visualization#breadcrumbs) component should always be included in the single page application when navigation is enabled.
+A [bk-breadcrumbs](Components/data_visualization#breadcrumbs) component should always be included in the plugin when navigation is enabled.
 :::
 
 :::info
@@ -852,10 +852,9 @@ All `change-query` events with non-empty payload cause to navigate back to the t
 During navigation [bk-add-filter-button](Components/buttons#filter-new) and [search-bar](Components/data_querying#search-bar) are disabled, and [bk-tabs](Components/data_querying#tabs) are hidden.
 :::
 
-## Single Page Configuration
+## Plugin Configuration
 
-Once the data schema is set and the components to use are chosen, a full single page configuration can be writer. Such
-configuration contains two parts
+Once the data schema is set and the components to use are chosen, a full plugin can be written. Such configuration contains two parts
 
 1. `$ref`: referenced objects. To avoid repeating the same prop, like `dataSchema`, on multiple elements.
 2. `content`: the intended web page content in terms of HTML tags, either standard HTML5 or custom web components

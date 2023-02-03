@@ -322,8 +322,7 @@ For more details on how messages are sent in each phase of the lifecycle, see th
 
 ## Setting reminders
 
-When you create a new appointment, the service may set a reminder to send a message to the participants a certain
-amount of time before the appointment date.
+When you create a new appointment, the service may set multiple reminders to send a message to the participants. Each reminder is characterized by a message template and the amount of time before the appointment that the reminder has to be sent. 
 
 :::caution
 In order to send reminders you need to deploy an instance of the [Messaging Service][messaging-service-doc] and [Timer Service][timer-service-doc], 
@@ -331,25 +330,15 @@ configure the  [environment variables][environment-variables] and
 enable the integration in the [service configuration][service-configuration].
 :::
 
-To trigger the creation of the reminders you need to provide a value to the `reminderMilliseconds` property of the appointment
-(see the [CRUD section](configuration.md#appointments-crud) for more information).
-
-:::tip
-You can update the reminders by passing a new value for the `reminderMilliseconds` property in an [update request](usage.md#patch-appointmentsid).
-:::
-
-:::tip
-You can abort all the set reminders for an appointment by _unsetting_ the `reminderMilliseconds` property in an 
-[update request](usage.md#patch-appointmentsid).
-:::
+To trigger the creation of the reminders at least one user category must have the `reminders` property defined in the configuration file
+(see the [configuration page](configuration.md) for more information).
 
 :::tip
 You can avoid sending reminders for appointments created/updated below a given threshold by setting the `reminderThresholdMs` 
 field in the configuration file (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
 :::
 
-As for messages, the service uses its [configuration][service-configuration] to know which users
-categories should receive reminders.
+As for messages, the service uses its [configuration][service-configuration] to know which users categories should receive reminders.
 
 Going back to the example above, we can consider this appointment
 
@@ -374,17 +363,24 @@ and this enriched configuration
       "create": "patient_create_message_template_id",
       "update": "patient_update_message_template_id",
       "delete": "patients_delete_message_template_id",
-      "reminder": "patients_reminder_message_template_id"
+      "reminders":[
+         {
+          "template": "patients_reminder_message_template_id_1",
+          "reminderMilliseconds": 86400000
+        },
+        {
+          "template": "patients_reminder_message_template_id_2",
+          "reminderMilliseconds": 3600000
+        },
+      ]
     }
   }
 }
 ```
 
-When the appointment is *created*, a reminder will be scheduled for the patients involved, which will receive a message
-using the dedicated template id.
+When the appointment is *created*, two different reminders will be scheduled for the patients involved. The first reminder will be sent a day before the appointment using the template `patients_reminder_message_template_id_1`; the second one will be sent an hour before the appointment using the template `patients_reminder_message_template_id_2`.
 
-When the appointment is *updated*, if the date of the appointment or the reminder milliseconds have been updated, 
-the reminders scheduled for the patients will be rescheduled.
+When the appointment is *updated*, if the date of the appointment has been updated, the reminders scheduled for the patients will be rescheduled.
 
 When the appointment is *deleted*, the reminders scheduled for the patients will be aborted.
 

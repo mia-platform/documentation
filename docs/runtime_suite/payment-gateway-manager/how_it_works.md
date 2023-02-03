@@ -126,6 +126,8 @@ The transaction can be refund by calling `HTTP POST` on `http://payment-gateway-
 
 If the response result is `OK`, the refund has been performed correctly.
 
+It is also possible to partially refund the same payment more than once, until the original payment amount is reached.
+
 :::note
 The body may require the `paymentID` field instead of the `shopTransactionID` one depending on the used payment method.
 :::
@@ -187,7 +189,7 @@ This API has been implemented to give sync access to a transaction status, e.g. 
 :::
 
 :::warning
-This endpoint is only available for `satispay`, `scalapay`, `soisy` and `stripe` providers at the moment.
+This endpoint is only available for `gestpay`, `satispay`, `scalapay`, `soisy`, `unicredit` and `stripe` providers at the moment.
 :::
 
 ## 7) Manage a Transaction Session

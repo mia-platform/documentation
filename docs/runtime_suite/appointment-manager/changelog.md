@@ -8,6 +8,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] 2023-01-31
+
+### BREAKING CHANGES
+
+The service configuration now accepts multiple reminders for each user, which can be sent at different times and using different templates. Before upgrading to v2.1.x, you need to update the service configuration accordingly.
+
+The `reminderMilliseconds` property of an appointment is now ignored when setting reminders, which means that is no longer possible to customize if and when reminders are scheduled for each appointment. The AM will schedule reminders for all new appointments according only to the service configuration. All existing reminders remain valid, unless the appointment is updated, deleted or its state changed in a way that cause the existing reminders to be aborted and new reminders to be created according to the new service configuration.
+
+### Added
+
+- Add support for multiple reminders to service configuration
+- Add support for multiple reminders to PATCH /appointments/:id
+- Add POST /searches/first-available-slot/ to search first available slot
+- GET /slots/ returns the availability resource ID for each slot
+
+### Fixed
+
+- GET /slots/ should not use _q to filter exceptions
+
+## [2.0.2] 2023-01-26
+
+### Added
+
+- Add _id query parameter to GET /slots/
+
+### Fixed
+
+This version restores the default behavior of AM v1, where any availability custom property would silently overwrite the corresponding field in the `POST /appointments/` request body.
+
+- GET /calendar now returns resourceId by default
+- POST /appointments/ merges custom properties from the availability
+- POST /appointments/ counts owner reservations when slot has been locked
+- GET /slots/ returns the wrong number of slots when _l and _sk are both set
+- GET /calendar/ returns the wrong number of slots
+
 ## [2.0.1] 2023-01-17
 
 ### Added
@@ -65,7 +100,7 @@ The appointments CRUD collection schema has changed as follows:
 
 #### Endpoints
 
-- `POST /appointments/`: the behavior of this endpoint depends on the deploy mode (*appointments* or *full*), `bypassLock` and `slotId` in the body are no longer accepted and - if passed - are treated like custom properties;
+- `POST /appointments/`: the behavior of this endpoint depends on the deploy mode (*appointments* or *full*), `bypassLock` and `slotId` in the body are no longer accepted and - if passed - are treated like custom properties, the availability custom properties are no longer merged by default;
 - `PATCH /appointments/:id`: the service applies additional restrictions on the kind of updates you can perform on the fields, check the usage documentation for more details;
 
 - `GET /availabilities/`: this endpoint no longer returns all availability occurrences with their slots, but only the CRUD record created through the `POST /availabilities`; you should use `GET /calendar/` to retrieve availabilities, slots, exceptions and appointments;

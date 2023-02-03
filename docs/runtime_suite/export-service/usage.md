@@ -15,10 +15,10 @@ The supported values are: `json`, `csv`, `html` and `xlsx`.
   * `text/csv` for CSV
   * `text/html` for HTML
   * `application/octet-stream` for XLSX
-* **columns** [optional]: list of columns you want to export. If specified a column not present in the input data source the result will have the corresponding column as empty.
+* **columns** [required]: list of columns you want to export. If specified a column not present in the input data source the result will have the corresponding column as empty.
 * **options** [optional]: field that permits to specify the following options:
   * `booleanConfig`: specify the label wanted for either the true and false values. Can be set as any type of value.
-  * `csvSeparator`: define the separator for CSV. It can be `COMMA` or `SEMICOLON` The default is `COMMA`.
+  * `csvSeparator`: define the separator for CSV. It can be `COMMA` or `SEMICOLON`; the default value is `COMMA`.
 
 Following an example of body:
 ```javascript

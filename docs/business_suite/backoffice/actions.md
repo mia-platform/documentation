@@ -333,6 +333,7 @@ type XPath = string | {
   default?: LocalizedText
 }
 ```
+With [LocalizedText](core_concepts#localization-and-i18n) being either a string or an object with language support.
 
 Actions of type `copy` allow to copy data to clipboard. They require input data to be provided in order to properly execute. Components that expose action properties should provide appropriate context when executing the actions callback.
 

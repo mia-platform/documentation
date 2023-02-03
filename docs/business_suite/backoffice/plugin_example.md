@@ -3,7 +3,7 @@ id: plugin_example
 title: Plugin example
 sidebar_label: Plugin example
 ---
-This is a configuration example for a Back-Kit Web Components single page application (SPA) or plugin. The configuration of a SPA using Back-Kit components is usually split in two parts. First is a `schema`, stating how to interpret the data associated to the plugin; secondly, the actual components that form the plugin.
+This is a configuration example for a Back-Kit Web Components plugin. The configuration using Back-Kit components is usually split in two parts. First is a `schema`, stating how to interpret the data associated to the plugin; secondly, the actual components that form the plugin.
 
 ## Schema
 
@@ -100,7 +100,7 @@ The first filed is `_id`.
 
 This `schema` contains several information, but not all components use all of this information.
 
-For instance, the `label` of the field is used by components such as [bk-table](Components/data_visualization#table) or [bk-form-drawer](Components/data_manipulation#form-drawer), if they are included in the single page application and provided with this `schema`, as a print-out text for the field.
+For instance, the `label` of the field is used by components such as [bk-table](Components/data_visualization#table) or [bk-form-drawer](Components/data_manipulation#form-drawer), if they are included in the plugin and provided with this `schema`, as a print-out text for the field.
 
 On the other hand, `filtersOptions` is ignored by `bk-table` component, but used by [bk-filter-drawer](Components/data_querying#filter-drawer). In particular, `bk-filter-drawer` knows that it should not allow the user to create [filters](core_concepts#filters) based on this field.
 
@@ -158,13 +158,13 @@ The field is of type `string`, just like `_id`, but it only accepts a defined se
 
 `excludeFromSearch` informs components such as the [bk-crud-client](Components/clients#crud-client) to not include this field in queries based on text search.
 
-## SPA content
+## Plugin content
 
-The components of the single page application are included in the `content` section of the configuration. This section will then be parsed and converted from *json* to *html*, resulting in the SPA.
+The components of the plugin are included in the `content` section of the configuration. This section will then be parsed and converted from *json* to *html*.
 
-It is possible to structure the SPA nesting *json* fields, and specifying a `type` and a `tag` for each of them.
+It is possible to structure the plugin by nesting *json* fields, and by specifying a `type` and a `tag` fields for each of them.
 
-For instance, the following, although not particularly meaningful, would be a valid configuration:
+For instance, the following would be a valid configuration:
 
 ```json
 {
@@ -363,7 +363,7 @@ In this particular case, the `dataSchema` property is initialized using [JSON-Sc
 
 ## Full configuration
 
-Following is an example of a realistic full configuration for a SPA based on Back-Kit web components. The configuration includes
+Following is an example of a realistic full configuration for a plugin based on Back-Kit web components. The configuration includes
 
 - a reference to a `schema`
 - information on how to render web components in the page

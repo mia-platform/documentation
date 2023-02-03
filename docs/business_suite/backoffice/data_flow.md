@@ -32,16 +32,16 @@ Events are emitted/listened to via a **communication channel** such as the `even
 
 Components interfacing with a given event, either **listen to** it or **emit** it. In the latter case, it requires the page to be aware, for instance, of a *loading* event, or that is *sending* data, whereas the former is referred to event-driven behavior where the component reacts to something that happened elsewhere.
 
-When setting up the configuration of a single page application that utilizes web components, it is important to verify how each component interacts with the others via events.
+When setting up the configuration of a plugin which utilizes web components, it is important to verify how each component interacts with the others via events.
 
-It is possible, for instance, that a component requires other components to be included in the single page application in order to work properly under all circumstances. This is very often the case for client components, which perform crucial business logic for the rendering components to interpret data correctly.
+It is possible, for instance, for features to require multiple components to be included in the plugin. This is very often the case for client components, which perform crucial business logic for the rendering components to interpret data correctly.
 
 In general, it is recommended to always configure components keeping in mind how they interact with each event, and considering which ones they emit.
 
 Refer to [this list](events) for an overview of default events.
 For [all components](Components/buttons), it is specified how each one interacts with different events.
 
-It is possible to specify a scope for events. For instance, the event [push-state](events#nested-navigation-state-push) has scope `nested-navigation-state`.
+It is possible to specify a scope for events. For instance, the event [push-state](events#nested-navigation-state---push) has scope `nested-navigation-state`.
 
 ## Example
 

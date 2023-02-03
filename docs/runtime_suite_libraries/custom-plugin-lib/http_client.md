@@ -73,30 +73,14 @@ If error is not an http error, it is throw the error message and the error code.
 ## Examples
 
 ```js
-// Example of a request towards `tokens-collection` endpoint passing through Microservice Gateway
 async function tokenGeneration(request, response) {
-  const crudProxy = request.getServiceProxy()
+  const crudProxy = request.getHttpClient('http://my-service/base-path/')
   const result = await crudProxy
     .post('/tokens-collection/', {
       id: request.body.quotationId,
       valid: true
     })
 
-  const tokens=result.payload;
-  // ...
-}
-```
-
-```js
-// and bypassing Microservice Gateway
-async function tokenGeneration(request, response) {
-  const crudProxy = request.getDirectServiceProxy('crud-service')
-  const result = await crudProxy
-    .post('/tokens-collection/', {
-      id: request.body.quotationId,
-      valid: true
-    })
-  
   const tokens=result.payload;
   // ...
 }

@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 The **User Manager Service** is a microservice responsible for handling user management.
 Leveraging the [CRUD Service](../crud-service/overview_and_usage.md) and the desired authentication service
-(for instance, the [Auth0 Client](../auth0-client/overview_and_usage.md),
+(for instance, the [Auth0 Client](../auth0-client/overview_and_usage.md)),
 it can be used to control users creation, update and deletion on both a CRUD collection and the authentication service.
 The service can also handle user roles and permissions leveraging the integration with the [Rönd Service](https://rond-authz.io/docs/getting-started).
 

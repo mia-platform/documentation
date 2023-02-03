@@ -163,7 +163,7 @@ Open the file **auth.json** and write the following configuration:
 
 ### Tenant
 
-Configure your Auth0 tenant following the [dedicated documentation](../../development_suite/set-up-infrastructure/auth-0-setup).
+Configure your Auth0 tenant following the [dedicated documentation](../../runtime_suite/auth0-client/configure_auth0).
 
 ### Auth0 Client
 

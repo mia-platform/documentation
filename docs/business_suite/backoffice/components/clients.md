@@ -220,7 +220,7 @@ such structure can be compared with the original datum, which is not modified.
 |`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
 |`extraLookupKeys`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing which extra field (not included in dataschema) to retrieve from CRUD collection |
 |`lookupDataLimit`|`lookup-data-limit`|number|25|limit data to require in a single lookup chunk |
-|`lookupDefaultState`| - |string \\| string[] \| CrudState[]|...|default states to append on lookup queries. Lookup queries will overwrite this setting when required by the data schema |
+|`lookupDefaultState`| - |string \| string[] |["PUBLIC","DRAFT","TRASH"]|default states to append on lookup queries. Lookup queries will overwrite this setting when required by the data schema. Can be set to one or multiple of: ["PUBLIC","DRAFT","TRASH"] |
 |`maxQueryURLLength`|`max-query-urllength`|number|1500|external lookups might require a long query parameter. According with your base path trim it to a maximum using this prop |
 
 ### Listens to
@@ -285,6 +285,8 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 
 :::
 
+`bk-export` emits [success](../events#success) or [error](../events#error) events after the export is triggered. The events are emitted after the export is over (or on failure) if `nativeDownload` is set to `false`, or after the download request has been issued otherwise.
+
 [CRUD-service]: ../../../runtime_suite/crud-service/overview_and_usage
 [resource]: https://jimmywarting.github.io/StreamSaver.js/mitm.html?version=2.0.0
 
@@ -308,7 +310,10 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 
 ### Emits
 
-This component emits no event.
+| event | description |
+|-------|-------------|
+|[success](../events#success)|notifies successful export if `nativeDownload` property is false|
+|[error](../events#error)|contains error messages when something goes wrong|
 
 ### Bootstrap
 

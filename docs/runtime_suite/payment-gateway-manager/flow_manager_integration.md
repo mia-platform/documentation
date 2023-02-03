@@ -13,6 +13,8 @@ The PGM can both send events to Flow Manager and also process commands using the
 - `/saga/confirm`: provides the confirm feature as `/{provider}/{payment-method}/confirm` API
 - `/saga/refund`: performs the refund action as `/{provider}/{payment-method}/refund` API
 
+Moreover, the PGM has **read** access to the CRUD collection containing the payment sagas.
+
 ## Flow Manager's Machine Definition
 
 In order to work properly, the machine definition provided to the Flow Manager has to comply with the following image.
