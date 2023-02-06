@@ -110,7 +110,7 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td><strong>NoSQL database</strong></td>
-         <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB</td>
+         <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB Enterprise</td>
          <td>&gt; 4.2</td>
          <td>2 cores</td>
          <td>2 GB</td>
@@ -118,7 +118,7 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td><strong>Runtime</strong></td>
          <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
-         <td>&gt; 1.19<br/>&lt;= 1.22</td>
+         <td>&gt; 1.19<br/>&lt;= 1.24</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
       </tr>
@@ -174,7 +174,7 @@ The following is an example architecture for the installation of the Mia-Platfor
 | Okta                      | N/A         | N/A            | N/A     | N/A     | N/A         |
 | GitLab                    | 14          | 1              | 8 core  | 32 GB   | 200 GB      |
 | GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
-| MongoDB                   | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
+| MongoDB Enterprise        | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
 | Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    | N/A         |
 | Google Container Registry | N/A         | N/A            | N/A     | N/A     | N/A         |
 | Google Cloud Storage      | N/A         | N/A            | N/A     | N/A     | N/A         |
