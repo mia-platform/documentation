@@ -74,6 +74,7 @@ The following table describes the capabilities and how they are mapped on the de
 | View all Console resources                                                         | `console.root.view`                               |        |           |          |              |   |    |
 | Manage user roles, groups and bindings                                     | `console.root.user.bind`                          |        |           |          |              |   |    |
 | Manage all private and public Project Templates                                     | `console.root.templates.manage`                          |        |           |          |              |   |    |
+| Manage available features                                     | `console.root.features.manage`                          |        |           |          |              |   |    |
 | Manage Company Project Templates                                     | `console.company.templates.manage`                          |        |           |          |              |   |  ✅  |
 
 User roles are manageable from CMS by the **Console administrators**, as they are the only one having access to the Console CMS and thus being able to manage the entire Console, including companies, projects, Marketplace.
