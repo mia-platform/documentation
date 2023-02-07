@@ -55,7 +55,7 @@ The roadmap is constantly evolving to quickly respond to market needs.
 If you have success stories, feedback or ideas, we want to hear them all!
 Join our [My-Platform Community Space](https://github.com/mia-platform/community/discussions) and submit your idea!
 
-## Roadmap evolution
+Roadmap Update
 
 Will this roadmap change?
 Roadmap update is scheduled approximately every month.
