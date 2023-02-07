@@ -156,7 +156,7 @@ where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled wi
 #### PR update topic
 
 This section contains the name of the PR update topics for each environment.
-The topic names are **not** editable and pre-compiled with our default format:
+The topic names are editable and pre-compiled with our default format:
 
 ```txt
 tenantId.environmentId.systemId.projectionName.pr-update
@@ -168,7 +168,7 @@ When a new Projection is created, the PR update topics values (for each Projecti
 
 The content of the `FAST_DATA_PR_UPDATES_MAP_{SYSTEM_OF_RECORDS_NAME}` public variable is then added to the `kafkaProjectionUpdates.json` config map, used by the Real-Time Updater service inside the `KAFKA_PROJECTION_CHANGES_FOLDER` environment variable, which contains its folder path.
 
-:::Info
+:::info
 If you prefer to use custom topics for PR updates, it will be necessary to create a new config map containing the PR update topics values (for each Projection and for each environment) inside a JSON file. The new config map folder path should be then inserted inside the `KAFKA_PROJECTION_CHANGES_FOLDER` environment variable of the Real-Time Updater.
 :::
 
