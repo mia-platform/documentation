@@ -17,7 +17,7 @@ Our Roadmap is aimed at:
 ## Future Work 
 
 Listed below you find which product features will be released in the following months.
-The following list is not exhaustive, our Product is constantly evolving and every week we release new features.
+Our Product is constantly evolving and every week we release new features, so it is possible that this list may not be always up-to-date.
 On this page we keep you aligned on the most important issues
 
 * **Mia-Platform Control Plane**
