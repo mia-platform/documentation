@@ -5,17 +5,17 @@ sidebar_label: Create Replicas
 ---
 ## What needs the Replicas for
 
-Replicas allow you to set the number of replicas for your services in purpose to autoscaling them **CPU usage-based**.  
+In this section you can define a range of desired replicas number for your services designed to automatically scale them based on **CPU usage**.  
 The feature is thought to generate the replicas **only for the productions environments** where the [Environment Variable](/development_suite/set-up-infrastructure/env-var-intro.md) `ENABLE_HPA` is set to `true`.
 
 :::caution
 Based on your release pipeline, the `ENABLE_HPA` environment variable could need the environment prefix (e.g. `PROD_`) or not.  
-
-The replicas configured will not work properly if the [static replicas](/development_suite/api-console/api-design/services.md#microservice-configuration) is set to 0.
 :::
 
-:::info
-This process is entrusted to the [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) Kubernetes resource  
+:::danger
+The replicas configured will not work properly if the [static replicas](/development_suite/api-console/api-design/services.md#microservice-configuration) is set to 0.
+
+Setting both static replicas and HPA Replicas may lead to undefined behaviors
 :::
 
 ## Configure Replicas
@@ -37,8 +37,11 @@ In the table rows, for each service, you can directly change the following param
 
 ## How it works
 
-[HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) uses the metrics collected by Kubernetes itself to evaluate the need for instantiation
-new pods to divide the work up to a maximum set.
+:::info
+This process is entrusted to the [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) Kubernetes resource  
+:::
+
+The [Kubernetes Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) uses the metrics collected by Kubernetes itself to evaluate the need for instantiation of new pods to divide the work up to a maximum replication number.
 
 When the total current CPU utilization by the replicas set exceeds the **CPU Threshold**, if the **Max Replica** number allows it, a new replica is scheduled for creation.  
 If the total CPU usage drops below the **CPU Threshold**, after a period of time useless replicas are removed.
