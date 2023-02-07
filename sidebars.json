@@ -735,6 +735,10 @@
         {
           "id": "fast_data/troubleshooting/rtu_keeps_restarting_rebalancing",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/troubleshooting/pr_update_topics_overwritten",
+          "type": "doc"
         }
       ],
       "label": "Troubleshooting",
