@@ -4,7 +4,7 @@ title: Roadmap
 sidebar_label: Roadmap
 ---
 
-This page details Mia-Platform public Roadmap. This is the result obtained with our strategic vision and the collaboration of partners and stakeholders needs.
+This page shows the public roadmap of Mia-Platform. This is the result of our strategic vision and the collaboration of partners and stakeholder needs.
 
 Our Roadmap is aimed at:
 
