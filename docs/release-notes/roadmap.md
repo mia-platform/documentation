@@ -58,4 +58,4 @@ Join our [My-Platform Community Space](https://github.com/mia-platform/community
 ## Roadmap evolution
 
 Will this roadmap change?
-Roadmaps are always evolving and ours is no different; for this reason, you can expect to see it updated roughly every month.
+Roadmap update is scheduled approximately every month.
