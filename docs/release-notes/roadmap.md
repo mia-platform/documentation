@@ -16,7 +16,7 @@ Our Roadmap is aimed at:
 
 ## Future Work 
 
-What is described below comprehends the next features that will be released in the product in the following months.
+Listed below you find which product features will be released in the following months.
 The following list is not exhaustive, our Product is constantly evolving and every week we release new features.
 On this page we keep you aligned on the most important issues
 
