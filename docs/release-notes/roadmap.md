@@ -49,7 +49,7 @@ On this page we keep you aligned on the most important issues
     * Web-component library SDK to improve development experience
     * Support Rönd integration
 
-## How to influence the roadmap
+## How to contribute to the roadmap
 
 The roadmap is constantly evolving to quickly respond to market needs.
 A roadmap is only useful if it captures real needs. If you have success stories, feedbacks or ideas, we want to hear them all! 
