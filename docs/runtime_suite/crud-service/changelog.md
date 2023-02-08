@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.3.0 - 2023-02-08
+
+### Fixed
+
+- .npmrc file added to .dockerignore and .gitignore
+
+### Changed
+
+- `README.md` improved with instructions on how to run the service in a local environment and how to configure collections and views;
+- Refactored `./tests` folder to support parallel run of tests in CI pipelines
+- Improved description of API methods exposed in API specification;
+
 ## 6.2.0 - 2023-01-13
 
 ### Changed
@@ -42,7 +54,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- - support for `$dateToString` project operator in `_rawp` query param.
+- support for `$dateToString` project operator in `_rawp` query param.
 
 ## 6.1.0 - 2022-11-22
 
@@ -75,9 +87,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- object `nullable` field attribute is now recognized ([#44](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/44))
-- array `nullable` field attribute is now recognized ([#34](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/34))
-- export route works also when an array field is set to null ([#29](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/29))
+- object `nullable` field attribute is now recognized
+- array `nullable` field attribute is now recognized
+- export route works also when an array field is set to null
 - failing tests on Mongo encryption lib
 
 ### Changed
@@ -265,7 +277,7 @@ Known limitation in this version:
 ## 3.3.0 - 2021-06-17  [Unpublished]
 
 ### Added
-- support __STATE__ change of multiple documents using a filter and without knowing the `_id` of each one. See related [issue](https://git.tools.mia-platform.eu/platform/core/crud-service/-/issues/26).
+- support `__STATE__` change of multiple documents using a filter and without knowing the `_id` of each one.
 
 ### Breaking Change
 
@@ -313,7 +325,7 @@ Known limitation in this version:
 ## 3.0.1 - 2020-10-02
 
 ### Update
-- - update lc39 to v3.1.3. 
+- update lc39 to v3.1.3. 
 
 ## 3.0.0 - 2020-09-29
 
@@ -321,12 +333,12 @@ Known limitation in this version:
 
 **BREAKING CHANGE**
 
-- - lc39 to v3.1.2. The update is breaking since it's bringing up lc39 v3.x with the newer logging format.
+- lc39 to v3.1.2. The update is breaking since it's bringing up lc39 v3.x with the newer logging format.
 
 ## 2.2.0 - 2020-07-14
 
 ### Added
-- - Expose some metrics about collections
+- Expose some metrics about collections
 
 ### Update
 - lc39 to v3.1.0
@@ -334,7 +346,7 @@ Known limitation in this version:
 ## 2.1.6 - 2020-05-26
 
 ### Fixed
-- - Omit required if empty
+- Omit required if empty
 
 ## 2.1.5 - 2020-05-26
 
@@ -343,9 +355,10 @@ Known limitation in this version:
 ## 2.1.4 - 2020-04-15
 
 ### Changed
-- - Remove default limit from /export
+- Remove default limit from /export
 
 ## 2.1.3 - 2020-01-31
+
 ### Changed
 
 - Update package-lock for zero-downtime

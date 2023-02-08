@@ -150,6 +150,10 @@ property in the [Users CRUD](#users-crud-required) does not have a value.
     - an [alphanumeric sender ID](https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id)
   - **voice** - `string`: the caller phone number of the voice messages. Required if the `voice` channel is enabled. The phone number **must be registered in the [Kaleyra console](https://eu.kaleyra.io/numbers/manage)**.
 
+:::caution
+If you set an alphanumeric sender ID and choose a name that is too generic (e.g. SMS, Info...), you may run into this error: [ERROR - 21212 Invalid From Number (caller ID)](https://www.twilio.com/docs/api/errors/21212)
+:::
+
 It follows an example of a valid configuration file.
 
 ```json

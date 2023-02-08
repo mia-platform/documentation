@@ -3,11 +3,7 @@ id: overview
 title: Therapy and Monitoring Manager
 sidebar_label: Overview
 ---
-The therapy and monitoring manager (TMM) is a service that enables health care professionals to manage patients **therapies** and **monitor** patients health conditions, adherence and compliance to therapy. The service allows the definition of **thresholds** and notification mechanism to alert the involved entities, typically physician and patient, of events which occur during the therapy and monitoring period.
-
-:::note
-Sending notifications based on thresholds is a feature currently under development and planned to be released in the future.
-:::
+The therapy and monitoring manager (TMM) is a service that enables health care professionals to manage patients **therapies** and **monitor** patients health conditions, **adherence** and **compliance** to therapy. The service allows you to define **thresholds** and send notifications to alert the involved entities, typically physician and patient, of events which occur during the therapy and monitoring period.
 
 In addition to therapies and monitorings, there are also **observations**. Observations are entered by the patient to whom the therapy and monitoring are directed, and represent the steps taken by the patient to meet the plan.
 
@@ -21,19 +17,22 @@ For such observations, you can define an archetype, called **prototype**, to act
 
 In the documentation, when you encounter any of the terms listed below, you should assume they have the described meaning, unless stated otherwise.
 
-| Term          | Meaning      |
-|---------------|--------------|
-| *Adherence*   | A therapy or monitoring metric indicating if the patient is performing the tasks according to the timeframe defined by the physician. |
-| *Compliance*  | A therapy or monitoring metric indicating if the patient is performing the correct tasks as prescribed by the physician. |
-| *Doctor*      | See *Physician*. |
-| *Monitoring*  | A physician prescription to monitor health conditions (blood pressure, body temperature, vital signs, etc.). |               |
-| *Observation* | A patient feedback on a therapy (e.g. I took the drug at 9) or monitoring (e.g. the minimum and maximum blood pressure measured). |
-| *Patient*     | A person undergoing therapy or monitoring. |
-| *Physician*   | A doctor prescribing therapies or monitorings to a patient. |
-| *Plan*        | A therapy or monitoring plan prescribed by a physician. |
-| *Prototype*   | An archetype for an observation, should provide generic (related to all patients) specifications to validate an observation value, for example to ensure a medical device is reporting correctly. |
-| *Therapy*     | A physician prescription for some therapies (taking drugs, etc.). |
-| *Threshold*   | Monitoring thresholds specific for a patient therapy or monitoring, for example his/her expected blood pressure. |
+| Term                 | Meaning      |
+|----------------------|--------------|
+| *Adherence*          | A therapy or monitoring metric indicating if the patient is performing the tasks according to the timeframe defined by the physician. |
+| *Compliance*         | A therapy or monitoring metric indicating if the patient is performing the correct tasks as prescribed by the physician. |
+| *Doctor*             | See *Physician*. |
+| *Monitoring*         | A physician prescription to monitor health conditions (blood pressure, body temperature, vital signs, etc.). |
+| *Notification*       | A message sent via email, SMS, etc. to one or more users regarding events occurring during the therapy or monitoring period. |
+| *Observation*        | A patient feedback on a therapy (e.g. I took the drug at 9) or monitoring (e.g. the minimum and maximum blood pressure measured). |
+| *Patient*            | A person undergoing therapy or monitoring. |
+| *Physician*          | A doctor prescribing therapies or monitorings to a patient. |
+| *Plan*               | A therapy or monitoring plan prescribed by a physician. |
+| *Prototype*          | An archetype for an observation, should provide generic (related to all patients) specifications to validate an observation value, for example to ensure a medical device is reporting correctly. |
+| *Therapy*            | A physician prescription for some therapies (taking drugs, etc.). |
+| *Threshold*          | Monitoring thresholds specific for a patient therapy or monitoring, for example his/her expected blood pressure. |
+| *TMM*                | Common abbreviation for the Therapy and Monitoring Manager. |
+| *Validation service* | The integrated or external service used to validate observations against monitoring thresholds. |
 
 ## Adherence and compliance
 
@@ -110,14 +109,15 @@ The service allows you to create, update and delete monitorings for patients, su
 * the reference of the patient to whom the monitoring is addressed;
 * the tolerance on the frequency or time of intake for which a particular observation entered by the patient is still considered adherent or compliant to the monitoring;
 * the minimum percentage value for which a patient is considered adherent to monitoring with respect to reported observations;
-* the minimum percentage value for which a patient is considered compliant to monitoring with respect to reported observations.
+* the minimum percentage value for which a patient is considered compliant to monitoring with respect to reported observations;
+* the observations thresholds.
 
 ## Observations
 
 The service allows tracking actions performed by the patient concerning a specific therapy or monitoring, such as reporting body temperature or taking certain medication at specific time. The observation is defined by:
 
 * the reference to the therapy or monitoring to which the observation is linked;
-* the value of the observation (this value can be atomic, such as a number, or a complex object, such as an entity composed by different values: an example of complex object can be the blood pressure, that is composed by a minimum and a maximum value);
+* the value of the observation (this value is an arbitrary object; for example, an observation for the blood pressure could have two fields, the minimum and a maximum value measured);
 * the compliance of the observation with respect to what prescribed by the physician;
 * the date of the observation; 
 
@@ -144,7 +144,7 @@ If your medical device can report measurements between a well-defined range, you
 
 :::danger
 
-Prototypes should not be used to monitor the expected vital signs of patients subject to monitorings, but thresholds should be used instead.
+Prototypes should not be used to monitor the expected vital signs of patients subject to monitorings, but thresholds should be used instead. Check the [*Thresholds* section](overview.md#thresholds) for more details.
 
 :::
 
@@ -208,3 +208,36 @@ Let's see a couple of examples:
   }
 }
 ```
+
+## Thresholds
+
+When a new observation is created or the value of an existing observation is updated, the TMM checks if the observation value exceeds any of the monitoring thresholds and optionally send a notification to the physician (specified in the `doctorId` field of the monitoring plan) if one or more thresholds are exceeded.
+
+The validation process should check all the monitoring thresholds and return, for each one of them, if it was exceeded or not by the given observation.
+
+We currently support two operating modes:
+
+- the thresholds validation is performed directly by TMM according to the rules described below (**default**);
+- the thresholds validation is performed by an external service, which must satisfy certain API requirements.
+
+The integrated validation system currently supports the following threshold validation rules:
+
+- *maximum value* (`gt`, `gte`): allows you to specify a maximum value for an observation property, if the actual observation property has a value strictly greater (when using the `gt` operator) or greater or equal (when using the `gte` operator), the threshold is considered exceeded;
+- *minimum value* (`lt`, `lte`): allows you to specify a minimum value for an observation property, if the actual observation property has a value strictly lower (when using the `lt` operator) or lower or equal (when using the `lte` operator), the threshold is considered exceeded;
+- *exact value* (`eq`): allows you to specify the exact value for an observation property, if the actual observations property has a different value, the threshold is considered exceeded.
+
+:::danger
+
+The integrated validation system is designed under the assumption that the property of the observation value referred by a threshold contains a numeric value. If the value is not a number, an error is returned.
+
+:::
+
+Additional information about the API requirements and the setup of the external validation service are available in the [*Configuration* section](configuration.md#thresholds-validation).
+
+## Notifications
+
+The TMM allows you to send notifications on different channels to patients and physicians when certain events occur during the lifetime of a monitoring or therapy plan.
+
+For example, when a patient submits an observation and its value exceeds one or more monitoring thresholds, the TMM can send a notification to the physician.
+
+More details about the configuration of the notification service are available in the [*Configuration* section](configuration.md#notifications).

@@ -7,18 +7,30 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 ## Environment variables
 
-| Name                            | Required | Default             | Description |
-|---------------------------------|----------|---------------------|-------------|
-| **HTTP_PORT**                   | No       | 3000                | The port exposed by the service. |
-| **LOG_LEVEL**                   | No       | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`. |
-| **PROTOTYPES_CONFIG_FILE_PATH** | Yes      | -                   | Path of the config map file containing the prototypes. |
-| **CRUD_SERVICE_URL**            | No       | http://crud-service | HTTP(S) URL of the CRUD service. |
-| **MONITORINGS_CRUD_NAME**       | No       | monitorings         | Name of the CRUD collection containing the monitorings. |
-| **THERAPIES_CRUD_NAME**         | No       | therapies           | Name of the CRUD collection containing the therapies. |
-| **OBSERVATIONS_CRUD_NAME**      | No       | observations        | Name of the CRUD collection containing the observations. |
-| **OBSERVATIONS_GRACE_PERIOD**   | No       | 30                  | Number of days after the end of a therapy or monitoring during which update adherence and compliance are still updated (in case the patient submit observations late) |
-| **OBSERVATIONS_TIME_ZONE**      | No       | UTC                 | Default observations time zone. Must be a valid [IANA time zone](https://www.iana.org/time-zones). |
-| **CRON_SCHEDULE**               | No       | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `OBSERVATIONS_TIME_ZONE` time zone. | 
+| Name                            | Required                              | Default             | Description                                                                                                                                                    |
+|---------------------------------|---------------------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **HTTP_PORT**                   | No                                    | 3000                | The port exposed by the service.                                                                                                                               |
+| **LOG_LEVEL**                   | No                                    | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                      |
+| **PROTOTYPES_CONFIG_FILE_PATH** | Yes                                   | -                   | Path of the config map file containing the prototypes.                                                                                                         |
+| **CRUD_SERVICE_URL**            | No                                    | http://crud-service | HTTP(S) URL of the CRUD service.                                                                                                                               |
+| **MESSAGING_SERVICE**           | No                                    | `disabled`          | If you want to use the Messaging Service via `kafka` or `http` (`disabled` by default).                                                                        |
+| **MESSAGING_SERVICE_URL**       | If `MESSAGING_SERVICE` is `http`      | -                   | HTTP(S) URL of the Messaging Service.                                                                                                                          |
+| **KAFKA_BROKERS_LIST**          | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_CLIENT_ID**             | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_GROUP_ID**              | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_COMMANDS_TOPIC_NAME**   | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_EVENTS_TOPIC_NAME**     | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_AUTH_METHOD**           | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_SASL_USERNAME**         | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **KAFKA_SASL_PASSWORD**         | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
+| **MONITORINGS_CRUD_NAME**       | No                                    | monitorings         | Name of the CRUD collection containing the monitorings.                                                                                                        |
+| **THERAPIES_CRUD_NAME**         | No                                    | therapies           | Name of the CRUD collection containing the therapies.                                                                                                          |
+| **OBSERVATIONS_CRUD_NAME**      | No                                    | observations        | Name of the CRUD collection containing the observations.                                                                                                       |
+| **OBSERVATIONS_GRACE_PERIOD**   | No                                    | 30                  | Number of days after the end of a therapy or monitoring during which adherence and compliance are still updated (in case the patient submit observations late) |
+| **OBSERVATIONS_TIME_ZONE**      | No                                    | UTC                 | Default observations time zone. Must be a valid [IANA time zone](https://www.iana.org/time-zones).                                                             |
+| **CRON_SCHEDULE**               | No                                    | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `OBSERVATIONS_TIME_ZONE` time zone.                                           |
+| **VALIDATION_SERVICE**          | No                                    | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                            |
+| **VALIDATION_SERVICE_URL**      | If `VALIDATION_SERVICE` is `external` | -                   | HTTP(S) URL of the external validation service.                                                                                                                |
 
 ## Prototypes definition
 
@@ -110,7 +122,7 @@ Below the collections and the relative fields to create are described through JS
 Please note that this JSON schemas can be copied and used in the *MongoDB CRUD* section of the console for the creation of the collections.
 :::
 
-* **therapies**
+### Therapies
 
 | Name                            | Type              | Required (Yes/No) | Nullable (Yes/No) |
 |---------------------------------|-------------------|-------------------|-------------------|
@@ -133,7 +145,7 @@ Please note that this JSON schemas can be copied and used in the *MongoDB CRUD* 
 | isPatientCompliant              | `boolean`         | No                | No                |
 | isPatientCompliantLastUpdatedAt | `Date`            | No                | No                |
 
-* **monitorings**
+### Monitorings
 
 | Name                            | Type              | Required (Yes/No) | Nullable (Yes/No) |
 |---------------------------------|-------------------|-------------------|-------------------|
@@ -155,7 +167,7 @@ Please note that this JSON schemas can be copied and used in the *MongoDB CRUD* 
 | isPatientAdherentLastUpdatedAt  | `Date`            | No                | No                |
 | isPatientCompliant              | `boolean`         | No                | No                |
 | isPatientCompliantLastUpdatedAt | `Date`            | No                | No                |
-| tresholds                       | `Array of object` | No                | No                |
+| thresholds                       | `Array of object` | No                | No                |
 
 For the field `thresholds` you should add the following JSON Schema to the CRUD configuration:
 
@@ -164,9 +176,9 @@ For the field `thresholds` you should add the following JSON Schema to the CRUD 
   "properties": {
     "propertyName": {
       "type": "string",
-      "description": "Name of the property the threshold is evaluated on"
+      "description": "Name of the property of the observation value the threshold is evaluated on"
     },
-    "tresholdOperator": {
+    "thresholdOperator": {
       "type": "string",
       "description": "Name of the operator",
       "enum": [
@@ -177,20 +189,42 @@ For the field `thresholds` you should add the following JSON Schema to the CRUD 
         "eq"
       ]
     },
-    "tresholdValue": {
+    "thresholdValue": {
       "type": "number",
       "description": "Threshold value"
     }
   },
   "required": [
     "propertyName",
-    "tresholdOperator",
-    "tresholdValue"
+    "thresholdOperator",
+    "thresholdValue"
   ]
 }
 ```
 
-* **observations**
+If the observation value has nested or array fields you can use a dot or bracket notation respectively in the `propertyName` to refer a nested field or an element inside an array.
+
+For example, if the value is an object looking like this:
+
+```json
+{ "a": [{ "b": { "c": 3 } }] }
+```
+
+then you could use any of the following notations in the `propertyName` field:
+
+- `a[0]` to refer to the first element of the array, that is `{ "b": { "c": 3 } }`;
+- `a[0].b` to refer to the value of the `b` field, that is `{ "c": 3 }`;
+- `a[0].b.c` to refer to the value of the nested `c` field, that is `3`.
+
+If you are using the integrated validation service, remember that the `propertyName` field must refer a numeric field of the observation value.
+
+### Observations
+
+:::danger
+
+If you use the integrated validation service, field names in the `value` object should only contain alphanumeric characters or underscores due to implementation details. If you use an external service, instead, the TMM has no such limitation.
+
+:::
 
 | Name                   | Type      | Required (Yes/No) | Nullable (Yes/No) |
 |------------------------|-----------|-------------------|-------------------|
@@ -201,3 +235,56 @@ For the field `thresholds` you should add the following JSON Schema to the CRUD 
 | doctorId               | `string`  | No                | No                |
 | patientId              | `string`  | Yes               | No                |
 | isObservationCompliant | `boolean` | Yes               | No                |
+
+## Thresholds validation
+
+By default, the TMM validates an observation against the thresholds using the integrated service. If you want to use an external service to run custom validations, you need to perform the following steps:
+
+- deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below](configuration.md#external-validation-service-api);
+- set the TMM **VALIDATION_SERVICE** [environment variable](configuration.md#environment-variables) to `external`;
+- set the TMM **VALIDATION_SERVICE_URL** [environment variable](configuration.md#environment-variables) to the HTTP(s) address of your service (both public and internal cluster URLs will work).
+
+### External Validation Service API
+
+The External Validation Service must expose the following endpoints:
+
+- `POST /validations/` to validate an observation against the monitoring thresholds.
+
+#### `POST /validations/`
+
+The endpoint must accept in the body a JSON object with the following properties:
+
+- `observation`: the observation to validate, an object itself with the same fields available in the [observations CRUD collection](configuration.md#observations);
+- `thresholds`: an array of the monitoring thresholds, each one being an object with the same schema of the `thresholds` field of the [monitorings CRUD collection](configuration.md#monitorings).
+
+If the validation is performed without errors, the endpoint must return 200 as status code and a body containing a JSON array, each element representing the result of the validation for a corresponding threshold received in the request (`thresholds`) and the following properties:
+
+- `threshold` (`object`, required): the monitoring threshold (with the same fields as in the request);
+- `value` (`any`, required): the value the threshold is evaluated on;
+- `status` (`string`, required): a string indicating if the observation exceeded (`KO`) or not (`OK`) the threshold;
+- `error` (`string`): if `status` is `KO`, this field must contain an arbitrary string indicating the error type (for example `Threshold Exceeded`);
+- `message` (`string`): if `status` is `KO`, this field must contain a human-readable string indicating the error message, useful when sending the notification to the physician (for example, `'minimumBloodPressure' must be lower than 120, but was 140`).
+
+If an error occurs during the validation process, the endpoint should return the appropriate 4xx or 5xx status code. 
+
+:::info
+
+The TMM forwards the response of the validation service to the messaging service in order to notify the physician if the observation exceeded one or more thresholds.
+Therefore, in the template of the notification message you can refer any information available in the response of the external validation service.
+The integrated validation service produces an identical response, so the template will work exactly the same, no matter which service you use.
+
+:::
+
+## Notifications
+
+:::danger
+
+This section describes the integration with a future version of the messaging service, which is currently under development. The information may not reflect the final specifications of the service and may be subject to breaking changes.
+
+:::
+
+To send notifications to patients and physicians you need to set the `MESSAGING_SERVICE_URL` [environment variable](configuration.md#environment-variables) and configure the events, channels, recipients, ... directly in the messaging service (see the component documentation for more details).
+
+The TMM currently generates the following events you can refer in the configuration of the messaging service:
+
+- `TMM/v1/ThresholdExceeded` is the event generated when an observation exceeds one or more monitoring thresholds.

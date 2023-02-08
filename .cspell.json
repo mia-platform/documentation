@@ -236,7 +236,8 @@
     "kafkajs",
     "cryptd",
     "pharmaPrime",
-    "Repubblica"
+    "Repubblica",
+    "npmrc"
   ],
   "dictionaries": [
     "softwareTerms",

@@ -73,7 +73,7 @@ Depending on the [AM configuration](configuration.md), you can create an appoint
 :::
 
 :::caution
-With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to create an appointment directly from the `slotId`. The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
+**v2.0.1**. With version 2.0.1 we introduced, to improve compatibility with existing clients, the option to create an appointment directly from the `slotId`. The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
 :::
 
 :::caution

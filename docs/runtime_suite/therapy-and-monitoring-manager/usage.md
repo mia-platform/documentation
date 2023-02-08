@@ -46,13 +46,13 @@ The `adherenceToleranceFrequency` is considered only when `times` field is defin
 For further information on the concepts of adherence and compliance, please refer to the appropriate section on the [Overview page](./overview.md#adherence-and-compliance)
 :::
 
-The monitoring data model add the concept of tresholds.
+The monitoring data model add the concept of thresholds.
 
 A threshold is an object with the following properties:
 
-* `propertyName`: name of the property on which the treshold is evaluated;
-* `tresholdOperator`: operator to use in the treshold evaluation. Available options are: `gt`, `lt`, `gte`, `lte`, `eq`;
-* `tresholdValue`: the value with which to evaluate the threshold.
+* `propertyName`: name of the property on which the threshold is evaluated;
+* `thresholdOperator`: operator to use in the threshold evaluation. Available options are: `gt`, `lt`, `gte`, `lte`, `eq`;
+* `thresholdValue`: the value with which to evaluate the threshold.
 
 ### `GET /<therapies|monitorings>/`
 
@@ -117,16 +117,16 @@ The body of the request must contain a JSON object representing a valid therapy 
   "adherenceToleranceFrequency": 1,
   "adherenceMinimumPercentage": 90,
   "complianceMinimumPercentage": 90,
-  "tresholds": [
+  "thresholds": [
     {
       "propertyName": "minimumBloodPressure",
-      "tresholdOperator": "gt",
-      "tresholdValue": 120
+      "thresholdOperator": "gt",
+      "thresholdValue": 120
     },
     {
       "propertyName": "minimumBloodPressure",
-      "tresholdOperator": "lt",
-      "tresholdValue": 60
+      "thresholdOperator": "lt",
+      "thresholdValue": 60
     }
   ],
   "isPatientAdherent": true,
@@ -261,7 +261,9 @@ These endpoints return 200 and the number of observations matching the query.
 
 ### `POST /observations/`
 
-Insert a new observation in the CRUD. This endpoint is a proxy to the CRUD `POST /` endpoint.
+Insert a new observation in the CRUD and call the validation service to check if the observation exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable](configuration.md#environment-variables) is set, send a notification to the physician through the messaging service.
+
+This endpoint is a proxy to the CRUD `POST /` endpoint.
 
 The body of the request must contain a JSON object representing a valid observation, like:
 
@@ -312,7 +314,9 @@ This endpoint returns 400 and a body with the structure shown below if the obser
 
 ### `PATCH /observations/:id`
 
-Update an existing observation identified by the `:id` path parameter. This endpoint is a proxy to the CRUD `PATCH /:id` endpoint.
+Update an existing observation identified by the `:id` path parameter and, if the value has changed, call the validation service to check if the observation exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable](configuration.md#environment-variables) is set, send a notification to the physician through the messaging service.
+
+This endpoint is a proxy to the CRUD `PATCH /:id` endpoint.
 
 This endpoint returns 404 if one of following errors occur:
 
