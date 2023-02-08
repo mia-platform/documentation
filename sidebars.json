@@ -773,6 +773,10 @@
           "type": "doc"
         },
         {
+          "id": "how_to/crud_service/crud_oss_usage",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/microservices/microservice_hello_world",
           "type": "doc"
         },
