@@ -167,8 +167,7 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 ```html
 <bk-form-card></bk-form-card>
 ```
-
-
+![form-drawer](../img/bk-form-card.png)
 
 ### Properties & Attributes
 
@@ -219,7 +218,6 @@ Drawer containing a Form to edit or create items described by the `dataSchema`, 
 
 ![form-drawer](../img/bk-form-drawer.png)
 
-### bk-form-drawer
 
 `bk-form-drawer` is used to display a Drawer containing a Form to edit or create items described by the `dataSchema`.
 
@@ -250,6 +248,10 @@ Example of configuration for form-drawer component in insert/edit mode:
 ```
 
 When the component reacts to the `add-new` event it opens the drawer with the initial values specified in the payload of the event. By clicking on the action button of the Form you can submit the content to perform an upload of a new item. If the form contains files, the component emits a `createDataWithFile` event where payload contains all the data of the form, including files. If no file is specified, a `createData` event is used. In both cases, a `transactionId` is used inside the meta field of the event to handle possible errors.
+
+:::info
+If the `description` field is specified in a dataschema property, a info icon is shown next to the form field label and a tooltip with the description appears when the mouse is over the icon.
+:::
 
 #### Edit
 
@@ -392,15 +394,12 @@ None
 ## bk-form-modal
 
 Modal containing a Form to edit or create items described by the `dataSchema`, once data is submitted for creation or update, modal is put in loading state. The component is composed of a generic Modal component, a generic Form component, thus it listens to and emits all the events that these do.
-![form-modal](../img/bk-form-modal.png)
 
 ```html
 <bk-form-modal></bk-form-modal>
 ```
 
 ![form-modal](../img/bk-form-modal.png)
-
-### bk-form-modal
 
 `bk-form-modal` is used to display a Modal containing a Form to edit or create items described by the `dataSchema`.
 
@@ -432,6 +431,10 @@ Example of configuration for form-modal component in insert/edit mode:
 ```
 
 When the component reacts to the `add-new` event it opens the modal with the initial values specified in the payload of the event. By clicking on the action button of the Form you can submit the content to perform an upload of a new item. If the form contains files, the component emits a `createDataWithFile` event where payload contains all the data of the form, including files. If no file is specified, a `createData` event is used. In both cases, a `transactionId` is used inside the meta field of the event to handle possible errors.
+
+:::info
+If the `description` field is specified in a dataschema property, a info icon is shown next to the form field label and a tooltip with the description appears when the mouse is over the icon.
+:::
 
 #### Edit
 
@@ -621,6 +624,33 @@ which is the only way to enable the confirmation dialog on save.
 Both `onSave` and `onClose` must be passed in the configuration and both of them accept a `boolean` or a `RequireConfirmOpts` type with the same rules written above in points 1 and 2 of this section. 
 
 
+### Nested objects
+
+By default, objects and arrays are displayed in `bk-form-modal` as JSONs inside an [editor](https://microsoft.github.io/monaco-editor/).
+This is not true for objects and arrays of specific [formats](../page_layout#data-schema) such as `file` or `multilookup`, and for objects / arrays for which a data-schema is defined.
+
+In particular, properties `allowObjectAsTable` and `allowNavigation` control how object and array fields with a provided data-schema (and no specific `format`) are rendered inside the modal.
+- `allowObjectAsTable` controls whether or not the nested fields should be rendered in both an editor and a read-only table.
+- `allowNavigation` allows to emit a [nested-navigation-state/push](../events#nested-navigation-state---push) event by clicking on the field label. Refer to [this](../page_layout#nested-dataschemas) for further details on nested objects navigation.
+
+By default, setting `allowNavigation` to true disables editor visualization for nested fields. The following table explains how the two properties interact:
+
+| `allowObjectAsTable` | `allowNavigation` | end result |
+| -------------------- | ----------------- | ---------- |
+| true | true | Table visualization only, label can be clicked |
+| true | "show-editor" | Table + editor, label can be clicked |
+| true | false | Table + editor, label cannot be clicked |
+| false | true | No table nor editor, label can be clicked (default configuration) |
+| false | "show-editor" | Editor visualization only, label can be clicked |
+| false | false | Editor visualization only, label cannot be clicked |
+
+:::info
+When `allowObjectAsTable` is true, the resulting table supports a subset of the features supported by `bk-table`. Some of the limitations with respect to `bk-table` include:
+  - lookups are not resolved
+  - row selection is disabled
+  - row click is disabled
+:::
+
 ### Properties & Attributes
 
 
@@ -629,7 +659,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table|
+|`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format and a dataschema in both a editor and read-only table|
 |`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
 |`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |

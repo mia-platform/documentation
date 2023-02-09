@@ -8,12 +8,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 2023-02-08
+
+### Added
+
+- fields in form can have a description in a tooltip
+- new web component for auto refresh: `bk-auto-refresh`
+- `bk-url-parameters` support wildcards in `urlMask`, which can be ignored with property `excludeWildcards`
+- new component `bk-atlas-dashboard` is available
+- `bk-card` component supports dynamic footer and buttons using `template`-`configMap` pair
+- `bk-card` uses `visualizationOptions` in dataschema
+- `bk-button` supports `Action`-sdk thorugh property `action`. `clickConfig` is now deprecated and will be removed in future releases, please refer to documentation for migration instructions.
+
+### Fixed 
+
+- `bk-form-card` resolves lookups in initial values
+- lookups are correctly resolved `bk-filter-drawer` initial values
+- Form components correctly support `editorHeight` property in readonly mode
+- Tables inside form components render date fields correctly accordingly to `dateOptions.displayFormat` in nested data-schema
+- `bk-gallery` component does not render menu icon if empty
+- `bk-simple-list` header style is aligned with `bk-card` and `bk-form-card`
+
 ## [1.3.3] - 2023-01-26
 
 ### Fixed
 
 - `bk-export` component emits success / error events
-- `date` / `date-time` / `time` fields are formatted in filter names according to `dateOptions.displayFormat` in data-schema
+- `date` / `date-time` / `time` fields are formatted in filter names accordingly to `dateOptions.displayFormat` in data-schema
 - table column minWidth is more fitted to the column title
 - fields of format "editor" can be edited
 - lookups are correctly resolved in filter names

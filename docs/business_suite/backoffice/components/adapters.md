@@ -110,13 +110,61 @@ Assuming the component to be configured as:
 }
 ```
 
-and assuming the url to be `/order-details/test-id`, then `bk-url-parameters` emits the following a [change-query](../events#change-query) event upon connection to the DOM:
+and assuming the url to be `/order-details/test-id`, then `bk-url-parameters` emits the following [change-query](../events#change-query) event upon connection to the DOM:
 
 ```json
 {
   "label": "change-query",
   "payload": {
     "_id": "test-id"
+  }
+}
+```
+
+### Ignore wildcards
+
+Wildcards (`(.*)`) can be used in `urlMask`; these match any string and is included in the payload of the emitted event with numeric keys.
+
+For instance, the following is a valid configurations:
+```json
+{
+  ...
+  "tag": "bk-url-parameters",
+  "properties": {
+    "urlMask": "/order-details/(.*)/:_id"
+  }
+}
+```
+
+Assuming the url to be `/order-details/first-id/second-id`, then `bk-url-parameters` emits the following [change-query](../events#change-query) event:
+```json
+{
+  "label": "change-query",
+  "payload": {
+    "0": "first-id",
+    "_id": "second-id"
+  }
+}
+```
+
+If property `excludeWildcards` is true, matches coming from wildcards are excluded from the payload of the event. The same example with the following configuration: 
+```json
+{
+  ...
+  "tag": "bk-url-parameters",
+  "properties": {
+    "urlMask": "/order-details/(.*)/:_id",
+    "excludeWildcards": true
+  }
+}
+```
+
+yields the following event:
+```json
+{
+  "label": "change-query",
+  "payload": {
+    "_id": "second-id"
   }
 }
 ```
@@ -130,6 +178,7 @@ and assuming the url to be `/order-details/test-id`, then `bk-url-parameters` em
 |`urlMask`| `url-mask` |string| - | url mask to apply to the current path to extract dynamic parameters |
 |`eventLabel`|`event-label`|string|'change-query'|label of the event that will be dispatched as result|
 |`redirectUrl`|`redirect-url`|string| - |optional parameter that contains the url to redirect when urlMask does not completely match|
+|`excludeWildcards`|`exclude-wildcards`|boolean| false |whether or not matches from wildcards (`(.*)`) should be excluded from event payload|
 
 ### Listens to
 
