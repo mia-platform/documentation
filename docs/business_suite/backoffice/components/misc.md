@@ -3,33 +3,57 @@ id: misc
 title: Misc
 sidebar_label: Misc
 ---
-## Template
+## bk-auto-refresh
 
+Allows refreshing some resource after the selected interval
 ```html
-<bk-template></bk-template>
+<bk-auto-refresh></bk-auto-refresh>
+```
+
+### Configuration
+
+It is possible to customize the intervals and the default interval for refreshing the resources.
+
+Example:
+
+```json
+  ...
+  {
+    "type": "element",
+    "tag": "bk-auto-refresh",
+    "properties": {
+      "intervals": [10, 30, 60, 120],
+      "initialInterval": 10
+    }
+  }
+  ...
 ```
 
 ### Properties & Attributes
 
-| property | attribute | type | optional | required | default | description |
-|----------|-----------|------|----------|----------|---------|-------------|
-|`defaultValue`|`default-value`|string| - | - | - | - |
 
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|intervals| - |number[] \| undefined|[5, 10, 30, 60]|a list of intervals in seconds|
+|initialInterval| - |number|0|initial interval value
 
 ### Listens to
 
-This component listens to no event.
 
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[loading-data](../events#loading-data)|sets internal loading state| - | - |
 
 ### Emits
 
-This component emits no event.
 
+| event | description |
+|-------|-------------|
+|[change-query](../events#change-query)|requires refresh without modifying current `CRUD` query by attaching an empty payload|
 
 ### Bootstrap
 
 None
-
 
 
 ## bk-confirmation-modal

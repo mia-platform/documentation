@@ -122,6 +122,14 @@ delivers data to add a new filter
 }
 ```
 
+- Meta:
+
+```typescript
+{
+  hash: string
+}
+```
+
 ### Add New
 
 notifies adding a new item
@@ -148,6 +156,33 @@ notifies adding a new item on an external collection
 }
 ```
 
+### Export Data - Request Config
+
+prompts for export configuration payload
+
+
+- Label: `awaiting-for-export-configuration`
+- Payload:
+
+```typescript
+{
+  total?: number
+  selected?: number
+  columns: {
+    label: string
+    value: T
+  }[]
+}
+```
+
+- Meta:
+
+```typescript
+{
+  transactionId?: string
+}
+```
+
 ## B
 
 ### Nested Navigation State - Go Back
@@ -162,6 +197,27 @@ goes back an arbitrary number of levels of nesting
   steps?: number
 }
 ```
+
+### Boolean and Enums bulk update
+
+allows to modifies enums or boolean values from an array of items
+
+
+- Label: `bulk-update`
+- Payload:
+
+```typescript
+{
+  data: {
+    [key: string]: any
+  }[]
+  changes: {
+    [key: string]: string | boolean
+  }[]
+}
+```
+
+
 
 ## C
 
@@ -483,6 +539,26 @@ notifies a generic error event
 }
 ```
 
+### Cancel
+
+notifies operation abort via a given transactionId
+
+
+- Label: `event-bus-cancel`
+- Payload:
+
+```typescript
+{}
+```
+
+- Meta:
+
+```typescript
+{
+  transactionId: string
+}
+```
+
 ### Export Data
 
 raised when the export button is clicked
@@ -493,6 +569,33 @@ raised when the export button is clicked
 ```typescript
 {}
 ```
+
+### Export Data - User Config
+
+sends user configuration payload to perform export
+
+
+- Label: `export-user-config`
+- Payload:
+
+```typescript
+{
+  exportType: "json" | "csv" | "html" | "xlsx"
+  csvSeparator?: "COMMA" | "SEMICOLON"
+  filters: "all" | "filtered" | "selected"
+  columns: string[]
+}
+```
+
+- Meta:
+
+```typescript
+{
+  transactionId?: string
+}
+```
+
+
 
 ## F
 
@@ -508,6 +611,20 @@ notifies opening of UI component that handles form creation
 ```
 
 ## L
+
+### Change Layout
+
+requires a layout change from `bk-layout-container`
+
+
+- Label: `layout-change`
+- Payload:
+
+```typescript
+{
+  layout: string
+}
+```
 
 ### Link File To Record
 
@@ -736,7 +853,7 @@ notifies that a single datum has been selected from a dataset
 }
 ```
 
-### Select Data Bulk
+### Selected Data Bulk
 
 notifies data selection in a dataset
 
@@ -873,7 +990,8 @@ the current file property is set into meta
 
 ### Update State Bulk
 
-updates multiple data state (**STATE** or _st) in a dataset
+updates multiple data state (__STATE__ or _st) in a dataset
+
 
 - Label: `update-state-bulk`
 - Payload:

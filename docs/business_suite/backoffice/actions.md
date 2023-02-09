@@ -111,25 +111,28 @@ For instance:
     ...
     "config": {
       "headers": {"foo": "bar"},
+      "params": {
+        "some": "query-params"
+      },
       "downloadAsFile": true
     }
     ...
   }
 }
 ```
-adds `foo` to the headers of the call with value `bar`, and attempts to download the result as a file.
+adds `foo` to the headers of the call with value `bar`, adds query parameter `some` with value `query-params`, and attempts to download the result as a file.
 
 Field `config.triggeredBy` has a duplicate function:
 
-- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as `bk-notifications`, in order to display notification messages upon success/failure of the action
+- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./components/misc.md#bk-notifications), in order to display notification messages upon success/failure of the action,
 
-- it allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action
+- it allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action.
 
 
 ### File Download
 
 :::info
-  For downloading files using a REST call, an action of type `http` should be used:
+  For downloading files using a REST call, an action of type [http](#rest-calls) should be used, leveraging `downloadAsFile` keyword set to true:
   ```json
   {
     "type": "http",
@@ -142,6 +145,7 @@ Field `config.triggeredBy` has a duplicate function:
     }
   }
   ```
+  `downloadAsFile` is supported with GET and POST requests.
 :::
 
 ```typescript
@@ -179,6 +183,8 @@ type FileUploadAction = {
     stopPropagation?: boolean
     /* url to the file to download */
     url: string
+    /* file is set to this key when appending values to the multipart/form-data that is sent */
+    fileFormKey?: string
     /* extra configurations (headers) */
     headers?: HeadersInit
     /* "triggeredBy" field to add to eventBusCancel/eventBusSuccess/eventBusError event meta */
@@ -198,10 +204,9 @@ type FileUploadAction = {
   }
 }
 ```
+Actions of type `file-upload` perform an automatic file upload post. The native upload dialog of the browser is used, allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using XMLHTTPRequest facility, and the file is appended to a brand new FormData with the key `file` unless overridden by the `fileFormKey` property.
 
-Actions of type `file-upload` allow the user to upload a file to the given url. The native file upload window is used.
-
-Field `config.triggeredBy` is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as `bk-notifications`, in order to display notification messages upon success/failure of the action
+Field `config.triggeredBy` is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./components/misc.md#bk-notifications), in order to display notification messages upon success/failure of the action.
 
 ### Navigation - push
 
@@ -264,7 +269,7 @@ type HrefAction = {
     href?: string | undefined;
     /* target to use for navigating to href, defaults to "_self" */
     target?: string | undefined;
-    /* query paramters to add to destination url */
+    /* query parameters to add to destination url */
     query?: LinkQueryParams | undefined;
   },
   hooks: {
@@ -278,7 +283,7 @@ type HrefAction = {
 
 Actions of type `href` execute a [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) or a [window.location.replace](https://developer.mozilla.org/en-US/docs/Web/API/Location/replace) call (depending on the value of `target`), that allows navigation to the specified url.
 
-In case `config.target` is not "_self", `onFinish` hook is available.
+The `onFinish` hook is only available if `config.target` is not "_self".
 
 ### Navigation - go back
 
@@ -337,7 +342,35 @@ With [LocalizedText](core_concepts#localization-and-i18n) being either a string 
 
 Actions of type `copy` allow to copy data to clipboard. They require input data to be provided in order to properly execute. Components that expose action properties should provide appropriate context when executing the actions callback.
 
-`config.path` is the path to apply to the data source, in javascript notation, to reach the data to copy to clipboard. In case the data is not of type string, it is first stringified.
+`config.path` is the path to apply to the data source, in javascript notation, to reach the data to copy to clipboard. In case the data is not of type string, it is automatically stringified.
+
+:::info
+If the copied value is an object or an array, [helper `rawObject`](#example-3) should be used when using references to the forwarded data into [chained actions](#action-chaining). For instance:
+```json
+{
+  "type": "copy",
+  "config": {
+    "path": "objectField",
+    "triggeredBy": "key"
+  },
+  "hooks": {
+    "onSuccess": {
+      "type": "event",
+      "config": {
+        "events": {
+          "label": "return-event",
+          "payload": {
+            "copied-data": "{{rawObject key}}"
+          }
+        }
+      }
+    }
+  }
+}
+```
+:::
+
+Field `config.triggeredBy` allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action.
 
 #### Example 1
 With input data such as:
@@ -419,7 +452,7 @@ If
   "name": "joe"
 }
 ```
-is provided as context to the action, this results in an `addNew` event being executed with payload:
+is provided as context to the action, this results in an event being executed with label  `add-new` and payload:
 ```json
 {
   "data": "joe"
@@ -428,7 +461,7 @@ is provided as context to the action, this results in an `addNew` event being ex
 
 ### Example 2
 
-Pair `<template, configMap>` can be used to specify dynamic configurations.
+Pair `template`-`configMap` can be used to specify dynamic configurations.
 
 ```json
 {
@@ -474,6 +507,7 @@ the above action is equivalent to:
 `$default` key in `configMap` can be specified, and is used if no other `configMap` key matches `template`.
 
 ### Example 3
+
 It is possible to avoid to stringify dynamic values within a configuration using the custom helper `rawObject`.
 ```json
 {
@@ -555,7 +589,7 @@ The first (top-level) action
 ```
 is executed first, and results in a GET call.
 
-Action of type `http` allow to specify a `onFinish` hook, which is itself an action and is executed after the REST call, independently of its response.
+Actions of type `http` allow to specify a `onFinish` hook, which is itself an action and is executed after the REST call, independently of its response.
 
 The `onFinish` hook
 ```json
@@ -568,7 +602,28 @@ The `onFinish` hook
 ```
 is thus executed after the GET call, navigating to the url `/some/path`.
 
-### Example 2 - result data is forwarded
+### Example 2 - data refresh is needed after action
+
+Often a plugin reload is required after a successful action (for instance, after a successful `file-upload` action). If a component like [bk-crud-client](./components/clients.md#bk-crud-client) is included in the plugin, one could pipe a [change-query](./events.md#change-query) event to the main action:
+
+```json
+{
+  "type": "file-upload",
+  "config": {
+    "url": "/v2/img-upload"
+  },
+  "hooks": {
+    "onSuccess": {
+      "events": {
+        "label": "change-query",
+        "payload": {}
+      }
+    }
+  }
+}
+```
+
+### Example 3 - result data is forwarded
 
 Actions may forward extra data into some of their hooks.
 
@@ -624,7 +679,7 @@ Assuming all actions to be successful, this action results in the following step
 ```
 is executed, resulting in a GET call to the endpoint `/url-1`.
 
-- Assuming the call is successful and the response to look like:
+- Assuming the call is successful and the response looks like:
 ```json
 {
   "field": "foo"
@@ -643,7 +698,7 @@ the `onSuccess` action
   ...
 }
 ```
-is executed, with access to the response of the previous call, through the key `data_1`.
+is executed - having access to the response of the previous call through the key `data_1`.
 This results in a second GET call, this time to the endpoint `/url-2/foo`. The dynamic url value `/url-2/{{data_1.field}}` can be correctly resolved using the response of the previous call.
 
 - Assuming the call succeeds, and the returned response to be:
@@ -678,7 +733,7 @@ is executed, resulting in an event being emitted, with label `add-new` and paylo
 ```
 which can be resolved as the responses from both previous calls are available, through keys `data_1` and `data_2` respectively.
 
-Notice how the third chained action still provides access to the return value from the first action: each action always forwards all its context to its hooks (possibly adding additional data to it).Assuming the same return values for each GET call as previously, and assuming the first action to have context context:
+Notice how the third chained action still provides access to the return value from the first action: each action always forwards all of its context to its hooks (possibly adding additional data to it). Assuming the same return values for each GET call as previously, and assuming the first action to have context context:
 ```json
 {
   "name": "joe",

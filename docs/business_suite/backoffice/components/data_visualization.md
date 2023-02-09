@@ -3,6 +3,40 @@ id: data_visualization
 title: Data Visualization
 sidebar_label: Data Visualization
 ---
+## bk-atlas-dashboard
+
+read-only dashboard from MongoDB Atlas.
+```html
+<bk-atlas-dashboard></bk-atlas-dashboard>
+```
+
+The `bk-atlas-dashboard` is an embedding of a dashboard from MongoDB Atlas which displays data (or filtered data when alongside a filtering component).
+
+![dashboard](../img/bk-atlas-dashboard.png)
+
+:::warning
+To embed an authenticated dashboard it's mandatory to use a custom microservice for the authentication: `atlas-dashboard-authentication` is available in the marketplace, but you can choose to develop one by yourself.
+The `apiKey` and `authEndpoint` enable you to expose an endpoint to that service directly from the Mia-Platform console.
+
+### Properties & Attributes
+
+| property | attribute | type | optional | required | default | description |
+|----------|-----------|------|----------|----------|---------|-------------|
+|`apiKey`|`apiKey`|string \| number| &check; | - | - |apikey to call the authentication route from a trusted entity. Leave empty if not set
+|`authEndpoint`|`authEndpoint`|string| &check; | - | - |endpoint for the dashboard authentication|
+|`background`|`background`|string| &check; | - |'transparent'|background color of the dashboard. Possible values are color hex code, CSS color name or 'transparent'|
+|`baseUrl`|`base-url`|string| - | &check; | - |base URL of the embedded dashboard|
+|`dashboardId`|`dashboard-id`|string| - | &check; | - |dashboard id of the embedded dashboard|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - | &check; | - |[data schema](../page_layout#data-schema) describing the fields of the collection|
+|`height`|`height`|string \| number| &check; | - | 'inherit' |desired height of the dashboard container|
+
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[change-query](../events#change-query)|apply the change-query filter to its dashboard| - | - |
+
 ## bk-calendar
 
 Renders a calendar to manage appointments.
@@ -138,7 +172,9 @@ read-only visualizer for objects, arrays and images.
 - objects
 - array of objects
 - images
+
 ![bk-card](../img/bk-card.png)
+
 It is not suited for editing. That role is delegated to the `bk-form-card` component.
 `bk-card` is made by blocks and is recursive, which means that cards can be embedded in cards creating, for instance, a picture gallery instead of showing a single picture.
 This can be achieved by leveraging only the `bk-card` tag.
@@ -159,7 +195,9 @@ A `bk-card` is made of 3 HTML5 tag
 1. `header`
 2. `main`
 3. `footer`
+
 if either of these keys is absent from `bk-card` configuration, it won't appear in the `bk-card` shadow DOM and it won't clutter its internal structure.
+
 A basic card configuration looks like:
 
 ```json
@@ -180,7 +218,9 @@ A basic card configuration looks like:
 ```
 
 The simplest card layout is an informative card:
+
 ![error-card](../img/error-card.png)
+
 which is obtained by combining header and footer. From a layout perspective we expect to have titles in the header, content in the main and actions/titles in the footer.
 To configure a card, we must describe its `cardSchema`:
 
@@ -201,9 +241,10 @@ export type CardSchema = {
     title?: LocalizedText
     subtitle?: LocalizedText
     subsubtitle?: LocalizedText
-    buttons?: BkButton | BkButton[]
+    buttons?: CardButton | CardButton[]
   }
 }
+
 export type TaggableCustom = {
   value: string
   tag: string
@@ -220,11 +261,13 @@ Header supports:
 2. subtitle (h2)
 3. badge
 4. icon
+
 Each one of them is optional and the layout is left-float icon + title + badge and a second line with the subtitle
 
 ![header-example](../img/card-header.png)
 
 Title, subtitle and badge can be internationalized using [LocalizedText](../core_concepts#localization-and-i18n) which is either a string or an object with language support:
+
 ```json
 {
   "cardSchema": {
@@ -241,6 +284,7 @@ Title, subtitle and badge can be internationalized using [LocalizedText](../core
 ::info
 Available icons are [`@ant-design/icons`](https://ant.design/components/icon) or any [fontawesome public solid or regular icon](https://fontawesome.com/v5/search?m=free&s=solid%2Cregular).
 :::
+
 :::info
 Icons are dynamically imported to reduce bundle size. So if you don't use you don't download it.
 :::
@@ -253,9 +297,11 @@ Footer encapsulates actions and can mount an unlimited number of buttons (or eve
 2. subtitle
 3. subsubtitle
 4. buttons
+
 The former three are similar to the header properties. `buttons` key instead takes either an object or an array of objects that can contain the key `tag`.
 When `tag` is not specified it defaults to HTML5 `button`. Footer will render the given tag and it will apply and other property of the corresponding configuration
 object as vanilla JS property on an HTML5 tag.
+
 A user-agent browser default button can be achieved as:
 
 ```json
@@ -298,7 +344,7 @@ A card can also be composed by text-only content:
 }
 ```
 
-Footer supports dynamic configurations via handlebars notation. The content of the card can be utilized inside handlebars via the keyword 'data'. For instance:
+Footer supports dynamic configurations via [handlebars notation](https://handlebarsjs.com/guide/expressions.html). The content of the card can be utilized inside handlebars via the keyword 'data'. For instance:
 
 ```json
 {
@@ -337,7 +383,131 @@ It is possible to replace handlebars with an object instead of a string value us
 }
 ```
 
-This footer will have a button that emits a `selected-data` event with payload the card content as an object.
+This footer will have a button that emits a `selected-data` event, having an object payload equal to the card content.
+
+If is furthermore possible to provide dynamic configurations via `template`-`configMap` pair. In such cases, the resulting value is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
+
+For instance, assuming the same example parameters as the previous example, the following configuration:
+```json
+{
+  "cardSchema": {
+    ...
+    "footer": {
+      "buttons": {
+        "tag": "bk-button",
+        "disabled": {
+          "template": "{{data.status}}",
+          "configMap": {
+            "active": false,
+            "$deafult": true
+          }
+        },
+        ...
+      }
+    }
+  }
+}
+```
+
+will resolve to:
+
+```json
+{
+  "cardSchema": {
+    ...
+    "footer": {
+      "buttons": {
+        "tag": "bk-button",
+        "disabled": false,
+        ...
+      }
+    }
+  }
+}
+```
+
+for cards having `status` field set to "active" in its data, and:
+
+```json
+{
+  "cardSchema": {
+    ...
+    "footer": {
+      "buttons": {
+        "tag": "bk-button",
+        "disabled": true,
+        ...
+      }
+    }
+  }
+}
+```
+for cards having `status` set to anything but "active".
+
+
+:::info
+A `template`-`configMap` pair can be applied to keys at the first level of the `footer` object, and to keys at the first level of `footer.buttons`.
+For instance, the following is NOT a valid configuration:
+```json
+{
+  "cardSchema": {
+    ...
+    "footer": {
+      "buttons": {
+        "tag": "bk-button",
+        "clickConfig": {
+          "type": "event",
+          "actionConfig": {
+            "label": {
+              "template": "{{data.status}}",
+              "configMap": {
+                "active": "selected-data",
+                "$deafult": "add-new"
+              }
+            },
+            "payload": {}
+          }
+        },
+        ...
+      }
+    }
+  }
+}
+```
+since `template`-`configMap` pair is not applied to a first-level key of `buttons`. An analogous and correct configuration in this case would be:
+```json
+{
+  "cardSchema": {
+    ...
+    "footer": {
+      "buttons": {
+        "tag": "bk-button",
+        "configMap": {
+          "template": "{{data.status}}",
+          "configMap": {
+            "active": {
+              "type": "event",
+              "actionConfig": {
+                "label": "selected-data",
+                "payload": {}
+              }
+            },
+            "$default": {
+              "type": "event",
+              "actionConfig": {
+                "label": "add-new",
+                "payload": {}
+              }
+            }
+          }
+        }
+        ...
+      }
+    }
+  }
+}
+```
+:::
 
 #### Main
 
@@ -347,6 +517,7 @@ Main is the core part of the card and the most widely customizable section. It r
 2. `array`-mode
 3. `image`-mode
 4. `recursive` mode
+
 To describe an object we can use a back-kit `DataSchema` schema. Awaiting a `display-data` event and an optional `lookup-data` event, the first object is then visualized inside the card main
 by listing those key reported within the `DataSchema`. If an item if of type `array` its `DataSchema` can be nested to represent arrays:
 
@@ -396,6 +567,7 @@ by listing those key reported within the `DataSchema`. If an item if of type `ar
 
 in the former example we have a `status` string field, then a nested array `liv1` and lookups `riderId`, `customerId` and a composite object `notification`. This configuration
 encompasses `object` and `array` mode.
+
 `image`-mode is useful for an item which has an image cover like
 
 ```json
@@ -427,6 +599,7 @@ encompasses `object` and `array` mode.
 ```
 
 In this example an image is combined with a footer which uses `bk-button` to upload a new image via a button which is placed beneath the image. The `returnEvent` property allows you to specify an event to be thrown when the action is finished. The example requires a page refresh to display the newly uploaded image.
+
 `recursive` is a mode that embeds cards into cards. The very same structure described here can be nested by using
 
 ```json
@@ -459,7 +632,9 @@ In this example an image is combined with a footer which uses `bk-button` to upl
 ```
 
 using this trick we can for instance obtain a gallery of pictures.  
+
 When the `cards` field is specified, it is not possible to view other information on the card.  
+
 If you have nested cards, you can specify properties of the array type on the outermost card and access the relative elements through handlebars, accessing the `arraySource` object. Nested arrays are not currently supported, it is possible to use only one-level arrays.  
 In the example configuration below we have a card that declares an array of URL, and internal cards that are responsible for displaying the images contained in the array. As shown, the internal cards are able to access the property described in the external card, which is therefore shared among all the internal cards.  
 
@@ -505,8 +680,40 @@ In the example configuration below we have a card that declares an array of URL,
       }
     }
   }
-},
+}
 ```
+
+[visualizationOptions](../page_layout.md#visualization-options) are interpreted by `bk-card`. In particular, custom components can be mounted using a `tag`-`properties` pair in place of fields. For instance, the following is a valid configuration:
+```json
+{
+  "type": "element",
+  "tag": "bk-card",
+  "properties": {
+    "cardSchema": {
+      "main": {
+        "dataSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "visualizationOptions": {
+                "tag": "div",
+                "properties": {
+                  "textContent": "The name is: {{args.[0]}}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+which will mount a `div` component in place of the field `name`.
+`args.[0]` refers to the value of the corresponding field (in this case, `name`). `args.[1]` is also available, referencing the full data of the card.
+Helper `rawObject` is also available, analogously to [buttons](#footer).
 
 ### Properties & Attributes
 
@@ -921,7 +1128,7 @@ A `label` can be specified to be displayed as header of the list.
 ![bk-simple-list](../img/bk-simple-list.png)
 
 Example of configuration: 
-```
+```json
 {
   "type": "element",
   "tag": "bk-simple-list",
@@ -938,13 +1145,35 @@ With this configuration, the field `items` of the dataSchema will be displayed.
 
 The list of elements to display is passed to the component using the `display-data` event, which contains the data in its payload. If the datasourceKey refers to a lookup field, it listens to `lookup-data` event which contains the solved lookups.
 
+List title is configurable via the property `label`, which can be a string, [LocalizedText](../core_concepts.md#localization-and-i18n), or an `HeaderProps` object with the following fields:
+
+| property | type | description |
+|----------|------|-------------|
+| title | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | title of the list (h1) |
+| subtitle | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | subtitle (h2) displayed below the title |
+| badge | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | badge displayed right of the title |
+| icon | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | icon displayed left of the title |
+
+
+For instance, the following is valid configuration for `label` property:
+```json
+{
+  "label": {
+    "icon": "fas fa-building",
+    "title": {"en": "Conversation", "it": "Conversazione"},
+    "badge": {"en": "Awaiting", "it": "In Attesa"},
+    "subtitle": {"en": "This is a conversation", "it": "Questa è una conversazione"}
+  }
+}
+```
+
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`datasourceKey`|`datasource-key`|string|''|the object key that will be used to pick the data to show. |
 |`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`label`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|header of the list. |
+|`label`| - |[LocalizedText](../core_concepts#localization-and-i18n) \| `HeaderProps` |{}|header of the list. |
 |`loading`|`loading`|boolean|true|sets list on loading at DOM connection |
 
 ### Listens to

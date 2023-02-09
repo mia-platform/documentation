@@ -967,6 +967,25 @@
           ]
         },
         {
+          "collapsed": true,
+          "type": "category",
+          "label": "Backoffice",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/backoffice/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/backoffice/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/backoffice/overview"
+          }
+        },
+        {
           "id": "marketplace/applications/backoffice_application",
           "type": "doc",
           "label": "Backoffice Application"
