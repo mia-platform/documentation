@@ -158,7 +158,9 @@
       "pharma",
       "ecommerce",
       "signup",
-      "oauthbearer"
+      "oauthbearer",
+      "JAAS",
+      "configurator"
   ],
   "ignoreWords": [
     "authz",
