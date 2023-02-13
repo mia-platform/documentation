@@ -159,6 +159,8 @@
       "ecommerce",
       "signup",
       "oauthbearer",
+      "configurator",
+      "configurability",
       "JAAS",
       "configurator"
   ],

@@ -520,6 +520,29 @@
       }
     },
     {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "business_suite/backoffice_configuration/overview",
+          "type": "doc"
+        },
+        {
+          "id": "business_suite/backoffice_configuration/structure",
+          "type": "doc"
+        },
+        {
+          "id": "business_suite/backoffice_configuration/compose-pages",
+          "type": "doc"
+        },
+        {
+          "id": "business_suite/backoffice_configuration/environment",
+          "type": "doc"
+        }
+      ],
+      "label": "Configuration",
+      "type": "category"
+    },
+    {
       "label": "Data Visualization",
       "type": "category",
       "collapsed": true,
@@ -984,11 +1007,6 @@
             "type": "doc",
             "id": "runtime_suite/backoffice/overview"
           }
-        },
-        {
-          "id": "marketplace/applications/backoffice_application",
-          "type": "doc",
-          "label": "Backoffice Application"
         },
         {
           "collapsed": true,
