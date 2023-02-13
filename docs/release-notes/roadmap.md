@@ -44,10 +44,8 @@ On this page we keep you aligned on the most important issues
     * CSV reader as Fast Data connector
 
 * **Back-office**:
-    * Support no-code configuration in Console
+    * Support low-code configuration in Console
     * Micro-lc 2.0
-    * Web-component library SDK to improve development experience
-    * Support Rönd integration
 
 ## How to contribute to the roadmap
 
