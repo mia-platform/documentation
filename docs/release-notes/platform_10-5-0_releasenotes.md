@@ -26,6 +26,10 @@ This version addressed a few bugs, here is a comprehensive list:
 ### New Features
 
 ### Improvements
+
+#### PR update topics are now editable
+
+The PR update topic table inside each Projection page now allows topics to be updated.
  
 ### Bug Fix
 
