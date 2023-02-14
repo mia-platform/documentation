@@ -41,7 +41,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 #### Automatic generation of Aggregation
 
-A basic Aggregation configuration can be automatically generated starting from an ER Schema. The file is intended to be a basic file that must be modified by the user in order to complete all the needed configurations. Check the [official documentation](/fast_data/configuration/single_view_creator/low_code#aggregation) for any further details.
+A basic Aggregation configuration can be automatically generated starting from an ER Schema. The file is intended to be a basic file that must be modified by the user in order to complete all the needed configurations. Check the [official documentation](../fast_data/configuration/single_view_creator/low_code#aggregation) for any further details.
 
 ### Improvements
 
