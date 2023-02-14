@@ -17,8 +17,9 @@ _February 16, 2023_
 
 This version addressed a few bugs, here is a comprehensive list:
 
-* 
-* 
+* A bug causing a log out when rapidly opening multiple Console tabs has been fixed
+* Now, when opening a Console URL, you are correctly redirected to the specific resource even when you have to login first
+* Debug section now appears correctly visible again
 
 ## Fast Data
 
