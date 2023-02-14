@@ -13,10 +13,10 @@ In this tutorial we will see how to use **Mia-Platform Console** to **configure 
 
 ## What We’ll Build
 
-In this tutorial we will create a CRUD collection rappresenting books and expose it through REST API. More specifically, we will:
+In this tutorial we will create a CRUD collection rappresenting generic products and expose it through REST API. More specifically, we will:
 
 - Set up a _CRUD Service_;
-- Create the books _CURD collection_;
+- Create the products _CURD collection_;
 - Add fields to the collection;
 - Expose the CRUD via REST API;
 - Test the API through _API Portal_.
@@ -24,6 +24,7 @@ In this tutorial we will create a CRUD collection rappresenting books and expose
 ## Prerequisites
 
 In order to start the tutorial you need:
+
 1. A URL to connect to a MongoDB Database.
 
 :::tip
@@ -68,16 +69,16 @@ In order to do it, from the _Design_ area of the project, we must:
 
 ## Create a new CRUD collection
 
-After creating the _CRUD Service_ you can create a new _CRUD collection_ that contains all the information about the books of a library. To do so, you can take advantage of the UI for the _CRUD service_ configuration provided by Mia-Platform Console. Using the sidebar, you must move into the [_MongoDB CRUD_](/development_suite/api-console/api-design/crud_advanced.md) section of the project.
+After creating the _CRUD Service_ you can create a new _CRUD collection_ that contains all the information about the products of a library. To do so, you can take advantage of the UI for the _CRUD service_ configuration provided by Mia-Platform Console. Using the sidebar, you must move into the [_MongoDB CRUD_](/development_suite/api-console/api-design/crud_advanced.md) section of the project.
 
 In the left area of this section you can find the button **"Create new CRUD"** and the list of all collection of the project. In our case this list is empty since we started from scratch.
 
-To create the "books" collection:
+To create the "products" collection:
 
 1. Select **"Create new CRUD"**;
 1. Fill the input:
-   - **Name**: it is the CRUD collection name, in this case `books`;
-   - **Internal Endpoint**: it is the endpoint exposed by the _CRUD Service_, by default it is the same as the name, but it can be changed. In this case we can use `/books`;
+   - **Name**: it is the CRUD collection name, in this case `products`;
+   - **Internal Endpoint**: it is the endpoint exposed by the _CRUD Service_, by default it is the same as the name, but it can be changed. In this case we can use `/products`;
 1. Click on the _Create_ button.
 1. Save the changes.
 
@@ -87,24 +88,25 @@ To create the "books" collection:
 
 Once you have created a collection it is time to configure its schema. As you will notice the Mia-Platform Console has already created some **default fields that can not be changed**. These fields are necessary for the proper functioning of the CRUD collection:
 
-| Field         | Type     | Required | Nullable | Client-side Encryption | Description       |
-| ------------- | -------- | -------- | -------- | ---------------------- | ----------------- |
-| \_id          | ObjectId | Yes      | No       | No                     | The document id   |
-| creatorId     | String   | Yes      | No       | No                     | The creator id    |
-| createdAt     | Date     | Yes      | No       | No                     | The creation date |
-| updaterId     | String   | Yes      | No       | No                     | The updater id    |
-| updatedAt     | Date     | Yes      | No       | No                     | The update date   |
-| \_\_STATE\_\_ | String   | Yes      | No       | No                     | The state         |
+| Field         | Type     | Required | Nullable | Description       |
+| ------------- | -------- | -------- | -------- | ----------------- |
+| \_id          | ObjectId | Yes      | No       | The document id   |
+| creatorId     | String   | Yes      | No       | The creator id    |
+| createdAt     | Date     | Yes      | No       | The creation date |
+| updaterId     | String   | Yes      | No       | The updater id    |
+| updatedAt     | Date     | Yes      | No       | The update date   |
+| \_\_STATE\_\_ | String   | Yes      | No       | The state         |
 
 Moreover, you can notice that:
+
 - in the _Indexes_ section, an [index](/development_suite/api-console/api-design/crud_advanced.md#indexes) on the `_id` field and one on the `createdAt` field has been created
-- in the _Internal Endpoints_, `/books` [endpoint](/development_suite/api-console/api-design/crud_advanced.md#crud-service-exposed-routes) has been created with default `__STATE__` set as `PUBLIC`.
+- in the _Internal Endpoints_, `/products` [endpoint](/development_suite/api-console/api-design/crud_advanced.md#crud-service-exposed-routes) has been created with default `__STATE__` set as `PUBLIC`.
 
 :::note
 Since the default `__STATE__` is `PUBLIC`, newly created items will have `PUBLIC` state by default (i.e. when an explicit `__STATE__` value is not provided in the request)
 :::
 
-At this point, we can modify the DB schema by creating the required properties of your CRUD collection, in this case the one about the books. To do so, you can choose between 2 options:
+At this point, we can modify the DB schema by creating the required properties of your CRUD collection, in this case the one about the products. To do so, you can choose between 2 options:
 
 1. Manually adding the properties;
 2. Importing the properties from a JSON file.
@@ -136,19 +138,23 @@ Once you have filled in all the needed properties you can create the field by cl
 
 For this example we will create the following fields:
 
-| Name          | Type    | Required | Nullable | Client-side Encryption | Description                    |
-| ------------- | ------- | -------- | -------- | ---------------------- | ------------------------------ |
-| author        | String  | Yes      | false    | No                     | author of the book             |
-| language      | String  | Yes      | false    | No                     | language of the book           |
-| title         | String  | Yes      | false    | No                     | title of the book              |
-| published     | Boolean | Yes      | false    | No                     | the book it's published?       |
-| salesForecast | Number  | No       | false    | No                     | expected number of copies sold |
+| Name        | Type   | Required | Nullable | Description                    |
+| ----------- | ------ | -------- | -------- | ------------------------------ |
+| name        | String | Yes      | false    | Name of the product            |
+| description | String | No       | false    | Description of the product     |
+| price       | Number | Yes      | false    | Price of the product           |
+| image       | Object | No       | false    | Image of the product           |
+| stock       | Number | No       | false    | How many products are in stock |
 
 After adding these fields, you can read the properties in the CRUD page:
 
 ![Fields to the CRUD collection](img/MongoDB-Collection-all-fields.png)
 
 Once you have created all the fields, remember to **save** the changes!
+
+:::tip
+You can use the **"Export to JSON"** button to download the current CRUD schema for future imports!
+:::
 
 ### Option 2: Import CRUD collection
 
@@ -173,11 +179,6 @@ Once you have created all the fields, remember to **save** the changes!
 You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the [image](/tutorial/rest_api/quick_rest_api.mdx#create-a-new-crud-collection).
 :::
 
-:::tip
-You can use the **"Export to JSON"** button to download the current CRUD schema for future imports!
-:::
-
-
 ## Expose the CRUD using an endpoint
 
 In order to make CRUD operations on the newly created collection available from outside the project, we will now **add an endpoint**.
@@ -188,15 +189,15 @@ If you don't know how to do it take a look at the [first tutorial](/tutorial/mic
 
 The parameters to set for the endpoint are the following ones:
 
-- **Base path**: `/books`
+- **Base path**: `/products`
 - **Type**: in the dropdown menu select _"CRUD"_
-- **CRUD Base Path**: in the dropdown menu select `/books`
+- **CRUD Base Path**: in the dropdown menu select `/products`
 
 Our configuration is ready. You can **save** and **deploy** it in a runtime environment! You don't know how to do it? Take a look at [Mia-Platform handbook](/tutorial/console/console_handbook.md#deploy-changes)!
 
 ## Try CRUD endpoints with API Portal
 
-You can now go to the API portal: from your project settings, click on the "Go to Documentation" link of the environment you have deployed in. Under the **books** tag, you can see the list of **endpoints** that will allow us to read, write, edit, and delete the information on your CRUD collection.
+You can now go to the API portal: from your project settings, click on the "Go to Documentation" link of the environment you have deployed in. Under the **products** tag, you can see the list of **endpoints** that will allow us to read, write, edit, and delete the information on your CRUD collection.
 
 You can perform some insertions using POST call and then try to read the data using the GET request.
 
