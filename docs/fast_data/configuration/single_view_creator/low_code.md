@@ -95,6 +95,14 @@ An example of a minimal configuration is as follows:
 
 The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View.
 
+The Aggregation Configuration can be automatically generated started from an already existing ER Schema, clicking on the dedicated button as you can see in the picture below. It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is the Projection that contains the identifier that is used as the identifier for the Single View.
+
+![automatic generation of Aggregation](../../img/aggregation-automatic-generation.png)
+
+:::warning
+The generated file will have a basic structure but it may not contain all the relationships needed or the desired structure, so please modify it to match the desired needs before using it.
+:::
+
 ### Dependencies
 
 Dependencies have two properties:
