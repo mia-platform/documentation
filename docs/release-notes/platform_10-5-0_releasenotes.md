@@ -17,7 +17,7 @@ _February 16, 2023_
 This feature is still in BETA, do not miss out the official documentation page for further information.
 :::
 
-The Backoffice Low Code Configuration is now generally available for all the Console users!
+The new Backoffice Low Code Configuration is now generally available for all Console users!
 In the dedicated Console section, it is possible to configure your Backoffice pages and layouts, using a Json configuration. It is fitted with a fancy and fully functional preview tool that allows direct interactions with your designed frontend.
 
 [![Mia Platform Backoffice Low Code Configuration](./img/10.5/backoffice-config-low-code.png)]
