@@ -11,6 +11,20 @@ _February 16, 2023_
 
 ### New Features
 
+#### Backoffice Low Code Configuration
+
+:::info
+This feature is still in BETA, do not miss out the official documentation page for further information.
+:::
+
+The Backoffice Low Code Configuration is now generally available for all the Console users!
+In the dedicated Console section, it is possible to configure your Backoffice pages and layouts, using a Json configuration. It is fitted with a fancy and fully functional preview tool that allows direct interactions with your designed frontend.
+
+[![Mia Platform Backoffice Low Code Configuration](./img/10.5/backoffice-config-low-code.png)]
+
+
+Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice)!
+
 ### Improvements 
 
 ### Bug Fix
@@ -25,9 +39,9 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### New Features
 
-#### aggregation.json can be automatically generated started from a an ER Schema
+#### Automatic generation of Aggregation
 
-A basic `aggregation.json` file can be automatically generated starting from an ER Schema. The file is intended to be a basic `aggregation.json` file that must be modified by the user in order to complete all the needed configurations.
+A basic Aggregation configuration can be automatically generated starting from an ER Schema. The file is intended to be a basic file that must be modified by the user in order to complete all the needed configurations. Check the [official documentation](/fast_data/configuration/single_view_creator/low_code#aggregation) for any further details.
 
 ### Improvements
 
@@ -57,15 +71,6 @@ The PR update topic table inside each Projection page now allows topics to be up
 ## Backoffice 
 
 ### New Features
-
-#### Backoffice Low Code Configuration
-
-:::info
-This feature is still in BETA, do not miss out the official documentation page for further information.
-:::
-
-The Backoffice Low Code Configuration is now generally available for all the Console users!
-In the dedicated Console section, it is possible to configure your Backoffice pages and layouts, using a Json configuration. It is fitted with a fancy and fully functional preview tool that allows direct interactions with your designed frontend.
 
 ### Improvements
 
