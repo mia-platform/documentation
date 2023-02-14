@@ -14,7 +14,7 @@ In this guide you will see how to configure and interact with the CRUD Service a
 
 ## How to use the CRUD Service OSS
 
-In this section you will learn how to configure and use the CRUD Service in your environment or as a component of your applications. We will use a simple example of CRUD operations over a registry of customers. 
+In this section you will learn how to configure and use the CRUD Service in your environment or as a component of your applications. We will use a simple example of CRUD operations over a registry of customers.
 
 ### Requirements
 
@@ -28,7 +28,7 @@ You can find the official repository of the CRUD Service [here](https://github.c
 
 Clone the repository in your local system with the following command:
 
-``` bash
+```bash
 git clone https://github.com/mia-platform/crud-service
 ```
 
@@ -36,7 +36,7 @@ git clone https://github.com/mia-platform/crud-service
 
 If you do not have a MongoDB instance ready, you can quickly set up a Docker container with the **mongo** image locally with the following commands:
 
-``` bash
+```bash
 docker pull mongo:6.0.2
 docker volume create mongo
 docker run --detach --name mongo -p 27017:27017 --mount source=mongo,target=/data/db mongo:6.0.2
@@ -50,7 +50,7 @@ For the complete list of available environment variables you can see the `proper
 
 You can create your own `.env` file with the configurations you need for your use case. Let's make a copy of the file.
 
-``` bash
+```bash
 cp ./default.env ./.env
 ```
 
@@ -58,18 +58,18 @@ Now we can review and update the environment variables values in the new file. F
 
 For a simple example we can use a collection schema for customer registries to be copied in the **COLLECTION_DEFINITION_FOLDER** folder. You can download the json schema <a download target="_blank" href="/docs_files_to_download/crud-service/registry.json">here</a>.
 
-
-<details><summary>click here to see the full json file</summary>
-<p>
-<SourceCodeBlock filePath="/docs_files_to_download/crud-service/registry.json" />
-</p>
+<details>
+  <summary>click here to see the full json file</summary>
+  <p>
+    <SourceCodeBlock filePath="/docs_files_to_download/crud-service/registry.json" />
+  </p>
 </details>
 
 ### Run the CRUD Service
 
 To run the CRUD Service enter these commands in a terminal:
 
-``` bash
+```bash
 nvm use # <-- only if you use nvm
 npm i
 npm run start:local
@@ -81,10 +81,9 @@ The CRUD Service will start and listen on http://localhost:3000 by default.
 
 ### Interact with CRUD Service
 
-The CRUD Service exposes a **Swagger User Interface** available by default at http://localhost:3000/documentation. 
+The CRUD Service exposes a **Swagger User Interface** available by default at http://localhost:3000/documentation.
 
 ![Swagger](img/swagger.png)
-
 
 You can view a list of APIs useful to perform CRUD operations on the collections discovered by the CRUD Service.
 
@@ -93,7 +92,8 @@ For the full list and description of the available operations please see [here](
 #### Create
 
 You can create a new document by using the `POST /registry/` request or by using the following command:
-``` bash
+
+```bash
 curl -X 'POST' \
   'http://localhost:3000/registry/' \
   -H 'accept: application/json' \
@@ -109,8 +109,10 @@ curl -X 'POST' \
   "__STATE__": "PUBLIC"
 }'
 ```
+
 You will receive as response an object with the `_id` of the new document.
-``` json
+
+```json
 {
   "_id": "63d15612676a93073b3a92e8"
 }
@@ -119,14 +121,16 @@ You will receive as response an object with the `_id` of the new document.
 #### Read
 
 You can retrieve a list of all documents by using the `GET /registry/` request or by using the following command:
-``` bash
+
+```bash
 curl -X 'GET' \
   'http://localhost:3000/registry/' \
   -H 'accept: application/json'
 ```
 
 You will receive as response an object with the `_id` of the new document.
-``` json
+
+```json
 [
   {
     "_id": "63d15612676a93073b3a92e8",
@@ -149,7 +153,8 @@ You will receive as response an object with the `_id` of the new document.
 #### Update
 
 You can update a document by using the `PATCH /registry/` request or by using the following command:
-``` bash
+
+```bash
 curl -X 'PATCH' \
   'http://localhost:3000/registry/?_id=63d15612676a93073b3a92e8' \
   -H 'accept: application/json' \
@@ -160,14 +165,16 @@ curl -X 'PATCH' \
   }
 }'
 ```
+
 You will see the count of updated documents.
 
-``` json
+```json
 1
 ```
 
 By using the read operation again we can see that the document has been updated.
-``` json {6}
+
+```json {6}
 [
   {
     "_id": "63d15612676a93073b3a92e8",
@@ -190,20 +197,22 @@ By using the read operation again we can see that the document has been updated.
 #### Delete
 
 You can delete a document by using the `DELETE /registry/` request or by using the following command:
-``` bash
+
+```bash
 curl -X 'DELETE' \
   'http://localhost:3000/registry/?registry_id=reg-1' \
   -H 'accept: application/json'
 ```
+
 You will see the count of deleted documents.
 
-``` json
+```json
 1
 ```
 
 By using the read operation again we can see that the example document is not present anymore.
 
-``` json
+```json
 []
 ```
 
@@ -215,4 +224,4 @@ The Mia Platform Console lets you use the CRUD Service OSS as a [plugin](/runtim
 
 The plugin is fully integrated and ready out of the box. You simply need to create your [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) and deploy without any further configurations. The plugin is also integrated with the [Documentation Portal](/development_suite/api-portal/api-documentations.md), with the advantage that you have in one place the APIs of all your services and CRUDs.
 
-You can see a usage example of the plugin in this [tutorial](/tutorial/rest_api/quick_rest_api.md).
+You can see a usage example of the plugin in this [tutorial](/tutorial/rest_api/quick_rest_api.mdx).
