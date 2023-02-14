@@ -146,5 +146,9 @@
   "/docs/development_suite/api-console/api-design/how_to_enable_auth0": {
     "destination": "/docs/runtime_suite/auth0-client/enable_auth0",
     "addedOn": "2023-02-03"
+  },
+  "/docs/marketplace/applications/backoffice_application": {
+    "destination": "/docs/runtime_suite/backoffice/overview",
+    "addedOn": "2023-02-14"
   }
 }
