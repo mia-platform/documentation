@@ -23,7 +23,7 @@ In the dedicated Console section, it is possible to configure your Backoffice pa
 [![Mia Platform Backoffice Low Code Configuration](./img/10.5/backoffice-config-low-code.png)]
 
 
-Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice)!
+Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---1.3.4)!
 
 ### Improvements 
 
@@ -68,13 +68,62 @@ The PR update topic table inside each Projection page now allows topics to be up
 
 ### Marketplace Updates
 
-## Backoffice 
+## Backoffice - 1.3.4
 
 ### New Features
 
-### Improvements
+#### Form tooltip
+
+Form components (`bk-form-modal`, `bk-form-drawer`, `bk-form-card`) support `description` field in data-schema, of type either string or internationalized text, which is rendered inside a tooltip next to field label.
+
+#### New component `bk-auto-refresh`
+
+New web component `bk-auto-refresh` is available, which allows for periodic automatic data-refresh. Refer to [the documentation](../business_suite/backoffice/components/misc.md#bk-auto-refresh) for more information.
+
+#### Wildcards in `bk-url-parameters`
+
+Component `bk-url-parameters` supports wildcards in `urlMask` property. Data matched through wildcards is included in event payload with numeric keys, and can be excluded setting property `excludeWildcards` to true.
+
+#### `bk-card` footer supports `template`-`configMap`
+
+`bk-card` support for dynamic configuration has been extended to `template`-`configMap` pair formalism. This allows to set dynamic configurations to the footer and its buttons, based on equality to some data in the card.
+
+#### `bk-card` supports `visualizationOptions`
+
+`bk-card` component makes use of `visualizationOptions` property for each field of data-schema, allowing greater freedom in terms of how the data is visualized in the body of the card.
+
+#### `bk-button` supports `Action` interface
+
+`bk-button` supports `Action`-sdk thorugh property `action`, allowing wider range of configurable actions.
+**NOTE**
+`clickConfig` is now deprecated and will be removed in future releases in favor of `action`. Please refer to `bk-button` documentation for [migration instructions](../business_suite/backoffice/components/buttons.md#migrating-from-clickConfig-to-action).
+
+#### New component `bk-atlas-dashboard`
+
+New web component `bk-atlas-dashboard` is available, allowing to embed dashboards from [MongoDB Atlas](https://www.mongodb.com/atlas/database).
 
 ### Bug Fix
+
+#### Read-only form uses `editorHeight`
+
+Form components (`bk-form-modal`, `bk-form-drawer`, `bk-form-card`) correctly support `editorHeight` property in readonly mode, allowing to set height for monaco-editor fields.
+
+#### `bk-form-modal` nested tables renders date fields
+
+Object/array fields which are rendered as tables in `bk-form-modal` correctly render date fields, using `dateOptions.displayFormat` in their data-schema if specified.
+
+#### `bk-simple-list` header
+
+`bk-simple-list` header style is aligned with `bk-card` and `bk-form-card`, extending its `label` property to also allow icon, badge, subtitle.
+
+#### `bk-gallery` component does not render menu icon if unnecessary
+
+`bk-gallery` component does not render menu icon if the number of actions is two or lower.
+
+#### Lookups are resolved in initial values
+
+Components `bk-form-card` and `bk-filter-drawer` correctly resolve lookups within initial values.
+
 
 ## How to update your Console
 
