@@ -41,7 +41,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 #### Automatic generation of Aggregation
 
-A basic Aggregation configuration can be automatically generated starting from an ER Schema. The file is intended to be a basic file that must be modified by the user in order to complete all the needed configurations. Check the [official documentation](../fast_data/configuration/single_view_creator/low_code#aggregation) for any further details.
+A basic Aggregation configuration can be automatically generated starting from an ER Schema. The file is intended to be a basic file that must be modified by the user in order to complete all the needed configurations. Check the [official documentation](/fast_data/configuration/single_view_creator/low_code#aggregation) for any further details.
 
 ### Improvements
 
@@ -78,7 +78,7 @@ Form components (`bk-form-modal`, `bk-form-drawer`, `bk-form-card`) support `des
 
 #### New component `bk-auto-refresh`
 
-New web component `bk-auto-refresh` is available, which allows for periodic automatic data-refresh. Refer to [the documentation](../business_suite/backoffice/components/misc.md#bk-auto-refresh) for more information.
+New web component `bk-auto-refresh` is available, which allows for periodic automatic data-refresh. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-auto-refresh) for more information.
 
 #### Wildcards in `bk-url-parameters`
 
@@ -96,7 +96,7 @@ Component `bk-url-parameters` supports wildcards in `urlMask` property. Data mat
 
 `bk-button` supports `Action`-sdk thorugh property `action`, allowing wider range of configurable actions.
 **NOTE**
-`clickConfig` is now deprecated and will be removed in future releases in favor of `action`. Please refer to `bk-button` documentation for [migration instructions](../business_suite/backoffice/components/buttons.md#migrating-from-clickConfig-to-action).
+`clickConfig` is now deprecated and will be removed in future releases in favor of `action`. Please refer to `bk-button` documentation for [migration instructions](/business_suite/backoffice/components/buttons.md#migrating-from-clickConfig-to-action).
 
 #### New component `bk-atlas-dashboard`
 
