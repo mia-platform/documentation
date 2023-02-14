@@ -32,11 +32,11 @@ On the first step of the wizard you will be asked to choose the type of the new 
 
 Possible choices are:
 
-- [compose](https://micro-lc.io/docs/guides/applications/compose), a dynamically composed page constructed with HTML5
-  elements or web components following a provided configuration,
-- [micro-frontend](https://micro-lc.io/docs/guides/applications/parcels), a framework-agnostic component directly managed
-  by the orchestrator, which needs to be supplied with the assets entry point, or
-- [iFrame](https://micro-lc.io/docs/guides/applications/iframes), an HTML page embedded in an iframe tag with full
+- [compose](https://micro-lc.io/docs/guides/applications/compose): a dynamically composed page constructed with HTML5
+  elements or web components following a provided configuration;
+- [micro-frontend](https://micro-lc.io/docs/guides/applications/parcels): a framework-agnostic component directly managed
+  by the orchestrator, which needs to be supplied with the assets entry point;
+- [iFrame](https://micro-lc.io/docs/guides/applications/iframes): an HTML page embedded in an iframe tag with full
   strict encapsulation.
 
 #### Page details
@@ -47,9 +47,9 @@ The second step allows you to specify some details regarding the page.
 
 The requested fields are:
 
-- _id_, the unique identifier of the page,
-- _page rendering route_, the path on which the page will be rendered, and
-- _acl expression_, an optional [logical expression](https://micro-lc.io/add-ons/backend/middleware#acl-application)
+- _id_: the unique identifier of the page;
+- _page rendering route_: the path on which the page will be rendered;
+- _acl expression_: an optional [logical expression](https://micro-lc.io/add-ons/backend/middleware#acl-application)
   evaluated against user's groups and permissions to determine whether they can view the page.
 
 #### Page options
@@ -58,20 +58,20 @@ The third and last step is a [type](#page-type)-specific form page options.
 
 For **compose pages**, available fields are:
 
-- _input mode_, whether the page configuration is saved inline (_inline_ option) or in a separate file (_external_
-  option),
-- _configuration source_ (only if input mode is _external_), name of the file containing the page configuration, and
-- _template_, a configuration template carrying a pre-defined, pre-arranged set of components.
+- _input mode_: whether the page configuration is saved inline (_inline_ option) or in a separate file (_external_
+  option);
+- _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
+- _template_: a configuration template carrying a pre-defined, pre-arranged set of components.
 
 ![Page compose options](./img/structure_page-compose-options.png)
 
 For **micro-frontend pages**, available fields are:
 
-- _entry_, a JSON object carrying information regarding the
-  [entry points](https://micro-lc.io/docs/guides/applications/parcels#usage) of the micro-frontend,
-- _properties_, a JSON object of [properties](https://micro-lc.io/docs/guides/applications/parcels#properties) to inject
-  in the micro-frontend, and
-- _inject base_, a flag stating whether a `<base>` tag has to be
+- _entry_: a JSON object carrying information regarding the
+  [entry points](https://micro-lc.io/docs/guides/applications/parcels#usage) of the micro-frontend;
+- _properties_: a JSON object of [properties](https://micro-lc.io/docs/guides/applications/parcels#properties) to inject
+  in the micro-frontend;
+- _inject base_: a flag stating whether a `<base>` tag has to be
   [injected](https://micro-lc.io/docs/guides/applications/parcels#injectbase) in the micro-frontend.
 
 :::tip
@@ -82,9 +82,9 @@ The editors will help you writing configurations hinting the correct properties 
 
 For **iFrame pages**, available fields are:
 
-- _source_, the URL of the page to embed,
-- _source document_, an inline HTML document to embed (overriding _source_), and
-- _attributes_, `<iframe>` HTML tag valid
+- _source_: the URL of the page to embed;
+- _source document_: an inline HTML document to embed (overriding _source_);
+- _attributes_: `<iframe>` HTML tag valid
   [attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attributes) written in a JSON object fashion.
 
 :::tip
@@ -99,10 +99,10 @@ The buttons placed in the last column of the page table allows you to interact w
 
 From left to right, available actions are:
 
-- _edit page_ (only for compose pages), to open the section for
-  [compose pages configuration](/business_suite/backoffice_configuration/compose-pages.md),
-- _edit details_, to re-open the [page creation wizard](#create-new-page) in edit mode, and
-- _delete_, to delete the page.
+- _edit page_ (only for compose pages): to open the section for
+  [compose pages configuration](/business_suite/backoffice_configuration/compose-pages.md);
+- _edit details_: to re-open the [page creation wizard](#create-new-page) in edit mode;
+- _delete_: to delete the page.
 
 ## Advanced configuration
 
