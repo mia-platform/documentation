@@ -18,16 +18,16 @@ Our Roadmap is aimed at:
 
 Listed below you find which product features will be released in the following months.
 Our Product is constantly evolving and every week we release new features, so it is possible that this list may not be always up-to-date.
-On this page we keep you aligned on the most important issues
+On this page we keep you aligned on the most important issues:
 
 * **Mia-Platform Control Plane**
-    * Providers management
-    * Full users lifecycle and groups management
-    * Company license visualization
-    * Management & support of GitOps tools and configurations
-    * Revision of Homepage navigation
-    * Dynamic sidebar navigation in Design Area 
-    * Extension of K8s resources visibility on Runtime Area (Deployments, Service, Cronjob, Job)
+    * Self User Registration
+    * Providers Management in Console
+    * Runtime k8s resources visualization in Console
+    * Managing Groups & m2m authentication in Console
+    * Revision of Console HomePage & Navigation 
+    * Managing Vault Environment Variables in Console
+    * Licenses Management
 
 * **Integration Features**:
     * Support GitHub actions
@@ -36,6 +36,7 @@ On this page we keep you aligned on the most important issues
 * **Product Operations**
     * Miactl CLI improvement
     * OpenTelemetry for collecting infrastructure telemetry data
+    * Mia-Platform k8s Distro (Vab)
 
 * **Fast Data**:
     * CDCs integration with Mia Platform Fast Data
@@ -53,5 +54,6 @@ The roadmap is constantly evolving to quickly respond to market needs.
 If you have success stories, feedback or ideas, we want to hear them all!
 Join our [My-Platform Community Space](https://github.com/mia-platform/community/discussions) and submit your idea!
 
-Roadmap Update
+## Roadmap Update
+
 Roadmap update is scheduled approximately every month.
