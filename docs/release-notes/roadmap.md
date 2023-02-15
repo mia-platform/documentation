@@ -28,18 +28,17 @@ On this page we keep you aligned on the most important issues:
     * Revision of Console HomePage & Navigation 
     * Managing Vault Environment Variables in Console
     * Licenses Management
+    * Miactl CLI improvement
 
 * **Integration Features**:
     * Support GitHub actions
     * Support Deploy on various container based runtimes
 
 * **Product Operations**
-    * Miactl CLI improvement
     * OpenTelemetry for collecting infrastructure telemetry data
-    * vab: cli to manage installation and upgrade of Mia-Platform distribution
 
 * **Fast Data**:
-    * CDCs integration with Mia Platform Fast Data
+    * CDCs integration with Mia-Platform Fast Data
     * Support no-code configuration in Console for ER Schemas
     * Bucket Storage Support
     * CSV reader as Fast Data connector
