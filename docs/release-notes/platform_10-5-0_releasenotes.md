@@ -27,6 +27,9 @@ Don't miss all the other Backoffice improvements in the [dedicated section](#bac
 
 ### Improvements 
 
+#### Empty state in Deploy Area if no environment has been configured
+In the Deploy Area, If no environment has been configured in the project, a new empty state it's been introduced.
+
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
