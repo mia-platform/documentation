@@ -20,7 +20,7 @@ This feature is still in BETA, do not miss out the [official documentation](/bus
 The new Backoffice Low Code Configuration is now generally available for all Console users!
 In the Console section dedicated to Backoffice, you can now configure your Backoffice pages and layouts, using a JSON configuration. This section is fitted with a fancy and fully functional preview tool that allows direct interactions with your designed front-end.
 
-[![Mia Platform Backoffice Low Code Configuration](./img/10.5/backoffice-config-low-code.png)]
+[Mia Platform Backoffice Low Code Configuration](./img/10.5/backoffice-config-low-code.png)
 
 
 Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---1.3.4)!
@@ -48,6 +48,10 @@ A basic Aggregation configuration can be automatically generated starting from a
 
 ### Improvements
 
+#### PR update topics are now editable
+
+The PR update topic table inside each Projection page now allows topics to be updated.
+
 ### Deprecations
 
 Starting from this Console release the configuration of Fast Data projections from the Console _Advanced Section_ is considered deprecated.
@@ -58,10 +62,6 @@ them to the supported page.
 Below is reported a screenshot of the section that is going to be deprecated:
 
 [![Mia Platform Advanced Section - Fast Data section highlighted in orange](./img/10.5/advanced_section_fast_data.jpg)]
-
-#### PR update topics are now editable
-
-The PR update topic table inside each Projection page now allows topics to be updated.
  
 ### Bug Fix
 
