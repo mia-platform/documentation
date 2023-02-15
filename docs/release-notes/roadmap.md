@@ -36,7 +36,7 @@ On this page we keep you aligned on the most important issues:
 * **Product Operations**
     * Miactl CLI improvement
     * OpenTelemetry for collecting infrastructure telemetry data
-    * Mia-Platform k8s Distro (Vab)
+    * vab: cli to manage installation and upgrade of Mia-Platform distribution
 
 * **Fast Data**:
     * CDCs integration with Mia Platform Fast Data
