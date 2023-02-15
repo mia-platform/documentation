@@ -71,6 +71,44 @@ Below is reported a screenshot of the section that is going to be deprecated:
 
 ### Marketplace Updates
 
+#### Appointment Manager - v2.1.0
+
+Added support for multiple reminders and a dedicated endpoint, `POST /searches/first-available-slot/`,
+for searching for the first available slots.
+The `GET /slots/` endpoint has also been improved to return the availability resource ID for each slot.
+See the [CHANGELOG](/runtime_suite/appointment-manager/changelog.md) for more details about the new features.
+
+#### FHIR API Service - v1.0.1
+
+Minor vulnerability fix.
+
+#### Form Service BE - v1.6.0
+
+Added the autosave feature for the form assignments procedure.
+Fixed a minor issue on the `isEditable` property in the `GET /forms/:id` endpoint.
+
+#### Form Service FE - v1.6.0
+
+Added the capability to retrieve draft and autosave form assignments.
+
+#### Messaging Service - v1.2.0
+
+The Messaging Service now supports template attachments.
+See the [CHANGELOG](/runtime_suite/messaging-service/changelog.md) for more details about the new feature.
+
+#### Teleconsultation Service BE - v1.3.0
+
+Added a dedicated environment variable for the live teleconsultation feature.
+
+#### Teleconsultation Service FE - v1.3.0
+
+Added a button to re-enter the teleconsultation. Moreover, feedback at the end of the call is now removed.
+The "Interaction to autoplay the content on the page" modal on teleconsultation start has also been removed.
+
+#### User Manager Service - v1.3.2
+
+Fixed an error in the `PATCH /users/:id` endpoint when the body does not contain `$set`.
+
 #### Payments Integration Hub - v2.0.0
 
 #### CRUD Service
