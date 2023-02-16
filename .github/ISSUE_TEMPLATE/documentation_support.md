@@ -7,15 +7,18 @@ assignees: ''
 
 ---
 
-### **Which documentation sections could be improved?**
+<!-- Which documentation sections could be improved? -->
+## Documentation pages to improve
 
-Lists the sections with their link refers to **docs.mia-platform.eu** and describes what is the problem.
+<!-- Lists the sections with their link refers to **docs.mia-platform.eu** and describes what is the problem.
 
-- [Section 1](https://docs.mia-platform.eu/...#..): <!-- Description of the problem-->
+### [Section 1](https://docs.mia-platform.eu/...#..) 
 
-### **Suggestions**
+Description of the problem -->
 
-Describes here all the suggestions that could resolve the problem listed above.
+## **Suggestions**
+
+<!-- Describes here all the suggestions that could resolve the problem listed above. -->
 
 
 
