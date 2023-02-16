@@ -36,6 +36,9 @@ jobs:
       INLINE_RUNTIME_CHUNK: "false"
     runs-on: ubuntu-latest
     steps:
+      - uses: DerYeger/yarn-setup-action@master
+        with:
+          node-version: 16.18
       - run: yarn build
 
   build-latest:
