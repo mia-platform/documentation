@@ -36,7 +36,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 * A bug causing a log out when rapidly opening multiple Console tabs has been fixed
 * Now, when opening a Console URL, you are correctly redirected to the specific resource even when you have to login first
-* Debug section now appears correctly visible again
+* A bug introduced in the Console version 10.4.0 that prevented the correct visibility of the Debug section has been fixed
 
 ## Fast Data
 
