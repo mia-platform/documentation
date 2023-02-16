@@ -51,7 +51,7 @@ On this page we keep you aligned on the most important issues:
 
 The roadmap is constantly evolving to quickly respond to market needs.
 If you have success stories, feedback or ideas, we want to hear them all!
-Join our [My-Platform Community Space](https://github.com/mia-platform/community/discussions) and submit your idea!
+Join our [Mia-Platform Community Space](https://github.com/mia-platform/community/discussions) and submit your idea!
 
 ## Roadmap Update
 
