@@ -111,6 +111,17 @@ Fixed an error in the `PATCH /users/:id` endpoint when the body does not contain
 
 #### Payments Integration Hub - v2.0.0
 
+The latest version includes the following new features
+- Flow Manager and its saga collection to store transaction data
+- Front-end to perform new payments
+- Adaptive Checkout to dynamically display customised payment methods/providers based on transaction data
+- Export function for transaction data
+- Automatic verification of outstanding payments
+- Bulk actions such as refund and invoice downloading
+- Partial refund from BackOffice
+
+For more technical details please refer to the documentation https://docs.mia-platform.eu/docs/runtime_suite/payment-integration-hub/overview
+
 #### CRUD Service
 
 Our MongoDB CRUD Service is now Open Source! Check out our [Blog Post](https://blog.mia-platform.eu/en/mia-platform-launches-open-source-mongodb-crud-service), the [How To guide](/how_to/crud_service/crud_oss_usage.mdx) and the [GitHub repository](https://github.com/mia-platform/crud-service). Do not forget to update the Docker image of the already existing instances of the CRUD services in the Console, putting the proper link:  http://ghcr.io/mia-platform/crud-service:6.3.0.
