@@ -12,9 +12,9 @@ jobs:
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
-      - run: ls .
-      - run: nvm use
-      - run: yarn
+      - uses: DerYeger/yarn-setup-action@master
+        with:
+          node-version: 16.18.1
       
   tests:
     name: Lint, spell check and check context  
