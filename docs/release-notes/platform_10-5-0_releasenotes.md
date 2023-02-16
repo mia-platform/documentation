@@ -111,7 +111,7 @@ Fixed an error in the `PATCH /users/:id` endpoint when the body does not contain
 
 #### Payment Integration Hub - v2.0.0
 
-The latest version includes the following new features
+The latest version includes the following new features:
 - Flow Manager and its saga collection to store transaction data
 - Front-end to perform new payments
 - Adaptive Checkout to dynamically display customized payment methods/providers based on transaction data
@@ -120,7 +120,7 @@ The latest version includes the following new features
 - Bulk actions such as refund and invoice downloading
 - Partial refund from BackOffice
 
-For more technical details please refer to the documentation https://docs.mia-platform.eu/docs/runtime_suite/payment-integration-hub/overview
+For more technical details please refer to [the documentation] (/runtime_suite/payment-integration-hub/overview)
 
 #### CRUD Service
 
