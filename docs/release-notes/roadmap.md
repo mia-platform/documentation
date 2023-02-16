@@ -4,50 +4,55 @@ title: Roadmap
 sidebar_label: Roadmap
 ---
 
-This page details the platform public roadmap. This is the result obtained with our strategic vision and the collaboration of partners and stakeholders needs.
+This page shows the public roadmap of Mia-Platform. This is the result of our strategic vision and the collaboration of partners and stakeholder needs.
 
-The goal of the roadmap is:
+Our Roadmap is aimed at:
 
-* keep people working on the product aligned on upcoming releases;
+* keeping people working on the Product aligned on upcoming releases;
 * planning contributions and support;
-* planning the project adoption;
+* planning the Project adoption;
 * avoiding duplication of work;
-* influence the Roadmap.
+* influencing the Roadmap itself.
 
 ## Future Work 
 
-What is described below comprehends the next features that will be released in the product in the following months.
-The following list is not exhaustive, the product is constantly evolving and every week we release new features.
-On this page we keep you aligned on the most important issues
+Listed below you find which product features will be released in the following months.
+Our Product is constantly evolving and every week we release new features, so it is possible that this list may not be always up-to-date.
+On this page we keep you aligned on the most important issues:
 
-* **Mia-Platform Cloud**
-    * self service project creation
-    * create dynamically Runtime Environments
+* **Mia-Platform Control Plane**
+    * Self User Registration
+    * Providers Management in Console
+    * Runtime k8s resources visualization in Console
+    * Managing Groups & m2m authentication in Console
+    * Revision of Console HomePage & Navigation 
+    * Managing Vault Environment Variables in Console
+    * Licenses Management
+    * Miactl CLI improvement
 
 * **Integration Features**:
-    * support for Azure DevOps as git and pipeline provider
-    * support Bitbucket as git provider
-    * support Jenkins as pipeline provider
-    * support the configuration of Envoy proxy from Console
-    * support Vault secret manager to store environment variables from the Console
+    * Support GitHub actions
+    * Support Deploy on various container based runtimes
 
-* **Project Governance**: from the Console, visualize license information and assign resources to projects in Company
+* **Product Operations**
+    * OpenTelemetry for collecting infrastructure telemetry data
 
 * **Fast Data**:
-    * improve support for testing
-    * add a Control Plane to better support developer control and interaction with running Fast Data services
+    * CDCs integration with Mia-Platform Fast Data
+    * Support no-code configuration in Console for ER Schemas
+    * Bucket Storage Support
+    * CSV reader as Fast Data connector
 
 * **Back-office**:
-    * support no-code configuration from the Console
-    * add charts support
+    * Support low-code configuration in Console
+    * Micro-lc 2.0
 
-## How to influence the roadmap
+## How to contribute to the roadmap
 
 The roadmap is constantly evolving to quickly respond to market needs.
-A roadmap is only useful if it captures real needs. If you have success stories, feedbacks or ideas, we want to hear them all! 
-Join our [Mia-Platform Community Space](https://github.com/mia-platform/community/discussions) and propose your idea! 
+If you have success stories, feedback or ideas, we want to hear them all!
+Join our [Mia-Platform Community Space](https://github.com/mia-platform/community/discussions) and submit your idea!
 
-## Roadmap evolution
+## Roadmap Update
 
-Will this roadmap change?
-Roadmaps are always evolving and ours is no different; for this reason, you can expect to see it updated roughly every month.
+Roadmap update is scheduled approximately every month.

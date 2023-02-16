@@ -380,7 +380,8 @@ The Single View Creator Low Code plugin is a microservice s used to leverage the
 
 Now we need to configure all the parameters of the microservice, here an example of the fields that we need to configure:
 
-- **PROJECTIONS_CHANGES_COLLECTION**: if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is fd-pc-SYSTEM_ID where SYSTEM_ID is the id of the System of Records this single view creator is responsible for.
+- **PROJECTIONS_CHANGES_COLLECTION**: it is set to `fd-pc-<SYSTEM_ID>` where `SYSTEM_ID` corresponds to the id of the System of Records this Single View Creator is responsible for.
+  The collection is automatically created by the Console.
 - **SINGLE_VIEWS_COLLECTION**: should be the name of the single view which your single view creator is responsible for
 - **SINGLE_VIEWS_ERRORS_COLLECTION**: it is the name of a MongoDB CRUD you want to use as collection to the single view errors.
 - **SINGLE_VIEWS_PORTFOLIO_ORIGIN**: should be equals to the SYSTEM_ID you have set in PROJECTIONS_CHANGES_COLLECTION

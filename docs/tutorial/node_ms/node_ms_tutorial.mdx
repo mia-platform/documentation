@@ -4,7 +4,7 @@ title: Create a Node.js Microservice Tutorial
 sidebar_label: Create a Node.js Microservice
 ---
 
-import VideoBox from './../../../src/components/VideoBox'
+import VideoBox from "./../../../src/components/VideoBox";
 
 In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js template](/marketplace/templates/mia_templates.md) from the [Marketplace](/marketplace/overview_marketplace.md).
 
@@ -56,7 +56,7 @@ Create `orders` CRUD with the following fields:
 | **customerId**      | ObjectId         |
 
 :::info
-Check out [this tutorial](/tutorial/rest_api/quick_rest_api.md) and see this short [video](/getting_started/video_pills/video_pills.mdx#how-to-create-a-crud) to learn how to create and expose CRUDs.
+Check out [this tutorial](/tutorial/rest_api/quick_rest_api.mdx) and see this short [video](/getting_started/video_pills/video_pills.mdx#how-to-create-a-crud) to learn how to create and expose CRUDs.
 :::
 
 ![CRUD in Console](img/node-ms-crud.png)
@@ -97,7 +97,7 @@ Check out the [endpoint documentation](/development_suite/api-console/api-design
 Watch this short video to learn how it's easy to create a Node.js Microservice from templates
 :::
 
-<VideoBox videoName={'createNodeMS'} />
+<VideoBox videoName={"createNodeMS"} />
 
 A Microservice can be created starting from existing Templates. Starting from a Mia-Platform Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices(such as testing, logging, health routes, etc).
 
@@ -199,19 +199,19 @@ Let's write a simple test for `/hello` route:
 Let's get back on the IDE and open `test/index.test.js` file and replace the "Insert your tests..." comment with the following code:
 
 ```js
-t.test('GET /hello', (t) => {
-  t.test('Correct message', async(t) => {
+t.test("GET /hello", (t) => {
+  t.test("Correct message", async (t) => {
     const response = await fastify.inject({
-      method: 'GET',
-      url: '/hello',
-    })
-    t.equal(response.statusCode, 200)
+      method: "GET",
+      url: "/hello",
+    });
+    t.equal(response.statusCode, 200);
     t.same(JSON.parse(response.payload), {
-      message: 'Hello by your first microservice',
-    })
-  })
-  t.end()
-})
+      message: "Hello by your first microservice",
+    });
+  });
+  t.end();
+});
 ```
 
 In this code, we are using the [Tap](https://node-tap.org/) library to write a test for the base success case.
@@ -235,15 +235,15 @@ Check out the [official documentation](https://node-tap.org/docs/getting-started
 Open the `index.js` file:
 
 ```js
-'use strict'
+"use strict";
 
-const customService = require('@mia-platform/custom-plugin-lib')()
+const customService = require("@mia-platform/custom-plugin-lib")();
 
 module.exports = customService(async function index(service) {
   /*
    * Insert your code here.
    */
-})
+});
 ```
 
 First we import the [Mia service Node.js library](/libraries/mia-service-libraries.md), which creates the infrastructure ready to accept the definition of routes and decorators. The library is **built on [Fastify](https://www.fastify.io/)**.
@@ -259,31 +259,31 @@ First, we'll add a simple hello world route that if called simply returns a stri
 1. In this folder add a file named as`hello.js` and write this code:
 
 ```js
-'use strict'
+"use strict";
 
 async function handler() {
   return {
-    message: 'Hello by your first microservice',
-  }
+    message: "Hello by your first microservice",
+  };
 }
 
 const schema = {
   response: {
     200: {
-      type: 'object',
+      type: "object",
       properties: {
         message: {
-          type: 'string',
+          type: "string",
         },
       },
     },
   },
-}
+};
 
 module.exports = {
   handler,
   schema,
-}
+};
 ```
 
 The file must export a function, the **handler**, and optionally a **JSON schema to validate the incoming request and the response** returned by the route. This schema is used to automatically generate an error if the validation fails and to generate the API documentation for the API Portal. Check out [Fastify documentation](https://www.fastify.io/docs/v2.2.x/Validation-and-Serialization/) for more details.
@@ -293,14 +293,14 @@ In the handler we'll simply return the message object. **It's not necessary to s
 Now let's get back to `index.js` file and add the route `GET` `/hello` handled by the function previously written:
 
 ```js
-'use strict'
+"use strict";
 
-const customService = require('@mia-platform/custom-plugin-lib')()
-const hello = require('./handlers/hello')
+const customService = require("@mia-platform/custom-plugin-lib")();
+const hello = require("./handlers/hello");
 
 module.exports = customService(async function index(service) {
-  service.addRawCustomPlugin('GET', '/hello', hello.handler, hello.schema)
-})
+  service.addRawCustomPlugin("GET", "/hello", hello.handler, hello.schema);
+});
 ```
 
 Import `hello.js` file and use `addRawCustomPlugin` to add the route. Thus function requires the **HTTP method, the path of the route and a handler and an optionally JSON schema**.
@@ -442,54 +442,54 @@ Now we have to start to write the handler, specifically our function will have t
 The code will be the following:
 
 ```js
-const DEFAULT_SHIPPING_COST = 1000
-const NEW_CUSTOMER_SHIPPING_COST = 5000
+const DEFAULT_SHIPPING_COST = 1000;
+const NEW_CUSTOMER_SHIPPING_COST = 5000;
 
 // Get query params
-const { orderId } = req.query
+const { orderId } = req.query;
 
 // Get proxy to interact with the CRUD Service
-const proxy = req.getDirectServiceProxy('crud-service', { protocol: 'http' })
+const proxy = req.getDirectServiceProxy("crud-service", { protocol: "http" });
 
-const allowedStatusCodes = [200]
+const allowedStatusCodes = [200];
 
-let orderCrudRes
+let orderCrudRes;
 
 try {
   orderCrudRes = await proxy.get(`/orders/${orderId}`, null, {
     allowedStatusCodes,
-  })
+  });
 } catch (error) {
   reply.code(404).send({
-    error: 'Order does not exist',
-  })
-  return
+    error: "Order does not exist",
+  });
+  return;
 }
 
-let order = orderCrudRes.payload
+let order = orderCrudRes.payload;
 
-let customerCrudRes
+let customerCrudRes;
 
 try {
   customerCrudRes = await proxy.get(`/customers/${order.customerId}`, null, {
     allowedStatusCodes,
-  })
+  });
 } catch (error) {
   reply.code(404).send({
-    error: 'Customer does not exist',
-  })
-  return
+    error: "Customer does not exist",
+  });
+  return;
 }
 
-const customer = customerCrudRes.payload
+const customer = customerCrudRes.payload;
 
-const { newCustomer } = customer
+const { newCustomer } = customer;
 
 return {
   shippingCost: newCustomer
     ? NEW_CUSTOMER_SHIPPING_COST
     : DEFAULT_SHIPPING_COST,
-}
+};
 ```
 
 With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](/runtime_suite/microservice-gateway/overview.md). In this case, we have got a proxy for [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) and use it to read documents from CRUDs collection.
@@ -505,21 +505,21 @@ To take in deeper how to use API exposed by the CRUD Service check out the [CRUD
 Let's go back to `index.js` file and add the route `GET /get-shipping-cost` handled by the function written previously:
 
 ```js
-'use strict'
+"use strict";
 
-const customService = require('@mia-platform/custom-plugin-lib')()
-const hello = require('./handlers/hello')
-const getShippingCost = require('./handlers/getShippingCost')
+const customService = require("@mia-platform/custom-plugin-lib")();
+const hello = require("./handlers/hello");
+const getShippingCost = require("./handlers/getShippingCost");
 
 module.exports = customService(async function index(service) {
-  service.addRawCustomPlugin('GET', '/hello', hello.handler, hello.schema)
+  service.addRawCustomPlugin("GET", "/hello", hello.handler, hello.schema);
   service.addRawCustomPlugin(
-    'GET',
-    '/get-shipping-cost',
+    "GET",
+    "/get-shipping-cost",
     getShippingCost.handler,
     getShippingCost.schema
-  )
-})
+  );
+});
 ```
 
 Now run tests implemented previously by the properly NPM script command:

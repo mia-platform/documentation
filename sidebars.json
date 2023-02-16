@@ -465,10 +465,6 @@
         },
         {
           "type": "doc",
-          "id": "business_suite/backoffice/application"
-        },
-        {
-          "type": "doc",
           "id": "business_suite/backoffice/plugin_navigation"
         },
         {
@@ -1102,20 +1098,20 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "Payments Integration Hub",
+          "label": "Payment Integration Hub",
           "items": [
             {
               "type": "doc",
-              "id": "runtime_suite/payments-integration-hub/configuration"
+              "id": "runtime_suite/payment-integration-hub/configuration"
             },
             {
               "type": "doc",
-              "id": "runtime_suite/payments-integration-hub/changelog"
+              "id": "runtime_suite/payment-integration-hub/changelog"
             }
           ],
           "link": {
             "type": "doc",
-            "id": "runtime_suite/payments-integration-hub/overview"
+            "id": "runtime_suite/payment-integration-hub/overview"
           }
         },
         {
@@ -1291,6 +1287,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Atlas Dashboard Authenticator",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/atlas-dashboard-authenticator/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/atlas-dashboard-authenticator/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/atlas-dashboard-authenticator/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Auth0 Client",
           "items": [
             {
@@ -1381,6 +1396,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/am-calendar"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-form-export"
                 }
               ]
             }
@@ -1731,6 +1750,17 @@
             {
               "type": "doc",
               "id": "runtime_suite/jwt-token-validator/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Kafka Connect MongoDB Configurator",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/kafka-connect-mongodb-configurator/configuration"
             }
           ]
         },

@@ -20,6 +20,12 @@ Before continue reading the documentation, it's important to understand some bas
 A **Company** is an account created by Bandyer.
 In order to use Bandyer's services, Bandyer has to provide you the BANDYER_API_SECRET_KEY (to communicate with their RESTful APIs).
 
+:::note
+A company has several customizable parameters, like theme, languages, virtual background, etc.
+
+For additional information about company customization, please follow [this link](https://docs.bandyer.com/Bandyer-RESTAPI/?shell#customization).
+:::
+
 #### User
 To access their services, a user must be registered on Bandyer.
 There are two types of users:
@@ -41,8 +47,8 @@ For additional information about rooms, check [this link](https://docs.bandyer.c
 ## Teleconsultation Service Backend APIs
 The **Teleconsultation Service Backend** service exposes the following APIs:
 
- - `POST /teleconsultation`: it allows the creation of a new teleconsultation;
- - `PATCH /teleconsultation/:teleconsultationId`: it allows the complete or partial update of a teleconsultation (_participants_, *start_date*, *end_date*);
-  - `POST /teleconsultation/:teleconsultationId/participants/data`: it allows adding a new participant to the teleconsultation;
- - `DELETE /teleconsultation/:teleconsultationId`: it allows the deletion of a teleconsultation;
- - `GET /teleconsultation/:teleconsultationId`: it returns all the data needed to instantiate a teleconsultation UI to start the call.
+- `POST /teleconsultation`: it allows the creation of a new teleconsultation;
+- `PATCH /teleconsultation/:teleconsultationId`: it allows the complete or partial update of a teleconsultation (_participants_, *start_date*, *end_date*);
+- `POST /teleconsultation/:teleconsultationId/participants/data`: it allows adding a new participant to the teleconsultation;
+- `DELETE /teleconsultation/:teleconsultationId`: it allows the deletion of a teleconsultation;
+- `GET /teleconsultation/:teleconsultationId`: it returns all the data needed to instantiate a teleconsultation UI to start the call.

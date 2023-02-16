@@ -106,6 +106,7 @@ rules:
       - pods/log
       - nodes
       - events
+      - services
     verbs:
       - "get"
       - "list"
@@ -121,6 +122,7 @@ rules:
     resources:
       - "deployments"
       - "daemonsets"
+      - "jobs"
     verbs:
       - "get"
       - "list"

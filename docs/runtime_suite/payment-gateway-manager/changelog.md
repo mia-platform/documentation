@@ -8,11 +8,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.10.0 - 15/02/2023
+
+### Changed
+
+- Changed `/pay` reply with additional (optional) `metadata` field
+
+### Added
+
+- Flow Manager Service (REST) integration
+  - `/saga/payment-methods` API to retrieve available payment methods given a saga (Adaptive checkout)
+  - `/saga/pay`, `/saga/confirm` and `/saga/refund` APIs for Flow Manager communication
+  - Events to be sent to Flow Manager when enabled
+- Status endpoint for Apple Pay payments
+- Status endpoint for Google Pay payments
+- Status endpoint for credit cards payments
+- Status endpoint for PayPal payments
+- Stripe payment provider (quarkus)
+
+### Fixed
+
+- Scalapay callback supported payment status extended with `pending`, `partially_refunded` and `refunded_not_charged`
+- Float precision issues
+- Log level settings
+- Changed query parameter from `paymentID` to `paymentId` in Stripe's endpoint `/status` (ktor)
+
 ## 2.9.0 - 05/12/2022
 
 ### Added
 
-- Stripe payment provider
+- Stripe payment provider (ktor)
 
 ## 2.8.2 - 14/11/2022
 

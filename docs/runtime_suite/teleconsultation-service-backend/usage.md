@@ -13,6 +13,10 @@ In Bandyer there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
 The **Teleconsultation Service Backend** accepts, as body parameters for some routes, a **start_date** and an **end_date** to calculate the max duration of a teleconsultation.
 
+:::note
+If the `UNLIMITED_TELECONSULTATION` variable is set to `true` in the service configuration, the room has unlimited duration. Otherwise, the duration is calculated as previously described.
+:::
+
 ## Flow example
 The following sequence diagram show the usage of the service when:
 - Participants data are not a priori known
@@ -341,6 +345,51 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 If no one of the participants is a `plus` user the service returns the following response:
 ```
 400: { "error": "Failed PATCH /teleconsultation: no plus user in room" }
+```
+
+<br/>
+
+### GET /teleconsultation/:roomId
+
+Retrieves the custom teleconsultation url for the requesting user.
+
+**Request**
+```
+curl -X GET "https://my_project_url/teleconsultation/room_xyz"
+```
+
+**Response**
+
+In case there is no reference to the teleconsultation recorded on the CRUD you will receive the following error:
+
+```
+404: { "error": "Room with id room_xyz not found on CRUD" } 
+```
+
+In case the request comes from a user not involved in the teleconsultation you will receive the following error:
+
+```
+401: { "error": "Unauthorized user" } 
+```
+
+if no errors occur, you will get a response like this:
+
+```
+200: { 
+  "bandyerUserId": "creatorId1",
+  "accessLinkURL": "https://your-company-name.bandyer.com/eu/direct-rest-call-handler/random-code-123",
+  "participantsBandyerCall": [
+    {
+      "bandyerUserId": "userId1",
+      "fullName": "Mario Rossi"
+    },
+    {
+      "bandyerUserId": "userId2",
+      "fullName": "Luigi Bianchi"
+    },
+    ...
+  ]
+} 
 ```
 
 <br/>
