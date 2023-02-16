@@ -109,7 +109,7 @@ The "Interaction to autoplay the content on the page" modal on teleconsultation 
 
 Fixed an error in the `PATCH /users/:id` endpoint when the body does not contain `$set`.
 
-#### Payments Integration Hub - v2.0.0
+#### Payment Integration Hub - v2.0.0
 
 The latest version includes the following new features
 - Flow Manager and its saga collection to store transaction data
