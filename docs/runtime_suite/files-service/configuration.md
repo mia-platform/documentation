@@ -4,9 +4,9 @@ title: Files Service
 sidebar_label: Configuration
 ---
 This microservice allows you to upload and download files to a third-party service.
-**Google Cloud Storage**, **[MongoDB GridFS](https://docs.mongodb.com/manual/core/gridfs/)** and **Amazon s3** are currently supported.
+**Google Cloud Storage**, **[MongoDB GridFS](https://docs.mongodb.com/manual/core/gridfs/)**, **Amazon s3** and **Azure Blob Storage** are currently supported.
 
-Consequently, it needs to know either a MongoDB GridFS bucket configuration, a valid Amazon s3 bucket configuration or a Google Storage credentials.
+Consequently, it needs to know either a MongoDB GridFS bucket configuration, a valid Amazon s3 bucket configuration, a valid Azure Storage container configuration or a Google Storage credentials.
 
 In addition, after each upload it saves the file's information using the [CRUD Service](../crud-service/configuration.md) on a configurable mongoDB collection (usually files).
 
@@ -42,101 +42,136 @@ The storage service configuration must follow this json schema:
 
 ```json
 {
-  type: 'object',
-  required: ['type', 'options'],
-  additionalProperties: false,
-  properties: {
-    type: {
-      type: 'string',
-      enum: ['mongodb']
-    },
-    cache: {
-      type: 'object',
-      description: 'Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.',
-      properties: {
-        cacheControlMaxAge: {
-          type: 'number',
-          description: 'The number of seconds that should be applied as max-age in the cache-control header'
-        }
-      }
-    },
-    options: {
-      type: 'object',
-      required: ['url', 'bucketName'],
-      additionalProperties: false,
-      properties: {
-        url: { type: 'string' },
-        bucketName: { type: 'string' }
-      }
-    }
-  }
-},
-{
-  type: 'object',
-  required: ['type', 'options'],
-  additionalProperties: false,
-  properties: {
-    type: {
-      type: 'string',
-      enum: ['s3']
-    },
-    cache: {
-      type: 'object',
-      description: 'Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.',
-      properties: {
-        cacheControlMaxAge: {
-          type: 'number',
-          description: 'The number of seconds that should be applied as max-age in the cache-control header'
-        }
-      }
-    },
-    options: {
-      type: 'object',
-      required: ['key', 'secret', 'bucketName'],
-      additionalProperties: false,
-      properties: {
-        key: { type: 'string' },
-        secret: { type: 'string' },
-        bucketName: { type: 'string' },
-        region: {
-          type: 'string',
-          default: 'eu-west-1'
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["type", "options"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["mongodb"],
         },
-        endpoint: { type: 'string' },
-        s3ForcePathStyle: { type: 'boolean' },
-        signatureVersion: { type: 'string' }
-      }
-    }
-  }
-},
-{
-  type: 'object',
-  required: ['type', 'options'],
-  additionalProperties: false,
-  properties: {
-    type: {
-      type: 'string',
-      enum: ['googleStorage']
+        "cache": {
+          "type": "object",
+          "description": "Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.",
+          "properties": {
+            "cacheControlMaxAge": {
+              "type": "number",
+              "description": "The number of seconds that should be applied as max-age in the cache-control header",
+            },
+          },
+        },
+        "options": {
+          "type": "object",
+          "required": ["url", "bucketName"],
+          "additionalProperties": false,
+          "properties": {
+            "url": { "type": "string" },
+            "bucketName": { "type": "string" },
+          },
+        },
+      },
     },
-    cache: {
-      type: 'object',
-      description: 'Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.',
-      properties: {
-        cacheControlMaxAge: {
-          type: 'number',
-          description: 'The number of seconds that should be applied as max-age in the cache-control header'
-        }
-      }
+    {
+      "type": "object",
+      "required": ["type", "options"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["s3"],
+        },
+        "cache": {
+          "type": "object",
+          "description": "Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.",
+          "properties": {
+            "cacheControlMaxAge": {
+              "type": "number",
+              "description": "The number of seconds that should be applied as max-age in the cache-control header",
+            },
+          },
+        },
+        "options": {
+          "type": "object",
+          "required": ["key", "secret", "bucketName"],
+          "additionalProperties": false,
+          "properties": {
+            "key": { "type": "string" },
+            "secret": { "type": "string" },
+            "bucketName": { "type": "string" },
+            "region": {
+              "type": "string",
+              "default": "eu-west-1",
+            },
+            "endpoint": { "type": "string" },
+            "s3ForcePathStyle": { "type": "boolean" },
+            "signatureVersion": { "type": "string" },
+          },
+        },
+      },
     },
-    options: {
-      type: 'object',
-      required: ['bucketName'],
-      additionalProperties: false,
-      properties: {
-        bucketName: { type: 'string' }
-      }
-    }
-  }
+    {
+      "type": "object",
+      "required": ["type", "options"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["googleStorage"],
+        },
+        "cache": {
+          "type": "object",
+          "description": "Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.",
+          "properties": {
+            "cacheControlMaxAge": {
+              "type": "number",
+              "description": "The number of seconds that should be applied as max-age in the cache-control header",
+            },
+          },
+        },
+        "options": {
+          "type": "object",
+          "required": ["bucketName"],
+          "additionalProperties": false,
+          "properties": {
+            "bucketName": { "type": "string" },
+          },
+        },
+      },
+    },
+    {
+      "type": "object",
+      "required": ["type", "options"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["azureStorage"],
+        },
+        "cache": {
+          "type": "object",
+          "description": "Configuration for cache management, if the configuration is not supplied the service will not use any cache mechanism.",
+          "properties": {
+            "cacheControlMaxAge": {
+              "type": "number",
+              "description": "The number of seconds that should be applied as max-age in the cache-control header",
+            },
+          },
+        },
+        "options": {
+          "type": "object",
+          "required": ["account", "accountKey", "containerName"],
+          "additionalProperties": false,
+          "properties": {
+            "account": { "type": "string" },
+            "accountKey": { "type": "string" },
+            "containerName": { "type": "string" },
+          },
+        },
+      },
+    },
+  ],
 }
 ```
 ### MongoDB GridFS configuration file
@@ -207,6 +242,21 @@ For this configuration, should be add `GOOGLE_APPLICATION_CREDENTIALS` env varia
 
 Once obtained this file, you should not commit `private_key_id` and `private_key`.
 The `private-key` is a certificate with newline code (<code>\n</code>). In order to interpolate with in deploy stage of gitlab ci, it should be saved replacing <code>\n</code> with <code>\\\n</code>.
+
+### Azure Storage configuration file
+
+You need to specify the Azure Storage account, its key and the name of the container (bucket) where the files will be stored. If the container doesn't exist, the files service will create it at startup.
+
+```json
+{
+  "type": "azureStorage",
+  "options": {
+    "account": "azure-account",
+    "accountKey": "azure-account-key",
+    "containerName": "my-container",
+  }
+}
+```
 
 ### Cache configuration
 

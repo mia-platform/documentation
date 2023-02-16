@@ -16,7 +16,7 @@ Each action is compiled to a callback that can be executed by components, possib
 
 ## Types of actions
 
-### Events Emition
+### Events Emission
 
 ```typescript
 type EventAction = {
