@@ -40,17 +40,9 @@ This command starts a local development server, the site will be reachable on <h
 
 > :warning: The Search is configured to **not working locally**.  
 
-## Search
-
-The search is provided by [Algolia](https://www.algolia.com/).
-
-To see search analytics you can login to Algolia with account data stored to *Mia shared* vault of your *1Password* account.
-
-The documentation is linked to Algolia account by the Algolia property define in [docusaurus.config.js](docusaurus.config.js) file. Here are specified the Api Key, the App id and the index to address.
-
 ### How to contribute
 
-Read related [contribution guide](/CONTRIBUTING.MD).
+Read related [contribution guide](/CONTRIBUTING.md#how-can-i-contribute).
 
 ### Resources
 
