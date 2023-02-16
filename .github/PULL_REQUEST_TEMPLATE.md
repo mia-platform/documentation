@@ -6,13 +6,8 @@
 <!-- What kind of change does this PR introduce? Please check the one that applies to this PR using "x".  -->
 
 - [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, local variables)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Build related changes
-- [ ] CI related changes
 - [ ] Documentation content changes
-- [ ] Other... Please describe:
+
 
 ## Description
 
@@ -25,15 +20,9 @@
 
 <!-- TODO: Include update for the CONTRIBUTING file up-to-date regarding information about the commit -->
 - [ ] The commit message follows our guidelines included in the [CONTRIBUTING.md](../CONTRIBUTING.md#how-to-submit-a-pr)
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been added / updated (for bug fixes / features)
+- [ ] Lint, cspell and check-content works correctly
+- [ ] No sensible content has been committed
 
-## Does this PR introduce a breaking change?
-
-- [ ] Yes
-- [ ] No
-
-<!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
 
 ## Other information
 
