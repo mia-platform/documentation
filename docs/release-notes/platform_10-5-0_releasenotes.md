@@ -185,4 +185,4 @@ Components `bk-form-card` and `bk-filter-drawer` correctly resolve lookups withi
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.3.0`.
