@@ -30,12 +30,21 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
   "properties": {
     "default": {
       "type": "object",
-      "required": ["paymentMethods"],
+      "required": ["availableMethods"],
       "properties": {
-        "paymentMethods": {
+        "availableMethods": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "required": ["paymentMethod", "provider"],
+            "properties": {
+              "paymentMethod": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              }
+            }
           }
         }
       }
@@ -79,10 +88,19 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
               }
             }
           },
-          "paymentMethods": {
+          "availableMethods": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "required": ["paymentMethod", "provider"],
+              "properties": {
+                "paymentMethod": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                }
+              }
             }
           }
         }

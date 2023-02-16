@@ -1110,7 +1110,7 @@ listens to both the `display-data` and the `lookup-data` events, and renders the
 
 will not be included in the table columns, as its `visualizationOptions` have `hidden` set to true.
 
-The user can directly interact with web components in various ways, which may trigger the emition of events and eventually result in HTTP calls, allowing CRUD operations on the data stored in backend.
+The user can directly interact with web components in various ways, which may trigger the emission of events and eventually result in HTTP calls, allowing CRUD operations on the data stored in backend.
 In the case of `bk-table`, for instance, clicking on a row of the rendered table triggers a [selected-data](events#selected-data) event, with data from the selected row in payload. The [bk-form-drawer](Components/data_manipulation#form-drawer) component
 
 ```json

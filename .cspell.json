@@ -98,6 +98,7 @@
       "pointofsale",
       "Proto",
       "qiankun",
+      "quarkus",
       "rapidoc",
       "rawp",
       "redoc",
@@ -241,7 +242,8 @@
     "cryptd",
     "pharmaPrime",
     "Repubblica",
-    "npmrc"
+    "npmrc",
+    "frullino"
   ],
   "dictionaries": [
     "softwareTerms",
