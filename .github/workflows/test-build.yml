@@ -12,7 +12,8 @@ jobs:
     name: Install dependencies
     runs-on: ubuntu-latest
     steps:
-      - run: yarn version
+      - run: ls .
+      - run: nvm use
       - run: yarn
       
   tests:
