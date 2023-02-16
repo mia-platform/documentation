@@ -64,7 +64,11 @@ Below is reported a screenshot of the section that is going to be deprecated:
 
 #### CRUD Service
 
-Our MongoDB CRUD Service is now Open Source! Check out our [Blog Post](https://blog.mia-platform.eu/en/mia-platform-launches-open-source-mongodb-crud-service), the [How To guide](/how_to/crud_service/crud_oss_usage.mdx) and the [GitHub repository](https://github.com/mia-platform/crud-service). Do not forget to update the Docker image of the already existing instances of the CRUD services in the Console, putting the proper link:  ghcr.io/mia-platform/crud-service:6.3.0.
+Our MongoDB CRUD Service is now Open Source! 
+
+:::tip
+Check out our [Blog Post](https://blog.mia-platform.eu/en/mia-platform-launches-open-source-mongodb-crud-service), the [How To guide](/how_to/crud_service/crud_oss_usage.mdx) and the [GitHub repository](https://github.com/mia-platform/crud-service). Do not forget to update the Docker image of the already existing instances of the CRUD services in the Console, putting the proper link:  ghcr.io/mia-platform/crud-service:6.3.0.
+:::
 
 #### Appointment Manager - v2.1.0
 
