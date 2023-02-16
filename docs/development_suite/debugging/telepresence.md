@@ -5,18 +5,16 @@ sidebar_label: Debug a service
 ---
 ## Debug Area
 
-In the debug area you will see the list of all the microservices developed with the Developer Console.
-
-At the first level you have the necessary information to understand the health of the service: whether it is active or not, and the memory levels used.
+In the Debug Area you can see the list of all the microservices developed with Mia-Platform Console.
 
 ![Img](img/debug-view.png)
 
-Although the real potential of the debug area is its connection with telepresence.
+The real potential of this section lies in its connection with telepresence.
 Pressing the "Debug" button will in fact display a string to be pasted on your terminal that simulates the behavior of your microservice in a real context.
 
 ![Img](img/action-debug.png)
 
-This will allow you to easily test and debug your micro-service without compromising the production environments
+This will allow you to easily test and debug your microservice without compromising the production environments.
 
 ## Introduction to Telepresence
 
