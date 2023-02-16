@@ -81,7 +81,7 @@ jobs:
       - uses: eic/trigger-gitlab-ci@v1
         with:
           url: https://git.tools.mia-platform.eu/clients/mia-platform/platform-documentation/configurations
-          project_id: TO-BE_DEFINED
+          project_id: ${{ vars.MIA_PLATFORM_DOCUMENTATION_GITLAB_PROJECT_ID }}
           token: ${{ secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN }}
           variables: |
             ENVIRONMENT_TO_DEPLOY=PROD
