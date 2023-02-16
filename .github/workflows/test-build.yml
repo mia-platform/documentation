@@ -14,13 +14,16 @@ jobs:
     steps:
       - uses: DerYeger/yarn-setup-action@master
         with:
-          node-version: 16.18.1
+          node-version: 16.18
       
   tests:
     name: Lint, spell check and check context  
     needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
+      - uses: DerYeger/yarn-setup-action@master
+        with:
+          node-version: 16.18
       - run: yarn lint
       - run: yarn run spellcheck
       - run: yarn run check-content
