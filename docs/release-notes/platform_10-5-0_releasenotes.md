@@ -113,7 +113,7 @@ The latest version includes the following new features:
 - Export function for transaction data
 - Automatic verification of outstanding payments
 - Bulk actions such as refund and invoice downloading
-- Partial refund from BackOffice
+- Partial refund from Backoffice
 
 For more technical details please refer to [the documentation] (/runtime_suite/payment-integration-hub/overview)
 
