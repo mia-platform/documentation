@@ -10,6 +10,7 @@ env:
 jobs:
   install-dependencies:
     name: Install dependencies
+    runs-on: ubuntu-latest
     steps:
       - run: yarn version
       - run: yarn
@@ -17,6 +18,7 @@ jobs:
   tests:
     name: Lint, spell check and check context  
     needs: install-dependencies
+    runs-on: ubuntu-latest
     steps:
       - run: yarn lint
       - run: yarn run spellcheck
@@ -28,6 +30,7 @@ jobs:
     env:
       NODE_ENV: "production"
       INLINE_RUNTIME_CHUNK: "false"
+    runs-on: ubuntu-latest
     steps:
       - run: yarn build
 
