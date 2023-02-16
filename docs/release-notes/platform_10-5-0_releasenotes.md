@@ -114,7 +114,7 @@ Fixed an error in the `PATCH /users/:id` endpoint when the body does not contain
 The latest version includes the following new features
 - Flow Manager and its saga collection to store transaction data
 - Front-end to perform new payments
-- Adaptive Checkout to dynamically display customised payment methods/providers based on transaction data
+- Adaptive Checkout to dynamically display customized payment methods/providers based on transaction data
 - Export function for transaction data
 - Automatic verification of outstanding payments
 - Bulk actions such as refund and invoice downloading
