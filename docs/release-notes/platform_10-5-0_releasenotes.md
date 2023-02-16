@@ -115,7 +115,7 @@ The latest version includes the following new features:
 - Bulk actions such as refund and invoice downloading
 - Partial refund from Backoffice
 
-For more technical details please refer to [the documentation] (/runtime_suite/payment-integration-hub/overview)
+For more technical details please refer to [the documentation](/runtime_suite/payment-integration-hub/overview)
 
 ## Backoffice - 1.3.4
 
