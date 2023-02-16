@@ -56,7 +56,7 @@ The PR update topic table inside each Projection page now allows topics to be up
 
 Starting from this Console release the configuration of Fast Data projections from the Console _Advanced Section_ is considered deprecated.
 From now onward we strongly recommend using only the Console pages dedicated to Fast Data in the design section.  
-Consequently, please consider verifying whether any of your projects are using the such section to define Fast Data projections and migrate
+Consequently, please consider verifying whether any of your projects are using such section to define Fast Data projections and migrate
 them to the supported page. 
 
 Below is reported a screenshot of the section that is going to be deprecated:
