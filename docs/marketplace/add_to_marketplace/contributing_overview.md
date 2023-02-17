@@ -67,7 +67,7 @@ Each property described in the following paragraphs regarding the microservices 
     "services": {
       "example": {
         "defaultEnvironmentVariables": [...],
-        "defaultConfigmaps": [...],
+        "defaultConfigMaps": [...],
         ...
       }
     }
@@ -82,10 +82,16 @@ Here below are listed all the properties that must be provided for each microser
   In particular, for each of them you need to provide:  
   - **name**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
   - **value**: the variable default value
-- **defaultConfigMaps**: the default configmaps, if any, that will be mounted inside the container of the microservice.  
+- **defaultConfigMaps**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
-  - **name**: the name of the configmap file
-  - **content**: the initial content of the file
+  - **name**: the name of the ConfigMap
+  - **mountPath**: the directory where the ConfigMap data will be added  
+  
+  You can also provide:
+  - **files**: a list of files where the ConfigMap data will be stored. Each file should be an object with the following properties:
+    - **name**: the name of the file
+    - **content**: the initial content of the file
+  - **usePreserve**: a boolean the indicates whether the existing files and directories in the mountPath directory should be preserved or not. If not set, it will be considered as false.
 - **defaultSecrets**: the default secrets, if any, to be mounted inside the container of the  microservice.
   In particular, for each of them you need to provide:  
   - **name**: the name of the secret file  
