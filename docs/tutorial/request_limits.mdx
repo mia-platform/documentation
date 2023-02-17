@@ -1,0 +1,33 @@
+---
+id: requests_limits_docs
+title: Requests and Limits of a Microservice
+sidebar_label: Requests and Limits of a Microservice
+---
+
+One of the most relevant part during the development of a microservice architecture is to understand the correct number of **resources** to allocate to each microservice, in terms of **CPU** and **memory**. This is an important step if you want to achieve the wanted performance while at the same time containing the costs of your cloud infrastructure.
+
+This can be achieved with an appropriate choice of the **requests** and **limits** values of each microservice deployed in the cluster, mechanisms used by Kubernetes to control CPU and memory. The meaning of these values can be obvious, but it is not as it seems, so let's dive deeper into them to understand how they really work so that we will be more aware the next time we choose them.
+
+## Understanding Limits and Requests
+
+Let us first define what is meant by these two terms:
+
+- **Requests**: how many resource are guaranteed to the container. If a container requests a resource, Kubernetes will only schedule it on a node that can provide at least that resources, so keep in mind that if the pod requests more resource than available in the biggest node in the cluster, the pod will never be scheduled;
+
+- **Limits**: indicates the upper limit that can be reached by the container, ensuring that a container never exceeds that value. The container is only allowed to go up to the limit, and then it is restricted (meaning throttling for CPU and terminated for memory).
+
+:::note
+More information on the [official kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+:::
+
+## Resource types
+
+Moreover, we have to explain the possible resources and how the request and limits acts on them:
+
+- **CPU**: how much CPU is reserved for the container, defined in _millicores_, where 1000 millicores equals 1 core. (For example, If the container needs only ¼ of a core, you will put the value of "250m").
+  This resource is considered a "compressible" resource, which means that if your app reaches its CPU limit, Kubernetes will start throttling the container (actually, if the limit level is low, throttling can start much earlier, even before the request level is reached). Throttling means that the CPU will be artificially restricted, giving your app potentially worse performance, but it will not be terminated or evicted.
+  Usually, as a best practice, it is suggested to keep the CPU request to a maximum of 1 core ("1000m") and use the replicas to scale, giving the system more flexibility and reliability. Larger values can be used if the app directly takes advantage of multiple cores.
+
+- **Memory**: how much memory is reserved for the container, defined in bytes. Normally, you give a mebibyte value for memory. Unlike CPU resources, memory cannot be compressed. Since there is no way to throttle memory usage, if a container goes past its memory limit, it will be terminated.
+
+For further information check out this article: [​Kubernetes requests vs limits: Why adding them to your Pods and Namespaces matters | Google Cloud Blog](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits)

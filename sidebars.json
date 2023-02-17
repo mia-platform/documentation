@@ -816,6 +816,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/requests_limits_docs",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/rbac/rbac_tutorial",
           "type": "doc"
         },
