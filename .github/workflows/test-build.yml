@@ -87,7 +87,3 @@ jobs:
           variables: |
             ENVIRONMENT_TO_DEPLOY=PROD
           ref_name: master
-      - name: DEBUG
-        if: always()
-        run: |
-          echo "OUTPUT JSON: ${{ steps.trigger.outputs.json }}"
