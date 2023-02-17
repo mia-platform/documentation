@@ -20,7 +20,7 @@
 
 <!-- TODO: Include update for the CONTRIBUTING file up-to-date regarding information about the commit -->
 - [ ] The commit message follows our guidelines included in the [CONTRIBUTING.md](../CONTRIBUTING.md#how-to-submit-a-pr)
-- [ ] Lint, cspell and check-content works correctly
+- [ ] All tests of Lint, cspell and check-content pass. ([How to launch them?](../CONTRIBUTING.md#content-checks))
 - [ ] No sensible content has been committed
 
 

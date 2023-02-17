@@ -56,7 +56,9 @@ To contribute to the Mia-Platform docs:
 
 5. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
 
-6. Submit a pull request (name it according to the rule: `Activity (task): topic`), then post the PR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+6. Run locally the tests of lint, cspell and check-content as explained [here](#content-checks)
+
+7. Submit a pull request (name it according to the rule: `Activity (task): topic`), then post the PR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
 
 ## Contributing guidelines
 
@@ -81,6 +83,15 @@ The check is performed to each file in the /docs/ folder excluding the folder ma
 - docs/runtime_suite_libraries
 - docs/runtime_suite_tools
 - docs/business_suite
+
+
+#### Content checks
+
+The repo provides a series of content test that must be passed:
+
+- Lint: `yarn lint`
+- Spell check: `yarn spellcheck`
+- Content check: `yarn check-content`
 
 ## Repository structure
 
