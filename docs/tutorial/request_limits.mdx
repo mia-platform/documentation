@@ -24,10 +24,23 @@ More information on the [official kubernetes documentation](https://kubernetes.i
 
 Moreover, we have to explain the possible resources and how the request and limits acts on them:
 
+- **Memory**: how much memory is reserved for the container, defined in bytes. Normally, you give a mebibyte value for memory. Unlike CPU resources, memory cannot be compressed. Since there is no way to throttle memory usage, if a container goes past its memory limit, it will be terminated.
+
 - **CPU**: how much CPU is reserved for the container, defined in _millicores_, where 1000 millicores equals 1 core. (For example, If the container needs only ¼ of a core, you will put the value of "250m").
   This resource is considered a "compressible" resource, which means that if your app reaches its CPU limit, Kubernetes will start throttling the container (actually, if the limit level is low, throttling can start much earlier, even before the request level is reached). Throttling means that the CPU will be artificially restricted, giving your app potentially worse performance, but it will not be terminated or evicted.
   Usually, as a best practice, it is suggested to keep the CPU request to a maximum of 1 core ("1000m") and use the replicas to scale, giving the system more flexibility and reliability. Larger values can be used if the app directly takes advantage of multiple cores.
 
-- **Memory**: how much memory is reserved for the container, defined in bytes. Normally, you give a mebibyte value for memory. Unlike CPU resources, memory cannot be compressed. Since there is no way to throttle memory usage, if a container goes past its memory limit, it will be terminated.
-
+:::note
 For further information check out this article: [​Kubernetes requests vs limits: Why adding them to your Pods and Namespaces matters | Google Cloud Blog](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits)
+:::
+
+## Tips on how to set values
+
+In this section we will dive deeper on how these resources works and what are the recommended values to use.
+
+### Memory
+
+As we mentioned earlier, **it isn't a compressible resource**, so once you give memory to a container, you can't take it away without killing it.
+So it is advisable to avoid setting the limits different from the requests because this would allow the container to allocate more memory than the requested. In this way, if there is a lack of memory in the node where the pods are also scheduled based on the **memory required**, it will cause Kubernetes to kill a container to free up memory (OOM kill, out of memory kill), giving it to the containers that require it. This would mean a service interruption with continuous containers restarts hiding the cause of the interruption.
+
+In case instead we had set the **requests equal to the limits**, if the container required more memory than it was allocated it would be killed directly, without interfering with other containers that are not the cause of the error. Furthermore, the error would occur earlier and more reliably at the moment that it consumed too much memory, instead of when all the memory on the node has been used, making debugging easier. These kinds of errors are a symptom of an underestimation of allocated memory, which can be solved by simply increasing the requests and limits.
