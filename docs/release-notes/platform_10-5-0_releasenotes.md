@@ -145,11 +145,13 @@ Component `bk-url-parameters` supports wildcards in `urlMask` property. Data mat
 
 `bk-card` component makes use of `visualizationOptions` property for each field of data-schema, allowing greater freedom in terms of how the data is visualized in the body of the card.
 
-#### `bk-button` supports `Action` interface
+#### `bk-button` supports `Action` interface and `clickConfig` goes deprecated
 
-`bk-button` supports `Action`-sdk thorugh property `action`, allowing wider range of configurable actions.
-**NOTE**
+`bk-button` supports `Action`-sdk through property `action`, allowing wider range of configurable actions.
+
+:::warning
 `clickConfig` is now deprecated and will be removed in future releases in favor of `action`. Please refer to `bk-button` documentation for [migration instructions](/business_suite/backoffice/components/buttons.md#migrating-from-clickConfig-to-action).
+:::
 
 #### New component `bk-atlas-dashboard`
 
