@@ -4,33 +4,9 @@ title: Set Requests and Limits of a Microservice
 sidebar_label: Set Requests and Limits of a Microservice
 ---
 
-The ultimate objective is to find the optimal values for **requests** and **limits** of a microservice by performing a load test.
+The ultimate objective is to find the optimal values for **requests** and **limits** of a microservice by performing a load test, to know more about those values [check this out](/tutorial/request_limits.mdx).
+
 **Load testing** generally refers to the practice of modeling the expected usage of a software program by simulating multiple users accessing the program concurrently.
-
-## Understanding Limits and Requests
-
-Requests and limits are the mechanisms Kubernetes uses to control resources such as CPU and memory.
-
-- **Requests** are what the container is guaranteed to get. If a container requests a resource, Kubernetes will only schedule it on a node
-  that can provide at least that resources.
-- **Limits**, on the other hand, make sure a container never goes above a certain value. The container is only allowed to go up to the limit, and then it is restricted.
-
-## Resource types
-
-- **CPU** resources are defined in millicores. If your container needs two full cores to run, you will put the value "2000m". If your container
-  only needs ¼ of a core, you will put a value of "250m". One thing to keep in mind about CPU requests is that a pod will never be scheduled if you
-  enter a value larger than the core count of your biggest node. Unless your app is specifically designed to take advantage of multiple cores,
-  it is usually a best practice to keep the CPU request at 1 core ("1000m") or below, and run more replicas to scale it out.
-  This gives the system more flexibility and reliability.
-  CPU is considered a "compressible" resource. If your app hits its CPU limit, Kubernetes will start throttling the container (in reality, if limit level is low,
-  throttling can start much earlier, even before hitting requests level).
-  Throttling means the CPU will be artificially restricted, giving your app potentially worse performance! However, it won’t be terminated or evicted.
-
-- **Memory** resources are defined in bytes. Normally, you give a mebibyte value for memory. Just like CPU, if you enter a memory request that is larger
-  than the amount of memory on your nodes, the pod will never be scheduled. Unlike CPU resources, memory cannot be compressed. Since there is no way to throttle memory usage, if a container goes past its memory limit,
-  it will be terminated.
-
-For further information check out this article: [​Kubernetes requests vs limits: Why adding them to your Pods and Namespaces matters | Google Cloud Blog](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits)
 
 ## Testing a Microservice
 
