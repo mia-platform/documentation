@@ -17,6 +17,10 @@ Let us first define what is meant by these two terms:
 - **Limits**: indicates the upper limit that can be reached by the container, ensuring that a container never exceeds that value. The container is only allowed to go up to the limit, and then it is restricted (meaning throttling for CPU and terminated for memory).
 
 :::note
+The term pod in this case means the sum of the resources required by each container in a pod, because these values refer to containers.
+:::
+
+:::info
 More information on the [official kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 :::
 
