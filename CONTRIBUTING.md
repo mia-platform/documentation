@@ -58,7 +58,7 @@ To contribute to the Mia-Platform docs:
 
 6. Run locally the tests of lint, cspell and check-content as explained [here](#content-checks)
 
-7. Submit a pull request (name it according to the rule: `Activity (task): topic`), then post the PR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+7. Submit a pull request (name it according to the rule: `Activity (task): topic`) and add information about the importance of changes, according to internal / customer needs. Notify POs of affected products.
 
 ## Contributing guidelines
 
