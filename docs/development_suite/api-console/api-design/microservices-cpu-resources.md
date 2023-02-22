@@ -40,5 +40,5 @@ The check about that _Limit_ have to be greater than _Request_ won't be done if 
 :::
 
 :::info
-To learn more about Memory Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.
+To learn more about CPU Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.
 :::

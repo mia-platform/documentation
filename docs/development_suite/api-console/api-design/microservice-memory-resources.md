@@ -28,4 +28,6 @@ You can use interpolated variables to value the memory resources (e.g. `{{MEMORY
 The check about that _Limit_ have to be greater than _Request_ won't be done if you use interpolated variables.
 :::
 
+:::info
 To learn more about Memory Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource/#memory-units) of Kubernetes Docs.
+:::
