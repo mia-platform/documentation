@@ -1,9 +1,8 @@
 ---
 id: structure
 title: Backoffice structure
-sidebar_label: Backoffice structure
+sidebar_label: Structure
 ---
-
 :::caution
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
 :::
@@ -11,14 +10,14 @@ This is a **BETA** feature and, as such, is currently under **active development
 The first section of the configurator targets the general structure of Backoffice, namely its pages, layout, and global
 settings.
 
-![First section](./img/structure_first-section.png)
+![First section](img/structure_first-section.png)
 
 ## Pages
 
 The first tab is _Pages_, it allows you to view, create, modify, and delete the pages
 (i.e., [micro-lc applications](https://micro-lc.io/docs/guides/applications/)) composing your Backoffice.
 
-![Pages](./img/structure_pages.png)
+![Pages](img/structure_pages.png)
 
 ### Create new page
 
@@ -28,7 +27,7 @@ Clicking on the _Add new page_ button will open the page creation wizard, which 
 
 On the first step of the wizard you will be asked to choose the type of the new page.
 
-![Page type](./img/structure_page-type.png)
+![Page type](img/structure_page-type.png)
 
 Possible choices are:
 
@@ -43,7 +42,7 @@ Possible choices are:
 
 The second step allows you to specify some details regarding the page.
 
-![Page details](./img/structure_page-details.png)
+![Page details](img/structure_page-details.png)
 
 The requested fields are:
 
@@ -63,7 +62,7 @@ For **compose pages**, available fields are:
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
 - _template_: a configuration template carrying a pre-defined, pre-arranged set of components.
 
-![Page compose options](./img/structure_page-compose-options.png)
+![Page compose options](img/structure_page-compose-options.png)
 
 For **micro-frontend pages**, available fields are:
 
@@ -78,7 +77,7 @@ For **micro-frontend pages**, available fields are:
 The editors will help you writing configurations hinting the correct properties JSON schemas.
 :::
 
-![Page micro-frontend options](./img/structure_page-micro-frontend-options.png)
+![Page micro-frontend options](img/structure_page-micro-frontend-options.png)
 
 For **iFrame pages**, available fields are:
 
@@ -91,7 +90,7 @@ For **iFrame pages**, available fields are:
 The editors will help you writing configurations hinting the correct properties JSON schemas.
 :::
 
-![Page iframe options](./img/structure_page-iframe-options.png)
+![Page iframe options](img/structure_page-iframe-options.png)
 
 ### Edit page
 
@@ -100,7 +99,7 @@ The buttons placed in the last column of the page table allows you to interact w
 From left to right, available actions are:
 
 - _edit page_ (only for compose pages): to open the section for
-  [compose pages configuration](/business_suite/backoffice_configuration/compose-pages.md);
+  [compose pages configuration](./compose-pages.md);
 - _edit details_: to re-open the [page creation wizard](#create-new-page) in edit mode;
 - _delete_: to delete the page.
 
@@ -110,7 +109,7 @@ The _Advanced configuration_ tab is built to give the highest degree of configur
 JSON configuration. In this visualization the page is divided in two section, a **code editor** on the left and a
 **live preview** on the right.
 
-![Advanced configuration](./img/structure_advanced.png)
+![Advanced configuration](img/structure_advanced.png)
 
 The editor on the left is where the configuration can be viewed and edited. It supports both **JSON** and **YAML** with the
 possibility to switch (and convert the content) using the selector in the bottom left corner.
@@ -147,14 +146,14 @@ The URIs section allow you to configure the default
 [landing URL](https://micro-lc.io/api/micro-lc-web-component#defaulturl), and the URI of a
 [custom composer](https://micro-lc.io/api/micro-lc-web-component#composeruri).
 
-![URIs settings](./img/structure_settings-uris.png)
+![URIs settings](img/structure_settings-uris.png)
 
 ### Custom error pages
 
 In this section you can configure personalized [error pages](https://micro-lc.io/docs/guides/applications/error-pages)
 for 4xx and 5xx errors.
 
-![Error pages settings](./img/structure_settings-error-pages.png)
+![Error pages settings](img/structure_settings-error-pages.png)
 
 For each page you need to provide the status code and the
 [configuration](https://micro-lc.io/docs/guides/applications/error-pages#custom-error-pages).
@@ -173,7 +172,7 @@ both in terms of [selector](https://micro-lc.io/api/micro-lc-web-component#mount
 The editors will help you writing configurations hinting the correct properties JSON schemas.
 :::
 
-![Mount point settings](./img/structure_settings-mount-point.png)
+![Mount point settings](img/structure_settings-mount-point.png)
 
 ### Import map
 
@@ -183,7 +182,7 @@ Here you can specify a global [import map](https://micro-lc.io/api/micro-lc-web-
 The editors will help you writing configurations hinting the correct properties JSON schemas.
 :::
 
-![Import map settings](./img/structure_settings-import-maps.png)
+![Import map settings](img/structure_settings-import-maps.png)
 
 ### Shared properties
 
@@ -194,4 +193,4 @@ for Backoffice page.
 The editors will help you writing configurations hinting the correct properties JSON schemas.
 :::
 
-![Shared properties settings](./img/structure_settings-shared.png)
+![Shared properties settings](img/structure_settings-shared.png)

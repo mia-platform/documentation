@@ -14,7 +14,7 @@ _February 16, 2023_
 #### Backoffice Low Code Configuration
 
 :::info
-This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice_configuration/overview.md) page for further information.
+This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md) page for further information.
 :::
 
 The new Backoffice Low Code Configuration is now generally available for all Console users!
