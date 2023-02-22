@@ -161,6 +161,10 @@
               "type": "doc"
             },
             {
+              "id": "development_suite/api-console/api-design/requests_limits_docs",
+              "type": "doc"
+            },
+            {
               "id": "development_suite/api-console/api-design/microservice-container-ports",
               "type": "doc"
             },
@@ -813,10 +817,6 @@
         },
         {
           "id": "tutorial/requests_limits/requests_limits_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/requests_limits_docs",
           "type": "doc"
         },
         {
