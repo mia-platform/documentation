@@ -1,8 +1,9 @@
 ---
 id: microservice-memory-resources
-title:  Service Memory Resources
+title: Service Memory Resources
 sidebar_label: Define memory resources
 ---
+
 In the field Memory Resources, you have to specify the minimum (_Request_) number of mebibytes (Mi) that the container needs and the maximum (_Limit_) number of mebibytes (Mi) that it can use.
 
 ![memory-resources](img/memory-resources.png)
@@ -17,9 +18,9 @@ In the microservice detail of Mia-Platform Console, you can only express the Mem
 
 If the maximum number of Memory Resources is not expressed, there could be two situations:
 
-* The Container can use the whole memory available on the Node. In this case, the probability of the Container to be killed is higher.
+- The Container can use the whole memory available on the Node. In this case, the probability of the Container to be killed is higher.
 
-* A default Memory Resource limit can be assigned to the Container if its relative namespace has a default memory limit.
+- A default Memory Resource limit can be assigned to the Container if its relative namespace has a default memory limit.
 
 You can use interpolated variables to value the memory resources (e.g. `{{MEMORY_MIN}}`). The variables should contain only numerical values.
 
