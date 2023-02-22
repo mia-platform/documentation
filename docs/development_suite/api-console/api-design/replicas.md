@@ -3,7 +3,7 @@ id: replicas
 title: Replicas
 sidebar_label: Create Replicas
 ---
-## What needs the Replicas for
+## What are Replicas for?
 
 In this section you can define a range of desired replicas number for your services designed to automatically scale them based on **CPU usage**.  
 The feature is thought to generate the replicas **only for the productions environments** where the [Environment Variable](/development_suite/set-up-infrastructure/env-var-intro.md) `ENABLE_HPA` is set to `true`.
