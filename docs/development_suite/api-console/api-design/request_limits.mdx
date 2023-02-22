@@ -54,13 +54,11 @@ In case instead we had set the **requests equal to the limits**, as we suggest, 
 
 ### CPU
 
-The previous discussion, however, does not apply to the CPU, that are a compressible resource, making it harder to properly configure that takes full advantage of the nodes.
+The preceding discussion, however, does not apply to the CPU, which is a compressible resource, making it harder to have an appropriate configuration that takes full advantage of nodes.
 
 #### How linux handle cpu
 
-Firstly we need to comprehend how Kubernetes depends on the Linux kernel to handle CPU constraints. As the most orchestrator does it relies on the kernel control group ([cgroup](https://docs.kernel.org/admin-guide/cgroup-v1/cgroups.html)) mechanism. When hard CPU limits are set in a container orchestrator, the kernel uses [Completely Fair Scheduler (CFS) Cgroup bandwidth control](https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html) to enforce those limits. This mechanism manages CPU allocation using two settings: **quota** and **period**. When an application has used its allocated CPU quota for a given period, it will artificially throttled until the next period. The unit _millicores_ in the configuration now it is explained as the quota of CPU each period, usually of 100ms.
-
-Without limit all the CPU in the node could be used by the pod, making in the worst case scenario the kubelet unresponsive, turning the node in `NotReady` state and making the pod to be rescheduled and potentially create the issue somewhere else.
+Firstly we need to comprehend how Kubernetes depends on the Linux kernel to handle CPU constraints. As the most orchestrator does it relies on the kernel control group ([cgroup](https://docs.kernel.org/admin-guide/cgroup-v1/cgroups.html)) mechanism. When hard CPU limits are set in a container orchestrator, the kernel uses [Completely Fair Scheduler (CFS) Cgroup bandwidth control](https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html) to enforce those limits. This mechanism manages CPU allocation using two settings: **quota** and **period**. When an application has used its allocated CPU quota for a given period, it will artificially throttled until the next period. The unit _millicores_ in the configuration now it is explained as the quota of CPU each period, usually of 100ms in Kubernetes.
 
 #### Possible configuration
 
@@ -76,7 +74,7 @@ It is fairly unified opinion to set the request, but about the limits online the
 
 The pros of setting CPU limits:
 
-- It helps **avoiding starvation problem** on nodes and so also the kubelet unreachable issue;
+- It helps **avoiding starvation problem** on nodes, that could lead to unreachable kubelet and bringing the node in a `NotReady` state, causing the pods to be rescheduled and potentially createing problems somewhere else;
 - Prevents tenants from interrupting each other in multi-tenancy clusters;
 - Allows the CPU request to be set lower, so as to increase the chances of the pod being scheduled, remaining protected from the limits;
 - Ensures more service reliability, suitable in case of services exposed to customers.
@@ -85,4 +83,4 @@ The cons of CPU limits:
 
 - It increases the likelihood of having nodes in which the full CPU is not exploited, sending pods throttling even though there would be no need to do so, reducing performances.
 
-In conclusion _we suggest in the default case to set the request and limits as the same (giving QoS Guaranteed)_, but in the case of need for high performance it could be better to unset the limits, being careful about what the risks might be. In this case, it would be recommended to schedule these pods in appropriate nodes, via [`NodeAffinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) and [`taints`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/), so that we know which types of pods are at risk of starvation, segregating the risks. Also it is suggested to set up an overstimate requests to avoid these problems (adding for example a percentage more than the highest peak recorded), in order to be more conservative.
+In conclusion it is suggested _in the default case to set the request and limits as the same (giving QoS Guaranteed)_, but in the case of need for high performance it could be better to unset the limits, being careful about what the risks might be. In this case, it would be recommended to schedule these pods in appropriate nodes, via [`NodeAffinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) and [`taints`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/), so that we know which types of pods are at risk of starvation, segregating the risks. Also it is suggested to set up an overstimate requests to avoid these problems (adding for example a percentage more than the highest peak recorded), in order to be more conservative.
