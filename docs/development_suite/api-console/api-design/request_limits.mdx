@@ -6,7 +6,7 @@ sidebar_label: Choose Requests and Limits of a Microservice
 
 One of the most relevant part during the development of a microservice architecture is to understand the correct amount of **resources** to allocate to each microservice, in terms of **CPU** and **memory**. This is an important step if you want to achieve the wanted performance while at the same time containing the costs of your cloud infrastructure.
 
-This can be achieved with an appropriate choice of the **requests** and **limits** values of each microservice deployed in the cluster, mechanisms used by Kubernetes to control CPU and memory. The meaning of these values can be obvious, but it is not as it seems, so let's dive deeper into them to understand how they really work so that we will be more aware the next time we choose them.
+This can be achieved with an appropriate choice of the **requests** and **limits** values of each microservice (container) deployed in the cluster, mechanisms used by Kubernetes to control CPU and memory. The meaning of these values can be obvious, but it is not simple as it seems, so let's dive deeper into them to understand how they really work so that we will be more aware the next time we choose them.
 
 ## Understanding Limits and Requests
 
@@ -17,7 +17,7 @@ Let us first define what is meant by these two terms:
 - **Limits**: indicates the upper limit that can be reached by the container, ensuring that a container never exceeds that value. The container is only allowed to go up to the limit, and then it is restricted (meaning throttling for CPU and terminated for memory).
 
 :::note
-The term pod in this case means the sum of the resources required by each container in a pod, because these values refer to containers.
+The term _resource_ referring to a pod in this case means the sum of the resources required by each container in a pod, because these values refer only to containers.
 :::
 
 :::info
