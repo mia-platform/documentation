@@ -517,26 +517,30 @@
     },
     {
       "collapsed": true,
+      "type": "category",
+      "label": "Backoffice Configurator",
       "items": [
         {
-          "id": "business_suite/backoffice_configuration/overview",
-          "type": "doc"
+          "type": "doc",
+          "id": "business_suite/backoffice-configurator/structure"
         },
         {
-          "id": "business_suite/backoffice_configuration/structure",
-          "type": "doc"
+          "type": "doc",
+          "id": "business_suite/backoffice-configurator/compose-pages"
         },
         {
-          "id": "business_suite/backoffice_configuration/compose-pages",
-          "type": "doc"
+          "type": "doc",
+          "id": "business_suite/backoffice-configurator/environment"
         },
         {
-          "id": "business_suite/backoffice_configuration/environment",
-          "type": "doc"
+          "type": "doc",
+          "id": "business_suite/backoffice-configurator/changelog"
         }
       ],
-      "label": "Configuration",
-      "type": "category"
+      "link": {
+        "type": "doc",
+        "id": "business_suite/backoffice-configurator/overview"
+      }
     },
     {
       "label": "Data Visualization",

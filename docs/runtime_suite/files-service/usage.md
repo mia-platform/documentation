@@ -211,5 +211,21 @@ To download a ZIP archive containing all the files specified in the query parame
 #### Response
 At the moment the download of multiple files is handled as an atomic operation, meaning that the API returns either all requested files in a (streamed) ZIP archive or an error.
 
+### **Get files list**: `GET /files/`
+
+To get the list of files metadata managed by the Files Service in a bucket; the API supports pagination via query parameters.
+
+Please note that this API is available from `v2.7.0`
+
+#### Query parameters
+
+- `limit`: integer value specifying the number of documents to be retrieved per request. Default to 25.
+- `page`: integer value representing the index of the requested page (starting from 1).
+- `dateFrom`: date value used to filter the files. Files older than this value will not be shown.
+
+#### Response
+
+List of file metadata objects as retrieved from the Crud Service that match query parameters (if present).
+
 ### **Delete**: `DELETE /:file` 
 To delete a file that was previously uploaded.
