@@ -28,11 +28,13 @@ The backend service exposes the following APIs:
 - `GET /visualizer/assignments/{assignmentId}/schema-id`: (`from version 1.2.0`) it returns a form ID given a [form assignment](form_assignments_configuration) ID;
 - `DELETE /visualizer/forms/{id}`: it deletes a submitted form by ID and its draft;
 - `POST /visualizer/forms/draft/{formId}`: if formId is undefined it saves a form and its draft, otherwise it  saves the draft of the form;
+- `GET /visualizer/forms/export` (*version 1.7.0 or later required*): it returns a CSV containing the forms data based on a given schema and created in a given period;
 
 These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS). Discover more about the frontend integration [here](../form-service-frontend/configuration#integration-with-micro-lc-and-headless-cms).
 
 #### Form data versioning support
-From `version 1.5.0` the Form-Service Backend supports the versioning of the form data, by including the parameter `_v` to the request performed to retrieve form data. The `_v` parameter specifies the version of the form data to be retrieved. If the `ENABLE_VERSIONING` environment variable is set to `true`, the `_v` parameter is forwarded to the service in charge of retrieving the form data.
+
+From `version 1.4.0` the Form-Service Backend supports the versioning of the form data, by including the parameter `_v` to the request performed to retrieve form data. The `_v` parameter specifies the version of the form data to be retrieved. If the `ENABLE_VERSIONING` environment variable is set to `true`, the `_v` parameter is forwarded to the service in charge of retrieving the form data.
 
 :::info
 
@@ -44,10 +46,73 @@ In order to obtain form data versioning, the calls to the **Form-Service Fronten
 
 #### Form draft support
 
+From `version 1.5.0` the Form-Service Backend allows to retrieve draft data by including the parameter `_status` to the request performed to retrieve the form. If the `_status` parameter is equal to `draft` the data retrieved in the request `GET /visualizer/forms/{id}?_status=draft` is the draft, otherwise it retrives the stable form data.
 
-The Form-Service Backend allows to retrieve draft data by including the parameter `_status` to the request performed to retrieve the form. If the `_status` parameter is equal to `draft` the data retrieved in the request `GET /visualizer/forms/{id}?_status=draft` is the draft, otherwise it retrives the stable form data.
-Every form has two parametes: `isValid` and `hasDraft`. The first one indicates if the form has been submitted. The latter indicates if the draft of the form exists.
+Every form has two parameters: `isValid` and `hasDraft`. The first one indicates if the form has been submitted. The latter indicates if the draft of the form exists.
 
+#### Form data CSV export
+
+From version `1.7.0` the Form-Service Backend allows to export form data in CSV format, by calling the `GET /visualizer/forms/export` endpoint.
+
+This endpoint accepts three query parameters - `startDate`, `endDate` and `formSchemaId` - to filter the forms according to a time range and a form schema.
+
+This endpoint flatten all the form fields, using the dot character as separator, and returns a CSV where each column corresponds to a flattened JSON field. So, if we have a form looking like this:
+
+```json
+{
+  "_id": "6246b2aff30214fb40d3e86d",
+  "formSchemaId": "62162180544cea83e8e130e7",
+  "data": {
+    "name": "Mario",
+    "surname": "Rossi",
+  }
+}
+```
+
+the resulting columns in the CSV would be, in the exact order, `_id`, `formSchemaId`, `data.name` and `data.surname`:
+
+```csv
+"_id","formSchemaId","data.name","data.surname"
+"6246b2aff30214fb40d3e86d","62162180544cea83e8e130e7","Mario","Rossi"
+```
+
+:::info
+
+If there is no form data matching the given filters, an empty CSV with headers is returned. For instance:
+
+```csv
+"_id","formSchemaId","data.name","data.surname"
+```
+
+:::
+
+:::warning
+
+This endpoint builds the list of CSV columns from the form schema and does not support all [form.io field types](https://docs.form.io/userguide/forms/form-components).
+
+We provide limited support for the following field types:
+
+- [`datagrid`](https://docs.form.io/userguide/forms/data-components#data-grid): the value is an array, which is not flattened, so a single field is returned;
+- [`editgrid`](https://docs.form.io/userguide/forms/data-components#edit-grid): the value is an array, which is not flattened, so a single field is returned.
+
+We do not support the following field types, which means that fields with any of these type will not be included in the CSV:
+
+- all [form.io premium fields](https://docs.form.io/userguide/forms/premium-components);
+- [`address`](https://docs.form.io/userguide/forms/form-components#address): the value is an arbitrary object, depending on the external service providing geolocation info;
+- [`htmlelement`](https://docs.form.io/userguide/forms/layout-components#html-element): this field is used to display content on the form, it does not have an associated value;
+- [`content`](https://docs.form.io/userguide/forms/layout-components#content): this field is used to display content on the form, it does not have an associated value;
+- [`datamap`](https://docs.form.io/userguide/forms/data-components#data-map): the value is an object with arbitrary properties, depending on user input;
+- [`tree`](https://docs.form.io/userguide/forms/data-components#tree): the value is an arbitrary object.
+
+:::
+
+You can configure the **Form Service Backend** to:
+
+- perform *lookups* on certain fields and replacing an existing value - for example a user or form schema IDs - with a more human-readable value (if, for any reason, a lookup on a form field fails, the service ignores the error and simply leaves the existing value unmodified);
+- configure some *redirects*, in particular when the `GET /export` endpoint and the submit URL targets different services and you want the Form Service, every time it encounters a submit URL as lookup data source, to automatically call a different endpoint to fetch lookup data, always appending `/export`); 
+- add some specific *fields* as columns at the beginning of the CSV before the fields derived from the form schema (if the forms are stored in a CRUD collection, you may want to include [its predefined properties](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties)).
+
+Please take a look at the [Configuration section](configuration.md#export-lookups-exportlookups) to understand how to configure fields, lookups and redirects.
 
 ## Further details
 
@@ -56,10 +121,12 @@ Follow the pages below to know more about the _Form Service Backend_:
 - [_Form Service Backend_ configuration](configuration)
 
 :::warning
+
 The **Form Service Backend** does not perform form validation.
 Validation is only performed in the frontend if the **Form Service Frontend** plugin is used.
 
 We recommend building you own form validation in a dedicated backend microservice.
 
 This may change in the future.
+
 :::
