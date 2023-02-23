@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] 2023-02-22
+
+### Added
+
+- Add GET /visualizer/forms/export endpoint.
+- Add export lookup configuration.
+- Add export lookup.
+- Improve Excel compatibility of the CSV file.
+- Extract form fields from schema.
+- Return empty CSV with headers.
+- Export to CSV fields extracted from the form schema.
+- Add export fields and redirects.
+
 ## [1.6.0] 2023-02-06
 
 ### Fixed
@@ -25,7 +38,7 @@ The autosave feature includes a change in the service calls for data storage, wh
 
 ### Changed
 
-- Update CRUD client GET, DELETE, and POST to match CRUD's endpoint paths
+- Update CRUD client GET, DELETE, and POST to match CRUD's endpoint paths.
 
 #### Note
 Caution: be careful that the submitUrl exposes methods correctly. Read documentation for details, in particular the [Form submit urls parameters](configuration.md#form-submit-urls-parameters) section.
@@ -67,15 +80,15 @@ Caution: be careful that the submitUrl exposes methods correctly. Read documenta
 
 ### Added
 
-- Provide templating options to the Form Visualizer
-- Documentation for the Form Visualizer options
+- Provide templating options to the Form Visualizer.
+- Documentation for the Form Visualizer options.
 
 ### Fixed
 
-- Fixed support for external submit URLs and submit URLs with explicit port
-- Backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional
-- Update documentation links to download example .json files to fix link not opening in a new browser tab
-- Improved documentation by adding the description of the *submit URLs*
+- Fixed support for external submit URLs and submit URLs with explicit port.
+- Backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional.
+- Update documentation links to download example .json files to fix link not opening in a new browser tab.
+- Improved documentation by adding the description of the *submit URLs*.
 
 ## [1.2.1] 2021-12-15
 

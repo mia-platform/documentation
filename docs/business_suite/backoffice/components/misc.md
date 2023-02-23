@@ -5,14 +5,18 @@ sidebar_label: Misc
 ---
 ## bk-auto-refresh
 
-Allows refreshing some resource after the selected interval
+Allows refreshing some resources with the selected interval.
 ```html
 <bk-auto-refresh></bk-auto-refresh>
 ```
 
+![auto-refresh](../img/bk-auto-refresh.png)
+
+It emits a [change-query](../events.md#change-query) event with an empty payload every interval so it needs [bk-crud-client](../clients.md#bk-crud-client) to properly work.
+
 ### Configuration
 
-It is possible to customize the intervals and the default interval for refreshing the resources.
+It is possible to customize the intervals and the default interval for refreshing the resources. Intervals are expressed in **seconds**.
 
 Example:
 
@@ -681,6 +685,322 @@ None
 
 
 
+## bk-notification-center
+
+allows to handle notifications. It works by dealing with a backend source with a simple REST API interface.
+
+![notification-center](../img/bk-notification-center.png)
+
+```html
+<bk-notification-center></bk-notification-center>
+```
+
+### Notification object
+
+The expected notification object is of type:
+
+```typescript
+type Notification = {
+  _id: string
+  creatorId: string
+  createdAt: string
+  title: string
+  readState?: boolean
+  content?: string
+  onClickCallback?: CallbackHref
+}
+```
+where
+```typescript
+type CallbackHref = {
+  content: content: string | {url: string, data: any};
+}
+```
+
+`onClickCallback` field in retrieved notifications allows to controls the navigation destination upon [clicking the notification](#click-strategies).
+
+### Click strategies
+
+Clicking on a notification within `bk-notification-center` may trigger a navigation event. Component property `clickStrategy` controls what navigation method should be executed, which will use as input arguments the value of the field [`onClickCallback`](#notification) of the clicked notification.
+
+```typescript
+enum ClickStrategies =
+  'default' |
+  'href' |
+  'replace' |
+  'push'
+```
+
+An on-click-strategy correspond to what happens when a notification is clicked. `default` and `href` create an invisible `anchor` and click it, `replace` triggers `window.location.replace`, `push` pushes onto `window.history` stack.
+
+The value of `onClickCallback` field in a clicked notification is used as input arguments for the triggered navigation method. Consequently, for any value of `clickStrategy`, the type of `onClickCallback` can be a string.
+Additionally, if `clickStrategy` is `push`, `onClickCallback` may also be an object with keys `url` and `data`, corresponding to the main arguments of the [`window.history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) method. The value of `data` will be injected into the state of the destination page through a key set by property `pushStateKey`.
+
+:::info
+When `clickConfig` is set to `push`, `bk-notification-center` may be used in conjunction with a component such as [bk-state-adapter](./adapters.md#bk-state-adapter), which consumes the page state to emit custom events.
+
+For instance, given two plugins located at "/plugin-1" and "/plugin-2", with configurations:
+  - /plugin-1
+  ```json
+  {
+    ...
+    {
+      "tag": "bk-notification-center",
+      "properties": {
+        ...
+        "clickConfig": "push",
+        "pushStateKey": "notification-center-state"
+      }
+    }
+    ...
+  }
+  ```
+  - /plugin-2
+  ```json
+  {
+    ...
+    {
+      "tag": "bk-state-adapter",
+      "properties": {
+        ...
+        "configMap": {
+          "notification-center-state": "add-filter"
+        }
+      }
+    }
+    ...
+  }
+  ```
+
+clicking in plugin-1 on a notification like:
+```json
+{
+  ...
+  "onClickCallback": {
+    "url": "/plugin-1",
+    "data": {
+      "property": "lastname",
+      "operator": "equal",
+      "value": "Smith"
+    }
+  }
+}
+```
+
+triggers navigation to `/plugin-2`, and once there an event with label `add-filter` and payload
+```json
+{
+  "property": "lastname",
+  "operator": "equal",
+  "value": "Smith"
+}
+```
+is emitted by `bk-state-adapter`.
+:::
+
+<!-- /* cSpell:disable */-->
+Further control over the navigation behavior is provided by property `allowExternalHrefs`, controlling whether or not browsing to external external web pages and href is allwed when `clickStrategy` is `default`, `href` or `replace`.
+
+### Partial translations
+
+`PartialTranslations` enables the user to apply custom translations within the webcomponent, works by key. Keys are given by the type:
+
+```typescript
+type LanguageKeys =
+  'title' |
+  'loadingButton' |
+  'dateFormat' |
+  'errorMessage' |
+  'noNotification' |
+  'readAll' |
+  'reload' |
+  'backOnTop'
+```
+
+and to each key, one could attach either a string value (which will override any browser language settings) or a [localized string](../core_concepts.md#Localization-and-i18n) given by a key/value map such as
+
+```javascript
+{
+  en: "English Translation",
+  'en-AU': "English Translation",
+  zh: "中文翻译",
+  ...
+}
+```
+
+#### Example
+
+The following is a valid configuration, in the default title of `bk-notification-center` is overwritten. The other language keys will still have their default values:
+
+```json
+{
+  "tag": "bk-notification-center",
+  "properties": {
+    ...
+    "locales": {
+      "title": {
+        "en": "Notification center title",
+        "it": "Titolo centro notifiche"
+      }
+    }
+  }
+}
+```
+
+
+### Resource fetching mode
+
+```typescript
+enum ClickStrategies =
+  'polling' |
+  'default' |
+  'none'
+```
+
+Determines how the data is automatically fetched. If `polling`, the property `pollingFrequency` determines the fetching frequency (in milliseconds). If `default` or `none`, data is not fetched automatically.
+
+
+### Backend communication
+
+The notification center needs a backend service to retrieve and interact with notifications. It follows a description of the endpoints called by the component that should be exposed by the service.
+
+Backend base endpoint can be configured using the `endpoint` property, defaults to `/api/v1/bk-notification-center`.
+
+#### GET - `/own`
+
+This endpoint should return the list of paged notifications that the currently logged-in user should visualize. The notifications
+should be ordered by creation date descending.
+
+##### Query Parameters
+
+Query parameters `skip` and `limit` help querying the notification pagination. These can be configured using properties `limitQueryParam`, `skipQueryParam`, `limit`.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "limit": {
+      "description": "Limits the number of documents, max 200 elements, minimum 1",
+      "type": "integer",
+      "minimum": 1
+    },
+    "skip": {
+      "description": "Skip the specified number of documents",
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": ["skip", "limit"]
+}
+```
+
+##### Response
+
+```json
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "anyOf": [
+          {"type": "string"},
+          {"type": "object"}
+        ]
+      },
+      "content": {
+        "anyOf": [
+          {"type": "string"},
+          {"type": "object"}
+        ]
+      },
+      "readState": {
+        "type": "boolean"
+      },
+      "createdAt": {
+        "type": "string"
+      },
+      "onClickCallback": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "href"
+          ]
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "title",
+      "createdAt"
+    ]
+  }
+}
+```
+
+#### PATCH - `/read-state/:notificationId`
+
+This endpoint should change the read state of a specific notification given its id.
+
+##### Body
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "readState": {
+      "type": "boolean"
+    }
+  }
+}
+```
+
+#### PATCH - `/read-state/own`
+
+This endpoint should change the read state of all the notifications that the currently logged-in user can retrieve.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "readState": {
+      "type": "boolean"
+    }
+  }
+}
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`endpoint`|`endpoint`|string|`/api/v1/bk-notification-center`|API endpoint for HTTP calls|
+|`headers`| - |{ [x: string]: string; }|{}|headers included in any HTTP request|
+|`limit`|`limit`|number|10|controls pagination limit while fetching notifications|
+|`locales`| - |[PartialTranslations](#partial-translations)|{}|key-value list to customize components default labels. Keys are paired to either a string, which overrides language support or to a key-value map that matches a language to a translation|
+|`clickStrategy`|`click-strategy`|[ClickStrategies](#click-strategies)|'default'|enum taking values 'default', 'href', 'replace', 'push', which correspond to what happens when a notification is clicked|
+|`limitQueryParam`|`limit-query-param`|string|'limit'|the query parameter which controls notification pagination page size while fetching data|
+|`skipQueryParam`|`skip-query-param`|string|'skip'|the query parameter which controls notification pagination skip while fetching data|
+|`pushStateKey`|`push-state-key`|string|'bk-notification-center'|the key used to scope the content callback context in window.history.state when clickStrategy is 'push'. Otherwise it is neglected|
+<!-- /* cSpell:disable */-->
+|`allowExternalHrefs`|`allow-external-hrefs`|string|false|when true, notification links can browse to external web pages and href are not checked to ensure they are relative to self-website|
+|`mode`|`mode`|[ResourceFetchingMode](#resource-fetching-mode)|'default'|strategy to implement for automatically fetching notifications|
+|`pollingFrequency`|`pollingFrequency`|number|10000|frequency of notifications automatic fetching (in milliseconds), if mode is set to `polling`|
+
+### Listens to
+
+This component listens to no event.
+
+### Emits
+
+This component emits no event.
+
+### Bootstrap
+
+None
+
 ## bk-notifications
 
 displays toast notifications about events happening on the EventBus according to the maps provided as props
@@ -701,68 +1021,166 @@ type NotificationsMap {
 }
 ```
 
-Properties `successEventMap` and `errorEventMap` map the `triggeredBy` field of [success](../events#success) and [error](../events#error) events to an object having keys `title`, `content`, `type`, which is then used to render the corresponding notification.
-Both title and content fields are [localizedText](../core_concepts#localization-and-i18n) strings or objects.
+Properties `successEventMap` and `errorEventMap` map the `triggeredBy` field of [success](../70_Events/Events.md#success) and [error](../70_Events/Events.md#error) events into notification properties.
 
-### Triggering notifications from bk-button
+### Notification object
 
-Using the following keys, it is possible to trigger a notification as a result of a HTTP-call triggered by a `bk-button` component:
+Each notification can be configured with the following properties:
 
-| key | operation |
-|-----|-----------|
-| `get-http-generic-button` | GET http call |
-| `post-http-generic-button` | POST http call |
-| `delete-http-generic-button` | DELETE http call |
-| `bk-button-file-upload` | File upload |
+| property | type | values | description |
+|----------|------|--------|-------------|
+| title   | [localizedText](../concepts.md#localization-and-i18n) | any | localized text to be used as notification title |
+| content | [localizedText](../concepts.md#localization-and-i18n) | any | localized text to be used as notification content |
+| type    | string | `success`, `error`, `info`, `warning` | enum of possible notification styling (i.e. icons, color...) |
 
-### Example
-For instance, given the following configuration:
+#### Example
+
 ```json
 {
-  "create-data": {
-     "title": {
-       "en": "Data was created correctly!",
-       "it": "Dato creato correttamente!"
-     },
-     "content": {
-       "en": "The data has been created correctly",
-       "it": "I dati sono stati creati correttamente"
-     },
-     "type": "success"
-  },
-  "update-data": {
-     "title": {
-       "en": "Data was updated correctly!",
-       "it": "Dato aggiornato correttamente!"
-     },
-     "content": {
-       "en": "The data has been updated correctly",
-       "it": "I dati sono stati aggiornati correttamente"
-     },
-     "type": "success"
-  },
-  "bk-button-file-upload": {
-    "title": {
-       "en": "File was upladed correctly!",
-       "it": "File caricato correttamente!"
-     },
-     "content": {
-       "en": "The file has been uploaded correctly",
-       "it": "Il file è stati caricato correttamente"
-     },
-     "type": "success"
+  "successEventMap": {
+    "create-data": {
+      "title": {
+        "en": "Data was created correctly!",
+        "it": "Dato creato correttamente!"
+      },
+      "content": {
+        "en": "The data has been created correctly",
+        "it": "I dati sono stati creati correttamente"
+      },
+      "type": "success"
+    },
+    "update-data": {
+      "title": {
+        "en": "Data was updated correctly!",
+        "it": "Dato aggiornato correttamente!"
+      },
+      "content": {
+        "en": "The data has been updated correctly",
+        "it": "I dati sono stati aggiornati correttamente"
+      },
+      "type": "success"
+    },
+    "delete-data": {
+      "title": {
+        "en": "Data was updated correctly!",
+        "it": "Dato aggiornato correttamente!"
+      },
+      "content": {
+        "en": "The data has been updated correctly",
+        "it": "I dati sono stati aggiornati correttamente"
+      },
+      "type": "success"
+    }
   }
 }
 ```
 
-Assuming the current locale of the browser being set to english, a [success](../events#success) event with `meta.triggeredBy` field set to `created-data` (which for instance might happen as a consequence of a successful POST request), triggers the display of a success notification having title "Data was created correctly!", and content "The data has been created correctly".
+### Triggering notifications
 
+Some components automatically emit `success` and `error` events to notify the result of a generic action, and do not need to be configured to do so.
+For instance, [bk-crud-client](../clients.md#bk-crud-client) reacts to events like [create-data](../70_Events/Events.md#create-data) and [update-data](../70_Events/Events.md#update-data) by performing REST calls against a configurable endpoint, then emitting a `success`/`error` event with the name of the triggering event as value of `meta.triggeredBy`.
 
-| property | type | values | description |
-|----------|------|--------|-------------|
-| title   | [LocalizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification title |
-| content | [LocalizedText](../core_concepts#localization-and-i18n) | any | localized text to be used as notification content |
-| type    | string | `success`, `error`, `info`, `warning` | enum of possible notification styling (i.e. icons, color...) |
+#### Example
+
+```json
+{
+  ...
+  {
+    "tag": "bk-notifications",
+    "properties": {
+      "successEventMap": {
+        "create-data": {
+          "title": "Data correctly created!",
+          "content": "The data has been created correctly",
+          "type": "success"
+        }
+      },
+      "errorEventMap": {
+        "create-data": {
+          "title": "Data not created",
+          "content": "An error occurred while creating data",
+          "type": "error"
+        }
+      }
+    }
+  },
+  {
+    "tag": "bk-crud-client",
+    "properties": {
+      "dataSchema": ...,
+      "basePath": "/some-endpoint"
+    }
+  }
+}
+```
+
+With a configuration like the one in the example, when a `create-data` event is emitted:
+  1) `bk-crud-client` performs a POST call
+  2) assuming the call to be successful, `bk-crud-client` emits a `success` event with `meta`:
+  ```json
+  {
+    ...
+    "triggeredBy": "create-data"
+  }
+  ```
+  3) `bk-notifications` emits a notification with properties:
+  ```json
+  {
+    "title": "Data correctly created!",
+    "content": "The data has been created correctly",
+    "type": "success"
+  }
+  ```
+
+### Triggering notifications from Actions
+
+Components that allow to configure [Actions](../actions.md), such as [`bk-button`](./buttons.md#bk-button) or [`bk-gallery`](./20_Data_Visualization.md#bk-gallery), may integrate with `bk-notifications`.
+
+Indeed, some actions trigger a [success](../70_Events/Events.md#success) or [error](../70_Events/Events.md#error) event based on their result (for instance, actions of type [http](../actions.md#rest-calls)). In such cases, it is possible in the action configuration to specify the `triggeredBy` key that is injected into the meta field of such events, which is then matched by `bk-notifications` with its properties `successEventMap` and `errorEventMap`.
+
+#### Example
+
+In the following configuration, `bk-button` component is configured to perform an HTTP call, and `bk-notifications` to emit a notification that alerts on whether or not the call was successful.
+
+```json
+{
+  ...
+  {
+    "tag": "bk-notifications",
+    "properties": {
+      "successEventMap": {
+        "data-fetch": {
+          "title": "Data correctly fetched!",
+          "content": "The data has been fetch correctly",
+          "type": "success"
+        }
+      },
+      "errorEventMap": {
+        "data-fetch": {
+          "title": "Data not fetched",
+          "content": "An error occurred while fetching data",
+          "type": "error"
+        }
+      }
+    }
+  },
+  {
+    "tag": "bk-button",
+    "properties": {
+      ...
+      "action": {
+        "type": "http",
+        "config": {
+          "url": "/some-endpoint",
+          "method": "GET",
+          "triggeredBy": "data-fetch"
+        }
+      }
+    }
+  }
+}
+```
+
 
 ### Properties & Attributes
 

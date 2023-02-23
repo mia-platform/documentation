@@ -9,19 +9,10 @@ If you want to use the [Form assignments](../form-service-frontend/form_assignme
 
 The [Form Service Configuration](configuration) JSON object now has additional properties.
 
-- **1. formAssignmentsCrud**
-  - *type*: object;
-  - *required*: `false`;
-  - *description*: contains details about the CRUD that is used to store the form template and the users assigned to it.
-
-See the [form assignments CRUD parameters](#form-assignments-crud-parameters) section to know more about how the **Form assignments** works and how can be configured.
-
-- **2. userGroups**
-  - *type*: array of objects;
-  - *required*: `false`;
-  - *description*: the user groups that can be chosen in `Submitted forms viewers` field of the Form Builder.
-  
-See the [user groups parameters](#user-groups-parameters) section for further details.
+| Name                    | Type       | Required | Default | Documentation                                                         | Description                                                                                           |
+|-------------------------|------------|----------|---------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| **formAssignmentsCrud** | `Object`   | No       | -       | [form assignments CRUD parameters](#form-assignments-crud-parameters) | Contains details about the CRUD that is used to store the form template and the users assigned to it. |
+| **userGroups**          | `Object[]` | No       | -       | [user groups parameters](#user-groups-parameters)                     | The user groups that can be chosen in `Submitted forms viewers` field of the Form Builder.            |
 
 :::info
 

@@ -109,7 +109,6 @@ For this reason, we recommend scoping your custom styles rules through the selec
 }
 ```
 
-
 :::
 
 The required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_style_assets_crud_fields.json">example json file</a>.

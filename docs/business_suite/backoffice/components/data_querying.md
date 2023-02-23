@@ -129,7 +129,7 @@ This is the filter drawer
 <bk-filter-drawer></bk-filter-drawer>
 ```
 
-
+`bk-filter-drawer` allows to compile filters and injects them into the payload of [add-filter](../events.md#add-filter) events, which are listened by components such as [bk-filters-manager](#bk-filters-manager).
 
 ### Properties & Attributes
 
@@ -172,8 +172,17 @@ Manages the display, application, and modification of filters.
 ```html
 <bk-filters-manager></bk-filters-manager>
 ```
+`bk-filters-manager` listens to [add-filter](../events.md#add-filter) events, which might be emitted by a component such as [bk-filter-drawer](#bk-filter-drawer), converts their payload to mongo-like queries and injects them into the payload of [change-query](../events.md#change-query) events. A component like [bk-crud-client](./clients.md#bk-crud-client) listens to the `change-query` event and fetches data using its payload as query.
 
+### Persisten filters
 
+Property `saveFilters` allows to save filters to [local-storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). Filters are saved in local-storage through a key which can be customized with property `localStorageKey`, and defaults to `bk-filters-manager-store-` followed by the pathname of the current URL.
+
+Upon connecting to the DOM, `bk-filters-manager` with `saveFilters` to true will fetch filters from local-storage, scoped through `localStorageKey`, and apply them.
+
+:::caution
+To avoid data leaking, `localStorageKey` should be unique per plugin.
+:::
 
 ### Properties & Attributes
 
@@ -183,6 +192,8 @@ Manages the display, application, and modification of filters.
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
 |`filters`| - |Filter[]|[]|List of currently applied [filters](../core_concepts#filters) |
 |`hide`|`hide`|boolean|false|Hides the rendered component |
+|`saveFilters`|`save-filters`|boolean|false| if true, filters are automatically saved to local storage |
+|`localStorageKey`|`local-storage-key`|strign|bk-filters-manager-storage-`{pathname}`| key used to identify filters saved in local-storage. Defaults to a string composed of 'bk-filters-manager-storage-' and the pathname of the current URL. |
 
 ### Listens to
 

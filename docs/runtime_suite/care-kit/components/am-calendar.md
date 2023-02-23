@@ -57,6 +57,8 @@ The "appointment mode" is used to show the events of multiple resources in the s
 A resource is the entity which time is managed through the calendar.
 
 The resources are displayed in the top row of the calendar. The components accept the property [resourceConfig](#resourceconfig) the contains the main configuration options regarding the resources. In particular, `resourceConfig` contains the property resourcesEndpoint which is where you must configure the endpoint from which the resources are fetched.
+It is possible to set the calendar to work with only one resource by setting the property `singleResource` of `resourceConfig` true.
+When `singleResource` is set to true the resource header will not be shown. To let the calendar to properly fetch the inforamation regarding the single resource selected its `resourceId` must be in the page href. Ex. http://host/pluginName/`resourceId`
 
 The resources and the events in the calendar must share a common property used by the calendar to display the events in the correct resource sections. If a event is not associated to any resource it is not displayed in the calendar.
 
@@ -180,6 +182,7 @@ In the same dropdown menu is present the time zoom option that allows the user t
 ```
 ResourceConfig = {
   resourcesEndpoint: string
+  singleResource: boolean
   details: ResourceDetails[]
   delimiter: string
 }
@@ -190,11 +193,12 @@ ResourceDetails = {
 }
 ```
 
-| property | description |
-|----------|-------------|
-| `resourcesEndpoint` | The endpoint from which the resources are fetched|
-| `details` | List of the property inside each resource to be shown in the header and popover. Each detail can be the chian of multiple property divided by a specific delimiter |
-| `delimiter` | Character used between details in the popover|
+| property | type | description |
+|----------|------|-------------|
+| `resourcesEndpoint` | string | The endpoint from which the resources are fetched. |
+| `singleResource` | boolean | If true the calendar in appointment mode handles only one resource. The `resourceId` of the resource must be in the href path. Ex http://host/pluginName/`resourceId`|
+| `details` | List of the property inside each resource to be shown in the header and popover. Each detail can be the chian of multiple property divided by a specific delimiter. |
+| `delimiter` | Character used between details in the popover. |
 
 **Example**
 
