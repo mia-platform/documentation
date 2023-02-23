@@ -169,6 +169,10 @@ At the end of the configuration, on the backend side, the project will have the 
 In case `type` is set to `prometheus-operator`, you will be able to configure the creation of the `service monitor` for your microservices.
 More information about this feature [here](/development_suite/api-console/api-design/microservice-monitoring.md).
 
+### Custom Docker Image Pull imagePullSecret
+
+You can configure custom Image Pull Secrets by configuring the `imagePullSecretNames` property, it contains a list of names that will be used in deployment and cronjob files for pulling docker inages.
+
 ### Sample of project data structure
 
 ```json

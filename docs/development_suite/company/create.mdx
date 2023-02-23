@@ -229,4 +229,6 @@ For example, if you project is reachable at the URL `https://bitbucket.mia-platf
 `<your-service-name>`, `<your-group-name>`, `<your-repo-name>`, are field values that you will decide during the [creation of a microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template). Some of these values must be defined in order to receive a suggestion for the Docker image name (depending on the suggestion **type**).
 :::
 
+- `imagePullSecretNames`: a list of imagePullSecret names that will be inherited in the project during project creation and then used in deployment and cronjob files for pulling docker inages
+
 - `enabledSecurityFeatures`: a set of features to enforce the security of the project. For further details, take a look at [the last section](#configure-security-features) of this page.
