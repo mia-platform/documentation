@@ -150,5 +150,13 @@
   "/docs/marketplace/applications/backoffice_application": {
     "destination": "/docs/runtime_suite/backoffice/overview",
     "addedOn": "2023-02-14"
+  },
+  "/docs/development_suite/api-console/api-design/rbac": {
+    "destination": "/docs/development_suite/api-console/api-design/authorization",
+    "addedOn": "2023-02-24"
+  },
+  "/docs/tutorial/rbac/rbac_tutorial": {
+    "destination": "/docs/tutorial/authorization/authorization_tutorial",
+    "addedOn": "2023-02-24"
   }
 }

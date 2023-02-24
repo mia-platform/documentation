@@ -1,5 +1,5 @@
 ---
-id: rbac
+id: authorization
 title: Authorization Management
 sidebar_label: Authorization Management
 ---
@@ -27,6 +27,8 @@ Heading to the Authorization section (inside the Design area), you can manage Au
 
 ### Overview tab
 
+![Overview tab](img/authorization-overview.png)
+
 From the Overview tab you can enable Rönd for any service that is available in your project. Moreover, since a new container will be deployed in your namespace, you can view and configure the following information:
 
 - **Memory Request and Limit**: Memory request and Memory limit of the sidecar container
@@ -42,6 +44,8 @@ If your service exposes OpenAPI 3 Specification you can use the **custom attribu
 :::
 
 ### General Settings Tab
+
+![Overview tab](img/authorization-general-settings.png)
 
 Inside the General Settings tab you can:
 - define the Rönd service version
@@ -68,6 +72,8 @@ You can find more about the structure of the collection data models in [Rönd do
 
 ### Policies Tab
 
+![Policies tab](img/authorization-policies.png)
+
 In the **Policies** tab you can write your own policies that will be used by Rönd service to evaluate the incoming requests.
 
 You will find a read-only section that shows your current policies; if you want to modify them or create new ones you can click on the `Edit policies` button that will open a modal with two different editors.
@@ -83,6 +89,8 @@ We strongly suggest you to test your policies, you may notice that if you have w
 You can find more information about writing your own policies [in the Rönd documentation](https://rond-authz.io/docs/policy-integration).
 
 ### Manual Routes Tab
+
+![Manual Routes tab](img/authorization-manual-routes.png)
 
 If you want to apply Rönd policies, but your service does not expose any API documentation, or you don't have access to the codebase in order to implement
 your own documentation API, you can set up manual routes for Rönd.
@@ -202,8 +210,7 @@ test_filter_projects_example {
     filter_projects_example
         with input as {
             "user": {
-                "bindings": bindings_mock,
-                "roles": roles_mock
+                "bindings": bindings_mock
             }
         }
         with data.resources as [
@@ -211,6 +218,19 @@ test_filter_projects_example {
           {"_id": "resource2"}
         ]
 }
+
+bindings_mock := [
+    {
+        "bindingId": "bind1",
+        "roles": ["developer"],
+        "resource": {
+            "resourceType": "project",
+            "resourceId": "resource2"
+        }
+    }
+]
 ```
+
+![Write Policy Example](img/authorization-write-policy.png)
 
 <br/>

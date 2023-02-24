@@ -197,7 +197,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/rbac",
+          "id": "development_suite/api-console/api-design/authorization",
           "type": "doc"
         },
         {
@@ -820,7 +820,7 @@
           "type": "doc"
         },
         {
-          "id": "tutorial/rbac/rbac_tutorial",
+          "id": "tutorial/authorization/authorization_tutorial",
           "type": "doc"
         },
         {

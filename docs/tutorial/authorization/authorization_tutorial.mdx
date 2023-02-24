@@ -1,5 +1,5 @@
 ---
-id: rbac_tutorial
+id: authorization_tutorial
 title: Protect your endpoints with policies
 sidebar_label: Protect your endpoints with policies
 ---
@@ -10,7 +10,7 @@ import VideoBox from "./../../../src/components/VideoBox";
 Rönd helps you to decouple actions that user can perform (generally known as _permissions_) and their higher-level Role inside an information system.
 Rönd allows you to define your custom permissions, grouping them by Roles, and assigning those Roles to your users (or even groups of users).
 
-In this tutorial we will see how to add this [authorization layer](/development_suite/api-console/api-design/rbac.md) to our [Endpoints](/development_suite/api-console/api-design/endpoints.md).
+In this tutorial we will see how to add this [authorization layer](/development_suite/api-console/api-design/authorization.md) to our [Endpoints](/development_suite/api-console/api-design/endpoints.md).
 
 ## What We’ll Build
 
@@ -42,14 +42,14 @@ Before starting:
 The first step is to enable Rönd within your service. In this case we will use the CRUD system, but you can enable Rönd for any microservice.
 
 Select **Authorization** from the menu on the left:  
-![RBAC in Console](img/rbac-home.png)
+![Rond in Console](img/authorization-home.png)
 
 The Authorization screen is composed by four different tabs.
 
 The first tab **Overview** show you the list of your microservices. For each microservice you can see if Rönd is enabled or not.  
 In our case, the goal is to enable Rönd for your CRUD service (by clicking on the **Edit** button), then we can choose the CPU and Memory resources available for the Rönd Sidecar.
 Specifically, we can choose the CPU Request, CPU Limit, Memory Request, and Memory Limit.  
-![RBAC in Console](img/rbac-enable.png)  
+![RBAC in Console](img/authorization-enable.png)  
 Now we can save the changes and deploy the new configuration.
 
 Now Rönd is enabled, and of course every route in the CRUD is protected by default. If you try to make a request to any CRUD endpoint, the system will return an error 403 "_User is not allowed to request the API_". See the example below:
@@ -71,7 +71,7 @@ For example, you can choose to enable an allow policy to authorize the request, 
 For this step, we will only use the allow policy to authorize (or not) the request. In this step we will create an allow policy to authorize the GET request to the CRUD.
 
 Inside the **Policies** tab, we can edit the empty policy using the **Edit policies** button.  
-![RBAC Policies Tab](img/rbac-policies-tab.png)
+![RBAC Policies Tab](img/authorization-policies-tab.png)
 
 The **Policy Editor** is made of two different editors:
 
@@ -81,7 +81,7 @@ The **Policy Editor** is made of two different editors:
 We always recommend writing tests, so in case of changes it will be easier to verify that the policies actually meet your needs.
 
 Let's write our first policy: this will be a simple policy that will authorize all calls in which it will be used.
-![RBAC Policy Allow All](img/rbac-allow-all-policy.png)
+![RBAC Policy Allow All](img/authorization-allow-all-policy.png)
 
 On the left side we write our policy, where we import the package policies. Then, we create the "allow_all" policy, which has `true` as the only answer.
 On the right we find his test: in this case we want to verify that by executing the policy file the result of "allow_all" is the boolean `true`!
@@ -111,7 +111,7 @@ test_allow_all {
 :::
 
 Now we can open the **Manual Routes** tab, and we can choose the policy "allow_all" to open the endpoint.
-![RBAC first manual route](img/rbac-first-manual-route.png)
+![RBAC first manual route](img/authorization-first-manual-route.png)
 
 In the detail:
 
@@ -175,7 +175,7 @@ Our policies can be composed by many operations. Each operation is chained to th
 :::
 
 In the **Manual Routes** tab we can update our route:
-![RBAC first manual route](img/rbac-second-manual-route.png)
+![RBAC first manual route](img/authorization-second-manual-route.png)
 
 In the detail:
 
@@ -285,7 +285,7 @@ The next two lines are responsible to apply the row filter to the rows returned 
 - For each resource we verify if the "published" field is `true`
 
 After these changes, we will go back to the **Manual Routes** section to enable the row filter option in our route.  
-![RBAC enable row filter](img/RBAC-enable-row-filter.png)
+![RBAC enable row filter](img/authorization-enable-row-filter.png)
 
 :::info
 By default, the parameter used to insert the filter is `acl_rows` (used by default in the microservice CRUD to enable the row filter). You can change the `acl_rows` with another header name using the optional input box (for example if you will use your custom microservice).
@@ -352,7 +352,7 @@ In this policy we declare how the response filter will be applied:
 **Be careful**, the written policy must respect the syntax `policy_name[return_value]{...policyContent}` and must return the new value of the modified data.
 :::
 
-![RBAC enable response filter](img/rbac-response-filter.png)
+![RBAC enable response filter](img/authorization-response-filter.png)
 
 At this point we can verify again the data returned by the microservice CRUD, after saving and deploying the changes:
 

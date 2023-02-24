@@ -35,7 +35,7 @@ To discover its functionalities, visit [Config Shepherd](https://github.com/mia-
 #### Authorization section
 
 In the Design Area, the old `RBAC` section has been renamed in `Authorization` section.
-In addition, the related documentation has also been updated, check it out [here](/development_suite/api-console/api-design/rbac.md).
+In addition, the related documentation has also been updated, check it out [here](/development_suite/api-console/api-design/authorization.md).
 
 #### Icons of Cluster Vendor and Runtime Service
 
