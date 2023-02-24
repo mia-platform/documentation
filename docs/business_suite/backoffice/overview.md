@@ -14,8 +14,7 @@ Back-Kit library provides a full set of [W3C Web Components](https://www.w3.org/
 </div>
 ```
 
-Packed within a configuration file, a set of components creates a **layout** that can be plugged in a rendering engine,
-for instance a `composer` such as [microlc-element-composer](https://microlc.io/documentation/docs/micro-lc/core_plugins#microlc-element-composer).
+Packed within a configuration file, a set of components creates a **layout** that can be plugged in a rendering engine, for instance a `composition` feature like the one provided by [micro-lc](https://micro-lc.io/docs/concepts/composition).
 
 At runtime, when a customized configuration is injected, components are enriched with properties.
 

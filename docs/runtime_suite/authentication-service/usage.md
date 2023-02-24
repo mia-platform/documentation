@@ -90,3 +90,25 @@ You need to set the following variables in the [configuration](../authorization-
 - **USERINFO_URL**=`http://authentication-service/userinfo` (NB: change the hostname if it has been named differently)
 - **CUSTOM_USER_ID_KEY**=`userId`
 - **HEADERS_TO_PROXY**=`x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host`
+
+
+## Webhooks
+
+When a new User is activated on the ID Provider, the UserInfo collection can be synchronized through this webhook.
+(Currently only Okta provider is supported)
+
+:::caution
+Pay careful attention when configuring the webhook as the endpoint must be properly protected as it may allow anyone to create new user records.
+:::
+
+The webhook is made of 2 endpoints:
+
+- **GET** `/webhook/apps/:appId/providers/:providerId/user` used to validate the hook by the OID Provider
+- **POST** `/webhook/apps/:appId/providers/:providerId/user` used to handle the user activation
+
+### Validate the Webhook (Okta)
+In order to validate the webhook, Okta sends a GET request on the webhook url with a specific header `x-okta-verification-challenge` and expects to receive in response the same value of the header.
+
+### Security Configuration
+In order to secure these endpoints from unwanted requests (that will end up in users being added to the CRUD collection), you need to secure the Endpoint (for instance using an API Key).
+Remember to keep the API Key secure and to share it only with who is going to consume the webhook!

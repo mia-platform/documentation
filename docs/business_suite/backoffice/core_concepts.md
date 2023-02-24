@@ -23,33 +23,137 @@ to [ISO 639-1 codes](https://www.loc.gov/standards/iso639-2/php/code_list.php).
 
 Fields that support i18n are marked through this guide as taking either `string` or `LocalizedString` as input type.
 
-## Queries
+## Dynamic configuration
 
-Many components allow the user to build *dynamic queries*. Such queries are really helpful when an event needs to be aware
-of situation-specific data, such as, while clicking a button onto a given table row, the event must be intertwined with
-data of that row. In general, dynamic query output compiles to a URL query part.
+Many components allow the user to build *dynamic configurations*. Such configurations are really helpful when an event needs to be aware
+of situation-specific data, such as, while clicking a button onto a given table row, the event must be intertwined with data of that row.
 
-To achieve dynamic query logic, Back-Kit components use [handlebars syntax](https://handlebarsjs.com/guide/expressions.html)
-and embed a web component property (often called `query`) to register a handlebar template. By default, a string is parsed
-by the handlebar parser without making any changes to it if no `{{}}`-syntax is present.
+To achieve dynamic configurations logic, Back-Kit components use [handlebars syntax](https://handlebarsjs.com/guide/expressions.html) and embed a web component property to register a handlebar template. By default, a string is parsed by the handlebar parser without making any changes to it if no `{{}}`-syntax is present.
 
-For instance, any Back-Kit component is aware of an authenticated user, if any, using the property `currentUser`. When
-`currentUser` has property `email` with value `my-mail@mail.com`, a query with syntax
+For instance, any Back-Kit component is aware of an authenticated user, if any, using the property `currentUser`. When `currentUser` has property `email` with value `my-mail@mail.com`, a configuration such
 
 ```json
 {
-    "user": "{{curentUser.email}}"
+  "user": "{{curentUser.email}}"
 }
 ```
 
-would compile to a string `"user=my-mail%40mail.com"`.
+would be equivalent to
+```json
+{
+  "user": "my-mail@mail.com"
+}
+```
 
-:::caution
-Notice that handlebar compilation is always URL encoded.
-:::
+Rather complex queries can be built using handlebars while combining it with raw syntax. Queries are also well suited to transfer state between pages.
 
-Rather complex queries can be built using handlebars while combining it with raw syntax. Queries are also well suited to
-transfer state between pages.
+### Helpers
+
+Custom helpers to be used in conjunction with [handlebars](https://handlebarsjs.com/guide/expressions.html) are provided, most components that allow dynamic configurations support them.
+
+#### rawObject
+
+`rawObject` allows to avoid to stringify dynamic values within a configuration.
+
+```json
+{
+  "url": "/url",
+  "method": "POST",
+  "body": "{{rawObject data}}"
+}
+```
+
+`rawObject` signals that the provided dynamic value (`data` in this case) should not be stringified. So, with input data:
+```json
+{
+  "data": {
+    "name": "Joe",
+    "surname": "Smith"
+  }
+}
+```
+
+the example is equivalent to:
+```json
+{
+  "url": "/url",
+  "method": "POST",
+  "body": {
+    "name": "Joe",
+    "surname": "Smith"
+  }
+}
+```
+
+#### rawObjectOrEmptyStr
+
+`rawObjectOrEmptyStr` is equivalent to `rawObject` but, if the input value is not defined, an empty string will be put in place of the dynamic configuration.
+
+#### nFormat
+
+`nFormat` allows to format numeric values specifying number of decimal places, decimal separator, group separator.
+
+For instance, given the dynamic configuration:
+```json
+{
+  "amount1": "$ {{nFormat '2.,' value}}",
+  "amount2": "$ {{nFormat '4.,' value}}",
+  "amount3": "$ {{nFormat '.,' value}}",
+  "amount4": "$ {{nFormat '.' value}}",
+  "amount5": "$ {{nFormat '' value}}"
+}
+```
+
+and input data:
+```json
+{
+  "value": 7654.321
+}
+```
+
+the resulting configuration is:
+```json
+{
+  "amount1": "7,654.32",
+  "amount2": "7,654.3210",
+  "amount3": "7,654.321",
+  "amount4": "7654.321",
+  "amount5": "7654.321"
+}
+```
+
+### Template - ConfigMap
+
+Some components allow to specify an object with fields `template`-`configMap` instead of a value for their dynamically configurable properties.
+
+```json
+{
+  "command": {
+    "template": "{{color}}",
+    "configMap": {
+      "red": "stop",
+      "yellow": "slow-down",
+      "$default": "go"
+    }
+  }
+}
+```
+The value of `template` is matched against keys of `configMap`. On the first match, the corresponding value in `configMap` is used as value for the dynamic variable.
+
+For instance, with context
+```json
+{
+  "color": "red"
+}
+```
+the above example is equivalent to:
+```json
+{
+  "command": "stop"
+}
+```
+
+`$default` key in `configMap` can be specified, and is used if no other `configMap` key matches `template`.
 
 ## Links
 

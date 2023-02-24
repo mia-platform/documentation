@@ -73,6 +73,7 @@ unique active users since the beginning of the project.
 
 - **New doctors monthly**: Total number of new doctors per month.
 
+- **Total patients per month - cumulative**: The running total of the new patients grouped by month.
 
 ## Services Dashboard
 
@@ -92,4 +93,6 @@ This dashboard contains these KPIs
 
 - **Appointments percentage**: Ratio of in-person and remote appointments.
 
-- **Number of documents by types**: Total number of reports by visit types in a certain period of time.
+- **Monthly appointments**: Total number of appointments grouped monthly.
+
+- **Monthly communications**: Total number of communications grouped monthly.

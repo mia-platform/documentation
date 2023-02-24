@@ -257,7 +257,7 @@ If the `description` field is specified in a dataschema property, a info icon is
 
 The `selected-data` event opens the drawer in edit mode with possible initial values specified in the payload of the event. In this case, the action button of the Form perform an update of an existing field. If the form contains files, the component emits a `updateDataWithFile` event where payload contains all the data of the form. If no file is specified, a `updateData` event is used. In both cases, a `transactionId` is used inside the meta field of the event to handle possible errors.  
 
-#### After submission
+### After submission
 
 When done filling up this drawer form, usually `bk-form-drawer` performs an `update-data` or `create-data` according to the operation invoked to open it (either `add-new` or `select-data`). Usually an http-like client takes care of these operations.
 It is often useful to perform other tasks upon successful creation or editing. The prop `afterFinishEvents` allows to append events or `pushState` navigation instructions. To configure this feature we can provide to `afterFinishEvents`
@@ -460,7 +460,9 @@ Example of configuration for form-modal component in external mode:
 }
 ```
 
-The `add-new-external` event opens the modal in external mode with possible initial values specified in the payload of the event. In this case, the action button of the Form perform a HTTP POST to the endpoint specified in the `extraEndpoint` property. If the form contains files, the component  performs a HTTP POST using as body a multipart object that contains all the data of the form, including files. If no file is specified, the HTTP POST uses as body a JSON object. If the HTTP request is completed successfully, the component emits a `success` event, instead, in case of errors, it emits a `error` event.  
+The `add-new-external` event opens the modal in external mode with possible initial values specified in the payload of the event. In this case, the action button of the Form perform a HTTP POST to the endpoint specified in the `extraEndpoint` property. If the form contains files, the component  performs a HTTP POST using as body a multipart object that contains all the data of the form, including files. If no file is specified, the HTTP POST uses as body a JSON object.
+
+If the HTTP request is completed successfully, the component emits a `success` event, instead, in case of errors, it emits a `error` event. Either way, a `triggeredBy` field is injected into the meta of the event with value `bk-form-modal-extra-endpoint`. Components such as [bk-notifications](./misc.md#triggering-notifications) leverage `triggeredBy` for displaying push notifications.
 
 #### After submission
 

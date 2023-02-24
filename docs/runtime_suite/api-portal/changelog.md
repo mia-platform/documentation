@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.16.5 - 2023-02-17
+
+### Updated
+
+- Upgrade api-explorer version to 6.7.7
+
+### Changed
+
+- Capitalized anchor link titles
+
 ## 1.16.4 - 2022-06-07
 
 ### Updated
