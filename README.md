@@ -10,7 +10,8 @@ To develop locally you need:
 
 - Node 16+
 
-To setup node, please if possible try to use [nvm][nvm], so you can manage multiple versions easily.
+To setup node, please if possible try to use [nvm][nvm], so you can manage
+multiple versions easily.
 
 This is a React application then we suggest you use [Yarn](https://yarnpkg.com/getting-started/install) as a package manager.  
 Once you have installed Yarn, you can go inside
