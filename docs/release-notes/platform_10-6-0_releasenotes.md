@@ -15,6 +15,11 @@ _March 02, 2023_
 
 ### Bug Fix
 
+This version addressed a few bugs, here is a comprehensive list:
+
+* A bug introduced in the Console version 10.4.0 that prevented the correct visibility of the Debug section has been fixed
+* We fixed a bug that forced saving to another branch if you saved after performing the merge of configurations within the same branch
+
 ## Fast Data
 
 ### New Features
