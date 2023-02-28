@@ -4,6 +4,10 @@ title: Single View Trigger Generator
 sidebar_label: Single View Trigger Generator
 ---
 
+:::caution
+This Plugin is a BETA Plugin and, as such, is currently under active development. Pay attention using it.
+:::
+
 The Single View Trigger Generator is a new service of the Fast Data architecture.
 Its main job is to execute the strategies which are currently handled by the [Real Time Updater](/fast_data/realtime_updater.md).
 
