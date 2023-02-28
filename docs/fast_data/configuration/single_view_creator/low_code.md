@@ -6,7 +6,7 @@ sidebar_label: Low Code
 
 Low Code Single View Creator is available since version `3.3.0`
 
-Throughout this section, we will make examples based on the `food-delivery` use case, in particular to the `sv_customer` single view. A complete ER schema in the dedicated [section](/fast_data/configuration/erSchema.md#real-use-case-example).
+Throughout this section, we will make examples based on the `food-delivery` use case, in particular to the `sv_customer` single view. A complete ER schema in the dedicated [section](/fast_data/configuration/config_maps/erSchema.md#real-use-case-example).
 
 Here you can see a visual representation of the ER schema.
 
@@ -33,7 +33,7 @@ where:
 
 ## ER Schema
 
-For the general rules and guidelines of the ER Schema, check the [dedicated page](/fast_data/configuration/erSchema.md).
+For the general rules and guidelines of the ER Schema, check the [dedicated page](/fast_data/configuration/config_maps/erSchema.md).
 Let us take an example from the `food-delivery` use case.
 
 ```json
@@ -487,7 +487,7 @@ For example, using the equality operator, we can write this condition:
 Here, the first operand is a variable which takes its value from `USER.job`, while the second operand is a constant string: `"doctor"`. This simply means that this condition will match when the `job` field of the `USER` dependency is equal to `"doctor"`.
 This pattern is repeated for all other operators, as they are binary as well.
 
-As operand, it is possible to use constant values, in the exact same way as seen in the [ER schema](/fast_data/configuration/erSchema.md#syntax).
+As operand, it is possible to use constant values, in the exact same way as seen in the [ER schema](/fast_data/configuration/config_maps/erSchema.md#syntax).
 
 :::info
 Functions can also be used as value from the `1.3.0` version of the `aggregation.json` which is supported from the version `5.1.0` of the Single View Creator service

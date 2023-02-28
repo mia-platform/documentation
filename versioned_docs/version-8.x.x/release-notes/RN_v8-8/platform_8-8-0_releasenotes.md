@@ -21,7 +21,7 @@ Moreover, even MongoDB Query Exporter v1.0.0 belonging to Fast Data Monitoring A
 
 #### Configure Kafka timeout and interval on Realtime Updater
 
-Since v5.2.0 Kafka connection and session timeout, and Heartbeat interval can now be configured on [Realtime Updater](/docs/fast_data/configuration/realtime_updater/common#environment-variables)
+Since v5.2.0 Kafka connection and session timeout, and Heartbeat interval can now be configured on Realtime Updater
 
 #### Prevent projection overwrite by old message is not enabled by default
 
@@ -30,7 +30,7 @@ Since v5.0.2 the env FORCE_CHECK_ON_OFFSET to prevent projection to be overwritt
 #### Enrichment of Aggregation Low Code with Expression Logic features
 
 Since v3.6.0 of Single View Creator Low Code, aggregation schema v1.1.0 supports logic expressions to make conditional behavior on aggregation and dependency to use.
-Aggregation schema is now validated against a JSON Schema to ensure static correctness, learn more about it [here](/docs/fast_data/single_view_creator/manual-configuration#validate-a-single-view).
+Aggregation schema is now validated against a JSON Schema to ensure static correctness, learn more about it [here](/fast_data/single_view_creator/manual_configuration.md#validate-a-single-view).
 
 #### Test aggregation Low Code
 

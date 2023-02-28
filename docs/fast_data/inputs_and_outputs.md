@@ -481,7 +481,7 @@ channels:
 
 #### Topic naming convention
 
-**producer**: Single View Trigger
+**producer**: Single View Trigger Generator
 
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
 
