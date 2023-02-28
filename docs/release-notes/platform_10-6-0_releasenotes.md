@@ -11,7 +11,13 @@ _March 02, 2023_
 
 ### New Features
 
+Users who can add and configure new components in the Marketplace now have the possibility to configure by default the option to "Preserve files and directories already existing in the Runtime Mount Path directory" already when creating the resource.
+
+For more information, visit the documentation page for adding and configuring a new item from the Marketplace.
+
 ### Improvements
+
+Inside the Authorization section, now the 'Manual Routes' table clearly shows the name of the Response policy. Furthermore, if a row filter on request has been set, it is now visibile next to the Request policy name.
 
 ### Bug Fix
 
