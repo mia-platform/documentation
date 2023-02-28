@@ -649,7 +649,7 @@
       "type": "doc"
     },
     {
-      "id": "fast_data/single_view_trigger",
+      "id": "fast_data/single_view_trigger_generator",
       "type": "doc"
     },
     {
@@ -680,8 +680,23 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/erSchema",
-          "type": "doc"
+          "type": "category",
+          "label": "Config Maps",
+          "collapsed": false,
+          "items": [
+            {
+              "id": "fast_data/configuration/config_maps/erSchema",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/config_maps/projection_changes_schema",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/config_maps/kafka_projection_updates",
+              "type": "doc"
+            }
+          ]
         },
         {
           "type": "category",
@@ -718,7 +733,7 @@
           ]
         },
         {
-          "id": "fast_data/configuration/single_view_trigger",
+          "id": "fast_data/configuration/single_view_trigger_generator",
           "type": "doc"
         }
       ],

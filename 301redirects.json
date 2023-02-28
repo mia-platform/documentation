@@ -108,12 +108,12 @@
     "addedOn": "2022-11-10"
   },
   "/docs/fast_data/single_view_trigger/overview": {
-    "destination": "/docs/fast_data/single_view_trigger",
-    "addedOn": "2022-10-01"
+    "destination": "/docs/fast_data/single_view_trigger_generator",
+    "addedOn": "2023-01-11"
   },
   "/docs/fast_data/single_view_trigger/configuration":  {
-    "destination": "/docs/fast_data/configuration/single_view_trigger",
-    "addedOn": "2022-10-01"
+    "destination": "/docs/fast_data/configuration/single_view_trigger_generator",
+    "addedOn": "2023-01-11"
   },
   "/docs/development_suite/api-console/api-design/rbac_api_configuration": {
     "destination": "/docs/development_suite/api-console/api-design/rbac",

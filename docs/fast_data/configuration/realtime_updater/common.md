@@ -321,73 +321,6 @@ To activate this feature you need to set the following environment variables:
 - KAFKA_PROJECTION_UPDATES_FOLDER: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
 - GENERATE_KAFKA_PROJECTION_UPDATES: defines whether the real-time updater should send a message of update every time it writes the projection to Mongo. Default is `false`
 
-#### Message schema
-
-The message produced adheres to the following schema:
-
-```json
-{
-    "type": "object",
-    "required": [
-        "projection",
-        "operationType",
-        "operationTimestamp",
-        "primaryKeys"
-    ],
-    "properties": {
-        "projection": {
-            "type": "string",
-            "description": "The name of the projection"
-        },
-        "operationType": {
-            "type": "string",
-            "description": "The type of operation performed on the collection",
-            "enum": ["INSERT", "UPDATE", "DELETE"]
-        },
-        "operationTimestamp": {
-            "type": "date",
-            "description": "The timestamp at the operation execution"
-        }
-        "primaryKeys": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "description": "The primary keys of the projection"
-        },
-        "documentId": {
-            "type": "_id_",
-            "description": "The _id of the Mongo document"
-        }
-        "before": {
-            "type": "object",
-            "description": "The projection document as found on the database before the execution of the operation. `null` after an `INSERT`, `undefined` when not available."
-        },
-        "after": {
-            "type": "object",
-            "description": "The projection document as found on the database after the execution of the operation. `null` after a `DELETE`."
-        },
-        "__internal__kafkaInfo": {
-            "type": "object",
-            "description": "The __internal__kafkaInfo field of the document, if available."
-        }
-    }
-}
-```
-
-:::info
-The `operationType` describes the *raw* operation executed on Mongo, and can be different from the input operation type; for example an input UPSERT operation either results in a `UPDATE` message, or an `INSERT` message, depending on the existence of the document before the operation.  
-A virtual delete always results in an `UPDATE`, because the document still exists on Mongo after the execution with `__STATE__: "DELETED"`, while an input *real delete* always results in a `DELETE`.
-:::
-
-:::warning
-For performance reasons, the projection state `before` of the projection is not returned after an update operation, because a costly `find` operation would be necessary to retrieve such information from the database. The only exception is an UPDATE resulting from a virtual delete: in this case the `before` is returned entirely.
-
-For the same reason, the fields `createdAt` and `documentId` of the projections are returned only after an upsert inserting a new document or after a virtual delete.
-:::
-
-#### Configuration
-
 :::info
 From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
 :::
@@ -398,34 +331,7 @@ You need to create a configuration with the same path as the one you set in `KAF
 To prevent possible conflicts with the automatically created configuration, please set the `KAFKA_PROJECTION_UPDATES_FOLDER` to a value different from the default `/home/node/app/kafkaProjectionUpdates` path.
 :::
 
-The json configuration should look like this one:
-```json
-{
-    "MY_PROJECTION": {
-        "updatesTopic": "MY_UPDATES_TOPIC"
-    }
-}
-```
-where
-- `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
-- `MY_UPDATES_TOPIC` is the topic where the updates message will be sent to.
-
-Notice that you need to set a topic for each projection in the system. Different projection can share the same topic.
-
-For example:
-
-```json
-{
-    "registry-json": {
-        "updatesTopic": "registry-json.update"
-    },
-    "another-projection": {
-        "updatesTopic": "another-projection.update"
-    }
-}
-```
-
-When the real time updater writes to Mongo in reaction to a CDC update, a message is sent to the related topic. For example, if a new projection is saved to the `registry-json`, an `INSERT` message is generated to the topic `registry-json.update`. The key of the resulting Kafka message will be the stringified JSON of the projection key value.
+To know more on how to configure the `kafkaProjectionUpdates.json` please refer to its [Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
 
 :::info
 Notice that you can either set the topics for all the projections, or for a subset of them.

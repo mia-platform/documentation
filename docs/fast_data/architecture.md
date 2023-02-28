@@ -26,10 +26,10 @@ The Real Time Updater is responsible for listening to the events concerning chan
 
 It is up to you to decide whether to make it execute any of these, based on the architecture you prefer to build. For example, if having your Projections up to date in a very short period of time is crucial for your business, you might want to skip the part where you check which Single Views should be updated, delegating this job to the Single View Trigger and decreasing the overhead of the RTU.
 
-### Single View Trigger (SVT)
+### Single View Trigger Generator (SVTG)
 
-The Single View Trigger listens to `Projection Update` events, performing the logic needed to get the identifiers of all the Single Views that need to be updated, and emits the relevant `Projection Change` events.
-This activity can be performed by the RTU as well. Using the SVT is recommended for a faster update of Projections, and a greater fault tolerance for the RTU.
+The Single View Trigger Generator listens to `Projection Update` events, performing the logic needed to get the identifiers of all the Single Views that need to be updated, and emits the relevant `Projection Change`(sv-trigger) events.
+This activity can be performed by the RTU as well. Using the SVTG is recommended for a faster update of Projections, and a greater fault tolerance for the RTU.
 
 ### Single View Creator (SVC)
 

@@ -13,7 +13,7 @@ _March 3, 2022_
 
 #### Import Fast Data Projections from DDL
 
-The creation of multiple Projections in a System can be a tedious and error prone task, this is why we introduced a new functionality that allows you to import Projections directly from a DDL file, which you can easily produce directly from your DBMS. More information on how to use this feature can be found [here](/docs/fast_data/create_projection#import-multiple-projections-from-a-ddl-file)
+The creation of multiple Projections in a System can be a tedious and error prone task, this is why we introduced a new functionality that allows you to import Projections directly from a DDL file, which you can easily produce directly from your DBMS. More information on how to use this feature can be found [here](/fast_data/create_projection.md#import-multiple-projections-from-a-ddl-file)
 
 ## Console
 
