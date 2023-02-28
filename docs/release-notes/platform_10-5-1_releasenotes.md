@@ -11,9 +11,21 @@ _March 02, 2023_
 
 ### New Features
 
+#### ImagePullSecrets configured at Company and Project level 
+
+Custom ImagePullSecrets can now be defined and configured for a specific Company and Project: this means that also PaaS users can now configure custom private image registries. Whenever a new project is created, these providers will be cloned from the company to be available on the project as well.
+
+#### New permissions for create, edit and delete a project
+
+A new set of permissions has been added to the Super User in order to better manage the whole lifecycle of a project. The newly introduced permissions are:
+
+* `console.root.project.create`: allows the Super User to create any project
+* `console.root.project.details.update`: allows the Super User to edit any project
+* `console.root.project.delete`: allows the Super User to delete any project 
+
 ### Improvements
 
-#### 
+#### Mount Path preserve configuration 
 
 Users who can add new elements to the Marketplace now have the possibility to configure the option "Preserve files and directories already existing in the Runtime Mount Path directory" already when creating the resource.
 
