@@ -17,7 +17,7 @@ For more information, visit the documentation page to Add a new element to the M
 
 ### Improvements
 
-Inside the Authorization section, now the "Manual Routes" table clearly shows the name of the Response policy. Furthermore, if a row filter on request has been set, it is now visibile with a specific icon next to the Request policy name.
+Inside the Authorization section, now the "Manual Routes" table clearly shows the name of the Response policy. Furthermore, if a row filter on request has been set, it is now visible with a specific icon next to the Request policy name.
 
 ### Bug Fix
 
