@@ -163,7 +163,10 @@
       "configurator",
       "configurability",
       "JAAS",
-      "configurator"
+      "configurator",
+      "RESUE",
+      "reingested",
+      "storer"
   ],
   "ignoreWords": [
     "authz",
@@ -238,6 +241,9 @@
     "statefulsets",
     "ingressroutetcps",
     "containo",
+    "kafkajs",
+    "quarkus",
+    "jaas",
     "kafkajs",
     "SVTG",
     "svtg",
