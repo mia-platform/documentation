@@ -24,6 +24,18 @@ The term _resource_ referring to a pod in this case means the sum of the resourc
 More information on the [official kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 :::
 
+### Combinations and QoS
+
+Once we get the basics of how it works, we can describe the possible combinations and what [QoS](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/) they fall into, keeping them in mind for the next sections:
+
+- **No limits, no requests**: It is not recommended at all, because there are no controls on used resources and in case one pod has a high CPU demand that requires all the available CPU in the node, it will cause CPU starvation, rendering the other in a state of CPU throttling. Kubernetes will schedule this combination with the lowest QoS, `Best Effort`, meaning it will use all available resources. This pods will be the first to be evicted in case node pressure.
+- **No limits, with requests**: This case really depends on the performances requested to the pod, because you will be able to harness all available power, but risking cases of starvation. Kubernetes will schedule this combination with a `Burstable` QoS, meaning it will use all available resources in the node, but also ensuring that a lower-bound resource is guaranteed to the pod based on the request. This pods will be evicted after `Best Effort` ones.
+- **With limits, with or no requests**: Recommended for most cases, if requests isn't set it will automatically be set by Kubernetes as the same as limits. In this case you are sure that the pods are not stealing each other's resources, but you can have cases where excess cpu is not exploited, going to CPU throttling in case of high number of requests, even though it would not be necessary. If requests equals limits, Kubernetes will schedule this combination with a `Guaranteed` QoS, meaning that the pod has is guaranteed to receive the required resources, if such resources cannot be reserved, it will not scheduled. This pods will be the last to face eviction.
+
+:::note
+These cases are generic for all resources, but are most useful to keep in mind in the context of [CPU](#cpu).
+:::
+
 ## Resource types
 
 Moreover, we have to explain the possible resources and how the request and limits acts on them:
@@ -59,14 +71,6 @@ The preceding discussion, however, does not apply to the CPU, which is a compres
 #### How linux handle cpu
 
 Firstly we need to comprehend how Kubernetes depends on the Linux kernel to handle CPU constraints. As the most orchestrator does it relies on the kernel control group ([cgroup](https://docs.kernel.org/admin-guide/cgroup-v1/cgroups.html)) mechanism. When hard CPU limits are set in a container orchestrator, the kernel uses [Completely Fair Scheduler (CFS) Cgroup bandwidth control](https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html) to enforce those limits. This mechanism manages CPU allocation using two settings: **quota** and **period**. When an application has used its allocated CPU quota for a given period, it will artificially throttled until the next period. The unit _millicores_ in the configuration now it is explained as the quota of CPU each period, usually of 100ms in Kubernetes.
-
-#### Possible configuration
-
-Once we get the basics of how it works, we can describe the possible combinations and what [QoS](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/) they fall into:
-
-- **No limits, no requests**: It is not recommended at all, because there are no controls on used resources and in case one pod has a high CPU demand that requires all the available CPU in the node, it will cause CPU starvation, rendering the other in a state of CPU throttling. Kubernetes will schedule this combination with the lowest QoS, `Best Effort`, meaning it will use all available resources. This pods will be the first to be evicted in case node pressure.
-- **No limits, with requests**: This case really depends on the performances requested to the pod, because you will be able to harness all available power, but risking cases of starvation. Kubernetes will schedule this combination with a `Burstable` QoS, meaning it will use all available resources in the node, but also ensuring that a lower-bound resource is guaranteed to the pod based on the request. This pods will be evicted after `Best Effort` ones.
-- **With limits, with or no requests**: Recommended for most cases, if requests isn't set it will automatically be set by Kubernetes as the same as limits. In this case you are sure that the pods are not stealing each other's resources, but you can have cases where excess cpu is not exploited, going to CPU throttling in case of high number of requests, even though it would not be necessary. If requests equals limits, Kubernetes will schedule this combination with a `Guaranteed` QoS, meaning that the pod has is guaranteed to receive the required resources, if such resources cannot be reserved, it will not scheduled. This pods will be the last to face eviction.
 
 #### So is it recommended to set the limit?
 
