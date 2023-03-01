@@ -824,7 +824,7 @@
               "type": "doc"
             },
             {
-                "id": "fast_data/bucket_storage_support/configuration/data_organizer_by_key_configuration",
+              "id": "fast_data/bucket_storage_support/configuration/data_organizer_by_key_configuration",
               "type": "doc"
             },
             {
@@ -2219,6 +2219,21 @@
             {
               "type": "doc",
               "id": "runtime_suite/single-view-creator/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Single View Trigger Generator",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/single-view-trigger-generator/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/single-view-trigger-generator/changelog"
             }
           ]
         },

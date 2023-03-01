@@ -203,7 +203,8 @@ i.e. on language `en-US` it will render either `en-US` if available or `en` as a
 
 Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
 
-Fields of format `currency` automatically display formatted numeric values accordingly to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale). `currency` fields allow to specify the key `template` inside [visualizationOptions](#visualization-options) and [formatOptions](#form-options).
+Fields of format `currency` automatically display numeric values according to the specified `template` inside [visualizationOptions](#visualization-options) and [formatOptions](#form-options). By default the value is formatted according to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale), but handlebars helper [nFormat](./core_concepts.md#nformat) is also available.
+
 For instance:
 ```json
 "amount": {
@@ -226,11 +227,10 @@ For instance:
 }
 ```
 :::note
-In visualizationOptions' template, `{{args.[0]}}` corresponds to the value of the table cell.
+In some components, such as [bk-table](./components/data_visualization.md#bk-table), `{{args.[0]}}` corresponds to the value of the current datum.
 :::
 
-In order to avoid replication of settings within the same configuration, data schema also carries some component-specific
-visualization options and/or might require extra data to be fetched.
+In order to avoid replication of settings within the same configuration, data schema also carries some component-specific visualization options and/or might require extra data to be fetched.
 
 ### Visualization Options
 

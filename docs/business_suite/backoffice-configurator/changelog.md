@@ -3,6 +3,23 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [0.7.0] - 2023-02-28
+
+### Changed
+
+- Reviewed page creation flow
+
+### Fixed
+
+- `monaco-editor` should resize when viewport changes
+- `monaco-editor` checks both whether an incoming config update is not its own and doesn't match the current config hash
+- Better handling of broken configuration input
+- `console.css` moved outside of the js bundle
+
+### Versioning
+
+- Dev dependencies updated
+
 ## [0.6.2] - 2023-02-15
 
 ### Versioning

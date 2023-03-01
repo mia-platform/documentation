@@ -325,7 +325,7 @@ For each configuration created, a new card will be visible.
 
 You can mount files to your microservice using *configmaps*. This feature can be useful if your microservice requires a particular configuration that can be read from a certain type of file (e.g. a complex configuration file that can't be provided via simple environment variables).
 
-Check out the files service [example](/runtime_suite/files-service/configuration.md) to further understand the role of configmaps in microservices.
+Check out the files service [example](/runtime_suite/files-service/configuration.mdx) to further understand the role of configmaps in microservices.
 
 You can click _Add file_ to generate a new custom file (e.g. a JSON or YAML file, but could be anything you need) and start writing your custom configurations. With the _Delete File_ button you can remove the file from your custom configuration.
 

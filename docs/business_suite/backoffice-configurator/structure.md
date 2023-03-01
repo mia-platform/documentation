@@ -7,8 +7,12 @@ sidebar_label: Structure
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
 :::
 
-The first section of the configurator targets the general structure of Backoffice, namely its pages, layout, and global
-settings.
+The first section of the configurator targets the general structure of the Backoffice dividing it into four tabs:
+
+1. [pages](#pages), where you can overview the Backoffice structure and quickly adding or removing pages,
+2. [advanced](#advanced-configuration), from which it is possible to design the Backoffice layout accessing the raw configuration,
+3. [settings](#settings), where Backoffice global and shared settings resides, and
+4. [webserver configuration](#webserver-configuration), in which settings regarding the underling server are made accessible.
 
 ![First section](img/structure_first-section.png)
 
@@ -21,31 +25,24 @@ The first tab is _Pages_, it allows you to view, create, modify, and delete the 
 
 ### Create new page
 
-Clicking on the _Add new page_ button will open the page creation wizard, which will lead you to the page setup, which is divided into 3 steps: [page type](#page-type), [page details](#page-details) and [page options](#page-options).
-
-#### Page type
-
-On the first step of the wizard you will be asked to choose the type of the new page.
-
-![Page type](img/structure_page-type.png)
-
-Possible choices are:
-
-- [compose](https://micro-lc.io/docs/guides/applications/compose): a dynamically composed page constructed with HTML5
-  elements or web components following a provided configuration;
-- [micro-frontend](https://micro-lc.io/docs/guides/applications/parcels): a framework-agnostic component directly managed
-  by the orchestrator, which needs to be supplied with the assets entry point;
-- [iFrame](https://micro-lc.io/docs/guides/applications/iframes): an HTML page embedded in an iframe tag with full
-  strict encapsulation.
+Clicking on the _Add new page_ button will open the page creation wizard, which will lead to the page setup thought two
+steps, [page details](#page-details) and [page options](#page-options).
 
 #### Page details
 
-The second step allows you to specify some details regarding the page.
+On the first step of the wizard you will be asked to specify some basic details regarding the page.
 
 ![Page details](img/structure_page-details.png)
 
 The requested fields are:
 
+- _page type_: the type of the new page chosen among
+  - [compose](https://micro-lc.io/docs/guides/applications/compose): a dynamically composed page constructed with HTML5
+    elements or web components following a provided configuration;
+  - [micro-frontend](https://micro-lc.io/docs/guides/applications/parcels): a framework-agnostic component directly managed
+    by the orchestrator, which needs to be supplied with the assets entry point;
+  - [iFrame](https://micro-lc.io/docs/guides/applications/iframes): an HTML page embedded in an iframe tag with full
+    strict encapsulation;
 - _id_: the unique identifier of the page;
 - _page rendering route_: the path on which the page will be rendered;
 - _acl expression_: an optional [logical expression](https://micro-lc.io/add-ons/backend/middleware#acl-application)
@@ -53,12 +50,14 @@ The requested fields are:
 
 #### Page options
 
-The third and last step is a [type](#page-type)-specific form page options.
+The second and last step is a type-specific form for page options.
 
 For **compose pages**, available fields are:
 
 - _input mode_: whether the page configuration is saved inline (_inline_ option) or in a separate file (_external_
   option);
+- _configurations manager endpoint_ (only if input mode is _external_): endpoint from which the configuration file can
+  be fetched;
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
 - _template_: a configuration template carrying a pre-defined, pre-arranged set of components.
 
@@ -194,3 +193,22 @@ The editors will help you writing configurations hinting the correct properties 
 :::
 
 ![Shared properties settings](img/structure_settings-shared.png)
+
+## Webserver configuration
+
+The _Webserver Configuration_ tab gives you access to the configuration of the [service](https://micro-lc.io/add-ons/backend/middleware/)
+responsible for serving Backoffice static files and configurations.
+
+### Entry point
+
+Here you can find the HTML file used as entry point for the Backoffice.
+
+![Entry point](img/structure_webserver_entry-point.png)
+
+### Content types
+
+![Entry point](img/structure_webserver_content-types.png)
+
+### Headers
+
+![Entry point](img/structure_webserver_headers.png)

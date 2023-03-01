@@ -58,10 +58,13 @@ The app configuration contains:
   * **scope** (*required*): an array of string of the scope to forward to the indentity provider;
   * **order** (*optional*): a number which define the order to be returned from the get apps endpoint;
   * **userSettingsURL** (*optional*): an url to send the user to the user settings page on idp provider;
+  * **skipRefreshProviderTokenOnMiaTokenRefresh** (*default `false`*): if `true`, the provider's token won't be refreshed when calling the `/refreshtoken` endpoint, unless the provider token has expired;
 * **redirectUrl** (*required*): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
+* **authorizeStateRequired** (*default: `false`*): When `true`, the client should generate the `state` parameter, enabling further protection against CSRF attacks. See the [related section](./usage.md#client-generated-state);
 * **realm**: (*required*)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId*);
 * **defaultGroups** (*required*): an array of strings to add as group to a user on user creation;
-* **defaultRedirectUrlOnSuccessfullLogin** (*optional*): a string to set the default redirect on successfull login;
+* **allowedRedirectUrlsOnSuccessfulLogin** (*optional*): a set of strings with the allowed redirect urls on successful login;
+* **defaultRedirectUrlOnSuccessfullLogin** (*optional*): a string to set the default redirect on successful login;
 * **isWebsiteApp** (*optional*): a boolean, if true set a Cookie *sid* in header.
 
 Here an example of the service configuration:
@@ -84,6 +87,7 @@ Here an example of the service configuration:
           "userSettingsURL": "settings-url"
         }
       },
+      "authorizeStateRequired": true,
       "redirectUrl": "https://test.com/redirect",
       "realm": "realm1",
       "isWebsiteApp": true,
