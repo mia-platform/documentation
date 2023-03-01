@@ -166,7 +166,9 @@
       "configurator",
       "RESUE",
       "reingested",
-      "storer"
+      "storer",
+      "nformat",
+      "redirector"
   ],
   "ignoreWords": [
     "authz",
