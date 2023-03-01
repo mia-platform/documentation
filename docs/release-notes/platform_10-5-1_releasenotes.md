@@ -13,15 +13,17 @@ _March 02, 2023_
 
 #### ImagePullSecrets configured at Company and Project level 
 
-Custom ImagePullSecrets can now be defined and configured for a specific Company and Project: this means that also PaaS users can now configure custom private image registries. Whenever a new project is created, these providers will be cloned from the company to be available on the project as well.
+Custom ImagePullSecrets can now be defined and configured for a specific Company and Project: this means that also PaaS users can now configure custom private image registries. Whenever a new Project is created, these providers will be cloned from the Company to be available on the Project as well.
 
-#### New permissions for create, edit and delete a project
+#### New permissions to create, edit and delete a project
 
-A new set of permissions has been added to the Super User in order to better manage the whole lifecycle of a project. The newly introduced permissions are:
+A new set of permissions has been added to the Super User, in order to better manage the whole lifecycle of a Project. The newly introduced permissions are:
 
 * `console.root.project.create`: allows the Super User to create any project
 * `console.root.project.details.update`: allows the Super User to edit any project
 * `console.root.project.delete`: allows the Super User to delete any project 
+
+If you want to find more info about Console levels and permission management, please visit the related [documentation page](/development_suite/console-levels-and-permission-management.md).
 
 ### Improvements
 
