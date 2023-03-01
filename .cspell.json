@@ -168,7 +168,8 @@
       "reingested",
       "storer",
       "nformat",
-      "redirector"
+      "redirector",
+      "hrefs"
   ],
   "ignoreWords": [
     "authz",
