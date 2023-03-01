@@ -10,7 +10,7 @@ import TabItem from "@theme/TabItem";
 A company is the resource which has the governance of all the projects inside it. It is possible to connect the infrastructure on which projects can be based, analyze the configuration of all projects inside the company and manage users and permissions inside the company.
 
 :::info
-The company creation is linked to the license. If you want to create a new company, contact your Mia-Platform referent.
+The company creation in Mia-Platform on-premise Console is linked to the license. If you want to create a new company, contact your Mia-Platform referent.
 :::
 
 :::caution
@@ -41,11 +41,13 @@ Let's now configure the company to prepare itself to the creation of a new proje
 
 #### Add the first Company User
 
+:::info
 If you used the API to create the company, you can skip this section.
+:::
 
 If your company has been created by CMS, you have to add the first user to it, who may be yourself or another user in the Platform. Regardless, head over to the CMS page and choose the _Bindings_ menu item (only a restricted set of users have access to this section, ask your Console Administrator if you need access to it).
 
-In the _Bindings_ section, select the _Create new_ button and fill in the form, type a custom _Binding ID_ (make sure it is unique in the whole collection, something like `{tenantId}-{desiredRole}` should be enough), select the proper Role (generally at this point you'll be adding the first _Company Owner_) and make sure to select the correct user as Subject. Finally, you'll have to assign the correct resource by filling it with an object as follows:
+In the _Bindings_ section, click the _Create new_ button and fill in the form, type a custom _Binding ID_, select the proper Role (since it is the first user, usually it should be `Company Owner`) and make sure to select the correct user as _Subject_. Finally, you'll have to assign the correct resource by filling it with an object as follows:
 
 ```json
 {
@@ -53,6 +55,11 @@ In the _Bindings_ section, select the _Create new_ button and fill in the form, 
   "resourceId": "THE ID YOU PROVIDED UPON CREATION AS tenantId"
 }
 ```
+
+:::danger
+The _Binding ID_ must be unique in the whole collection!  
+As a general recommendation we suggest `{tenantId}-{desiredRole}`, but in some cases something more complex may be needed.
+:::
 
 ### Create a new Git Provider
 
@@ -151,7 +158,7 @@ For example, if you project is reachable at the URL `https://bitbucket.mia-platf
   ```
 
   :::caution
-  The term _tenantId_ refer to the actual company new terms.
+  The term _tenantId_ is the new word that refers to the old _companyId_.
   :::
 
   :::warning
