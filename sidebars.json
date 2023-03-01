@@ -792,6 +792,56 @@
       ],
       "label": "FAQ",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/bucket_storage_support/overview_bucket_storage_support",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/bucket_storage_support/use_cases_bucket_storage_support",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/bucket_storage_support/integration_bucket_storage_support",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/bucket_storage_support/deployment-bucket-storage",
+          "type": "doc"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "fast_data/bucket_storage_support/configuration/ingestion_storer_configuration",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration",
+              "type": "doc"
+            },
+            {
+                "id": "fast_data/bucket_storage_support/configuration/data_organizer_by_key_configuration",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/bucket_storage_support/configuration/bucket_connection_configuration",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/bucket_storage_support/configuration/kafka_connection_configuration",
+              "type": "doc"
+            }
+          ],
+          "label": "Configuration",
+          "type": "category"
+        }
+      ],
+      "label": "Bucket Storage Support",
+      "type": "category"
     }
   ],
   "gettingStarted": [
