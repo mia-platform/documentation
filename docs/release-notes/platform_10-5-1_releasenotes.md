@@ -98,6 +98,25 @@ Fixed bug in which the Real Time Updater kept entering a state of rebalance bein
 
 Backoffice Application will now deploy only one pod (aside from the API Gateway) containing everything needed for a Backoffice instance.
 
+#### Appointment Manager - v.2.1.2
+
+Fixed a minor issue on the `DELETE /appointments/:id` endpoint, which was returning a `500` error when deleting a remote teleconsultation.
+
+#### Care Kit - v.2.1.0
+
+The web-component `ck-export-form`, which allow exporting forms, has been added.
+The property `modalFooterVisible` has been added to the `am-calendar`, allowing hiding the appointment modal footer.
+The field `singleResource` has been added to the `resourceConfig` property of the `am-calendar`, allowing the use of the calendar in appointment mode with only one resource.
+
+#### Form Service BE - v.1.7.0
+
+Added support for exporting forms in csv via a dedicated endpoint, `GET /visualizer/forms/export`.
+See the [documentation](/runtime_suite/form-service-backend/overview.md) for more details about the new feature.
+
+#### Form Service FE - v.1.7.0
+
+A closed form now do not trigger the autosave.
+
 ## Backoffice - 1.3.5
 
 ### New Features
