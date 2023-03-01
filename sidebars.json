@@ -815,6 +815,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/console/project_handbook",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/microservices/microservice_hello_world",
           "type": "doc"
         },
