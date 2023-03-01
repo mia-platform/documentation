@@ -3,9 +3,7 @@ id: configuration
 title: Configuration
 sidebar_label: Configuration
 ---
-In order to configure the Form Service with the Console you need to deploy two services, **Form Service Backend** and the the **Form Service Frontend**. Both are available in the Marketplace.
-
-## Form Service Backend Configuration
+In order to configure the Form Service with the Console you need to deploy two services, **Form Service Backend** and the **Form Service Frontend**. Both are available in the Marketplace.
 
 1. Create the Form Service Backend to serve the APIs needed for the correct functionality of the Form Service Frontend.
 To create the Form Service Backend you can search for it in the Console Marketplace. Choose a name for the new service (e.g. `form-service-backend`).
@@ -16,7 +14,7 @@ The **Form Service Backend** exposes the `GET /builder/config` and `GET /visuali
 These endpoints return the configurations in `JSON` format.
 
 The microservice requires the `FORM_SERVICE_CONFIG_PATH` environment variable to specify the path where the `JSON` is stored. If no path is defined a default configuration will be used.
-The default config has only the *formSchemasCrud*, *formSchemaMapCrud* and *formDraftsCrud* fields with default values. See [Form Service Configuration section](#form-service-configuration) for further details about these parameters.
+The default config has only the *formSchemasCrud*, *formSchemaMapCrud* and *formDraftsCrud* fields with default values. See the following sections for further details about these parameters.
 
 To configure the **Form Service Backend** service with the Console, follow these steps:
 
@@ -25,68 +23,40 @@ To configure the **Form Service Backend** service with the Console, follow these
    - select the configuration *Type* as ConfigMap;
    - insert the configuration *Name*;
    - specify the *Runtime Mount Path* (e.g. `/home/node/app/form-service`).
-3. Add a new `JSON` file specifying its *Name* (e.g. `config.json`). The file content is the Form Service Configuration `JSON` and details about it can be found in the [Form Service Configuration section](#form-service-configuration).
-4. Update the environment variable `FORM_SERVICE_CONFIG_PATH` with the full path of the file created in the previous step (e.g. `/home/node/app/form-service/config.json`).
+3. Add a new `JSON` file specifying its *Name* (e.g. `config.json`). The file content is the Form Service Configuration `JSON` and details about it can be found in the following sections.
+4. Add the environment variable `FORM_SERVICE_CONFIG_PATH` with the full path of the file created in the previous step (e.g. `/home/node/app/form-service/config.json`).
+5. Create the required CRUD collections and configure the environment variables accordingly
 
-### Form Service Configuration
+The following sections provide a reference guide to all the available configuration options.
+
+## Environment variables
+
+| Name                          | Required | Default           | Description                                                                                        |
+|-------------------------------|----------|-------------------|----------------------------------------------------------------------------------------------------|
+| **HTTP_PORT**                 | No       | 3000              | The port exposed by the service.                                                                   |
+| **LOG_LEVEL**                 | No       | `info`            | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                          |
+| **FORM_SERVICE_CONFIG_PATH**  | Yes      | -                 | Path of the config map file containing the main service configuration.                             |
+| **CRUD_PATH**                 | No       | crud-service      | Internal path of the CRUD service.                                                                 |
+| **DRAFT_COLLECTION_ENDPOINT** | No       | /collection-draft | CRUD collection containing the forms drafts.                                                       |
+| **ENABLE_VERSIONING**         | No       | `false`           | If the form data versioning is enabled.                                                            |
+| **LOOKUP_CACHE_TTL**          | No       | 600               | Time To Live (TTL) for the lookup cache entries, expressed in seconds. 0 means data never expires. |
+| **LOOKUP_CACHE_CHECK_PERIOD** | No       | 300               | Time in seconds between expiration checks and deletion of expired keys in the lookup cache.        |
+
+## Service configuration
 
 The Form Service Configuration is a JSON object with the following root properties.
 
-- **1. theming**
-  - *type*: object;
-  - *required*: `false`;
-  - *description*: contains the theming information. This property can be used to customize the Form Builder `CSS`.
-
-See the [theming parameters](#theming-parameters) section for details.
-
-- **2. formSchemasCrud**
-  - *type*: string;
-  - *required*: `false`;
-  - *description*: the endpoint used by the **Form Service Backend** to perform CRUD operation with the forms created with the Form Builder (defaults to `/form-schemas`).
-
-See the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-parameter) section for details.
-
-- **3. formSchemaMapCrud**
-  - *type*: string;
-  - *required*: `false`;
-  - *description*: the endpoint used by the **Form Service Backend** to link form data submitted with the Form Visualizer with form schemas created by the Form Builder (defaults to `/form-schema-map`).
-
-See the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter) section for details.
-
-- **4. formDraftsCrud**
-  - *type*: string;
-  - *required*: `false`;
-  - *description*: the endpoint used by the **Form Service Backend** to perform CRUD operations on drafts (defaults to `/form-drafts`).
-
-See the [form drafts CRUD endpoint parameter](#form-drafts-crud-endpoint-parameter) section for details.
-
-- **5. formMetadata**
-  - *type*: array of objects;
-  - *required*: `false`;
-  - *description*: the additional metadata to show in Form Builder and required in the CRUD that is used to save the Forms created with the Form Builder.
-
-See the [form metadata parameters](#form-metadata-parameters) section for details on how you can add metadata to the Forms created with the Form Builder.
-
-- **6. formSubmitUrls**
-  - *type*: array of objects;
-  - *required*: `false`;
-  - *description*: contains the list of URLs that can be used to perform Form submission. The Form Builder will show the available URLs if the array is provided, otherwise a text field will be shown to allow user to provide the URL.
-
-See the [form submit urls parameters](#form-submit-urls-parameters) section for details.
-
-- **7. formVisualizerOptions**
-  - *type*: object;
-  - *required*: `false`;
-  - *description*: this object contains the Form Visualizer options. In particular it defines the interval between autosaves. If not defined, this inteval is set to a default value (10 seconds) by the **Form Service Frontend**
-
-See the [form visualizer options](#form-visualizer-options-parameters) section for details.
-
-- **8. formBuilderOptions**
-  - *type*: object;
-  - *required*: `false`;
-  - *description*: this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.
-
-See the [form builder options](#form-builder-options-parameters) section for details.
+| Name                      | Type       | Required | Default            | Documentation                                                             | Description                                                                                                                                                                                                                                                                         |
+|---------------------------|------------|----------|--------------------|---------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **theming**               | `Object`   | No       | -                  | [theming](#theming-parameters-theming)                                            | Contains the theming information. This property can be used to customize the Form Builder `CSS`.                                                                                                                                                                                    |
+| **formSchemasCrud**       | `string`   | No       | `/form-schemas`    | [form schemas CRUD endpoint](#form-schemas-crud-endpoint-parameter-formschemascrud)       | The endpoint used by the **Form Service Backend** to perform CRUD operation with the forms created with the Form Builder.                                                                                                                                                           |
+| **formSchemaMapCrud**     | `string`   | No       | `/form-schema-map` | [form schema map CRUD endpoint](#form-schema-map-crud-endpoint-parameter-formschemamapcrud) | The endpoint used by the **Form Service Backend** to link form data submitted with the Form Visualizer with form schemas created by the Form Builder.                                                                                                                               |
+| **formDraftsCrud**        | `string`   | No       | `/form-drafts`     | [form drafts CRUD endpoint](#form-drafts-crud-endpoint-parameter-formdraftscrud)         | The endpoint used by the **Form Service Backend** to perform CRUD operations on drafts.                                                                                                                                                                                             |
+| **formMetadata**          | `Object[]` | No       | -                  | [form metadata](#form-metadata-parameters-formmetadata)                                | The additional metadata shown in the Form Builder and required by the CRUD to save the Forms created with the Form Builder.                                                                                                                                                         |
+| **formSubmitUrls**        | `Object[]` | No       | -                  | [form submit urls](#form-submit-urls-parameters-formsubmiturls)                          | Contains the list of URLs that can be used to perform Form submission. The Form Builder will show the available URLs if the array is provided, otherwise a text field will be shown to allow user to provide the URL.                                                               |
+| **formVisualizerOptions** | `Object`   | No       | -                  | [form visualizer](#form-visualizer-options-parameters-formvisualizeroptions)                    | This object contains the Form Visualizer options. In particular it defines the interval between autosaves and the lookups to perform when exporting form data. If the autosave interval is not defined, it is set to a default value (10 seconds) by the **Form Service Frontend**. |
+| **formBuilderOptions**    | `Object`   | No       | -                  | [form builder](#form-builder-options-parameters-formbuilderoptions)                          | this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.                                                                                                          |
+| **defaultClientType**     | `string`   | No       | -                  |                                                                           | Contains (from version `1.2.0`) the default client type that will be forwarded to other platform services when the client type header is not provided from the frontend service (defaults to `formService`).                                                                        |
 
 The `JSON` file is structured like the following example:
 
@@ -97,27 +67,15 @@ The `JSON` file is structured like the following example:
   },
   "formSchemasCrud": "/form-schemas",
   "formSchemaMapCrud": "/form-schema-map",
-  "formMetadata": [
-    ...
-  ],
-  "formSubmitUrls": [
-    ...
-  ],
-  "formVisualizerOptions": {
-    ...
-  },
-  "formBuilderOptions": {
-    ...
-  }
+  "formDraftsCrud": "/form-drafts",
+  "formMetadata": [],
+  "formSubmitUrls": [],
+  "formVisualizerOptions": {},
+  "formBuilderOptions": {}
 }
 ```
 
-- **7. defaultClientType**
-  - *type*: string;
-  - *required*: `false`;
-  - *description*: contains (from version `1.2.0`) the default client type that will be forwarded to other platform services when the client type header is not provided from the frontend service (defaults to `formService`).
-
-#### Theming parameters
+### Theming parameters (`theming`)
 
 This part of the configuration object allows the customization of the Form Builder UI colors. At the moment the following parameters are supported:
 
@@ -135,7 +93,7 @@ Here an example of a *theming* object to add in Form Builder configuration `JSON
   }
 ```
 
-### Form Schemas CRUD endpoint parameter
+### Form Schemas CRUD endpoint parameter (`formSchemasCrud`)
 
 This parameter is the CRUD endpoint used in the **Form Service Backend** to perform CRUD operations on the forms created with the Form Builder. It can be any CRUD endpoint. The default value is `/form-schemas`.
 
@@ -147,15 +105,17 @@ The mandatory properties of the CRUD are:
 - **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved.
 
 :::note
+
 The `formVisualizerOptions` property allows the definition of Form.io options related to the form schema,
 for instance, translation options. These options are then used by the Form Visualizer.
 
 This feature is available from Form Service Backend v1.2.2.
+
 :::
 
-In addition, you have to also add to your CRUD properties for the additional Form metadata, defined in [form metadata parameters](#form-metadata-parameters) section.
+In addition, you have to also add to your CRUD properties for the additional Form metadata, defined in [form metadata parameters](#form-metadata-parameters-formmetadata) section.
 
-### Form Schema map CRUD endpoint parameter
+### Form Schema map CRUD endpoint parameter (`formSchemaMapCrud`)
 
 This CRUD endpoint is used by the **Form Service Backend** to link form data (submitted with a Form Visualizer) to their form schemas, created with the Form Builder. The default value is `/form-schema-map`.
 
@@ -176,7 +136,7 @@ The **Form Service Backend** `PUT /visualizer/forms/:id` endpoint will reply wit
 
 :::
 
-### Form Drafts CRUD endpoint parameter
+### Form Drafts CRUD endpoint parameter (`formDraftsCrud`)
 
 This parameter is the CRUD endpoint used in the **Form Service Backend** to perform CRUD operations on drafts. It can be any CRUD endpoint. The default value is `/form-drafts`.
 
@@ -186,8 +146,7 @@ The main properties of the CRUD are:
 - **formSchemaId**, of type *string*; the ID of the form schema;
 - **stableFormId**, of type *string*; The ID of the stable form of the draft.
 
-
-### Form Metadata parameters
+### Form Metadata parameters (`formMetadata`)
 
 This config section specifies the optional metadata of the Forms created with the Form Builder. An array of *form field* objects must be defined with the following properties:
 
@@ -202,12 +161,12 @@ Here an example of an additional *category* field:
     {
       "name": "category",
       "type": "string",
-	  "label": "Category"
+	    "label": "Category"
     }
   ]
 ```
 
-### Form submit urls parameters
+### Form submit urls parameters (`formSubmitUrls`)
 
 This config section specifies the URLs available to the user to specify where the Form data will be saved upon submission. An array of *submit url* objects must be defined with the following properties:
 
@@ -239,6 +198,7 @@ The user of the Form Builder will see a dropdown menu with the specified options
 The *submit urls* can be either provided with the [CRUD Service](../crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
 
 - `GET /{id}`: to return the submitted data of a form by ID;
+- `GET /export`: to return all the submitted forms data as newline-delimited JSON;
 - `POST /`: to save the data of a new submitted form filled by a user;
 - `PATCH /{id}`: to update a submitted form by ID;
 - `DELETE /{id}`: to delete a submitted form, it is required to allow rollback when inserts in the *formSchemaMapCrud* fail;
@@ -247,19 +207,121 @@ More details on the submit URLs APIs can be found at [this page](submit_urls).
 
 :::
 
-### Form Visualizer Options parameters
+### Form Visualizer Options parameters (`formVisualizerOptions`)
 
-This part of the configuration object allows the customization of the Form Visualizer, in particular the value of the inteval in milliseconds between autosaves.
+This part of the configuration object allows the customization of the Form Visualizer, in particular the value of the inteval in milliseconds between autosaves and the lookups to perform when exporting form data.
 
 Here you can find an example of a *formVisualizerOptions* object:
 
 ```json
-"formVisualizerOptions": {
-    "autosaveIntervalValueMs": "5000"
-  }
+{
+  "autosaveIntervalValueMs": "5000",
+  "exportFields": [
+    "_id",
+    "__STATE__",
+    "createdAt",
+    "creatorId",
+    "updatedAt",
+    "updaterId",
+    "formSchemaId"
+  ],
+  "exportLookups": {
+    "formSchemaId": {
+      "lookupDataSource": "http://crud-service/form-schemas",
+      "lookupKey": "_id",
+      "lookupValue": "{{name}}"
+    }
+  },
+  "exportRedirects": [
+    {
+      "submitUrl": "http://form-data-manager/forms",
+      "exportUrl": "http://crud-service/forms"
+    }
+  ]
+}
 ```
 
-### Form Builder Options parameters
+#### Export fields (`exportFields`)
+
+:::info
+
+**v1.7.0**. This setting is available only since version 1.7.0
+
+:::
+
+When you export the form data to a CSV, the CSV file includes all the fields available in the current version of the form schema. If you want to include additional fields available in the response of the `GET /export` endpoint, you must add the field names in this configuration options. These fields are mapped to CSV columns before the form data in the exact same order as they are provided in the configuration. If the form data is stored in a CRUD collection, you may want to include [its predefined properties](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties).
+
+#### Export lookups (`exportLookups`)
+
+:::info
+
+**v1.7.0**. This setting is available only since version 1.7.0
+
+:::
+
+When you export form data by calling the `GET /visualizer/forms/export` endpoint, you can configure the **Form Service Backend** to resolve the value of a CSV column through a CRUD lookup. For example, you may want to replace the form schema ID with the name of the form as shown in the Backoffice.
+
+To configure the lookup you must assign to the `exportLookups` field an object value, whose properties correspond to the names of the CSV columns you want to perform the lookup on (`formSchemaId` in the example above). Remember, you must use the colum name exactly as it appears on the CSV, so for nested fields you should use the `outerField.innerField` notation.
+
+Each lookup must have the following properties:
+- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](../crud-service/overview_and_usage);
+- **lookupKey**: the data source field to perform the lookup on, searching for the record matching the column value;
+- **lookupValue**: the value to replace the column value with, must be a string with placeholders enclosed between double curly braces; each placeholder must refer a data source field and will be evaluated at runtime and replaced with the corresponding value.
+
+To see how it works, let's suppose we have a CSV with a single row looking like this:
+
+```csv
+"_id","formSchemaId","data.birthDate","data.birthPlace"
+"6246b2aff30214fb40d3e86d","62162180544cea83e8e130e7","2000-06-15","Rome"
+```
+
+If you configured the **Form Service Backend** as shown above the lookup algorithm will search for a record with the `_id` field (the lookup key) equals to `62162180544cea83e8e130e7` (the column value). If the data source contains the following record:
+
+```json
+{
+  "_id": "62162180544cea83e8e130e7",
+  "name": "Medical History 2023"
+}
+```
+
+the lookup algorithm would find a match and resolve the `name` placeholder with `Medical History 2023`, the value of the corresponding record field, resulting in the following CSV:
+
+```csv
+"_id","formSchemaId","data.birthDate","data.birthPlace"
+"6246b2aff30214fb40d3e86d","Medical History 2023","2000-06-15","Rome"
+```
+
+:::warning
+
+If, for any reason, a lookup on a form field fails, the service ignores the error and simply leaves the existing value unmodified.
+
+:::
+
+#### Export redirects (`exportRedirects`)
+
+:::info
+
+**v1.7.0**. This setting is available only since version 1.7.0
+
+:::
+
+If you are exporting form data associated to a schema with a `submitUrl` pointing to an external service which does not expose a `GET /export` but acts as a proxy towards a CRUD or service with a [compliant API](submit_urls.md), you can configure a redirect, specifying the following properties:
+
+- **submitUrl**: the original submit URL, must match exactly a lookup `lookupDataSource`;
+- **exportUrl**: the redirect URL, that is going to be used in place of the `submitUrl` to call the `GET /export` endpoint (the `/export` path is appended at runtime, must not be included in the `exportUrl`).
+
+So, if we have a redirect configured as follows:
+
+```json
+{
+  "submitUrl": "http://form-data-manager/forms",
+  "exportUrl": "http://crud-service/forms"
+}
+```
+
+the **Form Service Backend**, when encounters a lookup with `submitUrl` equals to `http://form-data-manager/forms`, sends a `GET http://crud-service/forms/export` request to fetch the lookup data.
+
+### Form Builder Options parameters (`formBuilderOptions`)
 
 This part of the configuration object allows the customization of the Form Builder interface by providing the components you wish to add to the builder and customize the options available in their settings.
 
@@ -428,7 +490,7 @@ Here you can find an example of a *formBuilderOptions* object that can be used i
  }
 ```
 
-### Default client type parameter
+### Default client type parameter (`defaultClientType`)
 
 From version `1.2.0` the service checks if the `CLIENTTYPE_HEADER_KEY` [environment variable](../../development_suite/api-console/api-design/services#environment-variable-configuration) is already available in the request's headers. If missing, this parameter allows the customization of the client type that will be forwarded to other platform services. The default value is `formService`.
 
@@ -438,36 +500,56 @@ An [API Key](../../development_suite/api-console/api-design/api-key) with the de
 
 :::
 
-## Create required CRUDs
+## CRUD collections
 
-###  form_schemas
+All the following CRUD collections are required.
+
+### form_schemas
 
 In order to perform CRUD operations on the forms created with the Form Service, we recommend to [create a CRUD](../../development_suite/api-console/api-design/crud_advanced) named `form_schemas`.
 
-The required properties (specified in the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-parameter) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schemas_crud_fields.json">json file</a>. If any, you need to also add the additional [form metadata parameters](#form-metadata-parameters).
+The required properties (specified in the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-parameter-formschemascrud) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schemas_crud_fields.json">json file</a>. If any, you need to also add the additional [form metadata parameters](#form-metadata-parameters-formmetadata).
 
 You also need to expose a new endpoint `/form-schemas` following [this guide](../../development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formSchemasCrud* parameter accordingly.
 The type of this endpoint is `CRUD`.
 
-###  form_schema_map
+### form_schema_map
 
 This CRUD is required and used by the **Form Service Backend** to link form data (submitted by a Form Visualizer user) with forms created with the Form Builder.
 
-The required properties (specified in the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schema_map_crud_fields.json">json file</a>.
+The required properties (specified in the [form schema map CRUD endpoint parameter](#form-schema-map-crud-endpoint-parameter-formschemamapcrud) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schema_map_crud_fields.json">json file</a>.
 
 If you want to use the default value of the *formSchemaMapCrud* you need to expose this CRUD with the `/form-schema-map` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
-###  form_drafts
+### form_drafts
 
 This CRUD is required and used by the **Form Service Backend** to store draft data (inserted by a Form Visualizer user).
 
-The required properties (specified in the [form drafts CRUD endpoint parameter](#form-drafts-crud-endpoint-parameter) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_draft_crud_fields.json">json file</a>.
+The required properties (specified in the [form drafts CRUD endpoint parameter](#form-drafts-crud-endpoint-parameter-formdraftscrud) section) of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_draft_crud_fields.json">json file</a>.
 
 If you want to use the default value of the *formDraftsCrud* you need to expose this CRUD with the `/form-drafts` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
 Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../form-service-frontend/configuration).
 
 ## Other configurations
+
+### Form export lookup cache
+
+:::info
+
+**v1.7.0**. This feature is available only since version 1.7.0
+
+:::
+
+When you call the `GET /visualizer/forms/export` endpoint to export form data and you have configured some lookups (see section [Export lookups](#export-lookups-exportlookups)), the service uses an internal in-memory cache to store the information required to resolve the lookups, to avoid making a lot of HTTP requests to the external systems. For example, if we had to perform lookups on 3 columns on 100 forms, this may result in up to 300 HTTP requests.
+
+:::danger
+
+Since the service fills the lookup cache with the data required to resolve the lookups, if the data source contains a lot of records, you may notice a high RAM usage that could cause the containers to crash if the service is not configured appropriately.
+
+:::
+
+You can set the expiration and check period for the lookup cache using the environment variables **LOOKUP_CACHE_TTL** and **LOOKUP_CACHE_CHECK_PERIOD**, see the [environment variables section](#environment-variables) for more details.
 
 ### Form data versioning support
 

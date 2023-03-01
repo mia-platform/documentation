@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.5] - 2023-02-23
+
+### Added
+
+- new component `bk-dropdown` is available
+- `bk-form-modal` with `extraEndpoint` property injects a `triggeredBy` key equal to `bk-form-modal-extra-endpoint` into `success`/`error` events
+- `bk-simple-list` supports `height` property, setting max-height of the list body
+- new Handlebars helper `nFormat` allows to format fields of type `number` and format `currency`, specifying number of decimal places, decimal separator, group separator
+- new component `bk-notification-center` is available
+- `bk-filters-manager` component allows persistent filters
+
+### Fixed
+
+- `bk-expanded-filters` supports internationalized labels
+- output of fields with format `editor` do not use custom `quill` classes in form components. Refer to [this issue](https://github.com/zenoamaro/react-quill/issues/553) for further details
+
 ## [1.3.4] - 2023-02-09
 
 ### Added
@@ -18,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - new component `bk-atlas-dashboard` is available
 - `bk-card` component supports dynamic footer and buttons using `template`-`configMap` pair
 - `bk-card` uses `visualizationOptions` in dataschema
-- `bk-button` supports `Action`-sdk thorugh property `action`. `clickConfig` is now deprecated and will be removed in future releases, please refer to documentation for migration instructions.
+- `bk-button` supports `Action`-sdk thorugh property `action`. `clickConfig` is now deprecated and will be removed in future releases, please refer to documentation for migration instructions
 
 ### Fixed 
 

@@ -124,7 +124,7 @@ adds `foo` to the headers of the call with value `bar`, adds query parameter `so
 
 Field `config.triggeredBy` has a duplicate function:
 
-- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./components/misc.md#bk-notifications), in order to display notification messages upon success/failure of the action,
+- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./components/misc.md#triggering-notifications-from-actions), in order to display notification messages upon success/failure of the action,
 
 - it allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action.
 
@@ -345,7 +345,7 @@ Actions of type `copy` allow to copy data to clipboard. They require input data 
 `config.path` is the path to apply to the data source, in javascript notation, to reach the data to copy to clipboard. In case the data is not of type string, it is automatically stringified.
 
 :::info
-If the copied value is an object or an array, [helper `rawObject`](#example-3) should be used when using references to the forwarded data into [chained actions](#action-chaining). For instance:
+If the copied value is an object or an array, [helper `rawObject`](./core_concepts.md#rawobject) should be used when using references to the forwarded data into [chained actions](#action-chaining). For instance:
 ```json
 {
   "type": "copy",
@@ -508,7 +508,7 @@ the above action is equivalent to:
 
 ### Example 3
 
-It is possible to avoid to stringify dynamic values within a configuration using the custom helper `rawObject`.
+It is possible to avoid to stringify dynamic values within a configuration using the custom helper [rawObject](./core_concepts.md#rawobject).
 ```json
 {
   "iconId": "fas fa-users",

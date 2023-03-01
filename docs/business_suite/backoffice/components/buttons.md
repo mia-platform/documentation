@@ -283,7 +283,7 @@ The possible actions are:
 `bk-button` is configurable to define an action to be fired when upon clicking.
 
 :::warning
-`clickConfig` property is deprecated and will be replaced by `action` property in future releases. The [following paragraph](#migrating-from-clickconfig-to-action) explains how to update configurations.
+`clickConfig` property is deprecated from version 1.3.4 and will be completely replaced by `action` property in future releases. [A guide](#migrating-from-clickconfig-to-action) is provided explaining how to update configurations.
 :::
 
 ### Migrating from `clickConfig` to `action`
@@ -297,7 +297,9 @@ The main steps to follow for transitioning from `clickConfig` to `action` consis
   - `triggeredBy` field is not set by default by `bk-button` in success/fail events, it should be specified in `action.config`
   - `returnEvent` key is not present in actions. Rather, `hooks` key should be used, chaining actions
   - each action individually controls whether the onclick event should propagate, instead of using `stopPropagationOnClick` property of `bk-button`
-  - some type of action implement a slightly different interface, as explained in the following
+  - actions of type `event` and `file-upload` implement a slightly different interface
+
+In particular:
 
 #### Event
 
@@ -426,7 +428,7 @@ becomes:
 }
 ```
 
-Note how the payload of the chained action is not automatically set to the response of the first action, but rather has to be specified. `data` is the default key used by most actions to reference the value that was returned by the previous action (if any); `rawObject` keyword prevents the interpolated data from being converted to string.
+Note how the payload of the chained action is not automatically set to the response of the first action, but rather has to be specified. `data` is the default key used by most actions to reference the value that was returned by the previous action (if any); [rawObject](../core_concepts.md#rawobject) keyword prevents the interpolated data from being converted to string.
 
 #### Key `triggeredBy`
 
@@ -666,9 +668,7 @@ In this configuration the property `urlMask` is specified to get the value of th
 
 - `selectedData`, contains an array of objects representation of the selected data. Requires the button to be [bulk mode](#bulk-button) - that is, property `bulkButton` to be true. Selected data is then accessible through `{{rawObject selectedData}}`.
 
-- extra context
-
-`bk-button` supports extra context, which could be set by the user using `context` property, or, most of the times, by a parent component that mounts the button. For instance, [bk-table](./data_visualization.md#bk-table) component allows render a table that mounts `bk-button` components inside its cells. `bk-table` provides the mounted buttons with [extra context](./data_visualization.md#dynamic-properties-interpolation) which can be used in action configuration.
+- extra context. `bk-button` supports extra context, which could be set by the user using `context` property, or, most of the times, by a parent component that mounts the button. For instance, [bk-table](./data_visualization.md#bk-table) component renders a table that mounts `bk-button` components inside its cells. `bk-table` provides the mounted buttons with [extra context](./data_visualization.md#dynamic-properties-interpolation) which can be used in action configuration.
 
 ### Require confirmation before executing an action
 
@@ -708,6 +708,7 @@ It is possible to ask for confirmation before executing an action using a [requi
 
 If `bk-confirmation-modal` component is included in the plugin, it will react to the `require-confirm` event emitted by the button, using the `configOk` key in the payload for determining what action should be executed upon confirmation.
 
+Note, in such configuration, `loadingOnAction` and `disableOnAction` should not be set to true, as the button will enter loading / disabled status without ever leaving it - more information on `loadingOnAction` and `disableOnAction` properties [follow](#loading-/-disable-on-action).
 
 ### Bulk button
 
@@ -782,13 +783,13 @@ Example of configuration:
 ```
 
 
-
 ### Loading / disable on action
 
 Properties `loadingOnAction` and `disableOnAction` put the button in loading/disabled state when an action of type `event`, `http`, `file-upload` is executed.
 The button will disable loading/disabled status once any result event is received about the outcome of the action. Result events are: [success](../events.md#success), [error](../events.md#error), [cancel](../events.md#cancel).
+
 Note that for actions of type `event`, result events are not emitted by `bk-button` itself, but rather require other components to do so - typically clients, like[bk-crud-client](./clients.md#bk-crud-client). Generally, clients emit result events after performing http requests.
-Thus, in order to avoid never leaving loading/disabled status, a `bk-button` component that emits events should only have `loadingOnAction` or `disableOnAction` set to true if a result event is triggered after clicking - that is, if the button sends events that trigger an http call from the clients included in configuration, such as [create-data](../events.md#create-data), [update-data](../events.md#update-data), [delete-data](../events.md#delete-data) for `bk-crud-client`.
+Consequently, in order to avoid entering loading/disabled status without ever leaving it, a `bk-button` component that emits events should only have `loadingOnAction` or `disableOnAction` set to true if a following result event is eventually triggered - that is, if the button sends events that triggers an http call from clients. For instance, [create-data](../events.md#create-data), [update-data](../events.md#update-data), [delete-data](../events.md#delete-data) for `bk-crud-client`.
 
 
 #### Example
@@ -831,18 +832,18 @@ with such configuration, the button will enter loading state twice, once for eac
   1) `bk-button` enters loading state
   2) `bk-button` performs an http post call
   3) `bk-button` emits a [success](../events.md#success) or [error](../events.md#error) event depending on the result of the call
-  4) `bk-button` dismisses loading state, and emits a `create-data` event with specified payload
-  5) `bk-button` enters loading state (caused by emitting the `create-data` event)
+  4) `bk-button` dismisses loading state, and emits an event with label `create-data` and specified payload
+  5) `bk-button` enters loading state (caused by emitting the `create-data` event on step 4)
   6) `bk-crud-client` listens to the `create-data` event, which triggers an http post request
   7) `bk-crud-client` emits a [success](../events.md#success) or [error](../events.md#error) event depending on the result of the call
-  8) `bk-button` dismisses loading state after listening to the event emitted by `bk-crud-client`
+  8) `bk-button` dismisses loading state after listening to the event emitted by `bk-crud-client` on step 7
 
 `bk-button` thus enters and dismisses loading state twice.
 
 ### `clickConfig` - **deprecated**
 
 :::warning
-`clickConfig` property is deprecated and will be replaced by `action` property in future releases. [A guide](#migrating-from-clickconfig-to-action) is provided explaining how to update configurations.
+`clickConfig` property is deprecated from version 1.3.4 and will be completely replaced by `action` property in future releases. [A guide](#migrating-from-clickconfig-to-action) is provided explaining how to update configurations.
 :::
 
 `clickConfig` allows to define an action to be fired when the button is clicked. The possible actions are:
@@ -1093,8 +1094,8 @@ For example:
 |`stopPropagationOnClick`|`stop-propagation-on-click`|boolean|true|configures the onClick to disable propagation when action is fired |
 |`type`|`type`|string|'primary'|button type property |
 |`urlMask`|`url-mask`|string|''|url mask to apply to the current path to extract dynamic parameters |
-|`clickConfig`| - |ClickConfig| - | schema describing how to configure onCLick event **NOTE** - this property is **deprecated**, [use `action` instead](#migrating-from-clickconfig-to-action) |
-|`action`| - |[Action](../actions.md)| - | schema describing how to configure onCLick event |
+|`clickConfig`| - |ClickConfig| - | schema describing how to configure onClick event **NOTE** - this property is **deprecated**, [use `action` instead](#migrating-from-clickconfig-to-action) |
+|`action`| - |[Action](../actions.md)| - | schema describing how to configure onClick event |
 |`bulkButton`| - | boolean | false | whether to use it as a bulk button or not. If set to true, it listens to selected-data-bulk event |
 ### Listens to
 
@@ -1112,6 +1113,95 @@ This component listens to no event.
 ### Bootstrap
 
 None
+
+
+## bk-dropdown
+
+Generic dropdown with custom actions for each element of the menu.
+
+```html
+<bk-dropdown></bk-dropdown>
+```
+
+![dropdown](../img/bk-dropdown.png)
+
+### Configuration
+
+Through `menuItems` property, it is possible to configure the dropdown items. For each item choose a `label` ([LocalizedText](../core_concepts.md#localization-and-i18n)) and an `action` to be execute on click. For actions configuration, read [actions documentation](../actions.md#actions).
+
+:::info
+Each action has only `currentUser` as context.
+:::
+
+
+#### Example
+
+```json
+...
+  {
+    "tag": "bk-dropdown",
+    "properties": {
+      "label": {
+        "en": "Create new...",
+        "it": "Crea nuovo..."
+      },
+      "menuItems": [
+        {
+          "label": {
+            "en": "New rider",
+            "it": "Nuovo fattorino"
+          },
+          "action": {
+            "type": "event",
+            "config": {
+              "events": "add-new"
+            }
+          }
+        },
+        {
+          "label": "New transport type",
+          "action": {
+            "type": "push",
+            "config": {
+              "url": "/transport-type"
+            }
+          }
+        }
+      ]
+    }
+  }
+  ...
+```
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`label`| - |[LocalizedText](../core_concepts.md#localization-and-i18n)|{}|dropdown label |
+|`iconId`|`icon-id`|string| - |defines which icon should be rendered in the dropdown, if this property is not defined or doesn't match any icon no icon will be rendered |
+|`iconPlacement`| - |"default" \| "left" \| "right"|"default"|defines where icon should be rendered, either left or right defaulting on left |
+|`listenToLoadingData`|`listen-to-loading-data`|boolean|false|configures the dropdown to be loading when trigger by a loading-data event |
+|`shape`|`shape`|string|'round'|dropdown button shape property |
+|`type`|`type`|string|'primary'|dropdown button type property |
+|`menuItem`|-|DropdownItem|-|dropdown menu items configuration |
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+
+### Bootstrap
+
+None
+
 
 ## bk-navigation-back-arrow
 

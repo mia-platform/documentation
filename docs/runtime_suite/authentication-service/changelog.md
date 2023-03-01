@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.0 - 28-02-2023
+
+### Added
+
+- Added option `authorizeStateRequired`, that lets the client application define the `state` parameter during authorization 
+- Added option `allowedRedirectUrlsOnSuccessfulLogin`, which allows only a predefined set of redirect urls that can be defined by the client
+
+### Fixed
+
+- add "miauserid" to AdditionalHeadersToProxy env
+- return 401, instead of 500, if token not found in redis
+- use SameSite=Lax as default when sending a cookie to comply with browser defaults
+- Refresh token does not check the provider userinfo when not needed
+- Documented refresh token endpoint
+
 ## 2.7.1 - 03-11-2022
 
 ### Fixed

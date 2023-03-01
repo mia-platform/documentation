@@ -30,8 +30,7 @@ in which is mounting plugins and the browser will
 
 ## bk-url-parameters
 
-provides a URL mask to separate the plugin URL (handled by the micro-frontend orchestrator) and the rest
-of the pathname useful to scope the detail plugin
+[`bk-url-parameters`](./components/adapters.md#bk-url-parameters) provides a URL mask to separate the plugin URL (handled by the micro-frontend orchestrator) and the rest of the pathname useful to scope the detail plugin
 
 ```json
 {
@@ -49,15 +48,11 @@ This component listens to the `window.location.href` only
 
 ### interplay with bk-crud-client and bk-crud-lookup-client
 
-While `bk-url-parameters` sends a `change-query` event with payload `{id: "<some id>"}`, the `change-query` subscribers which are `bk-crud-client` and `bk-crud-lookup-client` will permanently modify their http fetching
-query by including a default search parameters formed as `?...&id=<some id>&...`. This URL editing will
-scope the entire page providing the concept of a "detail" layout with respect to the "collection"
-layout centered on a table.
+While `bk-url-parameters` sends a [change-query](./events.md#change-query) event with payload `{id: "<some id>"}`, the `change-query` subscribers which are [`bk-crud-client`](./components/clients.md#bk-crud-client) and [`bk-crud-lookup-client`](./components/clients.md#bk-crud-lookup-client) will permanently modify their http fetching query by including a default search parameters formed as `?...&id=<some id>&...`. This URL editing will scope the entire page providing the concept of a "detail" layout with respect to the "collection" layout centered on a table.
 
 ## bk-state-adapter
 
-provides the capability to inject `pushState` data into the `EventBus` like if the user already performed
-some operations
+[`bk-state-adapter`](./components/adapters.md#bk-state-adapter) provides the capability to inject `pushState` data into the `EventBus` like if the user already performed some operations
 
 If the button clicked on the "collection" plugin provides a special key `__BK_INIT` (whose name is configurable), its all content will be parsed to the `EventBus`
 
@@ -75,7 +70,7 @@ window.history.state = {
 }
 ```
 
-in the previous example `EventBus` will pipe an `add-new` event with the given `detailId` payload. The corresponding action on a `bk-button` embedded into the "collection" plugin would be
+in the previous example `EventBus` will pipe an `add-new` event with the given `detailId` payload. The corresponding action on a [`bk-button`](./components/buttons.md#bk-button) embedded into the "collection" plugin would be
 
 ```json
 {
@@ -152,10 +147,8 @@ order
 }
 ```
 
-On form submission, if the creation POST is, successful a context is provided with the
-HTTP response context to the `afterFinishEvents`.
-According to the configuration shown above a `pushState` is called and navigation to
-`/order-details/<new id>` is handled by the micro-frontend orchestrator.
+On form submission, if the creation POST is, successful a context is provided with the HTTP response context to the [`afterFinishEvents`](./components/data_manipulation.md#after-submission).
+According to the configuration shown above a `pushState` is called and navigation to `/order-details/<new id>` is handled by the micro-frontend orchestrator.
 
 On landing onto `order-details` plugin, we should focus on the following config
 

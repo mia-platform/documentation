@@ -359,7 +359,7 @@ Footer supports dynamic configurations via [handlebars notation](https://handleb
 ```
 
 will display a card having as footer sub-title the value of the field 'name' of the displayed data.
-It is possible to replace handlebars with an object instead of a string value using the keyword `rawObject`:
+It is possible to replace handlebars with an object instead of a string value using the keyword [rawObject](../core_concepts.md#rawobject):
 
 ```json
 {
@@ -713,7 +713,7 @@ In the example configuration below we have a card that declares an array of URL,
 
 which will mount a `div` component in place of the field `name`.
 `args.[0]` refers to the value of the corresponding field (in this case, `name`). `args.[1]` is also available, referencing the full data of the card.
-Helper `rawObject` is also available, analogously to [buttons](#footer).
+Helper [rawObject](../core_concepts.md#rawobject) is also available, analogously to [buttons](#footer).
 
 ### Properties & Attributes
 
@@ -1032,7 +1032,7 @@ It is possible to use the whole item data as input using key `context`:
   }
 }
 ```
-`rawObject` is a custom helper signaling that `context` should not be stringified.
+[`rawObject`](../core_concepts.md#rawobject) is a custom helper signaling that `context` should not be stringified.
 
 :::info
 Keyword `context` does not include the values of `thumbnail`, `preview`, `title`, `subTitle`.
@@ -1123,7 +1123,6 @@ represents a list of simple elements to be visualized.
 ```
 
 `bk-simple-list` is used to display a list of simple elements (strings, numbers, ...) or even lookups. The set to display is chosen through the `datasourceKey`, which should match with one of the entries in the `dataSchema` of the page.
-A `label` can be specified to be displayed as header of the list.
 
 ![bk-simple-list](../img/bk-simple-list.png)
 
@@ -1145,6 +1144,8 @@ With this configuration, the field `items` of the dataSchema will be displayed.
 
 The list of elements to display is passed to the component using the `display-data` event, which contains the data in its payload. If the datasourceKey refers to a lookup field, it listens to `lookup-data` event which contains the solved lookups.
 
+### Title
+
 List title is configurable via the property `label`, which can be a string, [LocalizedText](../core_concepts.md#localization-and-i18n), or an `HeaderProps` object with the following fields:
 
 | property | type | description |
@@ -1152,7 +1153,7 @@ List title is configurable via the property `label`, which can be a string, [Loc
 | title | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | title of the list (h1) |
 | subtitle | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | subtitle (h2) displayed below the title |
 | badge | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | badge displayed right of the title |
-| icon | string \| [LocalizedText](../core_concepts.md#localization-and-i18n) | icon displayed left of the title |
+| icon | string | icon displayed left of the title |
 
 
 For instance, the following is valid configuration for `label` property:
@@ -1172,9 +1173,10 @@ For instance, the following is valid configuration for `label` property:
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`datasourceKey`|`datasource-key`|string|''|the object key that will be used to pick the data to show. |
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`label`| - |[LocalizedText](../core_concepts#localization-and-i18n) \| `HeaderProps` |{}|header of the list. |
-|`loading`|`loading`|boolean|true|sets list on loading at DOM connection |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`label`| - |[LocalizedText](../core_concepts.md#localization-and-i18n) \| [HeaderProps](#title) |{}|header of the list. |
+|`loading`|`loading`|boolean|true| sets list on loading at DOM connection |
+|`height`|`height`|string \| number|-| max height of the body of the list before. Overflowing data is accessible through vertical scrolling. |
 
 ### Listens to
 
@@ -1198,13 +1200,13 @@ None
 ```
 
 ![table](../img/bk-table.png)
-Displays a dataset in rows and columns according to a given [data schema](../page_layout#data-schema).
+Displays a dataset in rows and columns according to a given [data schema](../page_layout.md#data-schema).
 
 ### Object and Array rendering
 
 While rendering an array or an object from a compliant `DataSchema` (either `array` or `object` key type), multiple options are available
 
-#### object
+#### Object
 
 1. `(unspecified)` when no extra `DataSchema` key is explicitly set the object renders either as `{...}` or `{}` depending on whether there are keys or not.
 2. `dataSchema: <data-schema>` triggers nested visualization of objects
@@ -1218,7 +1220,7 @@ While rendering an array or an object from a compliant `DataSchema` (either `arr
 }
 ```
 
-#### array
+#### Array
 
 1. `(unspecified)` when no extra `DataSchema` key is explicitly set visualization informs about the number of elements contained within the array.
 2. `dataSchema: <data-schema>` triggers nested visualization of objects
@@ -1258,23 +1260,28 @@ It is possible to insert a generic WebComponet as cell defining into the dataSch
 ```
 
 In this case, we are creating the WebComponent identified by the tag `my-button` and giving to him all the keys into the object `properties` as attributes.
+
 This is the same as doing `<my-button content="Click Me!" />`.
 
 #### Dynamic properties interpolation
 
-Each cell receives the following parameters when is rendered:  
+Each cell receives the following parameters when is rendered:
 
-- `args`: an array with the cell arguments:
+* `args`: an array with the cell arguments:
+
   - value: containing the value relative to dataSchema.  
-  - record: an object containing the row content.  
+  - record: an object containing the row content.
   - index: a number with the cell index into the table.
-- `currentUser`: an object with the logged user's data.  
-- `eventBus`: an object containing the eventBus instance.  
-- `headers`: an object containing the headers.  
-All the above parameters can be dynamically interpolated into the WebComponent properties through [handlebars](https://handlebarsjs.com/).
-Following an example of interpolation.  
-Given the following schema:  
 
+* `currentUser`: an object with the logged user's data.  
+* `eventBus`: an object containing the eventBus instance.  
+* `headers`: an object containing the headers.  
+
+All the above parameters can be [dynamically interpolated](../core_concepts.md#dynamic-configuration) into the WebComponent properties through [handlebars](https://handlebarsjs.com/).
+
+Following an example of interpolation.  
+
+Given the following schema:
 ```json
 "object": {
   "type": "custom",
@@ -1300,10 +1307,9 @@ Given the following schema:
 }
 ```
 
-And these (simplified) parameters:
+And these (simplified) parameters: 
 
-- **args**:
-
+* **args**: 
 ```json
 [
   "Column Name",
@@ -1312,16 +1318,14 @@ And these (simplified) parameters:
 ]
 ```  
 
-- **currentUser**:
-
+* **currentUser**: 
 ```json
 {
   "name": "Bob"
 }
 ```
 
-- **headers**:
-
+* **headers**: 
 ```json
 {
   "content-type": "application/json"
@@ -1357,10 +1361,11 @@ The `properties` object is interpolated with render parameters and the output co
 }
 ```
 
-By default, the handlebars interpolation cast everything to string, the `rawObject` key references to a custom handlebars supporter that parse the value to interpolate as an object instead of a string. In the above example the body of HTTP call is interpolated as the string "[object Object]" but the headers are interpolated with the real object.
-If is also possible to provide a `template`-`configMap` pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
-For instance, assuming the same example parameters as the previous example, the following configuration:
+By default, the handlebars interpolation cast everything to string. The [`rawObject`](../core_concepts.md#rawobject) key references to a custom handlebars supporter that parse the value to interpolate as an object instead of a string. In the above example the body of HTTP call is interpolated as the string "[object Object]" but the headers are interpolated with the real object.
 
+If is also possible to provide a `template`-`configMap` pair instead of a value for a property. In such cases, the value of the property is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
+
+For instance, assuming the same example parameters as the previous example, the following configuration:
 ```json
 "object": {
   "type": "custom",
@@ -1384,7 +1389,6 @@ For instance, assuming the same example parameters as the previous example, the 
 ```
 
 will be resolved to:
-
 ```json
 "object": {
   "type": "custom",
@@ -1400,7 +1404,35 @@ will be resolved to:
 }
 ```
 
-### Customize table data
+##### Example - disable button if a cell is empty
+
+The following example showcases how a [`bk-button`](./buttons.md#bk-button) can be mounted inside a table cell, and disabled based on whether or not the cell value is specified. The configuration leverages the [`rawObjectOrEmptyStr`](../core_concepts.md#rawobjectoremptystr) custom helper, as well as the [`template`-`configMap`](../core_concepts.md#template---configmap) interface.
+
+```json
+{
+  "tag": "bk-table",
+  "properties": {
+    ...
+    "customActions": [
+      {
+        "tag": "bk-button",
+        "properties": {
+          ...
+          "disabled": {
+            "template": "{{rawObjectOrEmptyStr args.[0]}}",
+            "configMap": {
+              "": true,
+              "$default": false
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+### displayedDataPath
 
 Property `displayedDataPath` enables to display a nested array of an element of the received data. It consists of the path to the desired object where the first key is `data`.
 
@@ -1507,23 +1539,21 @@ Accepts an object such as
 |-----------------------|------|---------|-------------|
 | `kind` | string | `httpPost`, `event` | when `event` fires an event in the `eventBus`, otherwise performs a `POST` request with the content of the row as body |
 | `danger` | boolean | `true`, `false`, `undefined` | set danger mode on action |
-| `content` | string | any | when `event` it must be the label of a [registered event](../events), otherwise the `POST` request destination href |
+| `content` | string | any | when `event` it must be the label of a [registered event](../events.md), otherwise the `POST` request destination href |
 | `label` | string| any | a label to render with the row action button |
 | `icon` | string | any | [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free) |
 | `meta` | object | any | the event `meta` when `kind` is `event` |
 | `requireConfirm` | object or boolean | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
 
 ##### RequireConfirm object
-
 | property | type | values | description |
 |----------|------|--------|-------------|
-| `cancelText` | [localizedText](../core_concepts#localization-and-i18n) | any | Cancel button label |
-| `content` | [localizedText](../core_concepts#localization-and-i18n) | any | Text content of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
-| `okText` | [localizedText](../core_concepts#localization-and-i18n) | any | Confirm button label |
-| `title` | [localizedText](../core_concepts#localization-and-i18n) | any | Title of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
+| `cancelText` | [localizedText](../core_concepts.md#localization-and-i18n) | any | Cancel button label |
+| `content` | [localizedText](../core_concepts.md#localization-and-i18n) | any | Text content of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
+| `okText` | [localizedText](../core_concepts.md#localization-and-i18n) | any | Confirm button label |
+| `title` | [localizedText](../core_concepts.md#localization-and-i18n) | any | Title of the modal. It supports interpolation via Handlebars using the current row values with resolved lookups (e.g., 'Hello {{name}}') |
 
 #### Configuring actions via `customActions`
-
 `customActions` allows to mount generic components inside the table actions column.
 Accepts an array such as
 
@@ -1541,9 +1571,9 @@ Accepts an array such as
           "$default": false
         }
       },
-      "clickConfig": {
+      "action": {
         "type": "http",
-        "actionConfig": {
+        "config": {
           "url": "the/url",
           "method": "POST",
           "body": "{{rawObject args.[1]}}"
@@ -1599,9 +1629,9 @@ In the first case, each element of the array is a `tag`-`properties` pair, respe
 | `tag` | string | any | custom component to mount |
 | `properties` | {[key: string]: any} | any | properties injected into the component |
 
-It is often useful mounting [bk-button](buttons.md#bk-button)s inside the actions columns of the table.
+It is often useful mounting [bk-button](buttons.md#bk-button)s inside the actions columns of the table because of its flexibility.
 
-`properties` field allows dynamic interpolation through [handlebars](https://handlebarsjs.com/), analogously as in the case of mounting custom components using `visualizationOptions`, explained above.
+`properties` field allows [dynamic interpolation](../core_concepts.md#dynamic-configuration), analogously to the case of mounting custom components using `visualizationOptions`, [explained above](#dynamic-properties-interpolation).
 
 Nested navigation do not preserve `customActions`. To configure `customActions` in nested navigation mode the second type of `customActions` allowed by the JSON schema above is helpful.
 
@@ -1640,7 +1670,8 @@ The action with button `Cancel order` will appear on the home of the nested setu
 
 #### Configuring actions via `navigationRowActions`
 
-`rowActions` are removed from the actions columns when the table is rendering [nested data](../page_layout#nested-dataschemas). `navigationRowActions` allows to specify actions specifically available when the table is displaying nested data.
+`rowActions` are removed from the actions columns when the table is rendering [nested data](../page_layout.md#nested-dataschemas). `navigationRowActions` allows to specify actions available when the table is displaying nested data.
+
 As of now, these only allow to display the data inside a form or to delete the data inside a table row. `customActions` should be utilized in order to configure extra actions in nested views.
 `navigationRowActions` is an object of `NavigationDataActions`, which is an object such as
 
@@ -1651,7 +1682,8 @@ As of now, these only allow to display the data inside a form or to delete the d
       "danger": true,
       "requireConfirm": true,
       "type": "delete",
-      "disableInReadonly": true
+      "disableInReadonly": true,
+      "icon": "far fa-trash-can"
     }]
   }
 ```
@@ -1666,13 +1698,13 @@ As of now, these only allow to display the data inside a form or to delete the d
 | property | type | values | description |
 |----------|------|--------|-------------|
 | `requireConfirm` | booelan | true \| false | Whether or not to require confirm. |
-| `danger` | boolean | true \| false | set danger mode on action. |
+| `danger` | boolean | true \| false | set danger mode on action |
 | `type` | string | "delete" \| "detail" | if `delete`, the row is deleted from the nested object (and `update-data` event is emitted). If `detail`, a `selected-data` event is emitted with the data from the row.|
 | `disableInReadonly` | boolean | any | Whether or not to disable the action for read-only nested objects. |
+| `icon` | string \| undefined | font awesome icon string | The icon for the button. It is **optional**.
 
 
-By default, a singe action is rendered in nested tables, which deletes rows if the displayed data is not read-only, ie:
-
+`navigationRowAction` defaults to:
 ```json
   {
     "kind": "icons",
@@ -1684,11 +1716,13 @@ By default, a singe action is rendered in nested tables, which deletes rows if t
   }
 ```
 
+which will alllow rows to be deleted when the displayed data is not read-only.
+
 
 ### Browse on row click
 
 The property `browseOnRowSelect` allows to navigate to a specified link when a table row is clicked.
-`browseOnRowSelect` accepts an object of `ClickPayload`, for instance:
+`browseOnRowSelect` accepts an object such as
 
 ```json
   {

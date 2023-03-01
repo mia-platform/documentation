@@ -3,12 +3,24 @@ id: usage
 title: Usage
 sidebar_label: Usage
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+
 This service exposes several APIs, useful to upload, delete or download the files, described in details in the next paragraphs.
 
 The routes can be prefixed by passing the --prefix option at startup.
 
 ### **Upload**: `POST /` 
 With a multipart request containing the file to upload. The file will be stored on the configured backend, and the file information will be stored on MongoDB.
+In case of a multiple-bucket service, the parameter `scope` should be specified in the form-data section. All the considerations from the previous section still applies.
+
+
+<Tabs>
+
+<TabItem value="upload-single" label="single-bucket" default>
+
 
 Examples of multipart request to upload a single file:
 
@@ -29,6 +41,38 @@ Content-Type: text/plain
 value-1
 ------WebKitFormBoundaryePkpFF7tjBAqx29L--
 ```
+</TabItem>
+
+<TabItem value="upload-multi" label="multi-bucket">
+
+Examples of multipart request to upload a single file with multiple-bucket support:
+
+```bash
+POST /many HTTP/1.1
+... other headers ...
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryePkpFF7tjBAqx29L
+
+------WebKitFormBoundaryePkpFF7tjBAqx29L
+Content-Disposition: form-data; filename="my-file-1.pdf"
+Content-Type: application/pdf
+
+... file content here ...
+------WebKitFormBoundaryePkpFF7tjBAqx29L--
+Content-Disposition: form-data; name="key-1"
+Content-Type: text/plain
+
+value-1
+------WebKitFormBoundaryePkpFF7tjBAqx29L--
+Content-Disposition: form-data; name="scope"
+Content-Type: text/plain
+
+scope-1
+------WebKitFormBoundaryePkpFF7tjBAqx29L--
+```
+
+</TabItem>
+
+</Tabs>
 
 As it is possible to notice: 
 
@@ -77,10 +121,16 @@ In case of success, the response is a JSON with the following fields.
 * location: the URL that can be used to download the file using the same service that performed the upload.
 
 ### **Upload many**: `POST /bulk` 
+
 With a `multipart/form-data` request containing all the files to upload and the respective metadata. 
 All the files will be stored on the configured backend, and the files information will be stored on the configured CRUD.
 The order of the files inside the multipart is not important and files can have the same `filename` field. <br/>
 The upload of multiple files is handled as an **atomic operation**, meaning that either all files are stored correctly or none of them are.
+
+
+<Tabs>
+
+<TabItem value="upload-many-single" label="single-bucket">
 
 Consider the following simplified example of a HTTP multipart request:
 
@@ -102,6 +152,40 @@ Content-Type: application/pdf
 ------WebKitFormBoundaryePkpFF7tjBAqx29L--
 
 ```
+</TabItem>
+
+<TabItem value="upload-many-multi" label="multi-bucket">
+
+Consider the following simplified example of a HTTP multipart request with multiple-bucket support:
+
+```
+POST /many HTTP/1.1
+... other headers ...
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryePkpFF7tjBAqx29L
+
+------WebKitFormBoundaryePkpFF7tjBAqx29L--
+Content-Disposition: form-data; name="scope"
+Content-Type: text/plain
+
+scope-1
+
+------WebKitFormBoundaryePkpFF7tjBAqx29L
+Content-Disposition: form-data; filename="my-file-1.pdf"
+Content-Type: application/pdf
+
+... file content here ...
+------WebKitFormBoundaryePkpFF7tjBAqx29L
+Content-Disposition: form-data; filename="my-file-1.pdf"
+Content-Type: application/pdf
+
+... file content here ...
+------WebKitFormBoundaryePkpFF7tjBAqx29L--
+
+```
+
+</TabItem>
+
+</Tabs>
 
 As it can be noticed, two files are being uploaded, both having the same `filename` field set to`filename="my-file-1.pdf"`. <br/>
 
@@ -155,6 +239,8 @@ Continuing the example above, once the file is stored, the respective document i
 }
 ```
 
+In case of a multiple-bucket service, the parameter `scope` should be specified in the form-data section. All the previous considerations still apply.
+
 :::caution
 Keep in mind the fact that File Service uses a CRUD service to store file documents in the `files` collection, hence you'll need to register all the possible
 keys that will be stored at the first level of the file document in the `files` CRUD collection definition.
@@ -188,8 +274,11 @@ Continuing the last example of upload, in the case of success, the service answe
 
 Consider consulting the Open API definition of the service to get more information about the service responses.
 
-### **Download**: `GET /download/:file` 
+
+### **Download**: `GET /download/:file`
+
 To download a single file that was previously uploaded, specifying its `file` field.
+
 #### Query parameters 
 - `download=1`: to download the file as an attachment.
 - `downloadWithOriginalName=1`: to download the file with its original name as attachment.
@@ -201,12 +290,17 @@ The `GET /download/:file` API, when used as link in the browser has different be
 This rule applies for all files except for HTML which are always downloaded preventing the browser from rendering them.
 :::
 
+This API also supports a multi-bucket configuration. In this case, the scope parameter should be added to the path, to select the specific bucket instance on which to operate (`GET /scopeValue/download/:file`).
+
 ### **Download many**: `GET /download`
 To download a ZIP archive containing all the files specified in the query parameters.
 
 #### Query parameters
 - `files` **required**: array of strings (or single string) specifying the `file` field of the desired files to download
 - `downloadWithOriginalName=1`: to download the files with their original names.
+
+In case of a multiple-bucket files-service, the scope parameter should be added to the path to select the specific bucket instance on which to operate (`GET /scopeValue/download`).
+
 
 #### Response
 At the moment the download of multiple files is handled as an atomic operation, meaning that the API returns either all requested files in a (streamed) ZIP archive or an error.
@@ -223,9 +317,15 @@ Please note that this API is available from `v2.7.0`
 - `page`: integer value representing the index of the requested page (starting from 1).
 - `dateFrom`: date value used to filter the files. Files older than this value will not be shown.
 
+In the multi-bucket configuration, the scope parameter should be added to the path to select the specific bucket instance on which to operate (`GET /scopeValue/files/`).
+
 #### Response
 
 List of file metadata objects as retrieved from the Crud Service that match query parameters (if present).
 
-### **Delete**: `DELETE /:file` 
+
+### **Delete**: `DELETE /:file`
+
 To delete a file that was previously uploaded.
+
+In the multi-bucket configuration, the scope parameter should be added to the path to select the specific bucket instance on which to operate (`DELETE /scopeValue/:file`).
