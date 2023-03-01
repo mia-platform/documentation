@@ -61,7 +61,19 @@ We announce the release of the new Single View Trigger Generator plugin. This pl
 
 ### Improvements
 
+#### Real Time Updater can opt-out on the usage of `pos` property
+
+From version 7.4.0 the Real Time Updater has the option to use the timestamp of the kafka message instead of the property `pos` inside the kafka message's value as internal timestamp in `golden-gate` messages.
+
 ### Bug Fix
+
+#### Stabilized probes in the Real Time Updater
+
+We've refactored the Real Time Updater's initialization step in version 7.4.0 to stabilize the k8 probes making them more reliable.
+
+#### Infinite rebalancing fix on the Real Time Updater
+
+Fixed bug in which the Real Time Updater kept entering a state of rebalance being unable to re-join the kafka consumer group.
 
 ## Marketplace
 
