@@ -43,6 +43,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 * We fixed a bug that forced saving to another branch if you saved after performing the merge of configurations within the same branch
 * A bug introduced in the Console version 10.4.0 that prevented the correct visibility of the Debug section has been fixed
+* We have solved an issue with the git `sshUrl` regex by extending the support on its validation pattern 
 
 ## Fast Data
 
