@@ -37,6 +37,16 @@ For more information, visit the documentation page to Add a new element to the M
 
 Inside the Authorization section, now the "Manual Routes" table clearly shows the name of the Response policy. Furthermore, if a row filter on request has been set, it is now visible with a specific icon next to the Request policy name.
 
+#### Backoffice Low Code Configuration exposes entrypoint for configuration
+
+:::info
+This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md) page for further information.
+:::
+
+The Backoffice Configurator now exposes a new section "Webserver Configuration" from which the entrypoint (aka `index.html` file) can be configured.
+
+Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---134)!
+
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
@@ -83,6 +93,10 @@ Fixed bug in which the Real Time Updater kept entering a state of rebalance bein
 ### Marketplace New Components
 
 ### Marketplace Updates
+
+#### Backoffice Application
+
+Backoffice Application will now deploy only one pod (aside from the API Gateway) containing everything needed for a Backoffice instance.
 
 ## Backoffice - 1.3.5
 
