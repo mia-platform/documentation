@@ -108,7 +108,7 @@
     "addedOn": "2022-11-10"
   },
   "/docs/fast_data/single_view_trigger": {
-    "destination": "/docs/fast-data/single_view_trigger_generator",
+    "destination": "/docs/fast_data/single_view_trigger_generator",
     "addedOn": "2023-03-'01"
   },
   "/docs/fast_data/single_view_trigger/overview": {
@@ -125,7 +125,8 @@
   },
   "/docs/fast_data/configuration/erSchema": {
     "destination": "/docs/fast_data/configuration/config_maps/erSchema",
-    "addedOn": "2023-03-01"
+    "addedOn": "2023-03-01",
+    "tocheck": true
   },
   "/docs/fast_data/configuration/realtime_updater/manual": {
     "destination": "/docs/fast_data/configuration/realtime_updater/common",
@@ -133,7 +134,8 @@
   },
   "/docs/fast_data/configuration/single_view_trigger": {
     "destination": "/docs/fast_data/configuration/single_view_trigger_generator",
-    "addedOn": "2022-11-10"
+    "addedOn": "2023-03-01",
+    "tocheck": true
   },
   "/docs/runtime_suite/auth0-+-api-gateway/overview": {
     "destination": "/docs/runtime_suite/secure-apigateway/overview",
