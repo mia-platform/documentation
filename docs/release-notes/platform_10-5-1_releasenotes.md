@@ -69,13 +69,33 @@ We announce the release of the new Single View Trigger Generator plugin. This pl
 
 ### Marketplace Updates
 
-## Backoffice
+## Backoffice - 1.3.5
 
 ### New Features
 
-### Improvements
+#### New component `bk-dropdown`
+New component [`bk-dropdown`](/business_suite/components/buttons.md#bk-dropdown) is available.
+
+#### `bk-form-modal` with `extraEndpoint` injects `triggeredBy`
+`bk-form-modal` with `extraEndpoint` property injects a `triggeredBy` key equal to `bk-form-modal-extra-endpoint` into `success`/`error` events.
+
+#### `bk-simple-list` supports `height` property
+`bk-simple-list` supports `height` property, controlling max-height of the list body
+
+#### New Handlebars helper `nFormat`
+New Handlebars helper `nFormat` allows to format fields of type `number` and format `currency`, specifying number of decimal places, decimal separator, group separator.
+
+#### New component `bk-notification-center`
+New component [`bk-notification-center`](/business_suite/components/misc.md#bk-notification-center) is available.
+
+#### Persisten filters are available
+`bk-filters-manager` component allows persistent filters, which are registered into `localeStorage` and automatically applied.
 
 ### Bug Fix
+
+#### Editor does not use custom tags
+Output of fields with format `editor` do not use custom `quill` classes in form components. Refer to [this issue](https://github.com/zenoamaro/react-quill/issues/553) for further details
+
 
 ## How to update your Console
 
