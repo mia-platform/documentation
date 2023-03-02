@@ -14,8 +14,8 @@
   --ifm-color-primary-light: #1890FF;
   --ifm-color-primary-lighter: #1890FF;
   --ifm-color-primary-lightest: #1890FF;
-  --ifm-code-font-size: 90%;
-  --ifm-font-size-base: 85%;
+  --ifm-code-font-size: 100%;
+  --ifm-font-size-base: 100%;
   --ifm-global-spacing:1rem;
   --ifm-card-color: white;
   --ifm-color-warning: var(--ifm-color-warning-lightest);
@@ -23,6 +23,10 @@
   --searchbar-placeholder: 'Search for terms, features and more...';
   --ifm-font-family-Inter: "Inter";
   --ifm-navbar-item-padding-horizontal: .7rem;
+}
+
+.table-of-contents {
+  font-size: 1rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -39,11 +43,11 @@
 }
 
 .hero__subtitle {
-    color:var(--ifm-color-content-secondary) !important;
-  }
+  color:var(--ifm-color-content-secondary) !important;
+}
 
 .row a {
-transition: color .3s;
+  transition: color .3s;
 }
 
 .footer__links {
@@ -96,10 +100,10 @@ html[data-theme='dark'] .DocSearch-Button {
   display: flex;
   justify-content: center;
   width: 30%;
- }
+}
 
 
- .home .searchBarBox button {
+.home .searchBarBox button {
   display: flex;
   flex-grow: 1;
   justify-content: space-around;
@@ -146,12 +150,12 @@ html[data-theme='dark'] .DocSearch-Button {
 /* navBar Responsiveness */
 
 .navbar__item {
-  font-size:0.95rem
+  font-size:1rem
 }
 
 @media only screen and (max-width: 1300px) {
   .navbar__item {
-    font-size: 0.9rem
+    font-size: 1rem
   }
 }
 
