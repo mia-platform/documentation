@@ -31,7 +31,7 @@ If you want to find more info about Console levels and permission management, pl
 
 Users who can add new elements to the Marketplace now have the possibility to configure the option "Preserve files and directories already existing in the Runtime Mount Path directory" already when creating the resource.
 
-For more information, visit the documentation page to Add a new element to the Marketplace.
+For more information, visit the [documentation page](/marketplace/add_to_marketplace/contributing_overview.md) to Add a new element to the Marketplace.
 
 #### Response policy name in the Manual Routes table
 
