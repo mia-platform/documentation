@@ -13,9 +13,9 @@ _March 02, 2023_
 
 #### imagePullSecrets configured at Company and Project level 
 
-Custom imagePullSecrets can now be defined and configured for a specific Company and Project: this means that also PaaS users can now configure custom private image registries both at Company and Project level. If you decide to configure imagePullSecrets at Company level, each time a new Project is created, these providers will be cloned from the Company in order to be available on the Project as well.
+Custom imagePullSecrets can now be defined and configured for a specific Company and related Projects: this means that also PaaS users can now configure custom private image registries both at Company and Project level. Each time a new Project is created, these image providers will be cloned from the Company in order to be available on the Project as well.
 
-To discover more, take a look at the documentation page concerning the Default configuration for a new project.
+To discover more, take a look at the [documentation page](//development_suite/company/create#default-configuration-for-a-new-project.md) concerning the Default configuration for a new project.
 
 #### New permissions to create, edit and delete a project
 
