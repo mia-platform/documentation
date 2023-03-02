@@ -26,7 +26,7 @@ The **LDS** dynamically loads the configuration of the listeners. Each one is id
 On the other hand, the **CDS** presents a list of the available upstream clusters, each corresponding to an underlying service. All the application services need to be declared as clusters in the CDS, to make them reachable for Envoy. Each cluster is identified by its name, followed by the endpoint information, i.e. service name and port.
 
 :::info
-Currently, we support Envoy `1.21.1`.
+Currently, we support Envoy versions greater or equal to `v1.21.1`.
 :::
 
 :::caution
