@@ -117,7 +117,7 @@ See the [documentation](/runtime_suite/form-service-backend/overview.md) for mor
 
 #### Form Service FE - v.1.7.0
 
-A closed form now do not trigger the autosave.
+A closed form now does not trigger the autosave.
 
 ## Backoffice - 1.3.5
 
