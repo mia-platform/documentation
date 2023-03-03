@@ -45,8 +45,6 @@ would be equivalent to
 }
 ```
 
-Rather complex queries can be built using handlebars while combining it with raw syntax. Queries are also well suited to transfer state between pages.
-
 ### Helpers
 
 Custom helpers to be used in conjunction with [handlebars](https://handlebarsjs.com/guide/expressions.html) are provided, most components that allow dynamic configurations support them.
@@ -154,6 +152,71 @@ the above example is equivalent to:
 ```
 
 `$default` key in `configMap` can be specified, and is used if no other `configMap` key matches `template`.
+
+### Extracting data from URL - UrlMask
+
+Some components may expose properties that allow to configure a `urlMask`. This leverages [path-to-regexp](https://github.com/pillarjs/path-to-regexp) syntax to convert a string input (or `mask`) into a regular expression to be matched against the current URL, allowing to extract information from it, making it availbale in dynamic configurations.
+
+`urlMask`s allow to specify masks for the `pathname` and `search` fields of `window.location`.
+
+```typescript
+type UrlMask = string | {
+  pathname?: string,
+  search?: string
+}
+```
+
+If `urlMask` is a string, it is matched against both pathname and search fields.
+
+#### Example
+
+A `urlMask` such as
+```json
+{
+  "urlMask": {
+    "pathname": "/path-name/:field1/:field2",
+    "search": "\\?pageSize=:pSize&sortDirection=:sDirection"
+  }
+}
+```
+
+matched againsta a `window.location` like
+```json
+{
+  "pathname": "/path-name/field-1/field-2",
+  "search": "?pageSize=25&sortDirection=descend"
+}
+```
+
+will produce as output
+```json
+{
+  "path": "/path-name/field-1/field-2",
+  "params": {
+    "field1": "field-1",
+    "field2": "field-2"
+  }
+}
+```
+from `pathname` and
+```json
+{
+  "path": "?pageSize=25&sortDirection=descend",
+  "params": {
+    "pSize": "25",
+    "sDirection": "descend"
+  }
+}
+```
+from `search`.
+
+Some components may allow to ignore part of the URL using wildcards, "(.*)". For instance:
+```json
+{
+  ...
+  "urlMask": "\\?pageNumber=:myPageNumber&pageNumber=(.*)"
+}
+```
 
 ## Links
 

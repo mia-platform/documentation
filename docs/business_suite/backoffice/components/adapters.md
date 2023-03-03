@@ -94,7 +94,7 @@ Allows to emit events upon connecting, based on the value of the URL.
 <bk-url-parameters></bk-url-parameters>
 ```
 
-`bk-url-parameters` attempts current URL matching against the given mask in property `urlMask`.
+`bk-url-parameters` attempts current URL matching against the given mask in property [`urlMask`](../core_concepts.md#extracting-data-from-url---urlmask).
 If it fails, it will redirect according to the provided property `redirectUrl`. Otherwise it will attempt to emit the matched content as payload of an event using its property `eventLabel` as label of the event, which defaults to `change-query`.
 
 ### Example
@@ -110,7 +110,7 @@ Assuming the component to be configured as:
 }
 ```
 
-and assuming the url to be `/order-details/test-id`, then `bk-url-parameters` emits the following [change-query](../events#change-query) event upon connection to the DOM:
+and assuming the URL to be `/order-details/test-id`, then `bk-url-parameters` emits the following [change-query](../events.md#change-query) event upon connection to the DOM:
 
 ```json
 {
@@ -121,7 +121,34 @@ and assuming the url to be `/order-details/test-id`, then `bk-url-parameters` em
 }
 ```
 
-### Ignore wildcards
+### Use different masks for pathname and search
+
+By default, the same mask is applied to both `pathname` and `search` fields of `window.location`. However, different ones can be specified:
+```json
+{
+  ...
+  "tag": "bk-url-parameters",
+  "properties": {
+    "urlMask": {
+      "pathname": "/order-details/:_id",
+      "search": "\\?pageNumber=:pNumber"
+    }
+  }
+}
+```
+
+Assuming the URL to be `/order-details/first-id?pageNumber=25`, then `bk-url-parameters` emits the following event:
+```json
+{
+  "label": "change-query",
+  "payload": {
+    "_id": "first-id",
+    "pNumber": "25"
+  }
+}
+```
+
+### Ignoring wildcards
 
 Wildcards (`(.*)`) can be used in `urlMask`; these match any string and is included in the payload of the emitted event with numeric keys.
 
@@ -136,7 +163,7 @@ For instance, the following is a valid configurations:
 }
 ```
 
-Assuming the url to be `/order-details/first-id/second-id`, then `bk-url-parameters` emits the following [change-query](../events#change-query) event:
+Assuming the URL to be `/order-details/first-id/second-id`, then `bk-url-parameters` emits the following [change-query](../events.md#change-query) event:
 ```json
 {
   "label": "change-query",
@@ -147,7 +174,7 @@ Assuming the url to be `/order-details/first-id/second-id`, then `bk-url-paramet
 }
 ```
 
-If property `excludeWildcards` is true, matches coming from wildcards are excluded from the payload of the event. The same example with the following configuration: 
+If property `excludeWildcards` is true, matches coming from wildcards are excluded from the payload of the event. The same example with the following configuration:
 ```json
 {
   ...
@@ -175,7 +202,7 @@ yields the following event:
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`waitTime`| `wait-time` |number|500|wait time before initialization event, in milliseconds|
-|`urlMask`| `url-mask` |string| - | url mask to apply to the current path to extract dynamic parameters |
+|`urlMask`| `url-mask` |[UrlMask](../core_concepts.md#extracting-data-from-url---urlmask)| - | url mask to apply to the current path to extract dynamic parameters |
 |`eventLabel`|`event-label`|string|'change-query'|label of the event that will be dispatched as result|
 |`redirectUrl`|`redirect-url`|string| - |optional parameter that contains the url to redirect when urlMask does not completely match|
 |`excludeWildcards`|`exclude-wildcards`|boolean| false |whether or not matches from wildcards (`(.*)`) should be excluded from event payload|

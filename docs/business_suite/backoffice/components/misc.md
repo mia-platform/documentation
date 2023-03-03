@@ -1019,7 +1019,7 @@ type NotificationsMap {
 }
 ```
 
-Properties `successEventMap` and `errorEventMap` map the `triggeredBy` field of [success](../events.md#success) and [error](../events.md#error) events into notification properties.
+Properties `successEventMap` and `errorEventMap` map the `triggeredBy` field of [success](../events.md#success) and [error](../events.md#error) events to notification properties, while `customEventMap` allows to map notifications to the label of other events.
 
 ### Notification object
 
@@ -1073,9 +1073,9 @@ Each notification can be configured with the following properties:
 }
 ```
 
-### Triggering notifications
+### Triggering notifications from success and error events
 
-Some components automatically emit `success` and `error` events to notify the result of a generic action, and do not need to be configured to do so.
+Some components automatically emit `success` and `error` events to notify the result of a generic action, not needing to be configured to do so.
 For instance, [bk-crud-client](./clients.md#bk-crud-client) reacts to events like [create-data](../events.md#create-data) and [update-data](../events.md#update-data) by performing REST calls against a configurable endpoint, then emitting a `success`/`error` event with the name of the triggering event as value of `meta.triggeredBy`.
 
 #### Example
@@ -1130,11 +1130,35 @@ With a configuration like the one in the example, when a `create-data` event is 
   }
   ```
 
+### Triggering notifications from other events
+
+`bk-notifications` can be configured to listen to specific events and display notifications when they are received, through the property `customEventMap`.
+
+#### Example
+
+The following configurations displays a notification everytime an event with label `add-filter` is emitted.
+
+```json
+{
+  "tag": "bk-notifications",
+  "properties": {
+    "customEventMap": {
+      "add-filter": {
+        "title": "Filter applied!",
+        "content": "The filter has been created applied",
+        "type": "success"
+      }
+    }
+  }
+}
+```
+
 ### Triggering notifications from Actions
 
 Components that allow to configure [Actions](../actions.md), such as [`bk-button`](./buttons.md#bk-button) or [`bk-gallery`](./data_visualization.md#bk-gallery), may integrate with `bk-notifications`.
 
-Indeed, some actions trigger a [success](../events.md#success) or [error](../events.md#error) event based on their result (for instance, actions of type [http](../actions.md#rest-calls)). In such cases, it is possible in the action configuration to specify the `triggeredBy` key that is injected into the meta field of such events, which is then matched by `bk-notifications` with its properties `successEventMap` and `errorEventMap`.
+Some actions trigger a [success](../events.md#success) or [error](../events.md#error) event based on their result (for instance, actions of type [http](../actions.md#rest-calls)). In such cases, it is possible in the action configuration to specify the `triggeredBy` key that is injected into the meta field of such events, which is then matched by `bk-notifications` with its properties `successEventMap` and `errorEventMap`.
+On the other hand, actions that emit events can be mapped to notifications leveraging property [customEventMap](#triggering-notifications-from-other-events).
 
 #### Example
 
