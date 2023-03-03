@@ -1,12 +1,13 @@
 ---
 id: microservices-cpu-resources
-title:  Service CPU Resources
+title: Service CPU Resources
 sidebar_label: Define CPU resources
 ---
+
 In the field CPU Resources, you have to specify:
 
-* **Request**: the minimum number of "thousandth of a core" (m) that the container needs (in Kubernetes it's the *request*).
-* **Limit**: the maximum number of "thousandth of a core" (m) that it can use (in Kubernetes it's the *limit*).
+- **Request**: the minimum number of "thousandth of a core" (m) that the container needs (in Kubernetes it's the _request_).
+- **Limit**: the maximum number of "thousandth of a core" (m) that it can use (in Kubernetes it's the _limit_).
 
 :::info
 To learn more about the meaning of these values inside Kubernetes, please visit [this page](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) in the Kubernetes documentation.
@@ -16,13 +17,13 @@ To learn more about the meaning of these values inside Kubernetes, please visit 
 
 CPU resources are measured in CPU units. One CPU, in Kubernetes, is equivalent to:
 
-* 1 AWS vCPU;
+- 1 AWS vCPU;
 
-* 1 GCP Core;
+- 1 GCP Core;
 
-* 1 Azure vCore;
+- 1 Azure vCore;
 
-* 1 Hyperthread on a bare-metal Intel processor with Hyperthreading.
+- 1 Hyperthread on a bare-metal Intel processor with Hyperthreading.
 
 CPU Resources, which are measured in CPU units, can be expressed as an integer or a fractional value with one of these suffixes: m and milli.
 
@@ -39,5 +40,5 @@ The check about that _Limit_ have to be greater than _Request_ won't be done if 
 :::
 
 :::info
-To learn more about Memory Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.
+To learn more about CPU Resources, please visit [this page](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/#cpu-units) of Kubernetes Docs.
 :::
