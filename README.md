@@ -8,7 +8,7 @@ The documentation site is built using [Docusaurus 2](https://v2.docusaurus.io/),
 
 To develop locally you need:
 
-- Node 12+
+- Node 16+
 
 To setup node, please if possible try to use [nvm][nvm], so you can manage
 multiple versions easily.
@@ -40,17 +40,9 @@ This command starts a local development server, the site will be reachable on <h
 
 > :warning: The Search is configured to **not working locally**.  
 
-## Search
-
-The search is provided by [Algolia](https://www.algolia.com/).
-
-To see search analytics you can login to Algolia with account data stored to *Mia shared* vault of your *1Password* account.
-
-The documentation si linked to Algolia account by the Algolia property define in [docusaurus.config.js](docusaurus.config.js) file. Here are specified the Api Key, the App id and the index to address.
-
 ### How to contribute
 
-Read related [contribution guide](/CONTRIBUTING.MD).
+Read related [contribution guide](/CONTRIBUTING.md#how-can-i-contribute).
 
 ### Resources
 

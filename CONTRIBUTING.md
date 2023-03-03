@@ -1,4 +1,31 @@
-# How to contribute
+# Contribution Guidelines
+
+First off, thank you for considering contributing to this project.
+
+Please follow these guidelines for helping us to better address your issue, assessing changes, and helping you finalize your pull requests.
+In order to contribute you can submitting bug reports or suggest some correction or content improvements and it's also possible to open a new pull request. 
+
+## Code of Conduct
+
+This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md), please read it and follow it
+before contributing. If you find someone that is not respecting it please report its behaviour.
+
+## How Can I Contribute
+
+### Reporting Bugs
+
+Before reporting a bug please search if there isn’t already a similar issue already open. If you find a similar issue
+that is already closed, open a new one and include a link to it inside the body of the new one.
+
+### Suggesting improvements
+
+Open an issue to report some typo or suggests some changes that might make the documentation clearer.
+
+### Opening pull requests
+
+After open an issue to suggest your improvement idea, you could implements it directly following the guide lines expained below and finally open a pull request.
+
+## Pull request rules
 
 Docusaurus use **Markdown**, check out the [official docs](https://v2.docusaurus.io/docs/) for further detail, for example how to add a new item to the left sidebar, etc.
 
@@ -29,7 +56,9 @@ To contribute to the Mia-Platform docs:
 
 5. Run locally docs site to test changes before submitting a Merge Request: `yarn start`
 
-6. Submit a merge request (name it according to the rule: `Activity (task): topic`), then post the MR URL in the "mia-documentation" room. Optionally add notes about the importance of changes, according to internal / customer needs. Notify POs of affected products.
+6. Run locally the tests of lint, cspell and check-content as explained [here](#content-checks)
+
+7. Submit a pull request (name it according to the rule: `Activity (task): topic`) and add information about the importance of changes, according to internal / customer needs. Notify POs of affected products.
 
 ## Contributing guidelines
 
@@ -54,6 +83,15 @@ The check is performed to each file in the /docs/ folder excluding the folder ma
 - docs/runtime_suite_libraries
 - docs/runtime_suite_tools
 - docs/business_suite
+
+
+#### Content checks
+
+The repo provides a series of content test that must be passed:
+
+- Lint: `yarn lint`
+- Spell check: `yarn spellcheck`
+- Content check: `yarn check-content`
 
 ## Repository structure
 
@@ -246,12 +284,14 @@ The links defined in the `a` properties link the main item menu to a single **si
 
 #### Repository deploy rules
 
-All changes pushed to the branch `master` trigger a pipeline that will deploy the docs site on [https://next.docs.mia-platform.eu/](https://next.docs.mia-platform.eu/). So you can see the changes before carrying over to the main site.
+All changes pushed to the branch `main` trigger a pipeline that will deploy the docs site on [https://next.docs.mia-platform.eu/](https://next.docs.mia-platform.eu/). So you can see the changes before carrying over to the main site.
 
-To carry over the changes on the main site [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/), you have to tag a new version here on GitLab.
+To carry over the changes on the main site [https://docs.mia-platform.eu/](https://docs.mia-platform.eu/), you have to tag a new version here on GitHub.
 
-### Resources
+## Fork
 
-- (<https://v2.docusaurus.io/docs/>)
+If you want to fork our project, you could make it and keep in sync with our template.
+All contribution which could improve the existent code base are welcome!
 
-[nvm]: https://github.com/creationix/nvm
+To keep a fork up to date, you can follow this [GitHub guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
+For all the information about forks, [see this link](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/working-with-forks).
