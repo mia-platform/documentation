@@ -623,7 +623,7 @@ The resulting component is a button that, on click, performs a POST request to `
 
 - `currentUser`, contains information about the current user, for example name and email.
 
-- `pathnameParams`, contains information about the pathname of the current page. It contains the property `params` with the keys specified in the `urlMask` and the property `path` with the full path.
+- `pathnameParams`, contains information about the pathname of the current page. It contains the property `params` with the keys specified in the [`urlMask`](../core_concepts.md#extracting-data-from-url---urlmask) and the property `path` with the full path.
 
 ```json
 {
@@ -632,7 +632,7 @@ The resulting component is a button that, on click, performs a POST request to `
 }
 ```
 
-- `searchParams`, contains information about the URL query parameters. It contains the property `params` with the keys specified in the `urlMask` and the property `path` with the full query parameters string.
+- `searchParams`, contains information about the URL query parameters. It contains the property `params` with the keys specified in the [`urlMask`](../core_concepts.md#extracting-data-from-url---urlmask) and the property `path` with the full query parameters string.
 
 ```json
 {
@@ -641,13 +641,13 @@ The resulting component is a button that, on click, performs a POST request to `
 }
 ```
 
-The two objects `pathnameParams` and `searchParams` can be accessed by specifing the `urlMask` property of the `bk-button` component. With no `urlMask` specified (or without a match between URL and `urlMask`), they will be empty. 
+The two objects `pathnameParams` and `searchParams` can be accessed by specifing the [`urlMask`](../core_concepts.md#extracting-data-from-url---urlmask) property of the `bk-button` component. With no `urlMask` specified (or without a match between URL and `urlMask`), they will be empty. 
 
 Example of configuration:
 
 ```json
 {
-  "type": "element",
+  ...
   "tag": "bk-button",
   "properties": {
     "content": "Example button",
@@ -665,6 +665,21 @@ Example of configuration:
 ```
 
 In this configuration the property `urlMask` is specified to get the value of the first query parameter `pageNumber` and is saved in the `myPageNumber` key of the `searchParams.params` object. The example configuration will create a button that on click action will emit a `add-new` event with the information about the current page number in the payload.
+
+`urlMask` allows to specify different masks for pathname and search fields. For instance:
+```json
+{
+  ...
+  "tag": "bk-button",
+  "properties": {
+    ...
+    "urlMask": {
+      "pathname": "current-url/:id",
+      "search": "\\?pageNumber=:myPageNumber"
+    }
+  }
+}
+```
 
 - `selectedData`, contains an array of objects representation of the selected data. Requires the button to be [bulk mode](#bulk-button) - that is, property `bulkButton` to be true. Selected data is then accessible through `{{rawObject selectedData}}`.
 
@@ -1093,7 +1108,7 @@ For example:
 |`shape`|`shape`|string|'round'|button shape property |
 |`stopPropagationOnClick`|`stop-propagation-on-click`|boolean|true|configures the onClick to disable propagation when action is fired |
 |`type`|`type`|string|'primary'|button type property |
-|`urlMask`|`url-mask`|string|''|url mask to apply to the current path to extract dynamic parameters |
+|`urlMask`|`url-mask`|[UrlMask](../core_concepts.md#extracting-data-from-url---urlmask)|''|url mask to apply to the current path to extract dynamic parameters |
 |`clickConfig`| - |ClickConfig| - | schema describing how to configure onClick event **NOTE** - this property is **deprecated**, [use `action` instead](#migrating-from-clickconfig-to-action) |
 |`action`| - |[Action](../actions.md)| - | schema describing how to configure onClick event |
 |`bulkButton`| - | boolean | false | whether to use it as a bulk button or not. If set to true, it listens to selected-data-bulk event |

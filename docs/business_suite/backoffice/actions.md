@@ -66,7 +66,7 @@ type HttpAction = {
     /* endpoint to call */
     url: string
     /* REST method to use */
-    method: 'GET' | 'POST' | 'DELETE'
+    method: 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH'
     /* body of the call */
     body?: Record<string, any> | string
     /* extra configurations */
@@ -92,14 +92,17 @@ type HttpAction = {
 Where:
 ```typescript
 type HttpClientConfig = Omit<RequestInit, 'method'> & {
+  /* search params to apply to the call */
   params?: string | Record<string, string> | string[][] | URLSearchParams
-  error?: (err: unknown) => Promise<unknown>
+  /* wether or not the result should be sent back without any transformation (by default, response is either sent back as text or an object). If true, `downloadAsFile` is ignored. */
   raw?: boolean
+  /* whether the result should be downloaded as file. Only supported for POST and GET calls. */
   downloadAsFile?: boolean
 }
 ```
+Where [RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) refers to the standard Typescript interface.
 
-Actions of type `http` allow to perform REST calls (`GET`, `POST`, `DELETE` methods are supported).
+Actions of type `http` allow to perform REST calls.
 
 Field `config.config` allows to specify extra configurations to the rest call.
 
@@ -140,8 +143,8 @@ Field `config.triggeredBy` has a duplicate function:
       ...
       "config": {
         "downloadAsFile": true
+        ...
       }
-      ...
     }
   }
   ```
@@ -166,7 +169,7 @@ type FileDownloadAction = {
 }
 ```
 
-Actions of type `file-download` attempt to download a file from the given url.
+Actions of type `file-download` attempt to download a file from the given url using the default browser API, by creating and clicking an anchor tag with the url specified.
 
 :::caution
 The `onFinish` hook does not execute after the download is complete, but rather after the download request has been issued.
@@ -206,7 +209,7 @@ type FileUploadAction = {
 ```
 Actions of type `file-upload` perform an automatic file upload post. The native upload dialog of the browser is used, allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using XMLHTTPRequest facility, and the file is appended to a brand new FormData with the key `file` unless overridden by the `fileFormKey` property.
 
-Field `config.triggeredBy` is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./components/misc.md#bk-notifications), in order to display notification messages upon success/failure of the action.
+Field `config.triggeredBy` is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./components/misc.md#triggering-notifications-from-success-and-error-events), in order to display notification messages upon success/failure of the action.
 
 ### Navigation - push
 
@@ -373,6 +376,7 @@ If the copied value is an object or an array, [helper `rawObject`](./core_concep
 Field `config.triggeredBy` allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action.
 
 #### Example 1
+
 With input data such as:
 ```json
 {
@@ -556,6 +560,7 @@ the above action is equivalent to:
 Multiple actions can be chained using `hooks`. Each action exposes some `hooks`, each one corresponding to a specific moment / condition of the action execution.
 
 ### Example 1
+
 The action
 ```json
 {
@@ -733,7 +738,7 @@ is executed, resulting in an event being emitted, with label `add-new` and paylo
 ```
 which can be resolved as the responses from both previous calls are available, through keys `data_1` and `data_2` respectively.
 
-Notice how the third chained action still provides access to the return value from the first action: each action always forwards all of its context to its hooks (possibly adding additional data to it). Assuming the same return values for each GET call as previously, and assuming the first action to have context context:
+Notice how the third chained action still provides access to the return value from the first action: each action always forwards all of its context to its hooks (possibly adding additional data to it). Assuming the same return values for each GET call as previously, and assuming the first action to have context:
 ```json
 {
   "name": "joe",

@@ -185,7 +185,7 @@ The editors will help you writing configurations hinting the correct properties 
 
 ### Shared properties
 
-In this final section you can define global [shared properties](https://micro-lc.io/api/micro-lc-web-component#shared)
+In this final section you can® define global [shared properties](https://micro-lc.io/api/micro-lc-web-component#shared)
 for Backoffice page.
 
 :::tip
@@ -201,14 +201,22 @@ responsible for serving Backoffice static files and configurations.
 
 ### Entry point
 
-Here you can find the HTML file used as entry point for the Backoffice.
+Here you can find the HTML file used as entry point for the Backoffice allowing you to fine tune how
+[micro-lc web component](https://micro-lc.io/api/micro-lc-web-component) is configured.
 
 ![Entry point](img/structure_webserver_entry-point.png)
 
 ### Content types
 
+From this section you can [tell the service](https://micro-lc.io/add-ons/backend/middleware#content-type) which
+[content type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) to use when serving files with
+specific extentions.
+
 ![Entry point](img/structure_webserver_content-types.png)
 
 ### Headers
+
+This section allows you to specify [additional headers](https://micro-lc.io/add-ons/backend/middleware#headers) to
+include in static files responses.
 
 ![Entry point](img/structure_webserver_headers.png)
