@@ -905,6 +905,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/migration/fast_data_migration_tutorial",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
           "type": "doc"
         }
