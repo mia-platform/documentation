@@ -1,14 +1,26 @@
 name: Test and build
 on: [push, pull_request]
 jobs:
-  test-build:
-    name: Test and Build
+  install:
+    name: Install and verify contents
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
-        uses: DerYeger/yarn-setup-action@master
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.12
+          node-version: 18
+          cache: 'yarn'
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
       - name: Check lint
         run: yarn lint
       - name: Check spell
@@ -17,18 +29,18 @@ jobs:
         run: yarn check-content
 
   build-latest:
-    needs: test-build
+    needs: install
     name: Build docker image
     if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
     runs-on: ubuntu-latest 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Build site
         env:
           NODE_ENV: "production"
           INLINE_RUNTIME_CHUNK: "false"
         run: yarn build
-      - name: Checkout code
-        uses: actions/checkout@v3    
       - name: Configure docker metadata
         id: meta
         uses: docker/metadata-action@v4
@@ -73,7 +85,7 @@ jobs:
 
   deploy-next:
     name: Deploy next
-    needs: test-build
+    needs: build-latest
     runs-on: ubuntu-latest
     if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     steps:
