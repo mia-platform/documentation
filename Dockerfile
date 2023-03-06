@@ -1,6 +1,15 @@
-FROM nexus.mia-platform.eu/core/static-files:3.2.14 as build
+FROM nginx:1.23.3-alpine as build
 
-USER root
+WORKDIR /etc/nginx
+
+COPY LICENSE nginx ./
+
+RUN rm -fr /etc/nginx/conf.d/* \
+  && touch ./off \
+  && mkdir -p /usr/static \
+  && chmod ugo+rw ./off /usr/static
+
+USER nginx
 
 WORKDIR /build-dir
 
@@ -12,7 +21,7 @@ RUN echo "mia-platform-docs: $COMMIT_SHA" >> ./commit.sha
 
 ################################################################################à
 
-FROM nexus.mia-platform.eu/core/static-files:3.2.14
+FROM nginx:1.23.3-alpine
 
 LABEL maintainer="Mia Platform Core Team<core@mia-platform.eu>" \
   name="Documentation" \
@@ -26,3 +35,9 @@ COPY nginx/website.conf ./conf.d/website.conf
 WORKDIR /usr/static
 
 COPY --from=build /build-dir ./
+
+USER nginx
+
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
