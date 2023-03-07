@@ -47,7 +47,7 @@ This feature is still in BETA, do not miss out the [official documentation](/bus
 
 The Backoffice Configurator now exposes a new section "Webserver Configuration" from which the entrypoint (aka `index.html` file) can be configured.
 
-Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---134)!
+Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---135)!
 
 ### Bug Fix
 
