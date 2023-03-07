@@ -63,7 +63,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 #### Bucket Storage Support (BSS)
 
-We announce the release of the Bucket Storage Support New Feature! Do you need to manage data with different temperatures? You can now extend your Fast Data solution by adding the possibility to store raw data in a Bucket, re-ingest them in the system whenever needed and keep those data clean and organized. This solution requires 3 different plugins that can be found in Mia-Platform Marketplace. Check out the [official documentation](/docs/fast_data/bucket_storage_support/overview.md).
+We announce the release of the Bucket Storage Support New Feature! Do you need to manage data with different temperatures? You can now extend your Fast Data solution by adding the possibility to store raw data in a Bucket, re-ingest them in the system whenever needed and keep those data clean and organized. This solution requires 3 different plugins that can be found in Mia-Platform Marketplace. Check out the [official documentation](/fast_data/bucket_storage_support/overview.md).
 Buckets supported: Google Cloud Buckets and S3-compatible Buckets.
 
 #### Single View Trigger Generator
@@ -72,7 +72,7 @@ Buckets supported: Google Cloud Buckets and S3-compatible Buckets.
 This feature is still in BETA, and it is under active development. Pay attention using this feature.
 :::
 
-We announce the release of the new Single View Trigger Generator plugin. This plugin will replace the old Single View Trigger, which has been deprecated. This new plugin is a re-engineering of the old Single View Trigger and it will let you implement a full event-driven architecture for your Fast Data. Check out the [official documentation](/docs/fast_data/single_view_trigger_generator.md).
+We announce the release of the new Single View Trigger Generator plugin. This plugin will replace the old Single View Trigger, which has been deprecated. This new plugin is a re-engineering of the old Single View Trigger and it will let you implement a full event-driven architecture for your Fast Data. Check out the [official documentation](/fast_data/single_view_trigger_generator.md).
 
 ### Improvements
 
