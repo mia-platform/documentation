@@ -96,6 +96,9 @@ Fixed bug in which the Real Time Updater kept entering a state of rebalance bein
 
 ### Marketplace Updates
 
+#### API Portal v1.16.5
+With this version a bug has been fixed which caused the portal to fail due to a wrong documentation configuration of one or more APIs.
+
 #### Backoffice Application
 
 Backoffice Application will now deploy only one pod (aside from the API Gateway) containing everything needed for a Backoffice instance.
