@@ -152,5 +152,5 @@ Output of fields with format `editor` do not use custom `quill` classes in form 
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 8.3.7`.
 
