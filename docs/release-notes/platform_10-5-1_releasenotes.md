@@ -5,7 +5,7 @@ sidebar_label: v10.5.1
 image: "img/release-note-link-preview.png"
 ---
 
-_March 02, 2023_
+_March 07, 2023_
 
 ## Console
 
