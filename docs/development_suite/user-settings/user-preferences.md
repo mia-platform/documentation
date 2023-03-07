@@ -5,7 +5,7 @@ sidebar_label: User Preferences
 ---
 
 ### Manage your Console Preferences
-Hovering over the user profile picture, from the dropdown menu, click on the `User Preferences` item to view and manage some behaviors of the console for your account. 
+Hovering over the user profile picture, from the dropdown menu, click on the `User Preferences` item to view and manage some behaviors of the Console for your account. 
 
 ![user preferences dropdown](./img/user-preferences-dropdown.png)
 
