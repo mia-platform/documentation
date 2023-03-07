@@ -72,7 +72,7 @@ The following table describes the capabilities and how they are mapped on the de
 | Create a new Company                                                       | `console.root.company.create`                     |        |           |          |              |   |    |
 | Delete any Company                                                         | `console.root.company.delete`                     |        |           |          |              |   |    |
 | Create a new Project                                                       | `console.root.project.create`                     |        |           |          |              |   |    |
-| Edit any Project                                                           | `console.root.project.details,update`                     |        |           |          |              |   |    |
+| Edit any Project                                                           | `console.root.project.details.update`                     |        |           |          |              |   |    |
 | Delete any Project                                                         | `console.root.project.delete`                     |        |           |          |              |   |    |
 | View all Console resources                                                         | `console.root.view`                               |        |           |          |              |   |    |
 | Manage user roles, groups and bindings                                     | `console.root.user.bind`                          |        |           |          |              |   |    |
