@@ -92,12 +92,11 @@ Fixed bug in which the Real Time Updater kept entering a state of rebalance bein
 
 ## Marketplace
 
-### Marketplace New Components
-
 ### Marketplace Updates
 
 #### API Portal v1.16.5
-With this version a bug has been fixed which caused the portal to fail due to a wrong documentation configuration of one or more APIs.
+
+With this version a bug causing the portal to fail due to a wrong documentation configuration of one or more APIs has been fixed.
 
 #### Backoffice Application
 
