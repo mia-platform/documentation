@@ -73,7 +73,7 @@ Any changes to the Low Code JSON configurations will be validated to ensure that
 
 :::warning
 These validations are not a substitute of Unit Tests. They validate only that configurations match a JSON schema.     
-We recommend testing configurations with unit tests using the [Fast Data Low Code Test Template](https://github.com/mia-platform/fast-data-low-code-test-template).
+Check the [How to test Low Code configurations](#how-to-test-low-code-configurations) paragraph for further information about unit testing.
 :::
 
 Click on Save to save the configuration, otherwise click on Cancel to discard changes.
@@ -139,6 +139,14 @@ To delete a Single View just click on the `Delete` button in the Single View det
 You **cannot** delete a Single View if it has any endpoint associated, you will have to delete them first.
 Deleting a Single View does **not** delete the microservice associated.
 :::
+
+## How to test Low Code configurations
+
+In order to test Low Code configurations with unit tests we recommend cloning the [Fast Data Low Code Test Template repository](https://github.com/mia-platform/fast-data-low-code-test-template) from Mia-Platform GitHub.
+
+This repository contains some configurations, such as the aggregation and ER Schema, and a suite of related unit tests. After cloning it, you must update the existing configurations to match your use case and run the tests to see if the configurations produce the expected results for the aggregation and the validator.
+
+Once you've finished with the configuration you can compile the updated files with the `compile-config` npm script to get the configuration files that can then be directly uploaded or copied inside your Low Code service.
 
 ## Single View Patch
 
