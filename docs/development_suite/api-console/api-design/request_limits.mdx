@@ -44,7 +44,7 @@ Moreover, we have to explain the possible resources and how the request and limi
 
 - **Memory**: how much memory is reserved for the container, defined in _mebibyte (Mi)_ in Mia-Platform Console. Unlike CPU resources, **memory cannot be compressed**. Since there is no way to throttle memory usage, if a container exceeds its memory limit, it will be terminated.
 
-- **CPU**: how much CPU is reserved for the container, in Mia-Platform Console it is definded in _millicores (m)_, where 1000 millicores equals 1 core (For example, If the container needs only ¼ of a core, you will put the value of "250m").  
+- **CPU**: how much CPU is reserved for the container, in Mia-Platform Console it is defined in _millicores (m)_, where 1000 millicores equals 1 core (For example, If the container needs only ¼ of a core, you will put the value of "250m").  
   This resource is considered a **"compressible" resource**, which means that if your app reaches its CPU limit, Kubernetes will start throttling the container (actually, if the limit level is low, throttling can start much earlier, even before the request level is reached). Throttling means that the CPU will be artificially restricted, giving your app potentially worse performance, but it will not be terminated or evicted.  
   Usually, as general advice, _it is suggested to keep the CPU request to the average needed for the container to run efficiently_, avoiding to overstimate it, using instead the replicas to scale, giving the system more flexibility and reliability.
 
