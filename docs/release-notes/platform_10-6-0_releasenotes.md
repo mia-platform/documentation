@@ -16,6 +16,8 @@ _March 16, 2023_
 Console PaaS users can now decide to try out some of our newest features that are still under development from a dedicated modal.
 This functionality can be accessed by clicking the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar.
 
+![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
+
 ### Improvements
 
 ### Bug Fix
