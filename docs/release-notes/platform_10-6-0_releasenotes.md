@@ -22,6 +22,11 @@ This functionality can be accessed by clicking the `Feature Preview` item inside
 
 ### Bug Fix
 
+This version addressed a few bugs, here is a comprehensive list:
+
+* It has been fixed a bug that prevented users from properly displaying their favorite sections in the Console Launchbar
+* We fixed a behavior that, for certain projects, showed the floppy save icon when selecting a CronJob
+
 ## Fast Data
 
 ### New Features
