@@ -20,6 +20,10 @@ This functionality can be accessed by clicking the `Feature Preview` item inside
 
 ### Improvements
 
+#### Improved filtering in the Manual Routes table
+
+In the Authorization section, inside the Manual Routes table, you can now filter specifically by Microservice and Policy type thanks to two appropriate filters.
+
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
