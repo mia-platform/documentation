@@ -8,6 +8,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.6] - 2023-03-09
+
+### Added
+
+- `urlMask` properties of `bk-button` and `bk-url-paramters` allow separate masks for `pathname` and `search` fields of current URL
+- actions of type `http` support methods `PATCH` and `PUT`
+
+### Fixed
+
+- `headers` property is forwarded from `bk-layout-container` into its content
+- `bk-layout` adds injected headers in http-calls
+- locales are correctly loaded on first plugin render
+- actions of type `file-upload` correctly calls error event if http-call fails
+- actions of type `href` correctly resolve dynamic configurations
+- using `bk-layout-container` does not trigger extra http calls
+- fields are correctly put on focus on `bk-form-modal` wizard mode
+- form components do not discard "\__STATE__" field on data creation
+- `bk-search-bar` keeps state on layout change
+
 ## [1.3.5] - 2023-02-23
 
 ### Added

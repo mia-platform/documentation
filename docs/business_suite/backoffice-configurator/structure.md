@@ -59,7 +59,7 @@ For **compose pages**, available fields are:
 - _configurations manager endpoint_ (only if input mode is _external_): endpoint from which the configuration file can
   be fetched;
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
-- _template_: a configuration template carrying a pre-defined, pre-arranged set of components.
+- _template_ (only if input mode is _external_): a configuration template carrying a pre-defined, pre-arranged set of components.
 
 ![Page compose options](img/structure_page-compose-options.png)
 
@@ -97,8 +97,7 @@ The buttons placed in the last column of the page table allows you to interact w
 
 From left to right, available actions are:
 
-- _edit page_ (only for compose pages): to open the section for
-  [compose pages configuration](./compose-pages.md);
+- _edit page_ (only for compose pages): to open the section for [compose pages configuration](./compose-pages.md);
 - _edit details_: to re-open the [page creation wizard](#create-new-page) in edit mode;
 - _delete_: to delete the page.
 

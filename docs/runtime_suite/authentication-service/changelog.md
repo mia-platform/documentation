@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.8.2 - 06-03-2023
+
+### Fixed
+
+- an empty redirect url is always allowed when the option `allowedRedirectUrlsOnSuccessfulLogin` is specified
+- expose webhooks only when `EXPOSE_WEBHOOKS` flag is true (this change is **breaking** but the feature is not in use for now)
+
+## 2.8.1 - 03-03-2023
+
+### Fixed
+
+- added missing return statement after sending error to client in okta webhook
+
 ## 2.8.0 - 28-02-2023
 
 ### Added

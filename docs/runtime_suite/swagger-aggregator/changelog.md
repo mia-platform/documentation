@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.4.14] 2023-03-13
+
+### Updated
+
+- update node image to `18.14`
+
+### Fixed
+
+- .npmrc file added to .dockerignore
+- fixed a bug that caused a type error when the service failed to retrieve a schema with `excludePaths` or `includePath` set in the configuration
+
 ## [3.4.13] 2022-12-06
 
 ### Fixed

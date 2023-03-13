@@ -44,7 +44,10 @@ A prototype example can be used to validate observations related to blood pressu
 {
   "identifier": "bloodPressure",
   "type": "measurement",
-  "name": "Blood Pressure Prototype",
+  "name": {
+    "en": "Blood Pressure",
+    "it": "Pressione sanguigna"
+  },
   "schema": {
     "type": "object",
     "properties": {
@@ -63,6 +66,16 @@ A prototype example can be used to validate observations related to blood pressu
       "minimumBloodPressure",
       "maximumBloodPressure"
     ]
+  },
+  "labels": {
+    "minimumBloodPressure": {
+      "en": "Minimum pressure",
+      "it": "Pressione minima"
+    },
+    "maximumBloodPressure": {
+      "en": "Maximum pressure",
+      "it": "Pressione massima"
+    }
   }
 }
 ```
@@ -82,36 +95,11 @@ Note that, modifying an identifier in an already running system can lead to inco
   * `measurement` refers to observations related to monitorings, in which a patient has to insert a measurement representing its current situation;
   * `therapy` refers to observations related to therapies, in which a patient has to insert the result of the operations provided by the physician.
 
-* **Name**: the prototype name. It has no identification purpose and it is used to better identify the prototype objective.
+* **Name**: the prototype name, as a string or translation object. It has no identification purpose and it is used to better identify the prototype objective.
 
 * **Schema**: the property containing the schema used to validate the observation value. The schema must follow [JSON Schema 7](https://json-schema.org/draft-07/json-schema-release-notes.html).
 
-```json
-{
-  "identifier": "bloodPressure",
-  "type": "measurement",
-  "name": "Blood Pressure Prototype",
-  "schema": {
-    "type": "object",
-    "properties": {
-      "minimumBloodPressure": {
-        "type": "integer",
-        "minimum": 60,
-        "maximum": 150
-      },
-      "maximumBloodPressure": {
-        "type": "integer",
-        "minimum": 80,
-        "maximum": 250
-      },
-    },
-  	"required": [
-      "minimumBloodPressure",
-      "maximumBloodPressure"
-    ]
-  }
-}
-```
+* **Labels**: the labels for the schema fields, each one can be a string or translation object.
 
 ## CRUD collections
 
@@ -167,7 +155,7 @@ Please note that this JSON schemas can be copied and used in the *MongoDB CRUD* 
 | isPatientAdherentLastUpdatedAt  | `Date`            | No                | No                |
 | isPatientCompliant              | `boolean`         | No                | No                |
 | isPatientCompliantLastUpdatedAt | `Date`            | No                | No                |
-| thresholds                       | `Array of object` | No                | No                |
+| thresholds                      | `Array of object` | No                | No                |
 
 For the field `thresholds` you should add the following JSON Schema to the CRUD configuration:
 

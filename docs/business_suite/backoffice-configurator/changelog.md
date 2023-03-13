@@ -3,6 +3,33 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [0.7.2] - 2023-03-13
+
+### Versioning
+
+- `monaco-editor` to v0.36.1
+
+### Changed
+
+- Full micro-lc configuration can now be edited from Advanced tab
+- Changed placeholder icons
+- When creating compose applications with inline config, templates can no longer be chosen
+- When editing compose applications, config type can no longer be changed
+
+### Fixed
+
+- Advanced tab blue dot behavior rectified
+
+## [0.7.1] - 2023-03-07
+
+### Fixed
+
+- Fixed docs URL
+
+### Changed
+
+- Compose `inline` mode temporarely cannot be chosen
+
 ## [0.7.0] - 2023-02-28
 
 ### Changed

@@ -7,7 +7,7 @@ You can call any service or any endpoint defined on the Platform project, obtain
 
 For example, if you need to connect to a CRUD, you have to use a Proxy towards the `crud-service`.
 
-You can get a proxy calling these methods both on `Request`(the first argument of handler) and `Service` (the Fastify instance):
+You can get a proxy calling these methods both on `Request` (the first argument of handler) and `Service` (the Fastify instance):
 
 * `getHttpClient(baseURL, options)` - returns an http client configured with the given base URL and options.
   * `baseURL` - the base URL of the service, with protocol, host and it is possible to add a base prefix. The prefix must ends with a slash. Keep in mind that in method functions you must start the path without slash if you want to reuse the path prefix.
@@ -23,7 +23,7 @@ You can get a proxy calling these methods both on `Request`(the first argument o
 
 Potentially, the `getHttpClient` method allows you to also query services outside the Platform. In this case, however, it is necessary to bear in mind that the platform headers will be automatically forwarded. You can do it by setting the `isMiaHeaderInjected` option value to false.
 
-The http client by default forward the four Mia headers to the service called. In addition, other headers of the original request can also be forwarded to the named service. To do this it is necessary to define an additional environment variable, `ADDITIONAL_HEADERS_TO_PROXY`, whose value must be a string containing the keys of the headers to be forwarded separated by a comma.
+The http client created from the Request by default forwards the four Mia headers to the service called. In addition, other headers of the original request can also be forwarded to the named service. To do this it is necessary to define an additional environment variable, `ADDITIONAL_HEADERS_TO_PROXY`, whose value must be a string containing the keys of the headers to be forwarded separated by a comma.
 
 The client expose the methods to perform a specific HTTP request to service.
 

@@ -153,7 +153,30 @@ For each prototype you need to define:
 - the unique identifier;
 - the type (can be `measurement` or `therapy`);
 - the name;
-- the schema.
+- the schema;
+- the labels for the schema fields (**required** only if you use the TMM with the companion FE component).
+
+TMM supports localization for `name` and `labels`, using a syntax like the following (`en` is ISO 639-1 language code for English, `it` for Italian):
+
+```json
+{
+  "name": {
+    "en": "English name",
+    "it": "Italian name"
+  },
+  "labels": {
+    "bodyTemperature": {
+      "en": "Body Temperature",
+      "it": "Temperatura corporea",
+    }
+  }
+}
+```
+:::caution
+
+If you plan to use the TMM in combination with the companion FE component, be aware that, if you replace the string with a translation object, you must provide a translation for all languages that you want to support.
+
+:::
 
 Let's see a couple of examples:
 
@@ -163,7 +186,7 @@ Let's see a couple of examples:
 {
   "identifier": "bodyTemperature",
   "type": "measurement",
-  "name": "Body Temperature Prototype",
+  "name": "Body Temperature",
   "schema": {
     "type": "object",
     "properties": {
@@ -176,6 +199,12 @@ Let's see a couple of examples:
     "required": [
       "bodyTemperature"
     ]
+  },
+  "labels": {
+    "bodyTemperature": {
+      "en": "Body Temperature",
+      "it": "Temperatura corporea",
+    }
   }
 }
 ```
@@ -186,7 +215,10 @@ Let's see a couple of examples:
 {
   "identifier": "bloodPressure",
   "type": "measurement",
-  "name": "Blood Pressure Prototype",
+  "name": {
+    "en": "Blood Pressure",
+    "it": "Pressione Sanguigna"
+  },
   "schema": {
     "type": "object",
     "properties": {
@@ -205,6 +237,10 @@ Let's see a couple of examples:
       "minimumBloodPressure",
       "maximumBloodPressure"
     ]
+  },
+  "labels": {
+    "minimumBloodPressure": "Minimum pressure",
+    "maximumBloodPressure": "Maximum pressure"
   }
 }
 ```

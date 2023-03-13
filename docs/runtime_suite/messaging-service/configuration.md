@@ -154,6 +154,8 @@ property in the [Users CRUD](#users-crud-required) does not have a value.
 If you set an alphanumeric sender ID and choose a name that is too generic (e.g. SMS, Info...), you may run into this error: [ERROR - 21212 Invalid From Number (caller ID)](https://www.twilio.com/docs/api/errors/21212)
 :::
 
+- **androidIntentAction** - `string`: the Android intent action that is triggered by the notification (the default value is an empty string).
+
 It follows an example of a valid configuration file.
 
 ```json
@@ -169,6 +171,7 @@ It follows an example of a valid configuration file.
   ],
   "sender": {
     "email": "email@test.com"
-  }
+  },
+  "androidIntentAction": "eu.miaplatform.fakeactivity"
 }
 ```
