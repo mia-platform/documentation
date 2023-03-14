@@ -68,10 +68,9 @@ This means the `pr_reviews` projection is connected to:
 * `pr_registry` through the `rev_to_reg` condition, which means the documents are linked if the registry `ID_USER` field is the same as the reviews `ID_USER` field;
 * `pr_dishes` through the `rev_to_dish` condition, which means the documents are linked if the dish `id_dish` field is the same as the reviews `ID_DISH` field;
 
-<!-- TODO: Verify version -->
-### Selecting an ER Schema (version `10.5.2` and above)
+### Selecting an ER Schema (version `10.6.0` and above)
 
-From version `10.5.2` of the Console, your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop down menu where you can select one of the ER Schemas already configured in the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
+From version `10.6.0` of the Console, your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop down menu where you can select one of the ER Schemas already configured in the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
 
 ![ER Schema selection with No Code](../../img/single-view-detail-selection-er-schema.png)
 

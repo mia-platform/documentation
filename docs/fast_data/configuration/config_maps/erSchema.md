@@ -173,8 +173,7 @@ Example:
 
 ## Use the No Code
 
-<!-- TODO: Verify version -->
-From version `10.5.2` of the Console, your project might have enabled the possibility to configure ER Schemas with the No Code feature.
+From version `10.6.0` of the Console, your project might have enabled the possibility to configure ER Schemas with the No Code feature.
 
 ![Complete View of an ER Schema](../../img/er-schema-complete-view.png)
 
