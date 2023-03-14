@@ -11,16 +11,23 @@ _March 16, 2023_
 
 ### New Features
 
-#### Feature Preview for PaaS users
+#### Fast Data No Code
 
-Console PaaS users can now decide to try out some of our newest features that are still under development simply by enambling them from a dedicated modal.
-This functionality can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar.
+### New Features (available only for PaaS users)
+
+Along with the traditional New Features of the Console, ww want to dedicate a specific section for the new features which are exclusive for PaaS users. You can read them here below:
+
+#### Feature Preview section
+
+PaaS users can now have visibility of new Console features that are still under development and decide to try out them and give us precious feedback.
+For instance, once entered this section, PaaS users can now try the `Dynamic Sidebar` of the Design Area. To discover more, let's try this feature and tell us what you think! 
+This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar. 
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
 
 #### User Preferences section
 
-We have introduced a new section named `User preferences` in which users can customize their experience in Console according to their own preferences. For instance, inside this section, Console PaaS users can now manage the receipt of an invitation email that is sent when they are added to a Company. This section is accessible from the Launchbar when hovering over the user avatar.
+We have introduced a new section named `User preferences` in which PaaS users can customize their experience in Console according to their own preferences. For instance, inside this section, they can now manage the receipt of an invitation email that is sent when they are added to a Company. This section is accessible from the Launchbar when hovering over the user avatar.
 
 ### Improvements
 
