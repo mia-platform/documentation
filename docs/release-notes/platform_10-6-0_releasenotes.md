@@ -19,15 +19,16 @@ Along with the traditional Console New Features, we want to dedicate a specific 
 
 #### Feature Preview section
 
-PaaS users can now have visibility of new Console features that are still under development and decide to try out them and give us precious feedback.
-For instance, once entered this section, PaaS users can now try the `Dynamic Sidebar` of the Design Area. To discover more, let's try this feature and tell us what you think! 
+PaaS users can now have visibility of features in Console that are still under development and decide to try out them and give us precious feedback.
+For instance, once entered this section, PaaS users can now try the `Dynamic Sidebar` of the Design Area. 
+To discover more, let's try this feature and tell us what you think! 
 This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar. 
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
 
 #### User Preferences section
 
-We have introduced a new section named `User preferences` in which PaaS users can customize their experience in Console according to their own preferences. For instance, inside this section, they can now manage the receipt of an invitation email that is sent when they are added to a Company. This section is accessible from the Launchbar when hovering over the user avatar.
+We have introduced a new section named `User preferences` in which PaaS users can customize their experience in Console according to their own preferences. For instance, inside this section, it is now possible to manage the receipt of an invitation email that is sent when added to a Company. This section is accessible from the Launchbar when hovering over the user avatar.
 
 ### Improvements
 
