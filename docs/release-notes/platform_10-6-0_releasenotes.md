@@ -18,6 +18,10 @@ This functionality can be accessed from the Launchbar by clicking on the `Featur
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
 
+#### User Preferences section
+
+We have introduced a new section named `User preferences` in which users can customize their experience in Console according to their own preferences. For instance, inside this section, Console PaaS users can now manage the receipt of an invitation email that is sent when they are added to a Company. This section is accessible from the Launchbar when hovering over the user avatar.
+
 ### Improvements
 
 #### Improved filtering in the Manual Routes table
