@@ -217,9 +217,10 @@ This panel will allow you to configure a connection **both ways**. For example, 
 
 In this panel, you can see the connected projections, referred to as **A** and **B**. In the example shown in the image above, _A_ is the projection _pr_dishes_ and _B_ is the projection _pr_reviews_.
 
-You can also select if the condition from _A_ to _B_ (i.e.: from _pr_dishes_ to _pr_reviews_) should be:
-- _One to one_, which means that the condition will get one document from _B_ starting from one document to _A_ matching the condition;
-- _One to many_, which means that the condition will get all the documents from _B_ that match the condition with the document in _A_;
+You can select the _condition type_, for both the condition and its reverse, which can be one of the two values:
+- _One to one_ (default), which means that the condition will fetch one document from a projection from one document to the other projection matching the condition;
+- _One to many_, which means that the condition will fetch all the documents from one projection that match the condition with the document in the other projection;
+You can select the _condition type_ going from _A_ to _B_ (in this example: from _pr_dishes_ to _pr_reviews_) and from _B_ to _A_ (from _pr_reviews_ to _pr_dishes_). 
 
 Below are listed the rules that define conditions both ways. These rules are divided into three sections, each one with its tab:
 - _A <-> B_: includes all those rules that will be used in the condition from _A_ to _B_ and vice versa. In the example of the screenshot above, the rule `id_dish = ID_DISH` means that the condition from _pr_dishes_ to _pr_reviews_ will connect the `id_dish` field in _pr_dishes_ to the `ID_DISH` in _pr_reviews_, and the condition from _pr_reviews_ to _pr_dishes_ will connect the `ID_DISH` in _pr_reviews_ to the `id_dish` field in _pr_dishes_;
