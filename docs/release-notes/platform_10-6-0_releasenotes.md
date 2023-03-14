@@ -15,7 +15,7 @@ _March 16, 2023_
 
 ### New Features (available only for PaaS users)
 
-Along with the traditional New Features of the Console, ww want to dedicate a specific section for the new features which are exclusive for PaaS users. You can read them here below:
+Along with the traditional Console New Features, we want to dedicate a specific section for all those new features which are exclusive for PaaS users. You can read about them here below:
 
 #### Feature Preview section
 
