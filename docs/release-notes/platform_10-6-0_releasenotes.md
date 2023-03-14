@@ -57,6 +57,12 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### Marketplace Updates
 
+#### Files Service - v2.6.5
+
+Added support to multi bucket. The Files Service can now be configured with multiple bucket instances.
+
+Also, the new route `GET - /files/` has been added to get the list of files present in a bucket.
+
 ## Backoffice
 
 ### New Features
