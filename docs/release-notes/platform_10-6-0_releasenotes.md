@@ -11,8 +11,6 @@ _March 16, 2023_
 
 ### New Features
 
-#### Fast Data No Code
-
 ### New Features (available only for PaaS users)
 
 Along with the traditional Console New Features, we want to dedicate a specific section for all those new features which are exclusive for PaaS users. You can read about them here below:
@@ -49,9 +47,17 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### New Features
 
+#### Fast Data No Code
+
 ### Improvements
 
+Upgraded Real-Time Updater to version v7.4.1. This newer version come with a revised mechanism for writing projection changes
+onto underlying database, slightly speeding it up.
+
 ### Bug Fix
+
+Newer version v7.4.1 of the Real-Time Updater fixes a bug that caused the generation of multiple projections changes records
+when no unique index was set on the projections changes collection.
 
 ## Marketplace
 
