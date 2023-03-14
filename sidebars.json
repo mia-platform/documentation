@@ -854,24 +854,8 @@
       "type": "doc"
     },
     {
-      "id": "getting_started/video_pills/video_pills",
-      "type": "doc"
-    },
-    {
       "collapsed": true,
       "items": [
-        {
-          "id": "tutorial/console/console_handbook",
-          "type": "doc"
-        },
-        {
-          "id": "how_to/crud_service/crud_oss_usage",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/console/project_handbook",
-          "type": "doc"
-        },
         {
           "id": "tutorial/microservices/microservice_hello_world",
           "type": "doc"
@@ -913,8 +897,31 @@
           "type": "doc"
         }
       ],
-      "label": "Tutorial",
+      "label": "Tutorials",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "tutorial/console/project_handbook",
+          "type": "doc"
+        },
+        {
+          "id": "tutorial/console/console_handbook",
+          "type": "doc"
+        },
+        {
+          "id": "how_to/crud_service/crud_oss_usage",
+          "type": "doc"
+        }
+      ],
+      "label": "Handbooks",
+      "type": "category"
+    },
+    {
+      "id": "getting_started/video_pills/video_pills",
+      "type": "doc"
     },
     {
       "id": "getting_started/faqs",
