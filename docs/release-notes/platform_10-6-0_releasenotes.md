@@ -13,8 +13,8 @@ _March 16, 2023_
 
 #### Feature Preview for PaaS users
 
-Console PaaS users can now decide to try out some of our newest features that are still under development from a dedicated modal.
-This functionality can be accessed by clicking the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar.
+Console PaaS users can now decide to try out some of our newest features that are still under development simply by enambling them from a dedicated modal.
+This functionality can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar.
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
 
@@ -22,14 +22,14 @@ This functionality can be accessed by clicking the `Feature Preview` item inside
 
 #### Improved filtering in the Manual Routes table
 
-In the Authorization section, inside the Manual Routes table, you can now filter specifically by Microservice and Policy type thanks to two appropriate filters.
+In the Authorization section, inside the Manual Routes table, you can now filter specifically by Microservice and Policy type thanks to two new appropriate filters.
 
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
 
 * It has been fixed a bug that prevented users from properly displaying their favorite sections in the Console Launchbar
-* We fixed a behavior that, for certain projects, showed the floppy save icon when selecting a CronJob
+* We fixed a behavior that, for certain projects, wrongly showed the floppy save icon when selecting a CronJob
 
 ## Fast Data
 
