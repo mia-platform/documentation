@@ -21,6 +21,8 @@ We suggest you to create a unique index for the `clientId` field (which must not
 
 This service is configurable with the following environment variables:
 
+* **USERID_HEADER_KEY** (default to `miauserid`): name of the header carrying the identifier of the calling user;
+* **ADDITIONAL_HEADERS_TO_PROXY** (default to `miauserid,miausergroups,miauserproperties`): list of comma separated header keys which will be proxied to any external http service the Client Credentials might call (for the moment, is just the CRUD Service). By default, the Client Credentials services proxies the following headers: `Request-Id`, `X-Request-Id`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`;
 * **LOG_LEVEL** (default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 * **HTTP_PORT** (default to `3000`): port where the web server is exposed;
 * **SERVICE_PREFIX**: path prefix for all the specified endpoints (different from the status routes);
