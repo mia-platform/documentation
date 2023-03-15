@@ -281,7 +281,7 @@ The canvas is made to help you create and improve your ER Schema and also to giv
 
 You can also zoom in and out with the scroll wheel of the mouse.
 
-Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the bottom-right side of the canvas, or by pressing _Ctrl+Z__ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Shift+Z_ for MacOS). 
+Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the bottom-right side of the canvas, or by pressing _Ctrl+Z__ and _Ctrl+Y_. 
 
 ### The ER Schema code panel
 
