@@ -27,8 +27,10 @@ In order to exploit this functionality you have to open the Projections section 
 When configuring the Single View Creator, in the Single Views section, you just have to select one of the ER Schemas created in the aforementioned section from a dropdown list.
 
 This feature will only be available for PaaS users and it can be activated only for specific projects. If you want to try it out, contact your system administrator!
-Do not miss out the official documentation here! (<TODO add documentation link>)
-(<TODO add screenshot>)
+Do not miss out the [official documentation](/fast_data/configuration/config_maps/erSchema.md#use_the_no_code)! 
+
+![Fast Data No Code](./img/10.6/fast_data_no_code.png)
+
 
 #### Feature Preview section (only available for SaaS Console users)
 
