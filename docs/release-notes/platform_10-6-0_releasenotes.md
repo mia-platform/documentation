@@ -30,9 +30,9 @@ This feature will only be available for PaaS users and it can be activated only 
 Do not miss out the official documentation here! (<TODO add documentation link>)
 (<TODO add screenshot>)
 
-#### Feature Preview section (only available for PaaS users)
+#### Feature Preview section (only available for SaaS Console users)
 
-PaaS users can now have visibility of features in Console that are still in preview and decide to try them out and give us precious feedback.  
+SaaS users can now have visibility of features in Console that are still in preview and decide to try them out and give us precious feedback.  
 For instance, once entered in this section, PaaS users can now try the new `Dynamic Sidebar` of the Design Area.   
 To discover more, just try this new feature and tell us what you think!
  
