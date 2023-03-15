@@ -80,7 +80,6 @@ The `Import from DDL` feature on the Projections page now returns a list of proj
 
 We have fixed some bugs on Fast Data:
 
-* Newer version v7.4.1 of the Real-Time Updater fixes a bug that caused the generation of multiple projections changes records when no unique index was set on the projections changes collection
 * It is now possible to correctly scroll inside the Single View section when the number of Single Views exceeds the browser window height
 * A bug on the index creation inside the Single Views section has been fixed. It is now possible to correctly add several fields without having them disappear
 
