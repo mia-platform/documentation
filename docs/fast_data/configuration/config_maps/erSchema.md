@@ -228,7 +228,9 @@ Below are listed the rules that define conditions both ways. These rules are div
 - _B -> A_: includes all those rules that will be used only in the conditions where filtering starting from projection _B_, as explained above;
 
 :::info
-Defining conditions in both ways is highly suggested to make sure that your ER Schema can be used in any Fast Data microservice (you can read more in the [Direction of the relationships](#direction-of-the-relationships) section). The panel will allow you to do that.
+The Fast Data is composed by different microservices, and each one of them uses an ER Schema. You can use different ER Schemas for each service or you can decide to have an unique ER Schema containing all the cases.
+
+If your case is the latter, defining conditions in both ways is necessary to make sure that your ER Schema can be used in any Fast Data microservice (as explained in the [Direction of the relationships](#direction-of-the-relationships) section). The panel will allow you to do that.
 :::
 
 To edit those rules (or to start adding them), you have to click on the _Edit_ Rules_ button: a modal will open up with the three tabs explained before. In each of them, there will be a list of rules previously created and the possibility to add new ones.
