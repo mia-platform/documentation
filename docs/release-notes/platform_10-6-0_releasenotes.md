@@ -75,7 +75,7 @@ A bug on the index creation inside the Single Views section has been fixed. It i
 
 ### Marketplace Updates
 
-#### Files Service - v2.6.5
+#### Files Service - v2.7.0
 
 Added support to multi bucket. The Files Service can now be configured with multiple bucket instances.
 
