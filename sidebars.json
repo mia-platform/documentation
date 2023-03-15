@@ -1734,6 +1734,10 @@
             },
             {
               "type": "doc",
+              "id": "runtime_suite/form-service-backend/performance"
+            },
+            {
+              "type": "doc",
               "id": "runtime_suite/form-service-backend/changelog"
             }
           ],
