@@ -81,6 +81,15 @@ Added support to multi bucket. The Files Service can now be configured with mult
 
 Also, the new route `GET - /files/` has been added to get the list of files present in a bucket.
 
+#### Form Service FE - v1.7.1
+
+Fixed a couple of bugs. First, a regression that prevented the correct rendering of a form as a PDF.
+Second, warning messages were displayed for HTML content components even when hidden.
+
+#### Messaging Service - v1.2.1
+
+Android `actions` are now configurable via the `androidIntentAction` property.
+
 ## Backoffice
 
 ### New Features
