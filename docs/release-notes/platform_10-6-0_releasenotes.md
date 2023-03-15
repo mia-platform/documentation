@@ -103,7 +103,7 @@ Android `actions` are now configurable via the `androidIntentAction` property.
  
 #### API Portal - v1.16.6
 
-The stability of the service has been improved
+The stability of the service has been improved.
 
 #### Swagger Aggregator - v3.4.14
 
