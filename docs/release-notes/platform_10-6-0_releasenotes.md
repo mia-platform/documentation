@@ -57,21 +57,25 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### Improvements
 
-Upgraded Real-Time Updater to version v7.4.1. This newer version come with a revised mechanism for writing projection changes
-onto underlying database, slightly speeding it up.
+#### Upgraded Real-Time Updater to version v7.4.1 
 
-Added link to the Fast Data Low Code Test Template repository inside the Single Views section. This repository is used to test and generate configurations for the Single View Creator.
+This newer version come with a revised mechanism for writing projection changes onto underlying database, slightly speeding it up.
+
+#### Added link to the Fast Data Low Code Test Template repository inside the Single Views section 
+
+This repository is used to test and generate configurations for the Single View Creator.
+
+#### `Import from DDL` returns projections and evaluates potential duplicates
 
 The `Import from DDL` feature on the Projections page now returns a list of projections and evaluates potential duplicates. In that case, an error message is displayed.
 
 ### Bug Fix
 
-Newer version v7.4.1 of the Real-Time Updater fixes a bug that caused the generation of multiple projections changes records
-when no unique index was set on the projections changes collection.
+We have fixed some bugs on Fast Data:
 
-It is now possible to correctly scroll inside the Single View section when the number of Single Views exceeds the browser window height.
-
-A bug on the index creation inside the Single Views section has been fixed. It is now possible to correctly add several fields without having them disappear. 
+* Newer version v7.4.1 of the Real-Time Updater fixes a bug that caused the generation of multiple projections changes records when no unique index was set on the projections changes collection
+* It is now possible to correctly scroll inside the Single View section when the number of Single Views exceeds the browser window height
+* A bug on the index creation inside the Single Views section has been fixed. It is now possible to correctly add several fields without having them disappear
 
 ## Marketplace
 
@@ -80,7 +84,6 @@ A bug on the index creation inside the Single Views section has been fixed. It i
 #### Files Service - v2.7.0
 
 Added support to multi bucket. The Files Service can now be configured with multiple bucket instances.
-
 Also, the new route `GET - /files/` has been added to get the list of files present in a bucket.
 
 #### Form Service FE - v1.7.1
