@@ -11,7 +11,7 @@ _March 16, 2023_
 
 ### New Features
 
-In this Console release we have brought exciting new features which are currently available exclusively for PaaS users. 
+In this Console release we have brought exciting New Features which are currently available exclusively for PaaS users. 
 Here below you can discover all of them!
 
 #### Fast Data No Code Configuration for ER Schema (only available for PaaS users)
@@ -33,7 +33,7 @@ Do not miss out the official documentation here! (<TODO add documentation link>)
 #### Feature Preview section (only available for PaaS users)
 
 PaaS users can now have visibility of features in Console that are still in preview and decide to try them out and give us precious feedback.  
-For instance, once entered this section, PaaS users can now try the new `Dynamic Sidebar` of the Design Area.   
+For instance, once entered in this section, PaaS users can now try the new `Dynamic Sidebar` of the Design Area.   
 To discover more, just try this new feature and tell us what you think!
  
 This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar. 
@@ -51,7 +51,7 @@ For instance, inside this section, it is now possible to manage the receipt of a
 
 #### Improved filtering in the Manual Routes table
 
-In the Authorization section, inside the Manual Routes table, you can now filter specifically by Microservice and Policy type thanks to two new appropriate filters that will simplify the navigation on that table.
+In the Authorization section, inside the Manual Routes table, you can now filter specifically by Microservice and Policy type thanks to two new appropriate filters that simplify the navigation on that table.
 
 ### Bug Fix
 
