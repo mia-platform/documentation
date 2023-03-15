@@ -215,7 +215,7 @@ Here you can find an example of a *formVisualizerOptions* object:
 
 ```json
 {
-  "autosaveIntervalValueMs": "5000",
+  "autosaveIntervalValueMs": 5000,
   "exportFields": [
     "_id",
     "__STATE__",
@@ -230,6 +230,11 @@ Here you can find an example of a *formVisualizerOptions* object:
       "lookupDataSource": "http://crud-service/form-schemas",
       "lookupKey": "_id",
       "lookupValue": "{{name}}"
+    },
+    "patientId": {
+      "lookupDataSource": "http://crud-service/users",
+      "lookupKey": "_id",
+      "lookupValue": "{{firstName}} {{lastName}}"
     }
   },
   "exportRedirects": [

@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.3.0 - 14-03-2023
+
+### Added
+
+- redis username and password login support for redis mode normal (authentication with redis sentinel is not supported)
+
+## 3.2.2 - 07-03-2023
+
+### Added
+
+- added environment variable `ADDITIONAL_HEADERS_TO_PROXY` to specify additional headers to be proxied and envar `USERID_HEADER_KEY` to specify the header key holding the user identifier.
+
+### Upgraded
+
+- go 1.20
+
+### Changed
+
+- make `MONGODB_CREDENTIALS_DATABASE_NAME` env variable optional
+
 ## 3.2.1 - 05-07-2022
 
 ### Changed
