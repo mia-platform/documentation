@@ -107,7 +107,7 @@ The stability of the service has been improved.
 
 #### Swagger Aggregator - v3.4.14
 
-Fixed a bug which caused a malfuncion when a service retrieve failed.
+Fixed a bug that caused a malfunction when a service retrieve failed.
 
 ## Backoffice - 1.3.6
 
