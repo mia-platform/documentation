@@ -5,7 +5,7 @@ First off, thank you for considering contributing to this project.
 Please follow these guidelines for helping us to better address your issue, assessing changes, and helping you finalize your pull requests.
 In order to contribute you can submitting bug reports or suggest some correction or content improvements and it's also possible to open a new pull request. 
 
-## Code of Conduct
+## Code of Conduct 
 
 This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md), please read it and follow it
 before contributing. If you find someone that is not respecting it please report its behaviour.
