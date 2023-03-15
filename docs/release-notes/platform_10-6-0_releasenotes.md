@@ -58,10 +58,18 @@ This version addressed a few bugs, here is a comprehensive list:
 Upgraded Real-Time Updater to version v7.4.1. This newer version come with a revised mechanism for writing projection changes
 onto underlying database, slightly speeding it up.
 
+Added link to the Fast Data Low Code Test Template repository inside the Single Views section. This repository is used to test and generate configurations for the Single View Creator.
+
+The `Import from DDL` feature on the Projections page now returns a list of projections and evaluates potential duplicates. In that case, an error message is displayed.
+
 ### Bug Fix
 
 Newer version v7.4.1 of the Real-Time Updater fixes a bug that caused the generation of multiple projections changes records
 when no unique index was set on the projections changes collection.
+
+It is now possible to correctly scroll inside the Single View section when the number of Single Views exceeds the browser window height.
+
+A bug on the index creation inside the Single Views section has been fixed. It is now possible to correctly add several fields without having them disappear. 
 
 ## Marketplace
 
