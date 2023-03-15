@@ -398,7 +398,7 @@ This endpoint returns 400 and a body with the structure shown below if one of fo
           "type": "integer",
           "minimum": 80,
           "maximum": 250
-        },
+        }
       },
       "required": [
         "minimumBloodPressure",
