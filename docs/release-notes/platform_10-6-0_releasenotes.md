@@ -18,16 +18,18 @@ Here below you can discover all of them!
 
 :::info This feature is still in BETA, it is under active development. :::
 
-Are you tired of writing ER Schemas manually? The new Fast Data ER Schema No Code Configuration is now generally available! It is possible to create and generate relationships between Projections using a simple and easy to use no code configuration. The tool is capable to generate a JSON that will be used by the Single View Creator. This generated JSON is exactly the same JSON that would have been written manually in the Low Code Configuration. In order to exploit this functionality you have to open the Projections section and navigate in the new ER Schema tab. You can create a new ER Schema and starting designing it! When configuring the Single View Creator, in the Single Views section, you just have to select one of the ER Schemas created in the aforementioned section from a dropdown list.
+Are you tired of writing ER Schemas manually? The new Fast Data ER Schema No Code Configuration is now generally available! It is possible to create and generate relationships between Projections using a simple and easy to use No Code configuration. The tool is capable to generate a JSON that will be used by the Single View Creator. This generated JSON is exactly the same JSON that would have been written manually in the Low Code Configuration. 
+In order to exploit this functionality you have to open the Projections section and navigate in the new ER Schema tab. You can create a new ER Schema and starting designing it! 
+When configuring the Single View Creator, in the Single Views section, you just have to select one of the ER Schemas created in the aforementioned section from a dropdown list.
 This feature will only be available for PaaS users and it can be activated only for specific projects. If you want to try it out, contact your system administrator!
 Do not miss out the official documentation here! (<TODO add documentation link>)
 (<TODO add screenshot>)
 
 #### Feature Preview section (only available for PaaS users)
 
-PaaS users can now have visibility of features in Console that are still in preview and decide to try out them and give us precious feedback.
+PaaS users can now have visibility of features in Console that are still in preview and decide to try them out and give us precious feedback.
 For instance, once entered this section, PaaS users can now try the `Dynamic Sidebar` of the Design Area. 
-To discover more, let's try this feature and tell us what you think! 
+To discover more, just try this new feature and tell us what you think! 
 This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar. 
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
