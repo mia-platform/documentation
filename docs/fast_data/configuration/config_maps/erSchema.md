@@ -191,7 +191,7 @@ You can decide to open an existing ER Schema or to create a new one. In both cas
 
 - the left side includes another collapsible panel, which shows a code editor with the current ER Schema configuration, in JSON format. You can also edit the ER Schema from there, and every update will be reflected immediately in the canvas. This JSON object is the exact ER Schema that will be used in Fast Data services and it has the same structure as the ER Schema available in the [Low Code configuration](/fast_data/configuration/single_view_creator/low_code.md).
 
-### Adding projections in the ER Schema
+### Adding projections to the ER Schema
 
 To add a projection to the ER Schema, make sure that the right side panel is open (if not, click on the `+` button located in the top right of the canvas). This panel will show every projection available (not already used in the current ER Schema) from every System of Records.
 
@@ -224,8 +224,8 @@ You can select the _condition type_ going from _A_ to _B_ (in this example: from
 
 Below are listed the rules that define conditions both ways. These rules are divided into three sections, each one with its tab:
 - _A <-> B_: includes all those rules that will be used in the condition from _A_ to _B_ and vice versa. In the example of the screenshot above, the rule `id_dish = ID_DISH` means that the condition from _pr_dishes_ to _pr_reviews_ will connect the `id_dish` field in _pr_dishes_ to the `ID_DISH` in _pr_reviews_, and the condition from _pr_reviews_ to _pr_dishes_ will connect the `ID_DISH` in _pr_reviews_ to the `id_dish` field in _pr_dishes_;
-- _A -> B_: includes all those rules that will be used in conditions where filtering documents of projection _A_, executing queries based on comparison operations on fields of projection _B_ or constant values;
-- _B -> A_: includes all those rules that will be used only in the conditions where filtering starting from projection _B_, as explained above;
+- _A -> B_: includes all those rules that will be used in conditions by filtering documents of projection _A_ and executing queries based on comparison operations on fields of projection _B_ or constant values;
+- _B -> A_: includes all those rules that will be used in conditions by filtering documents of projection _B_, as explained above;
 
 :::info
 The Fast Data is composed by different microservices, and each one of them uses an ER Schema. You can use different ER Schemas for each service or you can decide to have an unique ER Schema containing all the cases.
@@ -254,7 +254,7 @@ You can also create a group of rules by clicking the _+ Group_ button. Based on 
 ![Condition editor from pr_dishes to pr_reviews, A -> B tab](../../img/er-schema-unidirectional-rule-editor.png)
 
 :::tip
-The No Code feature has been implemented having in mind the idea to create ER Schemas following the structure of the Single View you want to create.
+The No Code feature has been implemented with the goal of creating ER Schemas which follow the structure of the Single View you want to create.
 
 Keep this in mind when adding projections and conditions, to get an ER Schema which is both functional and easy to understand.
 :::
@@ -274,14 +274,14 @@ Removing a projection will also delete all of the conditions starting and ending
 ### Interact with the elements in the Canvas
 
 :::caution
-The position of the elements (boxes and lines) in the canvas is automatically calculated to give the best overview of the ER Schema. You are free to reorganize projections in the canvas but these updates will not be saved when you will commit your changes.
+The position of the elements (boxes and lines) in the canvas is automatically calculated to give the best overview of the ER Schema. You are free to reorganize projections in the canvas but these updates will not be saved when you save the configuration.
 :::
 
 The canvas is made to help you create and improve your ER Schema and also to give you a look at the whole picture of the Single View that will be created from it. To help you to have the full picture of it, there are several buttons on the bottom-left side of the canvas to adjust the zoom, to lock the canvas to move around without the risk of moving boxes and lines, and an _Autolayout_ button that restores the canvas elements to the best position for a complete view. 
 
 You can also zoom in and out with the scroll wheel of the mouse.
 
-Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the bottom-right side of the canvas, or by pressing _Ctrl+Z__ and _Ctrl+Y_. 
+Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the bottom-right side of the canvas, or by pressing _Ctrl+Z_ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Y_ for MacOS). 
 
 ### The ER Schema code panel
 
@@ -291,11 +291,11 @@ This panel, visible by clicking on the `</>` icon, opens and closes a Code Edito
 
 It is also possible to interact with the content of the Code Editor, like adding or removing lines. Updating the ER Schema from the Code Editor will reflect automatically in the canvas.
 
-Also, the Code Panel allows you to copy and paste your schema into an external file. You might want to use this feature to test the ER Schema with the [Fast Data Low Code Test Template application](https://github.com/mia-platform/fast-data-low-code-test-template). You can also export the content to the ER Schema Config Map used by the [Real Time Updater](/fast_data/configuration/realtime_updater/low_code.md#er-schema-configuration) and the [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md), or you can just use it to create another ER Schema as well.
+Also, the Code Panel allows you to copy and paste your schema into an external file. You might want to use this feature to test the ER Schema with the [Fast Data Low Code Test Template application](/fast-data/configuration/single_views.md#how-to-test-low-code-configurations). You can also export the content to the ER Schema Config Map used by the [Real Time Updater](/fast_data/configuration/realtime_updater/low_code.md#er-schema-configuration) and the [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md), or you can just use it to create another ER Schema as well.
 
 ### Error management
 
-The No Code feature can identify the most common problems in the ER Schema and it can prevent further modifications until these problems are not solved.
+The No Code feature can identify the most common problems in the ER Schema and it can prevent further modifications until these problems are solved.
 
 One of the most common errors is a non-valid JSON object passed in the left side panel. In that case, the canvas will be disabled, not allowing any other update. An error banner will appear at the top of the canvas.
 
