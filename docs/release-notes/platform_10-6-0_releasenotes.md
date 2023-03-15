@@ -102,11 +102,46 @@ Second, warning messages were displayed for HTML content components even when hi
 
 Android `actions` are now configurable via the `androidIntentAction` property.
 
-## Backoffice
+## Backoffice - 1.3.6
 
 ### New Features
 
+#### Pathname and search url-mask
+`urlMask` properties of components `bk-button` and `bk-url-paramters` allow separate masks for `pathname` and `search` parts of current URL
+
+#### PATCH & PUT support in http actions
+Actions of type `http` support REST methods `PATCH` and `PUT`
+
+
 ### Bug Fix
+
+#### `bk-layout-container` forwards headers
+Component `bk-layout-container` forwards property `headers` to its content
+
+#### `bk-layout-container` injects headers
+Component `bk-layout` adds headers as specified in property `headers` to its http-calls
+
+#### Locales are correctly loaded
+Locales are correctly loaded on first plugin render
+
+#### File upload action notifies http-call fail
+Actions of type `file-upload` calls `onError` hook if http-call fails
+
+#### Href actions resolve dynamic configurations
+Actions of type `href` correctly resolve dynamic configurations
+
+#### `bk-layout-container` does not make unnecessary http-calls
+Component `bk-layout-container` does not trigger extra http-calls
+
+#### Fields keep focus in wizard
+Fields are correctly put on focus on `bk-form-modal` wizard mode
+
+#### `__STATE__` field is not discarded
+Form components do not discard `__STATE__` field on data creation
+
+### Search bar keeps state
+Component `bk-search-bar` keeps state on layout change when placed inside `bk-layout-container` component
+
 
 ## How to update your Console
 
