@@ -173,6 +173,10 @@ Example:
 
 ## Use the No Code
 
+:::info
+This feature is still in **BETA**, so it is under active development. Pay attention using this feature.
+:::
+
 From version `10.6.0` of the Console, your project might have enabled the possibility to configure ER Schemas with the No Code feature.
 
 ![Complete View of an ER Schema](../../img/er-schema-complete-view.png)
