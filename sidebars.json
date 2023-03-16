@@ -406,10 +406,6 @@
             {
               "id": "development_suite/user-settings/user-companies",
               "type": "doc"
-            },
-            {
-              "id": "development_suite/user-settings/user-preferences",
-              "type": "doc"
             }
           ],
           "label": "User settings",
