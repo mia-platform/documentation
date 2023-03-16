@@ -53,7 +53,7 @@ In the Authorization section, inside the Manual Routes table, you can now filter
 This version addressed a few bugs, here is a comprehensive list:
 
 * It has been fixed a bug that prevented users from properly displaying their favorite Console areas in the Launchbar
-* We fixed a behavior that, for certain projects, wrongly showed the floppy save icon when selecting a CronJob
+* We fixed a behavior that wrongly showed the floppy save icon when switching among CronJobs with two different descriptions 
 
 ## Fast Data
 
