@@ -16,7 +16,9 @@ Here below you can discover all of them!
 
 #### Fast Data No Code Configuration for ER Schema (only available for SaaS users)
 
-:::info This feature is still in BETA, it is under active development. :::
+:::info 
+This feature is still in BETA, it is under active development. 
+:::
 
 Are you tired of writing ER Schemas manually? The new Fast Data ER Schema No Code Configuration is now generally available!
 
@@ -155,4 +157,4 @@ Component `bk-search-bar` keeps state on layout change when placed inside `bk-la
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.0`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.1`.
