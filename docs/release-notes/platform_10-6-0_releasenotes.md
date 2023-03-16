@@ -11,10 +11,10 @@ _March 16, 2023_
 
 ### New Features
 
-In this Console release we have brought exciting New Features which are currently available exclusively for PaaS users. 
+In this Console release we have brought exciting New Features which are currently available exclusively for SaaS users. 
 Here below you can discover all of them!
 
-#### Fast Data No Code Configuration for ER Schema (only available for PaaS users)
+#### Fast Data No Code Configuration for ER Schema (only available for SaaS users)
 
 :::info This feature is still in BETA, it is under active development. :::
 
@@ -26,7 +26,7 @@ This tool is able to generate a JSON that will be used by the Single View Creato
 In order to exploit this functionality you have to open the Projections section and navigate in the new ER Schema tab. You can create a new ER Schema and start designing it!   
 When configuring the Single View Creator, in the Single Views section, you just have to select one of the ER Schemas created in the aforementioned section from a dropdown list.
 
-This feature will only be available for PaaS users and it can be activated only for specific projects. If you want to try it out, contact your system administrator!
+This feature is available only for SaaS users and it can be activated only for specific projects. If you want to try it out, contact your system administrator!
 Do not miss out the [official documentation](/fast_data/configuration/config_maps/erSchema.md#use_the_no_code)! 
 
 ![Fast Data No Code](./img/10.6/fast_data_no_code.png)
@@ -35,16 +35,16 @@ Do not miss out the [official documentation](/fast_data/configuration/config_map
 #### Feature Preview section (only available for SaaS Console users)
 
 SaaS users can now have visibility of features in Console that are still in preview and decide to try them out and give us precious feedback.  
-For instance, once entered in this section, PaaS users can now try the new `Dynamic Sidebar` of the Design Area.   
+For instance, once entered in this section, SaaS users can now try the new `Dynamic Sidebar` of the Design Area.   
 To discover more, just try this new feature and tell us what you think!
  
 This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar. 
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
 
-#### User Preferences section (only available for PaaS users)
+#### User Preferences section (only available for SaaS users)
 
-We have introduced a new section named `User Preferences`, in which PaaS users can customize their experience in Console according to their own preferences.  
+We have introduced a new section named `User Preferences`, in which SaaS users can customize their experience in Console according to their own preferences.  
 For instance, inside this section, it is now possible to manage the receipt of an invitation email that is sent when you are added to a Company. This section is accessible from the dropdown menu of the Console Launchbar when hovering over the user avatar.
 
 ![User Preferences](./img/10.6/user-preferences.png)
