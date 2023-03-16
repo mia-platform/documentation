@@ -11,7 +11,7 @@ _March 16, 2023_
 
 ### New Features
 
-In this Console release we have brought exciting New Features which are currently available exclusively for SaaS users. 
+In this Console release we have brought exciting New Features which are currently available exclusively for SaaS users.  
 Here below you can discover all of them!
 
 #### Fast Data No Code Configuration for ER Schema (only available for SaaS users)
@@ -19,26 +19,25 @@ Here below you can discover all of them!
 :::info This feature is still in BETA, it is under active development. :::
 
 Are you tired of writing ER Schemas manually? The new Fast Data ER Schema No Code Configuration is now generally available!
- 
+
 It is now possible to create and generate relationships between Projections using a simple and easy to use No Code configuration.  
 This tool is able to generate a JSON that will be used by the Single View Creator. The generated JSON is exactly the same JSON that would have been written manually in the Low Code Configuration.
 
-In order to exploit this functionality you have to open the Projections section and navigate in the new ER Schema tab. You can create a new ER Schema and start designing it!   
+In order to exploit this functionality you have to open the Projections section and navigate in the new ER Schema tab. You can create a new ER Schema and start designing it!  
 When configuring the Single View Creator, in the Single Views section, you just have to select one of the ER Schemas created in the aforementioned section from a dropdown list.
 
 This feature is available only for SaaS users and it can be activated only for specific projects. If you want to try it out, contact your system administrator!
-Do not miss out the [official documentation](/fast_data/configuration/config_maps/erSchema.md#use_the_no_code)! 
+Do not miss out the [official documentation](/fast_data/configuration/config_maps/erSchema.md#use_the_no_code)!
 
 ![Fast Data No Code](./img/10.6/fast_data_no_code.png)
-
 
 #### Feature Preview section (only available for SaaS Console users)
 
 SaaS users can now have visibility of features in Console that are still in preview and decide to try them out and give us precious feedback.  
-For instance, once entered in this section, SaaS users can now try the new `Dynamic Sidebar` of the Design Area.   
+For instance, once entered in this section, SaaS users can now try the new `Dynamic Sidebar` of the Design Area.  
 To discover more, just try this new feature and tell us what you think!
- 
-This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar. 
+
+This section can be accessed from the Launchbar by clicking on the `Feature Preview` item inside the dropdown menu that appears when hovering over the user avatar.
 
 ![Feature Preview Modal - Feature Preview modal with some features enabled](./img/10.6/feature-preview.png)
 
@@ -53,17 +52,17 @@ In the Authorization section, inside the Manual Routes table, you can now filter
 This version addressed a few bugs, here is a comprehensive list:
 
 * It has been fixed a bug that prevented users from properly displaying their favorite Console areas in the Launchbar
-* We fixed a behavior that wrongly showed the floppy save icon when switching among CronJobs with two different descriptions 
+* We fixed a behavior that wrongly showed the floppy save icon when switching among CronJobs with two different descriptions
 
 ## Fast Data
 
 ### Improvements
 
-#### Upgraded Real-Time Updater to version v7.4.1 
+#### Upgraded Real-Time Updater to version v7.4.1
 
 This newer version come with a revised mechanism for writing projection changes onto underlying database, slightly speeding it up.
 
-#### Added link to the Fast Data Low Code Test Template repository inside the Single Views section 
+#### Added link to the Fast Data Low Code Test Template repository inside the Single Views section
 
 This repository is used to test and generate configurations for the Single View Creator.
 
@@ -95,7 +94,7 @@ Second, warning messages were displayed for HTML content components even when hi
 #### Messaging Service - v1.2.1
 
 Android `actions` are now configurable via the `androidIntentAction` property.
- 
+
 #### API Portal - v1.16.6
 
 The stability of the service has been improved.
@@ -115,7 +114,6 @@ Fixed a bug that caused a malfunction when a service retrieve failed.
 #### PATCH & PUT support in http actions
 
 Actions of type `http` support REST methods `PATCH` and `PUT`.
-
 
 ### Bug Fix
 
@@ -155,8 +153,6 @@ Form components do not discard `__STATE__` field on data creation.
 
 Component `bk-search-bar` keeps state on layout change when placed inside `bk-layout-container` component.
 
-
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
-
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.0`.
