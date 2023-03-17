@@ -19,8 +19,8 @@ The default method (if is not passed during registration) is the `client_secret_
 Once called the endpoint, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
 
 ### POST /oauth/token
-
-In the login flow, you should call the `/oauth/token` endpoint with method POST.
+In the login flow, you should call the `/oauth/token` endpoint with method POST.  
+Every time a service account receives a new access token, its `lastLogin` field will be set to the time of generation of the token.
 
 :::note
   There are two main types of authentication methods, which differ by the details employed to prove user identity. The _secret basic_ is based on username and password, while the _private key JWT_ requires as input a signed JWT.
@@ -321,6 +321,10 @@ The `POST /clients` endpoint is very similar to the `POST /register` endpoint, a
 
 :::caution
 Since this endpoint allows the caller to create a client with some permissions and audiences of interest, it should be used by internal services only and should not be made publicly available.
+:::
+
+:::info
+To add custom metadata to the request you can use the `metadata` field in the request payload.
 :::
 
 An example of invocation of the `POST /clients` is the following one:
