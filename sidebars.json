@@ -404,11 +404,11 @@
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/identity-and-access-management/user-settings/user-profile-picture",
+              "id": "development_suite/user-settings/user-profile-picture",
               "type": "doc"
             },
             {
-              "id": "development_suite/identity-and-access-management/user-settings/user-companies",
+              "id": "development_suite/user-settings/user-companies",
               "type": "doc"
             }
           ],
