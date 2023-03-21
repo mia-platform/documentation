@@ -846,6 +846,21 @@
       ],
       "label": "Bucket Storage Support",
       "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/connectors/overview_connectors",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/connectors/debezium_cdc",
+          "type": "doc"
+        }
+      ],
+      "label": "Connectors",
+      "type": "category"
     }
   ],
   "gettingStarted": [
