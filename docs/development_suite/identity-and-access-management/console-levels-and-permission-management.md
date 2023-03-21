@@ -1,7 +1,7 @@
 ---
 id: console-levels-and-permission-management
 title:  Console levels and permission management
-sidebar_label: Console resources and permission management
+sidebar_label: Console Levels and Permission Management
 ---
 Assigning different roles and permissions to each user is a key action for defining responsibilities within your platform ecosystem.
 The Console is based on hierarchical levels, and for each of them, specific permissions and capabilities have been identified and assigned to users.
@@ -17,7 +17,7 @@ The Console resources are organized in a hierarchical structure on three levels:
 
 1. **Project Level** is the third level of the Console. The projects are the heart of the Console, it is in fact at this level that developers find themselves developing to create their own platform.
 
-![alt text](img/DevOps_Console_levels.PNG)
+![alt text](../img/DevOps_Console_levels.PNG)
 
 ## Users Capabilities inside Console
 
