@@ -23,7 +23,8 @@ When data are stored on a database and the changes to be monitored are the actio
 - [Apache Cassandra](https://cassandra.apache.org/)
 
 Differently, when data are generated on the fly or are extracted into files adopting a structured or semi-structure format, it is usually a custom application that parses these data changes and generate the corresponding event on the event streaming platform, so that Fast Data components can import and process the source data.  
-In general, any application that writes messages onto an event messaging platform adopting one of the formats accepted by the [Real-Time Updater](/fast_data/configuration/realtime_updater/common.md) can act as a Connector. In particular, it is possible to either write your own custom Connector, tailored for your unique needs and requirements or exploit one of the Connectors that are available in the Mia-Platform [Marketplace](/docs/runtime_suite/mia-platform-plugins).
+In general, any application that writes messages onto an event messaging platform adopting one of the formats accepted by the [Real-Time Updater](/fast_data/configuration/realtime_updater/common.md) can act as a Connector.
+In particular, it is possible to either write your own custom Connector, tailored for your unique needs and requirements or exploit one of the Connectors that are available in the Mia-Platform [Marketplace](/docs/runtime_suite/mia-platform-plugins).
 
 // TODO: should we provide a list of connectors here? Which ones in case? 
 
@@ -42,4 +43,6 @@ This approach has already been tested, verified and it is working production wit
 
 ### Debezium CDC
 
-[Debezium](https://debezium.io/) is an open-source distributed platform for change data capture. It can be either deployed on the Kafka Connect framework, when employing [Apache Kafka](https://kafka.apache.org/) as event streaming platform or as a standalone service. In Mia-Platform Marketplace it is possible to find different version of Debezium Server, one for each supported database, which can be instantiated as plugin with an almost ready-to-use configuration. More details can be found in the dedicated Debezium configuration [page](/fast_data/connectors/debezium_cdc.md).
+[Debezium](https://debezium.io/) is an open-source distributed platform for change data capture. It can be either deployed on the Kafka Connect framework, when employing [Apache Kafka](https://kafka.apache.org/) as event streaming platform or as a standalone service.
+In Mia-Platform Marketplace it is possible to find different version of Debezium Server, one for each supported database, which can be instantiated as plugin with an almost ready-to-use configuration.
+More details can be found in the dedicated Debezium Server configuration [page](/fast_data/connectors/debezium_cdc.md).
