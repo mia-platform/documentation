@@ -17,7 +17,7 @@ Inside the Merge editor modal, the Revert button makes it possible to discard al
 
 #### New permission for creating and deleting companies
 
-A new set of permissions has been added to protect company creation and deletion; these permissions are setting the ground for administrative capabilities across the whole Console installation. You can find more info in the [documentation page](/development_suite/console-levels-and-permission-management.md), but make sure to update your Console administrators users by removing the `create_company` group and granting them the new permissions by creating a specific binding. The newly introduced permissions are:
+A new set of permissions has been added to protect company creation and deletion; these permissions are setting the ground for administrative capabilities across the whole Console installation. You can find more info in the [documentation page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md), but make sure to update your Console administrators users by removing the `create_company` group and granting them the new permissions by creating a specific binding. The newly introduced permissions are:
 
 * `console.root.company.create`: allows the user to create any Company (a Company Owner role is granted to the user on the newly created Company)
 * `console.root.company.delete`: allows the user to delete any Company
