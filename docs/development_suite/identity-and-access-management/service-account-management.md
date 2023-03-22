@@ -4,7 +4,7 @@ title: Manage Service Accounts
 sidebar_label: Manage Service Accounts
 ---
 
-The Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
+Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
 Note that Service Accounts are created at Company level, so there cannot be a Service Account inside a Project or an Environment if it does not also exist in the respective Company.  
 Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment level, based on which they will be able to perform different types of action.  
 
@@ -19,11 +19,11 @@ Virtually anything a User can do inside the Console can be entrusted to a dedica
 For instance, a Service Account could be granted permissions to make automatic deploys, which can greatly streamline the process of deploying code changes to an application. The Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application as soon as new code is pushed to the source code repository.  
 This allows teams to implement a CI/CD workflow that can improve the speed, reliability, and scalability of their software development processes. 
 
-A Service Account can also be used to monitor and log Kubernetes resources, such as pods, deployments and services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics, and other important indicators.
+A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics, and other important indicators.
 
 ## Managing Company Service Accounts
 
-A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, to add new ones and to change the existing Service Accounts' Roles.
+A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, to add new ones and to change their Roles.
 
 <!-- TODO: inserire screenshot dell'admin portal per la Company, con filtro attivo per identity type = Service Account -->
 
@@ -38,14 +38,14 @@ The Company Owner can add a new Service Account by clicking the *Add Service Acc
 
 <!-- TODO: SCREENSHOT OF COMPANY ADD SA MODAL -->
 
-The the Service Account creation process will require the following information:
+The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
 - Authentication method: it is necessary to verify the identity of the Service Account and can be of two types <!-- TODO: SCREENSHOT OF THE DIFFERENT FLOWS -->
-    - `client_secret_basic`: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The server then decodes the header and validates the credentials against its records to authenticate the client.  
-    - `private_key_jwt`: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the `Authorization` header of the request, with specific claims set to appropriate values. The server then verifies the JWT by validating the signature using the client's public key, and checking that the claims are valid and match its records.  
+    - `client_secret_basic`: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
+    - `private_key_jwt`: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the `Authorization` header of the request, with specific claims set to appropriate values. The server then verifies the JWT by validating the signature using the client public key, and checking that the claims are valid and match its records.  
 
-For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](../../runtime_suite/client-credentials/configuration.md)
+For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](../../runtime_suite/client-credentials/usage.md)
 
 ### Editing a Service Account Role
 

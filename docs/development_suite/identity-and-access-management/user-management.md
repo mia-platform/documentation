@@ -4,7 +4,7 @@ title: Manage Users
 sidebar_label: Manage Users
 ---
 
-The Mia-Platform Console enables certain Users to control other identities' ability to access resources. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
+Mia-Platform Console enables certain Users to control other identities ability to access resources. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
 
 :::note
 To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an identity.
@@ -74,13 +74,13 @@ A User with enough administrative permission on a specific Project will be able 
 ![Project admin portal](../img/user-management/project_admin_portal.png)
 
 :::note
-Although the Project Identities administration portal shows all the Company's identities, this does not mean that all of the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
+Although the Project Identities administration portal shows all the Company identities, this does not mean that all of the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
 
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
 ### Editing a User Role at Project level
 
-A User Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
+A User Role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
 <!-- TODO: SCREENSHOT OF COMPANY EDIT USER MODAL -->
