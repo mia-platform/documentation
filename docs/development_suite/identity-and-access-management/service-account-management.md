@@ -45,8 +45,6 @@ The Service Account creation process will require the following information:
     - `client_secret_basic`: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
     - `private_key_jwt`: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the `Authorization` header of the request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key, and checking that the claims are valid and match its records.  
 
-For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md)
-
 ### Editing a Service Account Role
 
 A Service Account Role in the Company can be modified: to do so, simply click on the pencil-shaped button on the desired Service Account row and select the new Role.
@@ -80,3 +78,29 @@ For further information about permissions and Role inheritance check out the [Co
 A User Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
 <!-- TODO: SCREENSHOT OF COMPANY EDIT SA MODAL -->
+
+## Service Account authentication
+
+In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint. Here is an example of CURL request for Service Account authentication with the `client_secret_basic` method:
+
+```shell
+curl --location \
+    --request POST 'http://[my-console-url]/api/m2m/oauth/token' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --header 'Authorization: Basic base64(client_id:client_secret)' \
+    --data-urlencode 'grant_type=client_credentials' \
+    --data-urlencode 'audience=aud1'
+```
+
+Example response:
+
+```json
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImtleUlEIiwidHlwIjoiSldUIn0.eyJleHAiOjE1OTE3OTg1OTYsImlhdCI6MTU5MTc5NDk5NiwiaXNzIjoidGVzdC1pc3N1ZXIiLCJzdWIiOiJjbGllbnQtaWQiLCJwZXJtaXNzaW9ucyI6W119.tfuIjL8ZN7dFmtT3n9NQLxY6Jhq1BoVZwb_LhTZS0zLNqxNQjQA-5-bN6-vne1ZJg9fBeRkq3aKxGjWCuruXTjYRfDLZwMSFoP3ki6NtUrdAqbse_c2J6DgI5m_F44NOZJFGZ8fbMydox5HV19swaozF32-aFN7UN53zZ7wV0tMdVXc-Nvf2WU8udGVXlqNtlMpQC2JZjSh8GeOljxZD4O6PDmp55ZoIcp7TscEzywT4yzUVJ78cLvMx1_rgZTto687XPJYdiqjdsI5kg7mSDH7_Bn9BfAR3Ln6qrPC_VieqAWf8-YmloyQNxx8dER8Yl-vDMCkHp3Z9Hla0XOrrm9F8IEyEQj5qmA_3TewppaDn3lu8Q4qYy_7v5lGSWTfx8PwaNHT5rRnDz10FI59KjM4WMzheTkqJ0Bw3dR-p1huF6iqoMsvnw5HfvdyyYP9_mMu0uw4JZiXInIR3qtmGZF6QGeeYK-l1atx1QRq-O5jvqZUy2hYFsJCLQEAHhF2jU5bWjbMjDsgSn1FHnzJY7IjRUNND6BuT4aBJzz0nspwy4fZhJTLrLLwFI3cjt17m5Ngrb9JY88dhGXLhAnWzjIDPWDM7Ao4YfQ2DHp2CM0P5OBB9sy8kXCgvv4ICAXv4cIEXIaMCE7QsPLHX8UqdwvP7-ygOyvCRRY_5seT70GQ",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+:::info
+For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) :::
