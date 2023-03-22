@@ -31,7 +31,7 @@ Therefore, by giving permissions on resources to Users, it is strongly suggested
 
 A User with enough administrative permission on a specific Company will be able to view the existing identities in the Company, to add new ones and to change the existing identities' Roles.
 
-<!-- TODO: aggiornare lo screenshot con la nuova versione, con filtro attivo per identity type = User -->
+<!-- TODO: UPDATE SCREENSHOT OF THE IDENTITIES PAGE WITH FILTER ON IDENTITY TYPE =  User -->
 ![Company admin portal](../img/user-management/company_admin_portal.png)
 
 :::caution
