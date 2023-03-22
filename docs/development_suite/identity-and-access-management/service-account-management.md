@@ -103,4 +103,5 @@ Example response:
 ```
 
 :::info
-For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) :::
+For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) 
+:::
