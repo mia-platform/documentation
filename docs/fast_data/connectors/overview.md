@@ -39,12 +39,13 @@ There are different manners to integrate a CDC system in between your data sourc
 
 Instantiate your own Change Data Capture system within your infrastructure, so that you can maintain the control on who can access your data source and customize its settings depending on your specific use case and environment.
 
-This approach has already been tested, verified and it is working in production with the following Change Data Capture softwares:
+This approach has already been tested, verified and it is working in production with the following Change Data Capture software:
 
 - [IBM InfoSphere Data Replication](https://www.ibm.com/products/data-replication)
 - [Oracle Golden Gate for Big Data](https://www.oracle.com/integration/goldengate/)
+- [Debezium](https://debezium.io/)
 
-### Debezium CDC
+### Managed Debezium CDC
 
 [Debezium](https://debezium.io/) is an open-source distributed platform for change data capture. It can be either deployed as a Kafka Connector on the Kafka Connect framework, when employing [Apache Kafka](https://kafka.apache.org/) as event streaming platform or as a standalone service.
 In Mia-Platform Marketplace it is possible to find different version of Debezium Server, one for each supported database, which can be instantiated as plugin or template with an almost ready-to-use configuration.
