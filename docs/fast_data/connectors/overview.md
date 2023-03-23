@@ -43,6 +43,6 @@ This approach has already been tested, verified and it is working production wit
 
 ### Debezium CDC
 
-[Debezium](https://debezium.io/) is an open-source distributed platform for change data capture. It can be either deployed on the Kafka Connect framework, when employing [Apache Kafka](https://kafka.apache.org/) as event streaming platform or as a standalone service.
-In Mia-Platform Marketplace it is possible to find different version of Debezium Server, one for each supported database, which can be instantiated as plugin with an almost ready-to-use configuration.
+[Debezium](https://debezium.io/) is an open-source distributed platform for change data capture. It can be either deployed as a Kafka Connector on the Kafka Connect framework, when employing [Apache Kafka](https://kafka.apache.org/) as event streaming platform or as a standalone service.
+In Mia-Platform Marketplace it is possible to find different version of Debezium Server, one for each supported database, which can be instantiated as plugin or template with an almost ready-to-use configuration.
 More details can be found in the dedicated Debezium Server configuration [page](/fast_data/connectors/debezium_cdc.md).
