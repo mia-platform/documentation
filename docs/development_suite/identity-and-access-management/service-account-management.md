@@ -42,8 +42,14 @@ The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
 - Authentication method: it is necessary to verify the identity of the Service Account and can be of two types <!-- TODO: SCREENSHOT OF THE DIFFERENT FLOWS -->
-    - `client_secret_basic`: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
-    - `private_key_jwt`: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the `Authorization` header of the request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key, and checking that the claims are valid and match its records.  
+    - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
+
+    It is worth noting that the `client_secret_basic` authentication method is less secure than some other OAuth 2.0 authentication methods, because the client secret is transmitted in cleartext as part of the Authorization header. Therefore, it is important to use this authentication method only in secure environments where the client secret can be properly protected.
+    - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the `Authorization` header of the request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key, and checking that the claims are valid and match its records.  
+
+    This authentication method provides better security than `client_secret_basic`, because the private key is not transmitted over the network. However, it requires more setup and configuration on the client's side to generate and manage the private and public keys.
+
+<!-- TODO: LINK TO THE CORRECT ANCHOR IN THE CLIENT CREDENTIALS SERVICE -->
 
 ### Editing a Service Account Role
 
