@@ -39,7 +39,7 @@ There are different manners to integrate a CDC system in between your data sourc
 
 Instantiate your own Change Data Capture system within your infrastructure, so that you can maintain the control on who can access your data source and customize its settings depending on your specific use case and environment.
 
-This approach has already been tested, verified and it is working production with the following Change Data Capture software:
+This approach has already been tested, verified and it is working in production with the following Change Data Capture softwares:
 
 - [IBM InfoSphere Data Replication](https://www.ibm.com/products/data-replication)
 - [Oracle Golden Gate for Big Data](https://www.oracle.com/integration/goldengate/)
