@@ -79,8 +79,21 @@ Although the Project Identities administration portal shows all the Company iden
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
+### Adding a new User at Project level
+
+The Company Owner can add a new User to a Company by pressing the *Add user* button in the Identities section of the Project settings area. Here, the User can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. The User invitation process will also require an email.
+
+<!-- TODO: SCREENSHOT OF PROJECT ADD USER MODAL -->
+
+The provided email will be searched throughout existing Users and if a match is found the User will be invited to the Company with the defined Roles.
+
+:::info
+If the User does not exist in the Platform, please open a Service Request for it to be created.
+:::
+
+
 ### Editing a User Role at Project level
 
 A User Role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
-<!-- TODO: SCREENSHOT OF COMPANY EDIT USER MODAL -->
+<!-- TODO: SCREENSHOT OF PROJECT EDIT USER MODAL -->

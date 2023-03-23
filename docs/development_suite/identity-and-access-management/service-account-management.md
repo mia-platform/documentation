@@ -79,11 +79,19 @@ Although the Project Identities administration portal shows all the Company's id
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
+### Adding a new Service Account at Project level
+
+The Company Owner can add a new Service Account by clicking the *Add Service Account* option inside the *Add User* split button, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments.  
+
+The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
+
+<!-- TODO: SCREENSHOT OF PROJECT ADD SA MODAL -->
+
 ### Editing a Service Account Role at Project level
 
 A Service Account Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
-<!-- TODO: SCREENSHOT OF COMPANY EDIT SA MODAL -->
+<!-- TODO: SCREENSHOT OF PROJECT EDIT SA MODAL -->
 
 ## Service Account authentication
 
