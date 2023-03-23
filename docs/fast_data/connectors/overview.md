@@ -45,7 +45,7 @@ This approach has already been tested, verified and it is working in production 
 - [Oracle Golden Gate for Big Data](https://www.oracle.com/integration/goldengate/)
 - [Debezium](https://debezium.io/)
 
-Change Data Capture systems described above publish change events in one of the [formats that are supported by Fast Data](http://localhost:3000/docs/fast_data/inputs_and_outputs#data-change-message). When another CDC system is employed, it important to either verify that such component can produce messages accordingly or provide a [_custom message adapter_](/fast_data/configuration/realtime_updater/common.md#custom) to the Fast Data Real-Time Updater component. In this manner Fast Data can easily process change events employing user-defined formats.
+Change Data Capture systems described above publish change events in one of the [formats that are supported by Fast Data](fast_data/inputs_and_outputs#data-change-message). When another CDC system is employed, it important to either verify that such component can produce messages accordingly or provide a [_custom message adapter_](/fast_data/configuration/realtime_updater/common.md#custom) to the Fast Data Real-Time Updater component. In this manner Fast Data can easily process change events employing user-defined formats.
 
 ### Managed Debezium CDC
 
