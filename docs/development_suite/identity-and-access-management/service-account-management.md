@@ -79,9 +79,9 @@ Although the Project Identities administration portal shows all the Company's id
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
-### Editing a User Role at Project level
+### Editing a Service Account Role at Project level
 
-A User Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
+A Service Account Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
 <!-- TODO: SCREENSHOT OF COMPANY EDIT SA MODAL -->
 
