@@ -4,13 +4,13 @@ title: Debezium Server CDC
 sidebar_label: Debezium Server CDC
 ---
 
-In this page is describe how to configure Debezium Server to connect with all the supported databases.
+This page provides instructions on how to configure the Debezium Server to connect with all the databases that are supported.
 
 ## Overview
 
 As previously introduced, in the Mia-Platform Marketplace are available a set of plugins that repackages Debezium Server image, adding the JMX Prometheus Exporter to expose collected metrics regarding the connector.
 
-These plugins are shipped with a predefined configuration tailored for the database of interest to speed up the configuration and deploy phase. This configuration, saved in a file named `application.properties` is mounted as a config map on the path `/debezium/conf` within the container. This leverage the mechanism [Quarkus](https://quarkus.io/) framework, on which Debezium Server is based on, adopts to extend the base configuration of a service.
+These plugins are shipped with a predefined configuration tailored for the database of interest to speed up the configuration and deployment phase. This configuration, saved in a file named `application.properties` is mounted as a config map on the path `/debezium/conf` within the container. This leverages the mechanism of [Quarkus](https://quarkus.io/) framework, on which Debezium Server is based, in order to extend the base configuration of a service.
 
 :::info
 Current Debezium Server plugin requires a dependency on [Redis](https://redis.io/) for storing the metadata regarding the offset and schema management. More details can be found below or in the official Documentation. 
@@ -45,12 +45,12 @@ Once the plugin is created in Mia-Platform Console, there are a few environment 
 | KAFKA_PASSWORD            | true     | The Kafka password                                                                                                           | -             |
 | KAFKA_CLIENT_ID           | false    | Client identifier employed by this application                                                                               | -             |
 
-In the following section are provided a configuration example for each supported database and some instructions on how to configure and enable the database itself for CDC operations. Furthermore, it is clarified why Debezium Server CDC currently requires to be connected also to an instance of Redis.
-
 ## Debezium Server Configuration
 
-In these paragraphs are detailed the configurations that have tested out with the Debezium Server plugin.  
-Currently, the default sink configuration is prefilled with Kafka properties, since it is the main event streaming platform supported by Fast-Data. Nonetheless, it is possible to fill it with any of the Debezium supported sink configuration as explained in the [official documentation](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html#_sink_configuration). 
+In this section, some configuration examples for each supported database and some instructions on how to configure and enable the database itself for CDC operations are provided. Furthermore, it is clarified why Debezium Server CDC currently requires to be connected also to an instance of Redis.
+
+In the next paragraphs, the configurations that have been tested out with the Debezium Server plugin are detailed.  
+Currently, the default sink configuration is prefilled with Kafka properties, since it is the main event streaming platform supported by Fast-Data. Nonetheless, it is possible to fill it with any of the Debezium-supported sink configurations as explained in the [official documentation](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html#_sink_configuration). 
 
 ### MySQL
 
@@ -60,7 +60,7 @@ Regarding enabling MySQL binary log, we recommend checking out Debezium [instruc
 
 #### Database User and Permission Configuration
 
-Below are provided instead the commands to create a user dedicated for CDC operations, granting the proper permissions.
+The commands to create a dedicated user to CDC operations, granting the proper permissions, are provided here below.
 
 ```sql
 -- CDC Configurations (replace variables identified with double curly braces with their correct value)
@@ -75,7 +75,7 @@ FLUSH PRIVILEGES;
 
 #### Debezium Service Configuration
 
-Once the database is configured, it is possible to configure the Debezium Server instance, filling in the _source_ and _sink_ configuration. Below it is provided an example using MySQL as _source_, Redis as offsets and metadata store and Kafka as _sink_.  
+Once the database is configured, it is possible to configure the Debezium Server instance, filling in the _source_ and _sink_ configuration. An example using MySQL as _source_, Redis as offsets and metadata store and Kafka as _sink_ is provided here below.
 
 <details>
 <summary>Click here to show/hide the example configuration for MySQL</summary>
@@ -169,7 +169,7 @@ For an in depth explanation of the particular database configuration, we suggest
 
 Debezium CDC over Oracle Database exploits the [LogMiner](https://docs.oracle.com/en/database/oracle/oracle-database/21/sutil/oracle-logminer-utility.html) Oracle component to read and analyze the _redo_ logs (either the `archive` or the `online` logs). In order to allow Debezium carrying out its task the `ARCHIVELOG` feature has to be activated.
 
-Below is reported the instructions and references to instruct an [AWS RDS for Oracle](https://aws.amazon.com/rds/oracle/) instance to be ready for CDC operations.
+The instructions and references to instruct an [AWS RDS for Oracle](https://aws.amazon.com/rds/oracle/) instance to be ready for CDC operations are reported here below.
 
 #### Enable `ARCHIVELOG`
 
@@ -204,7 +204,7 @@ For further details, please check out [Debezium for Oracle documentation](https:
 
 #### Database User and Permission Configuration
 
-Here are provided the commands that create a database user dedicated to Debezium Server and that grants the appropriate permissions.
+In this paragraph, the commands that create a database user dedicated to Debezium Server and that grant the appropriate permissions are listed.
 Please, remember to replace `{{DEBEZIUM_DB_USERNAME}}` and `{{DEBEZIUM_DB_PASSWORD}}` with the real values of your use case.
 
 ```sql
@@ -276,7 +276,7 @@ It is possible to find a reference for each of AWS RDS Administration tasks desc
 
 #### Debezium Service Configuration
 
-Once the database is configured, it is possible to configure the Debezium Server instance, filling in the _source_ and _sink_ configuration. Below it is provided an example using Oracle as _source_, Redis as offsets and metadata store and Kafka as _sink_.
+Once the database is configured, it is possible to configure the Debezium Server instance, filling in the _source_ and _sink_ configuration. An example using Oracle as _source_, Redis as offsets and metadata store and Kafka as _sink_ is provided here below.
 
 <details>
 <summary>Click here to show/hide the example configuration for Oracle</summary>
