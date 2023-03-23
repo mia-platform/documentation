@@ -14,9 +14,7 @@ These plugins are shipped with a predefined configuration tailored for the datab
 
 :::info
 Current Debezium Server plugin requires a dependency on [Redis](https://redis.io/) for storing the metadata regarding the offset and schema management. More details on offset management can be found [below](/fast_data/connectors/debezium_cdc.md#offsets-management).
-:::
 
-:::note
 For more details on how the Debezium works, what are its configuration and where metadata can be stored we recommend checking out the [official Debezium documentation](https://debezium.io/documentation/reference/2.1/), in particular the section regarding [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html).
 :::
 
