@@ -24,7 +24,7 @@ When data are stored on a database and the changes to be monitored are the actio
 
 Differently, when data are generated on the fly or are extracted into files adopting a structured or semi-structure format, it is usually a custom application that parses these data changes and generate the corresponding event on the event streaming platform, so that Fast Data components can import and process the source data.  
 In general, any application that writes messages onto an event messaging platform adopting one of the formats accepted by the [Real-Time Updater](/fast_data/configuration/realtime_updater/common.md) can act as a Connector.
-In particular, it is possible to either write your own custom Connector, tailored for your unique needs and requirements, or exploit one of the Connectors that are available in the Mia-Platform [Marketplace](/docs/runtime_suite/mia-platform-plugins).
+In particular, it is possible to either write your own custom Connector, tailored for your unique needs and requirements, or exploit one of the Connectors that are available in the Mia-Platform [Marketplace](/runtime_suite/mia-platform-plugins.md).
 
 The custom connectors available in the Marketplace are:
 
