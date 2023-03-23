@@ -23,27 +23,27 @@ For more details on how the Debezium Server works, what are its configuration an
 Once the plugin is created in Mia-Platform Console, there are a few environment variables (secret or public, depending on their sensitivity) to be created and configured, which are reported in the following table.
 
 
-| Name                      | Required | Description                                                                                                       | Default Value |
-|---------------------------|----------|-------------------------------------------------------------------------------------------------------------------|---------------|
-| HTTP_PORT                 | false    | Port exposed by the service                                                                                       | 3000          |
-| METRICS_HTTP_PORT         | false    | Port exposed by the service for metrics                                                                           | 3001          |
-| LOG_LEVEL                 | false    | Log level used by the service                                                                                     | INFO          |
-| REDIS_HOSTNAME            | true     | Hostname or IP address to which Debezium should connect to                                                        | -             |  
-| REDIS_PORT                | false    | Redis port exposed by selected host                                                                               | 6379          |  
-| DEBEZIUM_SOURCE_TASK_NAME | true     | Name of the specific connector task                                                                               | -             |  
-| DEBEZIUM_REDIS_USERNAME   | true     | Debezium account username for accessing Redis                                                                     | -             |  
-| DEBEZIUM_REDIS_PASSWORD   | true     | Debezium account password for accessing Redis                                                                     | -             |   
-| DATABASE_HOSTNAME         | true     | Hostname or IP address of the database Debezium should connect and monitor changes                                | -             |  
-| DATABASE_PORT             | true     | Database port on which Debezium should connect to                                                                 | -             |  
-| DEBEZIUM_DB_USERNAME      | true     | Debezium account username for accessing the database                                                              | -             |  
-| DEBEZIUM_DB_PASSWORD      | true     | Debezium account password for accessing the database                                                              | -             |  
-| TOPIC_PREFIX              | true     | Prefix to be added to each table on the sink topics where database changes are published                          | -             |  
-| DATABASES_LIST            | true     | Comma separated list of database names or regexpr that defines which databases should be monitored                | -             |  
-| TABLES_LIST               | true     | Comma separated list of tables names (with their schema) or regexpr that defines which tables should be monitored | -             |  
-| KAFKA_BROKERS             | true     | Comma separated list of nodes address belonging to a Kafka cluster                                                | -             |
-| KAFKA_USERNAME            | true     | The Kafka username                                                                                                | -             |
-| KAFKA_PASSWORD            | true     | The Kafka password                                                                                                | -             |
-| KAFKA_CLIENT_ID           | false    | Client identifier employed by this application                                                                    | -             |
+| Name                      | Required | Description                                                                                                                  | Default Value |
+|---------------------------|----------|------------------------------------------------------------------------------------------------------------------------------|---------------|
+| HTTP_PORT                 | false    | Port exposed by the service                                                                                                  | 3000          |
+| METRICS_HTTP_PORT         | false    | Port exposed by the service for metrics                                                                                      | 3001          |
+| LOG_LEVEL                 | false    | Log level used by the service                                                                                                | INFO          |
+| REDIS_HOSTNAME            | true     | Hostname or IP address to which Debezium should connect to                                                                   | -             |  
+| REDIS_PORT                | false    | Redis port exposed by selected host                                                                                          | 6379          |  
+| DEBEZIUM_SOURCE_TASK_NAME | true     | Name of the specific connector task                                                                                          | -             |  
+| DEBEZIUM_REDIS_USERNAME   | true     | Debezium account username for accessing Redis                                                                                | -             |  
+| DEBEZIUM_REDIS_PASSWORD   | true     | Debezium account password for accessing Redis                                                                                | -             |   
+| DATABASE_HOSTNAME         | true     | Hostname or IP address of the database Debezium should connect and monitor changes                                           | -             |  
+| DATABASE_PORT             | true     | Database port on which Debezium should connect to                                                                            | -             |  
+| DEBEZIUM_DB_USERNAME      | true     | Debezium account username for accessing the database                                                                         | -             |  
+| DEBEZIUM_DB_PASSWORD      | true     | Debezium account password for accessing the database                                                                         | -             |  
+| TOPIC_PREFIX              | true     | Prefix to be added to each table on the sink topics where database changes are published                                     | -             |  
+| DATABASES_LIST            | true     | Comma separated list of database names or regular expression that defines which databases should be monitored                | -             |  
+| TABLES_LIST               | true     | Comma separated list of tables names (with their schema) or regular expression that defines which tables should be monitored | -             |  
+| KAFKA_BROKERS             | true     | Comma separated list of nodes address belonging to a Kafka cluster                                                           | -             |
+| KAFKA_USERNAME            | true     | The Kafka username                                                                                                           | -             |
+| KAFKA_PASSWORD            | true     | The Kafka password                                                                                                           | -             |
+| KAFKA_CLIENT_ID           | false    | Client identifier employed by this application                                                                               | -             |
 
 In the following section are provided a configuration example for each supported database and some instructions on how to configure and enable the database itself for CDC operations. Furthermore, it is clarified why Debezium Server CDC currently requires to be connected also to an instance of Redis.
 
@@ -66,7 +66,7 @@ Below are provided instead the commands to create a user dedicated for CDC opera
 -- CDC Configurations (replace variables identified with double curly braces with their correct value)
 CREATE USER '{{DEBEZIUM_DB_USERNAME}}' IDENTIFIED WITH mysql_native_password BY '{{DEBEZIUM_DB_PASSWORD}}';
 
--- these are global priviledges that must be granted on all the databases to be monitored
+-- these are global privileges that must be granted on all the databases to be monitored
 GRANT SELECT,RELOAD,SHOW DATABASES,REPLICATION SLAVE,REPLICATION CLIENT ON *.* TO '{{DEBEZIUM_DB_USERNAME}}';
 
 -- ensure privileges are set
@@ -204,53 +204,56 @@ For further details, please check out [Debezium for Oracle documentation](https:
 
 #### Database User and Permission Configuration
 
+Here are provided the commands that create a database user dedicated to Debezium Server and that grants the appropriate permissions.
+Please, remember to replace `{{DEBEZIUM_DB_USERNAME}}` and `{{DEBEZIUM_DB_PASSWORD}}` with the real values of your use case.
+
 ```sql
 # these works to assign permissions and create user dedicated to CDC
 CREATE TABLESPACE logminer_tbs DATAFILE SIZE 50M AUTOEXTEND ON MAXSIZE 10G;
 
-CREATE USER dbzuser IDENTIFIED BY dbzpwd DEFAULT TABLESPACE logminer_tbs;
-GRANT CREATE SESSION TO dbzuser;
-GRANT SELECT ON V$DATABASE to dbzuser;
+CREATE USER {{DEBEZIUM_DB_USERNAME}} IDENTIFIED BY {{DEBEZIUM_DB_PASSWORD}} DEFAULT TABLESPACE logminer_tbs;
+GRANT CREATE SESSION TO {{DEBEZIUM_DB_USERNAME}};
+GRANT SELECT ON V$DATABASE to {{DEBEZIUM_DB_USERNAME}};
 
-GRANT SELECT_CATALOG_ROLE TO dbzuser;
-GRANT EXECUTE_CATALOG_ROLE TO dbzuser;
+GRANT SELECT_CATALOG_ROLE TO {{DEBEZIUM_DB_USERNAME}};
+GRANT EXECUTE_CATALOG_ROLE TO {{DEBEZIUM_DB_USERNAME}};
 
 # fine grain permission assignments
-GRANT SELECT ON "<schema-name>"."<table-name>" TO dbzuser;
+GRANT SELECT ON "<schema-name>"."<table-name>" TO {{DEBEZIUM_DB_USERNAME}};
 
-# enable to keep track of changes across all the tables coloumns
+# enable to keep track of changes across all the tables columns
 ALTER TABLE "<schema-name>"."<table-name>" ADD SUPPLEMENTAL LOG DATA (ALL) COLUMNS;
 
 # permission to allow performing snapshot of the selected tables 
-GRANT FLASHBACK ON "<schema-name>"."<table-name>" TO dbzuser;
+GRANT FLASHBACK ON "<schema-name>"."<table-name>" TO {{DEBEZIUM_DB_USERNAME}};
 
-GRANT SELECT ANY TRANSACTION TO dbzuser;
-GRANT LOGMINING TO dbzuser;
+GRANT SELECT ANY TRANSACTION TO {{DEBEZIUM_DB_USERNAME}};
+GRANT LOGMINING TO {{DEBEZIUM_DB_USERNAME}};
 
-GRANT CREATE TABLE TO dbzuser; 
-GRANT LOCK ANY TABLE TO dbzuser; 
-GRANT CREATE SEQUENCE TO dbzuser; 
+GRANT CREATE TABLE TO {{DEBEZIUM_DB_USERNAME}}; 
+GRANT LOCK ANY TABLE TO {{DEBEZIUM_DB_USERNAME}}; 
+GRANT CREATE SEQUENCE TO {{DEBEZIUM_DB_USERNAME}}; 
 
-GRANT SELECT ON V$LOG TO dbzuser;
-GRANT SELECT ON V$LOGFILE TO dbzuser;
+GRANT SELECT ON V$LOG TO {{DEBEZIUM_DB_USERNAME}};
+GRANT SELECT ON V$LOGFILE TO {{DEBEZIUM_DB_USERNAME}};
 
-GRANT SELECT ON V$ARCHIVED_LOG TO dbzuser;
-GRANT SELECT ON V$TRANSACTION TO dbzuser;
+GRANT SELECT ON V$ARCHIVED_LOG TO {{DEBEZIUM_DB_USERNAME}};
+GRANT SELECT ON V$TRANSACTION TO {{DEBEZIUM_DB_USERNAME}};
 
 # provide permissions to read a specific operations log
 # Debezium can read from each of them, depending on its configuration (by default it reads from Archive Log)
-GRANT READ ON DIRECTORY ONLINELOG_DIR TO dbzuser;
-GRANT READ ON DIRECTORY ARCHIVELOG_DIR TO dbzuser;
+GRANT READ ON DIRECTORY ONLINELOG_DIR TO {{DEBEZIUM_DB_USERNAME}};
+GRANT READ ON DIRECTORY ARCHIVELOG_DIR TO {{DEBEZIUM_DB_USERNAME}};
 
 ## The database user MUST be set UPPERCASE otherwise the procedure won't work (it would return error invalid schema)
-exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOG_HISTORY', 'DBZUSER', 'SELECT', true);
-exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOGMNR_LOGS', 'DBZUSER', 'SELECT', true);
-exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOGMNR_CONTENTS', 'DBZUSER', 'SELECT', true);
-exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOGMNR_PARAMETERS', 'DBZUSER', 'SELECT', true);
-exec rdsadmin.rdsadmin_util.grant_sys_object('V_$ARCHIVE_DEST_STATUS', 'DBZUSER', 'SELECT', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOG_HISTORY', '{{DEBEZIUM_DB_USERNAME}}', 'SELECT', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOGMNR_LOGS', '{{DEBEZIUM_DB_USERNAME}}', 'SELECT', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOGMNR_CONTENTS', '{{DEBEZIUM_DB_USERNAME}}', 'SELECT', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('V_$LOGMNR_PARAMETERS', '{{DEBEZIUM_DB_USERNAME}}', 'SELECT', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('V_$ARCHIVE_DEST_STATUS', '{{DEBEZIUM_DB_USERNAME}}', 'SELECT', true);
 
-exec rdsadmin.rdsadmin_util.grant_sys_object('DBMS_LOGMNR', 'DBZUSER', 'EXECUTE', true);
-exec rdsadmin.rdsadmin_util.grant_sys_object('DBMS_LOGMNR_D', 'DBZUSER', 'EXECUTE', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('DBMS_LOGMNR', '{{DEBEZIUM_DB_USERNAME}}', 'EXECUTE', true);
+exec rdsadmin.rdsadmin_util.grant_sys_object('DBMS_LOGMNR_D', '{{DEBEZIUM_DB_USERNAME}}', 'EXECUTE', true);
 ```
 
 #### Redo Log Configuration
@@ -380,7 +383,7 @@ When Debezium CDC starts it initially creates a snapshot of the database, if con
 - on file: `org.apache.kafka.connect.storage.FileOffsetBackingStore`
 - on Redis: `io.debezium.storage.redis.offset.RedisOffsetBackingStore`
 
-Considering that the Debezium Server plugin offered in Mia-Platform Marketplace is tailored for being deployed on Kubernets as a `Deployment` resource, it is recommended to exploit the Redis method to not lose progress across potential pod restarts. 
+Considering that the Debezium Server plugin offered in Mia-Platform Marketplace is tailored for being deployed on Kubernetes as a `Deployment` resource, it is recommended to exploit the Redis method to not lose progress across potential pod restarts. 
 
 :::note
 The offset management mechanism in the standalone Debezium Server differs from Debezium deployed as a Kafka Connector, since in the latter offsets metadata are handled directly by Kafka Connect framework.
