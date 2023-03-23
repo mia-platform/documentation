@@ -49,7 +49,7 @@ The Service Account creation process will require the following information:
 
     This authentication method provides better security than `client_secret_basic`, because the private key is not transmitted over the network. However, it requires more setup and configuration on the client's side to generate and manage the private and public keys.
 
-<!-- TODO: LINK TO THE CORRECT ANCHOR IN THE CLIENT CREDENTIALS SERVICE -->
+:::info Find out more about authentication methods and how they work in the Console in the [Service Account authentication](development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
 
 ### Editing a Service Account Role
 
@@ -95,7 +95,12 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
 
 ## Service Account authentication
 
-In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint. Here is an example of CURL request for Service Account authentication with the `client_secret_basic` method:
+In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
+
+:::note Note that the access token you obtain in this process has an expiration date, after which you will necessarily need to contact the endpoint again to get a new one.
+:::
+
+ Here is an example of CURL request for Service Account authentication with the `client_secret_basic` method:
 
 ```shell
 curl --location \
