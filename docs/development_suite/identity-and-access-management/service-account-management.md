@@ -50,7 +50,7 @@ The Service Account creation process will require the following information:
       We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the Service Account is using.
 
 :::info
-Find out more about how these authentication methods work in the Console in the [Service Account authentication](development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
+Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
 :::
 ### Editing a Service Account Role
 
@@ -84,7 +84,7 @@ For further information about permissions and Role inheritance check out the [Co
 
 The Company Owner can add a new Service Account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
 
-The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
+The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
 
 <!-- TODO: SCREENSHOT OF PROJECT ADD SA MODAL -->
 
