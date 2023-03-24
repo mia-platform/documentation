@@ -49,8 +49,9 @@ The Service Account creation process will require the following information:
 
     This authentication method provides better security than `client_secret_basic`, because the private key is not transmitted over the network. However, it requires more setup and configuration on the client's side to generate and manage the private and public keys.
 
-:::info Find out more about authentication methods and how they work in the Console in the [Service Account authentication](development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
-
+:::info
+Find out more about how these authentication methods work in the Console in the [Service Account authentication](development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
+:::
 ### Editing a Service Account Role
 
 A Service Account Role in the Company can be modified: to do so, simply click on the pencil-shaped button on the desired Service Account row and select the new Role.
@@ -97,10 +98,11 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
 
 In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
 
-:::note Note that the access token you obtain in this process has an expiration date, after which you will necessarily need to contact the endpoint again to get a new one.
+:::note
+Note that the access token you obtain in this process has an expiration date, after which you will necessarily need to contact the endpoint again to get a new one.
 :::
 
- Here is an example of CURL request for Service Account authentication with the `client_secret_basic` method:
+Here is an example of cURL request for Service Account authentication with the `client_secret_basic` method:
 
 ```shell
 curl --location \
@@ -121,6 +123,28 @@ Example response:
 }
 ```
 
+The same request can be made with the `private_key_jwt` authentication method:
+
+```shell
+curl --location \
+  --request POST 'http://[my-console-url]/api/m2m/oauth/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'grant_type=client_credentials' \
+  --data-urlencode 'client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer' \
+  --data-urlencode 'client_assertion=<assertion-JWT>' \
+  --data-urlencode 'client_id=<client-id>' \
+  --data-urlencode 'token_endpoint_auth_method=private_key_jwt'
+```
+
+:::info What are the main components of an assertion JWT?  
+
+- Header: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that is encoded in Base64Url format.
+
+- Payload: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
+
+- Signature: The signature of a JWT is used to verify the integrity of the token and to ensure that it has not been tampered with. The signature is created by combining the encoded header and payload with a secret key using a specified cryptographic algorithm.
+:::
+
 :::info
-For further information on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) 
+For further details and practical examples on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) 
 :::
