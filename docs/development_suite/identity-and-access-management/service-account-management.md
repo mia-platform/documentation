@@ -25,7 +25,7 @@ A Service Account can also be used to monitor and log Kubernetes resources, such
 
 A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and change their Roles.
 
-<!-- TODO: SCREENSHOT OF THE IDENTITIES PAGE WITH FILTER ON IDENTITY TYPE = Service Account -->
+<!-- TODO: 1 - SCREENSHOT OF THE IDENTITIES PAGE WITH FILTER ON IDENTITY TYPE = Service Account -->
 
 :::caution
 Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -36,14 +36,15 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 
 The Company Owner can add a new Service Account by clicking on the *Add Service Account* option from the *Add User* dropdown, on the top-right corner of the Identities page. 
 
-<!-- TODO: SCREENSHOT OF COMPANY ADD SA MODAL -->
+<!-- TODO: 2 - SCREENSHOT OF COMPANY ADD SA MODAL -->
 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
-- Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: SCREENSHOT OF THE DIFFERENT FLOWS -->
+- Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: 3 - SCREENSHOT OF THE DIFFERENT FLOWS -->
     - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
 
+- Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: 4 - SCREENSHOT OF THE DIFFERENT FLOWS -->
     - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the authentication request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key provided during Service Account creation, and checking that the claims are valid and match its records.  
     
       This authentication method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
@@ -56,13 +57,13 @@ Find out more about how these authentication methods work in the Console in the 
 
 A Service Account Role in the Company can be modified: to do so, simply click on the edit button for the desired Service Account row and select the new Role.
 
-<!-- TODO: SCREENSHOT OF COMPANY EDIT SA MODAL -->
+<!-- TODO: 5 - SCREENSHOT OF COMPANY EDIT SA MODAL -->
 
 ### Removing a Service Account from the Company
 
 A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
-<!-- TODO: SCREENSHOT OF COMPANY DELETE SA MODAL -->
+<!-- TODO: 6 - SCREENSHOT OF COMPANY DELETE SA MODAL -->
 
 :::warning
 Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
@@ -72,7 +73,7 @@ Removing a Service Account from the Company will permanently delete the account 
 
 A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts in the Company and edit their Role on the specific Project (and, optionally, on each existing Runtime Environment).
 
-<!-- TODO: ADD SCREENSHOT OF PROJECT ADMIN PORTAL FILTERED BY SA IDENTITY TYPE -->
+<!-- TODO: 7 - ADD SCREENSHOT OF PROJECT ADMIN PORTAL FILTERED BY SA IDENTITY TYPE -->
 
 :::note
 Although the Project Identities administration portal shows all the Company's identities, this does not mean that all of the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
@@ -86,13 +87,14 @@ The Company Owner can add a new Service Account by clicking on the *Add Service 
 
 The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
 
-<!-- TODO: SCREENSHOT OF PROJECT ADD SA MODAL -->
+<!-- TODO: 8 - SCREENSHOT OF PROJECT ADD SA MODAL -->
+<!-- TODO: 9 - SCREENSHOT OF PROJECT ADD SA MODAL -->
 
 ### Editing a Service Account Role at Project level
 
 A Service Account Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
-<!-- TODO: SCREENSHOT OF PROJECT EDIT SA MODAL -->
+<!-- TODO: 10 - SCREENSHOT OF PROJECT EDIT SA MODAL -->
 
 ## Service Account authentication
 
