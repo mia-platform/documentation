@@ -255,6 +255,10 @@ In the _A -> B_ tab (and also the _B -> A_, which works the same) you can click 
 
 You can also create a group of rules by clicking the _+ Group_ button. Based on [MongoDB logical query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#logical), a group is a set of rules connected by the `and` (every rule in the group must be true) or `or` (at least one rule in the group must be true) logical operator.
 
+:::info
+If you select the query operator _is element of_ (`$in`) or _not an element of_ (`$nin`) to compare a field with constant values, you will have to include all the values in the input field separated with a semicolon character (**;**).
+:::
+
 ![Condition editor from pr_dishes to pr_reviews, B -> A tab](../../img/er-schema-unidirectional-rule-editor.png)
 
 :::tip
