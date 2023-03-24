@@ -22,14 +22,14 @@ Only Users with enough privileges will be granted access to the Identities admin
 The management of Roles and permissions aims at regulating access on resources solely at Console level.  
 Roles and permissions of Users on the same resources at the Git provider level are not managed in this Console area; thus, Roles at Git-level must be verified in order to prevent possible discrepancies that may appear between permissions the User has at the Console-level and those the User has at the Git repository level.
 
-For example, it could happen that a User who does not even have permissions to access a Company from the Console, is however in a Git group with an assigned Role that gives them Git-level permissions on these Company resources!
+For example, it could happen that a User who does not even have permissions to access a Company from the Console is, however, in a Git group with an assigned Role that gives them Git-level permissions on these Company resources!
 
-Therefore, by giving permissions on resources to Users, it is strongly suggested a double check on both Console-level permissions and Git-level ones.
+Therefore, by giving permissions on resources to Users, it is strongly suggested a double check on both Console-level and Git-level permissions.
 :::
 
 ## Managing Company Users
 
-A User with enough administrative permission on a specific Company will be able to view the existing identities in the Company, to add new ones and to change the existing identities' Roles.
+A User with enough administrative permission on a specific Company will be able to view the existing identities in the Company, add new ones and change the existing identities' Roles.
 
 <!-- TODO: UPDATE SCREENSHOT OF THE IDENTITIES PAGE WITH FILTER ON IDENTITY TYPE =  User -->
 ![Company admin portal](../img/user-management/company_admin_portal.png)
@@ -53,7 +53,7 @@ If the User does not exist in the Platform, please open a Service Request for it
 
 ### Editing a User Role
 
-A User Role in the Company can be modified: to do so, simply click on the pencil-shaped button on the desired User row and select the new Role.
+A User Role in the Company can be modified: to do so, simply click on the edit button for the desired User row and select the new Role.
 
 <!-- TODO: SCREENSHOT OF COMPANY EDIT USER MODAL -->
 
@@ -76,7 +76,7 @@ A User with enough administrative permission on a specific Project will be able 
 :::note
 Although the Project Identities administration portal shows all the Company identities, this does not mean that all of the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
 
-For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
+For further information about permissions and Role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
 ### Adding a new User at Project level
@@ -85,7 +85,7 @@ The Company Owner can add a new User to a Company by pressing the *Add user* but
 
 <!-- TODO: SCREENSHOT OF PROJECT ADD USER MODAL -->
 
-The provided email will be searched throughout existing Users and if a match is found the User will be invited to the Company with the defined Roles.
+The provided email will be searched throughout existing Users and, if a match is found, the User will be invited to the Company with the defined Roles.
 
 :::info
 If the User does not exist in the Platform, please open a Service Request for it to be created.

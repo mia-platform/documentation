@@ -80,7 +80,7 @@ The following table describes the capabilities and how they are mapped on the de
 | Manage available features                                     | `console.root.features.manage`                          |        |           |          |              |   |    |
 | Manage Company Project Templates                                     | `console.company.templates.manage`                          |        |           |          |              |   |  ✅  |
 
-User Roles are manageable from CMS by the **Console administrators**, as they are the only ones having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects, and the Marketplace.
+User Roles are manageable from CMS by the **Console administrators**, as they are the only ones having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 
 ### Role binding example
 

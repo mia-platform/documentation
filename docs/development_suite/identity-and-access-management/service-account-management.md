@@ -14,34 +14,34 @@ To find out more about Roles check out the available [Capabilities](/development
 
 ### What can you do with a Service Account?
 
-Virtually anything a User can do inside the Console can be entrusted to a dedicated Service Account, which will perform the desired actions automatically.
+Potentially, every action a User can perform in the Console can be entrusted to a dedicated Service Account, which will execute it automatically.
 
 For instance, a Service Account could be granted permissions to make automatic deploys, which can greatly streamline the process of deploying code changes to an application. The Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application as soon as new code is pushed to the source code repository.  
-This allows teams to implement a CI/CD workflow that can improve the speed, reliability, and scalability of their software development processes. 
+This allows teams to implement a CI/CD workflow that can improve the speed, reliability and scalability of their software development processes. 
 
-A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics, and other important indicators.
+A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
 
 ## Managing Company Service Accounts
 
-A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, to add new ones and to change their Roles.
+A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and change their Roles.
 
 <!-- TODO: SCREENSHOT OF THE IDENTITIES PAGE WITH FILTER ON IDENTITY TYPE = Service Account -->
 
 :::caution
 Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
-Always pay attention when assigning Roles in order to avoid providing undesired access to resources!
+Always pay attention when assigning Roles, in order to avoid providing undesired access to resources!
 :::
 
 ### Adding a new Service Account
 
-The Company Owner can add a new Service Account by clicking the *Add Service Account* option inside the *Add User* split button, on the top-right corner of the Identities page. 
+The Company Owner can add a new Service Account by clicking on the *Add Service Account* option from the *Add User* dropdown, on the top-right corner of the Identities page. 
 
 <!-- TODO: SCREENSHOT OF COMPANY ADD SA MODAL -->
 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
-- Authentication method: it is necessary to verify the identity of the Service Account and can be of two types <!-- TODO: SCREENSHOT OF THE DIFFERENT FLOWS -->
+- Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: SCREENSHOT OF THE DIFFERENT FLOWS -->
     - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
 
     It is worth noting that the `client_secret_basic` authentication method is less secure than some other OAuth 2.0 authentication methods, because the client secret is transmitted in cleartext as part of the Authorization header. Therefore, it is important to use this authentication method only in secure environments where the client secret can be properly protected.
@@ -54,13 +54,13 @@ Find out more about how these authentication methods work in the Console in the 
 :::
 ### Editing a Service Account Role
 
-A Service Account Role in the Company can be modified: to do so, simply click on the pencil-shaped button on the desired Service Account row and select the new Role.
+A Service Account Role in the Company can be modified: to do so, simply click on the edit button for the desired Service Account row and select the new Role.
 
 <!-- TODO: SCREENSHOT OF COMPANY EDIT SA MODAL -->
 
 ### Removing a Service Account from the Company
 
-A Service Account can be removed from the Company by clicking the trash icon on the table and confirming the action.
+A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
 <!-- TODO: SCREENSHOT OF COMPANY DELETE SA MODAL -->
 
@@ -82,7 +82,7 @@ For further information about permissions and Role inheritance check out the [Co
 
 ### Adding a new Service Account at Project level
 
-The Company Owner can add a new Service Account by clicking the *Add Service Account* option inside the *Add User* split button, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments.  
+The Company Owner can add a new Service Account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
 
 The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
 
