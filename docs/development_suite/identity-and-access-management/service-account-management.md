@@ -44,10 +44,10 @@ The Service Account creation process will require the following information:
 - Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: SCREENSHOT OF THE DIFFERENT FLOWS -->
     - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
 
-    It is worth noting that the `client_secret_basic` authentication method is less secure than some other OAuth 2.0 authentication methods, because the client secret is transmitted in cleartext as part of the Authorization header. Therefore, it is important to use this authentication method only in secure environments where the client secret can be properly protected.
-    - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the `Authorization` header of the request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key, and checking that the claims are valid and match its records.  
-
-    This authentication method provides better security than `client_secret_basic`, because the private key is not transmitted over the network. However, it requires more setup and configuration on the client's side to generate and manage the private and public keys.
+    - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the authentication request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key provided during Service Account creation, and checking that the claims are valid and match its records.  
+    
+      This authentication method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
+      We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the Service Account is using.
 
 :::info
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
