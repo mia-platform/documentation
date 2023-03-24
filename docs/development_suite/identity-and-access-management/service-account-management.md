@@ -5,6 +5,7 @@ sidebar_label: Manage Service Accounts
 ---
 
 Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
+
 Note that new Service Accounts can only be created at Company level. For each Project or Environment they will be visible in the Identities section.
 Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment level, based on which they will be able to perform different types of action.  
 
@@ -25,7 +26,7 @@ A Service Account can also be used to monitor and log Kubernetes resources, such
 
 A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and change their Roles.
 
-<!-- TODO: 1 - SCREENSHOT OF THE IDENTITIES PAGE WITH FILTER ON IDENTITY TYPE = Service Account -->
+![Identities table filtered by Service Account](./img/service-account-management/identities_table_filtered_by_sa.png)
 
 :::caution
 Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -36,19 +37,20 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 
 The Company Owner can add a new Service Account by clicking on the *Add Service Account* option from the *Add User* dropdown, on the top-right corner of the Identities page. 
 
-<!-- TODO: 2 - SCREENSHOT OF COMPANY ADD SA MODAL -->
+![Add Company Service Account from dropdown](./img/service-account-management/add_company_sa_dropdown.png)
 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
 - Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: 3 - SCREENSHOT OF THE DIFFERENT FLOWS -->
     - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
+    ![Add Company Service Account with client secret basic auth](./img/service-account-management/add_company_sa_client_secret.png)
 
-- Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: 4 - SCREENSHOT OF THE DIFFERENT FLOWS -->
     - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the authentication request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key provided during Service Account creation, and checking that the claims are valid and match its records.  
     
       This authentication method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
       We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the Service Account is using.
+    ![Add Company Service Account with private key jwt auth](./img/service-account-management/add_company_sa_private_key_jwt.png)
 
 :::info
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
@@ -57,13 +59,13 @@ Find out more about how these authentication methods work in the Console in the 
 
 A Service Account Role in the Company can be modified: to do so, simply click on the edit button for the desired Service Account row and select the new Role.
 
-<!-- TODO: 5 - SCREENSHOT OF COMPANY EDIT SA MODAL -->
+![Edit Company Service Account](./img/service-account-management/edit_company_sa.png)
 
 ### Removing a Service Account from the Company
 
 A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
-<!-- TODO: 6 - SCREENSHOT OF COMPANY DELETE SA MODAL -->
+![Delete Company Service Account](./img/service-account-management/delete_company_sa.png)
 
 :::warning
 Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
@@ -73,7 +75,7 @@ Removing a Service Account from the Company will permanently delete the account 
 
 A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts in the Company and edit their Role on the specific Project (and, optionally, on each existing Runtime Environment).
 
-<!-- TODO: 7 - ADD SCREENSHOT OF PROJECT ADMIN PORTAL FILTERED BY SA IDENTITY TYPE -->
+![Project identities page](./img/service-account-management/project_identities.png)
 
 :::note
 Although the Project Identities administration portal shows all the Company's identities, this does not mean that all of the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
@@ -87,14 +89,17 @@ The Company Owner can add a new Service Account by clicking on the *Add Service 
 
 The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
 
-<!-- TODO: 8 - SCREENSHOT OF PROJECT ADD SA MODAL -->
-<!-- TODO: 9 - SCREENSHOT OF PROJECT ADD SA MODAL -->
+With the Client Secret Basic method: 
+![Add Project Service Account with client secret basic auth](./img/service-account-management/add_project_sa_client_secret.png)
+
+With the Private Key JWT method: 
+![Add Project Service Account with private key jwt auth](./img/service-account-management/add_project_sa_private_key_jwt.png)
 
 ### Editing a Service Account Role at Project level
 
 A Service Account Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
-<!-- TODO: 10 - SCREENSHOT OF PROJECT EDIT SA MODAL -->
+![Edit Project Service Account](./img/service-account-management/edit_project_sa.png)
 
 ## Service Account authentication
 
@@ -138,13 +143,14 @@ curl --location \
   --data-urlencode 'token_endpoint_auth_method=private_key_jwt'
 ```
 
-:::info What are the main components of an assertion JWT?  
+:::info
+**What are the main components of an assertion JWT?**
 
-- Header: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that is encoded in Base64Url format.
+- **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that is encoded in Base64Url format.
 
-- Payload: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
+- **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
 
-- Signature: The signature of a JWT is used to verify the integrity of the token and to ensure that it has not been tampered with. The signature is created by combining the encoded header and payload with a secret key using a specified cryptographic algorithm.
+- **Signature**: The signature of a JWT is used to verify the integrity of the token and to ensure that it has not been tampered with. The signature is created by combining the encoded header and payload with a secret key using a specified cryptographic algorithm.
 :::
 
 :::info
