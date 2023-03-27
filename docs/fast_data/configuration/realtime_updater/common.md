@@ -128,43 +128,43 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>KAFKA_SASL_MECHANISM</td>
         <td>false</td>
-        <td>defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256`, `scram-sha-512`, `oauthbearer`.</td>
+        <td>defines the authentication mechanism. It can be one of: <code>plain</code>, <code>scram-sha-256</code>, <code>scram-sha-512</code>, <code>oauthbearer</code>.</td>
         <td>plain</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_BASE_URL</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_PATH</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the path of the endpoint for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the path of the endpoint for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_GRANT_TYPE</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type `password` is supported</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type <code>password</code> is supported</td>
         <td>password</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_CLIENT_ID</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the client id for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the client id for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_CLIENT_SECRET</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the client secret for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the client secret for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)</td>
         <td>60000</td>
     </tr>
     <tr>
@@ -176,13 +176,13 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>KAFKA_MESSAGE_ADAPTER</td>
         <td>false</td>
-        <td>defines which Kafka message adapter to use. Its value can be either `basic` (DB2 adapter), `golden-gate` or `custom`. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td>
+        <td>defines which Kafka message adapter to use. Its value can be either <code>basic</code> (DB2 adapter), <code>golden-gate</code>, <code>debezium</code> or <code>custom</code>. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td>
         <td>basic</td>
     </tr>
     <tr>
         <td>KAFKA_PROJECTION_CHANGES_FOLDER</td>
         <td>false</td>
-        <td>path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).</td>
+        <td>path where has been mounted the <code>kafkaProjectionChanges.json</code> configuration (v3.4.0 or above).</td>
         <td>-</td>
     </tr>
     <tr>
@@ -230,7 +230,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>KAFKA_PROJECTION_UPDATES_FOLDER</td>
         <td>false</td>
-        <td>path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).</td>
+        <td>path to the folder that contains the file <code>kafkaProjectionUpdates.json</code>, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).</td>
         <td>-</td>
     </tr>
     <tr>
@@ -242,7 +242,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>CA_CERT_PATH</td>
         <td>false</td>
-        <td>the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`</td>
+        <td>the path to the CA certificate, which should include the file name as well, e.g. <code>/home/my-ca.pem</code></td>
         <td>-</td>
     </tr>
     <tr>
@@ -260,7 +260,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>USE_POS_AS_COUNTER</td>
         <td>false</td>
-        <td>If `KAFKA_MESSAGE_ADAPTER` is set to `golden-gate` it will use the `pos` field as timestamp for ingestion kafka messages. When set to `false` it will use the default `timestamp` property in the message provided by kafka like the other adapters do. Setting this property to `true` with a `KAFKA_MESSAGE_ADAPTER` **different** from `golden-gate` will have no effect.</td>
+        <td>If <code>KAFKA_MESSAGE_ADAPTER</code> is set to <code>golden-gate</code> it will use the <code>pos</code> field as timestamp for ingestion kafka messages. When set to <code>false</code> it will use the default <code>timestamp</code> property in the message provided by kafka like the other adapters do. Setting this property to <code>true</code> with a <code>KAFKA_MESSAGE_ADAPTER</code> <b>different</b> from <code>golden-gate</code> will have no effect.</td>
         <td>true</td>
     </tr>
 </table>
