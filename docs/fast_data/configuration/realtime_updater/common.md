@@ -289,6 +289,7 @@ The purpose of the Kafka adapter is allowing the correct reading of these messag
 Since a Real Time Updater is connected to one System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, between one of the following three options (further details in the paragraphs below):
 - `DB2`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
 - `Golden Gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) type CDC;
+- `Debezium`, based on the [Debezium](https://debezium.io/documentation/reference/2.1/tutorial.html) type CDC;
 - `Custom`, in case you need a completely customized message adapter (you'll be requested to write the implementation code); 
 
 When the System of Records has been created, saving the configuration will automatically create a new Real Time Updater service, which can be viewed in the _Microservices_ section of the console.
@@ -353,6 +354,21 @@ The following is an example of `value` for an insert operation:
   },
 }
 ```
+
+#### Debezium
+
+The Debezium kafka message adapter is meant to accept Debezium generated kafka messages with the following properties:
+
+- **before**: optional value that indicates the data values before the operation execution
+- **after**: optional value that indicates the data values after the operation execution
+- **op**: optional value that indicates the type of operation, `c` for create/insert, `u` for update and `d` for delete
+
+These are the main properties used by the adapter and the Real Time Updater but you can have other properties like `ts_ms` or `source` depending on which DB is Debezium working with.
+
+Debezium has also some "special" events which are handled in their own way:
+- **Snapshot**: Snapshot events are messages that indicate the state of the DB up until that point in time. This messages are sent when the connector does not find any offsets from where to start processing, therefore they are handled as normal insert messages.
+- **Tombstone**: Tombstone events are messages sent after a normal delete message and are only useful for kafka itself and its topic compression policies. For this reason the adapter will ignore and skip them.
+- **Truncate**: Truncate events are messages sent when an entire table is emptied. Unfortunately we **do not support** this kind of messages at the moment and they will be skipped.
 
 #### Custom
 
