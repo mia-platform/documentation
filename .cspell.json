@@ -169,7 +169,8 @@
       "storer",
       "nformat",
       "redirector",
-      "hrefs"
+      "hrefs",
+      "debezium"
   ],
   "ignoreWords": [
     "authz",
