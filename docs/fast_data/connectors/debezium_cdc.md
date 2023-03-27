@@ -133,7 +133,7 @@ debezium.source.poll.interval.ms = 500
 
 # Sink configuration
 debezium.sink.type = kafka
-debezium.sink.name = debezium-kafka-connectors-test
+debezium.sink.name = {{DEBEZIUM_SINK_TASK_NAME}}
 debezium.sink.kafka.producer.bootstrap.servers={{KAFKA_BROKERS}}
 debezium.sink.kafka.producer.client.id = {{KAFKA_CLIENT_ID}}
 
@@ -155,6 +155,18 @@ debezium.sink.kafka.producer.compression.type = snappy
 # Format configuration
 debezium.format.key = json
 debezium.format.value = json
+
+# Transforms
+debezium.transforms=Reroute
+debezium.transforms.Reroute.type=io.debezium.transforms.ByLogicalTableRouter
+# to all tables that are mapped onto topics
+debezium.transforms.Reroute.topic.regex=(.+)
+# add the suffix .ingestion
+debezium.transforms.Reroute.topic.replacement=$1.ingestion
+# this disable the additional parameter that is added to the key, since the service it still sending
+# each table to their own topic and therefore the key is still unique within that topic
+debezium.transforms.Reroute.key.enforce.uniqueness=false
+
 ```
 
 </details>
@@ -344,7 +356,7 @@ debezium.source.log.mining.strategy = online_catalog
 
 # Sink configuration
 debezium.sink.type = kafka
-debezium.sink.name = debezium-kafka-connectors-test
+debezium.sink.name = {{DEBEZIUM_SINK_TASK_NAME}}
 debezium.sink.kafka.producer.bootstrap.servers={{KAFKA_BROKERS}}
 debezium.sink.kafka.producer.client.id = {{KAFKA_CLIENT_ID}}
 
@@ -366,6 +378,17 @@ debezium.sink.kafka.producer.compression.type = snappy
 # Format configuration
 debezium.format.key = json
 debezium.format.value = json
+
+# Transforms
+debezium.transforms=Reroute
+debezium.transforms.Reroute.type=io.debezium.transforms.ByLogicalTableRouter
+# to all tables that are mapped onto topics
+debezium.transforms.Reroute.topic.regex=(.+)
+# add the suffix .ingestion
+debezium.transforms.Reroute.topic.replacement=$1.ingestion
+# this disable the additional parameter that is added to the key, since the service it still sending
+# each table to their own topic and therefore the key is still unique within that topic
+debezium.transforms.Reroute.key.enforce.uniqueness=false
 ```
 
 </details>
