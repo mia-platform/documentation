@@ -12,15 +12,7 @@ To create a Projection, you should first of all create a System of Records, whic
 
 To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Records` button.
 
-The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) to be used: [DB2](/fast_data/configuration/realtime_updater/common.md#ibm-infosphere-data-replication-for-db2), [Golden Gate](/fast_data/configuration/realtime_updater/common.md#oracle-goldengate) or [Custom](/fast_data/configuration/realtime_updater/common.md#custom). The System of Records is then created.
-
-Additionally, you have to choose a Kafka adapter format:
-
-#### Kafka adapter format
-
-Either `DB2`, `Golden Gate`, or `Custom`. [Click here](/fast_data/inputs_and_outputs.md#data-change-message) for more detail about the Kafka adapter formats.
-
-![Create a System of Records](../img/create_system_of_record.png)
+The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format). The System of Records is then created.
 
 ## Delete a System of Records
 
