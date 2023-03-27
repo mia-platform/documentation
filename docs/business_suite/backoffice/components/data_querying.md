@@ -11,25 +11,32 @@ Manages the display, application, and modification of filters.
 <bk-expanded-filters></bk-expanded-filters>
 ```
 
-It displays a grid of filters.
-
-The max number of columns is 4. They shrink to 3 or 2 columns depending on the window width.
-
 :::warning
-Either use `bk-filter-drawer` (with `bk-filters-manager`) or `bk-expanded-filters` because they both listen to the same event to be shown.
+`bk-expanded-filters` should not be included in the same configuration as [`bk-filters-manager`](#bk-filter-drawer)/[`bk-filters-manager`](#bk-filters-manager) since they listen and emit the same events and clashing bahavior might occur.
 :::
 
+Displays a grid of [filters](../core_concepts.md#filters), with which it is possible to interacted by editing the `value` field.
+The grid has a maximum number of columns of 4, which shrink to 3 or 2 depending on the window width.
+
+Fields `property` and `operator` of each filter will not be editable.
 
 ### Configuration
 
-Property `filtersConfig` allows to specify the filters to show. It is an array of dataschema properties and/or objects of dataschema property and operator (see add-filter event operators).
+Property `filtersConfig` allows to specify the filters to show. It is an array of properties and/or pairs of property - [operator](../core_concepts.md#filter-operators).
 
-:::info
-[Link](../events#add-filter) to add-filter event for the list of available operators
-:::
+```typescript
+type FiltersConfig = string | {
+  property: string
+  operator: string
+}
+```
+
+If the operator is missing, `includesAll` operator is set by default for `multilookups` properties and `equal` operator for the others.
+It is not possible to specify the same property more than once, and properties with `filterOptions.hidden` set to true are not shown.
 
 #### Example
 
+Given the following configuration,
 ```json
 ...
   {
@@ -37,34 +44,65 @@ Property `filtersConfig` allows to specify the filters to show. It is an array o
     "tag": "bk-expanded-filters",
     "properties": {
       "dataSchema": {
-        "$ref": "dataSchema"
+        "type": "object",
+        "properties": {
+          "dishes": {"type": "array", "format": "multilookup"},
+          "name": {"type": "string"},
+          "orderedAt": {"type": "string", "format": "date-time"},
+        }
       },
       "filtersConfig": [
         {
-          "property" :"orderedAt",
-          "operator": "equal"
+          "property": "orderedAt",
+          "operator": "between"
         },
         "dishes",
-        "riderId"
+        "name"
       ]
     }
   }
 ...
 ```
 
-If the operator is missing, `includesAll` operator is set by default for `multilookups` properties and `equal` operator for the others.
+it is possible to specify a value for filtering properties `dishes`, `name` and `orderedAt`. Assuming the inserted values to be representable as:
+```json
+{
+  "orderedAt": ["2023-03-03T09:00:00.000Z", "2023-03-03T12:00:00.000Z"],
+  "name": "Joe",
+  "dishes": ["dish-1", "dish-2"]
+}
+```
 
-It is not possible to specify the same property more than once and properties with `filterOptions.hidden` set to true, are not shown even if specified.
+Then the emitted filters will look like:
+```json
+{
+  "property": "orderedAt",
+  "operator": "between",
+  "value": ["2023-03-03T09:00:00.000Z", "2023-03-03T12:00:00.000Z"]
+},
+{
+  "property": "name",
+  "operator": "equal",
+  "value": "Joe"
+},
+{
+  "property": "dishes",
+  "operator": "includesAll",
+  "value": ["dish-1", "dish-2"]
+}
+```
+
+If a component such as [bk-crud-client](./clients.md#bk-crud-client) is included in the page (and provided with the same data-schema), these filters are chained inside an `$and` mongo-like query and used to filter data.
 
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-| dataSchema | - | ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
-| filtersConfig | - | string \| ({property: string, operator: string})[] | - | lists the filters to include in the component |
-| openByDefault | open-by-default | boolean | false | whether to show the component by default |
-| liveSearchTimeout | live-search-timeout | number | 5000 | live-search timeout |
-| liveSearchItemsLimit | live-search-items-limit | number | 10 | max items to fetch on regex live search |
+| `dataSchema` | - | [ExtendedJSONSchema7Definition](../page_layout.md#data-schema) | - | data-schema describing the fields of the collection to query |
+| `filtersConfig` | - | [FiltersConfig](#configuration)[] | - | lists the filters to include in the component |
+| `openByDefault` | `open-by-default` | boolean | false | whether to show the component by default |
+| `liveSearchTimeout` | `live-search-timeout` | number | 5000 | live-search timeout |
+| `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | max items to fetch on regex live search |
 
 ### Listens to
 
@@ -87,7 +125,7 @@ None
 
 ## bk-export-modal
 
-Modal to allow user configuration of a data export task
+Modal to allow user configuration of a data export task.
 
 ```html
 <bk-export-modal></bk-export-modal>
@@ -107,14 +145,14 @@ Modal to allow user configuration of a data export task
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|export-data/awaiting-config|prompts modal opening| - | - |
+|[export-data/awaiting-config](../events.md#export-data---request-config)|prompts modal opening| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|export-data/user-config|notifies the bus of user config for next export data task|
+|[export-data/user-config](../events.md#export-data---user-config)|notifies the bus of user config for next export data task|
 
 ### Bootstrap
 
@@ -129,14 +167,20 @@ This is the filter drawer
 <bk-filter-drawer></bk-filter-drawer>
 ```
 
-`bk-filter-drawer` allows to compile filters and injects them into the payload of [add-filter](../events.md#add-filter) events, which are listened by components such as [bk-filters-manager](#bk-filters-manager).
+`bk-filter-drawer` allows to compile [filters](../core_concepts.md#filters) and injects them into the payload of [add-filter](../events.md#add-filter) events, which are listened by components such as [bk-filters-manager](#bk-filters-manager).
+
+### FiltersOptions
+
+[filtersOptions](../page_layout.md#filters-options) fields in `dataSchmea` properties can be used to further configure `bk-filter-drawer` behavior. In particular,
+  - `hidden` controls whether the property should not be available to be selected for compiling a filter
+  - `availableOperators` controls what [operators](../core_concepts.md#filter-operators) should be available for the given property. Note that the type of each property also limits the available operators
 
 ### Properties & Attributes
 
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - | - |
+|`dataSchema`| - |[ExtendedJSONSchema7Definition](../page_layout.md#data-schema)| - | data-schema describing the fields of the collection to query |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
@@ -189,8 +233,8 @@ To avoid data leaking, `localStorageKey` should be unique per plugin.
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |dataSchema to be included if some filter must be interpreted as hidden |
-|`filters`| - |Filter[]|[]|List of currently applied [filters](../core_concepts#filters) |
+|`dataSchema`| - |[ExtendedJSONSchema7Definition](../page_layout.md#data-schema)| - | data-schema describing the fields of the collection to query |
+|`filters`| - |[Filter](../core_concepts.md#filters)[]|[]|List of currently applied filters |
 |`hide`|`hide`|boolean|false|Hides the rendered component |
 |`saveFilters`|`save-filters`|boolean|false| if true, filters are automatically saved to local storage |
 |`localStorageKey`|`local-storage-key`|strign|bk-filters-manager-storage-`{pathname}`| key used to identify filters saved in local-storage. Defaults to a string composed of 'bk-filters-manager-storage-' and the pathname of the current URL. |

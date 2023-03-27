@@ -5,6 +5,16 @@ sidebar_label: Usage
 ---
 The following section explain the details about the routes in **Teleconsultation Service Frontend**.
 
+:::caution
+Please, avoid using the teleconsultation in an incognito session, you might get the following error:
+
+```
+Ooops..!
+We are sorry but it seems that the request went timeout
+RE14
+```
+:::
+
 ## GET /teleconsultation/:roomId
 
 This page will host the call of a specific room.
