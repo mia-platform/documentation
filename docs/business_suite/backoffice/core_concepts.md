@@ -261,7 +261,7 @@ Back-kit web components always retain an `eventBus` property. For this reason it
 configuration **should** never interact with this property directly, since it is injected by the **element-composer** on
 configuration parsing. Anyway components mark this property as *immutable* and JavaScript should not be able to tamper with it.
 
-### Filters
+## Filters
 
 Back-kit web components refine data queries and data views using filters. Filters can be used to enrich a
 [change-query](events#change-query) and are building blocks of many tag properties. A filter is made of three
@@ -271,10 +271,13 @@ required build blocks:
 2. `operator`: the operator used to filter (i.e., "equal", "includeSome", ...)
 3. `value`: the value or the regex pattern (where it applies) to filter for
 
-Operators and values vary according to the property type which is set by the [data schema](page_layout#data-schema).
+Operators and values vary according to the property type which is set by the [data schema](./page_layout.md#data-schema).
 If a `DataSchema` should be filtered only according with a subset of available operators, a configuration key it available within
 the field `filtersOptions`. The key `availableOperators` is an array of string which, if defined, enables only explicitly selected operators on the given field.
-Operators can be selected from the following list:
+
+### Filter Operators
+
+Filter operators can be selected from the following list:
 
 ```typescript
 type FilterOperator = |

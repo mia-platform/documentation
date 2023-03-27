@@ -154,6 +154,8 @@ An `order` is number that allow to customize the order in which items are render
 
 A `type` is a [JSON-schema version 7 type](https://json-schema.org/understanding-json-schema/reference/type.html).
 
+### Formats
+
 On top of types, extra information can be passed to better understand how a property needs to be shown, i.e. a `string`
 could be a `password` or a `date`, an `object` could be a plain JavaScript `object` or maybe a `file`. To achieve that,
 components refer to the `format` key which is not mandatory and when absent triggers defaulting behavior on the type
@@ -171,8 +173,7 @@ specified by `type`.
 | `null` | - |
 
 The `format` may be picked by components to provide better UI rendering choices on a given `type`.
-[bk-table](Components/data_visualization#table) and [bk-form-drawer](Components/data_manipulation#form-drawer)
-use extensively formats.
+Components such as [bk-table](./components/data_visualization.md#bk-table) or [bk-form-drawer](./components/data_manipulation.md#bk-form-drawer) make extensive use of formats.
 
 When `type` is set to `string`, the extra key `enum` is available to specify available text entries.
 
@@ -198,8 +199,7 @@ Array of dates are also supported. In this case, the datum can be configured usi
 Please note that the date fields are saved in ISO 8601 format, so it's up to the user to convert them in UTC from its local time before using them in the Appointment Manager.
 :::
 
-When `type` is set to `object` and format is `localized-text`, table expects a localized object and will render the closest language key,
-i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
+When `type` is set to `object` and format is `localized-text`, table expects a [localized object](./core_concepts.md#localization-and-i18n) and will render the closest language key, i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
 
 Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
 
@@ -375,20 +375,20 @@ actions. Extra options to be specified for user interaction with the dataset sho
 }
 ```
 
-|options | default | description |
+|options | type | description |
 |--------|---------|-------------|
-|`disabled`| `undefined`| whether the property is disabled within the form component |
-|`hidden`| `undefined` | whether the property is shown within the form component |
-|`placeholder`|`undefined`| placeholder for the component |
-|`readOnly`|`undefined`| whether the property can be edited |
-|`hiddenOnUpdate`|`undefined`| whether the property is shown within the form component on update |
-|`hiddenOnInsert`|`undefined`| whether the property is shown within the form component on insert |
-|`readOnlyOnUpdate`|`undefined`| whether the property can be edited on update |
-|`readOnlyOnInsert`|`undefined`| whether the property can be edited on insert |
-|`disabledOnUpdate`|`undefined`| whether the property is disabled within the form component on update |
-|`disabledOnInsert`|`undefined`| whether the property is disabled within the form component on update |
-|`showFileInViewer`|`undefined`| whether clicking the file property requests to open the file in browser |
-|`template`|`undefined`| template of how to visualize the value in the field |
+|`disabled`| boolean | whether the property is disabled within the form component |
+|`hidden`| boolean  | whether the property is shown within the form component |
+|`placeholder`| [LocalizedText](./core_concepts.md#localization-and-i18n) | placeholder for the component |
+|`readOnly`| boolean | whether the property can be edited |
+|`hiddenOnUpdate`| boolean | whether the property is shown within the form component on update |
+|`hiddenOnInsert`| boolean | whether the property is shown within the form component on insert |
+|`readOnlyOnUpdate`| boolean | whether the property can be edited on update |
+|`readOnlyOnInsert`| boolean | whether the property can be edited on insert |
+|`disabledOnUpdate`| boolean | whether the property is disabled within the form component on update |
+|`disabledOnInsert`| boolean | whether the property is disabled within the form component on update |
+|`showFileInViewer`| boolean | whether clicking the file property requests to open the file in browser |
+|`template`| [LocalizedText](./core_concepts.md#localization-and-i18n) | template of how to visualize the value in the field |
 
 ### Filters Options
 
@@ -406,13 +406,13 @@ Extra options to be specified for querying the dataset should be configured in `
 }
 ```
 
-|options | default | description |
+|options | type | description |
 |--------|---------|-------------|
-|`hidden`| `undefined` | whether the property is shown within the filter-drawer and filters-manager components |
-|`availableOperators`|`undefined`| list of available operators for the field within the filter-drawer component |
-|`ignoreCase`|`false`| controls whether or not equality should be evaluated ignore case. Only applies to string fields |
+|`hidden`| boolean | whether the property is shown within the filter-drawer and filters-manager components |
+|`availableOperators`| string[] | list of [available operators](./events.md#add-filter) for the field within the [`bk-filter-drawer`](./components/data_querying.md#bk-filter-drawer) component |
+|`ignoreCase`| boolean | controls whether or not equality should be evaluated ignore case. Only applies to string fields |
 
-[Filters](core_concepts#filters) with `property` equal to a field with `filtersOptions.hidden` set to true can still be added (for instance, via a[add-filter](events#add-filter) event) and effectively query the dataset, but the user will not be able to see to interact with the filter.
+[Filters](./core_concepts.md#filters) with `property` equal to a field with `filtersOptions.hidden` set to true can still be added (for instance, via a[add-filter](./events.md#add-filter) event) and effectively query the dataset, but the user will not be able to see or interact with the filter.
 
 ### Lookups
 
