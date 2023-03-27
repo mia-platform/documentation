@@ -6,7 +6,7 @@ sidebar_label: Overview
 ## Introduction
 The `Identification Manager` application allow you to set up all the steps needed to implements and manage different identification processes inside a single flow. 
 
-In particular, the main functinalities delivered with this application are the following:
+In particular, the main functionalities delivered with this application are the following:
 1. define and add new custom identification processes
 2. dynamically choose the identification process to use based on custom rules
 3. provide an unified data schema with the information extracted from different identifications services or external providers
