@@ -114,12 +114,13 @@ The security can be managed at three levels:
 
    ```js
    // Limit access only to users in "admin" group
-   groups.admin;
+   groups.admin
+   "admin" in groups
    ```
 
    ```js
    // Limit access only to users in "admin" or "user" group
-   ["admin", "user"] in groups;
+   "admin" in groups || "user" in groups
    ```
 
    - `permissions.<permission name>` or `<permission name> in permissions` to limit the access to entities (being users or other clients) who have the required permissions.
@@ -127,12 +128,12 @@ The security can be managed at three levels:
 
    ```js
    // Limit access only to users who have "write:orders" permission
-   permissions["write:orders"];
+   permissions["write:orders"]
    ```
 
    ```js
    // Limit access only to users who have "write:orders" or "view:orders" permission
-   ["write:orders", "view:orders"] in permissions;
+   "write:orders" in permissions || "view:orders" in permissions
    ```
 
 The group expression can also be set to `false` (to block all accesses to the API) or to `true` (to grant **all** accesses to the API). You can combine different expressions using logical operators `&&` (and) and `||` (or).
