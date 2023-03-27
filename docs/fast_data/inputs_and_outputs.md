@@ -21,142 +21,14 @@ Here, we will discuss the inputs and outputs related to data ingestion.
 This is a kind of Kafka message that is going to be sent when a System of Records is updated.
 This message is then read by the Real Time Updater, which uses it to update the Projections.
 
-Based on how the syncing system is set up, the format can be one of three possible types:
+Based on how the syncing system is set up, the format can be one of four possible types:
 
-* IBM InfoSphere Data Replication for DB2
-* Oracle Golden Gate
-* Custom
+* [IBM InfoSphere Data Replication for DB2](/fast_data/configuration/realtime_updater/common.md#ibm-infosphere-data-replication-for-db2)
+* [Oracle Golden Gate](/fast_data/configuration/realtime_updater/common.md#oracle-goldengate)
+* [Debezium](/fast_data/configuration/realtime_updater/common.md#debezium)
+* [Custom](/fast_data/configuration/realtime_updater/common.md#custom)
 
 This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
-
-#### IBM InfoSphere Data Replication for DB2
-
-This is the default format, based on the [IBM InfoSphere Data Replication for DB2 format](https://www.ibm.com/docs/en/idr/11.4.0?topic=console-overview-cdc-replication). It has only 2 different operation types: Upsert and Delete. The message format consists of four fields:
-
-* `key`: the identifier (primary key) of the projection that has been updated
-* `value`: if the message is a **delete** operation, it is **null**; if it is an upsert operation, the value is a JSON containing the object with all its new fields.
-* `timestamp`: the timestamp of the Kafka message, it has to be a stringified integer greater than zero.
-* `offset`: the Kafka offset
-
-These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
-
-**Message Example**:
-
-Upsert operation:
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: `{"NAME": 456}`
-timestamp: '1234556789'
-offset: '100'
-```
-
-Delete operation:
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: null
-timestamp: '1234556789'
-offset: '100'
-```
-
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Basic Data Change Producer
-  version: "1.0.0"
-channels:
-  BasicDataChangeChannel:
-    publish:
-      message:
-        name: basic data change
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: true
-            timestamp:
-              type: string
-            offset:
-              type: integer
-          required: ["key", "value", "timestamp", offset]
-```
-
-#### Golden Gate
-
-This Kafka Message Adapter has been created to have a format supported by [Oracle Golden Gate](https://docs.oracle.com/en/middleware/goldengate/big-data/21.1/gadbd/using-kafka-connect-handler.html#GUID-81730248-AC12-438E-AF82-48C7002178EC).
-
-In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
-
-**Message Example**:
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: `{
-  'table': 'MY_TABLE',
-  'op_type': 'I',
-  'op_ts': '2021-02-19 16:03:27.000000',
-  'current_ts': '2021-02-19T17:03:32.818003',
-  'pos': '00000000650028162190',
-  'after': {
-    'USER_ID': 123,
-    'FISCAL_CODE': 'the-fiscal-code-123',
-    'COINS': 300000000,
-  },
-}`
-timestamp: '1234556789'
-offset: '100'
-```
-
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Golden Gate Data Change Producer
-  version: "1.0.0"
-channels:
-  GoldenGateDataChangeChannel:
-    publish:
-      message:
-        name: golden gate data change
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                op_type:
-                  type: string
-                  enum: ["I", "D", "U"]
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-            timestamp:
-              type: string
-            offset:
-              type: integer
-          required: ["key", "value", "timestamp", offset]
-```
-
-#### Custom
-
-If none of the above formats applies for your use case, you can use your custom format and specify custom adapter that will make the message ready to be processed by the Real Time Updater service.
-
-:::note
-Further information about the Custom message configuration can be found inside the [Custom](/fast_data/configuration/realtime_updater/common.md#custom) section of the Common page.
-:::
 
 #### Topic naming convention
 

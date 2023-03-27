@@ -311,7 +311,7 @@ The message should include the following properties:
 
 Example of a delete operation
 
-```text
+```yaml
 key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
 value: null
 timestamp: '1234556789'
@@ -319,7 +319,7 @@ offset: '100'
 ```
 
 Example of an upsert:
-```text
+```yaml
 key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
 value: `{"NAME": 456}`
 timestamp: '1234556789'
