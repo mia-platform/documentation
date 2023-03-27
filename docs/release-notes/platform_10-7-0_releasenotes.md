@@ -15,14 +15,9 @@ _March 30, 2023_
 
 <!-- TODO: add description -->
 
-### Bug Fix
-
-### Breaking Changes 
-
 ### Improvements
-### How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version ?.?.?`.
+### Bug Fix
 
 ## Fast Data
 
@@ -42,6 +37,10 @@ This version addressed a few bugs, here is a comprehensive list:
 * A bug on the No Code configuration caused the Undo/Redo button to not be available when deleting a projection
 * The condition panel in the No Code configuration is now scrollable
 
+## Marketplace
+
+### Marketplace Updates
+
 ## Backoffice - 1.3.7
 
 ### New Features
@@ -57,12 +56,11 @@ New component `bk-loading-animation` is availabe, allowing micro-lc layout custo
 #### Support to http credentials
 Components which perform http-calls (eg, `bk-crud-client`) have property `credentials`, which specifies credentials of http calls
 
-
 ### Bug Fix
 
 #### Files are downloaded with correct name
 Files are downloaded with correct name, instead of applying "_" at the beginning and end of it.
 
-## Marketplace
+## How to update your Console
 
-## Backoffice
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version ?.?.?`.
