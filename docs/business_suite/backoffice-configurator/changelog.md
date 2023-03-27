@@ -3,13 +3,23 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [0.7.3] - 2023-03-27
+
+### Versioning
+
+- Dev dependencies updated
+
+### Fixed
+
+- router does not force anymore a default path -> either the exact route or server-side middleware to reroute
+
 ## [0.7.2] - 2023-03-13
 
 ### Versioning
 
 - `monaco-editor` to v0.36.1
 
-### Changed
+###  Changed
 
 - Full micro-lc configuration can now be edited from Advanced tab
 - Changed placeholder icons

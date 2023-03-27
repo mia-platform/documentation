@@ -11,3 +11,8 @@ The component contained in the service are:
 
 - [am-calendar](components/am-calendar.md)
 - [ck-export-form](components/ck-form-export.md)
+- [ck-therapy-modal](components/ck-therapy-modal.md)
+- [ck-therapy-select](components/ck-therapy-select.md)
+- [ck-threshold-modal](components/ck-threshold-modal.md)
+
+Some of the components work using custom events. For info on the custom events see [here](events.md)
