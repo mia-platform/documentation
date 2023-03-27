@@ -1186,6 +1186,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Identification Manager",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-manager/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-manager/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/identification-manager/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Payment Integration Hub",
           "items": [
             {
@@ -1475,6 +1494,10 @@
           "items": [
             {
               "type": "doc",
+              "id": "runtime_suite/care-kit/events"
+            },
+            {
+              "type": "doc",
               "id": "runtime_suite/care-kit/changelog"
             },
             {
@@ -1488,6 +1511,18 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-form-export"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-therapy-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-therapy-select"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-threshold-modal"
                 }
               ]
             }
@@ -1842,17 +1877,6 @@
             {
               "type": "doc",
               "id": "runtime_suite/jwt-token-validator/changelog"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Kafka Connect MongoDB Configurator",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/kafka-connect-mongodb-configurator/configuration"
             }
           ]
         },
@@ -2482,6 +2506,21 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Identification Provider Adapter",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/identification-provider-adapter/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/identification-provider-adapter/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Node.js Template",
               "items": [
                 {
@@ -2496,6 +2535,21 @@
               "link": {
                 "type": "doc",
                 "id": "runtime_suite_templates/node.js-template/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Verifiable Credential Generator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/verifiable-credential-generator/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/verifiable-credential-generator/overview"
               }
             }
           ]
