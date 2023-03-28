@@ -13,7 +13,20 @@ _March 30, 2023_
 
 #### Machine-to-Machine Authentication
 
-<!-- TODO: add description -->
+From now on, thanks to Mia-Platform Console you can create and manage Service Account Users, a new type of identity in addition to traditional Users!
+
+Service Accounts are non-human Users that can be used to implement automated processes with machine-to-machine communication, in order to improve the speed, reliability and scalability of your CI/CD workflows.
+
+For instance, you can give a Service Account the permission to trigger automatic deploys, which can significantly streamline the process of deploying code changes to an application.    
+As a matter of fact, the Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application, as soon as new code is pushed to the source code repository.
+
+Furthermore, a Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
+
+Service Accounts can only be created by a Company Owner inside the Users portal section, which has now been renamed in "Identities". 
+
+Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment levels, based on which they will be able to perform different types of action.  
+
+To discover more about how to manage them, just take a look at the Manage Service Accounts documentation page.
 
 ### Improvements
 
