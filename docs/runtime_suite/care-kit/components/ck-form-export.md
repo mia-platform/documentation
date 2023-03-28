@@ -7,6 +7,8 @@ The `ck-export-form` web component is able to export in CSV format the data of t
 
 ## Usage
 
+![ck-export-form](../img/ck-export-form.png)
+
 The web component consist in a form inside a modal. The form is composed of two fields, `Form Schema` and `Time Range`, both of which required. The `Form Schema` field is a select whose options are populated through a `GET` request to the endpoint specified in the `formSchemasEndpoint` property in the configuration. The `Time Range` field allows the user to select a period of time between two dates. The values of the form's fields are used to filter the forms that will be exported in the CSV file.
 
 The submission of the form will trigger the download of the CSV file containing the export of the form schemas' data.

@@ -14,17 +14,17 @@ The _Authentication Service_ needs some environment variables, and a configurati
 
 The environment variables needed by the service are:
 
-- **LOG_LEVEL** (default: info): level of the log. It can be trace, debug, info, warn, error, or fatal;
+- **LOG_LEVEL** (default: info): level of the log. It can be trace, debug, info, warn, error, fatal or silent
 - **HTTP_PORT** (default: 8080): http port exposed by the service;
 - **SERVICE_PREFIX** (*optional*): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
 - **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
-- **REDIS_HOST** (*required*): the redis host, with the port;
-- **REDIS_USERNAME** (*optional*): the username to authenticate to redis;
-- **REDIS_PASSWORD** (*optional*): the password to authenticate to redis;
+- **REDIS_HOST** (*required*): the Redis host, with the port;
+- **REDIS_USERNAME** (*optional*): the username to authenticate to Redis;
+- **REDIS_PASSWORD** (*optional*): the password to authenticate to Redis;
 - **CONFIG_FILE_PATH** (*required*): the path to the configuration file. Do not include the file name;
 - **CONFIG_FILE_NAME** (*required*): the name of the JSON configuration file. Do not include the extension;
-- **USERS_CRUD_BASE_URL** (*required*): base url of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
-- **MIA_JWT_TOKEN_SIGN_KEY** (*required*): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC at least of 512 bytes);
+- **USERS_CRUD_BASE_URL** (*required*): base URL of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
+- **MIA_JWT_TOKEN_SIGN_KEY** (*required*): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC of least of 512 bytes);
 - **MIA_JWT_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated access token expires;
 - **PROVIDER_TOKEN_PASS_PHRASE** (*required*): a string used to encrypt the JWT (preferred an HMAC at least of 128 bytes);
 - **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated refresh token expires;
@@ -32,8 +32,8 @@ The environment variables needed by the service are:
 - **ORIGINAL_PROTOCOL_HEADER** (*required*): header containing the protocol of the original request (http or https);
 - **ADDITIONALS_CA_FOLDER** (*optional*): folder which contains the CA of the OAuth2 identity providers, if it's not public;
 - **ADDITIONAL_HEADERS_TO_PROXY** (*optional*): comma separated list of headers to proxy to the request to CRUD service.
-
-
+- **STORED_ACCESS_TOKEN_NUMBER** (*optional*): maximum number of stored access token associated to a user. The tokens are stored on Redis. Default is 10.
+- **REDIS_SESSIONS_SCOPE** (*required*): a string used to define the scope of redis in order to distinguish items in a multi-tenant architecture.
 
 ## Configurations file
 
@@ -52,19 +52,19 @@ The app configuration contains:
   * **type** (*required*): the type of the provider. Could be `gitlab`, `github`, `okta`, `microsoft`;
   * **clientId** (*required*): the client ID of the OAuth2 app;
   * **clientSecret** (*required*): the client secret of the OAuth2 app;
-  * **authUrl** (*required*): url to call the authorize endpoint of the `authorization_code` grant type in the identity provider;
-  * **tokenUrl** (*required*): url to get the token in the identity provider;
-  * **baseUrl** (*required*): base url of the provider;
-  * **scope** (*required*): an array of string of the scope to forward to the indentity provider;
+  * **authUrl** (*required*): URL to call the authorize endpoint of the `authorization_code` grant type in the identity provider;
+  * **tokenUrl** (*required*): URL to get the token in the identity provider;
+  * **baseUrl** (*required*): base URL of the provider;
+  * **scope** (*required*): an array of string of the scope to forward to the identity provider;
   * **order** (*optional*): a number which define the order to be returned from the get apps endpoint;
-  * **userSettingsURL** (*optional*): an url to send the user to the user settings page on idp provider;
+  * **userSettingsURL** (*optional*): an URL to send the user to the user settings page on idp provider;
   * **skipRefreshProviderTokenOnMiaTokenRefresh** (*default `false`*): if `true`, the provider's token won't be refreshed when calling the `/refreshtoken` endpoint, unless the provider token has expired;
 * **redirectUrl** (*required*): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
 * **authorizeStateRequired** (*default: `false`*): When `true`, the client should generate the `state` parameter, enabling further protection against CSRF attacks. See the [related section](./usage.md#client-generated-state);
 * **realm**: (*required*)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId*);
 * **defaultGroups** (*required*): an array of strings to add as group to a user on user creation;
-* **allowedRedirectUrlsOnSuccessfulLogin** (*optional*): a set of strings with the allowed redirect urls on successful login;
-* **defaultRedirectUrlOnSuccessfullLogin** (*optional*): a string to set the default redirect on successful login;
+* **allowedRedirectUrlsOnSuccessfulLogin** (*optional*): a set of strings with the allowed redirect urls on successful login; do not add the query string here as it will be ignored when checking if the url is allowed, as per the [the specification](https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.2)
+* **defaultRedirectUrlOnSuccessfulLogin** (*optional*): a string to set the default redirect on successful login;
 * **isWebsiteApp** (*optional*): a boolean, if true set a Cookie *sid* in header.
 
 Here an example of the service configuration:
@@ -127,7 +127,7 @@ Below, the different configuration based on provider type.
 
 <TabItem value="gitlab" label="GitLab" default>
 
-This is a configuration example for an app using GitLab Identity provider. Sobstitute `{GITLAB_URL}` with the url of your instance (or the public one).
+This is a configuration example for an app using GitLab Identity provider. Replace `{GITLAB_URL}` with the url of your instance (or the public one).
 
 ```json
 {
@@ -159,7 +159,7 @@ This is a configuration example for an app using GitLab Identity provider. Sobst
 
 <TabItem value="github" label="GitHub">
 
-This is a configuration example for an app using GitHub Identity provider. Sobstitute `{GITHUB_URL}` with the url of your instance (or the public one).
+This is a configuration example for an app using GitHub Identity provider. Replace `{GITHUB_URL}` with the url of your instance (or the public one).
 
 ```json
 {
@@ -192,7 +192,7 @@ This is a configuration example for an app using GitHub Identity provider. Sobst
 
 <TabItem value="okta" label="Okta">
 
-This is a configuration example for an app using Okta Identity provider. Sobstitute `{OKTA_BASE_URL}` with the url.
+This is a configuration example for an app using Okta Identity provider. Replace `{OKTA_BASE_URL}` with the url.
 
 ```json
 {
@@ -308,9 +308,9 @@ Furthermore, you must add the `clientId` in the `scope` array so that the `acces
 
 </TabItem>
 
-<TabItem value="bitbucket" label="BitBucket Server">
+<TabItem value="bitbucket" label="Bitbucket Server">
 
-This is a configuration example for an app provider using BitBucket Server authentication.
+This is a configuration example for an app provider using Bitbucket Server authentication.
 
 ```json
 {
@@ -411,3 +411,17 @@ This is a configuration example for an app using the generic OAuth2 authenticati
 </TabItem>
 
 </Tabs>
+
+
+## Redis storage
+
+:::caution
+
+This feature is available from service tag 3.0.0
+
+:::
+
+Redis is used to store some information regarding the user session.
+With the environment variable *STORED_ACCESS_TOKEN_NUMBER* it's possible to configure how many sessions can be stored and set a limit to the maximum number of concurrent active session.
+
+The endpoint `DELETE-/expired-sessions` can be used to clean all queues deleting the expired tokens.
