@@ -34,9 +34,15 @@ To discover more about how to manage them, just take a look at the Manage Servic
 
 ## Fast Data
 
+### New Features
+
+#### Debezium CDC integrated in Fast Data
+
+From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packed plugins and templates can be used along with Fast Data with just few clicks! You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
+
 ### Improvements
 
-#### Design improvements for the Fast Data Configuration for ER Schema
+#### Design improvements for the Fast Data No Code Configuration for ER Schema
 
 The Fast Data ER Schema No Code Configuration has been improved with design enhancements to display the ER Schema with a better appearance, larger buttons, and more useful descriptions to assist you in creating your ER Schema.
 
