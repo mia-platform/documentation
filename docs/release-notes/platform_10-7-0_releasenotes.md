@@ -65,6 +65,7 @@ The _Single View_ page has been updated with a new look for the Single View Crea
 This version addressed a few bugs, here is a comprehensive list:
 * A bug on the No Code configuration caused the Undo/Redo button to not be available when deleting a projection
 * The condition panel in the No Code configuration is now scrollable
+* In the ingestion storer (v1.3.2) the post-ingestion topics are optional when when the forwarding of ingestion messages is disabled
 
 ## Marketplace
 
