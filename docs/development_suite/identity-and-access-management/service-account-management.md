@@ -42,7 +42,7 @@ The Company Owner can add a new Service Account by clicking on the *Add Service 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
-- Authentication method: the method used to verify the identity of the Service Account can be of two types <!-- TODO: 3 - SCREENSHOT OF THE DIFFERENT FLOWS -->
+- Authentication method: the method used to verify the identity of the Service Account can be of two types
     - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
     ![Add Company Service Account with client secret basic auth](./img/service-account-management/add_company_sa_client_secret.png)
 
