@@ -66,6 +66,7 @@
       "kubens",
       "kubernetes",
       "kubernetescrd",
+      "Kubernetes",
       "locustfile",
       "Lucene",
       "luxon",
@@ -170,6 +171,8 @@
       "nformat",
       "redirector",
       "hrefs",
+      "DEBEZIUM",
+      "Debezium",
       "debezium"
   ],
   "ignoreWords": [
@@ -257,7 +260,11 @@
     "pharmaPrime",
     "Repubblica",
     "npmrc",
-    "frullino"
+    "frullino",
+    "acks",
+    "insync",
+    "LOGMNR",
+    "dbname"
   ],
   "dictionaries": [
     "softwareTerms",
