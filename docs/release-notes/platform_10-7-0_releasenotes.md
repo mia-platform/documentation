@@ -38,9 +38,17 @@ To discover more about how to manage them, just take a look at the [Manage Servi
 
 ### New Features
 
-#### Debezium CDC integrated in Fast Data
+#### Debezium CDC plugins
 
-From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packed plugins and templates can be used along with Fast Data with just few clicks! You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
+From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packaged plugins and templates can be used alongside with Fast Data with just few clicks! You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
+
+#### Debezium CDC support from the Real Time Updater
+
+Since we now have the Debezium plugins in our marketplace, the Real Time Updater (v7.5.2) supports the ingestion of Debezium kafka messages. You can configure it from the console choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
+
+#### Kafka connect configurator plugins
+
+Now you can find in the marketplace our new Kafka connect configurator template configurable with all the existing connectors in the market. We also released a plugin already pre-configured with MongoDB connector.
 
 ### Improvements
 
