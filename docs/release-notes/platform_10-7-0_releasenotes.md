@@ -33,6 +33,7 @@ To discover more about how to manage them, just take a look at the [Manage Servi
 #### Subscribing to console events
 
 From today it will be possible to subscribe to some events on the console via HTTP webhooks.
+
 The supported events are:
 - Project Creation
 - Service Creation
