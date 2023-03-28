@@ -22,11 +22,13 @@ As a matter of fact, the Service Account could use its credentials to access the
 
 Furthermore, a Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
 
-Service Accounts can only be created by a Company Owner inside the Users portal section, which has now been renamed in "Identities". 
+Service Accounts can only be created by a Company Owner inside the Users portal section, which has now been renamed in "Identities".
+
+![Identities Table](./img/10.7/identities_table.png)
 
 Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment levels, based on which they will be able to perform different types of action.  
 
-To discover more about how to manage them, just take a look at the Manage Service Accounts documentation page.
+To discover more about how to manage them, just take a look at the [Manage Service Accounts](/development_suite/identity-and-access-management/service-account-management) documentation page.
 
 ### Improvements
 
