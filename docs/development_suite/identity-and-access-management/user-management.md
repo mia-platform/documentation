@@ -40,7 +40,7 @@ Always pay attention when assigning Roles in order to avoid providing undesired 
 
 ### Adding a new User
 
-The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require an email and the Role to be assigned to the new User.
+The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the email of the User that is being invited and the Role to be assigned to the new User.
 
 ![Add Company User](./img/user-management/add_company_user.png)
 
