@@ -309,24 +309,9 @@ The message should include the following properties:
 - `value`: it is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 - `offset`: it is the offset of the Kafka message.
 
-Example of a delete operation
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: null
-timestamp: '1234556789'
-offset: '100'
-```
-
-Example of an upsert:
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: `{"NAME": 456}`
-timestamp: '1234556789'
-offset: '100'
-```
-
 These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
+
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#ibm-infosphere-data-replication-for-db2) .
 
 :::warning
 This Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
@@ -338,22 +323,7 @@ This Kafka Message Adapter has been created to have a format supported by [Oracl
 
 In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
 
-The following is an example of `value` for an insert operation:
-
-```JSON
-{
-  'table': 'MY_TABLE',
-  'op_type': 'I',
-  'op_ts': '2021-02-19 16:03:27.000000',
-  'current_ts': '2021-02-19T17:03:32.818003',
-  'pos': '00000000650028162190',
-  'after': {
-    'USER_ID': 123,
-    'FISCAL_CODE': 'the-fiscal-code-123',
-    'COINS': 300000000,
-  },
-}
-```
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#oracle-goldengate) .
 
 #### Debezium
 
@@ -369,6 +339,8 @@ Debezium has also some "special" events which are handled in their own way:
 - **Snapshot**: Snapshot events are messages that indicate the state of the DB up until that point in time. This messages are sent when the connector does not find any offsets from where to start processing, therefore they are handled as normal insert messages.
 - **Tombstone**: Tombstone events are messages sent after a normal delete message and are only useful for kafka itself and its topic compression policies. For this reason the adapter will ignore and skip them.
 - **Truncate**: Truncate events are messages sent when an entire table is emptied. Unfortunately we **do not support** this kind of messages at the moment and they will be skipped.
+
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#debezium) .
 
 #### Custom
 
@@ -387,6 +359,8 @@ To make this work, you need to create a `Custom Kafka Message Adapter` inside _R
 
 If the `value` is null, it is a delete operation.
 The `keyObject` **cannot** be null.
+
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#custom) .
 
 :::note
 To support a Primary Key update, the `before`, `after` and `operationPosition` fields should be included in the adapter. (Hint: if not present, a simple `operationPosition` value might be the Kafka message timestamp).

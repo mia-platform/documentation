@@ -21,14 +21,233 @@ Here, we will discuss the inputs and outputs related to data ingestion.
 This is a kind of Kafka message that is going to be sent when a System of Records is updated.
 This message is then read by the Real Time Updater, which uses it to update the Projections.
 
-Based on how the syncing system is set up, the format can be one of four possible types:
+Based on how the syncing system is set up, the format can be one of three possible types:
 
-* [IBM InfoSphere Data Replication for DB2](/fast_data/configuration/realtime_updater/common.md#ibm-infosphere-data-replication-for-db2)
-* [Oracle Golden Gate](/fast_data/configuration/realtime_updater/common.md#oracle-goldengate)
-* [Debezium](/fast_data/configuration/realtime_updater/common.md#debezium)
-* [Custom](/fast_data/configuration/realtime_updater/common.md#custom)
+* [IBM InfoSphere Data Replication for DB2](#ibm-infosphere-data-replication-for-db2)
+* [Oracle Golden Gate](#oracle-golden-gate)
+* [Debezium](#debezium)
 
+You can also specify a [custom adapter](/fast_data/configuration/realtime_updater/common#custom) to handle any other message formats you need.
 This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
+
+Here's the AsyncApi specification and some examples of the different formats.
+
+#### IBM InfoSphere Data Replication for DB2
+
+```yaml
+asyncapi: 2.4.0
+info:
+  title: Basic Data Change Producer
+  version: "1.0.0"
+channels:
+  BasicDataChangeChannel:
+    publish:
+      message:
+        name: basic data change
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key: {}
+            value:
+              type: object
+              additionalProperties: true
+            timestamp:
+              type: string
+            offset:
+              type: integer
+          required: ["key", "value", "timestamp", offset]
+```
+
+Upsert operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {"NAME": 456},
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+Delete operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": null,
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+#### Oracle Golden Gate
+
+```yaml
+asyncapi: 2.4.0
+info:
+  title: Golden Gate Data Change Producer
+  version: "1.0.0"
+channels:
+  GoldenGateDataChangeChannel:
+    publish:
+      message:
+        name: golden gate data change
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key: {}
+            value:
+              type: object
+              additionalProperties: false
+              properties:
+                op_type:
+                  type: string
+                  enum: ["I", "D", "U"]
+                before:
+                  type: object
+                  additionalProperties: true
+                after:
+                  type: object
+                  additionalProperties: true
+            timestamp:
+              type: string
+            offset:
+              type: integer
+          required: ["key", "value", "timestamp", offset]
+```
+
+Insert operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "table": "MY_TABLE",
+    "op_type": "I",
+    "op_ts": "2021-02-19 16:03:27.000000",
+    "current_ts": "2021-02-19T17:03:32.818003",
+    "pos": "00000000650028162190",
+    "before": null,
+    "after": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+Delete operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "table": "MY_TABLE",
+    "op_type": "D",
+    "op_ts": "2021-02-19 16:03:27.000000",
+    "current_ts": "2021-02-19T17:03:32.818003",
+    "pos": "00000000650028162190",
+    "before": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+    "after": null,
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+#### Debezium
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Debezium Data Change Producer
+  version: 1.0.0
+channels:
+  DebeziumDataChangeChannel:
+    publish:
+      message:
+        name: debezium data change
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key: {}
+            value:
+              type: object
+              additionalProperties: false
+              properties:
+                op:
+                  type: string
+                  enum:
+                    - c
+                    - u
+                    - d
+                before:
+                  type: object
+                  additionalProperties: true
+                after:
+                  type: object
+                  additionalProperties: true
+                source:
+                  type: object
+                  additionalProperties: true
+            timestamp:
+              type: string
+            offset:
+              type: integer
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
+```
+
+Insert operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "op": "c",
+    "before": null,
+    "after": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+Delete operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "op": "d",
+    "before": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+    "after": null,
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
 
 #### Topic naming convention
 
