@@ -30,6 +30,14 @@ Just like human Users, Service Accounts can be assigned Roles on Company, Projec
 
 To discover more about how to manage them, just take a look at the [Manage Service Accounts](/development_suite/identity-and-access-management/service-account-management) documentation page.
 
+#### Subscribing to console events
+
+From today it will be possible to subscribe to some events on the console via HTTP webhooks.
+The supported events are:
+- Project Creation
+- Service Creation
+[Go to the documentation](/development_suite/..) page for more information.
+
 ### Improvements
 
 ### Bug Fix
