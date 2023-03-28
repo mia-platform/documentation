@@ -36,6 +36,7 @@ From today it will be possible to subscribe to some events on the console via HT
 The supported events are:
 - Project Creation
 - Service Creation
+
 [Go to the documentation](/development_suite/..) page for more information.
 
 ### Improvements
