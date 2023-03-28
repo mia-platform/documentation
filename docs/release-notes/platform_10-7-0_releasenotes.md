@@ -44,7 +44,7 @@ From now on, thanks to the integration of the Debezium CDC in our Marketplace, s
 
 #### Debezium CDC support from the Real Time Updater
 
-Since we now have the Debezium plugins in our marketplace, the Real Time Updater (v7.5.2) supports the ingestion of Debezium kafka messages. You can configure it from the console choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
+Since we now have the Debezium plugins in our marketplace, the Real Time Updater (v7.5.0) supports the ingestion of Debezium kafka messages. You can configure it from the console choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
 
 #### Kafka connect configurator plugins
 
