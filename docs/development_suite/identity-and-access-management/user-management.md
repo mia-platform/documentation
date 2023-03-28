@@ -80,7 +80,7 @@ For further information about permissions and Role inheritance, check out the [C
 
 ### Adding a new User at Project level
 
-The Company Owner can add a new User to a Company by pressing the *Add user* button in the Identities section of the Project settings area. Here, the User can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. The User invitation process will also require an email.
+The Company Owner can add a new User to a Company by pressing the *Add user* button in the Identities section of the Project settings area. Here, the User can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. The User invitation process will also require the invited User email to be provided.
 
 ![Add Project User](./img/user-management/add_project_user.png)
 
