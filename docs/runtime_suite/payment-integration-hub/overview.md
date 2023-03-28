@@ -3,15 +3,9 @@ id: overview
 title: Overview
 sidebar_label: Overview
 ---
-This application allows you to set up all the microservices, endpoints, collections and variables in order to deliver a [Backoffice application](../../business_suite/backoffice/overview) with the following sections:
-- **Transactions Page** page to manage payments stored on the database and perform actions on transactions
-- **Analytics Page** page for monitoring KPIs related to payments transactions
+The Payment Integration Hub application builds a single interface to connect multiple payment gateways with only a few clicks and allows you to manage quickly and easily **payments** and **refunds**, guarantee transaction **consistency** and possible remediation in a **secure** and **compliant** way, in fact it does not save any data related to the payment method.
 
-By default, the application is configured to accept two kind of users: **admin** and **analyst**.
-
-The application is based on [Backoffice application](../../business_suite/backoffice/overview) and is fully customizable. The aim of this application is to provide a backoffice application specifically configured for payments management with all the microservices needed to enable specific action of payments (e.g. refund, download invoice, user notification...).
-
-For more details on how to configure the pages you can refer to [dedicated section](./configuration.md) or [Backoffice documentation](../../business_suite/backoffice/overview).
+It is also available a white label front-end with **adaptive checkout** and a ready to use [backoffice](../../business_suite/backoffice/overview) to perform **actions** on the transactions and customizable **dashboards** for monitoring all payments KPI. 
 
 ## Backoffice Sections
 
@@ -64,6 +58,8 @@ On **Analytics page** are shown the following plots and KPIs:
 - **Percentage** of payments on each status (e.g. _Payment Created_, _Payment Paid_, _Payment Partially Refunded_, _Payment Totally Refunded_, _Payment Failed_).
 - **Payments Amount by Method**: stock chart that shows the amount of payments grouped by payment method; the plot can be filtered with temporal filters.
 - **Payments Amount by Channel**: stock chart that shows the amount of payments grouped by payment channel; the plot can be filtered with temporal filters.
+
+For more details on how to configure the pages you can refer to [dedicated section](./configuration.md) or [Backoffice documentation](../../business_suite/backoffice/overview).
 
 ## Microservices
 
