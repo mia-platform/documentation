@@ -20,7 +20,7 @@
     "check-redirects": "node ./scripts/check-permanent-redirects.js"
   },
   "dependencies": {
-    "@docusaurus/core": "2.3.1",
+    "@docusaurus/core": "2.4.0",
     "@docusaurus/plugin-client-redirects": "2.3.1",
     "@docusaurus/preset-classic": "2.4.0",
     "@staticdeploy/cli": "^0.15.5",
