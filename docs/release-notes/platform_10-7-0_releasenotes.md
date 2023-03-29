@@ -83,11 +83,11 @@ This version addressed a few bugs, here is a comprehensive list:
 
 #### `bk-antd-theme-manager` component
 
-New component `bk-antd-theme-manager` is available, allowing micro-lc layout customization.
+New component `bk-antd-theme-manager` is available, allowing micro-lc layout customization. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-antd-theme-manager) for more information.
 
 #### `bk-loading-animation` component
 
-New component `bk-loading-animation` is availabe, allowing micro-lc layout customization, and bundled at `/dist/bk-loading-animation.esm.js`.
+New component `bk-loading-animation` is availabe, allowing micro-lc layout customization, and bundled at `/dist/bk-loading-animation.esm.js`. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-loading-animation) for more information.
 
 #### Support to http credentials
 Components which perform http-calls (eg, `bk-crud-client`) have property `credentials`, which specifies credentials of http calls
