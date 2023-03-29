@@ -19,7 +19,7 @@ Here, we will discuss the inputs and outputs related to data ingestion.
 ### Data Change Message
 
 This is a type of Kafka message that is going to be sent when a System of Records is updated.
-This message is then read by the [Kafka Message Adapter](docs/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
+This message is then read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
 
 Based on how the syncing system is set up, the format can be one of three possible types:
 
