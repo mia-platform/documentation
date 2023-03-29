@@ -10,7 +10,7 @@ Webhooks can be installed on a Console instance, a specific company, or a specif
 
 ## Events subscription
 
-You can subscribe to events on the Console using the CMS. From the `Events` category, click the `Webhooks` section and the `Add new` to create a new webhook subscription. You will be asked to provide the following parameters:
+You can subscribe to events on the Console using the CMS. From the `Events` category, click the `Webhooks` page and the `Add new` to create a new webhook subscription. You will be asked to provide the following parameters:
 
 | Parameter | Value | Description |
 |-|-|-|
