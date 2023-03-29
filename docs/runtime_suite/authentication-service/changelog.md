@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.0.0 - 23-03-2023
+
+### BREAKING CHANGES
+
+- rename env ADDITIONALS_CA_FOLDER to ADDITIONAL_CA_FOLDER
+- rename defaultRedirectUrlOnSuccessfullLogin to defaultRedirectUrlOnSuccessfulLogin
+- New required environment variable `REDIS_SESSION_SCOPE` that defines the scope of the service. It's necessary in order to distinguish items in a multi-tenant architecture.
+- add `issuer` required field in app configuration to configure issuer at application level
+
+### Added
+
+- When generated new access token, it is saved inside user queue on redis.
+- New endpoint `DELETE-/sessions/:userId` that deletes the references regarding for each access token associated to a user.
+- New endpoint `DELETE-/expired-sessions/:userId` that deletes all expired tokens from the user queue in redis. Same endpoint with no userId provided deletes all expired tokens from all available users queue.
+- New optional environment variable `STORED_ACCESS_TOKEN_NUMBER` that indicates the maximum number of access tokens associated to a user that can be stored inside redis. The default is 10.
+
+### Fixed
+
+- allowed redirect url matching should ignore the query string
+
 ## 2.8.2 - 06-03-2023
 
 ### Fixed

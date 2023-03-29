@@ -5,7 +5,7 @@ sidebar_label: Usage
 ---
 In this section, we show you how to use the `authentication-service`.
 
-## Login flow
+## Login Flow
 
 The service handle the `authorization_code` OAuth2 grant type.
 
@@ -13,9 +13,14 @@ Here is how to login with this flow.
 
 ### Authorize
 
-To log in, the first request to make is a GET to the `/authorize` endpoint.
+API Signature: `GET /authorize`
 
-The authorization endpoint accepts as query parameter the *appId* and the *providerId* (which are the key set in the service configuration) and the response is a redirect to the *redirectUrl* specified in the service configuration with the parameters *code* and *state* set in query parameters.
+The `/authorize` endpoint is useful for the login flow with grant type `authorization_code`.
+
+The authorization endpoint accepts the following **query parameters**:
+- **appId**: the `APP_ID` key from the [configurations file](configuration#configurations-file)
+- **providerId**: the `PROVIDER_ID` key from the configuration file, under the corresponding `APP_ID`
+
 
 An example curl:
 
@@ -23,15 +28,25 @@ An example curl:
 curl --request GET 'https://app.example.com/authorize?appId={{APP_ID}}&providerId={{PROVIDER_ID}}'
 ```
 
+When called, the authentication service redirects to the IdP's *authUrl* endpoint, which in turn is expected to redirect to the *redirectUrl* specified in the configurations file with the query string parameters *code* and *state*.
+
 Example of redirect URL:
 
 ```text
 https://app.example.com/callback?code={{CODE}}&state={{STATE}}
 ```
 
-In case you are using a web app this request can be made directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
 
-### Redirect url parameter
+Your application should then implement the logic to call the [POST /oauth/token with authorization_code grant type](#authorization-code-grant-type) with the information passed in the above query string, as per the [Authorization Code Grant OAuth2 flow](https://oauth.net/2/grant-types/authorization-code/).
+
+
+:::tip
+
+In case you are using a web app this request can be urlmade directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
+
+:::
+
+#### Redirect url parameter
 
 You can pass a redirect url to the request, by means of the `redirect` query string parameter. After a successful login, the `/oauth/token` endpoint will set the `Location` header to the specified url.
 
@@ -51,7 +66,7 @@ It is strongly recommended to set the `allowedRedirectUrlsOnSuccessfulLogin` par
 
 If you set this parameter, the service will refuse to accept any redirect url not present in the set. This prevents an attacker client to set malicious redirect URLs. Any request providing a redirect URL not included in the set will result in a `400 Bad Request`, and the token will not be issued.
 
-This parameter may become required in the next realeases of the service.
+This parameter may become required in the next releases of the service.
 
 :::
 
@@ -86,10 +101,16 @@ The client must follow these steps:
 
 - If the state validation check succeeds, the client can now obtain a token by calling the `/oauth/token` endpoint, as described in the [related section](#get-token).
 
-### Get token
 
-To obtain the token, the endpoint exposed by the service is `/oauth/token` in POST method.
-In the body of the request, you should set the *code* and *state* in JSON:
+### Get JWT Token
+
+API Signature: `POST /oauth/token`
+
+This endpoint is used to obtain the token, that the user will then use to authenticate to the endpoints.
+
+#### Authorization code grant type
+
+The body of the request, in JSON format, is composed of the following fields:
 
 ```json
 {
@@ -98,7 +119,10 @@ In the body of the request, you should set the *code* and *state* in JSON:
 }
 ```
 
-and it will return a JSON object with *accessToken*, *refreshToken* and *expiresAt*.
+These fields are usually retrieved from the redirect url query string.
+
+
+The endpoint will return a JSON object with *accessToken*, *refreshToken* and *expiresAt*.
 
 ```json
 {
@@ -108,7 +132,9 @@ and it will return a JSON object with *accessToken*, *refreshToken* and *expires
 }
 ```
 
-When the `isWebsiteApp` field is set to true in the service configuration, the token API will return a session cookie (named *sid*). 
+:::tip
+
+When the `isWebsiteApp` field is set to true in the service configuration, the token API will return a session cookie (named *sid*).
 The *sid* cookie has the following configuration:
 
     * HttpOnly: `true`
@@ -116,14 +142,18 @@ The *sid* cookie has the following configuration:
     * Path: `/`
     * SameSite: `Lax`
 
-## Refresh token
+:::
+
+### Refresh token
+
+API Signature: `POST /refreshtoken`
 
 The endpoint `POST /refreshtoken` allows to issue a new token, by using the `refreshToken` received in the Token request.
 
 The endpoint needs to be called with a POST, like in the following example:
 
 ```sh
-curl --location --request POST 'https://app.example.com/authentication/refreshtoken' \
+curl --location --request POST 'https://app.example.com/refreshtoken' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "refreshToken": {{refreshToken}}
@@ -141,34 +171,54 @@ The response is the same as the `/oauth/token`:
 }
 ```
 
-### Skip provider refresh token
+#### Skip provider refresh token
 
 If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request. 
 The refresh token on the provider will only be issued if the validation fails.
 
-## Userinfo endpoint
+## User Info
 
-The service exposes a `/userinfo` endpoint, that returns some of the information obtained from the [users collection](configuration.mdx#users-collection)
+API Signature: `GET /userinfo`
+
+The `/userinfo` endpoint returns the information stored in the current JWT token of the user.
+
+Such information are also saved on the users CRUD collection.
+
 You can contact the endpoint in this way:
 ```sh
-curl --location --request GET 'https://platform-dev.preprod.mia-platform.eu/authentication/userinfo' \
+curl --location --request GET 'https://app.example.com/userinfo' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer <access_token>'
 ```
-The endpoint returns a JSON containing the authenticated user's information, for example:
+
+The response of the endpoint has the following structure:
+
 ```json
 {
-    "userId": "some-user-id",
-    "groups": [
-        "testgroup"
-    ],
-    "email": "john.doe@example.com",
-    "name": "John Doe"
+    "properties": {
+        "userId": {
+            "type": "string"
+        },
+        "groups": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "email": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "userSettingsURL": {
+            "type": "string"
+        }
+    }
 }
 ```
+
 ### Integration with the ***Authorization Service***
 
-The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview.md) to determine whether the requested resource can be accessed by the current user.
+The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview.md) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
 
 You need to set the following variables in the [configuration](../authorization-service/configuration.md) with these values:
 
@@ -176,6 +226,90 @@ You need to set the following variables in the [configuration](../authorization-
 - **CUSTOM_USER_ID_KEY**=`userId`
 - **HEADERS_TO_PROXY**=`x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host`
 
+## Token Info
+
+API Signature: `GET /tokeninfo`
+
+:::danger
+
+This endpoint returns potentially confidential information, that a user may not be supposed to have; therefore, depending on your specific use case, you probably don't want to expose it publicly.
+
+:::
+
+This endpoint returns some information regarding the token.
+
+It receives the token via the `Authentication` header, and it returns a JSON with the Mia JWT token custom claims, and a subkey `provider` with the following fields:
+
+- **accessToken**: the access token obtained from the IdP.
+- **id**: the provider id of the currently used configuration
+- **baseUrl**: the OAuth2 base url of the provider, as set in the configuration
+- **userId**: the provider id of the current user
+
+An example of response:
+```json
+{
+    "userId": "63cacfa530a2a89a7f057dce",
+    "groups": [
+        "testgroup"
+    ],
+    "email": "some@email.com",
+    "name": "John Doe",
+    "provider": {
+        "accessToken": "provider-token",
+        "id": "provider-id",
+        "baseUrl": "provider base url",
+        "userId": "provider-user-id"
+    }
+}
+```
+
+## Revoke sessions
+
+API Signature: `DELETE /sessions`
+
+This is an admin feature that revokes all session for a specified user. This is useful when the user is being blocked or deleted on the provider side.
+
+You can contact the endpoint this way:
+```sh
+curl --location --request DELETE 'https://app.example.com/sessions/:userId' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <access_token>'
+```
+
+The endpoint in case of success will reply with status code 200 and the number of deleted elements.
+An example of response:
+
+```json
+{
+    "count": 2
+}
+```
+
+## Cleanup all users queue
+
+API Signature: `DELETE-/expired-sessions`
+
+This is an internal API helpful to clean up all expired sessions for all users.
+This is especially useful when the *STORED_ACCESS_TOKEN_NUMBER* environment variable is a big number, in order to keep stored data in Redis to the minimum.
+
+It's recommended to setup a CronJob that periodically invokes the API; the period can be tuned in respect with the queue length. 
+
+:::info
+The operation is deliberately non-atomic since it may be a long CPU-intensive task that could potentially block Redis.
+:::
+
+In case of success, the endpoint will return a 204 No Content response.
+
+### Cleanup a specific users queue
+
+The endpoint can receive also as a query params a specific userID. 
+
+This is an example:
+```sh
+curl --location --request DELETE 'https://app.example.com/expired-sessions/:userId`' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <access_token>' 
+```
 
 ## Webhooks
 
