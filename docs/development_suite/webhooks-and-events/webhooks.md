@@ -14,11 +14,11 @@ You can subscribe to events on the Console using the CMS. From the `Events` cate
 
 | Parameter | Value | Description |
 |-|-|-|
-| `tenantId` | `string` | If specified, only events triggerd inside the specified company will be delivered to the target URL. Must be a company identifier. |
-| `projectId` | `string` | If specified, only events triggerd inside the specified project will be delivered to the target URL. Must be a project identifier. |
+| `tenantId` | `string` | If specified, only events triggered inside the specified company will be delivered to the target URL. Must be a company identifier. |
+| `projectId` | `string` | If specified, only events triggered inside the specified project will be delivered to the target URL. Must be a project identifier. |
 | `eventName` **required** | `string` | The name of the event to listen to. See the [event types page](./events). |
 | `target` **required** | `string` | The URL of the HTTP endpoint that will manage the event trigger. |
-| `base64CA` | `string` | The Certificate Authority exposed by the target URL ancoded in base64. |
+| `base64CA` | `string` | The Certificate Authority exposed by the target URL encoded in base64. |
 | `secret` **required** | `string` | The shared secret used to authenticate the events payload. |
 | `proxy.url` | `string` | The URL of the proxy. |
 
@@ -27,7 +27,7 @@ You can subscribe to events on the Console using the CMS. From the `Events` cate
 The payload delivered by the Console will be authenticated using the `X-Mia-Token` header. This will both prevent the modification of the payload by third-parties and allow the receiver to make sure that the event has been triggered by the Console.
 
 :::warning
-This authentication method is not safe agaist replay attacks. It is recommended to store the latest `eventTimestamp` on the receiver side to prevent this attack.
+This authentication method is not safe against replay attacks. It is recommended to store the latest `eventTimestamp` on the receiver side to prevent this attack.
 :::
 
 The `X-Mia-Token` header will contain the hex encoded `sha256` digest of the event payload concatenated with the provided `secret`. In formula:
