@@ -42,14 +42,27 @@ The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
 - Authentication method: the method used to verify the identity of the Service Account can be of two types
-    - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client.  
+    - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client. 
+    
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{display: 'flex', width: '600px'}}>
+
     ![Add Company Service Account with client secret basic auth](./img/service-account-management/add_company_sa_client_secret.png)
+
+      </div>
+    </div>
 
     - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the authentication request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key provided during Service Account creation, and checking that the claims are valid and match its records.  
     
       This authentication method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
       We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the Service Account is using.
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{display: 'flex', width: '600px'}}>
+    
     ![Add Company Service Account with private key jwt auth](./img/service-account-management/add_company_sa_private_key_jwt.png)
+
+      </div>
+    </div>
 
 :::info
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
@@ -59,13 +72,24 @@ Find out more about how these authentication methods work in the Console in the 
 
 A Service Account Role in the Company can be modified: to do so, simply click on the edit button for the desired Service Account row and select the new Role.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Edit Company Service Account](./img/service-account-management/edit_company_sa.png)
 
+  </div>
+</div>
 ### Removing a Service Account from the Company
 
 A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Delete Company Service Account](./img/service-account-management/delete_company_sa.png)
+
+  </div>
+</div>
 
 :::warning
 Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
@@ -90,27 +114,45 @@ The Company Owner can add a new Service Account by clicking on the *Add Service 
 The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
 
 :::note
-Note that new Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
+New Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
 :::
 
 With the Client Secret Basic method: 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Add Project Service Account with client secret basic auth](./img/service-account-management/add_project_sa_client_secret.png)
 
+  </div>
+</div>
+
 With the Private Key JWT method: 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Add Project Service Account with private key jwt auth](./img/service-account-management/add_project_sa_private_key_jwt.png)
+
+  </div>
+</div>
 
 ### Editing a Service Account Role at Project level
 
 A Service Account Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Edit Project Service Account](./img/service-account-management/edit_project_sa.png)
+
+  </div>
+</div>
 
 ## Service Account authentication
 
 In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
 
 :::note
-Note that the access token you obtain in this process has an expiration date, after which you will necessarily need to contact the endpoint again to get a new one.
+The access token you obtain in this process has an expiration date, after which you will necessarily need to contact the endpoint again to get a new one.
 :::
 
 Here is an example of cURL request for Service Account authentication with the `client_secret_basic` method:
