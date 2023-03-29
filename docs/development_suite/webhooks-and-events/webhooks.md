@@ -26,7 +26,9 @@ You can subscribe to events on the Console using the CMS. From the `Events` cate
 
 The payload delivered by the Console will be authenticated using the `X-Mia-Token` header. This will both prevent the modification of the payload by third-parties and allow the receiver to make sure that the event has been triggered by the Console.
 
-**Note**: this authentication method is not safe agaist replay attacks. It is recommended to store the latest `eventTimestamp` on the receiver side to prevent this attack.
+:::warning
+This authentication method is not safe agaist replay attacks. It is recommended to store the latest `eventTimestamp` on the receiver side to prevent this attack.
+:::
 
 The `X-Mia-Token` header will contain the hex encoded `sha256` digest of the event payload concatenated with the provided `secret`. In formula:
 
