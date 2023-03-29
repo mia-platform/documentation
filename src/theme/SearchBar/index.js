@@ -221,5 +221,5 @@ function DocSearch({
 // In our use case, it avoid a double search bar using `cmd+k` in homepage (which has two different search bar)
 export default function SearchBar({avoidKeyboardShortcuts}) {
   const {siteConfig} = useDocusaurusContext();
-  return <DocSearch {...(siteConfig.themeConfig.algolia)} avoidKeyboardShortcuts={avoidKeyboardShortcuts} />;
+  return <DocSearch {...siteConfig.themeConfig.algolia} avoidKeyboardShortcuts={avoidKeyboardShortcuts} />;
 }
