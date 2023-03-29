@@ -16,7 +16,7 @@ To find out more about Roles check out the available [Capabilities](/development
 
 Potentially, every action a User can perform in the Console can be entrusted to a dedicated Service Account, which will execute it automatically.
 
-For instance, a Service Account could be granted permissions to make automatic deploys, which can greatly streamline the process of deploying code changes to an application. The Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application as soon as new code is pushed to the source code repository.  
+For instance, you can grant a Service Account the permissions to make automatic deploys: this can significantly streamline the whole process of deploying code changes to an application. The Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application as soon as new code is pushed to the source code repository.  
 This allows teams to implement a CI/CD workflow that can improve the speed, reliability and scalability of their software development processes. 
 
 A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
