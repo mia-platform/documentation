@@ -6,6 +6,6 @@ Mia-Platform Console allows different identities to access Companies and resourc
 
 The Console is based on hierarchical resources: assigning specific roles and permissions to both Users and Service Accounts is important for defining responsibilities within your Companies and Projects. Discover more about it in the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) documentation.
 
-Users with enough administrative permission on a specific Company or Project can view the existing Users and Service Accounts and perform actions on them. Here is an example of how the Identities table appears for a Company.  
+Users with enough administrative permission on a specific Company or Project can view the existing Users and Service Accounts and perform actions on them. Here is an example of the Identities table of a Company, which can be found in the IAM (Identity and Access Management) section:  
 
 ![identities table](./img/identities_table.png)
