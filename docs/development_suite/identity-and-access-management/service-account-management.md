@@ -88,6 +88,10 @@ The Company Owner can add a new Service Account by clicking on the *Add Service 
 
 The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
 
+:::note
+Note that new Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
+:::
+
 With the Client Secret Basic method: 
 ![Add Project Service Account with client secret basic auth](./img/service-account-management/add_project_sa_client_secret.png)
 

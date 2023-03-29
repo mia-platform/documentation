@@ -40,7 +40,7 @@ Always pay attention when assigning Roles in order to avoid providing undesired 
 
 ### Adding a new User
 
-The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will also require the invited User email to be provided..
+The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the invited User email to be provided.
 
 ![Add Company User](./img/user-management/add_company_user.png)
 
@@ -73,7 +73,7 @@ A User with enough administrative permission on a specific Project will be able 
 ![Project identities](./img/user-management/project_identities.png)
 
 :::note
-Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, since that this depends on the Role they are assigned in the Company and how the permissions are inherited.
+Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
 
 For further information about permissions and Role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
