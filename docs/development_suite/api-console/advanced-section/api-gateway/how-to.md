@@ -242,7 +242,7 @@ The variables are:
 
 ## How to manage authorization in a multi gateway architecture
 
-Sometimes projects can get big and, for this reason, it's better do segregate different macro features inside different projects, each one with its own set of resources. 
+Sometimes projects can get big and, for this reason, it's better do segregate different macro features inside different projects, each one with its own set of resources.
 
 In these cases it may be useful to have a single "gateway project" that handles requests coming from API consumers and dispatches them to the right `api-gateway` of other projects (let's call these "functional projects"). This configuration eases the API management, as all the endpoints that are exposed, for example, on the internet, are configured in a single project: the gateway project.
 
