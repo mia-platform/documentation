@@ -14,21 +14,38 @@ The `bk-atlas-dashboard` is an embedding of a dashboard from MongoDB Atlas which
 
 ![dashboard](../img/bk-atlas-dashboard.png)
 
-:::warning
-To embed an authenticated dashboard it's mandatory to use a custom microservice for the authentication: `atlas-dashboard-authentication` is available in the marketplace, but you can choose to develop one by yourself.
-The `apiKey` and `authEndpoint` enable you to expose an endpoint to that service directly from the Mia-Platform console.
+:::info
+To embed an authenticated dashboard it's mandatory to use a custom microservice for the authentication. For instance, service `atlas-dashboard-authentication` is available in [marketplace](../../marketplace/overview_marketplace).
+`apiKey` and `authEndpoint` properties enable you to expose an endpoint to that service.
+:::
+
+## Known Issues
+
+It could happen that the component keeps resizing. This is due to some scaling problem of the embedded Mongo Atlas `<iframe>`.
+This is a known issue of Mongo Atlas, which can beb temporarily fixed adding some padding to the component:
+
+```json
+  {
+    "tag": "bk-atlas-dashboard",
+    "properties": {
+      ...
+    },
+    "attributes": {
+      "style": "padding: 0.5px"
+    }
+  }
+```
 
 ### Properties & Attributes
 
 | property | attribute | type | optional | required | default | description |
 |----------|-----------|------|----------|----------|---------|-------------|
-|`apiKey`|`apiKey`|string \| number| &check; | - | - |apikey to call the authentication route from a trusted entity. Leave empty if not set
+|`apiKey`|`apiKey`|string| &check; | - | - |apikey to call the authentication route from a trusted entity. Leave empty if not set|
 |`authEndpoint`|`authEndpoint`|string| &check; | - | - |endpoint for the dashboard authentication|
 |`background`|`background`|string| &check; | - |'transparent'|background color of the dashboard. Possible values are color hex code, CSS color name or 'transparent'|
 |`baseUrl`|`base-url`|string| - | &check; | - |base URL of the embedded dashboard|
 |`dashboardId`|`dashboard-id`|string| - | &check; | - |dashboard id of the embedded dashboard|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - | &check; | - |[data schema](../page_layout#data-schema) describing the fields of the collection|
-|`height`|`height`|string \| number| &check; | - | 'inherit' |desired height of the dashboard container|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - | &check; | - |[data schema](../page_layout.md#data-schema) describing the fields of the collection|
 
 
 ### Listens to
@@ -125,7 +142,7 @@ For `bk-calendar` to correctly display appointments, these must have the followi
 
 ## bk-breadcrumbs
 
-represents current navigation path and allows to go back at any navigation level.
+represents current nesting path and allows to go back at any navigation level.
 
 ```html
 <bk-breadcrumbs></bk-breadcrumbs>
@@ -146,7 +163,6 @@ represents current navigation path and allows to go back at any navigation level
 |-------|--------|-------|----------|
 |[nested-navigation-state/push](../events#nested-navigation-state---push)|updates internal representation of the current navigation path by adding one step| - | - |
 |[nested-navigation-state/back](../events#nested-navigation-state---back)|updates internal representation of the current navigation path by removing the specified number of steps| - | - |
-|[change-query](../events#change-query)|triggers page refresh and goes back to 0-level, unless empty payload| - | - |
 |[display-data](../events#display-data)|triggers page refresh and tries to recreate navigation path with new data. If fails, goes back to 0-level| - | - |
 
 ### Emits

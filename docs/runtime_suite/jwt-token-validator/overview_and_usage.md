@@ -36,6 +36,7 @@ These are the claims validated by the service: `exp`, `iat`, `nbf`, `aud`, `iss`
 - **issuer**: the issuer of the JWT
 - **audience**: a string or an array of strings that lists all the audiences. In case the JWT token inside its `aud` claim has different values from the ones defined in this field, it won't be valid. 
 The `aud` claim identifies the recipients that the JWT is intended for. This means that the service tells that it's identifying itself with the defined value. 
+- **customGroups**: array of strings that allow to set one or more custom groups to a issuer. The values are added to the response of the `/verify` when the issuer is in the JWT claims. In case the claim `groups` is already present in the JWT payload, a union of the values is returned. 
 
 Given the example below, the service is identifying itself with a *dih* value for a JWT coming from the issuer *issuer-one*. Supposing that the JWT has an `aud` value that does not appear in the audience list, the JWT will be rejected as it is not meant for the service.
  
@@ -47,7 +48,8 @@ Following is an example of the configuration:
       "JWKSSignatureEndpoint": "https://endpoint-issuer/.well-known/jwks.json",
       "requiredClaims": "aud,iss",
       "issuer": "issuer-one",
-      "audience": "dih"
+      "audience": "dih",
+      "customGroups": []
     },
     {
       "JWKSSignatureEndpoint": "https://endpoint-issuer-two/.well-known/jwks.json",
@@ -56,6 +58,10 @@ Following is an example of the configuration:
       "audience": [
         "dih",
         "another_audience"
+      ],
+      "customGroups": [
+        "groupA",
+        "groupB"
       ]
     }
   ]

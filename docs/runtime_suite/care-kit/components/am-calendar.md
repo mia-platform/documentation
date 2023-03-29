@@ -5,7 +5,7 @@ sidebar_label: Am-calendar
 ---
 The web component is based on the external component `react-big-calendar`, [here is the documentation for more information](https://jquense.github.io/react-big-calendar/examples/?path=/story/about-big-calendar--page).
 
-The web component has been created as the front-end counterpart of the [appointment-manager](../../appointment-manager/overview) microservice to be used in a Backoffice configuration.
+The web component has been created as the front-end counterpart of the [appointment-manager](../../runtime_suite/appointment-manager/overview) microservice to be used in a Backoffice configuration.
 
 ## Events type
 
@@ -36,13 +36,13 @@ The components can be utilized in two different modes.
 
 The "availability mode" is used to show the availabilities and exceptions of a single resource. The calendar in this configuration will show the events of type availability and exceptions. The appointments are not displayed in this mode.
 
-When the calendar is set in availability mode the events are fetched through the back kit web component [bk-crud-client](../../../business_suite/backoffice/Components/clients#bk-crud-client).
+When the calendar is set in availability mode the events are fetched through the back kit web component [bk-crud-client](../../business_suite/backoffice/components/clients#bk-crud-client).
 
-Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](../../../business_suite/backoffice/plugin_navigation#bk-url-parameters)).
+Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](../../business_suite/backoffice/plugin_navigation#bk-url-parameters).
 
-To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](../../../business_suite/backoffice/Components/data_querying#bk-filters-manager). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
+To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](../../business_suite/backoffice/components/data_querying#bk-filters-manager). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
 
-Click on an event calendar will trigger the emission of a [select-data](../../../business_suite/backoffice/events#selected-data) event which contains in the payload the data of the event clicked.
+Click on an event calendar will trigger the emission of a [select-data](../../business_suite/backoffice/events#selected-data) event which contains in the payload the data of the event clicked.
 
 This mode is compatible with version 1.x  of the appointment manager backend.
 
@@ -247,16 +247,16 @@ ResourceDetails = {
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[display-data](../../../business_suite/backoffice/events#display-data)|receives data to display| - | - |
+|[display-data](../../business_suite/backoffice/events#display-data)|receives data to display| - | - |
 
 ## Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../../../business_suite/backoffice/events#change-query)| used to updated the filters in availability mode|
-|[add-new](../../../business_suite/backoffice/events#add-new)| trigger for the opening of the component used to add a new event|
-|[add-new-external](../../../business_suite/backoffice/events#add-new-external)| trigger for the opening of the appointment detail modal in read-only mode |
-|[deleteData](../../../business_suite/backoffice/events#delete-data)| notifies the request for deletion of event|
-|[require-confirm](../../../business_suite/backoffice/events#require-confirm)| trigger for the opening of the confirmation modal before deleting an appointment |
-|[selected-data](../../../business_suite/backoffice/events#selected-data)| notifies about the click on an event|
-|[update-data](../../../business_suite/backoffice/events#update-data)| trigger for the opening of the component to modify the appointment in the clicked slot|
+|[change-query](../../business_suite/backoffice/events#change-query)| used to updated the filters in availability mode|
+|[add-new](../../business_suite/backoffice/events#add-new)| trigger for the opening of the component used to add a new event|
+|[add-new-external](../../business_suite/backoffice/events#add-new-external)| trigger for the opening of the appointment detail modal in read-only mode |
+|[deleteData](../../business_suite/backoffice/events#delete-data)| notifies the request for deletion of event|
+|[require-confirm](../../business_suite/backoffice/events#require-confirm)| trigger for the opening of the confirmation modal before deleting an appointment |
+|[selected-data](../../business_suite/backoffice/events#selected-data)| notifies about the click on an event|
+|[update-data](../../business_suite/backoffice/events#update-data)| trigger for the opening of the component to modify the appointment in the clicked slot|
