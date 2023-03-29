@@ -330,7 +330,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "dish_to_rest": {
               "condition": {
-                "dish_restaurant_id": "id_restaurant"
+                "ID_DISH_RESTAURANT": "ID_RESTAURANT"
               }
             }
           }
@@ -339,7 +339,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "dish_to_order_dish": {
               "condition": {
-                "dish_order_id": "id_dish"
+                "ID_DISH_ORDER": "ID_DISH"
               }
             }
           }
@@ -348,7 +348,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "dish_to_rev": {
               "condition": {
-                "review_dish_id": "id_dish"
+                "ID_DISH_REVIEW": "ID_DISH"
               }
             }
           }
@@ -361,7 +361,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_dish_to_order": {
               "condition": {
-                "order_id": "id_order_dish"
+                "order_id": "ID_DISH_ORDER"
               }
             }
           }
@@ -370,7 +370,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_dish_to_dish": {
               "condition": {
-                "id_dish": "dish_order_id"
+                "ID_DISH": "ID_DISH_ORDER"
               }
             }
           }
@@ -383,7 +383,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_to_order_dish": {
               "condition": {
-                "id_order_dish": "ID_ORDER"
+                "ID_DISH_ORDER": "order_id"
               },
               "oneToMany": true
             }
@@ -393,7 +393,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_to_reg": {
               "condition": {
-                "ID_USER": "order_user_id"
+                "ID_USER": "ID_USER_ORDER"
               }
             }
           }
@@ -406,7 +406,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "res_to_dish": {
               "condition": {
-                "id_restaurant": "dish_restaurant_id"
+                "ID_RESTAURANT": "ID_DISH_RESTAURANT"
               }
             }
           }
@@ -419,9 +419,9 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "aller_reg_to_aller": {
               "condition": {
-                "id_allergen": "ID_ALLERGEN_REGISTRY"
+                "ID_ALLERGEN": "ID_ALLERGEN_REGISTRY"
               }
-            },
+            }
           }
         },
         "pr_registry": {
@@ -441,7 +441,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "aller_to_aller_reg": {
               "condition": {
-                "ID_ALLERGEN_REGISTRY": "id_allergen"
+                "ID_ALLERGEN_REGISTRY": "ID_ALLERGEN"
               }
             }
           }
@@ -497,7 +497,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "rev_to_dish": {
               "condition": {
-                "id_dish": "review_dish_id"
+                "ID_DISH": "ID_DISH_REVIEW"
               }
             }
           }
