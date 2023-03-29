@@ -361,7 +361,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_dish_to_order": {
               "condition": {
-                "order_id": "ID_DISH_ORDER"
+                "ID_ORDER": "ID_DISH_ORDER"
               }
             }
           }
