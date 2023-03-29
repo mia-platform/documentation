@@ -42,7 +42,13 @@ Always pay attention when assigning Roles in order to avoid providing undesired 
 
 The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the invited User email to be provided.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Add Company User](./img/user-management/add_company_user.png)
+
+  </div>
+</div>
 
 The provided email will be searched throughout existing Users and if a match is found the User will be invited to the Company with the defined Role.
 
@@ -54,13 +60,24 @@ If the User does not exist in the Platform, please open a Service Request for it
 
 A User Role in the Company can be modified: to do so, simply click on the edit button for the desired User row and select the new Role.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Edit Company User](./img/user-management/edit_company_user.png)
+
+  </div>
+</div>
 
 ### Removing a User from the Company
 
 A User can be removed from the Company by clicking the trash icon on the table and confirming the action.
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
 
 ![Delete Company User](./img/user-management/delete_company_user.png)
+
+  </div>
+</div>
 
 :::warning
 Removing a User from the Company will kick the User out of every Project and Runtime Environment. While the User may be invited back in the Company, all their previously existing Roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
@@ -82,7 +99,13 @@ For further information about permissions and Role inheritance, check out the [C
 
 The Company Owner can add a new User to a Company by pressing the *Add user* button in the Identities section of the Project settings area. Here, the User can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. The User invitation process will also require the invited User email to be provided.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Add Project User](./img/user-management/add_project_user.png)
+
+  </div>
+</div>
 
 The provided email will be searched throughout existing Users and, if a match is found, the User will be invited to the Company with the defined Roles.
 
@@ -95,4 +118,10 @@ If the User does not exist in the Platform, please open a Service Request.
 
 A User Role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Edit Project User](./img/user-management/edit_project_user.png)
+
+  </div>
+</div>
