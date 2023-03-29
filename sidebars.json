@@ -389,11 +389,15 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/console-levels-and-permission-management",
+          "id": "development_suite/identity-and-access-management/console-levels-and-permission-management",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/user-management",
+          "id": "development_suite/identity-and-access-management/user-management",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/service-account-management",
           "type": "doc"
         },
         {
@@ -412,6 +416,10 @@
           "type": "category"
         }
       ],
+      "link": {
+        "type": "doc",
+        "id": "development_suite/identity-and-access-management/overview"
+      },
       "type": "category",
       "label": "Identity and Access Management"
     },

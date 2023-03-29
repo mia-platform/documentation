@@ -25,7 +25,7 @@ A new set of permissions has been added to the Super User, in order to better ma
 * `console.root.project.details.update`: allows the Super User to edit any project
 * `console.root.project.delete`: allows the Super User to delete any project 
 
-If you want to find more info about Console levels and permission management, please visit the related [documentation page](/development_suite/console-levels-and-permission-management.md).
+If you want to find more info about Console levels and permission management, please visit the related [documentation page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
 
 ### Improvements
 

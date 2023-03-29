@@ -172,5 +172,13 @@
   "/docs/tutorial/rbac/rbac_tutorial": {
     "destination": "/docs/tutorial/authorization/authorization_tutorial",
     "addedOn": "2023-02-24"
+  },
+  "docs/development_suite/console-levels-and-permission-management": {
+    "destination": "docs/development_suite/identity-and-access-management/console-levels-and-permission-management",
+    "addedOn": "2023-03-21"
+  },
+  "docs/development_suite/api-console/user-management": {
+    "destination": "docs/development_suite/identity-and-access-management/user-management",
+    "addedOn": "2023-03-21"
   }
 }
