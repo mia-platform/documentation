@@ -6,7 +6,6 @@ sidebar_label: Manage Service Accounts
 
 Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
 
-Note that new Service Accounts can only be created at Company level. For each Project or Environment they will be visible in the Identities section.
 Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment level, based on which they will be able to perform different types of action.  
 
 :::note
