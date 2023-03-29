@@ -54,6 +54,7 @@ The Service Account creation process will require the following information:
 :::info
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
 :::
+
 ### Editing a Service Account Role
 
 A Service Account Role in the Company can be modified: to do so, simply click on the edit button for the desired Service Account row and select the new Role.
