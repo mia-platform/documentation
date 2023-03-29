@@ -1,0 +1,165 @@
+---
+id: events
+title: Events
+sidebar_label: Events
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Events allow users to be notified when certain operations are performed in the Console.
+
+## Event types
+
+All the events emitted by the Console share some common properties:
+
+| Property | Value | Description |
+|-|-|-|
+| `eventName` | `string` | The name of the event, usually in the form of `subject_action` |
+| `eventTimestamp` | `number` | The timestamp of the event emission |
+| `payload` | `object` | Contains the event-specific payload |
+
+### Project created event: `project_created`
+
+This event will be emitted when a project is created successfully.
+
+#### Event `payload`
+
+| Property | Value | Description |
+|-|-|-|
+| `tenantId` | `string` | The identifier of the tenant to which the project belongs |
+| `projectId` | `string` | The identifier of the tenant to which the project belongs |
+
+<Tabs>
+<TabItem value="example" label="Example" default>
+
+  ```json
+  {
+    "eventName": "project_created",
+    "eventTimestamp": 123456,
+    "payload": {
+      "tenantId": "my-company-id",
+      "projectId": "0000000000000001"
+    }
+  }
+  ```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+  ```json
+  {
+    "additionalProperties": false,
+    "properties": {
+      "eventName": {
+        "const": "project_created",
+        "type": "string"
+      },
+      "eventTimestamp": {
+        "type": "number"
+      },
+      "payload": {
+        "additionalProperties": false,
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "description": "The identifier of the project that was created"
+          },
+          "tenantId": {
+            "type": "string",
+            "description": "The identifier of the tenant to which the project belongs"
+          }
+        },
+        "required": ["tenantId", "projectId"],
+        "type": "object"
+      }
+    },
+    "required": ["eventName", "eventTimestamp", "payload"],
+    "type": "object"
+  }
+  ```
+
+</TabItem>
+</Tabs>
+
+### Service created event: `service_created`
+
+This event will be emitted when a service is generated successfully from a marketplace template or example.
+
+Notice that the event is emitted as soon as the service's repository is successfully created, hence there is no guarantee that the service will be found into the project configuration.
+
+#### Event `payload`
+
+| Property | Value | Description |
+|-|-|-|
+| `tenantId` | `string` | The identifier of the tenant to which the project belongs |
+| `projectId` | `string` | The identifier of the tenant to which the project belongs |
+| `repositoryURL` | `string` | The URL of the repository that hosts the service code |
+| `serviceName` | `string` | The name of the service inside the project configuration |
+| `templateId` | `string` | The identifier of the template in the Console marketplace from which the service was created |
+
+<Tabs>
+<TabItem value="example" label="Example" default>
+
+  ```json
+  {
+    "eventName": "project_created",
+    "eventTimestamp": 123456,
+    "payload": {
+      "tenantId": "my-company-id",
+      "projectId": "0000000000000001",
+      "repositoryURL": "http://gihub.com/my-repository",
+      "serviceName": "my-service",
+      "templateId": "0000000000000002"
+    }
+  }
+  ```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+  ```json
+  {
+    "additionalProperties": false,
+    "properties": {
+      "eventName": {
+        "const": "service_created",
+        "type": "string"
+      },
+      "eventTimestamp": {
+        "type": "number"
+      },
+      "payload": {
+        "additionalProperties": false,
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "description": "The identifier of the tenant to which the service belongs"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "The identifier of the project to which the service belongs"
+          },
+          "repositoryURL": {
+            "type": "string",
+            "description": "The URL of the repository that hosts the service code"
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "The name of the service inside the project configuration"
+          },
+          "templateId": {
+            "type": "string",
+            "description": "The identifier of the template in the Console marketplace from which the service was created"
+          }
+        },
+        "required": ["projectId", "serviceName", "repositoryURL", "templateId"],
+        "type": "object"
+      }
+    },
+    "required": ["eventName", "eventTimestamp", "payload"],
+    "type": "object"
+  }
+  ```
+</TabItem>
+</Tabs>
