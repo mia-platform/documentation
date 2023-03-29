@@ -32,7 +32,7 @@ To discover more about how to manage them, just take a look at the [Manage Servi
 
 #### Subscribing to console events
 
-From today it will be possible to subscribe to some events on the console via HTTP webhooks.
+From today it will be possible to subscribe to some events on the console via HTTP webhooks. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
 
 The supported events are:
 - Project Creation
