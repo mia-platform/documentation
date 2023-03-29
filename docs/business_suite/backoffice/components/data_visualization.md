@@ -15,7 +15,7 @@ The `bk-atlas-dashboard` is an embedding of a dashboard from MongoDB Atlas which
 ![dashboard](../img/bk-atlas-dashboard.png)
 
 :::info
-To embed an authenticated dashboard it's mandatory to use a custom microservice for the authentication. For instance, service `atlas-dashboard-authentication` is available in [marketplace](../../marketplace/overview_marketplace).
+To embed an authenticated dashboard it's mandatory to use a custom microservice for the authentication. For instance, service `atlas-dashboard-authentication` is available in [marketplace](../../../marketplace/overview_marketplace).
 `apiKey` and `authEndpoint` properties enable you to expose an endpoint to that service.
 :::
 

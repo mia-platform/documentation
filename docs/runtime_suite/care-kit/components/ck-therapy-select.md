@@ -8,7 +8,7 @@ The `ck-therapy-select` web component is used to select a therapy/monitoring bet
 ![ck-therapy-select](../img/ck-therapy-selector.png)
 ## Usage
 The `ck-therapy-select` component recovers the therapies/monitorings associated to a specific user. The data received are used to populate the selectable options. The web-component's `type` property defines if therapies or monitorings are fetched. The property accepts two values `monitoring` and `therapy`.
-The other property, `planBasePath`, has to be set to the endpoint that expose the [Therapy and Monitoring Manager service](../../runtime_suite/therapy-and-monitoring-manager/overview). The user id used to filter the options is retrieved from the `window localtion`. In order for the `userId` to be recovered correctly the page's path has to follow the following pattern '{hostname}/{plugin_name}/`userId`'.
+The other property, `planBasePath`, has to be set to the endpoint that expose the [Therapy and Monitoring Manager service](../../therapy-and-monitoring-manager/overview). The user id used to filter the options is retrieved from the `window localtion`. In order for the `userId` to be recovered correctly the page's path has to follow the following pattern '{hostname}/{plugin_name}/`userId`'.
 
 On initialization, after the options have been retrieved, the first options is selected (if present). Every time an option is selected a `therapy-config` event, containing the information of the selected value, is sent . If no options are presents the select will be disabled. 
 
