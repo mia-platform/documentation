@@ -383,7 +383,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_to_order_dish": {
               "condition": {
-                "ID_DISH_ORDER": "order_id"
+                "ID_DISH_ORDER": "ID_ORDER"
               },
               "oneToMany": true
             }
