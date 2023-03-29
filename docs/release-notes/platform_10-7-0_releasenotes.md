@@ -30,7 +30,7 @@ Just like human Users, Service Accounts can be assigned Roles on Company, Projec
 
 To discover more about how to manage them, just take a look at the [Manage Service Accounts](/development_suite/identity-and-access-management/service-account-management) documentation page.
 
-#### Subscribing to console events
+#### Subscribing to Console Events via HTTP webhooks
 
 From today it will be possible to subscribe to some events on the console via HTTP webhooks. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
 
