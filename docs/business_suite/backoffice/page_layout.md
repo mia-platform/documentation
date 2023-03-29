@@ -803,10 +803,10 @@ For fields of type `array` or `object` that do not have a specific format, it is
 }
 ```
 
-By default, in a [bk-table](Components/data_visualization#table) component with a nested data schema, it is possible to navigate the rendered table by clicking on any of the cells corresponding to nested objects/arrays. Doing so, the table uses the nested data schema to know how to interpret the data inside the clicked cell, and re-renders the table to display it.
-In the same way, by default, the label of object/array fields inside the form of a [bk-form-drawer](Components/data_manipulation#form-drawer) or [bk-form-modal](Components/data_manipulation#form-modal) is clickable, if a data schema is specified for them. Doing so has the same effect as clicking on the corresponding cell in the table.
+By default, in a [bk-table](./components/data_visualization.md#bk-table) component with a nested data schema, it is possible to navigate nesting levels of the rendered table by clicking on any of the cells corresponding to nested objects/arrays. Doing so, the table uses the nested data schema to know how to interpret the data inside the clicked cell, and re-renders the table to display it.
+In the same way, by default, the label of object/array fields inside the form of a [bk-form-drawer](./components/data_manipulation.md#bk-form-drawer) or [bk-form-modal](./components/data_manipulation.md#bk-form-modal) is clickable, if a data schema is specified for them. Doing so has the same effect as clicking on the corresponding cell in the table.
 
-For all three of `bk-table`, `bk-form-drawer`, `bk-form-modal`, `bk-form-card`, it is possible to set `allowNavigation` property to false and disables this behavior.
+For all `bk-table`, `bk-form-drawer`, `bk-form-modal` it is possible to set `allowNavigation` property to false and disables this behavior.
 
 :::info
 `bk-form-drawer`, `bk-form-modal`, `bk-form-card` also support three values for the prop `allowNavigation`:
@@ -843,10 +843,6 @@ A [bk-breadcrumbs](Components/data_visualization#breadcrumbs) component should a
 :::
 
 In case of [display-data](events#display-data) events or [change-query](events#change-query) events with empty payload, the `bk-breadcrumbs` component tries to restore the navigation path with the new data. In case of failure, the page navigates back to the top level of the data schema.
-
-:::info
-All `change-query` events with non-empty payload cause to navigate back to the top level of the data schema, excpet for the features of [bk-pagination](Components/data_querying#pagination) and `bk-table`'s column sorting, which are still available.
-:::
 
 :::caution
 During navigation [bk-add-filter-button](Components/buttons#filter-new) and [search-bar](Components/data_querying#search-bar) are disabled, and [bk-tabs](Components/data_querying#tabs) are hidden.
