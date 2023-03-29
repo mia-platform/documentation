@@ -56,10 +56,6 @@ From now on, thanks to the integration of the Debezium CDC in our Marketplace, s
 
 Since we now have the Debezium plugins in our marketplace, the Real Time Updater (v7.5.0) supports the ingestion of Debezium kafka messages. You can configure it from the console choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
 
-#### Kafka connect configurator plugins
-
-Now you can find in the marketplace our new Kafka connect configurator template configurable with all the existing connectors in the market. We also released a plugin already pre-configured with MongoDB connector.
-
 ### Improvements
 
 #### Design improvements for the Fast Data No Code Configuration for ER Schema
