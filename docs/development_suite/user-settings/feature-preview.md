@@ -4,9 +4,15 @@ title: Feature Preview
 sidebar_label: Feature Preview
 ---
 
-From the dropdown menu that appears when hovering on the profile picture, Mia-Platform SaaS users can have visibility of the “Feature Preview” section. 
+From the dropdown menu that appears when hovering on the profile picture, Mia-Platform SaaS users can have visibility of the “Feature Preview” section.
 
-![user settings with feature preview](./img/user-settings-dropdown-with-feature-preview.png)
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{display: 'flex', width: '600px'}}>
+
+    ![user settings with feature preview](./img/user-settings-dropdown-with-feature-preview.png)
+
+      </div>
+    </div>
 
 Within this section, users can manage all the Mia-Platform Console features that are still in preview and decide to try them out and send their feedback to us. 
 
