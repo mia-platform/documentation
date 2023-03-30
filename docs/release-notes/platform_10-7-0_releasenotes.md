@@ -32,7 +32,7 @@ To discover more about how to manage them, just take a look at the [Manage Servi
 
 #### Subscribing to Console Events via HTTP webhooks
 
-From today it will be possible to subscribe to some events on Mia-Platform Console via HTTP webhooks.   
+From today it will be possible to subscribe to some events on Mia-Platform Console via HTTP webhooks.  
 With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
 
 The supported events are:
@@ -48,12 +48,12 @@ The supported events are:
 
 #### Debezium CDC plugins
 
-From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packaged plugins and templates can be used alongside with Fast Data with just few clicks!   
+From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packaged plugins and templates can be used alongside with Fast Data with just few clicks!  
 You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
 
 #### Debezium CDC support from the Real Time Updater
 
-Since we now have the Debezium plugins in our Marketplace, the Real Time Updater (v7.5.0) supports the ingestion of Debezium kafka messages.    
+Since we now have the Debezium plugins in our Marketplace, the Real Time Updater (v7.5.0) supports the ingestion of Debezium kafka messages.  
 You can configure it from Mia-Platform Console by choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
 
 ### Improvements
