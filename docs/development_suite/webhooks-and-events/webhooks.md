@@ -1,7 +1,7 @@
 ---
 id: webhooks
-title: Webhooks
-sidebar_label: Webhooks
+title: Configure your webhooks
+sidebar_label: Configure your webhooks
 ---
 
 Webhooks allow you to build or set up integrations, which subscribe to certain events on the Console. When one of those events is triggered, the Console will send a HTTP POST payload to the webhook's configured URL.
