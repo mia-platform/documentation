@@ -28,11 +28,12 @@ Service Accounts can only be created by a Company Owner inside the Users portal 
 
 Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment levels, based on which they will be able to perform different types of action.  
 
-To discover more about how to manage them, just take a look at the [Manage Service Accounts](/development_suite/identity-and-access-management/service-account-management) documentation page.
+To discover more about how to manage them, just take a look at the [Manage Service Accounts](/development_suite/identity-and-access-management/service-account-management.md) documentation page.
 
 #### Subscribing to Console Events via HTTP webhooks
 
-From today it will be possible to subscribe to some events on Mia-Platform Console via HTTP webhooks. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
+From today it will be possible to subscribe to some events on Mia-Platform Console via HTTP webhooks.   
+With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
 
 The supported events are:
 - Project Creation
@@ -40,21 +41,19 @@ The supported events are:
 
 [Go to the documentation](/development_suite/..) page for more information.
 
-### Improvements
-
-### Bug Fix
-
 ## Fast Data
 
 ### New Features
 
 #### Debezium CDC plugins
 
-From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packaged plugins and templates can be used alongside with Fast Data with just few clicks! You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
+From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packaged plugins and templates can be used alongside with Fast Data with just few clicks!   
+You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
 
 #### Debezium CDC support from the Real Time Updater
 
-Since we now have the Debezium plugins in our marketplace, the Real Time Updater (v7.5.0) supports the ingestion of Debezium kafka messages. You can configure it from the console choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
+Since we now have the Debezium plugins in our Marketplace, the Real Time Updater (v7.5.0) supports the ingestion of Debezium kafka messages.    
+You can configure it from Mia-Platform Console by choosing the Debezium message adapter in the Fast Data - Real Time Updater configuration tab.
 
 ### Improvements
 
@@ -64,18 +63,14 @@ The Fast Data ER Schema No Code Configuration has been improved with design enha
 
 #### Single View Creators
 
-The _Single View_ page has been updated with a new look for the Single View Creator section. This update features a clearer list of the microservices associated with the Single View, as well as a dedicated page for updating their configurations.
+The _Single View_ page has been updated with a new look for the Single View Creator section. This update features a clearer list of the Microservices associated with the Single View, as well as a dedicated page for updating their configurations.
 
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
-* A bug on the No Code configuration caused the Undo/Redo button to not be available when deleting a projection
+* A bug on the No Code configuration caused the Undo/Redo button to not be available when deleting a Projection
 * The condition panel in the No Code configuration is now scrollable
 * In the ingestion storer (v1.3.2) the post-ingestion topics are optional when the forwarding of ingestion messages is disabled
-
-## Marketplace
-
-### Marketplace Updates
 
 ## Backoffice - 1.3.7
 
@@ -90,11 +85,13 @@ New component `bk-antd-theme-manager` is available, allowing micro-lc layout cus
 New component `bk-loading-animation` is availabe, allowing micro-lc layout customization, and bundled at `/dist/bk-loading-animation.esm.js`. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-loading-animation) for more information.
 
 #### Support to http credentials
-Components which perform http-calls (eg, `bk-crud-client`) have property `credentials`, which specifies credentials of http calls
+
+Components which perform HTTP calls (eg, `bk-crud-client`) have property `credentials`, which specifies credentials of HTTP calls.
 
 ### Bug Fix
 
 #### Files are downloaded with correct name
+
 Files are downloaded with correct name, instead of applying "_" at the beginning and end of it.
 
 ## How to update your Console
