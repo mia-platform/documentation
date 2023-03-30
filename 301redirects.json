@@ -180,5 +180,9 @@
   "/docs/development_suite/api-console/user-management": {
     "destination": "/docs/development_suite/identity-and-access-management/user-management",
     "addedOn": "2023-03-21"
+  },
+  "/docs/runtime_suite/kafka-connect-mongodb-configurator/configuration": {
+    "destination": "/docs/runtime_suite/mia-platform-plugins",
+    "addedOn": "2023-03-30"
   }
 }
