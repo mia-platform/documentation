@@ -399,21 +399,6 @@
         {
           "id": "development_suite/identity-and-access-management/service-account-management",
           "type": "doc"
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/user-settings/user-profile-picture",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/user-settings/user-companies",
-              "type": "doc"
-            }
-          ],
-          "label": "User settings",
-          "type": "category"
         }
       ],
       "link": {
@@ -422,6 +407,40 @@
       },
       "type": "category",
       "label": "Identity and Access Management"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "development_suite/user-settings/user-profile-picture",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/user-companies",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/feature-preview",
+          "type": "doc"
+        }
+      ],
+      "label": "User settings",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Webhooks and Events",
+      "items": [
+        {
+          "id": "development_suite/webhooks-and-events/webhooks",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/webhooks-and-events/events",
+          "type": "doc"
+        }
+      ]
     },
     {
       "collapsed": true,
