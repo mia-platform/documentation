@@ -197,7 +197,7 @@ You can decide to open an existing ER Schema or to create a new one. In both cas
 
 ### Adding projections to the ER Schema
 
-To add a projection to the ER Schema, make sure that the right side panel is open (if not, click on the `+` button located in the top right of the canvas). This panel will show every projection available (not already used in the current ER Schema) from every System of Records.
+To add a projection to the ER Schema, make sure that the right side panel is open (if not, click on the `<` button located in the top right of the canvas). This panel will show every projection available (not already used in the current ER Schema) from every System of Records.
 
 From there, you can simply drag the projection that you need to the canvas, in the position you prefer.
 
@@ -255,7 +255,11 @@ In the _A -> B_ tab (and also the _B -> A_, which works the same) you can click 
 
 You can also create a group of rules by clicking the _+ Group_ button. Based on [MongoDB logical query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#logical), a group is a set of rules connected by the `and` (every rule in the group must be true) or `or` (at least one rule in the group must be true) logical operator.
 
-![Condition editor from pr_dishes to pr_reviews, A -> B tab](../../img/er-schema-unidirectional-rule-editor.png)
+:::info
+If you select the query operator _is element of_ (`$in`) or _not an element of_ (`$nin`) to compare a field with constant values, you will have to include all the values in the input field separated with a semicolon character (**;**).
+:::
+
+![Condition editor from pr_dishes to pr_reviews, B -> A tab](../../img/er-schema-unidirectional-rule-editor.png)
 
 :::tip
 The No Code feature has been implemented with the goal of creating ER Schemas which follow the structure of the Single View you want to create.
@@ -285,7 +289,7 @@ The canvas is made to help you create and improve your ER Schema and also to giv
 
 You can also zoom in and out with the scroll wheel of the mouse.
 
-Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the bottom-right side of the canvas, or by pressing _Ctrl+Z_ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Y_ for MacOS). 
+Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the top-right side of the canvas, or by pressing _Ctrl+Z_ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Y_ for MacOS). 
 
 ### The ER Schema code panel
 
@@ -326,7 +330,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "dish_to_rest": {
               "condition": {
-                "dish_restaurant_id": "id_restaurant"
+                "ID_DISH_RESTAURANT": "ID_RESTAURANT"
               }
             }
           }
@@ -335,7 +339,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "dish_to_order_dish": {
               "condition": {
-                "dish_order_id": "id_dish"
+                "ID_DISH_ORDER": "ID_DISH"
               }
             }
           }
@@ -344,7 +348,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "dish_to_rev": {
               "condition": {
-                "review_dish_id": "id_dish"
+                "ID_DISH_REVIEW": "ID_DISH"
               }
             }
           }
@@ -357,7 +361,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_dish_to_order": {
               "condition": {
-                "order_id": "id_order_dish"
+                "ID_ORDER": "ID_DISH_ORDER"
               }
             }
           }
@@ -366,7 +370,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_dish_to_dish": {
               "condition": {
-                "id_dish": "dish_order_id"
+                "ID_DISH": "ID_DISH_ORDER"
               }
             }
           }
@@ -379,7 +383,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_to_order_dish": {
               "condition": {
-                "id_order_dish": "ID_ORDER"
+                "ID_DISH_ORDER": "ID_ORDER"
               },
               "oneToMany": true
             }
@@ -389,7 +393,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "order_to_reg": {
               "condition": {
-                "ID_USER": "order_user_id"
+                "ID_USER": "ID_USER_ORDER"
               }
             }
           }
@@ -402,7 +406,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "res_to_dish": {
               "condition": {
-                "id_restaurant": "dish_restaurant_id"
+                "ID_RESTAURANT": "ID_DISH_RESTAURANT"
               }
             }
           }
@@ -415,9 +419,9 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "aller_reg_to_aller": {
               "condition": {
-                "id_allergen": "ID_ALLERGEN_REGISTRY"
+                "ID_ALLERGEN": "ID_ALLERGEN_REGISTRY"
               }
-            },
+            }
           }
         },
         "pr_registry": {
@@ -437,7 +441,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "aller_to_aller_reg": {
               "condition": {
-                "ID_ALLERGEN_REGISTRY": "id_allergen"
+                "ID_ALLERGEN_REGISTRY": "ID_ALLERGEN"
               }
             }
           }
@@ -493,7 +497,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
           "conditions": {
             "rev_to_dish": {
               "condition": {
-                "id_dish": "review_dish_id"
+                "ID_DISH": "ID_DISH_REVIEW"
               }
             }
           }

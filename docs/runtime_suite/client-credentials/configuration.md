@@ -3,18 +3,18 @@ id: configuration
 title: Client Credentials
 sidebar_label: Configuration
 ---
-The credentials service allow to expose API to perform OAuth2 compliant client credential flows with third party providers.
+The Client Credentials service allows to expose APIs to perform OAuth2 compliant client credential flows with third-party providers. This means that authorized service accounts can obtain an access token to access protected resources, without the need to involve the user.
 
-In this section, we show you how to configure the `client-credentials` service step by step.
+In this section, you will learn how to configure the `client-credentials` service step by step.
 
-## Step 1: Create the client collection
+## Create the client collection
 
 This service uses a [crud-service](../../runtime_suite/crud-service/overview_and_usage) collection to handle clients.
 
-[Create a CRUD collection](../../development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">this fields</a>, and import them into the Console ([here a docs on how to import fields](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
+[Create a CRUD collection](../../development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">these fields</a>, and import them into the Console (find out how to import fields [here](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
 
 :::info
-We suggest you to create a unique index for the `clientId` field (which must not be duplicated).
+We suggest that you create a unique index for the `clientId` field (which must not be duplicated).
 :::
 
 ## Environment variables
@@ -33,8 +33,8 @@ This service is configurable with the following environment variables:
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
 * **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
 * **MONGODB_CREDENTIALS_DATABASE_NAME**: the mongo db name which will include the `credentials` collection. If not set, it is taken from the MongoDB URL configured in `CREDENTIALS_MONGODB_URL` env var;
-* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private rsa key. [Click here](#rsa-key-management) to see how to create it;
-* **PRIVATE_KEY_PASSWORD**: password to decrypt the rsa key, if it is encrypted with a password. If it is empty, rsa key is treated as a non protected rsa key;
+* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private RSA key. [Click here](#RSA-key-management) to see how to create it;
+* **PRIVATE_KEY_PASSWORD**: password to decrypt the RSA key, if it is encrypted with a password. If it is empty, RSA key is treated as a non protected RSA key;
 * **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string;
 * **MIA_JWT_ISSUER** (*required*): string containing the issuer to fill the JWT claims. During the login flow, it is added as *iss*;
 * **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated JWT, in seconds;
@@ -50,9 +50,12 @@ This service is configurable with the following environment variables:
 
 ## RSA Key Management
 
+An RSA key is a type of asymmetric cryptographic key used in public-key cryptography. In an RSA key pair, there are two keys: a **public key** and a **private key**.  
+The public key can be freely distributed and is used to encrypt messages that can only be decrypted with the private key. The private key, on the other hand, is kept secret and is used to decrypt the messages that have been encrypted with the public key.
+
 ### Creation
 
-This service accept a **private RSA key** to sign the generated JWT.
+This service accepts a **private RSA key** to sign the generated JWT (JSON Web Token).
 NIST recommends at least 2048-bit keys for RSA. An RSA key length of at least 3072 bits should be used if security is required beyond 2030.
 In this guide, we will use a key of 4096 bits.
 
@@ -134,7 +137,7 @@ kubectl -n my-namespace create secret generic my-secret --from-file="~/private.k
 
 ## OpenID Configuration
 
-To expose correctly the OpenId discovery endpoint you should provide the configuration using a config map. This file must contain the exact JSON that the will be sent as response.
+To expose the OpenId discovery endpoint correctly you should provide the configuration using a config map. This file must contain the exact JSON that will then be sent as response.
 
 ```yml
 apiVersion: v1

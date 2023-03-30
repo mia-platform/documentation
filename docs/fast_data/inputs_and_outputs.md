@@ -18,49 +18,21 @@ Here, we will discuss the inputs and outputs related to data ingestion.
 
 ### Data Change Message
 
-This is a kind of Kafka message that is going to be sent when a System of Records is updated.
-This message is then read by the Real Time Updater, which uses it to update the Projections.
+This is a type of Kafka message that is going to be sent when a System of Records is updated.
+This message is then read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
 
 Based on how the syncing system is set up, the format can be one of three possible types:
 
-* IBM InfoSphere Data Replication for DB2
-* Oracle Golden Gate
-* Custom
+* [IBM InfoSphere Data Replication for DB2](#ibm-infosphere-data-replication-for-db2)
+* [Oracle Golden Gate](#oracle-golden-gate)
+* [Debezium](#debezium)
 
+You can also specify a [custom adapter](/fast_data/configuration/realtime_updater/common.md#custom) to handle any other message formats you need.
 This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
 
+Here's the AsyncApi specification and some examples of the different formats.
+
 #### IBM InfoSphere Data Replication for DB2
-
-This is the default format, based on the [IBM InfoSphere Data Replication for DB2 format](https://www.ibm.com/docs/en/idr/11.4.0?topic=console-overview-cdc-replication). It has only 2 different operation types: Upsert and Delete. The message format consists of four fields:
-
-* `key`: the identifier (primary key) of the projection that has been updated
-* `value`: if the message is a **delete** operation, it is **null**; if it is an upsert operation, the value is a JSON containing the object with all its new fields.
-* `timestamp`: the timestamp of the Kafka message, it has to be a stringified integer greater than zero.
-* `offset`: the Kafka offset
-
-These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
-
-**Message Example**:
-
-Upsert operation:
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: `{"NAME": 456}`
-timestamp: '1234556789'
-offset: '100'
-```
-
-Delete operation:
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: null
-timestamp: '1234556789'
-offset: '100'
-```
-
-**AsyncApi specification**:
 
 ```yaml
 asyncapi: 2.4.0
@@ -87,33 +59,29 @@ channels:
           required: ["key", "value", "timestamp", offset]
 ```
 
-#### Golden Gate
+Upsert operation:
 
-This Kafka Message Adapter has been created to have a format supported by [Oracle Golden Gate](https://docs.oracle.com/en/middleware/goldengate/big-data/21.1/gadbd/using-kafka-connect-handler.html#GUID-81730248-AC12-438E-AF82-48C7002178EC).
-
-In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
-
-**Message Example**:
-
-```yaml
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: `{
-  'table': 'MY_TABLE',
-  'op_type': 'I',
-  'op_ts': '2021-02-19 16:03:27.000000',
-  'current_ts': '2021-02-19T17:03:32.818003',
-  'pos': '00000000650028162190',
-  'after': {
-    'USER_ID': 123,
-    'FISCAL_CODE': 'the-fiscal-code-123',
-    'COINS': 300000000,
-  },
-}`
-timestamp: '1234556789'
-offset: '100'
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {"NAME": 456},
+  "timestamp": "1234556789",
+  "offset": "100"
+}
 ```
 
-**AsyncApi specification**:
+Delete operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": null,
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+#### Oracle Golden Gate
 
 ```yaml
 asyncapi: 2.4.0
@@ -150,13 +118,136 @@ channels:
           required: ["key", "value", "timestamp", offset]
 ```
 
-#### Custom
+Insert operation:
 
-If none of the above formats applies for your use case, you can use your custom format and specify custom adapter that will make the message ready to be processed by the Real Time Updater service.
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "table": "MY_TABLE",
+    "op_type": "I",
+    "op_ts": "2021-02-19 16:03:27.000000",
+    "current_ts": "2021-02-19T17:03:32.818003",
+    "pos": "00000000650028162190",
+    "before": null,
+    "after": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
 
-:::note
-Further information about the Custom message configuration can be found inside the [Custom](/fast_data/configuration/realtime_updater/common.md#custom) section of the Common page.
-:::
+Delete operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "table": "MY_TABLE",
+    "op_type": "D",
+    "op_ts": "2021-02-19 16:03:27.000000",
+    "current_ts": "2021-02-19T17:03:32.818003",
+    "pos": "00000000650028162190",
+    "before": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+    "after": null,
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+#### Debezium
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Debezium Data Change Producer
+  version: 1.0.0
+channels:
+  DebeziumDataChangeChannel:
+    publish:
+      message:
+        name: debezium data change
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key: {}
+            value:
+              type: object
+              additionalProperties: false
+              properties:
+                op:
+                  type: string
+                  enum:
+                    - c
+                    - u
+                    - d
+                before:
+                  type: object
+                  additionalProperties: true
+                after:
+                  type: object
+                  additionalProperties: true
+                source:
+                  type: object
+                  additionalProperties: true
+            timestamp:
+              type: string
+            offset:
+              type: integer
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
+```
+
+Insert operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "op": "c",
+    "before": null,
+    "after": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
+
+Delete operation:
+
+```json
+{
+  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "value": {
+    "op": "d",
+    "before": {
+      "USER_ID": 123,
+      "FISCAL_CODE": "the-fiscal-code-123",
+      "COINS": 300000000,
+    },
+    "after": null,
+  },
+  "timestamp": "1234556789",
+  "offset": "100"
+}
+```
 
 #### Topic naming convention
 

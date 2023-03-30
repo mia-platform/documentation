@@ -389,11 +389,15 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/console-levels-and-permission-management",
+          "id": "development_suite/identity-and-access-management/console-levels-and-permission-management",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/user-management",
+          "id": "development_suite/identity-and-access-management/user-management",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/service-account-management",
           "type": "doc"
         },
         {
@@ -412,6 +416,10 @@
           "type": "category"
         }
       ],
+      "link": {
+        "type": "doc",
+        "id": "development_suite/identity-and-access-management/overview"
+      },
       "type": "category",
       "label": "Identity and Access Management"
     },
@@ -795,6 +803,21 @@
         }
       ],
       "label": "FAQ",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/connectors/overview_connectors",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/connectors/debezium_cdc",
+          "type": "doc"
+        }
+      ],
+      "label": "Connectors",
       "type": "category"
     },
     {
@@ -1186,6 +1209,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Identification Manager",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-manager/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-manager/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/identification-manager/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Payment Integration Hub",
           "items": [
             {
@@ -1475,6 +1517,10 @@
           "items": [
             {
               "type": "doc",
+              "id": "runtime_suite/care-kit/events"
+            },
+            {
+              "type": "doc",
               "id": "runtime_suite/care-kit/changelog"
             },
             {
@@ -1488,6 +1534,18 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-form-export"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-therapy-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-therapy-select"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-threshold-modal"
                 }
               ]
             }
@@ -1810,6 +1868,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Identification Router",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-router/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-router/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/identification-router/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Invoice Service",
           "items": [
             {
@@ -1842,17 +1919,6 @@
             {
               "type": "doc",
               "id": "runtime_suite/jwt-token-validator/changelog"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Kafka Connect MongoDB Configurator",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/kafka-connect-mongodb-configurator/configuration"
             }
           ]
         },
@@ -2482,6 +2548,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Identification Provider Adapter",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/identification-provider-adapter/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/identification-provider-adapter/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/identification-provider-adapter/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Node.js Template",
               "items": [
                 {
@@ -2496,6 +2581,25 @@
               "link": {
                 "type": "doc",
                 "id": "runtime_suite_templates/node.js-template/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Verifiable Credential Generator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/verifiable-credential-generator/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/verifiable-credential-generator/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/verifiable-credential-generator/overview"
               }
             }
           ]
