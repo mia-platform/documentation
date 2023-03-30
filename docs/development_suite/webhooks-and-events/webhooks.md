@@ -16,7 +16,7 @@ You can subscribe to events on the Console using the CMS. From the `Events` cate
 |-|-|-|
 | `tenantId` | `string` | If specified, only events triggered inside the specified company will be delivered to the target URL. Must be a company identifier. |
 | `projectId` | `string` | If specified, only events triggered inside the specified project will be delivered to the target URL. Must be a project identifier. |
-| `eventName` **required** | `string` | The name of the event to listen to. See the [event types page](./events). |
+| `eventName` **required** | `string` | The name of the event to listen to. See the [event types page](/development_suite/webhooks-and-events/events.mdx). |
 | `target` **required** | `string` | The URL of the HTTP endpoint that will manage the event trigger. |
 | `base64CA` | `string` | The Certificate Authority exposed by the target URL encoded in base64. |
 | `secret` **required** | `string` | The shared secret used to authenticate the events payload. |
