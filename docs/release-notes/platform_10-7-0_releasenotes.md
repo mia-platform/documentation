@@ -40,7 +40,7 @@ The supported events are:
 - Project Creation
 - Service Creation
 
-[Go to the documentation](/development_suite/..) page for more information.
+[Go to the documentation](/development_suite/webhooks-and-events/webhooks.md) page for more information.
 
 ## Fast Data
 
