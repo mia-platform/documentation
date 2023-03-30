@@ -13,7 +13,7 @@ _March 30, 2023_
 
 #### Machine-to-Machine Authentication
 
-From now on, thanks to Mia-Platform Console you can create and manage Service Account Users, a new type of identity in addition to traditional Users!
+From now on, Mia-Platform Console supports Service Account Users, a new type of identity in addition to traditional Users!
 
 Service Accounts are non-human Users that can be used to implement automated processes with machine-to-machine communication, in order to improve the speed, reliability and scalability of your CI/CD workflows.
 
@@ -32,7 +32,7 @@ To discover more about how to manage them, just take a look at the [Manage Servi
 
 #### Subscribing to Console Events via HTTP webhooks
 
-From today it will be possible to subscribe to some events on the console via HTTP webhooks. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
+From today it will be possible to subscribe to some events on Mia-Platform Console via HTTP webhooks. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
 
 The supported events are:
 - Project Creation
