@@ -427,15 +427,16 @@ The `crud-service` documentation is available [here](../../runtime_suite/crud-se
 
 The method used to verify the identity of a client can be of two types:
   - **Client Secret Basic**: the client includes its `client_id` and `client_secret` in the `Authorization` header of the request. The Authorization header value is a base64-encoded string containing the client id and secret in the format `client_id:client_secret`.  
-The server decodes the Authorization header value and verifies the client's identity by checking the client id and client secret against its own records.
+  The server decodes the Authorization header value and verifies the client's identity by checking the client id and client secret against its own records.  
 
-    The advantage of using Client Secret Basic authentication is that it provides a simple and standardized method of authenticating clients.
+  The advantage of using Client Secret Basic authentication is that it provides a simple and standardized method of authenticating clients.
 
   - **Private Key JWT**: the client authenticates by signing a JWT (JSON Web Token) using its private key.  
   The client includes an assertion JWT in the authentication request, with specific claims set to appropriate values. The server then verifies the JWT by validating the signature using the client public key (obtained during client creation), and checking that the claims are valid and match its records.  
-    
-    This method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
-      We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the client is using.
+  
+  This method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
+
+  We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the client is using.
 
 ## Supported Authentication Flow
 
