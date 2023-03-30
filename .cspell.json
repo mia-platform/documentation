@@ -24,6 +24,7 @@
       "configmaps",
       "cqrs",
       "ddos",
+      "debezium",
       "decompressor",
       "dependabot",
       "deserialization",

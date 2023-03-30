@@ -17,7 +17,7 @@ From now on, Mia-Platform Console supports Service Account Users, a new type of 
 
 Service Accounts are non-human Users that can be used to implement automated processes with machine-to-machine communication, in order to improve the speed, reliability and scalability of your CI/CD workflows.
 
-For instance, you can give a Service Account the permission to trigger automatic deploys, which can significantly streamline the process of deploying code changes to an application.    
+For instance, you can give a Service Account the permission to trigger automatic deploys, which can significantly streamline the process of deploying code changes to an application.  
 As a matter of fact, the Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application, as soon as new code is pushed to the source code repository.
 
 Furthermore, a Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
@@ -36,6 +36,7 @@ From today it will be possible to subscribe to some events on Mia-Platform Conso
 With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
 
 The supported events are:
+
 - Project Creation
 - Service Creation
 
@@ -68,9 +69,10 @@ The _Single View_ page has been updated with a new look for the Single View Crea
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
-* A bug on the No Code configuration caused the Undo/Redo button to not be available when deleting a Projection
-* The condition panel in the No Code configuration is now scrollable
-* In the ingestion storer (v1.3.2) the post-ingestion topics are optional when the forwarding of ingestion messages is disabled
+
+- A bug on the No Code configuration caused the Undo/Redo button to not be available when deleting a projection
+- The condition panel in the No Code configuration is now scrollable
+- In the ingestion storer (v1.3.2) the post-ingestion topics are optional when the forwarding of ingestion messages is disabled
 
 ## Backoffice - 1.3.7
 
