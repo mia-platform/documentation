@@ -98,4 +98,4 @@ Files are downloaded with correct name, instead of applying "_" at the beginning
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version ?.?.?`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.7`.
