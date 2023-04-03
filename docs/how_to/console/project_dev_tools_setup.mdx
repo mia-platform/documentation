@@ -41,7 +41,7 @@ To perform this action you must be in the _Project Settings_ section of the Cons
 
 ![Add new environment variable](img/create_env_var.png)
 
-- **Key** set the value `PROD_MONGODB_URL`.
+- **Key** set the value `<PREFIX>MONGODB_URL`. In the example the prefix is `PROD_`.
 - **Value** set the connection string to the mongo database.
 
 :::info
@@ -54,4 +54,7 @@ The connection string must be of this format:
 mongodb+srv://<username>:<password>@<hostname>/<databaseName>?retryWrites=true&w=majority
 ```
 
-  
+3. If not setup in the project, **create** the CRUD Service.
+You can follow [this guide](/docs/tutorial/rest_api/quick_rest_api#create-crud-service) to create the service.
+
+4. Now you are ready to work with your CRUDs.
