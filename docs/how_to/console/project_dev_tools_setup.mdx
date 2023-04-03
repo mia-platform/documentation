@@ -20,6 +20,7 @@ Here is how to [create a database](https://www.mongodb.com/basics/create-databas
 
 - Mia-Platform Console
 - MongoDB Atlas credentials account
+- MongoDB Atlas database
 
 ### Configuration
 
@@ -35,8 +36,22 @@ To perform this action you must be in the _Project Settings_ section of the Cons
 
 ![Environment variable section](img/env_vars_section.png)
 
-2. Click on the _Add new environment variable_ button to see the creation modal:
+2. Click on the _Add new environment variable_ button to see the creation modal.
+
 
 ![Add new environment variable](img/create_env_var.png)
+
+- **Key** set the value `PROD_MONGODB_URL`.
+- **Value** set the connection string to the mongo database.
+
+:::info
+Here is how to [get the connection string](https://www.mongodb.com/docs/guides/atlas/connection-string/) on MongoDB Atlas. 
+:::
+
+The connection string must be of this format:
+
+```
+mongodb+srv://<username>:<password>@<hostname>/<databaseName>?retryWrites=true&w=majority
+```
 
   
