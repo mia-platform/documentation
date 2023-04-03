@@ -54,7 +54,19 @@ Every form has two parameters: `isValid` and `hasDraft`. The first one indicates
 
 From version `1.7.0` the Form-Service Backend allows to export form data in CSV format, by calling the `GET /visualizer/forms/export` endpoint.
 
-This endpoint accepts three query parameters - `startDate`, `endDate` and `formSchemaId` - to filter the forms according to a time range and a form schema.
+This endpoint accepts the following query parameters:
+- `startDate` (required): filter the forms created after the given date/time;
+- `endDate` (required): filter the forms created before the given date/time;
+- `formSchemaId` (required): filter the forms with the given schema;
+- `compatibleWithExcel` (optional, default: `false`): returns a CSV compatible with Excel (accepted values: `true` or `false`).
+
+:::info
+
+When opening regular CSV files with Excel, the content is parsed according to certain client localization settings, which may cause parsing issues.
+To ensure compatibility with Excel, we need to export a CSV crafted for Excel, which is not suitable to be opened with other tools.
+For this reason, since version `1.7.1` we provide an additional query parameter - `compatibleWithExcel` - you can use to get a CSV fully compatible with Excel. 
+
+:::
 
 This endpoint flatten all the form fields, using the dot character as separator, and returns a CSV where each column corresponds to a flattened JSON field. So, if we have a form looking like this:
 
