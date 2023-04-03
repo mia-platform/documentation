@@ -954,6 +954,10 @@
           "type": "doc"
         },
         {
+          "id": "how_to/console/project_dev_tools_setup",
+          "type": "doc"
+        },
+        {
           "id": "how_to/crud_service/crud_oss_usage",
           "type": "doc"
         }

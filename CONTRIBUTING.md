@@ -23,7 +23,7 @@ Open an issue to report some typo or suggests some changes that might make the d
 
 ### Opening pull requests
 
-After open an issue to suggest your improvement idea, you could implements it directly following the guide lines expained below and finally open a pull request.
+After open an issue to suggest your improvement idea, you could implements it directly following the guide lines explained below and finally open a pull request.
 
 ## Pull request rules
 
@@ -106,11 +106,11 @@ The repo provides a series of content test that must be passed:
 - `docs/`
    Contains markdown documentation page for current version.
 - `versioned_docs/`
-   Contains  versioned documentation pages.
+   Contains versioned documentation pages.
   - `versioned_docs/version-5.x.x`
      Contains the files related to v5
 - `versioned_sidebars/`
-   Contains  versioned sidebars config.
+   Contains versioned sidebars config.
 
 ## Create a new Docusaurus version
 
