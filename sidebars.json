@@ -851,6 +851,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/fast_data_view/fast_data_view",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/migration/fast_data_migration_tutorial",
           "type": "doc"
         },
