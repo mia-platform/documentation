@@ -67,7 +67,7 @@ In the **Environment variable configuration** of the service you can reference t
 4. Now you are ready to work with your CRUDs.
 
 :::warning
-- Currently, if the database is already populated, all records in all collections must be decorated with the `_STATE_` field set to `'PUBLIC'` in order to access the data. All records that do not have the `_STATE_` field are not returned by the crud-service.
+- Currently, if the database is already populated, all records in all collections must be decorated with the `__STATE__` field set to `'PUBLIC'` in order to access the data. All records that do not have the `__STATE__` field are not returned by the crud-service.
 In addition, all collections must be defined in the Mia-Platform Console.
 - Indices not defined in the Mia-Platform Console are all deleted from the crud-service if they are not named with the prefix `preserve_`.
 :::
