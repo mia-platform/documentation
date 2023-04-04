@@ -27,7 +27,7 @@ Here is how to [create a database](https://www.mongodb.com/basics/create-databas
 This section explains how to create a new environment variable with the MongoDB connection string  in order to integrate the database with the Mia-Platform Console.
 
 :::info
-Here you can find an introduction about [environment variables](/docs/development_suite/set-up-infrastructure/env-var).
+Here you can find an introduction about [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md).
 :::
 
 To perform this action you must be in the _Project Settings_ section of the Console:
@@ -57,7 +57,7 @@ mongodb+srv://<username>:<password>@<hostname>/<databaseName>?retryWrites=true&w
 Then click on the **Save** button.
 
 3. If not setup in the project, **create** the CRUD Service.
-You can follow [this guide](/docs/tutorial/rest_api/quick_rest_api#create-crud-service) to create the service.
+You can follow [this guide](tutorial/rest_api/quick_rest_api.mdx#create-crud-service) to create the service.
 
 In the **Environment variable configuration** of the service you can reference the newly created environment variable using this notation `{{MONGODB_URL}}`.
 
@@ -67,7 +67,8 @@ In the **Environment variable configuration** of the service you can reference t
 4. Now you are ready to work with your CRUDs.
 
 :::warning
-- Currently, if the database is already populated, all records in all collections must be decorated with the `__STATE__` field set to `'PUBLIC'` in order to access the data. All records that do not have the `__STATE__` field are not returned by the crud-service.
+- Currently, if the database is already populated, all records in all collections must be decorated with the `__STATE__` field set to `'PUBLIC'` in order to access the data.
+All records that do not have the `__STATE__` field are not returned by the crud-service.
 In addition, all collections must be defined in the Mia-Platform Console.
 - Indices not defined in the Mia-Platform Console are all deleted from the crud-service if they are not named with the prefix `preserve_`.
 :::
