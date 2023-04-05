@@ -132,17 +132,40 @@ The endpoint will return a JSON object with *accessToken*, *refreshToken* and *e
 }
 ```
 
-:::tip
+#### Web site cookie configuration
 
-When the `isWebsiteApp` field is set to true in the service configuration, the token API will return a session cookie (named *sid*).
-The *sid* cookie has the following configuration:
+If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return a session cookie named *sid*.
+
+The *sid* cookie has the following default configuration:
 
     * HttpOnly: `true`
     * Secure: `true`
     * Path: `/`
     * SameSite: `Lax`
 
+You can further customize the cookie response by adding the `sidCookieCustomAttributes` to the service configuration, at application level.
+In particular, you can change the `SameSite` attribute to `Strict`, and add a `Domain` attribute with a value of your choice.
+
+Here is an example snippet of the configuration:
+```json
+... 
+    "isWebsiteApp": true,
+    "sidCookieCustomAttributes": {
+        "sameSite": "Strict",
+        "domain": "example.com"
+    }
+...
+```
+
+Refer to [this documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) for a thorough explanation of the mentioned cookie attributes.
+
+:::warning
+
+For security reasons, you cannot change the other attributes of the cookie, and you cannot set the `SameSite` attribute to `None`.
+
 :::
+
+
 
 ### Refresh token
 
