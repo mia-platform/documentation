@@ -427,7 +427,7 @@ As mentioned before, the plugin is configured through the file `application.prop
 
 :::danger
 Since the connection to a PostgresSQL is always directly to a specific DB, more than one DBs cannot be observed at the same time. 
-Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` which is the name of the DB you want to observe.
+Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` (name of the DB you want to observe) and the `SCHEMAS_LIST` (comma separated list of the schemas you want to observe).
 :::
 
 If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.1/connectors/postgresql.html). 
