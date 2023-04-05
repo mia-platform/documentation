@@ -408,10 +408,6 @@ The `decoderbufs` plugin is developed and mantained by the Debezium community an
 The `pgoutput` plugin is a plugin developed and mantained by the PostgreSQL community and comes already installed with PostgresSQL 10+. 
 To know more about the plugins and how to install them check out the [Debezium official docs](https://debezium.io/documentation/reference/2.1/postgres-plugins.html#logical-decoding-plugin-setup) about it.
 
-<!-- CDC on MySQL can exploit the database binlog ([Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)), which keep tracks of all the changes occurring within the database. In order to allow Debezium execute its replication operations it is therefore necessary to enable the binlog and create a user which can read the database of interest.
-
-Regarding enabling MySQL binary log, we recommend checking out Debezium [instructions](https://debezium.io/documentation/reference/2.1/connectors/mysql.html#enable-mysql-binlog) and refer to the [MySQL manual](https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html) since it is necessary to edit the server configuration files.  -->
-
 #### Database User and Permission Configuration
 
 The Debezium PostgreSQL plugin needs a user with the permissions of `LOGIN`, `REPLICATION` and `SELECT` in all the observed tables in the schema. Here's a snippet on how to create such user:
