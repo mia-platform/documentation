@@ -426,7 +426,7 @@ Once the DB is ready to operate with the Debezium connector you can configure th
 As mentioned before, the plugin is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
 
 :::danger
-Since the connection to a PostgresSQL is always directly to a specific DB, more than one DBs cannot be observed at the same time. 
+Since the connection to a PostgresSQL is always with a specific database instead of a host, more than one database cannot be observed at the same time like in MySQL or Oracle. 
 Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` (name of the DB you want to observe) and the `SCHEMAS_LIST` (comma separated list of the schemas you want to observe).
 :::
 
