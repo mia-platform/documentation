@@ -4,6 +4,9 @@ title: Manage Providers
 sidebar_label: Manage Providers
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Providers can be generically defined as a means of storing information about external services. The Mia-Platform Console supports providers with 3 different capabilities:
 
 * **Git Providers**: allow users to manage repositories within their workspace;
@@ -87,9 +90,16 @@ Depending on the provider selected in step 1, the types of credentials supported
 * Vault supports both "Token" and "M2M" credentials types;
 * Jenkins supports both "Token" and "OAuth2" credentials types.
 :::
+:::caution
+Make sure, when generating credentials on the respective provider sites, to scope them so that they have the necessary permissions for all read and write operations performed through the Console.
+For example, for the "Token" credentials type, the access token should have scope "api" in the case of GitLab, admin scopes for GitHub, "Project admin" and "Repository admin" in the case of Bitbucket, "Full access" for Azure DevOps.
+:::
 :::info
 All credentials data are stored in an encrypted MongoDB collection.
 For more information about MongoDB encryption, take a look at the dedicated [documentation page](/runtime_suite/crud-service/encryption_configuration.md).
+:::
+:::caution
+Credentials entered at this stage, for security reasons, will never again be shown to the user, who will be able to replace them with new ones but not visualize them again.
 :::
 
 ### Step 4: Advanced
