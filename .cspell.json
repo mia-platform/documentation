@@ -174,7 +174,10 @@
       "hrefs",
       "DEBEZIUM",
       "Debezium",
-      "debezium"
+      "debezium",
+      "dicom",
+      "qido",
+      "wado"
   ],
   "ignoreWords": [
     "authz",
