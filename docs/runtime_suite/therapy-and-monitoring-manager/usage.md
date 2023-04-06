@@ -50,8 +50,8 @@ The therapy data model add the concept of `directives`, which is an object follo
 The monitoring data model add the concept of `notes` and `thresholds`. The notes field contains the physician prescriptions, while a threshold is an object with the following properties:
 
 * `propertyName`: name of the property on which the threshold is evaluated;
-* `thresholdOperator`: operator to use in the threshold evaluation. Available options are: `gt`, `lt`, `gte`, `lte`, `eq`;
-* `thresholdValue`: the value with which to evaluate the threshold.
+* `thresholdOperator`: operator to use in the threshold evaluation. Available options are: `gt`, `lt`, `gte`, `lte`, `eq`, `between`, `notBetween`;
+* `thresholdValue`: the value with which to evaluate the threshold (a single number for `gt`, `lt`, `gte`, `lte` and `eq` operators, an array of two numbers indicating a range for the `between` and `notBetween` operators).
 
 ### `GET /<therapies|monitorings>/`
 
@@ -148,6 +148,16 @@ These endpoints return 400 and a body with the structure shown below if the ther
   ],
 }
 ```
+If the `each` field is defined, with a schedule based on `times` or `hours`, but the fields `adherenceToleranceFrequency`,  `adherenceToleranceTime`,  `adherenceMinimumPercentage`, `complianceMinimumPercentage` are not defined, they will be initialized with the default values stored in the environment variables, since they are required for adherence and compliance calculation.
+
+The following table shows which environment variable contains the default value for the corresponding therapy or monitoring field.
+
+| Field                       | Environment variable                    |
+|-----------------------------|-----------------------------------------|
+| adherenceToleranceFrequency | DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY   |
+| adherenceToleranceTime      | DEFAULT_ADHERENCE_TOLERANCE_TIME        |
+| adherenceMinimumPercentage  | DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE    |
+| complianceMinimumPercentage | DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE   |
 
 ### `PATCH /<therapies|monitorings>/:id`
 
@@ -204,7 +214,6 @@ These endpoints return 400 and a body with the structure shown below if one of f
     "endDate": "2022-06-15",
     "each": ["day"],
     "hours": ["10"],
-    "times": 2,
     "doctorId": "auth0|doctorId",
     "patientId": "auth0|patientId",
     "adherenceToleranceTime": 1,
@@ -431,6 +440,102 @@ This endpoint supports the following query parameters:
 
 This endpoint returns 200 and a list of the prototypes matching the query.
 
+- A response with a prototype example for therapies:
+```json
+[{
+  "identifier": "drugPrescription",
+  "type": "therapy",
+  "name": "Drug prescription",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "drugName": {
+        "type": "string"
+      },
+      "drugDosage": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "drugName",
+      "drugDosage"
+    ]
+  },
+  "labels": {
+    "drugName": {
+      "en": "Drug name",
+      "it": "Nome del farmaco"
+    },
+    "drugDosage": {
+      "en": "Drug dosage",
+      "it": "Dosaggio farmaco"
+    }
+  },
+  "hints": {
+    "drugName": [{
+      "en": "Amoxicillin",
+      "it": "Amoxicillina"
+    },
+    {
+      "en": "Levofloxacin",
+      "it": "Levofloxacina"
+    },
+    {
+      "en": "Moxifloxacin",
+      "it": "Moxifloxacina"
+    }],
+    "drugDosage": [{
+      "en": "One per day",
+      "it": "Una volta al giorno"
+    },
+    {
+      "en": "Two per day",
+      "it": "Due volte al giorno"
+    },
+    {
+      "en": "Three per day",
+      "it": "Tre volte al giorno"
+    }]
+  }
+}]
+```
+
+- A response with a prototype example for monitorings:
+
+```json
+[{
+    "identifier": "bloodPressure",
+    "type": "measurement",
+    "name": "Blood Pressure Prototype",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "minimumBloodPressure": {
+          "type": "integer",
+          "minimum": 60,
+          "maximum": 150
+        },
+        "maximumBloodPressure": {
+          "type": "integer",
+          "minimum": 80,
+          "maximum": 250
+        }
+      },
+      "required": ["minimumBloodPressure", "maximumBloodPressure"]
+    },
+    "labels": {
+      "minimumBloodPressure": {
+        "en": "minimum pressure",
+        "it": "pressione minima"
+      },
+      "maximumBloodPressure": {
+        "en": "maximum pressure",
+        "it": "pressione massima"
+      }
+    }
+  }]
+```
+
 ### `GET /prototypes/count`
 
 Return all the prototypes matching a given query.
@@ -465,12 +570,13 @@ A therapy or monitoring plan is considered active if and only if:
 
 - the start date is earlier than the current date/time;
 - the end date is not set or is greater or equal than the current date/time minus the grace period (see [`DETECTIONS_GRACE_PERIOD`][config-env-vars]).
+- the `each` field is defined, with a times/hours schedule
 
 For example, if the cron job runs every day at midnight and the grace period is 30 days, we add 30 days to the end date to account for detections submitted during the grace period. We also add one more day to ensure that we correctly update the adherence and compliance metrics for the last day, whenever it ends between two consecutive executions of the background job.
 
 ### Adherence computation
 
-The adherence of a patient to a plan is computed only for active plans with a timeframe, i.e. having the `each` or `times` field set, according to the following algorithm, executed on all submitted detections.
+The adherence of a patient to a plan is computed only for active plans with a timeframe, i.e. having the `each` field set with `times` or `hours` field, according to the following algorithm, executed on all submitted detections.
 
 1. Compute the expected number of days with detections, from the start date of the plan until the last day.
 2. Compute, for each day with detections, if the patient is adherent in that specific day.

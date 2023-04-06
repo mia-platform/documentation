@@ -238,6 +238,32 @@ Let's see a couple of examples:
       "en": "Drug dosage",
       "it": "Dosaggio farmaco"
     }
+  },
+  "hints": {
+    "drugName": [{
+      "en": "Amoxicillin",
+      "it": "Amoxicillina"
+    },
+    {
+      "en": "Levofloxacin",
+      "it": "Levofloxacina"
+    },
+    {
+      "en": "Moxifloxacin",
+      "it": "Moxifloxacina"
+    }],
+    "drugDosage": [{
+      "en": "One per day",
+      "it": "Una volta al giorno"
+    },
+    {
+      "en": "Two per day",
+      "it": "Due volte al giorno"
+    },
+    {
+      "en": "Three per day",
+      "it": "Tre volte al giorno"
+    }]
   }
 }
 ```
