@@ -175,7 +175,10 @@
       "DEBEZIUM",
       "Debezium",
       "debezium",
-      "CSVC"
+      "CSVC",
+      "dicom", 
+      "qido",
+      "wado"
   ],
   "ignoreWords": [
     "authz",
