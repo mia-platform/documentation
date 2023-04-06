@@ -49,6 +49,7 @@ You can connect a provider by clicking on the "Add provider connection" button, 
 ![Add provider 1b](img/add-provider-1b.png)
 
 In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").
+In case the provider offers only one capability, clicking on it will go directly to step 2 and the capability will be selected by default.
 
 ### Step 2: Provider Details
 
@@ -65,7 +66,7 @@ In this step, you can insert some general details about your provider:
 
 ![Add provider 3](img/add-provider-3.png)
 
-In this step, you are required to insert information about the authentication method to the provider:
+In this step, you are required to insert information about the authentication method to the provider, so that the Console has the necessary permissions to perform all read/write operations on it:
 
 * **Credentials type** (*required*): the type of credentials used to authenticate requests to the provider. It can be one of "Token," "M2M," and "OAuth2".
 
@@ -81,14 +82,17 @@ Depending on the credentials type, the other information to be entered will be:
   - **Client ID** (*required*): OAuth2 public client identifier;
   - **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server.
 
-:::info
-Depending on the provider selected in step 1, the types of credentials supported will change. Specifically:
-* GitLab, GitHub, Bitbucket, Azure DevOps support the "Token" credentials type;
-* Vault supports both "Token" and "M2M" credentials types;
-* Jenkins supports both "Token" and "OAuth2" credentials types.
+:::info Supported credential types
+Depending on the provider selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each provider:
+
+| Capability        | Providers                                                             |
+| ----------------- |:---------------------------------------------------------------------:|
+| Token             | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins               |
+| M2M               | Vault                                                                 |
+| OAuth2            | Jenkins                                                               |
 :::
-:::caution
-Make sure, when generating credentials on the respective provider sites, to scope them so that they have the necessary permissions for all read and write operations performed through the Console.
+:::caution Assign the right scope to your credentials
+Make sure, when generating credentials on the respective provider sites, to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
 For example, for the "Token" credentials type, the access token should have scope "api" in the case of GitLab, admin scopes for GitHub, "Project admin" and "Repository admin" in the case of Bitbucket, "Full access" for Azure DevOps.
 :::
 :::info
@@ -104,9 +108,18 @@ Credentials entered at this stage, for security reasons, will never again be sho
 ![Add provider 4a](img/add-provider-4a.png)
 ![Add provider 4b](img/add-provider-4b.png)
 
-In this step, you can enter some optional advanced information regarding certificate authority and proxy used for calls to the provider:
+In this step, you can enter some optional advanced information through two expandable forms:
 
-* **Certificate authority**: base64 decoded CA certificate for the TLS connection with the provider;
+#### Certificate Authority
+
+If you have set up verification of a CA for the connection to your provider, here you can enter it through the homonymous field:
+
+* **Certificate authority**: base64 decoded CA certificate for the TLS connection with the provider.
+
+#### Proxy
+
+If the Console needs to use a proxy to forward calls to the provider, here you can enter the information needed for the connection:
+
 * **URL**: the URL used to connect to the proxy, which indicates where the proxy is exposed;
 * **Username**: the username used in connection requests to the proxy for basic authentication;
 * **Password**: the password used in connection requests to the proxy for basic authentication. This property will be safely encrypted.
