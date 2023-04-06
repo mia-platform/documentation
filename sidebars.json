@@ -2134,6 +2134,29 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "O3 DICOM Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/api_overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/o3-dicom-service/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Payment Gateway Manager",
           "items": [
             {
