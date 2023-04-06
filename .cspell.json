@@ -269,7 +269,8 @@
     "dbname",
     "dicom",
     "qido",
-    "wado"
+    "wado",
+    "CSVC"
   ],
   "dictionaries": [
     "softwareTerms",
