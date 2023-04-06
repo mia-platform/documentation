@@ -174,7 +174,8 @@
       "hrefs",
       "DEBEZIUM",
       "Debezium",
-      "debezium"
+      "debezium",
+      "CSVC"
   ],
   "ignoreWords": [
     "authz",
