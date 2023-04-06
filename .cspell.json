@@ -174,10 +174,7 @@
       "hrefs",
       "DEBEZIUM",
       "Debezium",
-      "debezium",
-      "dicom",
-      "qido",
-      "wado"
+      "debezium"
   ],
   "ignoreWords": [
     "authz",
@@ -269,7 +266,10 @@
     "acks",
     "insync",
     "LOGMNR",
-    "dbname"
+    "dbname",
+    "dicom",
+    "qido",
+    "wado"
   ],
   "dictionaries": [
     "softwareTerms",
