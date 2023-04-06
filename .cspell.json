@@ -266,7 +266,10 @@
     "acks",
     "insync",
     "LOGMNR",
-    "dbname"
+    "dbname",
+    "dicom",
+    "qido",
+    "wado"
   ],
   "dictionaries": [
     "softwareTerms",
