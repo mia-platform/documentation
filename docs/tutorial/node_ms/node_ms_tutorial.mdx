@@ -417,7 +417,7 @@ mvn dependency:resolve
 Once we have installed the required packages we can create and open the `ShippingControllerTest.java` file at the following path `src/test/java/eu/miaplatform/customplugin/springboot/` in order to write the required test.
 
 :::info
-Disclamer: the current example doesn't follow the springboot best practice for simplicity of demonstration. Feel free to refactor the results as you see fit.
+Disclamer: the current example doesn't follow the springboot best practice for simplicity of demonstration. Feel free to refactor the results as you prefer.
 :::
 
 ```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
@@ -1009,6 +1009,8 @@ To take in deeper how to use API exposed by the CRUD Service check out the [CRUD
 
 ### Add the route
 
+Now it is time to register the route with the handler build previously.
+
 <Tabs
   defaultValue="js"
   groupId="microservice-tutorial-language"
@@ -1019,7 +1021,7 @@ To take in deeper how to use API exposed by the CRUD Service check out the [CRUD
 >
 <TabItem value="js">
 
-The last thing to do in the service is to register the route, to do so go back to `index.js` file and add the route `GET /shipping-cost` handled by the function written previously:
+To do so go back to `index.js` file and add the route `GET /shipping-cost` handled by the function written previously:
 
 ```js title=index.js
 "use strict";
@@ -1057,7 +1059,7 @@ npm run coverage
 </TabItem>
 <TabItem value="java">
 
-The last thing to do is to decorate the function to register it with spring:
+To do so decorate the function to register it with spring:
 
 ```java {24-25,33-36} title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
 package eu.miaplatform.customplugin.springboot.controllers;
@@ -1217,7 +1219,7 @@ In order to do this follow these steps:
 In this way, we have created the `CRUD_BASE_URL` that values `http://crud-service` in the _Development_ environment and `http://crud-service-production` for _Production_, so as to use different cruds based on the environment to increase segregation.
 
 :::info
-Using `MIA_` as a prefix in the ENV you will set the value for all environments
+Using `MIA_` as a prefix in the ENV you will set the value for all environments. For more details look at [environment variables](http://localhost:3000/docs/development_suite/set-up-infrastructure/env-var) documentation page.
 :::
 
 ### Add the ENV to the microservice
@@ -1263,7 +1265,7 @@ t.test('shipping-cost', async t => {
     CRUD_BASE_URL,
   })
   ...
-}
+})
 ```
 
 After we have to edit `index.js` and set the schema of the environment variables used by the microservice:
@@ -1470,7 +1472,3 @@ To do so:
 - Click the _create tag_ button.
 
 Now to deploy it go to the _Deploy_ section, select the tag `v0.1.0` and deploy!
-
-## Microservice repository
-
-You can access the complete repository of the tutorial [here](https://github.com/mia-platform/Node.js-Microservice-Tutorial).
