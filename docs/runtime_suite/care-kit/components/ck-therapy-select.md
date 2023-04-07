@@ -17,7 +17,7 @@ On initialization, after the options have been retrieved, the first options is s
 | property | type | required | default | description |
 |----------|------|----------|---------|-------------|
 |`planBasePath`| string | true | / | Path the expose the Therapy and Monitoring Manager service. The path must not have the trailing slash. |
-|`type`| monitoring \| therapy| true | monitoring | Defines if the monitoring or therapy are fetched. |
+|`type`| measurement \| therapy| true | measurement | Defines if the monitorings or therapies are fetched. |
 
 
 ## Listens to

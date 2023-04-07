@@ -1569,6 +1569,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-threshold-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-add-plan-modal"
                 }
               ]
             }
@@ -1678,6 +1682,25 @@
             {
               "type": "doc",
               "id": "runtime_suite/crud-service/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "CSV Connector",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/changelog"
             }
           ]
         },
@@ -2130,6 +2153,29 @@
               "id": "runtime_suite/mongodb-reader/changelog"
             }
           ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "O3 DICOM Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/api_overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/o3-dicom-service/overview"
+          }
         },
         {
           "collapsed": true,
@@ -2810,6 +2856,14 @@
             {
               "type": "doc",
               "id": "runtime_suite_tools/miactl/setup"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/commands"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/examples"
             },
             {
               "type": "doc",

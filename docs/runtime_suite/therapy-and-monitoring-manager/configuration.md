@@ -7,30 +7,34 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 ## Environment variables
 
-| Name                            | Required                              | Default             | Description                                                                                                                                                    |
-|---------------------------------|---------------------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **HTTP_PORT**                   | No                                    | 3000                | The port exposed by the service.                                                                                                                               |
-| **LOG_LEVEL**                   | No                                    | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                      |
-| **PROTOTYPES_CONFIG_FILE_PATH** | Yes                                   | -                   | Path of the config map file containing the prototypes.                                                                                                         |
-| **CRUD_SERVICE_URL**            | No                                    | http://crud-service | HTTP(S) URL of the CRUD service.                                                                                                                               |
-| **MESSAGING_SERVICE**           | No                                    | `disabled`          | If you want to use the Messaging Service via `kafka` or `http` (`disabled` by default).                                                                        |
-| **MESSAGING_SERVICE_URL**       | If `MESSAGING_SERVICE` is `http`      | -                   | HTTP(S) URL of the Messaging Service.                                                                                                                          |
-| **KAFKA_BROKERS_LIST**          | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_CLIENT_ID**             | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_GROUP_ID**              | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_COMMANDS_TOPIC_NAME**   | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_EVENTS_TOPIC_NAME**     | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_AUTH_METHOD**           | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_SASL_USERNAME**         | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **KAFKA_SASL_PASSWORD**         | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                                |
-| **MONITORINGS_CRUD_NAME**       | No                                    | monitorings         | Name of the CRUD collection containing the monitorings.                                                                                                        |
-| **THERAPIES_CRUD_NAME**         | No                                    | therapies           | Name of the CRUD collection containing the therapies.                                                                                                          |
-| **DETECTIONS_CRUD_NAME**      | No                                    | detections        | Name of the CRUD collection containing the detections.                                                                                                       |
-| **DETECTIONS_GRACE_PERIOD**   | No                                    | 30                  | Number of days after the end of a therapy or monitoring during which adherence and compliance are still updated (in case the patient submit detections late) |
-| **DETECTIONS_TIME_ZONE**      | No                                    | UTC                 | Default detections time zone. Must be a valid [IANA time zone](https://www.iana.org/time-zones).                                                             |
-| **CRON_SCHEDULE**               | No                                    | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `DETECTIONS_TIME_ZONE` time zone.                                           |
-| **VALIDATION_SERVICE**          | No                                    | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                            |
-| **VALIDATION_SERVICE_URL**      | If `VALIDATION_SERVICE` is `external` | -                   | HTTP(S) URL of the external validation service.                                                                                                                |
+| Name                                      | Required                              | Default             | Description                                                                                                                                                  |
+|-------------------------------------------|---------------------------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **HTTP_PORT**                             | No                                    | 3000                | The port exposed by the service.                                                                                                                             |
+| **LOG_LEVEL**                             | No                                    | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                    |
+| **PROTOTYPES_CONFIG_FILE_PATH**           | Yes                                   | -                   | Path of the config map file containing the prototypes.                                                                                                       |
+| **CRUD_SERVICE_URL**                      | No                                    | http://crud-service | HTTP(S) URL of the CRUD service.                                                                                                                             |
+| **MESSAGING_SERVICE**                     | No                                    | `disabled`          | If you want to use the Messaging Service via `kafka` or `http` (`disabled` by default).                                                                      |
+| **MESSAGING_SERVICE_URL**                 | If `MESSAGING_SERVICE` is `http`      | -                   | HTTP(S) URL of the Messaging Service.                                                                                                                        |
+| **KAFKA_BROKERS_LIST**                    | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_CLIENT_ID**                       | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_GROUP_ID**                        | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_COMMANDS_TOPIC_NAME**             | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_EVENTS_TOPIC_NAME**               | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_AUTH_METHOD**                     | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_SASL_USERNAME**                   | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **KAFKA_SASL_PASSWORD**                   | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
+| **MONITORINGS_CRUD_NAME**                 | No                                    | monitorings         | Name of the CRUD collection containing the monitorings.                                                                                                      |
+| **THERAPIES_CRUD_NAME**                   | No                                    | therapies           | Name of the CRUD collection containing the therapies.                                                                                                        |
+| **DETECTIONS_CRUD_NAME**                  | No                                    | detections          | Name of the CRUD collection containing the detections.                                                                                                       |
+| **DETECTIONS_GRACE_PERIOD**               | No                                    | 30                  | Number of days after the end of a therapy or monitoring during which adherence and compliance are still updated (in case the patient submit detections late) |
+| **DETECTIONS_TIME_ZONE**                  | No                                    | UTC                 | Default detections time zone. Must be a valid [IANA time zone](https://www.iana.org/time-zones).                                                             |
+| **CRON_SCHEDULE**                         | No                                    | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `DETECTIONS_TIME_ZONE` time zone.                                           |
+| **VALIDATION_SERVICE**                    | No                                    | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                          |
+| **VALIDATION_SERVICE_URL**                | If `VALIDATION_SERVICE` is `external` | -                   | HTTP(S) URL of the external validation service.                                                                                                              |
+| **DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY** | Yes                                   | -                   | Default value for adherenceToleranceFrequency                                                                                                                |
+| **DEFAULT_ADHERENCE_TOLERANCE_TIME**      | Yes                                   | -                   | Default value for adherenceToleranceTime                                                                                                                     |
+| **DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE**  | Yes                                   | -                   | Default value for adherenceMinimumPercentage                                                                                                                 |
+| **DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE** | Yes                                   | -                   | Default value for complianceMinimumPercentage                                                                                                                |
 
 ## Prototypes definition
 
@@ -324,7 +328,7 @@ By default, the TMM validates an detection against the thresholds using the inte
 
 The External Validation Service must expose the following endpoints:
 
-- `POST /validations/` to validate an detection against the monitoring thresholds.
+- `POST /validations/` to validate a detection against the monitoring thresholds.
 
 #### `POST /validations/`
 
@@ -363,4 +367,4 @@ To send notifications to patients and physicians you need to set the `MESSAGING_
 
 The TMM currently generates the following events you can refer in the configuration of the messaging service:
 
-- `TMM/ThresholdExceeded/v1` is the event generated when an detection exceeds one or more monitoring thresholds.
+- `TMM/ThresholdExceeded/v1` is the event generated when a detection exceeds one or more monitoring thresholds.

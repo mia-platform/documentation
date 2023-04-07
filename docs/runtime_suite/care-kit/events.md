@@ -64,3 +64,15 @@ The event to open an [ck-threshold-modal](components/ck-threshold-modal.md) moda
 ```typescript
 {}
 ```
+
+## AddPlanModal
+
+The event to open an [ck-add-plan-modal](components/ck-add-plan-modal.md) modal.
+
+- Label: `add-plan-modal`
+
+- Payload:
+
+```typescript
+{}
+```

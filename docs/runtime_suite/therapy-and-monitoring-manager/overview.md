@@ -238,6 +238,32 @@ Let's see a couple of examples:
       "en": "Drug dosage",
       "it": "Dosaggio farmaco"
     }
+  },
+  "hints": {
+    "drugName": [{
+      "en": "Amoxicillin",
+      "it": "Amoxicillina"
+    },
+    {
+      "en": "Levofloxacin",
+      "it": "Levofloxacina"
+    },
+    {
+      "en": "Moxifloxacin",
+      "it": "Moxifloxacina"
+    }],
+    "drugDosage": [{
+      "en": "One per day",
+      "it": "Una volta al giorno"
+    },
+    {
+      "en": "Two per day",
+      "it": "Due volte al giorno"
+    },
+    {
+      "en": "Three per day",
+      "it": "Tre volte al giorno"
+    }]
   }
 }
 ```
@@ -324,7 +350,7 @@ The integrated validation system currently supports the following threshold vali
 
 ```json
 {
-  "propertyName": "minimumBloodPressure",
+  "propertyName": "maximumBloodPressure",
   "thresholdOperator": "gt",
   "thresholdValue": 120
 }
@@ -356,7 +382,15 @@ The integrated validation system currently supports the following threshold vali
 {
   "propertyName": "minimumBloodPressure",
   "thresholdOperator": "between",
-  "thresholdValue": [60, 100]
+  "thresholdValue": [40, 70]
+}
+```
+
+```json
+{
+  "propertyName": "minimumBloodPressure",
+  "thresholdOperator": "notBetween",
+  "thresholdValue": [50, 100]
 }
 ```
 
