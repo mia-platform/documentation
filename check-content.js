@@ -20,6 +20,7 @@ const filesToExcludeFromSidebarCheck = [
   "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery",
   "info/licenses-reports/.gitkeep",
 
+  "business_suite/backoffice-configurator/diagrams/arch.drawio", // TODO: this file should not be imported
   "tutorial/demo_project/overview", // TODO:
 ]
 
@@ -112,7 +113,7 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
   const imagesNotLinked = []
   for (const img in images) {
-    if(img.includes('.gitkeep')) {
+    if(img.includes('.gitkeep') || filesToExcludeFromSidebarCheck.includes(img)) {
       continue
     }
     if (!images[img].isUsed) {
