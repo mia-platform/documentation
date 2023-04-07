@@ -56,6 +56,7 @@ The possible returned status codes are:
 <summary>Example of workitem creation request</summary>
 
 <b>Request</b>
+
 ```bash
 curl --request POST \
   --url https://your-dicom-service/workitems \
@@ -98,6 +99,7 @@ curl --request GET \
 ```
 
 <b>Response</b>
+
 ```json
 [
   {
@@ -281,6 +283,7 @@ curl --request POST \
 ```
 
 <b>Response</b>
+
 ```json
 [
   {
@@ -303,7 +306,7 @@ curl --request POST \
           "00081190": {
             "vr": "UR",
             "Value": [
-              "http://pacs.ris.development.zeeromed.cloud/o3-dpacs-wado/wado?requestType=WADO&studyUID=<studyUID>&seriesUID=<seriesUID>&objectUID=<objectUID>&contentType=application/dicom"
+              "http://pacs.ris.development.zeeromed.cloud/o3-dpacs-wado/wado?requestType=WADO&studyUID=STUDY_UID&seriesUID=SERIES_UID&objectUID={objectUID}&contentType=application/dicom"
             ]
           }
         }
@@ -359,12 +362,14 @@ The possible returned status codes are:
 <summary>Example of exam retrieval request</summary>
 
 <b>Request</b>
+
 ```bash
 curl --request GET \
   --url https://your-dicom-service/exams/studies?patientID=123456789
 ```
 
 <b>Response</b>
+
 ```json
 [
   {
@@ -412,7 +417,7 @@ The possible returned status codes are:
 <b>Request</b>
 ```bash
 curl --request GET \
-  --url https://your-dicom-service/exams/studies/<studyUID>/series/<seriesUID>/instance/<instanceUID>?fileType=image%2Fjpeg
+  --url https://your-dicom-service/exams/studies/STUDY_UID/series/SERIES_UID/instance/INSTANCE_UID?fileType=image%2Fjpeg
 ```
 
 </details>
@@ -452,6 +457,7 @@ The possible returned status codes are:
 <summary>Example of callback request from PACS</summary>
 
 <b>Request</b>
+
 ```bash
 curl -- request POST \
   --url https://your-dicom-service/new-exam-callback
@@ -505,12 +511,14 @@ For further details, please refer to the **DICOM Viewer documentation**.
 <summary>Example of token viewer retrival request</summary>
 
 <b>Request</b>
+
 ```bash
 curl -- request GET \
-  --url https://your-dicom-service/token?patientID=<patientID>&studyUID=<studyUID>&role=patient
+  --url https://your-dicom-service/token?patientID={patientID}&studyUID=STUDY_UID&role=patient
 ```
 
 <b>Response</b>
+
 ```json
 {
   "token": "d3092u94r8d238fj29dd38d329d3287d3j29d"
@@ -538,12 +546,14 @@ The possible returned status codes are:
 <summary>Example of uid generation request</summary>
 
 <b>Request</b>
+
 ```bash
 curl --request GET \
   --url https://your-dicom-service/uid
 ```
 
 <b>Response</b>
+
 ```json
 {
   "uid": "1.234.56.789.0123456789"

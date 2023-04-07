@@ -350,7 +350,7 @@ The integrated validation system currently supports the following threshold vali
 
 ```json
 {
-  "propertyName": "minimumBloodPressure",
+  "propertyName": "maximumBloodPressure",
   "thresholdOperator": "gt",
   "thresholdValue": 120
 }
@@ -382,7 +382,15 @@ The integrated validation system currently supports the following threshold vali
 {
   "propertyName": "minimumBloodPressure",
   "thresholdOperator": "between",
-  "thresholdValue": [60, 100]
+  "thresholdValue": [40, 70]
+}
+```
+
+```json
+{
+  "propertyName": "minimumBloodPressure",
+  "thresholdOperator": "notBetween",
+  "thresholdValue": [50, 100]
 }
 ```
 

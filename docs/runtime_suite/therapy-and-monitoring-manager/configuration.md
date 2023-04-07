@@ -328,7 +328,7 @@ By default, the TMM validates an detection against the thresholds using the inte
 
 The External Validation Service must expose the following endpoints:
 
-- `POST /validations/` to validate an detection against the monitoring thresholds.
+- `POST /validations/` to validate a detection against the monitoring thresholds.
 
 #### `POST /validations/`
 
@@ -367,4 +367,4 @@ To send notifications to patients and physicians you need to set the `MESSAGING_
 
 The TMM currently generates the following events you can refer in the configuration of the messaging service:
 
-- `TMM/ThresholdExceeded/v1` is the event generated when an detection exceeds one or more monitoring thresholds.
+- `TMM/ThresholdExceeded/v1` is the event generated when a detection exceeds one or more monitoring thresholds.
