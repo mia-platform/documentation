@@ -65,7 +65,10 @@ The app configuration contains:
 * **defaultGroups** (*required*): an array of strings to add as group to a user on user creation;
 * **allowedRedirectUrlsOnSuccessfulLogin** (*optional*): a set of strings with the allowed redirect urls on successful login; do not add the query string here as it will be ignored when checking if the url is allowed, as per the [the specification](https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.2)
 * **defaultRedirectUrlOnSuccessfulLogin** (*optional*): a string to set the default redirect on successful login;
-* **isWebsiteApp** (*optional*): a boolean, if true set a Cookie *sid* in header.
+* **isWebsiteApp** (*optional*): a boolean, if true set a Cookie *sid* in header. Default is `false`.
+* **sidCookieCustomAttributes** (*optional*): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./usage.md#website-cookie-configuration)
+  * **domain** (*optional*): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
+  * **sameSite** (*optional*): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.
 
 Here an example of the service configuration:
 

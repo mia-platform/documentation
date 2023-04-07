@@ -1684,6 +1684,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "CSV Connector",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Doctor Service",
           "items": [
             {
@@ -2130,6 +2149,29 @@
               "id": "runtime_suite/mongodb-reader/changelog"
             }
           ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "O3 DICOM Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/api_overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/o3-dicom-service/overview"
+          }
         },
         {
           "collapsed": true,
