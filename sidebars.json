@@ -566,6 +566,11 @@
         {
           "type": "doc",
           "id": "business_suite/backoffice-configurator/changelog"
+        },
+        {
+          "type": "category",
+          "label": "diagrams",
+          "items": []
         }
       ],
       "link": {
@@ -1569,6 +1574,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-threshold-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-add-plan-modal"
                 }
               ]
             }
@@ -2852,6 +2861,14 @@
             {
               "type": "doc",
               "id": "runtime_suite_tools/miactl/setup"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/commands"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite_tools/miactl/examples"
             },
             {
               "type": "doc",

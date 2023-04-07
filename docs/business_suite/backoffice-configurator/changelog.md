@@ -8,10 +8,30 @@ sidebar_label: CHANGELOG
 ### Versioning
 
 - Dev dependencies updated
+- `typescript` to `^5.0.2`
+
+### Added
+
+- Layout page on `micro-lc` configuration
+- Schemas in right menu form + modal brings along `definitions`
+- console CSP updated
+- Right menu form handles fields with `mia/endpoints/crud` schema-hint
+- Old style icons virtual list
+- Right menu form handles fields of type `number` with 0/1 enum
+- Right menu form handles fields with `micro-lc/applications` schema-hint
+- Right menu form handles fields with `localized-text` schema-hint
+- Context manager handles unsecreted variables
 
 ### Fixed
 
+- `monaco-editor` widgets overflow to surrounding panels
+- reduced `monaco-editor` contribs to bare minimum (saved some hundreds kBs)
+- preview awaits webcomponents definitions up to a timeout
+- flashy iframe resize resolved
+- shadow dom layout of `micro-lc` advanced tap is included in tag mocks registration
+- `iframe` goes back to loading on hard reset
 - router does not force anymore a default path -> either the exact route or server-side middleware to reroute
+- Context manager items is zero when first is empty
 
 ## [0.7.2] - 2023-03-13
 

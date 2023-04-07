@@ -262,7 +262,9 @@
             "lt",
             "gte",
             "lte",
-            "eq"
+            "eq",
+            "between",
+            "notBetween"
           ]
         },
         "thresholdValue": {
