@@ -1,6 +1,6 @@
 ---
 id: overview
-title: `miactl` CLI
+title: miactl CLI
 sidebar_label: Overview
 ---
 `miactl` is the Command Line Interface designed to interact with the Mia-Platform Console.
