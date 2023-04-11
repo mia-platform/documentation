@@ -566,6 +566,11 @@
         {
           "type": "doc",
           "id": "business_suite/backoffice-configurator/changelog"
+        },
+        {
+          "type": "category",
+          "label": "diagrams",
+          "items": []
         }
       ],
       "link": {
