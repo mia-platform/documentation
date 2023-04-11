@@ -1,151 +1,1452 @@
 ---
 id: node_ms_tutorial
-title: Create a Node.js Microservice Tutorial
-sidebar_label: Create a Node.js Microservice
+title: Create a custom Microservice
+sidebar_label: Custom Microservice
 ---
 
-import VideoBox from "./../../../src/components/VideoBox";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
 
-In this tutorial we'll see how to create and expose a Node.js Microservice using [Node.js template](/marketplace/templates/mia_templates.md) from the [Marketplace](/marketplace/overview_marketplace.md).
+In this tutorial, we will see how to create and develop a new microservice starting from one of the [templates](/marketplace/templates/mia_templates.md), offered by the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md), up to the actual coding of the endpoints. We will also deep dive into the functionalities that Mia-Platform Console offers to the developer during the whole software lifecycle.
 
-## What We’ll Build
+## What we will Build
 
-In this tutorial we'll develop a simple **Node.js microservice that exposes a route** through the [Mia-Platform API Gateway](/runtime_suite/api-gateway/overview.md).
+We will develop a simple **microservice that exposes a route** returning the shipping cost depending on whether the user is a new customer or not. Moreover, the values returned by the endpoint will be based on the value of some [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md).
 
-Specifically, we'll write an API that, when invoked, will reply based on the value of an [environment variable](/development_suite/set-up-infrastructure/env-var-intro.md).
-Moreover we'll create a **CRUD for storing customers and orders** and develop a Microservice that **calculates the shipping cost for a specific order**. If the order belongs to a new customer the shipping cost is reduced, otherwise, a default cost is applied.
+We will also create a CRUD service to store the data related to customers and orders, and we will see how to communicate between different services, the one we are developing and the _curd-service_.
+
+In the final part, we will go over how to check the logs and status of the services, and how to release the final version into production using semantic versioning.
 
 ## Prerequisites
 
-We’ll assume that you have some familiarity with **JavaScript** and **Node.js**, but you can follow along even if you're coming from a different programming language. All concepts explained following are valid for all languages and frameworks.
+Before starting, we will assume that, you already have a clean project in Mia-Platform Console. To know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
 
-Prepare your favorite IDE to interact with Git repositories.
+The project must:
 
-## Create CRUDs
+- Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
+- Have an [ingress route](/paas/traefik.md) with "api-gateway" as `service`;
+- Be aware of have configured your project domain to be called. If the project links have been configured, you can find them in the "Environments" section of the "Project Settings", under the "Application" column;
+- Have a properly configured API Portal.
+- Have a properly configured CRUD Service.
 
-First of all open your project, and create the following [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) collections. In order to do this follow these steps:
+Better to have:
 
-### Customers CRUD
-
-1. In the [Console](/development_suite/overview-dev-suite.md) select your project.
-2. Select _Design section_.
-3. Select the branch _master_.
-4. Go to section [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) and click _Create new CRUD_.
-5. Insert the name `customers` and press _Create_.
-6. Now you have to set your collection fields. Scroll to the _Fields_ section and click _Add field_ to create the following fields:
-
-:::tip
-You can accelerate the field creation process by [importing them from JSON](/development_suite/api-console/api-design/crud_advanced.md#how-to-create-the-fields-of-your-crud-by-importing-a-json).
-In order to do this download <a download target="_blank" href="/docs_files_to_download/orders.json"> orders crud JSON</a> and <a download target="_blank" href="/docs_files_to_download/customers.json"> customers CRUD JSON</a>.
-:::
-
-| **Field name**          | **Type** |
-| ----------------------- | -------- |
-| **name** (required)     | String   |
-| **lastname** (required) | String   |
-| **newCustomer**         | Boolean  |
-
-### Orders CRUD
-
-Create `orders` CRUD with the following fields:
-
-| **Field name**      | **Type**         |
-| ------------------- | ---------------- |
-| **date** (required) | Date             |
-| **orderItems**      | Array of Objects |
-| **customerId**      | ObjectId         |
-
-:::info
-Check out [this tutorial](/tutorial/rest_api/quick_rest_api.mdx) and see this short [video](/getting_started/video_pills/video_pills.mdx#how-to-create-a-crud) to learn how to create and expose CRUDs.
-:::
-
-![CRUD in Console](img/node-ms-crud.png)
-
-Now you should expose your collection through an Endpoint and create your first API.
-
-1. Go to section [Endpoints](/development_suite/api-console/api-design/endpoints.md) and click _Create new endpoint_. Then enter the following information:
-
-   - `/customers` as **Base path**.
-   - `CRUD` as **Type**.
-   - Select `customers` as **CRUD**.
-
-2. Click _Create_. You have just created your first API!
-   The detail view shows other configurations that we'll use later. Scroll down to the _Routes_ section to see an overview of the routes of your API.
-
-3. Create a new endpoint with the following information:
-
-   - `/orders` as **Base path**.
-   - `CRUD` as **Type**.
-   - Select `orders` as **CRUD**.
-
-![CRUD in Console](img/node-ms-endpoint.png)
-
-4. To confirm changes just press **Commit & Generate**. We suggest writing a proper title for each commit, in this case, we can type in `Created CRUDs "customer", "orders" and the related endpoints`. We can choose an existing branch or create a new one.
-
-:::caution
-All items in the design area **are not saved** until you click **Commit & Generate**. You can create different entities and then save all the work only at the end.
-Upon configuration save, the Console will generate updates for the Kubernetes configuration files in your project repository.
-:::
-
-:::info
-Check out the [endpoint documentation](/development_suite/api-console/api-design/endpoints.md) for more information about the section and to discover all the potentialities of this feature.
-:::
-
-## Create the Microservice from the Marketplace Template
+- Some familiarity with **API** and **REST** concepts. More information about API is available [here](/guidelines/rest_api_vademecum.md).
+- Some familiarity with at least one among the following:
+  - Node.js and Fastify,
+  - Java and Spring Boot.
 
 :::tip
-Watch this short video to learn how it's easy to create a Node.js Microservice from templates
+If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
 :::
 
-<VideoBox videoName={"createNodeMS"} />
+## Create CRUD collections
 
-A Microservice can be created starting from existing Templates. Starting from a Mia-Platform Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices(such as testing, logging, health routes, etc).
+Firstly, open your project, and create the following [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) collections:
 
-In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set-up microservices with a tested and pre-defined function.
+- Create `customers` CRUD collection, download the schema <a download target="_blank" href="/docs_files_to_download/tutorial/node_ms/customers.json">here</a> or copy it from below;
 
-We'll create a microservice from [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/):
+  <details>
+    <summary>Click to see the customers schema:</summary>
+    <p>
+      <SourceCodeBlock filePath="/docs_files_to_download/tutorial/node_ms/customers.json" />
+    </p>
+  </details>
 
-1. Go to section [Microservices section](/development_suite/api-console/api-design/services.md) and click _Create a Microservice_.
-1. Search the template `Node.js Template`, then select it.
+- Create `orders` CRUD collection, download the schema <a download target="_blank" href="/docs_files_to_download/tutorial/node_ms/orders.json">here</a> or copy it from below.
+
+  <details>
+    <summary>Click to see the orders schema:</summary>
+    <p>
+      <SourceCodeBlock filePath="/docs_files_to_download/tutorial/node_ms/orders.json" />
+    </p>
+  </details>
+
+:::info
+You don't know how to import CRUD schema? Give a look [here](/tutorial/rest_api/quick_rest_api.mdx#option-2-import-crud-collection)
+:::
+
+## Expose CRUD endpoints
+
+Once the collections have been created, they need to be exposed through an [Endpoint](/development_suite/endpoint-overview/endpoint-overview.md).
+
+1. Create `customers` CRUD endpoint:
+
+   - **Base path**: `/customers`;
+   - **Type**: in the dropdown menu, select `"CRUD"`;
+   - **CRUD Base Path**: in the dropdown menu, select `/customers`.
+
+1. Create `orders` CRUD endpoint:
+
+   - **Base path**: `/orders`;
+   - **Type**: in the dropdown menu, select `"CRUD"`;
+   - **CRUD Base Path**: in the dropdown menu, select `/orders`.
+
+:::info
+You don't know how to import CRUD schema? Give a look [here](/tutorial/rest_api/quick_rest_api.mdx#expose-the-crud-using-an-endpoint)
+:::
+
+## Create the Microservice from a Marketplace template
+
+A Microservice can be created starting from existing templates. Starting from a Mia-Platform template or using Mia-Platform service libraries has many advantages and allows your microservices to be compliant with all best practices (such as pipelines, [logging](#logging), [health routes](#health-routes), etc.).
+
+In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list of Examples and Templates powered and supported by Mia-Platform that allows you to set up microservices with a tested and pre-defined function.
+
+<Tabs
+  defaultValue="js"
+  groupId="microservice-tutorial-language"
+  values={[
+      { label: 'Node.js', value: 'js', },
+      { label: 'Java', value: 'java', },
+  ]}
+>
+<TabItem value="js">
+
+We will create a microservice from [Node.js template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/):
+
+1. Go to [Microservices](/development_suite/api-console/api-design/services.md) section and click _Create a Microservice_;
+1. Search the template `Node.js Template`, then select it;
 1. Now enter the following information:
-   - `get-shipping-cost` as **Name**.
-   - Select the suggested option as **Docker Image Name**.
+
+   - **Name**: `shipping-cost`;
+
 1. In the detail, go to the _Microservice configuration_ section and set **Memory Request Limit** to `150` and **CPU Limit** to `100`.
+
+</TabItem>
+<TabItem value="java">
+
+We will create a microservice from [Java Springboot template](https://github.com/mia-platform-marketplace/SpringBoot-Custom-Plugin-Template/):
+
+1. Go to [Microservices](/development_suite/api-console/api-design/services.md) section and click _Create a Microservice_;
+1. Search the template `Springboot Template`, then select it;
+1. Now enter the following information:
+
+   - **Name**: `shipping-cost`;
+
+1. In the detail, go to the _Microservice configuration_ section and set **Memory Request Limit** to `150` and **CPU Limit** to `100`.
+
+</TabItem>
+</Tabs>
 
 Now you have to expose the microservice:
 
 1. Go to [Endpoints](/development_suite/api-console/api-design/endpoints.md) section and click _Create new endpoint_. Then enter the following information:
 
-   - `/shipping-cost-service` as **Base path**.
-   - `Microservice` as **Type**.
-   - Select `get-shipping-cost` as **Microservice**.
+   - **Base path**: `/shipping-cost-service`;
+   - **Type**: in the dropdown menu select `"Microservice"`;
+   - **Microservice**: in the dropdown menu select `shipping-cost`.
 
-1. Click _Create_.
-1. Commit the changes
-
-## The code base
+1. Click _Create_ button;
+1. Commit the changes.
 
 :::info
-The complete code of the microservice developed in this tutorial is available on [Mia-Platform GitHub](https://github.com/mia-platform/Node.js-Microservice-Tutorial).
+If you have difficulty creating the microservice or exposing it, check out the [first tutorial](/tutorial/microservices/hello_world.mdx)!
 :::
 
-You can get access to your newly created microservice repository from the Microservice detail page, by clicking on _View Repository_ button. The _Clone_ button allows you to easily see SSH and HTTPS urls to clone the repository in your local machine.
+## Let's code!
 
-Let's take a look at the codebase and let's get ready to code our microservice.
+The newly created microservice repository can be accessed from the microservice details page, by clicking on _View Repository_ button in the upper right-corner. The _Clone_ button allows you to easily see SSH and HTTPS urls to clone the repository in your local machine or to directly open it with your preferred editor.
 
-Clone the repository, and open the project with your favorite IDE. The code base it's structured as follows:
+Now, we want to implement the route that calculates the shipping cost.
 
-![Microservice in Console](img/node-ms-ide-codebase.png)
+Since Mia-Platform strongly encourages the use of [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development?oldformat=true), we will start by writing the tests.
+This approach allows the developer to focus on the needed requirements and, in addition, makes the code easier to evolve over time and durable to mistakes.
 
-The project includes the following packages:
+### Write the tests
 
-- [@mia-platform/custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib): The [Mia service Node.js library](/libraries/mia-service-libraries.md) that helps the creation and the interactions of microservices within Mia-Platform.
-- [ESlint](https://eslint.org/): a lint tool with [the config for Mia-Platform JavaScript Style](https://github.com/mia-platform/eslint-config-mia). Naturally, you can use whatever you like.
-- [Nock](https://github.com/nock/nock): HTTP server mocking and expectations library that helps to write tests
-- [Tap](https://node-tap.org/): a test library
-- [pre-commit](https://pre-commit.com/): a library for managing pre-commit hooks
+Let's start writing a simple test for `GET /shipping-cost` route. It will receive an `email` in the query string as the customer identifier and return the correct shipping cost.
 
-The project also includes several NPM scripts, later in the course we will see when and why to run them.
+<Tabs
+  defaultValue="js"
+  groupId="microservice-tutorial-language"
+  values={[
+      { label: 'Node.js', value: 'js', },
+      { label: 'Java', value: 'java', },
+  ]}
+>
+<TabItem value="js">
+
+First of all, open the `test/index.test.js` file and add, after the `require` instructions, the lines to include [Nock](https://github.com/nock/nock#readme) and disable real HTTP requests. We will use this module to mock calls to the CRUD simulating responses from HTTP requests.
+
+After that let's write the real test, replacing the "Insert your tests" comment with the highlighted code:
+
+```js {5-6,30-59}
+"use strict";
+
+const t = require("tap");
+const lc39 = require("@mia-platform/lc39");
+const nock = require("nock");
+nock.disableNetConnect();
+
+async function setupFastify(envVariables) {
+  const fastify = await lc39("./index.js", {
+    logLevel: "silent",
+    envVariables,
+  });
+  return fastify;
+}
+
+t.test("shipping-cost", async (t) => {
+  // silent => trace for enabling logs
+  const fastify = await setupFastify({
+    USERID_HEADER_KEY: "userid",
+    GROUPS_HEADER_KEY: "groups",
+    CLIENTTYPE_HEADER_KEY: "clienttype",
+    BACKOFFICE_HEADER_KEY: "backoffice",
+    MICROSERVICE_GATEWAY_SERVICE_NAME: "microservice-gateway.example.org",
+  });
+
+  t.teardown(async () => {
+    await fastify.close();
+  });
+
+  t.test("Default customer shipping cost", async (t) => {
+    const NEW_CUSTOMER_SHIPPING_COST = 5.99;
+    const DEFAULT_SHIPPING_COST = 10;
+    const CRUD_BASE_URL = "http://crud-service";
+    const getCustomerScope = nock(CRUD_BASE_URL)
+      .get(`/customers/`)
+      .query({ email: mockedCustomer.email })
+      .reply(200, [mockedCustomer]);
+
+    const getOrderScope = nock(CRUD_BASE_URL)
+      .get(`/orders/count`)
+      .query({ customerId: mockedCustomer._id })
+      .reply(200, 1);
+
+    const response = await fastify.inject({
+      method: "GET",
+      url: "/shipping-cost",
+      query: {
+        customerEmail: mockedCustomer.email,
+      },
+    });
+    t.equal(response.statusCode, 200);
+    t.same(JSON.parse(response.payload), {
+      shippingCost: DEFAULT_SHIPPING_COST,
+    });
+
+    // Check if the mocked requests have been really called by the handler
+    getOrderScope.done();
+    getCustomerScope.done();
+  });
+
+  t.end();
+});
+```
+
+In this test we tested only the "happy path", that is the case in which returning the correct shipping cost for a new customer. To achieve full coverage, we need to also test different inputs and the return of the default shipping cost. You can implement the full test suite on your own or copy the complete test code below:
+
+<details><summary>Tests to get full coverage:</summary>
+<p>
+
+```js title=/tests/index.test.js
+"use strict";
+
+const t = require("tap");
+const lc39 = require("@mia-platform/lc39");
+const nock = require("nock");
+nock.disableNetConnect();
+
+async function setupFastify(envVariables) {
+  const fastify = await lc39("./index.js", {
+    logLevel: "silent",
+    envVariables,
+  });
+  return fastify;
+}
+
+const NEW_CUSTOMER_SHIPPING_COST = 5.99;
+const DEFAULT_SHIPPING_COST = 10;
+const CRUD_BASE_URL = "http://crud-service";
+
+t.test("shipping-cost", async (t) => {
+  // silent => trace for enable logs
+  const fastify = await setupFastify({
+    USERID_HEADER_KEY: "userid",
+    GROUPS_HEADER_KEY: "groups",
+    CLIENTTYPE_HEADER_KEY: "clienttype",
+    BACKOFFICE_HEADER_KEY: "backoffice",
+    MICROSERVICE_GATEWAY_SERVICE_NAME: "microservice-gateway.example.org",
+  });
+
+  t.teardown(async () => {
+    await fastify.close();
+  });
+
+  t.test("GET /shipping-cost", (t) => {
+    const customerId = "1";
+
+    const mockedCustomer = {
+      _id: customerId,
+      email: "customer@email.com",
+    };
+
+    t.test("404 - No customer found", async (t) => {
+      const getCustomerScope = nock(CRUD_BASE_URL)
+        .get(`/customers/`)
+        .query({ email: mockedCustomer.email })
+        .reply(404, {});
+
+      const response = await fastify.inject({
+        method: "GET",
+        url: "/shipping-cost",
+        query: {
+          customerEmail: mockedCustomer.email,
+        },
+      });
+      t.equal(response.statusCode, 404);
+      t.same(JSON.parse(response.payload), {
+        error: "Customer does not exist",
+      });
+
+      getCustomerScope.done();
+    });
+
+    t.test("503 - error getting orders count", async (t) => {
+      const getCustomerScope = nock(CRUD_BASE_URL)
+        .get(`/customers/`)
+        .query({ email: mockedCustomer.email })
+        .reply(200, [mockedCustomer]);
+
+      const getOrderScope = nock(CRUD_BASE_URL)
+        .get(`/orders/count`)
+        .query({ customerId: mockedCustomer._id })
+        .reply(500, 0);
+
+      const response = await fastify.inject({
+        method: "GET",
+        url: "/shipping-cost",
+        query: {
+          customerEmail: mockedCustomer.email,
+        },
+      });
+      t.equal(response.statusCode, 503);
+      t.same(JSON.parse(response.payload), {
+        error: "Error in Order collection",
+      });
+
+      // Check if the mocked requests have been really called by the handler
+      getOrderScope.done();
+      getCustomerScope.done();
+    });
+
+    t.test("New customer shipping cost", async (t) => {
+      const getCustomerScope = nock(CRUD_BASE_URL)
+        .get(`/customers/`)
+        .query({ email: mockedCustomer.email })
+        .reply(200, [mockedCustomer]);
+
+      const getOrderScope = nock(CRUD_BASE_URL)
+        .get(`/orders/count`)
+        .query({ customerId: mockedCustomer._id })
+        .reply(200, 0);
+
+      const response = await fastify.inject({
+        method: "GET",
+        url: "/shipping-cost",
+        query: {
+          customerEmail: mockedCustomer.email,
+        },
+      });
+      t.equal(response.statusCode, 200);
+      t.same(JSON.parse(response.payload), {
+        shippingCost: NEW_CUSTOMER_SHIPPING_COST,
+      });
+
+      // Check if the mocked requests have been really called by the handler
+      getOrderScope.done();
+      getCustomerScope.done();
+    });
+
+    t.test("Default customer shipping cost", async (t) => {
+      const getCustomerScope = nock(CRUD_BASE_URL)
+        .get(`/customers/`)
+        .query({ email: mockedCustomer.email })
+        .reply(200, [mockedCustomer]);
+
+      const getOrderScope = nock(CRUD_BASE_URL)
+        .get(`/orders/count`)
+        .query({ customerId: mockedCustomer._id })
+        .reply(200, 1);
+
+      const response = await fastify.inject({
+        method: "GET",
+        url: "/shipping-cost",
+        query: {
+          customerEmail: mockedCustomer.email,
+        },
+      });
+      t.equal(response.statusCode, 200);
+      t.same(JSON.parse(response.payload), {
+        shippingCost: DEFAULT_SHIPPING_COST,
+      });
+
+      // Check if the mocked requests have been really called by the handler
+      getOrderScope.done();
+      getCustomerScope.done();
+    });
+    t.end();
+  });
+});
+```
+
+</p>
+</details>
+
+</TabItem>
+<TabItem value="java">
+
+In this example we will use [wiremock](https://wiremock.org/) package to mock the external calls to the CRUD service simulating responses from HTTP requests and [gson](https://github.com/google/gson) to parse and serialize JSON data. So the first thing we are going to do is to import those packages in the `pom.xml` file under the `dependencies` tag:
+
+```xml
+<dependency>
+    <groupId>com.github.tomakehurst</groupId>
+    <artifactId>wiremock-jre8</artifactId>
+    <version>2.35.0</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+</dependency>
+```
+
+Now install the new dependencies with [maven cli](https://maven.apache.org/):
+
+```zsh
+mvn dependency:resolve
+```
+
+Once we have installed the required packages we can create and open the `ShippingControllerTest.java` file at the following path `src/test/java/eu/miaplatform/customplugin/springboot/` in order to write the required test.
+
+:::info
+Disclamer: for demonstration purposes, the current example has a simplified structure.
+:::
+
+```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
+package eu.miaplatform.customplugin.springboot;
+
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import com.google.gson.Gson;
+import eu.miaplatform.customplugin.springboot.models.Customer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WireMockTest(proxyMode = true, httpPort = 5127)
+public class ShippingControllerTest {
+    @Autowired
+    private MockMvc mvc;
+    static final Double NEW_CUSTOMER_SHIPPING_COST = 5.99;
+    static final Double DEFAULT_SHIPPING_COST = 10.0;
+    static final String CRUD_BASE_URL = "http://crud-service";
+    private final Gson gson = new Gson();
+
+     @Test
+    public void discountedShippingCost() throws Exception {
+        String customerId = "123abc";
+        Customer customer = new Customer(customerId, "customer");
+        Customer[] crudResponse = {customer};
+        int numberOfOrders = 0;
+
+        URL url = new URL(CRUD_BASE_URL);
+
+        stubFor(WireMock.get(urlPathEqualTo("/customers/"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("email", WireMock.equalTo(customer.getEmail()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(gson.toJson(crudResponse))
+                )
+        );
+
+        stubFor(WireMock.get(urlPathEqualTo("/orders/count"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("customerId", WireMock.equalTo(customer.get_id()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(Integer.toString(numberOfOrders))
+                )
+        );
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/shipping-cost")
+                        .queryParam("customerEmail", customer.getEmail()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.shippingCost").value(NEW_CUSTOMER_SHIPPING_COST));
+    }
+}
+```
+
+In this test we tested only the "happy path", that is the case in which returning the correct shipping cost for a new customer. To achieve full coverage, we need to also test different inputs and the return of the default shipping cost. You can implement the full test suite on your own or copy the complete test code below:
+
+<details><summary>Tests to get full coverage:</summary>
+<p>
+
+```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
+package eu.miaplatform.customplugin.springboot;
+
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import com.google.gson.Gson;
+import eu.miaplatform.customplugin.springboot.models.Customer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.net.URL;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WireMockTest(proxyMode = true, httpPort = 5127)
+public class ShippingControllerTest {
+    @Autowired
+    private MockMvc mvc;
+    static final Double NEW_CUSTOMER_SHIPPING_COST = 5.99;
+    static final Double DEFAULT_SHIPPING_COST = 10.0;
+    static final String CRUD_BASE_URL = "http://crud-service";
+    private final Gson gson = new Gson();
+
+    @Test
+    public void discountedShippingCost() throws Exception {
+        String customerId = "123abc";
+        Customer customer = new Customer(customerId, "customer");
+        Customer[] crudResponse = {customer};
+        int numberOfOrders = 0;
+
+        URL url = new URL(CRUD_BASE_URL);
+
+        stubFor(WireMock.get(urlPathEqualTo("/customers/"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("email", WireMock.equalTo(customer.getEmail()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(gson.toJson(crudResponse))
+                )
+        );
+
+        stubFor(WireMock.get(urlPathEqualTo("/orders/count"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("customerId", WireMock.equalTo(customer.get_id()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(Integer.toString(numberOfOrders))
+                )
+        );
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/shipping-cost")
+                        .queryParam("customerEmail", customer.getEmail()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.shippingCost").value(NEW_CUSTOMER_SHIPPING_COST));
+    }
+
+    @Test
+    public void defaultShippingCost() throws Exception {
+        String customerId = "123abc";
+        Customer customer = new Customer(customerId, "customer");
+        Customer[] crudResponse = {customer};
+        int numberOfOrders = 2;
+
+        URL url = new URL(CRUD_BASE_URL);
+
+        stubFor(WireMock.get(urlPathEqualTo("/customers/"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("email", WireMock.equalTo(customer.getEmail()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(gson.toJson(crudResponse))
+                )
+        );
+
+        stubFor(WireMock.get(urlPathEqualTo("/orders/count"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("customerId", WireMock.equalTo(customer.get_id()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(Integer.toString(numberOfOrders)))
+        );
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/shipping-cost")
+                        .queryParam("customerEmail", customer.getEmail()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.shippingCost").value(DEFAULT_SHIPPING_COST));
+    }
+
+    @Test
+    public void noCustomerFound() throws Exception {
+        String customerId = "123abc";
+        Customer customer = new Customer(customerId, "customer");
+        Customer[] crudResponse = {customer};
+
+        URL url = new URL(CRUD_BASE_URL);
+
+        stubFor(WireMock.get(urlPathEqualTo("/customers/"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("email", WireMock.equalTo(customer.getEmail()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withStatus(404)
+                        .withBody("{}")
+                )
+        );
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/shipping-cost")
+                        .queryParam("customerEmail", customer.getEmail()))
+                .andExpect(status().isNotFound())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResponseStatusException))
+                .andExpect(result -> assertEquals("404 NOT_FOUND \"Customer does not exist\"", result.getResolvedException().getMessage()));
+    }
+
+    @Test
+    public void errorGetOrdersCount() throws Exception {
+        String customerId = "123abc";
+        Customer customer = new Customer(customerId, "customer");
+        Customer[] crudResponse = {customer};
+
+        URL url = new URL(CRUD_BASE_URL);
+
+        stubFor(WireMock.get(urlPathEqualTo("/customers/"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("email", WireMock.equalTo(customer.getEmail()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withBody(gson.toJson(crudResponse))
+                )
+        );
+
+        stubFor(WireMock.get(urlPathEqualTo("/orders/count"))
+                .withScheme(url.getProtocol())
+                .withHost(WireMock.equalTo(url.getHost()))
+                .withQueryParam("customerId", WireMock.equalTo(customer.get_id()))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                        .withStatus(500)
+                        .withBody(""))
+        );
+
+        mvc.perform(MockMvcRequestBuilders
+                        .get("/shipping-cost")
+                        .queryParam("customerEmail", customer.getEmail()))
+                .andExpect(status().isServiceUnavailable())
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResponseStatusException))
+                .andExpect(result -> assertEquals("503 SERVICE_UNAVAILABLE \"Invalid orders count\"", result.getResolvedException().getMessage()));
+    }
+}
+```
+
+</p>
+</details>
+
+</TabItem>
+</Tabs>
+
+### Write the handler
+
+Once we have created the test it's time to write the handler:
+
+<Tabs
+  defaultValue="js"
+  groupId="microservice-tutorial-language"
+  values={[
+      { label: 'Node.js', value: 'js', },
+      { label: 'Java', value: 'java', },
+  ]}
+>
+<TabItem value="js">
+
+In order to do it, we need to create and navigate to the `handlers` folder add a new file called `getShippingCost.js`.
+
+Firstly, we define the schema for the request and the response:
+
+```js
+const schema = {
+  querystring: {
+    type: "object",
+    properties: {
+      customerEmail: { type: "string" },
+    },
+  },
+  response: {
+    200: {
+      type: "object",
+      properties: {
+        shippingCost: { type: "number" },
+      },
+    },
+    "4xx": {
+      type: "object",
+      properties: {
+        error: { type: "string" },
+      },
+    },
+    "5xx": {
+      type: "object",
+      properties: {
+        error: { type: "string" },
+      },
+    },
+  },
+};
+```
+
+As written in the schema, the route accepts a `customerEmail` as query string parameter and return the associated shipping cost if all goes well, otherwise it returns an appropriate error response.
+
+Now we need to write the code for handler itself, so that it will:
+
+1. Read from `customers` CRUD to retrive the `_id` of the customer related to the mail;
+1. Read from `orders` CRUD to count the number of orders placed by the customer;
+1. Return the shipping cost, eventually appling a discount if it is the first order.
+
+The handler code will be the following one:
+
+```js
+async function handler(req, rep) {
+  const DEFAULT_SHIPPING_COST = 10;
+  const NEW_CUSTOMER_SHIPPING_COST = 5.99;
+  const CRUD_BASE_URL = "http://crud-service/";
+  // Get client to interact with the CRUD Service
+  const crudClient = req.getHttpClient(CRUD_BASE_URL);
+
+  // Get query params
+  const { customerEmail } = req.query;
+
+  let customerCrudRes;
+  try {
+    customerCrudRes = await crudClient.get(`/customers/`, {
+      query: { email: customerEmail },
+    });
+  } catch (error) {
+    return rep.code(404).send({ error: "Customer does not exist" });
+  }
+
+  const [customer] = customerCrudRes.payload;
+
+  let orderCrudRes;
+  try {
+    orderCrudRes = await crudClient.get(`/orders/count`, {
+      query: { customerId: customer._id },
+    });
+  } catch (error) {
+    return rep.code(503).send({ error: "Error in Order collection" });
+  }
+
+  const numberOfOrders = orderCrudRes.payload;
+
+  const shippingCost =
+    numberOfOrders > 0 ? DEFAULT_SHIPPING_COST : NEW_CUSTOMER_SHIPPING_COST;
+
+  return rep.code(200).send({ shippingCost });
+}
+```
+
+As you can see, the Mia-Platform [CustomPluginLib](/development_suite/api-console/api-design/plugin_baas_4.md) for node.js is included by default in the template.
+
+:::tip
+If you have an on-premise installation, you can add your custom templates to the Marketplace in order to have a uniform codebase. You can also create your template for PaaS Marketplace and request to add it by opening a [Marketplace Contribution issue](https://github.com/mia-platform/community/issues/new/choose) in Mia-Platform Community GitHub repository.
+:::
+
+In particular, the `getHttpClient` is used to get an HTTP client to make calls to the CRUD service API following Mia-Platform standards (e.g. injecting some headers used by Mia-Platform plugins).
+
+:::info CRUD Service
+To learn more how to use API exposed by the CRUD Service, check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
+:::
+
+The last thing left to do is to export the function:
+
+```js
+module.exports = {
+  handler,
+  schema,
+};
+```
+
+<details><summary>Complete snippet:</summary>
+<p>
+
+```js title=/handlers/getShippingCost.js
+"use strict";
+
+const schema = {
+  querystring: {
+    type: "object",
+    properties: {
+      customerEmail: { type: "string" },
+    },
+  },
+  response: {
+    200: {
+      type: "object",
+      properties: {
+        shippingCost: { type: "number" },
+      },
+    },
+    "4xx": {
+      type: "object",
+      properties: {
+        error: { type: "string" },
+      },
+    },
+    "5xx": {
+      type: "object",
+      properties: {
+        error: { type: "string" },
+      },
+    },
+  },
+};
+
+async function handler(req, rep) {
+  const DEFAULT_SHIPPING_COST = 10;
+  const NEW_CUSTOMER_SHIPPING_COST = 5.99;
+  const CRUD_BASE_URL = "http://crud-service/";
+  // Get client to interact with the CRUD Service
+  const crudClient = req.getHttpClient(CRUD_BASE_URL);
+
+  // Get query params
+  const { customerEmail } = req.query;
+
+  let customerCrudRes;
+  try {
+    customerCrudRes = await crudClient.get(`/customers/`, {
+      query: { email: customerEmail },
+    });
+  } catch (error) {
+    return rep.code(404).send({ error: "Customer does not exist" });
+  }
+
+  const [customer] = customerCrudRes.payload;
+
+  let orderCrudRes;
+  try {
+    orderCrudRes = await crudClient.get(`/orders/count`, {
+      query: { customerId: customer._id },
+    });
+  } catch (error) {
+    return rep.code(503).send({ error: "Error in Order collection" });
+  }
+
+  const numberOfOrders = orderCrudRes.payload;
+
+  const shippingCost =
+    numberOfOrders > 0 ? DEFAULT_SHIPPING_COST : NEW_CUSTOMER_SHIPPING_COST;
+
+  return rep.code(200).send({ shippingCost });
+}
+
+module.exports = {
+  handler,
+  schema,
+};
+```
+
+</p>
+</details>
+
+</TabItem>
+<TabItem value="java">
+
+First we need to create the classes that will represent the data models we are going to use, which will be `shipping` and `customer`. In order to do it, create the package `eu.miaplatform.customplugin.springboot.models`. We can now are going to create the classes inside it.
+
+The `Shipping` class will be:
+
+```java title="/src/main/java/eu/miaplatform/customplugin/springboot/models/Shipping.java"
+package eu.miaplatform.customplugin.springboot.models;
+
+public class Shipping {
+    public Double shippingCost;
+
+    public Shipping() {}
+
+    public Shipping(Double shippingCost) {
+        this.shippingCost = shippingCost;
+    }
+}
+```
+
+The `customer` class will be:
+
+```java title="/src/main/java/eu/miaplatform/customplugin/springboot/models/Customer.java"
+package eu.miaplatform.customplugin.springboot.models;
+
+public class Customer {
+    String _id;
+    String email;
+
+    public Customer() {}
+
+    public Customer(String _id, String email) {
+        this._id = _id;
+        this.email = email;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+}
+
+```
+
+Finally, we are ready to write the handler. It will acepts a `customerEmail` as query string parameter and return the associated shipping cost if all goes well, otherwise it returns an appropriate error response.
+
+Now we need to write the manager itself for:
+
+1. Read from CRUD `customers` to retrive the `_id` of the customer related to the mail;
+1. Read from CRUD `orders` to count the number of orders placed by the customer;
+1. Return the shipping cost, if it is the first order the shipping will be less.
+
+The handler code will be the following one:
+
+```java title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
+package eu.miaplatform.customplugin.springboot.controllers;
+
+import com.google.gson.Gson;
+import eu.miaplatform.customplugin.ServiceClientFactory;
+import eu.miaplatform.customplugin.springboot.models.Customer;
+import eu.miaplatform.customplugin.springboot.models.Shipping;
+import eu.miaplatform.service.InitServiceOptions;
+import eu.miaplatform.service.Protocol;
+import eu.miaplatform.service.Service;
+import okhttp3.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+
+public class ShippingController {
+    static final Double NEW_CUSTOMER_SHIPPING_COST = 5.99;
+    static final Double DEFAULT_SHIPPING_COST = 10.0;
+    static final String CRUD_BASE_URL = "http://crud-service";
+
+    static final Gson gson = new Gson();
+
+    public Shipping getShippingCost(String customerEmail) throws IOException {
+        URL url = new URL(CRUD_BASE_URL);
+        Protocol protocol = url.getProtocol().equals("https") ? Protocol.HTTPS : Protocol.HTTP;
+        int port = url.getPort() > 0 ? url.getPort() : 3000;
+
+        InitServiceOptions serviceOptions = new InitServiceOptions(url.getPort(), protocol, new HashMap<>(),  url.getPath());
+        Service serviceClient = ServiceClientFactory.getDirectServiceProxy(url.getHost(), serviceOptions);
+
+        Customer customer;
+        try {
+            Response customerResponse = serviceClient.get("/customers/",
+                    String.format("email=%s", customerEmail),
+                    null);
+            okhttp3.ResponseBody customerResponseBody = customerResponse.body();
+            if (customerResponse.code() != HttpStatus.OK.value() || customerResponseBody == null) throw new Exception();
+            String customerString = customerResponseBody.string();
+            customer = gson.fromJson(customerString, Customer[].class)[0];
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer does not exist");
+        }
+
+        Integer numberOfOrders;
+        try {
+            Response ordersCountResponse = serviceClient.get("/orders/count",
+                    String.format("customerId=%s", customer.get_id()),
+                    null);
+            okhttp3.ResponseBody ordersCountBody = ordersCountResponse.body();
+            if (ordersCountResponse.code() != HttpStatus.OK.value() || ordersCountBody == null) throw new Exception();
+            String ordersCountString = ordersCountBody.string();
+            numberOfOrders = gson.fromJson(ordersCountString, Integer.class);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Invalid orders count");
+        }
+
+        if (numberOfOrders == 0)
+            return new Shipping(NEW_CUSTOMER_SHIPPING_COST);
+
+        return new Shipping(DEFAULT_SHIPPING_COST);
+    }
+
+}
+```
+
+As you can see, the Mia-Platform [CustomPluginLib](https://github.com/mia-platform/custom-plugin-java-springboot) for Java Spring Boot is included by default in the template.
+
+:::tip
+If you have an on-premise installation, you can add your custom templates to the Marketplace in order to have a uniform codebase. You can also create your template for PaaS Marketplace and request to add it by opening a [Marketplace Contribution issue](https://github.com/mia-platform/community/issues/new/choose) in Mia-Platform Community GitHub repository.
+:::
+
+In particular, the `getDirectServiceProxy` is used to get an HTTP client to make calls to the CRUD service API following Mia-Platform standards (e.g. injecting some headers used by Mia-Platform plugins).
+
+
+:::info CRUD Service
+To learn more how to use API exposed by the CRUD Service, check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
+:::
+
+</TabItem>
+</Tabs>
+
+### Add the route
+
+Now it is time to register the route with the handler build previously.
+
+<Tabs
+  defaultValue="js"
+  groupId="microservice-tutorial-language"
+  values={[
+      { label: 'Node.js', value: 'js', },
+      { label: 'Java', value: 'java', },
+  ]}
+>
+<TabItem value="js">
+
+Go back to `index.js` file and add the route `GET /shipping-cost` handled by the function written previously:
+
+```js title=index.js
+"use strict";
+
+const customService = require("@mia-platform/custom-plugin-lib")();
+const getShippingCost = require("./handlers/getShippingCost");
+
+module.exports = customService(async function index(service) {
+  service.addRawCustomPlugin(
+    "GET",
+    "/shipping-cost",
+    getShippingCost.handler,
+    getShippingCost.schema
+  );
+});
+```
+
+Now run the tests we have implemented previously by running the properly NPM script command:
+
+```zsh
+npm run test
+```
+
+Finally commit and push changes to master.
+
+:::caution
+As previously mentioned Mia-Platform cares about TDD programming so you will not be able to commit until 100% coverage is reached, to check the current coverage you can run:
+
+```zsh
+npm run coverage
+```
+
+:::
+
+</TabItem>
+<TabItem value="java">
+
+To do so, decorate the function to register it with spring:
+
+```java {24-25,33-36} title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
+package eu.miaplatform.customplugin.springboot.controllers;
+
+import com.google.gson.Gson;
+import eu.miaplatform.customplugin.ServiceClientFactory;
+import eu.miaplatform.customplugin.springboot.models.Customer;
+import eu.miaplatform.customplugin.springboot.models.Shipping;
+import eu.miaplatform.service.InitServiceOptions;
+import eu.miaplatform.service.Protocol;
+import eu.miaplatform.service.Service;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import okhttp3.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+
+@RestController
+@Api(value = "ShippingController")
+public class ShippingController {
+    static final Double NEW_CUSTOMER_SHIPPING_COST = 5.99;
+    static final Double DEFAULT_SHIPPING_COST = 10.0;
+    static final String CRUD_BASE_URL = "http://crud-service:5127";
+
+    static final Gson gson = new Gson();
+
+    @GetMapping("/shipping-cost")
+    @ApiOperation(value = "shipping")
+    @ResponseBody
+    public Shipping getShippingCost(@RequestParam("customerEmail") String customerEmail) throws IOException {
+        URL url = new URL(CRUD_BASE_URL);
+        Protocol protocol = url.getProtocol().equals("https") ? Protocol.HTTPS : Protocol.HTTP;
+        int port = url.getPort() > 0 ? url.getPort() : 3000;
+
+        InitServiceOptions serviceOptions = new InitServiceOptions(url.getPort(), protocol, new HashMap<>(),  url.getPath());
+        Service serviceClient = ServiceClientFactory.getDirectServiceProxy(url.getHost(), serviceOptions);
+
+        Customer customer;
+        try {
+            Response customerResponse = serviceClient.get("/customers/",
+                    String.format("email=%s", customerEmail),
+                    null);
+            okhttp3.ResponseBody customerResponseBody = customerResponse.body();
+            if (customerResponse.code() != HttpStatus.OK.value() || customerResponseBody == null) throw new Exception();
+            String customerString = customerResponseBody.string();
+            customer = gson.fromJson(customerString, Customer[].class)[0];
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer does not exist");
+        }
+
+        Integer numberOfOrders;
+        try {
+            Response ordersCountResponse = serviceClient.get("/orders/count",
+                    String.format("customerId=%s", customer.get_id()),
+                    null);
+            okhttp3.ResponseBody ordersCountBody = ordersCountResponse.body();
+            if (ordersCountResponse.code() != HttpStatus.OK.value() || ordersCountBody == null) throw new Exception();
+            String ordersCountString = ordersCountBody.string();
+            numberOfOrders = gson.fromJson(ordersCountString, Integer.class);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Invalid orders count");
+        }
+
+        if (numberOfOrders == 0)
+            return new Shipping(NEW_CUSTOMER_SHIPPING_COST);
+
+        return new Shipping(DEFAULT_SHIPPING_COST);
+    }
+
+}
+
+```
+
+Now run tests implemented previously by the properly Maven script command:
+
+```zsh
+mvn test
+```
+
+Finally commit and push changes to master.
+
+</TabItem>
+</Tabs>
+
+## Try the Microservice
+
+Now we can [deploy](/tutorial/console/console_handbook.md#deploy-changes) the service, so we can test it. Be careful to flag the "Always release services not following semantic versioning" checkbox, we will see the semantic versioning later in the tutorial.
+
+After the deploy has been finished, open the [API Portal](/runtime_suite/api-portal/overview.md) and use the _Customers_ CRUD routes to add this document:
+
+<details><summary>Click to see the customer schema:</summary>
+<p>
+
+```json
+{
+  "name": "Awesome",
+  "surname": "Customer",
+  "email": "awesome.customer@email.com",
+  "phone": 1234567890
+}
+```
+
+</p>
+</details>
+
+Now you can try the `GET /shipping-cost` route and you will see that it will return the `NEW_CUSTOMER_SHIPPING_COST` value which will be 5.99, if you followed the tutorial.
+
+Now use the _Orders_ CRUD routes to add this document:
+
+<details><summary>Click to see the orders schema:</summary>
+<p>
+
+```json
+{
+  "customerId": "<_id>",
+  "productId": 1234,
+  "quantity": 2,
+  "expectedShipmentDate": "2023-10-10",
+  "statusHistory": ["received"]
+}
+```
+
+</p>
+</details>
+
+:::caution
+Get the response \_id from the creation of the client and replace the `"<_id>"` placeholder in `customerId` in the previous json.
+:::
+
+Now if you try again the `GET /shipping-cost` route you will see that it will return the `DEFAULT_SHIPPING_COST` value which will be 10, because it will be the second order.
+
+## Environment variable
+
+You should know, as a developer, that writing values directly into the code it isn't a good practice, so we want to extract the `CRUD_BASE_URL`, `DEFAULT_SHIPPING_COST` and `NEW_CUSTOMER_SHIPPING_COST` variables as [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md).
+
+An environment variable is a variable whose value is set outside the microservices made up of a name/value pair. You can set a different value based on the environment (Development, Production, etc.).
+
+### Create an environment variable
+
+In order to do it, follow these steps:
+
+1. Open your project in Mia-Platform Console;
+1. Go to _Project Settings_ section;
+1. Click on _Public Variables_ tab and click _Add variable_;
+1. Fill in the following values:
+    1. Insert `DEFAULT_SHIPPING_COST` as key
+    1. Insert `12` as Development value;
+    1. Insert `300` as Production value;
+1. Confirm
+
+In this way, we have created the `DEFAULT_SHIPPING_COST` that values `12` in the _Development_ environment and `300` for _Production_, so it is possible to use different values based on the environment.
+
+### Add the ENV to the microservice
+
+Now we have to add the environment variable to the microservice:
+
+1. Go to _Microservices_ and select the _get-shipping-cost_ service.
+1. Go to section _Environment variable configuration_ click _Add Environment Variable_
+1. Create the `DEFAULT_SHIPPING_COST` and enter `{{DEFAULT_SHIPPING_COST}}` as value;
+1. Create the `NEW_CUSTOMER_SHIPPING_COST` and enter `7` as value;
+1. Insert the key `CRUD_BASE_URL` and `http://crud-service` as value.
+1. Commit the changes
+
+In this way the microservice can access to `DEFAULT_SHIPPING_COST` ENV. Using `{{env_name}}` Mia-Platform automatically interpolates the correct value for each environment where the microservice will run.
+
+### Edit microservice
+
+Now we need to modify the microservice so that it uses environment variabiles.
+
+<Tabs
+  defaultValue="js"
+  groupId="microservice-tutorial-language"
+  values={[
+      { label: 'Node.js', value: 'js', },
+      { label: 'Java', value: 'java', },
+  ]}
+>
+<TabItem value="js">
+
+As the first thing adjust the tests in `/tests/index.test.js` file injecting the variables in the `setupFastify` method:
+
+```js {9-11}
+t.test('shipping-cost', async t => {
+  // silent => trace to enable logs
+  const fastify = await setupFastify({
+    USERID_HEADER_KEY: 'userid',
+    GROUPS_HEADER_KEY: 'groups',
+    CLIENTTYPE_HEADER_KEY: 'clienttype',
+    BACKOFFICE_HEADER_KEY: 'backoffice',
+    MICROSERVICE_GATEWAY_SERVICE_NAME: 'microservice-gateway.example.org',
+    NEW_CUSTOMER_SHIPPING_COST,
+    DEFAULT_SHIPPING_COST,
+    CRUD_BASE_URL,
+  })
+  ...
+})
+```
+
+After we have to edit `index.js` and set the schema of the environment variables used by the microservice:
+
+```js
+...
+const customService = require("@mia-platform/custom-plugin-lib")({
+  type: "object",
+  required: [
+    "CRUD_BASE_URL",
+    "DEFAULT_SHIPPING_COST",
+    "NEW_CUSTOMER_SHIPPING_COST",
+  ],
+  properties: {
+    CRUD_BASE_URL: {
+      type: "string",
+      description: "Base url where CRUD exposes its APIs",
+    },
+    DEFAULT_SHIPPING_COST: {
+      type: "number",
+      description: "Default shipping cost",
+    },
+    NEW_CUSTOMER_SHIPPING_COST: {
+      type: "number",
+      description: "Shipping cost for new clients",
+    },
+  },
+});
+...
+```
+
+Finally change the `/handlers/getShippingCost.js` handler in order to use the ENV, this will be available under `config` property of the request:
+
+```js
+async function handler(req, reply) {
+  const { NEW_CUSTOMER_SHIPPING_COST, DEFAULT_SHIPPING_COST, CRUD_BASE_URL } = this.config
+  req.log.info({ value: CRUD_BASE_URL }, 'CRUD_BASE_URL value')
+  req.log.info({ value: DEFAULT_SHIPPING_COST }, 'DEFAULT_SHIPPING_COST value')
+  req.log.info({ value: NEW_CUSTOMER_SHIPPING_COST }, 'NEW_CUSTOMER_SHIPPING_COST value')
+  // Get client to interact with the CRUD Service
+  const crudClient = req.getHttpClient(CRUD_BASE_URL)
+
+  ...
+}
+```
+
+Furthermore we will log the value of the ENV.
+
+:::info Logging
+Check out the [Guidelines for logs](/getting_started/monitoring-dashboard/dev_ops_guide/log.md) for more details about the log instance.
+:::
+
+Now you can commit and push the code to the master branch.
+
+</TabItem>
+<TabItem value="java">
+
+First of all we want to create test-specific variables, so we create the file `application-test.proprieties` and enter the default variables:
+
+```title="/src/main/java/resources/application-test.properties"
+constants.shipping.new=5.99
+constants.shipping.default=10
+constants.crud.url=http://crud-service:5127
+```
+
+And update also the tests:
+
+```java {8,13-18} title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
+package eu.miaplatform.customplugin.springboot;
+
+...
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@TestPropertySource(locations = "/application-test.properties")
+@WireMockTest(proxyMode = true, httpPort = 5127)
+public class ShippingControllerTest {
+    @Autowired
+    private MockMvc mvc;
+    @Value("${constants.shipping.new}")
+    private Double NEW_CUSTOMER_SHIPPING_COST;
+    @Value("${constants.shipping.default}")
+    private Double DEFAULT_SHIPPING_COST;
+    @Value("${constants.crud.url}")
+    private String CRUD_BASE_URL;
+
+    private final Gson gson = new Gson();
+
+     @Test
+    public void discountedShippingCost() throws Exception {
+      ...
+    }
+}
+```
+
+We need also to add the variabiles to the `application.properties` in order to make the environment variabiles accessible to spring handler:
+
+```title="/src/main/java/resources/application.properties"
+constants.shipping.new=${NEW_CUSTOMER_SHIPPING_COST}
+constants.shipping.default=${DEFAULT_SHIPPING_COST}
+constants.crud.url=${CRUD_BASE_URL}
+```
+
+And finally we update the handler to use the variabiles:
+
+```java {13,28-33} title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
+package eu.miaplatform.customplugin.springboot.controllers;
+
+import com.google.gson.Gson;
+import eu.miaplatform.customplugin.ServiceClientFactory;
+import eu.miaplatform.customplugin.springboot.models.Customer;
+import eu.miaplatform.customplugin.springboot.models.Shipping;
+import eu.miaplatform.service.InitServiceOptions;
+import eu.miaplatform.service.Protocol;
+import eu.miaplatform.service.Service;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+
+@RestController
+@Api(value = "ShippingController")
+public class ShippingController {
+    @Value("${constants.shipping.new}")
+    private Double NEW_CUSTOMER_SHIPPING_COST;
+    @Value("${constants.shipping.default}")
+    private Double DEFAULT_SHIPPING_COST;
+    @Value("${constants.crud.url}")
+    private String CRUD_BASE_URL;
+
+    static final Gson gson = new Gson();
+
+    @GetMapping("/shipping-cost")
+    @ApiOperation(value = "shipping")
+    @ResponseBody
+    public Shipping getShippingCost(@RequestParam("customerEmail") String customerEmail) throws IOException {
+      ...
+    }
+}
+```
+
+We commit and push the code to the master branch.
+
+</TabItem>
+</Tabs>
+
+## Final test
+
+We deploy the project to try the microservice.
+
+After the deploy, open the [Documentation Portal](/development_suite/api-portal/api-documentations.md) and try the `GET /shipping-cost` route, it will return the new values:
+
+![API Portal try /shipping-cost](img/node-ms-api-portal-final-test.gif)
 
 ## Health routes
 
@@ -154,499 +1455,37 @@ Let's go back to the Console, specifically go to the microservice detail page. Y
 - The _Readiness path_ provides k8s with information about when the container is ready to receive incoming traffic. The default route is `/-/ready`.
 - The _Liveness path_ provides k8s with information about when the container is in a healthy state. The default route is `/-/healthz`.
 
-These routes are called automatically by Kubernetes and the microservice you just created has a default implementation provided by the [@mia-platform/custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib) library.
+These routes are called automatically by Kubernetes and the microservice you just created has a default implementation provided by the Mia-Platform custom plugin libs: [Node.js](https://github.com/mia-platform/custom-plugin-lib), [Go](https://github.com/mia-platform/configlib) and [Java](https://github.com/mia-platform/custom-plugin-java-springboot) implementations.
 
 :::info
 Check out [Kubernetes official documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for more details about probes.
 :::
 
-## API Documentation
+Those information are shown also in the runtime section to know if a service is healthy or not.
 
-Another important field in the microservice configuration is the _API documentation path_. This is the route called to fetch the automatically generated API Documentation to be shown in the [API Portal](/runtime_suite/api-portal/overview.md). Even in this case, you don't have to write any code, this route is already integrated in the microservice.
+## Runtime
 
-As of now, our microservice doesn't expose any custom route. Later we'll see how to configure documentation for any route.
+In this tutorial, we have created a microservice perfectly integrated with Mia-Platform Console, as the last step, we will find out how to monitor microservices logs:
 
-Now we'll try to deploy the Console project.
-
-## Deploy
-
-By [deploying](/development_suite/deploy/deploy.md) your Console project a new Kubernetes Pod will be created for your custom service. In this case we'll also release the previously created CRUDs:
-
-1. Go to section _Deploy_.
-2. As environment select _Development_.
-3. Select the correct branch. You can see the related last commits.
-4. Click _Deploy_.
-
-A pipeline will be triggered by the Console to start the deploy of your project.
-
-## The API Portal
-
-After the deploy the [API Portal](/runtime_suite/api-portal/overview.md) allows us to see the API Documentations for the chosen environments.
-
-To access it, select the _Docs_ tab in the top menu and select `Development`, as the environment you deployed to:
-
-![API Portal 1](img/node-ms-api-portal-1.png)
-
-For now, we can see the default exposed routes of CRUDs that we can use to read and manipulate the data of relative MongoDB collection. Later, here we'll see the routes of the microservice that we'll expose.
-
-## How to test? Let's write tests!
-
-Now, we have to implement the route that calculates the shipping cost for a specific order. We could have started by writing the code first, but Mia-Platform strongly encourages the use of Test Driven Development.  
-Writing tests first allows us to focus on the needed requirements and in addition, makes the code easier to evolve over time. After each change, we can run tests to check if everything still works.
-
-Let's write a simple test for `/hello` route:
-
-Let's get back on the IDE and open `test/index.test.js` file and replace the "Insert your tests..." comment with the following code:
-
-```js
-t.test("GET /hello", (t) => {
-  t.test("Correct message", async (t) => {
-    const response = await fastify.inject({
-      method: "GET",
-      url: "/hello",
-    });
-    t.equal(response.statusCode, 200);
-    t.same(JSON.parse(response.payload), {
-      message: "Hello by your first microservice",
-    });
-  });
-  t.end();
-});
-```
-
-In this code, we are using the [Tap](https://node-tap.org/) library to write a test for the base success case.
-
-Now run tests using the proper NPM script command, in your terminal enter:
-
-```zsh
-npm run test
-```
-
-The tests should fail because the route is not implemented yet.
-
-Later in the tutorial we'll come back to write tests and exploring the topic.
-
-:::info Node Tap
-Check out the [official documentation](https://node-tap.org/docs/getting-started/) for details about Tap features
-:::
-
-## Let's code! Implement a route
-
-Open the `index.js` file:
-
-```js
-"use strict";
-
-const customService = require("@mia-platform/custom-plugin-lib")();
-
-module.exports = customService(async function index(service) {
-  /*
-   * Insert your code here.
-   */
-});
-```
-
-First we import the [Mia service Node.js library](/libraries/mia-service-libraries.md), which creates the infrastructure ready to accept the definition of routes and decorators. The library is **built on [Fastify](https://www.fastify.io/)**.
-The function returned by require, `customService`, expects an async function to initialize and configure the `service`.
-
-[`service`](https://www.fastify.io/docs/latest/Server/) is a Fastify instance, that is decorated by the library to help you interact with Mia-Platform resources. You can use service to register any Fastify routes, custom decorations and plugin.
-
-`addRawCustomPlugin` is a function that requires the HTTP method, the path of the route and a handler.
-
-First, we'll add a simple hello world route that if called simply returns a string, the `index.js`. Starting writing the route handler:
-
-1. Create a `handlers` folder at the root of the project
-1. In this folder add a file named as`hello.js` and write this code:
-
-```js
-"use strict";
-
-async function handler() {
-  return {
-    message: "Hello by your first microservice",
-  };
-}
-
-const schema = {
-  response: {
-    200: {
-      type: "object",
-      properties: {
-        message: {
-          type: "string",
-        },
-      },
-    },
-  },
-};
-
-module.exports = {
-  handler,
-  schema,
-};
-```
-
-The file must export a function, the **handler**, and optionally a **JSON schema to validate the incoming request and the response** returned by the route. This schema is used to automatically generate an error if the validation fails and to generate the API documentation for the API Portal. Check out [Fastify documentation](https://www.fastify.io/docs/v2.2.x/Validation-and-Serialization/) for more details.
-In this case the response will be an object with a `message` property.  
-In the handler we'll simply return the message object. **It's not necessary to specify any HTTP code**, as default if no error occurs the response will have **status code 200**.
-
-Now let's get back to `index.js` file and add the route `GET` `/hello` handled by the function previously written:
-
-```js
-"use strict";
-
-const customService = require("@mia-platform/custom-plugin-lib")();
-const hello = require("./handlers/hello");
-
-module.exports = customService(async function index(service) {
-  service.addRawCustomPlugin("GET", "/hello", hello.handler, hello.schema);
-});
-```
-
-Import `hello.js` file and use `addRawCustomPlugin` to add the route. Thus function requires the **HTTP method, the path of the route and a handler and an optionally JSON schema**.
-
-Now that the route is completed run again the tests writing in the terminal the properly NPM script command:
-
-```zsh
-npm run test
-```
-
-Now the tests should be ok and you should see in the terminal the following messages:
-
-![Test success](img/node-ms-test-1-success.png)
-
-## Implement the route
-
-Now we have to implement the route `GET /get-shipping-cost`. This route will receive an `orderId` in the query string and return the correct shipping cost.
-
-### Write the tests
-
-Let's start writing a simple test for `GET /get-shipping-cost` route.  
-To simplify we will show only one test: the correct calculation of the shipping cost for a new customer. You can find the other tests (no new customer, customer/order not found) in the [tutorial repository](https://github.com/mia-platform/Node.js-Microservice-Tutorial).
-
-Open `test/index.test.js` file and on the top add the [Nock](https://github.com/nock/nock) module:
-
-```js
-...
-const lc39 = require('@mia-platform/lc39')
-const nock = require('nock')
-
-nock.disableNetConnect()
-```
-
-We'll use it for mocks the call to the CRUD. In this way, we can simulate responses from HTTP requests. `nock.disableNetConnect()` indeed disable the real HTTP requests.
-
-Now add the following test to `tests/index.test.js` file:
-
-```js
-const t = require('tap')
-const lc39 = require('@mia-platform/lc39')
-const nock = require('nock')
-
-const NEW_CUSTOMER_SHIPPING_COST = 5000
-
-...
-
-  t.test('GET /get-shipping-cost', t => {
-    const CRUD_URL = 'http://crud-service'
-
-    t.test('New customer shipping cost', async t => {
-      const orderId = '1'
-
-      const mockedOrder = {
-        customerId: '2',
-      }
-
-      const { customerId } = mockedOrder
-
-      const mockedCustomer = {
-        customerVATId: customerId,
-        newCustomer: true,
-      }
-
-      const getOrderScope = nock(CRUD_URL)
-        .get(`/orders/${orderId}`)
-        .reply(200, mockedOrder)
-
-      const getCustomerScope = nock(CRUD_URL)
-        .get(`/customers/${customerId}`)
-        .reply(200, mockedCustomer)
-
-      const response = await fastify.inject({
-        method: 'GET',
-        url: '/get-shipping-cost',
-        query: {
-          orderId,
-        },
-      })
-      t.equal(response.statusCode, 200)
-      t.same(JSON.parse(response.payload), { shippingCost: NEW_CUSTOMER_SHIPPING_COST })
-
-      // Check if the mocked requests have been really called by the handler
-      getOrderScope.done()
-      getCustomerScope.done()
-    })
-    t.end()
-  })
-```
-
-In this code we have tested that the shipping cost for a new customer will be correctly returned.
-
-### Write the handler
-
-Now let's write the route handler: into the `handlers` folder add a file named `getShippingCost.js` as done previously.
-
-First, define the schema for request and response:
-
-```js
-...
-
-const schema = {
-  querystring: {
-    type: 'object',
-    properties: {
-      orderId: { type: 'string' },
-    },
-  },
-  response: {
-    '200': {
-      type: 'object',
-      properties: {
-        shippingCost: { type: 'number' },
-      },
-    },
-    '4xx': {
-      type: 'object',
-      properties: {
-        error: { type: 'string' },
-      },
-    },
-    '5xx': {
-      type: 'object',
-      properties: {
-        error: { type: 'string' },
-      },
-    },
-  },
-}
-```
-
-The route will accept an `orderId` and return the relative shipping cost if all goes ok. In case of error, it will return an appropriate response.
-
-Now we have to start to write the handler, specifically our function will have to:
-
-1. Read from CRUD `orders` the order indicated by the query params
-1. Read from CRUD `customers` the customer related to the order
-1. If the customer document has the field `newCustomer` set as _true_ return a value, otherwise return another. For now, we'll hardcode these values, later we'll get them from environment variables.
-
-The code will be the following:
-
-```js
-const DEFAULT_SHIPPING_COST = 1000;
-const NEW_CUSTOMER_SHIPPING_COST = 5000;
-
-// Get query params
-const { orderId } = req.query;
-
-// Get proxy to interact with the CRUD Service
-const proxy = req.getDirectServiceProxy("crud-service", { protocol: "http" });
-
-const allowedStatusCodes = [200];
-
-let orderCrudRes;
-
-try {
-  orderCrudRes = await proxy.get(`/orders/${orderId}`, null, {
-    allowedStatusCodes,
-  });
-} catch (error) {
-  reply.code(404).send({
-    error: "Order does not exist",
-  });
-  return;
-}
-
-let order = orderCrudRes.payload;
-
-let customerCrudRes;
-
-try {
-  customerCrudRes = await proxy.get(`/customers/${order.customerId}`, null, {
-    allowedStatusCodes,
-  });
-} catch (error) {
-  reply.code(404).send({
-    error: "Customer does not exist",
-  });
-  return;
-}
-
-const customer = customerCrudRes.payload;
-
-const { newCustomer } = customer;
-
-return {
-  shippingCost: newCustomer
-    ? NEW_CUSTOMER_SHIPPING_COST
-    : DEFAULT_SHIPPING_COST,
-};
-```
-
-With the `getDirectServiceProxy` method we have got a proxy for a platform service without passing through the [Microservice Gateway](/runtime_suite/microservice-gateway/overview.md). In this case, we have got a proxy for [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) and use it to read documents from CRUDs collection.
-
-`allowedStatusCodes` options allows to define which status codes of the response are accepted. If the response status code is not contained in this array, the promise will be rejected.
-
-:::info CRUD Service
-To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
-:::
-
-### Add the route
-
-Let's go back to `index.js` file and add the route `GET /get-shipping-cost` handled by the function written previously:
-
-```js
-"use strict";
-
-const customService = require("@mia-platform/custom-plugin-lib")();
-const hello = require("./handlers/hello");
-const getShippingCost = require("./handlers/getShippingCost");
-
-module.exports = customService(async function index(service) {
-  service.addRawCustomPlugin("GET", "/hello", hello.handler, hello.schema);
-  service.addRawCustomPlugin(
-    "GET",
-    "/get-shipping-cost",
-    getShippingCost.handler,
-    getShippingCost.schema
-  );
-});
-```
-
-Now run tests implemented previously by the properly NPM script command:
-
-```zsh
-npm run test
-```
-
-Finally commit and push changes to master.
-
-## Try the Microservice
-
-Now, [deploy](/development_suite/deploy/deploy.md) again the Console project to try the microservice.
-
-After the deploy open the [API Portal](/runtime_suite/api-portal/overview.md) and use the _Orders_ and _Customers_ CRUD routes to add some test data.
-
-Now you can try the `GET /get-shipping-cost` route:
-
-![API Portal try /get-shipping-cost](img/node-ms-api-portal-1.png)
-
-## Environment variable
-
-To conclude, create a new [environment variable](/development_suite/set-up-infrastructure/env-var-intro.md) to store the shipping cost for new customers.
-
-An environment variable is a variable whose value is set outside the microservices. An environment variable is made up of a name/value pair. You can set a different value for each environment (Development, Production, etc.).
-
-### Create an environment variable
-
-Open your project, and create the ENV `NEW_CUSTOMER_SHIPPING_COST`. In order to do this follow these steps:
-
-1. In the Console select your project.
-1. Select the _Environments section_ and click _Add new environment variable_.
-1. Insert the key `DEV_NEW_CUSTOMER_SHIPPING_COST` and enter `500` as value.
-1. Add a new ENV, set the key `PROD_NEW_CUSTOMER_SHIPPING_COST` and enter `400` as value.
-
-In this way we have created the `NEW_CUSTOMER_SHIPPING_COST` that values `500` in the _Development_ environment and `400` for _Production_.
-
-:::info
-Using `MIA_..` as a prefix in the ENV you will set the value for all environments
-:::
-
-### Add the ENV to the microservice
-
-Now we have to add the [environment variable to the microservice:
-
-1. Go to section [Microservices section](/development_suite/api-console/api-design/services.md) and select the _get-shipping-cost_ service.
-1. Go to section _Environment variable configuration_ click _Add Environment Variable_
-1. Insert the key `NEW_CUSTOMER_SHIPPING_COST` and `{{NEW_CUSTOMER_SHIPPING_COST}}` as value.
-1. Commit the changes
-
-In this way the microservice can access to `NEW_CUSTOMER_SHIPPING_COST` ENV. Using `{{env name}}` Mia-Platform automatically interpolates the correct value for each environment where the microservice will run.
-
-### Edit microservice
-
-Now we have to edit the microservice to use the ENV.
-
-First we have to edit `index.js` and set the schema of the environment variables used by the microservice:
-
-```js
-'use strict';
-
-const customService = require('@mia-platform/custom-plugin-lib')({
-  type: 'object',
-  required: ['NEW_CUSTOMER_SHIPPING_COST'],
-  properties: {
-    NEW_CUSTOMER_SHIPPING_COST: { type: 'number' },
-  },
-});
-...
-```
-
-Now in the `getShippingCost.js` handler use the ENV, this will be available under `config` property of the request:
-
-Furthermore log the value of the ENV.
-
-This will be available under `service.config` instance:
-
-```js
-async function handler(req, reply) {
-  const DEFAULT_SHIPPING_COST = 1000;
-  const { NEW_CUSTOMER_SHIPPING_COST } = this.config;
-  req.log.info({ value: NEW_CUSTOMER_SHIPPING_COST }, 'NEW_CUSTOMER_SHIPPING_COST value')
-
-  ...
-}
-```
-
-:::info Logging
-Check out the [Guidelines for logs](/getting_started/monitoring-dashboard/dev_ops_guide/log.md) for more details about this topic
-:::
-
-Finally adjust the tests, let's back to `tests/index.test.js` file: in the `setupFastify` method inject the `NEW_CUSTOMER_SHIPPING_COST` ENV:
-
-```js
-t.test('get-shipping-cost', async t => {
-  // silent => trace to enable logs
-  const fastify = await setupFastify({
-    USERID_HEADER_KEY: 'userid',
-    GROUPS_HEADER_KEY: 'groups',
-    CLIENTTYPE_HEADER_KEY: 'clienttype',
-    BACKOFFICE_HEADER_KEY: 'backoffice',
-    MICROSERVICE_GATEWAY_SERVICE_NAME: 'microservice-gateway.example.org',
-    NEW_CUSTOMER_SHIPPING_COST: NEW_CUSTOMER_SHIPPING_COST,
-  })
-  ...
-```
-
-Now you can commit and push the code to the master branch.
-
-## Final test
-
-Now, [deploy](/development_suite/deploy/deploy.md) the Console project to try the microservice.
-
-After the deploy open the [Documentation Portal](/development_suite/api-portal/api-documentations.md) and try the `GET /get-shipping-cost` route:
-
-![API Portal try /get-shipping-cost](img/node-ms-api-portal-final-test.gif)
-
-## Logging
-
-In this tutorial we have created a microservice perfectly integrated with Mia-Platform, as the last step we'll find out how to monitor microservices logs:
-
-1. From your project go to section _Logs_.
-1. From here you can see select the environment and see the list of current running pods. Select _Development_ as environment and search for `get-shipping-cost-...` pod.
-1. Click on the pod name to see all logs. Here you should see the logs with the value of the `NEW_CUSTOMER_SHIPPING_COST` ENV.
+1. From your project, go to section _Runtime_.
+1. From here, you can see select the environment and see the list of current running pods. Select _Development_ as environment and search for `get-shipping-cost-...` pod.
+1. Click on the pod name to see all logs. Here you should see the logs with the value of the `CRUD_BASE_URL`, `DEFAULT_SHIPPING_COST` and `NEW_CUSTOMER_SHIPPING_COST` environmental variables.
 
 ![Microservice logs](img/node-ms-log.gif)
 
-## Microservice repository
+## Tag and deploy the first release
 
-You can access the complete repository of the tutorial [here](https://github.com/mia-platform/Node.js-Microservice-Tutorial).
+Now the last thing to do is to use semantic versioning on the console release, so after those changes we are ready to tag this version.
+
+To do so:
+
+- Open the _design_ section;
+- In the upper right-corner open the git section;
+- Click the tag icon;
+- In the form:
+  - **Create from**: `master`;
+  - **Tag name**: `v0.1.0`;
+  - **Short description**: `first project release`.
+- Click the _create tag_ button.
+
+Now to deploy it go to the _Deploy_ section, select the tag `v0.1.0` and deploy!
