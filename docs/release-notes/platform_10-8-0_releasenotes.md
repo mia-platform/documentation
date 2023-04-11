@@ -27,6 +27,8 @@ To learn more about the providers supported by the Console and for a detailed ex
 
 ## Fast Data
 
+### New Features
+
 #### CSV Connector
 
 Introducing the CSV Connector! With this new plugin, you can now import data from a CSV source to your Fast Data with ease. Whether your csv files are in a bucket on Mongo, AWS or Google, the new plugin allows you to fetch data from the files in the bucket and import them into Fast Data.
@@ -38,7 +40,6 @@ To utilize the CSV Connector, simply import it as an application directly to you
 The CSV Connector plugin only comes with the core service. In this case, however, the configuration of the other two services is up to the user.
 
 [Go to the official documentation](/docs/runtime_suite/csv-connector/configuration.md) to find out more.
-### New Features
 
 #### Debezium PostgreSQL plugin
 
