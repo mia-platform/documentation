@@ -11,6 +11,16 @@ _April 13, 2023_
 
 ### New Features
 
+#### Management of Providers trough the Console
+
+Starting from today it will be possible to manage the creation, configuration and edit of the providers used by the Console (GitProvider, Secret Manager and CI/CD Tool) directly using the respective dedicated section in the "Company Overview" area.
+
+Previously this was possible only through the use of specific APIs exposed on the API Portal, while now using a dedicated front-end on the console it will be possible to do it in a guided, simple and intuitive way.
+
+![Providers Section](./img/10.8-providers-section.png)
+
+To learn more about the providers supported by the Console and for a detailed explanation of the Section, [go to the official documentation](/development_suite/set-up-infrastructure/providers-management.md) page for more information.
+
 ### Improvements
 
 ### Bug Fix
