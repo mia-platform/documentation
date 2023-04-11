@@ -175,7 +175,9 @@
       "hrefs",
       "DEBEZIUM",
       "Debezium",
-      "debezium"
+      "debezium",
+      "decoderbufs",
+      "pgoutput"
   ],
   "ignoreWords": [
     "authz",
