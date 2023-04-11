@@ -27,6 +27,17 @@ To learn more about the providers supported by the Console and for a detailed ex
 
 ## Fast Data
 
+#### CSV Connector
+
+Introducing the CSV Connector! With this new plugin, you can now import data from a CSV source to your Fast Data with ease. Whether your csv files are in a bucket on Mongo, AWS or Google, the new plugin allows you to fetch data from the files in the bucket and import them into Fast Data.
+
+Our CSV Connector also validates each CSV file against your custom JSON Schema. To provide further transparency, Prometheus metrics are provided for users to infer statistics at any time. Our plugin is designed with flexibility in mind, giving you the freedom to personalise fields names, define custom validation rules and head data to the specific Fast Data topics of your choice. The Kafka messages generated through the plugin are in [db2](/docs/fast_data/configuration/realtime_updater/common.md#kafka-adapters:-kafka-messages-format) format.
+
+To utilize the CSV Connector, simply import it as an application directly to your console. The application comes prepackaged with the Files Service in [multi-bucket mode](/docs/runtime_suite/files-service/configuration.mdx) and the Crud Service, both of which are already pre-configured with most of the variables, leaving you with minimal personalization.
+
+The CSV Connector plugin only comes with the core service. In this case, however, the configuration of the other two services is up to the user.
+
+[Go to the official documentation](/docs/runtime_suite/csv-connector/configuration.md) to find out more.
 ### New Features
 
 #### Debezium PostgreSQL plugin
