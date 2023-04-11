@@ -27,11 +27,18 @@ _April 13, 2023_
 
 ### Marketplace Updates
 
-## Backoffice
-
-### New Features
+## Backoffice - 1.3.8
 
 ### Bug Fix
+
+#### `bk-card` correctly visualized nested cards
+
+`bk-card` component applies `visualizationOptions` to nested objects, which are rendered as nested cards
+
+#### Components update nesting state in `bk-layout-container`
+
+`bk-search-bar` and `bk-breadcrumb` correctly update their nesting state on layout change inside `bk-layout-container`
+
 
 ## How to update your Console
 
