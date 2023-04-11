@@ -29,6 +29,10 @@ To learn more about the providers supported by the Console and for a detailed ex
 
 ### New Features
 
+#### Debezium PostgreSQL plugin
+
+You can now find in the Marketplace the [Debezium connector plugin for PostgreSQL](/fast_data/connectors/debezium_cdc.md#postgresql) databases.
+
 ### Improvements
 
 ### Bug Fix
