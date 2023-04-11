@@ -12,7 +12,7 @@ Fast Data uses an event streaming platform to ingest in near real-time all the m
 Depending on how changes are produced, where your source data is stored and how they can be accessed there can be different ways to produce the corresponding change event on the Fast Data ingestion topics.
 The components in charge of transmitting the changes from your systems to the event streaming platform are generally known as **Connectors**.
 
-When data is stored on a database and the changes to be monitored are the action on the database itself, it is usually recommended to exploit a Change Data Capture (CDC) system. These type of systems work by detecting changes that take place on the database and emit the corresponding event in near real-time on the configured event streaming platform, so that subsequent components can process the events. Example of database on which a CDC can be instantiated are:
+When data is stored on a database and the changes to be monitored are the action on the database itself, it is usually recommended to exploit a Change Data Capture (CDC) system. This type of systems work by detecting changes that take place on the database and emit the corresponding events in near real-time on the configured event streaming platform, so that subsequent components can process the events. Examples of database on which a CDC can be instantiated are:
 
 - [Oracle DB](https://www.oracle.com/database/)
 - [IBM DB2](https://www.ibm.com/products/db2/database)
@@ -22,19 +22,16 @@ When data is stored on a database and the changes to be monitored are the action
 - [MongoDB](https://www.mongodb.com/)
 - [Apache Cassandra](https://cassandra.apache.org/)
 
-Differently, when data is generated on the fly or extracted into files adopting a structured or semi-structure format, it is usually a custom application that parses these data changes and generate the corresponding event on the event streaming platform, so that Fast Data components can import and process the source data.
+### How to connect any data source to Fast Data
+
 In general, any application that writes messages onto an event messaging platform adopting one of the formats [accepted by the Real-Time Updater](/fast_data/inputs_and_outputs.md#data-change-message) can act as a Connector.
-In particular, it is possible to either write your own [custom Connector](#how-do-i-make-a-custom-connector) tailored for your unique needs and requirements, or use one of the Connectors available in the Mia-Platform [Marketplace](/runtime_suite/mia-platform-plugins.md).
+In particular, it is possible to either write your own [custom Connector](#bring-your-own-cdc) tailored for your unique needs and requirements, or use one of the Connectors available in the Mia-Platform [Marketplace](/runtime_suite/mia-platform-plugins.md).
 
 Some connectors you'll find in the Marketplace:
 
 - [CSV Connector](/runtime_suite/csv-connector/configuration.md)
 - [Debezium plugin Connectors](/fast_data/connectors/debezium_cdc.md#debezium-server-configuration)
 - Kafka Connect Configurator (coming soon)
-
-### How do I make a custom connector?
-
-The theory is very simple, in order to make you own connector you just need to have a piece of software that observes some data and upon any changes it sends the updates to an event streaming platform to which the Fast Data will be connected to. There's really no definition on how to observe data changes and implementations can vary between use cases and underlying infrastructures. For example, you could just set a [Cron Job](/development_suite/monitoring/resources/cronjobs.md) which checks on a JSON file every 10 minutes and when it sees something has changed from the last time it publishes a message to the right topic on the event streaming platform.
 
 ## Change Data Capture Systems
 
@@ -50,7 +47,7 @@ This approach has already been tested, verified and it is working in production 
 - [Oracle Golden Gate for Big Data](https://www.oracle.com/integration/goldengate/)
 - [Debezium](https://debezium.io/)
 
-Change Data Capture systems described above publish change events in one of the [formats supported by Fast Data](/fast_data/inputs_and_outputs.md#data-change-message). When another CDC system is employed, it's important to either verify that such component can produce compatible messages or provide a [_custom message adapter_](/fast_data/configuration/realtime_updater/common.md#custom) to the Fast Data Real-Time Updater component. In this way Fast Data can easily process change events employing user-defined formats.
+Change Data Capture systems described above publish change events in one of the [formats supported by Fast Data](/fast_data/inputs_and_outputs.md#data-change-message). When another CDC system is employed it is important to either verify that such component can produce compatible messages or provide a [_custom message adapter_](/fast_data/configuration/realtime_updater/common.md#custom) to the Fast Data Real-Time Updater component. In this way Fast Data can easily process change events employing user-defined formats.
 
 ### Managed Debezium CDC
 
