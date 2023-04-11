@@ -28,7 +28,7 @@ In particular, it is possible to either write your own custom Connector, tailore
 
 The custom connectors available in the Marketplace are:
 
-- CSV Connector (coming soon)
+- CSV Connector
 - Kafka Connect Configurator (coming soon)
 
 ## Change Data Capture Systems
