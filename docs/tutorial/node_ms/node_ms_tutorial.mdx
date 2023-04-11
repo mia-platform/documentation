@@ -420,7 +420,7 @@ mvn dependency:resolve
 Once we have installed the required packages we can create and open the `ShippingControllerTest.java` file at the following path `src/test/java/eu/miaplatform/customplugin/springboot/` in order to write the required test.
 
 :::info
-Disclamer: the current example doesn't follow the springboot best practice for simplicity of demonstration. Feel free to refactor the results as you prefer.
+Disclamer: for demostration purposes, the current example has a simplified structure.
 :::
 
 ```java title=/src/test/java/eu/miaplatform/customplugin/springboot/ShippingControllerTest.java
@@ -494,7 +494,7 @@ public class ShippingControllerTest {
 }
 ```
 
-In this test we tested only the "happy path," that is, returning the correct shipping cost for a new customer. To achieve full coverage by testing the inputs and the return of the default shipping cost you need to write more tests, so if you want to try that or just copy the complete test code below:
+In this test we tested only the "happy path", that is the case in which returning the correct shipping cost for a new customer. To achieve full coverage, we need to also test different inputs and the return of the default shipping cost. You can implement the full test suite on your own or copy the complete test code below:
 
 <details><summary>Tests to get full coverage:</summary>
 <p>
@@ -693,7 +693,7 @@ Once we have created the test it's time to write the handler:
 >
 <TabItem value="js">
 
-To do this, we need to create and navigate to the `handlers` folder add a new file called `getShippingCost.js`.
+In order to do it, we need to create and navigate to the `handlers` folder add a new file called `getShippingCost.js`.
 
 Firstly, we define the schema for the request and the response:
 
@@ -736,7 +736,7 @@ Now we need to write the code for handler itself, so that it will:
 1. Read from `orders` CRUD to count the number of orders placed by the customer;
 1. Return the shipping cost, eventually appling a discount if it is the first order.
 
-The handler code will be the following:
+The handler code will be the following one:
 
 ```js
 async function handler(req, rep) {
@@ -787,7 +787,7 @@ If you have an on-premise installation, you can add your custom templates to the
 In particular, the `getHttpClient` is used to get an HTTP client to make calls to the CRUD service API following Mia-Platform standards (e.g. injecting some headers used by Mia-Platform plugins).
 
 :::info CRUD Service
-To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
+To learn more how to use API exposed by the CRUD Service, check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
 :::
 
 The last thing left to do is to export the function:
@@ -884,7 +884,7 @@ module.exports = {
 </TabItem>
 <TabItem value="java">
 
-First we need to create the classes that will represent the data models we are going to use, which will be `shipping` and `customer`. To do this create the package `eu.miaplatform.customplugin.springboot.models` and inside we are going to create the classes.
+First we need to create the classes that will represent the data models we are going to use, which will be `shipping` and `customer`. In order to do it, create the package `eu.miaplatform.customplugin.springboot.models`. We can now are going to create the classes inside it.
 
 The `Shipping` class will be:
 
@@ -902,7 +902,7 @@ public class Shipping {
 }
 ```
 
-While the `customer` class will be:
+The `customer` class will be:
 
 ```java title="/src/main/java/eu/miaplatform/customplugin/springboot/models/Customer.java"
 package eu.miaplatform.customplugin.springboot.models;
@@ -929,7 +929,7 @@ public class Customer {
 
 ```
 
-And finally we are ready to write the handler. It will acepts a `customerEmail` as query string parameter and return the associated shipping cost if all goes well, otherwise it returns an appropriate error response.
+Finally, we are ready to write the handler. It will acepts a `customerEmail` as query string parameter and return the associated shipping cost if all goes well, otherwise it returns an appropriate error response.
 
 Now we need to write the manager itself for:
 
@@ -937,7 +937,7 @@ Now we need to write the manager itself for:
 1. Read from CRUD `orders` to count the number of orders placed by the customer;
 1. Return the shipping cost, if it is the first order the shipping will be less.
 
-The handler code will be the following:
+The handler code will be the following one:
 
 ```java title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
 package eu.miaplatform.customplugin.springboot.controllers;
@@ -1007,10 +1007,17 @@ public class ShippingController {
 }
 ```
 
-As you can see the function offered by the customplugin `getDirectServiceProxy` is used, this is needed to get a proxy to make calls to the CRUD service API allowing internal cluster hostnames to be resolved, as in this case `crud-service` it is the microservice hostname inside the cluster.
+As you can see, the Mia-Platform [CustomPluginLib](https://github.com/mia-platform/custom-plugin-java-springboot) for Java Spring Boot is included by default in the template.
+
+:::tip
+If you have an on-premise installation, you can add your custom templates to the Marketplace in order to have a uniform codebase. You can also create your template for PaaS Marketplace and request to add it by opening a [Marketplace Contribution issue](https://github.com/mia-platform/community/issues/new/choose) in Mia-Platform Community GitHub repository.
+:::
+
+In particular, the `getDirectServiceProxy` is used to get an HTTP client to make calls to the CRUD service API following Mia-Platform standards (e.g. injecting some headers used by Mia-Platform plugins).
+
 
 :::info CRUD Service
-To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
+To learn more how to use API exposed by the CRUD Service, check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
 :::
 
 </TabItem>
@@ -1068,7 +1075,7 @@ npm run coverage
 </TabItem>
 <TabItem value="java">
 
-To do so decorate the function to register it with spring:
+To do so, decorate the function to register it with spring:
 
 ```java {24-25,33-36} title="/src/main/java/eu/miaplatform/customplugin/springboot/controllers/ShippingController.java"
 package eu.miaplatform.customplugin.springboot.controllers;
@@ -1216,7 +1223,7 @@ An environment variable is a variable whose value is set outside the microservic
 
 ### Create an environment variable
 
-In order to do this follow these steps:
+In order to do it, follow these steps:
 
 1. Open your project in Mia-Platform Console;
 1. Go to _Project Settings_ section;
