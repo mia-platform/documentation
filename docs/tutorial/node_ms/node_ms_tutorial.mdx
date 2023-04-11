@@ -1,20 +1,20 @@
 ---
 id: node_ms_tutorial
-title: Create a Microservice
-sidebar_label: Create a Microservice
+title: Create a custom Microservice
+sidebar_label: Custom Microservice
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
 
-In this tutorial, we will see how to create and develop a new microservice starting from the [templates](/marketplace/templates/mia_templates.md), offered by the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md), up to the actual coding of the endpoints. We will also deep dive into the functionalities that Mia-Platform Console offers to the developer during all the process of development.
+In this tutorial, we will see how to create and develop a new microservice starting from one of the [templates](/marketplace/templates/mia_templates.md), offered by the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md), up to the actual coding of the endpoints. We will also deep dive into the functionalities that Mia-Platform Console offers to the developer during the whole software lifecycle.
 
 ## What we will Build
 
-We will develop a simple **microservice that exposes a route** that returns the shipping cost depending on whether the user is a new customer or not. More precisely, the values returned by the API will be based on the value of some [environment variable](/development_suite/set-up-infrastructure/env-var-intro.md).
+We will develop a simple **microservice that exposes a route** returning the shipping cost depending on whether the user is a new customer or not. Moreover, the values returned by the endpoint will be based on the value of some [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md).
 
-We will also create a CRUD service to store the data related to the customers and orders, and we will see how to communicate between different services, the one we are developing and the _curd-service_.
+We will also create a CRUD service to store the data related to customers and orders, and we will see how to communicate between different services, the one we are developing and the _curd-service_.
 
 In the final part, we will go over how to check the logs and status of the services, and how to release the final version into production using semantic versioning.
 
@@ -28,6 +28,7 @@ The project must:
 - Have an [ingress route](/paas/traefik.md) with "api-gateway" as `service`;
 - Be aware of have configured your project domain to be called. If the project links have been configured, you can find them in the "Environments" section of the "Project Settings", under the "Application" column;
 - Have a properly configured API Portal.
+- Have a properly configured CRUD Service.
 
 Better to have:
 
@@ -37,7 +38,7 @@ Better to have:
 If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
 :::
 
-## Create CRUDs
+## Create CRUD collections
 
 Firstly, open your project, and create the following [MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md) collections:
 
@@ -63,7 +64,7 @@ Firstly, open your project, and create the following [MongoDB CRUD](/development
 You don't know how to import CRUD schema? Give a look [here](/tutorial/rest_api/quick_rest_api.mdx#option-2-import-crud-collection)
 :::
 
-### Expose CRUD
+## Expose CRUD endpoints
 
 Once the collections have been created, they need to be exposed through an [Endpoint](/development_suite/endpoint-overview/endpoint-overview.md).
 
@@ -83,11 +84,11 @@ Once the collections have been created, they need to be exposed through an [Endp
 You don't know how to import CRUD schema? Give a look [here](/tutorial/rest_api/quick_rest_api.mdx#expose-the-crud-using-an-endpoint)
 :::
 
-## Create the Microservice from the Marketplace Template
+## Create the Microservice from a Marketplace template
 
-A Microservice can be created starting from existing Templates. Starting from a Mia-Platform Template or using Mia-Platform Service Libraries has many advantages and allows your microservice to be compliant with all best practices (such as pipelines, [logging](#logging), [health routes](#health-routes), etc.).
+A Microservice can be created starting from existing templates. Starting from a Mia-Platform template or using Mia-Platform service libraries has many advantages and allows your microservices to be compliant with all best practices (such as pipelines, [logging](#logging), [health routes](#health-routes), etc.).
 
-In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list of Examples or Templates powered and supported by Mia-Platform that allows you to set up microservices with a tested and pre-defined function.
+In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list of Examples and Templates powered and supported by Mia-Platform that allows you to set up microservices with a tested and pre-defined function.
 
 <Tabs
   defaultValue="js"
@@ -144,12 +145,14 @@ If you have difficulty creating the microservice or exposing it, check out the [
 
 The newly created microservice repository can be accessed from the microservice details page, by clicking on _View Repository_ button in the upper right-corner. The _Clone_ button allows you to easily see SSH and HTTPS urls to clone the repository in your local machine or to directly open it with your preferred editor.
 
-Now, we want to implement the route that calculates the shipping cost. We could have started by writing the code first, but Mia-Platform strongly encourages the use of [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development?oldformat=true).  
+Now, we want to implement the route that calculates the shipping cost.
+
+Since Mia-Platform strongly encourages the use of [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development?oldformat=true), we will start by writing the tests.
 This approach allows the developer to focus on the needed requirements and, in addition, makes the code easier to evolve over time and durable to mistakes.
 
 ### Write the tests
 
-That said, let's start writing a simple test for `GET /shipping-cost` route. It will receive an `email` in the query string as the customer identifier and return the correct shipping cost.
+Let's start writing a simple test for `GET /shipping-cost` route. It will receive an `email` in the query string as the customer identifier and return the correct shipping cost.
 
 <Tabs
   defaultValue="js"
@@ -161,7 +164,7 @@ That said, let's start writing a simple test for `GET /shipping-cost` route. It 
 >
 <TabItem value="js">
 
-As the first thing to do open the `test/index.test.js` file and add on the top, after the requirements, the [Nock](https://github.com/nock/nock) module to mocks the call to the CRUD simulating responses from HTTP requests. The `nock.disableNetConnect()` callback indeed disable the real HTTP requests to avoid unwanted calls.
+First of all, open the `test/index.test.js` file and add, after the `require` instructions, the lines to include [Nock](https://github.com/nock/nock#readme) and disable real HTTP requests. We will use this module to mock calls to the CRUD simulating responses from HTTP requests.
 
 After that let's write the real test, replacing the "Insert your tests" comment with the highlighted code:
 
@@ -230,7 +233,7 @@ t.test("shipping-cost", async (t) => {
 });
 ```
 
-In this test we tested only the "happy path," that is, returning the correct shipping cost for a new customer. To achieve full coverage by testing the inputs and the return of the default shipping cost you need to write more tests, so if you want to try that or just copy the complete test code below:
+In this test we tested only the "happy path", that is the case in which returning the correct shipping cost for a new customer. To achieve full coverage, we need to also test different inputs and the return of the default shipping cost. You can implement the full test suite on your own or copy the complete test code below:
 
 <details><summary>Tests to get full coverage:</summary>
 <p>
@@ -692,7 +695,7 @@ Once we have created the test it's time to write the handler:
 
 To do this, we need to create and navigate to the `handlers` folder add a new file called `getShippingCost.js`.
 
-As first things first, we define the schema for the request and response:
+Firstly, we define the schema for the request and the response:
 
 ```js
 const schema = {
@@ -727,11 +730,11 @@ const schema = {
 
 As written in the schema, the route accepts a `customerEmail` as query string parameter and return the associated shipping cost if all goes well, otherwise it returns an appropriate error response.
 
-Now we need to write the manager itself for:
+Now we need to write the code for handler itself, so that it will:
 
-1. Read from CRUD `customers` to retrive the `_id` of the customer related to the mail;
-1. Read from CRUD `orders` to count the number of orders placed by the customer;
-1. Return the shipping cost, if it is the first order the shipping will be less.
+1. Read from `customers` CRUD to retrive the `_id` of the customer related to the mail;
+1. Read from `orders` CRUD to count the number of orders placed by the customer;
+1. Return the shipping cost, eventually appling a discount if it is the first order.
 
 The handler code will be the following:
 
@@ -740,15 +743,15 @@ async function handler(req, rep) {
   const DEFAULT_SHIPPING_COST = 10;
   const NEW_CUSTOMER_SHIPPING_COST = 5.99;
   const CRUD_BASE_URL = "http://crud-service/";
-  // Get proxy to interact with the CRUD Service
-  const proxy = req.getHttpClient(CRUD_BASE_URL);
+  // Get client to interact with the CRUD Service
+  const crudClient = req.getHttpClient(CRUD_BASE_URL);
 
   // Get query params
   const { customerEmail } = req.query;
 
   let customerCrudRes;
   try {
-    customerCrudRes = await proxy.get(`/customers/`, {
+    customerCrudRes = await crudClient.get(`/customers/`, {
       query: { email: customerEmail },
     });
   } catch (error) {
@@ -759,7 +762,7 @@ async function handler(req, rep) {
 
   let orderCrudRes;
   try {
-    orderCrudRes = await proxy.get(`/orders/count`, {
+    orderCrudRes = await crudClient.get(`/orders/count`, {
       query: { customerId: customer._id },
     });
   } catch (error) {
@@ -775,7 +778,13 @@ async function handler(req, rep) {
 }
 ```
 
-As you can see the function offered by the CustomPluginLib `getHttpClient` is used, this is needed to get a proxy to make calls to the CRUD service API allowing internal cluster hostnames to be resolved, as in this case `crud-service` it is the microservice hostname inside the cluster.
+As you can see, the Mia-Platform [CustomPluginLib](/development_suite/api-console/api-design/plugin_baas_4.md) for node.js is included by default in the template.
+
+:::tip
+If you have an on-premise installation, you can add your custom templates to the Marketplace in order to have a uniform codebase. You can also create your template for PaaS Marketplace and request to add it by opening a [Marketplace Contribution issue](https://github.com/mia-platform/community/issues/new/choose) in Mia-Platform Community GitHub repository.
+:::
+
+In particular, the `getHttpClient` is used to get an HTTP client to make calls to the CRUD service API following Mia-Platform standards (e.g. injecting some headers used by Mia-Platform plugins).
 
 :::info CRUD Service
 To take in deeper how to use API exposed by the CRUD Service check out the [CRUD Endpoints Documentation](/runtime_suite/crud-service/overview_and_usage.md#crud-endpoints)
@@ -829,15 +838,15 @@ async function handler(req, rep) {
   const DEFAULT_SHIPPING_COST = 10;
   const NEW_CUSTOMER_SHIPPING_COST = 5.99;
   const CRUD_BASE_URL = "http://crud-service/";
-  // Get proxy to interact with the CRUD Service
-  const proxy = req.getHttpClient(CRUD_BASE_URL);
+  // Get client to interact with the CRUD Service
+  const crudClient = req.getHttpClient(CRUD_BASE_URL);
 
   // Get query params
   const { customerEmail } = req.query;
 
   let customerCrudRes;
   try {
-    customerCrudRes = await proxy.get(`/customers/`, {
+    customerCrudRes = await crudClient.get(`/customers/`, {
       query: { email: customerEmail },
     });
   } catch (error) {
@@ -848,7 +857,7 @@ async function handler(req, rep) {
 
   let orderCrudRes;
   try {
-    orderCrudRes = await proxy.get(`/orders/count`, {
+    orderCrudRes = await crudClient.get(`/orders/count`, {
       query: { customerId: customer._id },
     });
   } catch (error) {
@@ -1021,7 +1030,7 @@ Now it is time to register the route with the handler build previously.
 >
 <TabItem value="js">
 
-To do so go back to `index.js` file and add the route `GET /shipping-cost` handled by the function written previously:
+Go back to `index.js` file and add the route `GET /shipping-cost` handled by the function written previously:
 
 ```js title=index.js
 "use strict";
@@ -1039,7 +1048,7 @@ module.exports = customService(async function index(service) {
 });
 ```
 
-Now run tests implemented previously by the properly NPM script command:
+Now run the tests we have implemented previously by running the properly NPM script command:
 
 ```zsh
 npm run test
@@ -1211,16 +1220,14 @@ In order to do this follow these steps:
 
 1. Open your project in Mia-Platform Console;
 1. Go to _Project Settings_ section;
-1. Click on _Environments_ tab and click _Add new runtime environment_;
-1. Create the `CRUD_BASE_URL`:
-   1. Insert the key `DEV_CRUD_BASE_URL` and enter `http://crud-service` as value;
-   1. Insert the key `PROD_CRUD_BASE_URL` and enter `http://crud-service-production` as value;
+1. Click on _Public Variables_ tab and click _Add variable_;
+1. Fill in the following values:
+    1. Insert `DEFAULT_SHIPPING_COST` as key
+    1. Insert `12` as Development value;
+    1. Insert `300` as Production value;
+1. Confirm
 
-In this way, we have created the `CRUD_BASE_URL` that values `http://crud-service` in the _Development_ environment and `http://crud-service-production` for _Production_, so as to use different cruds based on the environment to increase segregation.
-
-:::info
-Using `MIA_` as a prefix in the ENV you will set the value for all environments. For more details look at [environment variables](http://localhost:3000/docs/development_suite/set-up-infrastructure/env-var) documentation page.
-:::
+In this way, we have created the `DEFAULT_SHIPPING_COST` that values `12` in the _Development_ environment and `300` for _Production_, so it is possibile to use different values based on the environment.
 
 ### Add the ENV to the microservice
 
@@ -1228,12 +1235,12 @@ Now we have to add the environment variable to the microservice:
 
 1. Go to _Microservices_ and select the _get-shipping-cost_ service.
 1. Go to section _Environment variable configuration_ click _Add Environment Variable_
-1. Create the `DEFAULT_SHIPPING_COST` and enter `12` as value;
+1. Create the `DEFAULT_SHIPPING_COST` and enter `{{DEFAULT_SHIPPING_COST}}` as value;
 1. Create the `NEW_CUSTOMER_SHIPPING_COST` and enter `7` as value;
-1. Insert the key `CRUD_BASE_URL` and `{{CRUD_BASE_URL}}` as value.
+1. Insert the key `CRUD_BASE_URL` and `http://crud-service` as value.
 1. Commit the changes
 
-In this way the microservice can access to `CRUD_BASE_URL` ENV. Using `{{env_name}}` Mia-Platform automatically interpolates the correct value for each environment where the microservice will run.
+In this way the microservice can access to `DEFAULT_SHIPPING_COST` ENV. Using `{{env_name}}` Mia-Platform automatically interpolates the correct value for each environment where the microservice will run.
 
 ### Edit microservice
 
@@ -1305,8 +1312,8 @@ async function handler(req, reply) {
   req.log.info({ value: CRUD_BASE_URL }, 'CRUD_BASE_URL value')
   req.log.info({ value: DEFAULT_SHIPPING_COST }, 'DEFAULT_SHIPPING_COST value')
   req.log.info({ value: NEW_CUSTOMER_SHIPPING_COST }, 'NEW_CUSTOMER_SHIPPING_COST value')
-  // Get proxy to interact with the CRUD Service
-  const proxy = req.getHttpClient(CRUD_BASE_URL)
+  // Get client to interact with the CRUD Service
+  const crudClient = req.getHttpClient(CRUD_BASE_URL)
 
   ...
 }
@@ -1418,16 +1425,16 @@ public class ShippingController {
 }
 ```
 
-Now you can commit and push the code to the master branch.
+We commit and push the code to the master branch.
 
 </TabItem>
 </Tabs>
 
 ## Final test
 
-Now we can deploy the project to try the microservice.
+We deploy the project to try the microservice.
 
-After the deploy open the [Documentation Portal](/development_suite/api-portal/api-documentations.md) and try the `GET /shipping-cost` route, it will return the new values:
+After the deploy, open the [Documentation Portal](/development_suite/api-portal/api-documentations.md) and try the `GET /shipping-cost` route, it will return the new values:
 
 ![API Portal try /shipping-cost](img/node-ms-api-portal-final-test.gif)
 
