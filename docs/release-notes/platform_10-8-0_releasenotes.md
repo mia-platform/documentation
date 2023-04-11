@@ -31,7 +31,7 @@ _April 13, 2023_
 
 ### Bug Fix
 
-#### `bk-card` correctly visualized nested cards
+#### `bk-card` correctly visualizes nested cards
 
 `bk-card` component applies `visualizationOptions` to nested objects, which are rendered as nested cards
 
