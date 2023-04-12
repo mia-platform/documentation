@@ -37,25 +37,32 @@ To create a new project, you must have the permission `console.company.project.c
 ## Creation process
 
 The project creation process is divided into three phases:
-1. **General information**: in this phase, you will be asked to insert general information about your project;
+1. **General information**: in this phase, you will be asked to insert general information about your project:
    * **Company** (_required_): you are required to select, from a list of pre-configured companies, your company, which enables you to keep the same configuration for different projects;
    * **Project name** (_required_): the name of your project, which will be shown in the project card in the Home section of the Console;
    * **Description**: the description of your project, which will be shown in the project card in the Home section of the Console.
 
-2. ** Repository configuration**: in this phase, you will be asked to insert information about the git provider that will contain your project;
-   * **Git Provider**: this field represents the provider ID used by your chosen company (e.g. _gitlab_, _github_, _azure-devops_, _bitbucket_);
+2. **Repository configuration**: in this phase, you need to choose the project template, and an overview is also presented on the default Git provider configured for the company, which will be inherited by the project:
    * **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git provider. It specifies the location of your project on the Git provider website;
    * **Visibility**: the visibility states the status of your project once it will be saved on the Git provider. If it is `internal`, all the internal users of the Git provider instance can see the project. If it is `private`, only who has access to the repository can see the project;
    * **Template** (_required_): you have to select, from a list of pre-configured templates, your template, which enables you to use pre-filled configurations for your project.
 
-3. ** Environment configuration**: in this phase, you will be asked to insert information about the environments you want to create for your project.
+:::caution
+At least one Git provider must be configured at the company level in order to create the project.
+
+If there are no configured Git providers for the company, an informative modal is displayed upon clicking the "Next" button in step 1, and you will not be able to continue.
+:::
+
+3. ** Environment configuration**: in this phase, you will be asked to insert information about the environments you want to create for your project:
    * **Environment name**: the name given to your environment;
    * **Environment ID**: the human-readable ID set to your environment;
    * **Host**: the host which exposes documentation and APIs;
    * **Backoffice Host**: the host which exposes CMS and backoffice APIs;
    * **Cluster Host**: the IP of the Kubernetes cluster where the project will be deployed;
    * **Namespace**: the namespace taken from Kubernetes;
-   * **Description**: the description of your environment.
+   * **Description**: the description of your environment;
+   * **Secret Manager**: the provider configured as a secret manager for the environment;
+   * **CI/CD Tool**: the provider configured as a CI/CD tool for the environment.
 
 Once your project has been created, you will be redirected on the Project Settings area of your new project, where you can see your environments and a list of environment variables:
 

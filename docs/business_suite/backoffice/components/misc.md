@@ -3,6 +3,11 @@ id: misc
 title: Misc
 sidebar_label: Misc
 ---
+## bk-antd-theme-manager
+
+Logical web component that can be included in applications layout to inject an [Ant Design](https://ant.design/) compatible theme.
+This component is analogous to `mlc-antd-theme-manager` from [micro-lc](https://micro-lc.io/add-ons/components/mlc-antd-theme-manager).
+
 ## bk-auto-refresh
 
 Allows refreshing some resources with the selected interval.
@@ -639,6 +644,11 @@ This component emits no event.
 None
 
 
+
+## bk-loading-animation
+
+Web component to display a loading animation until one of its children has finished loading.
+This component is analogous to `mlc-loading-animation` from [micro-lc](https://micro-lc.io/add-ons/components/mlc-loading-animation).
 
 ## bk-modal
 

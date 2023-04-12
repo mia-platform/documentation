@@ -20,8 +20,9 @@
 ## PR Checklist
 
 <!-- TODO: Include update for the CONTRIBUTING file up-to-date regarding information about the commit -->
-- [ ] The commit message follows our guidelines included in the [CONTRIBUTING.md](https://github.com/mia-platform/documentation/blob/main/CONTRIBUTING.md#how-to-submit-a-pr)
-- [ ] All tests of Lint, cspell and check-content pass. ([How to launch them?](https://github.com/mia-platform/documentation/blob/main/CONTRIBUTING.md#content-checks))
+
+- [ ] The commit message follows our guidelines included in the [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md#how-to-submit-a-pr)
+- [ ] All tests of Lint, cspell and check-content pass. ([How to launch them?](../blob/main/CONTRIBUTING.md#content-checks))
 - [ ] No sensible content has been committed
 
 

@@ -11,20 +11,102 @@ In this section, we show you how to use the `client-credentials` service.
 
 ### POST /register
 
-The register endpoint has different [auth method](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication). The supported methods are `client_secret_basic` and `private_key_jwt`).
-One client has only one method possible.
+The register endpoint is used to register a new client by specifying its name and authentication method.  
+In response it generates the client authentication data, which will depend on the chosen auth method. It follows the RFC to [register to a client](https://tools.ietf.org/html/rfc7591).
 
-The default method (if is not passed during registration) is the `client_secret_basic`.
+It returns 201 when credential pair and client is correctly generated, 401 otherwise.
 
-Once called the endpoint, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
+This is a public endpoint meant to allow external applications to create a new client, without the privilege of setting its permissions or audience.  
 
-### POST /oauth/token
+:::info
+To learn how to set specific authorization properties for the client, such as its permissions or audience, go to the [POST /clients endpoint](./usage.md#post-clients) section.
+:::
 
-In the login flow, you should call the `/oauth/token` endpoint with method POST.
+Once the endpoint has been called, the client information will be saved in the CRUD with empty audience and permissions. You can add and change the fields manually on the CRUD or set up a CMS page and update them directly from the CMS.
+
+The register endpoint accepts different [auth methods](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication). The supported methods are `client_secret_basic` and `private_key_jwt`, which differ by the details employed to verify client identity.  
+The `client_secret basic` method is based on username and password, while the `private_key_jwt` method requires as input a signed JWT.
+
+One client has only one method possible. The default method (if it is not passed during registration) is the `client_secret_basic`.
+
+:::info
+Learn more about the differences between these auth methods in the [Authentication methods](./usage.md#authentication-methods) section.
+:::
+
+Here are some examples of how to call this endpoint with the two different authentication methods:
+
+#### Client secret basic
+
+Example cURL request:
+
+```sh
+curl --location --request POST 'http://client-credential-host/register' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "client_name": "my client name"
+    }'
+```
+
+Example response:
+
+```json
+{
+    "client_id": "rPxwZcgeFRJPgnnabMZrJWMemMBJjaSB",
+    "client_secret": "ugmWIVfZoTBKTXzADXJsJJexuMhCYxocxaKqkOlEYavgcEBr",
+    "client_secret_expires_at": 0,
+    "client_id_issued_at": 1592229239
+}
+```
 
 :::note
-  There are two main types of authentication methods, which differ by the details employed to prove user identity. The _secret basic_ is based on username and password, while the _private key JWT_ requires as input a signed JWT.
+Note that the `client_secret` field will only be available during registration so make sure to save it locally.
 :::
+
+#### Private key JWT
+
+To use this auth method, the `token_endpoint_auth_method` parameter in input should be set to `private_key_jwt`.
+
+:::note
+You can use [this guide](jwt_keys) to generate the necessary JWT public and private keys suitable for this operation.
+:::
+
+Example cURL request:
+
+```shell
+curl --location --request POST 'http://client-credential-host/register' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "client_name": "my client name",
+    "token_endpoint_auth_method": "private_key_jwt",
+    "public_key": {
+      "kid": "kid",
+      "use": "sig",
+      "kty": "RSA",
+      "alg": "RSA256",
+      "n": "sR6WjRHDNXgzBTgYr-ayhSlxdt65FIrhTytZN9dZczDC8Uqt6Cynstq3eoAfLcrxKAyj4X3J4TRxSEOL78WUisLAADHU6oEsqeuB97kVN4PcPnd63H3naOiLioc2-9L1TtUMVB4H6G5ZkKQAgrwjpHSztJF0iYaXOQhEcBlCynltuEVuyK96tvnDVqXCfhsSFweP7KorcfMj4YYj5OT2ADlAFzBQ2qppd9BpJidHGD6auCsI7vjmNCEq49v9UOiQs2XbjN-ddr9nvNBBK5bVtjGkfUPNt6uAV1AWMboVjobcAnDH2AD8W--3JUl1ffguC_fsHpPjrNoH0hCbPFfEb2YK2DX1vKhYKX3u199gc4B1q0l1JTs8AJcFbf7d63FKa6O-5V97fLK9lJYd8adF8NZiJlXjFCR-LmAYmjxmsBmByImEenEzDxuuubitSWFt47L9eGV9eY7zmnD0FV_jbwXYCcod4R46vnjabzpUcnd3VqiruUwnquHNGgj2yJpT7CMCHpK9dVlMUY8cWIfYXn4si_RrRp_E2EIkWKkSyplBWMjIK_KhjuSi_YOYNSg3OKXOGmYMcCxXUnwPIIW5n-MdbO6WC8bqhpLU1_XisfaL-V8jEOjAs0dQ9dQyvvP9ckrC753FGARXtdqwnyb2d3r3r3cLh-eQo05TyLqHoEk",
+      "e": "AQAB"
+    }
+  }'
+```
+
+Example response:
+
+```json
+{
+    "client_id": "rPxwZcgeFRJPgnnabMZrJWMemMBJjaSB",
+    "client_id_issued_at": 1592229239
+}
+```
+
+### POST /oauth/token
+In the login flow, you should call the `/oauth/token` endpoint with method POST to authenticate your client.  
+Every time a service account receives a new access token, its `lastLogin` field will be set to the time of generation of the token.
+
+:::note
+  Just like the [POST /register](./usage.md#post-register) endpoint, the available authentication methods are `client_secret_basic` and `private_key_jwt`.
+:::
+
+Here are some examples of how to call the `/oauth/token` endpoint with the two different authentication methods:
 
 #### Client secret basic
 
@@ -37,15 +119,17 @@ and a basic authorization header set as `Basic base64(clientId:clientSecret)`.
 
 The client expected response is in `application/json` and contains:
 
-* **access_token**: jwt signed with private key;
+* **access_token**: JWT signed with private key;
 * **expires_in**: how many seconds the token is valid;
 * **token_type**: type of the token. It is `Bearer`.
 
-In case the `clientId` and `clientSecret` pair does not exist on the database, it is returned an unauthorized error (HTTP code 401) with a brief explanation.
+:::note
+In case the `clientId` and `clientSecret` pair does not exist on the database, an Unauthorized error (HTTP code 401) is returned with a brief explanation.
+:::
 
-The returned **access token** is structured as follows:
+The resulting **access token** is structured as follows:
 
-- the **header** contains, besides the *algorithm* adopted to generate the token and the token *type*, the `kid` field to address the correct signature key used in the token verification procedure.
+- the **header** contains, besides the *algorithm* adopted to generate the token and the token *type*, the `kid` field, an identifier used to address the correct signature key used in the token verification procedure.
 
   :::caution
   A token without the `kid` field is considered invalid.
@@ -62,7 +146,7 @@ The returned **access token** is structured as follows:
     * **aud**: the audiences of the JWT.
 - its signature
 
-Example CURL request:
+Example cURL request:
 
 ```shell
 curl --location \
@@ -85,7 +169,7 @@ Example response:
 
 #### Private key JWT
 
-Request must have a body in `x-www-form-urlencoded` containing the follow parameters:
+Request must have a body in `x-www-form-urlencoded` containing the following parameters:
 
 * **grant_type** set to `client_credentials`
 * **client_assertion_type** set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
@@ -94,12 +178,12 @@ Request must have a body in `x-www-form-urlencoded` containing the follow parame
 * **token_endpoint_auth_method** select which authentication method is adopted (in this case it should be set to `private_key_jwt`)
 
 The *assertion JWT* must contain:
-- in the header the `kid` field, whose value has been defined during the registration phase
-- in the payload the claims specified by [this spec](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication):
+- in the header, the `kid` field, whose value has been defined during the registration phase
+- in the payload, the claims specified by [this spec](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication):
 
   * **iss** (*issuer*): client_id of the oauth client;
   * **sub** (*subject*): client_id of the oauth client;
-  * **aud** (*audience*): the issuer given to client credential;
+  * **aud** (*audience*): the issuer given to client credentials;
   * **jti** (*jwt id*): a unique identifier of the token. The token must be used only once;
   * **exp** (*expiration time*): expiration time of the token, in unix timestamp;
   * **iat** (*issued at*): time at which the token is issued;
@@ -107,11 +191,11 @@ The *assertion JWT* must contain:
   * *additional properties*: other properties to be added as custom claims into the JWT generated by the service.
 
 :::caution
-In case the *assertion JWT* does not contain all the detailed fields, it is considered invalid and the authentication is rejected with a forbidden error (code 403 HTTP)
+In case the *assertion JWT* does not contain all the detailed fields, it is considered invalid and the authentication is rejected with a Forbidden error (code 403 HTTP)
 :::
 
 :::caution
-The additional properties must be allowed for the used client by adding it into the **allowedCustomClaims** list of strings
+The additional properties must be allowed for the used client by adding them into the **allowedCustomClaims** list of strings
 :::
 
 Below is provided an example of *assertion JWT* components:
@@ -132,8 +216,8 @@ Payload **without custom claims**:
   "sub": "<client-id>",
   "aud": "test-issuer",
   "jti": "0cda23a7b55ef6fa8afd01cbd1c7c70e",
-  "iat": "1604573964",
-  "exp": "1604577564",
+  "iat": 1604573964,
+  "exp": 1604577564,
   "requested_audiences": [ "audience-1" ]
 }
 ```
@@ -145,15 +229,52 @@ Payload **with custom claims**:
   "sub": "<client-id>",
   "aud": "test-issuer",
   "jti": "0cda23a7b55ef6fa8afd01cbd1c7c70e",
-  "iat": "1604573964",
-  "exp": "1604577564",
+  "iat": 1604573964,
+  "exp": 1604577564,
   "requested_audiences": [ "audience-1" ],
   "customerName": "Chester",
   "customerSurname": "Bennington"
 }
 ```
 
-Example of CURL request:
+**Generating the assertion JWT**
+
+The following guide will help you generate a valid assertion JWT. Generation via command line is the safest way to do it, because you are not sharing your private key with any external service.
+
+:::note
+OpenSSL is required to run the commands
+:::
+
+First of all, you need to create the JWT header. To do so, you have to provide the Key ID obtained during the client creation process:
+
+```shell
+# create and encode jwt header
+jwt_header=$(echo -n "{\"alg\":\"RS256\",\"typ\":\"JWT\",\"kid\":\"$kid\"}" | base64 | sed s/\+/-/g | sed 's/\//_/g' | sed -E s/=+$//)
+```
+
+Then, you can create the JWT payload, providing the correct claim values:
+
+```shell
+# create and encode jwt payload
+jwt_payload=$(echo -n "{\"iss\":\"$issuer\",\"sub\":\"$issuer\",\"aud\":\"$audience\",\"jti\":\"$jti\",\"iat\":$issued_at,\"exp\":$expires_at}" | base64 | sed s/\+/-/g |sed 's/\//_/g' |  sed -E s/=+$//)
+```
+
++Now you can sign the token with the private key previously stored in your local file system:
+
+```shell
+# create signature with openssl dgst using private key in local filesystem
+signature=$(echo -n "${jwt_header}.${jwt_payload}" |  openssl dgst -sha256 -sign ${private_key_path} -binary | base64  | sed s/\+/-/g | sed 's/\//_/g' | sed -E s/=+$//)
+```
+
+At last, you can generate and print the assertion JWT that will be passed in the request:
+
+```shell
+# create the full token
+jwt="${jwt_header}.${jwt_payload}.${signature}"
+echo $jwt
+```
+
+Example of cURL request:
 
 ```shell
 curl --location \
@@ -168,20 +289,20 @@ curl --location \
 
 ### GET /.well-known/jwks.json
 
-Client credentials service exposes an endpoint `.well-known/jwks.json` with an object with the key `keys`, containing an array of JWK values. Those JWKs could be used to verify the signature of the JWT.
+The Client Credentials service exposes the `.well-known/jwks.json` endpoint to obtain an object that contains an array of valid JWK values in its `keys` field. Those JWKs could be used to verify the signature of the JWT that is presented by a client to another service.
 
-The order of the keys in array has not a specific meaning.
+The order of the keys in the array does not have a specific meaning.
 
 The JWK contains:
 
-* **kid**: the key id. This key is set in JWT header. You must use the key with same kid of your JWT to verify the signature. It is not possible to have multiple key with the same `kid`;
+* **kid**: the Key ID. This key is set in the JWT header. You must use the key with same kid of your JWT to verify the signature. It is not possible to have multiple keys with the same `kid`;
 * **use**: use of the JWK. For this service all the keys will be `sig` (signature);
-* **alg**: algorithm used by the key. For this service is used `RS256`;
+* **alg**: algorithm used by the key. For this service, the `RS256` algorithm is used;
 * **kty**: key cryptographic name (`RSA` for RSA keys);
 * **n**: the modulus value of the RSA public key. It is represented as a Base64urlUInt-encoded value;
 * **e**: the exponent value for the RSA public key. It is represented as a Base64urlUInt-encoded value.
 
-Example CURL request:
+Example cURL request:
 
 ```shell
 curl 'http://localhost:8080/.well-known/jwks.json'
@@ -210,11 +331,11 @@ It is important to emphasize that, as stated by [RFC7517](https://tools.ietf.org
 
 ### GET /tokeninfo
 
-Calling this endpoint passing a valid Mia-Platform JWT, it returns 200 with the claims in an object.
-Here it is checked the validity of the JWT, if it is not passed or it is not valid this endpoint returns 401.
-If in the JWT is present an audience, it will be checked with the audience passed in `ACCEPTED_AUDIENCES` env variable.
+Calling this endpoint passing a valid Mia-Platform JWT, it returns a 200 status code and an object containing the claims of the provided JWT.
+Here the validity of the JWT is checked: if the JWT is missing in the request or if it is not valid, this endpoint returns 401.
+If an audience is specified in the JWT, it will be verified against the audiences provided in `ACCEPTED_AUDIENCES` env variable.
 
-Example CURL request:
+Example cURL request:
 
 ```shell
 curl --location --request GET 'http://client-credential-host/tokeninfo' \
@@ -235,83 +356,19 @@ Example response:
 }
 ```
 
-#### Client secret basic
-
-This endpoint generates a new *client id* and *client secret* pair with given *applicationId*. It follows the RFC to [register to a client](https://tools.ietf.org/html/rfc7591).
-
-It returns 201 when credential pair and client is correctly generated, 401 otherwise.
-
-```sh
-curl --location --request POST 'http://client-credential-host/register' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "client_name": "my client name"
-    }'
-```
-
-Example response:
-
-```json
-{
-    "client_id": "rPxwZcgeFRJPgnnabMZrJWMemMBJjaSB",
-    "client_secret": "ugmWIVfZoTBKTXzADXJsJJexuMhCYxocxaKqkOlEYavgcEBr",
-    "client_secret_expires_at": 0,
-    "client_id_issued_at": 1592229239
-}
-```
-
-:::note
-Note that the `client_secret` field will only be available during registration so take care to save it locally.
-:::
-#### Private key JWT
-
-It is possible to pass the `token_endpoint_auth_method` parameter in input set to `private_key_jwt`.
-
-:::note
-You can use [this guide](jwt_keys) to generate JWT public and private key suitable for this operation.
-:::
-
-For this auth method, it is created a client. The *client* information are accessible from the CRUD, so it is possible to set a CMS page and change the permissions of the client directly from the CMS.
-
-It returns 201 when client is correctly generated, 401 otherwise.
-
-```shell
-curl --location --request POST 'http://client-credential-host/register' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "client_name": "my client name",
-    "token_endpoint_auth_method": "private_key_jwt",
-    "public_key": {
-      "kid": "kid",
-      "use": "sig",
-      "kty": "RSA",
-      "alg": "RSA256",
-      "n": "sR6WjRHDNXgzBTgYr-ayhSlxdt65FIrhTytZN9dZczDC8Uqt6Cynstq3eoAfLcrxKAyj4X3J4TRxSEOL78WUisLAADHU6oEsqeuB97kVN4PcPnd63H3naOiLioc2-9L1TtUMVB4H6G5ZkKQAgrwjpHSztJF0iYaXOQhEcBlCynltuEVuyK96tvnDVqXCfhsSFweP7KorcfMj4YYj5OT2ADlAFzBQ2qppd9BpJidHGD6auCsI7vjmNCEq49v9UOiQs2XbjN-ddr9nvNBBK5bVtjGkfUPNt6uAV1AWMboVjobcAnDH2AD8W--3JUl1ffguC_fsHpPjrNoH0hCbPFfEb2YK2DX1vKhYKX3u199gc4B1q0l1JTs8AJcFbf7d63FKa6O-5V97fLK9lJYd8adF8NZiJlXjFCR-LmAYmjxmsBmByImEenEzDxuuubitSWFt47L9eGV9eY7zmnD0FV_jbwXYCcod4R46vnjabzpUcnd3VqiruUwnquHNGgj2yJpT7CMCHpK9dVlMUY8cWIfYXn4si_RrRp_E2EIkWKkSyplBWMjIK_KhjuSi_YOYNSg3OKXOGmYMcCxXUnwPIIW5n-MdbO6WC8bqhpLU1_XisfaL-V8jEOjAs0dQ9dQyvvP9ckrC753FGARXtdqwnyb2d3r3r3cLh-eQo05TyLqHoEk",
-      "e": "AQAB"
-    }
-  }'
-```
-
-Example response:
-
-```json
-{
-    "client_id": "rPxwZcgeFRJPgnnabMZrJWMemMBJjaSB",
-    "client_id_issued_at": 1592229239
-}
-```
-
 ## Client management endpoints
 
-Some of the endpoints exposed by the service are meant to manage clients. These endpoints allow the caller to perform operations such as:
+Some of the endpoints exposed by the Client Credentials service are meant to manage clients. These endpoints allow the caller to perform operations such as:
 
-- Create a new client and set all of its properties, like permissions and audiences. The register endpoint doesn't allow the caller to set the new client permissions or audience because it is meant to allow external applications to create a new client without the privilege of setting its permissions or audience.
+- Create a new client and set all of its properties, like permissions and audiences. The `register` endpoint does not allow the caller to set the new client permissions or audience because it is meant to allow external applications to create a new client without the privilege of assigning it specific authorization properties.
 
 ### POST /clients
 
 This endpoint allows the caller to create a new client with certain authorization properties and with a certain state.
-Contrary to the `/register` endpoint, the `/clients` endpoint isn't meant to be public, since it allows the creation of a new client with certain authorization properties.
-Indeed, the `/clients` endpoint is designed to satisfy all the use cases where a client must be created automatically by some internal service.
+
+:::caution
+Since this endpoint allows the caller to assign permissions and audiences of interest to a client, it should be used by internal services only and should not be made publicly available (contrary to the `/register` endpoint). Indeed, the `/clients` endpoint is designed to satisfy all the use cases where a client must be created automatically by some internal service.
+:::
 
 The `POST /clients` endpoint is very similar to the `POST /register` endpoint, as it accepts all the client information that are currently accepted by the latter, with the addition of the following client parameters:
 
@@ -319,8 +376,15 @@ The `POST /clients` endpoint is very similar to the `POST /register` endpoint, a
 - `audience`: a list of audience identifiers which the client can communicate with.
 - `__STATE__`: the initial CRUD state of the client being created.
 
-:::caution
-Since this endpoint allows the caller to create a client with some permissions and audiences of interest, it should be used by internal services only and should not be made publicly available.
+:::info
+**What is an audience?**
+
+The audience of a service account refers to the intended recipient of a security token that is issued by an authorization server on behalf of the service account. The audience is typically expressed as a URI that identifies the specific service or application that the token is intended for.  
+ By restricting the audience of a token to a specific service or application, you prevent the token from being used by unauthorized parties.
+:::
+
+:::info
+To add custom metadata to the request you can use the `metadata` field in the request payload.
 :::
 
 An example of invocation of the `POST /clients` is the following one:
@@ -353,10 +417,26 @@ An example of response, when a private key client is created, is the following:
 
 ### Update clients settings
 
-At the moment there's no endpoint exposed by the `client-credentials` service to update a client settings, like `permissions` or `audience`.
+At the moment there's no endpoint exposed by the `client-credentials` service to update client settings, like `permissions` or `audience`.
 Such an endpoint would be a simple proxy to the `PATCH /clients` endpoint of the `crud-service` that stores clients information in the first place.
-For this reason, in order to the update a client settings, is recommended to use the `PATCH /clients` endpoint exposed by the `crud-service` that must be deployed together with the `client-credentials` service.
+
+For this reason, in order to update client settings, it is recommended to use the `PATCH /clients` endpoint exposed by the `crud-service` that must be deployed together with the `client-credentials` service.
 The `crud-service` documentation is available [here](../../runtime_suite/crud-service/overview_and_usage).
+
+## Authentication methods
+
+The method used to verify the identity of a client can be of two types:
+  - **Client Secret Basic**: the client includes its `client_id` and `client_secret` in the `Authorization` header of the request. The Authorization header value is a base64-encoded string containing the client id and secret in the format `client_id:client_secret`.  
+  The server decodes the Authorization header value and verifies the client's identity by checking the client id and client secret against its own records.  
+
+  The advantage of using Client Secret Basic authentication is that it provides a simple and standardized method of authenticating clients.
+
+  - **Private Key JWT**: the client authenticates by signing a JWT (JSON Web Token) using its private key.  
+  The client includes an assertion JWT in the authentication request, with specific claims set to appropriate values. The server then verifies the JWT by validating the signature using the client public key (obtained during client creation), and checking that the claims are valid and match its records.  
+  
+  This method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
+
+  We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the client is using.
 
 ## Supported Authentication Flow
 

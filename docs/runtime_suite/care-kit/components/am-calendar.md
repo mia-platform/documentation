@@ -38,7 +38,7 @@ The "availability mode" is used to show the availabilities and exceptions of a s
 
 When the calendar is set in availability mode the events are fetched through the back kit web component [bk-crud-client](../../../business_suite/backoffice/Components/clients#bk-crud-client).
 
-Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](../../../business_suite/backoffice/plugin_navigation#bk-url-parameters)).
+Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](../../../business_suite/backoffice/plugin_navigation#bk-url-parameters).
 
 To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](../../../business_suite/backoffice/Components/data_querying#bk-filters-manager). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
 

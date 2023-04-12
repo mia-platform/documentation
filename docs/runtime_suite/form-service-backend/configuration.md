@@ -209,7 +209,7 @@ More details on the submit URLs APIs can be found at [this page](submit_urls).
 
 ### Form Visualizer Options parameters (`formVisualizerOptions`)
 
-This part of the configuration object allows the customization of the Form Visualizer, in particular the value of the inteval in milliseconds between autosaves and the lookups to perform when exporting form data.
+This part of the configuration object allows the customization of the Form Visualizer, in particular the value of the inteval in milliseconds between autosaves (must be between 1 second and 48 hours) and the lookups to perform when exporting form data.
 
 Here you can find an example of a *formVisualizerOptions* object:
 

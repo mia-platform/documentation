@@ -5,6 +5,39 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "label": "CLI",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "miactl",
+          "items": [
+            {
+              "type": "doc",
+              "id": "cli/miactl/setup"
+            },
+            {
+              "type": "doc",
+              "id": "cli/miactl/commands"
+            },
+            {
+              "type": "doc",
+              "id": "cli/miactl/examples"
+            },
+            {
+              "type": "doc",
+              "id": "cli/miactl/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "cli/miactl/overview"
+          }
+        }
+      ]
+    },
+    {
       "collapsed": true,
       "items": [
         {
@@ -54,80 +87,26 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/set-up-infrastructure/create-project",
-          "type": "doc"
-        },
-        {
-          "label": "Kustomize your configurations",
-          "type": "category",
-          "collapsed": true,
-          "link": {
-            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
-            "type": "doc"
-          },
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/kustomize/projects",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/kustomize/examples",
-              "type": "doc"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/add-environment",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/remove-environment",
-              "type": "doc"
-            }
-          ],
-          "label": "Manage Runtime Environments",
-          "type": "category",
-          "link": {
-            "id": "development_suite/set-up-infrastructure/runtime-environments",
-            "type": "doc"
-          }
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/env-var-vault",
-              "type": "doc"
-            }
-          ],
-          "label": "Manage Environment Variables",
-          "type": "category",
-          "link": {
-            "id": "development_suite/set-up-infrastructure/env-var",
-            "type": "doc"
-          }
-        },
-        {
-          "id": "development_suite/set-up-infrastructure/authorization-flow",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-portal/api-documentations",
+          "id": "development_suite/debugging/telepresence",
           "type": "doc"
         }
       ],
-      "label": "Project Configuration",
+      "label": "Debug",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "development_suite/deploy/deploy",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/deploy/configuration",
+          "type": "doc"
+        }
+      ],
+      "label": "Deploy what you have created",
       "type": "category"
     },
     {
@@ -320,27 +299,24 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/deploy/deploy",
+          "id": "development_suite/identity-and-access-management/console-levels-and-permission-management",
           "type": "doc"
         },
         {
-          "id": "development_suite/deploy/configuration",
+          "id": "development_suite/identity-and-access-management/user-management",
           "type": "doc"
-        }
-      ],
-      "label": "Deploy what you have created",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
+        },
         {
-          "id": "development_suite/debugging/telepresence",
+          "id": "development_suite/identity-and-access-management/service-account-management",
           "type": "doc"
         }
       ],
-      "label": "Debug",
-      "type": "category"
+      "link": {
+        "type": "doc",
+        "id": "development_suite/identity-and-access-management/overview"
+      },
+      "type": "category",
+      "label": "Identity and Access Management"
     },
     {
       "collapsed": true,
@@ -389,22 +365,41 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/console-levels-and-permission-management",
+          "id": "development_suite/set-up-infrastructure/create-project",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/user-management",
-          "type": "doc"
+          "label": "Kustomize your configurations",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/projects",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/examples",
+              "type": "doc"
+            }
+          ]
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/user-settings/user-profile-picture",
+              "id": "development_suite/set-up-infrastructure/add-environment",
               "type": "doc"
             },
             {
-              "id": "development_suite/user-settings/user-companies",
+              "id": "development_suite/set-up-infrastructure/remove-environment",
               "type": "doc"
             },
             {
@@ -412,12 +407,43 @@
               "type": "doc"
             }
           ],
-          "label": "User settings",
-          "type": "category"
+          "label": "Manage Runtime Environments",
+          "type": "category",
+          "link": {
+            "id": "development_suite/set-up-infrastructure/runtime-environments",
+            "type": "doc"
+          }
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-vault",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Environment Variables",
+          "type": "category",
+          "link": {
+            "id": "development_suite/set-up-infrastructure/env-var",
+            "type": "doc"
+          }
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/authorization-flow",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/api-portal/api-documentations",
+          "type": "doc"
         }
       ],
-      "type": "category",
-      "label": "Identity and Access Management"
+      "label": "Project Configuration",
+      "type": "category"
     },
     {
       "collapsed": true,
@@ -436,6 +462,40 @@
       "items": [
         {
           "id": "development_suite/use-cases/grpc",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "development_suite/user-settings/user-profile-picture",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/user-companies",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/feature-preview",
+          "type": "doc"
+        }
+      ],
+      "label": "User settings",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Webhooks and Events",
+      "items": [
+        {
+          "id": "development_suite/webhooks-and-events/webhooks",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/webhooks-and-events/events",
           "type": "doc"
         }
       ]
@@ -805,6 +865,21 @@
       "collapsed": true,
       "items": [
         {
+          "id": "fast_data/connectors/overview_connectors",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/connectors/debezium_cdc",
+          "type": "doc"
+        }
+      ],
+      "label": "Connectors",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
           "id": "fast_data/bucket_storage_support/overview_bucket_storage_support",
           "type": "doc"
         },
@@ -913,6 +988,10 @@
         },
         {
           "id": "tutorial/console/console_handbook",
+          "type": "doc"
+        },
+        {
+          "id": "how_to/console/project_dev_tools_setup",
           "type": "doc"
         },
         {
@@ -1186,6 +1265,25 @@
               "type": "category"
             }
           ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Identification Manager",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-manager/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-manager/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/identification-manager/overview"
+          }
         },
         {
           "collapsed": true,
@@ -1479,6 +1577,10 @@
           "items": [
             {
               "type": "doc",
+              "id": "runtime_suite/care-kit/events"
+            },
+            {
+              "type": "doc",
               "id": "runtime_suite/care-kit/changelog"
             },
             {
@@ -1492,6 +1594,22 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-form-export"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-therapy-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-therapy-select"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-threshold-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-add-plan-modal"
                 }
               ]
             }
@@ -1601,6 +1719,25 @@
             {
               "type": "doc",
               "id": "runtime_suite/crud-service/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "CSV Connector",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/changelog"
             }
           ]
         },
@@ -1814,6 +1951,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Identification Router",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-router/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/identification-router/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/identification-router/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Invoice Service",
           "items": [
             {
@@ -1846,17 +2002,6 @@
             {
               "type": "doc",
               "id": "runtime_suite/jwt-token-validator/changelog"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Kafka Connect MongoDB Configurator",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/kafka-connect-mongodb-configurator/configuration"
             }
           ]
         },
@@ -2045,6 +2190,29 @@
               "id": "runtime_suite/mongodb-reader/changelog"
             }
           ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "O3 DICOM Service",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/api_overview"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/o3-dicom-service/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/o3-dicom-service/overview"
+          }
         },
         {
           "collapsed": true,
@@ -2486,6 +2654,25 @@
             {
               "collapsed": true,
               "type": "category",
+              "label": "Identification Provider Adapter",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/identification-provider-adapter/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/identification-provider-adapter/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/identification-provider-adapter/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
               "label": "Node.js Template",
               "items": [
                 {
@@ -2500,6 +2687,25 @@
               "link": {
                 "type": "doc",
                 "id": "runtime_suite_templates/node.js-template/overview"
+              }
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Verifiable Credential Generator",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/verifiable-credential-generator/configuration"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite_templates/verifiable-credential-generator/changelog"
+                }
+              ],
+              "link": {
+                "type": "doc",
+                "id": "runtime_suite_templates/verifiable-credential-generator/overview"
               }
             }
           ]
@@ -2682,25 +2888,6 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "miactl",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/miactl/setup"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/miactl/changelog"
-            }
-          ],
-          "link": {
-            "type": "doc",
-            "id": "runtime_suite_tools/miactl/overview"
-          }
-        },
-        {
-          "collapsed": true,
-          "type": "category",
           "label": "mlp",
           "items": [
             {
@@ -2754,6 +2941,18 @@
         "id": "release-notes/versions"
       },
       "items": [
+        {
+          "id": "release-notes/v10.7.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v10.7.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v10.6.0",
+          "type": "doc"
+        },
         {
           "id": "release-notes/v10.5.1",
           "type": "doc"

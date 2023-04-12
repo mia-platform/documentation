@@ -128,43 +128,43 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>KAFKA_SASL_MECHANISM</td>
         <td>false</td>
-        <td>defines the authentication mechanism. It can be one of: `plain`, `scram-sha-256`, `scram-sha-512`, `oauthbearer`.</td>
+        <td>defines the authentication mechanism. It can be one of: <code>plain</code>, <code>scram-sha-256</code>, <code>scram-sha-512</code>, <code>oauthbearer</code>.</td>
         <td>plain</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_BASE_URL</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_PATH</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the path of the endpoint for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the path of the endpoint for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_GRANT_TYPE</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type `password` is supported</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type <code>password</code> is supported</td>
         <td>password</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_CLIENT_ID</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the client id for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the client id for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_CLIENT_SECRET</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines the client secret for fetching the OAuth2 token.</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines the client secret for fetching the OAuth2 token.</td>
         <td>-</td>
     </tr>
     <tr>
         <td>KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS</td>
         <td>false</td>
-        <td>In case of `oauthbearer` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)</td>
+        <td>In case of <code>oauthbearer</code> mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)</td>
         <td>60000</td>
     </tr>
     <tr>
@@ -176,13 +176,13 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>KAFKA_MESSAGE_ADAPTER</td>
         <td>false</td>
-        <td>defines which Kafka message adapter to use. Its value can be either `basic` (DB2 adapter), `golden-gate` or `custom`. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td>
+        <td>defines which Kafka message adapter to use. Its value can be either <code>basic</code> (DB2 adapter), <code>golden-gate</code>, <code>debezium</code> or <code>custom</code>. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td>
         <td>basic</td>
     </tr>
     <tr>
         <td>KAFKA_PROJECTION_CHANGES_FOLDER</td>
         <td>false</td>
-        <td>path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).</td>
+        <td>path where has been mounted the <code>kafkaProjectionChanges.json</code> configuration (v3.4.0 or above).</td>
         <td>-</td>
     </tr>
     <tr>
@@ -230,7 +230,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>KAFKA_PROJECTION_UPDATES_FOLDER</td>
         <td>false</td>
-        <td>path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).</td>
+        <td>path to the folder that contains the file <code>kafkaProjectionUpdates.json</code>, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).</td>
         <td>-</td>
     </tr>
     <tr>
@@ -242,7 +242,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>CA_CERT_PATH</td>
         <td>false</td>
-        <td>the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`</td>
+        <td>the path to the CA certificate, which should include the file name as well, e.g. <code>/home/my-ca.pem</code></td>
         <td>-</td>
     </tr>
     <tr>
@@ -260,7 +260,7 @@ Here below, instead, all the configurations the service accepts are explained.
     <tr>
         <td>USE_POS_AS_COUNTER</td>
         <td>false</td>
-        <td>If `KAFKA_MESSAGE_ADAPTER` is set to `golden-gate` it will use the `pos` field as timestamp for ingestion kafka messages. When set to `false` it will use the default `timestamp` property in the message provided by kafka like the other adapters do. Setting this property to `true` with a `KAFKA_MESSAGE_ADAPTER` **different** from `golden-gate` will have no effect.</td>
+        <td>If <code>KAFKA_MESSAGE_ADAPTER</code> is set to <code>golden-gate</code> it will use the <code>pos</code> field as timestamp for ingestion kafka messages. When set to <code>false</code> it will use the default <code>timestamp</code> property in the message provided by kafka like the other adapters do. Setting this property to <code>true</code> with a <code>KAFKA_MESSAGE_ADAPTER</code> <b>different</b> from <code>golden-gate</code> will have no effect.</td>
         <td>true</td>
     </tr>
 </table>
@@ -289,6 +289,7 @@ The purpose of the Kafka adapter is allowing the correct reading of these messag
 Since a Real Time Updater is connected to one System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, between one of the following three options (further details in the paragraphs below):
 - `DB2`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
 - `Golden Gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) type CDC;
+- `Debezium`, based on the [Debezium](https://debezium.io/documentation/reference/2.1/tutorial.html) type CDC;
 - `Custom`, in case you need a completely customized message adapter (you'll be requested to write the implementation code); 
 
 When the System of Records has been created, saving the configuration will automatically create a new Real Time Updater service, which can be viewed in the _Microservices_ section of the console.
@@ -308,24 +309,9 @@ The message should include the following properties:
 - `value`: it is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 - `offset`: it is the offset of the Kafka message.
 
-Example of a delete operation
-
-```text
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: null
-timestamp: '1234556789'
-offset: '100'
-```
-
-Example of an upsert:
-```text
-key: `{"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"}`
-value: `{"NAME": 456}`
-timestamp: '1234556789'
-offset: '100'
-```
-
 These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
+
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#ibm-infosphere-data-replication-for-db2) .
 
 :::warning
 This Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
@@ -337,22 +323,24 @@ This Kafka Message Adapter has been created to have a format supported by [Oracl
 
 In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
 
-The following is an example of `value` for an insert operation:
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#oracle-goldengate) .
 
-```JSON
-{
-  'table': 'MY_TABLE',
-  'op_type': 'I',
-  'op_ts': '2021-02-19 16:03:27.000000',
-  'current_ts': '2021-02-19T17:03:32.818003',
-  'pos': '00000000650028162190',
-  'after': {
-    'USER_ID': 123,
-    'FISCAL_CODE': 'the-fiscal-code-123',
-    'COINS': 300000000,
-  },
-}
-```
+#### Debezium
+
+The Debezium kafka message adapter is meant to accept Debezium generated kafka messages with the following properties:
+
+- **before**: optional value that indicates the data values before the operation execution
+- **after**: optional value that indicates the data values after the operation execution
+- **op**: optional value that indicates the type of operation, `c` for create/insert, `u` for update and `d` for delete
+
+These are the main properties used by the adapter and the Real Time Updater but you can have other properties like `ts_ms` or `source` depending on which DB is Debezium working with.
+
+Debezium has also some "special" events which are handled in their own way:
+- **Snapshot**: Snapshot events are messages that indicate the state of the DB up until that point in time. This messages are sent when the connector does not find any offsets from where to start processing, therefore they are handled as normal insert messages.
+- **Tombstone**: Tombstone events are messages sent after a normal delete message and are only useful for kafka itself and its topic compression policies. For this reason the adapter will ignore and skip them.
+- **Truncate**: Truncate events are messages sent when an entire table is emptied. Unfortunately we **do not support** this kind of messages at the moment and they will be skipped.
+
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#debezium) .
 
 #### Custom
 
@@ -371,6 +359,8 @@ To make this work, you need to create a `Custom Kafka Message Adapter` inside _R
 
 If the `value` is null, it is a delete operation.
 The `keyObject` **cannot** be null.
+
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#custom) .
 
 :::note
 To support a Primary Key update, the `before`, `after` and `operationPosition` fields should be included in the adapter. (Hint: if not present, a simple `operationPosition` value might be the Kafka message timestamp).
