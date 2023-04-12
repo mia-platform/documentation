@@ -13,7 +13,7 @@ _April 13, 2023_
 
 #### Management of Providers trough the Console
 
-Starting from today it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (GitProvider, Secret Manager and CI/CD Tool) within a brand new dedicated section - named "Providers" - inside the "Company Overview" area. 
+Starting from today it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (GitProvider, Secret Manager and CI/CD Tool) within a brand new dedicated section - named "Providers" - inside the "Company Overview" area.  
 
 Previously, this was only possible through the use of specific APIs exposed on the API Portal, while now you will be able to do so directly on the Console, in a guided, simple and intuitive way.
 
@@ -27,7 +27,7 @@ To learn more about the providers supported by the Console and for a detailed ex
 This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md) page for further information.
 :::
 
-The Low Code experience when configuring the Backoffice is now evolving towards a **No Code** Configuration! 
+The Low Code experience when configuring the Backoffice is now evolving towards a **No Code** Configuration!  
 In the Console section dedicated to Backoffice, you can now configure your Backoffice pages and layouts, with a fancy and easy to use UI! It is possible to configure both micro-lc Layout and all the created compose Pages in a No Code fashion. From the left hand side menu, it is possible to choose one of the component in the page, and on the right hand side it is possible to see the drawer with all the properties to be configured. Moreover, the middle section of the page shows the updated preview aligned with all the changes.
 
 ![Mia Platform Backoffice No Code Configuration](./img/10.8/backoffice-no-code.png)
@@ -39,15 +39,13 @@ Don't miss all the other Backoffice improvements in the [dedicated section](#bac
 We have introduced a new section named `User Preferences`, in which SaaS users can customize their experience in Console according to their own preferences.  
 For instance, inside this section, it is now possible to manage the receipt of an invitation email that is sent when you are added to a Company. This section is accessible from the dropdown menu of the Console Launchbar when hovering over the user avatar.
 
-### Improvements
-
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
 
 * We fixed a bug that wrongly showed the CronJobs in the list of Microservices inside of the Authorization section
 * It has been solved a bug that prevented the correct merge of configurations within a branch including `/` in its name
-* We have fixed an issue with paginated identities tables that were changing the list order of some identities each time the page was refreshed 
+* We have fixed an issue with paginated identities tables that were changing the list order of some identities each time the page was refreshed
 
 ## Fast Data
 
@@ -79,8 +77,8 @@ The Fast Data No Code ER Schema includes improved warning and error management. 
 
 This version addresses a few bugs in the No Code ER Schema. Here is a comprehensive list:
 
-- Fix a bug that prevents rules, which include Mongo query operations, from generating invalid conditions in the ER Schema.
-- Improved validation for the rules editor when dealing with nested Mongo queries.
+* Fix a bug that prevents rules, which include Mongo query operations, from generating invalid conditions in the ER Schema.
+* Improved validation for the rules editor when dealing with nested Mongo queries.
 
 ## Marketplace
 
@@ -97,7 +95,6 @@ This version addresses a few bugs in the No Code ER Schema. Here is a comprehens
 #### Components update nesting state in `bk-layout-container`
 
 `bk-search-bar` and `bk-breadcrumb` correctly update their nesting state on layout change inside `bk-layout-container`
-
 
 ## How to update your Console
 
