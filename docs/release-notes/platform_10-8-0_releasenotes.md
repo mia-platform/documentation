@@ -17,7 +17,7 @@ Starting from today it will be possible to manage the creation, configuration, a
 
 Previously, this was only possible through the use of specific APIs exposed on the API Portal, while now you will be able to do so directly on the Console, in a guided, simple and intuitive way.
 
-![Providers Section](./img/10.8-providers-section.png)
+![Providers Section](./img/10.8/providers-section.png)
 
 To learn more about the providers supported by the Console and for a detailed explanation of the "Providers" section, [go to the official documentation](/development_suite/set-up-infrastructure/providers-management.md).
 
