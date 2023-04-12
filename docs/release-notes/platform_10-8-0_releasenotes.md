@@ -49,7 +49,7 @@ The CSV Connector plugin only comes with the core service. In this case, however
 
 #### Debezium PostgreSQL plugin
 
-You can now find in the Marketplace the [Debezium connector plugin for PostgreSQL](/fast_data/connectors/debezium_cdc.md#postgresql) databases.
+The rollout of the supported Debezium Plugins is going on! You can now find in the Marketplace the [Debezium connector plugin for PostgreSQL](/fast_data/connectors/debezium_cdc.md#postgresql) databases with the pre-configured config map for Debezium Server to connect directly to a PostgreSQL Database.
 
 ### Improvements
 
