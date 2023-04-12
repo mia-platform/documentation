@@ -7,6 +7,10 @@ The `Flow Manager Router` behaves as a proxy of events for the flow manager: bas
 
 The body of the request is the same event body expected by flow manager service.
 
+:::info
+This service communicates via REST by default, but it can also rely on KAFKA if the environment variable `MODE` is set to `KAFKA`.
+:::
+
 ## Endpoints
 
 The plugin exposes the following endpoints:

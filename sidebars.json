@@ -2851,33 +2851,6 @@
         {
           "collapsed": true,
           "type": "category",
-          "label": "miactl",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/miactl/setup"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/miactl/commands"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/miactl/examples"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite_tools/miactl/changelog"
-            }
-          ],
-          "link": {
-            "type": "doc",
-            "id": "runtime_suite_tools/miactl/overview"
-          }
-        },
-        {
-          "collapsed": true,
-          "type": "category",
           "label": "mlp",
           "items": [
             {
