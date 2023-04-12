@@ -84,7 +84,19 @@ This version addresses a few bugs in the No Code ER Schema. Here is a comprehens
 
 ## Marketplace
 
+### New Marketplace Components
+
+#### DICOM Service - v1.0.1
+
+The O3 DICOM Service is a microservice that allows you to interact with a DICOM PACS, in order to manage worklists,
+exams and notifications coming from the PACS.
+
 ### Marketplace Updates
+
+#### Form Service BE - v1.7.1
+
+Added an Excel compatibility flag to the CSV form export feature.
+Fixed a bug which was causing a wrong number of forms returned in a CSV.
 
 ## Backoffice - 1.3.8
 
