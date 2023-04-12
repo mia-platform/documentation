@@ -19,7 +19,7 @@ Previously, this was only possible through the use of specific APIs exposed on t
 
 ![Providers Section](./img/10.8/new-providers-section.png)
 
-To learn more about the providers supported by the Console and for a detailed explanation of the "Providers" section, [go to the official documentation](/development_suite/set-up-infrastructure/providers-management.md).
+To learn more about the providers supported by the Console and for a detailed explanation of the "Providers" section, [go to the official documentation](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 #### No Code Backoffice Configurator
 
