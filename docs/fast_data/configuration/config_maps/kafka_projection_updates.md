@@ -28,19 +28,18 @@ The Kafka Projection Updates is made of the following fields
   - `__lookup__`: The lookup Strategy means the Projection Updates will be handled by the [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) method. So before using this value make sure you have correctly configured all the parts for the Single View Patch architecture in your project.
   - `__fromFile__`: This lets you specify a Javascript file path which will execute the a custom Strategy on the Projection Updates message and return an array of projection change identifiers. This is the most customizable option and should only be used when the `__automatic__` Strategy is not enough for your case.
 
-The `__fromFile__` Strategy expects a path to a Javascript file, like so `__fromFile__[CUSTOM_STRATEGY.js]`. This Javascript file should export a default function with the following parameters:
+The `__fromFile__` Strategy expects a path to a Javascript file, like so `__fromFile__[CUSTOM_STRATEGY.js]`. This Javascript file should export a default async generator function with the following parameters:
 
 - `strategyContext`: Strategy context object composed of two properties:
-  - `logger`: [Pino](https://github.com/pinojs/pino) logger to print out on kubernetes logs
-  - `dbMongo`: Your [MongoDB Database](https://mongodb.github.io/node-mongodb-native/4.13/classes/Db.html) instance where the projections are stored
+  - `logger`: [Pino](https://github.com/pinojs/pino) logger to print out useful service logs
+  - `dbMongo`: the configured [MongoDB Database](https://mongodb.github.io/node-mongodb-native/5.2/classes/Db.html) instance where the projections are stored
 - `updateEvent`: The [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) message.
 
 Here's an example of what that file could look like (let's say our `CUSTOM_STRATEGY` is called `myCustomStrategy`):
 
 ```js title="myCustomStrategy.js"
-module.exports = async function myCustomStrategy ({logger, dbMongo}, updateEvent) {
-  return [{ 
-    IDENTIFIER_FIELD: updateEvent.after.FIELD
-  }]
+// note: this has to be an AsyncGenerator
+module.exports = async function* myCustomStrategy ({ logger, dbMongo }, updateEvent) {
+  yield { IDENTIFIER_FIELD: updateEvent.after.FIELD }
 }
 ```

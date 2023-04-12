@@ -41,7 +41,8 @@ The Projection Changes Schema is made of the following fields
 All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
 :::
 
-In some cases you may want a finer control on the creation of the projection changes identifier, for that you can use the `__fromFile__` function on the identifier property. Here's an example: 
+In some cases you may want a finer control over the creation of the projection changes identifier. Such control can be achieved within service configuration providing a _custom function_, which is applied to each document retrieved by the last step of the strategy path (in this case records extracted from `BASE_PROJECTION` collection).
+The custom function file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file each path that requires using a custom function should specify as identifier the `__fromFile__[<filename>]` keyword, where within squared brackets is provided the filename containing the custom function. Here's an example: 
 
 ```json title="projectionChangesSchema.json"
 {
@@ -51,7 +52,7 @@ In some cases you may want a finer control on the creation of the projection cha
       "paths": [
         {
           "path": [ "PROJECTION_2", "PROJECTION_1", "BASE_PROJECTION"],
-          "identifier": "__fromFile__[CUSTOM_FUNCTION]"
+          "identifier": "__fromFile__[myCustomFunction.js]"
         }
       ]
     }
@@ -59,22 +60,25 @@ In some cases you may want a finer control on the creation of the projection cha
 }
 ```
 
-As you can see, in this example we're referencing a file called `CUSTOM_FUNCTION`. This file needs to a be a Javascript file exporting a default function with the following parameters:
+As you can see, in this example we're referencing a file called `myCustomFunction.js`. This file needs to a be a Javascript file exporting a default async generator function with the following parameters:
 
-- `logger`: [Pino](https://github.com/pinojs/pino) logger to print out on kubernetes logs
-- `mongodbInstance`: Your [MongoDB Database](https://mongodb.github.io/node-mongodb-native/4.13/classes/Db.html) instance where the projections are stored
-- `document`: The document of the *Base projection* \*\* found by the strategy
+- `strategyContext`: strategy context object composed of two properties:
+  - `logger`: [Pino](https://github.com/pinojs/pino) logger to print out useful service logs
+  - `dbMongo`: the configured [MongoDB Database](https://mongodb.github.io/node-mongodb-native/5.2/classes/Db.html) instance where the projections are stored
+- `document`: the document of the *base projection* found by the strategy up to this point
 
-Here's an example of what that file could look like (let's say our `CUSTOM_FUNCTION` is called `myCustomFunction.js`):
+Here's an example of what that file containing the custom function could look like:
 
 ```js title="myCustomFunction.js"
-module.exports = async function myCustomFunction (logger, mongodbInstance, document) {
+// note: this has to be an AsyncGenerator
+module.exports = async function* myCustomFunction ({ logger, dbMongo }, document) {
   const query = { SOME_FIELD: document.SOME_FIELD }
-  const documentFound = await mongodbInstance.collection('SOME_COLLECTION').findOne(query)
-  return [{
+  const documentFound = await dbMongo.collection('SOME_COLLECTION').findOne(query)
+  
+  yield {
     IDENTIFIER_FIELD_1: documentFound.FIELD_1,
     IDENTIFIER_FIELD_2: documentFound.FIELD_2
-  }]
+  }
 }
 ```
 
