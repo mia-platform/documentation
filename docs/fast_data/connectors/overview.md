@@ -12,7 +12,7 @@ Fast Data uses an event streaming platform to ingest in near real-time all the m
 Depending on how changes are produced, where your source data is stored and how they can be accessed there can be different ways to produce the corresponding change event on the Fast Data ingestion topics.
 The components in charge of transmitting the changes from your systems to the event streaming platform are generally known as **Connectors**.
 
-When data is stored on a database and the changes to be monitored are the action on the database itself, it is usually recommended to exploit a Change Data Capture (CDC) system. This type of systems work by detecting changes that take place on the database and emit the corresponding events in near real-time on the configured event streaming platform, so that subsequent components can process the events. Examples of database on which a CDC can be instantiated are:
+When data is stored on a database and the changes to be monitored are the action on the database itself, exploiting a Change Data Capture (CDC) system is usually recommended. This system works by detecting changes in the database and emitting the corresponding events in near real-time on the configured event streaming platform so that subsequent components can process the events. Examples of databases on which a CDC can be instantiated are:
 
 - [Oracle DB](https://www.oracle.com/database/)
 - [IBM DB2](https://www.ibm.com/products/db2/database)
