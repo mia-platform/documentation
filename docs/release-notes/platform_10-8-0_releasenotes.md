@@ -39,6 +39,8 @@ Don't miss all the other Backoffice improvements in the [dedicated section](#bac
 We have introduced a new section named `User Preferences`, in which SaaS users can customize their experience in Console according to their own preferences.  
 For instance, inside this section, it is now possible to manage the receipt of an invitation email that is sent when you are added to a Company. This section is accessible from the dropdown menu of the Console Launchbar when hovering over the user avatar.
 
+![Mia Platform User Preferences section](./img/10.8/user-preferences.png)
+
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
