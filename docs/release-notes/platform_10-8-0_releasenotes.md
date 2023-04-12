@@ -47,7 +47,16 @@ You can now find in the Marketplace the [Debezium connector plugin for PostgreSQ
 
 ### Improvements
 
+#### Managing Warnings and Errors in a No-Code ER Schema
+
+The Fast Data No Code ER Schema includes improved warning and error management. It provides notifications in case the ER Schema has an invalid structure and warnings related to non-existing fields in conditions. It also validates incomplete or invalid rules.
+
 ### Bug Fix
+
+This version addresses a few bugs in the No Code ER Schema. Here is a comprehensive list:
+
+- Fix a bug that prevents rules, which include Mongo query operations, from generating invalid conditions in the ER Schema.
+- Improved validation for the rules editor when dealing with nested Mongo queries.
 
 ## Marketplace
 
