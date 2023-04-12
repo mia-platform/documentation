@@ -31,7 +31,7 @@ Some connectors you'll find in the Marketplace:
 
 - [CSV Connector](/runtime_suite/csv-connector/configuration.md)
 - [Debezium plugin Connectors](/fast_data/connectors/debezium_cdc.md#debezium-server-configuration)
-- Kafka Connect Configurator (coming soon)
+- Kafka Connect Configurator (only available for those who have the Confluent license)
 
 ## Change Data Capture Systems
 
