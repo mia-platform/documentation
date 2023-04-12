@@ -32,8 +32,12 @@ In the Console section dedicated to Backoffice, you can now configure your Backo
 
 ![Mia Platform Backoffice No Code Configuration](./img/10.8/backoffice-no-code.png)
 
-
 Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---138)!
+
+#### User Preferences section (only available for SaaS users)
+
+We have introduced a new section named `User Preferences`, in which SaaS users can customize their experience in Console according to their own preferences.  
+For instance, inside this section, it is now possible to manage the receipt of an invitation email that is sent when you are added to a Company. This section is accessible from the dropdown menu of the Console Launchbar when hovering over the user avatar.
 
 ### Improvements
 
