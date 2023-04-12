@@ -3,6 +3,24 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.0.0] - 2023-04-11
+
+### Versioning
+
+- Dev dependencies updated
+- `typescript` to `^5.0.4`
+
+### Fixed
+
+- dropdown menus are correctly picking their render roots when inside modal or side form
+- on page layout/advanced editing blue dot is deactivated when not in advanced
+- form field keys are scoped with `activeId` to force re-render of select components
+- parcel advanced mode do not spawn configuration goto button
+  
+### Added
+
+- border top line on iframe status bar
+
 ## [0.7.3] - 2023-03-27
 
 ### Versioning

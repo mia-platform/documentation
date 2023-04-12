@@ -77,13 +77,13 @@ Refer to [KafkaJS](https://kafka.js.org/) for the configuration meanings.
 
 ## Identification Logic
 In order to customize the identification logic or integrate an external identification service you can modify the following files: 
-- `/src/lib/identification.ts`: contains custom identification logic
-- `/src/restHandlers/identification.ts` and `/src/kafkaHandlers/identification.ts`: contains identification handlers
-- `/src/clients/identificationClient.ts`: contains the logic to perform calls to external service
-- `/src/restHandlers/callback.ts`: contains the logic to correctly manage callback from external service
+- [/src/lib/identification.ts](/src/identification.ts): contains custom identification logic
+- [/src/restHandlers/identification.ts](/src/restHandlers/identification.ts) and [/src/kafkaHandlers/identification.ts](/src/kafkaHandlers/identification.ts): contains identification handlers
+- [/src/clients/identificationClient.ts](/src/clients/identificationClient.ts): contains the logic to perform calls to external service
+- [/src/restHandlers/callback.ts](/src/restHandlers/callback.ts): contains the logic to correctly manage callback from external service
 
 ## Identification Data
 The identification data extracted can be modified before send them to main flow manager. 
-In particular, a mapping function, defined in `/src/services/mainFlowDataMapping.ts`,  is applied by default in order to map the extracted data to the identification manager schema. 
+In particular, a mapping function, defined in [/src/services/mainFlowDataMapping.ts](/src/services/mainFlowDataMapping.ts),  is applied by default in order to map the extracted data to the identification manager schema. 
 
 In order to use this template inside the [identification manager application](../../runtime_suite/identification-manager/overview) the extracted data have to follow the schema expected by the application.
