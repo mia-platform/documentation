@@ -21,6 +21,20 @@ Previously, this was only possible through the use of specific APIs exposed on t
 
 To learn more about the providers supported by the Console and for a detailed explanation of the "Providers" section, [go to the official documentation](/development_suite/set-up-infrastructure/providers-management.md).
 
+#### No Code Backoffice Configurator
+
+:::info
+This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md) page for further information.
+:::
+
+The Low Code experience when configuring the Backoffice is now evolving towards a **No Code** Configuration! 
+In the Console section dedicated to Backoffice, you can now configure your Backoffice pages and layouts, with a fancy and easy to use UI! It is possible to configure both micro-lc Layout and all the created compose Pages in a No Code fashion. From the left hand side menu, it is possible to choose one of the component in the page, and on the right hand side it is possible to see the drawer with all the properties to be configured. Moreover, the middle section of the page shows the updated preview aligned with all the changes.
+
+![Mia Platform Backoffice No Code Configuration](./img/10.8/backoffice-no-code.png)
+
+
+Don't miss all the other Backoffice improvements in the [dedicated section](#backoffice---138)!
+
 ### Improvements
 
 ### Bug Fix
