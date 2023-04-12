@@ -13,7 +13,7 @@ _April 13, 2023_
 
 #### Management of Providers trough the Console
 
-Starting from today it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (GitProvider, Secret Manager and CI/CD Tool) within a brand new dedicated section - named "Providers" - inside the "Company Overview" area.  
+Starting from today it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (GitProvider, Secret Manager and CI/CD Tools) within a brand new dedicated section - named "Providers" - inside the "Company Overview" area.  
 
 Previously, this was only possible through the use of specific APIs exposed on the API Portal, while now you will be able to do so directly on the Console, in a guided, simple and intuitive way.
 
