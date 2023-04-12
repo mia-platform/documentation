@@ -47,7 +47,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 * We fixed a bug that wrongly showed the CronJobs in the list of Microservices inside of the Authorization section
 * It has been solved a bug that prevented the correct merge of configurations within a branch including `/` in its name
-* We have fixed an issue with paginated identities tables that were changing the list order of the identities each time the page was refreshed 
+* We have fixed an issue with paginated identities tables that were changing the list order of some identities each time the page was refreshed 
 
 ## Fast Data
 
