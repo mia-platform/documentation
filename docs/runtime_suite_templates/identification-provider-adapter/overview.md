@@ -3,10 +3,10 @@ id: overview
 title: Overview
 sidebar_label: Overview
 ---
-This template is meant to be the starting point to build a new typescript project that implements an identification step to interact with the [identification manager application](../../runtime_suite/identification-manager/overview.md).
+This template is meant to be the starting point to build a new typescript project that implements an identification step to interact with the [identification manager application](../../runtime_suite/identification-manager/overview).
 
 ## Endpoints
-The endpoints exposed are designed to be compatible with either Kafka or REST [flow manager service](../../runtime_suite/flow-manager-service/overview.md), that means the responses are asynchronous. 
+The endpoints exposed are designed to be compatible with either Kafka or REST [flow manager service](../../runtime_suite/flow-manager-service/overview), that means the responses are asynchronous. 
 
 The following events are sent by default by the service:
 - identificationCompleted
