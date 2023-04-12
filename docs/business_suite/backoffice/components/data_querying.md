@@ -12,7 +12,7 @@ Manages the display, application, and modification of filters.
 ```
 
 :::warning
-`bk-expanded-filters` should not be included in the same configuration as [`bk-filters-manager`](#bk-filter-drawer)/[`bk-filters-manager`](#bk-filters-manager) since they listen and emit the same events and clashing bahavior might occur.
+`bk-expanded-filters` should not be included in the same configuration as [`bk-filters-drawer`](#bk-filter-drawer)/[`bk-filters-manager`](#bk-filters-manager) since they listen and emit the same events and clashing behavior might occur.
 :::
 
 Displays a grid of [filters](../core_concepts.md#filters), with which it is possible to interacted by editing the `value` field.
