@@ -7,12 +7,13 @@ sidebar_label: Structure
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
 :::
 
-The first section of the configurator targets the general structure of the Backoffice dividing it into four tabs:
+The first section of the configurator targets the general structure of the Backoffice. It is divided into five tabs:
 
 1. [pages](#pages), where you can overview the Backoffice structure and quickly adding or removing pages,
-2. [advanced](#advanced-configuration), from which it is possible to design the Backoffice layout accessing the raw configuration,
-3. [settings](#settings), where Backoffice global and shared settings resides, and
-4. [webserver configuration](#webserver-configuration), in which settings regarding the underling server are made accessible.
+2. [layout](#layout), where you can configure the Backoffice layout in a no-code fashion,
+3. [settings](#settings), where Backoffice global and shared settings reside,
+4. [webserver configuration](#webserver-configuration), where settings regarding the underlying server are made accessible, and
+5. [advanced](#advanced-configuration), from which it is possible to review and edit the raw configuration.
 
 ![First section](img/structure_first-section.png)
 
@@ -101,37 +102,79 @@ From left to right, available actions are:
 - _edit details_: to re-open the [page creation wizard](#create-new-page) in edit mode;
 - _delete_: to delete the page.
 
-## Advanced configuration
+## Layout
 
-The _Advanced configuration_ tab is built to give the highest degree of configurability, providing access to the final
-JSON configuration. In this visualization the page is divided in two section, a **code editor** on the left and a
-**live preview** on the right.
+Through the _Layout_ tab you can configure your Backoffice [layout](https://micro-lc.io/docs/guides/layout) components in a
+no-code fashion.
 
-![Advanced configuration](img/structure_advanced.png)
+In this tab, the configurator is divided into three sections: 
+- a left menu that lists the components composing the layout,
+- a central live, interactive preview, and
+- a right menu where single component properties can be configured.
 
-The editor on the left is where the configuration can be viewed and edited. It supports both **JSON** and **YAML** with the
-possibility to switch (and convert the content) using the selector in the bottom left corner.
+![Layout tab](img/structure_layout.png)
+
+### Components list
+
+The drawer on the left of the page shows a list of all the **custom components** (i.e., not-standard HTML tags) used in
+the layout configuration. The items will be nested according to the actual DOM tree.
 
 :::tip
-The editor will help you writing the configuration hinting the correct JSON schema and validating the content live.
+The only standard HTML tags allowed to be shown in the left menu are `<header>`, `<main>`, `<aside>`, and `<footer>`. These
+tags – which are containers with a semantic meaning – may help structuring the components tree.
 :::
 
-The updates made with the editor are not immediately reflected in the preview on the right: only after the **"Apply"
-button** is clicked the modification are saved and the preview is refreshed and aligned with the configuration.
+Selecting an item from this list will **highlight** the corresponding component in the [central preview](#live-preview) and
+show its **properties** for editing in the [right drawer](#components-properties-editor).
 
-:::warning
-Any modification made with the editor **will not be saved** unless the _"Apply"_ button is clicked.
-:::
+![Left menu selected item](img/structure_layout-left-menu-selected.png)
 
-The preview has two modes, one where you can **interact with the page** as you would with the final Backoffice, and one where
-an overlay is placed on top of the page allowing you to **select components** in page without triggering their normal
-click behavior. You can switch between this two modes with the selector in the bottom left corner of the preview (or
-with key keyboard shortcut `CTRL + Space`).
+Components can be **hidden** from the page unchecking the box on their left. Keep in mind that components will just be hidden,
+and not removed from the DOM (technically speaking a `display: none` styling will be applied to them). To remove components
+from the page entirely you have to resort to the [advanced configuration](#advanced-configuration).
+
+![Left menu hidden item](img/structure_layout-left-menu-hidden.png)
+
+### Live preview
+
+The center of the page shows a live preview of what the final layout will look like.
+
+The preview has two modes, one where you can **interact with the page** as you would do with the final Backoffice, and one
+where an overlay is placed on top of the page allowing you to **select components** in page without triggering their
+normal click behavior. You can switch between this two modes with the selector in the bottom left corner of the preview
+(or with key keyboard shortcut `CTRL + Space`).
+
+![Preview interaction](img/structure_layout-preview-interact.png)
+
+In "select" mode, a click on a component will **highlight** it, **select** it in the [left menu](#components-list), and
+show its **properties** for editing in the [right drawer](#components-properties-editor).
 
 Since the preview is a real, functioning Backoffice, components may fire calls to backend or Web APIs (e.g., navigation
 events or local storage accesses). To avoid disrupting the configuration flow, these events are caught and mocked. You
 will receive **notifications** regarding them – alongside with any **error** that may occur in page – in the notification
-center in the bottom right corner of the page.
+center in the bottom right corner of the preview.
+
+### Components properties editor
+
+The drawer on the right of the page allows you to view and edit the properties of the components in page through a
+system of forms.
+
+When a component is selected (through the [left menu](#components-list) or the [preview](#live-preview)), the right
+menu will show its properties possibly divided into _basic_ and _advanced_ for an easier consultation.
+
+![Right menu](img/structure_layout-right-menu.png)
+
+Different properties will have different means of editing – depending on the type of the property itself –. From a high-level point of view,
+they can be divided into **primitive** properties, which can be edited directly from the menu, and **non-primitive** properties,
+for which a modal will be spawned.
+
+![Right menu modal](img/structure_layout-right-menu-modal.png)
+
+:::tip
+Modals have the option to turn on an **Advanced mode** that will make available a code editor to edit the property.
+
+![Right menu modal advanced mode](img/structure_layout-right-menu-modal-advanced.png)
+:::tip
 
 ## Settings
 
@@ -219,3 +262,32 @@ This section allows you to specify [additional headers](https://micro-lc.io/add-
 include in static files responses.
 
 ![Entry point](img/structure_webserver_headers.png)
+
+## Advanced configuration
+
+The _Advanced configuration_ tab is built to give the highest degree of configurability, providing access to the final
+JSON configuration. In this visualization the page is divided in two section, a **code editor** on the left and a
+**live preview** on the right.
+
+![Advanced configuration](img/structure_advanced.png)
+
+The editor on the left is where the configuration can be viewed and edited. It supports both **JSON** and **YAML** with the
+possibility to switch (and convert the content) using the selector in the bottom left corner.
+
+:::tip
+The editor will help you writing the configuration hinting the correct JSON schema and validating the content live.
+:::
+
+The updates made with the editor are not immediately reflected in the preview on the right: only after the **"Apply"
+button** is clicked the modification are saved and the preview is refreshed and aligned with the configuration.
+
+:::warning
+Any modification made with the editor **will not be saved** unless the _"Apply"_ button is clicked.
+:::
+
+Since the preview is a real, functioning Backoffice, components may fire calls to backend or Web APIs (e.g., navigation
+events or local storage accesses). To avoid disrupting the configuration flow, these events are caught and mocked. You
+will receive **notifications** regarding them – alongside with any **error** that may occur in page – in the notification
+center in the bottom right corner of the page.
+
+![Advanced configuration notification](img/structure_advanced-notification.png)
