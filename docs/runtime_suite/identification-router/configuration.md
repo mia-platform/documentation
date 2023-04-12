@@ -11,8 +11,9 @@ The `Flow Manager Router` needs the following environment variables to work prop
 - MAX_RETRIES  max number of retries performed by the service
 - RETRIES_DELAY_MS delay in milliseconds between two retries
 
-## Configuration File
-The configuration files has the following schema:
+## SubFlows Configuration File
+
+The configuration file has the following schema:
 
 ```json
 {
@@ -72,5 +73,88 @@ Below, an example of a valid configuration file:
     "rules": {}
   }
 ]
+```
 
+## Kafka Configuration File
+
+In order to enable Kafka usage, the following environment variables are required:
+- MODE=`KAFKA`
+- KAFKA_CONFIGURATION_FILE_PATH path to configuration file with kafka config
+
+The configuration file has the following schema:
+
+```json
+{
+  "type": "object",
+  "required": [
+    "brokers",
+    "authMechanism",
+    "username",
+    "password",
+    "consumerConfig",
+    "producerConfig"
+  ],
+  "properties": {
+    "brokers": {
+      "type": "string"
+    },
+    "authMechanism": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "consumerConfig": {
+      "type": "object",
+      "required": [
+        "groupId",
+        "eventsTopic",
+        "notificationsTopic"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "string"
+        },
+        "eventsTopic": {
+          "type": "string"
+        },
+        "notificationsTopic": {
+          "type": "string"
+        }
+      }
+    },
+    "producerConfig": {
+      "type": "object",
+      "required": [
+        "mainFlowTopic"
+      ],
+      "properties": {
+        "mainFlowTopic": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+
+Below, an example of a valid configuration file:
+```json
+{
+  "brokers": "broker:9093",
+  "authMechanism": "PLAIN",
+  "username": "username",
+  "password": "password",
+  "consumerConfig": {
+    "groupId": "router-0",
+    "eventsTopic": "router-events",
+    "notificationsTopic": "router-notification"
+  },
+  "producerConfig": {
+    "mainFlowTopic": "main-flow"
+  }
+}
 ```

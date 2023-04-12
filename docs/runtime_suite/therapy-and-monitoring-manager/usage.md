@@ -163,6 +163,8 @@ The following table shows which environment variable contains the default value 
 
 Update an existing therapy or monitoring plan identified by the `:id` path parameter. These endpoints are a proxy to the CRUD `PATCH /:id` endpoint.
 
+If the therapy or monitoring does not have a `schedule`, and only the fields `each` and `times`/`hours` are set, the remaining fields of the schedule are added with defaults values.
+
 These endpoints return 400 and a body with the structure shown below if one of following errors occur:
 
 - the client tries to update fields that affect the therapy or monitoring plan, and consequently the adherence and compliance metrics, and one or more detections have already been submitted by the patient:

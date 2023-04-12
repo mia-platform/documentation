@@ -20,7 +20,6 @@ const filesToExcludeFromSidebarCheck = [
   "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery",
   "info/licenses-reports/.gitkeep",
 
-  "business_suite/backoffice-configurator/diagrams/arch.drawio", // TODO: this file should not be imported
   "tutorial/demo_project/overview", // TODO:
 ]
 
