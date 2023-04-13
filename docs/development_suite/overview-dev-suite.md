@@ -2,6 +2,7 @@
 id: overview-dev-suite
 title: Console Overview
 sidebar_label: Console Overview
+sidebar_order: 0
 ---
 Welcome to the Mia-Platform Console Overview page!
 

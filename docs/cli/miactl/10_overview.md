@@ -1,7 +1,7 @@
 ---
-id: overview
+id: miactl
 title: miactl CLI
-sidebar_label: Overview
+sidebar_label: CLI
 ---
 `miactl` is the Command Line Interface designed to interact with the Mia-Platform Console.
 It allows you to view, manage, and deploy the projects belonging to your companies.
@@ -18,6 +18,6 @@ The `miactl` CLI functionalities can be summarized within its main subcommands:
 
 Below, you can find additional guides for using `miactl`:
 
-- [Setup](./setup.md)
-- [Commands](./commands.md)
-- [Examples](./examples.md)
+- [Setup](./20_setup.md)
+- [Commands](./30_commands.md)
+- [Examples](./40_examples.md)
