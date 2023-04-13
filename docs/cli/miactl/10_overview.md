@@ -1,5 +1,5 @@
 ---
-id: miactl
+id: overview
 title: miactl CLI
 sidebar_label: CLI
 ---
