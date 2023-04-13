@@ -8,6 +8,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] 2023-04-13
+
+### Breaking Changes
+
+- environmental variables
+  - renamed `STRATEGIES_FOLDER` into `MANUAL_STRATEGIES_FOLDER` 
+  - renamed `CUSTOM_FUNCTIONS_FOLDER` into `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`
+  - removed `USE_AUTOMATIC`
+  - `SINGLE_VIEW_NAME`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_SCHEMA_FOLDER` are now always required
+- manual and custom strategy functions are expected to be AsyncGenerator of `IdentifierObject` instead of
+returning a Promise containing a list of `IdentifierObject`
+
+### Added
+
+- added support to MongoDB v6.0
+
+### Changed
+
+- upgraded service dependencies, among which the most relevant are
+  - `@mia-platform-internal/fast-data-automation-lib@v3`
+  - `mongodb@v5`
+- removed dependencies not needed anymore
+- refactored the service to use Mia eslint standard
+- simplified the process of configurations loading removing unnecessary repetition or use cases management
+- expanded tests
+- refactored how the core logic and service dependencies are composed, removing the need of `fastify-pluging`
+- swapped ts-node with swc for transpling tests source code
+- upgraded Docker image to node v18.15.0
+- reviewed pipeline removing unneeded packages installation
+- reduced the size of the trigger message buffer from 500 to 100 to prevent issues with JS garbage collector
+
+### Removed
+
+- removed support to MongoDB v4.0
+
 ## [1.0.1] 2023-02-24
 
 ### Changed

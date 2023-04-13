@@ -1149,6 +1149,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Backoffice On Prem",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/backoffice-on-prem/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/backoffice-on-prem/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/backoffice-on-prem/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Data Analytics",
           "items": [
             {
