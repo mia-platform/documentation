@@ -369,10 +369,6 @@
               "id": "development_suite/set-up-infrastructure/remove-environment",
               "type": "doc"
             },
-            {
-              "id": "development_suite/user-settings/user-preferences",
-              "type": "doc"
-            }
           ],
           "label": "Manage Runtime Environments",
           "type": "category",
@@ -442,6 +438,10 @@
         },
         {
           "id": "development_suite/user-settings/user-companies",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/user-preferences",
           "type": "doc"
         },
         {
