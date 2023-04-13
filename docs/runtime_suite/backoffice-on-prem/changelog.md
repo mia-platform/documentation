@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - CI carries deps to run only when needed
-- CI sysdig check
+- CI security check
 - CI runs everywhere but pushes on tags and main only
 - application documentation ad FAQ
 
