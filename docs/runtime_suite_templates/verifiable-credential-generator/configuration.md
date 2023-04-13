@@ -57,7 +57,68 @@ By the default the `/config/vcMapping.json` file is used:
 ```
 
 ## JWT
+
 Once the verifiable credential is generated the microservice computes the JWT and returned it to as a response. 
 In order to change the JWT generated you can change the following environment variables:
 - `VERIFIABLE_CREDENTIAL_JWK`: JWK used to generate the JWT
 - `VERIFIABLE_CREDENTIAL_JWA`: JWA used to generrate the JWT
+
+## Kafka configuration
+
+In order to enable Kafka usage, the following environment variables are required:
+- MODE=`KAFKA`
+- KAFKA_CONFIG_FILE_PATH path to configuration file with kafka config
+
+The configuration file has the following schema:
+
+```json
+{
+  "type": "object",
+  "required": [
+    "clientId",
+    "brokers",
+    "authMechanism",
+    "username",
+    "password",
+    "consumerConfig",
+    "producerConfig",
+  ],
+  "properties": {
+    "clientId": { "type": "string" },
+    "brokers": { "type": "string" },
+    "authMechanism": { "type": "string" },
+    "username": { "type": "string" },
+    "password": { "type": "string" },
+    "connectionTimeout": { "type": "number" },
+    "authenticationTimeout": { "type": "number" },
+    "connectionRetries": { "type": "number" },
+    "consumerConfig": {
+      "type": "object",
+      "required": [
+        "groupId",
+        "topic",
+      ],
+      "properties": {
+        "topic": { "type": "string" },
+        "groupId": { "type": "string" },
+        "sessionTimeout": { "type": "number" },
+        "rebalanceTimeout": { "type": "number" },
+        "heartbeatInterval": { "type": "number" },
+        "allowAutoTopicCreation": { "type": "boolean" },
+      },
+    },
+    "producerConfig": {
+      "type": "object",
+      "required": [
+        "topic",
+      ],
+      "properties": {
+        "topic": { "type": "string" },
+        "allowAutoTopicCreation": { "type": "boolean" },
+      },
+    },
+  },
+}
+```
+
+Refer to [KafkaJS documentation](https://kafka.js.org/docs/getting-started) for more information about properties meaning.
