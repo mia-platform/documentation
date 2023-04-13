@@ -49,7 +49,7 @@ The supported events are:
 #### Debezium CDC plugins
 
 From now on, thanks to the integration of the Debezium CDC in our Marketplace, some pre-packaged plugins and templates can be used alongside with Fast Data with just few clicks!  
-You can find a pre-configured plugin to be used with MySQL Databases and a pre-configured template to be used with Oracle Databases.
+You can find a pre-configured plugin to be used with [MySQL Databases](/fast_data/connectors/debezium_cdc.md#mysql) and a pre-configured template to be used with [Oracle Databases](/fast_data/connectors/debezium_cdc.md#oracle-db).
 
 #### Debezium CDC support from the Real Time Updater
 

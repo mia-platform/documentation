@@ -15,4 +15,4 @@ _April 7, 2023_
 
 Some problems that caused a malfunction on the Providers API and on their correct exposure on the API Portal have been fixed.
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.7`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.10`.
