@@ -1149,6 +1149,25 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Backoffice On Prem",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/backoffice-on-prem/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/backoffice-on-prem/changelog"
+            }
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/backoffice-on-prem/overview"
+          }
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Data Analytics",
           "items": [
             {
@@ -1709,6 +1728,25 @@
             {
               "type": "doc",
               "id": "runtime_suite/csv-connector/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "CSV Connector Plugin",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector-plugin/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector-plugin/usage"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector-plugin/changelog"
             }
           ]
         },
@@ -2381,6 +2419,21 @@
             {
               "type": "doc",
               "id": "runtime_suite/single-view-creator/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Single View Trigger Generator",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/single-view-trigger-generator/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/single-view-trigger-generator/changelog"
             }
           ]
         },

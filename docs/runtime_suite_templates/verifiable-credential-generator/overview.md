@@ -9,10 +9,16 @@ This template can be used as a starting point to implement a microservice for th
 
 The verifiable credential generated is then returned as a [JWT](https://www.rfc-editor.org/rfc/rfc7519).
 
+:::info
+This service communicates via REST by default, but it can also rely on KAFKA if the environment variable `MODE` is set to `KAFKA`.
+:::
+
 ## Endpoint
+
 The endpoint exposed is designed to be compatible with [REST flow manager service](../../runtime_suite/flow-manager-service/overview), that means that responses are asynchronous. 
 
 ### POST /generate
+
 The service generate the verifiable credential based on a static schema and the input data.
 
 The following events can be used in the response:
@@ -27,7 +33,7 @@ Input body:
     "value": {
         "messageLabel": "generateVerifiableCredential",
         "messagePayload": {
-            "mainFlowId": "{{mainFlowId}}",
+            // define what you need
         }
     }
 }
