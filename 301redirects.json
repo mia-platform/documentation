@@ -184,5 +184,25 @@
   "/docs/runtime_suite/kafka-connect-mongodb-configurator/configuration": {
     "destination": "/docs/runtime_suite/mia-platform-plugins",
     "addedOn": "2023-03-30"
+  },
+  "/docs/runtime_suite_tools/miactl/overview": {
+    "destination": "/docs/cli/miactl/overview",
+    "addedOn": "2023-04-13"
+  },
+  "/docs/runtime_suite_tools/miactl/changelog": {
+    "destination": "/docs/cli/miactl/changelog",
+    "addedOn": "2023-04-13"
+  },
+  "/docs/runtime_suite_tools/miactl/setup": {
+    "destination": "/docs/cli/miactl/setup",
+    "addedOn": "2023-04-13"
+  },
+  "/docs/runtime_suite_tools/miactl/commands": {
+    "destination": "/docs/cli/miactl/commands",
+    "addedOn": "2023-04-13"
+  },
+  "/docs/runtime_suite_tools/miactl/examples": {
+    "destination": "/docs/cli/miactl/examples",
+    "addedOn": "2023-04-13"
   }
 }
