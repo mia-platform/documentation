@@ -8,17 +8,12 @@ const fs = require('fs')
 checkSidebar('./docs', './sidebars.json', '', false, 'throw')
 
 const filesToExcludeFromSidebarCheck = [
-  "info/licenses/Apache-2.0",
-  "info/licenses/BSD-2-Clause",
-  "info/licenses/BSD-3-Clause",
-  "info/licenses/cc-by-4.0",
-  "info/licenses/ISC",
-  "info/licenses/MIT",
-  "info/licenses/python-2.0",
   "monitoring/paas_alerting_rules",
   "getting_started/monitoring-dashboard/dev_ops_guide/business_continuity",
   "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery",
   "info/licenses-reports/.gitkeep",
+  'cli/miactl/*',
+  "info/licenses/*",
 
   "tutorial/demo_project/overview", // TODO:
 ]
@@ -93,7 +88,7 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
   const filesNotInSidebar = []
   for (const fileName of files) {
-    if (filesToExcludeFromSidebarCheck.includes(fileName)) {
+    if (excludeFromSidebarCheck(fileName)) {
       continue
     }
     const fileNameWithoutExtension = fileName
@@ -112,7 +107,7 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
   const imagesNotLinked = []
   for (const img in images) {
-    if(img.includes('.gitkeep') || filesToExcludeFromSidebarCheck.includes(img)) {
+    if(img.includes('.gitkeep') || excludeFromSidebarCheck(img)) {
       continue
     }
     if (!images[img].isUsed) {
@@ -192,4 +187,15 @@ function getFooterLinkedFiles() {
     })
   })
   return files
+}
+
+function excludeFromSidebarCheck(fileName) {
+  if (filesToExcludeFromSidebarCheck.includes(fileName)) {
+    return true
+  }
+  return Boolean(filesToExcludeFromSidebarCheck.find(pattern => {
+    if (pattern.endsWith('/*') && fileName.startsWith(pattern.slice(0, -2))) {
+      return true
+    }
+  }))
 }
