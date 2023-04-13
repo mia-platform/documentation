@@ -11,7 +11,7 @@ _April 13, 2023_
 
 ### New Features
 
-#### Management of Providers trough the Console
+#### Management of Providers through the Console
 
 Starting from today it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (GitProvider, Secret Manager and CI/CD Tools) within a brand new dedicated section - named "Providers" - inside the "Company Overview" area.  
 
