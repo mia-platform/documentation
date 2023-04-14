@@ -802,6 +802,10 @@
       "collapsed": true,
       "items": [
         {
+          "id": "fast_data/troubleshooting/fast_data_error_codes",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/troubleshooting/rtu_keeps_restarting_rebalancing",
           "type": "doc"
         },
