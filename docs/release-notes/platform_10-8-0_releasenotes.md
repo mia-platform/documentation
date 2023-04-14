@@ -112,4 +112,4 @@ Fixed a bug which was causing a wrong number of forms returned in a CSV.
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.11`.
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.0.13`.
