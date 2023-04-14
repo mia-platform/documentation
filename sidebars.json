@@ -276,6 +276,10 @@
         {
           "id": "development_suite/identity-and-access-management/service-account-management",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/group-management",
+          "type": "doc"
         }
       ],
       "link": {
