@@ -10,7 +10,7 @@ Mia-Platform Console permette di assegnare e gestire privilegi di autorizzazione
 Mia-Platform Console enables certain Users to control other identities ability to access resources. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization. -->
 
 
-I gruppi, cosi come le identities, possono avere dei ruoli sulle seguenti risorse: 
+I gruppi, cosi come le Identities, possono avere dei ruoli sulle seguenti risorse: 
 
 * Company
 * Project
