@@ -79,6 +79,7 @@ A Service Account Role in the Company can be modified: to do so, simply click on
 
   </div>
 </div>
+
 ### Removing a Service Account from the Company
 
 A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
