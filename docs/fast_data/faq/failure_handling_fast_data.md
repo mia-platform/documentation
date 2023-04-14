@@ -47,3 +47,10 @@ In particular, the recover mechanism works as follow:
 * Mia-Platform components stop reading data changes from the topics because they are offline
 * Mia-Platform components return online
 * Mia-Platform components restart to process Kafka messages starting from the last processed message and update the MongoDB views
+
+## How Fast Data error codes can be interpreted?
+
+In case Fast Data services encounter an issue, either regarding their configuration or during their runtime,
+they generate a set of logs. Among those logs it possible to find errors codes in the format `FD_AAAA_Eyxxx` representing what caused the failure.
+All the error codes Fast Data services may emit are listed within the dedicated [error codes documentation page](/fast_data/troubleshooting/fast_data_error_codes.md),
+where can be found also a brief explanation of the issue alongside some insights on how to potentially resolve it.
