@@ -3,8 +3,9 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different Roles and permissions to each identity in the Console is a key action for defining responsibilities within your platform ecosystem.
-The Console is based on hierarchical levels, and for each of them, specific permissions and capabilities have been identified and assigned to Users and Service Accounts.
+Assigning different Roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem.
+The Console is based on hierarchical levels, and for each of them, specific permissions and capabilities have been identified and can be assigned.  
+
 Let's see how they are configured.
 
 ## Console Levels
@@ -21,7 +22,7 @@ The Console resources are organized in a hierarchical structure on three levels:
 
 ## Identity Capabilities inside Console
 
-Users and Service Accounts can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped within a specific role. A set of default Roles has been defined:
+Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped within a specific role. A set of default Roles has been defined:
 
 * `Company Owner`: A Company Owner has the ability to manage Company Users and Service Accounts, and has full administrative capabilities on all the Projects (and Runtime Environments) within the Company
 * `Project Administrator`: A Project Administrator is able to manage identities and all other aspects of a Project, thus being able to perform any actions on all the Runtime Environments of the Project as well
@@ -81,7 +82,7 @@ The following table describes the capabilities and how they are mapped on the de
 | Manage available features                                                  | `console.root.features.manage`                         |        |          |           |            |                       |               |
 | Manage Company Project Templates                                           | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
 
-User Roles are manageable from CMS by the **Console administrators**, as they are the only ones having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
+User Roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 
 ### Role binding example
 

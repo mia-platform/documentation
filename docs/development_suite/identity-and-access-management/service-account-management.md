@@ -9,7 +9,7 @@ Mia-Platform Console allows the creation of Service Accounts, which are typicall
 Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment level, based on which they will be able to perform different types of action.  
 
 :::note
-To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an identity.
+To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
 :::
 
 ### What can you do with a Service Account?
@@ -41,7 +41,7 @@ The Company Owner can add a new Service Account by clicking on the *Add Service 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
 - Role: the Company Role to be assigned to the Service Account
-- Authentication method: the method used to verify the identity of the Service Account can be of two types
+- Authentication method: the method used to verify the Identity of the Service Account can be of two types
     - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client. 
     
     <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -103,7 +103,7 @@ A User with enough administrative permission on a specific Project will be able 
 ![Project identities page](./img/service-account-management/project_identities.png)
 
 :::note
-Although the Project Identities administration portal shows all the Company's identities, this does not mean that all of the identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
+Although the Project Identities administration portal shows all the Company's Identities, this does not mean that all of the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
 
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
@@ -195,7 +195,7 @@ curl --location \
 
 - **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that is encoded in Base64Url format.
 
-- **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
+- **Payload**: The payload of a JWT contains the claims that are being made about the Identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
 
 - **Signature**: The signature of a JWT is used to verify the integrity of the token and to ensure that it has not been tampered with. The signature is created by combining the encoded header and payload with a secret key using a specified cryptographic algorithm.
 :::

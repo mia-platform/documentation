@@ -4,21 +4,25 @@ title: Manage Groups
 sidebar_label: Manage Groups
 ---
 
-Mia-Platform Console permette di assegnare e gestire privilegi di autorizzazione a gruppi di utenti presenti o meno a livello di Company. In questo modo risulta più agevole gestire un grande numero di utenti a cui assegnare gli stessi privilegi (es. work team).
+Mia-Platform Console allows to assign and manage authorization privileges to groups of users at Company level. Groups aim at simplify the management a large number of users who have to be assigned the same privileges (e.g. a work team).
 
 <!-- 
+
+ITA version: 
+Mia-Platform Console permette di assegnare e gestire privilegi di autorizzazione a gruppi di utenti presenti o meno a livello di Company. In questo modo risulta più agevole gestire un grande numero di utenti a cui dover assegnare gli stessi privilegi (es. work team).
+
+
 Mia-Platform Console enables certain Users to control other identities ability to access resources. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization. -->
 
 
-I gruppi, cosi come le Identities, possono avere dei ruoli sulle seguenti risorse: 
+Groups is considered a type of [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) to which Users with enough permissions can assign and manage roles on the following resources:
 
 * Company
 * Project
 * Runtime Environment
 
-
 :::note
-To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an identity.
+To find out more about Roles management, check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an Identity.
 :::
 
 
@@ -31,19 +35,18 @@ To find out more about Roles check out the available [Capabilities](/development
 
 <!-- Only Users with enough privileges will be granted access to the Identities administration portal and will be able to change identity Roles. -->
 
-:::caution Important: Git provider vs Console permissions
-The management of Roles and permissions aims at regulating access on resources solely at Console level.  
-Roles and permissions of Users on the same resources at the Git provider level are not managed in this Console area; thus, Roles at Git-level must be verified in order to prevent possible discrepancies that may appear between permissions the User has at the Console-level and those the User has at the Git repository level.
-
-For example, it could happen that a User who does not even have permissions to access a Company from the Console is, however, in a Git group with an assigned Role that gives them Git-level permissions on these Company resources!
-
-Therefore, by giving permissions on resources to Users, it is strongly suggested a double check on both Console-level and Git-level permissions.
-:::
-
 ## Managing Company Groups
 <!-- A User with enough administrative permission on a specific Company will be able to view the existing identities in the Company, add new ones and change the existing identities' Roles. -->
 
-Ogni Company ha i propri gruppi, che possono essere creati e gestiti dal menu Groups solo da un Company Owner che sarà anche il solo ad assegnare o modificare il suo ruolo sulla Company. I ruoli sulle altre risorse invece possono essere gestite nel menu delle Identities cosi come se fosse una semplice identità. 
+Each Company has its own Groups, which are configurable and manageable solely by Company Owner from the dedicated Groups section inside the Company Overview. 
+
+At Company level, for each Group, it is possible to manage:
+
+* Name: the name assigned to the Group
+* Role: the Group Company Role
+* Members: adding and/or removing Users from the Group
+
+Being a Group a type of Identity, existing Company Groups are listed in the Identities table inside the IAM (Identity and Access Management) portal at both Company and Project levels, where roles and permissions can be managed on the various Console resources. 
 
 <!-- TODO: ![Group table](./img/group-management/group_table.png) -->
 
@@ -52,11 +55,17 @@ Please note that some permissions defined by the Company Role may be inherited o
 Always pay attention when assigning Roles in order to avoid providing undesired access to resources!
 :::
 
-### Adding a new group
+### Creating a Group
 
 <!-- The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the invited User email to be provided. -->
 
-Si può creare un gruppo utilizzando il bottone *Add User* e nel processo di creazione si possono definire il suo nome, il suo ruolo sulla Company e tutti i suoi membri. I membri aggiunti al gruppo possono anche non appartenere alla Company (cioè non hanno mai avuto un ruolo come Identities sulla Company in questione) e in tal caso viene richiesta la loro email.
+<!-- Si può creare un gruppo utilizzando il bottone *Add User* e nel processo di creazione si possono definire il suo nome, il suo ruolo sulla Company e tutti i suoi membri. I membri aggiunti al gruppo possono anche non appartenere alla Company (cioè non hanno mai avuto un ruolo come Identities sulla Company in questione) e in tal caso viene richiesta la loro email. -->
+
+The Company Owner can start the group creation process by pressing *Create group* button inside the Groups section. In the creation process it is required to define the Group name and the Company role to assign. It is also possible to add members to the Group.
+
+:::info
+During the creation process, the Group can be also created without members added to it. This action can be performed even after the Group creation.
+:::
 
 <!-- <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -66,15 +75,29 @@ TODO: ![Add group](./img/group-management/add_user.png)
   </div>
 </div> -->
 
+It is possible to add to a Group both Users who already have access to the Company and new Users who will consequently be given access to the Company. For the latter, it is necessary to insert the e-mail address to which the invitation to join the Company will be sent.
+
 The provided email will be searched throughout existing users on the Platform and if a match is found the user will be invited to the Company with the defined Role.
 
 :::info
-If the user does not exist in the Platform, please open a Service Request for it to be created.
+If the User does not exist in the Platform, please open a Service Request for it to be invited to registering in the Platform.
 :::
 
-### Editing a group
+### Editing a Group
 
-Per modificare un gruppo, si può entrare nel suo dettaglio dalla tabella gruppi e utilizzare il bottone di *Edit*. Dal modale sarà possibile scegliere un nuovo nome del gruppo e si può modificare il suo ruolo sulla company.
+After having created a Group, it is possible to enter its detail page.
+Once entered, a Company Owner can perform the following actions:
+
+* Changing Group name
+* Editing Group Company role
+* Adding new members to the Group
+* Removing members to the Group
+
+:::info
+In the case that a User has access to the Company solely from its membership of that Group, the removal from that Group will result in loss of access to the Company for that User.  
+
+In the case that a User has access even to other Company Groups, or has a specific Company role assigned, the removal from that Group will NOT result in loss of access to the Company for that User; however, it is necessary to pay attention to what privileges are still left to that User on the Company resources. 
+:::
 
 <!-- A User Role in the Company can be modified: to do so, simply click on the edit button for the desired User row and select the new Role. -->
 
@@ -87,9 +110,17 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
   </div>
 </div> -->
 
-### Removing a group
+### Removing a Group
 
-Un gruppo può essere eliminato nella sua pagina di dettaglio cliccando sul bottone di *Delete* in fondo alla pagina e confermando l'azione.
+A Group can be deleted by accessing its detail page and clicking on the *Delete* button at the bottom of the page and confirming the action.
+
+:::info
+The deletion of the Group may implies the loss of access to the Company for some Group members.  
+
+In the case that a group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in loss of access to the Company for that User.  
+
+In the case that a User has access even to other Company Groups, or has a specific Company role assigned, the deletion of the Group will NOT result in loss of access to the Company for that User; however, it is necessary to pay attention to what privileges are still left to that User on the Company resources.
+:::
 
 <!-- A User can be removed from the Company by clicking the trash icon on the table and confirming the action. -->
 
