@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Added
+
+- 
+  - add metadata field on user collection
+  - add config key `customTokenClaims` that allows to customize token claims and userinfo response contents with metadata fields and `providerUserId`
+  - replace unmaintained library `github.com/dgrijalva/jwt-go` with the maintained fork `github.com/golang-jwt/jwt/v4`
+- added user deactivation webhook for Okta
+- configurable `sid` cookie `SameSite` and `Domain` attributes
+
+### Fixed
+
+- `refreshtoken` generates an access token with the correct `issuer` specified in the settings, rather than using the `appId`.
+
 ## 3.0.0 - 23-03-2023
 
 ### BREAKING CHANGES

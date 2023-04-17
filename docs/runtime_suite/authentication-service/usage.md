@@ -159,13 +159,55 @@ Here is an example snippet of the configuration:
 
 Refer to [this documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) for a thorough explanation of the mentioned cookie attributes.
 
-:::warning
+:::info
 
 For security reasons, you cannot change the other attributes of the cookie, and you cannot set the `SameSite` attribute to `None`.
 
 :::
 
+#### The JWT Token
 
+The authentication service generates a JWT Token compliant with the [RFC 7519 specification](https://www.rfc-editor.org/rfc/rfc7519).
+
+In particular, the service populates the standard claims:
+- `exp` with the expiration date as unix timestamp
+- `iat` with the issuance date as unix timestamp
+- `sub` with the `userId`, which is the Mongo Id of the user CRUD document
+- `jti` with a random generated UUIDv4
+- `iss` with the `issuer` specified in the current application config
+
+Along with the above mentioned standard claims, the token contains a custom claim named `user`, which is an object with the following structure:
+
+```json
+{
+    "properties": {
+        "userId": {
+            "type": "string"
+        },
+        "groups": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "email": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "userSettingsURL": {
+            "type": "string"
+        },
+        "providerUserId": {
+            "type": "string"
+        },
+        "metadata": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    }
+}
+```
+The data are populated from the user CRUD collection. The `providerUserId` and the `metadata` fields are included and populated only if configured, as explained [here](#custom-claims).
 
 ### Refresh token
 
@@ -203,9 +245,9 @@ The refresh token on the provider will only be issued if the validation fails.
 
 API Signature: `GET /userinfo`
 
-The `/userinfo` endpoint returns the information stored in the current JWT token of the user.
+The `/userinfo` endpoint returns the contents of the `user` claim of the JWT Token.
 
-Such information are also saved on the users CRUD collection.
+See the [related section](#jwt-token) for more information on how the JWT Token is built and how you can personalize it to achieve a customized userinfo response.
 
 You can contact the endpoint in this way:
 ```sh
@@ -214,28 +256,84 @@ curl --location --request GET 'https://app.example.com/userinfo' \
 --header 'Authorization: Bearer <access_token>'
 ```
 
-The response of the endpoint has the following structure:
+
+### Custom claims
+
+If you need to have additional custom claims in the `user` claim of the token and, as a consequence, in the userinfo response, you have to include the  `customTokenClaims` object in the app configuration.
+
+The object contains the following fields:
+- `includeProviderUserId`, if set to `true` the `providerUserId` will be included in the `user` claim, and populated with the user id of the provider. The default behavior is not to include the field.
+
+- `metadataFieldsToInclude`,  an array of strings. If it contains at least one element, a  `metadata` object is added to the `user` claim and populated with the specified fields taken from the corresponding `metadata` object of the CRUD user collection.
+
+As an example, consider a user collection like the following:
 
 ```json
 {
-    "properties": {
-        "userId": {
-            "type": "string"
-        },
-        "groups": {
-            "type": "array",
-            "items": { "type": "string" }
-        },
-        "email": {
-            "type": "string"
-        },
-        "name": {
-            "type": "string"
-        },
-        "userSettingsURL": {
-            "type": "string"
+    "_id": "some-mongo-id",
+    "name": "John Doe",
+    "groups": ["someGroup"],
+    "username": "someUsername",
+    "email": "johndoe@example.com",
+    "providerId": "someProviderId",
+    "providerUserId": "some-id",
+    "metadata": {
+        "firstName": "John",
+        "surname": "Doe",
+        "address": {
+            "city": "Milan",
+            "country": "Italy"
         }
     }
+}
+```
+The authentication service can be configured as follows:
+
+```json
+{
+  "apps": {
+    "APP_ID": {
+      "providers": {
+        "PROVIDER_ID": {
+          ...
+        }
+      },
+    ...
+    "customTokenClaims": {
+        "includeProviderUserId": true,
+        "metadataFieldsToInclude": [
+                "surname", "address"
+            ]
+        }
+    }
+  }
+}
+```
+
+The configuration snippet above will result in the following JWT token claims:
+
+```json
+{
+  "user": {
+    "userId": "some-mongo-id",
+    "groups": [
+        "someGroup"
+    ],
+    "email": "johndoe@example.com",
+    "name": "John Doe",
+    "providerUserId": "some-id",
+    "metadata": {
+        "surname": "Doe",
+        "address": {
+            "city": "Milan"
+        }
+    }
+  },
+  "exp": 123456789,
+  "jti": "some-jti",
+  "iat": 123456789,
+  "iss": "some-iss",
+  "sub": "some-mongo-id"
 }
 ```
 
@@ -249,6 +347,32 @@ You need to set the following variables in the [configuration](../authorization-
 - **CUSTOM_USER_ID_KEY**=`userId`
 - **HEADERS_TO_PROXY**=`x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host`
 
+#### Custom properties to proxy
+
+If you have configured some [custom claims](#custom-claims) in the authentication service, you can also add them to the authorization service *Custom properties to proxy*.
+
+Just add the name of the fields as a comma-separated list to the following authorization service environment variable:
+
+**USER_PROPERTIES_TO_PROXY**=`metadata,email,name,providerUserId`
+
+This way, a JSON string will be set to an header with name `miauserproperties`, populated with the metadata field of the userinfo response.
+
+Referring to the example above, the header will have the following contents:
+
+```json
+{    
+    "email": "johndoe@example.com",
+    "name": "John Doe",
+    "providerUserId": "some-id",
+    "metadata": {
+        "surname": "Doe",
+        "address": {
+            "city": "Milan"
+        }
+    }
+}
+```
+
 ## Token Info
 
 API Signature: `GET /tokeninfo`
@@ -259,9 +383,7 @@ This endpoint returns potentially confidential information, that a user may not 
 
 :::
 
-This endpoint returns some information regarding the token.
-
-It receives the token via the `Authentication` header, and it returns a JSON with the Mia JWT token custom claims, and a subkey `provider` with the following fields:
+This endpoint has the same response of the [userinfo](#user-info), with in addition a `provider` field, populated with the following fields:
 
 - **accessToken**: the access token obtained from the IdP.
 - **id**: the provider id of the currently used configuration
@@ -286,11 +408,23 @@ An example of response:
 }
 ```
 
+:::tip
+
+You can use the `/tokeninfo` endpoint as `USERINFO_URL` in the authorization service. This is useful if you want the information included in the `provider` key to be added to the `miauserproperties` header.
+
+:::
+
 ## Revoke sessions
+
+:::caution
+
+This API is intended to be used by a privileged user (e.g. an administrator or a customer service operator) or application. Make sure to expose it with a proper authorization config. 
+
+:::
 
 API Signature: `DELETE /sessions`
 
-This is an admin feature that revokes all session for a specified user. This is useful when the user is being blocked or deleted on the provider side.
+This is an admin feature that revokes all sessions of the specified user. This is useful when the user is being blocked or deleted on the provider side.
 
 You can contact the endpoint this way:
 ```sh
@@ -310,15 +444,24 @@ An example of response:
 
 ## Cleanup all users queue
 
+:::caution
+
+This API is intended to be used by a privileged user (e.g. an adminisrator or a customer service operator) or application (e.g. a cronjob). Make sure to expose it with a proper authorization config. 
+
+:::
+
 API Signature: `DELETE-/expired-sessions`
 
-This is an internal API helpful to clean up all expired sessions for all users.
+This API is helpful to clean up all the expired sessions of all the users.
+
 This is especially useful when the *STORED_ACCESS_TOKEN_NUMBER* environment variable is a big number, in order to keep stored data in Redis to the minimum.
 
-It's recommended to setup a CronJob that periodically invokes the API; the period can be tuned in respect with the queue length. 
+It's recommended to setup a CronJob that periodically invokes this API; the period can be tuned with respect to the queue length and to other parameters that depend on your use case, such as the number of logins per unit of time.
 
-:::info
-The operation is deliberately non-atomic since it may be a long CPU-intensive task that could potentially block Redis.
+:::warning
+
+The operation is deliberately non-atomic, as it triggers a potentially long and CPU-intensive task that could block Redis.
+
 :::
 
 In case of success, the endpoint will return a 204 No Content response.
@@ -326,8 +469,9 @@ In case of success, the endpoint will return a 204 No Content response.
 ### Cleanup a specific users queue
 
 The endpoint can receive also as a query params a specific userID. 
+In this case, only the session of the specified user are cleaned up.
 
-This is an example:
+Here is an example:
 ```sh
 curl --location --request DELETE 'https://app.example.com/expired-sessions/:userId`' \
 --header 'Accept: application/json' \
@@ -340,7 +484,9 @@ When a new User is activated on the ID Provider, the UserInfo collection can be 
 (Currently only Okta provider is supported)
 
 :::caution
+
 Pay careful attention when configuring the webhook as the endpoint must be properly protected as it may allow anyone to create new user records.
+
 :::
 
 The webhook is made of 2 endpoints:
