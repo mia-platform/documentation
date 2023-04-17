@@ -162,7 +162,7 @@ curl --location \
     --request POST 'http://[my-console-url]/api/m2m/oauth/token' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Authorization: Basic base64(client_id:client_secret)' \
-    --data-urlencode 'grant_type=client_credentials' \
+    --data-urlencode 'grant_type=client_credentials'
 ```
 
 Example response:
