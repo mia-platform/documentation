@@ -102,10 +102,10 @@ Currently, the events subscribed are:
 
 ### Projects created before v10.8.0
 
-For projects already created before specified version, you need to subscribe to provider events, manually.
+For projects already created before the specified version, you need to subscribe to provider events, manually.
 To do this you can use the GitHub interface or the API.
 
-Here's an example of deployments_status subscription
+Here's an example of a deployments_status subscription
 
 ```text
 POST https://gihhub-host.com/orgs/{org}/hooks', {
