@@ -66,7 +66,8 @@ Mia-Platform performs regular risk assessments internally, which involve identif
 
 ## External Testing
 
-The console is subject to external penetration testing exercises (at least once per calendar year).
+We account on external professional companies to perform rigorous penetration testing practices on the Console.
+Tests are performed at least twice per calendar year.
 
 Customers adopting our product might undergo supplementary external penetration tests performed by external companies. The deliverables resulting from such activities might be shared with Mia Platform when vulnerabilities concerning our product are discovered and need treatment.
 
