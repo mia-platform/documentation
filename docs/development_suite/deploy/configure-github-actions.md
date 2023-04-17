@@ -84,11 +84,11 @@ jobs:
 ```
 
 When users deploy for the first time, the Console release automatically creates the environments configured inside the project, 
-otherwise you can [follow this tutorial](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) 
+otherwise, you can [follow this tutorial](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) 
 to set up your environments.
 
 With the above configuration, when a user presses the `Deploy` button inside the console, the following steps will be executed:
-* The Console creates a new deployments depending on environment chosen on GitHub repository
+* The Console creates new deployments depending on the environment chosen on the GitHub repository
 * On deployments creation GitHub dispatches a new deployment event and triggers the job specified inside the workflow
 * When the pipeline status of deployments changes, the Console updates to show you its current status
 
