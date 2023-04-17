@@ -163,7 +163,6 @@ curl --location \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Authorization: Basic base64(client_id:client_secret)' \
     --data-urlencode 'grant_type=client_credentials' \
-    --data-urlencode 'audience=aud1'
 ```
 
 Example response:
