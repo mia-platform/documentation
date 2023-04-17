@@ -17,7 +17,7 @@ The collection will be found below the new label inside the menu.
 
 ![webhooks section](./img/console-events.png)
 
-From the `Events` category, click the `Webhooks` page and the `Add new` to create a new webhook subscription.
+From the `Events` category, click on the `Webhooks` section and then on `Add new` to create a new webhook subscription.
 
 ![add webhook](./img/add-new-webhook.png)
 
