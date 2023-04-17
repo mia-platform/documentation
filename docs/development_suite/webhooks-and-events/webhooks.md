@@ -28,7 +28,7 @@ You will be asked to provide the following parameters:
 | `tenantId`  | `string` |          | If specified, only events triggered inside the specified company will be delivered to the target URL. Must be a company identifier. |
 | `projectId` | `string` |          | If specified, only events triggered inside the specified project will be delivered to the target URL. Must be a project identifier. |
 | `eventName` | `string` | ✅        | The name of the event to listen to. See the [event types page](/development_suite/webhooks-and-events/events.mdx).                  |
-| `target`    | `string` | ✅        | The HTTP URL that will be called when event will be triggered. Es https://service-name/api-that-recive-the-evets/                   |
+| `target`    | `string` | ✅        | The HTTP URL that will be called when the event is triggered (e.g., https://service-name/api-that-receives-the-event/).                   |
 | `base64CA`  | `string` |          | The Certificate Authority exposed by the target URL encoded in base64.                                                              |
 | `secret`    | `string` | ✅        | The shared secret used to authenticate the events payload.                                                                          |
 | `proxy.url` | `string` |          | The URL of the proxy.                                                                                                               |
