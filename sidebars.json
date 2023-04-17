@@ -71,6 +71,10 @@
         {
           "id": "development_suite/deploy/configuration",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/deploy/configure-github-actions",
+          "type": "doc"
         }
       ],
       "label": "Deploy what you have created",

@@ -4,7 +4,7 @@ title: How to setup a Pipeline
 sidebar_label: Configure a Project Pipeline
 ---
 Projects created with the Mia-Platform Console can be deployed with simple script and tooling for
-appling standard Kubernetes yaml file that describe the various resources. For aiding the developer we have create
+applying standard Kubernetes yaml file that describe the various resources. For aiding the developer we have created
 a new open source tool called [mlp].
 
 In this chapter we will highlight how to use *mlp* to deploy the project and give you all the information
@@ -24,7 +24,7 @@ Here are the environment variables that we setup inside the pipelines that are u
 - **STAGE_TO_DEPLOY**: set to the current environment of the project to deploy
 - **RELEASE_DATE**: current date generated with the unix command `date -I'seconds' -u`  
 
-Additionally to these variables the console will generate a `.env` file for every environment of the project that can
+Additionally, to these variables the console will generate a `.env` file for every environment of the project that can
 be usually found in the path `configuration/variables/<environment-name>.env` so we simply source it in the current
 context with the command:
 
