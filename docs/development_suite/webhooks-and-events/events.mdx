@@ -33,22 +33,22 @@ This event will be triggered when a project is created successfully.
 <Tabs>
 <TabItem value="example" label="Example" default>
 
-  ```json
-  {
+```json
+{
     "eventName": "project_created",
     "eventTimestamp": 123456,
     "payload": {
       "tenantId": "my-company-id",
       "projectId": "0000000000000001"
     }
-  }
-  ```
+}
+```
 
 </TabItem>
 <TabItem value="json-schema" label="JSON Schema">
 
-  ```json
-  {
+```json
+{
     "additionalProperties": false,
     "properties": {
       "eventName": {
@@ -76,8 +76,8 @@ This event will be triggered when a project is created successfully.
     },
     "required": ["eventName", "eventTimestamp", "payload"],
     "type": "object"
-  }
-  ```
+}
+```
 
 </TabItem>
 </Tabs>
@@ -88,7 +88,7 @@ This event will be triggered when a microservice is successfully generated from 
 
 :::note
 The event is triggered as soon as the service's repository is successfully created,
-hence there is no guarantee that the service will be found into the project configuration, yet.
+hence there is no guarantee that the service will be found in the project configuration, yet.
 :::
 
 #### Event `payload`
@@ -104,8 +104,8 @@ hence there is no guarantee that the service will be found into the project conf
 <Tabs>
 <TabItem value="example" label="Example" default>
 
-  ```json
-  {
+```json
+{
     "eventName": "project_created",
     "eventTimestamp": 123456,
     "payload": {
@@ -115,14 +115,14 @@ hence there is no guarantee that the service will be found into the project conf
       "serviceName": "my-service",
       "templateId": "0000000000000002"
     }
-  }
-  ```
+}
+```
 
 </TabItem>
 <TabItem value="json-schema" label="JSON Schema">
 
-  ```json
-  {
+```json
+{
     "additionalProperties": false,
     "properties": {
       "eventName": {
@@ -162,7 +162,7 @@ hence there is no guarantee that the service will be found into the project conf
     },
     "required": ["eventName", "eventTimestamp", "payload"],
     "type": "object"
-  }
+}
   ```
 
 </TabItem>
