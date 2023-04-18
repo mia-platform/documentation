@@ -12,9 +12,9 @@ Let's see how they are configured.
 The Console resources are organized in a hierarchical structure on three levels:
 
 1. **Console level** is the root level regarding the general configuration of your Console. 
-At this level you can configure some resources such as Companies, Project Templates and Marketplace.
+At this level you can configure resources such as Companies, Project Templates and Marketplace.
 
-1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users, Service Account Users, Groups can be managed. To know more about Company configuration, give a check to the dedicated [documentation section](/development_suite/company/create.mdx).
+1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users, Service Account Users, Groups can be managed. To know more about Company configuration, check out the dedicated [documentation section](/development_suite/company/create.mdx).
 
 1. **Project Level** is the third hierarchical level. Projects are the heart of Mia-Platform Console, allowing developers engage in creating new features and building their own platform.
 
@@ -68,8 +68,8 @@ The following table describes the capabilities that are granted when assigning a
 Roles can be assigned at both Project and its Runtime Environments levels from the Identities portal of the specific Project Settings Area.
 
 :::info
-Note that into Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.  
-For each of them, therefore, the inherited permissions granted by Company role assignment at Company level will be visible. In this way, it will be possible to identify which additional permissions among those mentioned in he following table can be assigned at Project and Runtime Environments levels. 
+Please note that, inside Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.  
+For each of them, therefore, the permissions inherited from the Company role assignment at the Company level will be visible. In this way, it will be possible to identify which additional permissions among those mentioned in the following table can be assigned at Project and Runtime Environments levels. 
 :::
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
@@ -93,7 +93,7 @@ For each of them, therefore, the inherited permissions granted by Company role a
 User Roles and permissions are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to perform actions at Console root level.
 
 :::info
-Note that Console Super User is NOT included as a default Role. Consequently, it can not be assigned from the Identities portal, as it performs actions at exclusively at Console root level. 
+Note that Console Super User is NOT included as a default Role. Consequently, it can not be assigned from the Identities portal, as it performs actions exclusively at Console root level. 
 :::
 
 The following table describes the privileges given to these Console Administrators:
