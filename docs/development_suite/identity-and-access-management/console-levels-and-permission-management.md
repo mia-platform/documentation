@@ -102,8 +102,8 @@ The following table describes the privileges given to these Console Administrato
 | Create a new Company                                | `console.root.company.create`                          |
 | Delete any Company                                  | `console.root.company.delete`                          |
 | Create a new Project                                | `console.root.project.create`                          |
-| Edit any Project                                    | `console.root.project.details.update`                  |
-| Delete any Project                                  | `console.root.project.delete`                          |
+| Edit any Project                                    | `console.root.project.details.update`                          |
+| Delete any Project                                  | `console.root.project delete`                          |
 | View all Console resources                          | `console.root.view`                                    |
 | Manage identity Roles, Groups and Bindings          | `console.root.user.bind`                               |
 | Create and delete any user                          | `console.root.user.manage`                             |
