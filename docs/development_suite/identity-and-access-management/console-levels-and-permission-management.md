@@ -97,18 +97,18 @@ Note that Console Super User is NOT included as a default Role. Consequently, it
 
 The following table describes the privileges given to these Console Administrators:
 
-|              Capabilities                                                  | Permissions key                                        |
-|----------------------------------------------------------------------------|--------------------------------------------------------|
-| Create a new Company                                                       | `console.root.company.create`                          |
-| Delete any Company                                                         | `console.root.company.delete`                          |
-| Create a new Project                                                       | `console.root.project.create`                          |
-| Edit any Project                                                           | `console.root.project.details.update`                  |
-| Delete any Project                                                         | `console.root.project.delete`                          |
-| View all Console resources                                                 | `console.root.view`                                    |
-| Manage identity Roles, Groups and Bindings                                 | `console.root.user.bind`                               |
-| Create and delete any user                                                 | `console.root.user.manage`                             |
-| Manage all private and public Project Templates                            | `console.root.templates.manage`                        |
-| Manage available features                                                  | `console.root.features.manage`                         |
+| Capabilities | Permissions key |
+|--------------|-----------------|
+| Create a new Company                                | `console.root.company.create`                          |
+| Delete any Company                                  | `console.root.company.delete`                          |
+| Create a new Project                                | `console.root.project.create`                          |
+| Edit any Project                                    | `console.root.project.details.update`                  |
+| Delete any Project                                  | `console.root.project.delete`                          |
+| View all Console resources                          | `console.root.view`                                    |
+| Manage identity Roles, Groups and Bindings          | `console.root.user.bind`                               |
+| Create and delete any user                          | `console.root.user.manage`                             |
+| Manage all private and public Project Templates     | `console.root.templates.manage`                        |
+| Manage available features                           | `console.root.features.manage`                         |
 
 ### Role binding example
 
