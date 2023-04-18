@@ -110,12 +110,12 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
   </div>
 </div> -->
 
-### Removing a Group
+### Deleting a Group
 
 A Group can be deleted by accessing its detail page and clicking on the *Delete* button at the bottom of the page and confirming the action.
 
 :::info
-The deletion of the Group may implies the loss of access to the Company for some Group members.  
+Group deletion may result in loss of access to the Company for those Group members who are not members of at least one other Company Group or who do not have a specific company role assigned.   
 
 In the case that a group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in loss of access to the Company for that User.  
 
