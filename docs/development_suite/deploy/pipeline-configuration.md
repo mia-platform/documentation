@@ -24,7 +24,7 @@ Here are the environment variables that we setup inside the pipelines that are u
 - **STAGE_TO_DEPLOY**: set to the current environment of the project to deploy
 - **RELEASE_DATE**: current date generated with the unix command `date -I'seconds' -u`  
 
-Additionally, to these variables the console will generate a `.env` file for every environment of the project that can
+Additionally, to these variables, the Console will generate a `.env` file for every environment of the project that can
 be usually found in the path `configuration/variables/<environment-name>.env` so we simply source it in the current
 context with the command:
 
