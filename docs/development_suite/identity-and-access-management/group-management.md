@@ -54,26 +54,26 @@ TODO: ![Add group](./img/group-management/add_user.png)
 
 It is possible to add to a Group both Users who already have access to the Company and new Users who do not have access to the Company (but which already exist on the Platform). For the latter, once inserted their email address, they will receive an invitation to join that Group of the Company.  As long as they are part of at least one Group of a Company, they can have access to the resources of that Company.
 
-The provided email will be searched throughout existing users on the Platform and if a match is found the user will be invited to the Company with the defined Role.
+The provided emails will be searched throughout existing users on the Platform and, if a match is found, the user will be invited to the Group with the defined Role of that specific Group.
 
 :::info
-If the User does not exist in the Platform, please open a Service Request for it to be invited to registering in the Platform.
+If the User does not exist in the Platform, please open a Service Request to invite it to register in the Platform.
 :::
 
 ### Editing a Group
 
-After having created a Group, it is possible to enter its detail page.
+After the creation of a Group, it is possible to enter its detail page.
 Once entered, a Company Owner can perform the following actions:
 
-* Changing Group name
-* Editing Group Company role
-* Adding new members to the Group
-* Removing members to the Group
+* Change Group name
+* Edit Group Company role
+* Add new members to the Group
+* Remove members from the Group
 
 :::info
 In the case that a User has access to the Company solely from its membership of that Group, the removal from that Group will result in loss of access to the Company for that User.  
 
-In the case that a User has access even to other Company Groups, or has a specific Company role assigned, the removal from that Group will NOT result in loss of access to the Company for that User; however, it is necessary to pay attention to what privileges are still left to that User on the Company resources. 
+In the case that a User has access to more Company Groups, or has a specific individual Company role assigned, the removal from that Group will NOT result in the loss of access to the Company for that User; for this reason, it is necessary to pay close attention to what privileges are still left to that User on the Company resources. 
 :::
 
 <!-- 
@@ -87,10 +87,10 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
 
 ### Deleting a Group
 
-A Group can be deleted by accessing its detail page and clicking on the *Delete* button at the bottom of the page and confirming the action.
+A Group can be deleted by accessing its detail page and clicking on the *Delete* button at the end of the page and then confirming the action.
 
 :::caution
-Group deletion may result in loss of access to the Company for those Group members who are not members of at least one other Company Group or who do not have a specific company role assigned.   
+Group deletion may result in loss of access to the Company for those Group members who are not members of at least one other Company Group or who do not have a specific individual Company role assigned.   
 
 In the case that a group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in loss of access to the Company for that User.  
 
