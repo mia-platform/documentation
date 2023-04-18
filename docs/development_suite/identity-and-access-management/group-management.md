@@ -46,7 +46,7 @@ At Company level, for each Group, it is possible to manage:
 * Role: the Group Company Role
 * Members: adding and/or removing Users from the Group
 
-Being a Group a type of Identity, existing Company Groups are listed in the Identities table inside the IAM (Identity and Access Management) portal at both Company and Project levels, where roles and permissions can be managed on the various Console resources. 
+Existing Groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage Roles assigned to them as well as for Users and Service Account Users. 
 
 <!-- TODO: ![Group table](./img/group-management/group_table.png) -->
 
@@ -114,7 +114,7 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
 
 A Group can be deleted by accessing its detail page and clicking on the *Delete* button at the bottom of the page and confirming the action.
 
-:::info
+:::caution
 Group deletion may result in loss of access to the Company for those Group members who are not members of at least one other Company Group or who do not have a specific company role assigned.   
 
 In the case that a group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in loss of access to the Company for that User.  

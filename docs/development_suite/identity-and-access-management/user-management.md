@@ -4,32 +4,20 @@ title: Manage Users
 sidebar_label: Manage Users
 ---
 
-Mia-Platform Console enables certain Users to control other [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) privileges to access resources. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
-
-:::note
-To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an Identity.
-:::
-
-In particular, a User can be assigned a Role on the following resources:
+Mia-Platform Console enables certain Users to control privileges of other Users to access Company resources. 
+Granting accesses and permissions to Company resources can be managed thanks to the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal), that allows Roles assignment on the following Console resources:
 
 * Company
 * Project
 * Runtime Environment
 
-Only Users with enough privileges will be granted access to the Identities administration portal and will be able to change Identity Roles.
-
-:::caution Important: Git provider vs Console permissions
-The management of Roles and permissions aims at regulating access on resources solely at Console level.  
-Roles and permissions of Users on the same resources at the Git provider level are not managed in this Console area; thus, Roles at Git-level must be verified in order to prevent possible discrepancies that may appear between permissions the User has at the Console-level and those the User has at the Git repository level.
-
-For example, it could happen that a User who does not even have permissions to access a Company from the Console is, however, in a Git group with an assigned Role that gives them Git-level permissions on these Company resources!
-
-Therefore, by giving permissions on resources to Users, it is strongly suggested a double check on both Console-level and Git-level permissions.
+:::note
+To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
 :::
 
 ## Managing Company Users
 
-A User with enough administrative permission on a specific Company will be able to view the existing identities in the Company, add new ones and change the existing Identities' Roles.
+At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management section. In particular, from the Identities portal, a Company Owner can add new Users to the Company, manage their accesses or remove their access to it.
 
 ![Identities table filtered by User](./img/user-management/identities_table_filtered_by_user.png)
 
@@ -38,9 +26,9 @@ Please note that some permissions defined by the Company Role may be inherited o
 Always pay attention when assigning Roles in order to avoid providing undesired access to resources!
 :::
 
-### Adding a new User
+### Adding a new User at Company Level
 
-The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the invited User email to be provided.
+From the Identities portal, a Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the invited User email to be provided.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -50,13 +38,13 @@ The Company Owner can add a new User by pressing the *Add user* button. The User
   </div>
 </div>
 
-The provided email will be searched throughout existing Users and if a match is found the User will be invited to the Company with the defined Role.
+The provided email will be searched throughout existing Users and if a match is found the User will be invited to the Company with the specified Role.
 
 :::info
 If the User does not exist in the Platform, please open a Service Request for it to be created.
 :::
 
-### Editing a User Role
+### Editing User Company Role
 
 A User Role in the Company can be modified: to do so, simply click on the edit button for the desired User row and select the new Role.
 
@@ -68,9 +56,12 @@ A User Role in the Company can be modified: to do so, simply click on the edit b
   </div>
 </div>
 
-### Removing a User from the Company
+### Removing access to the Company
 
-A User can be removed from the Company by clicking the trash icon on the table and confirming the action.
+Removing a User from the Identity table results in removing the Role assignment to that User.
+Without permission granted, User access to the Company is always removed **with the exception** if that User also belongs to some [Company Group](/development_suite/identity-and-access-management/group-management.md).
+In this case, the User does not lose access to the Company, and its permissions on it are defined solely by the privileges given to the Group/Groups to which the User belongs.
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
@@ -80,10 +71,11 @@ A User can be removed from the Company by clicking the trash icon on the table a
 </div>
 
 :::warning
-Removing a User from the Company will kick the User out of every Project and Runtime Environment. While the User may be invited back in the Company, all their previously existing Roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
+Removing a User from the Identities portal will remove permissions specifically assigned to that User on every Project and Runtime Environment of the Company.  
+While the User may be invited back in the Company, all their previously existing Roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
 :::
 
-## Managing Project and Environment Users
+## Managing User Roles at Project and Environment levels
 
 A User with enough administrative permission on a specific Project will be able to view all the existing Identities in the Company and assign them the desired Role on the specific Project (and, optionally, on each existing Runtime Environment).
 

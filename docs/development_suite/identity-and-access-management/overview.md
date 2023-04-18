@@ -5,11 +5,19 @@ The Console allows access to Company resources with specific authorization level
 - Service Account: a non-human client which is used for automated processes and machine-to-machine communication. Learn all about Service Accounts in the [Service Account Management](/development_suite/identity-and-access-management/service-account-management.md) page. 
 - Group: a group of Users who are assigned the same privileges on a set of resources. Learn all about Groups in the [Groups Management](/development_suite/identity-and-access-management/group-management.md) page. 
 
-The Console is based on hierarchical resources: assigning specific roles and permissions to the above mentioned types of Identities is important for defining responsibilities and privileges within your Companies and Projects. Discover more about it in the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) documentation.
+The Console is based on hierarchical resources: assigning specific roles and permissions to the above mentioned Identity types is important for defining responsibilities and privileges within your Companies and Projects. Discover more about it in the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) documentation.
 
-Users with enough administrative permission on a specific Company or Project can view the existing Users, Service Accounts and Groups and perform actions on them. Here is an example of the Identities table of a Company, which can be found in the IAM (Identity and Access Management) section from the Company Overview:  
+## Identities Portal
 
-![identities table](./img/identities_table.png)
+Users with enough administrative permission can manage roles and permissions given to Users, Service Accounts and Groups and perform actions on them at both Company and Project levels. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
+
+Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section from the Company Overview, wherein it is possible to manage the Role assigned at Company level:  
+
+![Company Identities table](./img/identities_table.png)
+
+In order to manage privileges at Project level, the Identities table is shown even into Project Settings Area, wherein it is possible to manage Roles assigned to the specific Project and its Envinronments.
+
+<!-- TODO: ![Project Identities table](./img/identities_table_on_project.png) -->
 
 :::caution Important: Git provider vs Console permissions
 The management of Roles and permissions aims at regulating access on resources solely at Console level.  
