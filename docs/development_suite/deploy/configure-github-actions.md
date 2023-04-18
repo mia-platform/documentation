@@ -1,6 +1,6 @@
 ---
 id: configure-github-actions
-title:  Configure deployment with GitHub
+title:  Configure deployment with GitHub Actions
 sidebar_label: Configure deployment with GitHub
 slug: "/development_suite/deploy/"
 ---
