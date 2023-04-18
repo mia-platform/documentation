@@ -26,12 +26,12 @@ At Company level, for each Group, it is possible to manage:
 * Role: the Group Company Role
 * Members: adding and/or removing Users from the Group
 
-Existing Groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage Roles assigned to them as well as for Users and Service Account Users. 
+Existing Groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage Roles assigned to them as well as for the other Identity types. 
 
 <!-- TODO: ![Group table](./img/group-management/group_table.png) -->
 
 :::caution
-Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
+Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environments of the Company itself.  
 Always pay attention when assigning Roles in order to avoid providing undesired access to resources!
 :::
 
