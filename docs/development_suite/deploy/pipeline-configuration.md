@@ -4,7 +4,7 @@ title: How to setup a Pipeline
 sidebar_label: Configure a Project Pipeline
 ---
 Projects created with the Mia-Platform Console can be deployed with simple script and tooling for
-applying standard Kubernetes yaml file that describe the various resources. For aiding the developer we have created
+applying standard Kubernetes yaml files that describe the various resources. To aid the developer we have created
 a new open source tool called [mlp].
 
 In this chapter we will highlight how to use *mlp* to deploy the project and give you all the information
