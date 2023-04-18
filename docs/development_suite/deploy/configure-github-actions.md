@@ -20,13 +20,13 @@ of the configuration should contain the following information:
 ```
 
 :::info
-if you haven't set up a GitHub provider yet, [see this page](/development_suite/set-up-infrastructure/configure-provider) to learn how to configure it.
-Remember that the Access Token configured to your provider needs at least `read-level` access scope for the "Deployments" of the organization.
+if you haven't set up a GitHub provider yet, [see this page](/development_suite/set-up-infrastructure/configure-provider.mdx) to learn how to configure it.
+Remember that the Access Token configured to your provider needs at least `read-level access scope for the "Deployments" of the organization.
 In order for GitHub to send webhook payloads, your server needs to be accessible from the Internet.
 :::
 
 :::info
-if you haven't set up an environment yet, [see this page](/development_suite/set-up-infrastructure/add-environment) to learn how to configure it.
+if you haven't set up an environment yet, [see this page](/development_suite/set-up-infrastructure/add-environment.mdx) to learn how to configure it.
 :::
 
 ## Workflow
