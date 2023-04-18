@@ -1600,6 +1600,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-add-plan-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-chart"
                 }
               ]
             }
