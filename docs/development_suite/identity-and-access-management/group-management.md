@@ -38,7 +38,7 @@ You can check which capabilities are granted according to the chosen role by vis
 
 ### Creating a Group
 
-The Company Owner can start the group creation process by pressing *Create group* button inside the Groups section. In the creation process it is required to define the Group name and the Company role to assign. It is also possible to add members to the Group.
+The Company Owner can start the group creation process by pressing the *Create group* button inside the Groups section. In the creation process it is required to define both the name and Company role of the Group. It is also possible to optionally add members to the Group.
 
 :::info
 During the creation process, the Group can be also created without members added to it. This action can be performed even after the Group creation.
