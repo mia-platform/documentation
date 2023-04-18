@@ -83,7 +83,7 @@ jobs:
           deployment-id: ${{ github.event.deployment.id }}
 ```
 
-When users deploy for the first time, the Console release automatically creates the environments configured inside the project, 
+When users deploy for the first time, the Console automatically creates the environments configured inside the project, 
 otherwise, you can [follow this tutorial](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) 
 to set up your environments.
 
