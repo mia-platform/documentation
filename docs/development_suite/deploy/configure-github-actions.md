@@ -97,7 +97,7 @@ With the above configuration, when a user presses the `Deploy` button inside the
 When a project is created, the Console subscribes it automatically to GitHub Webhooks.
 These webhooks are important to allow the Console to update the project and see your deployment history.
 
-Currently, the events subscribed are: 
+Currently, the events that Console need to handle are: 
 * [deployment_status](https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#deployment_status)
 
 ### Projects created before v10.8.0
