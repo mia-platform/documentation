@@ -37,7 +37,8 @@ Roles can be assigned at three types of Console resources:
 * Project
 * Runtime Environments
 
-Roles can be assigned at Company level from the Identities portal of the Company Overview section.  
+Roles can be assigned at Company level from the Identities portal of the Company Overview section.
+  
 The following table describes the capabilities that are granted when assigning a Role at Company level:
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
