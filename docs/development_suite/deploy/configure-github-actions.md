@@ -26,7 +26,7 @@ In order for GitHub to send webhook payloads, your server needs to be accessible
 :::
 
 :::info
-if you haven't set up an environment yet, [see this page](/development_suite/set-up-infrastructure/add-environment.mdx) to learn how to configure it.
+If you haven't set up an environment yet, check out [here](/development_suite/set-up-infrastructure/add-environment.mdx) how to configure it.
 :::
 
 ## Workflow
