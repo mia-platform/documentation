@@ -31,8 +31,9 @@ Existing Groups can also be found within the Identities portal at both Company a
 <!-- TODO: ![Group table](./img/group-management/group_table.png) -->
 
 :::caution
-Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environments of the Company itself.  
+Please note that some permissions granted by the assigned Company Role may be inherited on the Projects and Runtime Environments of the Company itself.  
 Always pay attention when assigning Roles in order to avoid providing undesired access to resources!
+You can check which capabilities are granted according to the chosen role by visiting the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) documentation page.
 :::
 
 ### Creating a Group
