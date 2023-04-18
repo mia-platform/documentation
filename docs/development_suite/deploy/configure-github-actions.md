@@ -21,7 +21,7 @@ of the configuration should contain the following information:
 
 :::info
 if you haven't set up a GitHub provider yet, [see this page](/development_suite/set-up-infrastructure/configure-provider) to learn how to configure it.
-Remember that the Access Token configured to your provider needs to have the `admin` scope of the organization.
+Remember that the Access Token configured to your provider needs at least `read-level` access scope for the "Deployments" of the organization.
 In order for GitHub to send webhook payloads, your server needs to be accessible from the Internet.
 :::
 
