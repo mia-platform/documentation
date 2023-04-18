@@ -6,7 +6,7 @@ sidebar_label: Manage Groups
 
 Mia-Platform Console allows you to assign and manage authorization privileges to groups of users at Company level. Groups aim to simplify the management of a large number of users who have to be assigned the same privileges (e.g. a work team).
 
-Groups is considered a type of [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) to which Users with enough permissions can assign and manage roles on the following resources:
+Groups are considered a type of [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) whereby Users with enough permissions can assign and manage roles on the following resources:
 
 * Company
 * Project
@@ -18,7 +18,7 @@ To find out more about Roles management, check out the available [Capabilities](
 
 ## Managing Company Groups
 
-Each Company has its own Groups, which are configurable and manageable solely by Company Owner from the dedicated Groups section inside the Company Overview. 
+Each Company can have its own Groups. These types of Identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
 
 At Company level, for each Group, it is possible to manage:
 
