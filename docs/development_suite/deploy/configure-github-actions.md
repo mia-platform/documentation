@@ -4,7 +4,7 @@ title:  Configure deployment with GitHub Actions
 sidebar_label: Configure deployment with GitHub Actions
 slug: "/development_suite/deploy/"
 ---
-The Mia-Platform Console can be configured to deploy your project through GitHub.
+The Mia-Platform Console can be configured to deploy your project through GitHub Actions.
 
 In order to enable your project to be deployed using GitHub, you should edit the configuration of the project through the Console CMS 
 (if you do not have access to it, ask your instance administrator). In particular, the `environments.deploy` object 
