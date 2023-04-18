@@ -20,10 +20,10 @@ In order to manage privileges at Project level, the Identities table is shown ev
 <!-- TODO: ![Project Identities table](./img/identities_table_on_project.png) -->
 
 :::caution Important: Git provider vs Console permissions
-The management of Roles and permissions aims at regulating access on resources solely at Console level.  
-Roles and permissions of Users on the same resources at the Git provider level are not managed in this Console area; thus, Roles at Git-level must be verified in order to prevent possible discrepancies that may appear between permissions the User has at the Console-level and those the User has at the Git repository level.
+The management of Roles and permissions aims at regulating access to resources exclusively at the Console level.  
+Roles and permissions of Users on the same resources at the Git provider level are not managed in this Console area; thus, Roles at Git-level must be verified in order to prevent possible discrepancies that may appear between User permissions at the Console-level and those the User has at the Git-level.
 
-For example, it could happen that a User who does not even have permissions to access a Company from the Console is, however, in a Git group with an assigned Role that gives them Git-level permissions on these Company resources!
+For example, it could happen that a User who does not even have permissions to access a Company from the Console is, however, in a Git group with an assigned Role that gives them Git-level permissions on those Company resources!
 
 Therefore, by giving permissions on resources to Users, it is strongly suggested a double check on both Console-level and Git-level permissions.
 :::

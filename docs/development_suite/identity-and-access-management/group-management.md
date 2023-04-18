@@ -92,9 +92,9 @@ A Group can be deleted by accessing its detail page and clicking on the *Delete*
 :::caution
 Group deletion may result in loss of access to the Company for those Group members who are not members of at least one other Company Group or who do not have a specific individual Company role assigned.   
 
-In the case that a group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in loss of access to the Company for that User.  
+In the case that a Group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in the loss of access to the Company for that User.  
 
-In the case that a User has access even to other Company Groups, or has a specific Company role assigned, the deletion of the Group will NOT result in loss of access to the Company for that User; however, it is necessary to pay attention to what privileges are still left to that User on the Company resources.
+In the case that a User has access to more Company Groups, or has a specific individual Company role assigned, the deletion of the Group will NOT result in loss of access to the Company for that User; for this reason, it is necessary to pay attention to what privileges are still left to that User on the Company resources.
 :::
 
 <!-- 

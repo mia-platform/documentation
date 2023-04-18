@@ -17,7 +17,7 @@ To find out more about Roles check out the available [Capabilities](/development
 
 ## Managing Company Users
 
-At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management section. In particular, from the Identities portal, a Company Owner can add new Users to the Company, manage their accesses or remove their access to it.
+At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the Identities portal, a Company Owner can add new Users to the Company, manage their accesses, and remove them.
 
 ![Identities table filtered by User](./img/user-management/identities_table_filtered_by_user.png)
 
@@ -38,7 +38,7 @@ From the Identities portal, a Company Owner can add a new User by pressing the *
   </div>
 </div>
 
-The provided email will be searched throughout existing Users and if a match is found the User will be invited to the Company with the specified Role.
+The provided email will be searched throughout existing Users and, if a match is found, the User will be invited to the Company with the specified Role.
 
 :::info
 If the User does not exist in the Platform, please open a Service Request for it to be created.
@@ -59,8 +59,8 @@ A User Role in the Company can be modified: to do so, simply click on the edit b
 ### Removing access to the Company
 
 Removing a User from the Identity table results in removing the Role assignment to that User.
-Without permission granted, User access to the Company is always removed **with the exception** if that User also belongs to some [Company Group](/development_suite/identity-and-access-management/group-management.md).
-In this case, the User does not lose access to the Company, and its permissions on it are defined solely by the privileges given to the Group/Groups to which the User belongs.
+Without permission granted, User access to the Company is always removed **with the exception** of when that User also belongs to at least one [Company Group](/development_suite/identity-and-access-management/group-management.md).
+In that specific case, the User does not lose their access to the Company, and their permissions on it are defined solely by the privileges given to the Group/Groups to which the User belongs.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -82,7 +82,7 @@ A User with enough administrative permission on a specific Project will be able 
 ![Project identities](./img/user-management/project_identities.png)
 
 :::note
-Even though the Project Identities administration portal shows all the Company Identities, this does not mean that all the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
+Even though the Project Identities administration portal shows all the Company Identities, this does not mean that all the Identities have access to the Project, as this depends on their assigned Role in the Company and how the permissions are inherited.
 
 For further information about permissions and Role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
