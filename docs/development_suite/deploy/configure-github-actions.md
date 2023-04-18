@@ -1,12 +1,12 @@
 ---
 id: configure-github-actions
-title:  Configure deployment with GitHub
-sidebar_label: Configure deployment with GitHub
+title:  Configure deployment with GitHub Actions
+sidebar_label: Configure deployment with GitHub Actions
 slug: "/development_suite/deploy/"
 ---
-The Mia-Platform Console can be configured to deploy your project through GitHub.
+The Mia-Platform Console can be configured to deploy your project through GitHub Actions.
 
-In order to enable your project to be deployed using GitHub, you should edit the configuration of the project through the Console CMS 
+To enable your project to be deployed using GitHub Actions, you should edit the configuration of the project through the Console CMS 
 (if you do not have access to it, ask your instance administrator). In particular, the `environments.deploy` object 
 of the configuration should contain the following information:
 
@@ -84,11 +84,11 @@ jobs:
 ```
 
 When users deploy for the first time, the Console release automatically creates the environments configured inside the project, 
-otherwise you can [follow this tutorial](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) 
+otherwise, you can [follow this tutorial](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) 
 to set up your environments.
 
 With the above configuration, when a user presses the `Deploy` button inside the console, the following steps will be executed:
-* The Console creates a new deployments depending on environment chosen on GitHub repository
+* The Console creates new deployments depending on the environment chosen on the GitHub repository
 * On deployments creation GitHub dispatches a new deployment event and triggers the job specified inside the workflow
 * When the pipeline status of deployments changes, the Console updates to show you its current status
 
@@ -102,10 +102,10 @@ Currently, the events that Console need to handle are:
 
 ### Projects created before v10.8.0
 
-For projects already created before specified version, you need to subscribe to provider events, manually.
+For projects already created before the specified version, you need to subscribe to provider events, manually.
 To do this you can use the GitHub interface or the API.
 
-Here's an example of deployments_status subscription
+Here's an example of a deployments_status subscription
 
 ```text
 POST https://gihhub-host.com/orgs/{org}/hooks', {
