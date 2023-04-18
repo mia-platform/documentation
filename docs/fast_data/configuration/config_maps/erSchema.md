@@ -226,6 +226,10 @@ You can select the _condition type_, for both the condition and its reverse, whi
 - _One to many_, which means that the condition will fetch all the documents from one projection that match the condition with the document in the other projection;
 You can select the _condition type_ going from _A_ to _B_ (in this example: from _pr_dishes_ to _pr_reviews_) and from _B_ to _A_ (from _pr_reviews_ to _pr_dishes_). 
 
+:::warning
+The ER Schema does not support the _One to many_ _condition type_ on both the condition and its reverse. When the _condition type_ is set to _One to many_ on one side of the condition, it will not be possible to use this _condition type_ on the other side. If an existing ER Schema contains duplicated _One to many_ conditions, a warning message will be displayed.
+:::
+
 Below are listed the rules that define conditions both ways. These rules are divided into three sections, each one with its tab:
 - _A <-> B_: includes all those rules that will be used in the condition from _A_ to _B_ and vice versa. In the example of the screenshot above, the rule `id_dish = ID_DISH` means that the condition from _pr_dishes_ to _pr_reviews_ will connect the `id_dish` field in _pr_dishes_ to the `ID_DISH` in _pr_reviews_, and the condition from _pr_reviews_ to _pr_dishes_ will connect the `ID_DISH` in _pr_reviews_ to the `id_dish` field in _pr_dishes_;
 - _A -> B_: includes all those rules that will be used in conditions by filtering documents of projection _A_ and executing queries based on comparison operations on fields of projection _B_ or constant values;
