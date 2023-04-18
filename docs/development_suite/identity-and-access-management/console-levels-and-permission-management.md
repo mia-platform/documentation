@@ -99,7 +99,6 @@ The following table describes the privileges given to these Console Administrato
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
 |----------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
-
 | Create a new Company                                                       | `console.root.company.create`                          |        |          |           |            |                       |               |
 | Delete any Company                                                         | `console.root.company.delete`                          |        |          |           |            |                       |               |
 | Create a new Project                                                       | `console.root.project.create`                          |        |          |           |            |                       |               |
