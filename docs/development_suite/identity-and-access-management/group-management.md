@@ -4,7 +4,7 @@ title: Manage Groups
 sidebar_label: Manage Groups
 ---
 
-Mia-Platform Console allows to assign and manage authorization privileges to groups of users at Company level. Groups aim at simplify the management a large number of users who have to be assigned the same privileges (e.g. a work team).
+Mia-Platform Console allows you to assign and manage authorization privileges to groups of users at Company level. Groups aim to simplify the management of a large number of users who have to be assigned the same privileges (e.g. a work team).
 
 <!-- 
 
