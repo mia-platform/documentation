@@ -52,7 +52,7 @@ TODO: ![Add group](./img/group-management/add_user.png)
   </div>
 </div> -->
 
-It is possible to add to a Group both Users who already have access to the Company and new Users who will consequently be given access to the Company. For the latter, it is necessary to insert the e-mail address to which the invitation to join the Company will be sent.
+It is possible to add to a Group both Users who already have access to the Company and new Users who do not have access to the Company (but which already exist on the Platform). For the latter, once inserted their email address, they will receive an invitation to join that Group of the Company.  As long as they are part of at least one Group of a Company, they can have access to the resources of that Company.
 
 The provided email will be searched throughout existing users on the Platform and if a match is found the user will be invited to the Company with the defined Role.
 
