@@ -6,15 +6,6 @@ sidebar_label: Manage Groups
 
 Mia-Platform Console allows you to assign and manage authorization privileges to groups of users at Company level. Groups aim to simplify the management of a large number of users who have to be assigned the same privileges (e.g. a work team).
 
-<!-- 
-
-ITA version: 
-Mia-Platform Console permette di assegnare e gestire privilegi di autorizzazione a gruppi di utenti presenti o meno a livello di Company. In questo modo risulta più agevole gestire un grande numero di utenti a cui dover assegnare gli stessi privilegi (es. work team).
-
-
-Mia-Platform Console enables certain Users to control other identities ability to access resources. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization. -->
-
-
 Groups is considered a type of [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) to which Users with enough permissions can assign and manage roles on the following resources:
 
 * Company
@@ -25,18 +16,7 @@ Groups is considered a type of [Identity](/development_suite/identity-and-access
 To find out more about Roles management, check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an Identity.
 :::
 
-
-<!-- In particular, a User can be assigned a Role on the following resources:
-
-* Company
-* Project
-* Runtime Environment -->
-
-
-<!-- Only Users with enough privileges will be granted access to the Identities administration portal and will be able to change identity Roles. -->
-
 ## Managing Company Groups
-<!-- A User with enough administrative permission on a specific Company will be able to view the existing identities in the Company, add new ones and change the existing identities' Roles. -->
 
 Each Company has its own Groups, which are configurable and manageable solely by Company Owner from the dedicated Groups section inside the Company Overview. 
 
@@ -56,10 +36,6 @@ Always pay attention when assigning Roles in order to avoid providing undesired 
 :::
 
 ### Creating a Group
-
-<!-- The Company Owner can add a new User by pressing the *Add user* button. The User invitation process will require the invited User email to be provided. -->
-
-<!-- Si può creare un gruppo utilizzando il bottone *Add User* e nel processo di creazione si possono definire il suo nome, il suo ruolo sulla Company e tutti i suoi membri. I membri aggiunti al gruppo possono anche non appartenere alla Company (cioè non hanno mai avuto un ruolo come Identities sulla Company in questione) e in tal caso viene richiesta la loro email. -->
 
 The Company Owner can start the group creation process by pressing *Create group* button inside the Groups section. In the creation process it is required to define the Group name and the Company role to assign. It is also possible to add members to the Group.
 
@@ -99,8 +75,6 @@ In the case that a User has access to the Company solely from its membership of 
 In the case that a User has access even to other Company Groups, or has a specific Company role assigned, the removal from that Group will NOT result in loss of access to the Company for that User; however, it is necessary to pay attention to what privileges are still left to that User on the Company resources. 
 :::
 
-<!-- A User Role in the Company can be modified: to do so, simply click on the edit button for the desired User row and select the new Role. -->
-
 <!-- 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -122,8 +96,6 @@ In the case that a group member has access to the Company solely from its member
 In the case that a User has access even to other Company Groups, or has a specific Company role assigned, the deletion of the Group will NOT result in loss of access to the Company for that User; however, it is necessary to pay attention to what privileges are still left to that User on the Company resources.
 :::
 
-<!-- A User can be removed from the Company by clicking the trash icon on the table and confirming the action. -->
-
 <!-- 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -132,7 +104,3 @@ TODO: ![Delete group](./img/group-management/delete_group.png)
 
   </div>
 </div> -->
-
-<!-- :::warning
-Removing a User from the Company will kick the User out of every Project and Runtime Environment. While the User may be invited back in the Company, all their previously existing Roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
-::: -->
