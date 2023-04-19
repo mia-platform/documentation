@@ -22,7 +22,7 @@ The Console resources are organized in a hierarchical structure on three levels:
 
 ## Identity Capabilities inside Console
 
-Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped for each specific role. A brief presentation of the default Roles that can be assigned to each Identity is provided here below:
+Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped for each specific role. A brief presentation of the default roles that can be assigned to each Identity is provided here below:
 
 * `Company Owner`: A Company Owner has the ability to manage Company Users and Service Accounts, and has full administrative capabilities on all the Projects (and Runtime Environments) within the Company
 * `Project Administrator`: A Project Administrator is able to manage identities and all other aspects of a Project, thus being able to perform any actions on all the Runtime Environments of the Project as well
