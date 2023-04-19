@@ -3,7 +3,7 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different Roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem.
+Assigning different roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem.
 The Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
 Let's see how they are configured.
 
@@ -39,7 +39,7 @@ Roles can be assigned at three types of Console resources:
 
 Roles can be assigned at Company level from the Identities portal of the Company Overview section.
   
-The following table describes the capabilities that are granted when assigning a Role at Company level:
+The following table describes the capabilities that are granted when assigning a role at Company level:
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
 |----------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
@@ -90,10 +90,10 @@ For each of them, therefore, the permissions inherited from the Company role ass
 | Manage identities for this Project                                         | `console.project.users.manage`                         |        |          |           |            | ✅                    |               |
 | Delete a single Project                                                    | `console.project.delete`                               |        |          |           |            |                       | ✅            |
 
-User Roles and permissions are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to perform actions at Console root level.
+User roles and permissions are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to perform actions at Console root level.
 
 :::info
-Note that Console Super User is NOT included as a default Role. Consequently, it can not be assigned from the Identities portal, as it performs actions exclusively at Console root level. 
+Note that Console Super User is NOT included as a default role. Consequently, it can not be assigned from the Identities portal, as it performs actions exclusively at Console root level. 
 :::
 
 The following table describes the privileges given to these Console Administrators:
