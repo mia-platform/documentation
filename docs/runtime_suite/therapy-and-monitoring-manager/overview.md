@@ -29,6 +29,7 @@ In the documentation, when you encounter any of the terms listed below, you shou
 | *Physician*          | A doctor prescribing therapies or monitorings to a patient. |
 | *Plan*               | A therapy or monitoring plan prescribed by a physician. |
 | *Prototype*          | An archetype providing generic (applicable to all patients) constraints to validate detection values, for example to ensure a medical device is reporting correctly, or therapy directives. |
+| *Schedule*           | A schedule the patient need to follow when submitting detections for a therapy or monitoring. |
 | *Therapy*            | A physician prescription for some therapies (taking drugs, etc.). |
 | *Threshold*          | Monitoring thresholds specific for a patient therapy or monitoring, for example his/her expected blood pressure. |
 | *TMM*                | Common abbreviation for the Therapy and Monitoring Manager. |
@@ -93,7 +94,8 @@ The service allows you to create, update and delete therapies for patients, such
 * the reference to the patient to whom the therapy is addressed;
 * the tolerance on the frequency or time of intake for which a particular detection entered by the patient is still considered adherent to the therapy;
 * the minimum percentage value for which a patient is considered adherent to therapy with respect to reported detections;
-* the minimum percentage value for which a patient is considered compliant to therapy with respect to reported detections.
+* the minimum percentage value for which a patient is considered compliant to therapy with respect to reported detections;
+* if adherence and/or compliance metrics should be calculated.
 
 ## Monitorings
 
@@ -110,7 +112,8 @@ The service allows you to create, update and delete monitorings for patients, su
 * the tolerance on the frequency or time of intake for which a particular detection entered by the patient is still considered adherent or compliant to the monitoring;
 * the minimum percentage value for which a patient is considered adherent to monitoring with respect to reported detections;
 * the minimum percentage value for which a patient is considered compliant to monitoring with respect to reported detections;
-* the detections thresholds.
+* the detections thresholds;
+* if adherence and/or compliance metrics should be calculated.
 
 ## Detections
 
