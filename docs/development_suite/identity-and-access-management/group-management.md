@@ -18,7 +18,7 @@ To find out more about Roles management, check out the available [Capabilities](
 
 ## Managing Company Groups
 
-Each Company can have its own Groups. These types of Identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
+Each Company can have its own groups. These types of Identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
 
 At Company level, for each Group, it is possible to manage:
 
