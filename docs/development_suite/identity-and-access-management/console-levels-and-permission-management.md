@@ -3,7 +3,7 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different Roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem.
+Assigning different Roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your Platform ecosystem.
 The Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
 
 Let's see how they are configured.
@@ -16,7 +16,7 @@ The Console resources are organized in a hierarchical structure on three levels:
 
 1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration.
 
-1. **Project Level** is the third level of the Console. Projects are the heart of the Console: in fact, it is at this level that developers engage in creating new features and building their own platform.
+1. **Project Level** is the third level of the Console. Projects are the heart of the Console: in fact, it is at this level that developers engage in creating new features and building their own Platform.
 
 ![alt text](../img/DevOps_Console_levels.PNG)
 
@@ -31,7 +31,7 @@ Identities can perform a set of predetermined actions along Console levels, in a
 * `Reporter`: A Reporter can view Project configuration and Runtime Environments
 * `Guest`: A Guest has restricted access to data and can only view basic information for a selected subset of resources
 
-The following table describes the capabilities and how they are mapped on the default Roles.
+The following table describes the capabilities and how they are mapped on the default roles.
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
 |----------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
@@ -82,7 +82,7 @@ The following table describes the capabilities and how they are mapped on the de
 | Manage available features                                                  | `console.root.features.manage`                         |        |          |           |            |                       |               |
 | Manage Company Project Templates                                           | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
 
-User Roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
+User roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 
 ### Role binding example
 

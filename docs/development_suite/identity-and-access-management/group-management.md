@@ -6,42 +6,42 @@ sidebar_label: Manage Groups
 
 Mia-Platform Console allows you to assign and manage authorization privileges to groups of users at Company level. Groups aim to simplify the management of a large number of users who have to be assigned the same privileges (e.g. a work team).
 
-Groups are considered a type of [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) whereby users with enough permissions can assign and manage roles on the following resources:
+Groups are considered a type of [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) whereby users with enough permissions can assign and manage roles on the following resources:
 
 * Company
 * Project
 * Runtime Environment
 
 :::note
-To find out more about Roles management, check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an Identity.
+To find out more about roles management, check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an identity.
 :::
 
 ## Managing Company Groups
 
-Each Company can have its own groups. These types of Identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
+Each Company can have its own groups. These types of identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
 
-At Company level, for each Group, it is possible to manage:
+At Company level, for each group, it is possible to manage:
 
-* Name: the name assigned to the Group
-* Role: the Group Company Role
-* Members: adding and/or removing users from the Group
+* Name: the name assigned to the group
+* Role: the group Company role
+* Members: adding and/or removing users from the group
 
-Existing Groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage Roles assigned to them as well as for the other Identity types. 
+Existing groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
 
 <!-- TODO: ![Group table](./img/group-management/group_table.png) -->
 
 :::caution
-Please note that some permissions granted by the assigned Company Role may be inherited on the Projects and Runtime Environments of the Company itself.  
-Always pay attention when assigning Roles in order to avoid providing undesired access to resources!
+Please note that some permissions granted by the assigned Company role may be inherited on the Projects and Runtime Environments of the Company itself.  
+Always pay attention when assigning roles in order to avoid providing undesired access to resources!
 You can check which capabilities are granted according to the chosen role by visiting the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) documentation page.
 :::
 
 ### Creating a Group
 
-The Company Owner can start the group creation process by pressing the *Create group* button inside the Groups section. In the creation process it is required to define both the name and Company role of the Group. It is also possible to optionally add members to the Group.
+The Company Owner can start the group creation process by pressing the *Create group* button inside the Groups section. In the creation process it is required to define both the name and Company role of the group. It is also possible to optionally add members to the group.
 
 :::info
-During the creation process, the Group can be also created without members added to it. This action can be performed even after the Group creation.
+During the creation process, the group can be also created without members added to it. This action can be performed even after the group creation.
 :::
 
 <!-- <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -52,28 +52,28 @@ TODO: ![Add group](./img/group-management/add_user.png)
   </div>
 </div> -->
 
-It is possible to add to a Group both Users who already have access to the Company and new Users who do not have access to the Company (but which already exist on the Platform). For the latter, once inserted their email address, they will receive an invitation to join that Group of the Company.  As long as they are part of at least one Group of a Company, they can have access to the resources of that Company.
+It is possible to add to a group both users who already have access to the Company and new users who do not have access to the Company (but which already exist on the Platform). For the latter, once inserted their email address, they will receive an invitation to join that group of the Company.  As long as they are part of at least one group of a Company, they can have access to the resources of that Company.
 
-The provided emails will be searched throughout existing users on the Platform and, if a match is found, the user will be invited to the Group with the defined Role of that specific Group.
+The provided emails will be searched throughout existing users on the Platform and, if a match is found, the user will be invited to the group with the defined tole of that specific group.
 
 :::info
-If the User does not exist in the Platform, please open a Service Request to invite it to register in the Platform.
+If the user does not exist in the Platform, please open a Service Request to invite it to register in the Platform.
 :::
 
 ### Editing a Group
 
-After the creation of a Group, it is possible to enter its detail page.
+After the creation of a group, it is possible to enter its detail page.
 Once entered, a Company Owner can perform the following actions:
 
-* Change Group name
-* Edit Group Company role
-* Add new members to the Group
-* Remove members from the Group
+* Change group name
+* Edit group Company role
+* Add new members to the group
+* Remove members from the group
 
 :::info
-In the case that a User has access to the Company solely from its membership of that Group, the removal from that Group will result in loss of access to the Company for that User.  
+In the case that a user has access to the Company solely from its membership of that group, the removal from that group will result in loss of access to the Company for that user.  
 
-In the case that a User has access to more Company Groups, or has a specific individual Company role assigned, the removal from that Group will NOT result in the loss of access to the Company for that User; for this reason, it is necessary to pay close attention to what privileges are still left to that User on the Company resources. 
+In the case that a user has access to more Company Groups, or has a specific individual Company role assigned, the removal from that Group will NOT result in the loss of access to the Company for that user; for this reason, it is necessary to pay close attention to what privileges are still left to that user on the Company resources. 
 :::
 
 <!-- 
@@ -87,14 +87,14 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
 
 ### Deleting a Group
 
-A Group can be deleted by accessing its detail page and clicking on the *Delete* button at the end of the page and then confirming the action.
+A group can be deleted by accessing its detail page and clicking on the *Delete* button at the end of the page and then confirming the action.
 
 :::caution
-Group deletion may result in loss of access to the Company for those Group members who are not members of at least one other Company Group or who do not have a specific individual Company role assigned.   
+Group deletion may result in loss of access to the Company for those group members who are not members of at least one other Company group or who do not have a specific individual Company role assigned.   
 
-In the case that a Group member has access to the Company solely from its membership of the deleted Group, the removal from that Group will result in the loss of access to the Company for that User.  
+In the case that a group member has access to the Company solely from its membership of the deleted group, the removal from that group will result in the loss of access to the Company for that user.  
 
-In the case that a User has access to more Company Groups, or has a specific individual Company role assigned, the deletion of the Group will NOT result in loss of access to the Company for that User; for this reason, it is necessary to pay attention to what privileges are still left to that User on the Company resources.
+In the case that a user has access to more Company groups, or has a specific individual Company role assigned, the deletion of the group will NOT result in loss of access to the Company for that user; for this reason, it is necessary to pay attention to what privileges are still left to that user on the Company resources.
 :::
 
 <!-- 
