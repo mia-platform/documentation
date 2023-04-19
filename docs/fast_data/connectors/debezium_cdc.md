@@ -530,7 +530,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 
 If none of the databases mentioned in the previous sections are being used, it is still possible to connect any custom database with the Debezium Server.
 
-In this case, the Debezium Server Generic template can be used, which is more flexible and allows for a tailor-made configuration. It is possible to configure it with any sink configurations supported by Debezium as outlined in the [official documentation](https://debezium.io/documentation/reference/stable/connectors/index.html). The template configuration requires setting up the database user, permission, and the JMX Prometheus Exporter configuration.
+In this case, the Debezium Server Generic template can be used since it is more flexible and allows a tailor-made configuration. It is possible to configure it with any sink configurations supported by Debezium as outlined in the [official documentation](https://debezium.io/documentation/reference/stable/connectors/index.html). The template configuration requires setting up the database user, permission, and the JMX Prometheus Exporter configuration.
 
 The Debezium Server Generic template is available in Mia Marketplace under the category **Add-ons - Fast Data Connectors**.
 
