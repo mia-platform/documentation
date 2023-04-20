@@ -100,27 +100,3 @@ These webhooks are important to allow the Console to update the project and see 
 Currently, the events that the Console needs to handle are: 
 * [deployment_status](https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#deployment_status)
 
-### Projects created before v10.8.0
-
-For projects already created before the specified version, you need to subscribe to provider events manually.
-To do this you can use the GitHub interface or the API.
-
-Here's an example of a deployments_status subscription
-
-```text
-POST https://gihhub-host.com/orgs/{org}/hooks', {
-  org: 'ORG',
-  name: 'web',
-  active: true,
-  events: ['deployment_status'],
-  config: {
-    url: 'http://{YOUR_ORGANIZATION}.com/{TARGET_URL}',
-    content_type: 'json',
-    secret: '*****'
-  },
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28',
-    'Authorization': 'token {TOKEN}'
-  }
-})
-```
