@@ -17,13 +17,13 @@ A working JSON example is the following:
 ```json
 {
   "deploy": {
-        "type": "jenkins",
-        "providerId": "your-provider-id",
-        "paramsMap": {
-          "revision": "TAG",
-          "environment": "ENVIRONMENT"
-        },
-        "jobId": "jobId"
+    "type": "jenkins",
+    "providerId": "your-provider-id",
+    "paramsMap": {
+      "revision": "TAG",
+      "environment": "ENVIRONMENT"
+    },
+    "jobId": "jobId"
   }
 }  
 ```
