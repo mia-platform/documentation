@@ -154,6 +154,58 @@ It is possible to create Company-independent service accounts in case you need t
 
 Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company Identities portal.
 
+### Creating Root Service Accounts
+
+In order to create a new Root Service Account, you need to contact the `/api/service-accounts` endpoint.
+
+You will need to provide the following parameters in the body:
+
+- `tokenEndpointAuthMethod`: `client_secret_basic` or `private_key_jwt`.
+- `publicKey` (optional): only necessary if you choose `private_key_jwt` as an authentication method. Read [Adding a new Service Account](#adding-a-new-service-account) for further information.
+- `name`: the Root Service Account name.
+- `permissions`: a list of permissions to assign to the Service Account, separed by a comma. See [Console levels and permission management](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management.md) for a reference of the available permissions.
+
+To authenticate your request, you will need to provide your access token and the Console client key.
+
+Here is an example of cURL request for creating a Root Service Account with the `client_secret_basic` authentication method:
+
+```shell
+curl --location 'http://[my-console-url]/api/service-accounts' \
+    --header 'Content-Type: application/json' \
+    --header 'Client-key: [console-client-key]' \
+    --header 'Authorization: Bearer [my-access-token]'
+    --data '{
+        "name": "Example Service Account",
+        "permissions": ["console.root.user.bind", "console.root.user.manage"],
+        "tokenEndpointAuthMethod": "client_secret_basic"
+    }'
+```
+
+Example response:
+
+```json
+{
+  "clientId": "[clientId]",
+  "clientSecret": "[clientSecret]",
+  "clientIdIssuedAt": 1681984988
+}
+```
+
+### Deleting Root Service Accounts
+
+In order to delete a Root Service Account, you need to contact the `/api/service-accounts/{clientId}` endpoint, with the `clientId` obtained from the creation response.
+
+To authenticate your request, you will need to provide your access token and the Console client key.
+
+Here is an example of cURL request for deleting a Root Service Account:
+
+```shell
+curl --location --request DELETE 'http://[my-console-url]/api/service-accounts/[clientId]' \
+    --header 'Content-Type: application/json' \
+    --header 'Client-key: [console-client-key]' \
+    --header 'Authorization: Bearer [my-access-token]'
+```
+
 ## Service Account authentication
 
 In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
