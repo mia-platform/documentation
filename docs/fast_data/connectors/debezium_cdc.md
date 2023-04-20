@@ -525,6 +525,15 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 
 </details>
 
+
+### Debezium Server Generic Template
+
+If none of the databases mentioned in the previous sections are being used, it is still possible to connect to the ones supported by debezium that we don't provide as a service in the marketplace with the Debezium Server.
+
+ By referring to the [official documentation](https://debezium.io/documentation/reference/stable/connectors/index.html), you can configure any sink configurations supported by Debezium. To set up the template configuration, you must configure the *application.properties* file as directed in the documentation. Additionally, the JMX Prometheus Exporter configuration must also be configured.
+
+The Debezium Server Generic template is available in Mia Marketplace under the category **Add-ons - Fast Data Connectors**.
+
 ## Offsets Management
 
 When Debezium CDC starts it initially creates a snapshot of the database, if configured so, and then it starts monitoring any change that occurs over the configured databases and tables. To keep track of which change events were consumed and forwarded to the _sink_ resource, Debezium Server requires saving the offsets metadata somewhere. Currently, these methods are supported:
