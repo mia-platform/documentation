@@ -170,7 +170,7 @@ To authenticate your request, you will need to provide your access token and the
 Here is an example of cURL request for creating a Root Service Account with the `client_secret_basic` authentication method:
 
 ```shell
-curl --location 'http://[my-console-url]/api/service-accounts' \
+curl --location --request POST 'http://[my-console-url]/api/service-accounts' \
     --header 'Content-Type: application/json' \
     --header 'Client-key: [console-client-key]' \
     --header 'Authorization: Bearer [my-access-token]'
