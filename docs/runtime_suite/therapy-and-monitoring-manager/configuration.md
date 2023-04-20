@@ -31,10 +31,13 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 | **CRON_SCHEDULE**                         | No                                    | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `DETECTIONS_TIME_ZONE` time zone.                                           |
 | **VALIDATION_SERVICE**                    | No                                    | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                          |
 | **VALIDATION_SERVICE_URL**                | If `VALIDATION_SERVICE` is `external` | -                   | HTTP(S) URL of the external validation service.                                                                                                              |
+| **DEFAULT_ADHERENCE_STATUS**              | Yes                                   | -                   | Default value for adherenceStatus                                                                                                                            |
 | **DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY** | Yes                                   | -                   | Default value for adherenceToleranceFrequency                                                                                                                |
 | **DEFAULT_ADHERENCE_TOLERANCE_TIME**      | Yes                                   | -                   | Default value for adherenceToleranceTime                                                                                                                     |
 | **DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE**  | Yes                                   | -                   | Default value for adherenceMinimumPercentage                                                                                                                 |
+| **DEFAULT_COMPLIANCE_STATUS**             | Yes                                   | -                   | Default value for adherenceStatus                                                                                                                            |
 | **DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE** | Yes                                   | -                   | Default value for complianceMinimumPercentage                                                                                                                |
+| **MAX_PATIENT_ACTIVE_PLANS**              | No                                    | -                   | Maximum number of active therapies or monitorings associated to the same prototype for each patient.                                                         |
 
 ## Prototypes definition
 
@@ -195,9 +198,11 @@ You can use the following JSON files in the *MongoDB CRUD* section of the consol
 | hours                           | `Array of string` | No                | No                |
 | doctorId                        | `string`          | Yes               | No                |
 | patientId                       | `string`          | Yes               | No                |
+| adherenceStatus                 | `string `         | Yes               | No                |
 | adherenceToleranceTime          | `number`          | No                | No                |
 | adherenceToleranceFrequency     | `string`          | No                | No                |
 | adherenceMinimumPercentage      | `number`          | No                | No                |
+| complianceStatus                | `string `         | Yes               | No                |
 | complianceMinimumPercentage     | `number`          | No                | No                |
 | isPatientAdherent               | `boolean`         | No                | No                |
 | isPatientAdherentLastUpdatedAt  | `Date`            | No                | No                |
@@ -220,9 +225,11 @@ The `directives` field will have the fields specified in the prototype schema, d
 | hours                           | `Array of string` | No                | No                |
 | doctorId                        | `string`          | Yes               | No                |
 | patientId                       | `string`          | Yes               | No                |
+| adherenceStatus                 | `string `         | Yes               | No                |
 | adherenceToleranceTime          | `number`          | No                | No                |
 | adherenceToleranceFrequency     | `string`          | No                | No                |
 | adherenceMinimumPercentage      | `number`          | No                | No                |
+| complianceStatus                | `string `         | Yes               | No                |
 | complianceMinimumPercentage     | `number`          | No                | No                |
 | isPatientAdherent               | `boolean`         | No                | No                |
 | isPatientAdherentLastUpdatedAt  | `Date`            | No                | No                |

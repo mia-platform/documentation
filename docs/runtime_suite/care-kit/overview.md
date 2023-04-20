@@ -21,4 +21,7 @@ This components are designed to be used inside a [Backoffice](../../business_sui
   - [ck-threshold-modal](components/ck-threshold-modal.md)
   - [ck-add-plan-modal](components/ck-add-plan-modal.md)
 
+### Data visualization Web Components
+  - [ck-chart](components/ck-chart.md)
+
 Some of the components work using custom events. For info on the custom events see [here](events.md)
