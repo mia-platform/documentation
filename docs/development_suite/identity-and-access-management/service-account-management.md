@@ -148,9 +148,11 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
   </div>
 </div>
 
-## Managing Service Accounts at Instance level
+## Managing Service Accounts independent from the Company
 
-<!-- to-do -->
+It is possible to create Company-independent service accounts in case you need to give them root-level permissions to perform root-level operations.
+
+Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company Identities portal.
 
 ## Service Account authentication
 
