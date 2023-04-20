@@ -22,7 +22,7 @@ of the configuration should contain the following information:
 :::info
 If you haven't set up a GitHub provider yet, check out [here](/development_suite/set-up-infrastructure/configure-provider.mdx) how to configure it.
 Remember that the Access Token configured to your provider needs at least `read-level access scope for the "Deployments" of the organization.
-In order for GitHub to send webhook payloads, your server needs to be accessible from the Internet.
+In order for GitHub to send webhook payloads, your console instance needs to be accessible from the Internet.
 :::
 
 :::info
