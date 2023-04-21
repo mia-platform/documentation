@@ -9,25 +9,27 @@ The Therapy and Monitoring Manager exposes different APIs for the management of 
 
 The therapy and monitoring data models share the majority of the properties. The common part of the data model is composed by the following properties:
 
-| Name                            | Required (Yes/No) | Description |
-|---------------------------------|-------------------|-------------|
-| planName                        | Yes               | Name of the therapy or monitoring. | 
-| prototypeId                     | Yes               | Identifier of the prototype to use in the validation of the detection values. |
-| startDate                       | Yes               | Start date of the therapy or monitoring plan. |
-| endDate                         | No                | End date of the therapy or monitoring plan. |
-| each                            | No                | Frequency expressed in terms of days of week. The array must contain only the value `day` or any combination of days of the week (`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`). |
-| times                           | No                | Frequency expressed in number of repetitions per day. This field is mutually exclusive with `hours`, which must be omitted if this is set. |
-| hours                           | No                | Hours at which the patient need to carry out the action prescribed by the physician. This field is mutually exclusive with `times`, which must be omitted if this is set. |
-| doctorId                        | Yes               | The reference to the doctor that created the therapy or monitoring. |
-| patientId                       | Yes               | The reference to the patient the therapy or monitoring refers to. |
-| adherenceToleranceTime          | No                | Time tolerance in terms of hours that can be accepted between the timing prescribed by the physician and the actual timing performed by the patient. If the action performed by the patient exceeds the tolerance, the detection will be marked as non-adherent. This field is considered only when the `hours` field is set. |
-| adherenceToleranceFrequency     | No                | Frequency tolerance that can be accepted between the frequency prescribed by the physician and the frequency with which the patient actually performed the actions. This field is considered only when the `times` field is set. |
-| adherenceMinimumPercentage      | No                | Minimum ratio expressed in percentage between the number of days when the patient is adherent and the total number of the expected days with detections. For instance, a minimum adherence percentage of 90% means that the patient is considered adherent to the plan if it has completed the assigned tasks on time at least on 9 days out of 10, according to the therapy or monitoring schedule |
-| complianceMinimumPercentage     | No                | Minimum ratio expressed in percentage between the number of days when the patient is compliant and the total number of days with detections. A patient is compliant on a given day if all detections for that day are compliant. For example, a minimum compliance percentage of 90% means that the patient is considered compliant if and only if it has completed correctly all assignments on at least 9 days out of 10, according to the compliance definition. |
-| isPatientAdherent               | No                | If the patient is adherent to the therapy or monitoring, taking into consideration the tolerance settings. This field is accessible in read-only mode from the API. |
-| isPatientAdherentLastUpdatedAt  | No                | Date/time of the last update to the `isPatientAdherent` field. This field is accessible in read-only mode from the API. |
-| isPatientCompliant              | No                | If the patient is compliant to the therapy or monitoring, taking into consideration the tolerance settings. This field is accessible in read-only mode from the API. |
-| isPatientCompliantLastUpdatedAt | No                | Date/time of the last update of the `isPatientCompliant` field. This field is accessible in read-only mode from the API. |
+| Name | Required | Default | Description |  |
+|---|---|---|---|---|
+| planName | Yes | - | Name of the therapy or monitoring. |  |
+| prototypeId | Yes | - | Identifier of the prototype to use in the validation of the detection values. |  |
+| startDate | Yes | - | Start date of the therapy or monitoring plan. |  |
+| endDate | No | - | End date of the therapy or monitoring plan. |  |
+| doctorId | Yes | - | The reference to the doctor that created the therapy or monitoring. |  |
+| patientId | Yes | - | The reference to the patient the therapy or monitoring refers to. |  |
+| adherenceStatus | No | `DEFAULT_ADHERENCE_STATUS` | If the adherence is computed (`enabled`) or not (`disabled`), as long as the therapy or monitoring specifies a schedule. |  |
+| each | If `adherenceStatus` is `enabled` | - | Frequency expressed in terms of days of week. The array must contain only the value `day` or any combination of days of the week (`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`). If this field is set, one between `times` and `each` must be set, but not both. |  |
+| times | If `adherenceStatus` is `enabled` and `hours` is not set | - | Frequency expressed in number of repetitions per day. This field is mutually exclusive with `hours` and can only be set if `each` is set. |  |
+| hours | If `adherenceStatus` is `enabled` and `times` is not set | - | Hours at which the patient need to carry out the action prescribed by the physician. This field is mutually exclusive with `times` and can only be set if `each` is set. |  |
+| adherenceToleranceTime | If `adherenceStatus` is `enabled` and `hours` is set | `DEFAULT_ADHERENCE_TOLERANCE_TIME` | Time tolerance in terms of hours that can be accepted between the timing prescribed by the physician and the actual timing performed by the patient. If the action performed by the patient exceeds the tolerance, the detection will be marked as non-adherent. This field can only be set when the `hours` field is set. |  |
+| adherenceToleranceFrequency | If `adherenceStatus` is `enabled` and `times` is set | `DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY` | Frequency tolerance that can be accepted between the frequency prescribed by the physician and the frequency with which the patient actually performed the actions. This field can only be set when the `times` field is set. |  |
+| adherenceMinimumPercentage | If `adherenceStatus` is `enabled` | `DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE` | Minimum ratio expressed in percentage between the number of days when the patient is adherent and the total number of the expected days with detections. For instance, a minimum adherence percentage of 90% means that the patient is considered adherent to the plan if it has completed the assigned tasks on time at least on 9 days out of 10, according to the therapy or monitoring schedule |  |
+| complianceStatus | No | `DEFAULT_COMPLIANCE_STATUS` | If the compliance is computed (`enabled`) or not (`disabled`). |  |
+| complianceMinimumPercentage | If `complianceStatus` is `enabled` | `DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE` | Minimum ratio expressed in percentage between the number of days when the patient is compliant and the total number of days with detections. A patient is compliant on a given day if all detections for that day are compliant. For example, a minimum compliance percentage of 90% means that the patient is considered compliant if and only if it has completed correctly all assignments on at least 9 days out of 10, according to the compliance definition. |  |
+| isPatientAdherent | No |  | If the patient is adherent to the therapy or monitoring, taking into consideration the tolerance settings. This field is accessible in read-only mode from the API. |  |
+| isPatientAdherentLastUpdatedAt | No |  | Date/time of the last update to the `isPatientAdherent` field. This field is accessible in read-only mode from the API. |  |
+| isPatientCompliant | No |  | If the patient is compliant to the therapy or monitoring, taking into consideration the tolerance settings. This field is accessible in read-only mode from the API. |  |
+| isPatientCompliantLastUpdatedAt | No |  | Date/time of the last update of the `isPatientCompliant` field. This field is accessible in read-only mode from the API. |  |
 
 :::note
 The `times` and `hours` fields are overlapping and only one of them needs to be specified. The `times` property must be set when an operation is to be performed a certain number of times within the same day but without specifying the hour of the day. The `hours` property, instead, must be set when an operation has to be performed in determined hours of the day. If none is set, the adherence metric is not computed.
@@ -91,12 +93,14 @@ The body of the request must contain a JSON object representing a valid therapy 
   },
   "startDate": "2022-06-01",
   "endDate": "2022-06-15",
-  "each": ["day"],
-  "hours": ["10"],
   "doctorId": "auth0|doctorId",
   "patientId": "auth0|patientId",
+  "each": ["day"],
+  "hours": ["10"],
+  "adherenceStatus": "enabled",
   "adherenceToleranceTime": 1,
   "adherenceMinimumPercentage": 90,
+  "complianceStatus": "enabled",
   "complianceMinimumPercentage": 90,
 }
 ```
@@ -110,12 +114,14 @@ The body of the request must contain a JSON object representing a valid therapy 
   "notes": "Takes the blood pressure twice a day",
   "startDate": "2022-06-01",
   "endDate": "2022-06-15",
-  "each": ["day"],
-  "times": 2,
   "doctorId": "auth0|doctorId",
   "patientId": "auth0|patientId",
+  "each": ["day"],
+  "times": 2,
+  "adherenceStatus": "enabled",
   "adherenceToleranceFrequency": 1,
   "adherenceMinimumPercentage": 90,
+  "complianceStatus": "enabled",
   "complianceMinimumPercentage": 90,
   "thresholds": [
     {
@@ -134,7 +140,11 @@ The body of the request must contain a JSON object representing a valid therapy 
 
 These endpoints return 200 and an object with an `_id` field containing the ID of the created CRUD record.
 
-These endpoints return 400 and a body with the structure shown below if the therapy or monitoring is not valid or is trying to set read-only fields:
+These endpoints return 400 and a body with the structure shown below if any of the following conditions is met:
+
+- the therapy or monitoring is not valid;
+- the client tries to set read-only fields;
+- the current number of active therapies or monitorings associated to the given prototype and patient is equal to the `MAX_PATIENT_ACTIVE_PLANS` env var (if set).
 
 ```json
 {
@@ -144,26 +154,37 @@ These endpoints return 400 and a body with the structure shown below if the ther
   "requestId": "<Request ID>",
   "resource": {},
   "validationErrors": [
-    "Validation error on a field", "Validation error on another field"
+    "Validation error on a field",
+    "Plan exceeded limit on patient active plans"
   ],
 }
 ```
-If the `each` field is defined, with a schedule based on `times` or `hours`, but the fields `adherenceToleranceFrequency`,  `adherenceToleranceTime`,  `adherenceMinimumPercentage`, `complianceMinimumPercentage` are not defined, they will be initialized with the default values stored in the environment variables, since they are required for adherence and compliance calculation.
 
-The following table shows which environment variable contains the default value for the corresponding therapy or monitoring field.
+The following fields will be initialized with default values if the value is required ([see table](#therapy--monitoring)) but no value is provided:
 
-| Field                       | Environment variable                    |
-|-----------------------------|-----------------------------------------|
-| adherenceToleranceFrequency | DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY   |
-| adherenceToleranceTime      | DEFAULT_ADHERENCE_TOLERANCE_TIME        |
-| adherenceMinimumPercentage  | DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE    |
-| complianceMinimumPercentage | DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE   |
+- `adherenceStatus`
+- `adherenceToleranceFrequency`
+- `adherenceToleranceTime`
+- `adherenceMinimumPercentage`
+- `complianceStatus`
+- `complianceMinimumPercentage`
+
+The following table summarizes which environment variable contains the default value for the corresponding therapy or monitoring field.
+
+| Field                       | Environment variable                  |
+|-----------------------------|---------------------------------------|
+| adherenceStatus             | DEFAULT_ADHERENCE_STATUS              |
+| adherenceToleranceFrequency | DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY |
+| adherenceToleranceTime      | DEFAULT_ADHERENCE_TOLERANCE_TIME      |
+| adherenceMinimumPercentage  | DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE  |
+| complianceStatus            | DEFAULT_COMPLIANCE_STATUS             |
+| complianceMinimumPercentage | DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE |
 
 ### `PATCH /<therapies|monitorings>/:id`
 
 Update an existing therapy or monitoring plan identified by the `:id` path parameter. These endpoints are a proxy to the CRUD `PATCH /:id` endpoint.
 
-If the therapy or monitoring does not have a `schedule`, and only the fields `each` and `times`/`hours` are set, the remaining fields of the schedule are added with defaults values.
+If the therapy or monitoring does not have a schedule, and the fields `each` and one between `times` or `hours` is set, the remaining fields of the schedule are added with defaults values (see the table in the previous section).
 
 These endpoints return 400 and a body with the structure shown below if one of following errors occur:
 
@@ -173,7 +194,7 @@ These endpoints return 400 and a body with the structure shown below if one of f
 {
   "statusCode": 400,
   "error": "Invalid CRUD Resource",
-  "message": "<monitoring|therapy> is not valid",
+  "message": "Patched <monitoring|therapy> is not valid",
   "requestId": "<Request ID>",
   "resource": {},
   "validationErrors": [
@@ -188,7 +209,7 @@ These endpoints return 400 and a body with the structure shown below if one of f
 {
   "statusCode": 400,
   "error": "Invalid CRUD Resource",
-  "message": "<monitoring|therapy> is not valid",
+  "message": "Patched <monitoring|therapy> is not valid",
   "requestId": "<Request ID>",
   "resource": {},
   "validationErrors": [
@@ -203,7 +224,7 @@ These endpoints return 400 and a body with the structure shown below if one of f
 {
   "statusCode": 400,
   "error": "Invalid CRUD Resource",
-  "message": "'Patched <monitoring|therapy> is not valid'",
+  "message": "Patched <monitoring|therapy> is not valid",
   "requestId": "<Request ID>",
   "resource": {
     "planName": "Drug therapy",
@@ -214,12 +235,14 @@ These endpoints return 400 and a body with the structure shown below if one of f
     },
     "startDate": "2022-06-01",
     "endDate": "2022-06-15",
-    "each": ["day"],
-    "hours": ["10"],
     "doctorId": "auth0|doctorId",
     "patientId": "auth0|patientId",
+    "each": ["day"],
+    "hours": ["10"],
+    "adherenceStatus": "enabled",
     "adherenceToleranceTime": 1,
     "adherenceMinimumPercentage": 90,
+    "complianceStatus": "enabled",
     "complianceMinimumPercentage": 90,
     "isPatientAdherent": true,
     "isPatientCompliant": true
@@ -227,6 +250,21 @@ These endpoints return 400 and a body with the structure shown below if one of f
   "validationErrors": [
     "'times' and 'hours' are mutually exclusive fields, found both"
   ],
+}
+```
+
+- the number of active therapies or monitorings associated to the given prototype and patient is equal to the `MAX_PATIENT_ACTIVE_PLANS` env var (if set):
+
+```json
+{
+  "statusCode": 400,
+  "error": "Invalid CRUD Resource",
+  "message": "Patched <monitoring|therapy> is not valid",
+  "requestId": "<Request ID>",
+  "resource": {},
+  "validationErrors": [
+    "Plan exceeded limit on patient active plans"
+  ]
 }
 ```
 
@@ -572,13 +610,14 @@ A therapy or monitoring plan is considered active if and only if:
 
 - the start date is earlier than the current date/time;
 - the end date is not set or is greater or equal than the current date/time minus the grace period (see [`DETECTIONS_GRACE_PERIOD`][config-env-vars]).
-- the `each` field is defined, with a times/hours schedule
 
 For example, if the cron job runs every day at midnight and the grace period is 30 days, we add 30 days to the end date to account for detections submitted during the grace period. We also add one more day to ensure that we correctly update the adherence and compliance metrics for the last day, whenever it ends between two consecutive executions of the background job.
 
 ### Adherence computation
 
-The adherence of a patient to a plan is computed only for active plans with a timeframe, i.e. having the `each` field set with `times` or `hours` field, according to the following algorithm, executed on all submitted detections.
+The adherence of a patient to a plan is computed only for active plans with adherence enabled, i.e. having the `adherenceStatus` field set to `enabled`.
+
+The computation is performed for each plan according to the following algorithm, using all submitted detections.
 
 1. Compute the expected number of days with detections, from the start date of the plan until the last day.
 2. Compute, for each day with detections, if the patient is adherent in that specific day.
@@ -600,7 +639,9 @@ To determine if a patient is adherent in a specific day (step 2 above) we follow
 
 ### Compliance computation
 
-The compliance of a patient with a plan is computed according to the following algorithm, executed on all submitted detections.
+The compliance of a patient to a plan is computed only for active plans with compliance enabled, i.e. having the `complianceStatus` field set to `enabled`.
+
+The computation is performed for each plan according to the following algorithm, using all submitted detections.
 
 1. Compute, for each day with detections, if the patient is compliant in that specific day, meaning if all detections are compliant (`isCompliant` is `true`).
 2. Compute the ratio between the number of days when the patient is compliant and the total number of days with detections.

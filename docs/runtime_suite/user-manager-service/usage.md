@@ -32,7 +32,7 @@ This request accepts the following fields:
 If the user is successfully authenticated, you will receive a response with a 200 status code, the `refreshToken` and
 the `accessToken` with its expiration date `expireAt`.
 
-:::warning
+:::caution
 If in the advanced configuration of the console the auth0 client is set with `scope website`,
 then only the `set-cookie` header with the `sid` is returned and the response body is empty.
 :::
@@ -81,7 +81,7 @@ This request accepts the following fields:
 - **_id (required)** - `string`: user id in the `users` CRUD.
 - **password** - `string`: optional password. 
 
-:::warning
+:::caution
 The password is randomly generated if the environment variable `RANDOM_PWD_GEN` is set to `true` or if the password is not defined.
 :::
 
@@ -95,6 +95,15 @@ If the user is created in the authentication service correctly, you will receive
 ### POST /users/
 
 Creates a new user in the `users` CRUD collection and in the chosen authentication service.
+
+If the `expirationDate` field is set, the UMS will automatically schedule a job on the Timer Service to automatically block the user on expiration.
+
+:::caution
+
+Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
+so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+
+:::
 
 :::note
 In case the user group has the `authUserCreationDisabled` property set to `true` in the configuration CRUD,
@@ -110,6 +119,14 @@ This request accepts the following 'standard' fields:
 - **blocked** - `boolean`: to create a 'blocked' user;
 - **userGroup (required)** - `string`: the group to which the user belongs;
 - **roles** - `array`: the roles to be assigned to the user via Rönd.
+- **expirationDate** - `Date` (from v1.4.0): the expiration date/time of the user account.
+
+:::note
+
+If you are upgrading to v1.4.0 or later from a previous version and use `expirationDate` as a custom property,
+you need to rename that property before upgrading.
+
+:::
 
 Additional fields can also be added to the body, depending on the `users` CRUD collection.
 All these additional fields must be defined in the schema stored in the `ums-config` CRUD collection.
@@ -143,9 +160,7 @@ You make these properties unique [indexes](../../development_suite/api-console/a
 If the user is successfully created, you will receive a response with a 200 status code and the `_id` of the newly
 created user in the payload. The `_id` is to the `_id` of the user in the `users` CRUD collection.
 
-:::note
-If the user json fails the validation against its group schema, a `400 Bad Request` code is returned.
-:::
+If the client tries to set the `expirationId` field or the user object fails the validation against its group schema, a `400 Bad Request` code is returned.
 
 ### POST /users/with-id
 
@@ -158,6 +173,17 @@ This request accepts the following 'standard' fields:
 - **blocked** - `boolean`: to create a 'blocked' user;
 - **userGroup (required)** - `string`: the group to which the user belongs;
 - **roles** - `array`: the roles to be assigned to the user via Rönd.
+- **expirationDate** - `Date` (from v1.4.0): the expiration date/time of the user account.
+
+:::caution
+
+Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
+so you must set the [`TIMER_SERVICE` env var](#environment-variables) in order to get the user automatically blocked.
+
+Furthermore, if you are upgrading to v1.4.0 or later from a previous version and use `expirationDate` as a custom property,
+you need to rename that property before upgrading.
+
+:::
 
 Similarly to the [POST /users/](#POST-/users/), additional fields can also be added to the body
 and must be defined in the schema stored in the `ums-config` CRUD collection.
@@ -182,8 +208,16 @@ Returns the list of users. This endpoint is a direct proxy to the `GET /users` o
 
 ### DELETE /users/:id
 
-Deletes a single user.
-This endpoint combines calls to the `DELETE /users/:id` of the CRUD service and to the authentication service delete.
+Deletes a single user from both the CRUD and the Auth service, calling both the `DELETE /users/:id` of the CRUD service and the authentication service delete.
+
+If the user is set to expire in a future date/time, the UMS will automatically contact the Timer Service, if configured, to abort the job responsible for blocking the user on expiration.
+
+:::caution
+
+Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
+so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+
+:::
 
 :::note
 The `id` used as path parameter in this endpoint is the CRUD `_id` of the desired user.
@@ -193,10 +227,42 @@ The `id` used as path parameter in this endpoint is the CRUD `_id` of the desire
 
 If the user is successfully deleted, you will receive a response with a 204 status code and no payload.
 
+If the Auth or CRUD service returns an error, you will receive a response with a 500 status code and a payload looking like this:
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "Error while deleting user: CRUD GET /users/:id responded with a 500 status code",
+}
+```
+
+If the Timer Service returns an error, the endpoint will simply ignore it, without returning any error.  
+
 ### PATCH /users/:id
 
-Updates the user with the specified id.
-This endpoint updates the user data in both the `user` CRUD collection and the authentication service.
+Updates the user with the specified id in both the `user` CRUD collection and the authentication service.
+
+If the `expirationDate` field is set, the UMS will automatically schedule a job on the Timer Service to automatically block the user on expiration.
+
+If the `expirationDate` field is unset, the UMS will automatically abort the job on the Timer Service.
+
+If the `expirationDate` field is modified, the UMS will automatically reschedule the job on the Timer Service.
+
+:::danger
+
+Updating or unsetting the `expirationDate` poses relevant security risks you should be aware of, since a user could potentially remove the expiration date on his/her account.
+When configuring the UMS, you must set the appropriate ACL or RBAC policies to ensure, for example, that a user cannot change the details of his/her account,
+including the expiration date, or that only users from certain groups or with certain privileges can call this endpoint.
+
+:::
+
+:::caution
+
+Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
+so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+
+:::
 
 :::note
 The `id` used as path parameter in this endpoint is the CRUD `_id` of the desired user.
@@ -210,17 +276,27 @@ It's not allowed to change `authUserId` parameter.
 If the environment variable `ROND_ENABLED` is set to true a request towards the Rönd service is performed in order to update the user's roles and permissions.
 :::
 
-:::warning
+:::caution
 If the roles are successfully revoked but an error happen during the grant procedure, you will end up with an user with no roles. So, if an error occurred, be sure to check that the user have its roles.
 :::
 
-### Body
+#### Body
 
-The body of this request has the same interface of a CRUD service `PATCH /users/:id` request.
+The body of this request has the same interface of a CRUD service `PATCH /users/:id` request, except for the following fields that are not editable: `authUserId`, `expirationId`.
 
-### Response
+#### Response
 
 If the user is successfully updated, you will receive a response with a 200 status code and the updated user in the payload.
+
+If the Auth, CRUD or Timer service returns an error, you will receive a 500 status code and a response looking like this:
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "Error while deleting user: CRUD PATCH /users/:id responded with a 404 status code",
+}
+```
 
 ### GET /users/count
 
@@ -244,11 +320,11 @@ otherwise its behavior is the same as the `DRAFT` and `TRASH` cases.
 Note that in any case a user set to `DELETED` is never deleted from the CRUD with this endpoint (its state is only set to `DELETED`).
 :::
 
-### Body
+#### Body
 
 The body of this request has the same interface of a CRUD service `POST /users/state` request, if used with the filters.
 
-### Response
+#### Response
 
 If the users states are successfully updated, you will receive a response with a 200 status code,
 and the number of updated users in the payload.
@@ -285,4 +361,49 @@ In case of success, you will receive a response with a 200 status code and the u
 :::note
 This endpoint is not intended to be used with users which have been created only in the CRUD.
 In such cases, the endpoint will return the following message: `Missing authUserId, user not logged`.
+:::
+
+### POST /users/:id/soft-delete
+
+Change the state of the user to `DELETED` in the CRUD and, if the `AUTH_HARD_DELETE` env var is set to true or false, delete or block the Auth service, respectively.
+
+:::note
+
+If a direct transition to the `DELETED` state is not supported by the CRUD, the endpoint will perform multiple requests in order to get to the final desired state, for example from `PUBLIC` to `TRASH` and then from `TRASH` to `DELETED`.
+
+:::
+
+:::note
+
+The `id` used as path parameter in this endpoint is the CRUD `_id` of the desired user.
+
+:::
+
+#### Response
+
+If the user is successfully deleted, you will receive a response with a `204` status code and no payload.
+
+If the Auth or the CRUD service returns an error, you will receive a response with a `500` status code and a payload looking like this:
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "Error while deleting user: CRUD GET /users/:id responded with a 500 status code",
+}
+```
+
+:::caution
+
+If multiple requests are required to reach the desired user state, for example from `PUBLIC` to `TRASH` and then to `DELETED`, but one of those requests fail, the user reaches an intermediate state, for example `TRASH`, which is consistent between the CRUD and the auth provider, and you will receive a response with a `500` status code and a payload looking like this:
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "Error while soft deleting user: CRUD POST /users/:id/state responded with a 500 status code",
+}
+```
+You can call again this endpoint to resume the operation from the intermediate state.
+
 :::
