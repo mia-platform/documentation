@@ -33,5 +33,5 @@ This authentication method is not safe against replay attacks. It is recommended
 The `X-Mia-Token` header will contain the hex encoded `sha256` digest of the event payload concatenated with the provided `secret`. In formula:
 
 ```
-X-Mia-Token = hex(sha256( payload + secret ))
+X-Mia-Signature = hex(sha256( payload + secret ))
 ```
