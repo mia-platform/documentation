@@ -3,8 +3,8 @@ id: configuration
 title: Authentication Service Configuration
 sidebar_label: Configuration
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 
 
@@ -16,59 +16,65 @@ The environment variables needed by the service are:
 
 - **LOG_LEVEL** (default: info): level of the log. It can be trace, debug, info, warn, error, fatal or silent
 - **HTTP_PORT** (default: 8080): http port exposed by the service;
-- **SERVICE_PREFIX** (*optional*): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
+- **SERVICE_PREFIX** (_optional_): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
 - **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
-- **REDIS_HOST** (*required*): the Redis host, with the port;
-- **REDIS_USERNAME** (*optional*): the username to authenticate to Redis;
-- **REDIS_PASSWORD** (*optional*): the password to authenticate to Redis;
-- **CONFIG_FILE_PATH** (*required*): the path to the configuration file. Do not include the file name;
-- **CONFIG_FILE_NAME** (*required*): the name of the JSON configuration file. Do not include the extension;
-- **USERS_CRUD_BASE_URL** (*required*): base URL of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
-- **MIA_JWT_TOKEN_SIGN_KEY** (*required*): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC of least of 512 bytes);
-- **MIA_JWT_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated access token expires;
-- **PROVIDER_TOKEN_PASS_PHRASE** (*required*): a string used to encrypt the JWT (preferred an HMAC at least of 128 bytes);
-- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (*required*): time in seconds before the generated refresh token expires;
-- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC** (*optional*): how many seconds before the expiration of refresh token will be refreshed automatically;
-- **ORIGINAL_PROTOCOL_HEADER** (*required*): header containing the protocol of the original request (http or https);
-- **ADDITIONALS_CA_FOLDER** (*optional*): folder which contains the CA of the OAuth2 identity providers, if it's not public;
-- **ADDITIONAL_HEADERS_TO_PROXY** (*optional*): comma separated list of headers to proxy to the request to CRUD service.
-- **STORED_ACCESS_TOKEN_NUMBER** (*optional*): maximum number of stored access token associated to a user. The tokens are stored on Redis. Default is 10.
-- **REDIS_SESSIONS_SCOPE** (*required*): a string used to define the scope of redis in order to distinguish items in a multi-tenant architecture.
+- **REDIS_HOST** (_required_): the Redis host, with the port;
+- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis;
+- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis;
+- **CONFIG_FILE_PATH** (_required_): the path to the configuration file. Do not include the file name;
+- **CONFIG_FILE_NAME** (_required_): the name of the JSON configuration file. Do not include the extension;
+- **USERS_CRUD_BASE_URL** (_required_): base URL of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
+- **MIA_JWT_TOKEN_SIGN_KEY** (_required_): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC of least of 512 bytes);
+- **MIA_JWT_TOKEN_VALID_DURATION_SEC** (_required_): time in seconds before the generated access token expires;
+- **PROVIDER_TOKEN_PASS_PHRASE** (_required_): a string used to encrypt the JWT (preferred an HMAC at least of 128 bytes);
+- **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (_required_): time in seconds before the generated refresh token expires;
+- **EXPIRE_DELTA_PROVIDER_TOKEN_SEC** (_optional_): how many seconds before the expiration of refresh token will be refreshed automatically;
+- **ORIGINAL_PROTOCOL_HEADER** (_required_): header containing the protocol of the original request (http or https);
+- **ADDITIONALS_CA_FOLDER** (_optional_): folder which contains the CA of the OAuth2 identity providers, if it's not public;
+- **ADDITIONAL_HEADERS_TO_PROXY** (_optional_): comma separated list of headers to proxy to the request to CRUD service.
+- **STORED_ACCESS_TOKEN_NUMBER** (_optional_): maximum number of stored access token associated to a user. The tokens are stored on Redis. Default is 10.
+- **REDIS_SESSIONS_SCOPE** (_required_): a string used to define the scope of redis in order to distinguish items in a multi-tenant architecture.
 
 ## Configurations file
 
 The configurations file required by the _Authentication Service_ is in the JSON format. The file stores the configurations required by the Identity Providers to be used for authenticaton of your applications.
 
-:::caution 
+:::caution
+
 We recommend to mount this configuration file using a Kubernetes Secret due its confidential content.
+
 :::
 
 It is important to outline that it is possible to define an `order` property, not required, that will order your providers in the providers API result (e.g. for your login page) from the relative highest value to the lowest. In case the order property is not defined or multiple providers have the same order number, the service will alphabetically order them.
 
-For the service configuration, there is an `apps` field with as key the **appId** with value the app configuration. 
+For the service configuration, there is an `apps` field with as key the **appId** with value the app configuration.
 The app configuration contains:
 
-* **providers** (*required*): an object with key the *providerId* and as value the provider configuration;
-  * **type** (*required*): the type of the provider. Could be `gitlab`, `github`, `okta`, `microsoft`;
-  * **clientId** (*required*): the client ID of the OAuth2 app;
-  * **clientSecret** (*required*): the client secret of the OAuth2 app;
-  * **authUrl** (*required*): URL to call the authorize endpoint of the `authorization_code` grant type in the identity provider;
-  * **tokenUrl** (*required*): URL to get the token in the identity provider;
-  * **baseUrl** (*required*): base URL of the provider;
-  * **scope** (*required*): an array of string of the scope to forward to the identity provider;
-  * **order** (*optional*): a number which define the order to be returned from the get apps endpoint;
-  * **userSettingsURL** (*optional*): an URL to send the user to the user settings page on idp provider;
-  * **skipRefreshProviderTokenOnMiaTokenRefresh** (*default `false`*): if `true`, the provider's token won't be refreshed when calling the `/refreshtoken` endpoint, unless the provider token has expired;
-* **redirectUrl** (*required*): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
-* **authorizeStateRequired** (*default: `false`*): When `true`, the client should generate the `state` parameter, enabling further protection against CSRF attacks. See the [related section](./usage.md#client-generated-state);
-* **realm**: (*required*)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId*);
-* **defaultGroups** (*required*): an array of strings to add as group to a user on user creation;
-* **allowedRedirectUrlsOnSuccessfulLogin** (*optional*): a set of strings with the allowed redirect urls on successful login; do not add the query string here as it will be ignored when checking if the url is allowed, as per the [the specification](https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.2)
-* **defaultRedirectUrlOnSuccessfulLogin** (*optional*): a string to set the default redirect on successful login;
-* **isWebsiteApp** (*optional*): a boolean, if true set a Cookie *sid* in header. Default is `false`.
-* **sidCookieCustomAttributes** (*optional*): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./usage.md#website-cookie-configuration)
-  * **domain** (*optional*): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
-  * **sameSite** (*optional*): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.
+- **providers** (_required_): an object with key the _providerId_ and as value the provider configuration;
+  - **type** (_required_): the type of the provider. Can be `gitlab`, `github`, `okta`, `microsoft`, `keycloak` or `generic`;
+  - **clientId** (_required_): the client ID of the OAuth2 app;
+  - **clientSecret** (_required_): the client secret of the OAuth2 app;
+  - **authUrl** (_required_): URL to call the authorize endpoint of the `authorization_code` grant type in the identity provider;
+  - **tokenUrl** (_required_): URL to get the token in the identity provider;
+  - **baseUrl** (_required_): base URL of the provider;
+  - **scope** (_required_): an array of string of the scope to forward to the identity provider;
+  - **order** (_optional_): a number which define the order to be returned from the get apps endpoint;
+  - **userSettingsURL** (_optional_): an URL to send the user to the user settings page on idp provider;
+  - **skipRefreshProviderTokenOnMiaTokenRefresh** (_default `false`_): if `true`, the provider's token won't be refreshed when calling the `/refreshtoken` endpoint, unless the provider token has expired;
+- **redirectUrl** (_required_): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
+- **authorizeStateRequired** (_default: `false`_): When `true`, the client should generate the `state` parameter, enabling further protection against CSRF attacks. See the [related section](./usage.md#client-generated-state);
+- **realm**: (_required_)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId\*);
+- **defaultGroups** (_required_): an array of strings to add as group to a user on user creation;
+- **allowedRedirectUrlsOnSuccessfulLogin** (_optional_): a set of strings with the allowed redirect urls on successful login; do not add the query string here as it will be ignored when checking if the url is allowed, as per the [the specification](https://www.rfc-editor.org/rfc/rfc6749#section-3.1.2.2)
+- **defaultRedirectUrlOnSuccessfulLogin** (_optional_): a string to set the default redirect on successful login;
+- **isWebsiteApp** (_optional_): a boolean, if true set a Cookie _sid_ in header.
+- **customTokenClaims** (_optional_): options to configure additional custom claims to be added to the JWT token.
+  - **includeProviderUserId** (_default: `false`_): if `true`, the claim `providerUserId` will be included in the JWT token.
+  - **metadataFieldsToIncluded** (_optional_): an array of fields to be included under the field `metadata`. The `metadata`field will be populated only if the array is defined and not empty.
+- **issuer** (_required_): The value of the `iss` claim, it will be inserted in the issued tokens.
+- **sidCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./usage.md#website-cookie-configuration)
+  - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
+  - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.
 
 Here an example of the service configuration:
 
@@ -100,27 +106,39 @@ Here an example of the service configuration:
 }
 ```
 
-::info You can retrieve most of the URLs needed for the configuration from the [OpenID Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata) URL, usually exposed by the providers under the `/.well-known/openid-configuration` route. Refer to the provider documentation. ::
+:::info
+
+You can retrieve most of the URLs needed for the configuration from the [OpenID Connect Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata) URL, usually exposed by the providers under the `/.well-known/openid-configuration` route. Refer to the provider documentation.
+
+:::
 
 ## Users collection
 
-To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the *USERS_CRUD_BASE_URL* environment variable. Remember to set the default state of the endpoint to *PUBLIC*.
+To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the _USERS_CRUD_BASE_URL_ environment variable. Remember to set the default state of the endpoint to _PUBLIC_.
 
 Fields in the CRUD collection must be the following:
 
-| Field Name     | Field Type      | Required   |
-|----------------|:----------------|:-----------|
-| name           | String          |     ❌     |
-| groups         | Array of string |     ❌     |
-| username       | String          |     ❌     |
-| email          | String          |     ❌     |
-| providerId     | String          |     ✅     |
-| providerUserId | String          |     ✅     |
-| realm          | String          |     ✅     |
+| Field Name     | Field Type      | Required |
+| -------------- | :-------------- | :------- |
+| name           | String          | ❌       |
+| groups         | Array of string | ❌       |
+| username       | String          | ❌       |
+| email          | String          | ❌       |
+| providerId     | String          | ✅       |
+| providerUserId | String          | ✅       |
+| realm          | String          | ✅       |
+| metadata       | Object          | ❌       |
 
 The fields `groups`, `providerId`, and `realm` are obtained from the service configuration described above.
 
-The other optional fields are obtained, if available, from the provider's `/userinfo` endpoint.
+The `metadata` field can be used to store any kind of information about the user.
+
+:::caution
+
+It is not recommended to store additional fields at the root of the collection, as future versions of the authentication service could introduce new fields with clashing names.
+Nest any additional information about the user under the `metadata` field.
+
+:::
 
 ## How to configure providers
 
@@ -181,7 +199,7 @@ This is a configuration example for an app using GitHub Identity provider. Repla
           "baseUrl": "https://{API_GITHUB_URL}",
           "scope": ["custom_scope_github"],
           "userSettingsURL": "settings-url"
-        },
+        }
       },
       "redirectUrl": "https://test.com/callback",
       "realm": "my-realm",
@@ -271,24 +289,19 @@ Here is an example of configuration of [Microsoft's Azure AD B2C](https://docs.m
           "tokenUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/oauth2/v2.0/token",
           "userInfoUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/openid/v2.0/userinfo",
           "baseUrl": "https://<tenant-name>.b2clogin.com/<tenant-name>.onmicrosoft.com/<signin-policy-name>/oauth2/v2.0/",
-          "scope": [
-            "openid",
-            "offline_access",
-            "<application-client-id>"
-          ]
+          "scope": ["openid", "offline_access", "<application-client-id>"]
         }
       },
       "redirectUrl": "https://some-redirect/url",
       "realm": "my-realm",
-      "defaultGroups": [
-        "some_group"
-      ],
+      "defaultGroups": ["some_group"],
       "isWebsiteApp": true
     }
   }
 }
 ```
-Please note that for this provider to work you need to create a custom policy that enables the `/userinfo` endpoint on *Azure portal*. The policy must include at least the sign in capability. Please refer to the [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-b2c/userinfo-endpoint?pivots=b2c-custom-policy) for a detailed explanation on how to setup it. 
+
+Please note that for this provider to work you need to create a custom policy that enables the `/userinfo` endpoint on _Azure portal_. The policy must include at least the sign in capability. Please refer to the [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-b2c/userinfo-endpoint?pivots=b2c-custom-policy) for a detailed explanation on how to setup it.
 
 You probably also need to modify the `InputClaims` of the Userinfo configuration to map the returned properties names to the ones expected by the authorization service, in order for them to be saved correctly in the [users collection](#users-collection).
 
@@ -305,7 +318,6 @@ To achieve this you have to add the `PartnerClaimType` attribute with the correc
 ```
 
 Refer [to this section](https://docs.microsoft.com/en-us/azure/active-directory-b2c/userinfo-endpoint?pivots=b2c-custom-policy#provide-optional-claims) of the AD B2C documentation for a thorough explanation on how to do it.
-
 
 Furthermore, you must add the `clientId` in the `scope` array so that the `access_token` is correctly returned, as explained in the [documentation](https://docs.microsoft.com/en-us/azure/active-directory-b2c/access-tokens#openid-connect-scopes).
 
@@ -415,7 +427,6 @@ This is a configuration example for an app using the generic OAuth2 authenticati
 
 </Tabs>
 
-
 ## Redis storage
 
 :::caution
@@ -425,6 +436,6 @@ This feature is available from service tag 3.0.0
 :::
 
 Redis is used to store some information regarding the user session.
-With the environment variable *STORED_ACCESS_TOKEN_NUMBER* it's possible to configure how many sessions can be stored and set a limit to the maximum number of concurrent active session.
+With the environment variable _STORED_ACCESS_TOKEN_NUMBER_ it's possible to configure how many sessions can be stored and set a limit to the maximum number of concurrent active session.
 
 The endpoint `DELETE-/expired-sessions` can be used to clean all queues deleting the expired tokens.
