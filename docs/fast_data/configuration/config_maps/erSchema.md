@@ -178,7 +178,7 @@ From version `10.6.0` of the Console, your project might have enabled the possib
 
 ![Complete View of an ER Schema](../../img/er-schema-complete-view.png)
 
-To do that, go to the _Projections_ section and click on the _ER_ Schemas_ tab: it will show a list of ER Schemas, ready to be opened and modified to your needs.
+To do that, go to the _Projections_ section and click on the _ER Schemas_ tab: it will show a list of ER Schemas, ready to be opened and modified to your needs.
 
 :::tip
 When opening the _ER Schemas_ list, you should also see the ER Schemas previously configured inside the existing Single Views.
