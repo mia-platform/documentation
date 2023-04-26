@@ -577,6 +577,10 @@
         },
         {
           "type": "doc",
+          "id": "business_suite/backoffice-configurator/faqs"
+        },
+        {
+          "type": "doc",
           "id": "business_suite/backoffice-configurator/changelog"
         }
       ],
@@ -1608,6 +1612,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-add-plan-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-chart"
                 }
               ]
             }
