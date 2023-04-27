@@ -85,6 +85,40 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
   </div>
 </div> -->
 
+### Managing group Company role
+
+Groups are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Company Overview.
+Company role of a group can be modified: to do so, simply click on the edit button for the desired group row and select the new role.
+
+<!-- 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+TODO: ![Edit group role at Company level](./img/group-management/edit-group-role-at-company-level.png)
+
+  </div>
+</div> -->
+
+### Managing group role at Project level
+
+Groups which have access to a Company are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
+Group role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper role for the Project itself or for each Runtime Environment.
+
+<!-- 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit group role at Project level](./img/user-management/edit-group-role-at-project-level.png)
+
+  </div>
+</div> -->
+
+:::note
+Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
+
+For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
+:::
+
 ### Deleting a Group
 
 A group can be deleted by accessing its detail page and clicking on the *Delete* button at the end of the page and then confirming the action.
