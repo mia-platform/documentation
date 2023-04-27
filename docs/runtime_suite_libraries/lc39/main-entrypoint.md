@@ -174,6 +174,19 @@ This method is called for each route.
 The `schema` parameter is the schema object set to the route.
 `transformSchemaForSwagger` is only called on the first time that `/documentation/json` it's visited.
 
+## OpenTelemetry tracing [experimental]
+
+_The tracing is experimental and could change in a breaking also with minor changes_
+
+`lc39` allow to enable the tracing of the application using the OpenTelemetry SDK. To enable it, use the `--enable-tracing` option of the CLI.
+It is  possible to change the configuration of the SDK using environment variables ([here](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-sdk-node) the docs of the node sdk).
+
+Some of the env variables useful to configure the service. A full list is available [here](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md) (check if the SDK supports them):
+
+* `OTEL_TRACES_EXPORTER` (default is _otlp_): List of exporters to be used for tracing, separated by commas. Options include `otlp`, `jaeger`, `zipkin`, and `none`.
+* `OTEL_PROPAGATORS`: Propagators to be used as a comma-separated list. e.g. `b3`
+* `OTEL_SERVICE_NAME` (_required_): the service name. If not set, the service is set as unknown in trace.
+
 [fastify-sensible]: https://github.com/fastify/fastify-sensible
 [k8s]: https://kubernetes.io/
 [k8s-deployment-probes]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
