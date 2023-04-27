@@ -88,7 +88,7 @@ TODO: ![Edit group](./img/group-management/edit_group.png)
 ### Managing group Company role
 
 Groups are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Company Overview.
-Company role of a group can be modified: to do so, simply click on the edit button for the desired group row and select the new role.
+As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal: to do so, simply click on the edit button for the desired group row and select the new role.
 
 <!-- 
 <div style={{display: 'flex', justifyContent: 'center'}}>
