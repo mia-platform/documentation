@@ -80,7 +80,7 @@ Remember to identify the procedure following the proper use case needed reading 
 
 ## Simple deployment
 
-For the simple deployment procedure, you just need to properly configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md), [Data organizer](/fast_data/bucket_storage_support/configuration/data_organizer.md), [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md)).
+For the simple deployment procedure, you just need to properly configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md) and [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md)).
 
 ## CDC supports multiple ingestion topics
 

@@ -20,7 +20,6 @@ In addition, in order to deploy them it is necessary to set up the following res
 - a Bucket Storage where messages can be saved, with the permissions to read and write files on it.
 Currently, the supported resources are [Google Cloud Storage bucket](https://cloud.google.com/storage/docs/buckets)
 and any [Buckets compatible with the AWS S3 protocol](https://aws.amazon.com/s3/)
-- [optionally] a MongoDB database in case the Data Organizer By Key service is deployed
 
 ## Integration with Fast Data
 
@@ -37,8 +36,8 @@ since the same messages would be consumed by two independent components. In addi
 In order to correctly integrate the plugins with the Fast Data in a parallel way, these steps have to be followed:
 
 * Create _reingestion_ topics
-* Configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md),
-  [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md)) and [Data organizer](/fast_data/bucket_storage_support/configuration/data_organizer.md)
+* Configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md) and
+  [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md))
 * Perform an Initial Load procedure of the System of Records, in order to align the messages written on the bucket with all the projections already stored
   on the database
 
@@ -62,8 +61,8 @@ This architecture is recommended for systems where the requirement of retaining 
 In order to correctly integrate the plugins with the Fast Data in a sequential manner, these steps have to be followed:
 
 * Create post-ingestion topics
-* Configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md),
-  [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md)) and [Data organizer](/fast_data/bucket_storage_support/configuration/data_organizer.md)
+* Configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md) and
+  [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md))
 * Configure the Real-Time Updater to the read from the newer post-ingestion topics that have been created in the step above
 * Perform an Initial Load procedure of the System of Records, in order to align the messages written on the bucket with all the projections already stored
 on the database
@@ -74,7 +73,7 @@ For more details, please refer to the Bucket Storage Support [deployment guideli
 
 Similarly to how it happens with Fast Data, to integrate the Bucket Storage Support it is sufficient to define the needed resources
 and connected all the different pieces together. In fact, Ingestion Storer can actually be connected to any set of topics and write
-to the bucket independently of whether Ingestion Reloader and Data Organizer is available.
+to the bucket independently of whether Ingestion Reloader is available.
 
 Other custom services can be plugged into the system, potentially leveraging the messages emitted from the different services,
 to satisfy customer needs. 

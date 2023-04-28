@@ -886,10 +886,6 @@
               "type": "doc"
             },
             {
-              "id": "fast_data/bucket_storage_support/configuration/data_organizer_by_key_configuration",
-              "type": "doc"
-            },
-            {
               "id": "fast_data/bucket_storage_support/configuration/bucket_connection_configuration",
               "type": "doc"
             },
