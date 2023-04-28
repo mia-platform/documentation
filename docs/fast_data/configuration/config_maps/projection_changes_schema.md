@@ -6,14 +6,9 @@ sidebar_label: Projection Changes Schema
 
 ## Overview
 
-The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the *Initial projection*
-to the *Base projection* and then to the identifier used to match the single view document. This file is typically used
+The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/glossary.mdx)
+to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
 by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
-
-:::info
-- *Initial projection* is the projection modified by the ingestion message, e.g if we have an ingestion message that updates a  `pr_allergens` document, then our Initial projection will be `pr_allergens`.
-- *Base projection* is the projection that correlates 1:1 to your single view, e.g if we have a Single View for your users named `sv_registry`, the Base projection will most likely be a projection called `pr_registry`.
-:::
 
 ## Syntax
 
