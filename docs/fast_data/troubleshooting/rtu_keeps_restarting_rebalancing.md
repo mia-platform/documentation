@@ -23,9 +23,9 @@ In that case, here's a simple temporary solution:
 
 1. Stop the strategy execution mechanism
 2. Consume all the ingestion messages in queue
-2. Manually generate the Projection Changes to trigger all the Single Views' regeneration
-3. Let the Single View Creators regenerate all the Single Views' documents
-4. Restore the normal Fast Data flow
+3. Manually generate the Projection Changes to trigger all the Single Views' regeneration
+4. Let the Single View Creators regenerate all the Single Views' documents
+5. Restore the normal Fast Data flow
 
 ### 1. Stop the strategy execution mechanism
 
