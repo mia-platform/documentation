@@ -277,7 +277,9 @@
     "CSVC",
     "tomakehurst",
     "okhttp3",
-    "FD_AAAA_Eyxxx"
+    "FD_AAAA_Eyxxx",
+    "otel",
+    "otlp"
   ],
   "dictionaries": [
     "softwareTerms",
