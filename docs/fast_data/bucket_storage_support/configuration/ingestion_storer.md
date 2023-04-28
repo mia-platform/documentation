@@ -4,22 +4,15 @@ title: Ingestion Storer Configuration
 sidebar_label: Ingestion Storer
 ---
 
-In this page it will be described how to configure the Ingestion Storer service, which is the one responsible
-for consuming messages from a messages streaming platform, in particular Apache Kafka, and storing them into a Cloud Storage Bucket.
+This page describes how to configure the Ingestion Storer service which is responsible for consuming messages from a message streaming platform and storing them into a Cloud Storage Bucket.
 
 ## Overview
 
-Ingestion Storer service reads from the streaming platform the ingestion messages through the poll action, which returns
-all the available messages from subscribed _ingestion_ topics. Then those messages are grouped by their
-topic name and partition to be written on the bucket. In this manner each stored file contains
-only messages coming from a single partition, so that multiple service replicas do not interfere
-with each other. Moreover, this saving logic simplifies potential messages reorganization.
+Ingestion Storer service reads the ingestion messages from the chosen message streaming platform. Then those messages are grouped by topic name and partition so they can later be saved in the bucket. This way each stored file contains only messages coming from a single partition, so that multiple service replicas do not interfere with each other. Moreover, this saving logic simplifies potential messages reorganization.
 
-Each time a file is written to the bucket, a corresponding output event is emitted on a dedicated topic
-to notify a write operation has been completed successfully. Optionally, it re-emits
-ingested messages onto _post-ingestion_ topics.
+Each time a file is written in the bucket a corresponding output event is emitted on a dedicated topic to notify a write operation has been completed successfully. Optionally, it re-emits ingested messages into _post-ingestion_ topics.
 
-Considering Ingestion Storer service functionalities, it can be introduced within an event-driven architecture in different manners, such as:
+Considering Ingestion Storer service functionalities, it can be introduced within an event-driven architecture in different ways, such as:
 
 - **sequentially** to other services, to store messages on a bucket so that downstream components can proceed reading
 ingestion messages only when those records are effectively written to the bucket
@@ -61,7 +54,7 @@ In order to connect and authenticate correctly with the bucket and Kafka, please
 
 ### Service Configuration
 
-When the application is built, the main configuration file is included within it. It is designed so that most
+When the application is built, the main configuration file is included in it. It is designed so that most
 configurable values can be customized through environment variables. However, custom service configuration,
 such as the mapping between the _ingestion topics_ and the _post-ingestion_ ones, can and should be customized by end user.
 This can be achieved by providing an additional `application.yaml` file in the `configs`

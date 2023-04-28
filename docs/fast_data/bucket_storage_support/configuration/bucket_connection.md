@@ -4,7 +4,7 @@ title: Bucket Connection Configuration
 sidebar_label: Bucket Connection
 ---
 
-In this page we will explain how to connect the Bucket Storage Support services to the two different kinds of supported buckets.
+This page explains how to connect the Bucket Storage Support services to the two different kinds of supported buckets.
 The guide is equivalent for all the services belonging to the Bucket Storage Support feature.
 
 ## Connect with S3 bucket

@@ -4,7 +4,7 @@ title: Bucket Storage Support Use Cases
 sidebar_label: Use Cases
 ---
 
-In this page we provide some use cases for the Bucket Storage Support services.
+This page provides some use cases for the Bucket Storage Support services.
 
 ## Scope
 

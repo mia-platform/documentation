@@ -4,7 +4,7 @@ title: Ingestion Reloader Configuration
 sidebar_label: Ingestion Reloader
 ---
 
-In this page it will be described how to configure the Ingestion Reloader service, that performs the "reingestion" of the messages (the publishing of old ingestion messages stored on the bucket), to a specified Kafka topic.
+This page describes how to configure the Ingestion Reloader service, that performs the "reingestion" of the messages (the publishing of old ingestion messages stored on the bucket), to a specified Kafka topic.
 
 ## Overview
 
@@ -248,27 +248,25 @@ The Ingestion Reloader exposes four `POST` routes to trigger its functionalities
 
 ### Reingestion of a Topic
 
-This route allows the user to reingest a complete topic or part of it.
-The user has to specify the topic name and the reingestion topic.
-Moreover, the user can also filter according to the timestamp of the topic. He can specify the startDate, and in case also the stopDate.
-In this case, only the records included in the time interval specified, will be reingested on the selected topic.
+This route allows the user to reingest a topic partially or from the beginning.
+The user has to specify the "stored" topic name and the "reingestion" topic name, optionally a filter on the timestamp of the topic may also be specified (with the `startDate` and `stopDate` properties). In this last case, only the records included in the specified time interval will be reingested on the selected topic.
 
 ### Reingestion of a File
 
-This route allows a user to reingest a single file on the bucket towards the topic selected in the request.
+This route allows the user to reingest a single file from the bucket into the topic specified in the request.
 The user has to specify the file name and the reingestion topic.
 
 ### Reingestion of a record refined by key
 
 This route allows the user to reingest a record with a specific primary key.
 The user has to specify the topic of the record, its primary key and the reingestion topic.
-Being this a refined data, only the latest record with the selected primary key will be reingested.
+Being this refined data only the latest record with the selected primary key will be reingested.
 
-### Stopping a reingestion
+### Stopping reingestion
 
-This route allows the user to stop the reingestion of a topic that is currently ongoing.
-The user has to specify the _ingestion_ topic that is currently being reloaded.
+This route allows the user to stop the ongoing reingestion of a topic.
+The user has to specify the _ingestion_ topic that is currently being reingested.
 
 :::caution
-This route can stop only the reingestion of a Topic, not the one of a single file.
+This route can stop only the reingestion of a topic, not the one of a single file.
 :::
