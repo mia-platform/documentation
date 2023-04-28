@@ -6,7 +6,9 @@ sidebar_label: Projection Changes Schema
 
 ## Overview
 
-The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the strategy to find the right path from the *Initial projection*\* to the *Base projection*\*\* and then to the identifier used to match the single view document. This file is typically used by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
+The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/glossary.mdx)
+to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
+by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
 
 ## Syntax
 
@@ -19,9 +21,9 @@ The Projection Changes Schema is made of the following fields
     "SINGLE_VIEW_NAME": {
       "paths": [
         {
-          "path": [ "PROJECTION_2", "PROJECTION_1", "BASE_PROJECTION"],
+          "path": [ "<PROJECTION_2>", "<PROJECTION_1>", "<BASE_PROJECTION>"],
           "identifier": {
-            "IDENTIFIER_FIELD": "BASE_PROJECTION_FIELD"
+            "<IDENTIFIER_FIELD>": "<BASE_PROJECTION_FIELD>"
           }
         }
       ]
@@ -41,8 +43,31 @@ The Projection Changes Schema is made of the following fields
 All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
 :::
 
-In some cases you may want a finer control over the creation of the projection changes identifier. Such control can be achieved within service configuration providing a _custom function_, which is applied to each document retrieved by the last step of the strategy path (in this case records extracted from `BASE_PROJECTION` collection).
-The custom function file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file each path that requires using a custom function should specify as identifier the `__fromFile__[<filename>]` keyword, where within squared brackets is provided the filename containing the custom function. Here's an example: 
+An example of a configuration can be:
+
+```json title="projectionChangesSchema.json"
+{
+  "version": "1.0.0",
+  "config": {
+    "sv_books": {
+      "paths": [
+        {
+          "path": [ "pr_libraries", "pr_book_libraries", "pr_books"],
+          "identifier": {
+            "bookID": "ID_BOOK"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+In some cases you may want a finer control over the creation of the projection changes identifier. Such control can be achieved within service configuration providing a _custom function_,
+which is applied to each document retrieved by the last step of the strategy path (in this case records extracted from `BASE_PROJECTION` collection).
+The custom function file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file
+each path that requires using a custom function should specify as identifier the `__fromFile__[<filename>]` keyword,
+where within squared brackets is provided the filename containing the custom function. Here's an example: 
 
 ```json title="projectionChangesSchema.json"
 {
@@ -81,9 +106,3 @@ module.exports = async function* myCustomFunction ({ logger, dbMongo }, document
   }
 }
 ```
-
----
-
-\* The Initial projection is the projection modified by the ingestion message, ex. if we have an ingestion message that updates a  `pr_allergens` document, then our Initial projection will be `pr_allergens`.
-
-\*\* The Base projection is the projection that correlates 1:1 to your single view, ex. if we have a single view for your users named `sv_registry`, the Base projection will most likely be a projection called `pr_registry`.
