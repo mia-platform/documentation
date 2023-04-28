@@ -16,7 +16,7 @@ Two actions are necessary for the Real-Time Updater in order to correctly update
 - You must define at least one custom field with the following flags set to true: **Primary Key**, **Required**.
 - You must create an index using the previously defined custom field and set the flag **Unique** to true.
 
-When a change occurs in the connected System, it sends a Kafka message to the ingestion topics to signal the change. This change is propagated to the projections. When a projection is updated, an event of that update can be produced on Kafka in order to notify that a specific projection has changed. This allows you to have interesting architecture reactive on events involving your projections.
+When a change occurs in the connected System, it sends a Kafka message to the ingestion topics to trigger the change. This change is propagated to the projections. When a projection is updated, an event of that update can be produced on Kafka in order to notify that a specific projection has changed. This allows you to have interesting architecture reactive on events involving your projections.
 
 ## Trigger the update of a Single View
 
