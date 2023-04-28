@@ -73,7 +73,7 @@ Fast Data architecture is rather streamlined, with just a couple of pivoting poi
 4. The SVC reads the `Projection Change` message, either polling MongoDB or reacting to the Kafka message. Then, it aggregates the Single View using the new data, and stores it to MongoDB;
    1. The SVC emits a `Single View Event` and/or a `Single View Before After` event, if it is configured to do so.
 
-![Fast data architecture](img/fastdata-architecture.jpg)
+![Fast data architecture](img/fastdata-architecture.png)
 
 There are no hard constraints, but generally all the services belong to the same Kubernetes namespace, while the MongoDB and Kafka instances can be on managed hosts, on the same cluster, on premise, etc.
 
