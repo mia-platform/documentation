@@ -11,7 +11,7 @@ This Plugin is a BETA Plugin and, as such, is currently under active development
 The Single View Trigger Generator is a new component of the Fast Data architecture. Its introductions allow to split the import phase
 from the [strategies](/fast_data/the_basics.md#strategies) execution, which currently are both handled by the [Real Time Updater](/fast_data/realtime_updater.md).
 
-Below is provided a diagram showing how the Single View Trigger Generator service integrates within Fast Data flow:
+Here below a diagram showing how the Single View Trigger Generator service integrates with Fast Data flow is provided:
 
 ![Fast data lifecycle with Single View Trigger Generator](img/svtg-fd-arch.svg)
 
@@ -36,7 +36,7 @@ In order to introduce the Single View Trigger Generator in the Fast Data flow it
 #### Real-Time Updater
 
 - set environment variable `GENERATE_KAFKA_PROJECTION_UPDATES` to `true` to enable the production of `pr-update` events
-- set environment variable `KAFKA_PROJECTION_UPDATES_FOLDER` to `/home/node/app/kafkaProjectionUpdates`. This allows the Real-Time Updater to load a configuration file automatically generated that instruct the service how to map each projection to the corresponding projection-update topic of the event streaming platform. This mapping can be changed in Console in each projection detail section, besides the configuration of the ingestion topic. In case this config map is not already available, please commit your work. It should appear afterward.
+- set environment variable `KAFKA_PROJECTION_UPDATES_FOLDER` to `/home/node/app/kafkaProjectionUpdates`. This allows the Real-Time Updater to load a configuration file automatically generated that instructs the service how to map each projection to the corresponding projection-update topic of the event streaming platform. This mapping can be changed in Console in each projection detail section, besides the configuration of the ingestion topic. In case this config map is not already available, please commit your work. It should appear afterward.
 - disable the computation of projections changes by setting environment variable `PROJECTIONS_CHANGES_ENABLED` to `false`
 
 Additional details on how to configure the Real-Time Updater to produce Projection Update events can be found in the [service configuration page](/fast_data/configuration/realtime_updater/common.md#kafka-projection-updates-configuration).
@@ -59,7 +59,7 @@ An in-depth explanation on how to configure the service is provided in the [dedi
 Currently it is necessary to manually manage the Single View Trigger Generator config maps from the microservices section of Console, since it does not cover its configuration yet.
 :::
 
-:::info
+:::caution
 
 It is important to notice that the Single View Trigger Generator couples up with a specific Single View and not with the System of Records. Consequently, for each configured Single View Creator it is necessary to introduce a Single View Trigger Generator.
 
