@@ -21,29 +21,29 @@ Since the problem comes from the strategies' performance, the first solution we 
 But you might be in the middle of a production incident and you don't have time for that, or optimizing the strategies is just not feasible for your specific case. 
 In that case, here's a simple temporary solution:
 
-1. [Stop the strategy execution mechanism](#stop-the-strategy-execution-mechanism)
-1. [Consume all the ingestion messages in queue](#consume-all-the-ingestion-messages-in-queue)
-2. [Manually generate the Projection Changes to trigger all the Single Views' regeneration](#manually-generate-the-projection-changes-to-trigger-all-the-single-views-regeneration)
-3. [Let the Single View Creators regenerate all the Single Views' documents](#let-the-single-view-creators-regenerate-all-the-single-views-documents)
-4. [Restore the normal Fast Data flow](#restore-the-normal-fast-data-flow)
+1. Stop the strategy execution mechanism
+2. Consume all the ingestion messages in queue
+2. Manually generate the Projection Changes to trigger all the Single Views' regeneration
+3. Let the Single View Creators regenerate all the Single Views' documents
+4. Restore the normal Fast Data flow
 
-### Stop the strategy execution mechanism
+### 1. Stop the strategy execution mechanism
 
 To stop running the strategies you must disable the projections changes generation on the Real Time Updaters (env var `PROJECTIONS_CHANGES_ENABLED=false`). This will apply the incoming updates (ingestion messages) on the Projections but won't trigger the Single Views' regeneration
 
-### Consume all the ingestion messages in queue
+### 2. Consume all the ingestion messages in queue
 
 Wait for the Real Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our [Grafana dashboards for Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md).
 
-### Manually generate the Projection Changes to trigger all the Single Views' regeneration
+### 3. Manually generate the Projection Changes to trigger all the Single Views' regeneration
 
 Here you need to create a custom script that calculates the identifiers for each Single View document, maps them in the [Projection Change](/fast_data/inputs_and_outputs.md#projection-change) format and inserts them into your MongoDB. [Check out our example NodeJS script](#custom-script-example).
 
-### Let the Single View Creators regenerate all the Single Views' documents
+### 4. Let the Single View Creators regenerate all the Single Views' documents
 
 After generating the Projection Changes, scale up (if possible) the Single View Creators so we can process all the Projection Changes faster.
 
-### Restore the normal Fast Data flow
+### 5. Restore the normal Fast Data flow
 
 Once all the Single Views have been regenerated, restore the Fast Data's normal flow. To do so you should:
 1. Scale down the Single View Creators if you scaled them up before

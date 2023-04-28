@@ -4,7 +4,7 @@ title: Unmapped Fields
 sidebar_label: Unmapped Fields
 ---
 
-This dashboard will help you to monitor unmapped fields. With unmapped field we mean a field which is in a Kafka message, but it is not mapped on a projection.
+This dashboard will help you to monitor unmapped fields. With unmapped field we mean a field which is in a Kafka message, but it is not included in the projection definition or it can not be casted to the desired field type.
 
 :::info
 This feature is available since Realtime Updater v4.4.0
@@ -17,10 +17,10 @@ This situation could happen for two main reasons:
 
 In order to use this dashboard, the following configuration steps are needed:
 
-- Create a collection `unmapped_fields`
-- Set the environment variable `COLLECTION_NAME_UNMAPPED_FIELDS_STORAGE` equal to `unmapped_fields`
-- Registering the collection on CMS
-- Add to the project the MongoDB Query Exporter service (already existing if Fast Data Monitoring application is used)
+- Create a MongoDB collection named `unmapped_fields`
+- Set the environment variable `COLLECTION_NAME_UNMAPPED_FIELDS_STORAGE` equal to `unmapped_fields` in any _Real Time Updater_ service you want to keep track of the unmapped fields
+- Register the collection [on CMS](/business_suite/cms_configuration/config_cms)
+- Add the [Fast Data Monitoring Application](/fast_data/monitoring/overview.md#fast-data-monitoring-application) (if you don't have it already) to add to the project the MongoDB Query Exporter service and configure it accordingly
 - Configure MongoDB Query Exporter
 - Create a Grafana Dashboard to read the metrics
 
@@ -189,13 +189,9 @@ The following condition will produce an alarm every time an error `UNCASTABLE_FI
 
 ## Panels
 
-The Dashboard contains the following panels, first depicted in sample screenshots, and later described in detail in the table below.
+The Dashboard contains only one panel, named _Unmapped Unknown Fields_ and depicted in sample screenshot, that includes a single number with value equal or greater than **1** if there are new unmapped or unknown fields.
 
 ![unmapped field dashboard](../../img/dashboards/unmapped_dashboard.png)
-
-| Panel Name                        | Description                                                                                                                                                                             |
-|---------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Unmapped / Unknown field | If the value is equal or greater than 1 new Unmapped / Unknown fields exist  |
 
 ## FAQ
 
