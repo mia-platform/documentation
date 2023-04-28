@@ -204,5 +204,17 @@
   "/docs/runtime_suite_tools/miactl/examples": {
     "destination": "/docs/cli/miactl/examples",
     "addedOn": "2023-04-13"
+  },
+  "/docs/runtime_suite/secure-backoffice/overview": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2023-04-28"
+  },
+  "/docs/runtime_suite/secure-backoffice/changelog": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2023-04-28"
+  },
+  "/docs/runtime_suite/secure-backoffice/configuration": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2023-04-28"
   }
 }
