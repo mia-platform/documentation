@@ -4,36 +4,35 @@ title: Bucket Storage Support Deployment Guidelines
 sidebar_label: Deployment Guidelines
 ---
 
-In this page, a description of all the possible scenarios supported for the installation of the Bucket Storage Support is provided. Try to identify your use case going through the steps of the [Possible Architectural Setups](#possible-architectural-setups) and find your correct path. In every single paragraph, the proper [Possible Procedure](#possible-procedures) is linked.
+In this page, a description of all the possible scenarios supported for the installation of the Bucket Storage Support is provided. Try to identify your use case going through the steps of the [possible architectural setups](#possible-architectural-setups) and find your correct path. In every single paragraph the proper [possible procedure](#possible-procedures) is linked.
 
 In the following diagram it is possible to find a summary of all the possible deployment paths, represented as a decision tree.
 
 ![Bucket Storage Support Decision Tree](../img/BSS_deploy_decision_tree.jpg)
 
-# Possible Architectural Setups
+# Possible architectural setups
 
-Below are described the possible architectural configuration that you may have in your Fast Data setup.
+Below are described the possible architectural configurations that you may have in your Fast Data setup.
 
-## Parallel deployment in a greenfield within Fast Data Solution
+## Parallel deployment in a greenfield within Fast Data
 
-When deploying the Bucket Storage Support within the Fast Data Solution, no particular configuration is required. You can proceed having a look to the [Simple deployment section](#simple-deployment).
+When deploying the Bucket Storage Support within the Fast Data Solution, no particular configuration is required. You can proceed having a look to the [simple deployment section](#simple-deployment).
 
-## Deployment in already existing Fast Data Environment
+## Deployment in already existing Fast Data environment
 
 There could be many different scenarios when deploying the Bucket Storage Support in an already existing Fast Data Environment. 
 
-### Data Preceding Bucket Storage Support Installation not needed to be stored in the Bucket Storage
+### Data preceding Bucket Storage Support installation doesn't need to be stored in the Bucket Storage
 
-If you are not interested in storing in the Bucket the already existing data in the Fast Data, you can proceed having a look to the [Simple deployment section](#simple-deployment).
-Otherwise, go on to the next section.
+If you are not interested in storing in the Bucket the already existing data in the Fast Data, you can check out the [simple deployment section](#simple-deployment).
 
 ### Near Real Time critical
 
-If the Near Real Time feature is critical for your systems, continue reading here below, otherwise go to the [Near Real Time Non Critical section](#near-real-time-not-critical).
+If the Near Real Time feature is critical for your systems, continue reading below, otherwise go to the [Near Real Time Non Critical section](#near-real-time-not-critical).
 
 #### Using CDC
 
-If you are using a CDC to feed the Fast Data there could be different solutions:
+If you are using a CDC to feed the Fast Data then there could be different solutions:
 
 - If the CDC supports multiple ingestion tasks go to the section [CDC supports multiple ingestion topics](#cdc-supports-multiple-ingestion-topics)
 - If the CDC **does not** support multiple ingestion tasks try to look at the [Fast Data Projections as the Bucket Storage initialization input](#fast-data-projections-as-the-bucket-storage-initialization-input) section.

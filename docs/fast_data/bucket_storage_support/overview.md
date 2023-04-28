@@ -34,8 +34,8 @@ The [Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion
 
 ### Ingestion Reloader
 
-The [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md) is responsible for re-publishing,
-on the dedicated topic one or more messages. Depending on the adopted architecture, the service may rely on the
+The [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md) is responsible for publishing
+(on a specified topic) one or more messages previously consumed by the Ingestion Storer. Depending on the adopted architecture, the service may rely on the
 _post-ingestion_ topics or a set new ones for the specific for _reingestion_ operation.
 It is important to notice that _reingestion_ topics are configurable when the reingestion request is issued to allow
 a greater flexibility in selecting target topics.   
@@ -49,9 +49,8 @@ Optionally the reingestion process of a specific topic can be stopped before its
 
 ## Additional Components
 
-Bucket Storage Support feature is configured so that further services can be connected to the system, so that they can process
-the files written into the bucket according to their own business logic.
-Components that acts on the files, combining messages from the initials, should be identified as Data Organizer plugins.
+Bucket Storage Support is made so that other services can use the files written into the bucket according to their own business logic.
+Components that work on the bucket stored files are identified as Data Organizer plugins.
 In the following sections are reported the Data Organizer services that are already offered out of the box and that can be attached
 directly to the events emitted by the Ingestion Storer.
 
@@ -69,7 +68,7 @@ so that multiple processing can occur over the original files.
 
 ## Architecture Example
 
-In the following image is provided the diagram of a possible architecture that employed all the three components.
+In the below image you can see diagram of a possible architecture that employs all three Bucket Storage Support components.
 The Ingestion Storer is connected to a set of input topics, store consumed messages on a bucket storage,
 emit events related to those files written into the bucket and re-publish the input messages as is on the corresponding output topics.
 The Ingestion Reloader is configured to read from the bucket and it is connected to the output topics, so that downstream systems
