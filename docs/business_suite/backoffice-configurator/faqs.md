@@ -100,7 +100,7 @@ service **will serve any file** you mount in this directory.
 Content types and response headers can be controlled in the _Webserver Configuration_ section of the Configurator (read
 the [full documentation](https://micro-lc.io/add-ons/backend/middleware#service-configuration)).
 
-### How can I imporove Backoffice loading performance?
+### How can I improve Backoffice loading performance?
 
 Backoffice loading performance can be improved (al least on [some browsers](https://caniuse.com/link-rel-preload)) setting
 the right [`preload`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload) and
