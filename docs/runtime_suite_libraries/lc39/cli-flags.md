@@ -13,3 +13,4 @@ Here are listed all the available flags, their default values and the accepted o
 | Set the prefix | `-x` | `--prefix` |  |
 | The path of the dotenv file to load during launch | `-e` | `--env-path` |  |
 | Expose Prometheus metrics |  | `--expose-metrics` | `true`  |
+| Enable tracing            |  | `--enable-tracing` | `false` |

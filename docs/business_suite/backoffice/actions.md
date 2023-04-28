@@ -619,9 +619,12 @@ Often a plugin reload is required after a successful action (for instance, after
   },
   "hooks": {
     "onSuccess": {
-      "events": {
-        "label": "change-query",
-        "payload": {}
+      "type": "event",
+      "config": {
+        "events": {
+          "label": "change-query",
+          "payload": {}
+        }
       }
     }
   }

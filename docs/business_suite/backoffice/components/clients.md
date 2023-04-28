@@ -7,17 +7,17 @@ sidebar_label: Clients
   The description below must give a general idea about what `clients` do
 -->
 
-Clients manage interactions between the current page and other services. Typical use case encompasses http request managers, 
-data retrieval facilities from any given resource, CRUD services, and state stores. Clients components ensure isolation between 
+Clients manage interactions between the current page and other services. Typical use case encompasses http request managers,
+data retrieval facilities from any given resource, CRUD services, and state stores. Clients components ensure isolation between
 logical/business features and allow services encapsulation and adaption
 
 ## Configuration edge cases
 
 In case `__STATE__` must be finely controlled upon creation/duplication/patching, some care must be taken while configuring.
-As per `CRUD-Service` interface, `__STATE__` cannot be patched and requires a reserved endpoint call. Hence, no BO configuration 
+As per `CRUD-Service` interface, `__STATE__` cannot be patched and requires a reserved endpoint call. Hence, no BO configuration
 leads to patch with `__STATE__` included as part of the `$set` body.
 
-`__STATE__` though can be tuned upon creation and duplication. The default behavior is 
+`__STATE__` though can be tuned upon creation and duplication. The default behavior is
 
 - on creation if not specified, `__STATE__` defaults to its CRUD collection default, i.e. no param is passed along with the HTTP request
 - on duplication, to ensure, backward compatibility, HTTP post is performed without `__STATE__` param defaulting again according with CRUD collections default
@@ -25,7 +25,7 @@ leads to patch with `__STATE__` included as part of the `$set` body.
 This behavior can be overridden using the `bk-crud-client` props `keepStateWhileDuplicating`.
 If set to `true` it will carry along the `__STATE__` of the original item duplicating it as well.
 
-A good configuration could be (in case `__STATE__` must be tunable by the user and carry duplication `__STATE__` along), 
+A good configuration could be (in case `__STATE__` must be tunable by the user and carry duplication `__STATE__` along),
 
 - in the `dataSchema`:
 
@@ -60,7 +60,6 @@ A good configuration could be (in case `__STATE__` must be tunable by the user a
 }
 ```
 
-
 ## bk-crud-client
 
 Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
@@ -73,10 +72,7 @@ This web component is designed to handle `CRUD` operations towards [Mia-Platform
 <bk-crud-client></bk-crud-client>
 ```
 
-
-
 ### Properties & Attributes
-
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -88,9 +84,9 @@ This web component is designed to handle `CRUD` operations towards [Mia-Platform
 |`keepStateWhileDuplicating`|`keep-state-while-duplicating`|boolean|false|if `true` duplicate will keep the original record __STATE__ |
 |`shouldIncludeProjections`|`should-include-projections`|boolean|true|should append projection when exporting from CRUD service |
 |`keepPageCount`|`keep-page-count`|boolean|false| should attempt to stay on current page after successful CRUD operation |
+|`redirectToUrl`|`redirect-to-url`|boolean|true| on internal state update, should reflect internal state on URL |
 
 ### Listens to
-
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -100,7 +96,6 @@ This web component is designed to handle `CRUD` operations towards [Mia-Platform
 |[change-query](../events#change-query)|sends `GET`s with endpoints `/` and `/count` to the `CRUD` service base path|[success](../events#success), [count-data](../events#count-data), [display-data](../events#display-data), [selected-data-bulk](../events#selected-data-bulk)|[error](../events#error)|
 
 ### Emits
-
 
 | event | description |
 |-------|-------------|
@@ -210,9 +205,7 @@ and emit a `lookup-data` event with a resolved partial data structure as payload
 
 such structure can be compared with the original datum, which is not modified.
 
-
 ### Properties & Attributes
-
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -225,7 +218,6 @@ such structure can be compared with the original datum, which is not modified.
 
 ### Listens to
 
-
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[display-data](../events#display-data)|validates and resolves the lookup data|[success](../events#success), [lookup-data](../events#lookup-data)| - |
@@ -234,7 +226,6 @@ such structure can be compared with the original datum, which is not modified.
 |[search-lookups](../events#search-lookups)|fetches values from multiple lookups|[search-lookups-found](../events#search-lookups-found)|[error](../events#error)|
 
 ### Emits
-
 
 | event | description |
 |-------|-------------|
@@ -260,15 +251,15 @@ crud-service export webcomponent
   ## bk-export
 -->
 
-`bk-export` **extends** `back-kit-engine`'s BkHttpBase
+`bk-export` __extends__ `back-kit-engine`'s BkHttpBase
 
 `bk-export` client is a business-logic webcomponent that handles the export of an entire collection from a backend CRUD-service resource.
 It works as `ndjson` fetcher as well as native file downloader which uses browser download native API.
 
-If export must be performed on a [CRUD-service] resource, an export route is available at `<collection-name>/export` and supports 
+If export must be performed on a [CRUD-service] resource, an export route is available at `<collection-name>/export` and supports
 mongoDB queries as per CRUD-service specifications, along with `__STATE__` filtering.
 
-`bk-export` listens to any filtering done on the plugin is mounted in by accessing any [change-query](../events#change-query) event 
+`bk-export` listens to any filtering done on the plugin is mounted in by accessing any [change-query](../events#change-query) event
 and by keeping an internal representation of all applied filter.
 
 `bk-export` listens also to an [export-data](../events#export-data) which triggers a http GET request.
@@ -292,7 +283,6 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 
 ### Properties & Attributes
 
-
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
@@ -301,7 +291,6 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 |`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |
 
 ### Listens to
-
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -351,7 +340,7 @@ export type AwaitUserConfig = {
 }
 ```
 
-where `total` is the last count of queried items, `selected` is the count of currently selected items and 
+where `total` is the last count of queried items, `selected` is the count of currently selected items and
 `columns` are selectable columns from the `DataSchema`
 
 a `Meta` contains the `transactionId` and must be re-cast when options are selected. An `export-data/user-config`
@@ -385,9 +374,7 @@ Add to `bk-notifications` the following error trigger
 }
 ```
 
-
 ### Properties & Attributes
-
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
@@ -399,7 +386,6 @@ Add to `bk-notifications` the following error trigger
 
 ### Listens to
 
-
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[export-data](../events#export-data)|opens a new export transaction|export-data/awaiting-config| - |
@@ -409,7 +395,6 @@ Add to `bk-notifications` the following error trigger
 |[change-query](../events#change-query)|stores current collection filtering| - | - |
 
 ### Emits
-
 
 | event | description |
 |-------|-------------|
@@ -427,17 +412,13 @@ manages http requests towards an instance of [Mia Files Service](../../../runtim
 <bk-file-client></bk-file-client>
 ```
 
-
-
 ### Properties & Attributes
-
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`queryParams`| - |Record\<string, any\>| {"download": 1, "downloadWithOriginalName": 1, "useOriginalName": 1} | queryParams to be passed to the Files Service. According with documentation. |
 
 ### Listens to
-
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -446,7 +427,6 @@ manages http requests towards an instance of [Mia Files Service](../../../runtim
 |[delete-file](../events#delete-file)|sends a `DELETE` request to remova a file from storage|[deleted-file](../events#deleted-file)|[error](../events#error)|
 
 ### Emits
-
 
 | event | description |
 |-------|-------------|
@@ -474,17 +454,12 @@ Events marked as *transaction required* must carry a `meta` property with a regi
 <bk-file-manager></bk-file-manager>
 ```
 
-
-
 ### Properties & Attributes
-
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 
-
 ### Listens to
-
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
@@ -496,7 +471,6 @@ Events marked as *transaction required* must carry a `meta` property with a regi
 |[error](../events#error)|interrupts a registered transaction due to an occurred `error` event carrying a `meta`. If the file was stored but the collection wasn't successfully patched, then the file is deleted|[delete-file](../events#delete-file)| - |
 
 ### Emits
-
 
 | event | description |
 |-------|-------------|
