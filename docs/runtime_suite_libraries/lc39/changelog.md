@@ -7,7 +7,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## v7.0.0-rc.0 - 2022-07-06
+
+In this version, is added the support for Fastify v4. To upgrade, read the [migration guide](https://www.fastify.io/docs/latest/Guides/Migration-Guide-V4/).
+
+### Breaking changes
+
+#### Metrics options
+
+Metrics options are changed. Below there are the main changes. For other configuration, [see here](https://github.com/SkeLLLa/fastify-metrics).
+
+* `enableDefaultMetrics: boolean` --> `defaultMetrics: {enabled: boolean}`
+* `pluginName` --> `name`
+* `enableRouteMetrics` --> `routeMetrics.enabled: boolean`
+* `groupStatusCodes` --> `routeMetrics.groupStatusCodes`
+* `invalidRouteGroup` --> `invalidRouteGroup` (default changed from undefined to unknown)
+* histogram and summary are moved under `routeMetrics.overrides`
+* `blacklist` --> `routeMetrics.routeBlacklist`
+
+### Changed
+
+* migrated `@fastify/swagger` to `v8`, so that `@fastify/swagger-ui` package is now required to continue exposing Swagger UI
+* upgraded fastify plugins to support latest fastify version
+* upgraded library dependencies 
+
+### Changed
+
+- SERVICE_PREFIX now supports path without trailing slash
+
+### Removed
+
+- remove `make-promises-safe` since support of node 14 is removed
 
 ## v6.0.3 - 2022-09-29
 
