@@ -4,8 +4,8 @@ title: Kafka Connection Configuration
 sidebar_label: Kafka Connection
 ---
 
-In this page it will be explained how to connect the Bucket Storage Support services to Apache Kafka using different SASL mechanism.
-The guide is equivalent for all the services belonging to the Bucket Storage Support feature.
+This page explains how to connect the Bucket Storage Support services to Apache Kafka using different SASL mechanism.
+The guide is equivalent for all the Bucket Storage Support services.
 
 ## SCRAM-SHA Authentication [Default]
 

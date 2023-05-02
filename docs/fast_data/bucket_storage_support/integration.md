@@ -11,10 +11,10 @@ In case of any further doubts on how to actually release this new feature in you
 
 ## Prerequisites
 
-Bucket Storage Support services can be deployed independently of each other, depending on the needed use cases, and they can
-interoperate with other plugins as long as their interface is respected.
+Bucket Storage Support services can be deployed independently of each other depending on the needed use case and they can
+interoperate with other plugins as long as their interfaces are being followed.
 
-In addition, in order to deploy them it is necessary to set up the following resources:
+In addition, to deploy them it is necessary to set up the following resources:
 
 - a message streaming platform, from which messages can be consumed and published. Currently only Apache Kafka is supported
 - a Bucket Storage where messages can be saved, with the permissions to read and write files on it.
