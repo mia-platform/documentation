@@ -39,7 +39,25 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### Marketplace Updates
 
-## Backoffice
+## Backoffice - 1.3.9
+
+### Bug Fix
+
+### New Features
+
+#### `bk-crud-client` allows to disable url writing
+
+New property `reflectToUrl` allows to control whether `bk-crud-client` reflects its state to the URL with a `window.history.pushState`
+
+#### New component `bk-layout-swap`
+
+New component [`bk-layout-swap`](/business_suite/backoffice/components/misc.md#bk-layout-swap) is available. It performs a layout change listening to `layout/change` event. The payload of the event is the layout rendered by the component. It is bundled separately.
+
+### Bug Fix
+
+#### Form components resolve lookups on creation
+
+Form components correctly resolve lookups in initial values from `add-new` event payload
 
 ## How to update your Console
 
