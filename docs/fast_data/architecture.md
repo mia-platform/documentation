@@ -37,6 +37,17 @@ The Single View Creator reacts to Projection Change events, updating the Single 
 If the service is configured to read the `Projection Change` events on Kafka, then it will use the usual publish/subscribe pattern, granting support to horizontal scalability and fault tolerance with ease.
 If the service is configured to read the `Projection Change` events on MongoDB, then it will poll MongoDB to check if there are any events that need to be handled. To avoid concurrency problems, it reads atomically and marks the `Projection Change`, so that other SVCs won't start processing the same data.
 
+## Other Services
+
+### Connectors
+
+The Connectors are the components responsible of transmitting the changes that occur within your systems (e.g. create, update or delete operations) to the event streaming platform in near real-time.
+
+Depending on how changes are produced, where your source data is stored and how they can be accessed there can be different ways to produce the corresponding change event on the Fast Data ingestion topics. When data is stored on a database and the changes to be monitored are the action on the database itself, exploiting a Change Data Capture (CDC) system is usually recommended. This system works by detecting changes in the database and emitting the corresponding events in near real-time on the configured event streaming platform so that subsequent components can process the events.
+
+### Bucket Storage Support
+
+
 ## Technologies
 
 Fast Data revolves around three major technologies: Kubernetes, Kafka, and MongoDB.
