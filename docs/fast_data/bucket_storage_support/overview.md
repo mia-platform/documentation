@@ -57,7 +57,7 @@ directly to the events emitted by the Ingestion Storer.
 
 ## Architecture Example
 
-In the below image you can see diagram of a possible architecture that employs all three Bucket Storage Support components.
+The image below shows a diagram of a possible architecture that employs all three Bucket Storage Support components.
 The Ingestion Storer is connected to a set of input topics, store consumed messages on a bucket storage,
 emit events related to those files written into the bucket and re-publish the input messages as is on the corresponding output topics.
 The Ingestion Reloader is configured to read from the bucket and it is connected to the output topics, so that downstream systems
