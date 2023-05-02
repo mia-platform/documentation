@@ -152,8 +152,9 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
 
 It is possible to create Company-independent service accounts in case you need to give them root-level permissions to perform root-level operations.
 
+:::info
 Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company Identities portal.
-
+:::
 ### Creating Root Service Accounts
 
 In order to create a new Root Service Account, you need to contact the `/api/service-accounts` endpoint.
