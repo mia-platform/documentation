@@ -5,7 +5,8 @@ sidebar_label: Glossary
 ---
 
 :::caution
-Throughout the Fast Data documentation we use MongoDB terminology since we use MongoDB under the hood to store all your data. If you are not familiar with its terminology check out this [comparison with SQL terms](https://www.mongodb.com/docs/manual/reference/sql-comparison/) 
+Throughout the Fast Data documentation we use MongoDB terminology since we use MongoDB under the hood to store all your data.
+If you are not familiar with its terminology check out this [comparison with SQL terms](https://www.mongodb.com/docs/manual/reference/sql-comparison/).
 :::
 
 ## Fast Data terms
@@ -50,5 +51,7 @@ export const GlossaryTable = ({entries}) => (
   {name: "Cast function", description: "A function used to transform the data originally coming from the System of Records before it is saved in the Projection", link: "./the_basics#cast-function"},
   {name: "Kafka adapter", description: "A function that transforms the ingested Kafka messages into a format that can be read by the the Real-Time Updater", link: "./configuration/realtime_updater/common#kafka-adapters-kafka-messages-format"},
   {name: "Golden Gate Adapter", description: "A Kafka adapter containing before and after fields", link: "./configuration/realtime_updater/common#golden-gate"},
-  {name: "DB2 Adapter", description: "The default Kafka adapter", link: "./configuration/realtime_updater/common#ibm-infosphere-data-replication-for-db2"}
+  {name: "DB2 Adapter", description: "The default Kafka adapter", link: "./configuration/realtime_updater/common#ibm-infosphere-data-replication-for-db2"},
+  {name: "Initial projection", description: "Is the projection modified by the ingestion message, e.g if we have an ingestion message that updates a \"pr_allergens\" document, then our Initial projection will be \"pr_allergens\"", link: "./the_basics#projection"},
+  {name: "Base projection", description: "Is the projection that correlates 1:1 to your single view, e.g if we have a Single View for your users named \"sv_registry\", the Base projection will most likely be a projection called \"pr_registry\"", link: "./the_basics#projection"}
 ].sort((a, b) => a.name.localeCompare(b.name))} />

@@ -63,7 +63,7 @@ To utilize the CSV Connector, simply import it as an application directly to you
 
 The CSV Connector plugin only comes with the core service. In this case, however, the configuration of the other two services is up to the user.
 
-[Go to the official documentation](/runtime_suite/csv-connector/configuration.md) to find out more.
+[Go to the official documentation](/runtime_suite/csv-connector-plugin/configuration.md) to find out more.
 
 #### Debezium PostgreSQL plugin
 

@@ -22,6 +22,7 @@ that might have been deleted due to business requirements. More details can be f
 ## Main Components
 
 Bucket Storage Support feature involves multiple services, each of them in charge of a specific operation.
+Furthermore, this new system can be easily extended by adding custom features on top of it exploiting the emitted events or processing the files in a batch manner periodically. 
 
 ### Ingestion Storer
 
@@ -53,18 +54,6 @@ Bucket Storage Support is made so that other services can use the files written 
 Components that work on the bucket stored files are identified as Data Organizer plugins.
 In the following sections are reported the Data Organizer services that are already offered out of the box and that can be attached
 directly to the events emitted by the Ingestion Storer.
-
-### Data Organizer By Key
-
-The [Data Organizer By Key](/fast_data/bucket_storage_support/configuration/data_organizer.md) is responsible for keeping the bucket clean and organized, as the name suggests.
-This service will keep organizing the messages on the bucket, by clustering them based on their message key and by removing duplicated messages (with the same key and payload),
-retaining only last created message of these groups.
-This operation is carried out since accessing the last updated value of messages can sometimes be more relevant than retrieving all their historical values.
-
-:::note
-The original files are not deleted nor modified by this service. They are just reorganized into different files,
-so that multiple processing can occur over the original files.
-:::
 
 ## Architecture Example
 

@@ -29,7 +29,7 @@ In particular, it is possible to either write your own [custom Connector](#bring
 
 Some connectors you'll find in the Marketplace:
 
-- [CSV Connector](/runtime_suite/csv-connector/configuration.md)
+- [CSV Connector](/runtime_suite/csv-connector/overview.md)
 - [Debezium plugin Connectors](/fast_data/connectors/debezium_cdc.md#debezium-server-configuration)
 - Kafka Connect Configurator (only available for those who have the Confluent license)
 
