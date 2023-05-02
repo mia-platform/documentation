@@ -165,7 +165,7 @@ You will need to provide the following parameters in the body:
 - `tokenEndpointAuthMethod`: `client_secret_basic` or `private_key_jwt`.
 - `publicKey` (optional): only necessary if you choose `private_key_jwt` as an authentication method. Read [Adding a new Service Account](#adding-a-new-service-account) for further information.
 - `name`: the Root Service Account name.
-- `permissions`: a list of permissions to assign to the Service Account, separated by a comma. See [Console levels and permission management](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management.md) for a reference of the available permissions.
+- `permissions`: a list of permissions to assign to the Service Account, separated by a comma. See [Console levels and permission management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) for a reference of the available permissions.
 
 To authenticate your request, you will need to provide your access token and the Console client key.
 
