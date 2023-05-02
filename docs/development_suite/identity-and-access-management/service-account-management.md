@@ -148,7 +148,7 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
   </div>
 </div>
 
-## Managing Service Accounts independent from the Company
+## Managing Company-independent Service Accounts
 
 It is possible to create Company-independent service accounts in case you need to give them root-level permissions to perform root-level operations.
 
@@ -193,9 +193,13 @@ Example response:
 }
 ```
 
+:::warning
+Remember to store in a secure place both the `clientId` and `clientSecret` as those will be needed to authenticate requests from the Service Account.
+:::
+
 ### Deleting Root Service Accounts
 
-In order to delete a Root Service Account, you need to contact the `/api/service-accounts/{clientId}` endpoint, with the `clientId` obtained from the creation response.
+To delete a Root Service Account, you need to contact the `/api/service-accounts/{clientId}` endpoint, providing the `clientId` obtained from the creation response.
 
 To authenticate your request, you will need to provide your access token and the Console client key.
 
