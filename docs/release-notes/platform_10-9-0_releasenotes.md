@@ -27,6 +27,19 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ## Fast Data
 
+### Website & Backend
+
+#### Added
+- Support to .sql file type in the DDL modal import
+
+
+#### Fixed
+- Projections and SoR for the no-code ERSchema still shown even if deleted
+- Single View Creator that could be attached to more Single Views
+
+#### Changed
+- One to one relationships in aggregation as object instead of array.
+
 ### New Features
 
 ### Improvements
