@@ -19,11 +19,31 @@ The ER Schema or Entity-Relation Schema defines the relationships between the co
 Don't forget to [declare your relationships both ways](#direction-of-the-relationships)! 
 :::
 
-## Syntax
 
-The ER Schema is made of the following fields:
+## Configuration Properties
 
-```json title="erSchema.json"
+The configuration file has two required fields:
+- _version_, the current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
+- _config_, the whole ER Schema config, detalied above.
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| COLLECTION | String | - | - | Name of a collection of the System of Records. There should be a `COLLECTION` object for each collection of the System of Records. |
+| outgoing | String[] | - | - | List of all the related collections. |
+| RELATED_COLLECTION | String | - | - | Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`. |
+| conditions | Condition[] | - | - | List of conditions that connect the `COLLECTION` and the `RELATED_CONNECTION`. |
+| CONDITION_NAME | String | - | - | Name of the condition, this is purely for debug purposes and we suggest using the following naming convention: `COLLECTION_to_RELATED_COLLECTION` (eg. dish_to_order_dish) |
+| oneToMany | boolean | - | false | Specifies if there will be **more than one** `RELATED_COLLECTION` document related to a `COLLECTION` document. If false we will assume there will be **only one** `RELATED_COLLECTION` document related to another `COLLECTION` document. |
+| RELATED_COLLECTION | String | - | - | Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`. |
+| condition | Condition | - | - | Object literal containing the condition. |
+| RELATED_COLLECTION_FIELD_NAME | String | - | - | A field name of the `RELATED_COLLECTION` |
+| COLLECTION_FIELD_NAME | String | - | - | A field name of the `COLLECTION` |
+
+<details><summary>ER Schema Configuration</summary>
+
+<p>
+
+```json
 {
   "version": "N.N.N",
   "config": {
@@ -45,31 +65,25 @@ The ER Schema is made of the following fields:
 }
 ```
 
-* `version`: Current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
-* `config`: The whole ER Schema config
-* `COLLECTION`: Name of a collection of the System of Records. There should be a `COLLECTION` object for each collection of the System of Records.
-* `outgoing`: List of all the related collections.
-* `RELATED_COLLECTION`: Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`.
-* `conditions`: List of conditions that connect the `COLLECTION` and the `RELATED_CONNECTION`.
-* `CONDITION_NAME`: Name of the condition, this is purely for debug purposes and we suggest using the following naming convention: `COLLECTION_to_RELATED_COLLECTION` (eg. dish_to_order_dish)
-* `oneToMany`: Specifies if there will be **more than one** `RELATED_COLLECTION` document related to a `COLLECTION` document. If false we will assume there will be **only one** `RELATED_COLLECTION` document related to another `COLLECTION` document. The default is `false`
-* `condition`: Object literal containing the condition
-* `RELATED_COLLECTION_FIELD_NAME`: A field name of the `RELATED_COLLECTION`
-* `COLLECTION_FIELD_NAME`: A field name of the `COLLECTION`
+</p>
+</details>
+
+
+In this example, the relationship between the entities would be:
+
+![Entity Relation representation of the following example](../../img/collection-to-related.png)
 
 :::note
 All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
 :::
 
-In the last example, the relationship between the entities would be:
-
-![Entity Relation representation of the following example](../../img/collection-to-related.png)
-
 ### Constants
 
-It is also possible to define a constant value to validate the condition, for example:
+<details><summary>ER Schema Configuration with constant value to validate the condition</summary>
 
-```json title="erSchema.json"
+<p>
+
+```json
 "pr_dishes": {
   "outgoing": {
     "pr_orders_dishes": {
@@ -85,6 +99,9 @@ It is also possible to define a constant value to validate the condition, for ex
 }
 ```
 
+</p>
+</details>
+
 In this case, the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
 The types of constants that are supported are:
 
@@ -99,9 +116,12 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 
 ### Query and Projection Operators
 
-Conditions can also use MongoDB [Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/), for example:
 
-```json title="erSchema.json"
+<details><summary>ER Schema Configuration with <a href="https://www.mongodb.com/docs/manual/reference/operator/query/">MongoDB Query and Projection Operators</a></summary>
+
+<p>
+
+```json
 {
   "version": "N.N.N",
   "config": {
@@ -130,15 +150,21 @@ Conditions can also use MongoDB [Query and Projection Operators](https://www.mon
 }
 ```
 
+</p>
+</details>
+
+
 ## Direction of the relationships
 
 Normally when we write an ER Schema we think about declaring a condition in only one direction but this is not enough.
 
 The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/common.md#aggregation). As you know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
 
-Example:
+<details><summary>ER Schema Configuration with Strategy and Aggregation</summary>
 
-```json title="erSchema.json"
+<p>
+
+```json
 {
   // Direction explored by the aggregation
   "pr_registry": {
@@ -171,6 +197,9 @@ Example:
   },
 }
 ```
+
+</p>
+</details>
 
 ## Use the No Code
 
@@ -238,9 +267,9 @@ The Fast Data is composed by different microservices, and each one of them uses 
 If your case is the latter, defining conditions in both ways is necessary to make sure that your ER Schema can be used in any Fast Data microservice (as explained in the [Direction of the relationships](#direction-of-the-relationships) section). The panel will allow you to do that.
 :::
 
-To edit those rules (or to start adding them), you have to click on the _Edit_ Rules_ button: a modal will open up with the three tabs explained before. In each of them, there will be a list of rules previously created and the possibility to add new ones.
+To edit those rules (or to start adding them), you have to click on the _Edit Rules_ button: a modal will open up with the three tabs explained before. In each of them, there will be a list of rules previously created and the possibility to add new ones.
 
-In the _A <-> B_ tab, you can click on the _+_ Rule_ button to add a new rule, represented by a new line that includes two drop down lists: the left one contains all the fields of the projection marked as _A_, the right one contains all the fields of the projection marked as _B_.
+In the _A <-> B_ tab, you can click on the _+ Rule_ button to add a new rule, represented by a new line that includes two drop down lists: the left one contains all the fields of the projection marked as _A_, the right one contains all the fields of the projection marked as _B_.
 
 ![Condition editor from pr_dishes to pr_reviews, A <-> B tab](../../img/er-schema-bidirectional-rule-editor.png)
 
@@ -250,7 +279,7 @@ If you need to delete a rule, you can click on the delete icon located next to t
 You can only select fields that are included in the projection. In case you have multiple rules, you cannot select the same field multiple times.
 :::
 
-In the _A -> B_ tab (and also the _B -> A_, which works the same) you can click on the _+_ Rule_ button to create a new rule like the normal ones but with two important differences:
+In the _A -> B_ tab (and also the _B -> A_, which works the same) you can click on the _+ Rule_ button to create a new rule like the normal ones but with two important differences:
 - you can decide which type of relationship between the two sides (instead of equality) based on the available [MongoDB comparison query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#comparison);
 - the right side of the expression can be a field of the other projection or a constant value;
 
@@ -286,11 +315,11 @@ Removing a projection will also delete all of the conditions starting and ending
 The position of the elements (boxes and lines) in the canvas is automatically calculated to give the best overview of the ER Schema. You are free to reorganize projections in the canvas but these updates will not be saved when you save the configuration.
 :::
 
-The canvas is made to help you create and improve your ER Schema and also to give you a look at the whole picture of the Single View that will be created from it. To help you to have the full picture of it, there are several buttons on the bottom-left side of the canvas to adjust the zoom, to lock the canvas to move around without the risk of moving boxes and lines, and an _Autolayout_ button that restores the canvas elements to the best position for a complete view. 
+The canvas is made to help you create and improve your ER Schema and also to give you a look at the whole picture of the Single View that will be created from it. To help you have the full picture of it, there are several buttons on the bottom-left side of the canvas to adjust the zoom, to lock the canvas to move around without the risk of moving boxes and lines, and an _Autolayout_ button that restores the canvas elements to the best position for a complete view. 
 
 You can also zoom in and out with the scroll wheel of the mouse.
 
-Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the top-right side of the canvas, or by pressing _Ctrl+Z_ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Y_ for MacOS). 
+Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality, via the buttons at the top-right side of the canvas or by pressing _Ctrl+Z_ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Y_ for MacOS). 
 
 ### The ER Schema code panel
 
@@ -318,10 +347,10 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
 
 ## Real use case example
 
-<details><summary>food delivery ER schema configuration</summary>
+<details><summary>Food Delivery ER schema configuration</summary>
 <p>
 
-```json title="erSchema.json"
+```json
 {
   "version": "1.0.0",
   "config": {

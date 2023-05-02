@@ -10,42 +10,24 @@ The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) wh
 to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
 by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
 
-## Syntax
+## Configuration Properties
 
-The Projection Changes Schema is made of the following fields
+The configuration file has two required fields:
+- _version_, the current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
+- _config_, the whole Projection Changes Schema config, detailed above.
 
-```json title="projectionChangesSchema.json"
-{
-  "version": "N.N.N",
-  "config": {
-    "SINGLE_VIEW_NAME": {
-      "paths": [
-        {
-          "path": [ "<PROJECTION_2>", "<PROJECTION_1>", "<BASE_PROJECTION>"],
-          "identifier": {
-            "<IDENTIFIER_FIELD>": "<BASE_PROJECTION_FIELD>"
-          }
-        }
-      ]
-    }
-  }
-}
-```
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| SINGLE_VIEW_NAME | String | - | - | The name of the single view we want to aggregate |
+| paths | object[] | - | - | An array of possible paths to generate an identifier capable to match a single view document |
+| paths.[i].path | String[] | - | - | An ordered array of projections for the strategy to reach the `BASE_PROJECTION`. For example, if we receive an ingestion message on `PROJECTION_2` we know that in order to reach `BASE_PROJECTION` we must first look for all the documents of `PROJECTION_1` related to `PROJECTION_2` (the relationships are specified by the [ER Schema](/fast_data/configuration/config_maps/erSchema.md)). |
+| paths.[i].identifier | object | - | - | The projection changes identifier object that will be generated to match the single view document. Every key of the object will be a key of the identifier and every value of the object will be replaced with the `BASE_PROJECTION` documents found by the strategy |
 
-* `version`: Current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
-* `config`: The whole Projection Changes Schema config
-* `SINGLE_VIEW_NAME`: The name of the single view we want to aggregate
-* `paths`: An array of possible paths to generate an identifier capable to match a single view document
-* `path`: An ordered array of projections for the strategy to reach the `BASE_PROJECTION`. For example if we receive an ingestion message on `PROJECTION_2` we know that in order to reach `BASE_PROJECTION` we must first look for all the documents of `PROJECTION_1` related to `PROJECTION_2` (the relationships are specified by the [ER Schema](/fast_data/configuration/config_maps/erSchema.md)).
-* `identifier`: The projection changes identifier object that will be generated to match the single view document. Every key of the object will be a key of the identifier and every value of the object will be replaced with the `BASE_PROJECTION` documents found by the strategy
 
-:::note
-All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
-:::
+<details><summary>Projection Changes Configuration</summary>
+<p>
 
-An example of a configuration can be:
-
-```json title="projectionChangesSchema.json"
+```json
 {
   "version": "1.0.0",
   "config": {
@@ -63,13 +45,24 @@ An example of a configuration can be:
 }
 ```
 
+</p>
+</details>
+
+:::note
+All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
+:::
+
 In some cases you may want a finer control over the creation of the projection changes identifier. Such control can be achieved within service configuration providing a _custom function_,
 which is applied to each document retrieved by the last step of the strategy path (in this case records extracted from `BASE_PROJECTION` collection).
 The custom function file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file
 each path that requires using a custom function should specify as identifier the `__fromFile__[<filename>]` keyword,
-where within squared brackets is provided the filename containing the custom function. Here's an example: 
+where within squared brackets is provided the filename containing the custom function.
 
-```json title="projectionChangesSchema.json"
+
+<details><summary>Projection Changes Configuration with function loading</summary>
+<p>
+
+```json
 {
   "version": "N.N.N",
   "config": {
@@ -85,6 +78,9 @@ where within squared brackets is provided the filename containing the custom fun
 }
 ```
 
+</p>
+</details>
+
 As you can see, in this example we're referencing a file called `myCustomFunction.js`. This file needs to a be a Javascript file exporting a default async generator function with the following parameters:
 
 - `strategyContext`: strategy context object composed of two properties:
@@ -92,9 +88,11 @@ As you can see, in this example we're referencing a file called `myCustomFunctio
   - `dbMongo`: the configured [MongoDB Database](https://mongodb.github.io/node-mongodb-native/5.2/classes/Db.html) instance where the projections are stored
 - `document`: the document of the *base projection* found by the strategy up to this point
 
-Here's an example of what that file containing the custom function could look like:
 
-```js title="myCustomFunction.js"
+<details><summary>Custom function</summary>
+<p>
+
+```js
 // note: this has to be an AsyncGenerator
 module.exports = async function* myCustomFunction ({ logger, dbMongo }, document) {
   const query = { SOME_FIELD: document.SOME_FIELD }
@@ -106,3 +104,6 @@ module.exports = async function* myCustomFunction ({ logger, dbMongo }, document
   }
 }
 ```
+
+</p>
+</details>
