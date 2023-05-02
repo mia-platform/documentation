@@ -1181,12 +1181,12 @@
             {
               "type": "doc",
               "id": "runtime_suite/csv-connector/changelog"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/csv-connector/overview"
             }
-          ]
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/csv-connector/overview"
+          }
         },
         {
           "collapsed": true,

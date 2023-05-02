@@ -9,7 +9,7 @@ The CSV Fast Data Connector application enables fetching data from CSV files and
 
 It is recommended to check the [documentation page](../../runtime_suite/csv-connector-plugin/configuration) for the CSV Connector Plugin for detailed information on how to use the component.
 
-:::Info
+:::caution
 Note that this application comes with no default ConfigMap for the CSV Connector, so one should be added manually. For detailed information on how to write a proper ConfigMap, please refer to the CSV Connector Plugin [documentation page](../../runtime_suite/csv-connector-plugin/configuration).
 :::
 
