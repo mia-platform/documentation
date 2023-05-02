@@ -47,7 +47,7 @@ Once you click the `Create field` button, a form is prompted where you should in
 | Name          | String        | &check;     | Name of the Projection Field. No spaces or special characters                                                                                                |
 | Description   | String        | -    | Description of the Field                                                                                                                                     |
 | Type          | Select        | &check;     | Type of the Field. one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint` |
-| Cast Function | [Cast Function](./cast_functions.md) | &check;     | the possible Cast Function to select for the specified data type                                                                                             |
+| Cast Function | Cast Function | &check;     | the possible Cast Function to select for the specified data type                                                                                             |
 | Required      | Checkbox      | &check;     | Set the field as required, default to false                                                                                                                  |
 | Nullable      | Checkbox      | &check;     | Declare field as nullable, default to false                                                                                                                  |
 | Primary Key   | Checkbox      | &check;     | Set the field as part of the primary key, default to false                                                                                                   |
@@ -59,7 +59,7 @@ Setting the Primary Keys creates automatically the unique indexes as explained [
 :::
 
 :::info
-When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage.md)) is set to `DELETED`.
+When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
 :::
 
 #### Generate projection fields from data sample

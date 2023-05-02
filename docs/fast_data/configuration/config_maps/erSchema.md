@@ -24,7 +24,7 @@ Don't forget to [declare your relationships both ways](#direction-of-the-relatio
 
 The configuration file has two required fields:
 - _version_, the current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
-- _config_, the whole ER Schema config, detalied above.
+- _config_, the whole ER Schema config, detailed above.
 
 | Name | Type | Required | Default | Description |
 |------|------|----------|---------|-------------|

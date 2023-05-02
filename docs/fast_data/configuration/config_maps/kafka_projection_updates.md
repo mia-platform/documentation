@@ -34,7 +34,7 @@ The configuration file is an object with keys representing the `PROJECTION_NAME`
 </p>
 </details>
 
-There will be different behaviours based on the strategy value:
+There will be different behaviors based on the strategy value:
 - `__automatic__`: The automatic strategy handles the generation of the projection changes identifier automatically. This is the preferred method and in most cases it will be enough for your Strategy executions.
 - `__lookup__`: The lookup Strategy means the Projection Updates will be handled by the [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) method. So before using this value make sure you have correctly configured all the parts for the Single View Patch architecture in your project.
 - `__fromFile__`: This lets you specify a Javascript file path which will execute the a custom Strategy on the Projection Updates message and return an array of projection change identifiers. This is the most customizable option and should only be used when the `__automatic__` Strategy is not enough for your case. This strategy expects a path to a Javascript file, like so `__fromFile__[CUSTOM_STRATEGY.js]`. 
