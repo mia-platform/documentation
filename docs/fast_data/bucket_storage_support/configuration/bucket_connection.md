@@ -10,7 +10,7 @@ The guide is equivalent for all the services belonging to the Bucket Storage Sup
 ## Connect with S3 bucket
 
 In order to connect to an S3 bucket, after setting the environment variable `BUCKET_TYPE` to `s3`, an additional configuration has to be written.
-Inside the microservice, in the config maps section, a new configMap has to be created, with the mount path `/app/config`.
+Inside the microservice, in the ConfigMaps section, a new configMap has to be created, with the mount path `/app/config`.
 Inside the new config map, a new file has to be added, named `application.yaml`.
 The file will contain the credentials for interacting with the bucket, with the following structure:
 
