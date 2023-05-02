@@ -43,4 +43,4 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version X.X.X`.
+For on-premise Console installations, please contact your Mia-Platform referent to know how to use the `Helm chart version X.X.X`.
