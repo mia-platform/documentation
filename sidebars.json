@@ -2955,6 +2955,10 @@
       },
       "items": [
         {
+          "id": "release-notes/v10.9.0",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v10.8.0",
           "type": "doc"
         },
