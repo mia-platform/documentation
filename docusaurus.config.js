@@ -12,7 +12,7 @@ const config = {
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
     prism: {
-      additionalLanguages: ['rego','java'],
+      additionalLanguages: ['rego','java', 'csharp'],
     },
     image: "img/documentation-link-preview.png",
     algolia: {
