@@ -108,6 +108,7 @@ The following table describes the privileges given to these Console Administrato
 | View all Console resources                          | `console.root.view`                                    |
 | Manage identity Roles, Groups and Bindings          | `console.root.user.bind`                               |
 | Create and delete any user                          | `console.root.user.manage`                             |
+| Create and delete any service account               | `console.root.serviceaccount.manage`                             |
 | Manage all private and public Project Templates     | `console.root.templates.manage`                        |
 | Manage available features                           | `console.root.features.manage`                         |
 
