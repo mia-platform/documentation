@@ -47,6 +47,7 @@ Depending on how changes are produced, where your source data is stored and how 
 
 ### Bucket Storage Support
 
+The Bucket Storage Support is a feature that enables the storing of messages flowing through a channel into an external object storage system, such as a [Google Cloud Storage bucket](https://cloud.google.com/storage) or any bucket compatible with [Amazon AWS S3](https://aws.amazon.com/s3/) interface. Such an external archiving system can be configured to retain saved messages for a very long time and it enables a large array of different applications and processing over the stored data, promoting different types of access to the messages. The main feature is the ability to replay onto a channel messages that were previously read and stored in the bucket.
 
 ## Technologies
 
