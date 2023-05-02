@@ -71,6 +71,10 @@
         {
           "id": "development_suite/deploy/configuration",
           "type": "doc"
+        },
+        {
+          "id": "development_suite/deploy/configure-github-actions",
+          "type": "doc"
         }
       ],
       "label": "Deploy what you have created",
@@ -573,6 +577,10 @@
         },
         {
           "type": "doc",
+          "id": "business_suite/backoffice-configurator/faqs"
+        },
+        {
+          "type": "doc",
           "id": "business_suite/backoffice-configurator/changelog"
         }
       ],
@@ -882,10 +890,6 @@
               "type": "doc"
             },
             {
-              "id": "fast_data/bucket_storage_support/configuration/data_organizer_by_key_configuration",
-              "type": "doc"
-            },
-            {
               "id": "fast_data/bucket_storage_support/configuration/bucket_connection_configuration",
               "type": "doc"
             },
@@ -1172,6 +1176,21 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "CSV Connector",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/changelog"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/csv-connector/overview"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "Data Analytics",
           "items": [
             {
@@ -1350,25 +1369,6 @@
           "link": {
             "type": "doc",
             "id": "runtime_suite/secure-apigateway/overview"
-          }
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Secure Backoffice",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/secure-backoffice/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/secure-backoffice/changelog"
-            }
-          ],
-          "link": {
-            "type": "doc",
-            "id": "runtime_suite/secure-backoffice/overview"
           }
         }
       ],
@@ -1604,6 +1604,10 @@
                 {
                   "type": "doc",
                   "id": "runtime_suite/care-kit/components/ck-add-plan-modal"
+                },
+                {
+                  "type": "doc",
+                  "id": "runtime_suite/care-kit/components/ck-chart"
                 }
               ]
             }
@@ -1713,25 +1717,6 @@
             {
               "type": "doc",
               "id": "runtime_suite/crud-service/changelog"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "CSV Connector",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/csv-connector/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/csv-connector/usage"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/csv-connector/changelog"
             }
           ]
         },
