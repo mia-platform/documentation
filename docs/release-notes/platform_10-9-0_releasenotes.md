@@ -16,7 +16,7 @@ _May 04, 2023_
 It is possible to create [Company-independent service accounts](TO-DO link) in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
 
 :::info
-Only Console Super Users can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level.
+Only Console Super Users can [add](TO-DO link) or [delete](TO-DO link) Company independent service accounts, manageable exclusively at back-office level.
 :::
 
 ### Bug Fix
