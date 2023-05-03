@@ -29,11 +29,11 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### New Features
 
-Support to .sql file type in the DDL modal import
+The file picker of the DDL modal import now support `.sql` file 
 
 ### Improvements
 
-One to one relationships in aggregation as object instead of array.
+The console automatic aggregation generation now represents one to one relationship configuration as object.
 
 ### Breaking Changes
 
@@ -48,9 +48,9 @@ Do not forget to check out the [changelog](/runtime-suite/single-view-trigger-ge
 
 This version addressed a few bugs, here is a comprehensive list:
 
-* Projections and SoR for the no-code ERSchema still shown even if deleted
-* Single View Creator that could be attached to more Single Views
-* Mongo operators are now properly interpolated in aggregations executed by the Single View Creator. This fix has been addressed in version 5.6.6 of the Single View Creator. For more info check out the [changelog](/runtime-suite/single-view-creator/changelog.md).
+* The Projections and the SoR are now deleted from the No-Code ERSchema if deleted from their console sections
+* The Single View Creator is not attachable to only one Single View
+* Mongo operators are now properly interpolated in aggregations executed by the Single View Creator. This fix has been addressed in version 5.6.6 of the Single View Creator.
 
 ## Marketplace
 
