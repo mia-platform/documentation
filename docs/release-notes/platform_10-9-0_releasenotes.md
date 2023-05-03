@@ -22,6 +22,14 @@ The provider for each capability (Git Provider, CI/CD and Secret Manager) can al
 
 For more information, [go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx)
 
+#### GitHub Actions as CI/CD tool in Console
+
+Starting with this version, the console supports GitHub Actions as a CI/CD tool.
+
+Within the Providers section accessible through the Company Overview area you can now configure a GitHub provider as a CI/CD tool.
+
+For more information, [go to the documentation](/development_suite/deploy/.mdx)
+
 #### Managing Service Accounts at Console level
 
 It is possible to create [Company-independent service accounts](TO-DO link) in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
