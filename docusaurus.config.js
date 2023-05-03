@@ -266,13 +266,17 @@ const config = {
             defaultSidebarItemsGenerator,
             ...args
           }) {
-            return defaultSidebarItemsGenerator({
+            const sidebarItems = defaultSidebarItemsGenerator({
               ...args,
               isCategoryIndex(params) {
                 const {fileName} = params
                 return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
               },
             });
+            const sortedSidebarItems = sidebarItems.sort((a, b) => {
+              return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+            })
+            return sortedSidebarItems
           },
         },
         theme: {
