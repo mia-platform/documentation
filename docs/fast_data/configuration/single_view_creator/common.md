@@ -11,14 +11,14 @@ This service is available as a plugin or as a template:
 - plugin: allows you to use the single view creator as a black-box. You just need to configure it through the Config Maps and environment variables
 - [template](#template): gives you access to the source code of the single view creator because of it will be created a repository on Git with its code. You will need to update its dependencies by yourself and maintains its code. 
 
-We strongly recommend using the plugin. Template is supposed to be used only for advanced use-case where the plugin can not be used. 
+We strongly recommend using the plugin. The template is supposed to be used only for advanced use-case where the plugin can not be used. 
 
 Single View Creator plugin can be used in two modes:
 - [Low Code](/fast_data/configuration/single_view_creator/low_code.md): allows you to perform aggregation through JSON without writing any Javascript code in most cases. If you need custom behavior you will still be able to writing your own code for just that piece of aggregation.
 - [Manual](/fast_data/configuration/single_view_creator/manual.md): allows you to perform aggregation writing your own Javascript code.
 
 We recommend using the Low Code since it allows you to be faster and safer in aggregating your data. You will just need to think about the data and not the code for doing so.    
-Manual mode is supposed to be used only for cases where Low Code can not be used, but it should rarely happen, since if you are using Low Code you will still be able to writing custom Javascript function for the specific piece of aggregation that Low Code can not perform.
+Manual mode is supposed to be used only for cases where Low Code can not be used, but it should rarely happen, since if you are using Low Code you will still be able to write custom Javascript function for the specific piece of aggregation that Low Code can not perform.
 
 ## Getting started
 
@@ -108,51 +108,50 @@ For further information contact your Mia Platform referent
 
 ## Environment Variables
 
-<table>
-<tr><th>Name</th><th>Required</th><th>Description</th><th>Default value</th></tr>
-<tr><td>CONFIGURATION_FOLDER</td><td>false</td><td>Folder where configuration files are mounted</td><td>/home/node/app/src/</td></tr>
-<tr><td>LOG_LEVEL</td><td>true</td><td>Level to use for logging</td><td>-</td></tr>
-<tr><td>HTTP_PORT</td><td>false</td><td>Port exposed by the service</td><td>3000</td></tr>
-<tr><td>TYPE</td><td>true</td><td>Identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update.</td><td>-</td></tr>
-<tr><td>SCHEDULING_TIME</td><td>false</td><td>a quantity of time in milliseconds, every X milliseconds the service wake up and check if there are some projections changes in `NEW` state to work on. The service continue working until no more new projections changes are found, if so he goes to sleep for X milliseconds.</td><td>60000</td></tr>
-<tr><td>PROJECTIONS_MONGODB_URL</td><td>true</td><td>MongoDB connection string where projections are stored. Must be a valid uri</td><td>-</td></tr>
-<tr><td>SINGLE_VIEWS_MONGODB_URL</td><td>true</td><td>MongoDB connection string where single view must be stored. Must be a valid uri</td><td>-</td></tr>
-<tr><td>PROJECTIONS_CHANGES_MONGODB_URL</td><td>false</td><td>The db from where projections changes are read.</td><td>value of PROJECTIONS_MONGODB_URL</td></tr>
-<tr><td>PROJECTIONS_CHANGES_DATABASE</td><td>true</td><td>The db from where projections changes are read.</td><td>-</td></tr>
-<tr><td>PROJECTIONS_DATABASE</td><td>true</td><td>The db from where projections are read.</td><td>value of PROJECTIONS_CHANGES_DATABASE</td></tr>
-<tr><td>PROJECTIONS_CHANGES_COLLECTION</td><td>false</td><td>if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for.</td><td>-</td></tr>
-<tr><td>SINGLE_VIEWS_DATABASE</td><td>true</td><td>The db from where single views are written.</td><td>-</td></tr>
-<tr><td>SINGLE_VIEWS_COLLECTION</td><td>true</td><td>It must be equals to the Single View name the service is in charge of keeping updated.</td><td>-</td></tr>
-<tr><td>SINGLE_VIEWS_PORTFOLIO_ORIGIN</td><td>true</td><td>should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`</td><td>-</td></tr>
-<tr><td>SINGLE_VIEWS_ERRORS_COLLECTION</td><td>true</td><td>Name of a MongoDB CRUD you want to use as collection for single view errors.</td><td>-</td></tr>
-<tr><td>KAFKA_CONSUMER_GROUP_ID</td><td>false</td><td><b>@deprecated</b> - in favor of KAFKA_GROUP_ID. The Kafka consumer group identifier</td><td>-</td></tr>
-<tr><td>KAFKA_GROUP_ID</td><td>true</td><td>defines the Kafka group id (it is suggested to use a syntax like <code>{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}</code>)</td><td>-</td></tr>
-<tr><td>KAFKA_CLIENT_ID</td><td>false</td><td>The Kafka client identifier</td><td>-</td></tr>
-<tr><td>KAFKA_BROKERS_LIST</td><td>false</td><td><b>@deprecated</b> - in favor of KAFKA_BROKERS. list of brokers the service needs to connect to</td><td>-</td></tr>
-<tr><td>KAFKA_BROKERS</td><td>false</td><td>list of brokers the service needs to connect to</td><td>-</td></tr>
-<tr><td>KAFKA_SASL_MECHANISM</td><td>false</td><td>The Kafka SASL mechanism to be used. Can be one of the following: "plain", "PLAIN", "scram-sha-256", "SCRAM-SHA-256", "scram-sha-512", "SCRAM-SHA-512"</td><td>plain</td></tr>
-<tr><td>KAFKA_SASL_USERNAME</td><td>false</td><td>username to use for logging into Kafka</td><td>-</td></tr>
-<tr><td>KAFKA_SASL_PASSWORD</td><td>false</td><td>password to use for logging into Kafka</td><td>-</td></tr>
-<tr><td>KAFKA_SVC_EVENTS_TOPIC</td><td>false</td><td>topic used to queue Single View Creator state changes (e.g. single view creation). This feature is deprecated in favor of KAFKA_SV_UPDATE_TOPIC and it will be removed soon</td><td>-</td></tr>
-<tr><td>SEND_BA_TO_KAFKA</td><td>false</td><td>true if you want to send to Kafka the `before-after` information about the update changes of the single view. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon</td><td>false</td></tr>
-<tr><td>KAFKA_BA_TOPIC</td><td>false</td><td>topic where to send the `before-after` messages which represent the single view document before and after a change. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon</td><td>-</td></tr>
-<tr><td>SEND_SV_UPDATE_TO_KAFKA</td><td>false</td><td>true if you want to send to Kafka the `sv-update` message about the update changes of the single view</td><td>false</td></tr>
-<tr><td>ADD_BEFORE_AFTER_CONTENT</td><td>false</td><td>true if you want to add the _before_ and _after_ content to the `sv-update` message, works only if `SEND_SV_UPDATE_TO_KAFKA` is set to true</td><td>false</td></tr>
-<tr><td>KAFKA_SV_UPDATE_TOPIC</td><td>false</td><td>topic where to send the `sv-update` message</td><td>-</td></tr>
-<tr><td>UPSERT_STRATEGY</td><td>false</td><td>(v3.1.0 or higher) If it is set to "replace", the whole Single View document will be replaced with the new one. If it is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept.  Otherwise the custom function placed at the path equals to the value of this env will be used.</td><td>replace</td></tr>
-<tr><td>DELETE_STRATEGY</td><td>false</td><td>(v3.1.0 or higher) If it is set to "delete", the whole Single View document will be deleted. Otherwise the custom function placed at the path equals to the value of this env will be used.</td><td>delete</td></tr>
-<tr><td>SINGLE_VIEWS_MAX_PROCESSING_MINUTES</td><td>false</td><td>(v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS</td><td>30</td></tr>
-<tr><td>CA_CERT_PATH</td><td>false</td><td>the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`</td><td>-</td></tr>
-<tr><td>ER_SCHEMA_FOLDER</td><td>false</td><td>the path to the ER Schema folder, e.g. `/home/node/app/erSchema`</td><td>-</td></tr>
-<tr><td>AGGREGATION_FOLDER</td><td>false</td><td>the path to the Aggregation folder, e.g. `/home/node/app/aggregation`</td><td>-</td></tr>
-<tr><td>USE_AUTOMATIC</td><td>false</td><td>wheather to use the low code architecture for the Single View Creator service or not</td><td>-</td></tr>
-<tr><td>PROJECTIONS_CHANGES_SOURCE</td><td>false</td><td>System to use to handle the Projection Changes, supported methods are KAFKA or MONGO</td><td>MONGO</td></tr>
-<tr><td>KAFKA_PROJECTION_CHANGES_TOPICS</td><td>false</td><td>Comma separated list of projection changes topics</td><td>-</td></tr>
-<tr><td>KAFKA_PROJECTION_UPDATE_TOPICS</td><td>false</td><td>Comma separated list of projection update topics</td><td>-</td></tr>
-<tr><td>SV_TRIGGER_HANDLER_CUSTOM_CONFIG</td><td>false</td><td>Path to the config defining SV-Patch actions</td><td>-</td></tr>
-<tr><td>READ_TOPIC_FROM_BEGINNING</td><td>false</td><td>Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if <code>PROJECTIONS_CHANGES_SOURCE</code> is set to <i>KAFKA</i>.</td><td>false</td></tr>
-<tr><td>USE_UPDATE_MANY_SV_PATCH</td><td>false</td><td>Use the MongoDB <code>updateMany</code> operation instead of the <code>findOneAndUpdate</code> with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: <code>SEND_BA_TO_KAFKA</code>, <code>KAFKA_BA_TOPIC</code>, <code>SEND_SV_UPDATE_TO_KAFKA</code>, <code>KAFKA_SV_UPDATE_TOPIC</code>, <code>ADD_BEFORE_AFTER_CONTENT</code>, <code>KAFKA_SVC_EVENTS_TOPIC</code></td><td>false</td></tr>
-</table>
+| Name | Required | Description | Default value |
+|------|----------|-------------|---------------|
+| CONFIGURATION_FOLDER | - | Folder where configuration files are mounted | /home/node/app/src/ |
+| LOG_LEVEL | &check; | Level to use for logging | - |
+| HTTP_PORT | - | Port exposed by the service | 3000 |
+| TYPE | &check; | Identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update. | - |
+| SCHEDULING_TIME | - | a quantity of time in milliseconds, every X milliseconds the service wake up and check if there are some projections changes in `NEW` state to work on. The service continue working until no more new projections changes are found, if so he goes to sleep for X milliseconds. | 60000 |
+| PROJECTIONS_MONGODB_URL | &check; | MongoDB connection string where projections are stored. Must be a valid uri | - |
+| SINGLE_VIEWS_MONGODB_URL | &check; | MongoDB connection string where single view must be stored. Must be a valid uri | - |
+| PROJECTIONS_CHANGES_MONGODB_URL | - | The db from where projections changes are read. If not set, `PROJECTIONS_MONGODB_URL` is used. | - |
+| PROJECTIONS_CHANGES_DATABASE | &check; | The db from where projections changes are read. | - |
+| PROJECTIONS_DATABASE | &check; | The db from where projections are read. If not set, `PROJECTIONS_CHANGES_DATABASE` is used. | - |
+| PROJECTIONS_CHANGES_COLLECTION | - | if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for. | - |
+| SINGLE_VIEWS_DATABASE | &check; | The db from where single views are written. | - |
+| SINGLE_VIEWS_COLLECTION | &check; | It must be equals to the Single View name the service is in charge of keeping updated. | - |
+| SINGLE_VIEWS_PORTFOLIO_ORIGIN | &check; | should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION` | - |
+| SINGLE_VIEWS_ERRORS_COLLECTION | &check; | Name of a MongoDB CRUD you want to use as collection for single view errors. | - |
+| KAFKA_CONSUMER_GROUP_ID | - | **@deprecated** - in favor of KAFKA_GROUP_ID. The Kafka consumer group identifier | - |
+| KAFKA_GROUP_ID | &check; | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}```) | - |
+| KAFKA_CLIENT_ID | - | The Kafka client identifier | - |
+| KAFKA_BROKERS_LIST | - | **@deprecated** - in favor of KAFKA_BROKERS. list of brokers the service needs to connect to | - |
+| KAFKA_BROKERS | - | list of brokers the service needs to connect to | - |
+| KAFKA_SASL_MECHANISM | - | The Kafka SASL mechanism to be used. Can be one of the following: "plain", "PLAIN", "scram-sha-256", "SCRAM-SHA-256", "scram-sha-512", "SCRAM-SHA-512" | plain |
+| KAFKA_SASL_USERNAME | - | username to use for logging into Kafka | - |
+| KAFKA_SASL_PASSWORD | - | password to use for logging into Kafka | - |
+| KAFKA_SVC_EVENTS_TOPIC | - | topic used to queue Single View Creator state changes (e.g. single view creation). This feature is deprecated in favor of KAFKA_SV_UPDATE_TOPIC and it will be removed soon | - |
+| SEND_BA_TO_KAFKA | - | true if you want to send to Kafka the `before-after` information about the update changes of the single view. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon | false |
+| KAFKA_BA_TOPIC | - | topic where to send the `before-after` messages which represent the single view document before and after a change. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon | - |
+| SEND_SV_UPDATE_TO_KAFKA | - | true if you want to send to Kafka the `sv-update` message about the update changes of the single view | false |
+| ADD_BEFORE_AFTER_CONTENT | - | true if you want to add the _before_ and _after_ content to the `sv-update` message, works only if `SEND_SV_UPDATE_TO_KAFKA` is set to true | false |
+| KAFKA_SV_UPDATE_TOPIC | - | topic where to send the `sv-update` message | - |
+| UPSERT_STRATEGY | - | (v3.1.0 or higher) If it is set to "replace", the whole Single View document will be replaced with the new one. If it is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept.  Otherwise the custom function placed at the path equals to the value of this env will be used. | replace |
+| DELETE_STRATEGY | - | (v3.1.0 or higher) If it is set to "delete", the whole Single View document will be deleted. Otherwise the custom function placed at the path equals to the value of this env will be used. | delete |
+| SINGLE_VIEWS_MAX_PROCESSING_MINUTES | - | (v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS | 30 |
+| CA_CERT_PATH | - | the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem` | - |
+| ER_SCHEMA_FOLDER | - | the path to the ER Schema folder, e.g. `/home/node/app/erSchema` | - |
+| AGGREGATION_FOLDER | - | the path to the Aggregation folder, e.g. `/home/node/app/aggregation` | - |
+| USE_AUTOMATIC | - | wheather to use the low code architecture for the Single View Creator service or not | - |
+| PROJECTIONS_CHANGES_SOURCE | - | System to use to handle the Projection Changes, supported methods are KAFKA or MONGO | MONGO |
+| KAFKA_PROJECTION_CHANGES_TOPICS | - | Comma separated list of projection changes topics | - |
+| KAFKA_PROJECTION_UPDATE_TOPICS | - | Comma separated list of projection update topics | - |
+| SV_TRIGGER_HANDLER_CUSTOM_CONFIG | - | Path to the config defining SV-Patch actions | - |
+| READ_TOPIC_FROM_BEGINNING | - | Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if ```PROJECTIONS_CHANGES_SOURCE``` is set to <i>KAFKA</i>. | false |
+| USE_UPDATE_MANY_SV_PATCH | - | Use the MongoDB ```updateMany``` operation instead of the ```findOneAndUpdate``` with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: ```SEND_BA_TO_KAFKA```, ```KAFKA_BA_TOPIC```, ```SEND_SV_UPDATE_TO_KAFKA```, ```KAFKA_SV_UPDATE_TOPIC```, ```ADD_BEFORE_AFTER_CONTENT```, ```KAFKA_SVC_EVENTS_TOPIC``` | false |
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* v9.1.0 or higher)
 

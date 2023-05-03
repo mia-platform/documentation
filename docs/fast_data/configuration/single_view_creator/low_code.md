@@ -22,7 +22,9 @@ An example:
 ```json
 {
   "version": "1.0.0",
-   "config": {"sv_id": "ID_USER"}
+  "config": {
+    "sv_id": "ID_USER"
+  }
 }
 ```
 
@@ -504,7 +506,7 @@ Functions can also be used as value from the `1.3.0` version of the `aggregation
 The function works in the same way as explained in the Mapping section, with the only difference that will accept only two parameters: 
 
 * **logger**: the logger instance used by the service,
-* **clientMongo**: the instance of mongoDB used by the service,
+* **clientMongo**: the instance of mongoDB used by the service
 
 ``` javascript title="myFunc.js"
 module.exports = async function(logger, clientMongo) {

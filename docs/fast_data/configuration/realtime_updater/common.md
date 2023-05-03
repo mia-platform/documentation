@@ -38,8 +38,8 @@ Here below, instead, all the configurations the service accepts are explained.
 | KAFKA_SASL_OAUTH_CLIENT_ID | - | In case of ```oauthbearer``` mechanism, it defines the client id for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_CLIENT_SECRET | - | In case of ```oauthbearer``` mechanism, it defines the client secret for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS | - | In case of ```oauthbearer``` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute) | 60000 |
-| USE_UPSERT | - | defines whether to use [upsert](./common#upsert) or not when performing insert and update operations. | true |
-| KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](./common#kafka-adapters-kafka-messages-format) paragraph. | basic |
+| USE_UPSERT | - | defines whether to use [upsert](#upsert) or not when performing insert and update operations. | true |
+| KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic |
 | KAFKA_PROJECTION_CHANGES_FOLDER | - | path where has been mounted the ```kafkaProjectionChanges.json``` configuration (v3.4.0 or above). | - |
 | GENERATE_KAFKA_PROJECTION_CHANGES | - | defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above). | false |
 | KAFKA_CONSUMER_MAX_WAIT_TIME | - | defines the maximum waiting time of Kafka Consumer for new data in batch. | 500 |
@@ -52,9 +52,8 @@ Here below, instead, all the configurations the service accepts are explained.
 | GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the realtime updater should send a message of update every time it writes the projection to Mongo. | false |
 | CA_CERT_PATH | - | the path to the CA certificate, which should include the file name as well, e.g. ```/home/my-ca.pem``` | - |
 | SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real Time Updater | - |
-| PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](./common#pause-single-topics-consumption-on-error) | false |
+| PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
 | USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
-
 
 ## How data is managed on MongoDB
 
@@ -270,10 +269,30 @@ In order to do that, your collection is supposed to have the following fields (a
 
 ```json
 [
-    {"name":"type","type":"string","required":false,"nullable":false},
-    {"name":"changes","type":"Array_RawObject","required":false,"nullable":false},
-    {"name":"identifier","type":"RawObject","required":true,"nullable":false},
-    {"name":"doneAt","type":"Date","required":false,"nullable":false}
+  {
+    "name": "type",
+    "type": "string",
+    "required": false,
+    "nullable": false
+  },
+  {
+    "name": "changes",
+    "type": "Array_RawObject",
+    "required": false,
+    "nullable": false
+  },
+  {
+    "name": "identifier",
+    "type": "RawObject",
+    "required": true,
+    "nullable": false
+  },
+  {
+    "name": "doneAt",
+    "type": "Date",
+    "required": false,
+    "nullable": false
+  }
 ]
 ```
 
@@ -306,8 +325,8 @@ This feature has been introduced since version v3.5.0 of the real time updater
 :::
 
 To activate this feature you need to set the following environment variables:
-- KAFKA_PROJECTION_UPDATES_FOLDER: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
-- GENERATE_KAFKA_PROJECTION_UPDATES: defines whether the real-time updater should send a message of update every time it writes the projection to Mongo. Default is `false`
+- `KAFKA_PROJECTION_UPDATES_FOLDER`: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
+- `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the real-time updater should send a message of update every time it writes the projection to Mongo. Default is `false`
 
 :::info
 From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
