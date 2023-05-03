@@ -48,7 +48,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### New Features
 
-The file picker of the DDL modal import now support `.sql` file 
+The file picker of the DDL modal imports now support `.sql` file 
 
 ### Improvements
 
@@ -65,7 +65,7 @@ However, as with any major update, there are a few breaking changes to be aware 
 We've also removed the `USE_AUTOMATIC` variable since the feature is now enabled in all the service configurations.  
 Furthermore, the following environment variables are now required:
 - `SINGLE_VIEW_NAME`
-- ` ER_SCHEMA_FOLDER`
+- `ER_SCHEMA_FOLDER`
 - `PROJECTION_CHANGES_SCHEMA_FOLDER`
 
 For more details on the service and its behavior, please check out the official [documentation](https://docs.mia-platform.eu/docs/fast_data/single_view_trigger_generator)
