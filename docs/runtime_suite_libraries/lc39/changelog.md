@@ -7,6 +7,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v7.0.0-rc.2 - 2023-05-02
+
+In this version, is added the support for Fastify v4. To upgrade, read the [migration guide](https://www.fastify.io/docs/latest/Guides/Migration-Guide-V4/).
+
+#### Metrics options
+
+Metrics options are changed. Below there are the main changes. For other configuration, [see here](https://github.com/SkeLLLa/fastify-metrics).
+
+* `enableDefaultMetrics: boolean` --> `defaultMetrics: {enabled: boolean}`
+* `pluginName` --> `name`
+* `enableRouteMetrics` --> `routeMetrics.enabled: boolean`
+* `groupStatusCodes` --> `routeMetrics.groupStatusCodes`
+* `invalidRouteGroup` --> `invalidRouteGroup` (default changed from undefined to unknown)
+* histogram and summary are moved under `routeMetrics.overrides`
+* `blacklist` --> `routeMetrics.routeBlacklist`
+
+#### Remove node 14 support
+
+node 14 and below are not supported. If you want to use this version of lc39, upgrade node to version 16 and above
+
+#### Export lc39 as the main function
+
+Export lc39 as the main function exported by the package. This brings two big changes:
+
+* options are internally merged in one single object. See the merge precedence.
+* the default exported logLevel is not set to `silent` by default: this because it is not used only for tests
+
+### Changes
+
+* exported lc39 function remove the default log level set to silent, and it is now set to info. This is required since it is possible to configure lc39 also from function and not only from CLI
+* `forceCloseConnections` is set to 'idle' from false in node 18. This means that idle requests are destroyed on server close
+* remove errorHandler option as unsupported by fastify-sensible
+* migrated `@fastify/swagger` to `v8`, so that `@fastify/swagger-ui` package is now required to continue exposing Swagger UI
+* upgraded fastify plugins to support latest fastify version
+* upgraded library dependencies
+
+### Added
+
+* add custom error serializer in log for the field `error`
+* add tracing instrumentation with OpenTelemetry in experimental
+* export lc39 options
+
 ## v7.0.0-rc.0 - 2022-07-06
 
 In this version, is added the support for Fastify v4. To upgrade, read the [migration guide](https://www.fastify.io/docs/latest/Guides/Migration-Guide-V4/).
