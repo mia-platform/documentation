@@ -48,7 +48,7 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ### New Features
 
-The file picker of the DDL modal imports now support `.sql` file 
+The file picker of the DDL modal import now supports `.sql` file 
 
 ### Improvements
 
