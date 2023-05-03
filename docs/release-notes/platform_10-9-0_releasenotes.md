@@ -68,7 +68,7 @@ Furthermore, the following environment variables are now required:
 - `ER_SCHEMA_FOLDER`
 - `PROJECTION_CHANGES_SCHEMA_FOLDER`
 
-For more details on the service and its behavior, please check out the official [documentation](https://docs.mia-platform.eu/docs/fast_data/single_view_trigger_generator)
+For more details on the service and its behavior, please check out the official [documentation](/fast_data/single_view_trigger_generator.md)
 
 ### Bug Fix
 
@@ -97,7 +97,7 @@ Furthermore, the following MongoDB operators for `PATCH` action were introduced:
 - [`$addToSet`](https://www.mongodb.com/docs/manual/reference/operator/update/addToSet/) (v6.4.0)
 - [`$pull`](https://www.mongodb.com/docs/manual/reference/operator/update/pull/) (v6.5.0)
 
-The full [changelog](https://docs.mia-platform.eu/docs/runtime_suite/crud-service/changelog) can be found in the plugin detail page.
+The full [changelog](/runtime_suite/crud-service/changelog.md) can be found in the plugin detail page.
 
 ## Backoffice - 1.3.9
 
