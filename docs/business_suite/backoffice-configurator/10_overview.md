@@ -16,5 +16,5 @@ sections with live preview support.
 
 ## Prerequisites
 
-To use the configurator, the [Backoffice application](../../runtime_suite/backoffice/overview)
+To use the configurator, the [Backoffice application](../../runtime_suite_applications/backoffice/overview)
 needs to be deployed in your project from the marketplace.

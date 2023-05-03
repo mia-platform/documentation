@@ -64,8 +64,8 @@ Once you have done, click the _Save_ button. The modal will close, and the table
 ### How can I change the route under which the Backoffice is exposed?
 
 When starting from the application (whether it is the 
-[classic one](../../runtime_suite/backoffice/overview) or the
-[on prem one](../../runtime_suite/backoffice-on-prem/overview)), the Backoffice is exposed
+[classic one](../../runtime_suite_applications/backoffice/overview) or the
+[on prem one](../../runtime_suite_applications/backoffice-on-prem/overview)), the Backoffice is exposed
 under `/backoffice`. The steps to change this endpoint are the following.
 
 1. Delete `/backoffice` endpoint and create the new one, which **must have** _Rewrite Base Path_ set to `/public`.
@@ -76,8 +76,8 @@ under `/backoffice`. The steps to change this endpoint are the following.
 ### How can I change the route under which Backoffice configurations are exposed?
 
 When starting from the application (whether it is the 
-[classic one](../../runtime_suite/backoffice/overview) or the
-[on prem one](../../runtime_suite/backoffice-on-prem/overview)), Backoffice configuration
+[classic one](../../runtime_suite_applications/backoffice/overview) or the
+[on prem one](../../runtime_suite_applications/backoffice-on-prem/overview)), Backoffice configuration
 files are exposed under `/micro-lc-configurations`. The steps to change this endpoint are the following.
 
 1. Delete `/micro-lc-configurations` endpoint and create the new one, which **must have** _Rewrite Base Path_ set to `/configurations`.
@@ -88,8 +88,8 @@ files are exposed under `/micro-lc-configurations`. The steps to change this end
 ### How can I serve a static file through the Backoffice webserver?
 
 When starting from the application (whether it is the 
-[classic one](../../runtime_suite/backoffice/overview) or the
-[on prem one](../../runtime_suite/backoffice-on-prem/overview)), all the Backoffice related
+[classic one](../../runtime_suite_applications/backoffice/overview) or the
+[on prem one](../../runtime_suite_applications/backoffice-on-prem/overview)), all the Backoffice related
 resources are served by a single service, called `micro-lc`. 
 
 This service comes with four config maps, three of which are readonly and editable only thought the Configurator. The

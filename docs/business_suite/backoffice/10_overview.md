@@ -16,17 +16,17 @@ Talking about Mia-Platform Backoffice, so considering only the capabilities of t
 - The layout: managed by [micro-lc](https://www.micro-lc.io/docs)
 - The components: based on Mia-Platform [back-kit library](./60_components/10_adapters.md)
 
-The back-kit library is basically a set of W3C Web Components customizable with a JSON configuration or through the [Backoffice configurator](/business_suite/backoffice-configurator/overview.md). 
+The back-kit library is basically a set of W3C Web Components customizable with a JSON configuration or through the [Backoffice configurator](../../business_suite/backoffice-configurator/10_overview.md).
 
 The backoffice pages can be built upon the usage of the proper configuration of the micro-lc layout, like configuring the menu (e.g. sidebar menu, top-bar menu, and other possibilities provided by micro-lc) and the composition of a various number of web components coming from back-kit library.
 
-It is also possible to configure it easily from the Mia Platform Console, go to the [dedicated section](/business_suite/backoffice-configurator/overview.md) to know how!
+It is also possible to configure it easily from the Mia Platform Console, go to the [dedicated section](../../business_suite/backoffice-configurator/10_overview.md) to know how!
 
 ## Why do you need Mia-Platform Backoffice?
 
 As already mentioned above, the Mia-Platform Backoffice is a tool intended to build a custom CMS or to build a custom User Interface.
 
-You need Mia-Platform Backoffice if you need a CMS to be configured behind your application management. Moreover, if you intend to build your custom web components or if you want to create your own internal tool or custom User Interface, you can exploit the flexibility of micro-lc and the ease and user-friendly interface of the [Backoffice Configurator](/business_suite/backoffice-configurator/overview.md) to do so. You just have to add your own web component library to the sources from which the Backoffice can retrieve data.
+You need Mia-Platform Backoffice if you need a CMS to be configured behind your application management. Moreover, if you intend to build your custom web components or if you want to create your own internal tool or custom User Interface, you can exploit the flexibility of micro-lc and the ease and user-friendly interface of the [Backoffice Configurator](../../business_suite/backoffice-configurator/10_overview.md) to do so. You just have to add your own web component library to the sources from which the Backoffice can retrieve data.
 
 ## Architecture overview
 

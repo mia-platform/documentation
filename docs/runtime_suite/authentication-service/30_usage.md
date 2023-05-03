@@ -339,9 +339,9 @@ The configuration snippet above will result in the following JWT token claims:
 
 ### Integration with the ***Authorization Service***
 
-The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview.md) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
+The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/10_overview.md) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
 
-You need to set the following variables in the [configuration](../authorization-service/configuration.md) with these values:
+You need to set the following variables in the [configuration](../authorization-service/20_configuration.md) with these values:
 
 - **USERINFO_URL**=`http://authentication-service/userinfo` (NB: change the hostname if it has been named differently)
 - **CUSTOM_USER_ID_KEY**=`userId`

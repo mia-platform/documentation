@@ -4,7 +4,7 @@ title:  API Gateway - How to?
 sidebar_label: How To
 ---
 
-In this section, we will see how to configure the [API Gateway](/runtime_suite/api-gateway/overview.md) in advanced mode to achieve specific goals.
+In this section, we will see how to configure the [API Gateway](/runtime_suite/api-gateway/10_overview.md) in advanced mode to achieve specific goals.
 
 :::info
 To change all the advanced settings, you have to access to the Console and go to the Advanced Section from the menu in the main sidebar of the Design Area.

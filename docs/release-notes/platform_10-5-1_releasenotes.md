@@ -42,7 +42,7 @@ Inside the Authorization section, now the "Manual Routes" table clearly shows th
 #### Backoffice Low Code Configuration exposes entrypoint for configuration
 
 :::info
-This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md) page for further information.
+This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/10_overview.md) page for further information.
 :::
 
 The Backoffice Configurator now exposes a new section "Webserver Configuration" from which the entrypoint (aka `index.html` file) can be configured.
@@ -115,7 +115,7 @@ The field `singleResource` has been added to the `resourceConfig` property of th
 #### Form Service BE - v.1.7.0
 
 Added support for exporting forms in csv via a dedicated endpoint, `GET /visualizer/forms/export`.
-See the [documentation](/runtime_suite/form-service-backend/overview.md) for more details about the new feature.
+See the [documentation](/runtime_suite/form-service-backend/10_overview.md) for more details about the new feature.
 
 #### Form Service FE - v.1.7.0
 
@@ -127,7 +127,7 @@ A closed form now does not trigger the autosave.
 
 #### New component `bk-dropdown`
 
-New component [`bk-dropdown`](/business_suite/backoffice/components/buttons.md#bk-dropdown) is available.
+New component [`bk-dropdown`](/business_suite/backoffice/60_components/20_buttons.md#bk-dropdown) is available.
 
 #### `bk-form-modal` with `extraEndpoint` injects `triggeredBy`
 
@@ -143,7 +143,7 @@ New Handlebars helper `nFormat` allows to format fields of type `number` and for
 
 #### New component `bk-notification-center`
 
-New component [`bk-notification-center`](/business_suite/backoffice/components/misc.md#bk-notification-center) is available.
+New component [`bk-notification-center`](/business_suite/backoffice/60_components/70_misc.md#bk-notification-center) is available.
 
 #### Persisten filters are available
 

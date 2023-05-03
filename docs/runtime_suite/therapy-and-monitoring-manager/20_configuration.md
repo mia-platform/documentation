@@ -41,7 +41,7 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 ## Prototypes definition
 
-As described in the [overview section](./overview.md), the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
+As described in the [overview section](./10_overview.md), the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
 
 You must define the prototypes inside a config map, setting the `PROTOTYPES_CONFIG_FILE_PATH` environment variable with its path. The config map must be a JSON file containing an array of prototypes.
 

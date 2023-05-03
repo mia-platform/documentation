@@ -24,7 +24,7 @@ The Chat service frontend implementation is given as a Single Page Application r
 
 The service capabilities are reached through the wrapping of the Stream react components given in the Stream react library and the implementation of custom components, both configurable from the backend side of the application.
 
-The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Mia-Platform Backoffice Application](../../runtime_suite/backoffice/overview) and the [Authentication Service](../../runtime_suite/authentication-service/overview).
+The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Mia-Platform Backoffice Application](../../runtime_suite_applications/backoffice/10_overview.md) and the [Authentication Service](../authentication-service/10_overview.md).
 
 The expected data for the application to connect the messaging provider are served from the backend at the endpoint `GET /chat/config?clientType=web`, and structured as specified in the given signature:
 
@@ -41,12 +41,12 @@ The expected data for the application to connect the messaging provider are serv
 ```
 
 Other options are passed through the same endpoint configuring the application's appearance and features.
-For them integration of the application as a Backoffice plugin and the offered customization options, refer to the [configuration](configuration.md) and [customization](customization.md) sections.
+For them integration of the application as a Backoffice plugin and the offered customization options, refer to the [configuration](./20_configuration.md) and [customization](./30_customization.md) sections.
 
 
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:
 
-- [Setup the service](configuration.md)
-- [Custom theming and application's options](customization.md)
+- [Setup the service](./20_configuration.md)
+- [Custom theming and application's options](./30_customization.md)

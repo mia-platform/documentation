@@ -7,7 +7,7 @@ The main purpose of the User Manager is to ease user management operations.
 It combines calls directed to the chosen authentication service and to the `users` CRUD collection.
 
 :::note
-As stated in the [configuration section](configuration.md), you can name the CRUD collections however you like.
+As stated in the [configuration section](./20_configuration.md), you can name the CRUD collections however you like.
 For simplicity’s sake, in the following page it is assumed that you have called them `users` and `ums-config`.
 :::
 
@@ -315,7 +315,7 @@ A user set to `DRAFT` or `TRASH` states is set to `blocked: true` in the authent
 
 A user set to `PUBLIC` state is set to `blocked: false` in the authentication service, in order to 'unblock' a previously blocked user.
 
-A user set to `DELETED` is deleted from the authentication service only if the [AUTH_HARD_DELETE](configuration.md#Environment-variables) is set to `true`,
+A user set to `DELETED` is deleted from the authentication service only if the [AUTH_HARD_DELETE](./20_configuration.md#Environment-variables) is set to `true`,
 otherwise its behavior is the same as the `DRAFT` and `TRASH` cases.
 Note that in any case a user set to `DELETED` is never deleted from the CRUD with this endpoint (its state is only set to `DELETED`).
 :::

@@ -26,7 +26,7 @@ go get -u github.com/mia-platform/mlp
 In order to use `mlp` in a pipeline these are the steps to follow:
 
 - In the configuration files use `{{VAR}}` to reference the environment variable `VAR`
-- Prepare a `mlp.yaml` file with all the secrets and configmaps to generate and apply inside the cluster (see file structure in [generate](./generate.md)).
+- Prepare a `mlp.yaml` file with all the secrets and configmaps to generate and apply inside the cluster (see file structure in [generate](./generate)).
 - run `mlp generate` with the flags:
   - `--config-file`: the configuration files containing secrets and configmaps structure.
   - `--env-prefix`: the prefixes to use while performing the environment variables lookup inside the configuration files.
