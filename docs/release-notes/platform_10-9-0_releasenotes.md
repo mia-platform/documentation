@@ -61,8 +61,6 @@ We're thrilled to announce the release of v.2.0.1 of the Single View Trigger Gen
 
 However, as with any major update, there are a few breaking changes to be aware of. We've renamed the `STRATEGIES_FOLDER` environment variable to `MANUAL_STRATEGIES_FOLDER` and the `CUSTOM_FUNCTIONS_FOLDER` environment variable to `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`. We've also removed the `USE_AUTOMATIC` variable. Additionally, the `SINGLE_VIEW_NAME`,` ER_SCHEMA_FOLDER`, and `PROJECTION_CHANGES_SCHEMA_FOLDER` variables are now required. Check out the official documentation (TODO: add link)!
 
-Do not forget to check out the [changelog](/runtime-suite/single-view-trigger-generator/changelog.md) for a full list of changes!
-
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
