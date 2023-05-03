@@ -1,62 +1,83 @@
 ---
 id: endpoint-overview
-title: Endpoint Overview
-sidebar_label: Endpoint Overview
+title: Control Panel
+sidebar_label: Control Panel
 slug: "/development_suite/endpoint-overview/endpoint-overview"
 ---
-## What is the Endpoint Overview
+## What is the Control Panel
 
-The Endpoint Overview is a visualization tool accessible from the Company Section through the button next to company name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/overview/endpoints`.  
+The Control Panel is a rich set of visualization tools accessible from the Company Section through the button next to Company name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/overview/control-panel`.  
 :::caution
 In the url, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
-![Endpoints Overview Button](img/endpoints-overview-button.png)  
+Through this tool, the governing entity of the company can have a graphical overview of the global configuration and cross-projects resources for CRUD's collections, Endpoints and Microservices.
+
+![Company Overview Button](img/go-to-company-overview.png)
+### Homepage
+
+The Homepage tab is opened by default on clicked event and contains the following view types:
+* *Default Views* - A predefined set of read-only views configured at Company level. All Company users can access these views, modifications (edit/delete) are not allowed, default filters and thresholds are configured into the Control Panel backend service;
+* *Public Views* - A set of editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
+
+An example is in the following picture.
+
+![Homepage](img/homepage.png)
+### CRUD
+
+The CRUD Overview provides the user with a graphical cross-project overview of all the CRUDs collections.
+
+CRUD Overview collects data on the project configuration and creates a table presenting information on all the CRUD, where each row shows:
+* *Name*: Name of the CRUD collection.
+* *Project*: Project of the CRUD collection.
+* *Type*: Type of the CRUD collection.
+* *Description*: Description of the CRUD collection.
+
+An example is in the following picture.
+
+![CRUDS](img/all-crud.png)
+
+### Endpoints
 
 The Endpoint Overview provides the user with a graphical cross-project overview of the configuration of all the selected Company projects. The graphical overview has a particular focus on the security configuration of the Projects endpoints.  
 
 Endpoint Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Endpoint/API*: Endpoint name.
-* *Method*: Endpoint verb.
 * *Project*: Project name.
-* *Project owner*: Project owner name.
+* *Path rewrite*: Rewrite path for the endpoint.
 * *Type*: Represent the type of the endpoint.
-* *Sensitivities*: If the endpoint is of type crud, shows a badge with the number of fields exposed by the crud for each sensitivity level.
 * *Show in API Portal*: A label that shows if the endpoint appears in the API portal.
-* *Proxied By*: A label that shows if the endpoint is proxied by another endpoint.
-* *API Key*: A label that shows if the endpoint is protected by an API-key.
 * *Authentication*: A label that shows if the API requires that the user is logged in to be accessed.
+* *Requires API Key*: A label that shows if the endpoint is protected by an API-key.
 * *User Group Permission*: A label that shows if the endpoint is protected by a group expression and the concerning expressions.
-* *Decorator PRE*: A label that shows if a PRE decorator is configured for the endpoint and the concerning decorators.
 * *Description*: The endpoint description provided in the configuration section.  
 
 An example is in the following picture.
 
-![Graphical features](img/graphical-features.png)  
+![Endpoints.png](img/endpoints.png)
 
-Through this tool, the governing entity of the company can have a graphical overview of the global configuration and the security of all the projects and endpoints.
+### Microservices
+
+The Microservices Overview provides the user with a graphical cross-project overview of all the Microservices.
+
+Microservices Overview collects data on the project configuration and creates a table presenting information on all the Microservices, where each row shows:
+* *Name*: Name of the Microservice.
+* *Project*: Project of the Microservice.
+* *Type*: Type of the Microservice.
+* *Replicas*: Number of replicas of the Microservice.
+* *Docker Image*: Docker image of the Microservice.
+* *CPU Request*: CPU Request of the Microservice.
+* *CPU Limit*: CPU Limit of the Microservice.
+* *Memory Request*: Memory Request of the Microservice.
+* *Memory Limit*: Memory Limit of the Microservice.
+* *Log Parser*: Log Parser implementation of the Microservice.
+* *Advanced Configuration*: Advanced Configuration flag of the Microservice.
+
+An example is in the following picture.
+
+![Microservices](img/microservices.png)
 
 ## Main functionalities
-
-### Graphical features
-
-* The **BasePath** column displays the endpoint base path and by clicking on it redirect to the endpoint configuration section.
-
-* The **Sensitivities** column displays information about the sensitivity levels of the fields exposed by the CRUD endpoint. This cell is composed of 5 badges, each one representing a sensitivity level: 
-    - Unclassified (Grey badge)
-    - Public (Green badge)
-    - Confidential (Blue badge)
-    - Secret (Purple badge)
-    - Top Secret (Red badge)
-
-  The number on each badge represent the number of field of the corresponding level in the exposed CRUD. For example, an endpoint with the following sensitivities exposes: 11 Unclassified fields, 2 Public fields, 17 Confidential fields, 3 Secret fields and 44 Top Secret fields  
-  ![Sensitivities](img/sensitivities.png)
-
-* The **User Group Permission** column displays the group expressions as labels, each label represents the expression string provided in the endpoint     configuration. In this case the label *"true"* means that there is any security control over the group expression and therefore the endpoint is not protected, conversely the label *"false"* means that it is not possible to access the endpoint.
-
-    If the group expression has this icon: ![Alert](img/alert-group-expression.png) it means that the rule doesn't match the `API-Key` or `Authentication` configuration specified in the security configuration of the endpoint. In particular, if we apply logic in the *User Group Permission* over the `client-type` but the API-Key is not required this symbol alerts us there might be some configuration missing, the same happens if we apply logic over the profiled user (eg user.groups) but the Authentication is not required.
-
-* The **Decorator PRE** column specifies the type of decorators as labels.
 
 ### Sorting
 
@@ -80,9 +101,42 @@ The filters applied over the same column follow an OR logic, which means that th
 
 ### Visualization
 
-The Endpoint Overview table visualization can be modified through the specific section:
+The Control Panel table visualization can be modified through the specific section:
 
 ![Column visualization](img/column-visualization.png)  
 
 Here it is possible to choose the columns to hide or show in the table in order to show only the information that the user is looking for.   
+
+### Public Views
+
+Public Views can be created/edited/deleted for all the Resource views available in the Control Panel for all the Project Administrators and/or Company Owners.
+
+#### Saving
+
+Public Views can be saved together with active filters and visible columns through the specific section:
+
+![Save current view button](img/save-current-view-button.png)
+
+Here it is possible to choose the view name that will be displayed in the Homepage section for all the users belonging to the Company.
+
+![Save current view popup](img/save-current-view-popup.png)
+
+#### Editing
+
+Public Views can be edited from Homepage section through the specific section:
+
+![Edit current view](img/edit-view.png)
+
+The View name can be overridden by inserting new 'View name' through the specific popup:
+
+![Edit current view popup](img/edit-view-popup.png)
+:::info
+Editing feature is currently limited only to view name.
+:::
+
+#### Deleting
+
+Public Views can be deleted from Homepage section through the specific section:
+
+![Delete current view](img/delete-view.png)
 
