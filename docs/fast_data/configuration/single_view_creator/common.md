@@ -6,7 +6,7 @@ sidebar_label: Common
 
 # Single View Creator concepts
 
-The Single View Creator is the service that keeps the Single View updated with data retrieved from projections. 
+The Single View Creator is the service that keeps the Single View updated with data retrieved from Projections. 
 This service is available as a plugin or as a template:
 - plugin: it allows you to use the Single View Creator as a black-box. You just need to configure it through the Config Maps and environment variables
 - [template](#template): it gives you access to the source code of the Single View Creator, which will be hosted on a Git repository. You will need to update its dependencies and maintain the code. 
@@ -68,15 +68,15 @@ const resolvedOnStop = singleViewCreator.startCustom({
 })
 ```
 
-- `strategy` is the function that performs the aggregation over the projections
+- `strategy` is the function that performs the aggregation over the Projections
 - `mapper` is the function that takes as input the raw aggregation result and maps the data to the final Single View
 - `validator` is the validation function which determines if the Single View is valid (and thus inserted or updated in Mongo) or not (and thus deleted)
-- `singleViewKeyGetter` is the function that, given the projections changes identifier, returns the data used as selector to find the Single View document on Mongo to update or delete
+- `singleViewKeyGetter` is the function that, given the Projections changes identifier, returns the data used as selector to find the Single View document on Mongo to update or delete
 - `upsertFnSv` is the function that updates or inserts the Single View to the Single Views collection on Mongo
 - `deleteSingleView` is the function that deletes the Single View from the Single Views collection on Mongo. It uses the `deleteSV` function exported by the library.
 
 :::note
-The `deleteSV` function makes a *real delete* of the document on MongoDB. So, unlike the **projections** deletion, it does *not* make a virtual delete.
+The `deleteSV` function makes a *real delete* of the document on MongoDB. So, unlike the **Projections** deletion, it does *not* make a virtual delete.
 :::
 
 The value of `upsertFnSv` is based on the `UPSERT_STRATEGIES` environment variable. If its value is *update*, then the *updateOrInsertSV* function exported by the library is used, otherwise the function *replaceOrInsertSV* is used instead. The default upsert strategy is *replace*.
@@ -107,14 +107,14 @@ service.addHook('onClose', async() => {
 <tr><td>CONFIGURATION_FOLDER</td><td>false</td><td>Folder where configuration files are mounted</td><td>/home/node/app/src/</td></tr>
 <tr><td>LOG_LEVEL</td><td>true</td><td>Level to use for logging</td><td>-</td></tr>
 <tr><td>HTTP_PORT</td><td>false</td><td>Port exposed by the service</td><td>3000</td></tr>
-<tr><td>TYPE</td><td>true</td><td>Identifies the type of projection changes that needs to be read. It should be the same as the Single View name you want to update.</td><td>-</td></tr>
-<tr><td>SCHEDULING_TIME</td><td>false</td><td>A quantity of time in milliseconds. Every X milliseconds the service wakes up and checks if there are some projections changes in `NEW` state to work on. The service continues working until no more new projections changes are found, then it goes to sleep for X milliseconds.</td><td>60000</td></tr>
-<tr><td>PROJECTIONS_MONGODB_URL</td><td>true</td><td>MongoDB connection string where projections are stored. Must be a valid URI.</td><td>-</td></tr>
+<tr><td>TYPE</td><td>true</td><td>Identifies the type of Projection changes that needs to be read. It should be the same as the Single View name you want to update.</td><td>-</td></tr>
+<tr><td>SCHEDULING_TIME</td><td>false</td><td>A quantity of time in milliseconds. Every X milliseconds the service wakes up and checks if there are some Projections changes in `NEW` state to work on. The service continues working until no more new Projections changes are found, then it goes to sleep for X milliseconds.</td><td>60000</td></tr>
+<tr><td>PROJECTIONS_MONGODB_URL</td><td>true</td><td>MongoDB connection string where Projections are stored. Must be a valid URI.</td><td>-</td></tr>
 <tr><td>SINGLE_VIEWS_MONGODB_URL</td><td>true</td><td>MongoDB connection string where Single View must be stored. Must be a valid URI.</td><td>-</td></tr>
-<tr><td>PROJECTIONS_CHANGES_MONGODB_URL</td><td>false</td><td>The db from where projections changes are read.</td><td>value of `PROJECTIONS_MONGODB_URL`</td></tr>
-<tr><td>PROJECTIONS_CHANGES_DATABASE</td><td>true</td><td>The db from where projections changes are read.</td><td>-</td></tr>
-<tr><td>PROJECTIONS_DATABASE</td><td>true</td><td>The db from where projections are read.</td><td>value of `PROJECTIONS_CHANGES_DATABASE`</td></tr>
-<tr><td>PROJECTIONS_CHANGES_COLLECTION</td><td>false</td><td>If you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this Single View Creator is responsible for.</td><td>-</td></tr>
+<tr><td>PROJECTIONS_CHANGES_MONGODB_URL</td><td>false</td><td>The db from where Projections changes are read.</td><td>value of `PROJECTIONS_MONGODB_URL`</td></tr>
+<tr><td>PROJECTIONS_CHANGES_DATABASE</td><td>true</td><td>The db from where Projections changes are read.</td><td>-</td></tr>
+<tr><td>PROJECTIONS_DATABASE</td><td>true</td><td>The db from where Projections are read.</td><td>value of `PROJECTIONS_CHANGES_DATABASE`</td></tr>
+<tr><td>PROJECTIONS_CHANGES_COLLECTION</td><td>false</td><td>If you have set a custom Projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this Single View Creator is responsible for.</td><td>-</td></tr>
 <tr><td>SINGLE_VIEWS_DATABASE</td><td>true</td><td>The db from where Single Views are written.</td><td>-</td></tr>
 <tr><td>SINGLE_VIEWS_COLLECTION</td><td>true</td><td>It must be equals to the Single View name the service is in charge of keeping updated.</td><td>-</td></tr>
 <tr><td>SINGLE_VIEWS_PORTFOLIO_ORIGIN</td><td>true</td><td>Should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`</td><td>-</td></tr>
@@ -128,7 +128,7 @@ service.addHook('onClose', async() => {
 <tr><td>KAFKA_SASL_USERNAME</td><td>false</td><td>Username to use for logging into Kafka</td><td>-</td></tr>
 <tr><td>KAFKA_SASL_PASSWORD</td><td>false</td><td>Password to use for logging into Kafka</td><td>-</td></tr>
 <tr><td>KAFKA_SVC_EVENTS_TOPIC</td><td>false</td><td>Topic used to queue Single View Creator state changes (e.g. Single View creation). This feature is deprecated in favor of `KAFKA_SV_UPDATE_TOPIC` and it will be removed soon</td><td>-</td></tr>
-<tr><td>SEND_BA_TO_KAFKA</td><td>false</td><td>True if you want to send to Kafka the `before-after` information about the update changes of the single view. This feature is deprecated in favor of `ADD_BEFORE_AFTER_CONTENT` using the 'sv-update' event and it will be removed soon</td><td>false</td></tr>
+<tr><td>SEND_BA_TO_KAFKA</td><td>false</td><td>True if you want to send to Kafka the `before-after` information about the update changes of the Single View . This feature is deprecated in favor of `ADD_BEFORE_AFTER_CONTENT` using the 'sv-update' event and it will be removed soon</td><td>false</td></tr>
 <tr><td>KAFKA_BA_TOPIC</td><td>false</td><td>Topic where to send the `before-after` messages which represent the Single View document before and after a change. This feature is deprecated in favor of `ADD_BEFORE_AFTER_CONTENT` using the 'sv-update' event and it will be removed soon</td><td>-</td></tr>
 <tr><td>SEND_SV_UPDATE_TO_KAFKA</td><td>false</td><td>True if you want to send to Kafka the `sv-update` message about the update changes of the Single View</td><td>false</td></tr>
 <tr><td>ADD_BEFORE_AFTER_CONTENT</td><td>false</td><td>True if you want to add the `_before_` and `_after_` content to the `sv-update` message, works only if `SEND_SV_UPDATE_TO_KAFKA` is set to true</td><td>false</td></tr>
@@ -141,8 +141,8 @@ service.addHook('onClose', async() => {
 <tr><td>AGGREGATION_FOLDER</td><td>false</td><td>The path to the Aggregation folder, e.g. `/home/node/app/aggregation`</td><td>-</td></tr>
 <tr><td>USE_AUTOMATIC</td><td>false</td><td>Specifies whether to use the low code architecture for the Single View Creator service or not</td><td>-</td></tr>
 <tr><td>PROJECTIONS_CHANGES_SOURCE</td><td>false</td><td>System to use to handle the Projection Changes, supported methods are `KAFKA` or `MONGO`</td><td>MONGO</td></tr>
-<tr><td>KAFKA_PROJECTION_CHANGES_TOPICS</td><td>false</td><td>Comma separated list of projection changes topics</td><td>-</td></tr>
-<tr><td>KAFKA_PROJECTION_UPDATE_TOPICS</td><td>false</td><td>Comma separated list of projection update topics</td><td>-</td></tr>
+<tr><td>KAFKA_PROJECTION_CHANGES_TOPICS</td><td>false</td><td>Comma separated list of Projection changes topics</td><td>-</td></tr>
+<tr><td>KAFKA_PROJECTION_UPDATE_TOPICS</td><td>false</td><td>Comma separated list of Projection update topics</td><td>-</td></tr>
 <tr><td>SV_TRIGGER_HANDLER_CUSTOM_CONFIG</td><td>false</td><td>Path to the config defining SV-Patch actions</td><td>-</td></tr>
 <tr><td>READ_TOPIC_FROM_BEGINNING</td><td>false</td><td>Available from `v5.5.0` of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if <code>PROJECTIONS_CHANGES_SOURCE</code> is set to <i>KAFKA</i>.</td><td>false</td></tr>
 <tr><td>USE_UPDATE_MANY_SV_PATCH</td><td>false</td><td>Use the MongoDB <code>updateMany</code> operation instead of the <code>findOneAndUpdate</code> with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: <code>SEND_BA_TO_KAFKA</code>, <code>KAFKA_BA_TOPIC</code>, <code>SEND_SV_UPDATE_TO_KAFKA</code>, <code>KAFKA_SV_UPDATE_TOPIC</code>, <code>ADD_BEFORE_AFTER_CONTENT</code>, <code>KAFKA_SVC_EVENTS_TOPIC</code></td><td>false</td></tr>
@@ -158,7 +158,7 @@ If you are using Low Code, please visit [this section](/fast_data/configuration/
 
 ## Aggregation
 
-The Aggregation is the Single View Creator part which aggregates projections data and generates the Single View that is going to be updated. 
+The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
 
 If you are using Low Code, please visit [this section](/fast_data/configuration/single_view_creator/low_code.md#aggregation), otherwise you can check to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#aggregation)
 
@@ -348,7 +348,7 @@ When generating a Single View, every error that occurs is saved in MongoDB, with
 - `_id`: a unique identifier of the record, automatically generated
 - `portfolioOrigin`: a value concerning the origin of the error, defaults to `UNKNOWN_PORTFOLIO_ORIGIN`
 - `type`: the Single View type
-- `identifier`: the id of the projection changes
+- `identifier`: the id of the Projection changes
 - `errorType`: the error details
 - `createdAt`: the time of creation
 - `creatorId`: set to `single-view-creator`
@@ -370,7 +370,7 @@ This feature is supported from version `5.6.1` of the Single View Creator
 
 To configure a Single View Creator dedicated to [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) operations, some steps have to be followed:
 
-* Set the env var `KAFKA_PROJECTION_UPDATE_TOPICS` with the comma separated list of the `pr-update` topics corresponding to the SV-Patch projection.
+* Set the env var `KAFKA_PROJECTION_UPDATE_TOPICS` with the comma separated list of the `pr-update` topics corresponding to the SV-Patch Projection.
 * Set the env var `SV_TRIGGER_HANDLER_CUSTOM_CONFIG` with the path to the main file defining SV-Patches actions, for example `/home/node/app/svTriggerHandlerCustomConfig/svTriggerHandlerCustomConfig.json`
 * Create a new ConfigMap with this Runtime Mount Path: `.../svTriggerHandlerCustomConfig`
 
