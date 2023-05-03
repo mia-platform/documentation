@@ -74,7 +74,7 @@ For more details on the service and its behavior, please check out the official 
 
 This version addressed a few bugs, here is a comprehensive list:
 
-* The Projections and the SoR are now deleted from the No-Code ERSchema if deleted from their console sections
+* The Projections and the SoR are now deleted from the No-Code ERSchema if deleted from their Console sections
 * The Single View Creator is not attachable to only one Single View
 * Mongo operators are now properly interpolated in aggregations executed by the Single View Creator. This fix has been addressed in version 5.6.6 of the Single View Creator.
 
