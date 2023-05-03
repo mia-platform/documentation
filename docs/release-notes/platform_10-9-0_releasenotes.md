@@ -32,10 +32,10 @@ For more information, [go to the documentation](/development_suite/deploy/.mdx).
 
 #### Managing Service Accounts at Console level
 
-It is possible to create [Company-independent service accounts](TO-DO link) in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
+It is possible to create Company-independent service accounts in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
 
 :::info
-Only Console Super Users can [add](TO-DO link) or [delete](TO-DO link) Company independent service accounts, manageable exclusively at back-office level.
+Only Console Super Users can add or delete Company independent service accounts, manageable exclusively at back-office level.
 :::
 
 ### Bug Fix
