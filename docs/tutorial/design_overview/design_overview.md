@@ -13,7 +13,7 @@ To create a new View you must have the permission `console.company.project.creat
 
 ## View creation
 
-To create the View, simply navigate to the Company Overview, then to Design Overview and select the tab from available Resources ([CRUD](/docs/development_suite/governance/design-overview#crud), [Endpoints](/docs/development_suite/governance/design-overview#endpoints), [Microservices](/docs/development_suite/governance/design-overview#microservices)). 
+To create the View, simply navigate to the Company Overview, then to Design Overview and select the tab from available Resources (CRUD, Endpoints, Microservices). 
 
 Customize the table based on your needs by hiding/displaying column and/or applying filters.
 
@@ -21,14 +21,10 @@ Finally use the `Save current view` button to insert View name and the `Save vie
 
 The saved view is visible in the Design Overview's Homepage section.
 
-For further info please refer to the [Design Overview's documentation](/docs/development_suite/governance/design-overview#saving)
-
 ## View editing
 To edit the View, simply navigate to the Company Overview, then to Design Overview's Homepage section and select the card associated to the view to delete.
 
 Click the `Actions Dropdown` icon and select `Edit view name`, then insert new 'View name' through the specific popup and click the `Overwrite view` button.
-
-For further info please refer to the [Design Overview's documentation](/docs/development_suite/governance/design-overview#editing)
 
 :::note
 Current feature is limited to edit name.
@@ -39,8 +35,6 @@ Default views cannot be renamed since they are added by default for all users fo
 To delete the View, simply navigate to the Company Overview, then to Design Overview's Homepage section and select the card associated to the view to delete.
 
 Click the `Actions Dropdown` icon and select `Delete`. 
-
-For further info please refer to the [Design Overview's documentation](/docs/development_suite/governance/design-overview#deleting)
 
 :::note
 Default views cannot be edited/deleted since they are added by default for all users for a given Company.
