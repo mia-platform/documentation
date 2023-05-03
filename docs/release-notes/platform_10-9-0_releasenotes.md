@@ -11,6 +11,17 @@ _May 04, 2023_
 
 ### New Features
 
+#### Selection of default providers for a Company's projects
+
+Within the Providers section in the Company Overview area it is now possible to find a new feature that allows the user with Company Owner permissions to be able to set the Default providers that will use all the new projects created on the respective company.
+
+![Default Providers Selection](./img/v10.9_defaultProviders.png)
+
+This will enhance the governance for every Company Owner for company's projects and give better control over the management of company tools.
+The provider for each capability (Git Provider, CI/CD and Secret Manager) can always be changed in any moment via CMS.
+
+For more information,[go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx)
+
 #### Managing Service Accounts at Console level
 
 It is possible to create [Company-independent service accounts](TO-DO link) in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
