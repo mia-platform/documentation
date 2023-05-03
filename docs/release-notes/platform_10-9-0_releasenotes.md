@@ -42,7 +42,7 @@ Only Console Super Users can [add](TO-DO link) or [delete](TO-DO link) Company i
 
 This version addressed a few bugs, here is a comprehensive list:
 
-* 
+* We fixed an issue in the creation of a template/example that prevented the Git repository owner name from being filled in with special characters.
 
 ## Fast Data
 
