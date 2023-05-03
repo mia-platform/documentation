@@ -228,5 +228,9 @@
   "/docs/runtime_suite/csv-connector/configuration": {
     "destination": "/docs/runtime_suite/csv-connector/overview",
     "addedOn": "2023-05-04"
+  },
+  "/docs/development_suite/endpoint-overview/endpoint-overview": {
+    "destination": "/docs/development_suite/control-panel/control-panel",
+    "addedOn": "2023-05-03"
   }
 }

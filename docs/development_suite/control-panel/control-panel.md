@@ -1,8 +1,8 @@
 ---
-id: endpoint-overview
+id: control-panel
 title: Control Panel
 sidebar_label: Control Panel
-slug: "/development_suite/endpoint-overview/endpoint-overview"
+slug: "/development_suite/control-panel/control-panel"
 ---
 ## What is the Control Panel
 
