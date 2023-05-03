@@ -52,7 +52,7 @@ The file picker of the DDL modal import now support `.sql` file
 
 ### Improvements
 
-The console automatic aggregation generation now represents one to one relationship configuration as object.
+The Console automatic aggregation generation now represents one-to-one relationship configuration as an object.
 
 ### Breaking Changes
 
