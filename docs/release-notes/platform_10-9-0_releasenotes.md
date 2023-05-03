@@ -15,7 +15,7 @@ _May 04, 2023_
 
 Within the Providers section in the Company Overview area it is now possible to find a new feature that allows the user with Company Owner permissions to be able to set the Default providers that will use all the new projects created on the respective company.
 
-![Default Providers Selection](./img/v10.9_defaultProviders.png)
+![Default Providers Selection](./img/v10.9_defaultProvider.png)
 
 This will enhance the governance for every Company Owner for company's projects and give better control over the management of company tools.
 The provider for each capability (Git Provider, CI/CD and Secret Manager) can always be changed in any moment via CMS.
