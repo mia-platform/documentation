@@ -6,7 +6,7 @@ sidebar_label: Low Code
 
 Low Code Single View Creator is available since version `3.3.0`
 
-Throughout this section, we will make examples based on the `food-delivery` use case, in particular to the `sv_customer` single view. A complete ER schema in the dedicated [section](/fast_data/configuration/config_maps/erSchema.md#real-use-case-example).
+Throughout this section, we will make examples based on the `food-delivery` use case and the `sv_customer` Single View. A complete ER schema can be found in the dedicated [section](/fast_data/configuration/config_maps/erSchema.md#real-use-case-example).
 
 Here you can see a visual representation of the ER schema.
 
@@ -15,7 +15,7 @@ Here you can see a visual representation of the ER schema.
 
 ## Single View Key
 
-The configuration contains the `singleViewKey.json` file. This file creates a mapping between the Single View primary field, which is its unique id, and the identifier field which is the projection's one. 
+The configuration contains the `singleViewKey.json` file. This file creates a mapping between the Single View primary field, which is its unique id, and the identifier field of the Projection. 
 
 An example:
 
@@ -28,13 +28,13 @@ An example:
 
 where:
 
-- `sv_id` is the name of the Single View's primary key 
-- `ID_USER` is the field's name inside the identifier
+- `sv_id` is the name of the Single View primary key 
+- `ID_USER` is the identifier field name of the Projection
 
 ## ER Schema
 
 For the general rules and guidelines of the ER Schema, check the [dedicated page](/fast_data/configuration/config_maps/erSchema.md).
-Let us take an example from the `food-delivery` use case.
+Let's take an example from the `food-delivery` use case.
 
 ```json
 {
@@ -63,7 +63,7 @@ Let us take an example from the `food-delivery` use case.
   }
 ```
 
-This means the `pr_reviews` projection is connected to:
+This means the `pr_reviews` Projection is connected to:
 
 * `pr_registry` through the `rev_to_reg` condition, which means the documents are linked if the registry `ID_USER` field is the same as the reviews `ID_USER` field;
 * `pr_dishes` through the `rev_to_dish` condition, which means the documents are linked if the dish `id_dish` field is the same as the reviews `ID_DISH` field;
@@ -78,7 +78,7 @@ After selecting an ER Schema, the next configuration save will generate the Conf
 
 ## Aggregation
 
-This configuration indicates what are the dependencies of the single view and how to map them to its fields.
+This configuration indicates what are the dependencies of the Single View and how to map them to its fields.
 
 An example of a minimal configuration is as follows:
 
@@ -103,7 +103,7 @@ An example of a minimal configuration is as follows:
 
 The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View.
 
-The Aggregation Configuration can be automatically generated started from an already existing ER Schema, clicking on the dedicated button as you can see in the picture below. It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is the Projection that contains the identifier that is used as the identifier for the Single View.
+The Aggregation Configuration can be automatically generated started from an already existing ER Schema, clicking on the dedicated button as you can see in the picture below. It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is the Projection that contains the identifier that is used as identifier for the Single View.
 
 ![automatic generation of Aggregation](../../img/aggregation-automatic-generation.png)
 
@@ -133,18 +133,18 @@ Each entry in the mapping has the following syntax:
 
 Where value can be one of:
 
-* **projection field**: when it is a field taken from a projection listed in the dependency, expressed with dot notation `"newField": "DOCUMENT_NAME.field"`
+* **projection field**: when it is a field taken from a Projection listed in the dependency, expressed with dot notation `"newField": "DOCUMENT_NAME.field"`
 * **configuration**: when a field is an object corresponding to a resolved config dependency, expressed with the dependency name `"newField": "CONFIG_NAME"`
 * **constant**: when using the constant syntax already seen in the ER diagram, e.g. `__string__[hello]`, `__integer__[42]`, `__boolean__[true]`
-* **function result**: when using a custom function to compute the value of the single view field, expressed with this syntax: `"fromFileField": "__fromFile__[fileName]"`
+* **function result**: when using a custom function to compute the value of the Single View field, expressed with this syntax: `"fromFileField": "__fromFile__[fileName]"`
 
-For functions, the specified file must be added in a configmap with the correct name, and must contain a default exported function, which will be used to compute the value of the field.
+For functions, the specified file must be added in a config map with the correct name, and must contain a default exported function, which will be used to compute the value of the field.
 
 The following parameters will be passed to each function:
 
 * **logger**: the logger instance used by the service,
-* **clientMongo**: the instance of mongoDB used by the service,
-* **dependenciesMap**: a Map containing all the dependencies already loaded in the service memory.
+* **clientMongo**: the instance of MongoDB used by the service,
+* **dependenciesMap**: a map containing all the dependencies already loaded in the service memory.
 
 Let's see an example of custom function.
 
@@ -168,30 +168,30 @@ module.exports = async function(logger, clientMongo, dependenciesMap) {
 }
 ```
 
-The dependenciesMap offers a `get` method to access the dependencies already solved using the name of the dependency itself.
+The `dependenciesMap` offers a `get` method to access the dependencies already solved using the name of the dependency itself.
 
-If the dependency you require is a projection, the value returned will be the document of the projection, otherwise if it's a config will be the array of document resulting from the configuration.
+If the dependency you require is a Projection, the value returned will be the document of the Projection, otherwise if it's a config it will be the array of document resulting from the configuration.
 
-If the dependencies has not been resolved, for example due to a reference which failed because of a missing document, the value will be falsy in case of projections and an empty array in case of config.
+If the dependencies has not been resolved, for example due to a reference which failed because of a missing document, the value will be falsy in case of Projections and an empty array in case of config.
 
 :::warning
-You are supposed to access the dependenciesMap **only** in read-only mode.
-Write access to the dependenciesMap are **not** officially supported and could be removed at any time.
+You are supposed to access the `dependenciesMap` **only** in read-only mode.
+Write access to the `dependenciesMap` are **not** officially supported and could be removed at any time.
 :::
 
 ### Join Dependency
 
-When you want to map a single view field to an array of value as usual happens in 1:N relations, you can use a config dependency with a `joinDependency` field. This means when the config will be calculated, the `joinDependency` will be computed first, retrieving a list of all the matching documents, then for each of those elements the configuration mapping will be applied, resulting in an array of elements, each having the same layout as the one specified in the config mapping.
+When you want to map a Single View field to an array of values, as it usually happens in 1:N relations, you can use a config dependency with a `joinDependency` field. This means that when the config will be calculated, the `joinDependency` will be computed first, retrieving a list of all matching documents, then for each of those elements the configuration mapping will be applied, resulting in an array of elements, each having the same layout as the one specified in the config mapping.
 
 ### Advanced options
 
 #### Using the same Projection as a Dependency multiple times under different conditions
 
-When listing dependencies, it is mandatory that each dependency has a different name, as its name is used to identify it. When it comes to config, this is not a problem, as you can name a config dependency as you wish, but it is different when we need to deal with projections.
+When listing dependencies, it is mandatory that each dependency has a different name, as its name is used to identify it. When it comes to config, this is not a problem, as you can name a config dependency as you wish, but it is different when we need to deal with Projections.
 
-For example, how would we describe a single view of users that need to have their partner as a field? For this case we must have two references:
+For example, how would we describe a Single View of users that need to have their partner as a field? For this case we must have two references:
 
-- a reference to the **users** that is based on their identifier to get the core of the single view 
+- a reference to the **users** that is based on their identifier to get the core of the Single View 
 - a reference to a **user**, that is based on some condition linked to the marriage
 
 For this example, we will consider the following ER Schema
@@ -271,7 +271,7 @@ The configuration below is incorrect, and presented only to clearly show the nee
 
 This is incorrect, because there is ambiguity about which `PEOPLE` dependency to use in the mapping.
 
-You can solve this problem using the `aliasOf` option, which allows using a different name for a dependency of type `projection`. When using `aliasOf: 'PROJECTION_NAME'`, the named dependency is linked to that projection.
+You can solve this problem using the `aliasOf` option, which allows to use a different name for a dependency of type `projection`. When using `aliasOf: 'PROJECTION_NAME'`, the named dependency is linked to that Projection.
 
 :::info
 The `aliasOf` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
@@ -308,12 +308,12 @@ Now that the `aliasOf` option is clear, we can have a look at the following conf
 }
 ```
 
-As you can see, we used the same projection two times, under different conditions: the first time we matched the record based on its identifier (`PEOPLE` dependency, without alias), the second time we matched the record based on the `MARRIAGE_b_TO_PEOPLE` condition (`PARTNER` dependency, with alias).
+As you can see, we used the same Projection twice, under different conditions: the first time we matched the record based on its identifier (`PEOPLE` dependency, without alias), the second time we matched the record based on the `MARRIAGE_b_TO_PEOPLE` condition (`PARTNER` dependency, with alias).
 
-You can reference a dependency under alias also in another dependency, with the `useAlias` option. Since `CHILD_TO_MOTHER` refers to the ER-Schema, which uses only the projections name and not the dependencies name, you need to use `useAlias` to specify which is the specific dependency that refers to the projection of the relation you want to use.
+You can reference a dependency under alias also in another dependency, with the `useAlias` option. Since `CHILD_TO_MOTHER` refers to the ER-Schema, which uses only the Projections name and not the dependencies name, you need to use `useAlias` to specify which is the specific dependency that refers to the Projection of the relation you want to use.
 
 :::info
-The `useAlias` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
+The `useAlias` field is supported from version `1.1.0` of the `aggregation.json`, which is supported from the version `3.6.0` of the Single View Creator service
 :::
 
 If we needed to use the `PARTNER` dependency as a base for another dependency (for example, if we are looking for the mother in law), a valid configuration would be:
@@ -334,12 +334,12 @@ If we needed to use the `PARTNER` dependency as a base for another dependency (f
 ...
 ```
 
-Note that we used `aliasOf` inside the `MOTHER_IN_LAW` dependency as well because we wanted to keep on using the same base projection, but it is not mandatory, as long as you are using another projection that is not declared elsewhere in the dependencies.
+Note that we used `aliasOf` inside the `MOTHER_IN_LAW` dependency as well because we wanted to keep on using the same base Projection, but it is not mandatory, as long as you are using another Projection that is not declared elsewhere in the dependencies.
 
 #### Changing the query that finds the Projection based on their identifier
 
-Sometimes, when writing a dependency of a projection that is matched on its `_identifier`, we find that the identifier has more fields than we want, or has fields with different names, which makes the automatic query mapping result in no documents found.
-In this scenario, you can employ the `identifierQueryMapping` option, which provides a new query mapping for the identifier of a projection, allowing you to have a custom way of matching documents based on their identifier.
+Sometimes, when writing a dependency of a Projection that is matched on its `_identifier`, we find that the identifier has more fields than we want, or has fields with different names, which makes the automatic query mapping result in no documents found.
+In this scenario, you can employ the `identifierQueryMapping` option, which provides a new query mapping for the identifier of a Projection, allowing you to have a custom way of matching documents based on their identifier.
 
 :::info
 The `identifierQueryMapping` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
@@ -372,7 +372,7 @@ This would not match a document without a field named `my_single_view_id`. In th
 ...
 ```
 
-Reducing the number of fields to query on will help you if you have a custom function for the generation of the projections changes, which also includes additional fields. For example, if you need to generate a single view in a different way based on a flag in the identifier. An identifier could have a value like the following:
+Reducing the number of fields to query on will help you if you have a custom function for the generation of Projections changes, which includes additional fields. For example, if you need to generate a Single View in a different way based on a flag in the identifier. An identifier could have a value like the following:
 
 ```json
 {
@@ -381,7 +381,7 @@ Reducing the number of fields to query on will help you if you have a custom fun
 }
 ```
 
-The `"special"` field is not part of the single document we want to find, but it is used elsewhere in the single view creation. To avoid having queries that do not find any element, we can map the identifier like that:
+The `"special"` field is not part of the single document we want to find, but it is used elsewhere in the Single View creation. To avoid having queries that do not find any element, we can map the identifier like that:
 
 ```json
 ...
@@ -400,14 +400,14 @@ Remember that for `identifierQueryMapping` to be used, you still need to explici
 
 #### Using conditional expressions on dependencies definitions and mappings
 
-Dependencies are a way to gather data that will be used in the mapping section, creating the single view, and as single views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a single view.
+Dependencies are a way to gather data that will be used in the mapping section, creating the Single View, and as Single Views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a Single View.
 
 If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
 
-We have a System of Records that consists of multiple projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` single view which has the information coming from its job projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
-A naive solution could be just putting both projections as dependencies and using both of them in the mapping. This would cause the single view to have two different `firegither` and `doctor` fields, one of them undefined, which is clearly not ideal.
+We have a System of Records that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
+A naive solution could be just putting both Projections as dependencies and using both of them in the mapping. This would cause the Single View to have two different `firefigther` and `doctor` fields, one of them undefined, which is clearly not ideal.
 
-Thanks to the `_select` option, we can create a `JOB` dependency, which will use the `DOCTOR` *or* `FIREFIGHTER` projection based on the value of another field, as shown below:
+Thanks to the `_select` option, we can create a `JOB` dependency, which will use the `DOCTOR` *or* `FIREFIGHTER` Projection based on the value of another field, as shown below:
 
 ```json
 {
@@ -468,7 +468,7 @@ Thanks to the `_select` option, we can create a `JOB` dependency, which will use
 ```
 
 :::info
-The `_select_` field is supported from the version `1.1.0` of the `aggregation.json` which is supported from the version `3.6.0` of the Single View Creator service
+The `_select_` field is supported from the version `1.1.0` of `aggregation.json` which is supported from version `3.6.0` of the Single View Creator service
 :::
 
 As you can see, the `_select` option has a long set of rules, which we are going to break down here.
@@ -498,10 +498,10 @@ This pattern is repeated for all other operators, as they are binary as well.
 As operand, it is possible to use constant values, in the exact same way as seen in the [ER schema](/fast_data/configuration/config_maps/erSchema.md#syntax).
 
 :::info
-Functions can also be used as value from the `1.3.0` version of the `aggregation.json` which is supported from the version `5.1.0` of the Single View Creator service
+Functions can also be used as value from version `1.3.0` of the `aggregation.json` which is supported from version `5.1.0` of the Single View Creator service
 :::
 
-The function works in the same way as explained in the Mapping section, with the only difference that will accept only two parameters: 
+The function works in the same way as explained in the Mapping section, with the only difference that it will accept only two parameters: 
 
 * **logger**: the logger instance used by the service,
 * **clientMongo**: the instance of mongoDB used by the service,
@@ -599,29 +599,29 @@ From version `4.1.0` of the Single-View-Creator, the resolution order of depende
 
 The aggregation above will be performed in the following order:
 
-1. Find the projection in the `PEOPLE` collection on MongoDB using `identifier` got from the Projection Change as query.
-1. Find the projection in the `MARRIAGE` collection on MongoDB using the condition defined in the ER Schema as `PEOPLE_TO_MARRIAGE`
-1. Find the projection in the `PEOPLE` (which is the collection to be used in the dependency `PARTNER`) using the condition defined in the ER Schema as `MARRIAGE_TO_PEOPLE` 
+1. Find the Projection in the `PEOPLE` collection on MongoDB using `identifier` got from the Projection Change as query.
+1. Find the Projection in the `MARRIAGE` collection on MongoDB using the condition defined in the ER Schema as `PEOPLE_TO_MARRIAGE`
+1. Find the Projection in the `PEOPLE` (which is the collection to be used in the dependency `PARTNER`) using the condition defined in the ER Schema as `MARRIAGE_TO_PEOPLE` 
 1. Calculate the aggregation defined in the `CHILDREN_CONF` config
 
 *Why should I care about the order resolution of the dependencies?*
 
-The order resolution is important for the correctness of the aggregation since each step of the aggregation may use documents of the previous steps. Hence, if the order of the dependencies resolution is not correct, the single view resulting from the aggregation will probably be wrong.
+The order resolution is important for the correctness of the aggregation since each step of the aggregation may use documents of the previous steps. Hence, if the order of the dependencies resolution is not correct, the Single View resulting from the aggregation will probably be wrong.
 
 :::note
-Since version `v5.0.0` of Single View Creator service returning a single view with the field `__STATE__` from the aggregation will update the Single View to that state (among the others changes).   
-This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `aggregation.json` the single view updated will have the `__STATE__` equals to `DRAFT`. 
+Since version `v5.0.0` of Single View Creator service returning a Single View with the field `__STATE__` from the aggregation will update the Single View to that state (among the other changes).   
+This means, for instance, that if you set the `__STATE__` to `DRAFT` in the `aggregation.json` the Single View updated will have the `__STATE__` equals to `DRAFT`. 
 Previously, the `__STATE__` you returned was ignored, and the Single View would always have the `__STATE__` equals to `PUBLIC`.
 :::
 
 #### Aggregate documents with different `__STATE__` other than `PUBLIC`
 
-With the version `5.1.0` of the Single View Creator the `__STATE__` field in the projection is taken into consideration when aggregating, meaning if a dependency has its `__STATE__` set to **anything else but** `PUBLIC` it won't be added to the Single View.
+With version `5.1.0` of the Single View Creator the `__STATE__` field in the Projection is taken into consideration when aggregating, meaning that if a dependency has its `__STATE__` set to **anything else but** `PUBLIC` it won't be added to the Single View.
 
-In case you would like to include other states too in the aggregation process you can do it with the `onStates` field which allows you to define exactly which states you want to include in to the Single View. The value is an array with any of the following states: `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`.
+In case you would like to include other states too in the aggregation process you can do it with the `onStates` field which allows you to define exactly which states you want to include to the Single View. The value is an array with any of the following states: `PUBLIC`, `DRAFT`, `TRASH`, `DELETED`.
 
 :::info
-The `onStates` field can be used from the `1.2.0` version of the `aggregation.json`
+The `onStates` field can be used from the version `1.2.0` of the `aggregation.json`
 :::
 
 Here's a working example:
@@ -715,8 +715,8 @@ The `pr_registry` dependency is used in the mapping to retrieve the relevant use
 The `ALLERGENS` dependency is mapped to an `allergens` field, and its value is defined in the `ALLERGENS` configuration, right below the `SV_CONFIG` object. Inside this configuration, we find some `projection` dependencies based on configurations described in the ER schema.
 To understand how the mapping happens, it is important to take a look at the `joinDependency` property of the configuration, which tells us that the `pr_allergens_registry` table is the one used as base for finding the other documents.
 
-In this particular case, it means the single view creator will first find all the documents in `pr_allergens_registry` (the `joinDependency`) which match the `reg_to_aller_reg` condition. Here, it means we are finding the allergen registry entries which are related to a specific user, and we expect to possibly find more than one of these.
-Afterwards, for each of the retrieved entries, the mapping will be performed. This means the mappings that have a config as right-side value will be mapped to an **array** of the resolved dependencies, if the dependency `joinDependency` field is set.
+In this particular case, it means that the Single View Creator will first find all the documents in `pr_allergens_registry` (the `joinDependency`) which match the `reg_to_aller_reg` condition. Here, it means that we are finding the allergen registry entries which are related to a specific user, and we expect to possibly find more than one of these.
+Afterwards, for each of the retrieved entries, the mapping will be performed. This means that the mappings that have a config as right-side value will be mapped to an **array** of the resolved dependencies, if the dependency `joinDependency` field is set.
 
 To make things more practical, let's say we have this data:
 
@@ -772,18 +772,18 @@ To make things more practical, let's say we have this data:
 
 ### Update logic
 
-Now, if the eggs description changes, we want the single view to update.
-When the single view creator is notified of the change, it will be provided the `USER_ID` of the user that needs changes, in this case `1`.
+Now, if the eggs description changes, we want the Single View to update.
+When the Single View Creator is notified of the change, it will be provided the `USER_ID` of the user that needs changes, in this case `1`.
 With that data, it will resolve the `pr_registry` dependency and map all the relative fields.
-After that, it will need to resolve the `ALLERGENS` dependency. To do that, it will read the `joinDependency`, and it being `pr_allergens_registry` will look at the `on` property of the dependency named `pr_allergens_registry`, which is `reg_to_aller_reg`.
-It will then get all the `allergens_registry` entries matching the condition (which is the one with `ID_USER` equal to `1`, the id of the single view to update).
-At this point, we have two documents: eggs, and fish. For each of those documents, the mapping will be applied, and the resulting single view will have its `allergens` field mapped to an array containing those two values.
+After that, it will need to resolve the `ALLERGENS` dependency. To do that, it will read the `joinDependency`, and it being `pr_allergens_registry` it will look at the `on` property of the dependency named `pr_allergens_registry`, which is `reg_to_aller_reg`.
+It will then get all the `allergens_registry` entries matching the condition (which is the one with `ID_USER` equal to `1`, the id of the Single View to update).
+At this point, we have two documents: eggs, and fish. For each of those documents, the mapping will be applied, and the resulting Single View will have its `allergens` field mapped to an array containing those two values.
 
 
 ## Read from multiple database server
 
-In order to read data from multiple database you need to leverage on custom function from the mapping configuration.  
-First of all you need to create a configMap and we suggest to create at least two files: one for the database connection and the others for the custom functions.  
+In order to read data from multiple databases you need to leverage on custom function from the mapping configuration.  
+First of all you need to create a config map and we suggest to create at least two files: one for the database connection and the others for custom functions.  
 
 The connection file could be like the following:
 
@@ -805,12 +805,12 @@ module.exports = async function (){
 }
 ```
 
-The above code uses the database driver and exports a function to retrive the connected client.  
-This module works like a singleton, indeed the client is created once and the state, e.g. the `connected` variable, lives for the entire duration of the nodejs process (remember that `require` a module is always evaluated once by nodejs).  
-Because this is a configMap, the `{{MONGODB_URL_2}}` will be interpolated at deploy time. Remember to set it up in the environment variables section.
+The above code uses the database driver and exports a function to retrieve the connected client.  
+This module works like a singleton, indeed the client is created once and the state, e.g. the `connected` variable, lives for the entire duration of the Node.js process (remember that `require` a module is always evaluated once by Node.js).  
+Because this is a config map, the `{{MONGODB_URL_2}}` will be interpolated at deploy time. Remember to set it up in the environment variables section.
 
 
-Then in a custom function file you can retrive the connected client and use it for reading data:
+Then in a custom function file you can retrieve the connected client and use it for reading data:
 
 ```javascript
 // fieldFromSecondDB.js
