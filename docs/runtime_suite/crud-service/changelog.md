@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.5.1 - 2023-04-20
+
+### Fixed
+
+- encryption not working with JSON Schema collection definition
+
+## 6.5.0 - 2023-04-20
+
+### Added
+
+- Collections configuration files can now accept a new field `schema` which allows to define the collection data model by means of a JSON Schema.
+The property `schema` in the configuration files is an _opt-in_ feature and when defined it takes precedence over the `fields` property.  
+Though the latter property is still supported, it is recommended to convert your collections to adopt a JSON schema definition to access the new functionality offered by JSON schema.
+- `$pull` operator support
+- `$addToSet` supports mongo operators
+
+### Deprecated
+
+- Collections definition via `fields` property is now considered deprecated and it will be removed in future versions.
+
 ## 6.4.0 - 2023-03-21
 
 ### Added

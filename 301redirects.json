@@ -204,5 +204,21 @@
   "/docs/runtime_suite_tools/miactl/examples": {
     "destination": "/docs/cli/miactl/examples",
     "addedOn": "2023-04-13"
+  },
+  "/docs/runtime_suite/secure-backoffice/overview": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2023-04-28"
+  },
+  "/docs/runtime_suite/secure-backoffice/changelog": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2023-04-28"
+  },
+  "/docs/runtime_suite/secure-backoffice/configuration": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2023-04-28"
+  },
+  "/docs/fast_data/bucket_storage_support/configuration/data_organizer_by_key_configuration": {
+    "destination": "/docs/fast_data/bucket_storage_support/overview_bucket_storage_support",
+    "addedOn": "2023-05-03"
   }
 }
