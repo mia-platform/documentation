@@ -4,7 +4,7 @@ title: API Documentation Configuration
 sidebar_label: API Documentation Configuration
 ---
 
-The Dev Portal uses the [Swagger Aggregator](/runtime_suite/swagger-aggregator/overview.md) to make all your OpenAPI specifications,
+The Dev Portal uses the [Swagger Aggregator](/runtime_suite/swagger-aggregator/10_overview.md) to make all your OpenAPI specifications,
 even the ones spread across different projects, available in a unique place.
 
 :::caution

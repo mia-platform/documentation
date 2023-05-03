@@ -115,7 +115,7 @@ The field `singleResource` has been added to the `resourceConfig` property of th
 #### Form Service BE - v.1.7.0
 
 Added support for exporting forms in csv via a dedicated endpoint, `GET /visualizer/forms/export`.
-See the [documentation](/runtime_suite/form-service-backend/overview.md) for more details about the new feature.
+See the [documentation](/runtime_suite/form-service-backend/10_overview.md) for more details about the new feature.
 
 #### Form Service FE - v.1.7.0
 

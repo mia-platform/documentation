@@ -91,12 +91,12 @@ During the import of Projections from file, the message adapter type is not requ
 #### Kafka to Rest Plugin v1.0.0 (kafka2rest)
 A microservice which enables the conversion of Kafka messages into REST HTTP requests that are executed towards configured targets.
 
-Check the [official documentation](/runtime_suite/kafka2rest-service/overview.md) for more.
+Check the [official documentation](/runtime_suite/kafka2rest-service/01_overview.md) for more.
 
 #### Rest to Kafka Plugin v1.0.0 (rest2kafka)
 A microservice which enables the conversion of REST HTTP requests into messages produced on Kafka topics.
 
-Check the [official documentation](/runtime_suite/rest2kafka-service/overview.md) for more.
+Check the [official documentation](/runtime_suite/rest2kafka-service/01_overview.md) for more.
 
 #### Care Kit v2.0.4
 A plugin which provides a library of Web Components, designed by Mia Care, that can be used to compose your Backoffice.

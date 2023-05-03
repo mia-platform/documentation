@@ -84,7 +84,7 @@ This card possibly includes 4 tabs: _Security_, _Documentation_, _Microservice G
 
 ![Endpoint settings card - Security](img/endpoint-settings-card-security.png)
 
-In the **Security** tab, you can manage the security and the permissions at the endpoint level. All the following functionalities require the [authorization service](/runtime_suite/authorization-service/usage.md) and are based on its [configuration](/runtime_suite/authorization-service/configuration.md).
+In the **Security** tab, you can manage the security and the permissions at the endpoint level. All the following functionalities require the [authorization service](/runtime_suite/authorization-service/30_usage.md) and are based on its [configuration](/runtime_suite/authorization-service/20_configuration.md).
 
 The security can be managed at three levels:
 
@@ -154,7 +154,7 @@ If the endpoint is linked to a [CRUD](#crud) you can specify dedicated user perm
 Enable the `inherited` flag to use the displayed default expression, or disable the flag to change it manually.
 
 :::tip
-If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](/development_suite/monitoring/introduction.md) to check out the logs of the [Authorization Service](/runtime_suite/authorization-service/usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
+If you figure out that there is some problem in how you configured the security of your endpoints, go to the [Log & Monitoring section](/development_suite/monitoring/introduction.md) to check out the logs of the [Authorization Service](/runtime_suite/authorization-service/30_usage.md). Here you can visualize the logs concerning authorization operations, and eventually any group expression errors.
 :::
 
 :::tip API Key

@@ -63,6 +63,6 @@ The _Timer Service_ can be used for more purposes, for example:
 
 The _Timer Service_ is easy to use and easy to configure:
 
-- [_Timer Service_ configuration](./configuration.md)
+- [_Timer Service_ configuration](./20_configuration.md)
 
-- [_Timer Service_ usage](./usage.md)
+- [_Timer Service_ usage](./30_usage.md)

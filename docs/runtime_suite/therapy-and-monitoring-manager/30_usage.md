@@ -44,7 +44,7 @@ The `adherenceToleranceFrequency` is considered only when `times` field is defin
 :::
 
 :::info
-For further information on the concepts of adherence and compliance, please refer to the appropriate section on the [Overview page](./overview.md#adherence-and-compliance)
+For further information on the concepts of adherence and compliance, please refer to the appropriate section on the [Overview page](./10_overview.md#adherence-and-compliance)
 :::
 
 The therapy data model add the concept of `directives`, which is an object following the schema defined in the prototype associated to the therapy.
@@ -467,7 +467,7 @@ This endpoint returns 404 if no detection with given id is found.
 
 ## Prototypes
 
-The service uses prototypes to validate therapy and monitoring detections. For futher info about the prototypes and their data model and definition, it is recommended to consult the [overview](./overview.md) page and the [configuration](./configuration.md) page, respectively.
+The service uses prototypes to validate therapy and monitoring detections. For futher info about the prototypes and their data model and definition, it is recommended to consult the [overview](./10_overview.md) page and the [configuration](./20_configuration.md) page, respectively.
 
 ### `GET /prototypes/`
 
@@ -649,4 +649,4 @@ The computation is performed for each plan according to the following algorithm,
 4. If the condition at the previous step is satisfied, the patient is reported as compliant.
 
 [crontab-guru]: https://crontab.guru/ "Crontab.guru"
-[config-env-vars]: 20_configuration.md#environment-variables "Configuration - Environment variables"
+[config-env-vars]: ./20_configuration.md#environment-variables "Configuration - Environment variables"

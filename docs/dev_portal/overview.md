@@ -53,7 +53,7 @@ The portal we offer consists of the following sections
 
 - _[Functional Documentation](/dev_portal/functional_documentation.md)_: for the functional documentation of the architecture, using [Docusaurus](https://docusaurus.io/);
 - _[Marketplace](/dev_portal/marketplace_management.md)_: as showcase for your services; you can use it to sell them;
-- _[API Portal](/runtime_suite/api-portal/overview.md)_: to display your Open API specification documents.
+- _[API Portal](/runtime_suite/api-portal/10_overview.md)_: to display your Open API specification documents.
 
 In addition, we provide a dedicated [product](/business_suite/backoffice/overview.md) in order to manage all the _Marketplace_ content, as:
 - **_Components_**: The list of the components that you want to make available through the _Marketplace_;
