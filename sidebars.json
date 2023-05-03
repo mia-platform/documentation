@@ -1181,12 +1181,12 @@
             {
               "type": "doc",
               "id": "runtime_suite/csv-connector/changelog"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/csv-connector/overview"
             }
-          ]
+          ],
+          "link": {
+            "type": "doc",
+            "id": "runtime_suite/csv-connector/overview"
+          }
         },
         {
           "collapsed": true,
@@ -2408,21 +2408,6 @@
             {
               "type": "doc",
               "id": "runtime_suite/single-view-creator/changelog"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "type": "category",
-          "label": "Single View Trigger Generator",
-          "items": [
-            {
-              "type": "doc",
-              "id": "runtime_suite/single-view-trigger-generator/configuration"
-            },
-            {
-              "type": "doc",
-              "id": "runtime_suite/single-view-trigger-generator/changelog"
             }
           ]
         },
