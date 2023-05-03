@@ -322,7 +322,7 @@ module.exports = async function myDeleteFunction(
 }
 ```
 
-Let's suppose that I put this file in a config map mounted on path `/home/node/app/my-functions`. Then, in order to use that, I need to set `DELETE_STRATEGY` environment variables equals to `/home/node/app/my-functions/myDeleteFunction.js`. 
+Let's suppose that I put this file in a config map mounted on path `/home/node/app/my-functions`. Then, in order to use that, I need to set the `DELETE_STRATEGY` environment variable to `/home/node/app/my-functions/myDeleteFunction.js`. 
 
 The same logic can be applied to upsert function, but setting the file path to the environment variable `UPSERT_STRATEGY`.
 
