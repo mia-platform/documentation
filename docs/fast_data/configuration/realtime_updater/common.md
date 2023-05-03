@@ -12,258 +12,49 @@ Here below, instead, all the configurations the service accepts are explained.
 
 ## Environment variables
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Required</th>
-        <th>Description</th><th>Default value</th></tr>
-    <tr>
-        <td>LOG_LEVEL</td>
-        <td>true</td>
-        <td>defines the level of the logger  </td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>MONGODB_URL</td>
-        <td>true</td>
-        <td>defines the mongodb URL to contact  </td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>PROJECTIONS_DATABASE_NAME</td>
-        <td>true</td>
-        <td>defines the name of the projections' database  </td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>PROJECTIONS_CHANGES_COLLECTION_NAME</td>
-        <td>true</td>
-        <td>defines the name of the projections changes collection  </td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>PROJECTIONS_CHANGES_ENABLED</td>
-        <td>false</td>
-        <td>defines whether you want to generate projections changes</td>
-        <td>true</td>
-    </tr>
-    <tr>
-        <td>LC</td>
-        <td>true</td>
-        <td>defines the lc39 HTTP port</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>STRATEGIES_MAX_EXEC_TIME_MS</td>
-        <td>true</td>
-        <td>defines the maximum time for which a strategy is executed</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_BROKERS</td>
-        <td>true</td>
-        <td>defines the Kafka brokers</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_GROUP_ID</td>
-        <td>true</td>
-        <td>defines the Kafka group id (it is suggested to use a syntax like <code>{'{tenant}.{environment}.{projectName}.{system}.real-time-updater'}</code>)</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_USERNAME</td>
-        <td>true</td>
-        <td>defines the Kafka SASL username</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_PASSWORD</td>
-        <td>true</td>
-        <td>defines the Kafka SASL password</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>LIVENESS_INTERVAL_MS</td>
-        <td>true</td>
-        <td>defines the liveness interval in milliseconds</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>INVARIANT_TOPIC_MAP</td>
-        <td>true</td>
-        <td>defines an object that maps the topic to the projection</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_USE_LATEST_DEQUEUE_STRATEGY</td>
-        <td>false</td>
-        <td>defines latest dequeue strategy or not</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_ADAPTER_FOLDER</td>
-        <td>false</td>
-        <td>defines the path to the Kafka adapter folder</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>CAST_FUNCTIONS_FOLDER</td>
-        <td>false</td>
-        <td>defines the path to the cast-functions folder</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>MAP_TABLE_FOLDER</td>
-        <td>false</td>
-        <td>defines the path to the map table folder</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>STRATEGIES_FOLDER</td>
-        <td>false</td>
-        <td>defines the path to the strategies' folder</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_MECHANISM</td>
-        <td>false</td>
-        <td>defines the authentication mechanism. It can be one of: <code>plain</code>, <code>scram-sha-256</code>, <code>scram-sha-512</code>, <code>oauthbearer</code>.</td>
-        <td>plain</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_OAUTH_BASE_URL</td>
-        <td>false</td>
-        <td>In case of <code>oauthbearer</code> mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_OAUTH_PATH</td>
-        <td>false</td>
-        <td>In case of <code>oauthbearer</code> mechanism, it defines the path of the endpoint for fetching the OAuth2 token.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_OAUTH_GRANT_TYPE</td>
-        <td>false</td>
-        <td>In case of <code>oauthbearer</code> mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type <code>password</code> is supported</td>
-        <td>password</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_OAUTH_CLIENT_ID</td>
-        <td>false</td>
-        <td>In case of <code>oauthbearer</code> mechanism, it defines the client id for fetching the OAuth2 token.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_OAUTH_CLIENT_SECRET</td>
-        <td>false</td>
-        <td>In case of <code>oauthbearer</code> mechanism, it defines the client secret for fetching the OAuth2 token.</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS</td>
-        <td>false</td>
-        <td>In case of <code>oauthbearer</code> mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)</td>
-        <td>60000</td>
-    </tr>
-    <tr>
-        <td>USE_UPSERT</td>
-        <td>false</td>
-        <td>defines whether to use <a href="./common#upsert">upsert</a> or not when performing insert and update operations.</td>
-        <td>true</td>
-    </tr>
-    <tr>
-        <td>KAFKA_MESSAGE_ADAPTER</td>
-        <td>false</td>
-        <td>defines which Kafka message adapter to use. Its value can be either <code>basic</code> (DB2 adapter), <code>golden-gate</code>, <code>debezium</code> or <code>custom</code>. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the <a href="./common#kafka-adapters-kafka-messages-format">Kafka Adapters: Kafka messages format</a> paragraph.</td>
-        <td>basic</td>
-    </tr>
-    <tr>
-        <td>KAFKA_PROJECTION_CHANGES_FOLDER</td>
-        <td>false</td>
-        <td>path where has been mounted the <code>kafkaProjectionChanges.json</code> configuration (v3.4.0 or above).</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>GENERATE_KAFKA_PROJECTION_CHANGES</td>
-        <td>false</td>
-        <td>defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above).</td>
-        <td>false</td>
-    </tr>
-    <tr>
-        <td>KAFKA_CONSUMER_MAX_WAIT_TIME</td>
-        <td>false</td>
-        <td>defines the maximum waiting time of Kafka Consumer for new data in batch.</td>
-        <td>500</td>
-    </tr>
-    <tr>
-        <td>COMMIT_MESSAGE_LOGGING_INTERVAL</td>
-        <td>false</td>
-        <td>specify the interval in ms of logging the info that messages have been committed.</td>
-        <td>3000</td>
-    </tr>
-    <tr>
-        <td>KAFKA_CONNECTION_TIMEOUT_MS</td>
-        <td>false</td>
-        <td>Time in milliseconds to wait for a successful connection.</td>
-        <td>10000</td>
-    </tr>
-    <tr>
-        <td>KAFKA_SESSION_TIMEOUT_MS</td>
-        <td>false</td>
-        <td>Timeout in milliseconds used to detect failures.</td>
-        <td>30000</td>
-    </tr>
-    <tr>
-        <td>KAFKA_HEARTBEAT_INTERVAL_MS</td>
-        <td>false</td>
-        <td>The expected time in milliseconds between heartbeats to the consumer coordinator.</td>
-        <td>3000</td>
-    </tr>
-    <tr>
-        <td>FORCE_CHECK_ON_OFFSET</td>
-        <td>false</td>
-        <td>Force check that incoming message has offset greater or equal than the one of the projection to update.</td>
-        <td>true</td>
-    </tr>
-    <tr>
-        <td>KAFKA_PROJECTION_UPDATES_FOLDER</td>
-        <td>false</td>
-        <td>path to the folder that contains the file <code>kafkaProjectionUpdates.json</code>, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>GENERATE_KAFKA_PROJECTION_UPDATES</td>
-        <td>false</td>
-        <td>defines whether the realtime updater should send a message of update every time it writes the projection to Mongo.</td>
-        <td>false</td>
-    </tr>
-    <tr>
-        <td>CA_CERT_PATH</td>
-        <td>false</td>
-        <td>the path to the CA certificate, which should include the file name as well, e.g. <code>/home/my-ca.pem</code></td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>SYSTEM_OF_RECORDS</td>
-        <td>true</td>
-        <td>the name of the system of records associated to the Real Time Updater</td>
-        <td>-</td>
-    </tr>
-    <tr>
-        <td>PAUSE_TOPIC_CONSUMPTION_ON_ERROR</td>
-        <td>false</td>
-        <td>If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature <a href="./common#pause-single-topics-consumption-on-error">here</a></td>
-        <td>false</td>
-    </tr>
-    <tr>
-        <td>USE_POS_AS_COUNTER</td>
-        <td>false</td>
-        <td>If <code>KAFKA_MESSAGE_ADAPTER</code> is set to <code>golden-gate</code> it will use the <code>pos</code> field as timestamp for ingestion kafka messages. When set to <code>false</code> it will use the default <code>timestamp</code> property in the message provided by kafka like the other adapters do. Setting this property to <code>true</code> with a <code>KAFKA_MESSAGE_ADAPTER</code> <b>different</b> from <code>golden-gate</code> will have no effect.</td>
-        <td>true</td>
-    </tr>
-</table>
+| Name | Required | Description | Default |
+|------|----------|-------------|---------|
+| LOG_LEVEL | &check; | defines the logger level | - |
+| MONGODB_URL | &check; | defines the mongodb URL to contact | - |
+| PROJECTIONS_DATABASE_NAME | &check; | defines the name of the projections' database | - |
+| PROJECTIONS_CHANGES_COLLECTION_NAME | &check; | defines the name of the projections changes collection | - |
+| PROJECTIONS_CHANGES_ENABLED| - | defines whether you want to generate projections changes| true |
+| LC | &check; | defines the lc39 HTTP port | - |
+| STRATEGIES_MAX_EXEC_TIME_MS | &check; | defines the maximum time for which a strategy is executed | - |
+| KAFKA_BROKERS | &check; | defines the Kafka brokers | - |
+| KAFKA_GROUP_ID | &check; | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.real-time-updater'}```) | - | KAFKA_SASL_USERNAME | &check;| defines the Kafka SASL username | - |
+| KAFKA_SASL_PASSWORD | &check; | defines the Kafka SASL password | - |
+| LIVENESS_INTERVAL_MS | &check; | defines the liveness interval in milliseconds | - |
+| INVARIANT_TOPIC_MAP | &check; | defines an object that maps the topic to the projection | - |
+| KAFKA_USE_LATEST_DEQUEUE_STRATEGY | - | defines latest dequeue strategy or not | - |
+| KAFKA_ADAPTER_FOLDER | - | defines the path to the Kafka adapter folder | - |
+| CAST_FUNCTIONS_FOLDER | - | defines the path to the cast-functions folder | - |
+| MAP_TABLE_FOLDER | - | defines the path to the map table folder | - |
+| STRATEGIES_FOLDER | - | defines the path to the strategies' folder | - |
+| KAFKA_SASL_MECHANISM | - | defines the authentication mechanism. It can be one of: ```plain```, ```scram-sha-256```, ```scram-sha-512```, ```oauthbearer```. | plain |
+| KAFKA_SASL_OAUTH_BASE_URL | - | In case of ```oauthbearer``` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token. | - |
+| KAFKA_SASL_OAUTH_PATH | - | In case of ```oauthbearer``` mechanism, it defines the path of the endpoint for fetching the OAuth2 token. | - |
+| KAFKA_SASL_OAUTH_GRANT_TYPE | -  | In case of ```oauthbearer``` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type ```password``` is supported | password |
+| KAFKA_SASL_OAUTH_CLIENT_ID | - | In case of ```oauthbearer``` mechanism, it defines the client id for fetching the OAuth2 token. | - |
+| KAFKA_SASL_OAUTH_CLIENT_SECRET | - | In case of ```oauthbearer``` mechanism, it defines the client secret for fetching the OAuth2 token. | - |
+| KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS | - | In case of ```oauthbearer``` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute) | 60000 |
+| USE_UPSERT | - | defines whether to use [upsert](./common#upsert) or not when performing insert and update operations. | true |
+| KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](./common#kafka-adapters-kafka-messages-format) paragraph. | basic |
+| KAFKA_PROJECTION_CHANGES_FOLDER | - | path where has been mounted the ```kafkaProjectionChanges.json``` configuration (v3.4.0 or above). | - |
+| GENERATE_KAFKA_PROJECTION_CHANGES | - | defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above). | false |
+| KAFKA_CONSUMER_MAX_WAIT_TIME | - | defines the maximum waiting time of Kafka Consumer for new data in batch. | 500 |
+| COMMIT_MESSAGE_LOGGING_INTERVAL | - | specify the interval in ms of logging the info that messages have been committed. | 3000 |
+| KAFKA_CONNECTION_TIMEOUT_MS | - | Time in milliseconds to wait for a successful connection. | 10000 |
+| KAFKA_SESSION_TIMEOUT_MS | - | Timeout in milliseconds used to detect failures. | 30000 |
+| KAFKA_HEARTBEAT_INTERVAL_MS | - | The expected time in milliseconds between heartbeats to the consumer coordinator. | 3000 |
+| FORCE_CHECK_ON_OFFSET | - | Force check that incoming message has offset greater or equal than the one of the projection to update. | true |
+| KAFKA_PROJECTION_UPDATES_FOLDER | - | path to the folder that contains the file ```kafkaProjectionUpdates.json```, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above). | - |
+| GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the realtime updater should send a message of update every time it writes the projection to Mongo. | false |
+| CA_CERT_PATH | - | the path to the CA certificate, which should include the file name as well, e.g. ```/home/my-ca.pem``` | - |
+| SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real Time Updater | - |
+| PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](./common#pause-single-topics-consumption-on-error) | false |
+| USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
+
 
 ## How data is managed on MongoDB
 
@@ -569,7 +360,9 @@ The main advantages of Snappy are:
 * Stability and robustness to prevent crashing while still maintaining the same bitstream format among different versions
 * Free and open source
 
-> *Note*: For further information about Snappy, check the official [GitHub page](https://github.com/google/snappy) of the library.
+:::note
+For further information about Snappy, check the official [GitHub page](https://github.com/google/snappy) of the library.
+:::
 
 Provided that the client's **CDC** (Change Data Capture) supports Snappy compression, the console is already predisposed for it.
 

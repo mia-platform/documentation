@@ -47,7 +47,8 @@ Inside its callback, the `single-view-creator-lib` is initialized to deal with t
 ```js
 const singleViewCreator = getSingleViewCreator(log, config, customMetrics)
 
-await singleViewCreator.initEnvironment() // connect Mongo, Kafka and create the patient instance
+await singleViewCreator
+  .initEnvironment() // connect Mongo, Kafka and create the patient instance
 service.decorate('patient', singleViewCreator.k8sPatient)
 ```
 
