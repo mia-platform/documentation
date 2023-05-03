@@ -11,7 +11,7 @@ _May 04, 2023_
 
 ### New Features
 
-#### Selection of default providers for a Company's projects
+#### Selection of default providers for the Company's projects
 
 Within the Providers section in the Company Overview area it is now possible to find a new feature that allows the user with Company Owner permissions to be able to set the Default providers that will use all the new projects created on the respective company.
 
