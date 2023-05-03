@@ -38,11 +38,23 @@ It is possible to create Company-independent service accounts in case you need t
 Only Console Super Users can add or delete Company independent service accounts, manageable exclusively at back-office level.
 :::
 
+#### Backoffice No Code Configurator now supports `guard` and `oneOf` properties
+
+From now on, it is possible to configure directly from the Backoffice No Code Configurator two type of properties: `guard` and `oneOf` peroperties. 
+
+Do not forget to checkout the [Backoffice](#backoffice---139) back-kit component library news!
+
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
 
 * We fixed an issue in the creation of a template/example that prevented the Git repository owner name from being filled in with special characters.
+* The `index.html` dom parser in the Backoffice Configurator now use `getAttribute` instead of reaching `src` on script elements
+* The Property modal container of the Backoffice Configurator behaves well with nested object with the same keys
+* The CRUD endpoints in the Backoffice Configurator are now prefixed with `/v2`
+
+
+definitions do not clear updateById changes
 
 ## Fast Data
 
