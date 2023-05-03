@@ -46,14 +46,6 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ## Fast Data
 
-### New Features
-
-The file picker of the DDL modal import now supports `.sql` file 
-
-### Improvements
-
-The Console automatic aggregation generation now represents one-to-one relationship configuration as an object.
-
 ### Breaking Changes
 
 #### Revamped Single View Trigger Generator
@@ -70,12 +62,20 @@ Furthermore, the following environment variables are now required:
 
 For more details on the service and its behavior, please check out the official [documentation](/fast_data/single_view_trigger_generator.md)
 
+### New Features
+
+The file picker of the Projection DDL modal import, that can be used in the System of Record section, now supports `.sql` file 
+
+### Improvements
+
+The Console automatic aggregation generation now represents one-to-one relationship configuration as an object.
+
 ### Bug Fix
 
 This version addressed a few bugs, here is a comprehensive list:
 
 * The Projections and the SoR are now deleted from the No-Code ERSchema if deleted from their Console sections
-* The Single View Creator is not attachable to only one Single View
+* The Single View Creator can be now attachable to only one Single View
 * Mongo operators are now properly interpolated in aggregations executed by the Single View Creator. This fix has been addressed in version 5.6.6 of the Single View Creator.
 
 ## Marketplace
