@@ -1,12 +1,12 @@
 ---
-id: control-panel
-title: Control Panel
-sidebar_label: Control Panel
-slug: "/development_suite/control-panel/control-panel"
+id: design-overview
+title: Design Overview
+sidebar_label: Design Overview
+slug: "/development_suite/governance/design-overview"
 ---
-## What is the Control Panel
+## What is the Design Overview
 
-The Control Panel is a rich set of visualization tools accessible from the Company Section through the button next to Company name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/overview/control-panel`.  
+The Design Overview is a rich set of visualization tools accessible from the Company Section through the button next to Company name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/governance/design-overview`.  
 :::caution
 In the url, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
@@ -17,7 +17,7 @@ Through this tool, the governing entity of the company can have a graphical over
 ### Homepage
 
 The Homepage tab is opened by default on clicked event and contains the following view types:
-* *Default Views* - A predefined set of read-only views configured at Company level. All Company users can access these views, modifications (edit/delete) are not allowed, default filters and thresholds are configured into the Control Panel backend service;
+* *Default Views* - A predefined set of read-only views configured at Company level. All Company users can access these views, modifications (edit/delete) are not allowed, default filters and thresholds are configured into the Design Overview backend service;
 * *Public Views* - A set of editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
 
 An example is in the following picture.
@@ -41,7 +41,7 @@ An example is in the following picture.
 
 The Endpoint Overview provides the user with a graphical cross-project overview of the configuration of all the selected Company projects. The graphical overview has a particular focus on the security configuration of the Projects endpoints.  
 
-Endpoint Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
+The Endpoint Overview collects data on the project configuration and creates a table presenting information on all the endpoints, where each row shows:
 * *Endpoint/API*: Endpoint name.
 * *Project*: Project name.
 * *Path rewrite*: Rewrite path for the endpoint.
@@ -60,7 +60,7 @@ An example is in the following picture.
 
 The Microservices Overview provides the user with a graphical cross-project overview of all the Microservices.
 
-Microservices Overview collects data on the project configuration and creates a table presenting information on all the Microservices, where each row shows:
+The Microservices Overview collects data on the project configuration and creates a table presenting information on all the Microservices, where each row shows:
 * *Name*: Name of the Microservice.
 * *Project*: Project of the Microservice.
 * *Type*: Type of the Microservice.
@@ -87,7 +87,7 @@ If a column has the sort symbol ![Sort](img/sort-symbol.png) means that the Endp
 
 ### Filtering
 
-The Endpoint Overview result can be filtered by the endpoint feature using the specific `Add Filter` button. By applying filters only the Endpoints Overview's rows satisfying the chosen filters will be shown.
+All the Resources can be filtered by the filtering feature using the specific `Add Filter` button. By applying filters only the Resource's rows satisfying the chosen filters will be shown.
 
 ![Project filter](img/filter-popup.png)  
 
@@ -101,7 +101,7 @@ The filters applied over the same column follow an OR logic, which means that th
 
 ### Visualization
 
-The Control Panel table visualization can be modified through the specific section:
+The Design Overview table visualization can be modified through the specific section:
 
 ![Column visualization](img/column-visualization.png)  
 
@@ -109,7 +109,7 @@ Here it is possible to choose the columns to hide or show in the table in order 
 
 ### Public Views
 
-Public Views can be created/edited/deleted for all the Resource views available in the Control Panel for all the Project Administrators and/or Company Owners.
+Public Views can be created/edited/deleted for all the Resource views available in the Design Overview for all the Project Administrators and/or Company Owners.
 
 #### Saving
 

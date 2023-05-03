@@ -230,7 +230,7 @@
     "addedOn": "2023-05-04"
   },
   "/docs/development_suite/endpoint-overview/endpoint-overview": {
-    "destination": "/docs/development_suite/control-panel/control-panel",
+    "destination": "/docs/development_suite/governance/design-overview",
     "addedOn": "2023-05-03"
   }
 }
