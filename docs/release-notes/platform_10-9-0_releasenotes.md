@@ -27,39 +27,30 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ## Fast Data
 
-### Website & Backend
-
-#### Added
-- Support to .sql file type in the DDL modal import
-
-
-#### Fixed
-- Projections and SoR for the no-code ERSchema still shown even if deleted
-- Single View Creator that could be attached to more Single Views
-
-#### Changed
-- One to one relationships in aggregation as object instead of array.
-
 ### New Features
 
+Support to .sql file type in the DDL modal import
+
 ### Improvements
+
+One to one relationships in aggregation as object instead of array.
 
 ### Breaking Changes
 
 #### Revamped Single View Trigger Generator
-We're thrilled to announce the release of v.2.0.1 of the Single View Trigger Generator, a vital component of Fast Data. In this release, we've given the component a complete overhaul to optimize its performance and streamline its functionality.
+We're thrilled to announce the release of v.2.0.1 of the Single View Trigger Generator, one of the Fast Data component. In this release, we've given the component a complete overhaul to optimize its performance and streamline its functionality.
 
-However, as with any major update, there are a few breaking changes to be aware of. We've renamed the `STRATEGIES_FOLDER` environment variable to `MANUAL_STRATEGIES_FOLDER` and the `CUSTOM_FUNCTIONS_FOLDER` environment variable to `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`. We've also removed the `USE_AUTOMATIC` variable. Additionally, the `SINGLE_VIEW_NAME`,` ER_SCHEMA_FOLDER`, and `PROJECTION_CHANGES_SCHEMA_FOLDER` variables are now required.
+However, as with any major update, there are a few breaking changes to be aware of. We've renamed the `STRATEGIES_FOLDER` environment variable to `MANUAL_STRATEGIES_FOLDER` and the `CUSTOM_FUNCTIONS_FOLDER` environment variable to `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`. We've also removed the `USE_AUTOMATIC` variable. Additionally, the `SINGLE_VIEW_NAME`,` ER_SCHEMA_FOLDER`, and `PROJECTION_CHANGES_SCHEMA_FOLDER` variables are now required. Check out the official documentation (TODO: add link)!
 
-In addition to these changes, we've also upgraded some service dependencies, including `@mia-platform-internal/fast-data-automation-lib@v3` and `mongodb@v5`. We've also simplified the configuration loading process and refactored the core logic and service dependencies to improve performance and remove the need for `fastify-pluging`.
-
-Check out the [changelog](/runtime-suite/single-view-trigger-generator/changelog.md) for a full list of changes!
+Do not forget to check out the [changelog](/runtime-suite/single-view-trigger-generator/changelog.md) for a full list of changes!
 
 ### Bug Fix
 
-#### Fix for Mongo operators in aggregations in Single View Creator
+This version addressed a few bugs, here is a comprehensive list:
 
-We have resolved a bug that prevented Mongo operators from being properly interpolated in aggregations executed by the Single View Creator. This issue has been addressed in version 5.6.6 of the Single View Creator. With this fix, users can now rely on the full functionality of Mongo operators in their aggregations. For more info check the [changelog](/runtime-suite/single-view-creator/changelog.md).
+* Projections and SoR for the no-code ERSchema still shown even if deleted
+* Single View Creator that could be attached to more Single Views
+* Mongo operators are now properly interpolated in aggregations executed by the Single View Creator. This fix has been addressed in version 5.6.6 of the Single View Creator. For more info check out the [changelog](/runtime-suite/single-view-creator/changelog.md).
 
 ## Marketplace
 
