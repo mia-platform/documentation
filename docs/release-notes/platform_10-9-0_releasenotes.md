@@ -108,6 +108,10 @@ Furthermore, the following MongoDB operators for `PATCH` action were introduced:
 
 The full [changelog](/runtime_suite/crud-service/changelog.md) can be found in the plugin detail page.
 
+#### User Manager Service - v1.4.0
+
+Added a user expiration date feature via Timer Service and a user soft delete endpoint.
+
 ## Backoffice - 1.3.9
 
 ### Bug Fix
