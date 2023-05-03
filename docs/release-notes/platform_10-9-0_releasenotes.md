@@ -26,7 +26,7 @@ For more information, [go to the documentation](/development_suite/set-up-infras
 
 Starting with this version, the console supports GitHub Actions as a CI/CD tool.
 
-Within the Providers section accessible through the Company Overview area you can now configure a GitHub provider as a CI/CD tool.
+Within the Providers section accessible through the Company Overview area you can now configure a GitHub provider as a CI/CD tool and using it for the deployment of your workload.
 
 For more information, [go to the documentation](/development_suite/deploy/.mdx).
 
