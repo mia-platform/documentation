@@ -20,7 +20,7 @@ Within the Providers section in the Company Overview area it is now possible to 
 This will enhance the governance for every Company Owner for company's projects and give better control over the management of company tools.
 The provider for each capability (Git Provider, CI/CD and Secret Manager) can always be changed in any moment via CMS.
 
-For more information,[go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx)
+For more information, [go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx)
 
 #### Managing Service Accounts at Console level
 
