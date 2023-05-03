@@ -53,9 +53,6 @@ This version addressed a few bugs, here is a comprehensive list:
 * The Property modal container of the Backoffice Configurator behaves well with nested object with the same keys
 * The CRUD endpoints in the Backoffice Configurator are now prefixed with `/v2`
 
-
-definitions do not clear updateById changes
-
 ## Fast Data
 
 ### Breaking Changes
