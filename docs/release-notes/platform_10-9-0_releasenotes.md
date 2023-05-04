@@ -32,7 +32,7 @@ For more information, [go to the documentation](/development_suite/deploy/deploy
 
 #### Managing Service Accounts at Console level
 
-It is possible to create Company-independent service accounts in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
+It is possible to create [Company-independent service accounts](/development_suite/identity-and-access-management/service-account-management.md#managing-company-independent-service-accounts) in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
 
 :::info
 Only Console Super Users can add or delete Company independent service accounts, manageable exclusively at back-office level.
