@@ -13,7 +13,7 @@ const excludePath = (path) => {
         'docs/runtime_suite_applications',
         'docs/business_suite',
         'docs/cli',
-        '/docs/tutorial/node_ms'
+        'docs/tutorial/node_ms'
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
