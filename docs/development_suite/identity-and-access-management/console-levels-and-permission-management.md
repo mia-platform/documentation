@@ -90,13 +90,16 @@ For each of them, therefore, the permissions inherited from the Company role ass
 | Manage identities for this Project                                         | `console.project.users.manage`                         |        |          |           |            | ✅                    |               |
 | Delete a single Project                                                    | `console.project.delete`                               |        |          |           |            |                       | ✅            |
 
+
+### Console Root level permissions
+
 User roles and permissions are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to perform actions at Console root level.
 
 :::info
 Note that Console Super User is NOT included as a default role. Consequently, it can not be assigned from the Identities portal, as it performs actions exclusively at Console root level. 
 :::
 
-The following table describes the privileges given to these Console Administrators:
+The following table describes the manageable privileges at Console root level that are granted to Console Administrators:
 
 | Capabilities | Permissions key |
 |--------------|-----------------|
@@ -108,6 +111,7 @@ The following table describes the privileges given to these Console Administrato
 | View all Console resources                          | `console.root.view`                                    |
 | Manage identity Roles, Groups and Bindings          | `console.root.user.bind`                               |
 | Create and delete any user                          | `console.root.user.manage`                             |
+| Create and delete root service account               | `console.root.serviceaccount.manage`                             |
 | Manage all private and public Project Templates     | `console.root.templates.manage`                        |
 | Manage available features                           | `console.root.features.manage`                         |
 
