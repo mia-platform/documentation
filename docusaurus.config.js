@@ -264,19 +264,31 @@ const config = {
           async sidebarItemsGenerator({
             isCategoryIndex: defaultCategoryIndexMatcher,
             defaultSidebarItemsGenerator,
+            docs,
             ...args
           }) {
+            const prioritizedDocs = docs.map(doc => {
+              if (doc.frontMatter && doc.frontMatter.id === 'overview') {
+                return {
+                  ...doc,
+                  sidebarPosition: 10
+                }
+              }
+              return doc
+            })
+            
             const sidebarItems = defaultSidebarItemsGenerator({
               ...args,
+              docs: prioritizedDocs,
               isCategoryIndex(params) {
                 const {fileName} = params
-                return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
+                return (
+                  defaultCategoryIndexMatcher(params) ||
+                  ['overview', '10_overview'].includes(fileName.toLowerCase())
+                  )
               },
             });
-            const sortedSidebarItems = sidebarItems.sort((a, b) => {
-              return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
-            })
-            return sortedSidebarItems
+            return sidebarItems
           },
         },
         theme: {
