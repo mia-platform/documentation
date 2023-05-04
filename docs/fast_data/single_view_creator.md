@@ -4,7 +4,7 @@ title: Single View Creator
 sidebar_label: Single View Creator
 ---
 
-Each Single View needs a dedicated Microservice. This service will listen on the **Projections changes** that affect the Single View and consequently updates its data. This service is the `Single View Creator`.
+Each Single View needs a dedicated Microservice. This service will listen on the **Projections changes** that affect the Single View and consequently update its data. This service is the `Single View Creator`.
 
 The SingleView Creator service consumes events whether as [Kafka messages](https://kafka.apache.org/intro#intro_concepts_and_terms) or from MongoDB in order to keep the Fast Data Single View collections up to date with the projections updates.
 
@@ -18,9 +18,9 @@ The first option uses the Low Code configuration, the second and third options u
 
 ### Single View Creator Configurations
 
-To know more about Single View Creator service Configurations you can go [here](/fast_data/configuration/single_view_creator/common.md)
+To know more about Single View Creator service Configurations you can go [here](/fast_data/configuration/single_view_creator/common.md).
 
-When a Single View Creator consumes events regarding a Single View to update, he needs to perform an aggregation to be able to upsert the single view correctly. 
+When a Single View Creator consumes events regarding a Single View to update, it needs to perform an aggregation to be able to upsert the Single View correctly. 
 
 This aggregation can be implemented in two modes:
 - [Manual](/fast_data/configuration/single_view_creator/manual.md): recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
