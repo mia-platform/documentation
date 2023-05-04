@@ -6,7 +6,7 @@ sidebar_label: Manage Service Accounts
 
 Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
 
-Just like human Users, Service Accounts can be assigned Roles at Console, Company, Project or Runtime Environment level, based on which they will be able to perform different types of action.  
+Just like human Users, Service Accounts can be assigned roles at Console, Company, Project or Runtime Environment levels, according to which they can perform different types of actions.
 
 :::note
 To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an identity.
