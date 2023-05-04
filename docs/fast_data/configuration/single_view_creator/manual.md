@@ -8,7 +8,7 @@ Single View Creator can be configured as manual through a few Javascript files, 
 
 ## Single View Key
 
-It takes as input the identifier of the projection change and returns the key object used to select the document of the Single View collection that needs to be updated. This key corresponds to the query object fed to mongodb, therefore you can return any legal Mongo query.
+It takes as input the identifier of the Projection change and returns the key object used to select the document of the Single View collection that needs to be updated. This key corresponds to the query object fed to MongoDB, therefore you can return any legal Mongo query.
 
 In the example below, we expect to have the field `myId` as primary key of the Single View collection.
 
@@ -31,10 +31,10 @@ module.exports = function singleViewKeyGenerator(logger, projectionChangeIdentif
 
 ### Pipeline
 
-It takes as input a MongoDB instance and returns a function. This function takes as input the projection change identifier and returns an array.
+It takes as input a MongoDB instance and returns a function. This function takes as input the Projection change identifier and returns an array.
 
-If it is empty, a delete operation will be executed on the single view identified by the `singleViewKeyGenerator` result.
-If it is not empty, an upsert operation will be executed on the single view identified by the `singleViewKeyGenerator` result.
+If it is empty, a delete operation will be executed on the Single View identified by the `singleViewKeyGenerator` result.
+If it is not empty, an upsert operation will be executed on the Single View identified by the `singleViewKeyGenerator` result.
 
 :::note
 If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
@@ -71,7 +71,7 @@ module.exports = (mongoDb) => {
 
 ### Mapper
 
-It is a function that takes as argument the first element (if defined) of the result of the pipeline, and returns an object containing the value updated for the single view. The object returned should match the schema of the single view.
+It is a function that takes as argument the first element (if defined) of the result of the pipeline, and returns an object containing the value updated for the Single View. The object returned should match the schema of the Single View.
 
 ```js title="mapper.js"
 module.exports = (logger, singleViewData) => {
@@ -84,10 +84,10 @@ module.exports = (logger, singleViewData) => {
 }
 ```
 
-Inside the mapper a renaming and repositioning of the fields can be applied.
+Renaming and repositioning of the fields can be applied inside the mapper.
 
 :::note
-We suggest implementing inside the mapper all the aggregation logic that can be reused for all the clients that will read the Single Views, they should be as generic as possible.
-It is a good practice to have some calculation and aggregation logic inside Single View Creator as far as it is reusable.
-If you have to apply some custom logic try to do it inside and API Adapter specific for the client.
+We suggest implementing all the aggregation logic that can be reused for all the clients that will read the Single Views inside the mapper, they should be as generic as possible.
+It is a good practice to have some calculation and aggregation logic inside the Single View Creator as far as it is reusable.
+If you have to apply some custom logic try to do it inside an API Adapter specific for the client.
 :::
