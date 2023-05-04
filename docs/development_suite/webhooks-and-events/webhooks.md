@@ -35,17 +35,15 @@ You will be asked to provide the following parameters:
 
 ## Payload authentication
 
-The payload delivered by the Console will be authenticated using the `X-Mia-Token` header. 
-This will both prevent the modification of the payload by third-parties and allow the receiver to ensure that the event 
-has been triggered by the Console.
+The payload delivered by the Console will be authenticated using the `X-Mia-Signature` header. This will both prevent the modification of the payload by third-parties and allow the receiver to make sure that the event has been triggered by the Console.
 
 :::warning
 This authentication method is not safe against replay attacks. 
 It is recommended to store the latest `eventTimestamp` on the receiver side to prevent this attack.
 :::
 
-The `X-Mia-Token` header will contain the hex encoded `sha256` digest of the event payload concatenated with the provided `secret`. In formula:
+The `X-Mia-Signature` header will contain the hex encoded `sha256` digest of the event payload concatenated with the provided `secret`. In formula:
 
 ```
-X-Mia-Token = hex(sha256( payload + secret ))
+X-Mia-Signature = hex(sha256( payload + secret ))
 ```

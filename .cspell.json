@@ -279,7 +279,8 @@
     "okhttp3",
     "FD_AAAA_Eyxxx",
     "otel",
-    "otlp"
+    "otlp",
+    "xunit"
   ],
   "dictionaries": [
     "softwareTerms",
