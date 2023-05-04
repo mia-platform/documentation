@@ -10,7 +10,6 @@ const excludePath = (path) => {
         'docs/runtime_suite_templates',
         'docs/runtime_suite_libraries',
         'docs/runtime_suite_tools',
-        'docs/runtime_suite_applications',
         'docs/business_suite',
         'docs/cli'
     ];

@@ -7,7 +7,7 @@ Envoy is a high-performance C++ edge and service proxy, built for microservice a
 
 ## Why should I pick Envoy for my project?
 
-Envoy offers a valid alternative to our [API Gateway based on NGINX](../../runtime_suite/api-gateway/overview). Despite its raw configuration may not be straightforward to write and understand, it provides many advantages:
+Envoy offers a valid alternative to our [API Gateway based on NGINX](../api-gateway/overview). Despite its raw configuration may not be straightforward to write and understand, it provides many advantages:
 
 - **Improved latency:** it performs very well under heavy traffic conditions, with a lower response time with respect to NGINX.
 - **JWT authentication:** thanks to its JWT filter, Envoy supports JWT parsing and payload extraction for authentication purposes.
