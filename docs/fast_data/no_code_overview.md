@@ -11,7 +11,7 @@ If you want to try the Fast Data Low Code with a simple example, here's a step b
 The "Low Code" and "No Code" versions of Fast Data are the new standards that leverage the power of configurations to overcome coding complexity in Fast Data setup.
 This experience is based on two main fundamentals: No Code Fast Data and Low Code Fast Data.
 
-Thanks to No Code, you will have the possibility to configure your project with a few clicks. And as of version 10.6.0, if you enable the No Code feature toggle, you will have the ability to define relationships between the projections in the ER Schema.
+Thanks to No Code, you will have the possibility to configure your project with a few clicks. And as of version 10.6.0, if you enable the No Code feature (you may have to contact your System Administrator in order to do so), you will have the ability to define relationships between the projections in the ER Schema.
 
 Thanks to Low Code, you will only need to define for your Fast Data projects:
 
