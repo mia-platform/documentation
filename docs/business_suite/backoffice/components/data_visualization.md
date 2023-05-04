@@ -1544,6 +1544,8 @@ Accepts an object such as
 }
 ```
 
+Each `rowAction` is rendered as a button inside the action cell of each row of the table. Clicking such button can either emit an event or perform an POST call, in which the payload/body is set to an object representation of the corresponding row.
+
 | property | type | values | description |
 |-----------------------|------|---------|-------------|
 | `kind` | string | `icons`, `cta` | how to display the action triggerers |
@@ -1562,6 +1564,7 @@ Accepts an object such as
 | `requireConfirm` | object or boolean | any | The customizable properties of the modal that will be prompted or `true` for default Modal |
 
 ##### RequireConfirm object
+
 | property | type | values | description |
 |----------|------|--------|-------------|
 | `cancelText` | [localizedText](../core_concepts.md#localization-and-i18n) | any | Cancel button label |

@@ -675,7 +675,7 @@ At the moment this variable is set to `true` by default, but you can turn it off
 
 ### Kafka group rebalancing behavior
 
-If a Kafka group rebalancing happens after that a projection has already been updated, projection changes will be generated anyway and the Real Time updater will still try to commit though.
+If a Kafka group rebalancing happens after a projection has already been updated, projection changes will be generated anyway and the Real Time updater will still try to commit though.
 
 :::note
 This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, the service would stop without generating any projection change.

@@ -13,11 +13,11 @@ Events allow users to be notified when certain operations are performed in the C
 
 All the events triggered by the Console share some common properties:
 
-| Property | Value | Description |
-|-|-|-|
-| `eventName` | `string` | The name of the event, usually in the form of `subject_action` |
-| `eventTimestamp` | `number` | The timestamp of the event emission |
-| `payload` | `object` | Contains the event-specific payload |
+| Property         | Value    | Description                                                    |
+|------------------|----------|----------------------------------------------------------------|
+| `eventName`      | `string` | The name of the event, usually in the form of `subject_action` |
+| `eventTimestamp` | `number` | The timestamp of the event emission                            |
+| `payload`        | `object` | Contains the event-specific payload                            |
 
 ### Project Created
 
@@ -25,30 +25,30 @@ This event will be triggered when a project is created successfully.
 
 #### Event `payload`
 
-| Property | Value | Description |
-|-|-|-|
-| `tenantId` | `string` | The identifier of the Company the Project belongs to |
-| `projectId` | `string` | The identifier of the newly created Project |
+| Property    | Value    | Description                                          |
+|-------------|----------|------------------------------------------------------|
+| `tenantId`  | `string` | The identifier of the Company the Project belongs to |
+| `projectId` | `string` | The identifier of the newly created Project          |
 
 <Tabs>
 <TabItem value="example" label="Example" default>
 
-  ```json
-  {
+```json
+{
     "eventName": "project_created",
     "eventTimestamp": 123456,
     "payload": {
       "tenantId": "my-company-id",
       "projectId": "0000000000000001"
     }
-  }
-  ```
+}
+```
 
 </TabItem>
 <TabItem value="json-schema" label="JSON Schema">
 
-  ```json
-  {
+```json
+{
     "additionalProperties": false,
     "properties": {
       "eventName": {
@@ -76,8 +76,8 @@ This event will be triggered when a project is created successfully.
     },
     "required": ["eventName", "eventTimestamp", "payload"],
     "type": "object"
-  }
-  ```
+}
+```
 
 </TabItem>
 </Tabs>
@@ -87,23 +87,24 @@ This event will be triggered when a project is created successfully.
 This event will be triggered when a microservice is successfully generated from a marketplace template or example.
 
 :::note
-The event is triggered as soon as the service's repository is successfully created, hence there is no guarantee that the service will be found into the project configuration, yet.
+The event is triggered as soon as the service's repository is successfully created,
+hence there is no guarantee that the service will be found in the project configuration, yet.
 :::
 
 #### Event `payload`
 
-| Property | Value | Description |
-|-|-|-|
-| `tenantId` | `string` | The identifier of the tenant to which the project belongs |
-| `projectId` | `string` | The identifier of the tenant to which the project belongs |
-| `repositoryURL` | `string` | The URL of the repository that hosts the service code |
-| `serviceName` | `string` | The name of the service inside the project configuration |
-| `templateId` | `string` | The identifier of the template in the Console marketplace from which the service was created |
+| Property        | Value    | Description                                                                                  |
+|-----------------|----------|----------------------------------------------------------------------------------------------|
+| `tenantId`      | `string` | The identifier of the tenant to which the project belongs                                    |
+| `projectId`     | `string` | The identifier of the tenant to which the project belongs                                    |
+| `repositoryURL` | `string` | The URL of the repository that hosts the service code                                        |
+| `serviceName`   | `string` | The name of the service inside the project configuration                                     |
+| `templateId`    | `string` | The identifier of the template in the Console marketplace from which the service was created |
 
 <Tabs>
 <TabItem value="example" label="Example" default>
 
-  ```json
+```json
   {
     "eventName": "service_created",
     "eventTimestamp": 123456,
@@ -114,14 +115,14 @@ The event is triggered as soon as the service's repository is successfully creat
       "serviceName": "my-service",
       "templateId": "0000000000000002"
     }
-  }
-  ```
+}
+```
 
 </TabItem>
 <TabItem value="json-schema" label="JSON Schema">
 
-  ```json
-  {
+```json
+{
     "additionalProperties": false,
     "properties": {
       "eventName": {
@@ -161,7 +162,7 @@ The event is triggered as soon as the service's repository is successfully creat
     },
     "required": ["eventName", "eventTimestamp", "payload"],
     "type": "object"
-  }
+}
   ```
 
 </TabItem>

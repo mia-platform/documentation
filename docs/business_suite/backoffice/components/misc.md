@@ -11,6 +11,7 @@ This component is analogous to `mlc-antd-theme-manager` from [micro-lc](https://
 ## bk-auto-refresh
 
 Allows refreshing some resources with the selected interval.
+
 ```html
 <bk-auto-refresh></bk-auto-refresh>
 ```
@@ -40,7 +41,6 @@ Example:
 
 ### Properties & Attributes
 
-
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |intervals| - |number[] \| undefined|[5, 10, 30, 60]|a list of intervals in seconds|
@@ -48,13 +48,11 @@ Example:
 
 ### Listens to
 
-
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[loading-data](../events#loading-data)|sets internal loading state| - | - |
 
 ### Emits
-
 
 | event | description |
 |-------|-------------|
@@ -64,19 +62,25 @@ Example:
 
 None
 
-
 ## bk-confirmation-modal
 
 prompts the user for confirmation on certain actions
+
 ```html
 <bk-confirmation-modal></bk-confirmation-modal>
 ```
+
 ![confirmation-modal](../img/bk-confirmation-modal.png)
+
 #### Configure actions
+
 It is possible to mount custom components as confirmation/cancel buttons in the modal.
 For instance, the following example shows how to request for confirmation before the action of a button is performed.
+
 #### Example
+
 The following snippet of configuration shows an "Abort" button which performs a POST request to a given endpoint.
+
 ```json
 {
   "tag": "bk-button",
@@ -96,10 +100,13 @@ The following snippet of configuration shows an "Abort" button which performs a 
   }
 }
 ```
+
 In order to require confirmation for this action, it is possible to:
+
 - have the button spawn a Confirmation modal
 - have the "confirm" button of this modal perform the POST request
 as the following snippet shows:
+
 ```json
 {
   "tag": "bk-button",
@@ -148,7 +155,9 @@ as the following snippet shows:
   }
 }
 ```
+
 The "Abort" button will now launch a `require-confirm` event. The Confirmation modal listens to it and becomes visible, using its payload to match its state as follows:
+
 - 'title': the title of the modal
 - 'content': the text content of the modal
 - 'configCancel': a 'tag' / 'properties' pair for the cancel button
@@ -164,13 +173,11 @@ The cancel button does not perform any action: if clicked, the modal will simply
 |`height`|`height`|string|'50px'|height of the modal |
 |`width`|`width`|string|'520px'|width of the modal |
 
-
 ### Listens to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[require-confirm](../events#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
-
 
 ### Emits
 
@@ -178,16 +185,14 @@ The cancel button does not perform any action: if clicked, the modal will simply
 |-------|-------------|
 |Configurable events|on confirm or on cancel, it can forward events that were specified in the payload as the callback for the relative button click|
 
-
 ### Bootstrap
 
 None
 
-
-
 ## bk-drawer
 
 Generic drawer container for custom content and custom footer
+
 ```html
 <bk-drawer></bk-drawer>
 ```
@@ -211,30 +216,26 @@ Generic drawer container for custom content and custom footer
 |`width`| - |string \| number| - |width of the drawer |
 |`zIndex`|`z-index`|number| - |zIndex of the drawer |
 
-
 ### Listens to
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |[using-form-container](../events#using-form-container)|notifies a drawer is in use| - | - |
 
-
 ### Emits
 
 This component emits no event.
 
-
 ### Bootstrap
 
 None
-
-
 
 ## bk-layout
 
 Displays a menu, analogous to the [micro-lc](https://github.com/micro-lc/micro-lc) (version 2.0.0+) menu, which allows to navigate amongst plugins.
 
 ![layout](../img/bk-layout.png)
+
 ```html
 <bk-layout></bk-layout>
 ```
@@ -246,6 +247,7 @@ Displays a menu, analogous to the [micro-lc](https://github.com/micro-lc/micro-l
 `bk-layout` can be configured in a number of ways:
 
 ### Mode
+
 Three modes are available:
 
 ```typescript
@@ -335,6 +337,7 @@ Multiple menu items can be grouped into recursive structures, `categories` (coll
 All types of menu item have internationalized labels [LocalizedText](../core_concepts#localization-and-i18n).
 
 #### Href
+
 ```typescript
 export interface HrefMenuItem {
   /** Link's destination */
@@ -358,6 +361,7 @@ export interface HrefMenuItem {
 ```
 
 ### Application
+
 ```typescript
 export interface ApplicationMenuItem {
   /** Icon to visualize */
@@ -378,6 +382,7 @@ export interface ApplicationMenuItem {
 ```
 
 ### Category
+
 ```typescript
 export interface CategoryMenuItem {
   /** Menu items included in the category */
@@ -399,6 +404,7 @@ export interface CategoryMenuItem {
 ```
 
 ### Group
+
 ```typescript
 export interface GroupMenuItem {
   /** Menu items included in the group */
@@ -416,6 +422,7 @@ export interface GroupMenuItem {
 ```
 
 ### Properties & Attributes
+
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 | mode | mode | Mode | overlaySideBar | controls how the menu is visualized |
@@ -430,40 +437,41 @@ export interface GroupMenuItem {
 
 This component listens to no event.
 
-
 ### Emits
 
 This component emits no event.
-
 
 ### Bootstrap
 
 None
 
-
-
 ## bk-layout-container
 
 allows swapping layouts
+
 ```html
 <bk-layout-container></bk-layout-container>
 ```
+
 This component is meant to allow multiple configurations to live within the same plugin by:
+
 1. re-using `back-kit` components without letting functionalities (mostly clients') to trump each other
 2. render multiple layouts together like a page with table, then a card detail, then another table and so on
 3. condensate plugins into a single one.
 A simple instance would be a user which might want to explore multiple details connected with its user but
 persisted on different entities.
 Since a backend resource, like a database collection/table, is mostly mapped 1:1 on a `Backoffice` plugin using a single client, like the `bk-crud-client`, it is recommendable to use different plugins to render different collections.
-For those cases falling outside the previous scope, for instance a customer which might want to check simultaneously both its purchases and its current shopping cart which, if the latter is persisted, are 
+For those cases falling outside the previous scope, for instance a customer which might want to check simultaneously both its purchases and its current shopping cart which, if the latter is persisted, are
 definitively stored on different places, a layout that can be switched might come in handy.
 By reproducing an `element-composer`-compatible configuration, `bk-layout-container` provides a wrapper for different configurations wired to one or many `eventBus`.
 Such configurations can be switched by using a single event on the default bus coming from the `element-composer`, or anyway injected in the `bk-layout-container` instance on the page.
 
 ### customer example
-Let's then suppose we have a customer, a list of their previous purchases and a list of their 
+
+Let's then suppose we have a customer, a list of their previous purchases and a list of their
 current basket items.
 We could use different plugins. For previous purchases it would look like:
+
 ```json
 // previous-purchases.json
 {
@@ -497,7 +505,9 @@ We could use different plugins. For previous purchases it would look like:
   }
 }
 ```
+
 while current basket would look like:
+
 ```json
 // current-basket.json
 {
@@ -532,8 +542,10 @@ while current basket would look like:
   }
 }
 ```
-If the UI should instead include two tables in a page that can be visually swapped by a set of buttons or tabs, 
+
+If the UI should instead include two tables in a page that can be visually swapped by a set of buttons or tabs,
 by wrapping both configurations in the `bk-layout-container` does the job.
+
 ```json
 // single-plugin.json
 {
@@ -566,19 +578,23 @@ by wrapping both configurations in the `bk-layout-container` does the job.
   }
 }
 ```
-The `$default` key is not mandatory but is reserved and marks the layout to render on landing. The `bk-layout-container` has another property to avoid `$default` which is `currentLayout`. By setting `currentLayout` to `currentBasket`, the layout starts on the `currentBasket` config. 
+
+The `$default` key is not mandatory but is reserved and marks the layout to render on landing. The `bk-layout-container` has another property to avoid `$default` which is `currentLayout`. By setting `currentLayout` to `currentBasket`, the layout starts on the `currentBasket` config.
 Each layout has a dedicated `EventBus` instance which has the same name of the configuration key (
-  in this case `$default` and `currentBasket`). `$default` is the `EventBus` currently injected in the 
+  in this case `$default` and `currentBasket`). `$default` is the `EventBus` currently injected in the
   `bk-layout-container`.
 To override this behavior there is the key `busDiscriminator` which defaults to `$inherit` and takes the
 `EventBus` of its parent. Overriding means giving a new key to get a different bus, like `$default`. Any previously not existent key spawns a new `EventBus`.
 To swap layout an event has been reserved with label: `layout/change` and payload
+
 ```typescript
 type LayoutChangePayload = {
   layout: string
 }
 ```
-and layout must contain a valid `bk-layout-container` `content` prop key. A `bk-button` can be for instance used 
+
+and layout must contain a valid `bk-layout-container` `content` prop key. A `bk-button` can be for instance used
+
 ```json
 {
   "type": "element",
@@ -604,6 +620,7 @@ Adding the attribute `disable-shadow-dom` allows to disable the shadow dom for t
 
 :::caution
 `disable-shadow-dom` must be passed as attribute to `bk-layout-container`, and not as property. For instance:
+
 ```json
 {
   "type": "element",
@@ -616,6 +633,7 @@ Adding the attribute `disable-shadow-dom` allows to disable the shadow dom for t
   }
 }
 ```
+
 :::
 
 ### Properties & Attributes
@@ -626,6 +644,243 @@ Adding the attribute `disable-shadow-dom` allows to disable the shadow dom for t
 |`disableShadowDom`| `disable-shadow-dom` \| boolean | false | disable the shadow dom as render root |
 |`currentLayout`|`current-layout`|string| - |default layout to view on landing |
 
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[layout/change](../events#layout---change)|requires the connection of the layout which is referenced in the event payload| - | - |
+
+### Emits
+
+This component emits no event.
+
+### Bootstrap
+
+None
+
+## bk-layout-swap
+
+:::caution
+works only with `@micro-lc/composer@^2` and `@micro-lc/orchestrator@^2`
+:::
+
+allows swapping between different document fragments / compose configurations
+
+```html
+<bk-layout-swap></bk-layout-swap>
+```
+
+The use case this component addresses is when two or more configurations live in the same
+page but they need to be rendered conditionally, using another component, such as `bk-tabs`
+or `bk-button` to swap them.
+
+Let's say we'd like to swap between a table view like
+
+```json
+[
+  {
+    "tag": "bk-table",
+    ...
+  }
+]
+```
+
+and a calendar component
+
+```json
+[
+  {
+    "tag": "bk-calendar",
+    ...
+  }
+]
+```
+
+and we'd use a pair of buttons, both firing the `layout/change` event,
+with the payload `layout: table` and `layout: calendar` to reach either
+layout
+
+```json
+[
+  {
+    "tag": "bk-button",
+    "properties": {
+      "content": "Go to Table",
+      "action": {
+        "type": "event",
+        "config": {
+          "events": {
+            "label": "layout/change",
+            "payload": {
+              "layout": "table"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "tag": "bk-button",
+    "properties": {
+      "content": "Go to Calendar",
+      "action": {
+        "type": "event",
+        "config": {
+          "events": {
+            "label": "layout/change",
+            "payload": {
+              "layout": "calendar"
+            }
+          }
+        }
+      }
+    }
+  }
+]
+```
+
+This structure can be inserted within a `bk-layout-swap`. This component has a
+property `layout` and a mirror attribute `bootstrap-layout` which choose the layout to
+display. Each layout must be a unique HTML element with a `slot` property set to
+the layout it represents. The content of the layout stays inside the relative HTML element.
+
+```html
+<bk-layout-swap bootstrap-layout="layout1">
+  <div slot="table">
+    <bk-table />
+  </div>
+  <div slot="calendar">
+    <bk-calendar />
+  </div>
+</bk-layout-swap>
+```
+
+when a `layout/change` event is fired the `bk-layout-swap` will show only the matching
+branch amongst is direct children according to the `slot` attribute.
+
+The initial layout is controlled either by the `layout` property or the `bootstrap-layout`
+attribute.
+
+The configuration looks like this:
+
+```json
+[
+  {
+    "tag": "bk-button", "properties": {...}
+  },
+  {
+    "tag": "bk-layout-swap",
+    "properties": {
+      "layout": "table"
+    },
+    "content": [
+      {
+        "tag": "div",
+        "attributes": {
+          "slot": "table"
+        },
+        "content": {
+          "tag": "bk-table",
+          "properties": {
+            ...
+          }
+        }
+      },
+      {
+        "tag": "div",
+        "attributes": {
+          "slot": "calendar"
+        },
+        "content": {
+          "tag": "bk-table",
+          "properties": {
+            ...
+          }
+        }
+      }
+    ]
+  }
+]
+```
+
+There are differences between `bk-layout-container` and this component:
+
+1. the inner elements are never in shadow DOM -> `disable-shadow-dom` is not needed here
+2. there's no composing on layouts after the initialization
+3. this component does not handle the communication layer of components. `eventBus` is injected by the composer on each component. To isolate components the property `eventBus` must be tuned locally for each component.
+
+:::caution
+this component, due to the fact it must be loaded in advance, is bundled separately at `/bk-layout-swap.esm.js`
+:::
+
+Let's say we have two layouts with different CRUD clients and we'd like to scope them on different channels
+
+- a couple of `bk-button`s must have the same bus of the `bk-layout-swap` to swap layouts
+- a `bk-table` must talk with an instance of a `bk-crud-client`
+- another `bk-table` must talk with another instance of a `bk-crud-client`
+
+That summarizes to
+
+```json
+{
+  {
+    "tag": "bk-crud-client",
+    "properties" {
+      "reflectToUrl": false,
+      "eventBus": "eventBus.pool.table1",
+      ...
+    }
+  },
+  {
+    "tag": "bk-crud-client",
+    "properties" {
+      "reflectToUrl": false,
+      "eventBus": "eventBus.pool.table2",
+      ...
+    }
+  },
+  {
+    "tag": "bk-layout-swap",
+    "properties": {
+      "layout": "table"
+    },
+    "content": [
+      {
+        "tag": "div",
+        "attributes": {
+          "slot": "table"
+        },
+        "content": {
+          "tag": "bk-table",
+          "properties": {
+            "eventBus": "eventBus.pool.table1",
+            ...
+          }
+        }
+      },
+      {
+        "tag": "div",
+        "attributes": {
+          "slot": "calendar"
+        },
+        "content": {
+          "tag": "bk-table",
+          "properties": {
+            "eventBus": "eventBus.pool.table2",
+            ...
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`layout`|`bootstrap-layout`|string| - |default layout to view on landing and then current layout|
 
 ### Listens to
 
@@ -633,17 +888,13 @@ Adding the attribute `disable-shadow-dom` allows to disable the shadow dom for t
 |-------|--------|-------|----------|
 |[layout/change](../events#layout---change)|requires the connection of the layout which is referenced in the event payload| - | - |
 
-
 ### Emits
 
 This component emits no event.
 
-
 ### Bootstrap
 
 None
-
-
 
 ## bk-loading-animation
 
@@ -653,6 +904,7 @@ This component is analogous to `mlc-loading-animation` from [micro-lc](https://m
 ## bk-modal
 
 Generic modal container for custom content and custom footer
+
 ```html
 <bk-modal></bk-modal>
 ```
@@ -675,7 +927,6 @@ Generic modal container for custom content and custom footer
 |`width`|`width`|string| - |width of the modal |
 |`zIndex`|`z-index`|number| - |zIndex of the modal |
 
-
 ### Listens to
 
 | event | action | emits | on error |
@@ -683,17 +934,13 @@ Generic modal container for custom content and custom footer
 |[open-modal](../events#open-modal)|opens the modal| - | - |
 |[close-modal](../events#close-modal)|closes the modal| - | - |
 
-
 ### Emits
 
 This component emits no event.
 
-
 ### Bootstrap
 
 None
-
-
 
 ## bk-notification-center
 
@@ -720,7 +967,9 @@ type Notification = {
   onClickCallback?: CallbackHref
 }
 ```
+
 where
+
 ```typescript
 type CallbackHref = {
   content: content: string | {url: string, data: any};
@@ -750,7 +999,9 @@ Additionally, if `clickStrategy` is `push`, `onClickCallback` may also be an obj
 When `clickConfig` is set to `push`, `bk-notification-center` may be used in conjunction with a component such as [bk-state-adapter](./adapters.md#bk-state-adapter), which consumes the page state to emit custom events.
 
 For instance, given two plugins located at "/plugin-1" and "/plugin-2", with configurations:
-  - /plugin-1
+
+- /plugin-1
+
   ```json
   {
     ...
@@ -765,7 +1016,9 @@ For instance, given two plugins located at "/plugin-1" and "/plugin-2", with con
     ...
   }
   ```
-  - /plugin-2
+
+- /plugin-2
+
   ```json
   {
     ...
@@ -783,6 +1036,7 @@ For instance, given two plugins located at "/plugin-1" and "/plugin-2", with con
   ```
 
 clicking in plugin-1 on a notification like:
+
 ```json
 {
   ...
@@ -798,6 +1052,7 @@ clicking in plugin-1 on a notification like:
 ```
 
 triggers navigation to `/plugin-2`, and once there an event with label `add-filter` and payload
+
 ```json
 {
   "property": "lastname",
@@ -805,6 +1060,7 @@ triggers navigation to `/plugin-2`, and once there an event with label `add-filt
   "value": "Smith"
 }
 ```
+
 is emitted by `bk-state-adapter`.
 :::
 
@@ -856,7 +1112,6 @@ The following is a valid configuration, in the default title of `bk-notification
 }
 ```
 
-
 ### Resource fetching mode
 
 ```typescript
@@ -867,7 +1122,6 @@ enum ClickStrategies =
 ```
 
 Determines how the data is automatically fetched. If `polling`, the property `pollingFrequency` determines the fetching frequency (in milliseconds). If `default` or `none`, data is not fetched automatically.
-
 
 ### Backend communication
 
@@ -1013,6 +1267,7 @@ None
 
 displays toast notifications about events happening on the EventBus according to the maps provided as props
 ![notifications](../img/bk-notifications.png)
+
 ```html
 <bk-notifications></bk-notifications>
 ```
@@ -1123,15 +1378,19 @@ For instance, [bk-crud-client](./clients.md#bk-crud-client) reacts to events lik
 ```
 
 With a configuration like the one in the example, when a `create-data` event is emitted:
+
   1) `bk-crud-client` performs a POST call
   2) assuming the call to be successful, `bk-crud-client` emits a `success` event with `meta`:
+
   ```json
   {
     ...
     "triggeredBy": "create-data"
   }
   ```
+
   3) `bk-notifications` emits a notification with properties:
+
   ```json
   {
     "title": "Data correctly created!",
@@ -1213,7 +1472,6 @@ In the following configuration, `bk-button` component is configured to perform a
 }
 ```
 
-
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
@@ -1225,7 +1483,6 @@ In the following configuration, `bk-button` component is configured to perform a
 |`rootElementSelectors`|`root-element-selectors`|string| - |selector to specify where the notification should be appended |
 |`successEventMap`| - |NotificationsMap|{}|map containing the labels of any event that triggered a `success` that should be notified with the related `notificationproperties` |
 
-
 ### Listens to
 
 | event | action | emits | on error |
@@ -1234,11 +1491,9 @@ In the following configuration, `bk-button` component is configured to perform a
 |[error](../events#error)|displays a notification if the `triggeredBy` field contained in the `meta` of the event has been mapped in the `errorEventMap` property| - | - |
 |Configurable custom events|displays a notification on any event mapped in the `customEventMap` property| - | - |
 
-
 ### Emits
 
 This component emits no event.
-
 
 ### Bootstrap
 

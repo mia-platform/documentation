@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [v2.3.1]
+### Added
+- Added properties `urlMask` and `idKey` to web-component `ck-chart` that allow to fetch data by id  
+## [v2.3.0]
+### Added
+- Added new web-component `ck-chart`
+- `ck-add-plan-modal`now listens to `select-data` events, allowing to edit a selected plan
 ## [v2.2.0]
 ### Added
 - Added property `compatibleWithExcel` to `ck-export-form` that allow to specify if the downladed file should be compatible with Microsoft Excel

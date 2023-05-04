@@ -7,7 +7,8 @@ sidebar_label: ER Schema
 In this document we guide you through the configuration of the ER Schema (`erSchema.json`), one of the configuration files required by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc), [Real Time Updater](/fast_data/architecture.md#real-time-updater-rtu) and [Single View Trigger Generator](/fast_data/architecture.md#single-view-trigger-generator-svtg) in a low-code situation.
 
 :::tip
-If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx) :::
+If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx)
+:::
 
 
 ## Overview
@@ -173,15 +174,11 @@ Example:
 
 ## Use the No Code
 
-:::info
-This feature is still in **BETA**, so it is under active development. Pay attention using this feature.
-:::
-
 From version `10.6.0` of the Console, your project might have enabled the possibility to configure ER Schemas with the No Code feature.
 
 ![Complete View of an ER Schema](../../img/er-schema-complete-view.png)
 
-To do that, go to the _Projections_ section and click on the _ER_ Schemas_ tab: it will show a list of ER Schemas, ready to be opened and modified to your needs.
+To do that, go to the _Projections_ section and click on the _ER Schemas_ tab: it will show a list of ER Schemas, ready to be opened and modified to your needs.
 
 :::tip
 When opening the _ER Schemas_ list, you should also see the ER Schemas previously configured inside the existing Single Views.

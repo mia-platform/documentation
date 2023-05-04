@@ -17,7 +17,8 @@ The Dashboard contains the following panels, first depicted in sample screenshot
 
 ![projection changes dashboard - part 1](../../img/dashboards/projection_changes_1.png)
 
-| Panel Name                                        | Description                                                                                                 |
-|-------------------------------------------------- |------------------------------------------------------------------------------------------------------------ |
-| Total Number of Projections Changes in state NEW  | Shows the number of projection changes that have been updated and not yet read in the specified namespace.  |
-| System Projection Changes                         | Shows the number of projection changes that have been updated and not yet read in the whole cluster.        |
+
+| Panel Name                        | Chart Type               | Description                              |
+|---------------------------------- | ------------------------ | ---------------------------------------- |
+| Total Number of Projections Changes in state      | Line chart | Shows the number of projection changes that have been updated and not yet read in the specified namespace.  |
+| System Projection Changes                         | Line chart | Shows the number of projection changes that have been updated and not yet read in the whole cluster.        |

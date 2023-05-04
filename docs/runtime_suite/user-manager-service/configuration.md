@@ -20,6 +20,15 @@ The users collection needs the following service-specific fields.
 - **username** - `string`: the user username in the authentication service.
 - **email** - `string`: the user email address (also used in the authentication service).
 - **blocked** - `boolean`: it corresponds to the 'blocked' property in the authentication service.
+- **expirationDate** - `Date`: the expiration date/time of the user account.
+- **expirationId** - `string`: the ID of the job scheduled on the Timer Service to block the user on the expiration date/time.
+
+:::caution
+
+Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
+so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+
+:::
 
 :::tip
 On top of the aforementioned fields, you can add any field you want to this CRUD collection.
@@ -74,6 +83,7 @@ The User Manager Service accepts the following environment variables.
 - **ROND_ENABLED**: if `true` allows the UMS to integrate with Rönd. It defaults to `false` if not set.
 - **ROND_SERVICE**: the name of the Rönd service, it defaults to `rond-service` if not set.
 - **ROLES_CRUD_ENDPOINT**: the CRUD endpoint that stores the roles that can be assigned to users in the `roles` string array. When this environment variable is defined and the `permissions` property is added to the `USERINFO_ADDITIONAL_PROPERTIES` env var, the `/userinfo` endpoint will return also the user's `permissions`.
+- **TIMER_SERVICE**: the name of the Timer Service. **Required** if you want to block users automatically on expiration.
 
 :::info
 The roles CRUD should have the minimum required properties of the role object described in the `RBAC Data model` of the [Rönd documentation](https://rond-authz.io/docs/policy-integration). This is required because the user's permissions are resolved using the roleIds in the roles array. Roles with matching `roleId` are retrieved and user's permissions are merged in a single array.
