@@ -11,7 +11,7 @@ The Design Overview is a rich set of visualization tools accessible from the Com
 In the url, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
-This tool aggregates in a single table the resources across all the projects of the company, providing users with filtering and sorting capabilities. Users can easily search, sort and filter Endpoints, Microservices and CRUD collections and save custom views for easy access and sharing.
+This tool aggregates Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and CRUDs collections, and save custom views for easy access and sharing.
 
 ![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
@@ -23,6 +23,19 @@ The Homepage tab contains the list of resource views. They can be of two types:
 An example is in the following picture.
 
 ![Homepage](img/homepage.png)
+
+#### Default Views
+The Design Overview provides the following Default Views out-of-the-box:
+* *Undocumented Endpoints* - shows the endpoints from all Projects of a Company without any documentation; 
+* *Unprotected Endpoints* - shows the public-facing endpoints from all Projects of a Company without authentication;
+* *Replicated services* - shows the microservices from all Projects of a Company having more than one replica;
+* *CPU-intensive services* - shows the microservices from all Projects of a Company having CPU requests greater than 250 millicores;
+* *Memory-intensive services* - shows the microservices from all Projects of a Company having Memory requests greater than 250 Mi.
+
+An example is in the following picture.
+
+![Public Views](img/public-views.png)
+
 ### CRUD
 
 The CRUD Overview provides the user with a graphical cross-project overview of all the CRUDs collections.
@@ -78,6 +91,10 @@ An example is in the following picture.
 ![Microservices](img/microservices.png)
 
 ## Main functionalities
+
+### Security
+
+Resources displayed in both the Default and Public Views are protected by user permissions: the user only sees Resources of the Projects he has access to..
 
 ### Sorting
 
