@@ -93,8 +93,6 @@ This version addressed a few bugs, here is a comprehensive list:
 
 ## Marketplace
 
-### New Marketplace Components
-
 ### Marketplace Updates
 
 #### CRUD Service - v6.5.1
@@ -117,8 +115,6 @@ The full [changelog](/runtime_suite/crud-service/changelog.md) can be found in t
 Added a user expiration date feature via Timer Service and a user soft delete endpoint.
 
 ## Backoffice - 1.3.9
-
-### Bug Fix
 
 ### New Features
 
