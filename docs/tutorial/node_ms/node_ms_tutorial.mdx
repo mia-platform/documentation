@@ -718,10 +718,10 @@ dotnet add reference ../BrewUpApiTemplate/BrewUpApiTemplate.csproj
 We can now start to develop the tests.
 
 :::info
-Disclamer: the current example doesn't follow the .NET Framework best practice for simplicity of demonstration. Feel free to refactor the results as you see fit.
+Disclamer: the current example does not follow the .NET Framework best practice for simplicity of demonstration. Feel free to refactor the results as you see fit.
 :::
 
-In order for the test framework to reach our web application we have to to add the following line at the end of the `src/BrewUpApiTemplate/Program.cs` file.
+In order for the test framework to reach our web application we have to add the following line at the end of the `src/BrewUpApiTemplate/Program.cs` file.
 
 ``` csharp
 public partial class Program {}
@@ -789,7 +789,7 @@ public class ServiceErrorResponse
 }
 ```
 
-We have to create a mock for the web application we will use so that we can test it without making the real service requests. Create a `MockWebApplicationFactory.cs` file on the root of the **Tests** project with the following content.
+We have to create a mock for the web application we will use in order to test it without making the real service requests. Create a `MockWebApplicationFactory.cs` file on the root of the **Tests** project with the following content.
 
 ```csharp
 using System.Net.Http;
@@ -883,7 +883,7 @@ public class UnitTest1: IClassFixture<MockWebApplicationFactory>
 }
 ```
 
-In this test we tested only the "happy path," that is, returning the correct shipping cost for a new customer. To achieve full coverage by testing the inputs and the return of the default shipping cost you need to write more tests, so if you want to try that or just copy the complete test code below:
+In this test, we only tested the "happy path", i.e. the return of the correct shipping cost for a new customer. To achieve full coverage by testing the inputs and the return of the default shipping cost you need to write more tests, so if you want to try that or just copy the complete test code below:
 
 <details><summary>Tests and mocks to get full coverage:</summary>
 <p>
