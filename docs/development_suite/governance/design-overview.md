@@ -18,7 +18,7 @@ This tool aggregates in a single table the resources across all the projects of 
 
 The Homepage tab contains the list of resource views. They can be of two types:
 * *Default Views* - A predefined set of read-only views configured at Company level. All Company users can access these views, modifications (edit/delete) are not allowed, default filters and thresholds are configured into the Design Overview backend service;
-* *Public Views* - A set of editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
+* *Public Views* - A set of user-defined editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
 
 An example is in the following picture.
 
