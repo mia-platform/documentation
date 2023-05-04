@@ -40,7 +40,7 @@ Only Console Super Users can add or delete Company independent service accounts,
 
 #### Backoffice No Code Configurator now supports `guard` and `oneOf` properties
 
-From now on, it is possible to configure directly from the Backoffice No Code Configurator two type of properties: `guard` and `oneOf` peroperties. 
+From now on, it is possible to configure directly from the Backoffice No Code Configurator two type of properties: `guard` and `oneOf` properties. 
 
 Do not forget to checkout the [Backoffice](#backoffice---139) back-kit component library news!
 
