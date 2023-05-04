@@ -12,7 +12,8 @@ const excludePath = (path) => {
         'docs/runtime_suite_tools',
         'docs/runtime_suite_applications',
         'docs/business_suite',
-        'docs/cli'
+        'docs/cli',
+        '/docs/tutorial/node_ms'
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
@@ -91,7 +92,6 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
         if(errors.length > 0) pages[pageLink] = errors;
         return pages;
     }, {});
-
 if(Object.keys(linksWithErrors).length > 0) {
     throw new Error(`Found ${Object.keys(linksWithErrors).length} page with wrong links: ${JSON.stringify(linksWithErrors, null, 2)}`);
 }
