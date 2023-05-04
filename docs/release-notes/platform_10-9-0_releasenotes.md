@@ -28,7 +28,7 @@ Starting with this version, Mia-Platform Console supports GitHub Actions as a CI
 
 Within the Providers section, accessible through the Company Overview area, you can now configure a GitHub provider as a CI/CD tool and use it for the deployment of your workload.
 
-For more information, [go to the documentation](/development_suite/deploy/deploy.mdx).
+For more information, [go to the documentation](/development_suite/deploy/deploy.md).
 
 #### Managing Service Accounts at Console level
 
