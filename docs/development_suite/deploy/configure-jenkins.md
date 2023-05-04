@@ -1,5 +1,5 @@
 ---
-id: configuration
+id: configure-jenkins
 title:  Configure deployment with Jenkins
 sidebar_label: Configure deployment with Jenkins
 ---
