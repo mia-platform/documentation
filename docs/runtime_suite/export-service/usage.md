@@ -6,40 +6,33 @@ sidebar_label: Usage
 The service exports data following the configuration that is provided in the body of the POST Request.
 
 The body parameters are:
-* **url** [required]: the url of the input data source. This must respond with a `jsonl` response.
+* **url** [required]: the url of the input data source. The input data source must be compatible with the (https://jsonlines.org/)[JSON Lines] format.
 * **proxyHeaders** [optional] : list of headers you want to proxy to the external data source.
-* **exportType** [required]: the output format.
-The supported values are: `json`, `csv`, `html` and `xlsx`.
-* **contentType** [required]: the content type wanted as response. This depends by the exportType field:
-  * `application/json` for JSON
-  * `text/csv` for CSV
-  * `text/html` for HTML
-  * `application/octet-stream` for XLSX
-* **columns** [required]: list of columns you want to export. If specified a column not present in the input data source the result will have the corresponding column as empty.
-* **options** [optional]: field that permits to specify the following options:
-  * `booleanConfig`: specify the label wanted for either the true and false values. Can be set as any type of value.
-  * `csvSeparator`: define the separator for CSV. It can be `COMMA` or `SEMICOLON`; the default value is `COMMA`.
+* **exportType** [required]: the output format. The supported values are: `json`, `csv`, `xlsx` and `html`. HTML exports produce an HTML document containing a single table with the exported data.
+* **columns** [optional]: list of columns you want to export. If a column is not present in the input data source the result will include it as an empty string. If not specified, all columns present in the input source will be exported according to the default JavaScript property order (numbers in ascending order followed by strings in insertion order). If specified, `csv`, `html` and `xlsx` exports will also include a header row specifying the exported column names.
+* **options** [optional]:
+  * `booleanConfig`: specify the label wanted for either the true and false values. Can be set to any valid JSON value.
+  * `csvSeparator`: defines the separator for CSV. It can be `COMMA` or `SEMICOLON`; the default value is `COMMA`.
 
-Following an example of body:
+Here you can find an example body of an export request:
 ```javascript
 {
-   "url":"http://localhost:5000/Input",
-   "proxyHeaders":[
+   "url": "http://example.com/some-jsonl-resource",
+   "proxyHeaders": [
       "secret"
    ],
-   "exportType":"csv",
-   "contentType":"text/csv",
-   "columns":[
+   "exportType": "csv",
+   "columns": [
       "field1",
       "field2",
       "field3"
    ],
-   "options":{
-      "booleanConfig":{
-         "trueLabel":1,
-         "falseLabel":false
+   "options": {
+      "booleanConfig": {
+         "trueLabel": 1,
+         "falseLabel": false
       },
-      "csvSeparator":"SEMICOLON"
+      "csvSeparator": "SEMICOLON"
    }
 }
 ```

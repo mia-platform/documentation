@@ -3,6 +3,30 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.0.1] - 2023-05-02
+
+### Added
+
+- support for properties with different possible `oneOf` schemas depending on the value of a guard
+
+### Changes
+
+- Updated no applications placeholder
+- Updated no custom error pages placeholder
+
+### Fixed
+
+- `index.html` dom parser should use `getAttribute` instead of reaching `src` on script elements
+- Property modal container behaves well with nested object with same keys
+- CRUD endpoints are prefixed with `/v2`
+- `definitions` do not clear `updateById` changes
+
+### Versioning
+
+- `reactord` to version `9.1.0`
+- `@mia-platform-internal/console-types` to version `^0.8.16`
+- Dev dependencies updated
+
 ## [1.0.0] - 2023-04-11
 
 ### Versioning
