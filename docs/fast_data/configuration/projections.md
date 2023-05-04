@@ -59,7 +59,7 @@ Setting the Primary Keys creates automatically the unique indexes as explained [
 :::
 
 :::info
-When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
+When the `Real Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
 :::
 
 #### Generate projection fields from data sample
