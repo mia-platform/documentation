@@ -192,7 +192,7 @@ Most DBMSes have some way of exporting the database schema, producing a DDL file
 The maximum size of the DDL file is 20MB
 :::
 
-To import projections from a DDL you need to go through 3 main steps, explained in the below sections.
+To import projections from a DDL you need to go through three main steps, explained in the below sections.
 
 ### First Step
 
