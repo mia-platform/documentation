@@ -11,24 +11,24 @@ _May 04, 2023_
 
 ### New Features
 
-#### Selection of default providers for the Company's projects
+#### Selection of default Providers for the Company's Projects
 
-Within the Providers section in the Company Overview area it is now possible to find a new feature that allows the user with Company Owner permissions to be able to set the Default providers that will use all the new projects created on the respective company.
+In the Company Overview area, inside the Providers section, it is now possible to find a new feature that allows the user with Company Owner permissions to be able to set the Default Providers that will be used in all the new Projects created in the respective Company.
 
 ![Default Providers Selection](./img/v10.9_defaultProvider.png)
 
-This will enhance the governance for every Company Owner for company's projects and give better control over the management of company tools.
-The provider for each capability (Git Provider, CI/CD and Secret Manager) can always be changed in any moment via CMS.
+This will enhance the governance of Company Owners on all the Projects of their Companies, granting them better control over the management of company tools.
+The Provider for each capability (Git Provider, CI/CD and Secret Manager) can always be changed at any moment via CMS.
 
 For more information, [go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 #### GitHub Actions as CI/CD tool in Console
 
-Starting with this version, the console supports GitHub Actions as a CI/CD tool.
+Starting with this version, Mia-Platform Console supports GitHub Actions as a CI/CD tool.
 
-Within the Providers section accessible through the Company Overview area you can now configure a GitHub provider as a CI/CD tool and using it for the deployment of your workload.
+Within the Providers section, accessible through the Company Overview area, you can now configure a GitHub provider as a CI/CD tool and use it for the deployment of your workload.
 
-For more information, [go to the documentation](/development_suite/deploy/.mdx).
+For more information, [go to the documentation](/development_suite/deploy/deploy.mdx).
 
 #### Managing Service Accounts at Console level
 
@@ -48,7 +48,7 @@ Do not forget to checkout the [Backoffice](#backoffice---139) back-kit component
 
 This version addressed a few bugs, here is a comprehensive list:
 
-* We fixed an issue in the creation of a template/example that prevented the Git repository owner name from being filled in with special characters.
+* We fixed an issue in the creation of a template/example that prevented the Git repository owner name from being filled in with special characters
 * The `index.html` dom parser in the Backoffice Configurator now use `getAttribute` instead of reaching `src` on script elements
 * The Property modal container of the Backoffice Configurator behaves well with nested object with the same keys
 * The CRUD endpoints in the Backoffice Configurator are now prefixed with `/v2`
@@ -77,7 +77,7 @@ For more details on the service and its behavior, please check out the official 
 
 ### New Features
 
-The file picker of the Projection DDL modal import, that can be used in the System of Record section, now supports `.sql` file 
+The file picker of the Projection DDL modal import, that can be used in the System of Record section, now supports `.sql` file. 
 
 ### Improvements
 
@@ -124,7 +124,7 @@ Added a user expiration date feature via Timer Service and a user soft delete en
 
 #### `bk-crud-client` allows to disable url writing
 
-New property `reflectToUrl` allows to control whether `bk-crud-client` reflects its state to the URL with a `window.history.pushState`
+New property `reflectToUrl` allows to control whether `bk-crud-client` reflects its state to the URL with a `window.history.pushState`.
 
 #### New component `bk-layout-swap`
 
@@ -134,7 +134,7 @@ New component [`bk-layout-swap`](/business_suite/backoffice/components/misc.md#b
 
 #### Form components resolve lookups on creation
 
-Form components correctly resolve lookups in initial values from `add-new` event payload
+Form components correctly resolve lookups in initial values from `add-new` event payload.
 
 ## How to update your Console
 
