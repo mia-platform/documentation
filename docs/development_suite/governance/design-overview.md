@@ -16,7 +16,7 @@ This tool aggregates in a single table the resources across all the projects of 
 ![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
 
-The Homepage tab is opened by default on clicked event and contains the following view types:
+The Homepage tab contains the list of resource views. They can be of two types:
 * *Default Views* - A predefined set of read-only views configured at Company level. All Company users can access these views, modifications (edit/delete) are not allowed, default filters and thresholds are configured into the Design Overview backend service;
 * *Public Views* - A set of editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
 
