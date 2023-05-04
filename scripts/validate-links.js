@@ -60,6 +60,7 @@ const linkToCheck = (link) => {
 const checkLink = (link) => {
     const [path] = link.split('#');
     const pathToCheck = `${docsFolder}/docs${path}`;
+    console.log('pathToCheck: ', pathToCheck);
     let errors = [];
 
     if(path.toLowerCase().startsWith('http') || path.toLowerCase().startsWith('https')) {
@@ -79,6 +80,7 @@ const linksWithErrors = readFiles(docsFolder+'/docs/')
     .filter(f => f.endsWith('.md') || f.endsWith('.mdx'))
     .reduce((pages, pageLink) => {
         const content = fs.readFileSync(pageLink, 'utf8');
+        console.log('pageLink: ', pageLink);
         const links = content.match(/!?\[([^\]]*)\]\(([^)]+)\)/gm);
         const errors = links ? links
             .map(l => l.match(/\[.*\]\((.*)\)/)[1])
