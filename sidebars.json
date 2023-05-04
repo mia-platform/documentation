@@ -54,30 +54,80 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/debugging/telepresence",
-          "type": "doc"
-        }
-      ],
-      "label": "Debug",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/deploy/deploy",
+          "id": "development_suite/set-up-infrastructure/create-project",
           "type": "doc"
         },
         {
-          "id": "development_suite/deploy/configuration",
+          "label": "Kustomize your configurations",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/projects",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/kustomize/examples",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/add-environment",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/remove-environment",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Runtime Environments",
+          "type": "category",
+          "link": {
+            "id": "development_suite/set-up-infrastructure/runtime-environments",
+            "type": "doc"
+          }
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/env-var-vault",
+              "type": "doc"
+            }
+          ],
+          "label": "Manage Environment Variables",
+          "type": "category",
+          "link": {
+            "id": "development_suite/set-up-infrastructure/env-var",
+            "type": "doc"
+          }
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/authorization-flow",
           "type": "doc"
         },
         {
-          "id": "development_suite/deploy/configure-github-actions",
+          "id": "development_suite/api-portal/api-documentations",
           "type": "doc"
         }
       ],
-      "label": "Deploy what you have created",
+      "label": "Project Configuration",
       "type": "category"
     },
     {
@@ -270,24 +320,20 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/identity-and-access-management/console-levels-and-permission-management",
+          "id": "development_suite/deploy/deploy",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/user-management",
+          "id": "development_suite/deploy/configuration",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/service-account-management",
+          "id": "development_suite/deploy/configure-github-actions",
           "type": "doc"
         }
       ],
-      "link": {
-        "type": "doc",
-        "id": "development_suite/identity-and-access-management/overview"
-      },
-      "type": "category",
-      "label": "Identity and Access Management"
+      "label": "Deploy what you have created",
+      "type": "category"
     },
     {
       "collapsed": true,
@@ -336,102 +382,35 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/set-up-infrastructure/create-project",
-          "type": "doc"
-        },
-        {
-          "label": "Kustomize your configurations",
-          "type": "category",
-          "collapsed": true,
-          "link": {
-            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
-            "type": "doc"
-          },
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/kustomize/projects",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/kustomize/examples",
-              "type": "doc"
-            }
-          ]
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/add-environment",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/remove-environment",
-              "type": "doc"
-            }
-          ],
-          "label": "Manage Runtime Environments",
-          "type": "category",
-          "link": {
-            "id": "development_suite/set-up-infrastructure/runtime-environments",
-            "type": "doc"
-          }
-        },
-        {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/env-var-vault",
-              "type": "doc"
-            }
-          ],
-          "label": "Manage Environment Variables",
-          "type": "category",
-          "link": {
-            "id": "development_suite/set-up-infrastructure/env-var",
-            "type": "doc"
-          }
-        },
-        {
-          "id": "development_suite/set-up-infrastructure/authorization-flow",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/api-portal/api-documentations",
+          "id": "development_suite/debugging/telepresence",
           "type": "doc"
         }
       ],
-      "label": "Project Configuration",
+      "label": "Debug",
       "type": "category"
     },
     {
       "collapsed": true,
-      "type": "category",
-      "label": "Use Cases",
-      "link": {
-        "type": "generated-index",
-        "title": "Use Cases",
-        "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": [
-          "use-cases",
-          "guides"
-        ],
-        "slug": "development_suite/use-cases"
-      },
       "items": [
         {
-          "id": "development_suite/use-cases/grpc",
+          "id": "development_suite/identity-and-access-management/console-levels-and-permission-management",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/user-management",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/service-account-management",
           "type": "doc"
         }
-      ]
+      ],
+      "link": {
+        "type": "doc",
+        "id": "development_suite/identity-and-access-management/overview"
+      },
+      "type": "category",
+      "label": "Identity and Access Management"
     },
     {
       "collapsed": true,
@@ -474,6 +453,27 @@
     {
       "type": "autogenerated",
       "dirName": "cli"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Use Cases",
+      "link": {
+        "type": "generated-index",
+        "title": "Use Cases",
+        "description": "A list of advanced use cases and how to configure in Console",
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
+        "slug": "development_suite/use-cases"
+      },
+      "items": [
+        {
+          "id": "development_suite/use-cases/grpc",
+          "type": "doc"
+        }
+      ]
     }
   ],
   "cms": [
