@@ -55,7 +55,7 @@ With these new tools your company can grow faster than ever, become more connect
 
 ## How is Fast Data different from similar products?
 
-"ETL" systems (Extract, Transform, Load) are not a big news, they have been around for decades and their principles are now a staple in the industry. So what makes Fast Data stand out from the crowd? It is easy to set up thanks to its **low code** functionality, fully customizable injecting actual javascript code as configuration, and part of an **ecosystem** that will grant you all the tools you need to make the most out of your standardized and aggregated data.
+"ETL" systems (Extract, Transform, Load) are not big news, they have been around for decades and their principles are now a staple in the industry. So what makes Fast Data stand out from the crowd? It is easy to set up thanks to its **low code/ no code** functionality, fully customizable injecting actual javascript code as configuration, and part of an **ecosystem** that will grant you all the tools you need to make the most out of your standardized and aggregated data.
 
 Moreover, Fast Data is used in production by many large companies, with millions of events handled every day, so you can be confident it is a reliable solution.
 

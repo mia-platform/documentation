@@ -1,23 +1,23 @@
 ---
 id: no_code_overview
-title: Fast Data Low Code Overview
-sidebar_label: Fast Data Low Code Overview
+title: Fast Data Low Code/ No Code Overview
+sidebar_label: Fast Data Low Code/ No Code Overview
 ---
 
 :::tip
 If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx)
 :::
 
-The "Low Code" version of Fast Data is the new standard that leverages the power of configurations to overcome coding complexity in Fast Data setup.
-This experience is based on two main fundamentals: No Code Fast Data and Low Code Fast Data
+The "Low Code" and "No Code" versions of Fast Data are the new standards that leverage the power of configurations to overcome coding complexity in Fast Data setup.
+This experience is based on two main fundamentals: No Code Fast Data and Low Code Fast Data.
 
-Thanks to No Code, you will have the possibility to configure your project with a few clicks.
+Thanks to No Code, you will have the possibility to configure your project with a few clicks. And as of version 10.6.0, if you enable the No Code feature (you may have to contact your System Administrator in order to do so), you will have the ability to define relationships between the projections in the ER Schema.
 
 Thanks to Low Code, you will only need to define for your Fast Data projects:
 
-1. The relationships between the projections, in the ER Schema
-2. A flow of the projection changes that should trigger specific Single Views to update
-3. A declarative definition of the Single Views, based on the fields of the projections and other, more flexible solutions.
+1. The relationships between the projections, in the ER Schema. *(Can also be defined with No Code now)*
+2. A flow of the projection changes that should trigger specific Single Views to update. *(Coming soon in No Code)*
+3. A declarative definition of the Single Views, based on the fields of the projections and other, more flexible solutions. *(Coming soon in No Code)*
 
 On this page, you can find an overview of which are the steps involved in a No Code workflow or Low Code one, with links to the technicalities for delving into greater detail. Before that, we want to clarify what we mean by "No Code" and "Low Code".
 
@@ -37,7 +37,9 @@ The Fast Data Low Code experience is basically composed by some steps with No Co
 
 The creation of the System of Records is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Records that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](/fast_data//configuration/realtime_updater/low_code.md) microservice.
 
-#### ER Schema definition and other Configmaps (Low Code)
+### ER Schema definition and other Configmaps (Low Code/ No Code)
+
+#### Low Code
 
 The Real Time Updater Low Code needs some configurations:
 
@@ -45,6 +47,10 @@ The Real Time Updater Low Code needs some configurations:
 - The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater/common.md#projection-changes): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
+
+#### No Code
+
+If this feature is enabled, you will be able to build an ER Schema using an interactive canvas without the use of code. You will still have the Low Code JSON editor if needed, and you can seamlessly switch editing between it and the No Code canvas. (Available on versions after 10.6.0)
 
 ### Adding a Low Code Single View Creator (Low Code)
 
@@ -58,6 +64,6 @@ Also, in this case, it is needed to configure some Config Maps:
 
 ![Singleviewlowcode](./img/singleviewlowcode.png)
 
-#### Linking Strategies (No Code)
+### Linking Strategies (No Code)
 
 The Fast Data No Code experience ends with the possibility to link a [strategy](/fast_data/the_basics.md#strategies) to your single view. To do that, you need to go in the `strategies` section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.
