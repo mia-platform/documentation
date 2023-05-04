@@ -10,12 +10,11 @@ The Kafka Projection Updates is a JSON file which describes for each projection 
 
 ## Configuration Properties
 
-The configuration file is an object with keys representing the `PROJECTION_NAME` you are defining the strategy of. Every PROJECTION_NAME is associated with an object representing the strategy configuration, detailed above.
+The Kafka Projection Updates is made of the following fields:
 
-| Name | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| updatesTopic | String | - | - | The topic where the Projection Updates messages are sent, if you haven't created a topic for the projection yet take a look to our [naming conventions for the Projection Updates topics](/fast_data/inputs_and_outputs.md#topic-naming-convention-1). |
-| strategy | `__automatic__` \| `__lookup__` \| `__fromFile__` | - | - | - | Strategy you want to use onto this projection. |
+- `PROJECTION_NAME`: Name of the collection of the projection
+- `updatesTopic`: The topic where the Projection Updates messages are sent, if you haven't created a topic for the projection yet take a look to our [naming conventions for the Projection Updates topics](/fast_data/inputs_and_outputs.md#topic-naming-convention-1).
+- `strategy`: Strategy you want to use onto this projection. You can choose between `__automatic__`, `__lookup__` and `__fromFile__`
 
 
 <details><summary>Projection Updates Configuration</summary>

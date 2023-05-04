@@ -22,22 +22,19 @@ Don't forget to [declare your relationships both ways](#direction-of-the-relatio
 
 ## Configuration Properties
 
-The configuration file has two required fields:
-- _version_, the current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
-- _config_, the whole ER Schema config, detailed above.
+The ErSchema is made of the following fields:
+* `version`: Current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
+* `config`: The whole ER Schema config
+* `COLLECTION`: Name of a collection of the System of Records. There should be a `COLLECTION` object for each collection of the System of Records.
+* `outgoing`: List of all the related collections.
+* `RELATED_COLLECTION`: Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`.
+* `conditions`: List of conditions that connect the `COLLECTION` and the `RELATED_CONNECTION`.
+* `CONDITION_NAME`: Name of the condition, this is purely for debug purposes and we suggest using the following naming convention: `COLLECTION_to_RELATED_COLLECTION` (eg. dish_to_order_dish)
+* `oneToMany`: Specifies if there will be **more than one** `RELATED_COLLECTION` document related to a `COLLECTION` document. If false we will assume there will be **only one** `RELATED_COLLECTION` document related to another `COLLECTION` document. The default is `false`
+* `condition`: Object literal containing the condition
+* `RELATED_COLLECTION_FIELD_NAME`: A field name of the `RELATED_COLLECTION`
+* `COLLECTION_FIELD_NAME`: A field name of the `COLLECTION`
 
-| Name | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| COLLECTION | String | - | - | Name of a collection of the System of Records. There should be a `COLLECTION` object for each collection of the System of Records. |
-| outgoing | String[] | - | - | List of all the related collections. |
-| RELATED_COLLECTION | String | - | - | Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`. |
-| conditions | Condition[] | - | - | List of conditions that connect the `COLLECTION` and the `RELATED_CONNECTION`. |
-| CONDITION_NAME | String | - | - | Name of the condition, this is purely for debug purposes and we suggest using the following naming convention: `COLLECTION_to_RELATED_COLLECTION` (eg. dish_to_order_dish) |
-| oneToMany | boolean | - | false | Specifies if there will be **more than one** `RELATED_COLLECTION` document related to a `COLLECTION` document. If false we will assume there will be **only one** `RELATED_COLLECTION` document related to another `COLLECTION` document. |
-| RELATED_COLLECTION | String | - | - | Name of a collection related to the `COLLECTION`. There should be one `RELATED_COLLECTION` object for each collection related to `COLLECTION`. |
-| condition | Condition | - | - | Object literal containing the condition. |
-| RELATED_COLLECTION_FIELD_NAME | String | - | - | A field name of the `RELATED_COLLECTION` |
-| COLLECTION_FIELD_NAME | String | - | - | A field name of the `COLLECTION` |
 
 <details><summary>ER Schema Configuration</summary>
 
@@ -45,7 +42,7 @@ The configuration file has two required fields:
 
 ```json
 {
-  "version": "N.N.N",
+  "version": "X.Y.Z",
   "config": {
     "COLLECTION": {
       "outgoing": {
@@ -123,7 +120,7 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 
 ```json
 {
-  "version": "N.N.N",
+  "version": "X.Y.Z",
   "config": {
     "pr_dishes": {
       "outgoing": {

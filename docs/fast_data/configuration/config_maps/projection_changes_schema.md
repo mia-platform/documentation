@@ -12,16 +12,14 @@ by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View T
 
 ## Configuration Properties
 
-The configuration file has two required fields:
-- _version_, the current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
-- _config_, the whole Projection Changes Schema config, detailed above.
+The Projection Changes Schema is made of the following fields:
 
-| Name | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| SINGLE_VIEW_NAME | String | - | - | The name of the single view we want to aggregate |
-| paths | object[] | - | - | An array of possible paths to generate an identifier capable to match a single view document |
-| paths.[i].path | String[] | - | - | An ordered array of projections for the strategy to reach the `BASE_PROJECTION`. For example, if we receive an ingestion message on `PROJECTION_2` we know that in order to reach `BASE_PROJECTION` we must first look for all the documents of `PROJECTION_1` related to `PROJECTION_2` (the relationships are specified by the [ER Schema](/fast_data/configuration/config_maps/erSchema.md)). |
-| paths.[i].identifier | object | - | - | The projection changes identifier object that will be generated to match the single view document. Every key of the object will be a key of the identifier and every value of the object will be replaced with the `BASE_PROJECTION` documents found by the strategy |
+* `version`: Current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
+* `config`: The whole Projection Changes Schema config
+* `SINGLE_VIEW_NAME`: The name of the single view we want to aggregate
+* `paths`: An array of possible paths to generate an identifier capable to match a single view document
+* `path`: An ordered array of projections for the strategy to reach the `BASE_PROJECTION`. For example if we receive an ingestion message on `PROJECTION_2` we know that in order to reach `BASE_PROJECTION` we must first look for all the documents of `PROJECTION_1` related to `PROJECTION_2` (the relationships are specified by the [ER Schema](/fast_data/configuration/config_maps/erSchema.md)).
+* `identifier`: The projection changes identifier object that will be generated to match the single view document. Every key of the object will be a key of the identifier and every value of the object will be replaced with the `BASE_PROJECTION` documents found by the strategy
 
 
 <details><summary>Projection Changes Configuration</summary>
@@ -64,7 +62,7 @@ where within squared brackets is provided the filename containing the custom fun
 
 ```json
 {
-  "version": "N.N.N",
+  "version": "X.Y.Z",
   "config": {
     "SINGLE_VIEW_NAME": {
       "paths": [
