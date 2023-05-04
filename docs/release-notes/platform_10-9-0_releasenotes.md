@@ -22,14 +22,6 @@ The Provider for each capability (Git Provider, CI/CD and Secret Manager) can al
 
 For more information, [go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
-#### GitHub Actions as CI/CD tool in Console
-
-Starting with this version, Mia-Platform Console supports GitHub Actions as a CI/CD tool.
-
-Within the Providers section, accessible through the Company Overview area, you can now configure a GitHub provider as a CI/CD tool and use it for the deployment of your workload.
-
-For more information, [go to the documentation](/development_suite/deploy/deploy.md).
-
 #### Managing Service Accounts at Console level
 
 It is possible to create [Company-independent service accounts](/development_suite/identity-and-access-management/service-account-management.md#managing-company-independent-service-accounts) in case you need to give them privileges to perform [root-level operations](/development_suite/identity-and-access-management/console-levels-and-permission-management.md).
@@ -134,4 +126,4 @@ Form components correctly resolve lookups in initial values from `add-new` event
 
 ## How to update your Console
 
-For on-premise Console installations, please contact your Mia-Platform referent to know how to use the `Helm chart version X.X.X`.
+For on-premise Console installations, please contact your Mia-Platform referent to know how to use the `Helm chart version 9.0.15`.
