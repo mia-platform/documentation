@@ -58,18 +58,22 @@ This version addressed a few bugs, here is a comprehensive list:
 ### Breaking Changes
 
 #### Revamped Single View Trigger Generator
-We're thrilled to announce the release of v.2.0.1 of the Single View Trigger Generator, one of the Fast Data component. In this release, we've given the component a complete overhaul to optimize its performance and streamline its functionality.
 
-However, as with any major update, there are a few breaking changes to be aware of. We've renamed the following environment variables to better clarify their purpose:
+We're thrilled to announce the release of v2.0.1 of the Single View Trigger Generator, one of the Fast Data component. In this release, we've given the component a complete overhaul to optimize its performance and streamline its functionality.
+
+However, there are a few breaking changes to be aware of when migrating to this new version. In particular, the following environment variables have been renamed to better clarify their purpose:
+
 - `STRATEGIES_FOLDER` → `MANUAL_STRATEGIES_FOLDER`
-- `CUSTOM_FUNCTIONS_FOLDER` → `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`.
-We've also removed the `USE_AUTOMATIC` variable since the feature is now enabled in all the service configurations.  
+- `CUSTOM_FUNCTIONS_FOLDER` → `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`
+
+We have also removed the `USE_AUTOMATIC` variable since the feature is now enabled in all the service configurations.  
 Furthermore, the following environment variables are now required:
+
 - `SINGLE_VIEW_NAME`
 - `ER_SCHEMA_FOLDER`
 - `PROJECTION_CHANGES_SCHEMA_FOLDER`
 
-For more details on the service and its behavior, please check out the official [documentation](/fast_data/single_view_trigger_generator.md)
+For more details on the service and its behavior, please check out the official [documentation](/fast_data/single_view_trigger_generator.md).
 
 ### New Features
 
