@@ -11,7 +11,7 @@ The Design Overview is a rich set of visualization tools accessible from the Com
 In the url, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
-Through this tool, the governing entity of the company can have a graphical overview of the global configuration and cross-projects resources for CRUD's collections, Endpoints and Microservices.
+This tool aggregates in a single table the resources across all the projects of the company, providing users with filtering and sorting capabilities. Users can easily search, sort and filter Endpoints, Microservices and CRUD collections and save custom views for easy access and sharing.
 
 ![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
