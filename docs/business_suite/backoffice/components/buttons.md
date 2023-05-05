@@ -591,6 +591,7 @@ Each action in the component is executed with the following context:
   currentUser: ..., // data relative to the current user.
   selectedData: ..., // currently selected data. Requires `bulkButton` property to be true.
   context: ... // extra context set by mounting component
+  selectedParents: ... // history of parents through which the user has navigated to get to the current view
 }
 ```
 which allows for dynamic configurations through [handlebars syntax](https://handlebarsjs.com/guide/expressions.html).
@@ -684,6 +685,24 @@ In this configuration the property `urlMask` is specified to get the value of th
 - `selectedData`, contains an array of objects representation of the selected data. Requires the button to be [bulk mode](#bulk-button) - that is, property `bulkButton` to be true. Selected data is then accessible through `{{rawObject selectedData}}`.
 
 - extra context. `bk-button` supports extra context, which could be set by the user using `context` property, or, most of the times, by a parent component that mounts the button. For instance, [bk-table](./data_visualization.md#bk-table) component renders a table that mounts `bk-button` components inside its cells. `bk-table` provides the mounted buttons with [extra context](./data_visualization.md#dynamic-properties-interpolation) which can be used in action configuration.
+
+- `selectedParent`, contains an array with all the parent entities through which the user has navigated. As an example, if the user navigates through
+the employees of a selected company and then select a specific employee, `selectedParent.[0]` will return the selected company, while `selectedParent.[1]` will give the employee.
+```json
+{
+  ...
+  "tag": "bk-button",
+  "properties": {
+    ...
+    "action": {
+      "type": "http",
+      "config": {
+        "url": "/v2/companies/{{selectedParents.[0]._id}}/employees/{{args.[1]._id}}",
+        "method": "DELETE",
+      }
+    }
+}
+```
 
 ### Require confirmation before executing an action
 
