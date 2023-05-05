@@ -2425,6 +2425,21 @@
         {
           "collapsed": true,
           "type": "category",
+          "label": "Single View Trigger Generator",
+          "items": [
+            {
+              "type": "doc",
+              "id": "runtime_suite/single-view-trigger-generator/configuration"
+            },
+            {
+              "type": "doc",
+              "id": "runtime_suite/single-view-trigger-generator/changelog"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
           "label": "SMS Service",
           "items": [
             {
