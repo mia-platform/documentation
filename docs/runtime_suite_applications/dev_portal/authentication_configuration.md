@@ -10,7 +10,7 @@ In this guide, we show how to configure the Dev Portal with [Auth0](https://auth
 
 ## Protect the Dev Portal Entrypoint
 
-The first thing you want to do is to enable authentication on the Dev Portal entrypoints you want to protect. This step will inform the [Api Gateway](/runtime_suite/api-gateway/overview.md) to redirect any request to an authentication process.
+The first thing you want to do is to enable authentication on the Dev Portal entrypoints you want to protect. This step will inform the [Api Gateway](/runtime_suite/api-gateway/10_overview.md) to redirect any request to an authentication process.
 
 Move to the design area of the console, go to the endpoints page, and select a Dev Portal entrypoint you want to protect. By default, the main entrypoint selected when creating a new Dev Portal Application will be the `/` endpoint.
 
@@ -113,7 +113,7 @@ Now, go to the environment variables section and make sure they are compiled as 
 - **CUSTOM_PERMISSIONS_KEY**: permissions;
 - **AUTHORIZATION_HEADERS_TO_PROXY**: cookie,authorization.
 
-To have further details regarding the Authorization Service configuration please refer to the official [documentation](/runtime_suite/authorization-service/configuration.md).
+To have further details regarding the Authorization Service configuration please refer to the official [documentation](/runtime_suite/authorization-service/20_configuration.md).
 
 
 ## Configure Auth0 Client
@@ -199,7 +199,7 @@ Finally, move to the endpoints section and start creating the following endpoint
    - Microservice: **auth0-client**
    - Rewrite Base Path: **/oauth/token**
 
-To have further details regarding the Auth0 Client configuration please refer to the official [documentation](/runtime_suite/auth0-client/configuration.md).
+To have further details regarding the Auth0 Client configuration please refer to the official [documentation](/runtime_suite/auth0-client/20_configuration.md).
 
 ## Configure API Key clientType:
 

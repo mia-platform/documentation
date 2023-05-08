@@ -40,7 +40,7 @@ Here is a preview of how this type of form will look like:
 
 ### Client Credentials Form
 
-This type of form takes its name from the microservice handling the corresponding data model. You can have further details regarding the client credentials in the dedicated documentation [section](/runtime_suite/client-credentials/configuration.md)
+This type of form takes its name from the microservice handling the corresponding data model. You can have further details regarding the client credentials in the dedicated documentation [section](/runtime_suite/client-credentials/10_configuration.md)
 
 It includes all the basic information specified in the base form while adding the public key additional property:
 

@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- optional env variables to support pooled stmp:
+- optional env variables to support pooled smtp:
   - `POOL_ENABLED`: set to true to use pooled connections instead of creating a new connection for every email
   - `POOL_MAX_CONNECTIONS`: is the count of maximum simultaneous connections to make against the SMTP server
   - `POOL_MAX_MESSAGES`: limits the message count to be sent using a single connection

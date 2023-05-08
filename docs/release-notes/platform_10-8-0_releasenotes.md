@@ -24,7 +24,7 @@ To learn more about the providers supported by the Console and for a detailed ex
 #### No Code Backoffice Configurator
 
 :::info
-This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/structure.md) page for further information.
+This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/20_structure.md) page for further information.
 :::
 
 The Low Code experience when configuring the Backoffice is now evolving towards a **No Code** Configuration!  
