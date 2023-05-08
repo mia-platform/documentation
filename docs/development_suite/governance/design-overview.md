@@ -6,7 +6,7 @@ slug: "/development_suite/governance/design-overview"
 ---
 ## What is the Design Overview
 
-The Design Overview is a rich set of visualization tools accessible from the Company Section through the button next to Company name and the utility is provided under the url `$HOSTNAME_CONSOLE/tenants/:tenantId/governance/design-overview`.  
+The Design Overview is a rich set of visualization tools accessible from the Company Overview section and whose utility is provided under the URL `$HOSTNAME_CONSOLE/tenants/:tenantId/governance/design-overview`.  
 :::caution
 In the url, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
