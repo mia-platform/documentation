@@ -253,12 +253,12 @@ Delete operation:
 
 **producer**: the system producing its own events
 
-`<tenant>.<environment>.<source-system>.<projection>.ingestion`
+`<project>.<environment>.<projection>.ingestion`
 
 An example:
 
 ```sh
-test-tenant.PROD.system-name.test-projection.ingestion
+test-project.PROD.system-name.test-projection.ingestion
 ```
 
 ### Projection
@@ -419,12 +419,12 @@ channels:
 
 **producer** Real Time Updater
 
-`<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
+`<project>.<environment>.<collection>.pr-update`
 
 An example:
 
 ```sh
-test-tenant.PROD.restaurants-db.reviews-collection.pr-update
+test-project.PROD.restaurants-db.reviews-collection.pr-update
 ```
 
 ### Projection Change
@@ -574,12 +574,12 @@ channels:
 
 **producer**: Single View Trigger Generator
 
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
+`<project>.<environment>.<single-view-name>.sv-trigger`
 
 An example:
 
 ```sh
-test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger
+test-project.PROD.restaurants-db.reviews-sv.sv-trigger
 ```
 
 ## Aggregation
@@ -1060,10 +1060,10 @@ channels:
 
 **producer**: Single View Creator
 
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
+`<project>.<environment>.<single-view-name>.sv-update`
 
 An example:
 
 ```sh
-test-tenant.PROD.restaurants-db.reviews-sv.sv-update
+test-project.PROD.restaurants-db.reviews-sv.sv-update
 ```
