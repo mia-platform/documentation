@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Cron Scheduler
-sidebar_label: Overview
+sidebar_label: Cron Scheduler
 ---
 Mia-Platform integrates a Cron system to schedule operations at intervals decided by the developer.
 The implementation of the Cron involves two phases: the scheduling configuration and the implementation of the function to be performed.
