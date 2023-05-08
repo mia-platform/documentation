@@ -11,7 +11,7 @@ The Design Overview is a rich set of visualization tools accessible from the Com
 In the URL, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
-This tool aggregates Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and CRUDs collections, and save custom views for easy access and sharing.
+In the Design Overview you can aggregate Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and CRUDs collections, and save custom views for easy access and sharing.
 
 ![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
