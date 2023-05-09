@@ -110,7 +110,7 @@ All the Resources can be filtered by the filtering feature using the specific `A
 
 When the filters are applied, they are shown as chips giving the information on the filtered data and the possibility to remove the filter through the specific `X`. In the following example, we are filtering for the endpoints that have *Mark* or *Bob* as the owner but do not require Authentication nor the API-Key. 
 :::info
-The filters applied over the same column follow an OR logic, which means that the filter shows all the rows that match at least one of the filters, instead the filters applied over different columns follow an AND logic which means that an endpoint must satisfy all the columns filters in order to be shown. In the following example the filter can be read like this:   
+The filters applied over the same column follow an OR logic, which means that the filter shows all the rows that match at least one of the filters. Instead, the filters applied over different columns follow an AND logic, which means that an endpoint must satisfy all the columns' filters in order to be shown. In the following example, the filter can be read like this:   
 `(Owner == 'Mark' || Owner == 'Bob') && Authentication == 'not req.' && API-Key == 'not req.'`
 :::
 
