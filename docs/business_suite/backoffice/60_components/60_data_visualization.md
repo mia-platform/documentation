@@ -983,9 +983,9 @@ the resulting `thumbanil` is "default/file.jpg" and not "full/default/file.jpg
 
 ### Actions
 
-`onImageClick`, `onTitleClick`, `onSubTitleClick` and `actions` properties allow to add [actions](../50_actions.md) to the `bk-gallery`.
+`onImageClick`, `onTitleClick`, `onSubTitleClick` and `actions` properties allow to add [actions](../actions.md) to the `bk-gallery`.
 
-Properties `onImageClick`, `onTitleClick`, `onSubTitleClick` are of type [Action](../50_actions.md), while property `actions` is of type
+Properties `onImageClick`, `onTitleClick`, `onSubTitleClick` are of type [Action](../actions.md), while property `actions` is of type
 ```typescript
 type GalleryAction = {
   iconId?: string,
@@ -1068,9 +1068,9 @@ Each item can be selected through a checkbox, unless `disableSelection` property
 | `subTitleSource` | - | XPath | - | source path to subtitle text |
 | `disableSelection` | `disable-selection` | boolean | false | whether to disable the possibility to select gallery items |
 | `actions` | - | GalleryAction \| GalleryAction[] | - | available actions per gallery item |
-| `onImageClick` | - | [Action](../50_actions.md) | - | action to execute on image click |
-| `onTitleClick` | - | [Action](../50_actions.md) | - | action to execute on title click |
-| `onSubTitleClick` | - | [Action](../50_actions.md) | - | action to execute on subtitle click |
+| `onImageClick` | - | [Action](../actions.md) | - | action to execute on image click |
+| `onTitleClick` | - | [Action](../actions.md) | - | action to execute on title click |
+| `onSubTitleClick` | - | [Action](../actions.md) | - | action to execute on subtitle click |
 | `disableExpand` | `disable-expand` | boolean | false | whether to disable the possibility of viewing the image inside a modal (preview) |
 | `modalWidth` | `modal-width` | number \| string | - | width of the preview modal |
 | `modalHeight` | `modal-height` | number \| string | - | height of the preview modal |
@@ -1648,7 +1648,7 @@ In the first case, each element of the array is a `tag`-`properties` pair, respe
 | `tag` | string | any | custom component to mount |
 | `properties` | {[key: string]: any} | any | properties injected into the component |
 
-It is often useful mounting [bk-button](./20_buttons.md#bk-button)s inside the actions columns of the table because of its flexibility.
+It is often useful mounting [bk-button](buttons.md#bk-button)s inside the actions columns of the table because of its flexibility.
 
 `properties` field allows [dynamic interpolation](../40_core_concepts.md#dynamic-configuration), analogously to the case of mounting custom components using `visualizationOptions`, [explained above](#dynamic-properties-interpolation).
 

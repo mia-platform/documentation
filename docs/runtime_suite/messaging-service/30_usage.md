@@ -16,7 +16,7 @@ The body of the request should have the following shape.
 - **channels (required)** - `array of strings`: list of channels you want to send you message over. Possible values are `email`, `sms`, `push` and `voice`.
 
 :::caution
-This list has to be a subset of the `activeChannels` property specified in the [service configuration](./20_configuration.md#service-configuration).
+This list has to be a subset of the `activeChannels` property specified in the [service configuration](./configuration.md#service-configuration).
 :::
 
 - **recipients** - `array of string`: list of unique identifiers of the users you want to send your messages to. Required
@@ -25,16 +25,16 @@ if `clusters` is not defined.
 - **clusters** - `array of string`: users' clusters you want to send your messages to. Required if `recipients` is not defined.
 
 - **messageTitle** - `string`: title of the message. It will be used as title for e-mails and push notifications. Required 
-if `templateId` is not defined. It will be ignored if `templateId` is defined. It supports [interpolation](./10_overview.md#messages-interpolation).
+if `templateId` is not defined. It will be ignored if `templateId` is defined. It supports [interpolation](./overview.md#messages-interpolation).
 
 - **messageContent** - `string`: content of the message. It will be used as content for e-mails, sms, push and voice
 notifications. Required if `templateId` is not defined. It will be ignored if `templateId` is defined. It supports 
-[interpolation](./10_overview.md#messages-interpolation).
+[interpolation](./overview.md#messages-interpolation).
 
 - **templateId** - `ObjectId`: id of the template to be used for composing the message. Required if `messageTitle` and
 `messageContent` are not defined.
 
-- **data** - `object`: data used for [messages interpolation](./10_overview.md#messages-interpolation).
+- **data** - `object`: data used for [messages interpolation](./overview.md#messages-interpolation).
  
 - **emailAttachments** - `array of strings`: list of filenames that should be sent as mail attachments. The filename must be the same as that used in the file service to download it. It is possible to send attachments no larger than 15 MB. If no File Service is declared in the environment variables an error will be thrown.
 
