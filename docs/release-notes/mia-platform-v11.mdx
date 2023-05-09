@@ -83,45 +83,51 @@ In the Design Overview section – accessible from the Company Overview – you 
 
 ![Design Overview](./img/overview_v11/control-panel.png)
 
+### Console CLI
+
+For all CLI lovers, we have great news: Mia-Platform Console v11 will have its own CLI, let's welcome "miactl"!
+
+For the time being, the CLI will only be usable for PaaS users, but more good news will be coming soon.
+
+The commands supported to date are:
+
+* User authentication
+* Context management
+* Project visualization
+* Project deploy and status deploy
+
+We are constantly working to integrate more and more commands, stay tuned!
+
 ## Fast Data
 
 ### ER Schema No Code Configuration
 
 We understand the importance of a user-friendly interface, and that's why we have introduced the Er Schema No Code configuration for Fast Data.
-
 With this new feature, you can easily configure and build your ER Schema directly from the System of Record page. The ER Schema section is now more intuitive and easy to use, making it simpler to define relationships between projections and the rules that connect them to one another.
-
 One of the key advantages of this feature is the drag and drop functionality, which allows you to import projections into a canvas quickly. From there, you can easily define their relationships and create rules that connect them to one another.
-
 Overall, the Er Schema No Code configuration for Fast Data is a game-changer in terms of simplifying the process of configuring services from the console, making it easier than ever to create the Er Schema they need to power their data-driven applications.
 
-Find out more about this functionality in the official documentation! <!---TODO add link to the documentation-->
+Find out more about this functionality in the [official documentation](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code)!
 
-<!---TODO: add picture-->
+![ER Schema No Code](./img/overview_v11/er-schema-complete-view.png)
 
 ### Fast Data Connectors
 
 We are thrilled to announce one of the most requested feature to Fast Data, featuring the addition of new plug-and-play connectors that make it easier than ever to connect and manage your data.
-
 With these new connectors, you can seamlessly integrate your data from a wide variety of sources, including databases, bucket storages and more, leveraging on Debezium CDC and some other hand-made connectors.
-
 We understand that managing data can be a complex and time-consuming process, which is why we integrated these connectors to be as easy to use as possible. With just a few clicks, you can quickly and easily set up connections to your data sources, and start managing your data in a way that makes sense for your business.
-
 At the heart of Fast Data product is a commitment to helping our customers unlock the full potential of their data. With these new plug-and-play connectors, we are proud to take another step towards achieving this goal, and we look forward to seeing the many ways our customers will use them to drive their businesses forward.
 
-Do not miss out the official documentation! <!---TODO add link to the documentation-->
+Do not miss out the [official documentation](/fast_data/connectors/overview.md)!
 
 ### Bucket Storage Support
 
-Bucket Storage Support will provide users with a simple and reliable way to store and manage their data. Users can now easily store their data to a cloud storage bucket (Google and S3-like buckets are supported) and can be sure that their data is securely stored and easily accessible whenever they need it. This new feature also makes it easy to restore data wehnever is needed.
-
+We value data, and we value the importance of having different ways to store data and their accessibility. Bucket Storage Support will provide users with a simple and reliable way to store and manage their data. Users can now easily store their data to a cloud storage bucket (Google and S3-like buckets are supported) and can be sure that their data is securely stored and easily accessible whenever they need it. This new feature also makes it easy to restore data whenever is needed.
 Re-ingesting data has never been easier with the Bucket Storage Support feature. Users can now easily re-ingest their data into the system, which means they can restore data previously removed with few actions.
-
 Lastly, the Bucket Storage Support feature makes it possible to offload the projections storage. This means that users can now offload their projections relying on the data stored in this separate storage bucket, which reduces the amount of storage needed in the main system. This can lead to significant cost savings and improved system performance.
+The Bucket Storage Support feature provides users with greater control over their data and makes it easier to backup, re-ingest, and manage their data.
 
-In summary, the Bucket Storage Support feature provides users with greater control over their data and makes it easier to backup, re-ingest, and manage their data.
-
-Do not miss out the official documentation! <!---TODO add link to the documentation-->
+Do not miss out the [official documentation](/fast_data/bucket_storage_support/overview.md)!
 
 ## Marketplace
 
@@ -129,14 +135,11 @@ Do not miss out the official documentation! <!---TODO add link to the documentat
 
 ### Backoffice Low Code / No Code configurator
 
-This powerful feature empowers users to easily configure frontend pages in a no-code manner and easily configure properties to configure all the back-kit components and micro-lc in the same page.
-
-With this new feature, users can now quickly and easily customize the look and feel of their Backoffice pages without the need for technical skills or coding knowledge. This means that non-tech people can now have more control over their Backoffice design and functionality, resulting in a more streamlined and efficient workflow.
-
-The Backoffice Configurator No Code feature allows users to easily configure properties such as colors, layouts, and also enables them to configure all the back-kit components in the same page. This means that users can now quickly create custom Backoffice pages that are tailored to their specific needs and preferences.
-
+One of our mission is to simplify the Development Experience, and the Backoffice Low Code / No Code Configurator goes towards this direction. This powerful feature empowers users to easily configure frontend pages in a no-code manner and easily configure properties to configure all the back-kit components and micro-lc in the same page.
+With this new feature, users can now quickly and easily customize the look and feel of their Backoffice pages without the need for technical skills or coding knowledge. This means that non-tech people can now have more control over their Backoffice design and functionality, resulting in a more streamlined and efficient workflow, and creating pages that are tailored to their specific needs and preferences.
+The Backoffice Configurator No Code feature allows users to easily configure properties such as colors, layouts, and also enables them to configure all the back-kit components in the same page.
 Overall, the Backoffice Configurator No Code is a powerful and versatile tool that enables users to easily configure and customize their Backoffice pages with no technical skills or coding knowledge required.
 
-Do not miss out the official documentation! <!---TODO add link to the documentation-->
+Do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md)!
 
-<!---TODO: add picture-->
+![Backoffice No Code](./img/overview_v11/compose-page_layout.png)
