@@ -8,6 +8,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.5.2 - 2023-05-08
+
+### Changed
+
+- `__mia_configuration` property in a collection `schema` now accepts additional properties
+- improved validation message for "body must NOT have additional properties" Ajv error, now it also says the unwanted property
+- optimization of the __STATE__ query sent to MongoDB: $in operator has been removed when not necessary
+
 ## 6.5.1 - 2023-04-20
 
 ### Fixed

@@ -264,5 +264,5 @@ curl --location \
 :::
 
 :::info
-For further details and practical examples on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) 
+For further details and practical examples on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/20_usage.md) 
 :::

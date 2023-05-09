@@ -4,7 +4,7 @@ title: Swagger Aggregator Advanced Configuration
 sidebar_label: Swagger Aggregator
 ---
 
-In the Advanced section of the Design Area you can configure the [Swagger Aggregator](/runtime_suite/swagger-aggregator/overview.md).
+In the Advanced section of the Design Area you can configure the [Swagger Aggregator](/runtime_suite/swagger-aggregator/10_overview.md).
 
 The advanced configuration allows managing how the swagger APIs are exposed. Examples of possible configurations are:
 
@@ -41,7 +41,7 @@ Here is the list of the deprecated `.conf` files:
 Below are reported the more advanced properties that can be configured at the first level of `swagger-aggregator.json` file and how they can be employed to customize the Swagger Aggregator functionalities.
 
 :::info
-Remember that all the following properties (with the exceptions of `servicesUrlsBefore` and `servicesUrlsAfter`) can also be set through the configuration file, as described [here](/runtime_suite/swagger-aggregator/overview.md).
+Remember that all the following properties (with the exceptions of `servicesUrlsBefore` and `servicesUrlsAfter`) can also be set through the configuration file, as described [here](/runtime_suite/swagger-aggregator/10_overview.md).
 :::
 
 ## servicesUrlsBefore and servicesUrlsAfter
@@ -181,7 +181,7 @@ Do **not** edit `baseSwagger.conf` file, it is now deprecated and should not be 
 
 ## prefix
 
-Use first level `prefix` property to add to all routes a prefix. This feature may be useful when using multiple [API Gateways](/runtime_suite/api-gateway/overview.md) or when having a custom reverse proxy before your project.
+Use first level `prefix` property to add to all routes a prefix. This feature may be useful when using multiple [API Gateways](/runtime_suite/api-gateway/10_overview.md) or when having a custom reverse proxy before your project.
 
 ### prefix Example
 
