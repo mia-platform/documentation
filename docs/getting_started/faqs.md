@@ -96,7 +96,7 @@ No, you can only use **HTTP**.
 
 ### How can I change the state of a document?
 
-You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a document by making a POST request. Check out the [CRUD Service documentation](/runtime_suite/crud-service/overview_and_usage.md#state-transitions) for details.
+You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a document by making a POST request. Check out the [CRUD Service documentation](/runtime_suite/crud-service/10_overview_and_usage.md#state-transitions) for details.
 
 :::tip
 You can visit the [Documentation Portal](/development_suite/api-portal/api-documentations.md) to see the documentation of your CRUDs APIs.
@@ -110,7 +110,7 @@ You can change the visibility of any endpoint (and its routes) in the endpoint M
 
 ### How can I call a proxy endpoint from my microservices?
 
-The [proxy endpoints](/development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](/runtime_suite/api-gateway/overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
+The [proxy endpoints](/development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](/runtime_suite/api-gateway/10_overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
 
 You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.
 

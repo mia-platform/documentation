@@ -17,7 +17,7 @@ Below are listed some required routes that each microservice has to expose.
 
 `/documentation/json`
 
-Each microservice must expose the Swagger documentation route. For further information about Swagger, see the [Swagger Aggregator page](/runtime_suite/swagger-aggregator/overview.md).
+Each microservice must expose the Swagger documentation route. For further information about Swagger, see the [Swagger Aggregator page](/runtime_suite/swagger-aggregator/10_overview.md).
 
 ### Health routes ###
 
