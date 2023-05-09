@@ -98,7 +98,7 @@ Resources displayed in both the Default and Public Views are protected by user p
 
 ### Sorting
 
-If a column has the sort symbol ![Sort](img/sort-symbol.png) means that the Endpoint Overview output can be sorted corresponding features by clicking on the table header.
+If a column has the sort symbol ![Sort](img/sort-symbol.png) it means that the output can be sorted for the corresponding features by clicking on the table header.
 
 ![Sort](img/sort.png)
 
