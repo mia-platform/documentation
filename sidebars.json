@@ -2923,7 +2923,7 @@
   ],
   "releaseNotes": [
     {
-      "id": "release-notes/mia-platform-v10-overview",
+      "id": "release-notes/mia-platform-v11-overview",
       "type": "doc"
     },
     {
@@ -2936,59 +2936,7 @@
       },
       "items": [
         {
-          "id": "release-notes/v10.9.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.8.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.7.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.7.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.6.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.5.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.5.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.4.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.3.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.2.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.1.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.1.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.0.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v10.0.0",
+          "id": "release-notes/v11.0.0",
           "type": "doc"
         }
       ]

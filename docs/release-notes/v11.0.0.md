@@ -1,0 +1,12 @@
+---
+id: v11.0.0
+title: Version v11.0.0 Release Notes
+sidebar_label: v11.0.0
+image: "img/release-note-link-preview.png"
+---
+
+_May 11th, 2023_
+
+## How to update your Console
+
+For on-premise Console installations, please contact your Mia Platform referent to know how to use the `Helm chart version 9.1.0`.
