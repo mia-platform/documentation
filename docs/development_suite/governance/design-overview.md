@@ -25,6 +25,7 @@ An example is in the following picture.
 ![Homepage](img/homepage.png)
 
 #### Default Views
+
 The Design Overview provides the following Default Views out-of-the-box:
 * *Undocumented Endpoints* - shows the endpoints from all Projects of a Company without any documentation; 
 * *Unprotected Endpoints* - shows the public-facing endpoints from all Projects of a Company without authentication;
