@@ -94,7 +94,7 @@ An example is in the following picture.
 
 ### Security
 
-Resources displayed in both the Default and Public Views are protected by user permissions: the user only sees Resources of the Projects he has access to..
+Resources displayed in both the Default and Public Views are protected by user permissions: the user only sees Resources of the Projects he has access to.
 
 ### Sorting
 
