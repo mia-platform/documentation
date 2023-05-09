@@ -24,6 +24,7 @@ The saved view is visible in the Design Overview's Homepage section.
 For further info please refer to the [Design Overview's documentation](/development_suite/governance/design-overview.md#saving)
 
 ## View modification
+
 To edit the View, simply navigate to the Company Overview, then to Design Overview's Homepage section and select the card associated to the view to delete.
 
 Click the `Actions Dropdown` icon and select `Edit view name`, then insert new 'View name' through the specific popup and click the `Overwrite view` button.
@@ -36,6 +37,7 @@ Default views cannot be renamed since they are added by default for all users fo
 :::
 
 ## View deletion
+
 To delete the View, simply navigate to the Company Overview, then to Design Overview's Homepage section and select the card associated to the view to delete.
 
 Click the `Actions Dropdown` icon and select `Delete`. 
