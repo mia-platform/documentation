@@ -1,0 +1,40 @@
+---
+id: customization
+title: Customization
+sidebar_label: Customization
+---
+Custom styling and UI configuration can be provided to the service by editing the configMap of the Chat Service Backend.
+Its possible in  this way to pass to the app the following options:
+
+### Theming
+
+Global style options (primary colors, fonts, ...) can be configured by setting the following css variables options according to the Stream sdk specification: 
+
+```json
+{
+  ...
+  "options": {
+    ...
+    "theme": {
+      "--primary-color": "var(--microlc-primary-color)",
+      "--grey-gainsboro": "var(--microlc-footer-background)",
+      "--grey-whisper": "var(--microlc-primary-color-tint-89)",
+      ...
+      "--white-snow": "#F0F0EC",
+      "--border": "none"
+    },
+    ...
+  }
+}
+```
+
+For a full list of the available variables, please refer to the [Stream SDK Documentation](https://getstream.io/chat/docs/sdk/react/customization/css_and_theming/#css-variables).
+
+### Extra options
+
+Aside from the theming options it's possible to set many custom options in order to configure the chat view's behavior. A list of the editable variables is given below:
+
+- `disableEmojiPicker`: *(boolean, optional)* Disable the insertion of emoji in the messages
+- `disableFileUpload`: *(boolean, optional)* Disable file upload in the messages
+- `showUnreadBadge`: *(boolean, optional)* Shows a badge with the unread messages' count in the preview of every chat channel, if any 
+- `showLastMessageTimestamp`: *(boolean, optional)*  Shows the last message's timestamp in the preview of every chat channel, if any

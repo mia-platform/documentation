@@ -1,0 +1,97 @@
+---
+id: requests_limits_docs
+title: Choose Requests and Limits of a Microservice
+sidebar_label: Choose Requests and Limits of a Microservice
+---
+
+One of the most relevant part during the development of a microservice architecture is to understand the correct amount of **resources** to allocate to each microservice, in terms of **CPU** and **memory**. This is an important step if you want to achieve the wanted performance while at the same time containing the costs of your cloud infrastructure.
+
+This can be achieved with an appropriate choice of the **requests** and **limits** values of each microservice (container) deployed in the cluster, mechanisms used by Kubernetes to control CPU and memory. The meaning of these values can be obvious, but it is not simple as it seems, so let's dive deeper into them to understand how they really work so that we will be more aware the next time we choose them.
+
+## Understanding Limits and Requests
+
+Let's first define what is meant by these two terms:
+
+- **Requests**: how many resource are guaranteed to the container. If a container requests a resource, Kubernetes will only schedule it on a node that can provide at least that resources. So keep in mind that if the pod requests more resource than available in the largest node where it can be allocated, the pod will never be scheduled;
+
+- **Limits**: indicates the upper limit that can be reached by the container, ensuring that a container never exceeds that value. The container is only allowed to go up to the limit, and then it is restricted (meaning throttling for CPU and terminated for memory).
+
+:::note
+The term _resource_ referring to a pod in this case means the sum of the resources required by each container in a pod, because these values refer only to containers.
+:::
+
+:::info
+More information on the [official kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+:::
+
+### Combinations and QoS
+
+Once we get the basics of how it works, we can describe the possible combinations and what [QoS](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/) they fall into, keeping them in mind for the next sections:
+
+- **No limits, no requests**: It is not recommended at all, because there are no controls on used resources and in case one pod has a high CPU demand that requires all the available CPU in the node, it will cause CPU starvation, rendering the other in a state of CPU throttling. Kubernetes will schedule this combination with the lowest QoS, `Best Effort`, meaning it will use all available resources. This pods will be the first to be evicted in case node pressure.
+- **No limits, with requests**: This case really depends on the performances requested to the pod, because you will be able to harness all available power, but risking cases of starvation. Kubernetes will schedule this combination with a `Burstable` QoS, meaning it will use all available resources in the node, but also ensuring that a lower-bound resource is guaranteed to the pod based on the request. This pods will be evicted after `Best Effort` ones.
+- **With limits, with or no requests**: Recommended for most cases, if requests isn't set it will automatically be set by Kubernetes as the same as limits. In this case you are sure that the pods are not stealing each other's resources, but you can have cases where excess CPU is not exploited, going to CPU throttling in case of high number of requests, even though it would not be necessary. The QoS for this case can be:
+  - `Guaranteed` QoS, if requests equals limits both for CPU and memory for each container in the pod. This means that the pod is guaranteed to receive the requested resources. If such resources cannot be reserved, it will not be scheduled. This pods will be the last to face eviction;
+  - `Burstable` QoS in all the other cases where at least one container in the pod has the limit set.
+
+:::note
+These cases are generic for all resources, but are most useful to keep in mind in the context of [CPU](#cpu).
+:::
+
+## Resource types
+
+Moreover, we have to explain the possible resources and how the request and limits acts on them:
+
+- **Memory**: how much memory is reserved for the container, defined in _mebibyte (Mi)_ in Mia-Platform Console. Unlike CPU resources, **memory cannot be compressed**. Since there is no way to throttle memory usage, if a container exceeds its memory limit, it will be terminated.
+
+- **CPU**: how much CPU is reserved for the container, in Mia-Platform Console it is defined in _millicores (m)_, where 1000 millicores equals 1 core (For example, If the container needs only ¼ of a core, you will put the value of "250m").  
+  This resource is considered a **"compressible" resource**, which means that if your app reaches its CPU limit, Kubernetes will start throttling the container (actually, if the limit level is low, throttling can start much earlier, even before the request level is reached). Throttling means that the CPU will be artificially restricted, giving your app potentially worse performance, but it will not be terminated or evicted.  
+  Usually, as general advice, _it is suggested to keep the CPU request to the average needed for the container to run efficiently_, avoiding to overstimate it, using instead the replicas to scale, giving the system more flexibility and reliability.
+
+:::note
+To learn more about the resources and their units, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-types).
+:::
+
+## Tips on how to set values
+
+This section will explain how these resources work and the settings Mia-Platform recommends.
+
+### Memory
+
+As we mentioned earlier, **it isn't a compressible resource**, so once you give memory to a container, you can't take it away without killing it. So, it is advisable to avoid setting the limits different from the requests because this would allow the container to allocate more memory than the requested. This could be a problem because Kubernetes schedules pods based on their requests. So in the case there is a lack of memory in a container that exceeds the request, staying within the limits, and also exceeds the available memory in the node, Kubernetes will cause a container to be killed to free memory (_OOM kill, out of memory kill_), giving it to the containers that it is requiring it. It is not necessarily that the container being killed is what is causing the issue, this would mean a service interruption with continuous containers restarts hiding the cause of the interruption.
+
+:::info
+To understand which pod will be evicted to free up memory take a look to [Kubernetes documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#pod-selection-for-kubelet-eviction)
+:::
+
+In case instead we had set the **requests equal to the limits**, as we suggest, if the container required more memory than it was allocated it would be killed directly
+highlighting the pod with problems, without interfering with other containers that are not the cause of the error. Furthermore, the error would occur earlier and more reliably at the moment that it consumed too much memory, instead of when all the memory on the node has been used, making debugging easier. These kinds of errors are a symptom of an underestimation of allocated memory, which can be solved by simply increasing the requests, and so on the limits.
+
+### CPU
+
+The preceding discussion, however, does not apply to the CPU, which is a compressible resource, making it harder to have an appropriate configuration that takes full advantage of nodes.
+
+#### How linux handle CPU
+
+Firstly we need to comprehend how Kubernetes depends on the Linux kernel to handle CPU constraints. As the most orchestrator does it relies on the kernel control group ([cgroup](https://docs.kernel.org/admin-guide/cgroup-v1/cgroups.html)) mechanism. When hard CPU limits are set in a container orchestrator, the kernel uses [Completely Fair Scheduler (CFS) Cgroup bandwidth control](https://www.kernel.org/doc/html/latest/scheduler/sched-bwc.html) to enforce those limits. This mechanism manages CPU allocation using two settings: **quota** and **period**. When an application has used its allocated CPU quota for a given period, it will artificially throttled until the next period. The unit _millicores_ in the configuration now it is explained as the quota of CPU each period, usually of 100ms in Kubernetes.
+
+#### So is it recommended to set the limit?
+
+It is fairly unified opinion to set the request, but about the limits online there are plenty of articles that argues on settings limits or not on CPU, we can summarize them:
+
+The pros of setting CPU limits:
+
+- It helps **avoiding starvation problem** on nodes, that could lead to unreachable kubelet and bringing the node in a `NotReady` state, causing the pods to be rescheduled and potentially createing problems somewhere else;
+- Prevents tenants from interrupting each other in multi-tenancy clusters;
+- Allows the CPU request to be set lower, so as to increase the chances of the pod being scheduled, remaining protected from the limits;
+- Ensures more service reliability, suitable in case of services exposed to customers.
+
+The cons of CPU limits:
+
+- It increases the likelihood of having nodes in which the full CPU is not exploited, sending pods throttling even though there would be no need to do so, reducing performances.
+
+In conclusion it is suggested _in the default case to set the request and limits as the same (giving QoS Guaranteed)_, but in the case of need for high performance it could be better to unset the limits, being careful about what the risks might be. In this case, it would be recommended to schedule these pods in appropriate nodes, via [`NodeAffinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity) and [`taints`](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/), so that we know which types of pods are at risk of starvation, segregating the risks. Also it is suggested to set up an overstimate requests to avoid these problems (adding for example a percentage more than the highest peak recorded), in order to be more conservative.
+
+:::note
+For further information check out this article: [Kubernetes best practices: Resource requests and limits](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits)
+:::
