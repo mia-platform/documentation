@@ -141,9 +141,9 @@ Eg.
               label: '<Current version' (Current)',
               path: '',
             },
-            '8.x.x': {
-              label: '8.9.x',
-              path: '8.x',
+            '10.x.x': {
+              label: '10.x.x',
+              path: '10.x',
             },
           },
         },

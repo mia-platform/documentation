@@ -1,0 +1,146 @@
+---
+id: overview
+title: Push Notification Sender
+sidebar_label: Overview
+---
+## Summary
+The _Push Notification Sender_ is a microservice that offers a uniform set of APIs for sending push notifications to both `iOS` and `Android` devices.  
+This service must be explicitly included in a project in case you want to send push notifications.
+
+## Exposed endpoints
+
+The endpoints exposed by this service can be divided in two different classes.
+
+### Subscription of apps to the service
+
+- POST `/subscription/`: registers an app to the service. Body parameters are:
+  - `token`: the token that identifies the app on a device
+  - `platform`: can be `android` or `ios`
+  - `tags`: array of topics for which the client wants to be notified
+
+  Example of request payload:
+
+  ```json
+  {
+    "token": "<long_alphanumeric_id specific to the couple app-device>",
+    "platform": "android",
+    "tags": [
+      "app_updates", "news", "finance", "early_user", "some", "other", "tag", "app_version_1.1.0"
+    ]
+  }
+  ```
+
+  The response contains the field:
+    - `deviceId`: an identifier of the device that the app will have to save locally in order to update the subscription. For example, changing the tags or updating the token (which may expire) by executing the call to this same route with the `deviceId`.
+
+  Example of response payload:
+
+  ```json
+  {
+    "deviceId":"<alphanumeric_id>"
+  }
+  ```
+
+  :::warning  
+  If the call is made with authentication, the user's id will be saved along with the device information. If the call is made without authentication, the user will be disassociated from the device: this operation is equivalent to an `unsubscribe` of the user, who will therefore not receive any more notifications explicitly addressed to him.  
+  :::
+
+  In each subsequent call, the `deviceId` must always be sent to keep the token and preferences up-to-date:
+
+  ```json
+  {
+    "deviceId":"<alphanumeric_id>",
+    "token": "<long_alphanumeric_id specific to the couple app-device>",
+    "platform": "android",
+    "tags": [
+      "app_updates", "news", "finance", "early_user", "some", "other", "tag", "app_version_1.1.0"
+    ]
+  }
+  ```
+
+- DELETE `/subscription/:deviceId`: unsubscribes the given `deviceId`
+
+- DELETE `/subscription/`: unsubscribes all the devices matching a query. It accepts the following query params:
+  - `token`: the token of the app to unsubscribe
+  - `platform`: can be `android` or `ios`
+
+- GET `/subscription/:deviceId`: returns the subscription of the given `deviceId`. The content of the response is:
+  - `token`: the token that identifies the app on the device
+  - `platform`: can be `android` or `ios`
+  - `tags`: array of topics to which the app has been subscribed to receive notifications for
+
+### Sending notifications
+
+Notifications can be sent in different ways depending on the destination.
+Calling the following routes, the service will both send the proper notifications and save them in a CRUD collection to be consulted for example via CMS.
+The routes are as follows:
+
+- POST `/ tokens`: sends a notification to a set of registration tokens
+- POST `/ userids`: sends a notification to a group of users specifying their id. For each user, the notification will be sent to all the devices associated with that user.
+- POST `/ tags`: sends a notification to a group of users marked with a tag (topic or group)
+- POST `/ groups`: sends a notification to a list of user groups
+- POST `/ platforms`: notifies all devices by specifying a list of platforms, (`ios`, `android` for now)
+- POST `/ broadcast`: notifies all devices
+- POST `/ multicast`: notifies all devices (you can specify a custom query to send only to an arbitrary subset of devices)
+
+The fields of the payload common to all these APIs are the following:
+- `title`: title of the notification
+- `body`: body of the notification
+- `payload`: additional data you to send to the client in form of JSON object.
+- `platformSpecificContent`: platform-specific options. See below for further details.
+
+An additional field must be specified in the request body, based on the called API. In particular:
+`tokens` for POST `/ tokens`: array of tokens to send notification to
+`userIds` for POST `/ userids`: array of userIds to send notification to
+`tags` for POST `/ tags`: array of tags to send the notification to
+`groups` for POST `/ groups`: array of user groups to send the notification to
+`platforms` for POST `/ platforms`: array of platforms to send the notification to
+`_q` for POST `/ multicast`: a stringified MongoDB query to apply to the devices collection. The notification will be sent to all devices matchin the query.
+
+Example of request payload to the POST `/ userIds`:
+
+```json
+{
+  "title": "Hey",
+  "body": "Ciao!",
+  "payload": {
+    "some": "data"
+  },
+  "platformSpecificContent": {
+    "android": {
+      "icon": "ic_launcher",
+      "sound": "default"
+    },
+    "ios": {
+      "contentAvailable": true,
+      "badge": 3,
+      "sound": "ping.aiff",
+      "topic": "<your-app-bundle-id>",
+      "silent": false
+    }
+  },
+  "userids": [
+    "id1", "id2", "id3"
+  ]
+}
+```
+
+### Platform Specific Options
+
+In the `platformSpecifContent` you can specify options for each platform.
+
+#### iOS Options
+
+For sending iOS notifications we use [APN Node.js Library](https://github.com/node-apn/node-apn/blob/HEAD/doc/apn.markdown). Therefore, as `ios` options you can specify all the fields listed [here](https://github.com/node-apn/node-apn/blob/38a357ed0c153aad09c2857e48a710527e685bfc/doc/notification.markdown#convenience-setters) and [here](https://github.com/node-apn/node-apn/blob/38a357ed0c153aad09c2857e48a710527e685bfc/doc/notification.markdown#properties).  
+
+Only for the following fields the service uses some default values:
+- `topic`: the default value is take from the `defaultTopic` field of the configmap of the service
+- `expiry`: by default is set at 1 hour from the API invocation
+- `alert.title`: by default set with the `title` field of the request
+- `alert.body`: by default set with the `body` field of the request
+
+To send silent notifications, which are not displayed by the app, but which simply send a payload in push, put in the options ios`silent: true` and `contentAvailable: true`.
+
+#### Android Options
+
+For sending Android notifications we use [GCM Node.js Library](https://github.com/ToothlessGear/node-gcm). Therefore, as `android` options you can specify all the fields listed [here](https://github.com/ToothlessGear/node-gcm#notification-payload-option-table).
