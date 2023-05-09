@@ -83,7 +83,7 @@ To correctly configure the Appointment Manager, you need to:
 - set the `RESOURCE_ID_FIELD_NAME` environment variable with the name you choose for the CRUD field storing the resource ID (e.g. `resourceId`);
 - add a field with the chosen name and type `string` to each CRUD collection (for availabilities, exceptions and appointments). 
 
-More details about the AM configuration can be found in the [*Configuration*](configuration.md) section.
+More details about the AM configuration can be found in the [*Configuration*](./20_configuration.md) section.
 
 ## Availabilities and slots
 
@@ -225,7 +225,7 @@ The combination of the `availabilityId`, `startDate` and `endDate` uniquely iden
 
 :::info
 **v2.0.0**
-From v2.0.0 you have more freedom in term of updating or deleting availabilities and exceptions, which can affect appointments as illustrated in this section. See section [Usage](usage.md) for more details.
+From v2.0.0 you have more freedom in term of updating or deleting availabilities and exceptions, which can affect appointments as illustrated in this section. See section [Usage](./30_usage.md) for more details.
 :::
 
 When you perform one of the following operations:
@@ -318,7 +318,7 @@ When the appointment is *updated*, only the patients involved will receive a mes
 When the appointment is *deleted*, both the doctor and the patients involved will receive a message using the dedicated template
 id.
 
-For more details on how messages are sent in each phase of the lifecycle, see the [usage section](usage.md).
+For more details on how messages are sent in each phase of the lifecycle, see the [usage section](./30_usage.md).
 
 ## Setting reminders
 
@@ -331,11 +331,11 @@ enable the integration in the [service configuration][service-configuration].
 :::
 
 To trigger the creation of the reminders at least one user category must have the `reminders` property defined in the configuration file
-(see the [configuration page](configuration.md) for more information).
+(see the [configuration page](./20_configuration.md) for more information).
 
 :::tip
 You can avoid sending reminders for appointments created/updated below a given threshold by setting the `reminderThresholdMs` 
-field in the configuration file (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
+field in the configuration file (see the [CRUD section](./20_configuration.md#reminderThresholdMs) for more information).
 :::
 
 As for messages, the service uses its [configuration][service-configuration] to know which users categories should receive reminders.
@@ -384,9 +384,9 @@ When the appointment is *updated*, if the date of the appointment has been updat
 
 When the appointment is *deleted*, the reminders scheduled for the patients will be aborted.
 
-[crud-service-doc]: ../crud-service/overview_and_usage.md "CRUD Service official documentation"
-[messaging-service-doc]: ../messaging-service/overview.md "Messaging Service official documentation"
-[timer-service-doc]: ../timer-service/overview.md "Timer Service official documentation"
-[teleconsultation-service-doc]: ../teleconsultation-service-backend/overview.md "Teleconsultation Service official documentation"
-[service-configuration]: configuration.md#service-configuration "Service configuration"
-[environment-variables]: configuration.md#environment-variables "Environment variables"
+[crud-service-doc]: ../../runtime_suite/crud-service/overview_and_usage "CRUD Service official documentation"
+[messaging-service-doc]: ../../runtime_suite/messaging-service/overview "Messaging Service official documentation"
+[timer-service-doc]: ../../runtime_suite/timer-service/overview "Timer Service official documentation"
+[teleconsultation-service-doc]: ../../runtime_suite/teleconsultation-service-backend/overview "Teleconsultation Service official documentation"
+[service-configuration]: ./20_configuration.md#service-configuration "Service configuration"
+[environment-variables]: ./20_configuration.md#environment-variables "Environment variables"

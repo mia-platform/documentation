@@ -93,7 +93,7 @@ A reference presentation of each available field is provided in the following ta
 #### `users`
 
 With this field you can specify for each category of users which template has to be used when sending messages to notify the different
-phases of an appointment lifecycle (see the [service overview](overview.md) for more information).
+phases of an appointment lifecycle (see the [service overview](./10_overview.md) for more information).
 
 The structure of the map is the following:
 
@@ -299,7 +299,7 @@ If you want to use the Appointment Manager in conjunction with the Calendar comp
 
 :::
 
-As explained in the [service overview](overview.md), the service assumes that the users involved in an appointment are
+As explained in the [service overview](./10_overview.md), the service assumes that the users involved in an appointment are
 contained in one or more attributes of the appointment itself.
 
 When you create your CRUD you will need to create a new field for each category of users you will need to involve in the
@@ -432,9 +432,5 @@ Since the reminder service in turn requires the messaging service to send remind
 
 :::
 
-[crud-service-doc]: ../crud-service/overview_and_usage.md "CRUD Service official documentation"
-[messaging-service-doc]: ../messaging-service/overview.md "Messaging Service official documentation"
-[timer-service-doc]: ../timer-service/overview.md "Timer Service official documentation"
-[teleconsultation-service-doc]: ../teleconsultation-service-backend/overview.md "Teleconsultation Service official documentation"
 [service-configuration]: #service-configuration "Service configuration"
 [environment-variables]: #environment-variables "Environment variables"

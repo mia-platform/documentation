@@ -1038,7 +1038,7 @@
       "label": "Plugins",
       "type": "category",
       "link": {
-        "id": "runtime_suite/mia-platform-plugins",
+        "id": "plugins/mia-platform-plugins",
         "type": "doc"
       },
       "collapsed": true,

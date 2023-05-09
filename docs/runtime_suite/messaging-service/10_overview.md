@@ -6,9 +6,9 @@ sidebar_label: Overview
 Messaging Service allows sending messages to your users through various channels, namely **e-mail**, **SMS**, **push notification** and **voice**.
 
 To send those messages, this service leverages three other Mia-Platform plugins:
-- [SES Mail Notification Service](../ses-mail-notification-service/configuration.md)
-- [SMS Service](../sms-service/configuration.md)
-- [Kafka2Firebase Service](../kafka2firebase/overview.md)
+- [SES Mail Notification Service](../../runtime_suite/ses-mail-notification-service/configuration)
+- [SMS Service](../../runtime_suite/sms-service/configuration)
+- [Kafka2Firebase Service](../../runtime_suite/kafka2firebase/overview)
 
 :::caution
 In order to send a message through a particular channel, you need to deploy the corresponding plugin.
@@ -19,10 +19,10 @@ This is not needed for the **voice** channel, for which there is a direct intera
 
 In order to send messages to a particular group of users, the service supports users clustering. 
 
-Each user in your [users CRUD](./configuration.md#users-crud-required) may belong to one or more groups, saved in a property called
-`clusters` (the property can actually be named however you want, as explained in the [dedicated section](./configuration.md#users-crud-required)).
+Each user in your [users CRUD](./20_configuration.md#users-crud-required) may belong to one or more groups, saved in a property called
+`clusters` (the property can actually be named however you want, as explained in the [dedicated section](./20_configuration.md#users-crud-required)).
 
-In the body of a [send request](./usage.md#body), you can use `clusters` parameter to specify the groups that should
+In the body of a [send request](./30_usage.md#body), you can use `clusters` parameter to specify the groups that should
 receive the messages. The service will pick as receivers all the users that belongs to *at least* one of those clusters.
 
 :::tip
@@ -35,9 +35,9 @@ will receive the messages only one time.
 
 ## Messages templates
 
-To standardize the messages you send to your users, you can create and save on [an appropriate CRUD](./configuration.md#templates-crud)
+To standardize the messages you send to your users, you can create and save on [an appropriate CRUD](./20_configuration.md#templates-crud)
 messages templates. They are pre-defined messages for the various channels that can be referenced in your send requests
-using the `templateId` [body parameter](./usage.md#body).
+using the `templateId` [body parameter](./30_usage.md#body).
 
 :::tip
 Templates supports [message interpolation](#messages-interpolation).
@@ -45,7 +45,7 @@ Templates supports [message interpolation](#messages-interpolation).
 
 ## Messages interpolation
 
-Whether you use a template or you provide a message in the [body of the send request](./usage.md#body), you can use
+Whether you use a template or you provide a message in the [body of the send request](./30_usage.md#body), you can use
 interpolation to insert in the text some dynamic information.
 
 The syntax to be used is the [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars). A Handlebars expression 
@@ -54,7 +54,7 @@ an input object.
 
 The inputs object that can be used in the Messaging Service are:
 - the **user** object (i.e., the data of the user to which you are sending the message)
-- the **data** object of the [body of the send request](./usage.md#body)
+- the **data** object of the [body of the send request](./30_usage.md#body)
 - the [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) helper `(dateNow)` that provides the `now` date string at execution time
 - the [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) helper `dateFormat`using the following syntax: (dateFormat `date` format='DD/MM/YYYY' tz='Europe/Rome')
 

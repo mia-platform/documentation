@@ -18,7 +18,7 @@ API Signature: `GET /authorize`
 The `/authorize` endpoint is useful for the login flow with grant type `authorization_code`.
 
 The authorization endpoint accepts the following **query parameters**:
-- **appId**: the `APP_ID` key from the [configurations file](configuration#configurations-file)
+- **appId**: the `APP_ID` key from the [configurations file](./20_configuration.mdx#configurations-file)
 - **providerId**: the `PROVIDER_ID` key from the configuration file, under the corresponding `APP_ID`
 
 
@@ -339,9 +339,9 @@ The configuration snippet above will result in the following JWT token claims:
 
 ### Integration with the ***Authorization Service***
 
-The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview.md) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
+The `/userinfo` endpoint can be used by the [Authorization Service](../../runtime_suite/authorization-service/overview) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
 
-You need to set the following variables in the [configuration](../authorization-service/configuration.md) with these values:
+You need to set the following variables in the [configuration](../../runtime_suite/authorization-service/configuration) with these values:
 
 - **USERINFO_URL**=`http://authentication-service/userinfo` (NB: change the hostname if it has been named differently)
 - **CUSTOM_USER_ID_KEY**=`userId`

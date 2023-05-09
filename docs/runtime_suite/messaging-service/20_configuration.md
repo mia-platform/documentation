@@ -53,25 +53,25 @@ It follows a description of the fields of the collection.
 
 - **name** - `string`: human-readable name of the template.
 
-- **emailTitle (required)** - `string`: title of the e-mail. It supports [interpolation](./overview.md#messages-interpolation).
+- **emailTitle (required)** - `string`: title of the e-mail. It supports [interpolation](./10_overview.md#messages-interpolation).
 
 - **emailMessage** - `string`: body the e-mail. Required if `htmlMessage` is not defined. It will be ignored if both
-`emailMessage` and `emailHtmlMessage` are provided. It supports [interpolation](./overview.md#messages-interpolation).
+`emailMessage` and `emailHtmlMessage` are provided. It supports [interpolation](./10_overview.md#messages-interpolation).
 
 - **emailHtmlMessage** - `string`: html body the e-mail. Required if `message` is not defined. If both are defined, only 
-`emailHtmlMessage` is used. It supports [interpolation](./overview.md#messages-interpolation).
+`emailHtmlMessage` is used. It supports [interpolation](./10_overview.md#messages-interpolation).
 
 - **emailAttachments** - `array of object`: list of objects with the same interface given by [File Service](../../runtime_suite/files-service/usage). The only compulsory field is the `file` attribute.
 
-- **smsMessage (required)** - `string`: body the SMS. It supports [interpolation](./overview.md#messages-interpolation).
+- **smsMessage (required)** - `string`: body the SMS. It supports [interpolation](./10_overview.md#messages-interpolation).
 
-- **voiceMessage (required)** - `string`: body the voice message. It supports [interpolation](./overview.md#messages-interpolation).
+- **voiceMessage (required)** - `string`: body the voice message. It supports [interpolation](./10_overview.md#messages-interpolation).
 
-- **pushTitle (required)** - `string`: title of the notification. It supports [interpolation](./overview.md#messages-interpolation).
+- **pushTitle (required)** - `string`: title of the notification. It supports [interpolation](./10_overview.md#messages-interpolation).
 
-- **pushSubtitle** - `string`: subtitle of the notification. It supports [interpolation](./overview.md#messages-interpolation).
+- **pushSubtitle** - `string`: subtitle of the notification. It supports [interpolation](./10_overview.md#messages-interpolation).
 
-- **pushMessage (required)** - `string`: message of the notification. It supports [interpolation](./overview.md#messages-interpolation).
+- **pushMessage (required)** - `string`: message of the notification. It supports [interpolation](./10_overview.md#messages-interpolation).
 
 :::tip
 The fields relative to a channel are required only if plan to use templates, and you want to send messages through that
@@ -128,7 +128,7 @@ It follows a description of the fields of the map.
 - **userFields** - `object`: if you have given a different name to any of the properties listed in the 
 [Users CRUD](#users-crud-required) section, you can use this map to tell the service how to find them.
   - **id** - `string`: the name of the property in the Users CRUD containing the user's unique identifier. It will be
-matched with the values specified in the [`recipients` field](./usage.md#body). If not set, the service will use `_id` 
+matched with the values specified in the [`recipients` field](./30_usage.md#body). If not set, the service will use `_id` 
 as default.
   - **emailAddress** - `string`: the name of the property in the Users CRUD containing the user's e-mail address.
   - **phoneNumber** - `string`: the name of the property in the Users CRUD containing the user's phone number.
