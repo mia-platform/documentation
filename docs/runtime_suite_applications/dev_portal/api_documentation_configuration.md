@@ -8,7 +8,7 @@ The Dev Portal uses the [Swagger Aggregator](/runtime_suite/swagger-aggregator/1
 even the ones spread across different projects, available in a unique place.
 
 :::caution
-As mentioned [here](/dev_portal/application_creation.md#2-configure-api-portal), the version of your **api-portal** needs to be at least **1.14** in order to configure the api documentation correctly.
+As mentioned [here](/runtime_suite_applications/dev_portal/application_creation.md#2-configure-api-portal), the version of your **api-portal** needs to be at least **1.14** in order to configure the api documentation correctly.
 :::
 
 ## Configure the API Documentation in Try/View Mode

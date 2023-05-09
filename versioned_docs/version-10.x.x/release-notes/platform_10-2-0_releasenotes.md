@@ -120,7 +120,7 @@ The Payments Integration Hub application is a bundle of:
   - invoice service: possibility to download or send a pdf of the purchase receipt to the user directly from the backoffice
   - refund management: possibility to refund the payment directly from the backoffice. When the refund is completed, a notification is sent to the user.
 
-For more technical details please refer to the [documentation](/runtime_suite_applications/payment-integration-hub/10_overview.md).
+For more technical details please refer to the [documentation](/runtime_suite/payment-integration-hub/overview.md).
 
 ## Backoffice - 1.2.1
 

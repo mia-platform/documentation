@@ -14,7 +14,7 @@ _February 16, 2023_
 #### Backoffice Low Code Configuration
 
 :::info
-This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/10_overview.md) page for further information.
+This feature is still in BETA, do not miss out the [official documentation](/business_suite/backoffice-configurator/overview.md) page for further information.
 :::
 
 The new Backoffice Low Code Configuration is now generally available for all Console users!
@@ -118,7 +118,7 @@ The latest version includes the following new features:
 - Bulk actions such as refund and invoice downloading
 - Partial refund from Backoffice
 
-For more technical details please refer to [the documentation](/runtime_suite_applications/payment-integration-hub/10_overview.md).
+For more technical details please refer to [the documentation](/runtime_suite/payment-integration-hub/overview.md).
 
 ## Backoffice - 1.3.4
 
@@ -130,7 +130,7 @@ Form components (`bk-form-modal`, `bk-form-drawer`, `bk-form-card`) support `des
 
 #### New component `bk-auto-refresh`
 
-New web component `bk-auto-refresh` is available, which allows for periodic automatic data-refresh. Refer to [the documentation](/business_suite/backoffice/60_components/70_misc.md#bk-auto-refresh) for more information.
+New web component `bk-auto-refresh` is available, which allows for periodic automatic data-refresh. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-auto-refresh) for more information.
 
 #### Wildcards in `bk-url-parameters`
 
@@ -149,7 +149,7 @@ Component `bk-url-parameters` supports wildcards in `urlMask` property. Data mat
 `bk-button` supports `Action`-sdk through property `action`, allowing wider range of configurable actions.
 
 :::warning
-`clickConfig` is now deprecated and will be removed in future releases in favor of `action`. Please refer to `bk-button` documentation for [migration instructions](/business_suite/backoffice/60_components/20_buttons.md#migrating-from-clickConfig-to-action).
+`clickConfig` is now deprecated and will be removed in future releases in favor of `action`. Please refer to `bk-button` documentation for [migration instructions](/business_suite/backoffice/components/buttons.md#migrating-from-clickConfig-to-action).
 :::
 
 #### New component `bk-atlas-dashboard`

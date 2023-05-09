@@ -80,11 +80,11 @@ This version addressed a few bugs, here is a comprehensive list:
 
 #### `bk-antd-theme-manager` component
 
-New component `bk-antd-theme-manager` is available, allowing micro-lc layout customization. Refer to [the documentation](/business_suite/backoffice/60_components/70_misc.md#bk-antd-theme-manager) for more information.
+New component `bk-antd-theme-manager` is available, allowing micro-lc layout customization. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-antd-theme-manager) for more information.
 
 #### `bk-loading-animation` component
 
-New component `bk-loading-animation` is availabe, allowing micro-lc layout customization, and bundled at `/dist/bk-loading-animation.esm.js`. Refer to [the documentation](/business_suite/backoffice/60_components/70_misc.md#bk-loading-animation) for more information.
+New component `bk-loading-animation` is availabe, allowing micro-lc layout customization, and bundled at `/dist/bk-loading-animation.esm.js`. Refer to [the documentation](/business_suite/backoffice/components/misc.md#bk-loading-animation) for more information.
 
 #### Support to http credentials
 

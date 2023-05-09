@@ -308,4 +308,4 @@ Moreover, if you check the redirects flow, you will get something like this:
 
 When this error happens, you probably forgot to configure the `/web-login` _Rewrite Base Path_ property during the _Oauth Login Site_ endpoint configuration.
 
-Check the [configuration](/dev_portal/authentication_configuration.md#configure-login-site) section to set the right _Rewrite Base Path_.
+Check the [configuration](/runtime_suite_applications/dev_portal/authentication_configuration.md#configure-login-site) section to set the right _Rewrite Base Path_.

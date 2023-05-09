@@ -32,7 +32,7 @@ The base form includes all the basic information needed to specify a request:
 - Organization;
 - Requested Component.
 
-Please note this data model is a subset of the one specified in the [backoffice section](/dev_portal/requests_management.md) documentation.
+Please note this data model is a subset of the one specified in the [backoffice section](/runtime_suite_applications/dev_portal/requests_management.md) documentation.
 
 Here is a preview of how this type of form will look like:
 
@@ -51,7 +51,7 @@ It includes all the basic information specified in the base form while adding th
 - Requested Component;
 - Public Key.
 
-This data model matches the one specified in the [backoffice section](/dev_portal/requests_management.md) documentation.
+This data model matches the one specified in the [backoffice section](/runtime_suite_applications/dev_portal/requests_management.md) documentation.
 
 Here is a preview on how this type of form will look like:
 

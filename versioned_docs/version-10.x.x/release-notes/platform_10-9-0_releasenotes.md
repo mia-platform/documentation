@@ -116,7 +116,7 @@ New property `reflectToUrl` allows to control whether `bk-crud-client` reflects 
 
 #### New component `bk-layout-swap`
 
-New component [`bk-layout-swap`](/business_suite/backoffice/60_components/70_misc.md#bk-layout-swap) is available. It performs a layout change listening to `layout/change` event. The payload of the event is the layout rendered by the component. It is bundled separately.
+New component [`bk-layout-swap`](/business_suite/backoffice/components/misc.md#bk-layout-swap) is available. It performs a layout change listening to `layout/change` event. The payload of the event is the layout rendered by the component. It is bundled separately.
 
 ### Bug Fix
 
