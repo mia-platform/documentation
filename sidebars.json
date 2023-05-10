@@ -39,7 +39,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/endpoint-overview/endpoint-overview",
+          "id": "development_suite/governance/design-overview",
           "type": "doc"
         },
         {
@@ -851,6 +851,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/design_overview/design_overview",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/migration/fast_data_migration_tutorial",
           "type": "doc"
         },
@@ -1157,7 +1161,7 @@
   ],
   "releaseNotes": [
     {
-      "id": "release-notes/mia-platform-v11-overview",
+      "id": "release-notes/v11-overview",
       "type": "doc"
     },
     {

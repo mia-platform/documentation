@@ -152,7 +152,7 @@ In this way, the interpolated form `{{HTTP_PORT}}` will receive the public varia
 
 The final output file will be structured similarly to the following example:
 ```
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: test

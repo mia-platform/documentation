@@ -70,7 +70,7 @@ It is currently not possible to automatically deploy cronjobs with an applicatio
 
 
 ```yaml
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: invoke-active-user-updater
