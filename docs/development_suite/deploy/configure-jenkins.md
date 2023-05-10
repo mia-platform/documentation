@@ -1,7 +1,7 @@
 ---
-id: configuration
-title:  Configure deployment with Jenkins
-sidebar_label: Configure deployment with Jenkins
+id: configure-jenkins
+title: Deploy with Jenkins
+sidebar_label: Deploy with Jenkins
 ---
 The Mia-Platform Console can be configured to deploy your project through Jenkins.
 

@@ -63,7 +63,7 @@ The fields to customize inside CMS are:
     }
   ```
 
-  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](/development_suite/deploy/deploy.md#smart-deploy) feature enabled;
+  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
   * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](/development_suite/api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix;
   * **projectStructure**: Set it to `kustomize` if you want to use Kustomize to manage your microservices configurations. More info in [this section](/development_suite/set-up-infrastructure/kustomize/index.md), otherwise use `default` or leave it blank to keep the usual configuration setup.
 
@@ -163,7 +163,7 @@ For other possibilities, please check [mustache.js](https://github.com/janl/must
 You may want to write a file or a folder for every environment. To enable that, you can write the file name (or folder) in the template as `%envId%`, which will be interpolated for every environment.
 The interpolation data in those files include the environments fields at the first level (as in `mustache.js` sections), with the project as a key for every environment.
 
-To see an example of Jenkins pipelines definition, take a look at [this](/development_suite/deploy/configuration.md#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
+To see an example of Jenkins pipelines definition, take a look at [this](/development_suite/deploy/configure-jenkins.md#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
 
 ## Create default services
 

@@ -1,8 +1,7 @@
 ---
-id: deploy
-title: Deploy
-sidebar_label: Release your configurations
-slug: "/development_suite/deploy/deploy"
+id: overview
+title: Deploy your Project from Console
+sidebar_label: Overview
 ---
 ## Introduction  
 
