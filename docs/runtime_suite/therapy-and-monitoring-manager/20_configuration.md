@@ -41,7 +41,7 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 ## Prototypes definition
 
-As described in the [overview section](./10_overview.md), the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
+As described in the [overview section](./overview.md), the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
 
 You must define the prototypes inside a config map, setting the `PROTOTYPES_CONFIG_FILE_PATH` environment variable with its path. The config map must be a JSON file containing an array of prototypes.
 
@@ -327,9 +327,9 @@ If you use the integrated validation service, field names in the `value` object 
 
 By default, the TMM validates an detection against the thresholds using the integrated service. If you want to use an external service to run custom validations, you need to perform the following steps:
 
-- deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below](./20_configuration.md#external-validation-service-api);
-- set the TMM **VALIDATION_SERVICE** [environment variable](./20_configuration.md#environment-variables) to `external`;
-- set the TMM **VALIDATION_SERVICE_URL** [environment variable](./20_configuration.md#environment-variables) to the HTTP(s) address of your service (both public and internal cluster URLs will work).
+- deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below](20_configuration.md#external-validation-service-api);
+- set the TMM **VALIDATION_SERVICE** [environment variable](20_configuration.md#environment-variables) to `external`;
+- set the TMM **VALIDATION_SERVICE_URL** [environment variable](20_configuration.md#environment-variables) to the HTTP(s) address of your service (both public and internal cluster URLs will work).
 
 ### External Validation Service API
 
@@ -341,8 +341,8 @@ The External Validation Service must expose the following endpoints:
 
 The endpoint must accept in the body a JSON object with the following properties:
 
-- `detection`: the detection to validate, an object itself with the same fields available in the [detections CRUD collection](./20_configuration.md#detections);
-- `thresholds`: an array of the monitoring thresholds, each one being an object with the same schema of the `thresholds` field of the [monitorings CRUD collection](./20_configuration.md#monitorings).
+- `detection`: the detection to validate, an object itself with the same fields available in the [detections CRUD collection](20_configuration.md#detections);
+- `thresholds`: an array of the monitoring thresholds, each one being an object with the same schema of the `thresholds` field of the [monitorings CRUD collection](20_configuration.md#monitorings).
 
 If the validation is performed without errors, the endpoint must return 200 as status code and a body containing a JSON array, each element representing the result of the validation for a corresponding threshold received in the request (`thresholds`) and the following properties:
 
@@ -370,7 +370,7 @@ This section describes the integration with a future version of the messaging se
 
 :::
 
-To send notifications to patients and physicians you need to set the `MESSAGING_SERVICE_URL` [environment variable](./20_configuration.md#environment-variables) and configure the events, channels, recipients, ... directly in the messaging service (see the component documentation for more details).
+To send notifications to patients and physicians you need to set the `MESSAGING_SERVICE_URL` [environment variable](20_configuration.md#environment-variables) and configure the events, channels, recipients, ... directly in the messaging service (see the component documentation for more details).
 
 The TMM currently generates the following events you can refer in the configuration of the messaging service:
 

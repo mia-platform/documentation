@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 Verifiable credential is an open standard for digital credentials and can be used to represent personal information; this kind of documents are usually generated during the final step of an identification process. 
 
-This template can be used as a starting point to implement a microservice for the verifiable credential generation, and can be used within the [identification manager application](../../runtime_suite_applications/identification-manager/overview).
+This template can be used as a starting point to implement a microservice for the verifiable credential generation, and can be used within the [identification manager application](../../runtime_suite/identification-manager/overview).
 
 The verifiable credential generated is then returned as a [JWT](https://www.rfc-editor.org/rfc/rfc7519).
 

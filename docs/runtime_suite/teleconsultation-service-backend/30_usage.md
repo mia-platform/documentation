@@ -181,7 +181,7 @@ Updates a teleconsultation whose id is equal to roomId.
 :::note
 Bandyer does not support the possibility to make changes existing rooms. 
 
-For this reason, the Bandyer room is created only if all participants data is provided. If the Bandyer room has already been created and a change having effects on its features is requested, the existing Bandyer room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service grants that participants cannot access a Bandyer room as long as it could be replaced by a new one. 
+For this reason, the Bandyer room is created only if all participants data is provided. If the Bandyer room has already been created and a change having effects on its features is requested, the existing Bandyer room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service grants that participants cannot access a Bandyer room as long as it could be replaced by a new one. 
 :::
 
 #### Body parameters
@@ -277,7 +277,7 @@ Pushes a new teleconsultation participant in the `participants.data` array of th
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 :::note
-Bandyer does not support the possibility to make changes existing rooms. For this reason, the Bandyer room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the `GET /teleconsultation/:roomId` documentation to understand how the service ensures that participants cannot access a Bandyer room as long as such room can be replaced by a new one.
+Bandyer does not support the possibility to make changes existing rooms. For this reason, the Bandyer room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the `GET /teleconsultation/:roomId` documentation to understand how the service ensures that participants cannot access a Bandyer room as long as such room can be replaced by a new one.
 :::
 
 #### Body parameters
