@@ -221,6 +221,10 @@
     "destination": "/docs/fast_data/bucket_storage_support/overview_bucket_storage_support",
     "addedOn": "2023-05-03"
   },
+  "/docs/development_suite/endpoint-overview/endpoint-overview": {
+    "destination": "/docs/development_suite/governance/design-overview",
+    "addedOn": "2023-05-03"
+  },
   "/docs/runtime_suite/csv-connector/usage": {
     "destination": "/docs/runtime_suite/csv-connector/overview",
     "addedOn": "2023-05-04"
@@ -393,8 +397,65 @@
     "destination": "/docs/runtime_suite_applications/backoffice-on-prem/configuration",
     "addedOn": "2023-05-10"
   },
-  "/docs/development_suite/endpoint-overview/endpoint-overview": {
-    "destination": "/docs/development_suite/governance/design-overview",
-    "addedOn": "2023-05-03"
+  "/docs/release-notes/mia-platform-v10-overview": {
+    "destination": "/docs/10.x/release-notes/mia-platform-v10-overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.3.0": {
+    "destination": "/docs/10.x/release-notes/v10.3.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.1.0": {
+    "destination": "/docs/10.x/release-notes/v10.1.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.1.1": {
+    "destination": "/docs/10.x/release-notes/v10.1.1",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.5.0": {
+    "destination": "/docs/10.x/release-notes/v10.5.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.5.1": {
+    "destination": "/docs/10.x/release-notes/v10.5.1",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.6.0": {
+    "destination": "/docs/10.x/release-notes/v10.6.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.2.0": {
+    "destination": "/docs/10.x/release-notes/v10.2.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.4.0": {
+    "destination": "/docs/10.x/release-notes/v10.4.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.9.0": {
+    "destination": "/docs/10.x/release-notes/v10.9.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.8.0": {
+    "destination": "/docs/10.x/release-notes/v10.8.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.0.0": {
+    "destination": "/docs/10.x/release-notes/v10.0.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.7.0": {
+    "destination": "/docs/10.x/release-notes/v10.7.0",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.0.1": {
+    "destination": "/docs/10.x/release-notes/v10.0.1",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/release-notes/v10.7.1": {
+    "destination": "/docs/10.x/release-notes/v10.7.1",
+    "addedOn": "2023-05-10"
   }
 }
+
