@@ -1,7 +1,7 @@
 ---
 id: overview
 title: ReDoc
-sidebar_label: Overview
+sidebar_label: Microlc ReDoc Plugin
 ---
 [ReDoc](https://redoc.ly/) is an OpenAPI-genereted API reference documentation generator that can be use to produce documentation for your APIs quickly.
 

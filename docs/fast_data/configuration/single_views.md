@@ -16,13 +16,13 @@ Once created, you will be redirected to the Single View detail page.
 
 ## Single View Data Model
 
-Single views collections are created on the *CRUD Service*, so we add all the [default fields](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
+Single views collections are created on the *CRUD Service*, so we add all the [default fields](/runtime_suite/crud-service/10_overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
 
 To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card.
 
 ![Fast Data Single View Fields](../img/single-view-detail-fields.png)
 
-The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](/development_suite/api-console/api-design/crud_advanced.md#create-a-new-crud). To know more about indexes [click here](/runtime_suite/crud-service/overview_and_usage.md#indexes).
+The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](/development_suite/api-console/api-design/crud_advanced.md#create-a-new-crud). To know more about indexes [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
 
 ## Create the Single View Creator service
 
@@ -129,7 +129,7 @@ You can expose the Single View through the crud-service without writing any code
 
 You could [check here](/development_suite/api-console/api-design/endpoints.md) how to expose an endpoint of the CRUD service outside your project through the Console.
 
-[Click here](/runtime_suite/crud-service/overview_and_usage.md) if you want the usage documentation for the CRUD.
+[Click here](/runtime_suite/crud-service/10_overview_and_usage.md) if you want the usage documentation for the CRUD.
 
 ## How to delete a Single View
 

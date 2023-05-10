@@ -1,7 +1,7 @@
 ---
 id: overview
 title: Overview
-sidebar_label: Overview
+sidebar_label: Microlc RapiDoc Plugin
 ---
 [RapiDoc](https://mrin9.github.io/RapiDoc/) is an OpenAPI-genereted API reference documentation generator that can be used to produce documentation for your APIs quickly.
 

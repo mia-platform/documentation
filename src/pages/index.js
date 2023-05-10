@@ -53,8 +53,8 @@ const secondRowFeatures = [
       {
         icon: "globe",
         target: "_blank",
-        href: "https://mia-platform.eu/mia-platform-v10-for-a-better-development/?utm_source=docs&utm_medium=doc_homepage&utm_campaign=v10_cmp",
-        label: "Discover Mia-Platform v10 🎉",
+        href: "https://mia-platform.eu/mia-platform-v11/?utm_source=docs&utm_medium=doc_homepage&utm_campaign=v11_cmp",
+        label: "Discover Mia-Platform v11 🎉",
       },
     ],
   },
@@ -138,10 +138,10 @@ function Home() {
             <div className="container">
               {<div className="row">
               <VersionBanner
-                link="/docs/release-notes/mia-platform-v10-overview"
-                majorVersion="4"
+                link="/docs/release-notes/v11-overview"
+                majorVersion="11"
                 subTitle="Click to know more about how Mia-Platform is growing and where it is going!"
-                title="Mia-Platform v10 is Generally Available!"
+                title="Mia-Platform v11 is Generally Available!"
               />
               </div>}
               <div className="row">

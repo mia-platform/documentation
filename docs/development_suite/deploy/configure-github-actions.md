@@ -23,21 +23,15 @@ If you haven't set up a GitHub provider yet, check out [here](/development_suite
 Remember that the Access Token configured to your provider needs at least `read-level access scope for the "Deployments" of the organization.
 In order for GitHub to send webhook payloads, your console instance needs to be accessible from the Internet.
 :::
-
 :::info
 If you haven't set up an environment yet, check out [here](/development_suite/set-up-infrastructure/add-environment.mdx) how to configure it.
 :::
-
 ## Workflow
-
 In your GitHub repository, create a new file `<root>/.github/workflows/deploy.yml`.
-
 Here is an example that you can use to start:
 ```yaml
 name: Deploy
-
 on: deployment
-
 jobs:
   deploy-ENVIRONMENT_NAME:
     name: Deploy to ENVIRONMENT_NAME environment
@@ -46,10 +40,8 @@ jobs:
     permissions:
       deployments: write
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
-
       - name: Update deployment status (pending)
         if: success()
         uses: chrnorm/deployment-status@v2
@@ -57,14 +49,12 @@ jobs:
           token: '${{ github.token }}'
           state: 'pending'
           deployment-id: ${{ github.event.deployment.id }}
-
       - name: Deploy my app
         run: |
           # add your deployment code here
           echo Deploying...
           sleep 10s
           echo Done!
-
       - name: Update deployment status (success)
         if: success()
         uses: chrnorm/deployment-status@v2
@@ -72,7 +62,6 @@ jobs:
           token: '${{ github.token }}'
           state: 'success'
           deployment-id: ${{ github.event.deployment.id }}
-
       - name: Update deployment status (failure)
         if: failure()
         uses: chrnorm/deployment-status@v2
@@ -99,3 +88,4 @@ These webhooks are important to allow the Console to update the project and see 
 Currently, the events that the Console needs to handle are: 
 * [deployment_status](https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#deployment_status)
 
+	

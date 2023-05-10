@@ -11,7 +11,7 @@ In the Marketplace, you will be able to choose from a set of components (mostly 
 
 Marketplace components you can start from include:
 
-* **[Plugin](/runtime_suite/mia-platform-plugins.md)**: a ready-to-use Microservice.  
+* **[Plugin](/plugins/mia-platform-plugins.md)**: a ready-to-use Microservice.  
 
 * **[Template](/marketplace/templates/mia_templates.md)**: a base repository from which you can start to create a new Microservice.  
 

@@ -21,17 +21,13 @@ Our Product is constantly evolving and every week we release new features, so it
 On this page we keep you aligned on the most important issues:
 
 * **Mia-Platform Control Plane**
-    * Self User Registration
-    * Providers Management in Console
-    * Runtime k8s resources visualization in Console
-    * Managing Groups & m2m authentication in Console
+    * Managing Groups
     * Revision of Console HomePage & Navigation 
     * Managing Vault Environment Variables in Console
     * Licenses Management
     * Miactl CLI improvement
 
 * **Integration Features**:
-    * Support GitHub actions
     * Support Deploy on various container based runtimes
 
 * **Product Operations**
