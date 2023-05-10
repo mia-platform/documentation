@@ -73,23 +73,23 @@ Please note that, inside Project Identities portal, only those Identities on whi
 For each of them, therefore, the permissions inherited from the Company role assignment at the Company level will be visible. In this way, it will be possible to identify which additional permissions among those mentioned in the following table can be assigned at Project and Runtime Environments levels. 
 :::
 
-|              Capabilities                         | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
-|---------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
-| View Project basic information                    | `console.project.view`                                 | ✅     | ✅       | ✅        | ✅         | ✅                    |               |
-| View all Environments of this Project             | `console.project.environment.view`                     |        | ✅       | ✅        | ✅         | ✅                    |               |
-| View this Environment of the Project              | `console.environment.view`                             |        | ✅       |           | ✅         |                       |               |
-| Create a service repository for this Project      | `console.project.service.repository.create`            |        |          | ✅        | ✅         | ✅                    |               |
-| Commit changes on Project configuration           | `console.project.configuration.update`                 |        |          | ✅        | ✅         | ✅                    |               |
-| Edit Project information                          | `console.project.details.update`                       |        |          |           |            | ✅                    | ✅            |
-| Manage secreted environment variables             | `console.project.secreted_variables.manage`            |        |          |           |            | ✅                    |               |
-| Trigger deploy on any Environment of this Project | `console.project.environment.deploy.trigger`           |        |          |           | ✅         | ✅                    |               |
-| Trigger deploy on this specific Environment       | `console.environment.deploy.trigger`                   |        |          |           | ✅         |                       |               |
-| Restart pods on any Project Environment           | `console.project.environment.k8s.pod.delete`           |        |          |           | ✅         | ✅                    |               |
-| Restart pods on this specific Environment         | `console.environment.k8s.pod.delete`                   |        |          |           | ✅         |                       |               |
-| Manage dashboards on any Project Environment      | `console.project.environment.dashboard.manage`         |        |          |           |            | ✅                    |               |
-| Manage dashboards on this specific Environment    | `console.environment.dashboard.manage`                 |        |          |           |            |                       |               |
-| Manage identities for this Project                | `console.project.users.manage`                         |        |          |           |            | ✅                    |               |
-| Delete a single Project                           | `console.project.delete`                               |        |          |           |            |                       | ✅            |
+|              Capabilities                         | Permissions key                                | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
+|---------------------------------------------------|------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
+| View Project basic information                    | `console.project.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    |               |
+| View all Environments of this Project             | `console.project.environment.view`             |        | ✅       | ✅        | ✅         | ✅                    |               |
+| View this Environment of the Project              | `console.environment.view`                     |        | ✅       |           | ✅         |                       |               |
+| Create a service repository for this Project      | `console.project.service.repository.create`    |        |          | ✅        | ✅         | ✅                    |               |
+| Commit changes on Project configuration           | `console.project.configuration.update`         |        |          | ✅        | ✅         | ✅                    |               |
+| Edit Project information                          | `console.project.details.update`               |        |          |           |            | ✅                    | ✅            |
+| Manage secreted environment variables             | `console.project.secreted_variables.manage`    |        |          |           |            | ✅                    |               |
+| Trigger deploy on any Environment of this Project | `console.project.environment.deploy.trigger`   |        |          |           | ✅         | ✅                    |               |
+| Trigger deploy on this specific Environment       | `console.environment.deploy.trigger`           |        |          |           | ✅         |                       |               |
+| Restart pods on any Project Environment           | `console.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    |               |
+| Restart pods on this specific Environment         | `console.environment.k8s.pod.delete`           |        |          |           | ✅         |                       |               |
+| Manage dashboards on any Project Environment      | `console.project.environment.dashboard.manage` |        |          |           |            | ✅                    |               |
+| Manage dashboards on this specific Environment    | `console.environment.dashboard.manage`         |        |          |           |            |                       |               |
+| Manage identities for this Project                | `console.project.users.manage`                 |        |          |           |            | ✅                    |               |
+| Delete a single Project                           | `console.project.delete`                       |        |          |           |            |                       | ✅            |
 
 
 ### Console Root level permissions
