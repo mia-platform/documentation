@@ -256,9 +256,18 @@ curl --location \
 :::info
 **What are the main components of an assertion JWT?**
 
-- **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that is encoded in Base64Url format.
+- **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that should be encoded in Base64Url format and has the following fields:
+  - `alg`: `RS256`
+  - `typ`: `JWT`
+  - `kid`: the Key ID (`kid`) that the is returned during Service Account creation
 
-- **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
+- **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format and has the following fields:
+  - `iss` (issuer): the Client ID that the is returned during Service Account creation
+  - `sub` (subject): the Client ID that the is returned during Service Account creation
+  - `aud` (audience): `console-client-credentials`
+  - `jti` (JWT ID): a custom string that will be used against replay attacks
+  - `iad` (issued at): timestamp when this JWT is being issued
+  - `exp` (expires at): timestamp when this JWT will have to be considered expired
 
 - **Signature**: The signature of a JWT is used to verify the integrity of the token and to ensure that it has not been tampered with. The signature is created by combining the encoded header and payload with a secret key using a specified cryptographic algorithm.
 :::
