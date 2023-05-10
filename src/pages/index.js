@@ -139,7 +139,7 @@ function Home() {
               {<div className="row">
               <VersionBanner
                 link="/docs/release-notes/v11-overview"
-                majorVersion="5"
+                majorVersion="11"
                 subTitle="Click to know more about how Mia-Platform is growing and where it is going!"
                 title="Mia-Platform v11 is Generally Available!"
               />
