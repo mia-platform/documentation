@@ -39,7 +39,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/endpoint-overview/endpoint-overview",
+          "id": "development_suite/governance/design-overview",
           "type": "doc"
         },
         {
@@ -848,6 +848,10 @@
         },
         {
           "id": "tutorial/fast_data/fast_data_low_code_tutorial",
+          "type": "doc"
+        },
+        {
+          "id": "tutorial/design_overview/design_overview",
           "type": "doc"
         },
         {
