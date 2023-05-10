@@ -264,7 +264,7 @@ curl --location \
 - **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format and has the following fields:
   - `iss` (issuer): the Client ID that the is returned during Service Account creation
   - `sub` (subject): the Client ID that the is returned during Service Account creation
-  - `aud` (adience): `console-client-credentials
+  - `aud` (audience): `console-client-credentials`
   - `jti` (JWT ID): a custom string that will be used against replay attacks
   - `iad` (issued at): timestamp when this JWT is being issued
   - `exp` (expires at): timestamp when this JWT will have to be considered expired
