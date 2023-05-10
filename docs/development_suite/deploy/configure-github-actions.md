@@ -1,6 +1,6 @@
 ---
 id: configure-github-actions
-title:  Configure deployment with GitHub Actions
+title: Configure deployment with GitHub Actions
 sidebar_label: Configure deployment with GitHub Actions
 ---
 The Mia-Platform Console can be configured to deploy your project through GitHub Actions.

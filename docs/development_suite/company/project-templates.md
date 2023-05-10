@@ -63,7 +63,7 @@ The fields to customize inside CMS are:
     }
   ```
 
-  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](/development_suite/deploy/deploy.md#smart-deploy) feature enabled;
+  * **runnerTool**: Set it to `mlp` if the project uses it as command line deployment tool. It is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
   * **useMiaPrefixEnvs**: Set it to **false** if you want the [Public Variables](/development_suite/api-console/api-design/public_variables.md) to be saved without `MIA_` prefix. That depends on the command line deployment tool. If the project uses `mlp` you don't need to use the `MIA_` prefix;
   * **projectStructure**: Set it to `kustomize` if you want to use Kustomize to manage your microservices configurations. More info in [this section](/development_suite/set-up-infrastructure/kustomize/index.md), otherwise use `default` or leave it blank to keep the usual configuration setup.
 

@@ -161,7 +161,7 @@ This section allows you to follow in a simple and effective way a Continuous Dep
 
 The Deploy Area is divided into two Sections: Deploy and History. When a user enters the Deploy Area, they are automatically led to Deploy Section.
   
-[More information about Deploy here](/development_suite/deploy/deploy.md)  
+[More information about Deploy here](/development_suite/deploy/overview.md)  
   
 ### Dashboards
 

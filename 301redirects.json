@@ -233,10 +233,6 @@
     "destination": "/docs/runtime_suite/csv-connector/overview",
     "addedOn": "2023-05-04"
   },
-  "development_suite/deploy/configuration": {
-    "destination": "development_suite/deploy/configure-jenkins",
-    "addedOn": "2023-05-04"
-  },
   "/docs/runtime_suite/mia-platform-plugins": {
     "destination": "/docs/plugins/mia-platform-plugins",
     "addedOn": "2023-05-10"
@@ -459,6 +455,14 @@
   },
   "/docs/release-notes/v10.7.1": {
     "destination": "/docs/10.x/release-notes/v10.7.1",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/development_suite/deploy/deploy": {
+    "destination": "/docs/development_suite/deploy/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/development_suite/deploy/configuration": {
+    "destination": "/docs/development_suite/deploy/configure-jenkins",
     "addedOn": "2023-05-10"
   }
 }
