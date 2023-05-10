@@ -228,5 +228,177 @@
   "/docs/runtime_suite/csv-connector/configuration": {
     "destination": "/docs/runtime_suite/csv-connector/overview",
     "addedOn": "2023-05-04"
+  },
+  "/docs/runtime_suite/mia-platform-plugins": {
+    "destination": "/docs/plugins/mia-platform-plugins",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/payment-integration-hub/overview": {
+    "destination": "/docs/runtime_suite_applications/payment-integration-hub/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/overview": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/secure-apigateway/overview": {
+    "destination": "/docs/runtime_suite_applications/secure-apigateway/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/identification-manager/overview": {
+    "destination": "/docs/runtime_suite_applications/identification-manager/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/data-analytics/overview": {
+    "destination": "/docs/runtime_suite_applications/data-analytics/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/csv-connector/overview": {
+    "destination": "/docs/runtime_suite_applications/csv-connector/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/backoffice/overview": {
+    "destination": "/docs/runtime_suite_applications/backoffice/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/api-documentation-aggregator/overview": {
+    "destination": "/docs/runtime_suite_applications/api-documentation-aggregator/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/backoffice-on-prem/overview": {
+    "destination": "/docs/runtime_suite_applications/backoffice-on-prem/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/overview": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/overview",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/flow-manager-service/configuration/": {
+    "destination": "/docs/runtime_suite/flow-manager-service/configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/application_creation": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/application_creation",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/authentication_configuration": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/authentication_configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/homepage_configuration": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/homepage_configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/requests_management": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/requests_management",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/marketplace_management": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/marketplace_management",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/payment-integration-hub/configuration": {
+    "destination": "/docs/runtime_suite_applications/payment-integration-hub/configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/connector_in_depth": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/connector_in_depth",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/secure-apigateway/configuration": {
+    "destination": "/docs/runtime_suite_applications/secure-apigateway/configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/backoffice/changelog": {
+    "destination": "/docs/runtime_suite_applications/backoffice/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/backoffice-on-prem/changelog": {
+    "destination": "/docs/runtime_suite_applications/backoffice-on-prem/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/how_to_use": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/how_to_use",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/changelog": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/timer-service/usage/": {
+    "destination": "/docs/runtime_suite/timer-service/usage",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/notification_configuration": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/notification_configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/functional_documentation": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/functional_documentation",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/monitoring": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/monitoring",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/identification-manager/configuration": {
+    "destination": "/docs/runtime_suite_applications/identification-manager/configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/api_token_generation": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/api_token_generation",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/payment-integration-hub/changelog": {
+    "destination": "/docs/runtime_suite_applications/payment-integration-hub/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/dlq_in_depth": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/dlq_in_depth",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/salesforce-streaming-api-connector/configuration": {
+    "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/secure-apigateway/changelog": {
+    "destination": "/docs/runtime_suite_applications/secure-apigateway/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/data-analytics/changelog": {
+    "destination": "/docs/runtime_suite_applications/data-analytics/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/identification-manager/changelog": {
+    "destination": "/docs/runtime_suite_applications/identification-manager/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/requests_form_configuration": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/requests_form_configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/data-analytics/how_to_use": {
+    "destination": "/docs/runtime_suite_applications/data-analytics/how_to_use",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/dev_portal/api_documentation_configuration": {
+    "destination": "/docs/runtime_suite_applications/dev_portal/api_documentation_configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/csv-connector/changelog": {
+    "destination": "/docs/runtime_suite_applications/csv-connector/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/backoffice/configuration": {
+    "destination": "/docs/runtime_suite_applications/backoffice/configuration",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/api-documentation-aggregator/changelog": {
+    "destination": "/docs/runtime_suite_applications/api-documentation-aggregator/changelog",
+    "addedOn": "2023-05-10"
+  },
+  "/docs/runtime_suite/backoffice-on-prem/configuration": {
+    "destination": "/docs/runtime_suite_applications/backoffice-on-prem/configuration",
+    "addedOn": "2023-05-10"
   }
 }
