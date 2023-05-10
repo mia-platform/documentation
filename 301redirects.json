@@ -400,5 +400,9 @@
   "/docs/runtime_suite/backoffice-on-prem/configuration": {
     "destination": "/docs/runtime_suite_applications/backoffice-on-prem/configuration",
     "addedOn": "2023-05-10"
+  },
+  "/docs/development_suite/endpoint-overview/endpoint-overview": {
+    "destination": "/docs/development_suite/governance/design-overview",
+    "addedOn": "2023-05-03"
   }
 }
