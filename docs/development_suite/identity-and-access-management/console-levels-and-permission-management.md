@@ -64,7 +64,7 @@ The following table describes the capabilities that are granted when assigning a
 | Manage Clusters for this Company                                       | `console.company.cluster.manage`                       |        |          |           |            |                       | ✅            |
 | View Company Clusters information                                      | `console.company.cluster.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
 | Manage Company Project Templates                                       | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
-| Manage Company Views in Control Panel                                  | `console.company.configuration.views.manage`                          |        |           |          |              |  ✅  |  ✅  |
+| Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`                          |        |           |          |              |  ✅  |  ✅  |
 
 Roles can be assigned at both Project and its Runtime Environments levels from the Identities portal of the specific Project Settings Area.
 
