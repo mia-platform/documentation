@@ -526,6 +526,121 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 </details>
 
 
+### DB2
+
+On DB2 in order to receive the executed operations from the DB (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.1/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
+- You are logged in to Db2 as the db2instl user.
+- On the Db2 host, the Debezium management UDFs are available in the `$HOME/asncdctools/src` directory. UDFs are available from the [Debezium examples repository](https://github.com/debezium/debezium-examples/tree/main/tutorial/debezium-db2-init/db2server).
+
+#### Debezium service configuration
+
+Once the DB is ready to operate with the Debezium connector you can configure the connector to your needs. 
+As mentioned before, the plugin is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
+
+:::danger
+Since the connection to a DB2 is always with a specific database instead of a host, more than one database cannot be observed at the same time like in MySQL or Oracle.
+Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` (name of the DB you want to observe) and the `SCHEMAS_LIST` (comma separated list of the schemas you want to observe).
+:::
+
+If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.1/connectors/db2#db2-connector-properties). 
+Mind that the plugin is based on the [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html) image so the declared properties must follow the convention.
+
+Here's an example of the full configuration for the plugin:
+
+
+<details>
+<summary>Click here to show/hide the example configuration for PostgreSQL</summary>
+
+```shell
+# Application Configuration
+quarkus.http.port = ${HTTP_PORT:3000}
+quarkus.log.level = ${LOG_LEVEL:INFO}
+quarkus.log.console.json = false
+quarkus.log.console.json.excluded-keys = sequence,loggerClassName
+
+# Source Configuration
+debezium.source.name = {{DEBEZIUM_SOURCE_TASK_NAME}}
+debezium.source.tasks.max = 1
+debezium.source.connector.class = io.debezium.connector.db2.Db2Connector
+debezium.source.offset.flush.interval.ms = 15000
+debezium.source.offset.storage = io.debezium.storage.redis.offset.RedisOffsetBackingStore
+debezium.source.offset.storage.redis.address = {{REDIS_HOSTNAME}}:${REDIS_PORT}
+debezium.source.offset.storage.redis.user = {{DEBEZIUM_REDIS_USERNAME}}
+debezium.source.offset.storage.redis.password = {{DEBEZIUM_REDIS_PASSWORD}}
+debezium.source.offset.storage.redis.key = metadata::debezium-postgres::offsets
+
+debezium.source.schema.history.internal = io.debezium.storage.redis.history.RedisSchemaHistory
+debezium.source.schema.history.internal.redis.address = {{REDIS_HOSTNAME}}:${REDIS_PORT}
+debezium.source.schema.history.internal.redis.user = {{DEBEZIUM_REDIS_USERNAME}}
+debezium.source.schema.history.internal.redis.password = {{DEBEZIUM_REDIS_PASSWORD}} 
+
+debezium.source.database.hostname = {{DATABASE_HOSTNAME}}
+debezium.source.database.port = {{DATABASE_PORT}}
+debezium.source.database.user = {{DEBEZIUM_DB_USERNAME}}
+debezium.source.database.password = {{DEBEZIUM_DB_PASSWORD}}
+
+debezium.source.database.server.id = 1
+debezium.source.database.ssl.mode = <CONFIGURE_ME>
+debezium.source.topic.prefix = {{TOPIC_PREFIX}}
+debezium.source.topic.naming.strategy = io.debezium.schema.DefaultTopicNamingStrategy
+
+debezium.source.database.dbname = {{DATABASE_NAME}}
+debezium.source.table.include.list = {{TABLES_LIST}}
+
+debezium.source.include.schema.changes = false
+debezium.source.include.schema.comments = false
+
+debezium.source.key.converter = org.apache.kafka.connect.json.JsonConverter
+debezium.source.key.converter.schemas.enable = false
+
+debezium.source.value.converter = org.apache.kafka.connect.json.JsonConverter
+debezium.source.value.converter.schemas.enable = false
+
+debezium.source.poll.interval.ms = 500
+debezium.source.max.batch.size = 2048
+debezium.source.max.queue.size = 8192
+
+debezium.source.tombstones.on.delete = true
+
+# Sink Configuration
+debezium.sink.type = kafka
+debezium.sink.name = {{DEBEZIUM_SINK_TASK_NAME}}
+debezium.sink.kafka.producer.bootstrap.servers={{KAFKA_BROKERS}}
+debezium.sink.kafka.producer.client.id = dz-cdc-mysql-producer-{{ENVIRONMENT_TO_DEPLOY}}
+
+debezium.sink.kafka.producer.ssl.endpoint.identification.algorithm = HTTPS
+debezium.sink.kafka.producer.security.protocol = SASL_SSL
+debezium.sink.kafka.producer.sasl.mechanism = SCRAM-SHA-256
+debezium.sink.kafka.producer.sasl.jaas.config = org.apache.kafka.common.security.scram.ScramLoginModule required username=\"{{KAFKA_USERNAME}}\" password=\"{{KAFKA_PASSWORD}}\";
+
+debezium.sink.kafka.producer.key.serializer = org.apache.kafka.common.serialization.StringSerializer
+debezium.sink.kafka.producer.value.serializer = org.apache.kafka.common.serialization.StringSerializer
+
+debezium.sink.kafka.producer.acks = all
+debezium.sink.kafka.producer.max.in.flight.requests.per.connection = 5
+debezium.sink.kafka.producer.enable.idempotence = true
+debezium.sink.kafka.producer.min.insync.replicas = 2
+debezium.sink.kafka.producer.retries = 2147483647
+debezium.sink.kafka.producer.compression.type = snappy
+
+# Format Configuration
+debezium.format.key = json
+debezium.format.value = json
+
+# Transforms
+debezium.transforms=Reroute
+debezium.transforms.Reroute.type=io.debezium.transforms.ByLogicalTableRouter
+debezium.transforms.Reroute.topic.regex=(.+)
+debezium.transforms.Reroute.topic.replacement=$1.ingestion
+debezium.transforms.Reroute.key.enforce.uniqueness=false
+```
+
+</details>
+
+:::note
+For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.1/connectors/db2.html).
+:::
+
 ### Debezium Server Generic Template
 
 If none of the databases mentioned in the previous sections are being used, it is still possible to connect to the ones supported by debezium that we don't provide as a service in the marketplace with the Debezium Server.
