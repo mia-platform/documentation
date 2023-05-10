@@ -273,10 +273,6 @@
     "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/overview",
     "addedOn": "2023-05-10"
   },
-  "/docs/runtime_suite/flow-manager-service/configuration/": {
-    "destination": "/docs/runtime_suite/flow-manager-service/configuration",
-    "addedOn": "2023-05-10"
-  },
   "/docs/dev_portal/application_creation": {
     "destination": "/docs/runtime_suite_applications/dev_portal/application_creation",
     "addedOn": "2023-05-10"
@@ -323,10 +319,6 @@
   },
   "/docs/runtime_suite/salesforce-streaming-api-connector/changelog": {
     "destination": "/docs/runtime_suite_applications/salesforce-streaming-api-connector/changelog",
-    "addedOn": "2023-05-10"
-  },
-  "/docs/runtime_suite/timer-service/usage/": {
-    "destination": "/docs/runtime_suite/timer-service/usage",
     "addedOn": "2023-05-10"
   },
   "/docs/dev_portal/notification_configuration": {
