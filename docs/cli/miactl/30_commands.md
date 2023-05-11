@@ -49,6 +49,30 @@ miactl context use CONTEXT [flags]
 
 This command does not include any additional flags besides the default ones.
 
+## company
+
+This command allows you to manage `miactl` companies.
+
+To access the resources, you need an account with the correct permissions.
+
+### list
+
+The `company list` subcommand allows you to view the list of companies that you are currently enrolled in. The
+output will shot the **names**, **IDs**, and the default **git provider** and **pipeline type** of the companies.
+
+Usage:
+
+```sh
+miactl company list [flags]
+```
+
+Available flags for the command:
+
+- `--ca-cert`, to override the path to the custom CA certificate
+- `--context`, to specify a different context from the current one
+- `--endpoint`, to override the Console endpoint
+- `--insecure`, to skip certificate check
+
 ## project
 
 This command allows you to manage `miactl` projects.
@@ -94,4 +118,4 @@ Available flags for the command:
 - `--no-semver`, to force the deploy without `semver`
 - `--insecure`, to skip certificate check
 - `--project-id`, to set the project ID from command line
-- `--revision`, to specify the revision of the commit to deploy (default `HEAD`)
+- `--revision`, to specify the revision of the commit to deploy

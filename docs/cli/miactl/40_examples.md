@@ -58,13 +58,13 @@ The deploy command allow you to trigger a new deploy pipeline for the current pr
 argument needed is the environment id that you want to deploy:
 
 ```sh
-miactl deploy development
+miactl deploy development --revision main
 ```
 
 Additionally if your context don’t contain the project id you can select it via a flag:
 
 ```sh
-miactl deploy development --project-id <your-project-id>
+miactl deploy development --project-id <your-project-id> --revision main
 ```
 
 You can customize the way your project is deployed:
