@@ -169,7 +169,7 @@ To see an example of Jenkins pipelines definition, take a look at [this](/develo
 
 There are two ways to add services to a template:
 
-* Using an `api-console-config`, which specifies the services that will be included in the projects created with that template, together with other details (e.g. environment variables). This requires you to add an `api-console-config.json` file in the root directory of the project;
+* Using an `api-console-config`, which specifies the services that will be included in the projects created with that template, together with other details (e.g. environment variables). This requires you to add an `api-console-config.json` file in the root directory of the project, provided via the `archiveUrl` field;
 * Deprecated: Using `enabledServices`, which only specifies whether a certain service is enabled or not, without the possibility to define any other detail.
 
 :::caution
