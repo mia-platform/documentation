@@ -14,13 +14,14 @@ The components in charge of transmitting the changes from your systems to the ev
 
 When data is stored on a database and the changes to be monitored are the action on the database itself, exploiting a Change Data Capture (CDC) system is usually recommended. This system works by detecting changes in the database and emitting the corresponding events in near real-time on the configured event streaming platform so that subsequent components can process the events. Examples of databases on which a CDC can be instantiated are:
 
-- [Oracle DB](https://www.oracle.com/database/)
-- [IBM DB2](https://www.ibm.com/products/db2/database)
-- [MySQL](https://www.mysql.com/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/)
-- [MongoDB](https://www.mongodb.com/)
-- [Apache Cassandra](https://cassandra.apache.org/)
+- [MySQL](/fast_data/connectors/debezium_cdc.md#mysql)
+- [Oracle DB](/fast_data/connectors/debezium_cdc.md#oracle-db)
+- [PostgreSQL](/fast_data/connectors/debezium_cdc.md#postgresql)
+- [IBM DB2](/fast_data/connectors/debezium_cdc.md#db2)
+
+:::note
+The complete list of supported databases can be found in [Debezium documentation](https://debezium.io/documentation/reference/2.2/connectors/index.html).
+:::
 
 ### How to connect any data source to Fast Data
 

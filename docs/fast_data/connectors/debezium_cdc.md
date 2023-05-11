@@ -52,7 +52,7 @@ Currently, the default sink configuration is prefilled with Kafka properties, si
 
 ### MySQL
 
-CDC on MySQL can exploit the database binlog ([Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)), which keep tracks of all the changes occurring within the database. In order to allow Debezium execute its replication operations it is therefore necessary to enable the binlog and create a user which can read the database of interest.
+CDC on [MySQL](https://www.mysql.com/) can exploit the database binlog ([Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)), which keep tracks of all the changes occurring within the database. In order to allow Debezium execute its replication operations it is therefore necessary to enable the binlog and create a user which can read the database of interest.
 
 Regarding enabling MySQL binary log, we recommend checking out Debezium [instructions](https://debezium.io/documentation/reference/2.2/connectors/mysql.html#enable-mysql-binlog) and refer to the [MySQL manual](https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html) since it is necessary to edit the server configuration files. 
 
@@ -177,7 +177,7 @@ For an in depth explanation of the particular database configuration, we suggest
 
 ### Oracle DB
 
-Debezium CDC over Oracle Database exploits the [LogMiner](https://docs.oracle.com/en/database/oracle/oracle-database/21/sutil/oracle-logminer-utility.html) Oracle component to read and analyze the _redo_ logs (either the `archive` or the `online` logs). In order to allow Debezium carrying out its task the `ARCHIVELOG` feature has to be activated.
+Debezium CDC over [Oracle Database](https://www.oracle.com/database/) exploits the [LogMiner](https://docs.oracle.com/en/database/oracle/oracle-database/21/sutil/oracle-logminer-utility.html) Oracle component to read and analyze the _redo_ logs (either the `archive` or the `online` logs). In order to allow Debezium carrying out its task the `ARCHIVELOG` feature has to be activated.
 
 The instructions and references to instruct an [AWS RDS for Oracle](https://aws.amazon.com/rds/oracle/) instance to be ready for CDC operations are reported here below.
 
@@ -399,7 +399,7 @@ For an in depth explanation of the particular database configuration, we suggest
 
 ### PostgreSQL
 
-On PostgreSQL in order to receive the executed operations from the DB (following the CDC pattern) you have mainly two options:
+On [PostgreSQL](https://www.postgresql.org/) in order to receive the executed operations from the DB (following the CDC pattern) you have mainly two options:
 
 - Use the `decoderbufs` plugin
 - Use the `pgoutput` plugin
