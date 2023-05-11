@@ -7,26 +7,26 @@ image: "img/release-note-link-preview.png"
 
 import bannerImageUrl from './img/overview/v11-banner.png'
 
-Welcome to Mia-Platform v11, a major release full of new features and improvements to our key products: Mia-Platform Console, Mia-Platform Fast Data, and Backoffice.
+Welcome to Mia-Platform v11, a major release full of new features and improvements to our Mia-Platform key products: Console, Fast Data, and Backoffice.
 This version is designed to provide more advanced and comprehensive solutions in the field of Internal Developer Platforms, Digital Integration Hubs, and Backoffice, with a specific focus on enhancing the Developer Experience.
 
 Don't miss the opportunity to explore all the incredible new features of Mia-Platform v11 and discover how we can help you transform your digital enterprise, providing an optimized development experience centered on developers' needs.
 
 ## Console
 
-In Mia-Platform Console, we have introduced new sections for managing clusters, providers, machine2machine authentication, and webhooks, as well as support for GitHub Actions and other features.
-These enhancements offer more comprehensive control and contribute to improve the overall Developer Experience, making if even more frictionless.
+In Mia-Platform Console, we have introduced new sections for managing clusters, providers, machine-to-machine authentication, and webhooks, as well as support for GitHub Actions and other features.
+These enhancements offer more comprehensive control and contribute to improve the overall Developer Experience, making it even more frictionless.
 
 ### Providers Management
 
 We have developed Mia-Platform Console so that it can integrate properly with the best and most widely used tools and providers on the market.  
 Therefore, to better enhance this integration, we have introduced a proper governance system, and this feature has precisely this goal: to make it easier to keep constantly documented and ordered all the Providers you want the Console to use. 
 
-Through the new dedicated section - named "Providers" - inside the "Company Overview" area it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (Git Provider, Secret Manager and CI/CD Tools).
+Through the new dedicated section - named "Providers" - inside Company Overview it will be possible to manage the creation, configuration, and editing of the providers used by Mia-Platform Console (Git Provider, Secret Manager and CI/CD Tools).
 
 ![Providers Management](./img/overview/providers-management.png)
 
-Furthermore, always withing the same section, it will also be possible to set the default Providers that will be used in all new projects created in the respective Company. This will enhance the governance of Company Owners on all the Projects of their Companies, granting them better control over the management of company tools.
+Furthermore, always within the same section, it will also be possible to set the default Providers that will be used in all new Projects created in the respective Company. This will enhance the governance of Company Owners on all the Projects of their Companies, granting them better control over the management of company tools.
 
 For more information, [go to the documentation](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
@@ -48,7 +48,7 @@ For more information, [go to the documentation](/development_suite/identity-and-
 
 Each user has different needs, especially depending on their business. We believe it is essential to give each user the ability to manage additional custom flows when certain events occur in the Console.
 
-For this reason, we have introduced the possibility for the user to subscribe to specific events in Console via HTTP webhooks, through our CMS. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective event takes place in Console.
+For this reason, we have introduced the possibility for the user to subscribe to specific events in Console via HTTP webhooks, through our CMS. With this feature it will be possible to configure custom HTTP calls that will be triggered when the respective events take place in Console.
 
 For now, the supported events are:
 
@@ -69,7 +69,7 @@ For more information, [go to the documentation](/development_suite/clusters-mana
 
 ### Enhanced Runtime area
 
-The Runtime Area has been enriched by adding several new k8s resources: after the introduction of Pods and Namespaces, we are now welcoming also the Deployments, Services, Cronjobs, and Jobs sections!  
+The Runtime Area has been enriched by adding several new k8s resources: after the introduction of Pods and Namespaces, we are now welcoming also Deployments, Services, Cronjobs, and Jobs sections!  
 
 You can now monitor all these k8s resources and their related properties directly on Mia-Platform Console.
 
@@ -79,7 +79,7 @@ For more information, [go to the documentation](/development_suite/monitoring/in
 
 ### Support GitHub Actions
 
-Mia-Platform Console v11 supports a widely used and popular tool in the market: the GitHub Actions.  
+Mia-Platform Console v11 supports a widely used and popular tool in the market: the GitHub Actions!  
 From now on, GitHub Actions can be used and configured as a CI/CD tool in Console to deploy your workloads.
 
 For more information, [go to the documentation](/development_suite/deploy/configure-github-actions.md).
@@ -96,7 +96,7 @@ For more information, [go to the documentation](/development_suite/user-settings
 
 ### Design Overview
 
-In the Design Overview section – accessible from the Company Overview – you can now get a brief overview of your Company, by accessing a rich set of visualization tools that can help you aggregate resources from all Projects across your Company into a single table.
+In the Design Overview section – accessible from Company Overview – you can now get a brief overview of your Company, by accessing a rich set of visualization tools that can help you aggregate resources from all Projects across your Company into a single table.
   
 From this section you can easily search, sort, and filter Endpoints, Microservices and CRUDs collections of your Company, save them as custom views for easy access and share this data with all Company users.
 
@@ -107,7 +107,7 @@ For more information, [go to the documentation](/development_suite/governance/de
 ### Console CLI
 
 For all CLI lovers, we have great news: Mia-Platform Console v11 will have its own CLI, let's welcome "miactl"!  
-For now, the CLI will only be available for PaaS users, but more good news will come soon.
+For now, the CLI will only be available for SaaS users, but more good news will come soon.
 
 The commands supported to date are:
 
@@ -135,7 +135,7 @@ The ER Schema section is now more intuitive and easy to use, making it simpler t
 
 One of the key advantages of this feature is the drag and drop functionality, which allows you to import projections into a canvas quickly. From there, you can easily define their relationships and create rules that connect them to one another.
 
-Overall, the ER Schema No Code configuration for Mia-Platform Fast Data is a game-changer in terms of simplifying the process of configuring services from the Console, making it easier than ever to create the ER Schema they need to power their data-driven applications.
+Overall, the ER Schema No Code configuration for Mia-Platform Fast Data is a game-changer in terms of simplifying the process of configuring services from the Console, making it easier than ever to create the ER Schema the user needs to power up any data-driven applications.
 
 Find out more about this functionality in the [official documentation](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code)!
 
@@ -145,12 +145,12 @@ Find out more about this functionality in the [official documentation](/fast_dat
 
 We are thrilled to announce one of the most requested feature to Mia-Platform Fast Data, featuring the addition of new plug-and-play connectors that make it easier than ever to connect and manage your data!
 
-With these new connectors, you can seamlessly integrate your data from a wide variety of sources, including databases, bucket storages and more, leveraging on Debezium CDC and some other hand-made connectors.
+With these new connectors, you can seamlessly integrate your data from a wide variety of sources, including databases, bucket storages and more, leveraging on Debezium CDC and other hand-made connectors.
 
 We understand that managing data can be a complex and time-consuming process, which is why we integrated these connectors to be as easy to use as possible.  
 With just a few clicks, you can quickly and easily set up connections to your data sources, and start managing your data in a way that makes sense for your business.
 
-At the heart of Mia-Platform Fast Data product is a commitment to help our customers unlock the full potential of their data. With these new plug-and-play connectors, we are proud to take another step towards achieving this goal, and we look forward to seeing the many ways our customers will use them to drive their businesses forward.
+At the heart of Mia-Platform Fast Data product there is a commitment to help our customers unlock the full potential of their data. With these new plug-and-play connectors, we are proud to take another step towards achieving this goal, and we look forward to seeing the many ways our customers will use them to drive their businesses forward.
 
 Do not miss out the [official documentation](/fast_data/connectors/overview.md)!
 
