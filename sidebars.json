@@ -1180,6 +1180,10 @@
         {
           "id": "release-notes/v11.0.0",
           "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.0.1",
+          "type": "doc"
         }
       ]
     },
