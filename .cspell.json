@@ -276,7 +276,11 @@
     "wado",
     "CSVC",
     "tomakehurst",
-    "okhttp3"
+    "okhttp3",
+    "FD_AAAA_Eyxxx",
+    "otel",
+    "otlp",
+    "xunit"
   ],
   "dictionaries": [
     "softwareTerms",

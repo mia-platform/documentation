@@ -4,7 +4,7 @@ title: Flow Manager Tutorial
 sidebar_label: Flow Manager
 ---
 
-In this tutorial we will see how to create and expose a [**Flow Manager**](/runtime_suite/flow-manager-service/overview.md) service. The Flow Manager is a **saga orchestrator**, capable to manage flows structured by leveraging the Architectural pattern named [**Saga Pattern**](https://blog.mia-platform.eu/en/saga-pattern-how-to-manage-distributed-transactions-with-microservices) using, in particular, the **Command/Orchestration** approach.
+In this tutorial we will see how to create and expose a [**Flow Manager**](/runtime_suite/flow-manager-service/10_overview.md) service. The Flow Manager is a **saga orchestrator**, capable to manage flows structured by leveraging the Architectural pattern named [**Saga Pattern**](https://blog.mia-platform.eu/en/saga-pattern-how-to-manage-distributed-transactions-with-microservices) using, in particular, the **Command/Orchestration** approach.
 
 Since it can help you to govern the interaction to complete various tasks and to guarantee data consistency, Flow Manager can simplify your work when you want to model **complex flows** involving the interaction of **several services**.
 
@@ -27,7 +27,7 @@ Also Javascript and Mia-Platform dev libraries knowledge is needed if you want t
 
 You can apply the configurations in this tutorial in a new branch on the Console. To see how to create a new branch please see [here](/tutorial/console/console_handbook.md#create-a-new-branch).
 
-The project you want to use to reproduce the steps includes a [swagger-aggregator](/runtime_suite/swagger-aggregator/overview.md), an [api-portal](/runtime_suite/api-portal/overview.md), an [api-gateway](/runtime_suite/api-gateway/overview.md) and a [crud-service](/runtime_suite/crud-service/overview_and_usage.md)
+The project you want to use to reproduce the steps includes a [swagger-aggregator](/runtime_suite/swagger-aggregator/10_overview.md), an [api-portal](/runtime_suite/api-portal/10_overview.md), an [api-gateway](/runtime_suite/api-gateway/10_overview.md) and a [crud-service](/runtime_suite/crud-service/10_overview_and_usage.md)
 
 ## Create Flow Manager Microservice
 
@@ -144,7 +144,7 @@ Note that we added the following properties:
 - `initialState` valued with the id of the starting state of our saga.
 - `states` valued with the list of all states of our saga along with a description and specifying if the state is a final one.
 
-You can find more details about these properties in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/configuration.md#states-of-the-machine) page.
+You can find more details about these properties in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
 
 To view a visual diagram of the saga:
 
@@ -572,7 +572,7 @@ You can reopen the visual view of the Flow Manager saga by clicking _View Flow M
   </div>
 </div>
 
-You can find a complete definition of state and initialState fields in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/configuration.md#states-of-the-machine) page.
+You can find a complete definition of state and initialState fields in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
 
 ## Configure Communication Protocol
 
@@ -722,7 +722,7 @@ You can reopen the visual view of the Flow Manager saga by clicking _View Flow M
   </div>
 </div>
 
-You can find more information on Communication Protocols of the Flow Manager in the [dedicated](/runtime_suite/flow-manager-service/configuration.md#communication-protocols) page.
+You can find more information on Communication Protocols of the Flow Manager in the [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#communication-protocols) page.
 
 ## Configure Persistency
 
@@ -774,7 +774,7 @@ To do this follow these steps:
   </div>
 </div>
 
-You can find more information on CRUD Persistency Manager in the [dedicated](/runtime_suite/flow-manager-service/configuration.md#crud-persistency-manager) page.
+You can find more information on CRUD Persistency Manager in the [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#crud-persistency-manager) page.
 
 ### Configure Persistency Management
 
@@ -910,7 +910,7 @@ Note that we made the following changes:
 - added the property `creationEvent` in `machineDefinition` object valued with a placeholder to be passed to the Persistency Manager on the saga creation.
 - added an object in `persistencyManagement`. This object contains information for connecting to a CRUD service and the collection to be used.
 
-For more information about the Persistency Manager configuration please see the [dedicated](/runtime_suite/flow-manager-service/configuration.md#persistency-manager) page.
+For more information about the Persistency Manager configuration please see the [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#persistency-manager) page.
 
 ## Expose Flow Manager
 

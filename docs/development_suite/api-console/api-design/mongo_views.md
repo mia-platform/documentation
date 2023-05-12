@@ -14,7 +14,7 @@ sidebar_label: Create Views
 ![create view form](img/create_mongodb_view.png)
 
 A View requires a `source` collection, projection or single view from which the aggregation starts.   
-The *Internal Endpoints* is the path from which the view is going to be exposed by the [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) inside the namespace. Additional internal endpoints can be defined in the Internal Endpoints card of the View. Only paths with `GET` methods are exposed, since you can perform only `read` operation on a view.
+The *Internal Endpoints* is the path from which the view is going to be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) inside the namespace. Additional internal endpoints can be defined in the Internal Endpoints card of the View. Only paths with `GET` methods are exposed, since you can perform only `read` operation on a view.
 
 ![Internal endpoint view](img/internal_endpoint_view.png)
 
@@ -33,7 +33,7 @@ If you expect to perform complex aggregation with many collections involved, or 
 :::
 
 :::caution
-This feature is available from version `5.2.2` of [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md). Creating a view while using a lower version of CRUD Service would make it crash at boot.
+This feature is available from version `5.2.2` of [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md). Creating a view while using a lower version of CRUD Service would make it crash at boot.
 :::
 
 ### Fields
@@ -44,7 +44,7 @@ Unlike MongoDB CRUD, you cannot set indexes on these views' fields instead, beca
 
 ### Expose through endpoints
 
-The [CRUD Service](/runtime_suite/crud-service/overview_and_usage.md) will handle your data model and expose its API to the services within your project. If you need to make the API consumable from the external of your namespace, you can create an [Endpoint](/development_suite/api-console/api-design/endpoints.md) of type `MongoDB View` connected to one of the `Internal Endpoints` of your view. 
+The [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will handle your data model and expose its API to the services within your project. If you need to make the API consumable from the external of your namespace, you can create an [Endpoint](/development_suite/api-console/api-design/endpoints.md) of type `MongoDB View` connected to one of the `Internal Endpoints` of your view. 
 
 Since the internal endpoint of a MongoDB View can be used only for reading operations, the endpoint will expose only `GET` routes as well.
 

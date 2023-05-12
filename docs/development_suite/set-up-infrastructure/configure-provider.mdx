@@ -4,6 +4,9 @@ title: Manage Providers
 sidebar_label: Manage Providers
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Providers can be generically defined as a means of storing information about external services. The Mia-Platform Console supports providers with 3 different capabilities:
 
 * **Git Providers**: allow users to manage repositories within their workspace;
@@ -12,18 +15,19 @@ Providers can be generically defined as a means of storing information about ext
 
 The following table shows the providers currently supported by the Console, grouped by capability:
 
-| Capability        | Providers                                                             |
-| ----------------- |:---------------------------------------------------------------------:|
-| Git Provider      | GitLab, GitHub, Bitbucket, Azure DevOps                               |
-| Secret Manager    | GitLab, Vault                                                         |
-| CI/CD Tool        | GitLab (Git Runner), GitHub (GitHub Actions), Jenkins, Azure DevOps   |
+| Capability     | Providers                                                           |
+|----------------|---------------------------------------------------------------------|
+| Git Provider   | GitLab, GitHub, Bitbucket, Azure DevOps                             |
+| Secret Manager | GitLab, Vault                                                       |
+| CI/CD Tool     | GitLab (Git Runner), GitHub (GitHub Actions), Jenkins, Azure DevOps |
 
 ## Providers Overview
 
 Mia-Platform Console allows authorized users to manage providers. More specifically, a user can:
 
 * Add a new connection to a provider;
-* Edit the connection to a provider.
+* Edit the connection to a provider;
+* Set a default provider for a company.
 
 To access these features, head to the Company Overview area of the Console by clicking the related button on the home page, next to your company name.
 
@@ -49,7 +53,10 @@ You can connect a provider by clicking on the "Add provider connection" button, 
 ![Add provider 1b](img/add-provider-1b.png)
 
 In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").
-In case the provider offers only one capability, clicking on it will go directly to step 2 and the capability will be selected by default.
+
+:::info
+If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default.
+:::
 
 ### Step 2: Provider Details
 
@@ -73,16 +80,25 @@ In this step, you are required to insert information about the authentication me
 Depending on the credentials type, the other information to be entered will be:
 
 * For credentials of the type "Token":
-  - **Access token** (*required*): token that allows the Console to authenticate against the APIs of the provider (temporary credentials).
+  - **Access token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (temporary credentials).
 * For credentials of the type "M2M":
-  - **Token** (*required*): token that allows the Console to authenticate against the APIs of the provider (long-lived credentials);
+  - **Token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (long-lived credentials);
   - **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include the authentication token, responds by generating temporary credentials.
 * For credentials of the type "OAuth2":
   - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
   - **Client ID** (*required*): OAuth2 public client identifier;
   - **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server.
 
-:::info Supported credential types
+:::info
+All credentials data are stored in an encrypted MongoDB collection.
+For more information about MongoDB encryption, take a look at the dedicated [documentation page](/runtime_suite/crud-service/30_encryption_configuration.md).
+:::
+
+:::caution
+Credentials entered at this stage, for security reasons, will never again be shown to the user, who will be able to replace them with new ones but not visualize them again.
+:::
+
+#### Supported credential types
 Depending on the provider selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each provider:
 
 | Credentials Type  | Providers                                                             |
@@ -90,17 +106,11 @@ Depending on the provider selected in step 1, the types of credentials supported
 | Token             | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins               |
 | M2M               | Vault                                                                 |
 | OAuth2            | Jenkins                                                               |
-:::
+
 :::caution Assign the right scope to your credentials
 Make sure, when generating credentials on the respective provider sites, to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
+
 For example, for the "Token" credentials type, the access token should have scope "api" in the case of GitLab, admin scopes for GitHub, "Project admin" and "Repository admin" in the case of Bitbucket, "Full access" for Azure DevOps.
-:::
-:::info
-All credentials data are stored in an encrypted MongoDB collection.
-For more information about MongoDB encryption, take a look at the dedicated [documentation page](/runtime_suite/crud-service/encryption_configuration.md).
-:::
-:::caution
-Credentials entered at this stage, for security reasons, will never again be shown to the user, who will be able to replace them with new ones but not visualize them again.
 :::
 
 ### Step 4: Advanced
@@ -144,20 +154,383 @@ By clicking on the arrow button located in the rightmost column of a provider en
 ![Provider advanced proxy](img/provider-advanced-proxy.png)
 
 In case a base64 CA certificate has been entered, clicking on the "View certificate" button allows the user to visualize the certificate in both human-readable and plain versions in a two-tabs modal.
-The "Expanded view" tab displays the human-readable version of the certificate, while the "Text view" tab shows its plain version, and a copy button in the modal footer allows the user to quickly copy the plain base64 CA certificate.
+
+The "Expanded view" tab displays the human-readable version of the certificate, while the "Text view" tab shows its plain version and a copy button in the modal footer allows the user to quickly copy the plain base64 CA certificate.
 
 ## Edit a Provider
 
-As mentioned in the previous section, through the "Edit" (or "Change credentials") button in the top right corner of the Details, Credentials, and Advanced cards, it is possible to modify the information inserted by the user while connecting the provider to the Console.
-A click on the button opens a modal very similar to the one seen when connecting the provider, specific to the step of entering the information you wish to edit (in the case of Details, in the modal it will be also possible to change the capabilities used by the provider, selected in step 1).
+As mentioned in the previous section, through the button in the top right corner of the Details, Credentials, and Advanced cards, it is possible to modify the information inserted by the user while connecting the provider to the Console.
+
+A click on the button will open a modal very similar to the one seen when connecting the provider, but only specific to the information you wish to edit. 
+
+:::info
+In the Details card, the modal will allow you also to change the capabilities used by the provider, selected in step 1.
+:::
+
 In the image below for example, the user clicked the "Edit" button on the "Details" card, opening a modal for editing the information entered during steps 1 and 2 of provider creation.
 By clicking on "Edit provider", the information about the provider will be updated.
 
 ![Edit provider details](img/edit-provider-details.png)
 
+## Set a Default Provider
+
+Once you create a provider connection, you will be able to set it as the default provider for a specific capability of that company. 
+
+By using the dedicated cards at the top of the providers' section, you will be able to select one of the providers implementing that specific capability. 
+
+As soon as the default provider has been set for a certain capability, the card will show the corresponding chosen provider.
+If no provider has been set, a "Set default capability" button will appear instead.
+
+![Default Providers](img/default-providers.png)
+
+Setting a default provider for a company allows you to make that provider handle a specific capability for any project that will be created within the company.
+
+In this way, you will not need to manually specify a provider for your projects.
+
+:::info
+Default Providers are automatically associated with newly created projects inside the company.
+:::
+
+:::caution
+Please make sure to have the right permissions to set or modify the default providers of a company. 
+
+**Only Company Owners will be able to access this feature.**
+:::
+
+#### Edit a Default Provider
+
+You can change the default provider connection for a specific capability by clicking the edit button located in the upper right corner of the default providers' cards.
+
+A modal will appear allowing you to select one of the providers implementing that specific capability:
+![Default Providers](img/edit-default-provider.png)
+
+Once you edit the default provider, you will be able to see the card with the new provider set.
+
 ## Associate a Provider to a Project
 
-Once you have created the provider at the company level, you will need to manually associate it with the projects you want to use it for within that company.
-To do this, you can use CMS: navigate through the `Projects` section, select the desired project and change the `providerId` field value in the `Repository` object.
+If you haven't specified a default provider on a certain capability, or you wish to overwrite the default provider configuration, you will need to manually associate the provider with the projects you want to use it for within that company.
+
+To do this, you can use the CMS: navigate through the `Projects` section, select the desired project, and change the `providerId` field value in the `Repository` object.
 
 ![Associate provider to project CMS](./img/associate-provider-to-project-cms.png)
+
+## Provider APIs
+For versions prior to 10.8, the above information is not valid, as providers were managed directly through APIs. Therefore, for the sake of backward compatibility, we report in this section the APIs used to create and modify providers, along with examples of request bodies:
+
+- POST - `/api/backend/tenants/{tenantId}/providers`: used to create a new provider;
+- PATCH - `/api/backend/tenants/{tenantId}/providers/{providerId}`: used to edit an existing provider.
+
+:::info
+These APIs are protected and can be used only if you belong to the group `access_token_manager`.
+:::
+
+### POST
+To create a new provider, you need to call the respective API as follows:
+
+```sh
+curl --location --request POST 'https://console-url/api/backend/tenants/my-example-company/providers' \
+--header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-super-super-super-secret-token"}},"id":"gitlab-id","label":"My GitLab Label","type":"gitlab","urls":{"apiBase":"https://gitlab-test.com/api","base":"https://gitlab-test.com"}}'
+```
+
+The body schema of the request should adhere to the following data model:
+
+```json
+"body": {
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "providerId": { "type": "string" },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "type": { "type": "string" },
+    "capabilities": {
+      "description": "Field introduced in v10.8 of the Console",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["git-provider", "secret-manager", "ci-cd-tool"],
+      }
+    },
+    "urls": {
+      "type": "object",
+      "properties": {
+        "base": { "type": "string" },
+        "apiBase": { "type": "string" }
+      },
+      "required": ["base", "apiBase"]
+    },
+    "base64CA": { "type": "string" },
+    "proxy": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" }
+      },
+      "required": ["url"]
+    },
+    "credentials": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "token"
+            },
+            "expirationDate": {
+              "description": "Field introduced in v10.8 of the Console",
+              "type": "string",
+              "format": "date-time"
+            },
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "accessToken": { "type": "string" }
+              },
+              "required": ["accessToken"]
+            }
+          },
+          "required": ["type", "content"]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "userPass"
+            },
+            "expirationDate": {
+              "description": "Field introduced in v10.8 of the Console",
+              "type": "string",
+              "format": "date-time"
+            },
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "userName": { "type": "string" },
+                "password": { "type": "string" }  
+              },
+              "required": ["userName", "password"]
+            }
+          },
+          "required": ["type", "content"]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "m2m"
+            },
+            "expirationDate": {
+              "description": "Field introduced in v10.8 of the Console",
+              "type": "string",
+              "format": "date-time"
+            },
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "accessTokenURL": { "type": "string" },
+                "token": { "type": "string" }
+              },
+              "required": ["accessTokenURL", "token"]
+            }
+          },
+          "required": ["type", "content"]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "client_credentials"
+            },
+            "expirationDate": {
+              "description": "Field introduced in v10.8 of the Console",
+              "type": "string",
+              "format": "date-time"
+            },
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "accessTokenURL": { "type": "string" },
+                "clientId": { "type": "string" },
+                "clientSecret": { "type": "string" }
+              },
+              "required": ["accessTokenURL", "clientId", "clientSecret"]
+            }
+          },
+          "required": ["type", "content"]
+        }
+      ]
+    },
+    "required": ["providerId", "type", "urls"]
+  }
+}
+```
+
+:::info Supported credential types
+As discussed [here](#step-3-credentials), different types of providers support different types of credentials. The following table shows the credential types supported by each provider, referring to the data model shown above:
+
+| Credentials Type   | Providers                                                             |
+| ------------------ |:---------------------------------------------------------------------:|
+| token              | gitlab, github, bitbucket, azure-devops, vault, jenkins               |
+| m2m                | vault                                                                 |
+| client_credentials | jenkins                                                               |
+:::
+:::caution Data model update
+The fields `capabilities` and `expirationDate` (within `credentials`) have been introduced starting from version 10.8 of the Console.
+:::
+
+Examples of request bodies specific to each provider type are shown below. In the examples, the `capabilities` and `expirationDate` fields are omitted, since it is assumed that calls to this API are made by users with a Console version lower than 10.8.
+
+<Tabs>
+  <TabItem value="github" label="GitHub" default>
+
+```json
+{
+  "id": "my-github-provider",
+  "label": "Mia-Platform GitHub",
+  "type": "github",
+  "urls": {
+    "apiBase": "https://api.github.com",
+    "base": "https://github.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="gitlab" label="GitLab">
+
+```json
+{
+  "id": "gitlab-id",
+  "label": "My GitLab Label",
+  "type": "gitlab",
+  "urls": {
+    "apiBase": "https://gitlab-test.com/api",
+    "base": "https://gitlab-test.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="bitbucket-server" label="BitBucket Server">
+
+```json
+{
+  "id": "bitbucket-id",
+  "label": "My BitBucket Server Label",
+  "type": "bitbucket",
+  "urls": {
+    "apiBase": "https://bitbucket-test.com",
+    "base": "https://gitlab-test.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="azure-devops" label="Azure DevOps">
+
+```json
+{
+  "id": "azure-devops-id",
+  "label": "Azure DevOps",
+  "type": "azure-devops",
+  "urls": {
+    "apiBase": "https://dev.azure.com",
+    "base": "https://dev.azure.com"
+  },
+  "credentials": {
+    "type": "token",
+    "content": {
+      "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="vault" label="Hashicorp Vault">
+
+```json
+{
+  "type": "vault",
+  "urls": {
+    "baseUrl": "https://vault.example.com/",
+    "apiBaseUrl": "https://vault.example.com/"
+  },
+  "credentials": {
+    "type": "m2m",
+    "content": {
+      "token": "vault-jwt-token",
+      "accessTokenURL": "https://vault.example.com/v1/auth/kubenetes/login"
+    }
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="jenkins" label="Jenkins OAuth 2.0">
+
+```json
+{
+  "type": "jenkins",
+  "urls": {
+    "baseUrl": "https://jenkins.example.com/",
+    "apiBaseUrl": "https://jenkins.example.com/"
+  },
+  "credentials": {
+    "type": "client_credentials",
+    "content": {
+      "clientId": "id",
+      "clientSecret": "secret",
+      "accessTokenURL": "https://jenkins.example.com/oauth2/login"
+    }
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### PATCH
+To edit an existing provider, you need to call the respective API as follows:
+
+```sh
+curl --location --request PATCH 'https://console-url/api/backend/tenants/my-example-company/providers/gitlab-id' \
+--header 'Cookie: sid={{CHANGE_ME_WITH_YOUR_SID}}' \
+--header 'Content-Type: application/json' \
+--data-raw '{"credentials":{"type":"token","content":{"accessToken":"my-new-super-super-super-secret-token"}}'
+```
+
+The request of this endpoint is identical to the [previous one](#post), except that the `providerId` must be entered inside the endpoint params and not in the request body.

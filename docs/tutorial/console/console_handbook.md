@@ -6,7 +6,7 @@ sidebar_label: Project Usage Handbook
 
 The **Mia-Platform Console** is a powerful **Internal Developer Portal** that let you govern all projects in one place and helps you industrialize and automate DevOps, avoid organizational bottlenecks, self-serve developers, solve cloud complexity and enhance accountability & reliability.
 
-On the Console you can build complex [projects](/development_suite/api-console/api-design/overview.md) and use an ever-growing list of [plugins](/runtime_suite/mia-platform-plugins.md) but there are some common actions that you will do everyday.
+On the Console you can build complex [projects](/development_suite/api-console/api-design/overview.md) and use an ever-growing list of [plugins](/plugins/mia-platform-plugins.md) but there are some common actions that you will do everyday.
 
 In this page we will see the most frequently performed actions on the Mia-Platform Console.
 
@@ -223,7 +223,7 @@ You must be in the _Deploy_ section of the Console to perform this action.
 ![Select Branch](img/deploy-changes-1.png)
 
 2. [Optional] You can view the list of last 10 commits made on the selected branch.
-3. You can choose to enable or disable the [_Smart deploy_](/development_suite/deploy/deploy.md#smart-deploy) feature.
+3. You can choose to enable or disable the [_Smart deploy_](/development_suite/deploy/overview.md#smart-deploy) feature.
 4. You can see the details of the deploy such as services name and versions, deploy outcome and other info in the table below.
 
 ![Deploy Details](img/deploy-changes-4.png)
@@ -232,7 +232,7 @@ You must be in the _Deploy_ section of the Console to perform this action.
 
 This action will take some time depending on the amount of changes to deploy.
 
-For more information on deploying please see the [dedicated](/development_suite/deploy/deploy.md) page.
+For more information on deploying please see the [dedicated](/development_suite/deploy/overview.md) page.
 
 ## Monitor Runtime System
 

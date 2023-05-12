@@ -33,7 +33,7 @@ To contribute to the Mia-Platform docs:
 
 1. Read the contributing guidelines [here](#contributing-guidelines).
 
-2. Clone git@git.tools.mia-platform.eu:platform/documentations.git;
+2. Clone `git@github.com:mia-platform/documentation.git`;
 
 3. Create a branch named according to these rules: `activity/task-topic`
     - **activity** can be:
@@ -141,9 +141,9 @@ Eg.
               label: '<Current version' (Current)',
               path: '',
             },
-            '8.x.x': {
-              label: '8.9.x',
-              path: '8.x',
+            '10.x.x': {
+              label: '10.x.x',
+              path: '10.x',
             },
           },
         },

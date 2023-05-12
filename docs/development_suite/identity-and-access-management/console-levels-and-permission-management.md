@@ -12,9 +12,10 @@ Let's see how they are configured.
 
 The Console resources are organized in a hierarchical structure on three levels:
 
-1. **Console level** is the highest level and allows the general configuration of your Console. At this level you can configure the Companies, the different templates for Project creation and you have control of your Projects and the Marketplace;
+1. **Console level** is the root level regarding the general configuration of your Console. 
+At this level you can configure resources such as Companies, Project Templates and Marketplace.
 
-1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration.
+1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users and Service Accounts can be managed. To know more about Company configuration, check out the dedicated [documentation section](/development_suite/company/create.mdx).
 
 1. **Project Level** is the third level of the Console. Projects are the heart of the Console: in fact, it is at this level that developers engage in creating new features and building their own Platform.
 
@@ -31,58 +32,90 @@ Identities can perform a set of predetermined actions along Console levels, in a
 * `Reporter`: A Reporter can view Project configuration and Runtime Environments
 * `Guest`: A Guest has restricted access to data and can only view basic information for a selected subset of resources
 
+Roles can be assigned at three types of Console resources:
+
+* Company
+* Project
+* Runtime Environments
+
+Roles can be assigned at Company level from the Identities portal of the Company Overview section.
+  
 The following table describes the capabilities and how they are mapped on the default roles.
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
-|----------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
-| View Company basic information                                             | `console.company.view`                                 | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
-| Edit Company information                                                   | `console.company.details.update`                       |        |          |           |            |                       | ✅            |
-| Create a Projects inside a Company                                         | `console.company.project.create`                       |        |          |           |            |                       | ✅            |
-| View all Projects in this Company                                          | `console.company.project.view`                         |        | ✅       | ✅        | ✅         | ✅                    | ✅            |
-| View Project basic information                                             | `console.project.view`                                 | ✅     | ✅       | ✅        | ✅         | ✅                    |               |
-| View all the Environments in all the Projects of this Company              | `console.company.project.environment.view`             |        | ✅       | ✅        | ✅         | ✅                    | ✅            |
-| View all Environments of this Project                                      | `console.project.environment.view`                     |        | ✅       | ✅        | ✅         | ✅                    |               |
-| View this Environment of the Project                                       | `console.environment.view`                             |        | ✅       |           | ✅         |                       |               |
-| Create a service repository for all the Projects of this Company           | `console.company.project.service.repository.create`    |        |          | ✅        | ✅         | ✅                    | ✅            |
-| Create a service repository for this Project                               | `console.project.service.repository.create`            |        |          | ✅        | ✅         | ✅                    |               |
-| Commit changes on all the Project configurations of this Company           | `console.company.project.configuration.update`         |        |          | ✅        | ✅         | ✅                    | ✅            |
-| Commit changes on Project configuration                                    | `console.project.configuration.update`                 |        |          | ✅        | ✅         | ✅                    |               |
-| Edit Project information                                                   | `console.project.details.update`                       |        |          |           |            | ✅                    | ✅            |
-| Manage secreted environment variables for all the Projects of this Company | `console.company.project.secreted_variables.manage`    |        |          |           |            | ✅                    | ✅            |
-| Manage secreted environment variables                                      | `console.project.secreted_variables.manage`            |        |          |           |            | ✅                    |               |
-| Trigger deploy on all the Environments of all the Projects of this Company | `console.company.project.environment.deploy.trigger`   |        |          |           | ✅         | ✅                    | ✅            |
-| Trigger deploy on any Environment of this Project                          | `console.project.environment.deploy.trigger`           |        |          |           | ✅         | ✅                    |               |
-| Trigger deploy on this specific Environment                                | `console.environment.deploy.trigger`                   |        |          |           | ✅         |                       |               |
-| Restart pods on all the Environments of all the Projects of this Company   | `console.company.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    | ✅            |
-| Restart pods on any Project Environment                                    | `console.project.environment.k8s.pod.delete`           |        |          |           | ✅         | ✅                    |               |
-| Restart pods on this specific Environment                                  | `console.environment.k8s.pod.delete`                   |        |          |           | ✅         |                       |               |
-| Manage dashboards on all the Project of this Company                       | `console.company.project.environment.dashboard.manage` |        |          |           |            | ✅                    | ✅            |
-| Manage dashboards on any Project Environment                               | `console.project.environment.dashboard.manage`         |        |          |           |            | ✅                    |               |
-| Manage dashboards on this specific Environment                             | `console.environment.dashboard.manage`                 |        |          |           |            |                       |               |
-| Manage identities of this Company                                          | `console.company.users.manage`                         |        |          |           |            |                       | ✅            |
-| Edit Project information of all the Projects of this Company               | `console.company.project.details.update`               |        |          |           |            | ✅                    | ✅            |
-| Manage identities of all the Projects of this Company                      | `console.company.project.users.manage`                 |        |          |           |            | ✅                    |               |
-| Manage identities for this Project                                         | `console.project.users.manage`                         |        |          |           |            | ✅                    |               |
-| Delete a Company                                                           | `console.company.delete`                               |        |          |           |            |                       | ✅            |
-| Delete a single Project                                                    | `console.project.delete`                               |        |          |           |            |                       | ✅            |
-| Delete all the Projects of a Company                                       | `console.company.project.delete`                       |        |          |           |            | ✅                    | ✅            |
-| Manage Providers for a Company                                             | `console.company.providers.manage`                     |        |          |           |            |                       | ✅            |
-| View Company Providers information                                         | `console.company.providers.view`                       | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
-| Manage Clusters for a Company                                              | `console.company.cluster.manage`                       |        |          |           |            |                       | ✅            |
-| View Company Clusters information                                          | `console.company.cluster.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
-| Create a new Company                                                       | `console.root.company.create`                          |        |          |           |            |                       |               |
-| Delete any Company                                                         | `console.root.company.delete`                          |        |          |           |            |                       |               |
-| Create a new Project                                                       | `console.root.project.create`                          |        |          |           |            |                       |               |
-| Edit any Project                                                           | `console.root.project.details.update`                  |        |          |           |            |                       |               |
-| Delete any Project                                                         | `console.root.project.delete`                          |        |          |           |            |                       |               |
-| View all Console resources                                                 | `console.root.view`                                    |        |          |           |            |                       |               |
-| Manage identity Roles, Groups and Bindings                                 | `console.root.user.bind`                               |        |          |           |            |                       |               |
-| Create and delete any user                                                 | `console.root.user.manage`                             |        |          |           |            |                       |               |
-| Manage all private and public Project Templates                            | `console.root.templates.manage`                        |        |          |           |            |                       |               |
-| Manage available features                                                  | `console.root.features.manage`                         |        |          |           |            |                       |               |
-| Manage Company Project Templates                                           | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
+|------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
+| View Company basic information                                         | `console.company.view`                                 | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| Edit Company information                                               | `console.company.details.update`                       |        |          |           |            |                       | ✅            |
+| Create Projects inside this Company                                    | `console.company.project.create`                       |        |          |           |            |                       | ✅            |
+| View all Projects of this Company                                      | `console.company.project.view`                         |        | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| View all Environments in all Projects of this Company                  | `console.company.project.environment.view`             |        | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| Create a service repository in all Projects of this Company            | `console.company.project.service.repository.create`    |        |          | ✅        | ✅         | ✅                    | ✅            |
+| Commit changes on all Project configurations of this Company           | `console.company.project.configuration.update`         |        |          | ✅        | ✅         | ✅                    | ✅            |
+| Manage secreted environment variables for all Projects of this Company | `console.company.project.secreted_variables.manage`    |        |          |           |            | ✅                    | ✅            |
+| Trigger deploy on all Environments of all Projects of this Company     | `console.company.project.environment.deploy.trigger`   |        |          |           | ✅         | ✅                    | ✅            |
+| Restart pods on all Environments of all Projects of this Company       | `console.company.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    | ✅            |
+| Manage dashboards on all Projects of this Company                      | `console.company.project.environment.dashboard.manage` |        |          |           |            | ✅                    | ✅            |
+| Manage Identities of this Company                                      | `console.company.users.manage`                         |        |          |           |            |                       | ✅            |
+| Edit Project information of all Projects of this Company               | `console.company.project.details.update`               |        |          |           |            | ✅                    | ✅            |
+| Manage Identities of all Projects of this Company                      | `console.company.project.users.manage`                 |        |          |           |            | ✅                    |               |
+| Delete this Company                                                    | `console.company.delete`                               |        |          |           |            |                       | ✅            |
+| Delete all Projects of this Company                                    | `console.company.project.delete`                       |        |          |           |            | ✅                    | ✅            |
+| Manage Providers of this Company                                       | `console.company.providers.manage`                     |        |          |           |            |                       | ✅            |
+| View Company Providers information                                     | `console.company.providers.view`                       | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| Manage Clusters for this Company                                       | `console.company.cluster.manage`                       |        |          |           |            |                       | ✅            |
+| View Company Clusters information                                      | `console.company.cluster.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| Manage Company Project Templates                                       | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
+| Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`                          |        |           |          |              |  ✅  |  ✅  |
 
 User roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
+
+:::info
+Please note that, inside Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.  
+For each of them, therefore, the permissions inherited from the Company role assignment at the Company level will be visible. In this way, it will be possible to identify which additional permissions among those mentioned in the following table can be assigned at Project and Runtime Environments levels. 
+:::
+
+|              Capabilities                         | Permissions key                                | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
+|---------------------------------------------------|------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
+| View Project basic information                    | `console.project.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    |               |
+| View all Environments of this Project             | `console.project.environment.view`             |        | ✅       | ✅        | ✅         | ✅                    |               |
+| View this Environment of the Project              | `console.environment.view`                     |        | ✅       |           | ✅         |                       |               |
+| Create a service repository for this Project      | `console.project.service.repository.create`    |        |          | ✅        | ✅         | ✅                    |               |
+| Commit changes on Project configuration           | `console.project.configuration.update`         |        |          | ✅        | ✅         | ✅                    |               |
+| Edit Project information                          | `console.project.details.update`               |        |          |           |            | ✅                    | ✅            |
+| Manage secreted environment variables             | `console.project.secreted_variables.manage`    |        |          |           |            | ✅                    |               |
+| Trigger deploy on any Environment of this Project | `console.project.environment.deploy.trigger`   |        |          |           | ✅         | ✅                    |               |
+| Trigger deploy on this specific Environment       | `console.environment.deploy.trigger`           |        |          |           | ✅         |                       |               |
+| Restart pods on any Project Environment           | `console.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    |               |
+| Restart pods on this specific Environment         | `console.environment.k8s.pod.delete`           |        |          |           | ✅         |                       |               |
+| Manage dashboards on any Project Environment      | `console.project.environment.dashboard.manage` |        |          |           |            | ✅                    |               |
+| Manage dashboards on this specific Environment    | `console.environment.dashboard.manage`         |        |          |           |            |                       |               |
+| Manage identities for this Project                | `console.project.users.manage`                 |        |          |           |            | ✅                    |               |
+| Delete a single Project                           | `console.project.delete`                       |        |          |           |            |                       | ✅            |
+
+
+### Console Root level permissions
+
+User roles and permissions are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to perform actions at Console root level.
+
+:::info
+Note that Console Super User is NOT included as a default role. Consequently, it can not be assigned from the Identities portal, as it performs actions exclusively at Console root level. 
+:::
+
+The following table describes the manageable privileges at Console root level that are granted to Console Administrators:
+
+| Capabilities | Permissions key |
+|--------------|-----------------|
+| Create a new Company                            | `console.root.company.create`         |
+| Delete any Company                              | `console.root.company.delete`         |
+| Create a new Project                            | `console.root.project.create`         |
+| Edit any Project                                | `console.root.project.details.update` |
+| Delete any Project                              | `console.root.project delete`         |
+| View all Console resources                      | `console.root.view`                   |
+| Manage identity Roles, Groups and Bindings      | `console.root.user.bind`              |
+| Create and delete any user                      | `console.root.user.manage`            |
+| Create and delete root service account          | `console.root.serviceaccount.manage`  |
+| Manage all private and public Project Templates | `console.root.templates.manage`       |
+| Manage available features                       | `console.root.features.manage`        |
 
 ### Role binding example
 

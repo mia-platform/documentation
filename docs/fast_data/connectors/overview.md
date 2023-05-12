@@ -25,11 +25,11 @@ When data is stored on a database and the changes to be monitored are the action
 ### How to connect any data source to Fast Data
 
 In general, any application that writes messages onto an event messaging platform adopting one of the formats [accepted by the Real-Time Updater](/fast_data/inputs_and_outputs.md#data-change-message) can act as a Connector.
-In particular, it is possible to either write your own [custom Connector](#bring-your-own-cdc) tailored for your unique needs and requirements, or use one of the Connectors available in the Mia-Platform [Marketplace](/runtime_suite/mia-platform-plugins.md).
+In particular, it is possible to either write your own [custom Connector](#bring-your-own-cdc) tailored for your unique needs and requirements, or use one of the Connectors available in the Mia-Platform [Marketplace](/plugins/mia-platform-plugins.md).
 
 Some connectors you'll find in the Marketplace:
 
-- [CSV Connector](/runtime_suite/csv-connector/configuration.md)
+- [CSV Connector](/runtime_suite_applications/csv-connector/overview.md)
 - [Debezium plugin Connectors](/fast_data/connectors/debezium_cdc.md#debezium-server-configuration)
 - Kafka Connect Configurator (only available for those who have the Confluent license)
 

@@ -1,0 +1,59 @@
+---
+id: changelog
+title: Changelog
+sidebar_label: CHANGELOG
+---
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.1.0] 2023-01-17
+### Added
+
+- validatorProcessor can now be used to filter out messaged based on a custom function
+
+## [1.0.0] 2022-10-27
+
+
+**This is the first released version of the `kafka2rest` plugin**
+
+## [0.2.1] 2022-10-25
+
+### Changed
+
+- upgraded library dependencies
+
+## [0.2.0] 2022-10-21
+
+### Changed
+
+- it is possible to authenticate the requests made by the service
+
+## [0.1.3] 2022-09-23
+
+### Fixed
+
+- fixed log on response not in JSON format
+
+## [0.1.2] 2022-01-10
+
+### Added
+
+- service documentation
+
+### Changed
+
+- upgraded library dependencies 
+
+## [0.1.1] 2021-11-22
+
+## [0.1.0] 2021-11-15
+
+### Initial Release
+
+This service converts Kafka messages into REST requests to configured targets.
+It allows to dynamically construct both the URL path and the request body depending on
+message key and payload.
+
+Path and body processor can be added as Javascript functions at configuration time.

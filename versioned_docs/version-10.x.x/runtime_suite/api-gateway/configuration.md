@@ -1,0 +1,28 @@
+---
+id: configuration
+title: Api Gateway Configuration
+sidebar_label: Configuration
+---
+The service is based on Nginx, so to write the various configuration files we demand to its [official documentation](https://nginx.org/en/docs/).  
+
+## Environment Variables
+
+This API Gateway service does not have any environment variables.
+
+## Configuration Directories
+
+The API Gateway service needs four configuration directories to work:
+
+- default.d: This folder contains the four standard upstream definitions, and can be used for adding future
+    default upstream definitions that can be used by the various clients of the platform.
+- conf.d: This folder can contain every import statement that must be added to the main http statement,
+    this can include additional server statements, upstream definition, and mapping functions.
+- platform.d: This folder will be imported in the frontend server statement and contains
+    all the locations statement and header definitions.
+- backoffice.d: This folder will be imported in the backend server statement and contains
+    all the locations statement and header definitions and must proxy pass all the unhandled path to the frontend.
+
+../../runtime_suite/crud-service/overview_and_usage
+:::info
+Learn more from the [Advanced configuration](../../development_suite/api-console/advanced-section/api-gateway/how-to) and the [request-size](../../development_suite/api-console/advanced-section/api-gateway/request-size) section to custom configurations.
+:::

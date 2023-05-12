@@ -12,7 +12,7 @@ const config = {
   projectName: "Mia-Platform", // Usually your repo name.
   themeConfig: {
     prism: {
-      additionalLanguages: ['rego','java'],
+      additionalLanguages: ['rego','java', 'csharp'],
     },
     image: "img/documentation-link-preview.png",
     algolia: {
@@ -249,16 +249,16 @@ const config = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "10.x (Current)",
+              label: "11.x (Current)",
               path: "",
+            },
+            "10.x.x": {
+              label: "10.9.x",
+              path: "10.x",
             },
             "9.x.x": {
               label: "9.5.x",
               path: "9.x",
-            },
-            "8.x.x": {
-              label: "8.9.x",
-              path: "8.x",
             },
           },
           async sidebarItemsGenerator({
