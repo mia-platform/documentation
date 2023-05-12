@@ -192,5 +192,5 @@ Set the value for the following environment variables, used by the Auth0 client 
 For further configuration on microservices included in the application you can refer to the dedicated documentation:
 
 - [Authorization Service](../../development_suite/api-console/advanced-section/authorization-service/configuration)
-- [Oauth Login Site](../../runtime_suite_applications/dev_portal/authentication_configuration#configure-login-site)
+- [Oauth Login Site](../../dev_portal/authentication_configuration#configure-login-site)
 - [Auth0 Client](../../runtime_suite/auth0-client/configuration)

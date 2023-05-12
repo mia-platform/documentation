@@ -130,7 +130,7 @@ After having created an endpoint to your microservice you should **save** the ch
 
 Once all the changes that you have made are saved, you should deploy your project through the DevOps Console. Go to the **Deploy** area of the DevOps Console.  
 Once here select the environment and the branch you have worked on and confirm your choices clicking on the _deploy_ button. When the deploy process is finished you will receive a pop-up message that will inform you.  
-Follow [this link](../../development_suite/deploy/overview) to learn how to correctly deploy your project.
+Follow [this link](../../development_suite/deploy/deploy) to learn how to correctly deploy your project.
 
 ## Try it
 

@@ -9,7 +9,7 @@ availabilities or directly.
 
 :::note
 
-As stated in the [configuration section](./20_configuration.md#appointments-crud), you can name the CRUD collections however
+As stated in the [configuration section](configuration.md#appointments-crud), you can name the CRUD collections however
 you like. For simplicity’s sake, in the following page it is assumed that you have called them `availabilities` and
 `appointments`.
 
@@ -57,7 +57,7 @@ By default, for backward compatibility with version 1.x, this endpoint returns o
 
 Creates a new appointment in the CRUD collection.
 
-Depending on the [AM configuration](./20_configuration.md), you can create an appointment by providing:
+Depending on the [AM configuration](20_configuration.md), you can create an appointment by providing:
 
 - in *appointments mode*: a start (`startDate`) and end (`endDate`) date/time;
 - in *full mode* one of the following:
@@ -88,7 +88,7 @@ If the `isTeleconsultationAvailable` property of the [configuration file][servic
 
 :::note
 For this to happen, the users auth0 ids have to be passed in the body.
-The users that can be passed are defined in `users` property of the [service configuration](./20_configuration.md#service-configuration).
+The users that can be passed are defined in `users` property of the [service configuration](configuration.md#service-configuration).
 
 The telecommunication service require at least 2 users for creating the room, otherwise will return an error
 
@@ -104,7 +104,7 @@ The values for this fields can be either `string` or `arrayOfString`, for instan
 #### Sending messages
 
 A message will be sent to the participants that belong to a category with a `create` template id (see the
-[service overview](./10_overview.md#sending-messages) for more information).
+[service overview](overview.md#sending-messages) for more information).
 
 :::warning
 
@@ -122,7 +122,7 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview](./10_overview.md#setting-reminders) for more information).
+If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview](overview.md#setting-reminders) for more information).
 
 :::warning
 
@@ -132,13 +132,13 @@ The reminders will be set only if the `isMessagingAvailable` and `isTeleconsulta
 
 :::note
 
-If the `reminderThresholdMs` field in the [service configuration][service-configuration] is set, and the new appointment `startDate` is closer than the given threshold, no reminder will be set (see the [CRUD section](./20_configuration.md#reminderThresholdMs) for more information).
+If the `reminderThresholdMs` field in the [service configuration][service-configuration] is set, and the new appointment `startDate` is closer than the given threshold, no reminder will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
 
 :::
 
 ### Body
 
-Depending on the [AM configuration](./20_configuration.md), you can create an appointment by providing:
+Depending on the [AM configuration](20_configuration.md), you can create an appointment by providing:
 
 - in *appointments mode*: a start (`startDate`) and end (`endDate`) date/time;
 
@@ -233,7 +233,7 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 Changes the state of the appointments matching the provided filters.
 
-For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state, the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview](./10_overview.md#sending-messages) for more information) and delete all existing reminders.
+For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state, the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview](overview.md#sending-messages) for more information) and delete all existing reminders.
 
 :::warning
 The messages will be sent only if the `isMessagingAvailable` and `isTimerAvailable` [configuration option][service-configuration] are set to `true`
@@ -284,13 +284,13 @@ The following updates trigger specific actions:
 
 - If the field `isRemote` is set from `true` to `false`, the teleconsultation room created previously will be deleted alongside its URL to join the call from the CRUD (`linkTeleconsultation`).
 
-- If the participants are changed - any field mapped by the `users` property of the [service configuration](./20_configuration.md#service-configuration) - and the current appointment has `isRemote` set to `true`, then the teleconsultation's participants will be updated.
+- If the participants are changed - any field mapped by the `users` property of the [service configuration](configuration.md#service-configuration) - and the current appointment has `isRemote` set to `true`, then the teleconsultation's participants will be updated.
 
 - If the `startDate` and/or `endDate` are changed and the current appointment has `isRemote` set to `true`, then the teleconsultation's start and/or end date are updated.
 
 - If the `availabilityId`, `startDate` and/or `endDate` are changed, the AM checks if the new slot is valid and available.
 
-For further info about what to set as the users value, see the [Teleconsultation Service doc - participants](../../runtime_suite/teleconsultation-service-backend/usage#participants-required).
+For further info about what to set as the users value, see the [Teleconsultation Service doc - participants](../teleconsultation-service-backend/usage.md#participants-required).
 
 :::warning
 
@@ -315,12 +315,12 @@ If the Teleconsultation Service is not configured properly on the Console, the t
 #### Sending messages
 
 Participants that are **added** to the appointment will receive a creation message if they belong to a category with a
-`create` template id (see the [service overview](./10_overview.md#sending-messages) for more information).
+`create` template id (see the [service overview](overview.md#sending-messages) for more information).
 
 Participants that are **removed** from the appointment will receive a deletion message if they belong to a category with a
-`delete` template id (see the [service overview](./10_overview.md#sending-messages) for more information).
+`delete` template id (see the [service overview](overview.md#sending-messages) for more information).
 
-Participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview](./10_overview.md#sending-messages) for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
+Participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview](overview.md#sending-messages) for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
 
 :::warning
 
@@ -347,7 +347,7 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview](./10_overview.md#sending-messages) for more information).
+One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview](overview.md#sending-messages) for more information).
 
 Any reminder set for participants that are **removed** from the appointment will be aborted.
 
@@ -369,7 +369,7 @@ will be set.
 :::note
 
 If the `reminderThresholdMs` field in the configuration is set, and the appointment date is below the threshold, 
-no reminders will be set (see the [CRUD section](./20_configuration.md#reminderThresholdMs) for more information).
+no reminders will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
 
 :::
 
@@ -442,7 +442,7 @@ If the appointment is remote, the teleconsultation room is automatically deleted
 # Availabilities
 
 :::note
-The following endpoints are exposed **only if** the following [environment variables](./20_configuration.md#environment-variables) are set:
+The following endpoints are exposed **only if** the following [environment variables](configuration.md#environment-variables) are set:
 
 - `AVAILABILITY_CRUD_NAME`
 - `EXCEPTIONS_CRUD_NAME`
@@ -742,7 +742,7 @@ Since the slots are computed on demand, the AM performs the following operations
 The body of this request accepts the following fields:
 
 - `ownerId` (**required**): a `string` representing the user who wants to lock the availability;
-- `lockDurationMs`: the duration of the lock expressed in milliseconds (default: the [`defaultLockDurationMs`](./20_configuration.md#defaultLockDurationMs) field of the service configuration file).
+- `lockDurationMs`: the duration of the lock expressed in milliseconds (default: the [`defaultLockDurationMs`](configuration.md#defaultLockDurationMs) field of the service configuration file).
 
 ### Response
 
@@ -753,7 +753,7 @@ If the resource can not be locked, you will receive a Forbidden error message.
 # Exceptions
 
 :::note
-The following endpoints are available from v2.0.0 and are exposed **only if** the following [environment variables](./20_configuration.md#environment-variables) are set:
+The following endpoints are available from v2.0.0 and are exposed **only if** the following [environment variables](configuration.md#environment-variables) are set:
 
 - `AVAILABILITY_CRUD_NAME`
 - `EXCEPTIONS_CRUD_NAME`
@@ -964,7 +964,7 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 #### `Availability`
 
-Each availability has all the [CRUD collection properties](./20_configuration.md#availabilities-crud-collection) plus a `slots` field, containing an array of the slots, each one having the following properties:
+Each availability has all the [CRUD collection properties](20_configuration.md#availabilities-crud-collection) plus a `slots` field, containing an array of the slots, each one having the following properties:
 
 - `_id`: a unique identifier of the slot;
 - `status`: the slot status (`AVAILABLE`, `BOOKED` or `UNAVAILABLE`);
@@ -981,11 +981,11 @@ Since slots are computed dinamically, the `_id` field does not represent and doe
 
 #### `Exception`
 
-Each exception has all the [CRUD collection properties](./20_configuration.md#exceptions-crud-collection).
+Each exception has all the [CRUD collection properties](20_configuration.md#exceptions-crud-collection).
 
 #### `Appointment`
 
-Each appointment has all the [CRUD collection properties](./20_configuration.md#appointments-crud-collection).
+Each appointment has all the [CRUD collection properties](20_configuration.md#appointments-crud-collection).
 
 ## GET /calendar/count
 
@@ -1044,8 +1044,8 @@ If the request is processed correctly, you will receive a response with a 200 st
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `GET /<collection>/count` request.
 
 [iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
-[service-configuration]: ./20_configuration.md#service-configuration "Service configuration"
-[environment variable]: ./20_configuration.md#environment-variables "Environment variables"
+[service-configuration]: configuration.md#service-configuration "Service configuration"
+[environment variable]: configuration.md#environment-variables "Environment variables"
 
 # Search
 

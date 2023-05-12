@@ -16,7 +16,7 @@ Talking about Mia-Platform Backoffice, so considering only the capabilities of t
 - The layout: managed by [micro-lc](https://www.micro-lc.io/docs)
 - The components: based on Mia-Platform [back-kit library](./60_components/10_adapters.md)
 
-The back-kit library is basically a set of W3C Web Components customizable with a JSON configuration or through the [Backoffice configurator](../../business_suite/backoffice-configurator/overview). 
+The back-kit library is basically a set of W3C Web Components customizable with a JSON configuration or through the [Backoffice configurator](../../business_suite/backoffice-configurator/overview).
 
 The backoffice pages can be built upon the usage of the proper configuration of the micro-lc layout, like configuring the menu (e.g. sidebar menu, top-bar menu, and other possibilities provided by micro-lc) and the composition of a various number of web components coming from back-kit library.
 
@@ -65,7 +65,7 @@ when conceiving a configuration.
 
 Components expose **properties** (set by the `element-composer` via JS script) and/or **attributes** (as the former but
 accessible also from the HTML document as tag attributes with camelCase syntax re-mapped to hyphen-separated-case), interact
-via **events** (messages from/to the `eventBus`), and instantiate a [bootstrap](page_layout#bootstrap-aka-initial-state-injection) interface.
+via **events** (messages from/to the `eventBus`), and instantiate a [bootstrap](./30_page_layout.md#bootstrap-aka-initial-state-injection) interface.
 
 As a rule of thumb, a component:
 
