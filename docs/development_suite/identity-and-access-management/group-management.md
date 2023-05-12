@@ -52,18 +52,17 @@ During the creation process, the group can be also created without members added
   </div>
 </div>
 
-It is possible to add to a group both users who already have access to the Company and new users who do not have access to the Company (but which already exist on the Platform). For the latter, once inserted their email address, they will receive an invitation to join that group of the Company.  As long as they are part of at least one group of a Company, they can have access to the resources of that Company.
-
-The provided emails will be searched throughout existing users on the Platform and, if a match is found, the user will be invited to the group with the defined tole of that specific group.
-
+Both users who are already part of the Company and new users whose have no access yet, can be added to a group.
+For the latter, the user must already be registered on the Platform. These users will receive an invitation to join the Company group.
+As long as a user is part of at least one group of a Company, this has access to the resources of that Company.
 :::info
 If the user does not exist in the Platform, please open a Service Request to invite it to register in the Platform.
 :::
 
 ### Editing a Group
 
-After the creation of a group, it is possible to enter its detail page.
-Once entered, a Company Owner can perform the following actions:
+After a group has been created, it is possible to view its detail page.
+From this page, a Company Owner can perform the following actions:
 
 * Change group name
 * Edit group Company role
