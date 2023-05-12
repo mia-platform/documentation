@@ -28,7 +28,7 @@ At Company level, for each group, it is possible to manage:
 
 Existing groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
 
-<!-- TODO: ![Group table](./img/group-management/group_table.png) -->
+![Group table](./img/group-management/group_table.png)
 
 :::caution
 Please note that some permissions granted by the assigned Company role may be inherited on the Projects and Runtime Environments of the Company itself.  
@@ -44,13 +44,13 @@ The Company Owner can start the group creation process by pressing the *Create g
 During the creation process, the group can be also created without members added to it. This action can be performed even after the group creation.
 :::
 
-<!-- <div style={{display: 'flex', justifyContent: 'center'}}>
+<div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-TODO: ![Add group](./img/group-management/add_user.png)
+![Add group](./img/group-management/add_group.png)
 
   </div>
-</div> -->
+</div>
 
 It is possible to add to a group both users who already have access to the Company and new users who do not have access to the Company (but which already exist on the Platform). For the latter, once inserted their email address, they will receive an invitation to join that group of the Company.  As long as they are part of at least one group of a Company, they can have access to the resources of that Company.
 
@@ -76,42 +76,42 @@ In the case that a user has access to the Company solely from its membership of 
 In the case that a user has access to more Company Groups, or has a specific individual Company role assigned, the removal from that Group will NOT result in the loss of access to the Company for that user; for this reason, it is necessary to pay close attention to what privileges are still left to that user on the Company resources. 
 :::
 
-<!-- 
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-TODO: ![Edit group](./img/group-management/edit_group.png)
+![Edit group](./img/group-management/edit_group.png)
 
   </div>
-</div> -->
+</div>
 
-### Managing group Company role
+### Managing Group role at Company level
 
 Groups are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Company Overview.
 As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal: to do so, simply click on the edit button for the desired group row and select the new role.
 
-<!-- 
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-TODO: ![Edit group role at Company level](./img/group-management/edit-group-role-at-company-level.png)
+![Edit group role at Company level](./img/group-management/edit-group-role-at-company-level.png)
 
   </div>
-</div> -->
+</div>
 
-### Managing group role at Project level
+### Managing Group role at Project level
 
 Groups which have access to a Company are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
 Group role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper role for the Project itself or for each Runtime Environment.
 
-<!-- 
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit group role at Project level](./img/user-management/edit-group-role-at-project-level.png)
+![Edit group role at Project level](./img/group-management/edit-group-role-at-project-level.png)
 
   </div>
-</div> -->
+</div>
 
 :::note
 Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
@@ -131,11 +131,11 @@ In the case that a group member has access to the Company solely from its member
 In the case that a user has access to more Company groups, or has a specific individual Company role assigned, the deletion of the group will NOT result in loss of access to the Company for that user; for this reason, it is necessary to pay attention to what privileges are still left to that user on the Company resources.
 :::
 
-<!-- 
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-TODO: ![Delete group](./img/group-management/delete_group.png)
+![Delete group](./img/group-management/delete_group.png)
 
   </div>
-</div> -->
+</div>
