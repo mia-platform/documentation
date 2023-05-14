@@ -15,7 +15,7 @@ Here is an example of the Identities portal of a Company, which can be found in 
 
 ![Company Identities table](./img/identities_table.png)
 
-In order to manage privileges at Project level, the Identities table is shown even into Project Settings Area, wherein it is possible to manage roles assigned to the specific Project and its Envinronments.
+In order to manage privileges at Project level, the Identities table is shown even into Project Settings Area, wherein it is possible to manage roles assigned to the specific Project and its Environments.
 
 <!-- TODO: ![Project Identities table](./img/identities_table_on_project.png) -->
 
