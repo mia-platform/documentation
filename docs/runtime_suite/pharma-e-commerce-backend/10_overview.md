@@ -23,5 +23,5 @@ At the moment, the **Pharma Ecommerce Backend** supports only [PharmaPrime](http
 
 If you want to learn how to configure the microservice, follow this [configuration][configuration-link] guide.
 
-[configuration-link]: ./20_configuration.md
-[usage-link]: ./30_usage.md
+[configuration-link]: configuration.md
+[usage-link]: usage.md
