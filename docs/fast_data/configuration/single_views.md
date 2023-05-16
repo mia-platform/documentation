@@ -16,7 +16,7 @@ Once created, you will be redirected to the Single View detail page.
 
 ## Single View Data Model
 
-Single views collections are created on the CRUD Service, so we add all the [default fields](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
+Single views collections are created on the CRUD Service, so we add all the [default fields](/runtime_suite/crud-service/10_overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
 
 To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card.
 
