@@ -30,8 +30,14 @@ Permissions can then be used in ACL expressions as describe [here](../../develop
 * `mia-allowed`: set to 0 or 1. 0 -> not allowed. 1 -> allowed
 * `mia-userid`: if the api is called by logged user, it is filled with user id (customizable through `CUSTOM_USER_ID_KEY`). Otherwise it is empty.
 * `mia-groups`: if the api is called by logged user, it is filled with comma separated list of user groups. Otherwise it is empty.
-* `mia-userproperties`: it is possible to set into `USER_PROPERTIES_TO_PROXY` a comma separated list of user properties to evaluate acl expressions.
+* `mia-userproperties`: it is possible to set into `USER_PROPERTIES_TO_PROXY` a comma separated list of user properties. Their value will be retrieved from the userinfo response, JSON encoded, and set to this header. The header is then proxied to the other services. The purpose of this header is to have the userinfo properties you may need in other services, without having to call the `/userinfo` endpoint again.
 
+:::warning
+
+Pay attention when adding custom properties to the headers, especially if the data has unknown maximum size.
+Too long headers may result in performance issues or in HTTP requests failures.
+
+:::
 ## Strict Mode enabled
 
 By default the `authorization-service` is in strict mode.
