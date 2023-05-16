@@ -2,7 +2,7 @@ const createRedirects = require("./createRedirects");
 
 async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
-
+  
   return {
     title: "Mia-Platform Documentation",
     tagline: "Learn how Mia-Platform can help you to develop your business",
@@ -15,7 +15,7 @@ async function createConfig() {
     projectName: "Mia-Platform", // Usually your repo name.
     themeConfig: {
       prism: {
-        additionalLanguages: ['rego'],
+        additionalLanguages: ['rego', 'java', 'csharp'],
       },
       image: "img/documentation-link-preview.png",
       algolia: {
@@ -36,8 +36,7 @@ async function createConfig() {
           alt: "Mia_Platform logo",
           src: "img/logo.png"
         },
-        items: [
-          {
+        items: [{
             type: 'doc',
             docId: "overview/mia_platform_overview",
             label: "Getting Started",
@@ -49,8 +48,7 @@ async function createConfig() {
             position: "left",
             activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
             type: "dropdown",
-            items: [
-              {
+            items: [{
                 type: 'doc',
                 docId: "development_suite/overview-dev-suite",
                 label: "Console",
@@ -110,11 +108,9 @@ async function createConfig() {
       },
       footer: {
         style: "dark",
-        links: [
-          {
+        links: [{
             title: "Mia-Platform",
-            items: [
-              {
+            items: [{
                 label: "How to install",
                 to: "/docs/info/how_to_install",
               },
@@ -146,8 +142,7 @@ async function createConfig() {
           },
           {
             title: "Company",
-            items: [
-              {
+            items: [{
                 label: "Site",
                 href: "https://www.mia-platform.eu/en/",
               },
@@ -165,22 +160,19 @@ async function createConfig() {
               },
               {
                 label: "Privacy Policy",
-                href:
-                  "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+                href: "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
               },
             ],
           },
           {
             title: "Core Platform",
-            items: [
-              {
+            items: [{
                 label: "Console",
                 href: "https://www.mia-platform.eu/en/products/devops-console",
               },
               {
                 label: "Microservice Ecosystem",
-                href:
-                  "https://www.mia-platform.eu/en/products/microservices-ecosystem",
+                href: "https://www.mia-platform.eu/en/products/microservices-ecosystem",
               },
               {
                 label: "Fast Data",
@@ -188,8 +180,7 @@ async function createConfig() {
               },
               {
                 label: "Headless CMS",
-                href:
-                  "https://www.mia-platform.eu/en/products/api-management-and-headless-cms",
+                href: "https://www.mia-platform.eu/en/products/api-management-and-headless-cms",
               },
               {
                 label: "Release Notes",
@@ -199,8 +190,7 @@ async function createConfig() {
           },
           {
             title: "Developer Resources",
-            items: [
-              {
+            items: [{
                 label: "Status Page",
                 href: "https://status.console.cloud.mia-platform.eu"
               },
@@ -224,8 +214,7 @@ async function createConfig() {
           },
           {
             title: "Education & Support",
-            items: [
-              {
+            items: [{
                 label: 'Support',
                 href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
               },
@@ -249,26 +238,46 @@ async function createConfig() {
         {
           docs: {
             remarkPlugins: [mdxMermaid.default, {
-              theme: {light: 'dark', dark: 'forest'}
+              theme: {
+                light: 'dark',
+                dark: 'forest'
+              }
             }],
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "current",
             versions: {
               current: {
-                label: "10.x (Current)",
+                label: "11.x (Current)",
                 path: "",
+              },
+              "10.x.x": {
+                label: "10.9.x",
+                path: "10.x",
               },
               "9.x.x": {
                 label: "9.5.x",
                 path: "9.x",
               },
-              "8.x.x": {
-                label: "8.9.x",
-                path: "8.x",
-              },
+            },
+            async sidebarItemsGenerator({
+              isCategoryIndex: defaultCategoryIndexMatcher,
+              defaultSidebarItemsGenerator,
+              ...args
+            }) {
+              return defaultSidebarItemsGenerator({
+                ...args,
+                isCategoryIndex(params) {
+                  const {
+                    fileName
+                  } = params
+                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
+                },
+              });
             },
           },
-
+          theme: {
+            customCss: require.resolve("./src/css/custom.css"),
+          },
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
@@ -292,7 +301,7 @@ async function createConfig() {
       ],
       "./src/plugins/image-zoom"
     ],
-  };
+  }
 }
 
 module.exports = createConfig;

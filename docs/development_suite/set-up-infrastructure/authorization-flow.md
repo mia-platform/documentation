@@ -43,17 +43,17 @@ It should have previously performed a login process, thus obtaining a token that
 
 ### API Gateway
 
-[API Gateway](/runtime_suite/api-gateway/overview.md) is responsible for receiving all client requests and routing them to the correct service.
+[API Gateway](/runtime_suite/api-gateway/10_overview.md) is responsible for receiving all client requests and routing them to the correct service.
 For every received request, it will redirect its headers to the Authorization service. If the user is authorized to access the requested resource, the API Gateway will proxy both the client request and the service response to the corresponding recipient.
 
 ### Authorization Service
 
-[Authorization Service](/runtime_suite/authorization-service/usage.md) is in charge of verifying whether user groups and permissions are enough for each specific request. This service receives all the request headers received by the API Gateway and will proxy a subset of them to the Authentication Manager.
+[Authorization Service](/runtime_suite/authorization-service/30_usage.md) is in charge of verifying whether user groups and permissions are enough for each specific request. This service receives all the request headers received by the API Gateway and will proxy a subset of them to the Authentication Manager.
 The Authentication Manager should then return a response body containing user id (it is required, the field name of the id is configurable), other user properties, groups and/or permissions. The Authorization Service will examine this information and it will proxy the result of this check to the API Gateway through a specific set of headers.
 
 :::info
 
-For more information about how you can configure the Authorization Service to call a custom Authentication Manager and how to choose the headers that should be proxied to it, visit this [link](/runtime_suite/authorization-service/usage.md)
+For more information about how you can configure the Authorization Service to call a custom Authentication Manager and how to choose the headers that should be proxied to it, visit this [link](/runtime_suite/authorization-service/30_usage.md)
 
 :::
 
@@ -62,8 +62,8 @@ For more information about how you can configure the Authorization Service to ca
 Since every authentication process differs from the others for certain aspects it is advisable that you create your own service that will handle authentication and that will contact an Identity Provider (IDP), if you intend to use one.
 In any case, Mia-Platform has a set of services that can handle the authentication process:
 
-* [Client Credentials](/runtime_suite/client-credentials/configuration.md)
-* [Auth0 Client](/runtime_suite/auth0-client/configuration.md)
+* [Client Credentials](/runtime_suite/client-credentials/10_configuration.md)
+* [Auth0 Client](/runtime_suite/auth0-client/20_configuration.md)
 * Authentication Service
 
 This component is expected to receive a subset of the request headers from the Authorization Service. One of these headers should contain the token that the user obtained during the login process.

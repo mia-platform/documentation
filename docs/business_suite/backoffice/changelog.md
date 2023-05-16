@@ -8,6 +8,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.10] - 2023-05-04
+
+### Added
+
+- added property `selectedParents` to `bk-button` to access the history of previous navigated parents
+
+### Fixed
+
+- form components correctly localize default values of date fields
+
+## [1.3.9] - 2023-04-26
+
+### Added
+
+- `reflectToUrl` property allows to control whether `bk-crud-client` reflects its state to the URL with a `window.history.pushState`
+- `bk-layout-swap` performs a layout change listening to `layout/change` event. The payload of the event is the layout rendered by the component (bundled separately)
+
+### Fixed
+
+- form components correctly resolve lookups in initial values from `add-new` event payload
+
+## [1.3.8] - 2023-04-07
+
+### Fixed
+
+- `bk-card` component applies `visualizationOptions` to nested objects
+- `bk-search-bar` and `bk-breadcrumb` correctly update their nesting state on layout change inside `bk-layout-container`
+
+## [1.3.7] - 2023-03-23
+
+### Added
+
+- added component `bk-antd-theme-manager` and its manifest
+- added component `bk-loading-animation` and its manifest (optional)
+- added manifest to `bk-layout`
+- `bk-loading-animation` moved to its own bundle at `/dist/bk-loading-animation.esm.js`
+- http components (eg, `bk-crud-client`) has property `credentials`, which specifies credentials of http calls
+
+### Fixed
+
+- files are downloaded with correct name
+
 ## [1.3.6] - 2023-03-09
 
 ### Added
@@ -55,7 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `bk-card` uses `visualizationOptions` in dataschema
 - `bk-button` supports `Action`-sdk thorugh property `action`. `clickConfig` is now deprecated and will be removed in future releases, please refer to documentation for migration instructions
 
-### Fixed 
+### Fixed
 
 - `bk-form-card` resolves lookups in initial values
 - lookups are correctly resolved `bk-filter-drawer` initial values

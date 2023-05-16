@@ -12,15 +12,11 @@ To create a Projection, you should first of all create a System of Records, whic
 
 To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Records` button.
 
-The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) to be used: [DB2](/fast_data/configuration/realtime_updater/common.md#ibm-infosphere-data-replication-for-db2), [Golden Gate](/fast_data/configuration/realtime_updater/common.md#oracle-goldengate) or [Custom](/fast_data/configuration/realtime_updater/common.md#custom). The System of Records is then created.
-
-Additionally, you have to choose a Kafka adapter format:
-
-#### Kafka adapter format
-
-Either `DB2`, `Golden Gate`, or `Custom`. [Click here](/fast_data/inputs_and_outputs.md#data-change-message) for more detail about the Kafka adapter formats.
+The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format). 
 
 ![Create a System of Records](../img/create_system_of_record.png)
+
+The System of Records is then created.
 
 ## Delete a System of Records
 
@@ -108,7 +104,7 @@ You cannot import fields with the same name as one of the metadata fields. If th
 
 ### Indexes
 
-In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/overview_and_usage.md#indexes).
+In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
 However, differently from `Indexes` that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
 An `_id` index is created by default, and it is not deletable.
@@ -174,7 +170,7 @@ If you prefer to use custom topics for PR updates, it will be necessary to creat
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
+A projection has the [predefined collection properties](/runtime_suite/crud-service/10_overview_and_usage.md#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
 
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 

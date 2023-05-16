@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "0.0.0",
+  "version": "11.0.8",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -20,12 +20,12 @@
     "check-redirects": "node ./scripts/check-permanent-redirects.js"
   },
   "dependencies": {
-    "@docusaurus/core": "2.3.1",
-    "@docusaurus/plugin-client-redirects": "2.3.1",
-    "@docusaurus/preset-classic": "2.3.1",
+    "@docusaurus/core": "2.4.0",
+    "@docusaurus/plugin-client-redirects": "2.4.0",
+    "@docusaurus/preset-classic": "2.4.0",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^1.2.1",
-    "cspell": "^6.30.2",
+    "cspell": "^6.31.1",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.0",
     "medium-zoom": "^1.0.8",
@@ -46,8 +46,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.21.3",
-    "eslint": "^8.36.0",
+    "@babel/eslint-parser": "^7.21.8",
+    "eslint": "^8.40.0",
     "eslint-plugin-react": "7.32.2",
     "prop-types": "^15.8.1"
   }

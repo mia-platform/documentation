@@ -1,0 +1,25 @@
+---
+id: usage
+title: Usage
+sidebar_label: Usage
+---
+## GET /active-users
+
+You may want to know the list of users having an active session, for this purpose we have exposed an endpoint `GET /users/active`.
+
+The endpoint `GET /users/active` returns a list of the active users, for all clients, at the time the call is made.
+This list is generated from the active sessions and returns an array of `object` containing the `auth0Id` of the users.
+
+An example of response:
+
+```json
+[
+  {
+    "userId": "auth0|02d90d472bd9d017ef000001"
+  },
+  {
+    "userId": "auth0|02d90d472bd9d017ef000002"
+  },
+  ...
+]
+```

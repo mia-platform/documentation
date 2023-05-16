@@ -27,7 +27,7 @@ Check out this [page](/business_suite/update_cms.md) to know how to update your 
 No, at the moment you can't. The entire configuration of the project will be released.
 
 Anyway, before deploy, when you have to choose the environment, the Console will show you a **comparison between the services you want to release and those that are currently running in that environment**.  
-Check out the [related section](/development_suite/deploy/deploy.md#compare-services) for details.
+Check out the [related section](/development_suite/deploy/overview.md#compare-services) for details.
 
 ### When a project is deployed, what is released?
 
@@ -38,7 +38,7 @@ From Console, click on Git provider icon, at the top right part of the Console, 
 :::
 
 :::info
-If you don't find what you're looking for, you can read all documentation about Deploy in the [dedicated section](/development_suite/deploy/deploy.md)
+If you don't find what you're looking for, you can read all documentation about Deploy in the [dedicated section](/development_suite/deploy/overview.md)
 :::
 
 ## Microservices Development
@@ -53,7 +53,7 @@ We do not recommend this debugging practice, instead, you should always write go
 
 Furthermore, [logs](/development_suite/monitoring/introduction.md) can help you to understand what your microservice is doing. The use of [logging level](/getting_started/monitoring-dashboard/dev_ops_guide/log.md#use-the-appropriate-logging-level) allows you to distinguish debug messages that you want to have only in no production environments from those that are useful to monitor the applicative state (errors, warnings, etc).
 
-Consider that the Console allows you to quickly [deploy your microservices in a dedicated environment](/development_suite/deploy/deploy.md#select-environment), so you can try online immediately.
+Consider that the Console allows you to quickly [deploy your microservices in a dedicated environment](/development_suite/deploy/overview.md#select-environment), so you can try online immediately.
 
 :::tip Example of test
 The [Mia Platform Templates](/marketplace/templates/mia_templates.md) are already configured to include and run tests.
@@ -96,7 +96,7 @@ No, you can only use **HTTP**.
 
 ### How can I change the state of a document?
 
-You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a document by making a POST request. Check out the [CRUD Service documentation](/runtime_suite/crud-service/overview_and_usage.md#state-transitions) for details.
+You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a document by making a POST request. Check out the [CRUD Service documentation](/runtime_suite/crud-service/10_overview_and_usage.md#state-transitions) for details.
 
 :::tip
 You can visit the [Documentation Portal](/development_suite/api-portal/api-documentations.md) to see the documentation of your CRUDs APIs.
@@ -110,7 +110,7 @@ You can change the visibility of any endpoint (and its routes) in the endpoint M
 
 ### How can I call a proxy endpoint from my microservices?
 
-The [proxy endpoints](/development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](/runtime_suite/api-gateway/overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
+The [proxy endpoints](/development_suite/api-console/api-design/proxy.md) are exposed on the [API gateway](/runtime_suite/api-gateway/10_overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
 
 You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.
 

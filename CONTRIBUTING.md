@@ -23,7 +23,7 @@ Open an issue to report some typo or suggests some changes that might make the d
 
 ### Opening pull requests
 
-After open an issue to suggest your improvement idea, you could implements it directly following the guide lines expained below and finally open a pull request.
+After open an issue to suggest your improvement idea, you could implements it directly following the guide lines explained below and finally open a pull request.
 
 ## Pull request rules
 
@@ -33,7 +33,7 @@ To contribute to the Mia-Platform docs:
 
 1. Read the contributing guidelines [here](#contributing-guidelines).
 
-2. Clone git@git.tools.mia-platform.eu:platform/documentations.git;
+2. Clone `git@github.com:mia-platform/documentation.git`;
 
 3. Create a branch named according to these rules: `activity/task-topic`
     - **activity** can be:
@@ -106,11 +106,11 @@ The repo provides a series of content test that must be passed:
 - `docs/`
    Contains markdown documentation page for current version.
 - `versioned_docs/`
-   Contains  versioned documentation pages.
+   Contains versioned documentation pages.
   - `versioned_docs/version-5.x.x`
      Contains the files related to v5
 - `versioned_sidebars/`
-   Contains  versioned sidebars config.
+   Contains versioned sidebars config.
 
 ## Create a new Docusaurus version
 
@@ -141,9 +141,9 @@ Eg.
               label: '<Current version' (Current)',
               path: '',
             },
-            '8.x.x': {
-              label: '8.9.x',
-              path: '8.x',
+            '10.x.x': {
+              label: '10.x.x',
+              path: '10.x',
             },
           },
         },
