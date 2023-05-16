@@ -64,7 +64,7 @@ None
 
 ## bk-confirmation-modal
 
-prompts the user for confirmation on certain actions
+prompts the user for confirmation on certain actions. Spawns two buttons, one for confirming and one for canceling the action.
 
 ```html
 <bk-confirmation-modal></bk-confirmation-modal>
@@ -72,23 +72,83 @@ prompts the user for confirmation on certain actions
 
 ![confirmation-modal](../img/bk-confirmation-modal.png)
 
-#### Configure actions
 
-It is possible to mount custom components as confirmation/cancel buttons in the modal.
-For instance, the following example shows how to request for confirmation before the action of a button is performed.
+`bk-confirmation-modal` is spawned upon listening to a [require-confirm](../70_events.md#require-confirm) event, and uses the event payload to populate its state as follows:
 
-#### Example
+- `title`: the title of the modal.
+- `content`: the text content of the modal.
+- `okText`: the text content of the "Cancel" button.
+- `cancelText`: the text content of the "Confirm" button.
+- `onOk`: the callback to execute on confirm. Note: this key cannot be set through configuration. Use `configOk` key instead.
+- `onCancel`: the callback to execute on cancel. Note: this key cannot set through configuration. Use `configCancel` key instead.
+- `configOk`: a "tag"-"properties" pair to mount a custom component in place of the default confirmation button.
+- `configCancel`: a "tag"-"properties" pair to mount a custom component in place of the default cancel button.
 
-The following snippet of configuration shows an "Abort" button which performs a POST request to a given endpoint.
+Components that allow to emit configurable events (for instance, [bk-button](./20_buttons.md#bk-button)) may be used to spawn a `bk-confirmation-modal` by emitting a `require-confirm` event. Doing so, event payload keys `configOk` and `configCancel` should be used to configure the confirm and cancel buttons, while keys `onCancel`, `onOk`, `okText` and `cancelText` should not be specified, as they are supposed to always be set programmatically. 
+
+Components mounted using `configOk` and `configCancel` are automatically set to close the modal upon clicking, and are injected with properties `headers` and `credentials` to match those of `bk-confirmation-modal`.
+
+### Require confirmation for custom actions
+
+It is possible to mount custom components as confirmation/cancel buttons in the modal. This can be used, for instance, to require confirmation from the user before executing an [action](../50_actions.md).
+
+Generally, a configuration like the following:
+```jsonc
+{
+  "tag": "bk-button", // any component that performs an action
+  "properties": {
+    "action": {
+      // the action that requires confirmation
+    },
+    ...
+  }
+}
+```
+should become:
+```jsonc
+{
+  "tag": "bk-button", // any component that can emit a configurable event
+  "properties": {
+    "action": {
+      "type": "event",
+      "config": {
+        "events": {
+          // `require-confirm` is emitted to spawn `bk-confirmation-modal`
+          "label": "require-confirm",
+          "payload": {
+            ...
+            "configOk": {
+              "tag": "bk-button",
+              "properties": {
+                ...
+                "action": {
+                  // the action that requires confirmation
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    ...
+  },
+  {
+    "tag": "bk-confirmation-modal"
+  }
+}
+```
+
+
+For instance, the following snippet of configuration shows a [bk-button](./20_buttons.md#bk-button) configured to perform a POST request to a given endpoint when clicked.
 
 ```json
 {
   "tag": "bk-button",
   "properties": {
     "content": "Abort",
-    "clickConfig": {
+    "action": {
       "type": "http",
-      "actionConfig": {
+      "config": {
         "url": "lambdas/abort",
         "method": "POST",
         "config": {
@@ -101,50 +161,53 @@ The following snippet of configuration shows an "Abort" button which performs a 
 }
 ```
 
-In order to require confirmation for this action, it is possible to:
+In order to require confirmation for this action, it is possible to have the `bk-button` spawn a `bk-confirmation-modal` and delegate the actual action to the "confirm" button of the modal. Namely:
+- have the `bk-button` emit a [require-confirm](../70_events.md#require-confirm) event
+- have the "confirm" button of this modal perform the actual action (in this case, a POST request) using `configOk` key of the event payload
 
-- have the button spawn a Confirmation modal
-- have the "confirm" button of this modal perform the POST request
-as the following snippet shows:
-
-```json
+```jsonc
 {
   "tag": "bk-button",
   "properties": {
     "content": "Abort",
-    "clickConfig": {
+    "action": {
       "type": "event",
-      "actionConfig": {
-        "label": "require-confirm",
-        "payload": {
-          "title": {
-            "en": "Abort order?",
-            "it": "Cancellare ordine?"
-          },
-          "content": {
-            "en": "Are you sure you want to abort this order?",
-            "it": "Sei sicuro di voler cancellare l'ordine?"
-          },
-          "configCancel": {
-            "tag": "bk-button",
-            "properties": {
-              "content": "No",
-              "type": "ghost"
-            }
-          },
-          "configOk": {
-            "tag": "bk-button",
-            "properties": {
-              "content": "Ok",
-              "clickConfig": {
-                "type": "http",
-                "actionConfig": {
-                  "url": "lambdas/abort",
-                  "method": "POST",
+      "config": {
+        // `bk-button` now emits a `require-confirm` event
+        "events": {
+          "label": "require-confirm",
+          "payload": {
+            "title": {
+              "en": "Abort order?",
+              "it": "Cancellare ordine?"
+            },
+            "content": {
+              "en": "Are you sure you want to abort this order?",
+              "it": "Sei sicuro di voler cancellare l'ordine?"
+            },
+            "configCancel": {
+              "tag": "bk-button",
+              "properties": {
+                "content": "No",
+                "type": "ghost"
+              }
+            },
+            "configOk": {
+              // confirmation button performs the actual action
+              // `configOk` has the same piece of configuration as the previous on of `bk-button`
+              "tag": "bk-button",
+              "properties": {
+                "content": "Ok",
+                "action": {
+                  "type": "http",
                   "config": {
-                    "headers": ...
-                  },
-                  "body": ...
+                    "url": "lambdas/abort",
+                    "method": "POST",
+                    "config": {
+                      "headers": ...
+                    },
+                    "body": ...
+                  }
                 }
               }
             }
@@ -155,16 +218,11 @@ as the following snippet shows:
   }
 }
 ```
+The "Abort" button will now emit a `require-confirm` event. Confirmation modal listens to it and spawns, using the payload of the event to populate its state.
 
-The "Abort" button will now launch a `require-confirm` event. The Confirmation modal listens to it and becomes visible, using its payload to match its state as follows:
+In particular, `configOk` key is used to build the confirmation button - in this case, a button that performs the same POST call that was previously performed directly by the button without confirmation.
 
-- 'title': the title of the modal
-- 'content': the text content of the modal
-- 'configCancel': a 'tag' / 'properties' pair for the cancel button
-- 'configOk': a 'tag' / 'properties' pair for the confirmation button
-In particlar, the 'configOk' field is used to build the confirmation button. In this case, we build a button that will perform the POST call that was performed directly by the button in the previous configuration.
-Once one of the buttons is clicked, the confirmation modal automatically closes.
-The cancel button does not perform any action: if clicked, the modal will simply close and the endpoint will not be called.
+The cancel button does not perform any action: if clicked, the modal closes and the endpoint is not called.
 
 ### Properties & Attributes
 
@@ -177,7 +235,7 @@ The cancel button does not perform any action: if clicked, the modal will simply
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[require-confirm](../events#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
+|[require-confirm](../70_events.md#require-confirm)|displays a `confirmationModal` with buttons for the user to confirm or cancel the triggering of certain actions| - | - |
 
 ### Emits
 
@@ -336,10 +394,14 @@ Multiple menu items can be grouped into recursive structures, `categories` (coll
 
 All types of menu item have internationalized labels [LocalizedText](../core_concepts#localization-and-i18n).
 
+```typescript
+type MenuItem = HrefMenuItem | ApplicationMenuItem | CategoryMenuItem | GroupMenuItem
+```
+
 #### Href
 
 ```typescript
-export interface HrefMenuItem {
+interface HrefMenuItem {
   /** Link's destination */
   href: string
 
@@ -357,13 +419,16 @@ export interface HrefMenuItem {
 
   /** Type of the item: hyperlink to another page */
   type: 'href'
+
+  /** Data to display next to the item label or http configuration to fetch it */
+  badge?: string | HttpConfig
 }
 ```
 
-### Application
+#### Application
 
 ```typescript
-export interface ApplicationMenuItem {
+interface ApplicationMenuItem {
   /** Icon to visualize */
   icon?: string
 
@@ -378,13 +443,16 @@ export interface ApplicationMenuItem {
   
   /** Type of the item: micro-lc application */
   type: 'application'
+
+  /** Data to display next to the item label or http configuration to fetch it */
+  badge?: string | HttpConfig
 }
 ```
 
-### Category
+#### Category
 
 ```typescript
-export interface CategoryMenuItem {
+interface CategoryMenuItem {
   /** Menu items included in the category */
   children?: MenuItem[]
 
@@ -399,14 +467,17 @@ export interface CategoryMenuItem {
 
   /** Type of the item: collapsible sub-menu */
   type: 'category'
+
+  /** Data to display next to the item label or http configuration to fetch it */
+  badge?: string | HttpConfig
 }
 
 ```
 
-### Group
+#### Group
 
 ```typescript
-export interface GroupMenuItem {
+interface GroupMenuItem {
   /** Menu items included in the group */
   children?: MenuItem[]
 
@@ -418,6 +489,31 @@ export interface GroupMenuItem {
 
   /** Type of the item: non-collapsible group of items */
   type: 'group'
+
+  /** Data to display next to the item label or http configuration to fetch it */
+  badge?: string | HttpConfig
+}
+```
+
+#### Badges - HttpConfig
+
+The `badge` property can be used to specify an extra value to be displayed next to the label within the corresponding item menu. If `badge` is of type `HttpConfig`, it specifies the parameters of a REST call that is used by `bk-layout` at bootstrap time to fetch the data to display.
+
+Type `HttpConfig` is a subset of the supported configuration for [http-action](../50_actions.md#rest-calls)s.
+
+```typescript
+interface GroupMenuItem {
+  /** Url to call */
+  url: string
+  
+  /** Rest method to use */
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+  
+  /** Body to attach to the call */
+  body?: Record<string, any> | string | null
+  
+  /** Extra configuration, such as headers */
+  config?: Omit<HttpClientConfig, 'body'>
 }
 ```
 
@@ -425,12 +521,12 @@ export interface GroupMenuItem {
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-| mode | mode | Mode | overlaySideBar | controls how the menu is visualized |
-| logo | - | Logo | - | logo to be visualized in the menu |
-| menuItems | - | MenuItem[] | - | describes the items in the menu |
-| helpMenu | - | HelpMenu  | - | controls the help button on the menu |
-| userMenu | - | UserMenu  | - | controls the user information section of the menu |
-| head | - | Head  | - | controls tab visualization options |
+| mode | mode | [Mode](#mode) | overlaySideBar | controls how the menu is visualized |
+| logo | - | [Logo](#logo) | - | logo to be visualized in the menu |
+| menuItems | - | [MenuItem](#menu-items)[] | - | describes the items in the menu |
+| helpMenu | - | [HelpMenu](#help-menu)  | - | controls the help button on the menu |
+| userMenu | - | [UserMenu](#user-menu) | - | controls the user information section of the menu |
+| head | - | [Head](#head) | - | controls tab visualization options |
 | locale | - | {[x: string]: string} | - | allows to override component labels |
 
 ### Listens to

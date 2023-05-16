@@ -258,6 +258,7 @@ export type CardSchema = {
     subtitle?: LocalizedText
     subsubtitle?: LocalizedText
     buttons?: CardButton | CardButton[]
+    buttonsLayout?: 'horizontal' | 'vertical'
   }
 }
 
@@ -328,7 +329,7 @@ A user-agent browser default button can be achieved as:
 }
 ```
 
-but more often we will use back-kit `bk-button` customizable button as shown in the `error`-role card above. That button was achieved as
+but more often we will use back-kit [bk-button](./20_buttons.md#bk-button) customizable button as shown in the `error`-role card above. That button was achieved as
 
 ```json
 {
@@ -347,6 +348,36 @@ but more often we will use back-kit `bk-button` customizable button as shown in 
 }
 ```
 
+Multiple buttons can be specified, and support two layouts: `horizontal` and `vertical` (default), which can be controlled with footer property `buttonsLayout`.
+```json
+{
+  "role": "info",
+  "cardSchema": {
+    "footer": {
+      "buttonsLayout": "horizontal",
+      "buttons": [
+        {
+          "tag": "bk-button",
+          "content": {
+            "it": "Scarica PDF autorizzazione",
+            "en": "Download authorization PDF"
+          },
+          "iconId": "DownloadOutlined",
+          "type": "link"
+        },
+        {
+          "tag": "bk-button",
+          "content": {
+            "it": "Fai un'altra richiesta",
+            "en": "Make a new request"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
 A card can also be composed by text-only content:
 
 ```json
@@ -360,7 +391,7 @@ A card can also be composed by text-only content:
 }
 ```
 
-Footer supports dynamic configurations via [handlebars notation](https://handlebarsjs.com/guide/expressions.html). The content of the card can be utilized inside handlebars via the keyword 'data'. For instance:
+Footer supports [dynamic configurations](../40_core_concepts.md#dynamic-configuration) via [handlebars notation](https://handlebarsjs.com/guide/expressions.html). The content of the card can be utilized inside handlebars via the keyword 'data'. For instance:
 
 ```json
 {
@@ -401,7 +432,7 @@ It is possible to replace handlebars with an object instead of a string value us
 
 This footer will have a button that emits a `selected-data` event, having an object payload equal to the card content.
 
-If is furthermore possible to provide dynamic configurations via `template`-`configMap` pair. In such cases, the resulting value is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
+If is furthermore possible to provide dynamic configurations via a [template-configMap pair](../40_core_concepts.md#template---configmap) pair. In such cases, the resulting value is taken from the configMap using template as key (or `$default`, if the template does not match any configMap key).
 
 For instance, assuming the same example parameters as the previous example, the following configuration:
 ```json
