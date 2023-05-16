@@ -245,12 +245,12 @@ Medicines requiring prescriptions needs only one of `recipeFile` and `prescripti
 
 :::warning
 When `prescriptionId` is defined and the item to be added to the shopping cart requires a prescription, the prescription file will be retrieved from the **DOWNLOAD_PRESCRIPTION_PDF_ENDPOINT** of the **PRESCRIPTION_MANAGER**. Not having this microservice and the specified endpoint in your project will cause an error.
-More details are available in the [prescription-manager][configuration-prescription-manager-link] microservice configuration.
+More details are available in the [prescription-manager](./20_configuration.md#prescription-manager) microservice configuration.
 :::
 
 #### Response
 
-The endpoint returns a 200 status code and a payload containing a created shopping cart or an updated existing one. The payload of a shopping cart is described in the [GET /cart][get-shopping-cart] response section.
+The endpoint returns a 200 status code and a payload containing a created shopping cart or an updated existing one. The payload of a shopping cart is described in the [GET /cart](#get-orders) response section.
 
 ### PATCH /cart/products/:id
 
@@ -304,7 +304,7 @@ This request accepts the following query parameters:
 
 :::warning
 When `prescriptionId` is defined, the shopping cart will be re-created from a previously stored prescription. Thus, the implementation of the **PRESCRIPTION_ENDPOINT** of the **PRESCRIPTION_MANAGER** is required. Otherwise, the service will throw an error.
-More details are available in the optional [prescription-manager][configuration-prescription-manager-link] microservice configuration.
+More details are available in the optional [prescription-manager](./20_configuration.md#prescription-manager) microservice configuration.
 :::
 
 #### Response
@@ -452,7 +452,7 @@ This request accepts the following query parameters:
 Returns an array of orders. An order object has the following properties:
 
 - **customOrderId (required)** - `string`: the order id stored in the **MIA_ORDERS_CRUD_ENDPOINT** CRUD;
-- **status (required)** - `number`: the current order status, one of the described [order states][order-states];
+- **status (required)** - `number`: the current order status, one of the described [order states](#order-states);
 - **subtotal (required)** - `number`: the total cost of an order without the shipping costs;
 - **shippingCosts** - `number`: the shipping costs of an order;
 - **items (required)** - `array of placed order items`: the items contained in the order.
@@ -551,7 +551,3 @@ An example of a complete endpoint response is the following:
 :::info
 As in the previous sections, all the prices of an order are in euro (€).
 :::
-
-[configuration-prescription-manager-link]: ./20_configuration.md#prescription-manager
-[get-shopping-cart]: #get-orders
-[order-states]: #order-states
