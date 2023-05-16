@@ -3,7 +3,7 @@ id: overview
 title: Teleconsultation Service Backend
 sidebar_label: Overview
 ---
-The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](../teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
+The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](../../runtime_suite/teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
 
 The teleconsultation service uses the [SaaS Bandyer Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.).
 
