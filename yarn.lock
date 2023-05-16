@@ -222,7 +222,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.18.6, @babel/core@npm:^7.19.6, @babel/core@npm:^7.21.8":
+"@babel/core@npm:^7.18.6, @babel/core@npm:^7.19.6":
   version: 7.21.8
   resolution: "@babel/core@npm:7.21.8"
   dependencies:
@@ -2226,16 +2226,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/logger@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@docusaurus/logger@npm:2.4.1"
-  dependencies:
-    chalk: ^4.1.2
-    tslib: ^2.4.0
-  checksum: be81840f2df477ab633d8ced6fd3a512582e764a48d66b1c12bb20b5d4c717f349e254e33b00b9b53381dbdb24a3e3d0ca9b19511366244b3620fa19cc4c69dc
-  languageName: node
-  linkType: hard
-
 "@docusaurus/mdx-loader@npm:2.4.0":
   version: 2.4.0
   resolution: "@docusaurus/mdx-loader@npm:2.4.0"
@@ -2640,19 +2630,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/utils-validation@npm:^2.4.1":
-  version: 2.4.1
-  resolution: "@docusaurus/utils-validation@npm:2.4.1"
-  dependencies:
-    "@docusaurus/logger": 2.4.1
-    "@docusaurus/utils": 2.4.1
-    joi: ^17.6.0
-    js-yaml: ^4.1.0
-    tslib: ^2.4.0
-  checksum: 44dc482770ea3932e68e58c0bb9503e1b3c73ce28565c438b0d68a7427ee91760ca84a5e150dfc4e04497e072fe4394050dd2af4c4ff43a227b1464e89d705a0
-  languageName: node
-  linkType: hard
-
 "@docusaurus/utils@npm:2.4.0":
   version: 2.4.0
   resolution: "@docusaurus/utils@npm:2.4.0"
@@ -2679,35 +2656,6 @@ __metadata:
     "@docusaurus/types":
       optional: true
   checksum: 7ba6634b6ff71bb7cc64b0eb3c6d2892a21873bce8559bcd460693a80ca0229828c04da751277cdb17c6f18e80e061322bbcd84e9b743adc96c594b43e8a2165
-  languageName: node
-  linkType: hard
-
-"@docusaurus/utils@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@docusaurus/utils@npm:2.4.1"
-  dependencies:
-    "@docusaurus/logger": 2.4.1
-    "@svgr/webpack": ^6.2.1
-    escape-string-regexp: ^4.0.0
-    file-loader: ^6.2.0
-    fs-extra: ^10.1.0
-    github-slugger: ^1.4.0
-    globby: ^11.1.0
-    gray-matter: ^4.0.3
-    js-yaml: ^4.1.0
-    lodash: ^4.17.21
-    micromatch: ^4.0.5
-    resolve-pathname: ^3.0.0
-    shelljs: ^0.8.5
-    tslib: ^2.4.0
-    url-loader: ^4.1.1
-    webpack: ^5.73.0
-  peerDependencies:
-    "@docusaurus/types": "*"
-  peerDependenciesMeta:
-    "@docusaurus/types":
-      optional: true
-  checksum: 4c7e49cabe6650b027c0f698344532fb81c8aaf912f17a287fad986e008ce7c6d34d372b44974488ce160ae43ef6aad4ac7b2790bc3fe2ab05ef5fa7b9506ce9
   languageName: node
   linkType: hard
 
@@ -9185,12 +9133,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mia-platform-doc@workspace:."
   dependencies:
-    "@babel/core": ^7.21.8
     "@babel/eslint-parser": ^7.21.8
     "@docusaurus/core": 2.4.0
     "@docusaurus/plugin-client-redirects": 2.4.0
     "@docusaurus/preset-classic": 2.4.0
-    "@docusaurus/utils-validation": ^2.4.1
     "@staticdeploy/cli": ^0.15.5
     clsx: ^1.2.1
     cspell: ^6.31.1
