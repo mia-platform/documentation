@@ -1,7 +1,7 @@
 ---
 id: configuration_and_usage
 title: SQL Invoker
-sidebar_label: Configuration and Usage
+sidebar_label: SQL Invoker
 ---
 SQL Invoker is designed to invoke stored procedure and/or stored function. In this moment, the service supports only:
 

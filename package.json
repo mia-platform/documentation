@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "0.0.0",
+  "version": "11.0.8",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -45,8 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.21.3",
-    "eslint": "^8.38.0",
+    "@babel/eslint-parser": "^7.21.8",
+    "eslint": "^8.40.0",
     "eslint-plugin-react": "7.32.2",
     "prop-types": "^15.8.1"
   }

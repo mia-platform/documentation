@@ -6,7 +6,7 @@ sidebar_label: Manage Service Accounts
 
 Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
 
-Just like human Users, Service Accounts can be assigned Roles on Company, Project or Runtime Environment level, based on which they will be able to perform different types of action.  
+Just like human Users, Service Accounts can be assigned roles at Console, Company, Project or Runtime Environment levels, according to which they can perform different types of actions.
 
 :::note
 To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an identity.
@@ -148,6 +148,70 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
   </div>
 </div>
 
+## Managing Company-independent Service Accounts
+
+Root Service Accounts are a special kind of Company-independent Service Accounts that can be assigned permissions to perform [root-level operations](//development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
+
+:::info
+Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company Identities portal.
+:::
+
+### Creating Root Service Accounts
+
+In order to create a new Root Service Account, you need to contact the `/api/service-accounts` endpoint.
+
+You will need to provide the following parameters in the body:
+
+- `tokenEndpointAuthMethod`: `client_secret_basic` or `private_key_jwt`.
+- `publicKey` (optional): only necessary if you choose `private_key_jwt` as an authentication method. Read [Adding a new Service Account](#adding-a-new-service-account) for further information.
+- `name`: the Root Service Account name.
+- `permissions`: a list of permissions to assign to the Service Account, separated by a comma. See [Console levels and permission management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) for a reference of the available permissions.
+
+To authenticate your request, you will need to provide your access token and the Console client key.
+
+Here is an example of cURL request for creating a Root Service Account with the `client_secret_basic` authentication method:
+
+```shell
+curl --location --request POST 'http://[my-console-url]/api/service-accounts' \
+    --header 'Content-Type: application/json' \
+    --header 'Client-key: [console-client-key]' \
+    --header 'Authorization: Bearer [my-access-token]'
+    --data '{
+        "name": "Example Service Account",
+        "permissions": ["console.root.user.bind", "console.root.user.manage"],
+        "tokenEndpointAuthMethod": "client_secret_basic"
+    }'
+```
+
+Example response:
+
+```json
+{
+  "clientId": "[clientId]",
+  "clientSecret": "[clientSecret]",
+  "clientIdIssuedAt": 1681984988
+}
+```
+
+:::warning
+Remember to store in a secure place both the `clientId` and `clientSecret` as those will be needed to authenticate requests from the Service Account.
+:::
+
+### Deleting Root Service Accounts
+
+To delete a Root Service Account, you need to contact the `/api/service-accounts/{clientId}` endpoint, providing the `clientId` obtained from the creation response.
+
+To authenticate your request, you will need to provide your access token and the Console client key.
+
+Here is an example of cURL request for deleting a Root Service Account:
+
+```shell
+curl --location --request DELETE 'http://[my-console-url]/api/service-accounts/[clientId]' \
+    --header 'Content-Type: application/json' \
+    --header 'Client-key: [console-client-key]' \
+    --header 'Authorization: Bearer [my-access-token]'
+```
+
 ## Service Account authentication
 
 In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
@@ -192,13 +256,22 @@ curl --location \
 :::info
 **What are the main components of an assertion JWT?**
 
-- **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that is encoded in Base64Url format.
+- **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that should be encoded in Base64Url format and has the following fields:
+  - `alg`: `RS256`
+  - `typ`: `JWT`
+  - `kid`: the Key ID (`kid`) that the is returned during Service Account creation
 
-- **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format.
+- **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format and has the following fields:
+  - `iss` (issuer): the Client ID that the is returned during Service Account creation
+  - `sub` (subject): the Client ID that the is returned during Service Account creation
+  - `aud` (audience): `console-client-credentials`
+  - `jti` (JWT ID): a custom string that will be used against replay attacks
+  - `iad` (issued at): timestamp when this JWT is being issued
+  - `exp` (expires at): timestamp when this JWT will have to be considered expired
 
 - **Signature**: The signature of a JWT is used to verify the integrity of the token and to ensure that it has not been tampered with. The signature is created by combining the encoded header and payload with a secret key using a specified cryptographic algorithm.
 :::
 
 :::info
-For further details and practical examples on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/usage.md) 
+For further details and practical examples on how to perform OAuth2 compliant client credential flows, check out the [Client Credentials Service documentation](/runtime_suite/client-credentials/20_usage.md) 
 :::

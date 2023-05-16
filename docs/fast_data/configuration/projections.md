@@ -99,7 +99,7 @@ You cannot import fields with the same name as one of the metadata fields. If th
 
 ### Indexes
 
-In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/overview_and_usage.md#indexes).
+In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
 However, differently from `Indexes` that can be created on a normal CRUD, in this section the `Geo` index type is not available.
 
 An `_id` index is created by default, and it is not deletable.
@@ -165,7 +165,7 @@ If you prefer to use custom topics for PR updates, it will be necessary to creat
 
 ### Projection metadata
 
-A projection has the [predefined collection properties](/runtime_suite/crud-service/overview_and_usage.md#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
+A projection has the [predefined collection properties](/runtime_suite/crud-service/10_overview_and_usage.md#predefined-collection-properties) which are required for the `CRUD Service`, which is the service responsible for creating the collection on MongoDB.
 
 These fields cannot be deleted and only the `_id` field is editable. You cannot add custom fields to the metadata.  
 
