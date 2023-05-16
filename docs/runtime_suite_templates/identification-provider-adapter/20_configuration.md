@@ -86,4 +86,4 @@ In order to customize the identification logic or integrate an external identifi
 The identification data extracted can be modified before send them to main flow manager. 
 In particular, a mapping function, defined in `/src/services/mainFlowDataMapping.ts`,  is applied by default in order to map the extracted data to the identification manager schema. 
 
-In order to use this template inside the [identification manager application](../../runtime_suite_applications/identification-manager/overview) the extracted data have to follow the schema expected by the application.
+In order to use this template inside the [identification manager application](../../runtime_suite/identification-manager/overview) the extracted data have to follow the schema expected by the application.

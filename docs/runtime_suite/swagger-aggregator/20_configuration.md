@@ -3,7 +3,7 @@ id: configuration
 title: Swagger Aggregator Configuration
 sidebar_label: Configuration
 ---
-This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **Swagger Aggregator** plugin.
+This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace) and creating a new microservice from the **Swagger Aggregator** plugin.
 
 It is also possible to expose your Swagger Aggregator microservice with multiple endpoints, each of them with a specific purpose. For example, you can [create three endpoints](../../development_suite/api-console/api-design/endpoints) with the following paths:
 

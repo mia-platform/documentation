@@ -552,6 +552,6 @@ An example of a complete endpoint response is the following:
 As in the previous sections, all the prices of an order are in euro (€).
 :::
 
-[configuration-prescription-manager-link]: ./20_configuration.md#prescription-manager
+[configuration-prescription-manager-link]: configuration.md#prescription-manager
 [get-shopping-cart]: #get-orders
 [order-states]: #order-states

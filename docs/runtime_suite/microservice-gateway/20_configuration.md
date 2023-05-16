@@ -95,6 +95,6 @@ The configuration must adhere to the following schema:
 ```
 
 In this configuration, you can specify:
-- the `router`, where you can define the basics of each [endpoint](../../development_suite/api-console/api-design/endpoints.md#what-is-an-endpoint),
+- the `router`, where you can define the basics of each [endpoint](../../development_suite/api-console/api-design/endpoints#what-is-an-endpoint),
   and attach a [`pre` and `post` decorator](./10_overview.md#pre-and-post-hooks);
 - the `preDecorators` and `postDecorators`, where you define the behavior of each decorator.
