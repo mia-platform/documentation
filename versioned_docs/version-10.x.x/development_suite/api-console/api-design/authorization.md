@@ -4,8 +4,6 @@ title: Authorization Management
 sidebar_label: Authorization Management
 ---
 
-import Mermaid from "./../../../../../src/components/Mermaid";
-
 ## Overview
 
 Mia-Platform Console allows you to define custom security policies for your system. These policies can leverage both an Attribute-Based Access Control (ABAC) and a Role-Based Access Control (RBAC) approach.  

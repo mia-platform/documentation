@@ -239,8 +239,8 @@ async function createConfig() {
           docs: {
             remarkPlugins: [mdxMermaid.default, {
               theme: {
-                light: 'dark',
-                dark: 'forest'
+                light: 'default',
+                dark: 'dark'
               }
             }],
             sidebarPath: require.resolve("./sidebars.js"),
