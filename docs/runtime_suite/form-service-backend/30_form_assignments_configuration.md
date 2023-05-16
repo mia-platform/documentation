@@ -111,7 +111,7 @@ This CRUD described in this service [configuration](configuration/#create-requir
 
 - **isEditable**, of type *boolean*, which defines if a form submission can be updated by the user who submitted it in the first place;
 - **isPrivate**, of type *boolean*, which specifies if a form template can be displayed to every user, or instead it needs to be assigned to enable the form access;
-- **enabledUserGroups**, of type *array of string*, which stores the user groups than will have 'view only' access of the submitted data.
+- **enabledUserGroups**, of type *array of string*, which stores the user groups that will have 'view only' access of the submitted data.
 
 ### form_assignments
 
