@@ -4,8 +4,8 @@ title: Manage Users
 sidebar_label: Manage Users
 ---
 
-Mia-Platform Console enables certain users to control privileges of other users to access Company resources. 
-Granting accesses and permissions to Company resources can be managed thanks to the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal), that allows roles assignment on the following Console resources:
+Mia-Platform Console enables certain users to control the access privileges to Company resources of other users. 
+Granting accesses and permissions to Company resources can be performed through the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) section, which allows roles assignment on the following Console resources:
 
 * Company
 * Project
@@ -59,7 +59,7 @@ A User role in the Company can be modified: to do so, simply click on the edit b
 ### Removing access to the Company
 
 Removing a user from the Identity table results in removing the role assignment to that user.
-Without permission granted, user access to the Company is always removed **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/group-management.md).
+Without permission granted, user access to the Company is always removed **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/group-management.md).  
 In that specific case, the user does not lose their access to the Company, and their permissions on it are defined solely by the privileges given to the group/groups to which the user belongs.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>

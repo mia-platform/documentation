@@ -52,11 +52,11 @@ During the creation process, the group can be also created without members added
   </div>
 </div>
 
-Both users who are already part of the Company and new users whose have no access yet, can be added to a group.
-For the latter, the user must already be registered on the Platform. These users will receive an invitation to join the Company group.
+Both users who are already part of the Company and new users whose have no access yet can be added to a group.
+For the latter, the user must already be registered on the Platform. In this case, when added to the group, the user will receive an invitation email to join the Company.
 As long as a user is part of at least one group of a Company, this has access to the resources of that Company.
 :::info
-If the user does not exist in the Platform, please open a Service Request to invite it to register in the Platform.
+If the user does not exist on the Platform, please open a Service Request to invite it to register in the Platform.
 :::
 
 ### Editing a Group
@@ -113,7 +113,7 @@ Group role in the Project or any of the Project Runtime Environments can be modi
 </div>
 
 :::note
-Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
+Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have also access to the Projects, as this depends on their assigned role in the Company and how the permissions are inherited.
 
 For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
@@ -125,7 +125,7 @@ A group can be deleted by accessing its detail page and clicking on the *Delete*
 :::caution
 Group deletion may result in loss of access to the Company for those group members who are not members of at least one other Company group or who do not have a specific individual Company role assigned.   
 
-In the case that a group member has access to the Company solely from its membership of the deleted group, the removal from that group will result in the loss of access to the Company for that user.  
+In the event that a member of a group has access to the Company solely by virtue of being a member of a group, the deletion of that group (or the removal from it) will result in the loss of access to the Company for that user.  
 
 In the case that a user has access to more Company groups, or has a specific individual Company role assigned, the deletion of the group will NOT result in loss of access to the Company for that user; for this reason, it is necessary to pay attention to what privileges are still left to that user on the Company resources.
 :::
