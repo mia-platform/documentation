@@ -528,7 +528,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 
 ### DB2
 
-On DB2 in order to receive the executed operations from the DB (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.1/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
+In order to receive the executed operations from the DB (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.1/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
 - You are logged in to DB2 as the db2instl user.
 - On the DB2 host, the Debezium management UDFs are available in the `$HOME/asncdctools/src` directory. UDFs are available from the [Debezium examples repository](https://github.com/debezium/debezium-examples/tree/main/tutorial/debezium-db2-init/db2server).
 
@@ -539,12 +539,12 @@ If you have a docker instance of DB2, you can easily access as superuser with
 docker exec -ti db2server bash -c "su - db2inst1"
 ```
 
-We also suggest to create a DB2 sample with `db2sampl` command as done [here](https://www.ibm.com/docs/en/db2/11.5?topic=linux-testing-your-db2-community-edition-docker-image-installation-systems#taskt_create_SAMPLEdb__steps__1) to actually create some files that could be needed for later steps.
+We also suggest creating a DB2 sample with `db2sampl` command as it has been done [here](https://www.ibm.com/docs/en/db2/11.5?topic=linux-testing-your-db2-community-edition-docker-image-installation-systems#taskt_create_SAMPLEdb__steps__1) to actually create some files that could be needed for later steps.
 :::
 
 #### Database User and Permission Configuration
 
-Supposing you already have a DB2 instance running with requirements explained above and superuser privileges, to put your tables into [Capture Mode](https://debezium.io/documentation/reference/2.1/connectors/db2.html#_putting_tables_into_capture_mode) you have to follow the below procedure:
+Supposing you already have a DB2 instance running with the requirements explained above and superuser privileges, to put your tables into [Capture Mode](https://debezium.io/documentation/reference/2.1/connectors/db2.html#_putting_tables_into_capture_mode) you have to follow the following procedure:
 
   1. Connect to the database `DB_NAME` you want to enable CDC on
 
@@ -552,7 +552,7 @@ Supposing you already have a DB2 instance running with requirements explained ab
   db2 connect to $DB_NAME
   ```
 
-  2. Compile the Debezium management UDFs on the Db2 server host by using the `bldrtn` command provided with Db2:
+  2. Compile the Debezium management UDFs on the DB2 server host by using the `bldrtn` command provided with Db2:
     
     ```shell
     cd $HOME/asncdctools/src
@@ -565,7 +565,7 @@ Supposing you already have a DB2 instance running with requirements explained ab
     db2 start db $DB_NAME
     ```
 
-  4. Make possible to the JDBC driver to read DB2 metadata catalog
+  4. Make it possible for the JDBC driver to read the DB2 metadata catalog
 
     ```shell
     cd $HOME/sqllib/bnd
@@ -653,7 +653,7 @@ For an in depth explanation of the steps, we suggest reading the [official docum
 
 #### Debezium service configuration
 
-Once the DB is ready to operate with the Debezium connector you can configure the connector to your needs. 
+Once the DB is ready to operate with the Debezium connector, you can configure the connector to your needs. 
 As mentioned before, the plugin is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
 
 :::danger
