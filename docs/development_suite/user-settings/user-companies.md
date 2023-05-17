@@ -19,7 +19,7 @@ When hovering over the user profile picture, a dropdown menu appears: click on t
 In `Your Companies` section, a user can find information about which Companies it has access to.
 For each Company, a user can identify its assigned Company role and which groups he belongs to.
 
-![your companies page](./img/your-companies-page.png)
+![Your Companies section](./img/your-companies.png)
 
 ### Leaving a Company
 

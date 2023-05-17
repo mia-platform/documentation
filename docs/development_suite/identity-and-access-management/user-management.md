@@ -26,6 +26,12 @@ Please note that some permissions defined by the Company role may be inherited o
 Always pay attention when assigning roles in order to avoid providing undesired access to resources!
 :::
 
+In the following paragraphs, we will describe how to manage your users access privileges to the company resources through individual role assignment.
+
+Alternatively, you may consider also to manage your users through groups. If you want to discover more about, [go to the groups documentation](/development_suite/identity-and-access-management/group-management.md#managing-company-groups).
+
+If you want to find out how best to manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.
+
 ### Adding a new User at Company Level
 
 From the Identities portal, a Company Owner can add a new user by pressing the *Add user* button. The User invitation process will require the invited user email to be provided.
@@ -65,7 +71,7 @@ In that specific case, the user does not lose their access to the Company, and t
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Delete Company User](./img/user-management/delete_company_user.png)
+![Remove User Direct Access](./img/user-management/remove_user_direct_access.png)
 
   </div>
 </div>
@@ -113,7 +119,41 @@ A user role in the Project or any of the Project Runtime Environments can be mod
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Project User](./img/user-management/edit_project_user.png)
+![Edit Project User](./img/user-management/edit_at_project_level.png)
 
   </div>
 </div>
+
+## How to best manage your users
+
+Are you wondering whether organizing your users through individual role assignments is the smartest and most effective way to manage the user access to your Company? Or whether the best solution would be to organize them into groups instead?
+There is no right or wrong answer to this question: it depends on your organizational needs.  
+Here you can find some helpful hints that can help you find an answer that better suits your own requirements.
+
+For example, if you need to provide the same access privileges to multiple users in your Company, for sure the simplest and most efficient way is to manage them through groups.  
+
+Imagine that you have to manage a team composed by a large number of developers. You can create a group (e.g., "My Company Developers"), add them all as group members, and assign the most appropriate role (e.g., `Developer` role) to the group. This will result in all your users becoming users of the Company with Developer role by virtue of being part of that group of developers.
+In this use case, the choice of managing your users through groups allows you to avoid having to punctually assign the same role to each user, which may be a time-consuming and tedious activity, especially when you have to deal with a large amount of users.  
+
+Furthermore, having all of your users grouped within such a group allows you to have a quick comprehensive view of who the members of the group are (in our example, the developers) and what access permissions to the company are assigned to them (developer role in this case).
+
+Alternatively, if the composition of your Company team is small and heterogeneous (e.g., there is a Project Manager, a Senior Developer, a Junior Developer, and a Designer), it might still be functional to manage those users through individual role assignment.  
+For example, at Company level, you may assign the `Company Owner` role to the Project Manager, the `Project Administrator` role to the Senior Developer, the `Developer` role to the Junior Developer, and the `Reporter` role to the Designer. 
+
+However, keep in mind that these different user management methods are not mutually exclusive: you can decide to apply them both, in order to find your specific needs. 
+
+For instance – going on with the aforementioned example – imagine that your team has now expanded by welcoming new Junior Developers. At this point, it may be particularly useful to create an ad-hoc group of users (e.g., "My Company Developers") in which to include all the Junior Developers of your Company (the new ones plus the initial one).
+
+Now let us remember, however, that one of those Developers (the first one) was initially assigned the `Developer` role at individual level. This means that one Developer will have both an individual role and a role conferred by the group membership. You don’t have to worry about this, as roles in Console always add up and therefore it does not represent a problem of any kind.
+
+The dual management of users – through a combination of individual roles and group roles – also allows for more personalized governance of access to the resources of your Company: imagine, for example, that the initial Junior Developer (who has both an individual role and the role attributed by group membership) has now become a Developer Expert, having increased the responsibilities within some of the Projects of your Company. At that point, you might want to give that user additional privileges only on those specific Projects. You can do it by assigning to that user at Project level a role that expands the capabilities currently enabled by the Developer role assignment at Company level (e.g., being able to deploy on a specific Projects by assigning the `Maintainer` role to that user).
+
+Nevertheless, once again, managing users through groups can be useful when the number of users to which to assign roles on specific resources increases. As a matter of fact, thanks to groups, you can actually increase the capabilities on specific resources for a batch of users in your Company in an easier way.
+
+More practically speaking, if you want to extend privileges to all your Junior developers on a specific Project (or Environment of your project) (e.g., by elevating that group's role to `Maintainer`, in order to provide them with Deploy trigger permission), with just one action you can extend that privilege to all of your Junior developers: in this case, you only have to assign to the "My Company Developers" group the `Maintainer` role specifically on the desired Project/Runtime Environment.
+
+Otherwise, if they were not managed through groups, this action of assigning `Maintainer` role on that Project (or Project Runtime Environment) would have to be repeated for each of the members, which is – again – a time-consuming (and even error-prone) activity. Moreover, if this extension of privileges was meant to be granted just for a limited period of time, then the activity of unassigning that role to each of them highlights this criticality even more.
+
+By contrast, through groups, unassigning for instance the `Maintainer` role for that specific Project (or Project Runtime Environment) while leaving the `Developer` role assigned on the Company would have been much more effective and circumscribed as an activity, keeping access governance on that Project more organized and clear.
+
+To sum up, user management use cases are many, as well as the different organizational needs, and – in this landscape – Mia-Platform Console allows you to better structure access to resources as you prefer, giving you freedom in governing access levels of your Company users.
