@@ -59,6 +59,7 @@ Here below are listed all the properties that must be provided for each type of 
 - **categoryId**: a label to help categorize components by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a component uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
 - **supportedBy**: a label to identify the company that has produced the component (only used if `supportedByImage` is not provided)
 - **image** and **supportedByImage**: respectively the image that will be associated with the component and the image that will be associated with the company that has produced it.
+- **tenantId** (optional): the Company id, only needed if the component is a private Marketplace component that must not be generally available on the Mia-Platform Marketplace.
   
 It will be possible to add images using dedicated input fields:  
 
