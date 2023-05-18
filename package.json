@@ -49,6 +49,5 @@
     "eslint": "^8.40.0",
     "eslint-plugin-react": "7.32.2",
     "prop-types": "^15.8.1"
-  },
-  "packageManager": "yarn@3.5.1"
+  }
 }
