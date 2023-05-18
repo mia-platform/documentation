@@ -12,7 +12,7 @@ Marketplace items can only be created and managed by people with access to the M
 
 ## Public and private Marketplace
 
-Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
+Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
 However, a Company might want to have its own private Marketplace, with private components that must not be shared with everyone else on the Console. 
 
