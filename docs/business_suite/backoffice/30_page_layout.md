@@ -175,7 +175,21 @@ specified by `type`.
 The `format` may be picked by components to provide better UI rendering choices on a given `type`.
 Components such as [bk-table](./60_components/60_data_visualization.md#bk-table) or [bk-form-drawer](./60_components/40_data_manipulation.md#bk-form-drawer) make extensive use of formats.
 
-When `type` is set to `string`, the extra key `enum` is available to specify available text entries.
+When `type` is set to `string`, the extra key `enum` is available to specify available text entries. `enum` key accepts either an array of strings or an array of objects with keys `id`, `label`. `id` is the actual datum (thus should be a string), while `label` is its [i18n](./40_core_concepts.md#localization-and-i18n) representation, supported by most components (such as [bk-table](./60_components/60_data_visualization.md#bk-table) or [bk-form-modal](./60_components/40_data_manipulation.md#bk-form-modal)).
+
+For instance:
+```json
+"weekDay": {
+  "type": "string",
+  "enum": [
+    {"id": "mon", "label": {"en": "Monday", "it": "Lunedì"}},
+    {"id": "tue", "label": {"en": "Tuesday", "it": "Martedì"}},
+    {"id": "wed", "label": {"en": "Wednesday", "it": "Merdoledì"}},
+    {"id": "thu", "label": {"en": "Thursday", "it": "Giovedì"}},
+    {"id": "fri", "label": {"en": "Friday", "it": "Venerdì"}}
+  ]
+}
+```
 
 When `type` is set to `string` or `number` and the format is set to one of `date`, `date-time`, `time`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs](https://day.js.org/) library and its [parsing/formatting syntax](https://day.js.org/docs/en/parse/string-format).
 If `type` is `number` the datum is expected to be a `long` epoch time, and will be converted onto the client/browser according to the timezone specified in `dateOptions.timeZone` (as a TZ database name, for instance "Europe/Rome"), or else as the client/browser timezone.
