@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
       - name: Cache Permanent Redirects
         id: cache-permanent-redirects
         uses: actions/cache@v3
@@ -58,7 +58,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
       - name: Cache Permanent Redirects
         id: cache-permanent-redirects
         uses: actions/cache@v3
