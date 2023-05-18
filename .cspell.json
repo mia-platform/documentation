@@ -292,7 +292,11 @@
     "asncdcaddremove",
     "ASNCDCSERVICES",
     "asncap",
-    "UDFs"
+    "UDFs",
+    "Roboto",
+    "Neue",
+    "Noto",
+    "Segoe"
   ],
   "dictionaries": [
     "softwareTerms",
@@ -321,6 +325,7 @@
   ],
   "allowCompoundWords": true,
   "ignoreRegExpList": [
-    "\".*\": \".*\""
+    "\".*\": \".*\"",
+    "`.*`"
   ]
 }
