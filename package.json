@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "0.0.0",
+  "version": "11.0.8",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -27,8 +27,9 @@
     "clsx": "^1.2.1",
     "cspell": "^6.31.1",
     "klaw": "^4.1.0",
+    "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
-    "mermaid": "^10.0.0",
+    "mermaid": "^10.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "swc-loader": "^0.2.3"
@@ -51,5 +52,6 @@
     "eslint": "^8.40.0",
     "eslint-plugin-react": "7.32.2",
     "prop-types": "^15.8.1"
-  }
+  },
+  "packageManager": "yarn@3.5.1"
 }

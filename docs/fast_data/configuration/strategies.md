@@ -6,7 +6,7 @@ sidebar_label: Strategies
 
 In this document we guide you through the configuration of [Strategies](/fast_data/the_basics.md#strategies) directly in the Console.
 
-## Write your strategies
+## Write your strategy
 
 The strategy functions can be created in the repository of the project configuration.
 

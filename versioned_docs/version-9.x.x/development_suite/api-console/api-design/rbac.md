@@ -4,8 +4,6 @@ title: Manage Permissions with RBAC
 sidebar_label: RBAC Overview
 ---
 
-import Mermaid from "../../../../../src/components/Mermaid";
-
 ## What is RBAC
 
 Role Based Access Control (RBAC) is an authorization mechanism built on top of user Roles useful to decouple actions that user can perform (generally known as _permissions_) and their higher-level Role inside an information system.
@@ -254,7 +252,7 @@ In order to know which API should be exposed RBAC sidecar will try to fetch from
 
 Below a sequence diagram that describes the main flow between a client and the final custom service:
 
-<Mermaid chart={`sequenceDiagram
+```mermaid
 title: RBAC sequence diagram for policy evaluation
 participant client
 participant rbac_service
@@ -275,7 +273,8 @@ custom_service ->> rbac_service: response
 deactivate custom_service
 rbac_service ->> client : response
 deactivate rbac_service
-end`}/>
+end
+```
 
 :::info
 

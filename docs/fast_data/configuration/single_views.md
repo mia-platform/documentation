@@ -16,7 +16,7 @@ Once created, you will be redirected to the Single View detail page.
 
 ## Single View Data Model
 
-Single views collections are created on the *CRUD Service*, so we add all the [default fields](/runtime_suite/crud-service/10_overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
+Single views collections are created on the CRUD Service, so we add all the [default fields](/runtime_suite/crud-service/10_overview_and_usage.md#predefined-collection-properties) and indexes required for the CRUD collections in creation.
 
 To define the custom fields, indexes and internal endpoints of your single view collection, add them in the respective card.
 
@@ -57,7 +57,7 @@ If you have no Single View Creator linked yet, a placeholder will be shown to in
 
 ![Fast Data Single View Microservice](../img/single-view-detail-microservice.png)
 
-If you already have Single View Creator services already linked, you can link more clicking on the dedicated button.
+If you already have Single View Creator services linked, you can add more by clicking on the dedicated button.
 
 ![Fast Data link Single View Creator](../img/single-view-detail-add-another-svc.png)
 

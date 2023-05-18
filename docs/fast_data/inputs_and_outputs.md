@@ -63,8 +63,13 @@ Upsert operation:
 
 ```json
 {
-  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
-  "value": {"NAME": 456},
+  "key": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O"
+  },
+  "value": {
+    "NAME": 456
+  },
   "timestamp": "1234556789",
   "offset": "100"
 }
@@ -74,7 +79,10 @@ Delete operation:
 
 ```json
 {
-  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "key": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O"
+  },
   "value": null,
   "timestamp": "1234556789",
   "offset": "100"
@@ -122,7 +130,10 @@ Insert operation:
 
 ```json
 {
-  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "key": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O"
+  },
   "value": {
     "table": "MY_TABLE",
     "op_type": "I",
@@ -133,8 +144,8 @@ Insert operation:
     "after": {
       "USER_ID": 123,
       "FISCAL_CODE": "the-fiscal-code-123",
-      "COINS": 300000000,
-    },
+      "COINS": 300000000
+    }
   },
   "timestamp": "1234556789",
   "offset": "100"
@@ -145,7 +156,10 @@ Delete operation:
 
 ```json
 {
-  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "key": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O"
+  },
   "value": {
     "table": "MY_TABLE",
     "op_type": "D",
@@ -155,9 +169,9 @@ Delete operation:
     "before": {
       "USER_ID": 123,
       "FISCAL_CODE": "the-fiscal-code-123",
-      "COINS": 300000000,
+      "COINS": 300000000
     },
-    "after": null,
+    "after": null
   },
   "timestamp": "1234556789",
   "offset": "100"
@@ -215,15 +229,18 @@ Insert operation:
 
 ```json
 {
-  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "key": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O"
+  },
   "value": {
     "op": "c",
     "before": null,
     "after": {
       "USER_ID": 123,
       "FISCAL_CODE": "the-fiscal-code-123",
-      "COINS": 300000000,
-    },
+      "COINS": 300000000
+    }
   },
   "timestamp": "1234556789",
   "offset": "100"
@@ -234,15 +251,18 @@ Delete operation:
 
 ```json
 {
-  "key": {"USER_ID": 123, "FISCAL_CODE": "ABCDEF12B02M100O"},
+  "key": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O"
+  },
   "value": {
     "op": "d",
     "before": {
       "USER_ID": 123,
       "FISCAL_CODE": "the-fiscal-code-123",
-      "COINS": 300000000,
+      "COINS": 300000000
     },
-    "after": null,
+    "after": null
   },
   "timestamp": "1234556789",
   "offset": "100"
@@ -272,12 +292,12 @@ The fields of each Projection document are the ones defined in the Console. On t
 A `Projection Update` is a Kafka event that informs the listener that a Projection has been changed.
 Its value field contains the following fields:
 
-| Field                   | Required | Description                                                                                                                                             |
+| Field | Required | Description |
 | ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `__internal__kafkaInfo` | Yes      | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
-| `before`                | No       | It contains the value of the Projection before its change.                                                                                              |
-| `after`                 | No       | It contains the value of the Projection after the operation execution.                                                                                  |
-| `key`                   | Yes      | The key of the Projection that has been updated.                                                                                                        |
+| `__internal__kafkaInfo` | &check; | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
+| `before` | - | It contains the value of the Projection before its change. |
+| `after` | - | It contains the value of the Projection after the operation execution. |
+| `key` | &check; | The key of the Projection that has been updated. |
 
 **Message Example**:
 
@@ -285,53 +305,68 @@ Its value field contains the following fields:
 <p>
 
 ```yaml
-key: '{"ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"}'
-value: {
-  "operationType":"INSERT",
-  "operationTimestamp": "2022-05-20T10:25:56.401Z",
-  "documentId": null,
-  "projectionName": "pr_registry",
-  "source": "food-delivery",
-  "primaryKeys":[
-    "$or"
-  ],
-  "before":{
-    "_id":"62876cb2adb982a6195d26f9",
-    "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-    "TAX_CODE":"tax_code",
-    "NAME":"MARIO",
-    "SURNAME":"ROSSI",
-    "EMAIL":"email_mario",
-    "ADDRESS":"address_1",
-    "PHONE":"phone_number_1653042354472",
-    "PROFESSION":"profession 1",
-    "__STATE__":"DELETED",
-    "__internal__counter":466,
-    "__internal__kafkaInfo":{
-      "offset":"466",
-      "partition":0,
+key: | 
+  {
+    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  }
+value: |
+  {
+    "operationType":"INSERT",
+    "operationTimestamp": "2022-05-20T10:25:56.401Z",
+    "documentId": null,
+    "projectionName": "pr_registry",
+    "source": "food-delivery",
+    "primaryKeys":[
+      "$or"
+    ],
+    "before":{
+      "_id":"62876cb2adb982a6195d26f9",
+      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
+      "TAX_CODE":"tax_code",
+      "NAME":"MARIO",
+      "SURNAME":"ROSSI",
+      "EMAIL":"email_mario",
+      "ADDRESS":"address_1",
+      "PHONE":"phone_number_1653042354472",
+      "PROFESSION":"profession 1",
+      "__STATE__":"DELETED",
+      "__internal__counter":466,
+      "__internal__kafkaInfo":{
+        "offset":"466",
+        "partition":0,
+        "timestamp":"2022-05-20T10:25:55.751Z",
+        "topic":"kafka-topic-here",
+        "key":{
+          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+        }
+      },
       "timestamp":"2022-05-20T10:25:55.751Z",
-      "topic":"kafka-topic-here",
-      "key":{
-        "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-      }
+      "updatedAt":"2022-05-20T10:25:55.760Z"
     },
-    "timestamp":"2022-05-20T10:25:55.751Z",
-    "updatedAt":"2022-05-20T10:25:55.760Z"
-   },
-  "after":{
-    "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-    "TAX_CODE":"tax_code",
-    "NAME":"MARIO",
-    "SURNAME":"ROSSI",
-    "EMAIL":"email_mario",
-    "ADDRESS":"address_1",
-    "PHONE":"phone_number_1653042354472_last",
-    "PROFESSION":"profession 1",
-    "timestamp":"2022-05-20T10:25:56.323Z",
-    "updatedAt":"2022-05-20T10:25:56.380Z",
-    "__STATE__":"PUBLIC",
-    "__internal__counter":467,
+    "after":{
+      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
+      "TAX_CODE":"tax_code",
+      "NAME":"MARIO",
+      "SURNAME":"ROSSI",
+      "EMAIL":"email_mario",
+      "ADDRESS":"address_1",
+      "PHONE":"phone_number_1653042354472_last",
+      "PROFESSION":"profession 1",
+      "timestamp":"2022-05-20T10:25:56.323Z",
+      "updatedAt":"2022-05-20T10:25:56.380Z",
+      "__STATE__":"PUBLIC",
+      "__internal__counter":467,
+      "__internal__kafkaInfo":{
+        "offset":"467",
+        "partition":0,
+        "timestamp":"2022-05-20T10:25:56.323Z",
+        "topic":"kafka-topic-here",
+        "key":{
+          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+        }
+      },
+      "createdAt":"2022-05-20T10:25:56.380Z"
+    }
     "__internal__kafkaInfo":{
       "offset":"467",
       "partition":0,
@@ -340,19 +375,8 @@ value: {
       "key":{
         "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
       }
-    },
-    "createdAt":"2022-05-20T10:25:56.380Z"
-  }
-  "__internal__kafkaInfo":{
-    "offset":"467",
-    "partition":0,
-    "timestamp":"2022-05-20T10:25:56.323Z",
-    "topic":"kafka-topic-here",
-    "key":{
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
     }
-  },
-}
+  }
 ```
 
 </p>
@@ -449,48 +473,52 @@ Its value has the following fields:
 **Kafka Message Example**:
 
 ```yaml
-key: '{"ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"}'
-value: '{
-  "type":"aggregation",
-  "singleViewIdentifier":{
-    "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  },
-  "change":{
-    "projection":"pr_registry",
-    "data":{
-        "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-        "TAX_CODE":"tax_code",
-        "NAME":"MARIO",
-        "SURNAME":"ROSSI",
-        "EMAIL":"email_mario",
-        "ADDRESS":"address_1",
-        "PHONE":"phone_number_1653041524454",
-        "PROFESSION":"profession 1",
-        "timestamp":"2022-05-20T10:12:06.019Z",
-        "updatedAt":"2022-05-20T10:12:06.027Z",
-        "__STATE__":"PUBLIC",
-        "__internal__counter":463,
-        "__internal__kafkaInfo":{
-          "offset":"463",
-          "partition":0,
+key: | 
+  {
+    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  }
+value: |
+  {
+    "type":"aggregation",
+    "singleViewIdentifier":{
+      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+    },
+    "change":{
+      "projection":"pr_registry",
+      "data":{
+          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
+          "TAX_CODE":"tax_code",
+          "NAME":"MARIO",
+          "SURNAME":"ROSSI",
+          "EMAIL":"email_mario",
+          "ADDRESS":"address_1",
+          "PHONE":"phone_number_1653041524454",
+          "PROFESSION":"profession 1",
           "timestamp":"2022-05-20T10:12:06.019Z",
-          "topic":"kafka-topic-here",
-          "key":{
-              "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+          "updatedAt":"2022-05-20T10:12:06.027Z",
+          "__STATE__":"PUBLIC",
+          "__internal__counter":463,
+          "__internal__kafkaInfo":{
+            "offset":"463",
+            "partition":0,
+            "timestamp":"2022-05-20T10:12:06.019Z",
+            "topic":"kafka-topic-here",
+            "key":{
+                "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+            }
           }
-        }
-    }
-  },
-  "__internal__kafkaInfo":{
-    "offset":"463",
-    "partition":0,
-    "timestamp":"2022-05-20T10:12:06.019Z",
-    "topic":"kafka-topic-here",
-    "key":{
-        "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+      }
+    },
+    "__internal__kafkaInfo":{
+      "offset":"463",
+      "partition":0,
+      "timestamp":"2022-05-20T10:12:06.019Z",
+      "topic":"kafka-topic-here",
+      "key":{
+          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+      }
     }
   }
-}'
 ```
 
 **MongoDB Record Example**:
@@ -610,18 +638,24 @@ Its fields are the default CRUD fields, and:
 
 ```json
 {
-  "_id": { "$oid": "619790cbc17eea00122a0796" },
+  "_id": {
+    "$oid": "619790cbc17eea00122a0796"
+  },
   "portfolioOrigin": "users",
   "type": "sv_customers",
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
   "errorType": "NO_SV_GENERATED",
-  "createdAt": { "$date": "2021-11-19T11:55:55.337Z" },
+  "createdAt": {
+    "$date": "2021-11-19T11:55:55.337Z"
+  },
   "creatorId": "single-view-creator",
   "__STATE__": "PUBLIC",
   "updaterId": "single-view-creator",
-  "updatedAt": { "$date": "2021-11-19T11:55:55.337Z" }
+  "updatedAt": {
+    "$date": "2021-11-19T11:55:55.337Z"
+  }
 }
 ```
 
@@ -645,8 +679,11 @@ Its fields are:
 **Message Example**:
 
 ```yaml
-key: { "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" }
-value:
+key: | 
+  {
+    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  }
+value: |
   {
     "type": "sv_customers",
     "portfolioOrigin": "food-delivery",
@@ -746,157 +783,161 @@ Its fields are:
 <p>
 
 ```yaml
-key: `{ "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" }`
-value: `{
-  "key": {
+key: | 
+  { 
     "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  },
-  "before": {
-    "_id": "6287a74d2931f4cc7356e505",
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487",
-    "taxCode": "tax_code",
-    "name": "MARIO",
-    "surname": "ROSSI",
-    "email": "email_mario",
-    "address": "address_1",
-    "telephone": "phone_number_1653057355131_last",
-    "orders": [
-      {
-        "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
-        "orderDate": "2007-12-03T02:55:44.000Z",
-        "totalPrice": "52.54",
-        "paymentType": "Cash",
-        "orderStatus": "In shipping",
-        "dishes": [
-          {
-            "id": "Cotoletta_id",
-            "description": "a splendid dish",
-            "price": "12"
-          }
-        ]
+  }
+value: | 
+  {
+    "key": {
+      "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+    },
+    "before": {
+      "_id": "6287a74d2931f4cc7356e505",
+      "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487",
+      "taxCode": "tax_code",
+      "name": "MARIO",
+      "surname": "ROSSI",
+      "email": "email_mario",
+      "address": "address_1",
+      "telephone": "phone_number_1653057355131_last",
+      "orders": [
+        {
+          "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
+          "orderDate": "2007-12-03T02:55:44.000Z",
+          "totalPrice": "52.54",
+          "paymentType": "Cash",
+          "orderStatus": "In shipping",
+          "dishes": [
+            {
+              "id": "Cotoletta_id",
+              "description": "a splendid dish",
+              "price": "12"
+            }
+          ]
+        }
+      ],
+      "allergens": [
+        {
+          "id": "eggs",
+          "comments": "this is another comment change",
+          "description": "it works!"
+        }
+      ],
+      "foodPreferences": [
+        {
+          "id": "preference_1",
+          "comments": "this is a comment",
+          "description": "this is the preference_1"
+        },
+        {
+          "id": "preference_2",
+          "comments": "i really love this",
+          "description": "this is the preference_2"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review_1",
+          "text": "Spectacular!",
+          "stars": "5"
+        },
+        {
+          "id": "review_2",
+          "text": "Tasteless!",
+          "stars": "1"
+        }
+      ],
+      "updatedAt": "2022-05-20T14:35:58.943Z",
+      "__STATE__": "PUBLIC",
+      "__internal__kafkaInfo": {
+        "topic": "kafka-topic-here",
+        "partition": 0,
+        "key": "Amatriciana_id",
+        "offset": "475",
+        "timestamp": "1653057358783"
       }
-    ],
-    "allergens": [
-      {
-        "id": "eggs",
-        "comments": "this is another comment change",
-        "description": "it works!"
+    },
+    "after": {
+      "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487",
+      "taxCode": "tax_code",
+      "name": "MARIO",
+      "surname": "ROSSI",
+      "email": "email_mario",
+      "address": "address_1",
+      "telephone": "phone_number_1653057355131_last",
+      "orders": [
+        {
+          "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
+          "orderDate": "2007-12-03T02:55:44.000Z",
+          "totalPrice": "52.54",
+          "paymentType": "Cash",
+          "orderStatus": "In shipping",
+          "dishes": [
+            {
+              "id": "Amatriciana_id",
+              "description": "a delicious dish",
+              "price": "12"
+            },
+            {
+              "id": "Cotoletta_id",
+              "description": "a splendid dish",
+              "price": "12"
+            }
+          ]
+        }
+      ],
+      "allergens": [
+        {
+          "id": "eggs",
+          "comments": "this is another comment change",
+          "description": "it works!"
+        }
+      ],
+      "foodPreferences": [
+        {
+          "id": "preference_1",
+          "comments": "this is a comment",
+          "description": "this is the preference_1"
+        },
+        {
+          "id": "preference_2",
+          "comments": "i really love this",
+          "description": "this is the preference_2"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review_1",
+          "text": "Spectacular!",
+          "stars": "5"
+        },
+        {
+          "id": "review_2",
+          "text": "Tasteless!",
+          "stars": "1"
+        }
+      ],
+      "updatedAt": "2022-05-20T14:35:59.488Z",
+      "__STATE__": "PUBLIC",
+      "__internal__kafkaInfo": {
+        "topic": "kafka-topic-here",
+        "partition": 0,
+        "key": "Amatriciana_id",
+        "offset": "476",
+        "timestamp": "1653057359355"
       }
-    ],
-    "foodPreferences": [
-      {
-        "id": "preference_1",
-        "comments": "this is a comment",
-        "description": "this is the preference_1"
-      },
-      {
-        "id": "preference_2",
-        "comments": "i really love this",
-        "description": "this is the preference_2"
-      }
-    ],
-    "reviews": [
-      {
-        "id": "review_1",
-        "text": "Spectacular!",
-        "stars": "5"
-      },
-      {
-        "id": "review_2",
-        "text": "Tasteless!",
-        "stars": "1"
-      }
-    ],
-    "updatedAt": "2022-05-20T14:35:58.943Z",
-    "__STATE__": "PUBLIC",
-    "__internal__kafkaInfo": {
-      "topic": "kafka-topic-here",
-      "partition": 0,
-      "key": "Amatriciana_id",
-      "offset": "475",
-      "timestamp": "1653057358783"
-    }
-  },
-  "after": {
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487",
-    "taxCode": "tax_code",
-    "name": "MARIO",
-    "surname": "ROSSI",
-    "email": "email_mario",
-    "address": "address_1",
-    "telephone": "phone_number_1653057355131_last",
-    "orders": [
-      {
-        "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
-        "orderDate": "2007-12-03T02:55:44.000Z",
-        "totalPrice": "52.54",
-        "paymentType": "Cash",
-        "orderStatus": "In shipping",
-        "dishes": [
-          {
-            "id": "Amatriciana_id",
-            "description": "a delicious dish",
-            "price": "12"
-          },
-          {
-            "id": "Cotoletta_id",
-            "description": "a splendid dish",
-            "price": "12"
-          }
-        ]
-      }
-    ],
-    "allergens": [
-      {
-        "id": "eggs",
-        "comments": "this is another comment change",
-        "description": "it works!"
-      }
-    ],
-    "foodPreferences": [
-      {
-        "id": "preference_1",
-        "comments": "this is a comment",
-        "description": "this is the preference_1"
-      },
-      {
-        "id": "preference_2",
-        "comments": "i really love this",
-        "description": "this is the preference_2"
-      }
-    ],
-    "reviews": [
-      {
-        "id": "review_1",
-        "text": "Spectacular!",
-        "stars": "5"
-      },
-      {
-        "id": "review_2",
-        "text": "Tasteless!",
-        "stars": "1"
-      }
-    ],
-    "updatedAt": "2022-05-20T14:35:59.488Z",
-    "__STATE__": "PUBLIC",
+    },
+    "type": "sv_customers",
     "__internal__kafkaInfo": {
       "topic": "kafka-topic-here",
       "partition": 0,
       "key": "Amatriciana_id",
       "offset": "476",
       "timestamp": "1653057359355"
-    }
-  },
-  "type": "sv_customers",
-  "__internal__kafkaInfo": {
-    "topic": "kafka-topic-here",
-    "partition": 0,
-    "key": "Amatriciana_id",
-    "offset": "476",
-    "timestamp": "1653057359355"
-  },
-  "opType": "UPDATE_SV"
-}`
+    },
+    "opType": "UPDATE_SV"
+  }
 ```
 
 </p>
@@ -977,8 +1018,11 @@ Its fields are:
 <p>
 
 ```yaml
-key: { "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" }
-value:
+key: | 
+  { 
+    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" 
+  }
+value: |
   {
     "operationType": "UPDATE",
     "operationTimestamp": 1234567,

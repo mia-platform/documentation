@@ -33,8 +33,8 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
   const absolutePathPrefix = path.join(process.cwd(), folder, '/')
 
   const sidebarFiles = getSidebarLinkedFiles(sidebarFilePath, sidebarBasePath)
-  const footerFiles = getFooterLinkedFiles()
-
+  const footerFiles = await getFooterLinkedFiles()
+  
   const images = []
   for await (const file of klaw(folder)) {
     if (file.stats.isDirectory()) {
@@ -185,8 +185,8 @@ function getSidebarLinkedFiles(sidebarFilePath, prefix = '') {
   return files
 }
 
-function getFooterLinkedFiles() {
-  const config = require('./docusaurus.config')
+async function getFooterLinkedFiles() {
+  const config = await require('./docusaurus.config')()
   let files = {}
   config.themeConfig.footer.links.forEach(({items}) => {
     items.forEach(item => {

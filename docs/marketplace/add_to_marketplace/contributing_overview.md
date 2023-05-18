@@ -4,13 +4,30 @@ title:  Add a new element to the Marketplace
 sidebar_label: Add a new element to the Marketplace
 ---
 
-:::info
-If you want to contribute to Mia-Platform Marketplace with a new component, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item), wherein you will find what information is needed for the request.
+In this section, we dive into the process of creating a new component for the Marketplace, analyzing the main differences between different types of components and providing some configuration examples.
 
-A Mia-Platform referent will take over the issue and contact you to plan together the addition of the component to the Marketplace on the basis of our guidelines described on this documentation page.
+:::info
+Marketplace items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to add your Marketplace items for you.
 :::
 
-Actually, Mia-Platform Marketplace can be populated with components belonging to one of the following typologies:
+## Public and private marketplace
+
+The Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its architecture. It is publicly available on the Console, meaning that all Companies present on the platform can view and make use of its components.
+
+However, a Company might want to have its own private Marketplace, with private components that must not be shared with everyone else on the Console. 
+
+To achieve this, a Company Owner or a Project Administrator can create new private components **from the CMS** by specifying their Company's identifier in the `tenantId` field.
+
+Company Owners and Project Administrators can create, delete and update Company-wide markeplace elements, but they cannot manage public Marketplace items.  
+The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
+
+If you want to contribute to the **public Mia-Platform Marketplace** with a new component instead, and make it available for everyone, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item) on GitHub, wherein you will find what information is needed for the request.
+
+A Mia-Platform referent will take over the issue and contact you to plan together the addition of the component to the Marketplace on the basis of our guidelines described on this documentation page.
+
+## Marketplace components
+
+Mia-Platform Marketplace can be populated with components belonging to one of the following typologies:
 
 - **plugins**: services for which users have no access to the actual code. Users will still be able to download their Docker image, configure and use them within their projects.  
 - **templates** and **examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
@@ -46,6 +63,7 @@ Here below are listed all the properties that must be provided for each type of 
 - **categoryId**: a label to help categorize components by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a component uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
 - **supportedBy**: a label to identify the company that has produced the component (only used if `supportedByImage` is not provided)
 - **image** and **supportedByImage**: respectively the image that will be associated with the component and the image that will be associated with the company that has produced it.
+- **tenantId** (optional): the Company id, only needed if the component is a private, Company-owned, Marketplace component that must not be generally available on the public Mia-Platform Marketplace.
   
 It will be possible to add images using dedicated input fields:  
 
