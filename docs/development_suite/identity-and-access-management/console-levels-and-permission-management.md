@@ -65,6 +65,7 @@ The following table describes the capabilities that are granted when assigning a
 | View Company Clusters information                                      | `console.company.cluster.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
 | Manage Company Project Templates                                       | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
 | Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`                          |        |           |          |              |  ✅  |  ✅  |
+| Manage private Marketplace resources                                     | `console.company.marketplace.manage`                          |        |           |          |              |  ✅ |  ✅  |
 
 Roles can be assigned at both Project and its Runtime Environments levels from the Identities portal of the specific Project Settings Area.
 
@@ -115,7 +116,7 @@ The following table describes the manageable privileges at Console root level th
 | Create and delete root service account          | `console.root.serviceaccount.manage`  |
 | Manage all private and public Project Templates | `console.root.templates.manage`       |
 | Manage available features                       | `console.root.features.manage`        |
-
+| Manage all Marketplace resources                | `console.root.marketplace.manage`     |
 ### Role binding example
 
 Suppose you have a feature team composed by: 1 _Project Manager_ and 1 _Technical Leader_, 1 _Senior Developer_ and 2 _Junior Developers_ and 2 _Designers_.
