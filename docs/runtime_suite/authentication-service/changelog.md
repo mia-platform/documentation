@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Redis: Use HSET instead of deprecated HMSET
+- Redis: Use `HSET` instead of deprecated `HMSET`
 - Logout: correctly delete session from redis when using cookie sid; add warning logs when such key is not found in Redis
 
 ## 3.1.1 - 17-04-2023
