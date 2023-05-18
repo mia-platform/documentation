@@ -4,13 +4,26 @@ title:  Add a new element to the Marketplace
 sidebar_label: Add a new element to the Marketplace
 ---
 
-:::info
-If you want to contribute to Mia-Platform Marketplace with a new component, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item), wherein you will find what information is needed for the request.
+In this section, we dive into the process of creating a new component for the Marketplace, analyzing the main differences between different types of components and providing some configuration examples.
+
+## Public and private marketplace
+
+The Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its architecture. It is publicly available on the Console, meaning that all Companies present on the platform can view and make use of its components.
+
+However, a Company might want to have its own private Marketplace, with private components that must not be shared with everyone else on the Console. 
+
+To achieve this, a Company Owner or a Project Administrator can create new private components **from the CMS** by specifying their Company's identifier in the `tenantId` field.
+
+Company Owners and Project Administrators can create, delete and update Company-wide markeplace elements, but they cannot manage public Marketplace items.  
+The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
+
+If you want to contribute to the **public Mia-Platform Marketplace** with a new component instead, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item) on GitHub, wherein you will find what information is needed for the request.
 
 A Mia-Platform referent will take over the issue and contact you to plan together the addition of the component to the Marketplace on the basis of our guidelines described on this documentation page.
-:::
 
-Actually, Mia-Platform Marketplace can be populated with components belonging to one of the following typologies:
+## Marketplace components
+
+Mia-Platform Marketplace can be populated with components belonging to one of the following typologies:
 
 - **plugins**: services for which users have no access to the actual code. Users will still be able to download their Docker image, configure and use them within their projects.  
 - **templates** and **examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
