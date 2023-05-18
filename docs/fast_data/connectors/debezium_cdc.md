@@ -661,7 +661,7 @@ For an in depth explanation of the steps, we suggest reading the [official docum
 
 #### Debezium service configuration
 
-Once the DB is ready to operate with the Debezium connector, you can configure the connector to your needs. 
+Once the DB is ready to operate with the Debezium connector, you need to load the DB2 JDBC driver in the Debezium Server image. The template available in the marketplace simplifies how to do it. After this, you are ready to configure the connector to your needs. 
 As mentioned before, the service provided by the template is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
 
 :::danger
