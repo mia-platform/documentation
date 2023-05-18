@@ -38,12 +38,6 @@ jobs:
       - name: Verify build
         run: yarn build
         if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
-      - name: Cache Permanent Redirects
-        id: cache-permanent-redirects
-        uses: actions/cache@v3
-        with:
-          path: nginx/permanent.redirects
-          key: nginx-permanent-redirects-${{ hashFiles('nginx/permanent.redirects') }}
 
   build:
     needs: install
@@ -59,12 +53,6 @@ jobs:
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
-      - name: Cache Permanent Redirects
-        id: cache-permanent-redirects
-        uses: actions/cache@v3
-        with:
-          path: nginx/permanent.redirects
-          key: nginx-permanent-redirects-${{ hashFiles('nginx/permanent.redirects') }}
       - name: Build site
         env:
           NODE_ENV: "production"
