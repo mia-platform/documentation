@@ -532,6 +532,10 @@ In order to receive the executed operations from the DB (following the CDC patte
 - You are logged in to DB2 as the db2instl user.
 - On the DB2 host, the Debezium management UDFs are available in the `$HOME/asncdctools/src` directory. UDFs are available from the [Debezium examples repository](https://github.com/debezium/debezium-examples/tree/main/tutorial/debezium-db2-init/db2server).
 
+:::info
+The DB2 connector has been tested with a DB2 Docker container, so we will report info based on that. If you would like to get deeper insights on how the database works, check the [official documentation](https://www.ibm.com/docs/en/db2/11.1?topic=SSEPGG_11.1.0/com.ibm.db2.luw.kc.doc/welcome.htm).
+:::
+
 :::note
 If you have a docker instance of DB2, you can easily access as superuser with
 
@@ -539,7 +543,7 @@ If you have a docker instance of DB2, you can easily access as superuser with
 docker exec -ti db2server bash -c "su - db2inst1"
 ```
 
-We also suggest creating a DB2 sample with `db2sampl` command as it has been done [here](https://www.ibm.com/docs/en/db2/11.5?topic=linux-testing-your-db2-community-edition-docker-image-installation-systems#taskt_create_SAMPLEdb__steps__1) to actually create some files that could be needed for later steps.
+We also suggest creating a DB2 sample with `db2sampl` command as it has been done [here](https://www.ibm.com/docs/en/db2/11.5?topic=linux-testing-your-db2-community-edition-docker-image-installation-systems#taskt_create_SAMPLEdb__steps__1) to actually create some files that could be needed for later steps. This is just for test purposes and the sample database could (and should) be dropped after the test is concluded successfully.
 :::
 
 #### Database User and Permission Configuration
@@ -572,13 +576,17 @@ Supposing you already have a DB2 instance running with the requirements explaine
     db2 bind db2schema.bnd blocking all grant public sqlerror continue
     ```
 
-  5. Make a backup of `$DB_NAME`, because the ASN agent must have a starting point to read from (you can always set `BACK_UP_LOCATION=/dev/null`), then reconnect to it
+  5. Make a backup of `$DB_NAME`, because the ASN agent must have a starting point to read from and then reconnect to it
 
     ```shell
     db2 backup db $DB_NAME to $BACK_UP_LOCATION
     db2 restart db $DB_NAME
     db2 connect to $DB_NAME
     ```
+
+    :::note
+    You can always set `BACK_UP_LOCATION=/dev/null`, but it is not recommended for production environment.
+    :::
 
   6. Copy Debezium management UDFs and set the right permissions
 
@@ -600,7 +608,7 @@ Supposing you already have a DB2 instance running with the requirements explaine
   ```
   
 :::warning
-If the command returns error this could be due to the presence of tables with the same name inside the ASNCDC schema. We suggest to clean the schema and then rerun the command.
+If the command returns error this could be due to the presence of tables with the same name inside the ASNCDC schema. We suggest to verify that the schema of tables to be created corresponds to the one the script should create.
 :::
 
   9. Enable the Debezium UDF that adds tables to capture mode and removes tables from capture mode:
@@ -621,7 +629,7 @@ It is very likely that you will receive this output:
 /database/config/db2inst1/sqllib/bin/asncap capture_schema=asncdc capture_server=$DB_NAME &
 ```
 
-In this case run this command before proceeding and check again if the ASN agent is up rerunning
+In this case run this command before proceeding and check again if the ASN agent is up rerunning. Please note that this command will start a background process which will trigger the ASN agent.
 ```shell
 db2 "VALUES ASNCDC.ASNCDCSERVICES('start','asncdc');"
 ```
@@ -654,7 +662,7 @@ For an in depth explanation of the steps, we suggest reading the [official docum
 #### Debezium service configuration
 
 Once the DB is ready to operate with the Debezium connector, you can configure the connector to your needs. 
-As mentioned before, the plugin is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
+As mentioned before, the service provided by the template is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
 
 :::danger
 Since the connection to a DB2 is always with a specific database instead of a host, more than one database cannot be observed at the same time like in MySQL or Oracle.
@@ -662,7 +670,7 @@ Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NA
 :::
 
 If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.1/connectors/db2#db2-connector-properties). 
-Mind that the plugin is based on the [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html) image so the declared properties must follow the convention.
+Keep in mind that the template is based on the [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html) image so the declared properties must follow the convention.
 
 Here's an example of the full configuration for the plugin:
 
