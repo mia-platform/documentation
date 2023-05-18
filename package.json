@@ -49,8 +49,7 @@
     "@babel/eslint-parser": "^7.21.8",
     "eslint": "^8.40.0",
     "eslint-plugin-react": "7.32.2",
-    "prop-types": "^15.8.1",
-    "unist-util-visit": "^2.0.0"
+    "prop-types": "^15.8.1"
   },
   "packageManager": "yarn@3.5.1"
 }

@@ -32,9 +32,9 @@ To define your own custom cast functions click on the *Create* button above the 
 
 | Name          | Type        | Required | Description                                                                                         |
 |---------------|-------------|----------|-----------------------------------------------------------------------------------------------------|
-| Name          | String      | True     | Name of the cast function. No spaces or special characters                                          |
-| Returned Type | Select      | True     | The type of the value that has to be returned                                                       |
-| Expression    | JS Function | False    | The javascript implementation of the cast function. It needs to be an exported function as default. |
+| Name          | String      | &check;     | Name of the cast function. No spaces or special characters                                          |
+| Returned Type | Select      | &check;     | The type of the value that has to be returned                                                       |
+| Expression    | JS Function | -    | The javascript implementation of the cast function. It needs to be an exported function as default. |
 
 ### Let's see an example
 
@@ -62,35 +62,35 @@ By default, your project is provided with a set of default cast functions you ca
 
 What happens when the Console changes the default cast function?
 
-Let’s analyze each case:
+Let’s analyze each case in the next sections:
 
-### The implementation of a default cast Function is changed, but the name `castFunctionId` is unchanged
+- ### The implementation of a default cast Function is changed, but the name `castFunctionId` is unchanged.
 
-In this case, nothing will change in your configuration. You will continue to use the same implementation you had before.
+  In this case, nothing will change in your configuration. You will continue to use the same implementation you had before.
 
-### A new default cast function is added
+- ### A new default cast function is added
 
-In this case, the new cast function will be added to your configuration.
+  In this case, the new cast function will be added to your configuration.
 
-![Fast Data new default castFunction](../img/fastdata-new-default-castfunction.png)
+  ![Fast Data new default castFunction](../img/fastdata-new-default-castfunction.png)
 
-If a new default cast function is added on the Console, it will be available in the Cast Function section when you visit the Design area (even if it is not yet stored on your git provider in your `fastdata-config.json`). When you save the configuration it will be stored in the configuration file.
+  If a new default cast function is added on the Console, it will be available in the Cast Function section when you visit the Design area (even if it is not yet stored on your git provider in your `fastdata-config.json`). When you save the configuration it will be stored in the configuration file.
 
-### A default cast function is deleted
+- ### A default cast function is deleted
 
-In this case, although a default cast function has been deleted from which Console generates, it will still be available in your configuration (e.g.: Console removes `defaultCastUnitTimestampToISOString`).
-Let's see an example:
+  In this case, although a default cast function has been deleted from which Console generates, it will still be available in your configuration (e.g.: Console removes `defaultCastUnitTimestampToISOString`).
+  Let's see an example:
 
-- Default cast functions as seen in *your* project
+  - Default cast functions as seen in *your* project
 
-![Fast Data with deleted default cast function](../img/fastdata-delete-castfunction-all.png)
+  ![Fast Data with deleted default cast function](../img/fastdata-delete-castfunction-all.png)
 
-- Default cast functions generated for *new* projects
+  - Default cast functions generated for *new* projects
 
-![Fast Data without deleted default castFunction](../img/fastdata-delete-castfunction-without-deleted.png)
+  ![Fast Data without deleted default castFunction](../img/fastdata-delete-castfunction-without-deleted.png)
 
-As you can see, in your project you are still able to use all the default cast functions, although `defaultCastUnitTimestampToISOString`, in our example, is no longer supported.
-If you create a new project, this default cast function will not be provided instead.
+  As you can see, in your project you are still able to use all the default cast functions, although `defaultCastUnitTimestampToISOString`, in our example, is no longer supported.
+  If you create a new project, this default cast function will not be provided instead.
 
 ## Technical limitation
 
