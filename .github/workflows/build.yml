@@ -26,6 +26,12 @@ jobs:
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Cache Permanent Redirects
+        id: cache-permanent-redirects
+        uses: actions/cache@v3
+        with:
+          path: nginx/permanent.redirects
+          key: nginx-permanent-redirects-${{ hashFiles('nginx/permanent.redirects') }}
       - name: Install
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
@@ -53,6 +59,12 @@ jobs:
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Cache Permanent Redirects
+        id: cache-permanent-redirects
+        uses: actions/cache@v3
+        with:
+          path: nginx/permanent.redirects
+          key: nginx-permanent-redirects-${{ hashFiles('nginx/permanent.redirects') }}
       - name: Build site
         env:
           NODE_ENV: "production"
