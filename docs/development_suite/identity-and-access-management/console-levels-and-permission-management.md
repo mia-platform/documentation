@@ -65,7 +65,7 @@ The following table describes the capabilities that are granted when assigning a
 | View Company Clusters information                                      | `console.company.cluster.view`                         | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
 | Manage Company Project Templates                                       | `console.company.templates.manage`                     |        |          |           |            |                       | ✅            |
 | Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`                          |        |           |          |              |  ✅  |  ✅  |
-| Manage private Marketplace resources                                     | `console.company.marketplace.manage`                          |        |           |          |              |  ✅ |  ✅  |
+| Manage Marketplace resources owned exclusively by the Company                                     | `console.company.marketplace.manage`                          |        |           |          |              |  ✅ |  ✅  |
 
 Roles can be assigned at both Project and its Runtime Environments levels from the Identities portal of the specific Project Settings Area.
 
