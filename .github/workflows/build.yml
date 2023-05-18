@@ -84,7 +84,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-{{ hashFiles('nginx/permanent.redirects') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       - name: Build and push
