@@ -17,7 +17,7 @@ To achieve this, a Company Owner or a Project Administrator can create new priva
 Company Owners and Project Administrators can create, delete and update Company-wide markeplace elements, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
-If you want to contribute to the **public Mia-Platform Marketplace** with a new component instead, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item) on GitHub, wherein you will find what information is needed for the request.
+If you want to contribute to the **public Mia-Platform Marketplace** with a new component instead, and make it available for everyone, you can [open an issue](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item) on GitHub, wherein you will find what information is needed for the request.
 
 A Mia-Platform referent will take over the issue and contact you to plan together the addition of the component to the Marketplace on the basis of our guidelines described on this documentation page.
 
