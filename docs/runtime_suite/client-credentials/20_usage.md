@@ -3,7 +3,6 @@ id: usage
 title: Client Credentials Usage
 sidebar_label: Usage
 ---
-
 In this section, we show you how to use the `client-credentials` service.
 
 ## Endpoints
