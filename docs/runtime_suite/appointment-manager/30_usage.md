@@ -9,7 +9,7 @@ availabilities or directly.
 
 :::note
 
-As stated in the [configuration section](configuration.md#appointments-crud), you can name the CRUD collections however
+As stated in the [configuration section][crud-appointments], you can name the CRUD collections however
 you like. For simplicity’s sake, in the following page it is assumed that you have called them `availabilities` and
 `appointments`.
 
@@ -57,7 +57,7 @@ By default, for backward compatibility with version 1.x, this endpoint returns o
 
 Creates a new appointment in the CRUD collection.
 
-Depending on the [AM configuration](20_configuration.md), you can create an appointment by providing:
+Depending on the [AM configuration][configuration], you can create an appointment by providing:
 
 - in *appointments mode*: a start (`startDate`) and end (`endDate`) date/time;
 - in *full mode* one of the following:
@@ -88,7 +88,7 @@ If the `isTeleconsultationAvailable` property of the [configuration file][servic
 
 :::note
 For this to happen, the users auth0 ids have to be passed in the body.
-The users that can be passed are defined in `users` property of the [service configuration](configuration.md#service-configuration).
+The users that can be passed are defined in `users` property of the [service configuration][service-configuration].
 
 The telecommunication service require at least 2 users for creating the room, otherwise will return an error
 
@@ -104,7 +104,7 @@ The values for this fields can be either `string` or `arrayOfString`, for instan
 #### Sending messages
 
 A message will be sent to the participants that belong to a category with a `create` template id (see the
-[service overview](overview.md#sending-messages) for more information).
+[service overview][sending-messages] for more information).
 
 :::warning
 
@@ -122,7 +122,7 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview](overview.md#setting-reminders) for more information).
+If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview][setting-reminders] for more information).
 
 :::warning
 
@@ -132,21 +132,21 @@ The reminders will be set only if the `isMessagingAvailable` and `isTeleconsulta
 
 :::note
 
-If the `reminderThresholdMs` field in the [service configuration][service-configuration] is set, and the new appointment `startDate` is closer than the given threshold, no reminder will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
+If the `reminderThresholdMs` field in the [service configuration][service-configuration] is set, and the new appointment `startDate` is closer than the given threshold, no reminder will be set (check the [service configuration section][reminders-threshold] for more information).
 
 :::
 
 ### Body
 
-Depending on the [AM configuration](20_configuration.md), you can create an appointment by providing:
+Depending on the [AM configuration][configuration], you can create an appointment by providing:
 
 - in *appointments mode*: a start (`startDate`) and end (`endDate`) date/time;
 
-| Name           | Type     | Description |
-|----------------|----------|-------------|
-| startDate      | `string` | Start date/time of the appointment, expressed in format **ISO 8601**. |
-| endDate        | `string` | End date/time of the appointment, expressed in format **ISO 8601**. |
-| isRemote       | `number` | If the appointments is delivered remotely (default: `false`). |
+| Name      | Type      | Description                                                           |
+|-----------|-----------|-----------------------------------------------------------------------|
+| startDate | `string`  | Start date/time of the appointment, expressed in format **ISO 8601**. |
+| endDate   | `string`  | End date/time of the appointment, expressed in format **ISO 8601**.   |
+| isRemote  | `boolean` | If the appointments is delivered remotely (default: `false`).         |
 
 ```json
 {
@@ -158,13 +158,13 @@ Depending on the [AM configuration](20_configuration.md), you can create an appo
 
 - in *full mode*: an availability ID (`availabilityId`), a start (`startDate`) and end (`endDate`) date/time representing a valid slot and the owner ID (`ownerId`);
 
-| Name           | Type     | Description |
-|----------------|----------|-------------|
-| availabilityId | `number` | The availability ID. |
-| startDate      | `string` | Start date/time of the appointment, expressed in format **ISO 8601**. |
-| endDate        | `string` | End date/time of the appointment, expressed in format **ISO 8601**. |
-| isRemote       | `number` | If the appointments is delivered remotely (default: `false`). |
-| ownerId        | `string` | ID of the owner of the appointment, required to confirm a reservation or modify the appointment. |
+| Name           | Type      | Description                                                                                      |
+|----------------|-----------|--------------------------------------------------------------------------------------------------|
+| availabilityId | `number`  | The availability ID.                                                                             |
+| startDate      | `string`  | Start date/time of the appointment, expressed in format **ISO 8601**.                            |
+| endDate        | `string`  | End date/time of the appointment, expressed in format **ISO 8601**.                              |
+| isRemote       | `boolean` | If the appointments is delivered remotely (default: `false`).                                    |
+| ownerId        | `string`  | ID of the owner of the appointment, required to confirm a reservation or modify the appointment. |
 
 ```json
 {
@@ -178,11 +178,11 @@ Depending on the [AM configuration](20_configuration.md), you can create an appo
 
 - in *full mode* (v2.0.2 or later): a slot ID (`slotId`) and the owner ID (`ownerId`);
 
-| Name      | Type     | Description |
-|-----------|----------|-------------|
-| slotId    | `string` | The slot ID in the new format introduced with AM v2. The slot ID from the CRUD collection used in version 1.x is not supported.  |
-| isRemote  | `number` | If the appointments is delivered remotely (default: `false`). |
-| ownerId   | `string` | ID of the owner of the appointment, required to confirm a reservation or modify the appointment. |
+| Name     | Type      | Description                                                                                                                     |
+|----------|-----------|---------------------------------------------------------------------------------------------------------------------------------|
+| slotId   | `string`  | The slot ID in the new format introduced with AM v2. The slot ID from the CRUD collection used in version 1.x is not supported. |
+| isRemote | `boolean` | If the appointments is delivered remotely (default: `false`).                                                                   |
+| ownerId  | `string`  | ID of the owner of the appointment, required to confirm a reservation or modify the appointment.                                |
 
 ```json
 {
@@ -192,13 +192,14 @@ Depending on the [AM configuration](20_configuration.md), you can create an appo
 }
 ```
 
-The appointment must satisfy the following conditions, otherwise a 400 response is returned:
+The appointment must satisfy the following constraints, otherwise a 400 response is returned:
 
-- `startDate` must be a valid ISO 8601 date/time
-- `endDate` must be a valid ISO 8601 date/time
-- `startDate` must be earlier than `endDate`
-- if `isRemote` is `true`, the appointment must have at least two participants
-- `reminderIds` and `linkTeleconsultation` are fully managed by the AM and they cannot be modified by any client
+- `startDate` must be a valid ISO 8601 date/time;
+- `endDate` must be a valid ISO 8601 date/time;
+- `startDate` must be earlier than `endDate`;
+- if `isRemote` is `true`, the appointment must have at least two participants;
+- `reminderIds` and `linkTeleconsultation` are fully managed by the AM and they cannot be modified by any client.
+
 ### Response
 
 If the appointment is successfully created, you will receive a response with a 200 status code and the `_id` of the newly
@@ -233,7 +234,7 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 Changes the state of the appointments matching the provided filters.
 
-For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state, the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview](overview.md#sending-messages) for more information) and delete all existing reminders.
+For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state, the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview][sending-messages] for more information) and delete all existing reminders.
 
 :::warning
 The messages will be sent only if the `isMessagingAvailable` and `isTimerAvailable` [configuration option][service-configuration] are set to `true`
@@ -284,13 +285,13 @@ The following updates trigger specific actions:
 
 - If the field `isRemote` is set from `true` to `false`, the teleconsultation room created previously will be deleted alongside its URL to join the call from the CRUD (`linkTeleconsultation`).
 
-- If the participants are changed - any field mapped by the `users` property of the [service configuration](configuration.md#service-configuration) - and the current appointment has `isRemote` set to `true`, then the teleconsultation's participants will be updated.
+- If the participants are changed - any field mapped by the `users` property of the [service configuration][service-configuration] - and the current appointment has `isRemote` set to `true`, then the teleconsultation's participants will be updated.
 
 - If the `startDate` and/or `endDate` are changed and the current appointment has `isRemote` set to `true`, then the teleconsultation's start and/or end date are updated.
 
 - If the `availabilityId`, `startDate` and/or `endDate` are changed, the AM checks if the new slot is valid and available.
 
-For further info about what to set as the users value, see the [Teleconsultation Service doc - participants](../teleconsultation-service-backend/usage.md#participants-required).
+For further info about what to set as the users value, see the [Teleconsultation Service doc - participants][teleconsultation-participants].
 
 :::warning
 
@@ -315,12 +316,12 @@ If the Teleconsultation Service is not configured properly on the Console, the t
 #### Sending messages
 
 Participants that are **added** to the appointment will receive a creation message if they belong to a category with a
-`create` template id (see the [service overview](overview.md#sending-messages) for more information).
+`create` template id (see the [service overview][sending-messages] for more information).
 
 Participants that are **removed** from the appointment will receive a deletion message if they belong to a category with a
-`delete` template id (see the [service overview](overview.md#sending-messages) for more information).
+`delete` template id (see the [service overview][sending-messages] for more information).
 
-Participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview](overview.md#sending-messages) for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
+Participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview][sending-messages] for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
 
 :::warning
 
@@ -347,7 +348,7 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview](overview.md#sending-messages) for more information).
+One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview][sending-messages] for more information).
 
 Any reminder set for participants that are **removed** from the appointment will be aborted.
 
@@ -368,8 +369,7 @@ will be set.
 
 :::note
 
-If the `reminderThresholdMs` field in the configuration is set, and the appointment date is below the threshold, 
-no reminders will be set (see the [CRUD section](configuration.md#reminderThresholdMs) for more information).
+If the `reminderThresholdMs` field in the configuration is set, and the appointment date is below the threshold, no reminder will be set (see the [service configuration section][service-configuration] for more information).
 
 :::
 
@@ -405,7 +405,7 @@ The appointment resulting from the patch must satisfy the following rules:
 - `startDate` must be a valid ISO 8601 date/time;
 - `endDate` must be a valid ISO 8601 date/time;
 - `startDate` must be earlier than `endDate`;
-- if `isRemote` is `true`, the appointment must have at least two participants;
+- if `isRemote` is `true`, the appointment must have at least two participants.
 
 ### Response
 
@@ -442,7 +442,7 @@ If the appointment is remote, the teleconsultation room is automatically deleted
 # Availabilities
 
 :::note
-The following endpoints are exposed **only if** the following [environment variables](configuration.md#environment-variables) are set:
+The following endpoints are exposed **only if** the following [environment variables][environment-variables] are set:
 
 - `AVAILABILITY_CRUD_NAME`
 - `EXCEPTIONS_CRUD_NAME`
@@ -454,10 +454,10 @@ The AM checks on bootstrap if they are set and exposes the endpoints or not, acc
 
 :::caution
 **v2.0.0**
-Since v2.0.0 this endpoint, despite maintaining the same API as in previous versions, no longer returns availability occurrences with slots (see ), but only the details of the single or recurring availabilities created through the [`POST /availabilities`](#post-availabilities)
+Since v2.0.0 this endpoint, despite maintaining the same API as in previous versions, no longer returns availability occurrences with slots, but only the details of the single or recurring availabilities created through the [`POST /availabilities`][post-availabilities]
 :::
 
-Returns the list of availabilities from the CRUD. This endpoint is a direct proxy to the `GET /availabilities/` endpoint of the CRUD service.
+Returns the list of availabilities from the CRUD matching the query. This endpoint is a direct proxy to the `GET /availabilities/` endpoint of the CRUD service.
 
 This endpoint has no side effects.
 
@@ -465,10 +465,10 @@ This endpoint has no side effects.
 
 :::caution
 **v2.0.0**
-Since v2.0.0 this endpoint, despite maintaining the same API as in previous versions, no longer returns the number of availability occurrences with slots (see ), but only the number of the single or recurring availabilities created through the [`POST /availabilities`](#post-availabilities).
+Since v2.0.0 this endpoint, despite maintaining the same API as in previous versions, no longer returns the number of availability occurrences with slots, but only the number of the single or recurring availabilities created through the [`POST /availabilities`][post-availabilities].
 :::
 
-Returns the number of availabilities from the CRUD. This endpoint is a direct proxy to the `GET /availabilities/count` endpoint of the CRUD service.
+Returns the number of availabilities from the CRUD matching the query. This endpoint is a direct proxy to the `GET /availabilities/count` endpoint of the CRUD service.
 
 This endpoint has no side effects.
 
@@ -484,16 +484,16 @@ Creates a new availability in the CRUD collection.
 
 The body of this request accepts the following fields:
 
-| Name                    | Type              | Required | Description |
-|-------------------------|-------------------|----------|-------------|
-| startDate               | `string`          | Yes | Start date/time of the first occurrence of the availability, expressed in format **ISO 8601**. |
-| endDate                 | `string`          | Yes | End date/time of the first occurrence of the availability, expressed in format **ISO 8601**. |
-| slotDuration            | `number`          | Yes | The duration of the slot (in minutes). |
-| simultaneousSlotsNumber | `number`          | No  | The number of appointments you can book in each slot, one by default. |
-| each                    | `string`          | No  | The frequency of a recurring availability: daily (`day`), weekly (`week`) or monthly (`month`). |
-| on                      | `Array of number` | Only if  `each` is set to `week` | The weekdays on which a weekly availability occurs (0 for Sunday, 1 for Monday, 2 for Tuesday, and so on). |
-| untilDate               | `date`            | No  | The expiration date of a recurring availability, expressed in format **ISO 8601**. If the field is omitted, the availability never expires. |
-| timeZone                | `string`          | No  | The IANA time zone of the availability. If the field is omitted, the **DEFAULT_TIME_ZONE** value is used. |
+| Name                    | Type              | Required                         | Description                                                                                                                                                |
+|-------------------------|-------------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| startDate               | `string`          | Yes                              | Start date/time of the first occurrence of the availability, expressed in format **ISO 8601**.                                                             |
+| endDate                 | `string`          | Yes                              | End date/time of the first occurrence of the availability, expressed in format **ISO 8601**.                                                               |
+| slotDuration            | `number`          | Yes                               | The duration of the slot (in minutes). |
+| simultaneousSlotsNumber | `number`          | No                               | The number of appointments you can book in each slot, one by default.                                                                                      |
+| each                    | `string`          | No                               | The frequency of a recurring availability: daily (`day`), weekly (`week`) or monthly (`month`).                                                            |
+| on                      | `Array of number` | Only if  `each` is set to `week` | The weekdays on which a weekly availability occurs (0 for Sunday, 1 for Monday, 2 for Tuesday, and so on).                                                 |
+| untilDate               | `date`            | No                               | The expiration date of a recurring availability, expressed in format **ISO 8601**. If the field is omitted, the availability never expires.                |
+| timeZone                | `string`          | No                               | The IANA time zone of the availability. If the field is omitted, the **DEFAULT_TIME_ZONE** value is used.                                                  |
 
 Additional fields can also be added to the body, depending on the underlying CRUD.
 
@@ -619,13 +619,13 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 :::warning
 **v2.0.0**
-The following endpoints have been kept for backwards compatibility, but we strongly advise to avoid them since they may be deprecated in future releases in favor of new [calendar](#calendar) endpoints.
+The following endpoints have been kept for backwards compatibility, but we strongly advise to avoid them since they may be deprecated in future releases in favor of the new [calendar][get-calendar] endpoints.
 :::
 
 ## GET /slots/
 
 :::tip
-We recommend using the [`GET /calendar/`](#get-calendar) endpoint, which provides greater flexibility in terms of events you can retrieve.
+We recommend using the [`GET /calendar/`][get-calendar] endpoint, which provides greater flexibility in terms of events you can retrieve.
 :::
 
 :::info
@@ -640,10 +640,6 @@ We recommend using the [`GET /calendar/`](#get-calendar) endpoint, which provide
 }
 ```
 The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
-:::
-
-:::info
-**v2.1.0**. Starting with version 2.1.0 we return, for each slot, the resource ID from the corresponding availability.
 :::
 
 :::info
@@ -723,7 +719,7 @@ If the request is processed correctly, you will receive a response with a 200 st
 - `capacity`: the total number of appointments you can book on the slot, corresponds to the availability `simultaneousSlotsNumber`;
 - all the availability custom properties.
 
-In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `GET /<collection>` request.
+In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `GET /` request.
 
 ## PATCH /slots/lock/:id
 
@@ -742,18 +738,18 @@ Since the slots are computed on demand, the AM performs the following operations
 The body of this request accepts the following fields:
 
 - `ownerId` (**required**): a `string` representing the user who wants to lock the availability;
-- `lockDurationMs`: the duration of the lock expressed in milliseconds (default: the [`defaultLockDurationMs`](configuration.md#defaultLockDurationMs) field of the service configuration file).
+- `lockDurationMs`: the duration of the lock expressed in milliseconds (default: the [`defaultLockDurationMs`][default-lock-duration] field of the service configuration file).
 
 ### Response
 
 If the slot is successfully locked, you will receive a response with a 200 status code and the complete record representing the appointment reservation.
 
-If the resource can not be locked, you will receive a Forbidden error message.
+If the resource can not be locked, you will receive a `Forbidden` error message.
 
 # Exceptions
 
 :::note
-The following endpoints are available from v2.0.0 and are exposed **only if** the following [environment variables](configuration.md#environment-variables) are set:
+The following endpoints are available from v2.0.0 and are exposed **only if** the following [environment variables][environment-variables] are set:
 
 - `AVAILABILITY_CRUD_NAME`
 - `EXCEPTIONS_CRUD_NAME`
@@ -923,7 +919,7 @@ This endpoint supports the following query parameters:
 - `startDate` (**required**): the beginning of the period, expressed as an ISO 8601 date-time string;
 - `endDate` (**required**): the end of the period, expressed as an ISO 8601 date-time string;
 - `_q`: additional query to filter availabilities and exceptions;
-- a query parameter containing the resource ID (the name must match the value set in the `RESOURCE_ID_FIELD_NAME` [environment variable][environment variable]).
+- a query parameter containing the resource ID (the name must match the value set in the `RESOURCE_ID_FIELD_NAME` [environment variable][environment-variables]).
 
 You can pass the period information using these query parameters in different ways:
 
@@ -964,7 +960,7 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 #### `Availability`
 
-Each availability has all the [CRUD collection properties](20_configuration.md#availabilities-crud-collection) plus a `slots` field, containing an array of the slots, each one having the following properties:
+Each availability has all the [CRUD collection properties][crud-availabilities] plus a `slots` field, containing an array of the slots, each one having the following properties:
 
 - `_id`: a unique identifier of the slot;
 - `status`: the slot status (`AVAILABLE`, `BOOKED` or `UNAVAILABLE`);
@@ -972,7 +968,7 @@ Each availability has all the [CRUD collection properties](20_configuration.md#a
 - `startDate`: the start date/time, expressed as a ISO 8601 date-time string;
 - `endDate`: the start date/time, expressed as a ISO 8601 date-time string;
 - `capacity`: the total number of appointments you can book on the slot, corresponds to the availability `simultaneousSlotsNumber`;
-- `appointments`: a list of appointments (see [Appointment](#appointment) section for more details on their properties).
+- `appointments`: a list of appointments (see [Appointment][appointment] section for more details on their properties).
 
 :::note
 **v2.0.0**
@@ -981,11 +977,11 @@ Since slots are computed dinamically, the `_id` field does not represent and doe
 
 #### `Exception`
 
-Each exception has all the [CRUD collection properties](20_configuration.md#exceptions-crud-collection).
+Each exception has all the [CRUD collection properties][crud-exceptions].
 
 #### `Appointment`
 
-Each appointment has all the [CRUD collection properties](20_configuration.md#appointments-crud-collection).
+Each appointment has all the [CRUD collection properties][crud-appointments].
 
 ## GET /calendar/count
 
@@ -1011,7 +1007,7 @@ This endpoint supports the following query parameters:
 - `startDate` (**required**): the beginning of the period, expressed as an ISO 8601 date-time string;
 - `endDate` (**required**): the end of the period, expressed as an ISO 8601 date-time string;
 - `_q`: additional query to filter availabilities and exceptions;
-- a query parameter containing the resource ID (the name must match the value set in the `RESOURCE_ID_FIELD_NAME` [environment variable][environment variable]).
+- a query parameter containing the resource ID (the name must match the value set in the `RESOURCE_ID_FIELD_NAME` [environment variable][environment-variables]).
 
 You can pass the period information using these query parameters in different ways:
 
@@ -1039,13 +1035,9 @@ We recommend that you use the period information using the `startDate` and `endD
 
 ### Response
 
-If the request is processed correctly, you will receive a response with a 200 status code, and the number of events that would be returned by the [`GET /calendar/`](#get-calendar) with the same query parameters.
+If the request is processed correctly, you will receive a response with a 200 status code, and the number of events that would be returned by the [`GET /calendar/`][get-calendar] with the same query parameters.
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `GET /<collection>/count` request.
-
-[iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
-[service-configuration]: configuration.md#service-configuration "Service configuration"
-[environment variable]: configuration.md#environment-variables "Environment variables"
 
 # Search
 
@@ -1061,13 +1053,37 @@ Return the first available slot with the details of the associated resource matc
 
 The body of this request accepts the following fields:
 
-| Name                    | Type              | Required | Description |
-|-------------------------|-------------------|----------|-------------|
-| endDate                 | `string`          | Yes | End date/time of the range in which the first slot will be searched, expressed in format **ISO 8601**. The range start is by default the moment in which the request is sent. |
-| resourceFilters         | `Object`          | No  | Object containing CRUD filtering option to be applied to the resources. |
-| availabilityFilters     | `Object`          | No  | Object containing CRUD filtering option to be applied to the availability. |
-
+| Name                | Type     | Required | Description |
+|---------------------|--------- |----------|-------------|
+| endDate             | `string` | Yes      | End date/time of the range in which the first slot will be searched, expressed in format **ISO 8601**. The range start is by default the moment in which the request is sent. |
+| resourceFilters     | `Object` | No       | Object containing CRUD filtering option to be applied to the resources. |
+| availabilityFilters | `Object` | No       | Object containing CRUD filtering option to be applied to the availability. |
 
 ### Response
 
 If one ore more slots are successfully found, you will receive a response with a 200 status code and the array of objects. Each of them contains the slot-resource pair. If no slot is found the array will be empty.
+
+[iana-time-zones]: https://www.iana.org/time-zones "IANA Time Zones"
+[iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
+[teleconsultation-participants]: ../../runtime_suite/teleconsultation-service-backend/usage#participants-required "Required participants | Usage | Teleconsultation Service Backend"
+
+[sending-messages]: ./10_overview#sending-messages "Sending messages | Overview"
+[setting-reminders]: ./10_overview#setting-reminders "Setting reminders | Overview"
+[variable-duration-slots]: ./10_overview.md#variable-duration-slots "Variable duration slots | Availabilities and slots | Overview"
+[availabilities-on-create]: ./10_overview.md#on-create "On create | Custom behaviors | Availabilities and slots | Overview"
+[availabilities-on-update]: ./10_overview.md#on-update "On update | Custom behaviors | Availabilities and slots | Overview"
+[availabilities-on-delete]: ./10_overview.md#on-delete "On delete | Custom behaviors | Availabilities and slots | Overview"
+[availabilities-on-compute]: ./10_overview.md#on-compute "On compute | Custom behaviors | Availabilities and slots | Overview"
+
+[configuration]: ./20_configuration.md "Configuration page"
+[service-configuration]: ./20_configuration.md#service-configuration "Service configuration | Configuration"
+[environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
+[crud-availabilities]: ./20_configuration.md#availabilities-crud-collection "Availabilities CRUD collection | CRUD collections | Configuration"
+[crud-exceptions]: ./20_configuration.md#exceptions-crud-collection "Exceptions CRUD collection | CRUD collections | Configuration"
+[crud-appointments]: ./20_configuration.md#appointments-crud-collection "Appointments CRUD collection | CRUD collections | Configuration"
+[default-lock-duration]: ./20_configuration.md#defaultlockdurationms "defaultLockDurationMs | Service configuration | Configuration"
+[reminders-threshold]: ./20_configuration.md#reminderthresholdms "reminderThresholdMs | Service configuration | Configuration"
+
+[post-availabilities]: #post-availabilities "POST /availabilities/ | Usage"
+[get-calendar]: #get-calendar "GET /calendar/ | Usage"
+[appointment]: #appointment "Appointment | Response | GET /calendar/ | Usage"
