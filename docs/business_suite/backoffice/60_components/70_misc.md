@@ -8,6 +8,91 @@ sidebar_label: Misc
 Logical web component that can be included in applications layout to inject an [Ant Design](https://ant.design/) compatible theme.
 This component is analogous to `mlc-antd-theme-manager` from [micro-lc](https://micro-lc.io/add-ons/components/mlc-antd-theme-manager).
 
+The web component calculates the CSS variables needed by Ant Design Dynamic Theme from a set of base colors (namely: primary, info, success, processing, error, and warning colors). These variables are then injected globally through micro-lc API [setStyle method](https://micro-lc.io/api/micro-lc-api/extensions#csssetstyle).
+
+### Variables - fetch data dynamically
+
+```typescript
+type Variable = string | { path: string, default?: string }
+```
+
+Properties `primaryColor`, `infoColor`, `successColor`, `processingColor`, `errorColor`, `warningColor`, `fontFamily` can be set to describe the theme of the page.
+
+There are two options for setting each property: a string value or an object with the keys `path` and, optionally, `default`. If a string value is used, it initializes the property directly. However, if the `themingUrl` property is provided, the corresponding property is initialized by applying the `path` (in JavaScript notation) to the current user's object-like representation. The user information is obtained during bootstrap using property `themingUrl` as endpoint.
+
+### Example
+
+With a configuration like:
+```json
+{
+  "tag": "bk-antd-theme-manager",
+  "properties": {
+    "themingUrl": "/theme-info",
+    "infoColor": "#F9C939",
+    "primaryColor": {
+      "path": "colors.primary"
+    },
+    "successColor": {
+      "path": "colors.success"
+    },
+    "processingColor": {
+      "path": "colors.processing"
+    },
+    "errorColor": {
+      "path": "colors.error",
+      "default": "#25B864"
+    }
+  }
+}
+```
+and assuming that a GET to the endpoint `/theme-info` returns
+```json
+{
+  "colors": {
+    "primary": "#43FA54",
+    "success": "#46C872"
+  }
+}
+```
+Theming variables would be initialized to:
+```jsonc
+{
+  "primaryColor": "#43FA54", // retrieved from response of `/theme-info`
+  "infoColor": "#F9C939", // set to provided value
+  "successColor": "#46C872", // retrieved from response of `/theme-info`
+  "errorColor": "#25B864", // retrieving from response of `/theme-info` failed, set to provided default
+  "processingColor": "#1890FF", // retrieving from response of `/theme-info` failed, set to default value of `processingColor`
+  "warningColor": "#FAAD14",
+  "fontFamily": "..."
+}
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+| varsPrefix | - | string \| string[] | 'micro-lc' | prefix to apply to css variables |
+| themingUrl | theming-url | string | - | optional endpoint to call to initialize theming variables |
+| primaryColor | primary-color | [Variable](#variables) | '#1890FF' | primary color |
+| infoColor | info-color | [Variable](#variables) | '#1890FF' | info color |
+| successColor | success-color | [Variable](#variables) | '#52C41A' | success color |
+| processingColor | processing-color | [Variable](#variables) | '#1890FF' | processing color |
+| errorColor | error-color | [Variable](#variables) | '#FF4D4F' | error color |
+| warningColor | warning-color | [Variable](#variables) | '#FAAD14' | warning color |
+| fontFamily | font-family | [Variable](#variables) | "'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue',  'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'" | fonts |
+
+### Listens to
+
+None
+
+### Emits
+
+None
+
+### Bootstrap
+
+If `themingUrl` is provided, the component performs a GET to this endpoint and uses its response to initializes style properties that are of shape `{path: string, default?: string}`
+
 ## bk-auto-refresh
 
 Allows refreshing some resources with the selected interval.
@@ -316,7 +401,7 @@ Controlling how the menu is rendered - either as a side-bar (overlay or fixed) o
 
 ### Logo
 
-<!-- TODO: url supports {urlDarkImage: string, urlLightImage: string} type too, update once dark-mode is supported -->
+<!-- TODO: `url` supports {urlDarkImage: string, urlLightImage: string} type too, update once dark-mode is supported -->
 ```typescript
 type Logo {
   /** Alternative text to display if the logo is not found  */
@@ -325,10 +410,15 @@ type Logo {
   /** Link to navigate to when the logo is clicked */
   onClickHref?: string
 
-  /** URL of the logo image */
-  url?: string
+  /** URL of the logo image, or path to get it from user-info */
+  url?: string | {
+    path: string
+    default?: string
+  }
 }
 ```
+
+If key `url` is initialized to an object with keys `path` and, optionally, `default`, the logo source is initialized by applying `path` (in JavaScript notation) to the current user's object-like representation. The user information is obtained during bootstrap using property `userInfoUrl` as endpoint.
 
 ### Help Menu
 
@@ -355,13 +445,41 @@ type UserMenu {
     url?: string
   }
 
-  /** URL called in GET to retrieve user data */
+
+  /** @deprecated URL called in GET to retrieve user data */
   userInfoUrl: string
 
   /** Mapping between the properties returned from the user info URL call and the ones expected by the component */
   userPropertiesMapping?: Record<string, 'name' | 'avatar' | string>
 }
 ```
+
+:::caution
+Property `userInfoUrl` inside property `userMenu` is deprecated. Instead, use apply property `userInfoUrl` directly to `bk-layout`.
+For instance, from:
+```json
+{
+  "tag": "bk-layout",
+  "properties": {
+    "userMenu": {
+      "userInfoUrl": ...
+      ...
+    },
+    ...
+  }
+}
+```
+to
+```json
+{
+  "tag": "bk-layout",
+  "properties": {
+    "userInfoUrl": ...
+    ...
+  }
+}
+```
+:::
 
 ### Head
 
@@ -521,6 +639,7 @@ interface GroupMenuItem {
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
+| userInfoUrl | user-info-url | string | - | URL called in GET to retrieve user data |
 | mode | mode | [Mode](#mode) | overlaySideBar | controls how the menu is visualized |
 | logo | - | [Logo](#logo) | - | logo to be visualized in the menu |
 | menuItems | - | [MenuItem](#menu-items)[] | - | describes the items in the menu |
