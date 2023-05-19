@@ -22,6 +22,7 @@ Metrics options are changed. Below there are the main changes. For other configu
 * `invalidRouteGroup` --> `invalidRouteGroup` (default changed from undefined to unknown)
 * histogram and summary are moved under `routeMetrics.overrides`
 * `blacklist` --> `routeMetrics.routeBlacklist`
+* `prefix` --> `defaultMetrics.prefix`
 
 #### Remove node 14 support
 
