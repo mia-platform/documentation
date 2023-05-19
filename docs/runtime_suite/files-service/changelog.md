@@ -8,7 +8,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 2.7.0 - 08-15-2022
+## 2.8.0 - 05-18-2023
+
+### Added
+
+- opentelemetry tracing support
+
+### Updated
+
+- lc39
+- fastify v4
+
+## 2.7.1 - 05-18-2023
+
+### Fixed
+
+- internal fixes
+
+## 2.7.0 - 03-15-2023
 
 ### Added
 
