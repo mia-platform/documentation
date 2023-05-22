@@ -238,7 +238,7 @@ If the `check` function returns `false`, the message is excluded from the re-ing
 The custom selector script must adhere to a specific format:
 
 - The script must define a class that includes a public `check` method with the following characteristics:
-  * It must accept only one parameter of type `JsonElement`.
+  * It must accept only one parameter of type [`JsonElement`](https://kotlinlang.org/api/kotlinx.serialization/kotlinx-serialization-json/kotlinx.serialization.json/-json-element/).
   * It must return a `Boolean`.
 - The script must return an instance of the class itself.
 
@@ -292,7 +292,7 @@ CustomSelector()
 ```
 
 In this example, the script defines a class named `CustomSelector` with a single function `check`.  
-The `check` function accepts a `JsonElement` parameter named `payload`, which represents the message payload retrieved from the bucket.  
+The `check` function accepts a [`JsonElement`](https://kotlinlang.org/api/kotlinx.serialization/kotlinx-serialization-json/kotlinx.serialization.json/-json-element/) parameter named `payload`, which represents the message payload retrieved from the bucket.  
 The function performs custom filtering logic on the payload, checking if a specific property (`property`) has a certain value (`value` in this case).  
 If the condition is met, the function returns `true`; otherwise, it returns `false`.
 
