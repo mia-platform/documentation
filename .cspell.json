@@ -5,6 +5,7 @@
   "language": "en",
   // words - list of words to be always considered correct
   "words": [
+    "reinit",
     "ABAC",
     "axerve",
     "Boundarye",
@@ -181,6 +182,8 @@
     "servlet"
   ],
   "ignoreWords": [
+    "asncdctools",
+    "db2instl",
     "authz",
     "algs",
     "authn",
@@ -281,6 +284,15 @@
     "otel",
     "otlp",
     "xunit",
+    "db2sampl",
+    "bldrtn",
+    "asncdc",
+    "asncdctables",
+    "-tvmf",
+    "asncdcaddremove",
+    "ASNCDCSERVICES",
+    "asncap",
+    "UDFs",
     "Roboto",
     "Neue",
     "Noto",
@@ -309,7 +321,7 @@
     "**/*.svg",
     "**/*.drawio",
     // old files
-    "./docs/runtime_suite/sql-db-reader/configuration_and_usage.md",
+    "./docs/runtime_suite/sql-db-reader/configuration_and_usage.md"
   ],
   "allowCompoundWords": true,
   "ignoreRegExpList": [
