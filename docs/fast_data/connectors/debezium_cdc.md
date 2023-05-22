@@ -15,7 +15,7 @@ These plugins are shipped with a predefined configuration tailored for the datab
 :::info
 Current Debezium Server plugin requires a dependency on [Redis](https://redis.io/) for storing the metadata regarding the offset and schema management. More details on offset management can be found [below](/fast_data/connectors/debezium_cdc.md#offsets-management).
 
-For more details on how Debezium works we recommend checking out the [official Debezium documentation](https://debezium.io/documentation/reference/2.1/), in particular the section regarding [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html).
+For more details on how Debezium works we recommend checking out the [official Debezium documentation](https://debezium.io/documentation/reference/2.2/), in particular the section regarding [Debezium Server](https://debezium.io/documentation/reference/2.2/operations/debezium-server.html).
 :::
 
 Once the plugin is created in Mia-Platform Console, there are a few environment variables (secret or public, depending on their sensitivity) to be created and configured, which are reported in the following table.
@@ -48,13 +48,13 @@ Once the plugin is created in Mia-Platform Console, there are a few environment 
 In this section, some configuration examples for each supported database and some instructions on how to configure and enable the database itself for CDC operations are provided. Furthermore, it is clarified why Debezium Server CDC currently requires to be connected also to an instance of Redis.
 
 In the next paragraphs, the configurations that have been tested out with the Debezium Server plugin are detailed.  
-Currently, the default sink configuration is prefilled with Kafka properties, since it is the main event streaming platform supported by Fast-Data. Nonetheless, it is possible to fill it with any of the Debezium-supported sink configurations as explained in the [official documentation](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html#_sink_configuration). 
+Currently, the default sink configuration is prefilled with Kafka properties, since it is the main event streaming platform supported by Fast-Data. Nonetheless, it is possible to fill it with any of the Debezium-supported sink configurations as explained in the [official documentation](https://debezium.io/documentation/reference/2.2/operations/debezium-server.html#_sink_configuration). 
 
 ### MySQL
 
 CDC on MySQL can exploit the database binlog ([Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)), which keep tracks of all the changes occurring within the database. In order to allow Debezium execute its replication operations it is therefore necessary to enable the binlog and create a user which can read the database of interest.
 
-Regarding enabling MySQL binary log, we recommend checking out Debezium [instructions](https://debezium.io/documentation/reference/2.1/connectors/mysql.html#enable-mysql-binlog) and refer to the [MySQL manual](https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html) since it is necessary to edit the server configuration files. 
+Regarding enabling MySQL binary log, we recommend checking out Debezium [instructions](https://debezium.io/documentation/reference/2.2/connectors/mysql.html#enable-mysql-binlog) and refer to the [MySQL manual](https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html) since it is necessary to edit the server configuration files. 
 
 #### Database User and Permission Configuration
 
@@ -172,7 +172,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 </details>
 
 :::note
-For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.1/connectors/mysql.html).
+For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/mysql.html).
 :::
 
 ### Oracle DB
@@ -209,7 +209,7 @@ Current, one day backup retention does not introduce any new cost on the AWS pla
 :::
 
 :::note
-For further details, please check out [Debezium for Oracle documentation](https://debezium.io/documentation/reference/2.1/connectors/oracle.html#_preparing_the_database).
+For further details, please check out [Debezium for Oracle documentation](https://debezium.io/documentation/reference/2.2/connectors/oracle.html#_preparing_the_database).
 :::
 
 #### Database User and Permission Configuration
@@ -394,7 +394,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 </details>
 
 :::note
-For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.1/connectors/oracle.html).
+For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/oracle.html).
 :::
 
 ### PostgreSQL
@@ -406,7 +406,7 @@ On PostgreSQL in order to receive the executed operations from the DB (following
 
 The `decoderbufs` plugin is developed and mantained by the Debezium community and needs to be installed on your current PostgreSQL installation. 
 The `pgoutput` plugin is a plugin developed and mantained by the PostgreSQL community and comes already installed with PostgresSQL 10+. 
-To know more about the plugins and how to install them check out the [Debezium official docs](https://debezium.io/documentation/reference/2.1/postgres-plugins.html#logical-decoding-plugin-setup) about it.
+To know more about the plugins and how to install them check out the [Debezium official docs](https://debezium.io/documentation/reference/2.2/postgres-plugins.html#logical-decoding-plugin-setup) about it.
 
 #### Database User and Permission Configuration
 
@@ -430,8 +430,8 @@ Since the connection to a PostgresSQL is always with a specific database instead
 Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` (name of the DB you want to observe) and the `SCHEMAS_LIST` (comma separated list of the schemas you want to observe).
 :::
 
-If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.1/connectors/postgresql.html). 
-Mind that the plugin is based on the [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html) image so the declared properties must follow the convention.
+If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.2/connectors/postgresql.html). 
+Mind that the plugin is based on the [Debezium Server](https://debezium.io/documentation/reference/2.2/operations/debezium-server.html) image so the declared properties must follow the convention.
 
 Here's an example of the full configuration for the plugin:
 
@@ -528,7 +528,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 
 ### DB2
 
-In order to receive the executed operations from the DB (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.1/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
+In order to receive the executed operations from the DB (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.2/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
 - You are logged in to DB2 as the db2instl user.
 - On the DB2 host, the Debezium management UDFs are available in the `$HOME/asncdctools/src` directory. UDFs are available from the [Debezium examples repository](https://github.com/debezium/debezium-examples/tree/main/tutorial/debezium-db2-init/db2server).
 
@@ -548,7 +548,7 @@ We also suggest creating a DB2 sample with `db2sampl` command as it has been don
 
 #### Database User and Permission Configuration
 
-Supposing you already have a DB2 instance running with the requirements explained above and superuser privileges, to put your tables into [Capture Mode](https://debezium.io/documentation/reference/2.1/connectors/db2.html#_putting_tables_into_capture_mode) you have to follow the following procedure:
+Supposing you already have a DB2 instance running with the requirements explained above and superuser privileges, to put your tables into [Capture Mode](https://debezium.io/documentation/reference/2.2/connectors/db2.html#_putting_tables_into_capture_mode) you have to follow the following procedure:
 
   1. Connect to the database `DB_NAME` you want to enable CDC on
 
@@ -656,7 +656,7 @@ If you receive this output at first try you can skip this part.
   ```
 
 :::note
-For an in depth explanation of the steps, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.1/connectors/db2.html#setting-up-db2)
+For an in depth explanation of the steps, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/db2.html#setting-up-db2)
 :::
 
 #### Debezium service configuration
@@ -665,12 +665,12 @@ Once the DB is ready to operate with the Debezium connector, you need to load th
 As mentioned before, the service provided by the template is configured through the file `application.properties` but we went ahead and linked the necessary variables to your environment variables (please refer to the table in the [overview](#overview) section).
 
 :::danger
-Since the connection to a DB2 is always with a specific database instead of a host, more than one database cannot be observed at the same time like in MySQL or Oracle.
-Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` (name of the DB you want to observe) and the `SCHEMAS_LIST` (comma separated list of the schemas you want to observe).
+Since the connection to a DB2 is always with a specific database instead of a host, more than one database cannot be observed at the same time like in MySQL or Oracle, as mentioned [here](https://debezium.io/documentation/reference/2.2/connectors/db2.html#db2-property-database-dbname).
+Because of that we've replaced the `DATABASES_LIST` env var for the `DATABASE_NAME` (name of the DB you want to observe).
 :::
 
-If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.1/connectors/db2#db2-connector-properties). 
-Keep in mind that the template is based on the [Debezium Server](https://debezium.io/documentation/reference/2.1/operations/debezium-server.html) image so the declared properties must follow the convention.
+If the configuration we've mapped is not enough to cover your needs you can directly modify the `application.properties` config map file in the connector service following the official indications of the [Debezium Plugin](https://debezium.io/documentation/reference/2.2/connectors/db2#db2-connector-properties). 
+Keep in mind that the template is based on the [Debezium Server](https://debezium.io/documentation/reference/2.2/operations/debezium-server.html) image so the declared properties must follow the convention.
 
 Here's an example of the full configuration for the plugin:
 
@@ -765,7 +765,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 </details>
 
 :::note
-For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.1/connectors/db2.html).
+For an in depth explanation of the particular database configuration, we suggest reading the [official documentation](https://debezium.io/documentation/reference/2.2/connectors/db2.html).
 :::
 
 ### Debezium Server Generic Template
