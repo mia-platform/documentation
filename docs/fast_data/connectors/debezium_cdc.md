@@ -533,7 +533,7 @@ In order to receive the executed operations from the DB (following the CDC patte
 - On the DB2 host, the Debezium management UDFs are available in the `$HOME/asncdctools/src` directory. UDFs are available from the [Debezium examples repository](https://github.com/debezium/debezium-examples/tree/main/tutorial/debezium-db2-init/db2server).
 
 :::info
-The DB2 connector has been tested with a DB2 Docker container, so we will report info based on that. If you would like to get deeper insights on how the database works, check the [official documentation](https://www.ibm.com/docs/en/db2/11.1?topic=SSEPGG_11.1.0/com.ibm.db2.luw.kc.doc/welcome.htm).
+The DB2 connector has been tested with a DB2 Docker container, so we will report info based on that. If you would like to get deeper insights on how the database works, please check the [official documentation](https://www.ibm.com/docs/en/db2/11.1?topic=SSEPGG_11.1.0/com.ibm.db2.luw.kc.doc/welcome.htm).
 :::
 
 :::note
