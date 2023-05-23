@@ -13,11 +13,11 @@ Users with enough administrative permission can manage roles and permissions giv
 
 Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section from the Company Overview, wherein it is possible to manage the role assigned at Company level:  
 
-<!-- TODO: ![Company Identities table](./img/identities_table.png) -->
+![Company Identities table](./img/identities_company.png)
 
 In order to manage privileges at Project level, the Identities table is shown even into Project Settings Area, wherein it is possible to manage roles assigned to the specific Project and its Environments.
 
-<!-- TODO: ![Project Identities table](./img/identities_table_on_project.png) -->
+![Project Identities table](./img/identities_project.png)
 
 :::caution Important: Git provider vs Console permissions
 The management of roles and permissions aims at regulating access to resources exclusively at the Console level.  
