@@ -178,9 +178,9 @@ In order to make the TMM works properly, a set of collections must be configured
 :::note
 
 You can use the following JSON files in the *MongoDB CRUD* section of the console to import the list of fields when creating the CRUD collections:
-- [detections][detections];
-- [monitorings][monitorings];
-- [therapies][therapies].
+- <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/detections.json">detections</a>;
+- <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/monitorings.json">monitorings</a>;
+- <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/therapies.json">therapies</a>.
 
 :::
 
@@ -386,7 +386,3 @@ The TMM currently generates the following events you can refer in the configurat
 [crud-monitorings]: #monitorings "Monitorings | CRUD collections | Configuration"
 [environment-variables]: #environment-variables "Environment variables | Configuration"
 [external-validation-service-api]: #external-validation-service-api "External Validation Service API | Thresholds validation | Configuration"
-
-[detections]: ./detections.json "Detections CRUD schema"
-[monitorings]: ./monitorings.json "Monitorings CRUD schema"
-[therapies]: ./therapies.json "Therapies CRUD schema"
