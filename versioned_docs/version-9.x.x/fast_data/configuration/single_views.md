@@ -79,7 +79,7 @@ We recommend testing configurations with unit tests using the [Fast Data Low Cod
 Click on Save to save the configuration, otherwise click on Cancel to discard changes.
 
 :::note
-When you save the Low Code configuration, the related Single View Creator config maps are updated locally with the changes. No automatic commit is going to be made. To persist the changes on Git, like for any other changes on the Console, you need to [Save the branch configuration](/docs/development_suite/api-console/api-design/design-overview#how-to-save-your-configuration). 
+When you save the Low Code configuration, the related Single View Creator config maps are updated locally with the changes. No automatic commit is going to be made. To persist the changes on Git, like for any other changes on the Console, you need to save the branch configuration. 
 :::
 
 ## Link projections to the Single View

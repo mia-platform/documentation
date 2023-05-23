@@ -26,8 +26,11 @@ For the Automatic Real-Time Updater the `kafka_adapter`, `map_table` and `cast_f
 
 :::caution
 When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
-```
-{ "version": "1.0.0", "config": { } }
+```json
+{ 
+  "version": "1.0.0", 
+  "config": { } 
+}
 ```
 This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated to this microservice to work properly.
 :::  

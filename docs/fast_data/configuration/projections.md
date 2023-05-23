@@ -22,7 +22,7 @@ The System of Records is then created.
 
 To delete a System of Records, you have to click the `Delete` button in the bottom-right corner of the System of Records detail page.
 
-The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it.
+:::warning The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it. :::
 
 ## Create a Projection
 
@@ -32,14 +32,9 @@ Inside the System of Records page click the `Create new Projection` button on th
 
 In order to finally create the new Projection, you will need to save the configuration.
 
-## Projection details
-
-In order to access this section:
-
-1. Go to the Design Area
-2. Go to the Projections Section
-3. Select a System of Records and click on the arrow on the right
-4. Select an existing Projection and click on the arrow on the right
+:::tip
+Too see more details about your projection you can click on the arrow on the right inside the same section
+:::
 
 ### Projection fields
 
@@ -49,13 +44,13 @@ Once you click the `Create field` button, a form is prompted where you should in
 
 | Name          | Type          | Required | Description                                                                                                                                                  |
 |---------------|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name          | String        | True     | Name of the Projection Field. No spaces or special characters                                                                                                |
-| Description   | String        | False    | Description of the Field                                                                                                                                     |
-| Type          | Select        | True     | Type of the Field. one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint` |
-| Cast Function | Cast Function | True     | the possible Cast Function to select for the specified data type                                                                                             |
-| Required      | Checkbox      | True     | Set the field as required, default to false                                                                                                                  |
-| Nullable      | Checkbox      | True     | Declare field as nullable, default to false                                                                                                                  |
-| Primary Key   | Checkbox      | True     | Set the field as part of the primary key, default to false                                                                                                   |
+| Name          | String        | &check;     | Name of the Projection Field. No spaces or special characters                                                                                                |
+| Description   | String        | -    | Description of the Field                                                                                                                                     |
+| Type          | Select        | &check;     | Type of the Field. one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint` |
+| Cast Function | Cast Function | &check;     | the possible Cast Function to select for the specified data type                                                                                             |
+| Required      | Checkbox      | &check;     | Set the field as required, default to false                                                                                                                  |
+| Nullable      | Checkbox      | &check;     | Declare field as nullable, default to false                                                                                                                  |
+| Primary Key   | Checkbox      | &check;     | Set the field as part of the primary key, default to false                                                                                                   |
 
 It's **mandatory** to set at least one Primary Key for each Projection. Otherwise, you will not be able to save your configuration.
 
@@ -64,7 +59,7 @@ Setting the Primary Keys creates automatically the unique indexes as explained [
 :::
 
 :::info
-When the `real-time updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the `CRUD Service`) is set to `DELETED`.
+When the `Real Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
 :::
 
 #### Generate projection fields from data sample
@@ -182,7 +177,7 @@ There are also some of these fields that are used to track the time of creation 
 * `updatedAt`: meaning the timestamp of the latest update that the document received
 * `timestamp`: reporting the timestamp of the Kafka message that generated the document.
 
-:::Info
+:::info
 Every one of these timestamp fields has the format `yyyy-MM-ddTHH:mm:ss.SSS+ZZ:ZZ`
 :::
 
@@ -197,13 +192,11 @@ Most DBMSes have some way of exporting the database schema, producing a DDL file
 The maximum size of the DDL file is 20MB
 :::
 
-### Importing - step 1
+To import projections from a DDL you need to go through three main steps, explained in the below sections.
 
-To start importing projections from a DDL, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process.
+### First Step
 
-On the first page, you will need to specify a topic pattern:
-
-#### Topic pattern
+In the first step, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process. On the first page, you will need to specify a topic pattern.
 
 The topic pattern is a template string that will be interpolated for each combination of environment and projection to generate the topic prefixes. The syntax used is the same of the intuitive [javascript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), with the following variables:
 
@@ -217,7 +210,7 @@ The default value for this input is the same as the default used by the Console,
 
 ![Topic pattern modal page](../img/importDDL/topic_pattern_modal_page.png)
 
-### Importing - step 2
+### Second Step
 
 The second page lets you upload the DDL file, and provides information about the supported SQL dialects, which are:
 
@@ -233,7 +226,7 @@ Keep in mind that `supported` means you will be able to generate projections cor
 
 ![Upload file modal page](../img/importDDL/upload_file_modal_page.png)
 
-### Importing - step 3
+### Third Step
 
 In the last step you will be presented with a recap of what you are about to import. A tree view of projections will be displayed, each projection having fields and indexes as children. For fields, only the names of the custom fields will be displayed, and for the indexes only the name of the indexes.
 This page will also warn you about possible problems in the configuration, so read the warnings carefully and remember to take action when needed (e.g. missing primary key).

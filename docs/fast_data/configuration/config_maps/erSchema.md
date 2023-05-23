@@ -10,22 +10,21 @@ In this document we guide you through the configuration of the ER Schema (`erSch
 If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx)
 :::
 
-
 ## Overview
 
 The ER Schema or Entity-Relation Schema defines the relationships between the collections of a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
 
 :::caution
-Don't forget to [declare your relationships both ways](#direction-of-the-relationships)! 
+Don't forget to [declare your relationships both ways](#direction-of-the-relationships)!
 :::
 
-## Syntax
+## Syntax and Configuration Properties
 
-The ER Schema is made of the following fields:
+Here is an example of a generic ER Schema configuration file:
 
 ```json title="erSchema.json"
 {
-  "version": "N.N.N",
+  "version": "X.Y.Z",
   "config": {
     "COLLECTION": {
       "outgoing": {
@@ -45,6 +44,12 @@ The ER Schema is made of the following fields:
 }
 ```
 
+The ErSchema is made of the following fields:
+
+- _version_, the current configuration version, which determines the syntax and semantics of the rest of the
+  configuration. The following properties follow the `1.0.0` syntax version.
+- _config_, the whole ER Schema config, which its properties are detailed in the table below.
+The ErSchema is made of the following fields:
 * `version`: Current configuration version, which determines the syntax and semantics of the rest of the configuration. The following properties follow the `1.0.0` syntax version.
 * `config`: The whole ER Schema config
 * `COLLECTION`: Name of a collection of the System of Records. There should be a `COLLECTION` object for each collection of the System of Records.
@@ -57,26 +62,35 @@ The ER Schema is made of the following fields:
 * `RELATED_COLLECTION_FIELD_NAME`: A field name of the `RELATED_COLLECTION`
 * `COLLECTION_FIELD_NAME`: A field name of the `COLLECTION`
 
+
 :::note
-All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
+All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are
+keywords that should not be changed
 :::
 
-In the last example, the relationship between the entities would be:
+In the example presented above, the relationship between the two entities could be represented as shown in the diagram:
 
 ![Entity Relation representation of the following example](../../img/collection-to-related.png)
 
 ### Constants
 
-It is also possible to define a constant value to validate the condition, for example:
+<details><summary>ER Schema Configuration with constant value to validate the condition</summary>
+
+<p>
 
 ```json title="erSchema.json"
-"pr_dishes": {
-  "outgoing": {
-    "pr_orders_dishes": {
-      "conditions": {
-        "dish_to_order_dish": {
-          "condition": {
-            "ID_DISH": "__string__[testID]"
+{
+  "version": "1.0.0",
+  "config": {
+    "pr_dishes": {
+      "outgoing": {
+        "pr_orders_dishes": {
+          "conditions": {
+            "dish_to_order_dish": {
+              "condition": {
+                "ID_DISH": "__string__[testID]"
+              }
+            }
           }
         }
       }
@@ -85,7 +99,10 @@ It is also possible to define a constant value to validate the condition, for ex
 }
 ```
 
-In this case, the condition will always be verified if `“ID_DISH“` is equal to `“testID“`.
+</p>
+</details>
+
+In this case, the condition will always be verified if `"ID_DISH"` is equal to `"testID"`.
 The types of constants that are supported are:
 
 * `__string__[]` which considers the value as a string.
@@ -99,11 +116,15 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 
 ### Query and Projection Operators
 
-Conditions can also use MongoDB [Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/), for example:
+Conditions can also use [MongoDB Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/), such as `$or` and `$and`.
+
+<details><summary>ER Schema Configuration with MongoDB Query and Projection Operators</summary>
+
+<p>
 
 ```json title="erSchema.json"
 {
-  "version": "N.N.N",
+  "version": "1.0.0",
   "config": {
     "pr_dishes": {
       "outgoing": {
@@ -130,47 +151,59 @@ Conditions can also use MongoDB [Query and Projection Operators](https://www.mon
 }
 ```
 
+</p>
+</details>
+
 ## Direction of the relationships
 
 Normally when we write an ER Schema we think about declaring a condition in only one direction but this is not enough.
 
-The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/common.md#aggregation). As you know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
+The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/common.md#aggregation).
+As you may know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
 
-Example:
+<details><summary>ER Schema Configuration with Strategy and Aggregation</summary>
+
+<p>
 
 ```json title="erSchema.json"
 {
-  // Direction explored by the aggregation
-  "pr_registry": {
-    "outgoing": {
-      "pr_orders": {
-        "conditions": {
-          "reg_to_order": {
-            "condition": {
-              "ID_USER_ORDER": "ID_USER"
-            },
-            "oneToMany": true
+  "version": "1.0.0",
+  "config": {
+    // Direction explored by the aggregation
+    "pr_registry": {
+      "outgoing": {
+        "pr_orders": {
+          "conditions": {
+            "reg_to_order": {
+              "condition": {
+                "ID_USER_ORDER": "ID_USER"
+              },
+              "oneToMany": true
+            }
           }
         }
-      },
-    }
-  },
-  // Direction explored by the strategy
-  "pr_orders": {
-    "outgoing": {
-      "pr_registry": {
-        "conditions": {
-          "order_to_reg": {
-            "condition": {
-              "ID_USER": "ID_USER_ORDER"
+      }
+    },
+    // Direction explored by the strategy
+    "pr_orders": {
+      "outgoing": {
+        "pr_registry": {
+          "conditions": {
+            "order_to_reg": {
+              "condition": {
+                "ID_USER": "ID_USER_ORDER"
+              }
             }
           }
         }
       }
     }
-  },
+  }
 }
 ```
+
+</p>
+</details>
 
 ## Use the No Code
 
@@ -216,7 +249,8 @@ When a line is created, you can click on it: you will see that the condition lin
 
 This panel will allow you to configure a connection **both ways**. For example, having the image above as a reference, a condition will be created from _pr_dishes_ to _pr_reviews_ and vice versa, so you will not have to worry about creating another line for the opposite condition.
 
-In this panel, you can see the connected projections, referred to as **A** and **B**. In the example shown in the image above, _A_ is the projection _pr_dishes_ and _B_ is the projection _pr_reviews_.
+In this panel, you can see the connected projections, referred to as **A** and **B**. In the example shown in the image
+above, **A** is the projection _pr_dishes_ and **B** is the projection _pr_reviews_.
 
 You can select the _condition type_, for both the condition and its reverse, which can be one of the two values:
 - _One to one_ (default), which means that the condition will fetch one document from a projection from one document to the other projection matching the condition;
@@ -227,10 +261,17 @@ You can select the _condition type_ going from _A_ to _B_ (in this example: from
 The ER Schema does not support the _One to many_ _condition type_ on both the condition and its reverse. When the _condition type_ is set to _One to many_ on one side of the condition, it will not be possible to use this _condition type_ on the other side. If an existing ER Schema contains duplicated _One to many_ conditions, a warning message will be displayed.
 :::
 
-Below are listed the rules that define conditions both ways. These rules are divided into three sections, each one with its tab:
-- _A <-> B_: includes all those rules that will be used in the condition from _A_ to _B_ and vice versa. In the example of the screenshot above, the rule `id_dish = ID_DISH` means that the condition from _pr_dishes_ to _pr_reviews_ will connect the `id_dish` field in _pr_dishes_ to the `ID_DISH` in _pr_reviews_, and the condition from _pr_reviews_ to _pr_dishes_ will connect the `ID_DISH` in _pr_reviews_ to the `id_dish` field in _pr_dishes_;
-- _A -> B_: includes all those rules that will be used in conditions by filtering documents of projection _A_ and executing queries based on comparison operations on fields of projection _B_ or constant values;
-- _B -> A_: includes all those rules that will be used in conditions by filtering documents of projection _B_, as explained above;
+Below are listed the rules that define conditions both ways. These rules are divided into three sections, each one with
+its tab:
+
+- _A ⟷ B_: includes all those rules that will be used in the condition from _A_ to _B_ and vice versa. In the example
+  of the screenshot above, the rule `id_dish = ID_DISH` means that the condition from _pr_dishes_ to _pr_reviews_ will
+  connect the `id_dish` field in _pr_dishes_ to the `ID_DISH` in _pr_reviews_, and the condition from _pr_reviews_ to
+  _pr_dishes_ will connect the `ID_DISH` in _pr_reviews_ to the `id_dish` field in _pr_dishes_;
+- _A → B_: includes all those rules that will be used in conditions by filtering documents of projection _A_ and
+  executing queries based on comparison operations on fields of projection _B_ or constant values;
+- _B → A_: includes all those rules that will be used in conditions by filtering documents of projection _B_, as
+  explained above;
 
 :::info
 The Fast Data is composed by different microservices, and each one of them uses an ER Schema. You can use different ER Schemas for each service or you can decide to have an unique ER Schema containing all the cases.
@@ -238,11 +279,13 @@ The Fast Data is composed by different microservices, and each one of them uses 
 If your case is the latter, defining conditions in both ways is necessary to make sure that your ER Schema can be used in any Fast Data microservice (as explained in the [Direction of the relationships](#direction-of-the-relationships) section). The panel will allow you to do that.
 :::
 
-To edit those rules (or to start adding them), you have to click on the _Edit_ Rules_ button: a modal will open up with the three tabs explained before. In each of them, there will be a list of rules previously created and the possibility to add new ones.
+To edit those rules (or to start adding them), you have to click on the _Edit Rules_ button: a modal will open up with the three tabs explained before. In each of them, there will be a list of rules previously created and the possibility to add new ones.
 
-In the _A <-> B_ tab, you can click on the _+_ Rule_ button to add a new rule, represented by a new line that includes two drop down lists: the left one contains all the fields of the projection marked as _A_, the right one contains all the fields of the projection marked as _B_.
+In the _A ⟷ B_ tab, you can click on the _+ Rule_ button to add a new rule, represented by a new line that includes
+two drop down lists: the left one contains all the fields of the projection marked as _A_, the right one contains all
+the fields of the projection marked as _B_.
 
-![Condition editor from pr_dishes to pr_reviews, A <-> B tab](../../img/er-schema-bidirectional-rule-editor.png)
+![Condition editor from pr_dishes to pr_reviews, A ⟷ B tab](../../img/er-schema-bidirectional-rule-editor.png)
 
 If you need to delete a rule, you can click on the delete icon located next to the fields.
 
@@ -250,17 +293,21 @@ If you need to delete a rule, you can click on the delete icon located next to t
 You can only select fields that are included in the projection. In case you have multiple rules, you cannot select the same field multiple times.
 :::
 
-In the _A -> B_ tab (and also the _B -> A_, which works the same) you can click on the _+_ Rule_ button to create a new rule like the normal ones but with two important differences:
-- you can decide which type of relationship between the two sides (instead of equality) based on the available [MongoDB comparison query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#comparison);
+In the _A → B_ tab (and also the _B → A_, which works the same) you can click on the _+ Rule_ button to create a new
+rule like the normal ones but with two important differences:
+
+- you can decide which type of relationship between the two sides (instead of equality) based on the
+  available [MongoDB comparison query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#comparison);
 - the right side of the expression can be a field of the other projection or a constant value;
 
 You can also create a group of rules by clicking the _+ Group_ button. Based on [MongoDB logical query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#logical), a group is a set of rules connected by the `and` (every rule in the group must be true) or `or` (at least one rule in the group must be true) logical operator.
 
 :::info
-If you select the query operator _is element of_ (`$in`) or _not an element of_ (`$nin`) to compare a field with constant values, you will have to include all the values in the input field separated with a semicolon character (**;**).
+If you select the query operator _is element of_ (`$in`) or _not an element of_ (`$nin`) to compare a field with
+constant values, you will have to include all the values in the input field separated with a semicolon character (`;`).
 :::
 
-![Condition editor from pr_dishes to pr_reviews, B -> A tab](../../img/er-schema-unidirectional-rule-editor.png)
+![Condition editor from pr_dishes to pr_reviews, B → A tab](../../img/er-schema-unidirectional-rule-editor.png)
 
 :::tip
 The No Code feature has been implemented with the goal of creating ER Schemas which follow the structure of the Single View you want to create.
@@ -272,12 +319,13 @@ Keep this in mind when adding projections and conditions, to get an ER Schema wh
 
 You can always delete any projection or condition already configured. You have two ways of doing this.
 
-You can do it by selecting the projection box or the condition line you want to remove and pressing the _backspace_ or the _Canc_ key.
+You can do it by selecting the projection box or the condition line you want to remove and pressing the <kbd>Backspace</kbd> or the <kbd>Delete</kbd> key.
 
-Otherwise, you can select a projection or a condition and click on the _Delete_ button in the bottom right position of the right side panel.
+Otherwise, you can select a projection or a condition and click on the _Delete_ button in the bottom right position of
+the right side panel.
 
 :::caution
-Removing a projection will also delete all of the conditions starting and ending from it.
+Removing a projection will also delete all the conditions starting and ending from it.
 :::
 
 ### Interact with the elements in the Canvas
@@ -286,11 +334,12 @@ Removing a projection will also delete all of the conditions starting and ending
 The position of the elements (boxes and lines) in the canvas is automatically calculated to give the best overview of the ER Schema. You are free to reorganize projections in the canvas but these updates will not be saved when you save the configuration.
 :::
 
-The canvas is made to help you create and improve your ER Schema and also to give you a look at the whole picture of the Single View that will be created from it. To help you to have the full picture of it, there are several buttons on the bottom-left side of the canvas to adjust the zoom, to lock the canvas to move around without the risk of moving boxes and lines, and an _Autolayout_ button that restores the canvas elements to the best position for a complete view. 
+The canvas is made to help you create and improve your ER Schema and also to give you a look at the whole picture of the Single View that will be created from it. To help you have the full picture of it, there are several buttons on the bottom-left side of the canvas to adjust the zoom, to lock the canvas to move around without the risk of moving boxes and lines, and an `Autolayout` button that restores the canvas elements to the best position for a complete view. 
 
 You can also zoom in and out with the scroll wheel of the mouse.
 
-Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality: they can be toggled via the button at the top-right side of the canvas, or by pressing _Ctrl+Z_ and _Ctrl+Y_ (_Cmd+Z_ and _Cmd+Y_ for MacOS). 
+Also, in case you make any mistake, you can use the _Undo_ and _Redo_ functionality, via the buttons at the top-right
+side of the canvas or by pressing <kbd>Ctrl</kbd>+<kbd>Z</kbd> and <kbd>Ctrl</kbd>+<kbd>Y</kbd> (<kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Y</kbd> for MacOS).
 
 ### The ER Schema code panel
 
@@ -318,10 +367,10 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
 
 ## Real use case example
 
-<details><summary>food delivery ER schema configuration</summary>
+<details><summary>Food Delivery ER schema configuration</summary>
 <p>
 
-```json title="erSchema.json"
+```json
 {
   "version": "1.0.0",
   "config": {
@@ -508,6 +557,7 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
   }
 }
 ```
+
 </p>
 </details>
 

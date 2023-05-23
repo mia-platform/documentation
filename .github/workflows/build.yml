@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
       - name: Install
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
       - name: Build site
         env:
           NODE_ENV: "production"
@@ -84,7 +84,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-${{ hashFiles('nginx/permanent.redirects') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       - name: Build and push

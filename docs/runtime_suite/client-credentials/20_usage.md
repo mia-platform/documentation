@@ -3,8 +3,6 @@ id: usage
 title: Client Credentials Usage
 sidebar_label: Usage
 ---
-import Mermaid from "./../../../src/components/Mermaid";
-
 In this section, we show you how to use the `client-credentials` service.
 
 ## Endpoints
@@ -446,7 +444,7 @@ Below are reported the authentication flows that are supported by Client Credent
 
 Below it is visible the sequence diagram of the login flow:
 
-<Mermaid chart={`
+```mermaid
 sequenceDiagram
 title: Login client credentials
 participant client
@@ -458,13 +456,13 @@ clcr_service->>crud_service: GET {client_id,hash_client_secret}
 clcr_service->>clcr_service: generate Mia JWT
 note over clcr_service: iss: my-idp <br> sub: client-id <br> aud: permission <br> exp: expiration <br> iat: jwt issue date <br> jti: jwt id
 clcr_service->>client: {access_token, expires_in, token_type}
-`}/>
+```
 
 ### Authorization flow (internal client)
 
 Below it is visible the sequence diagram of the authorization flow from internal client:
 
-<Mermaid chart={`
+```mermaid
 sequenceDiagram
 title: Authentication flow from a console project
 participant client
@@ -490,13 +488,13 @@ api_gateway->>client: 401 with error
 end
 authorization_service->>api_gateway: 200  <br>  {miauserid,miausergroups,miauserproperties,client-type}
 api_gateway->>resource_owner: GET /foobar {Authorization Bearer AT} + platform headers
-`}/>
+```
 
 ### Authorization flow (external client)
 
 Below it is visible the sequence diagram of the authorization flow from external client:
 
-<Mermaid chart={`
+```mermaid
 sequenceDiagram
 title: Authentication flow from external with an AT
 participant client
@@ -519,13 +517,13 @@ resource_owner->client: 403
 end
 resource_owner->>resource_owner: make some stuff
 resource_owner->>client: ok
-`}/>
+```
 
 ### Tokeninfo
 
 Below it is visible the sequence diagram to access to the JWT info:
 
-<Mermaid chart={`
+```mermaid
 sequenceDiagram
 title: Tokeninfo
 participant client
@@ -535,4 +533,4 @@ clcr_service->>clcr_service: check expiration
 clcr_service->>clcr_service: check signature
 clcr_service->>clcr_service: decode jwt
 clcr_service->>client: {permission: []}
-`}/>
+```
