@@ -21,6 +21,8 @@ This allows teams to implement a CI/CD workflow that can improve the speed, reli
 
 A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
 
+In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-security-in-mind), you can have an in-depth look at some best practices for effectively managing Service Accounts.
+
 ## Managing Company Service Accounts
 
 A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and change their Roles.
