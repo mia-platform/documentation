@@ -335,7 +335,7 @@ To trigger the creation of the reminders at least one user category must have th
 
 :::tip
 You can avoid sending reminders for appointments created/updated below a given threshold by setting the `reminderThresholdMs` 
-field in the configuration file (see the [service configuration section][[reminders-threshold]] for more information).
+field in the configuration file (see the [service configuration section][reminders-threshold] for more information).
 :::
 
 As for messages, the service uses its [configuration][service-configuration] to know which users categories should receive reminders.

@@ -429,7 +429,6 @@ Since the reminder service in turn requires the messaging service to send remind
 :::
 
 [overview]: ./10_overview.md "Overview page"
-[variable-duration-slots]: ./10_overview.md#variable-duration-slots "Variable duration slots | Availabilities and slots | Overview"
 
 [service-configuration]: #service-configuration "Service configuration | Configuration"
 [environment-variables]: #environment-variables "Environment variables | Configuration"
