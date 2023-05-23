@@ -101,7 +101,7 @@ As a result, the Company role of a group can be modified not only from the Group
 ### Managing Group role at Project level
 
 Groups which have access to a Company are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
-Group role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper role for the Project itself or for each Runtime Environment.
+You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
