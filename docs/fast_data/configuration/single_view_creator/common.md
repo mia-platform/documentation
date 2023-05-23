@@ -121,7 +121,7 @@ service.addHook('onClose', async() => {
 | SINGLE_VIEWS_PORTFOLIO_ORIGIN | &check; | should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION` | - |
 | SINGLE_VIEWS_ERRORS_COLLECTION | &check; | Name of a MongoDB CRUD you want to use as collection for single view errors. | - |
 | KAFKA_CONSUMER_GROUP_ID | - | **@deprecated** - in favor of KAFKA_GROUP_ID. The Kafka consumer group identifier | - |
-| KAFKA_GROUP_ID | &check; | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}```) | - |
+| KAFKA_GROUP_ID | - | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}```) | - |
 | KAFKA_CLIENT_ID | - | The Kafka client identifier | - |
 | KAFKA_BROKERS_LIST | - | **@deprecated** - in favor of KAFKA_BROKERS. list of brokers the service needs to connect to | - |
 | KAFKA_BROKERS | - | list of brokers the service needs to connect to | - |
