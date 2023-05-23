@@ -330,10 +330,6 @@
         {
           "id": "development_suite/deploy/configure-github-actions",
           "type": "doc"
-        },
-        {
-          "id": "development_suite/identity-and-access-management/group-management",
-          "type": "doc"
         }
       ],
       "label": "Deploy what you have created",
@@ -406,6 +402,10 @@
         },
         {
           "id": "development_suite/identity-and-access-management/service-account-management",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/group-management",
           "type": "doc"
         }
       ],
