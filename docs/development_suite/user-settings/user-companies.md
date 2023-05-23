@@ -16,16 +16,17 @@ When hovering over the user profile picture, a dropdown menu appears: click on t
 
 ![user settings dropdown](./img/user-settings-dropdown.png)
 
-In the `Your Companies` page you will find information about which role you are assigned in each Company you belong to. 
+In `Your Companies` section, a user can find information about which Companies it has access to.
+For each Company, a user can identify its assigned Company role and which groups he belongs to.
 
-![your companies page](./img/your-companies-page.png)
+![Your Companies section](./img/your-companies.png)
 
 ### Leaving a Company
 
 If you no longer want to be part of a Company, you can decide to leave it by clicking on the exit button placed at the end of each table row.
 
 :::warning
-You will be asked to confirm your choice. After leaving a Company, you will lose access to all its Projects and resources until you are reinstated as a member of the Company.
+You will be asked to confirm your choice. After leaving a Company, you will lose access to all its Projects and resources until you are reinstated as a member of the Company. In addition, leaving the Company will result in automatically leaving all Company groups of which you belong to.
 :::
 
 ![leave company modal](./img/leave-company-modal.png)

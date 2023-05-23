@@ -3,8 +3,9 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem.
+Assigning different Roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your Platform ecosystem.
 The Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
+
 Let's see how they are configured.
 
 ## Console Levels
@@ -16,13 +17,13 @@ At this level you can configure resources such as Companies, Project Templates a
 
 1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users and Service Accounts can be managed. To know more about Company configuration, check out the dedicated [documentation section](/development_suite/company/create.mdx).
 
-1. **Project Level** is the third hierarchical level. Projects are the heart of Mia-Platform Console, allowing developers engage in creating new features and building their own platform.
+1. **Project Level** is the third level of the Console. Projects are the heart of the Console: in fact, it is at this level that developers engage in creating new features and building their own Platform.
 
 ![alt text](../img/DevOps_Console_levels.PNG)
 
 ## Identity Capabilities inside Console
 
-Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped for each specific role. A brief presentation of the default Roles that can be assigned to each Identity is provided here below:
+Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped for each specific role. A brief presentation of the default roles that can be assigned to each Identity is provided here below:
 
 * `Company Owner`: A Company Owner has the ability to manage Company Users and Service Accounts, and has full administrative capabilities on all the Projects (and Runtime Environments) within the Company
 * `Project Administrator`: A Project Administrator is able to manage identities and all other aspects of a Project, thus being able to perform any actions on all the Runtime Environments of the Project as well
@@ -39,7 +40,7 @@ Roles can be assigned at three types of Console resources:
 
 Roles can be assigned at Company level from the Identities portal of the Company Overview section.
   
-The following table describes the capabilities that are granted when assigning a role at Company level:
+The following table describes the capabilities and how they are mapped on the default roles.
 
 |              Capabilities                                                  | Permissions key                                        | Guest  | Reporter | Developer | Maintainer | Project Administrator | Company Owner |
 |------------------------------------------------------------------------|--------------------------------------------------------|--------|----------|-----------|------------|-----------------------|---------------|
@@ -67,7 +68,7 @@ The following table describes the capabilities that are granted when assigning a
 | Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`                          |        |           |          |              |  ✅  |  ✅  |
 | Manage Marketplace resources owned exclusively by the Company                                     | `console.company.marketplace.manage`                          |        |           |          |              |  ✅ |  ✅  |
 
-Roles can be assigned at both Project and its Runtime Environments levels from the Identities portal of the specific Project Settings Area.
+User roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 
 :::info
 Please note that, inside Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.  
