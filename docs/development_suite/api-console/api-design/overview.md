@@ -1,7 +1,7 @@
 ---
-id: design-overview
-title:  Design Overview
-sidebar_label: Design Overview
+id: overview
+title:  Configure Your Project
+sidebar_label: Overview
 ---
 
 The Design section allows you to modify the configuration and architecture of your project by customizing the use of various resources such as CRUD, Microservices, Endpoints and much more.
