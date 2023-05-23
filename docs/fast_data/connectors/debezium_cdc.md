@@ -528,7 +528,7 @@ debezium.transforms.Reroute.key.enforce.uniqueness=false
 
 ### DB2
 
-In order to receive the executed operations from the DB (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.2/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
+In order to receive the executed operations from the [DB2](https://www.ibm.com/products/db2/database) database (following the CDC pattern) you have to [enable Change Data Capture](https://debezium.io/documentation/reference/2.2/connectors/db2.html#setting-up-db2) on your database. To do that, you have to satisfy these requirements:
 - You are logged in to DB2 as the db2instl user.
 - On the DB2 host, the Debezium management UDFs are available in the `$HOME/asncdctools/src` directory. UDFs are available from the [Debezium examples repository](https://github.com/debezium/debezium-examples/tree/main/tutorial/debezium-db2-init/db2server).
 
