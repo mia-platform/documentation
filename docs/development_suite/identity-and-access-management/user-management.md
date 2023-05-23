@@ -19,7 +19,7 @@ To find out more about roles check out the available [capabilities](/development
 
 At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the Identities portal, a Company Owner can add new users to the Company, manage their accesses, and remove them.
 
-![Identities table filtered by User](./img/user-management/identities_table_filtered_by_user.png)
+![Identities portal filtered by User](./img/user-management/identities_portal_filtered_by_user.png)
 
 :::caution
 Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -30,7 +30,7 @@ In the following paragraphs, we will describe how to manage your users access pr
 
 Alternatively, you may consider also to manage your users through groups. If you want to discover more about, [go to the groups documentation](/development_suite/identity-and-access-management/group-management.md#managing-company-groups).
 
-If you want to find out how best to manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.
+If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.
 
 ### Adding a new User at Company Level
 
@@ -146,7 +146,7 @@ For instance – going on with the aforementioned example – imagine that your 
 Now let us remember, however, that one of those Developers (the first one) was initially assigned the `Developer` role at individual level. This means that one Developer will have both an individual role and a role conferred by the group membership. You don’t have to worry about this, as roles in Console always add up and therefore it does not represent a problem of any kind.
 
 The dual management of users – through a combination of individual roles and group roles – also allows for more personalized governance of access to the resources of your Company: imagine, for example, that the initial Junior Developer (who has both an individual role and the role attributed by group membership) has now become a Developer Expert, having increased the responsibilities within some of the Projects of your Company. At that point, you might want to give that user additional privileges only on those specific Projects.  
-You can do it by assigning to that user at Project level a role – at Project level – that expands the capabilities currently enabled by the `Developer` role assignment at Company level (e.g., being able to deploy on a specific Projects by assigning the `Maintainer` role to that user).
+You can do it by assigning, to that user, a role at Project level that expands the capabilities currently enabled by the `Developer` role assignment at Company level (e.g., being able to deploy on a specific Projects by assigning the `Maintainer` role to that user).
 
 Nevertheless, once again, managing users through groups can be useful even in this case, especially when the number of users to which to assign roles on specific resources increases. As a matter of fact, thanks to groups, you can actually increase the capabilities on specific resources for a batch of users in your Company in an easier way.
 
@@ -155,6 +155,6 @@ More practically speaking, if you want – for instance – to extend privileges
 Otherwise, if they were not managed through groups, this action of assigning `Maintainer` role on that Project (or Project Runtime Environment) would have to be repeated for each of the members, which is – again – a time-consuming (and even error-prone) activity.  
 Moreover, if you wanted to grant this privilege only for a limited period of time, then restoring the initial role setting would again have to be done manually for each of these members, highlighting this bottleneck even more.
 
-By contrast, through groups, for instance, the `Maintainer` role disassignment from that specific Project (or Project Runtime Environment) – to restore the initial `Developer` role assigned at Company level – would have been much a more effective and circumscribed activity, keeping access governance on that Project more organized and flexible.
+By contrast, through groups, for instance, the `Maintainer` role disassignment from that specific Project (or Project Runtime Environment) – to restore the initial `Developer` role assigned at Company level – would have been a more effective and circumscribed activity, keeping access governance on that Project more organized and flexible.
 
 To sum up, user management use cases are many, as well as the different organizational needs, and – in this landscape – Mia-Platform Console allows you to better structure access to resources as you prefer, giving you freedom in governing access levels of your Company users.
