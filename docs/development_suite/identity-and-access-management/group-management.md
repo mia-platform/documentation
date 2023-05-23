@@ -20,6 +20,8 @@ To find out more about roles management, check out the available [capabilities](
 
 Each Company can have its own groups. These types of identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
 
+![Group table](./img/group-management/group_table.png)
+
 At Company level, for each group, it is possible to manage:
 
 * Name: the name assigned to the group
@@ -28,7 +30,7 @@ At Company level, for each group, it is possible to manage:
 
 Existing groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
 
-![Group table](./img/group-management/group_table.png)
+Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/user-management.md).
 
 :::caution
 Please note that some permissions granted by the assigned Company role may be inherited on the Projects and Runtime Environments of the Company itself.  
@@ -52,7 +54,7 @@ During the creation process, the group can be also created without members added
   </div>
 </div>
 
-Both users who are already part of the Company and new users whose have no access yet can be added to a group.
+Both users who are already part of the Company and new users that have no access yet can be added to a group.
 For the latter, the user must already be registered on the Platform. In this case, when added to the group, the user will receive an invitation email to join the Company.
 As long as a user is part of at least one group of a Company, this has access to the resources of that Company.
 :::info
