@@ -3,6 +3,12 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.0.2] - 2023-05-23
+
+### Fixed
+
+- fixed `oneOf` related bugs
+
 ## [1.0.1] - 2023-05-02
 
 ### Added
