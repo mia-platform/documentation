@@ -6,8 +6,8 @@ sidebar_label: Configuration
 In order to properly add this application in your project you have to complete its configuration as described in the following sections.
 
 :::warning Workaround
-Because of some faults in the application creation process, the user should perform the additional steps reported in this admonition.
-- Setup aggregation of `transactions_saga_view` as follows. [CPB-387](https://makeitapp.atlassian.net/browse/CPB-387)
+The user should perform the additional steps reported in this admonition.
+- Setup aggregation of `transactions_saga_view` as follows.
   - create a new aggregation view on MongoDB Views section called `transactions_saga_view`
   - choose `transactions_saga` as starting collection
   - create `transactions_saga_view` schema as the schema below
