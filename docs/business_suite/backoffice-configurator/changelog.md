@@ -7,7 +7,7 @@ sidebar_label: CHANGELOG
 
 ### Fixed
 
-- fixed `oneOf` related bugs
+- fixed bug causing properties with `oneOf` schemas to be valued uncorrectly in editing modals
 
 ## [1.0.1] - 2023-05-02
 
