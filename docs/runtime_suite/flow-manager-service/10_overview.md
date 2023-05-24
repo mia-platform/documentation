@@ -74,6 +74,6 @@ The maximum number of replicas is limited by the maximum number of the kafka top
 
 Follow the pages below for more about the _Flow Manager_:
 
-- [_Flow Manager_ - how it works](how_it_works.md)
+- [_Flow Manager_ - how it works](./20_how_it_works.md)
 
-- [_Flow Manager_ configuration](configuration.md)
+- [_Flow Manager_ configuration](./30_configuration.md)
