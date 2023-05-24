@@ -466,7 +466,7 @@
     "addedOn": "2023-05-10"
   },
   "/docs/development_suite/api-console/api-design/design-overview": {
-    "destination": "development_suite/api-console/api-design/overview",
+    "destination": "/docs/development_suite/api-console/api-design/overview",
     "addedOn": "2023-05-23"
   }
 }
