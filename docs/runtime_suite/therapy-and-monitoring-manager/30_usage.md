@@ -44,7 +44,7 @@ The `adherenceToleranceFrequency` is considered only when `times` field is defin
 :::
 
 :::info
-For further information on the concepts of adherence and compliance, please refer to the appropriate section on the [Overview page](./10_overview.md#adherence-and-compliance)
+For further information on the concepts of adherence and compliance, please refer to the appropriate section on the [Overview page][adherence-compliance]
 :::
 
 The therapy data model add the concept of `directives`, which is an object following the schema defined in the prototype associated to the therapy.
@@ -160,7 +160,7 @@ These endpoints return 400 and a body with the structure shown below if any of t
 }
 ```
 
-The following fields will be initialized with default values if the value is required ([see table](#therapy--monitoring)) but no value is provided:
+The following fields will be initialized with default values if the value is required ([see table][therapy-monitoring]) but no value is provided:
 
 - `adherenceStatus`
 - `adherenceToleranceFrequency`
@@ -311,7 +311,7 @@ These endpoints return 200 and the number of detections matching the query.
 
 ### `POST /detections/`
 
-Insert a new detection in the CRUD and call the validation service to check if the detection exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable](./20_configuration.md#environment-variables) is set, send a notification to the physician through the messaging service.
+Insert a new detection in the CRUD and call the validation service to check if the detection exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable][environment-variables] is set, send a notification to the physician through the messaging service.
 
 This endpoint is a proxy to the CRUD `POST /` endpoint.
 
@@ -364,7 +364,7 @@ This endpoint returns 400 and a body with the structure shown below if the detec
 
 ### `PATCH /detections/:id`
 
-Update an existing detection identified by the `:id` path parameter and, if the value has changed, call the validation service to check if the detection exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable](./20_configuration.md#environment-variables) is set, send a notification to the physician through the messaging service.
+Update an existing detection identified by the `:id` path parameter and, if the value has changed, call the validation service to check if the detection exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable][environment-variables] is set, send a notification to the physician through the messaging service.
 
 This endpoint is a proxy to the CRUD `PATCH /:id` endpoint.
 
@@ -467,7 +467,7 @@ This endpoint returns 404 if no detection with given id is found.
 
 ## Prototypes
 
-The service uses prototypes to validate therapy and monitoring detections. For futher info about the prototypes and their data model and definition, it is recommended to consult the [overview](./10_overview.md) page and the [configuration](./20_configuration.md) page, respectively.
+The service uses prototypes to validate therapy and monitoring detections. For futher info about the prototypes and their data model and definition, it is recommended to consult the [overview][overview] page and the [configuration][configuration] page, respectively.
 
 ### `GET /prototypes/`
 
@@ -590,13 +590,13 @@ This endpoint returns 200 and the number of prototypes matching the query.
 
 :::info
 
-In this section, a day represents the period of time between 00:00:00.000 and 23:59:59.999 in the detections time zone (see [`DETECTIONS_TIME_ZONE` environment variable][config-env-vars]).
+In this section, a day represents the period of time between 00:00:00.000 and 23:59:59.999 in the detections time zone (see [`DETECTIONS_TIME_ZONE` environment variable][environment-variables]).
 
 :::
 
 This service includes a background job running on a given schedule to update adherence and compliance metrics for all *active plans*.
 
-The schedule can be configured by setting the [`CRON_SCHEDULE` environment variable][config-env-vars] using a valid [CRON expression][crontab-guru]. By default, the job runs once a day at midnight according to the time zone set in the [`DETECTIONS_TIME_ZONE` environment variable][config-env-vars].
+The schedule can be configured by setting the [`CRON_SCHEDULE` environment variable][environment-variables] using a valid [CRON expression][crontab-guru]. By default, the job runs once a day at midnight according to the time zone set in the [`DETECTIONS_TIME_ZONE` environment variable][environment-variables].
 
 On each execution, the background job computes, for each active plan, the adherence and compliance metrics on all existing detections and update the following monitoring or therapy fields:
 
@@ -609,7 +609,7 @@ On each execution, the background job computes, for each active plan, the adhere
 A therapy or monitoring plan is considered active if and only if:
 
 - the start date is earlier than the current date/time;
-- the end date is not set or is greater or equal than the current date/time minus the grace period (see [`DETECTIONS_GRACE_PERIOD`][config-env-vars]).
+- the end date is not set or is greater or equal than the current date/time minus the grace period (see [`DETECTIONS_GRACE_PERIOD`][environment-variables]).
 
 For example, if the cron job runs every day at midnight and the grace period is 30 days, we add 30 days to the end date to account for detections submitted during the grace period. We also add one more day to ensure that we correctly update the adherence and compliance metrics for the last day, whenever it ends between two consecutive executions of the background job.
 
@@ -648,5 +648,13 @@ The computation is performed for each plan according to the following algorithm,
 3. Compute if the ratio from the previous step, expressed as percentage and rounded to the closest integer, is greater or equal than the `complianceMinimumPercentage` threshold set for the plan.
 4. If the condition at the previous step is satisfied, the patient is reported as compliant.
 
+
 [crontab-guru]: https://crontab.guru/ "Crontab.guru"
-[config-env-vars]: ./20_configuration.md#environment-variables "Configuration - Environment variables"
+
+[overview]: ./10_overview.md "Overview page"
+[adherence-compliance]: ./10_overview.md#adherence-and-compliance "Adherence and compliance | Overview"
+
+[configuration]: ./20_configuration.md "Configuration page"
+[environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
+
+[therapy-monitoring]: #therapy--monitoring "Therapy & Monitoring | Usage"
